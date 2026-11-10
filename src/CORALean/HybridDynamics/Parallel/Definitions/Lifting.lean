@@ -44,15 +44,15 @@ structure ParallelHybridAutomaton.Lifting (S G : ℕ → Type) [∀ n, ContSet (
   guard : ∀ i, G (n i) → G (∑ i, n i)
   input {d q : Fin k → ℕ} : (∀ i, Fin (d i) → ResolveSource k q m) → (∀ i, S (d i)) → S m
   dist {d : Fin k → ℕ} : (∀ i, S (d i)) → S (∑ i, d i)
-  mem_inv (gs : ∀ i, G (n i)) (x : ∀ i, Vec ℝ (n i)) (hx : ∀ i, x i ∈ construct (gs i)) :
-    stack x ∈ construct (inv gs)
-  mem_guard (i : Fin k) (g : G (n i)) (x : ∀ i, Vec ℝ (n i)) (hx : x i ∈ construct g) :
-    stack x ∈ construct (guard i g)
+  mem_inv (gs : ∀ i, G (n i)) (x : ∀ i, Vec ℝ (n i)) (hx : ∀ i, x i ∈ toSet (gs i)) :
+    stack x ∈ toSet (inv gs)
+  mem_guard (i : Fin k) (g : G (n i)) (x : ∀ i, Vec ℝ (n i)) (hx : x i ∈ toSet g) :
+    stack x ∈ toSet (guard i g)
   mem_input {d q : Fin k → ℕ} (b : ∀ i, Fin (d i) → ResolveSource k q m) (us : ∀ i, S (d i))
-    (g : Vec ℝ m) (hg : ∀ i, ∃ v ∈ construct (us i), ∀ j a, b i j = .global a → v j = g a)
-    (hz : ∀ a, (∀ i j, b i j ≠ .global a) → g a = 0) : g ∈ construct (input b us)
+    (g : Vec ℝ m) (hg : ∀ i, ∃ v ∈ toSet (us i), ∀ j a, b i j = .global a → v j = g a)
+    (hz : ∀ a, (∀ i j, b i j ≠ .global a) → g a = 0) : g ∈ toSet (input b us)
   mem_dist {d : Fin k → ℕ} (ws : ∀ i, S (d i)) (w : ∀ i, Vec ℝ (d i))
-    (hw : ∀ i, w i ∈ construct (ws i)) : stack w ∈ construct (dist ws)
+    (hw : ∀ i, w i ∈ toSet (ws i)) : stack w ∈ toSet (dist ws)
 
 end CORALean
 

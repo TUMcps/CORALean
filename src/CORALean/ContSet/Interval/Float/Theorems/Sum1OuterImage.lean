@@ -37,8 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.sum₁_outer_image (I : Interval (Mat 𝕋 m n)) :
-    (fun A : Mat ℝ m n => fun j => ∑ i, A i j) '' I.construct ⊆
-      I.sum₁.construct := by
+    (fun A : Mat ℝ m n => fun j => ∑ i, A i j) '' I.toSet ⊆
+      I.sum₁.toSet := by
   rintro _ ⟨A, hA, rfl⟩ j
   exact ⟨le_trans (sumDown_le_sum _) (Finset.sum_le_sum fun i _ => (hA (i, j)).1),
     le_trans (Finset.sum_le_sum fun i _ => (hA (i, j)).2) (sum_le_sumUp _)⟩

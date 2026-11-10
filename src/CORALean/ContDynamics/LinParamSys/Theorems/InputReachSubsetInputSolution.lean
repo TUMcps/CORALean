@@ -75,14 +75,14 @@ enclosure computed from the matrix set. -/
 theorem LinParamSys.inputReach_subset_inputSolution (sys : LinParamSys ℐ n)
     {r : ℝ} (hr : 0 < r) (η : ℕ)
     (hε : ‖(Interval.smul r sys.A).absMax‖ / ((η : ℝ) + 2) < 1)
-    {A : Mat ℝ n n} (hA : A ∈ construct sys.A) {U : S n}
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U))
+    {A : Mat ℝ n n} (hA : A ∈ toSet sys.A) {U : S n}
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U))
     (hRconv : Convex ℝ (MatExp.intervalInputRemainderSet sys.A r η U))
     (hRclosed : IsClosed (MatExp.intervalInputRemainderSet sys.A r η U))
     (hRbdd : Bornology.IsBounded (MatExp.intervalInputRemainderSet sys.A r η U)) : -- --- CONCL ---
     (LinearSys.canonical A : LinearSys ℝ n).inputReach U r
-      ⊆ construct (sys.inputSolution r η U) := by -- --- PROOF ---
+      ⊆ toSet (sys.inputSolution r η U) := by -- --- PROOF ---
   rintro _ ⟨u, hmem, hmeas, rfl⟩
   -- the point system's matrix is the member itself
   simp only [Scalar.toRealMat_real]

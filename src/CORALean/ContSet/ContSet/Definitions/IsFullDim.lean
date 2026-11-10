@@ -37,7 +37,7 @@ variable {S α : Type} [ContSet S α] [TopologicalSpace α]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- The set `s` denotes has a nonempty interior. -/
-def ContSet.IsFullDim (s : S) : Prop := (interior (construct s)).Nonempty
+def ContSet.IsFullDim (s : S) : Prop := (interior (toSet s)).Nonempty
 
 end CORALean
 

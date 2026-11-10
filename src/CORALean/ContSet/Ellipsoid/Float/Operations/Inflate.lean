@@ -13,7 +13,7 @@ holding the exact one entry by entry; this stores a float matrix that dominates 
 matrix in that interval. The upper bound of each entry of the upper triangle is mirrored, so the
 stored matrix is symmetric, and each diagonal entry is raised by the widths of its row's other
 brackets, so the difference to the exact matrix is diagonally dominant and hence positive
-semi-definite (`Theorems/InflateSubPosSemidef`). By `Real.Ellipsoid.construct_subset_of_le` the
+semi-definite (`Theorems/InflateSubPosSemidef`). By `Real.Ellipsoid.toSet_subset_of_le` the
 stored ellipsoid then contains the exact one: rounding is paid into `Q`, not into the error box.
 
 ## Inputs

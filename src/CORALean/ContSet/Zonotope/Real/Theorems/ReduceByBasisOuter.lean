@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBasis
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 
 @[expose] public section
@@ -70,9 +70,9 @@ over-approximates, whichever partition and whichever `P`. -/
 theorem Zonotope.reduceByBasis_outer (Z : Zonotope (Vec ℝ n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) {P : Mat ℝ n n}
     (hP : IsUnit P.det) : -- --- CONCL ---
-    Z.construct ⊆ (Z.reduceByBasis part P).construct := by -- --- PROOF ---
+    Z.toSet ⊆ (Z.reduceByBasis part P).toSet := by -- --- PROOF ---
   intro x hxmem
-  obtain ⟨β, hβ, hx⟩ := Zonotope.mem_construct_iff.mp hxmem
+  obtain ⟨β, hβ, hx⟩ := Zonotope.mem_toSet_iff.mp hxmem
   -- the dropped reach in `P`'s coordinates, bounded row by row
   have hbound : ∀ k, |∑ l, (P⁻¹ *ᵥ Z.G (part.right l)) k * β (part.right l)|
       ≤ ∑ l, |(P⁻¹ *ᵥ Z.G (part.right l)) k| := by
@@ -86,7 +86,7 @@ theorem Zonotope.reduceByBasis_outer (Z : Zonotope (Vec ℝ n))
   have hnonneg : ∀ k, (0:ℝ) ≤ ∑ l, |(P⁻¹ *ᵥ Z.G (part.right l)) k| :=
     fun k => (abs_nonneg _).trans (hbound k)
   -- the witness: kept coefficients, plus one per column of `P`
-  refine Zonotope.mem_construct_iff.mpr
+  refine Zonotope.mem_toSet_iff.mpr
     ⟨Fin.append (fun l => β (part.left l)) (fun k =>
       Zonotope.coefficient (∑ l, |(P⁻¹ *ᵥ Z.G (part.right l)) k|)
         (∑ l, (P⁻¹ *ᵥ Z.G (part.right l)) k * β (part.right l))), ?_, fun i => ?_⟩

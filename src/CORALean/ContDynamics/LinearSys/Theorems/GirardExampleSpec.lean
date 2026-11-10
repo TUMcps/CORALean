@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Theorems.IUnionReachSetExactSubsetLinCombPlusCube
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemLinCombMtimesIff
 public import Mathlib.Analysis.Complex.ExponentialBounds
 public import CORALean.ContDynamics.LinearSys.Operations.Canonical
@@ -76,7 +76,7 @@ private theorem aux_norm_vec1 (v : Vec ℝ 1) : ‖v‖ = |v 0| := by
 theorem LinearSys.girardExample_spec : -- --- CONCL ---
     ‖(Matrix.diagonal fun _ => 100 : Mat ℝ 1 1)‖ = 100
     ∧ IsGreatest ((fun x => ‖x‖) ''
-        (⟨1, fun _ => 1, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1)).construct) 2
+        (⟨1, fun _ => 1, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1)).toSet) 2
     ∧ 3 * Real.exp 1 - 5 ≤ Metric.hausdorffDist
       (⋃ t ∈ Set.Icc (0:ℝ) (1 / 100),
         (LinearSys.canonical (Matrix.diagonal fun _ => 100) : LinearSys ℝ 1).reachSetExact (S := 𝒵)
@@ -85,7 +85,7 @@ theorem LinearSys.girardExample_spec : -- --- CONCL ---
       (((⟨1, fun _ => 1, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1)).linComb
           ((⟨1, fun _ => 1, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1)).mtimes
             (exp ((1 / 100 : ℝ) • (Matrix.diagonal fun _ => 100 : Mat ℝ 1 1))))).plus
-        (Zonotope.cube 1 (2 * (Real.exp 1 - 2)))).construct := by -- --- PROOF ---
+        (Zonotope.cube 1 (2 * (Real.exp 1 - 2)))).toSet := by -- --- PROOF ---
   have hnorm : ‖(Matrix.diagonal fun _ => 100 : Mat ℝ 1 1)‖ = 100 := by
     rw [Matrix.linfty_opNorm_diagonal]; simp
   set sys : LinearSys ℝ 1 := LinearSys.canonical (Matrix.diagonal fun _ => 100) with hsys
@@ -99,7 +99,7 @@ theorem LinearSys.girardExample_spec : -- --- CONCL ---
   set Q := ((Z.linComb (Z.mtimes E)).plus (Zonotope.cube 1 (2 * (Real.exp 1 - 2))))
   -- the point `5 - 3e` of the enclosure
   set p : Vec ℝ 1 := fun _ => 5 - 3 * Real.exp 1
-  have hp : p ∈ Q.construct := by
+  have hp : p ∈ Q.toSet := by
     rw [← Zonotope.plus_exact, Zonotope.cube_exact 1 (by linarith)]
     refine ⟨fun _ => 1 - Real.exp 1, ?_, fun _ => -(2 * (Real.exp 1 - 2)), ?_, ?_⟩
     · refine Zonotope.mem_linComb_mtimes_iff.mpr ⟨fun _ => -1, fun _ => 1, 1, fun _ => by simp,
@@ -116,14 +116,14 @@ theorem LinearSys.girardExample_spec : -- --- CONCL ---
       = 1 + β 0
     simp
   -- every reachable state stays at or above `0`, the input set being `{0}`
-  have hU0 : ∀ u ∈ U.construct, u = 0 := by
+  have hU0 : ∀ u ∈ U.toSet, u = 0 := by
     rintro u ⟨β, -, rfl⟩
     simp [hU]
-  have hU0' : (0 : Vec ℝ 1) ∈ U.construct := ⟨Fin.elim0, fun j => j.elim0, by simp [hU]⟩
+  have hU0' : (0 : Vec ℝ 1) ∈ U.toSet := ⟨Fin.elim0, fun j => j.elim0, by simp [hU]⟩
   have hRnn : ∀ y ∈ R, 0 ≤ y 0 := by
     intro y hy
     obtain ⟨t, ⟨ht0, -⟩, hyt⟩ := Set.mem_iUnion₂.mp hy
-    rw [sys.reachSetExact_eq (S := 𝒵) Z U ht0 (Zonotope.isBounded_construct U)] at hyt
+    rw [sys.reachSetExact_eq (S := 𝒵) Z U ht0 (Zonotope.isBounded_toSet U)] at hyt
     obtain ⟨_, ⟨z, ⟨β, hβ, rfl⟩, rfl⟩, v, ⟨u, hu, -, rfl⟩, rfl⟩ := hyt
     -- the input integral vanishes, the input being `0` throughout
     have hv : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s) = 0 := by
@@ -144,23 +144,23 @@ theorem LinearSys.girardExample_spec : -- --- CONCL ---
   have hRne : R.Nonempty := by
     refine ⟨(exp ((0:ℝ) • toRealMat sys.A)).mulVecLin Z.c + 0,
       Set.mem_iUnion₂.mpr ⟨0, ⟨le_rfl, by norm_num⟩, ?_⟩⟩
-    rw [sys.reachSetExact_eq (S := 𝒵) Z U le_rfl (Zonotope.isBounded_construct U)]
+    rw [sys.reachSetExact_eq (S := 𝒵) Z U le_rfl (Zonotope.isBounded_toSet U)]
     have h0 := sys.expIntegral_mem_inputReach (S := 𝒵) (le_refl (0:ℝ)) hU0'
     rw [Matrix.mulVec_zero] at h0
-    exact ⟨_, ⟨Z.c, Zonotope.center_mem_construct Z, rfl⟩, 0, h0, rfl⟩
+    exact ⟨_, ⟨Z.c, Zonotope.center_mem_toSet Z, rfl⟩, 0, h0, rfl⟩
   -- bounded: inside the enclosure of Lemma 2
   have hRb : Bornology.IsBounded R := by
-    have hs : ∀ z ∈ Z.construct, ‖z‖ ≤ 2 := by
+    have hs : ∀ z ∈ Z.toSet, ‖z‖ ≤ 2 := by
       rintro _ ⟨β, hβ, rfl⟩
       rw [aux_norm_vec1]
       have := abs_le.mp (hβ 0)
       rw [hz0, abs_le]; constructor <;> linarith
-    have hUc : U.construct = Metric.closedBall 0 0 := by
+    have hUc : U.toSet = Metric.closedBall 0 0 := by
       rw [Metric.closedBall_zero]
       ext u; constructor
       · exact hU0 u
       · rintro rfl; exact hU0'
-    exact (Zonotope.isBounded_construct _).subset
+    exact (Zonotope.isBounded_toSet _).subset
       (sys.iUnion_reachSetExact_subset_linComb_plus_cube Z U (by
         show 0 < ‖(Matrix.diagonal fun _ => (100:ℝ) : Mat ℝ 1 1)‖
         rw [hnorm]; norm_num) (by norm_num) le_rfl hUc hs)
@@ -172,9 +172,9 @@ theorem LinearSys.girardExample_spec : -- --- CONCL ---
     simp only [Pi.sub_apply, p]
     rw [abs_sub_comm, abs_of_nonneg (by linarith)]
     linarith
-  have hfin : Metric.hausdorffEDist Q.construct R ≠ ⊤ :=
+  have hfin : Metric.hausdorffEDist Q.toSet R ≠ ⊤ :=
     Metric.hausdorffEDist_ne_top_of_nonempty_of_bounded ⟨p, hp⟩ hRne
-      (Zonotope.isBounded_construct Q) hRb
+      (Zonotope.isBounded_toSet Q) hRb
   -- the three facts: `‖A‖`, `sup |x| = 2`, the distance
   refine ⟨hnorm, ⟨⟨fun _ => 2, ⟨fun _ => 1, fun _ => by simp, ?_⟩, ?_⟩, ?_⟩, ?_⟩
   · funext i; show (2:ℝ) = 1 + ∑ j : Fin 1, (1:ℝ) * 1; simp; norm_num

@@ -102,7 +102,7 @@ private theorem Interval.aux_cosh_Icc {a b : ℝ} (hab : a ≤ b) : -- --- CONCL
 
 theorem Interval.cosh_exact (I : Interval (Vec ℝ n))
     (hI : ∀ i, I.inf i ≤ I.sup i) : -- --- CONCL ---
-    I.cosh.construct = (fun x i => Real.cosh (x i)) '' I.construct := by -- --- PROOF ---
+    I.cosh.toSet = (fun x i => Real.cosh (x i)) '' I.toSet := by -- --- PROOF ---
   ext y
   constructor
   · intro hy

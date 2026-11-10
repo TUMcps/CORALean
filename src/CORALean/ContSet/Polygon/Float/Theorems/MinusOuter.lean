@@ -41,14 +41,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.minus_outer (P : Polygon 𝕋) (p : Vec 𝕋 2) : -- --- CONCL ---
-    (fun x => x - toRealVec p) '' ContSet.construct P ⊆
-      ContSet.construct (Polygon.minus P p) := by -- --- PROOF ---
+    (fun x => x - toRealVec p) '' ContSet.toSet P ⊆
+      ContSet.toSet (Polygon.minus P p) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   -- the point `-p`, read as reals, is in the one-piece polygon
-  have hpt : -toRealVec p ∈ ContSet.construct
+  have hpt : -toRealVec p ∈ ContSet.toSet
       (Polygon.ofPieces [VPolytope.enclosePoints fun (_ : Fin 1) i => neg (p i)]) := by
-    refine SetUnion.mem_construct.mpr ⟨_, List.mem_singleton_self _, ?_⟩
-    show _ ∈ VPolytope.construct _
+    refine SetUnion.mem_toSet.mpr ⟨_, List.mem_singleton_self _, ?_⟩
+    show _ ∈ VPolytope.toSet _
     rw [VPolytope.enclosePoints_exact]
     refine subset_convexHull ℝ _ ⟨0, ?_⟩
     funext i

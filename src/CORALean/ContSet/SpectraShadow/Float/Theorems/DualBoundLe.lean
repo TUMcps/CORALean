@@ -62,7 +62,7 @@ private theorem SpectraShadow.aux_mul_le_corner (a lo hi : 𝕋) {e : ℝ} (he�
 
 theorem SpectraShadow.dualBound_le {S : SpectraShadow 𝕋 (Vec 𝕋 n)} {a : Vec 𝕋 n} {Y : Mat 𝕋 S.k S.k}
     (h : S.dualCertified a Y = true) : -- --- CONCL ---
-    ∀ x ∈ S.construct, ∑ r, toReal (a r) * x r ≤ toReal (S.dualBound a Y) := by -- --- PROOF ---
+    ∀ x ∈ S.toSet, ∑ r, toReal (a r) * x r ≤ toReal (S.dualBound a Y) := by -- --- PROOF ---
   simp only [SpectraShadow.dualCertified, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const, decide_eq_true_eq] at h
   obtain ⟨⟨⟨hsym, hdom⟩, heq⟩, -⟩ := h

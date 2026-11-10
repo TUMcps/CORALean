@@ -87,11 +87,11 @@ theorem neuronMerging_network_outer {n₀ n₁ n n₂ n₃ d r : ℕ}
     (W1 : Mat 𝕋 n₂ n) (b1 : Vec 𝕋 n₂) (Y : Interval (Vec 𝕋 n)) (X : S n₀)
     {fpre : Vec ℝ n₀ → Vec ℝ n₁} (hpre : pre.Encloses fpre)
     {fpost : Vec ℝ n₂ → Vec ℝ n₃} (hpost : post.Encloses fpost)
-    (hY : ∀ x ∈ construct (pre.enclose X),
-      (fun i => σ ((toRealMat W0 *ᵥ x + toRealVec b0) i)) ∈ Y.construct) : -- --- CONCL ---
+    (hY : ∀ x ∈ toSet (pre.enclose X),
+      (fun i => σ ((toRealMat W0 *ᵥ x + toRealVec b0) i)) ∈ Y.toSet) : -- --- CONCL ---
     (fun x => fpost (toRealMat W1 *ᵥ (fun i => σ ((toRealMat W0 *ᵥ fpre x + toRealVec b0) i))
-        + toRealVec b1)) '' construct X
-      ⊆ construct ((NeuralNetwork.layer (Enclose.pack (S := S) pre)
+        + toRealVec b1)) '' toSet X
+      ⊆ toSet ((NeuralNetwork.layer (Enclose.pack (S := S) pre)
           (.layer (LinearLayer.mk (W0.submatrix part.left id) (b0 ∘ part.left))
             (.layer (ActivationLayer.of hR)
               (.layer (LinearWithErrorLayer.mk (W1.submatrix id part.left) b1
@@ -100,7 +100,7 @@ theorem neuronMerging_network_outer {n₀ n₁ n n₂ n₃ d r : ℕ}
                 post)))).enclose X) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   -- the prefix hands the sandwich a set, and that set is what `hY` is stated over
-  have hp : fpre x ∈ construct (pre.enclose X) := hpre.enclose_outer X x hx
+  have hp : fpre x ∈ toSet (pre.enclose X) := hpre.enclose_outer X x hx
   have hmid := neuronMerging_sandwich_outer part W0 b0 R hR W1 b1 Y (pre.enclose X) hY
     ⟨fpre x, hp, rfl⟩
   -- the suffix is unchanged, so its own obligation carries the point the rest of the way

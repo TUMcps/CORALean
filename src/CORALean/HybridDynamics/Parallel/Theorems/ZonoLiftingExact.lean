@@ -47,7 +47,7 @@ theorem ParallelHybridAutomaton.zonoLifting_isExact :
     (ParallelHybridAutomaton.zonoLifting (k := k) (n := n) (m := m)).IsExact where
   inv_inv gs x hx := by
     -- the lifted invariant is exactly the blocks'
-    have hx' : stack x ∈ (HPolytope.stackProd gs).construct := hx
+    have hx' : stack x ∈ (HPolytope.stackProd gs).toSet := hx
     rw [HPolytope.stackProd_exact] at hx'
     intro i
     have := hx' i
@@ -55,14 +55,14 @@ theorem ParallelHybridAutomaton.zonoLifting_isExact :
     exact this
   guard_inv i g x hx := by
     -- the lifted guard asks of a stack only that block `i` meet the guard
-    have hx' : stack x ∈ (HPolytope.comap (blockProj i) g).construct := hx
+    have hx' : stack x ∈ (HPolytope.comap (blockProj i) g).toSet := hx
     rw [HPolytope.comap_blockProj_exact] at hx'
-    have : unstack (stack x) i ∈ g.construct := hx'
+    have : unstack (stack x) i ∈ g.toSet := hx'
     rw [unstack_stack] at this
     exact this
   input_inv b hb us _ g hg := by
     -- `g` is the image of a stacked point of the product, whose blocks agree with it
-    have hg' : g ∈ (Zonotope.mtimes (selectGlobal b) (Zonotope.stackProd us)).construct := hg
+    have hg' : g ∈ (Zonotope.mtimes (selectGlobal b) (Zonotope.stackProd us)).toSet := hg
     rw [← Zonotope.mtimes_exact] at hg'
     obtain ⟨z, hz, rfl⟩ := hg'
     rw [Zonotope.stackProd_exact] at hz
@@ -73,7 +73,7 @@ theorem ParallelHybridAutomaton.zonoLifting_isExact :
     rfl
   dist_inv ws w hw := by
     -- the product of the disturbance sets is exactly the blocks'
-    have hw' : stack w ∈ (Zonotope.stackProd ws).construct := hw
+    have hw' : stack w ∈ (Zonotope.stackProd ws).toSet := hw
     rw [Zonotope.stackProd_exact] at hw'
     intro i
     have := hw' i

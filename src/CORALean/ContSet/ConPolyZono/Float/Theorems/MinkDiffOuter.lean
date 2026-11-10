@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Operations.MinkDiff
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.PlusOuter
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
@@ -53,22 +53,22 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A float vector as a one-point set holds that point, read as reals. -/
 private theorem ConPolyZono.aux_mem_plus_point (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (w : Vec 𝕋 n)
-    {y : Vec ℝ n} (hy : y - toRealVec w ∈ cPZ.construct) :
-    y ∈ (cPZ.plus (Zonotope.point w).conPolyZono).construct := by
+    {y : Vec ℝ n} (hy : y - toRealVec w ∈ cPZ.toSet) :
+    y ∈ (cPZ.plus (Zonotope.point w).conPolyZono).toSet := by
   refine ConPolyZono.plus_outer _ _ ⟨_, hy, toRealVec w, ?_, sub_add_cancel _ _⟩
   refine Zonotope.conPolyZono_contains _ ?_
-  rw [Zonotope.construct_point]
+  rw [Zonotope.toSet_point]
   rfl
 
 /-- The fold over the generators `g`: a point whose every corner `y + Σ ±gⱼ` lies in `A`, and
 `A` in the start, lies in the result. -/
 private theorem ConPolyZono.aux_minkDiff_fold : -- --- CONCL ---
     ∀ {m : ℕ} (g : Fin m → Vec 𝕋 n) (cur : ConPolyZono 𝕋 (Vec 𝕋 n)) (A : Set (Vec ℝ n)),
-      A ⊆ cur.construct →
+      A ⊆ cur.toSet →
       {y | ∀ s : Fin m → Bool, y + ∑ j, (if s j then (1 : ℝ) else -1) • toRealVec (g j) ∈ A}
         ⊆ (Fin.foldl m (fun cPZ i => (cPZ.plus (Zonotope.point (g i)).conPolyZono).intersection
             (cPZ.plus (Zonotope.point (-(g i))).conPolyZono))
-          cur).construct := by -- --- PROOF ---
+          cur).toSet := by -- --- PROOF ---
   intro m
   induction m with
   | zero =>
@@ -106,11 +106,11 @@ private theorem ConPolyZono.aux_minkDiff_fold : -- --- CONCL ---
 
 /-- Outer: `P ⊖ Z ⊆ minkDiff P Z` for a float subtrahend whose error box holds `0`. -/
 theorem ConPolyZono.minkDiff_outer (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec 𝕋 n))
-    (h0 : (0 : Vec ℝ n) ∈ Z.I_error.construct) : -- --- CONCL ---
-    minkowskiDiff cPZ₁.construct Z.construct ⊆ (cPZ₁.minkDiff Z).construct := by -- --- PROOF ---
+    (h0 : (0 : Vec ℝ n) ∈ Z.I_error.toSet) : -- --- CONCL ---
+    minkowskiDiff cPZ₁.toSet Z.toSet ⊆ (cPZ₁.minkDiff Z).toSet := by -- --- PROOF ---
   intro x hx
   refine ConPolyZono.aux_minkDiff_fold Z.G _
-    {y | y + toRealVec Z.c ∈ cPZ₁.construct} ?_ ?_
+    {y | y + toRealVec Z.c ∈ cPZ₁.toSet} ?_ ?_
   · -- the start: the minuend, made dependent, moved by `-c`
     intro y hy
     refine ConPolyZono.aux_mem_plus_point _ _ ?_
@@ -123,13 +123,13 @@ theorem ConPolyZono.minkDiff_outer (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n)) (Z :
   · -- every corner `c + Σ ±gⱼ` is a point of the float zonotope
     intro s
     have hz : toRealVec Z.c + ∑ j, (if s j then (1 : ℝ) else -1) • toRealVec (Z.G j)
-        ∈ Z.construct := by
+        ∈ Z.toSet := by
       refine ⟨_, Zonotope.mem_nominalSet_iff.mpr ⟨fun j => if s j then 1 else -1,
         fun j => by by_cases hs : s j <;> simp [hs], fun i => ?_⟩, 0, h0, add_zero _⟩
       simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, toRealVec]
       exact congrArg _ (Finset.sum_congr rfl fun j _ => mul_comm _ _)
     have := hx _ hz
-    show x + _ + toRealVec Z.c ∈ cPZ₁.construct
+    show x + _ + toRealVec Z.c ∈ cPZ₁.toSet
     simpa [add_comm, add_left_comm, add_assoc] using this
 
 end CORALean.Float

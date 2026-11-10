@@ -1,11 +1,11 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ToSetEqIInter
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsToSetEqIffHPolytope
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeVPolytopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeZonoBundleRowsExact
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MemDomainIff
-public import CORALean.ContSet.VPolytope.Real.Theorems.KEqZeroOfConstructEqEmpty
+public import CORALean.ContSet.VPolytope.Real.Theorems.KEqZeroOfToSetEqEmpty
 public import CORALean.Global.Tensor
 public import Mathlib.LinearAlgebra.Matrix.DotProduct
 public import Mathlib.Data.Matrix.Mul
@@ -23,7 +23,7 @@ public import Mathlib.Tactic.Linarith
 CORA's bundle of one zonotope per row (`HPolytope.zonoBundleRows`) is exact given an orthogonal
 basis for each row, whose first axis is the row's normal, and a vertex list of the polytope. Both
 exist: the vertices by the constrained zonotope a bounded polytope is
-(`ConZonotope.exists_construct_eq_iff_hPolytope`), and the basis by the Householder reflection
+(`ConZonotope.exists_toSet_eq_iff_hPolytope`), and the basis by the Householder reflection
 carrying the first axis to the normal (`aux_exists_orthogonal_firstCol`). An empty polytope is the
 bundle of two distinct points; the dimension is positive. This is the equivalence of polytopes and
 zonotope bundles of [1, Fig. 1 (Polytopes ↔ Zonotope Bundles)].
@@ -150,19 +150,19 @@ private theorem HPolytope.aux_exists_orthogonal_row [NeZero n]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.exists_zonoBundle_exact [NeZero n] (P : HPolytope (Vec ℝ n))
-    (hbd : Bornology.IsBounded P.construct) : -- --- CONCL ---
-    ∃ zB : ZonoBundle (Vec ℝ n), zB.construct = P.construct := by -- --- PROOF ---
-  by_cases hne : P.construct.Nonempty
+    (hbd : Bornology.IsBounded P.toSet) : -- --- CONCL ---
+    ∃ zB : ZonoBundle (Vec ℝ n), zB.toSet = P.toSet := by -- --- PROOF ---
+  by_cases hne : P.toSet.Nonempty
   · -- a vertex form of the polytope, through the constrained zonotope it is
-    obtain ⟨cZ, hcZ⟩ := ConZonotope.exists_construct_eq_iff_hPolytope.mpr ⟨P, rfl, hbd⟩
+    obtain ⟨cZ, hcZ⟩ := ConZonotope.exists_toSet_eq_iff_hPolytope.mpr ⟨P, rfl, hbd⟩
     obtain ⟨x₀, hx₀⟩ := hne
     obtain ⟨β, hβ, hβP, -⟩ := hcZ ▸ hx₀
     let V := cZ.vPolytope ⟨β, ConZonotope.mem_domain_iff.mpr ⟨hβ, hβP⟩⟩
-    have hV : V.construct = P.construct :=
+    have hV : V.toSet = P.toSet :=
       (ConZonotope.vPolytope_exact cZ _).trans hcZ
     -- the vertex list is nonempty, the polytope being so
     have hk : NeZero V.k := ⟨fun h0 => by
-      obtain ⟨γ, -, hsum, -⟩ : x₀ ∈ V.construct := hV ▸ hx₀
+      obtain ⟨γ, -, hsum, -⟩ : x₀ ∈ V.toSet := hV ▸ hx₀
       haveI : IsEmpty (Fin V.k) := ⟨fun j => by have := j.2; omega⟩
       simp at hsum⟩
     -- an orthogonal basis for each row
@@ -173,7 +173,7 @@ theorem HPolytope.exists_zonoBundle_exact [NeZero n] (P : HPolytope (Vec ℝ n))
     refine ⟨⟨2, ![⟨0, 0, Fin.elim0⟩, ⟨0, fun j => if j = 0 then 1 else 0, Fin.elim0⟩]⟩, ?_⟩
     rw [hne]
     ext x
-    simp only [ZonoBundle.construct_eq_iInter, Set.mem_iInter, Set.mem_empty_iff_false, iff_false]
+    simp only [ZonoBundle.toSet_eq_iInter, Set.mem_iInter, Set.mem_empty_iff_false, iff_false]
     intro h
     have h0 := h 0
     have h1 := h 1

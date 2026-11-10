@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.empty_exact (hn : 0 < n) : (Interval.empty n).construct = ∅ := by
+theorem Interval.empty_exact (hn : 0 < n) : (Interval.empty n).toSet = ∅ := by
   rw [← Interval.not_isNonempty_iff]
   intro h
   have h0 : (1 : ℝ) ≤ 0 := h ⟨0, hn⟩

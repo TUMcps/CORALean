@@ -2,8 +2,8 @@ module
 
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.Specification.STL.Operations.DepBoxFloat
 public import CORALean.Specification.STL.Theorems.ZonotopeExtremes
 
@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A point of a float zonotope stays within the stored center, the rounded-up radius and the error
 box in each coordinate. -/
 private theorem STL.aux_depBoxFloat_bounds {Z : Float.Zonotope (Vec 𝕋 n)} {x : Vec ℝ n}
-    (hx : x ∈ Z.construct) (i : Fin n) : -- --- CONCL ---
+    (hx : x ∈ Z.toSet) (i : Fin n) : -- --- CONCL ---
     toReal (Z.c i) - toReal (sumUp (fun j => absolute (Z.G j i))) + toReal (Z.I_error.inf i) ≤ x i ∧
       x i ≤ toReal (Z.c i) + toReal (sumUp (fun j => absolute (Z.G j i))) +
         toReal (Z.I_error.sup i) := by -- --- PROOF ---
@@ -74,10 +74,10 @@ private theorem STL.aux_depBoxFloat_bounds {Z : Float.Zonotope (Vec 𝕋 n)} {x 
 
 /-- `interval(Z)` over floats holds the real `interval(Z)` of every real zonotope inside `Z`. -/
 theorem STL.depBoxFloat_outer {Zr : Real.Zonotope (Vec ℝ n)} {Zf : Float.Zonotope (Vec 𝕋 n)}
-    (h : Zr.construct ⊆ Zf.construct) : -- --- CONCL ---
-    (STL.depBox Zr).construct ⊆ (STL.depBoxFloat Zf).construct := by -- --- PROOF ---
+    (h : Zr.toSet ⊆ Zf.toSet) : -- --- CONCL ---
+    (STL.depBox Zr).toSet ⊆ (STL.depBoxFloat Zf).toSet := by -- --- PROOF ---
   intro y hy
-  obtain ⟨γ, hγ, hy⟩ := Real.Zonotope.mem_construct_iff.1 hy
+  obtain ⟨γ, hγ, hy⟩ := Real.Zonotope.mem_toSet_iff.1 hy
   -- the coordinates of `y` lie between the extremes of the real zonotope
   have hrange : ∀ i, toReal (Zf.c i) - toReal (sumUp (fun j => absolute (Zf.G j i))) +
         toReal (Zf.I_error.inf i) ≤ y i ∧ y i ≤ toReal (Zf.c i) +
@@ -94,7 +94,7 @@ theorem STL.depBoxFloat_outer {Zr : Real.Zonotope (Vec ℝ n)} {Zf : Float.Zonot
     constructor <;> nlinarith [b₁.1, b₁.2, b₂.1, b₂.2]
   -- the error box of the float zonotope is nonempty, as it holds a point of the center
   have hne : ∀ i, toReal (Zf.I_error.inf i) ≤ toReal (Zf.I_error.sup i) := fun i => by
-    obtain ⟨z, -, e, he, -⟩ := h (Real.Zonotope.center_mem_construct Zr)
+    obtain ⟨z, -, e, he, -⟩ := h (Real.Zonotope.center_mem_toSet Zr)
     have he' : toReal (Zf.I_error.inf i) ≤ e i ∧ e i ≤ toReal (Zf.I_error.sup i) :=
       Float.Interval.mem_vec_iff.1 he i
     exact he'.1.trans he'.2
@@ -133,7 +133,7 @@ theorem STL.depBoxFloat_outer {Zr : Real.Zonotope (Vec ℝ n)} {Zf : Float.Zonot
     · simp only [β, h0, if_false]
       field_simp
   -- the clamp lies in the error box by construction
-  have hmem : e ∈ Zf.I_error.construct := Float.Interval.mem_vec_iff.2 fun i => by
+  have hmem : e ∈ Zf.I_error.toSet := Float.Interval.mem_vec_iff.2 fun i => by
     refine ⟨le_max_left _ _, max_le (hne i) (min_le_left _ _)⟩
   refine ⟨fun i => toReal (Zf.c i) + r i * β i, ?_, e, hmem, ?_⟩
   · refine Float.Zonotope.mem_nominalSet_iff.2 ⟨β, fun i => ?_, fun i => ?_⟩

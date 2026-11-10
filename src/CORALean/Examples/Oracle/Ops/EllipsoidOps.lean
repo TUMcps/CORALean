@@ -236,7 +236,7 @@ def handleEllipsoidOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option
       checkFields op req ["E"]
       let d ← parseEllipsoid dops.readExact (← field req "E")
       pure [("value", printVec dops.showExact (Ellipsoid.center d.E))])
-  -- the arms from `construct` on
+  -- the arms from `toSet` on
   | "construct" => some (do
       checkFields op req ["E"]
       let d ← parseEllipsoid dops.readExact (← field req "E")

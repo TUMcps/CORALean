@@ -66,9 +66,9 @@ theorem LinearSysDT.backReachAligned_outer {A : Mat ℝ n n} (hA : IsUnit A.det)
     (E : Mat ℝ n p) (K : Vec ℝ n) (U : Zonotope (Vec ℝ m)) (W : Set (Vec ℝ p))
     (Z₀ : Zonotope (Vec ℝ n)) (σ : (Z : Zonotope (Vec ℝ n)) → Vec ℝ n × (Fin Z.h → ℝ))
     (hσ : ∀ Z, (∀ i, 0 ≤ (σ Z).2 i ∧ (σ Z).2 i ≤ 1) ∧
-      (Z.aligned (σ Z).1 (σ Z).2).construct ⊆ (E *ᵥ ·) '' W) (k : ℕ) : -- --- CONCL ---
-    LinearSysDT.backReachSetRobustExact A B E K U.construct W Z₀.construct k
-      ⊆ (Zonotope.backReachAligned A B K U Z₀ σ k).construct := by -- --- PROOF ---
+      (Z.aligned (σ Z).1 (σ Z).2).toSet ⊆ (E *ᵥ ·) '' W) (k : ℕ) : -- --- CONCL ---
+    LinearSysDT.backReachSetRobustExact A B E K U.toSet W Z₀.toSet k
+      ⊆ (Zonotope.backReachAligned A B K U Z₀ σ k).toSet := by -- --- PROOF ---
   induction k with
   | zero => exact subset_rfl
   | succ k ih =>
@@ -78,7 +78,7 @@ theorem LinearSysDT.backReachAligned_outer {A : Mat ℝ n n} (hA : IsUnit A.det)
     rw [Zonotope.mem_backReachAligned_succ_iff hA]
     set Zk := Zonotope.backReachAligned A B K U Z₀ σ k
     -- `X_k ⊖ EW ⊆ Z̄_k ⊖ EW ⊆ Z̄_k ⊖ Z(Z̄_k, EW)`, which the generator-wise difference is
-    have hdiff : d ∈ (Zk.minkDiffAligned (Zk.aligned (σ Zk).1 (σ Zk).2) rfl).construct := by
+    have hdiff : d ∈ (Zk.minkDiffAligned (Zk.aligned (σ Zk).1 (σ Zk).2) rfl).toSet := by
       rw [Zk.minkDiffAligned_exact (Zk.aligned (σ Zk).1 (σ Zk).2) rfl (σ Zk).2
         (fun i => ((hσ Zk).1 i).1) (fun i => ((hσ Zk).1 i).2) (fun _ => rfl)]
       exact minkowskiDiff_mono ih (hσ Zk).2 hd

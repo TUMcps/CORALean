@@ -36,9 +36,9 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.isBounded_construct (cZ : ConZonotope α) :
-    Bornology.IsBounded cZ.construct :=
-  cZ.isCompact_construct.isBounded
+theorem ConZonotope.isBounded_toSet (cZ : ConZonotope α) :
+    Bornology.IsBounded cZ.toSet :=
+  cZ.isCompact_toSet.isBounded
 
 end CORALean.Real
 

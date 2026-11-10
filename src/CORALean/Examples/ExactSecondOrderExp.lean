@@ -46,19 +46,19 @@ noncomputable def ESO.A : Interval (Mat ℝ 2 2) := ⟨fun _ _ => (-1 : ℝ), fu
 theorem ESO.le : ∀ p q, ESO.A.inf p q ≤ ESO.A.sup p q := fun _ _ => by norm_num [ESO.A]
 
 /-- Every member's `W(t)` lands in the box [1, Lemma 1] computes. -/
-example {M : Mat ℝ 2 2} (hM : M ∈ ESO.A.construct) :
-    MatExp.expW M 1 ∈ (MatExp.expIntervalW ESO.A 1).construct :=
+example {M : Mat ℝ 2 2} (hM : M ∈ ESO.A.toSet) :
+    MatExp.expW M 1 ∈ (MatExp.expIntervalW ESO.A 1).toSet :=
   MatExp.expW_mem_expIntervalW ESO.A 1 hM
 
 /-- And each of its bounds is such a `W(t)`, so nothing narrower would do. -/
 example (i j : Fin 2) :
-    ∃ M ∈ ESO.A.construct, MatExp.expW M 1 i j = (MatExp.expIntervalW ESO.A 1).inf i j :=
+    ∃ M ∈ ESO.A.toSet, MatExp.expW M 1 i j = (MatExp.expIntervalW ESO.A 1).inf i j :=
   (MatExp.expIntervalW_attained ESO.A one_ne_zero ESO.le i j).1
 
 /-- Which is why the exact-second-order enclosure never leaves the uniform one. -/
 example (κ : ℕ) (hκ : 2 ≤ κ) :
-    (MatExp.expIntervalEnclosureExact ESO.A 1 κ).construct
-      ⊆ (MatExp.expIntervalEnclosure (Interval.smul 1 ESO.A) κ).construct :=
+    (MatExp.expIntervalEnclosureExact ESO.A 1 κ).toSet
+      ⊆ (MatExp.expIntervalEnclosure (Interval.smul 1 ESO.A) κ).toSet :=
   MatExp.expIntervalEnclosure_contains_exact ESO.A one_ne_zero ESO.le hκ
 
 end CORALean.Real

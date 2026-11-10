@@ -39,7 +39,7 @@ variable {q n : ℕ}
 /-- An equality is the degenerate slab, which is how CORA's `Ae x = be` reads in
 this form. -/
 theorem HPolytope.mem_slab_self_iff {Ae : Mat ℝ q n} {be : Vec ℝ q} {x : Vec ℝ n} :
-    x ∈ (HPolytope.slab Ae be be).construct ↔ ∀ i, (Ae *ᵥ x) i = be i := by
+    x ∈ (HPolytope.slab Ae be be).toSet ↔ ∀ i, (Ae *ᵥ x) i = be i := by
   rw [HPolytope.mem_slab_iff]
   exact forall_congr' fun i => ⟨fun h => le_antisymm h.2 h.1, fun h => ⟨h.ge, h.le⟩⟩
 

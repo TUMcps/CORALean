@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
+public import CORALean.ContSet.Capsule.Real.Theorems.ToSetEqEmpty
 public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleSpectraShadowExact
 
 @[expose] public section
@@ -36,9 +36,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.spectraShadow_contains (C : Capsule n) :
-    C.construct ⊆ C.spectraShadow.construct := by
+    C.toSet ⊆ C.spectraShadow.toSet := by
   rcases lt_or_ge C.r 0 with hr | hr
-  · rw [Capsule.construct_eq_empty hr]
+  · rw [Capsule.toSet_eq_empty hr]
     exact Set.empty_subset _
   · exact (C.spectraShadow_exact hr).subset
 

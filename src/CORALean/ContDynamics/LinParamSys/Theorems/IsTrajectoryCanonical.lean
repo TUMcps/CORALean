@@ -55,7 +55,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem LinParamSys.IsTrajectory.canonical {sys : LinParamSys 𝕄 n} {T : Set ℝ} {X₀ : S n}
     {U : S sys.m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ sys.m} {A : ℝ → Mat ℝ n n}
     {B : ℝ → Mat ℝ n sys.m} (traj : sys.IsTrajectory T X₀ U x u A B) {U' : S n}
-    (hU' : ∀ t ∈ T, B t *ᵥ u t + sys.c ∈ construct U') :
+    (hU' : ∀ t ∈ T, B t *ᵥ u t + sys.c ∈ toSet U') :
     sys.IsCanonicalTrajectory T X₀ U' x (fun t => B t *ᵥ u t + sys.c) A where
   init := traj.init
   input := hU'

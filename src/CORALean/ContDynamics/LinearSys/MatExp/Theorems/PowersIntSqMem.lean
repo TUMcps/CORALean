@@ -46,12 +46,12 @@ variable {n : ℕ}
 
 /-- `M ^ j` is in the power of order `j` that starts from the exact square, for `j ≥ 2`. -/
 theorem MatExp.powers_intSq_mem (A : Interval (Mat ℝ n n)) {r : ℝ} (hr : r ≠ 0)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) {j : ℕ} (hj : 2 ≤ j) : -- --- CONCL ---
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) {j : ℕ} (hj : 2 ≤ j) : -- --- CONCL ---
     M ^ j ∈ (Interval.powers A
       (MatExp.dependentTerms (Interval.smul (1 / r) A) r).intSq
-        (j - 2)).construct := by -- --- PROOF ---
+        (j - 2)).toSet := by -- --- PROOF ---
   -- the member scaled by `1 / r` is in the scaled box, so its square is in `intSq`
-  have hM' : r⁻¹ • M ∈ (Interval.smul (1 / r) A).construct := by
+  have hM' : r⁻¹ • M ∈ (Interval.smul (1 / r) A).toSet := by
     have h := Interval.smul_outer (1 / r) A hM
     simpa only [one_div] using h
   have hsq := (MatExp.dependentTerms_outer (Interval.smul (1 / r) A) r hM').1

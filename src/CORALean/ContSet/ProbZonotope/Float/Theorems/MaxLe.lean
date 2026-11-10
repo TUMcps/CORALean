@@ -111,7 +111,7 @@ private theorem ProbZonotope.aux_max_le_of_bounds {S : Mat ℝ n n} (hS : S.IsHe
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.max_le (P : ProbZonotope 𝕋 n) (m : 𝕋) (p k : ℕ) (Z : Real.Zonotope (Vec ℝ n))
-    {S : Mat ℝ n n} (hS : S ∈ P.cov.construct) (hSh : S.IsHermitian) : -- --- CONCL ---
+    {S : Mat ℝ n n} (hS : S ∈ P.cov.toSet) (hSh : S.IsHermitian) : -- --- CONCL ---
     ∀ v ∈ P.max m p k,
       0 < S.det ∧ (⟨Z, S⟩ : Real.ProbZonotope n).max (toReal m) ≤ toReal v := by -- --- PROOF ---
   intro v (hv : P.max m p k = some v)

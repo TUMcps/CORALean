@@ -6,7 +6,7 @@
 A float set records its rounding in an `I_error` box and denotes nominal + `I_error`; rounding is
 never folded silently into a parameter. Each float representation therefore provides a sound
 `absorbRounding` that moves the box into the parameters where the representation can hold it, with
-`absorbRounding_outer : construct S ⊆ construct (absorbRounding S)`. For every main type file
+`absorbRounding_outer : toSet S ⊆ toSet (absorbRounding S)`. For every main type file
 `ContSet/<X>/Float/<X>.lean` this checks
 
   * the file has an `I_error` field (or extends a structure that has one),

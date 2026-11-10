@@ -50,9 +50,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem LinearSys.expIntegral_mem_inputSolutionFloat (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) (V : Zonotope (Vec 𝕋 n))
-    {uc : Vec ℝ n} (huc : uc ∈ V.construct) :
+    {uc : Vec ℝ n} (huc : uc ∈ V.toSet) :
     Real.MatExp.expIntegral (toRealMat sys.A) (toReal Δt) *ᵥ uc
-      ∈ (sys.inputSolutionFloat Δt η V).construct :=
+      ∈ (sys.inputSolutionFloat Δt η V).toSet :=
   sys.inputReach_subset_inputSolutionFloat hΔt hη V
     (sys.expIntegral_mem_inputReach (S := 𝒵[𝕋]) hΔt.le huc)
 

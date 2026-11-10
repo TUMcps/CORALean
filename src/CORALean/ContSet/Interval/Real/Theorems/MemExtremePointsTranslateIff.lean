@@ -46,14 +46,14 @@ variable {n : ℕ}
 
 theorem Interval.mem_extremePoints_translate_iff {I : Interval (Vec ℝ n)} {α : ℝ}
     {c : Vec ℝ n} : -- --- CONCL ---
-    c ∈ Set.extremePoints ℝ (I.construct ∩ Interval.hyperplane 1 α) ↔
-      c - I.inf ∈ Set.extremePoints ℝ ((⟨0, I.sup - I.inf⟩ : Interval (Vec ℝ n)).construct ∩
+    c ∈ Set.extremePoints ℝ (I.toSet ∩ Interval.hyperplane 1 α) ↔
+      c - I.inf ∈ Set.extremePoints ℝ ((⟨0, I.sup - I.inf⟩ : Interval (Vec ℝ n)).toSet ∩
         Interval.hyperplane 1 (α - ∑ i, I.inf i)) := by -- --- PROOF ---
   rw [Interval.mem_extremePoints_inter_hyperplane_iff (a := 1) (fun _ => by simp),
     Interval.mem_extremePoints_inter_hyperplane_iff (a := 1) (fun _ => by simp)]
   -- coordinatewise: `cᵢ ∈ [aᵢ, bᵢ]` iff `cᵢ - aᵢ ∈ [0, bᵢ - aᵢ]`, the bounds kept
-  have hbox : c ∈ I.construct ↔
-      c - I.inf ∈ (⟨0, I.sup - I.inf⟩ : Interval (Vec ℝ n)).construct := by
+  have hbox : c ∈ I.toSet ↔
+      c - I.inf ∈ (⟨0, I.sup - I.inf⟩ : Interval (Vec ℝ n)).toSet := by
     constructor
     · intro h i
       have hi : I.inf i ≤ c i ∧ c i ≤ I.sup i := h i

@@ -52,7 +52,7 @@ public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Taylm
 public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
 public import CORALean.ContSet.Taylm.Real.Theorems.Basic
-public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Taylm.Real.Theorems.MemToSetIff
 public import CORALean.ContSet.Taylm.Real.Theorems.MonomialSingle
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfAppend
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
@@ -288,8 +288,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {P 
 -- Reviewed:      ---
 
 /-- A halfspace description as a box, over a floating-point scalar -/
-def HPolytope.interval (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : Interval (Vec 𝕋 n) :=
+def HPolytope.interval (up : ∀ j, FloatBound 𝕋 P.toSet (LinearMap.proj j))
+    (lo : ∀ j, FloatBound 𝕋 P.toSet (-LinearMap.proj j)) : Interval (Vec 𝕋 n) :=
   Interval.ofBounds up lo
 
 
@@ -300,8 +300,8 @@ def HPolytope.interval (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj 
 -- Reviewed:      ---
 
 /-- A halfspace description as a zonotope, over a floating-point scalar -/
-def HPolytope.zonotope (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : Zonotope (Vec 𝕋 n) :=
+def HPolytope.zonotope (up : ∀ j, FloatBound 𝕋 P.toSet (LinearMap.proj j))
+    (lo : ∀ j, FloatBound 𝕋 P.toSet (-LinearMap.proj j)) : Zonotope (Vec 𝕋 n) :=
   (HPolytope.interval up lo).zonotope
 
 end
@@ -322,8 +322,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A halfspace description as an ellipsoid, over a floating-point scalar -/
 def HPolytope.ellipsoid {P : HPolytope 𝕋 (Vec 𝕋 n)}
-    (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) (σ : 𝕋) : Ellipsoid 𝕋 n :=
+    (up : ∀ j, FloatBound 𝕋 P.toSet (LinearMap.proj j))
+    (lo : ∀ j, FloatBound 𝕋 P.toSet (-LinearMap.proj j)) (σ : 𝕋) : Ellipsoid 𝕋 n :=
   (HPolytope.zonotope up lo).ellipsoid σ
 
 end
@@ -343,8 +343,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {P 
 -- Reviewed:      ---
 
 /-- A halfspace description as a polynomial zonotope, over a floating-point scalar -/
-def HPolytope.polyZonotope (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : PolyZonotope (Vec 𝕋 n) :=
+def HPolytope.polyZonotope (up : ∀ j, FloatBound 𝕋 P.toSet (LinearMap.proj j))
+    (lo : ∀ j, FloatBound 𝕋 P.toSet (-LinearMap.proj j)) : PolyZonotope (Vec 𝕋 n) :=
   (HPolytope.zonotope up lo).polyZonotope
 
 
@@ -459,8 +459,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {P 
 -- Reviewed:      ---
 
 /-- Halfspaces to vertices, over a floating-point scalar -/
-def HPolytope.vPolytopeBox (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : VPolytope (Vec 𝕋 n) :=
+def HPolytope.vPolytopeBox (up : ∀ j, FloatBound 𝕋 P.toSet (LinearMap.proj j))
+    (lo : ∀ j, FloatBound 𝕋 P.toSet (-LinearMap.proj j)) : VPolytope (Vec 𝕋 n) :=
   Interval.vPolytope (HPolytope.interval up lo)
 
 end
@@ -1059,8 +1059,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {P 
 -- Reviewed:      ---
 
 /-- A halfspace description as a bundle of one, over a floating-point scalar -/
-def HPolytope.zonoBundle (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : ZonoBundle (Vec 𝕋 n) :=
+def HPolytope.zonoBundle (up : ∀ j, FloatBound 𝕋 P.toSet (LinearMap.proj j))
+    (lo : ∀ j, FloatBound 𝕋 P.toSet (-LinearMap.proj j)) : ZonoBundle (Vec 𝕋 n) :=
   (HPolytope.zonotope up lo).zonoBundle
 
 end

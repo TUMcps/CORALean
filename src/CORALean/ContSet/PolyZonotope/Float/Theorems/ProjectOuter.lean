@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.project_outer (pZ : PolyZonotope (Vec 𝕋 n)) (dims : Fin m → Fin n) :
-    (fun x k => x (dims k)) '' pZ.construct ⊆ (pZ.project dims).construct :=
+    (fun x k => x (dims k)) '' pZ.toSet ⊆ (pZ.project dims).toSet :=
   image_subset (fun _ _ => rfl)
     (le_of_eq (Real.PolyZonotope.map_exact (LinearMap.funLeft ℝ ℝ dims) (nominal pZ)))
     (Interval.project_outer pZ.I_error dims)

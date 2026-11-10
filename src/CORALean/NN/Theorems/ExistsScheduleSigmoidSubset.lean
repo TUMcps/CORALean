@@ -58,8 +58,8 @@ private theorem aux_sigmoidRefinableNetwork_isConvergent (n : ℕ) :
 
 theorem exists_schedule_sigmoid_subset {n : ℕ} (X : Real.PolyZonotope (Vec ℝ n)) {ε : ℝ}
     (hε : 0 < ε) : ∃ sch : Schedule,
-      construct ((Real.sigmoidRefinableNetwork n).encloseAt sch X)
-        ⊆ (Real.sigmoidRefinableNetwork n).image (construct X) + Metric.closedBall 0 ε :=
+      toSet ((Real.sigmoidRefinableNetwork n).encloseAt sch X)
+        ⊆ (Real.sigmoidRefinableNetwork n).image (toSet X) + Metric.closedBall 0 ε :=
   (Real.sigmoidRefinableNetwork n).exists_schedule_encloseAt_subset
     (aux_sigmoidRefinableNetwork_isConvergent n) X ε hε
 

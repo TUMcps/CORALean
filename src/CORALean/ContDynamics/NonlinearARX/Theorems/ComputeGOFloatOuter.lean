@@ -57,10 +57,10 @@ theorem NonlinearARX.computeGOFloat_outer (sys : NonlinearARX dy du p)
     (u_ref : ℕ → Vec 𝕋 du) (k j : ℕ) : -- --- CONCL ---
     let G := sys.computeGO (toRealVec x0) (fun i => toRealVec (u_ref i))
     let F := sys.computeGOFloat fm x0 u_ref
-    G.x k ∈ (F.x k).construct ∧ G.y k ∈ (F.y k).construct ∧ G.A k ∈ (F.A k).construct ∧
-      G.B k j ∈ (F.B k j).construct ∧ G.F k j ∈ (F.F k j).construct ∧
-      G.C k ∈ (F.C k).construct ∧ G.D k j ∈ (F.D k j).construct ∧
-      G.E k j ∈ (F.E k j).construct := by -- --- PROOF ---
+    G.x k ∈ (F.x k).toSet ∧ G.y k ∈ (F.y k).toSet ∧ G.A k ∈ (F.A k).toSet ∧
+      G.B k j ∈ (F.B k j).toSet ∧ G.F k j ∈ (F.F k j).toSet ∧
+      G.C k ∈ (F.C k).toSet ∧ G.D k j ∈ (F.D k j).toSet ∧
+      G.E k j ∈ (F.E k j).toSet := by -- --- PROOF ---
   intro G F
   -- the stored selection matrix reads as the real one
   have hC : toRealMat (sys.outputSel (𝕋 := 𝕋)) = sys.outputSel (𝕋 := ℝ) := by
@@ -84,7 +84,7 @@ theorem NonlinearARX.computeGOFloat_outer (sys : NonlinearARX dy du p)
           = sys.outputSel (𝕋 := ℝ) := by
         simpa using jacobianMat_affine 0 (sys.outputSel (𝕋 := ℝ)) x
       show jacobianMat (fun x' => sys.outputSel (𝕋 := ℝ) *ᵥ x') x ∈
-        (Interval.point (sys.outputSel (𝕋 := 𝕋))).construct
+        (Interval.point (sys.outputSel (𝕋 := 𝕋))).toSet
       rw [hj, ← hC]
       exact Interval.mem_point _
     · -- `∂/∂u` is zero
@@ -95,7 +95,7 @@ theorem NonlinearARX.computeGOFloat_outer (sys : NonlinearARX dy du p)
         funext i l
         exact toReal_zero
       show jacobianMat (fun (_ : Vec ℝ ((p + 1) * du)) => sys.outputSel (𝕋 := ℝ) *ᵥ x) u ∈
-        (Interval.point (show Mat 𝕋 dy ((p + 1) * du) from fun _ _ => zero)).construct
+        (Interval.point (show Mat 𝕋 dy ((p + 1) * du) from fun _ _ => zero)).toSet
       rw [hj, ← hz]
       exact Interval.mem_point _
   -- the system case, at the converted model and the selection

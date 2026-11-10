@@ -57,9 +57,9 @@ open Classical in
 whole space (`P_out` is never replaced); `rest` is the value of the other branches. -/
 noncomputable def HPolytope.mldivideCora (P₁ P₂ : HPolytope (Vec ℝ n)) (rest : Set (Vec ℝ n)) :
     Set (Vec ℝ n) :=
-  if P₁.construct = ∅ then ∅
-  else if P₂.construct = ∅ then P₁.construct
-  else if (interior P₁.construct).Nonempty then Set.univ
+  if P₁.toSet = ∅ then ∅
+  else if P₂.toSet = ∅ then P₁.toSet
+  else if (interior P₁.toSet).Nonempty then Set.univ
   else rest
 
 end CORALean.Real
@@ -84,10 +84,10 @@ private def HPolytope.aux_interval1 (lo hi : ℝ) : HPolytope (Vec ℝ 1) where
 /-- CORA's result is not `P1 \ P2` for `P1 = [0, 2]`, `P2 = [1, 3]`. -/
 theorem HPolytope.mldivide_cora_counterexample : -- --- CONCL ---
     ∃ P₁ P₂ : HPolytope (Vec ℝ 1),
-      ∀ rest, P₁.mldivideCora P₂ rest ≠ P₁.construct \ P₂.construct := by -- --- PROOF ---
+      ∀ rest, P₁.mldivideCora P₂ rest ≠ P₁.toSet \ P₂.toSet := by -- --- PROOF ---
   -- membership in the interval `[lo, hi]`
   have mem : ∀ (lo hi : ℝ) (x : Vec ℝ 1),
-      x ∈ (HPolytope.aux_interval1 lo hi).construct ↔ lo ≤ x 0 ∧ x 0 ≤ hi := by
+      x ∈ (HPolytope.aux_interval1 lo hi).toSet ↔ lo ≤ x 0 ∧ x 0 ≤ hi := by
     intro lo hi x
     constructor
     · rintro ⟨h, -⟩
@@ -102,15 +102,15 @@ theorem HPolytope.mldivide_cora_counterexample : -- --- CONCL ---
       · simpa [HPolytope.aux_interval1] using h0
   refine ⟨HPolytope.aux_interval1 0 2, HPolytope.aux_interval1 1 3, fun rest h => ?_⟩
   -- neither operand is empty
-  have hne1 : (HPolytope.aux_interval1 0 2).construct ≠ ∅ := fun he =>
+  have hne1 : (HPolytope.aux_interval1 0 2).toSet ≠ ∅ := fun he =>
     Set.eq_empty_iff_forall_notMem.mp he (fun _ => 1)
       ((mem _ _ _).mpr ⟨by show (0 : ℝ) ≤ 1; norm_num, by show (1 : ℝ) ≤ 2; norm_num⟩)
-  have hne2 : (HPolytope.aux_interval1 1 3).construct ≠ ∅ := fun he =>
+  have hne2 : (HPolytope.aux_interval1 1 3).toSet ≠ ∅ := fun he =>
     Set.eq_empty_iff_forall_notMem.mp he (fun _ => 2)
       ((mem _ _ _).mpr ⟨by show (1 : ℝ) ≤ 2; norm_num, by show (2 : ℝ) ≤ 3; norm_num⟩)
   -- `P₁` has an interior point `1`: the open slab `0 < x < 2` lies in it
-  have hint : (interior (HPolytope.aux_interval1 0 2).construct).Nonempty := by
-    have hsub : {x : Vec ℝ 1 | 0 < x 0 ∧ x 0 < 2} ⊆ (HPolytope.aux_interval1 0 2).construct :=
+  have hint : (interior (HPolytope.aux_interval1 0 2).toSet).Nonempty := by
+    have hsub : {x : Vec ℝ 1 | 0 < x 0 ∧ x 0 < 2} ⊆ (HPolytope.aux_interval1 0 2).toSet :=
       fun x hx => (mem _ _ _).mpr ⟨hx.1.le, hx.2.le⟩
     have hopen : IsOpen {x : Vec ℝ 1 | 0 < x 0 ∧ x 0 < 2} :=
       (isOpen_lt continuous_const (continuous_apply 0)).inter

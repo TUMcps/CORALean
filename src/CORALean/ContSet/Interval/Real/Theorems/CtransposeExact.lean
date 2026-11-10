@@ -38,7 +38,7 @@ variable {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.ctranspose_exact (I : Interval (Mat ℝ m n)) :
-    I.ctranspose.construct = Matrix.conjTranspose '' I.construct := by
+    I.ctranspose.toSet = Matrix.conjTranspose '' I.toSet := by
   rw [show (Matrix.conjTranspose : Mat ℝ m n → Mat ℝ n m) = Matrix.transpose from
     funext fun A => Matrix.conjTranspose_eq_transpose_of_trivial A]
   exact Interval.transpose_exact I

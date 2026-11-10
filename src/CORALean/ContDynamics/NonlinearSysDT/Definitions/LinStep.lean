@@ -50,8 +50,8 @@ structure NonlinearSysDT.LinStep (sys : NonlinearSysDT n m) (𝕋 : Type) [Float
   R : Set (Vec ℝ n)
   L : S n
   cert : IsAbstractionError sys.f (toRealMat A) (toRealMat B) (toRealVec xs) (toRealVec us) R
-    (construct U) L
-  c_mem : sys.f (toRealVec xs) (toRealVec us) - toRealMat A *ᵥ toRealVec xs ∈ construct c
+    (toSet U) L
+  c_mem : sys.f (toRealVec xs) (toRealVec us) - toRealMat A *ᵥ toRealVec xs ∈ toSet c
 
 end CORALean
 

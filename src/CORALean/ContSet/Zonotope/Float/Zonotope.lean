@@ -65,9 +65,9 @@ instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] :
   I_error Z := Z.I_error
 
 /-- Inherited from `InflatedContSet`, at any ambient type: `nominal + I_error`. -/
-abbrev Zonotope.construct {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β]
+abbrev Zonotope.toSet {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β]
     [Entrywise β ι] (Z : Zonotope α) : Set β :=
-  InflatedContSet.construct Z
+  InflatedContSet.toSet Z
 
 end CORALean.Float
 

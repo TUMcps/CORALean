@@ -39,9 +39,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n m' n' : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.submatrix_mem {I : Interval (Mat 𝕋 m n)} {M : Mat ℝ m n} (hM : M ∈ I.construct)
+theorem Interval.submatrix_mem {I : Interval (Mat 𝕋 m n)} {M : Mat ℝ m n} (hM : M ∈ I.toSet)
     (r : Fin m' → Fin m) (c : Fin n' → Fin n) :
-    M.submatrix r c ∈ (I.submatrix r c).construct :=
+    M.submatrix r c ∈ (I.submatrix r c).toSet :=
   Interval.mem_mat_iff.mpr fun i j => Interval.mem_mat_iff.mp hM (r i) (c j)
 
 end CORALean.Float

@@ -45,7 +45,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.cubMap_exact (T : Fin m → Fin n → Mat ℝ n n) (pZ : PolyZonotope (Vec ℝ n)) :
-    cubEval T '' pZ.construct = (pZ.cubMap T).construct := by
+    cubEval T '' pZ.toSet = (pZ.cubMap T).toSet := by
   rw [pZ.dependent_exact]
   exact PolyZonotope.cubMapDep_exact T pZ.dependent rfl
 

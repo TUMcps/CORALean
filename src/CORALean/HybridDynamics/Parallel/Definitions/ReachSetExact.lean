@@ -43,7 +43,7 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 at `ℓ`: the exact reachable set. -/
 def ParallelHybridAutomaton.reachSetExact (P : ParallelHybridAutomaton S G k L 𝕋 n m)
     (R₀ : ∀ i, S (n i)) (ℓ₀ ℓ : ∀ i, L i) : Set (∀ i, Vec ℝ (n i)) :=
-  {y | ∃ x, (∀ i, x i ∈ construct (R₀ i)) ∧ P.IsRun ℓ₀ x ℓ y}
+  {y | ∃ x, (∀ i, x i ∈ toSet (R₀ i)) ∧ P.IsRun ℓ₀ x ℓ y}
 
 end CORALean
 

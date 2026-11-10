@@ -55,7 +55,7 @@ variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 /-- A run of the product is a run of the parallel automaton, on the blocks of its states. -/
 theorem ParallelHybridAutomaton.IsRun.ofProduct {P : ParallelHybridAutomaton S G k L ℝ n m}
     (hfeed : P.IsFeedthroughFree) (hdist : P.GlobalsDistinct)
-    (hne : ∀ (ℓ : ∀ i, L i) i, (construct ((P.comp i).loc (ℓ i)).U).Nonempty)
+    (hne : ∀ (ℓ : ∀ i, L i) i, (toSet ((P.comp i).loc (ℓ i)).U).Nonempty)
     {lift : ParallelHybridAutomaton.Lifting S G n m} (hex : lift.IsExact) {ℓ ℓ' : ∀ i, L i}
     {z w : Vec ℝ (∑ i, n i)} (run : (P.product lift).IsRun ℓ z ℓ' w) :
     P.IsRun ℓ (unstack z) ℓ' (unstack w) :=

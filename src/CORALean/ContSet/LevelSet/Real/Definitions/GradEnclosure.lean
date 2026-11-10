@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 /-- `grad(J)` holds `∇f(ξ)` at every `ξ ∈ J`, coordinate by coordinate. -/
 def IsGradEnclosure (f : Vec ℝ n → ℝ) (grad : Interval (Vec ℝ n) → Interval (Vec ℝ n)) : Prop :=
-  ∀ J : Interval (Vec ℝ n), ∀ ξ ∈ J.construct, ∀ i,
+  ∀ J : Interval (Vec ℝ n), ∀ ξ ∈ J.toSet, ∀ i,
     (grad J).inf i ≤ taylorGrad f ξ i ∧ taylorGrad f ξ i ≤ (grad J).sup i
 
 end CORALean.Real

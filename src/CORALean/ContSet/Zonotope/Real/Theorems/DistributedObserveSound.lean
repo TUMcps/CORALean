@@ -71,7 +71,7 @@ theorem Zonotope.distributedObserve_sound (nb : ∀ i, Fin (q i) → ι)
     (A : ∀ i (a : Fin (q i)), Mat ℝ (n i) (n (nb i a))) (B : ∀ i, Mat ℝ (n i) (mu i))
     (Dw : ∀ i, Mat ℝ (n i) (nw i)) (C : ∀ i, Mat ℝ (ny i) (n i)) (Dv : ∀ i, Mat ℝ (ny i) (nv i))
     (Λ : ∀ i, Mat ℝ (n i) (ny i)) (red : ∀ i, Zonotope (Vec ℝ (n i)) → Zonotope (Vec ℝ (n i)))
-    (hred : ∀ i Z, Z.construct ⊆ (red i Z).construct) (X : ℕ → ∀ i, Zonotope (Vec ℝ (n i)))
+    (hred : ∀ i Z, Z.toSet ⊆ (red i Z).toSet) (X : ℕ → ∀ i, Zonotope (Vec ℝ (n i)))
     (u : ℕ → ∀ i, Vec ℝ (mu i)) (y : ℕ → ∀ i, Vec ℝ (ny i))
     (hX : ∀ k i, X (k + 1) i = red i (Zonotope.correctedStepDistributed (Λ i) (A i) (B i) (Dw i)
       (C i) (Dv i) (u k i) (y (k + 1) i) (fun a => X k (nb i a))))
@@ -79,8 +79,8 @@ theorem Zonotope.distributedObserve_sound (nb : ∀ i, Fin (q i) → ι)
     (hϖ : ∀ k i j, |ϖ k i j| ≤ 1) (hσ : ∀ k i j, |σ k i j| ≤ 1)
     (hx : ∀ k i, x (k + 1) i = ∑ a, A i a *ᵥ x k (nb i a) + B i *ᵥ u k i + Dw i *ᵥ ϖ k i)
     (hy : ∀ k i, y k i = C i *ᵥ x k i + Dv i *ᵥ σ k i)
-    (h0 : ∀ i, x 0 i ∈ (X 0 i).construct) : -- --- CONCL ---
-    ∀ k i, x k i ∈ (X k i).construct := by -- --- PROOF ---
+    (h0 : ∀ i, x 0 i ∈ (X 0 i).toSet) : -- --- CONCL ---
+    ∀ k i, x k i ∈ (X k i).toSet := by -- --- PROOF ---
   intro k
   induction k with
   | zero => exact h0

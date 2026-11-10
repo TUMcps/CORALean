@@ -52,8 +52,8 @@ variable {n : ℕ}
 /-- One order of the series: the power, scaled, which is `map_exact` at the
 scaling and `matPow_outer` at the power. -/
 private theorem MatExp.aux_term_mem (M : Zonotope (Mat ℝ n n)) {A : Mat ℝ n n}
-    (hA : A ∈ M.construct) (i : ℕ) :
-    ((Nat.factorial i : ℝ)⁻¹) • A ^ i ∈ (MatExp.expMatZonoTerm M i).construct := by
+    (hA : A ∈ M.toSet) (i : ℕ) :
+    ((Nat.factorial i : ℝ)⁻¹) • A ^ i ∈ (MatExp.expMatZonoTerm M i).toSet := by
   rw [MatExp.expMatZonoTerm, ← Zonotope.map_exact]
   exact ⟨A ^ i, Zonotope.matPow_outer M hA i, rfl⟩
 
@@ -61,8 +61,8 @@ private theorem MatExp.aux_term_mem (M : Zonotope (Mat ℝ n n)) {A : Mat ℝ n 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.expTaylor_mem_expMatZonoTaylor (M : Zonotope (Mat ℝ n n)) {A : Mat ℝ n n}
-    (hA : A ∈ M.construct) (η : ℕ) : -- --- CONCL ---
-    MatExp.expTaylor A η ∈ (MatExp.expMatZonoTaylor M η).construct := by -- --- PROOF ---
+    (hA : A ∈ M.toSet) (η : ℕ) : -- --- CONCL ---
+    MatExp.expTaylor A η ∈ (MatExp.expMatZonoTaylor M η).toSet := by -- --- PROOF ---
   induction η with
   | zero =>
       have h : MatExp.expTaylor A 0 = ((Nat.factorial 0 : ℝ)⁻¹) • A ^ 0 :=

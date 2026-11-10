@@ -69,7 +69,7 @@ theorem NeurNetContrSys.ofFull_isTrajectory_iff (plant : P)
     {v : ℝ → Vec ℝ (NeurNetContrSys.ofFull plant contr dt).nExt}
     {w : ℝ → Vec ℝ (nrOfDisturbances plant)} : -- --- CONCL ---
     (NeurNetContrSys.ofFull plant contr dt).IsTrajectory π H R₀ U_ext W x v w ↔
-      x 0 ∈ construct R₀ ∧ ∀ i < H,
+      x 0 ∈ toSet R₀ ∧ ∀ i < H,
         ContDynamics.IsTrajectory plant (Set.Icc 0 dt) Set.univ {π (x ((i : ℝ) * dt))} W
           (fun t => x ((i : ℝ) * dt + t)) (fun _ => π (x ((i : ℝ) * dt)))
           (fun t => w ((i : ℝ) * dt + t)) := by -- --- PROOF ---

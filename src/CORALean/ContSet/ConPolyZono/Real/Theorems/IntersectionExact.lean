@@ -48,7 +48,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.intersection_exact (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n)) :
-    cPZ₁.construct ∩ cPZ₂.construct = (cPZ₁.intersection cPZ₂).construct := by
+    cPZ₁.toSet ∩ cPZ₂.toSet = (cPZ₁.intersection cPZ₂).toSet := by
   rw [cPZ₁.dependent_exact, cPZ₂.dependent_exact]
   exact ConPolyZono.intersectionDep_exact cPZ₁.dependent cPZ₂.dependent rfl rfl
 

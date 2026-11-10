@@ -49,9 +49,9 @@ variable {n₁ n₂ : ℕ}
 
 theorem VPolytope.cartProd_exact (P₁ : VPolytope (Vec ℝ n₁))
     (P₂ : VPolytope (Vec ℝ n₂)) : -- --- CONCL ---
-    (P₁.cartProd P₂).construct =
+    (P₁.cartProd P₂).toSet =
       (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
-        (P₁.construct ×ˢ P₂.construct) := by -- --- PROOF ---
+        (P₁.toSet ×ˢ P₂.toSet) := by -- --- PROOF ---
   have hfun : (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) = appendLinear n₁ n₂ :=
     funext fun p => (appendLinear_apply p).symm
   -- the stacked points are the image of all pairs of points
@@ -66,8 +66,8 @@ theorem VPolytope.cartProd_exact (P₁ : VPolytope (Vec ℝ n₁))
       refine ⟨finProdFinEquiv (i, j), ?_⟩
       rw [appendLinear_apply]
       simp [VPolytope.cartProd]
-  rw [hfun, VPolytope.construct_eq_convexHull, hrange, ← LinearMap.image_convexHull,
-    convexHull_prod, P₁.construct_eq_convexHull, P₂.construct_eq_convexHull]
+  rw [hfun, VPolytope.toSet_eq_convexHull, hrange, ← LinearMap.image_convexHull,
+    convexHull_prod, P₁.toSet_eq_convexHull, P₂.toSet_eq_convexHull]
 
 end CORALean.Real
 

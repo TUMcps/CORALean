@@ -75,9 +75,9 @@ private theorem MatExp.aux_pow_entry_le_pow_entry {B C : Mat ℝ n n} (hB : ∀ 
 
 /-- The Taylor remainder of `e^M` of every `M` in the box lies in `exponentialRemainder`. -/
 theorem MatExp.exponentialRemainder_outer (A : Interval (Mat ℝ n n)) (η : ℕ) {M : Mat ℝ n n}
-    (hM : M ∈ A.construct) : -- --- CONCL ---
+    (hM : M ∈ A.toSet) : -- --- CONCL ---
     exp M - MatExp.expTaylor M η ∈
-      (MatExp.exponentialRemainder A η).construct := by -- --- PROOF ---
+      (MatExp.exponentialRemainder A η).toSet := by -- --- PROOF ---
   -- the bound matrix `N = abs(intMat)` is nonnegative and equals its own absolute value
   set N := A.absMax with hN
   have hN0 : ∀ i j, 0 ≤ N i j := fun i j => le_max_of_le_left (abs_nonneg _)

@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Interval.exp_outer (p : ℕ) (I : Interval (Vec 𝕋 n))
     (hI : ∀ i, toReal (I.sup i) ≤ 2 ^ p / 2) :
-    (fun x i => Real.exp (x i)) '' I.construct ⊆ (I.exp p).construct := by
+    (fun x i => Real.exp (x i)) '' I.toSet ⊆ (I.exp p).toSet := by
   rintro _ ⟨x, hx, rfl⟩ i
   have hx' : toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i) := hx i
   exact ⟨le_trans (expDown_le p _) (Real.exp_le_exp.2 hx'.1),

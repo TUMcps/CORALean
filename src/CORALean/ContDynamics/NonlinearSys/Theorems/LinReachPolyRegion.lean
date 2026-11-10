@@ -89,7 +89,7 @@ theorem NonlinearSys.linReachPoly_region {sys : NonlinearSys n m} {U : PolyZonot
           ((NonlinearSys.linearize A).inputSolution (S := 𝒫𝒵) Δt η
             (linInput (S := 𝒫𝒵) sys.f A B xs us U (PolyZonotope.ofPoint 0))))
         (precompStatError (fun i => (2 : ℝ)⁻¹ • (H i).submatrix (Fin.castAdd m) (Fin.castAdd m))
-          xs Rinit.dependent) abstrerr k).1).construct := by -- --- PROOF ---
+          xs Rinit.dependent) abstrerr k).1).toSet := by -- --- PROOF ---
   unfold NonlinearSys.linReachPoly at h
   -- the step is candidate `k`'s, over the factor box of a set with no independent block
   obtain ⟨k, -, hA, hB, hxs, hus, hR, -⟩ := NonlinearSys.abstrErrPolySearch_eq_some h

@@ -48,7 +48,7 @@ variable {n : ℕ}
 theorem Zonotope.filterOut_pair (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     Zonotope.filterOut ![Z, Z] = ∅ := by -- --- PROOF ---
   ext i
-  have hdiff : Z.construct \ ⋃ j, ⋃ (_ : j ≠ i), (![Z, Z] j).construct = ∅ := by
+  have hdiff : Z.toSet \ ⋃ j, ⋃ (_ : j ≠ i), (![Z, Z] j).toSet = ∅ := by
     refine Set.sdiff_eq_empty.mpr fun x hx => ?_
     simp only [Set.mem_iUnion, exists_prop]
     fin_cases i

@@ -1,6 +1,6 @@
 import CORALean.ContSet.ConZonotope.Real.Theorems.ReduceKeepByOuter
 import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
-import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 import CORALean.Global.Entrywise
 import CORALean.ContSet.Conversion.Real.Operations.Basic
 import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
@@ -53,7 +53,7 @@ abbrev reduceKeepExampleSplit : Split (Fin reduceKeepExample.h) into (Fin 1) ⊕
 
 /-- With the constraint kept, the reduced set stays below `2`. -/
 theorem reduceKeepExample_le : -- --- CONCL ---
-    (reduceKeepExample.reduceKeepBy reduceKeepExampleSplit).construct
+    (reduceKeepExample.reduceKeepBy reduceKeepExampleSplit).toSet
     ⊆ {x | x 0 ≤ 2} := by -- --- PROOF ---
   rintro x ⟨γ, hγ, hP, rfl⟩
   have h0 : (reduceKeepExample.P.A 0) (ConZonotope.keepEmbed reduceKeepExampleSplit
@@ -95,14 +95,14 @@ theorem reduceKeepExample_le : -- --- CONCL ---
 
 /-- Through the enclosing zonotope, the constraint is gone and `4` is reached. -/
 theorem reduceKeepExample_old_not_le : -- --- CONCL ---
-    ¬ (reduceKeepExample.zonotope.reduceBy reduceKeepExampleSplit).conZonotope.construct
+    ¬ (reduceKeepExample.zonotope.reduceBy reduceKeepExampleSplit).conZonotope.toSet
       ⊆ {x | x 0 ≤ 2} := by -- --- PROOF ---
   intro hsub
   -- the point `4` is the corner `(1, 1)` of the enclosing zonotope's reduction
   have hmem : (fun _ => 4 : Vec ℝ 1) ∈
-      (reduceKeepExample.zonotope.reduceBy reduceKeepExampleSplit).conZonotope.construct := by
+      (reduceKeepExample.zonotope.reduceBy reduceKeepExampleSplit).conZonotope.toSet := by
     refine (Set.ext_iff.mp (Zonotope.conZonotope_exact (α := Vec ℝ 1) _) _).mp ?_
-    rw [Zonotope.mem_construct_iff]
+    rw [Zonotope.mem_toSet_iff]
     refine ⟨fun _ => 1, fun _ => by simp, fun i => ?_⟩
     -- the dropped generators sit at indices `1` and `2`, so neither is the first
     have n0 : reduceKeepExampleSplit.right 0 ≠ 0 :=

@@ -58,8 +58,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- A run with the field at `p` as its derivative everywhere on a convex `T ∋ 0` is a run. -/
 theorem NonlinParamSys.IsConstTrajectory.of_hasDerivWithinAt {sys : NonlinParamSys n m q}
     {T : Set ℝ} {R₀ : S n} {U : S m} {P : S q} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
-    {p : Vec ℝ q} (hTconv : Convex ℝ T) (h0T : (0:ℝ) ∈ T) (init : x 0 ∈ construct R₀)
-    (input : ∀ t ∈ T, u t ∈ construct U) (param : p ∈ construct P)
+    {p : Vec ℝ q} (hTconv : Convex ℝ T) (h0T : (0:ℝ) ∈ T) (init : x 0 ∈ toSet R₀)
+    (input : ∀ t ∈ T, u t ∈ toSet U) (param : p ∈ toSet P)
     (hd : ∀ t ∈ T, HasDerivWithinAt x (sys.f (x t) (u t) p) T t)
     (hint : ∀ t ∈ T,
       IntervalIntegrable (fun s => sys.f (x s) (u s) p) volume 0 t) :

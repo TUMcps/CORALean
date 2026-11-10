@@ -110,8 +110,8 @@ private theorem Zonotope.aux_exactPlus_gap (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.exactPlus_outer (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) : -- --- CONCL ---
-    (Real.Zonotope.exactPlus (nominal Z₁) (nominal Z₂) k).construct
-      + (Z₁.I_error.construct + Z₂.I_error.construct) ⊆ (Z₁.exactPlus Z₂ k).construct
+    (Real.Zonotope.exactPlus (nominal Z₁) (nominal Z₂) k).toSet
+      + (Z₁.I_error.toSet + Z₂.I_error.toSet) ⊆ (Z₁.exactPlus Z₂ k).toSet
         := by -- --- PROOF ---
   rintro _ ⟨y, ⟨δ, hδ, rfl⟩, _, ⟨e₁, he₁, e₂, he₂, rfl⟩, rfl⟩
   set F := Z₁.exactPlus Z₂ k with hF
@@ -120,16 +120,16 @@ theorem Zonotope.exactPlus_outer (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (k : ℕ) :
     Zonotope.mem_nominalSet_iff.mpr ⟨δ, hδ, fun _ => rfl⟩
   -- the center's rounding, and the shared columns' rounding
   have hr₁ : (fun i => (toReal (Z₁.c i) + toReal (Z₂.c i)) - toReal (F.c i)) ∈
-      (Zonotope.centerResidual Z₁.c Z₂.c).construct :=
+      (Zonotope.centerResidual Z₁.c Z₂.c).toSet :=
     Interval.sub_mem_residual (fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩)
   have hr₂ : (fun i => ∑ j, (((Real.Zonotope.exactPlus (nominal Z₁) (nominal Z₂) k).G j) i
       - toReal (F.G j i)) * δ j)
-        ∈ (Zonotope.generatorError (Z₁.step_exactPlusGap Z₂ k)).construct :=
+        ∈ (Zonotope.generatorError (Z₁.step_exactPlusGap Z₂ k)).toSet :=
     Zonotope.mem_generatorError (fun i j => Zonotope.aux_exactPlus_gap Z₁ Z₂ k i j) hδ
   -- the box absorbs the two incoming boxes and both roundings
   have hE : e₁ + e₂ + (fun i => (toReal (Z₁.c i) + toReal (Z₂.c i)) - toReal (F.c i))
       + (fun i => ∑ j, (((Real.Zonotope.exactPlus (nominal Z₁) (nominal Z₂) k).G j) i
-        - toReal (F.G j i)) * δ j) ∈ F.I_error.construct :=
+        - toReal (F.G j i)) * δ j) ∈ F.I_error.toSet :=
     Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _ ⟨_, Interval.plus_outer _ _
       ⟨e₁, he₁, e₂, he₂, rfl⟩, _, hr₁, rfl⟩, _, hr₂, rfl⟩
   refine ⟨_, hp, _, hE, ?_⟩

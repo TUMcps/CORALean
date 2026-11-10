@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeHPolytopeFacetsContains
 public import CORALean.ContSet.HPolytope.Float.Theorems.IntersectionOuter
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEqIInter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ToSetEqIInter
 
 @[expose] public section
 
@@ -44,9 +44,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A point of the start and of every listed polytope is a point of the folded intersection. -/
 private theorem aux_mem_foldl (L : List (HPolytope 𝕋 (Vec 𝕋 (n + 1))))
-    (P₀ : HPolytope 𝕋 (Vec 𝕋 (n + 1))) {x : Vec ℝ (n + 1)} (h₀ : x ∈ P₀.construct)
-    (hL : ∀ P ∈ L, x ∈ P.construct) : -- --- CONCL ---
-    x ∈ (L.foldl HPolytope.intersection P₀).construct := by -- --- PROOF ---
+    (P₀ : HPolytope 𝕋 (Vec 𝕋 (n + 1))) {x : Vec ℝ (n + 1)} (h₀ : x ∈ P₀.toSet)
+    (hL : ∀ P ∈ L, x ∈ P.toSet) : -- --- CONCL ---
+    x ∈ (L.foldl HPolytope.intersection P₀).toSet := by -- --- PROOF ---
   induction L generalizing P₀ with
   | nil => exact h₀
   | cons P L ih =>
@@ -59,9 +59,9 @@ private theorem aux_mem_foldl (L : List (HPolytope 𝕋 (Vec 𝕋 (n + 1))))
 /-- The float bundle lies in its members' facet polytopes, intersected. -/
 theorem ZonoBundle.hPolytopeAll_contains (p : ℕ)
     (zB : ZonoBundle (Vec 𝕋 (n + 1))) : -- --- CONCL ---
-    zB.construct ⊆ (zB.hPolytopeAll p).construct := by -- --- PROOF ---
+    zB.toSet ⊆ (zB.hPolytopeAll p).toSet := by -- --- PROOF ---
   intro x hx
-  rw [ZonoBundle.construct_eq_iInter, Set.mem_iInter] at hx
+  rw [ZonoBundle.toSet_eq_iInter, Set.mem_iInter] at hx
   -- the whole space, then each member's rows
   refine aux_mem_foldl _ _ ⟨x, ⟨fun i => i.elim0, fun i => i.elim0⟩, 0, ?_, add_zero x⟩ ?_
   · exact fun i => ⟨le_of_eq toReal_zero, le_of_eq toReal_zero.symm⟩

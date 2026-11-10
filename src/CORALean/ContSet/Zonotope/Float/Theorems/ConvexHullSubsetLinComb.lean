@@ -43,10 +43,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `convHull_`: the convex hull of the union of two nonempty float zonotopes lies in their
 `linComb`. -/
-theorem Zonotope.convexHull_subset_linComb (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (h₁ : Z₁.construct.Nonempty)
-    (h₂ : Z₂.construct.Nonempty) :
-    convexHull ℝ (Z₁.construct ∪ Z₂.construct) ⊆ (Z₁.linComb Z₂).construct := by
-  rw [convexHull_union_eq_setLinComb h₁ h₂ Z₁.convex_construct Z₂.convex_construct]
+theorem Zonotope.convexHull_subset_linComb (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (h₁ : Z₁.toSet.Nonempty)
+    (h₂ : Z₂.toSet.Nonempty) :
+    convexHull ℝ (Z₁.toSet ∪ Z₂.toSet) ⊆ (Z₁.linComb Z₂).toSet := by
+  rw [convexHull_union_eq_setLinComb h₁ h₂ Z₁.convex_toSet Z₂.convex_toSet]
   exact Zonotope.linComb_outer Z₁ Z₂
 
 end CORALean.Float

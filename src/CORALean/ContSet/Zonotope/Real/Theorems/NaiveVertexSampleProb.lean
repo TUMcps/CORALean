@@ -67,7 +67,7 @@ variable {n N : ℕ} {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [Fini
 
 theorem Zonotope.naive_vertex_sample_prob (Z : Zonotope (Vec ℝ n)) (H : E →ₗ[ℝ] Vec ℝ n)
     (hH : Function.Surjective H) (d : Vec ℝ n) {r : ℝ}
-    (hr : IsGreatest ((fun p => coeffNorm H (p - d)) '' Z.construct) r)
+    (hr : IsGreatest ((fun p => coeffNorm H (p - d)) '' Z.toSet) r)
     {Ω : Type} [MeasurableSpace Ω] (P : Measure Ω) [IsProbabilityMeasure P] (hN : 0 < N)
     (a : Fin N → Ω → (Fin Z.h → Bool)) (hm : ∀ i, Measurable (a i)) (hind : iIndepFun a P)
     (hu : ∀ i σ, P.real (a i ⁻¹' {σ}) = 1 / 2 ^ Z.h) (ε : ℝ) (hε : 0 < ε)

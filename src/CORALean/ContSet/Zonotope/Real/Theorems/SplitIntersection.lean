@@ -15,7 +15,7 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 on the halved generator. `⊆` is not: a point of both halves is `c + s·g + r₁` with `s ≤ 0` and
 `c + s'·g + r₂` with `s' ≥ 0`, and the two reaches `r₁`, `r₂` need not agree, so the point is read
 as a convex combination of `c + r₁` and `c + r₂` at `s'/(s' - s)`, which is where it takes
-`convex_construct`. The thesis argues instead from `(-g/2; g/2) ∩ (g/2; g/2) = {0}` together with
+`convex_toSet`. The thesis argues instead from `(-g/2; g/2) ∩ (g/2; g/2) = {0}` together with
 `A + (B ∩ C) = (A + B) ∩ (A + C)`, false for sets (at `A = [0,1]`, `B = {0}`, `C = {1}` in ℝ the
 left side is empty and the right is `{1}`); convexity is what the missing step needs.
 
@@ -55,23 +55,23 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The two halves of a split meet in the zonotope the split generator is
 dropped from, exactly. -/
 theorem Zonotope.split_intersection (Z : Zonotope α) (j : Fin Z.h) : -- --- CONCL ---
-    (Z.split j).fst.construct ∩ (Z.split j).snd.construct
-      = ({Z with G := Function.update Z.G j 0} : Zonotope α).construct := by -- --- PROOF ---
+    (Z.split j).fst.toSet ∩ (Z.split j).snd.toSet
+      = ({Z with G := Function.update Z.G j 0} : Zonotope α).toSet := by -- --- PROOF ---
   -- all three sets read over `Fin Z.h`, which they are only up to unfolding
-  have h₁ : (Z.split j).fst.construct = {x | ∃ β : Fin Z.h → ℝ, (∀ k, |β k| ≤ 1) ∧
+  have h₁ : (Z.split j).fst.toSet = {x | ∃ β : Fin Z.h → ℝ, (∀ k, |β k| ≤ 1) ∧
       x = Z.c - (2 : ℝ)⁻¹ • Z.G j
         + ∑ k, β k • Function.update Z.G j ((2 : ℝ)⁻¹ • Z.G j) k} := rfl
-  have h₂ : (Z.split j).snd.construct = {x | ∃ β : Fin Z.h → ℝ, (∀ k, |β k| ≤ 1) ∧
+  have h₂ : (Z.split j).snd.toSet = {x | ∃ β : Fin Z.h → ℝ, (∀ k, |β k| ≤ 1) ∧
       x = Z.c + (2 : ℝ)⁻¹ • Z.G j
         + ∑ k, β k • Function.update Z.G j ((2 : ℝ)⁻¹ • Z.G j) k} := rfl
-  have hO : ({Z with G := Function.update Z.G j 0} : Zonotope α).construct
+  have hO : ({Z with G := Function.update Z.G j 0} : Zonotope α).toSet
       = {x | ∃ δ : Fin Z.h → ℝ, (∀ k, |δ k| ≤ 1) ∧
           x = Z.c + ∑ k, δ k • Function.update Z.G j (0 : α) k} := rfl
   -- the overlap is still a zonotope, so it is still convex
   have hconv : Convex ℝ {x : α | ∃ δ : Fin Z.h → ℝ, (∀ k, |δ k| ≤ 1) ∧
       x = Z.c + ∑ k, δ k • Function.update Z.G j (0 : α) k} := by
     rw [← hO]
-    exact Zonotope.convex_construct _
+    exact Zonotope.convex_toSet _
   have hsum : ∀ (β : Fin Z.h → ℝ) (a : α),
       ∑ k, β k • Function.update Z.G j a k
         = β j • a + ∑ k ∈ Finset.univ.erase j, β k • Z.G k := fun β a => by

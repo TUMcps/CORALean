@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachMu
 public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachTimeInterval
 public import CORALean.ContSet.Capsule.Real.Operations.SupportBound
-public import CORALean.ContSet.Capsule.Real.Theorems.CenterMemConstructIff
+public import CORALean.ContSet.Capsule.Real.Theorems.CenterMemToSetIff
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.HPolytope.Real.Operations.Comap
@@ -94,8 +94,8 @@ approximated homogeneous time-interval solution (21). -/
 @[step_of LinearSys.maxBackReach]
 noncomputable def LinearSys.step_maxBackReachPoly (X : HPolytope (Vec ℝ n))
     (FB : Zonotope (Vec ℝ n)) (μ : ℝ) : HPolytope (Vec ℝ n) :=
-  let XF := X.minkDiffOf FB.construct fun i => FB.supportBound (X.A i)  -- ⊖ F box(X_end)
-  XF.minkDiffOf (⟨0, 0, μ⟩ : Capsule n).construct                       -- ⊖ B_μ
+  let XF := X.minkDiffOf FB.toSet fun i => FB.supportBound (X.A i)  -- ⊖ F box(X_end)
+  XF.minkDiffOf (⟨0, 0, μ⟩ : Capsule n).toSet                       -- ⊖ B_μ
     fun i => (⟨0, 0, μ⟩ : Capsule n).supportBound (XF.A i)
 
 
@@ -103,15 +103,15 @@ noncomputable def LinearSys.step_maxBackReachPoly (X : HPolytope (Vec ℝ n))
 
 /-- [1, Alg. 3]: `R̂^{∃∀}(-τ)` from the target set `X_end`, lines 3-5 computed here. -/
 noncomputable def LinearSys.maxBackReach (sys : LinearSys 𝕋 n)
-    (ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.construct)
-      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
-    (Xend : HPolytope (Vec ℝ n)) (hXend : Bornology.IsBounded Xend.dropEqs.construct)
+    (ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.toSet)
+      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.toSet c)
+    (Xend : HPolytope (Vec ℝ n)) (hXend : Bornology.IsBounded Xend.dropEqs.toSet)
     (U W₀ : Zonotope (Vec ℝ n)) (Zw : ℝ → Zonotope (Vec ℝ n)) (t₀ tend : ℝ) (η ω : ℕ) :
     Set (Vec ℝ n) :=
   -- 1. Δt ← (t_end - t₀)/ω
   let Δt := (tend - t₀) / ω
   -- the box asks `ρ` about `X_end` itself, which its rows bound
-  have hX : Bornology.IsBounded Xend.construct := hXend.subset Xend.construct_subset_dropEqs
+  have hX : Bornology.IsBounded Xend.toSet := hXend.subset Xend.toSet_subset_dropEqs
   let B := Xend.zonotope (fun j => ρ Xend hX (LinearMap.proj j))    -- box(X_end)
     (fun j => ρ Xend hX (-LinearMap.proj j))
   let FB := Zonotope.mtimesIntervalMat                              -- F box(X_end), see (19)
@@ -127,14 +127,14 @@ noncomputable def LinearSys.maxBackReach (sys : LinearSys 𝕋 n)
   have hμ : 0 ≤ μ := by
     letI : NormedAddCommGroup (Matrix (Fin n) (Fin B.h) ℝ) := Matrix.instL2OpNormedAddCommGroup
     exact mul_nonneg (Real.sqrt_nonneg _) (norm_nonneg _)
-  have hP : ∀ X : HPolytope (Vec ℝ n), Bornology.IsBounded X.dropEqs.construct →
-      Bornology.IsBounded (LinearSys.step_maxBackReachPoly X FB μ).dropEqs.construct := fun _ h =>
+  have hP : ∀ X : HPolytope (Vec ℝ n), Bornology.IsBounded X.dropEqs.toSet →
+      Bornology.IsBounded (LinearSys.step_maxBackReachPoly X FB μ).dropEqs.toSet := fun _ h =>
     HPolytope.isBounded_dropEqs_minkDiffOf _
-      (HPolytope.isBounded_dropEqs_minkDiffOf _ h ⟨FB.c, FB.center_mem_construct⟩)
-      ⟨0, (Capsule.center_mem_construct_iff ⟨0, 0, μ⟩).mpr hμ⟩
+      (HPolytope.isBounded_dropEqs_minkDiffOf _ h ⟨FB.c, FB.center_mem_toSet⟩)
+      ⟨0, (Capsule.center_mem_toSet_iff ⟨0, 0, μ⟩).mpr hμ⟩
   -- 2. and 6.-14. the loop over the time intervals and its union
   have hX₂ : Bornology.IsBounded                                   -- `e^{AΔt}` is Lipschitz
-      (Xend.mapEquiv (step_maxBackReach_expEquiv (toRealMat sys.A) Δt)).dropEqs.construct :=
+      (Xend.mapEquiv (step_maxBackReach_expEquiv (toRealMat sys.A) Δt)).dropEqs.toSet :=
     ((LinearMap.toContinuousLinearMap (step_maxBackReach_expEquiv (toRealMat sys.A) Δt :
       Vec ℝ n →ₗ[ℝ] Vec ℝ n)).lipschitz.isBounded_image hXend).subset fun x hx =>
         ⟨_, ⟨hx.1, fun i => i.elim0⟩, LinearEquiv.apply_symm_apply _ x⟩

@@ -18,7 +18,7 @@ inside the exact one *plus* `reachError`, so subtracting `reachError` off it lan
 loses nothing until it reduces, `reduce_subset_add_box` bounds what reducing costs, and the previous
 step's error rides through the step's own `A`, which is why `reachError` multiplies it rather than
 carrying it unchanged. At `k = 0` the run is `R₀` itself and the error is the origin. Not stated
-over `Reduce`: the class gives only `construct s ⊆ construct (reduce s o)`, which bounds nothing in
+over `Reduce`: the class gives only `toSet s ⊆ toSet (reduce s o)`, which bounds nothing in
 this direction.
 
 ## Inputs
@@ -57,9 +57,9 @@ variable {n : ℕ}
 reachable set widened by the error that run accumulated. -/
 theorem LinearSysDT.reach_subset_reachSetExact_add_error (sys : LinearSysDT ℝ n) {o : ℕ}
     (ho : 0 < o) (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : -- --- CONCL ---
-    (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct ⊆
+    (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).toSet ⊆
       sys.reachSetExact (S := 𝒵) R₀ U k
-        + (sys.reachError ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct := by -- --- PROOF ---
+        + (sys.reachError ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).toSet := by -- --- PROOF ---
   induction k with
   | zero =>
     -- the error is the origin, and every point of `R₀` is itself plus `0`

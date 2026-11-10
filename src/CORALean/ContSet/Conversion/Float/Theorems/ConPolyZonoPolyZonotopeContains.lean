@@ -44,7 +44,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.polyZonotope_contains (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    cPZ.construct ⊆ cPZ.polyZonotope.construct := by
+    cPZ.toSet ⊆ cPZ.polyZonotope.toSet := by
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨a, β, ha, hβ, _, hx⟩ := ConPolyZono.mem_nominalSet_iff.mp hx
   exact PolyZonotope.mem_nominalSet_iff.mpr ⟨a, β, ha, hβ, hx⟩

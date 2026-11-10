@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.Mpower
 public import CORALean.ContSet.Zonotope.Real.Theorems.MatMulOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 
 @[expose] public section
 
@@ -41,12 +41,12 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every power `M ^ k` of a member lies in the `k`-th matrix-zonotope power. -/
-theorem Zonotope.mpower_outer (Z : Zonotope (Mat ℝ n n)) {M : Mat ℝ n n} (hM : M ∈ Z.construct)
+theorem Zonotope.mpower_outer (Z : Zonotope (Mat ℝ n n)) {M : Mat ℝ n n} (hM : M ∈ Z.toSet)
     (k : ℕ) : -- --- CONCL ---
-    M ^ k ∈ (Zonotope.mpower Z k).construct := by -- --- PROOF ---
+    M ^ k ∈ (Zonotope.mpower Z k).toSet := by -- --- PROOF ---
   rcases k with _ | k
   · rw [pow_zero]
-    exact Zonotope.center_mem_construct (Zonotope.ofPoint 1)
+    exact Zonotope.center_mem_toSet (Zonotope.ofPoint 1)
   · induction k with
     | zero => rw [zero_add, pow_one]; exact hM
     | succ k ih =>

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.LinCombOuter
 public import Mathlib.Analysis.Convex.Hull
@@ -53,18 +53,18 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- [1, Eq. 6]: `CH(Z₁ ∪ Z₂) ⊆ linComb Z₁ Z₂`, the paper's `Z₂ = e^{Ar} Z₁` included. -/
 theorem Zonotope.convexHull_union_subset_linComb (Z₁ Z₂ : Zonotope α) : -- --- CONCL ---
-    convexHull ℝ (Z₁.construct ∪ Z₂.construct)
-      ⊆ (Z₁.linComb Z₂).construct := by -- --- PROOF ---
-  refine convexHull_min (Set.union_subset ?_ ?_) (Zonotope.convex_construct _)
+    convexHull ℝ (Z₁.toSet ∪ Z₂.toSet)
+      ⊆ (Z₁.linComb Z₂).toSet := by -- --- PROOF ---
+  refine convexHull_min (Set.union_subset ?_ ?_) (Zonotope.convex_toSet _)
   -- `Z₁` is the end `λ = 1` of the segments to `Z₂`'s center
   · intro x hx
     refine Zonotope.linComb_outer Z₁ Z₂
-      ⟨x, hx, Z₂.c, Zonotope.center_mem_construct Z₂, 1, ⟨zero_le_one, le_rfl⟩, ?_⟩
+      ⟨x, hx, Z₂.c, Zonotope.center_mem_toSet Z₂, 1, ⟨zero_le_one, le_rfl⟩, ?_⟩
     simp
   -- `Z₂` is the end `λ = 0` of the segments from `Z₁`'s center
   · intro x hx
     refine Zonotope.linComb_outer Z₁ Z₂
-      ⟨Z₁.c, Zonotope.center_mem_construct Z₁, x, hx, 0, ⟨le_rfl, zero_le_one⟩, ?_⟩
+      ⟨Z₁.c, Zonotope.center_mem_toSet Z₁, x, hx, 0, ⟨le_rfl, zero_le_one⟩, ?_⟩
     simp
 
 end CORALean.Real

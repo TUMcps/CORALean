@@ -43,11 +43,11 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.polygon_inner (E : Ellipsoid 2) (L : List (Vec ℝ 2)) : -- --- CONCL ---
-    ContSet.construct (E.polygon L) ⊆ E.construct := by -- --- PROOF ---
-  rw [Ellipsoid.polygon, Polygon.construct_ofPieces]
+    ContSet.toSet (E.polygon L) ⊆ E.toSet := by -- --- PROOF ---
+  rw [Ellipsoid.polygon, Polygon.toSet_ofPieces]
   simp only [List.mem_singleton, Set.iUnion_iUnion_eq_left]
   rw [VPolytope.enclosePoints_exact]
-  refine convexHull_min ?_ E.convex_construct
+  refine convexHull_min ?_ E.convex_toSet
   rintro _ ⟨i, rfl⟩
   -- CORA's support point `q + Q l / √(lᵀ Q l)` is `q + G (v / ‖v‖₂)`, `v = Gᵀ l`
   set v : Vec ℝ 2 := E.Gᵀ *ᵥ L[i] with hv
@@ -55,10 +55,10 @@ theorem Ellipsoid.polygon_inner (E : Ellipsoid 2) (L : List (Vec ℝ 2)) : -- --
       = E.q + E.G *ᵥ (‖v‖₂⁻¹ • v) := by
     rw [Matrix.mulVec_smul, hv, Matrix.mulVec_mulVec, E.G_mul_transpose, Ellipsoid.quad_eq,
       dotProduct_self, Real.sqrt_sq (norm₂_nonneg _)]
-  show E.q + (Real.sqrt (L[i] ⬝ᵥ E.Q *ᵥ L[i]))⁻¹ • (E.Q *ᵥ L[i]) ∈ E.construct
+  show E.q + (Real.sqrt (L[i] ⬝ᵥ E.Q *ᵥ L[i]))⁻¹ • (E.Q *ᵥ L[i]) ∈ E.toSet
   rw [hpt]
   -- the factor `‖v‖⁻¹ • v` has length at most one
-  refine E.mem_construct ?_
+  refine E.mem_toSet ?_
   rw [norm₂_smul, abs_of_nonneg (inv_nonneg.mpr (norm₂_nonneg v))]
   rcases (norm₂_nonneg v).eq_or_lt with h | h
   · rw [← h]; simp

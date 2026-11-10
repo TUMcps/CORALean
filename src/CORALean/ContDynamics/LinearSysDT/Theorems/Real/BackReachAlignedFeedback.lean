@@ -63,16 +63,16 @@ theorem LinearSysDT.backReachAligned_feedback {A : Mat ℝ n n} (hA : IsUnit A.d
     (B : Mat ℝ n m) (E : Mat ℝ n p) (K : Vec ℝ n) (U : Zonotope (Vec ℝ m)) (W : Set (Vec ℝ p))
     (Z₀ : Zonotope (Vec ℝ n)) (σ : (Z : Zonotope (Vec ℝ n)) → Vec ℝ n × (Fin Z.h → ℝ))
     (hσ : ∀ Z, (∀ i, 0 ≤ (σ Z).2 i ∧ (σ Z).2 i ≤ 1) ∧
-      (E *ᵥ ·) '' W ⊆ (Z.aligned (σ Z).1 (σ Z).2).construct) (k : ℕ) : -- --- CONCL ---
+      (E *ᵥ ·) '' W ⊆ (Z.aligned (σ Z).1 (σ Z).2).toSet) (k : ℕ) : -- --- CONCL ---
     ∃ π : ℕ → Vec ℝ n → Vec ℝ m, ∀ (x : ℕ → Vec ℝ n) (w : ℕ → Vec ℝ p),
-      x 0 ∈ (Zonotope.backReachAligned A B K U Z₀ σ k).construct → (∀ t, w t ∈ W) →
+      x 0 ∈ (Zonotope.backReachAligned A B K U Z₀ σ k).toSet → (∀ t, w t ∈ W) →
       (∀ t < k, x (t + 1) = A *ᵥ x t + B *ᵥ π t (x t) + E *ᵥ w t + K) →
-      x k ∈ Z₀.construct ∧ ∀ t < k, π t (x t) ∈ U.construct := by -- --- PROOF ---
+      x k ∈ Z₀.toSet ∧ ∀ t < k, π t (x t) ∈ U.toSet := by -- --- PROOF ---
   let Z := Zonotope.backReachAligned A B K U Z₀ σ
   -- an input steering `y` into `Z_{k-t-1}` against all of `W`, where one exists
   let good : ℕ → Vec ℝ n → Vec ℝ m → Prop := fun t y u =>
-    u ∈ U.construct ∧ ∀ v ∈ W, A *ᵥ y + B *ᵥ u + E *ᵥ v + K ∈ (Z (k - (t + 1))).construct
-  have hstep : ∀ t < k, ∀ y ∈ (Z (k - t)).construct, ∃ u, good t y u := by
+    u ∈ U.toSet ∧ ∀ v ∈ W, A *ᵥ y + B *ᵥ u + E *ᵥ v + K ∈ (Z (k - (t + 1))).toSet
+  have hstep : ∀ t < k, ∀ y ∈ (Z (k - t)).toSet, ∃ u, good t y u := by
     intro t ht y hy
     rw [show k - t = k - (t + 1) + 1 by omega] at hy
     obtain ⟨⟨u, hu, hdu⟩, hall⟩ :=
@@ -81,7 +81,7 @@ theorem LinearSysDT.backReachAligned_feedback {A : Mat ℝ n n} (hA : IsUnit A.d
   classical
   refine ⟨fun t y => if h : ∃ u, good t y u then h.choose else 0, fun x w hx0 hw hx => ?_⟩
   -- every state of the run up to `k` is in `Z_{k-t}`, and every input it takes is good
-  have hrun : ∀ t ≤ k, x t ∈ (Z (k - t)).construct := by
+  have hrun : ∀ t ≤ k, x t ∈ (Z (k - t)).toSet := by
     intro t
     induction t with
     | zero => intro _; simpa using hx0

@@ -73,7 +73,7 @@ private noncomputable def aux_select (B : Interval (Mat ℝ n n)) (y w : Vec ℝ
     + aux_weight B y w i * (aux_cornerHi B y i l - aux_cornerLo B y i l)
 
 /-- Every member's row lies between the corner rows against `y`. -/
-private theorem aux_corner_between {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n} (hM : M ∈ B.construct)
+private theorem aux_corner_between {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n} (hM : M ∈ B.toSet)
     (y : Vec ℝ n) (i : Fin n) : -- --- CONCL ---
     ∑ l, aux_cornerLo B y i l * y l ≤ (M *ᵥ y) i ∧
       (M *ᵥ y) i ≤ ∑ l, aux_cornerHi B y i l * y l := by -- --- PROOF ---
@@ -120,11 +120,11 @@ private theorem aux_select_mulVec {B : Interval (Mat ℝ n n)} {y w : Vec ℝ n}
     ring
 
 /-- The selection lies in the box, the box being non-empty. -/
-private theorem aux_select_mem {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n} (hM : M ∈ B.construct)
+private theorem aux_select_mem {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n} (hM : M ∈ B.toSet)
     {y w : Vec ℝ n}
     (hw : ∀ i, ∑ l, aux_cornerLo B y i l * y l ≤ w i ∧ w i ≤ ∑ l, aux_cornerHi B y i l * y l)
     : -- --- CONCL ---
-    aux_select B y w ∈ B.construct := by -- --- PROOF ---
+    aux_select B y w ∈ B.toSet := by -- --- PROOF ---
   have hB : ∀ i l, B.inf i l ≤ B.sup i l := fun i l =>
     (Interval.mem_mat_iff.mp hM i l).1.trans (Interval.mem_mat_iff.mp hM i l).2
   refine Interval.mem_mat_iff.mpr fun i l => ?_
@@ -161,11 +161,11 @@ private theorem aux_select_measurable (B : Interval (Mat ℝ n n)) {y w : ℝ �
 /-- On a measurable set where some member of `B` maps `y s` to `w s`, a member
 measurable entry by entry does, and it lies in `B` everywhere. -/
 theorem Interval.exists_measurable_mulVec_eq {B : Interval (Mat ℝ n n)} {M₀ : Mat ℝ n n}
-    (hM₀ : M₀ ∈ B.construct) {y w : ℝ → Vec ℝ n} (hy : Measurable y) (hw : Measurable w)
+    (hM₀ : M₀ ∈ B.toSet) {y w : ℝ → Vec ℝ n} (hy : Measurable y) (hw : Measurable w)
     {S : Set ℝ} (hS : MeasurableSet S)
-    (hex : ∀ s ∈ S, ∃ M ∈ B.construct, M *ᵥ y s = w s) : -- --- CONCL ---
+    (hex : ∀ s ∈ S, ∃ M ∈ B.toSet, M *ᵥ y s = w s) : -- --- CONCL ---
     ∃ Â : ℝ → Mat ℝ n n, (∀ i j, Measurable fun s => Â s i j) ∧
-      (∀ s, Â s ∈ B.construct) ∧ ∀ s ∈ S, Â s *ᵥ y s = w s := by -- --- PROOF ---
+      (∀ s, Â s ∈ B.toSet) ∧ ∀ s ∈ S, Â s *ᵥ y s = w s := by -- --- PROOF ---
   classical
   -- the run's own member puts `w` between the corner values
   have hcorner : ∀ s ∈ S, ∀ i,

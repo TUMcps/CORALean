@@ -38,7 +38,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.isIntersectingPoint_iff (E : Ellipsoid n) (hr : E.rank = n) (p : Vec ℝ n) :
-    E.isIntersectingPoint p ↔ ¬ Disjoint ({p} : Set (Vec ℝ n)) E.construct := by
+    E.isIntersectingPoint p ↔ ¬ Disjoint ({p} : Set (Vec ℝ n)) E.toSet := by
   unfold Ellipsoid.isIntersectingPoint
   rw [Ellipsoid.containsPoint_iff E hr p, Set.disjoint_singleton_left, not_not]
 

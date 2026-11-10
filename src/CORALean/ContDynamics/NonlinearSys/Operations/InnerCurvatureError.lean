@@ -60,7 +60,7 @@ noncomputable def NonlinearSys.innerCurvatureError (η : ℕ) (Δt : ℝ) (A : M
   -- [2, (28)] G
   let G := STL.depCurvatureG A Δt η
   -- (17) C = F box(X₀) ⊕ G w
-  (⋃ M ∈ F.construct, (fun x => M *ᵥ x) '' B) + ⋃ N ∈ G.construct, {N *ᵥ w}
+  (⋃ M ∈ F.toSet, (fun x => M *ᵥ x) '' B) + ⋃ N ∈ G.toSet, {N *ᵥ w}
 
 end CORALean
 

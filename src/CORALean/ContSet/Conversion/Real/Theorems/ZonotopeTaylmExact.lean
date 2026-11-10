@@ -55,7 +55,7 @@ private theorem Zonotope.aux_taylm_poly {m : ℕ} (Z : Zonotope (Vec ℝ m)) (N 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.taylm_exact {m : ℕ} (Z : Zonotope (Vec ℝ m)) (N : ℕ) : -- --- CONCL ---
-    Taylm.construct (Z.taylm N) = Z.construct := by -- --- PROOF ---
+    Taylm.toSet (Z.taylm N) = Z.toSet := by -- --- PROOF ---
   ext x
   constructor
   · rintro ⟨t, ht, hx⟩

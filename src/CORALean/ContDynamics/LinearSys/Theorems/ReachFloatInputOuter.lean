@@ -57,11 +57,11 @@ theorem LinearSys.reachFloatInput_outer (sys : LinearSys 𝕋 n)
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rti.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
           sys.IsCanonicalTrajectory (S := 𝒮)
-            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
+            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.toSet
             ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-              params.U.construct) x u →
+              params.U.toSet) x u →
           ∀ (k : ℕ) (hk : k < Rti.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
-            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rti[k].construct := by -- --- PROOF ---
+            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rti[k].toSet := by -- --- PROOF ---
   intro Rti Rtp (h : sys.reachFloatInput params options = some (Rti, Rtp))
   obtain ⟨hΔt, N, hNΔt, S, hlen, rfl, rfl, hinv⟩ := sys.reachFloatInput_invariant _ _ h
   refine ⟨N, hNΔt, by simp [hlen], fun {x u} traj k hk t ht => ?_⟩
@@ -71,7 +71,7 @@ theorem LinearSys.reachFloatInput_outer (sys : LinearSys 𝕋 n)
   obtain ⟨-, h2, h3, -⟩ := hinv k hk'
   -- the run's inputs `B u + c` are in `B U ⊕ c`'s float enclosure
   have hUV : (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-      params.U.construct ⊆ ContSet.construct V :=
+      params.U.toSet ⊆ ContSet.toSet V :=
     sys.inputSetFloat_outer params.U
   -- window `k` lies inside the horizon
   have hkN : ((k : ℝ) + 1) * Δ ≤ (params.tFinal : ℝ) - params.tStart := by
@@ -82,7 +82,7 @@ theorem LinearSys.reachFloatInput_outer (sys : LinearSys 𝕋 n)
   have hd := traj.sub_mem_inputReach_recenter (S' := 𝒵[𝕋]) hUV
     ⟨ht0, ht.2.trans hkN⟩
   -- the `Ũ`-input's share by `t`, inside `P^R(t_{k+1})`
-  have hy := h3 (sys.inputReach_mono (CompactSet.isBounded_construct _)
+  have hy := h3 (sys.inputReach_mono (CompactSet.isBounded_toSet _)
     (Recenter.zero_mem_recenter _) ht0 (by push_cast; exact ht.2) hd)
   -- the free motion and the constant's share at `t = t_k + τ`, inside `H(τ_k)`
   have hx := h2 (x 0) traj.init (t - k * Δ) ⟨sub_nonneg.mpr ht.1, by linarith [ht.2]⟩

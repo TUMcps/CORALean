@@ -89,15 +89,15 @@ theorem LinearSys.IsCanonicalTrajectory.oneStep_timePoint_outer {sys : LinearSys
     (hε : ‖Δt • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {X U W : S n}
     {x w : ℝ → Vec ℝ n} {u : Vec ℝ n}
     (traj : sys.IsCanonicalTrajectory (Set.Icc 0 Δt) X W x w)
-    (hWU : ∀ v ∈ construct W, v - u ∈ construct U) (hW : Bornology.IsBounded (construct W))
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U))
+    (hWU : ∀ v ∈ toSet W, v - u ∈ toSet U) (hW : Bornology.IsBounded (toSet W))
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U))
     (hRconv : Convex ℝ (sys.inputRemainderSet Δt (m + 2) U))
     (hRclosed : IsClosed (sys.inputRemainderSet Δt (m + 2) U))
     (hRbdd : Bornology.IsBounded (sys.inputRemainderSet Δt (m + 2) U))
-    (pconv : Convex ℝ (construct (OfPoint.ofPoint (S := S n) u)))
-    (pclosed : IsClosed (construct (OfPoint.ofPoint (S := S n) u)))
-    (pbdd : Bornology.IsBounded (construct (OfPoint.ofPoint (S := S n) u)))
+    (pconv : Convex ℝ (toSet (OfPoint.ofPoint (S := S n) u)))
+    (pclosed : IsClosed (toSet (OfPoint.ofPoint (S := S n) u)))
+    (pbdd : Bornology.IsBounded (toSet (OfPoint.ofPoint (S := S n) u)))
     (pRconv : Convex ℝ (sys.inputRemainderSet Δt (m + 2) (OfPoint.ofPoint (S
       := S n) u)))
     (pRclosed : IsClosed (sys.inputRemainderSet Δt (m + 2) (OfPoint.ofPoint (S
@@ -105,7 +105,7 @@ theorem LinearSys.IsCanonicalTrajectory.oneStep_timePoint_outer {sys : LinearSys
     (pRbdd : Bornology.IsBounded (sys.inputRemainderSet Δt (m + 2)
       (OfPoint.ofPoint (S := S n) u)))
     : -- --- CONCL ---
-    x Δt ∈ construct (sys.oneStep X U u Δt (m + 2)).Rtp := by -- --- PROOF ---
+    x Δt ∈ toSet (sys.oneStep X U u Δt (m + 2)).Rtp := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
   have hU := hbdd
   have hp := traj.sub_mem_inputReach_shift u hWU hW hU ⟨hΔt.le, le_rfl⟩
@@ -115,11 +115,11 @@ theorem LinearSys.IsCanonicalTrajectory.oneStep_timePoint_outer {sys : LinearSys
     hε pconv pclosed pbdd pRconv pRclosed pRbdd
     ⟨fun _ => u, fun _ _ => OfPoint.mem_ofPoint u, aestronglyMeasurable_const,
       (MatExp.expIntegral_constInput A u hΔt.le).symm⟩
-  have hex : exp (Δt • A) *ᵥ x 0 ∈ construct (Mtimes.mtimes (exp (Δt • A)) X) :=
+  have hex : exp (Δt • A) *ᵥ x 0 ∈ toSet (Mtimes.mtimes (exp (Δt • A)) X) :=
     Mtimes.mtimes_outer _ X (Set.mem_iUnion₂.mpr ⟨_, rfl, Set.mem_image_of_mem _ traj.init⟩)
   have hx : x Δt = (exp (Δt • A) *ᵥ x 0 + MatExp.expIntegral A Δt *ᵥ u)
       + (x Δt - (exp (Δt • A) *ᵥ x 0 + MatExp.expIntegral A Δt *ᵥ u)) := by abel
-  show x Δt ∈ construct (Plus.plus _ _)
+  show x Δt ∈ toSet (Plus.plus _ _)
   rw [hx]
   exact Plus.plus_outer _ _ (Set.add_mem_add
     (Plus.plus_outer _ _ (Set.add_mem_add hex hPu)) hPU)

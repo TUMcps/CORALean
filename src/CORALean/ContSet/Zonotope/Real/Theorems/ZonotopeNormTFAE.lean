@@ -48,7 +48,7 @@ variable {n : ℕ}
 
 theorem Zonotope.zonotopeNorm_tfae (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (Module.finrank ℝ (LinearMap.range Z.genMap) = n ↔ Function.Surjective Z.genMap) ∧
-      ((interior Z.construct).Nonempty ↔ Function.Surjective Z.genMap) ∧
+      ((interior Z.toSet).Nonempty ↔ Function.Surjective Z.genMap) ∧
       (((∀ v, ∃ γ, Z.genMap γ = v) ∧ ∀ v, Z.zonotopeNorm v = 0 ↔ v = 0) ↔
         Function.Surjective Z.genMap) := by -- --- PROOF ---
   -- the range of the generator map is the span of the generators

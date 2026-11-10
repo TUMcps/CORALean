@@ -55,7 +55,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- A run with the field as its derivative everywhere on a convex `T ∋ 0` is a run. -/
 theorem NonlinearSys.IsTrajectory.of_hasDerivWithinAt {sys : NonlinearSys n m} {T : Set ℝ}
     {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} (hTconv : Convex ℝ T)
-    (h0T : (0:ℝ) ∈ T) (init : x 0 ∈ construct R₀) (input : ∀ t ∈ T, u t ∈ construct U)
+    (h0T : (0:ℝ) ∈ T) (init : x 0 ∈ toSet R₀) (input : ∀ t ∈ T, u t ∈ toSet U)
     (hd : ∀ t ∈ T, HasDerivWithinAt x (sys.f (x t) (u t)) T t)
     (hint : ∀ t ∈ T, IntervalIntegrable (fun s => sys.f (x s) (u s)) volume 0 t) :
     sys.IsTrajectory T R₀ U x u (fun t => sys.g (x t) (u t)) where

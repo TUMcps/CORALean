@@ -61,7 +61,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Every member's integrated correction term lies in the float box. -/
 private theorem MatExp.aux_constCorrTerm_mem_intervalConstCorrTerm (A : Interval (Mat 𝕋 n n))
-    {r : 𝕋} (hr : 0 ≤ toReal r) (i : ℕ) {M : Mat ℝ n n} (hM : M ∈ A.construct)
+    {r : 𝕋} (hr : 0 ≤ toReal r) (i : ℕ) {M : Mat ℝ n n} (hM : M ∈ A.toSet)
     (j k : Fin n) : -- --- CONCL ---
     toReal ((MatExp.intervalConstCorrTerm A r i).inf j k)
         ≤ Real.MatExp.constCorrTerm M (toReal r) i j k
@@ -100,9 +100,9 @@ private theorem MatExp.aux_constCorrTerm_mem_intervalConstCorrTerm (A : Interval
 theorem MatExp.constCorrectionMatrix_subset_intervalConstCorrectionMatrix
     (A : Interval (Mat 𝕋 n n)) {r : 𝕋} (hr : 0 ≤ toReal r) (η : ℕ)
     (hε : toReal (MatExp.normUpperBound (Interval.smul r r A)) / ((η : ℝ) + 2) ≤ 1 / 2)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) : -- --- CONCL ---
-    (Real.MatExp.constCorrectionMatrix M (toReal r) η).construct
-      ⊆ (MatExp.intervalConstCorrectionMatrix A r η).construct := by -- --- PROOF ---
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) : -- --- CONCL ---
+    (Real.MatExp.constCorrectionMatrix M (toReal r) η).toSet
+      ⊆ (MatExp.intervalConstCorrectionMatrix A r η).toSet := by -- --- PROOF ---
   have hnorm := MatExp.norm_smul_le_normUpperBound A r hM
   have hE := MatExp.expRemainderBound_le η hnorm (le_trans (norm_nonneg _) hnorm) hε
   intro X hX

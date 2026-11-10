@@ -10,7 +10,7 @@ public import CORALean.ContSet.ContSet.Theorems.EnlargeScalarOuter
 
 Per member, as over ℝ: the image of member `i` under `x ↦ cᵢ + f ⊙ (x - cᵢ)` (the center and `f`
 as the floats read) lies in member `i` of the result, and the result is the intersection of those
-members (`construct_enlarge`). Nothing is claimed for the image of the intersection.
+members (`toSet_enlarge`). Nothing is claimed for the image of the intersection.
 
 ## Inputs
 * `zB` – float zonotope bundle
@@ -48,7 +48,7 @@ theorem ZonoBundle.enlarge_outer (zB : ZonoBundle (Vec 𝕋 n)) (f : Vec 𝕋 n)
           fun j => toReal (f j) *
             (x j - toRealVec (ScalarCenter.centerVec (𝕋 := 𝕋) (S := 𝒵[𝕋])
               (zB.Z i)) j)) ''
-      (zB.Z i).construct ⊆ ((zB.enlarge f).Z i).construct :=
+      (zB.Z i).toSet ⊆ ((zB.enlarge f).Z i).toSet :=
   ContSet.enlargeScalar_outer (S := 𝒵[𝕋]) (𝕋 := 𝕋) (zB.Z i) f
 
 end CORALean.Float

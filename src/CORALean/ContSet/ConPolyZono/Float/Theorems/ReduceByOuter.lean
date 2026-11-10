@@ -153,7 +153,7 @@ private theorem ConPolyZono.aux_reduceBy_nominal (cPZ : ConPolyZono 𝕋 (Vec �
 theorem ConPolyZono.reduceBy_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r))
     (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) :
-    cPZ.construct ⊆ (cPZ.reduceBy partD partI).construct :=
+    cPZ.toSet ⊆ (cPZ.reduceBy partD partI).toSet :=
   mono_subset (ConPolyZono.aux_reduceBy_nominal cPZ partD partI) (subset_refl _)
 
 end CORALean.Float

@@ -11,7 +11,7 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 
 [1, Prop. 7]: `CZ ⊆ ⟨C,d⟩_H ⇔ max(ν₁,…,ν_a) ≤ 0`, where `νᵢ` is the optimum of eq. (45)'s linear
 program `max C(i,·)c + C(i,·)Gα − d(i)` over `α ∈ [−1,1]`, `Aα = b`. That feasible region, read
-through `x = c + Gα`, is `ConZonotope.construct` itself, so the objective is taken over it.
+through `x = c + Gα`, is `ConZonotope.toSet` itself, so the objective is taken over it.
 `max(ν₁,…,ν_a) ≤ 0` is `∀ i, νᵢ ≤ 0`, also the right test when there are no halfspaces at all. `νᵢ`
 is a hypothesis (`IsGreatest`), as the paper's own `max` presupposes an optimum;
 `ConZonotope.exists_isGreatest_ineqs` supplies it whenever `CZ` is nonempty. `⇒` needs the optimum
@@ -58,8 +58,8 @@ variable {q n : ℕ}
 /-- [1, Prop. 7]: the containment check, with each `νᵢ` the optimum of eq. (45). -/
 theorem ConZonotope.ineqs_contains_iff (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ q n) (d : Vec ℝ q)
     (ν : Fin q → ℝ)
-    (hν : ∀ i, IsGreatest ((fun x => (C *ᵥ x) i - d i) '' cZ.construct) (ν i)) : -- --- CONCL ---
-    cZ.construct ⊆ (HPolytope.ineqs C d).construct ↔ ∀ i, ν i ≤ 0 := by -- --- PROOF ---
+    (hν : ∀ i, IsGreatest ((fun x => (C *ᵥ x) i - d i) '' cZ.toSet) (ν i)) : -- --- CONCL ---
+    cZ.toSet ⊆ (HPolytope.ineqs C d).toSet ↔ ∀ i, ν i ≤ 0 := by -- --- PROOF ---
   constructor
   -- forward: the optimum is attained, at a point the halfspace already bounds
   · intro hsub i

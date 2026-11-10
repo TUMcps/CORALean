@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 theorem PolyZonotope.cubMapDep_point (T : Fin m → Fin n → Mat 𝕋 n n) (pZ : PolyZonotope (Vec 𝕋 n))
     {a : Fin pZ.p → ℝ} (ha : ∀ k, |a k| ≤ 1) : -- --- CONCL ---
-    ∃ e ∈ (PolyZonotope.cubMapDep T pZ).I_error.construct,
+    ∃ e ∈ (PolyZonotope.cubMapDep T pZ).I_error.toSet,
       Real.PolyZonotope.cubEval (fun i k => toRealMat (T i k))
           (fun i => toReal (pZ.c i)
             + ∑ l, toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E a l)

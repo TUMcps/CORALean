@@ -98,10 +98,10 @@ noncomputable def Example.bounceCut (v : ℝ) : Zonotope (Vec ℝ 2) :=
 /-- The reset image of the cut set, in coordinates: the floor, left with an
 upward velocity of at most `d v`. -/
 theorem Example.mem_bounce_jump_cut {x : Vec ℝ 2}
-    (hx : x ∈ construct ((Example.bounce d).jump (S := 𝒵) (Example.bounceCut v))) : -- --- CONCL ---
+    (hx : x ∈ toSet ((Example.bounce d).jump (S := 𝒵) (Example.bounceCut v))) : -- --- CONCL ---
     ∃ s : ℝ, |s| ≤ 1 ∧ x = ![0, d * v / 2 - d * v / 2 * s] := by -- --- PROOF ---
-  replace hx : x ∈ (Zonotope.mtimes (Example.bounce d).W (Example.bounceCut v)).construct
-      + ((Interval.point (toRealVec (Example.bounce d).w)).zonotope).construct := by
+  replace hx : x ∈ (Zonotope.mtimes (Example.bounce d).W (Example.bounceCut v)).toSet
+      + ((Interval.point (toRealVec (Example.bounce d).w)).zonotope).toSet := by
     rw [Zonotope.plus_exact]; exact hx
   rw [← Zonotope.mtimes_exact] at hx
   obtain ⟨a, ⟨z, ⟨β, hβ, rfl⟩, rfl⟩, b, ⟨γ, -, rfl⟩, rfl⟩ := hx
@@ -115,15 +115,15 @@ theorem Example.mem_bounce_jump_cut {x : Vec ℝ 2}
 /-- The invariant said as a slab sits inside the same box said as a zonotope:
 the two representations, related where the criterion needs them related. -/
 theorem Example.ballZono_contains_ballBox (hp : 0 < p) (hv : 0 < v) : -- --- CONCL ---
-    construct (Example.ballBox p v) ⊆ construct (Example.ballZono p v) := by -- --- PROOF ---
+    toSet (Example.ballBox p v) ⊆ toSet (Example.ballZono p v) := by -- --- PROOF ---
   intro x hx
   -- the slab's rows, read back as the four scalar bounds
-  have hx' : x ∈ (HPolytope.slab (1 : Mat ℝ 2 2) ![0, -v] ![p, v]).construct := hx
+  have hx' : x ∈ (HPolytope.slab (1 : Mat ℝ 2 2) ![0, -v] ![p, v]).toSet := hx
   obtain ⟨h0a, h0b⟩ := HPolytope.mem_slab_iff.mp hx' 0
   obtain ⟨h1a, h1b⟩ := HPolytope.mem_slab_iff.mp hx' 1
   simp only [Matrix.one_mulVec, Matrix.cons_val_zero, Matrix.cons_val_one] at h0a h0b h1a h1b
   -- one generator per coordinate, so each factor is that coordinate's bound rescaled
-  show _ ∈ Zonotope.construct (⟨2, ![p / 2, 0], ![![p / 2, 0], ![0, v]]⟩ : Zonotope (Vec ℝ 2))
+  show _ ∈ Zonotope.toSet (⟨2, ![p / 2, 0], ![![p / 2, 0], ![0, v]]⟩ : Zonotope (Vec ℝ 2))
   refine ⟨![(2 * x 0 - p) / p, x 1 / v], Fin.forall_fin_two.2 ⟨?_, ?_⟩, ?_⟩
   · show |(2 * x 0 - p) / p| ≤ 1
     rw [abs_div, abs_of_pos hp, div_le_one hp, abs_le]
@@ -142,14 +142,14 @@ theorem Example.ballZono_contains_ballBox (hp : 0 < p) (hv : 0 < v) : -- --- CON
 /-- The `hand` bargain discharged at this automaton: the box met by the floor is
 the cut set, an inclusion stated across the two representations. -/
 theorem Example.ballZono_inter_guard (hv : 0 < v) : -- --- CONCL ---
-    construct (Example.ballZono p v) ∩ construct Example.floorGuard
-      ⊆ construct (Example.bounceCut v) := by -- --- PROOF ---
+    toSet (Example.ballZono p v) ∩ toSet Example.floorGuard
+      ⊆ toSet (Example.bounceCut v) := by -- --- PROOF ---
   rintro x ⟨hz, hg⟩
   -- the guard pins the position and signs the velocity; the box bounds it below
   obtain ⟨hle, heq⟩ := hg
   have h0 : x 0 = 0 := by simpa [Example.floorGuard] using heq (0 : Fin 1)
   have h1 : x 1 ≤ 0 := by simpa [Example.floorGuard] using hle (0 : Fin 1)
-  have hz' : x ∈ Zonotope.construct
+  have hz' : x ∈ Zonotope.toSet
       (⟨2, ![p / 2, 0], ![![p / 2, 0], ![0, v]]⟩ : Zonotope (Vec ℝ 2)) := hz
   obtain ⟨β, hβ, hx⟩ := hz'
   have hxv : x 1 = β 1 * v := by
@@ -160,7 +160,7 @@ theorem Example.ballZono_inter_guard (hv : 0 < v) : -- --- CONCL ---
     rw [hxv]
     nlinarith [hβ1.1, hv]
   -- one generator left, and the velocity is all it carries
-  show _ ∈ Zonotope.construct (⟨1, ![0, -v / 2], ![![0, v / 2]]⟩ : Zonotope (Vec ℝ 2))
+  show _ ∈ Zonotope.toSet (⟨1, ![0, -v / 2], ![![0, v / 2]]⟩ : Zonotope (Vec ℝ 2))
   refine ⟨![(2 * x 1 + v) / v], Fin.forall_fin_one.2 ?_, ?_⟩
   · show |(2 * x 1 + v) / v| ≤ 1
     rw [abs_div, abs_of_pos hv, div_le_one hv, abs_le]
@@ -193,7 +193,7 @@ theorem Example.bouncingBall_isInvariant (g : ℝ) (hp : 0 < p) (hv : 0 < v)
     refine ⟨Example.bounceCut v, Example.ballZono_inter_guard hv, fun x hx => ?_⟩
     obtain ⟨s, hs, rfl⟩ := Example.mem_bounce_jump_cut hx
     rw [abs_le] at hs
-    show _ ∈ Zonotope.construct (⟨2, ![p / 2, 0], ![![p / 2, 0], ![0, v]]⟩ : Zonotope (Vec ℝ 2))
+    show _ ∈ Zonotope.toSet (⟨2, ![p / 2, 0], ![![p / 2, 0], ![0, v]]⟩ : Zonotope (Vec ℝ 2))
     refine ⟨![-1, d * (1 - s) / 2], Fin.forall_fin_two.2 ⟨by simp, ?_⟩, ?_⟩
     · show |d * (1 - s) / 2| ≤ 1
       rw [abs_le]

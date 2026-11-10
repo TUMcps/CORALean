@@ -47,7 +47,7 @@ variable {n : ℕ}
 
 theorem Interval.acosh_exact (I : Interval (Vec ℝ n))
     (hI : ∀ i, 1 ≤ I.inf i ∧ 1 ≤ I.sup i) :
-    I.acosh.construct = (fun x i => Real.arcosh (x i)) '' I.construct := by
+    I.acosh.toSet = (fun x i => Real.arcosh (x i)) '' I.toSet := by
   exact Interval.monotoneImage_exact Real.arcosh (Set.Ici 1) Set.ordConnected_Ici
     (Real.strictMonoOn_arcosh.mono (fun _ hx => Set.mem_Ioi.2 (lt_of_lt_of_le one_pos hx)))
     Real.continuousOn_arcosh I hI

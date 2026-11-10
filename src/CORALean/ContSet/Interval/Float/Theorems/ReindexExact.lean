@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.reindex_exact (e : Fin m ≃ Fin n) (I : Interval (Vec 𝕋 n)) :
-    (I.reindex e).construct = reindexLin e '' I.construct :=
+    (I.reindex e).toSet = reindexLin e '' I.toSet :=
   Real.Interval.reindex_exact e I.nominal
 
 end CORALean.Float

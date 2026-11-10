@@ -38,8 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {P 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `conPolyZono(P)`: `conPolyZono(conZonotope(P))`. -/
-def HPolytope.conPolyZono (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
+def HPolytope.conPolyZono (up : ∀ j, FloatBound 𝕋 P.toSet (LinearMap.proj j))
+    (lo : ∀ j, FloatBound 𝕋 P.toSet (-LinearMap.proj j)) : ConPolyZono 𝕋 (Vec 𝕋 n) :=
   -- `conZonotope(P)`, the box from the support bounds
   let cZ := HPolytope.conZonotope up lo
   -- `conPolyZono(cZ)`

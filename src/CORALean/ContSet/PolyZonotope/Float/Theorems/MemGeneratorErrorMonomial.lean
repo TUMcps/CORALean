@@ -48,7 +48,7 @@ theorem PolyZonotope.mem_generatorError_monomial {G : Mat 𝕋 n h} {Δ : Mat �
     {E : Fin p → Fin h → ℕ} {a : Fin p → ℝ}
     (hG : ∀ i l, |Δ i l| ≤ toReal (G i l)) (ha : ∀ k, |a k| ≤ 1) :
     (fun i => ∑ l, Δ i l * Real.PolyZonotope.monomial E a l)
-      ∈ (PolyZonotope.generatorError G).construct :=
+      ∈ (PolyZonotope.generatorError G).toSet :=
   PolyZonotope.mem_generatorError hG fun l => Real.PolyZonotope.abs_monomial_le_one E ha l
 
 end CORALean.Float

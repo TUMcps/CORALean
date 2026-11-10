@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.AbsBoundError
 # `Zonotope.errOp`
 
 CORA's `priv_errOp` in the sup norm: the largest `absBoundError`, how far the
-whole `construct` reaches from the origin in its farthest coordinate, rounded
+whole `toSet` reaches from the origin in its farthest coordinate, rounded
 up. CORA and [1] take `r(box(·))`, the Euclidean radius of the same box; `Vec`
 carries the sup norm, and this is that norm's radius of the box, at most the
 Euclidean one.

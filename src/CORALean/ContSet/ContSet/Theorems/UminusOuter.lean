@@ -39,11 +39,11 @@ variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
 /-- Every `-x` with `x` in `S` is in `uminus S`: `mtimes_outer` at `-1`, which reads as
 `-1` because `0`, `1` and negation are exact. -/
 theorem ContSet.uminus_outer (s : S n) : -- --- CONCL ---
-    (fun y : Vec ℝ n => -y) '' construct s ⊆
-      construct (ContSet.uminus (𝕋 := 𝕋) s) := by -- --- PROOF ---
+    (fun y : Vec ℝ n => -y) '' toSet s ⊆
+      toSet (ContSet.uminus (𝕋 := 𝕋) s) := by -- --- PROOF ---
   rintro _ ⟨y, hy, rfl⟩
   refine Mtimes.mtimes_outer (𝕄 := Mat 𝕋) _ s ?_
-  simp only [ContSet.construct_mat, Set.biUnion_singleton, Set.mem_image]
+  simp only [ContSet.toSet_mat, Set.biUnion_singleton, Set.mem_image]
   refine ⟨y, hy, ?_⟩
   have hD : toRealMat (-1 : Mat 𝕋 n n) = -1 := by
     ext i j

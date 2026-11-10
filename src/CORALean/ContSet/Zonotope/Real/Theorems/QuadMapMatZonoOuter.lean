@@ -56,9 +56,9 @@ variable {n m ν : ℕ}
 lies in `Z.quadMapMatZono D K`. -/
 theorem Zonotope.quadMapMatZono_outer (D : Fin m → Mat ℝ n n)
     (K : Fin ν → Fin m → Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    {l : Vec ℝ m | ∃ x ∈ Z.construct, ∃ β : Fin ν → ℝ, (∀ j, |β j| ≤ 1) ∧
+    {l : Vec ℝ m | ∃ x ∈ Z.toSet, ∃ β : Fin ν → ℝ, (∀ j, |β j| ≤ 1) ∧
         ∀ i, l i = x ⬝ᵥ ((D i + ∑ j, β j • K j i) *ᵥ x)}
-      ⊆ (Z.quadMapMatZono D K).construct := by -- --- PROOF ---
+      ⊆ (Z.quadMapMatZono D K).toSet := by -- --- PROOF ---
   rintro l ⟨x, hx, β, hβ, hl⟩
   -- the centers' part, a point of `Z_D`
   obtain ⟨γ, hγ, hD⟩ := Z.quadMap_outer D ⟨x, hx, rfl⟩

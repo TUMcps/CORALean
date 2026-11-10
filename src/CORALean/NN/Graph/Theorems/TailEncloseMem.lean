@@ -47,10 +47,10 @@ open Matrix
 theorem GNN.tailEval_mem_tailEnclose (T : ℕ) : -- --- CONCL ---
     ∀ (d : ℕ → ℕ) (g : ∀ t, Vec ℝ (d t) → Vec ℝ (d (t + 1)))
       (f : ∀ t, PolyZonotope (Vec ℝ (d t)) → PolyZonotope (Vec ℝ (d (t + 1))))
-      (_ : ∀ t S x, x ∈ S.construct → g t x ∈ (f t S).construct)
+      (_ : ∀ t S x, x ∈ S.toSet → g t x ∈ (f t S).toSet)
       (S : PolyZonotope (Vec ℝ (d 0))) (x : Vec ℝ (d 0)),
-      x ∈ S.construct →
-        GNN.tailEval T d g x ∈ (GNN.tailEnclose T d f S).construct := by -- --- PROOF ---
+      x ∈ S.toSet →
+        GNN.tailEval T d g x ∈ (GNN.tailEnclose T d f S).toSet := by -- --- PROOF ---
   induction T with
   | zero => intro d g f hf S x hx; exact hx
   | succ T ih =>

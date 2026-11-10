@@ -75,7 +75,7 @@ private theorem ConPolyZono.aux_compactGens_nominal
     (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     nominalSet cPZ ⊆ nominalSet cPZ.compactGensSpec
       + (PolyZonotope.generatorError
-        (ConPolyZono.compactGensGap cPZ)).construct := by -- --- PROOF ---
+        (ConPolyZono.compactGensGap cPZ)).toSet := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, β, ha, hβ, hsat, hxi⟩ := ConPolyZono.mem_nominalSet_iff.mp hx
   -- the kept exponents, the monomials on them, and the exact fibre sums of coordinate `i`
@@ -121,7 +121,7 @@ private theorem ConPolyZono.aux_compactGens_nominal
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.compactGens_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    cPZ.construct ⊆ cPZ.compactGens.construct := by -- --- PROOF ---
+    cPZ.toSet ⊆ cPZ.compactGens.toSet := by -- --- PROOF ---
   rw [ConPolyZono.compactGens_eq_spec]
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', d, hd, hsum⟩ := ConPolyZono.aux_compactGens_nominal cPZ hz

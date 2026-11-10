@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.splitLongestGen_outer (Z : Zonotope (Vec 𝕋 n)) :
-    Z.construct ⊆ Z.splitLongestGen.1.construct ∪ Z.splitLongestGen.2.construct := by
+    Z.toSet ⊆ Z.splitLongestGen.1.toSet ∪ Z.splitLongestGen.2.toSet := by
   unfold Zonotope.splitLongestGen
   cases Z.longestGen with
   | some j => exact Z.split_outer j

@@ -42,8 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Interval.partition_cover (I : Interval (Vec 𝕋 n)) (splits : ℕ)
     (hs : 0 < splits) : -- --- CONCL ---
-    I.nominal.construct ⊆
-      ⋃ ind : Fin n → Fin splits, (I.partition splits ind).construct := by -- --- PROOF ---
+    I.nominal.toSet ⊆
+      ⋃ ind : Fin n → Fin splits, (I.partition splits ind).toSet := by -- --- PROOF ---
   -- a point of the box lies in a real piece, hence in the float piece of its index
   intro x hx
   rw [← Real.Interval.partition_exact I.nominal splits hs] at hx

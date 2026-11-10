@@ -56,7 +56,7 @@ open Matrix
 second-order Taylor sum of every matrix a matrix zonotope denotes. -/
 theorem Zonotope.quadTaylor_printed_counterexample : -- --- CONCL ---
     ¬ ∀ (n : ℕ) (A_Z : Zonotope (Mat ℝ n n)) (t : ℝ),
-      (fun A => (1 : Mat ℝ n n) + t • A + (t ^ 2 / 2) • (A * A)) '' A_Z.construct
+      (fun A => (1 : Mat ℝ n n) + t • A + (t ^ 2 / 2) • (A * A)) '' A_Z.toSet
         ⊆ ({ h := A_Z.h + A_Z.h + A_Z.h * A_Z.h
              c := (1 : Mat ℝ n n) + t • A_Z.c + t ^ 2 • (A_Z.c * A_Z.c)
                + (t ^ 2 / 2) • ∑ i, A_Z.G i * A_Z.G i
@@ -67,10 +67,10 @@ theorem Zonotope.quadTaylor_printed_counterexample : -- --- CONCL ---
                (fun k =>
                  let ij := finProdFinEquiv.symm k
                  if ij.1 < ij.2 then t ^ 2 • (A_Z.G ij.1 * A_Z.G ij.2 + A_Z.G ij.2 * A_Z.G ij.1)
-                 else 0) } : Zonotope (Mat ℝ n n)).construct := by -- --- PROOF ---
+                 else 0) } : Zonotope (Mat ℝ n n)).toSet := by -- --- PROOF ---
   intro h
   have hA : (!![9 / 10] : Mat ℝ 1 1) ∈ (⟨1, !![1], fun _ => !![1 / 10]⟩ :
-      Zonotope (Mat ℝ 1 1)).construct :=
+      Zonotope (Mat ℝ 1 1)).toSet :=
     ⟨fun _ => -1, fun _ => by simp, by ext i j; fin_cases i; fin_cases j; norm_num⟩
   obtain ⟨β, hβ, heq⟩ := h 1 ⟨1, !![1], fun _ => !![1 / 10]⟩ 1 ⟨_, hA, rfl⟩
   have h0 := congrFun (congrFun heq 0) 0

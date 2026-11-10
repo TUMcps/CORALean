@@ -54,9 +54,9 @@ open Matrix
 /-- [1, Sec. 3 (minimal representation)]: an H-representation of `∅` with a redundant row. -/
 theorem HPolytope.empty_redundant_counterexample : -- --- CONCL ---
     ∃ (A : Mat ℝ 3 1) (b : Vec ℝ 3) (j : Fin 3),
-      (HPolytope.ineqs A b).construct = ∅ ∧
-      (HPolytope.ineqs (A.submatrix (dropIdx j) id) fun i => b (dropIdx j i)).construct
-        = (HPolytope.ineqs A b).construct := by -- --- PROOF ---
+      (HPolytope.ineqs A b).toSet = ∅ ∧
+      (HPolytope.ineqs (A.submatrix (dropIdx j) id) fun i => b (dropIdx j i)).toSet
+        = (HPolytope.ineqs A b).toSet := by -- --- PROOF ---
   refine ⟨![![1], ![-1], ![1]], ![-1, -1, 5], 2, ?_, ?_⟩
   · -- `x ≤ -1` and `-x ≤ -1` already contradict
     refine Set.eq_empty_of_forall_notMem fun x hx => ?_

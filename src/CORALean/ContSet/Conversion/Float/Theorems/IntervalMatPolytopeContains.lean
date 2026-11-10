@@ -41,10 +41,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.matPolytope_contains (I : Interval (Mat 𝕋 m n)) : -- --- CONCL ---
-    I.construct ⊆ InflatedContSet.construct I.matPolytope := by -- --- PROOF ---
+    I.toSet ⊆ InflatedContSet.toSet I.matPolytope := by -- --- PROOF ---
   intro A hA
   -- the stacked matrix is in the stacked box, hence in its corners
-  have h1 : matVecEquiv A ∈ (Interval.vPolytope I.vec).construct :=
+  have h1 : matVecEquiv A ∈ (Interval.vPolytope I.vec).toSet :=
     Interval.vPolytope_contains I.vec (by rw [Interval.vec_exact]; exact ⟨A, hA, rfl⟩)
   rw [Interval.matPolytope, VPolytope.unvec_exact]
   exact ⟨_, h1, matVecEquiv.symm_apply_apply A⟩

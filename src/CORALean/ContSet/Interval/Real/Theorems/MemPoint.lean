@@ -40,7 +40,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- both bounds are the point itself, so each coordinate is bounded by equality
-theorem Interval.mem_point (v : α) : v ∈ (Interval.point v).construct :=
+theorem Interval.mem_point (v : α) : v ∈ (Interval.point v).toSet :=
   fun _ => ⟨le_rfl, le_rfl⟩
 
 end CORALean.Real

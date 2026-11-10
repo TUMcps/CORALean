@@ -41,7 +41,7 @@ theorem MDiff.I2_nonempty : MDiff.I2.IsNonempty := by
   norm_num [MDiff.I2]
 
 /-- The exact difference is `[-0.8, 0.8]`, and `0.5` sits inside it. -/
-example : (![(0.5:ℝ)] : Vec ℝ 1) ∈ minkowskiDiff MDiff.I1.construct MDiff.I2.construct := by
+example : (![(0.5:ℝ)] : Vec ℝ 1) ∈ minkowskiDiff MDiff.I1.toSet MDiff.I2.toSet := by
   rw [Interval.minkDiff_exact MDiff.I1 MDiff.I2 MDiff.I2_nonempty]
   intro i
   fin_cases i
@@ -53,7 +53,7 @@ example : (![(0.5:ℝ)] : Vec ℝ 1) ∈ minkowskiDiff MDiff.I1.construct MDiff.
 
 /-- `0.9` sits outside it — cheap, since the representation itself already
 excludes it. -/
-example : (![(0.9:ℝ)] : Vec ℝ 1) ∉ minkowskiDiff MDiff.I1.construct MDiff.I2.construct := by
+example : (![(0.9:ℝ)] : Vec ℝ 1) ∉ minkowskiDiff MDiff.I1.toSet MDiff.I2.toSet := by
   rw [Interval.minkDiff_exact MDiff.I1 MDiff.I2 MDiff.I2_nonempty]
   intro h
   have h2 : (![(0.9:ℝ)] : Vec ℝ 1) 0 ≤ (MDiff.I1.minkDiff MDiff.I2).sup 0 := (h 0).2

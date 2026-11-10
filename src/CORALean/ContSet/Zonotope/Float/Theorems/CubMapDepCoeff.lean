@@ -54,7 +54,7 @@ theorem Zonotope.cubMapDep_coeff (T : Fin m → Fin n → Mat 𝕋 n n) (Z : Zon
     ∃ γ : Fin (Zonotope.cubMapDep T Z).h → ℝ, (∀ l, |γ l| ≤ 1)
       ∧ (∀ j : Fin Z.h,
           γ ((Real.Zonotope.cubIdx (Z.h + 1) (Z.h + 1) (Z.h + 1)).symm ((0, 0), j.succ)) = p j)
-      ∧ ∃ e ∈ (Zonotope.cubMapDep T Z).I_error.construct,
+      ∧ ∃ e ∈ (Zonotope.cubMapDep T Z).I_error.toSet,
           Real.PolyZonotope.cubEval (fun i k => toRealMat (T i k))
               (toRealVec Z.c + ∑ j, p j • toRealVec (Z.G j))
             = fun i => toReal ((Zonotope.cubMapDep T Z).c i)
@@ -67,11 +67,11 @@ theorem Zonotope.cubMapDep_coeff (T : Fin m → Fin n → Mat 𝕋 n n) (Z : Zon
   -- the two shortfalls, in the box the stored zonotope carries
   have hd₁ : (fun i => cm.c i - toReal (Zonotope.cubMapCDown T Z i))
       ∈ (Interval.residual (Zonotope.cubMapCDown T Z) (Zonotope.cubMapCUp T Z)
-        (Zonotope.cubMapCDown T Z)).construct :=
+        (Zonotope.cubMapCDown T Z)).toSet :=
     Interval.sub_mem_residual fun i => Zonotope.cubMapC_between T Z i
   have hd₂ : (fun i => ∑ l, (cm.G l i
           - toReal (Zonotope.cubMapGDown T Z i l)) * γ l)
-      ∈ (Zonotope.generatorError (Zonotope.cubMapGDiff T Z)).construct :=
+      ∈ (Zonotope.generatorError (Zonotope.cubMapGDiff T Z)).toSet :=
     Zonotope.mem_generatorError (fun i l => Zonotope.cubMapG_close T Z i l) hγ
   -- the stored nominal point at `γ`, and the two shortfalls
   refine ⟨γ, hγ, hlin, _, Interval.plus_outer _ _ ⟨_, hd₁, _, hd₂, rfl⟩, ?_⟩

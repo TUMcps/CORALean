@@ -62,7 +62,7 @@ private theorem LinParamSysDT.IsCanonicalTrajectory.aux_toCanonicalTrajectoryOn
 
 theorem LinParamSysDT.reach_outer (sys : LinParamSysDT 𝕄 n) {o : ℕ} (ho : 0 < o) (R₀ U : S n)
     {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory R₀ U x u) (k : ℕ) :
-    x k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
+    x k ∈ toSet (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer_on ho R₀ U (traj.aux_toCanonicalTrajectoryOn k) k le_rfl
 
 end CORALean

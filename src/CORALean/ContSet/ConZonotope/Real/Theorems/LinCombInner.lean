@@ -53,7 +53,7 @@ variable {α γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup γ] [Mod
 /-- The weighted rows a scaled membership gives back. -/
 private theorem HPolytope.aux_rows_of_mem_halfScaled_comap {f : γ →ₗ[ℝ] α} {t : γ →ₗ[ℝ] ℝ}
     {P : HPolytope α} {x : γ} {w : ℝ} (hw : (t x + 1) / 2 = w)
-    (hx : x ∈ ((P.comap f).halfScaled t).construct) :
+    (hx : x ∈ ((P.comap f).halfScaled t).toSet) :
     (∀ i, P.A i (f x) ≤ w * P.b i) ∧ ∀ i, P.Ae i (f x) = w * P.be i := by
   obtain ⟨hle, heq⟩ := HPolytope.mem_halfScaled_iff.mp hx
   rw [hw] at hle heq
@@ -73,7 +73,7 @@ private theorem HPolytope.aux_abs_le_of_unitBox_rows {u : Vec ℝ n} {w : ℝ} (
   refine le_of_forall_pos_le_add fun ε hε => ?_
   have hpos : (0:ℝ) < w + ε := by linarith
   -- at any weight above `w` the point rescales into the box itself
-  have hmem : (w + ε)⁻¹ • u ∈ (HPolytope.unitBox n).construct := by
+  have hmem : (w + ε)⁻¹ • u ∈ (HPolytope.unitBox n).toSet := by
     refine ⟨fun i => ?_, fun i => i.elim0⟩
     rw [map_smul, smul_eq_mul]
     have hrow : (HPolytope.unitBox n).A i u ≤ w * 1 := h i
@@ -91,10 +91,10 @@ end
 
 /-- A weighted coefficient block is a point of the set, weighted: `w⁻¹` where
 there is something to divide by, and the origin where there is not. -/
-private theorem ConZonotope.aux_smul_mem (cZ : ConZonotope α) (hne : cZ.construct.Nonempty) {w : ℝ}
+private theorem ConZonotope.aux_smul_mem (cZ : ConZonotope α) (hne : cZ.toSet.Nonempty) {w : ℝ}
     (hw : 0 ≤ w) {u : Vec ℝ cZ.h} (hrows : ∀ i, cZ.domain.A i u ≤ w * cZ.domain.b i)
     (heqs : ∀ i, cZ.domain.Ae i u = w * cZ.domain.be i) : -- --- CONCL ---
-    ∃ y ∈ cZ.construct, w • y = w • cZ.c + ∑ j, u j • cZ.G j := by -- --- PROOF ---
+    ∃ y ∈ cZ.toSet, w • y = w • cZ.c + ∑ j, u j • cZ.G j := by -- --- PROOF ---
   rcases eq_or_lt_of_le hw with hzero | hpos
   -- weight zero: the box rows of `domain` are the ones that pin the block
   · obtain ⟨y, hy⟩ := hne
@@ -115,7 +115,7 @@ private theorem ConZonotope.aux_smul_mem (cZ : ConZonotope α) (hne : cZ.constru
     exact (Finset.sum_eq_zero fun j _ => by rw [hu j, zero_smul]).symm
   -- above it, the block divided by its weight is a coefficient of the set itself
   · have hne' : w ≠ 0 := ne_of_gt hpos
-    have hdom : w⁻¹ • u ∈ cZ.domain.construct := by
+    have hdom : w⁻¹ • u ∈ cZ.domain.toSet := by
       refine ⟨fun i => ?_, fun i => ?_⟩
       · rw [map_smul, smul_eq_mul, inv_mul_le_iff₀ hpos]
         exact hrows i
@@ -129,9 +129,9 @@ private theorem ConZonotope.aux_smul_mem (cZ : ConZonotope α) (hne : cZ.constru
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.linComb_inner (cZ₁ cZ₂ : ConZonotope α) (h₁ : cZ₁.construct.Nonempty)
-    (h₂ : cZ₂.construct.Nonempty) : -- --- CONCL ---
-    (cZ₁.linComb cZ₂).construct ⊆ Set.linComb cZ₁.construct cZ₂.construct := by -- --- PROOF ---
+theorem ConZonotope.linComb_inner (cZ₁ cZ₂ : ConZonotope α) (h₁ : cZ₁.toSet.Nonempty)
+    (h₂ : cZ₂.toSet.Nonempty) : -- --- CONCL ---
+    (cZ₁.linComb cZ₂).toSet ⊆ Set.linComb cZ₁.toSet cZ₂.toSet := by -- --- PROOF ---
   rintro x ⟨β, hβ, hP, rfl⟩
   set lam : ℝ := (β (Fin.natAdd (cZ₁.h + cZ₂.h) 0) + 1) / 2 with hlam
   have habs := hβ (Fin.natAdd (cZ₁.h + cZ₂.h) 0)

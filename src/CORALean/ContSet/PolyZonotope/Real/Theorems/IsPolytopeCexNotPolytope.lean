@@ -8,7 +8,7 @@ public import Mathlib.Analysis.Convex.Hull
 /-!
 # `isPolytopeCex` is not a polytope
 
-A convex hull of finitely many points is convex, and `isPolytopeCex.construct` is not.
+A convex hull of finitely many points is convex, and `isPolytopeCex.toSet` is not.
 
 ## Inputs
 * `s` – finite set of points
@@ -35,7 +35,7 @@ namespace CORALean.Real
 
 /-- So it is not a polytope: a convex hull of finitely many points is convex. -/
 theorem PolyZonotope.isPolytopeCex_not_polytope (s : Finset (Vec ℝ 2)) :
-    PolyZonotope.isPolytopeCex.construct ≠ convexHull ℝ (s : Set (Vec ℝ 2)) := fun h =>
+    PolyZonotope.isPolytopeCex.toSet ≠ convexHull ℝ (s : Set (Vec ℝ 2)) := fun h =>
   PolyZonotope.isPolytopeCex_not_convex (h ▸ convex_convexHull ℝ _)
 
 end CORALean.Real

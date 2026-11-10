@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaOrigin
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ToSetEqImage
 
 @[expose] public section
 
@@ -34,18 +34,18 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.representsa_origin_iff (cZ : ConZonotope α) : -- --- CONCL ---
-    cZ.construct = {0} ↔ cZ.representsa_origin := by -- --- PROOF ---
-  rw [ConZonotope.construct_eq_image]
+    cZ.toSet = {0} ↔ cZ.representsa_origin := by -- --- PROOF ---
+  rw [ConZonotope.toSet_eq_image]
   constructor
   · -- the origin is the image of some coefficient vector, and every other agrees with it
     intro hp
     have hmem : (0 : α) ∈
-        (fun β : Vec ℝ cZ.h => cZ.c + ∑ j, β j • cZ.G j) '' cZ.domain.construct := by
+        (fun β : Vec ℝ cZ.h => cZ.c + ∑ j, β j • cZ.G j) '' cZ.domain.toSet := by
       rw [hp]; rfl
     obtain ⟨β₀, hβ₀, h0⟩ := hmem
     refine ⟨β₀, hβ₀, h0, fun β hβ => ?_⟩
     have : cZ.c + ∑ j, β j • cZ.G j ∈
-        (fun β : Vec ℝ cZ.h => cZ.c + ∑ j, β j • cZ.G j) '' cZ.domain.construct := ⟨β, hβ, rfl⟩
+        (fun β : Vec ℝ cZ.h => cZ.c + ∑ j, β j • cZ.G j) '' cZ.domain.toSet := ⟨β, hβ, rfl⟩
     rw [hp] at this
     exact add_left_cancel (this.trans h0.symm)
   · -- the image of the polytope is the one point `β₀` reaches, and it is `0`

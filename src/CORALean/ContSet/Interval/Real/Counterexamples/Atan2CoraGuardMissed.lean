@@ -43,7 +43,7 @@ namespace CORALean.Real
 `c ≤ atan2`: the guard `c - atan2 y x ≤ 0` holds at the point, yet CORA's range of `c - atan2`
 has a positive infimum. -/
 theorem Interval.atan2_cora_guard_missed : -- --- CONCL ---
-    ∃ (I₁ I₂ : Interval (Vec ℝ 1)) (y x : Vec ℝ 1) (c : ℝ), y ∈ I₁.construct ∧ x ∈ I₂.construct ∧
+    ∃ (I₁ I₂ : Interval (Vec ℝ 1)) (y x : Vec ℝ 1) (c : ℝ), y ∈ I₁.toSet ∧ x ∈ I₂.toSet ∧
       (I₁.atan2 I₂).sup 0 < c ∧ c ≤ Complex.arg ⟨x 0, y 0⟩ := by -- --- PROOF ---
   have hpi : Complex.arg ⟨-1, 0⟩ = Real.pi := by
     rw [Complex.arg_eq_pi_iff]; exact ⟨by norm_num, rfl⟩

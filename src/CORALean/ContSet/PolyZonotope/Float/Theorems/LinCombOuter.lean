@@ -49,10 +49,10 @@ private theorem PolyZonotope.aux_linComb_nominal
     (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
     Set.linComb (nominalSet pZ₁) (nominalSet pZ₂) ⊆
       nominalSet (pZ₁.linComb pZ₂)
-        + ((PolyZonotope.midpointResidual pZ₁.c pZ₂.c).construct
-            + ((PolyZonotope.halfDiffError pZ₁.c pZ₂.c).construct
+        + ((PolyZonotope.midpointResidual pZ₁.c pZ₂.c).toSet
+            + ((PolyZonotope.halfDiffError pZ₁.c pZ₂.c).toSet
                 + (Zonotope.generatorError
-                    (PolyZonotope.linCombGIDiff pZ₁ pZ₂)).construct)) := by -- --- PROOF ---
+                    (PolyZonotope.linCombGIDiff pZ₁ pZ₂)).toSet)) := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁', y₂, hy₂', lam, ⟨hl0, hl1⟩, rfl⟩
   obtain ⟨a₁, β₁, ha₁, hβ₁, hy₁⟩ := PolyZonotope.mem_nominalSet_iff.mp hy₁'
   obtain ⟨a₂, β₂, ha₂, hβ₂, hy₂⟩ := PolyZonotope.mem_nominalSet_iff.mp hy₂'
@@ -77,12 +77,12 @@ private theorem PolyZonotope.aux_linComb_nominal
 /-- The box absorbs the two incoming boxes, both center roundings and the
 independent block's. -/
 private theorem PolyZonotope.aux_linComb_error (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
-    Set.linComb pZ₁.I_error.construct pZ₂.I_error.construct
-        + ((PolyZonotope.midpointResidual pZ₁.c pZ₂.c).construct
-            + ((PolyZonotope.halfDiffError pZ₁.c pZ₂.c).construct
+    Set.linComb pZ₁.I_error.toSet pZ₂.I_error.toSet
+        + ((PolyZonotope.midpointResidual pZ₁.c pZ₂.c).toSet
+            + ((PolyZonotope.halfDiffError pZ₁.c pZ₂.c).toSet
                 + (Zonotope.generatorError
-                    (PolyZonotope.linCombGIDiff pZ₁ pZ₂)).construct))
-      ⊆ (pZ₁.linComb pZ₂).I_error.construct :=
+                    (PolyZonotope.linCombGIDiff pZ₁ pZ₂)).toSet))
+      ⊆ (pZ₁.linComb pZ₂).I_error.toSet :=
   subset_trans
     (Set.add_subset_add (Interval.linComb_outer pZ₁.I_error pZ₂.I_error)
       (subset_trans (Set.add_subset_add_left (Interval.plus_outer _ _))
@@ -93,7 +93,7 @@ private theorem PolyZonotope.aux_linComb_error (pZ₁ pZ₂ : PolyZonotope (Vec 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.linComb_outer (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
-    Set.linComb pZ₁.construct pZ₂.construct ⊆ (pZ₁.linComb pZ₂).construct :=
+    Set.linComb pZ₁.toSet pZ₂.toSet ⊆ (pZ₁.linComb pZ₂).toSet :=
   InflatedContSet.linComb_subset (PolyZonotope.aux_linComb_nominal pZ₁ pZ₂)
     (PolyZonotope.aux_linComb_error pZ₁ pZ₂)
 

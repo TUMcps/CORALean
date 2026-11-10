@@ -68,7 +68,7 @@ theorem LinearSys.exp_mem_expSquaringFloat (sys : LinearSys 𝕋 n) {tLo tHi : �
     (hη : sys.IsOrderAdmissibleFloat (half^[s] tLo) (half^[s] tHi) η) {t : ℝ}
     (htLo : toReal tLo ≤ t) (htHi : t ≤ toReal tHi) : -- --- CONCL ---
     exp (t • Scalar.toRealMat sys.A)
-      ∈ (sys.expSquaringFloat tLo tHi η s).construct := by -- --- PROOF ---
+      ∈ (sys.expSquaringFloat tLo tHi η s).toSet := by -- --- PROOF ---
   have h2s : (0 : ℝ) < 2 ^ s := by positivity
   -- the base: `t / 2^s` is in the halved range
   have hbase := sys.exp_mem_expIntervalFloat hη (t := t / 2 ^ s)
@@ -77,7 +77,7 @@ theorem LinearSys.exp_mem_expSquaringFloat (sys : LinearSys 𝕋 n) {tLo tHi : �
   -- each squaring doubles the time
   have hsq : ∀ j ≤ s, exp ((t / 2 ^ s * 2 ^ j) • Scalar.toRealMat sys.A) ∈
       ((fun P => (Interval.matMul P P).materialiseMat)^[j]
-        (sys.expIntervalFloat (half^[s] tLo) (half^[s] tHi) η)).construct := by
+        (sys.expIntervalFloat (half^[s] tLo) (half^[s] tHi) η)).toSet := by
     intro j _
     induction j with
     | zero => simpa using hbase

@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.origin_exact (n : ℕ) : -- --- CONCL ---
-    (Ellipsoid.origin n : Ellipsoid 𝕋 n).construct = {0} := by -- --- PROOF ---
+    (Ellipsoid.origin n : Ellipsoid 𝕋 n).toSet = {0} := by -- --- PROOF ---
   have hc : toRealVec (fun _ : Fin n => (zero : 𝕋)) = 0 := funext fun _ => toReal_zero
   have hQ : toRealMat (fun _ _ : Fin n => (zero : 𝕋)) = 0 :=
     funext fun _ => funext fun _ => toReal_zero
@@ -52,14 +52,14 @@ theorem Ellipsoid.origin_exact (n : ℕ) : -- --- CONCL ---
     rw [hQ, hc, Real.Ellipsoid.ofShape_eq .zero]
     rfl
   have hN : InflatedContSet.nominalSet (Ellipsoid.origin n : Ellipsoid 𝕋 n) = {0} := by
-    show (InflatedContSet.nominal (Ellipsoid.origin n : Ellipsoid 𝕋 n)).ellipsoid.construct = _
+    show (InflatedContSet.nominal (Ellipsoid.origin n : Ellipsoid 𝕋 n)).ellipsoid.toSet = _
     rw [h]
     exact Set.ext fun x =>
       (Real.Ellipsoid.mem_ofPoint_iff (0 : Vec ℝ n) x).trans Set.mem_singleton_iff.symm
-  have hE : (Ellipsoid.origin n : Ellipsoid 𝕋 n).I_error.construct = {0} :=
+  have hE : (Ellipsoid.origin n : Ellipsoid 𝕋 n).I_error.toSet = {0} :=
     Interval.origin_exact n
   show InflatedContSet.nominalSet (Ellipsoid.origin n : Ellipsoid 𝕋 n)
-      + (Ellipsoid.origin n : Ellipsoid 𝕋 n).I_error.construct = _
+      + (Ellipsoid.origin n : Ellipsoid 𝕋 n).I_error.toSet = _
   rw [hN, hE, Set.singleton_add_singleton, add_zero]
 
 end CORALean.Float

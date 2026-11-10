@@ -57,11 +57,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem PolyZonotope.sum_outer {m : ℕ} (pZ : PolyZonotope (Vec 𝕋 n))
     (L : Fin m → PolyZonotope (Vec 𝕋 n))
     (hp : ∀ i, (L i).p = pZ.p) {x : Vec ℝ n}
-    (hx : x ∈ (Real.PolyZonotope.sum (nominal pZ) (fun i => nominal (L i)) hp).construct)
-    {e : Vec ℝ n} (he : e ∈ pZ.I_error.construct) (eL : Fin m → Vec ℝ n)
-    (heL : ∀ i, eL i ∈ (L i).I_error.construct) : -- --- CONCL ---
-    x + e + ∑ i, eL i ∈ (pZ.sum L hp).construct := by -- --- PROOF ---
-  obtain ⟨a, β, ha, hβ, hx⟩ := Real.PolyZonotope.mem_construct_iff.mp hx
+    (hx : x ∈ (Real.PolyZonotope.sum (nominal pZ) (fun i => nominal (L i)) hp).toSet)
+    {e : Vec ℝ n} (he : e ∈ pZ.I_error.toSet) (eL : Fin m → Vec ℝ n)
+    (heL : ∀ i, eL i ∈ (L i).I_error.toSet) : -- --- CONCL ---
+    x + e + ∑ i, eL i ∈ (pZ.sum L hp).toSet := by -- --- PROOF ---
+  obtain ⟨a, β, ha, hβ, hx⟩ := Real.PolyZonotope.mem_toSet_iff.mp hx
   -- the stored center is off from the exact sum by what the residual holds
   have hr := Interval.sub_mem_residual
     (lo := fun i => addDown (pZ.c i) (sumDown fun l => (L l).c i))

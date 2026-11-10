@@ -65,14 +65,14 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- [1, Prop. 11] at `P^U(Δt)` itself: eq. (25) bounds the distance between the propagated exact
 particular solution and eq. (20)'s outer-approximation, given only that the latter encloses it. -/
 theorem LinearSys.hausdorffDist₂_inputReach_le (sys : LinearSys 𝕋 n) (tk : ℝ) {U : S n}
-    (hU : Bornology.IsBounded (construct U)) {Δt : ℝ} (hΔt : 0 < Δt) (η : ℕ)
+    (hU : Bornology.IsBounded (toSet U)) {Δt : ℝ} (hΔt : 0 < Δt) (η : ℕ)
     (houter : sys.inputReach U Δt
-      ⊆ MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η) :
+      ⊆ MatExp.particularSolutionOuter (toRealMat sys.A) (toSet U) 0 Δt η) :
     hausdorffDist₂
         ((fun x => (exp (tk • toRealMat sys.A)).mulVec x) '' sys.inputReach U Δt)
         ((fun x => (exp (tk • toRealMat sys.A)).mulVec x)
-          '' MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η)
-      ≤ MatExp.particularSolutionError (toRealMat sys.A) tk (construct U) Δt η :=
+          '' MatExp.particularSolutionOuter (toRealMat sys.A) (toSet U) 0 Δt η)
+      ≤ MatExp.particularSolutionError (toRealMat sys.A) tk (toSet U) Δt η :=
   MatExp.hausdorffDist₂_particularSolution_le _ tk hU hΔt η
     (by rintro _ ⟨c, hc, rfl⟩; exact sys.expIntegral_mem_inputReach hΔt.le hc) houter
 

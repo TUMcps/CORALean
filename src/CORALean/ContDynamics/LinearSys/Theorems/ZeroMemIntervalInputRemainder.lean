@@ -55,8 +55,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem LinearSys.zero_mem_intervalInputRemainder (sys : LinearSys 𝕋 n) {r : 𝕋}
     (hr : 0 ≤ toReal r) {η : ℕ} (hη : sys.IsOrderAdmissibleFloat r r η) : -- --- CONCL ---
     (0 : Mat ℝ n n) ∈
-      (MatExp.intervalInputRemainder (Interval.point sys.A) r η).construct := by -- --- PROOF ---
-  have hA : Scalar.toRealMat sys.A ∈ (Interval.point sys.A).construct := Interval.mem_point sys.A
+      (MatExp.intervalInputRemainder (Interval.point sys.A) r η).toSet := by -- --- PROOF ---
+  have hA : Scalar.toRealMat sys.A ∈ (Interval.point sys.A).toSet := Interval.mem_point sys.A
   have hε : ‖toReal r • Scalar.toRealMat sys.A‖ / ((η : ℝ) + 2) ≤ 1 / 2 :=
     le_trans (by gcongr; exact MatExp.norm_smul_le_normUpperBound _ r hA) hη.2
   have h0 := Real.MatExp.expRemainderBound_nonneg η hε

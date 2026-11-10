@@ -208,7 +208,7 @@ private theorem ConZonotope.aux_quadMapDep_nominal (Q : Fin m → Mat 𝕋 n n)
     (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     (fun x : Vec ℝ n => fun i => x ⬝ᵥ (toRealMat (Q i) *ᵥ x)) '' nominalSet cZ
       ⊆ nominalSet (ConZonotope.quadMapDep Q cZ)
-        + (I_error (ConZonotope.quadMapDep Q cZ)).construct := by -- --- PROOF ---
+        + (I_error (ConZonotope.quadMapDep Q cZ)).toSet := by -- --- PROOF ---
   rintro _ ⟨z, hz, rfl⟩
   -- the exact layer's quadratic map of the read-back operand, named once
   set R := Real.ConZonotope.quadMap (fun k => toRealMat (Q k)) (nominal cZ) with hR
@@ -217,7 +217,7 @@ private theorem ConZonotope.aux_quadMapDep_nominal (Q : Fin m → Mat 𝕋 n n)
     (nominal cZ) ⟨z, hz, rfl⟩
   -- the same coefficients, spelt at this layer's index type
   obtain ⟨β', hβ', hP', hx'⟩ : ∃ β' : Fin (cZ.h + cZ.h + cZ.h * cZ.h) → ℝ, (∀ j, |β' j| ≤ 1)
-      ∧ β' ∈ (ConZonotope.quadMapDep Q cZ).P.nominal.construct
+      ∧ β' ∈ (ConZonotope.quadMapDep Q cZ).P.nominal.toSet
       ∧ ∀ i, (fun x : Vec ℝ n => fun i => x ⬝ᵥ (toRealMat (Q i) *ᵥ x)) z i
         = R.c i
           + ∑ l, β' l
@@ -232,10 +232,10 @@ private theorem ConZonotope.aux_quadMapDep_nominal (Q : Fin m → Mat 𝕋 n n)
   have hd₁ : (fun i => R.c i
         - toReal (ConZonotope.quadMapCDown Q cZ i))
       ∈ (Interval.residual (ConZonotope.quadMapCDown Q cZ) (ConZonotope.quadMapCUp Q cZ)
-        (ConZonotope.quadMapCDown Q cZ)).construct :=
+        (ConZonotope.quadMapCDown Q cZ)).toSet :=
     Interval.sub_mem_residual fun i => ConZonotope.aux_quadMapC_between Q cZ i
   have hd₂ : (fun i => ∑ l, (R.G l i - toReal (ConZonotope.quadMapGDown Q cZ i l)) * β' l)
-      ∈ (Zonotope.generatorError (ConZonotope.quadMapGDiff Q cZ)).construct :=
+      ∈ (Zonotope.generatorError (ConZonotope.quadMapGDiff Q cZ)).toSet :=
     Zonotope.mem_generatorError (fun i l => ConZonotope.aux_quadMapG_close Q cZ i l) hβ'
   -- the stored nominal point at `β'`
   refine ⟨_, ConZonotope.mem_nominalSet_iff.mpr ⟨β', hβ', hP', fun _ => rfl⟩, _,
@@ -266,8 +266,8 @@ end
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.quadMap_outer (Q : Fin m → Mat 𝕋 n n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    (fun x : Vec ℝ n => fun i => x ⬝ᵥ (toRealMat (Q i) *ᵥ x)) '' cZ.construct
-      ⊆ (cZ.quadMap Q).construct := by
+    (fun x : Vec ℝ n => fun i => x ⬝ᵥ (toRealMat (Q i) *ᵥ x)) '' cZ.toSet
+      ⊆ (cZ.quadMap Q).toSet := by
   rintro _ ⟨x, hx, rfl⟩
   exact ConZonotope.aux_quadMapDep_nominal Q cZ.absorbRounding
     ⟨x, ConZonotope.absorbRounding_nominal cZ hx, rfl⟩

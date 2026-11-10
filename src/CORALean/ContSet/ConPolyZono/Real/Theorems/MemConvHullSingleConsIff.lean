@@ -55,11 +55,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 box and add up to what a convex combination needs. -/
 theorem ConPolyZono.mem_convHullSingle_cons_iff (a : ℕ) (cPZ : ConPolyZono α)
     (v : Fin (a * cPZ.p + a) → ℝ) : -- --- CONCL ---
-    v ∈ (cPZ.convHullSingle a).cons.construct
-      ↔ (∀ j, (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) ∈ cPZ.cons.construct)
+    v ∈ (cPZ.convHullSingle a).cons.toSet
+      ↔ (∀ j, (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) ∈ cPZ.cons.toSet)
         ∧ (∀ j, |v (Fin.natAdd (a * cPZ.p) j)| ≤ 1)
         ∧ ∑ j, v (Fin.natAdd (a * cPZ.p) j) = 1 - (a : ℝ) := by -- --- PROOF ---
-  show v ∈ ((cPZ.cons.copies a).cartProd _).construct ↔ _
+  show v ∈ ((cPZ.cons.copies a).cartProd _).toSet ↔ _
   rw [PolyLevelSet.mem_cartProd_iff, PolyLevelSet.mem_copies_iff, PolyLevelSet.mem_linear_iff,
     Interval.mem_unit_iff]
   refine and_congr Iff.rfl (and_congr Iff.rfl ⟨fun h => ?_, fun h _ => ?_⟩)

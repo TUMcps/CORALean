@@ -87,24 +87,24 @@ theorem NonlinearSys.reachSetExact_subset_relinTimeInterval_of_subset (sys : Non
     {T : Set ℝ} (R₀ : S n) (U : S m) {steps : ℕ → sys.LinStep U} {Δt : ℝ} {N : ℕ}
     {M ρ : ℝ} (hΔt : 0 < Δt) (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
     (q : ℕ) (hε : ∀ i < N, ‖Δt • (steps i).A‖ / (((q + 2 : ℕ) : ℝ) + 2) < 1)
-    (hconv : ∀ i < N, Convex ℝ (construct (steps i).linInput))
-    (hclosed : ∀ i < N, IsClosed (construct (steps i).linInput))
-    (hbdd : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
-    (h0 : ∀ i < N, (0 : Vec ℝ n) ∈ construct (steps i).linInput)
+    (hconv : ∀ i < N, Convex ℝ (toSet (steps i).linInput))
+    (hclosed : ∀ i < N, IsClosed (toSet (steps i).linInput))
+    (hbdd : ∀ i < N, Bornology.IsBounded (toSet (steps i).linInput))
+    (h0 : ∀ i < N, (0 : Vec ℝ n) ∈ toSet (steps i).linInput)
     (hRconv : ∀ i < N, Convex ℝ (MatExp.inputRemainderSet (steps i).A Δt (q + 2) (steps
       i).linInput))
     (hRclosed : ∀ i < N, IsClosed (MatExp.inputRemainderSet (steps i).A Δt (q + 2) (steps
       i).linInput))
     (hRbdd : ∀ i < N, Bornology.IsBounded (MatExp.inputRemainderSet (steps i).A Δt (q + 2) (steps
       i).linInput))
-    (hM₀ : 0 ≤ M) (hM : ∀ i < N, ∀ y ∈ (steps i).R, ∀ v ∈ construct U, ‖sys.f y v‖ ≤ M)
+    (hM₀ : 0 ≤ M) (hM : ∀ i < N, ∀ y ∈ (steps i).R, ∀ v ∈ toSet U, ‖sys.f y v‖ ≤ M)
     (hρ : M * Δt < ρ) {o : ℕ} (ho : 0 < o)
-    (hsub : ∀ i < N, ∀ y ∈ construct (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps (fun i =>
+    (hsub : ∀ i < N, ∀ y ∈ toSet (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps (fun i =>
       (NonlinearSys.linearize (steps i).A).inputSolution Δt (q + 2)
         (steps i).linInput)), Metric.closedBall y ρ ⊆ (steps i).R)
     (i : ℕ) (hi : i < N) {t : ℝ}
     (ht : t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt)) :
-    sys.reachSetExact T R₀ U t ⊆ construct (sys.relinTimeInterval o ho Δt (q + 2) steps
+    sys.reachSetExact T R₀ U t ⊆ toSet (sys.relinTimeInterval o ho Δt (q + 2) steps
       (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt (q + 2)
         (steps i).linInput) R₀ i) :=
   sys.reachSetExact_subset_relinTimeInterval R₀ U hΔt hT

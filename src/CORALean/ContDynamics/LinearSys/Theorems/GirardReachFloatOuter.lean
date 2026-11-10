@@ -136,10 +136,10 @@ private theorem aux_foldl_iterate_float {α : Type} (f : α → α) (a : α) (k 
 over `[0, T]` is in some `Qᵢ`. -/
 theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotope (Vec 𝕋 n)} {μ r : 𝕋}
     {T : ℚ} (hA : 0 < ‖Scalar.toRealMat sys.A‖) (hr : 0 < toReal r) (hμ : 0 ≤ toReal μ)
-    (hU : ∀ u ∈ U.construct, ‖u‖ ≤ toReal μ) : -- --- CONCL ---
+    (hU : ∀ u ∈ U.toSet, ‖u‖ ≤ toReal μ) : -- --- CONCL ---
     ∀ Qs ∈ sys.girardReachFloat I μ r T,
       ⋃ t ∈ Set.Icc (0:ℝ) T, sys.reachSetExact (S := 𝒵[𝕋]) (Set.Icc 0 t) I U t
-        ⊆ ⋃ Q ∈ Qs, Q.construct := by -- --- PROOF ---
+        ⊆ ⋃ Q ∈ Qs, Q.toSet := by -- --- PROOF ---
   intro Qs (h : sys.girardReachFloat I μ r T = some Qs)
   simp only [LinearSys.girardReachFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq] at h
@@ -183,7 +183,7 @@ theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotop
       linarith
     linarith
   -- `□(c)` holds every vector of norm at most `c`
-  have hcube : ∀ {c : 𝕋} {v : Vec ℝ n}, ‖v‖ ≤ toReal c → v ∈ (cube c).construct := by
+  have hcube : ∀ {c : 𝕋} {v : Vec ℝ n}, ‖v‖ ≤ toReal c → v ∈ (cube c).toSet := by
     intro c v hv
     refine Interval.zonotope_contains _ fun j => ?_
     show toReal (FloatOps.neg c) ≤ v j ∧ v j ≤ toReal c
@@ -191,7 +191,7 @@ theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotop
     exact ⟨by rw [toReal_neg]; linarith [neg_abs_le (v j)], by linarith [le_abs_self (v j)]⟩
   -- `s` bounds the norm of every point of `I`
   have hs0 : 0 ≤ toReal s := by rw [hsdef, toReal_maximum, toReal_zero]; exact le_max_left _ _
-  have hIs : ∀ z ∈ I.construct, ‖z‖ ≤ toReal s := fun z hz => by
+  have hIs : ∀ z ∈ I.toSet, ‖z‖ ≤ toReal s := fun z hz => by
     refine (pi_norm_le_iff_of_nonneg hs0).mpr fun j => ?_
     rw [Real.norm_eq_abs, hsdef, toReal_maximum]
     exact le_max_of_le_right ((Zonotope.abs_le_absBoundError hz j).trans (le_maximumOver _ j))
@@ -214,14 +214,14 @@ theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotop
     rw [toReal_one] at this
     linarith
   -- `[e^{rA}] Z` holds `e^{rA} z`
-  have hexp : exp (rr • A) ∈ eRA.construct := sys.exp_mem_expIntervalFloat hadm le_rfl le_rfl
-  have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct → exp (rr • A) *ᵥ z
-      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+  have hexp : exp (rr • A) ∈ eRA.toSet := sys.exp_mem_expIntervalFloat hadm le_rfl le_rfl
+  have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.toSet → exp (rr • A) *ᵥ z
+      ∈ ContSet.toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋]) eRA Z) :=
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) eRA Z
       (Set.mem_biUnion hexp (Set.mem_image_of_mem _ hz))
-  have hUb : Bornology.IsBounded (ContSet.construct U) := CompactSet.isBounded_construct U
+  have hUb : Bornology.IsBounded (ContSet.toSet U) := CompactSet.isBounded_toSet U
   set f : Zonotope (Vec 𝕋 n) → Zonotope (Vec 𝕋 n) := fun Q =>
     Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eRA Q ⊞
       cube βr with hf
@@ -231,7 +231,7 @@ theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotop
   -- every window lands in its own iterate
   have hwin : ∀ i : ℕ, ∀ t ∈ Set.Icc ((i : ℝ) * rr) (((i : ℝ) + 1) * rr),
       sys.reachSetExact (S := 𝒵[𝕋]) (Set.Icc 0 t) I U t ⊆
-        (f^[i] Q₀).construct := by
+        (f^[i] Q₀).toSet := by
     intro i
     induction i with
     | zero =>
@@ -245,7 +245,7 @@ theorem LinearSys.girardReachFloat_outer (sys : LinearSys 𝕋 n) {I U : Zonotop
       set p : Vec ℝ n := (1 - t / rr) • z + (t / rr) • (exp (rr • A) *ᵥ z) with hp
       have hpP : p ∈ (LinComb.linComb I
           (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
-            eRA I)).construct :=
+            eRA I)).toSet :=
         LinComb.linComb_outer _ _ ⟨z, hz, exp (rr • A) *ᵥ z, hmt hz, 1 - t / rr,
           ⟨by linarith [hlam.2], by linarith [hlam.1]⟩, by rw [hp, sub_sub_cancel]⟩
       -- what is left over: the interpolation error and the input's reach

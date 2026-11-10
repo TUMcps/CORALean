@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Polygon.Real.Operations.Triangulation
-public import CORALean.ContSet.Polygon.Real.Theorems.ConstructEqTriples
+public import CORALean.ContSet.Polygon.Real.Theorems.ToSetEqTriples
 public import CORALean.ContSet.SetUnion.Theorems.Basic
 public import CORALean.ContSet.VPolytope.Real.Instances
 
@@ -11,7 +11,7 @@ public import CORALean.ContSet.VPolytope.Real.Instances
 # `Polygon.triangulation` is a cover by triangles of the same region
 
 Exactly: every returned set has three vertices and their union is the region of the polygon
-(`VPolytope.construct_eq_iUnion_triples` for each piece). The triangles need not be disjoint.
+(`VPolytope.toSet_eq_iUnion_triples` for each piece). The triangles need not be disjoint.
 
 ## Inputs
 * `P` – polygon
@@ -37,7 +37,7 @@ namespace CORALean.Real
 
 theorem Polygon.triangulation_exact (P : Polygon) : -- --- CONCL ---
     (∀ t ∈ (Polygon.triangulation P).sets, t.k = 3) ∧
-      ContSet.construct (Polygon.triangulation P) = ContSet.construct P := by -- --- PROOF ---
+      ContSet.toSet (Polygon.triangulation P) = ContSet.toSet P := by -- --- PROOF ---
   constructor
   · -- a returned set is a triple of vertices
     intro t ht
@@ -46,20 +46,20 @@ theorem Polygon.triangulation_exact (P : Polygon) : -- --- CONCL ---
     rfl
   · -- a point is in a triangle iff it is in the piece the triangle belongs to
     ext x
-    simp only [SetUnion.mem_construct, Polygon.triangulation, List.mem_flatMap, List.mem_map,
+    simp only [SetUnion.mem_toSet, Polygon.triangulation, List.mem_flatMap, List.mem_map,
       List.mem_finRange, true_and]
     constructor
     · -- a point of a triangle is a point of its piece
       rintro ⟨_, ⟨p, hp, a, b, c, rfl⟩, hx⟩
       refine ⟨p, hp, ?_⟩
-      show x ∈ VPolytope.construct p
-      rw [VPolytope.construct_eq_iUnion_triples]
+      show x ∈ VPolytope.toSet p
+      rw [VPolytope.toSet_eq_iUnion_triples]
       simp only [Set.mem_iUnion]
       exact ⟨a, b, c, hx⟩
     · -- a point of a piece is in one of its triangles, by Carathéodory
       rintro ⟨p, hp, hx⟩
-      change x ∈ VPolytope.construct p at hx
-      rw [VPolytope.construct_eq_iUnion_triples] at hx
+      change x ∈ VPolytope.toSet p at hx
+      rw [VPolytope.toSet_eq_iUnion_triples] at hx
       simp only [Set.mem_iUnion] at hx
       obtain ⟨a, b, c, hx⟩ := hx
       exact ⟨_, ⟨p, hp, a, b, c, rfl⟩, hx⟩

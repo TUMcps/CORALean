@@ -57,7 +57,7 @@ theorem Ellipsoid.cartProd_outer (E₁ : Ellipsoid 𝕋 n) (E₂ : Ellipsoid �
     (hs₂ : ∀ i, toReal (E₂.Q i i) ≤ toReal (mulDown (s₂ i) (s₂ i)))
     (hσ : 0 < toReal σ) (hn : ((n + m : ℕ) : ℝ) ≤ toReal (mulDown σ σ)) : -- --- CONCL ---
     (fun p : Vec ℝ n × Vec ℝ m => (Fin.append p.1 p.2 : Vec ℝ (n + m))) ''
-        (E₁.construct ×ˢ E₂.construct) ⊆ (E₁.cartProd E₂ s₁ s₂ σ).construct := by -- --- PROOF ---
+        (E₁.toSet ×ˢ E₂.toSet) ⊆ (E₁.cartProd E₂ s₁ s₂ σ).toSet := by -- --- PROOF ---
   rintro _ ⟨⟨x, y⟩, ⟨hx, hy⟩, rfl⟩
   refine Interval.ellipsoid_contains _ σ hσ hn ?_
   have h1 := E₁.interval_contains s₁ hs₁ hx

@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.empty_exact (n : ℕ) : -- --- CONCL ---
-    (SpectraShadow.empty n : SpectraShadow 𝕋 (Vec 𝕋 n)).construct = ∅ := by -- --- PROOF ---
+    (SpectraShadow.empty n : SpectraShadow 𝕋 (Vec 𝕋 n)).toSet = ∅ := by -- --- PROOF ---
   -- the nominal part is empty: its inequality has a negative diagonal
   have hN : InflatedContSet.nominalSet (SpectraShadow.empty n : SpectraShadow 𝕋 (Vec 𝕋 n)) = ∅ := by
     ext x
@@ -54,7 +54,7 @@ theorem SpectraShadow.empty_exact (n : ℕ) : -- --- CONCL ---
     simp [toRealMat, SpectraShadow.empty, toReal_neg, toReal_one] at h
     norm_num at h
   show InflatedContSet.nominalSet (SpectraShadow.empty n : SpectraShadow 𝕋 (Vec 𝕋 n))
-      + (SpectraShadow.empty n : SpectraShadow 𝕋 (Vec 𝕋 n)).I_error.construct = _
+      + (SpectraShadow.empty n : SpectraShadow 𝕋 (Vec 𝕋 n)).I_error.toSet = _
   rw [hN, Set.empty_add]
 
 end CORALean.Float

@@ -48,24 +48,24 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.filterOut_covered (Zs : Fin m → Zonotope (Vec ℝ n)) (ind : Fin m)
-    (hint : (interior (Zs ind).construct).Nonempty)
+    (hint : (interior (Zs ind).toSet).Nonempty)
     (hout : ind ∉ Zonotope.filterOut Zs) : -- --- CONCL ---
-    (Zs ind).construct ⊆ ⋃ j ∈ {j | j ≠ ind}, (Zs j).construct := by -- --- PROOF ---
+    (Zs ind).toSet ⊆ ⋃ j ∈ {j | j ≠ ind}, (Zs j).toSet := by -- --- PROOF ---
   intro x hx
   by_contra hxU
-  set U : Set (Vec ℝ n) := ⋃ j ∈ {j | j ≠ ind}, (Zs j).construct with hU
+  set U : Set (Vec ℝ n) := ⋃ j ∈ {j | j ≠ ind}, (Zs j).toSet with hU
   have hUclosed : IsClosed U := by
     refine (Set.toFinite {j : Fin m | j ≠ ind}).isClosed_biUnion fun j _ => ?_
-    exact Zonotope.isClosed_construct (Zs j)
+    exact Zonotope.isClosed_toSet (Zs j)
   -- the cell is the closure of its interior
-  have hcl : closure (interior (Zs ind).construct) = (Zs ind).construct := by
-    rw [(Zonotope.convex_construct (Zs ind)).closure_interior_eq_closure_of_nonempty_interior hint,
-      (Zonotope.isClosed_construct (Zs ind)).closure_eq]
-  have hxcl : x ∈ closure (interior (Zs ind).construct) := by rw [hcl]; exact hx
+  have hcl : closure (interior (Zs ind).toSet) = (Zs ind).toSet := by
+    rw [(Zonotope.convex_toSet (Zs ind)).closure_interior_eq_closure_of_nonempty_interior hint,
+      (Zonotope.isClosed_toSet (Zs ind)).closure_eq]
+  have hxcl : x ∈ closure (interior (Zs ind).toSet) := by rw [hcl]; exact hx
   -- so the open set outside `U` meets the interior
-  have hopen : IsOpen (interior (Zs ind).construct ∩ Uᶜ) :=
+  have hopen : IsOpen (interior (Zs ind).toSet ∩ Uᶜ) :=
     isOpen_interior.inter hUclosed.isOpen_compl
-  obtain ⟨y, hy⟩ : (interior (Zs ind).construct ∩ Uᶜ).Nonempty := by
+  obtain ⟨y, hy⟩ : (interior (Zs ind).toSet ∩ Uᶜ).Nonempty := by
     rw [mem_closure_iff] at hxcl
     obtain ⟨y, hyU, hyI⟩ := hxcl Uᶜ hUclosed.isOpen_compl hxU
     exact ⟨y, hyI, hyU⟩

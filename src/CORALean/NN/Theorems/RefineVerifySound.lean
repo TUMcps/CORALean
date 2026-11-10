@@ -57,10 +57,10 @@ variable {n m : ℕ}
 /-- [1, Alg. 3]: `VERIFIED` means no output on the input set is unsafe. -/
 theorem RefinableNetwork.refineVerify_sound (rn : RefinableNetwork S n m) (ρ : ℕ) {X : S n}
     {Su : Set (Vec ℝ m)} {isDisjoint : S m → Bool}
-    (hdis : ∀ Y, isDisjoint Y = true → ∀ y ∈ construct Y, y ∉ Su)
+    (hdis : ∀ Y, isDisjoint Y = true → ∀ y ∈ toSet Y, y ∉ Su)
     (refineStep : Schedule → Schedule) {I : ℕ}
     (h : rn.refineVerify ρ X isDisjoint refineStep I = true) :
-    ∀ x ∈ construct X, rn.eval x ∉ Su :=
+    ∀ x ∈ toSet X, rn.eval x ∉ Su :=
   rn.refineVerifyFrom_sound ρ hdis refineStep I _ h
 
 end CORALean

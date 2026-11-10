@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.zonoBundle_contains (E : Ellipsoid n) :
-    E.construct ⊆ E.zonoBundle.construct :=
+    E.toSet ⊆ E.zonoBundle.toSet :=
   subset_trans E.zonotope_contains (Zonotope.zonoBundle_exact _).subset
 
 end CORALean.Real

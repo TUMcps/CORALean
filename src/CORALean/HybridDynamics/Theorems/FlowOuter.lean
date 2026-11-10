@@ -72,13 +72,13 @@ enclosure, the initial set and the input contribution named by the caller. -/
 theorem Location.IsTrajectory.timeInterval_outer [∀ n, OfPoint (S n) (Vec ℝ n)]
     {ℓ : Location S G L 𝕋 n} {τ : ℝ}
     {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.IsTrajectory τ x u w) {R₀ Ud : S n}
-    (h₀ : x 0 ∈ construct R₀) (hτ : 0 < τ) {m : ℕ}
+    (h₀ : x 0 ∈ toSet R₀) (hτ : 0 < τ) {m : ℕ}
     (hε : ‖τ • toRealMat ℓ.dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
-    (ht0 : 0 ≤ t) (htτ : t ≤ τ) (hU : Bornology.IsBounded (construct ℓ.inputSet))
+    (ht0 : 0 ≤ t) (htτ : t ≤ τ) (hU : Bornology.IsBounded (toSet ℓ.inputSet))
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat ℓ.dynamics.A) *ᵥ
       (toRealMat ℓ.dynamics.B *ᵥ u s + toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w s))
-      ∈ construct Ud) :
-    x t ∈ construct (Plus.plus (ℓ.timeInterval τ (m + 2) R₀) Ud) :=
+      ∈ toSet Ud) :
+    x t ∈ toSet (Plus.plus (ℓ.timeInterval τ (m + 2) R₀) Ud) :=
   (traj.linearSys h₀ traj.inputSet_mem).timeInterval_outer hτ
     subset_rfl hε ht0 htτ hU hUd
 

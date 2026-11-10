@@ -40,7 +40,7 @@ variable {n m : ℕ}
 
 theorem Taylm.representsa_emptySet_iff (T : Fin m → Taylm n)
     (hT : ∀ i, (T i).rem.inf ≤ (T i).rem.sup) :
-    Taylm.representsa_emptySet T = true ↔ Taylm.construct T = ∅ := by
+    Taylm.representsa_emptySet T = true ↔ Taylm.toSet T = ∅ := by
   rw [← Taylm.polyZonotope_exact T hT]
   exact PolyZonotope.representsa_emptySet_iff _
 

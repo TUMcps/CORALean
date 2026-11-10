@@ -45,9 +45,9 @@ variable {m n p q : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.kron_outer {I : Interval (Mat ℝ m n)} {J : Interval (Mat ℝ p q)}
-    {A : Mat ℝ m n} {B : Mat ℝ p q} (hA : A ∈ I.construct) (hB : B ∈ J.construct) :
+    {A : Mat ℝ m n} {B : Mat ℝ p q} (hA : A ∈ I.toSet) (hB : B ∈ J.toSet) :
     Matrix.reindex finProdFinEquiv finProdFinEquiv (A ⊗ₖ B) ∈
-      (I.kron J).construct := by
+      (I.kron J).toSet := by
   rintro ⟨r, c⟩
   simp only [Interval.kron, Entrywise.entry_mat, Matrix.reindex_apply, Matrix.submatrix_apply,
     Matrix.of_apply, Matrix.kroneckerMap_apply]

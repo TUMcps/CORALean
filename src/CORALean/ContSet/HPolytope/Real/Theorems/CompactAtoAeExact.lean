@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.CompactAtoAe
-public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
+public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictToSet
 public import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
 
 @[expose] public section
@@ -43,13 +43,13 @@ section
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The set of `step_moveToEq`. -/
-private theorem HPolytope.aux_moveToEq_construct (P : HPolytope α) (S : Finset (Fin P.m))
+private theorem HPolytope.aux_moveToEq_toSet (P : HPolytope α) (S : Finset (Fin P.m))
     (L : List (Fin P.m)) : -- --- CONCL ---
-    (P.step_moveToEq S L).construct
+    (P.step_moveToEq S L).toSet
       = {x | (∀ i ∈ S, P.A i x ≤ P.b i) ∧ (∀ r, P.Ae r x = P.be r) ∧
           ∀ i ∈ L, P.A i x = P.b i} := by -- --- PROOF ---
   ext x
-  simp only [HPolytope.construct, HPolytope.step_moveToEq, Set.mem_setOf_eq]
+  simp only [HPolytope.toSet, HPolytope.step_moveToEq, Set.mem_setOf_eq]
   -- the kept inequalities, indexed by `S` rather than by `Fin S.card`
   have h1 : (∀ k : Fin S.card, P.A (S.equivFin.symm k).1 x ≤ P.b (S.equivFin.symm k).1)
       ↔ ∀ i ∈ S, P.A i x ≤ P.b i := by
@@ -131,14 +131,14 @@ end
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.compactAtoAe_exact (P : HPolytope (Vec ℝ n)) : -- --- CONCL ---
-    P.compactAtoAe.construct = P.construct := by -- --- PROOF ---
+    P.compactAtoAe.toSet = P.toSet := by -- --- PROOF ---
   rw [← P.normalizeRows_exact]
   unfold HPolytope.compactAtoAe
   generalize P.normalizeRows = Q
   obtain ⟨hadd, hmov⟩ := Q.aux_atoAeState_spec
-  simp only [HPolytope.aux_moveToEq_construct, Finset.mem_filter, Finset.mem_univ, true_and]
+  simp only [HPolytope.aux_moveToEq_toSet, Finset.mem_filter, Finset.mem_univ, true_and]
   ext x
-  simp only [Set.mem_setOf_eq, HPolytope.construct]
+  simp only [Set.mem_setOf_eq, HPolytope.toSet]
   constructor
   · -- the moved rows are implied by the appended equalities
     rintro ⟨h1, h2, h3⟩

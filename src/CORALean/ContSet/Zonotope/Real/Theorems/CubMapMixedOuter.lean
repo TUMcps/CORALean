@@ -46,8 +46,8 @@ variable {n m : ℕ}
 theorem Zonotope.cubMapMixed_outer (T : Fin m → Fin n → Mat ℝ n n)
     (Z₁ Z₂ Z₃ : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     (fun x : Vec ℝ n × Vec ℝ n × Vec ℝ n => PolyZonotope.cubEvalMixed T x.1 x.2.1 x.2.2)
-        '' (Z₁.construct ×ˢ Z₂.construct ×ˢ Z₃.construct)
-      ⊆ (Z₁.cubMapMixed T Z₂ Z₃).construct := by -- --- PROOF ---
+        '' (Z₁.toSet ×ˢ Z₂.toSet ×ˢ Z₃.toSet)
+      ⊆ (Z₁.cubMapMixed T Z₂ Z₃).toSet := by -- --- PROOF ---
   rintro _ ⟨⟨x₁, x₂, x₃⟩, ⟨⟨p₁, hp₁, rfl⟩, ⟨p₂, hp₂, rfl⟩, ⟨p₃, hp₃, rfl⟩⟩, rfl⟩
   obtain ⟨γ, hγ, -, -, -, hx⟩ := Zonotope.cubMapMixed_coeff T Z₁ Z₂ Z₃ p₁ p₂ p₃ hp₁ hp₂ hp₃
   exact ⟨γ, hγ, hx⟩

@@ -42,11 +42,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- membership is those two halves read back as a bound on the magnitude
 theorem HPolytope.mem_unitBox_iff {x : Vec ℝ n} : -- --- CONCL ---
-    x ∈ (HPolytope.unitBox 𝕋 n).construct ↔ ∀ j, |x j| ≤ 1 := by -- --- PROOF ---
+    x ∈ (HPolytope.unitBox 𝕋 n).toSet ↔ ∀ j, |x j| ≤ 1 := by -- --- PROOF ---
   constructor
   · intro hmem j
     obtain ⟨hle, -⟩ :=
-      (HPolytope.mem_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mp hmem
+      (HPolytope.mem_toSet_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mp hmem
     have hup := hle (Fin.castAdd n j)
     have hlo := hle (Fin.natAdd n j)
     simp only [HPolytope.unitBox, HPolytope.mulVec_append_left, toRealMat_append_mulVec_natAdd,
@@ -54,7 +54,7 @@ theorem HPolytope.mem_unitBox_iff {x : Vec ℝ n} : -- --- CONCL ---
     exact abs_le.mpr ⟨by linarith, hup⟩
   -- back, the lower half being the negated coordinate
   · intro h
-    refine (HPolytope.mem_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mpr
+    refine (HPolytope.mem_toSet_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mpr
       ⟨?_, fun i => i.elim0⟩
     refine Fin.addCases (fun j => ?_) fun j => ?_
     · simp only [HPolytope.unitBox, HPolytope.mulVec_append_left, HPolytope.mulVec_single,

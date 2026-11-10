@@ -58,15 +58,15 @@ variable {n : ℕ} {ι κ : Type} [Fintype ι] [Fintype κ] [Nonempty ι] [Nonem
 theorem Zonotope.enclosePolytopes_outer {Λ : Mat ℝ n n} (hΛ : IsUnit Λ.det)
     (V : ι → κ → Vec ℝ n) (l : ι) : -- --- CONCL ---
     convexHull ℝ (Set.range (V l))
-      ⊆ (Zonotope.enclosePolytopes Λ V).construct := by -- --- PROOF ---
+      ⊆ (Zonotope.enclosePolytopes Λ V).toSet := by -- --- PROOF ---
   intro x hx
   set box := Interval.enclosePoints fun v : ι × κ => Λ⁻¹ *ᵥ V v.1 v.2
   -- `Λ⁻¹ x` is in the hull of the mapped vertices of `P_l`, hence in the box
-  have hbox : Λ⁻¹ *ᵥ x ∈ box.construct := by
+  have hbox : Λ⁻¹ *ᵥ x ∈ box.toSet := by
     have himg : Λ⁻¹ *ᵥ x ∈ convexHull ℝ ((Matrix.mulVecLin Λ⁻¹) '' Set.range (V l)) := by
       rw [← LinearMap.image_convexHull]
       exact ⟨x, hx, rfl⟩
-    refine convexHull_min ?_ (Interval.convex_construct _) himg
+    refine convexHull_min ?_ (Interval.convex_toSet _) himg
     rintro _ ⟨_, ⟨k, rfl⟩, rfl⟩
     exact Interval.enclosePoints_outer (fun v : ι × κ => Λ⁻¹ *ᵥ V v.1 v.2) (l, k)
   -- and `Λ` maps it back to `x`

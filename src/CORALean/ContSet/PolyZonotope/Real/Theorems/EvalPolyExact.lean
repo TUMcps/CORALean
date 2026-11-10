@@ -12,7 +12,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyStepPoint
 /-!
 # `PolyZonotope.evalPoly` is exactly the polynomial, evaluated coordinatewise
 
-`MulPoint`'s idiom carried through the recursion: the claim is about `point`, not `construct`,
+`MulPoint`'s idiom carried through the recursion: the claim is about `point`, not `toSet`,
 so no product of sets appears, only the coordinatewise image of the admissible factors under
 `a ↦ evalPolyReal coeffs (point pZ a)`. `evalPolyReal` is the same recursion over `ℝ` that
 `evalPoly` runs over the set, so the induction matches it step for step: `mul_point` turns the

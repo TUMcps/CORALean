@@ -44,8 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n N : ℕ}
 
 theorem VPolytope.projectHighDim_outer (P : VPolytope (Vec 𝕋 n)) {dims : Fin n → Fin N}
     (hdims : Function.Injective dims) : -- --- CONCL ---
-    (fun x => Function.extend dims x 0) '' P.construct ⊆
-      (P.projectHighDim dims).construct := by -- --- PROOF ---
+    (fun x => Function.extend dims x 0) '' P.toSet ⊆
+      (P.projectHighDim dims).toSet := by -- --- PROOF ---
   -- padding with zeros is the padding matrix, vertex by vertex
   have hmat : ∀ x : Vec ℝ n, Function.extend dims x 0 =
       (Matrix.of fun (i : Fin N) (k : Fin n) => if dims k = i then (1 : ℝ) else 0) *ᵥ x := by
@@ -82,14 +82,14 @@ theorem VPolytope.projectHighDim_outer (P : VPolytope (Vec 𝕋 n)) {dims : Fin 
         refine (Finset.sum_eq_zero fun k _ => ?_).symm
         have : dims k ≠ j := fun hk => h ⟨k, hk⟩
         simp [this]
-    show _ '' ContSet.construct (nominal P) ⊆ ContSet.construct (nominal (P.projectHighDim dims))
+    show _ '' ContSet.toSet (nominal P) ⊆ ContSet.toSet (nominal (P.projectHighDim dims))
     rw [hnom]
     have hex := Real.VPolytope.projectHighDim_exact (nominal P) dims
     rintro _ ⟨x, hx, rfl⟩
     have hm : (Matrix.of fun (i : Fin N) (k : Fin n) => if dims k = i then (1 : ℝ) else 0) *ᵥ x ∈
-        Real.VPolytope.construct ((nominal P).projectHighDim dims) := by
+        Real.VPolytope.toSet ((nominal P).projectHighDim dims) := by
       rw [hex]; exact ⟨x, hx, rfl⟩
-    show Function.extend dims x 0 ∈ ContSet.construct _
+    show Function.extend dims x 0 ∈ ContSet.toSet _
     rw [hmat]
     exact hm
 

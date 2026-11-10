@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- the error box adds nothing, the generators already covering the box
 theorem Interval.zonotope_contains (I : Interval (Vec 𝕋 n)) :
-    I.construct ⊆ I.zonotope.construct := fun x hx =>
+    I.toSet ⊆ I.zonotope.toSet := fun x hx =>
   ⟨x, I.subset_nominal_zonotope hx, 0, fun i => by
     show toReal (zero : 𝕋) ≤ (0 : Vec ℝ n) i ∧ (0 : Vec ℝ n) i ≤ toReal (zero : 𝕋)
     rw [toReal_zero]

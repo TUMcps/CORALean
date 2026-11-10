@@ -70,8 +70,8 @@ instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] :
   I_error pZ := pZ.I_error
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
-abbrev PolyZonotope.construct [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope (Vec 𝕋 n)) :
-    Set (Vec ℝ n) := InflatedContSet.construct pZ
+abbrev PolyZonotope.toSet [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope (Vec 𝕋 n)) :
+    Set (Vec ℝ n) := InflatedContSet.toSet pZ
 
 end CORALean.Float
 

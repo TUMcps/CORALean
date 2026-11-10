@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConvexHullSubsetLinComb
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.Specification.STL.Operations.DepReachIntervalFloat
 
 @[expose] public section
@@ -57,13 +57,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem STL.depReachIntervalFloat_outer {sF sF' : STL.DepReachStateFloat 𝕋 n}
     {sR sR' : STL.DepReachState n} {E E' : Set (Vec ℝ n)} (h : sF.Encloses sR E)
     (h' : sF'.Encloses sR' E') : -- --- CONCL ---
-    (convexHull ℝ (sR.H.construct ∪ sR'.H.construct) + (sR'.Pc.construct + sR'.D.construct)) +
-      E ⊆ (STL.depReachIntervalFloat sF sF').construct := by -- --- PROOF ---
+    (convexHull ℝ (sR.H.toSet ∪ sR'.H.toSet) + (sR'.Pc.toSet + sR'.D.toSet)) +
+      E ⊆ (STL.depReachIntervalFloat sF sF').toSet := by -- --- PROOF ---
   -- both real hulls lie inside the float zonotopes, which are nonempty as they hold the centers
-  have n₁ : sF.H.construct.Nonempty :=
-    ⟨_, h.1 (Real.Zonotope.center_mem_construct sR.H)⟩
-  have n₂ : sF'.H.construct.Nonempty :=
-    ⟨_, h'.1 (Real.Zonotope.center_mem_construct sR'.H)⟩
+  have n₁ : sF.H.toSet.Nonempty :=
+    ⟨_, h.1 (Real.Zonotope.center_mem_toSet sR.H)⟩
+  have n₂ : sF'.H.toSet.Nonempty :=
+    ⟨_, h'.1 (Real.Zonotope.center_mem_toSet sR'.H)⟩
   unfold STL.depReachIntervalFloat
   refine (Set.add_subset_add ?_ h.2.2.2).trans (Float.Zonotope.plus_outer _ _)
   refine (Set.add_subset_add ?_ ?_).trans (Float.Zonotope.plus_outer _ _)

@@ -55,9 +55,9 @@ variable [∀ n, Recenter (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 theorem LinearSys.canonicalForm_state_outer (sys : LinearSys ℝ n) (U : S sys.m)
     (uVec : Vec ℝ sys.m) (W : S sys.r) (V : S sys.s) (vVec : Vec ℝ sys.s) {u : Vec ℝ sys.m}
-    (hu : u ∈ construct U) {w : Vec ℝ sys.r} (hw : w ∈ construct W) : -- --- CONCL ---
+    (hu : u ∈ toSet U) {w : Vec ℝ sys.r} (hw : w ∈ toSet W) : -- --- CONCL ---
     sys.B *ᵥ (uVec + u) + sys.c + sys.E *ᵥ w - (sys.canonicalForm U uVec W V vVec).2.2.1
-      ∈ construct (sys.canonicalForm U uVec W V vVec).2.1 := by -- --- PROOF ---
+      ∈ toSet (sys.canonicalForm U uVec W V vVec).2.1 := by -- --- PROOF ---
   -- the offset cancels, leaving `B (u - centerU) + E (w - centerW)`
   have heq : sys.B *ᵥ (uVec + u) + sys.c + sys.E *ᵥ w - (sys.canonicalForm U uVec W V vVec).2.2.1
       = sys.B *ᵥ (u - Recenter.center U) + sys.E *ᵥ (w - Recenter.center W) := by
@@ -67,11 +67,11 @@ theorem LinearSys.canonicalForm_state_outer (sys : LinearSys ℝ n) (U : S sys.m
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
   · -- `B (u - centerU)` is in `B U₀`
     refine Mtimes.mtimes_outer _ _ ?_
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Set.mem_image_of_mem _ (Recenter.sub_center_mem_recenter hu)
   · -- `E (w - centerW)` is in `E W₀`
     refine Mtimes.mtimes_outer _ _ ?_
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Set.mem_image_of_mem _ (Recenter.sub_center_mem_recenter hw)
 
 end CORALean

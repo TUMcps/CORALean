@@ -52,11 +52,11 @@ variable [OfScalarPoint 𝕋 S]
 theorem NeurNetContrSysDT.reachUnion_outer (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
     (U_ext : S sys.nExt) (params : Reach.Params (S n) ℕ)
     (options : NeurNetContrSysDT.ReachOptions) : -- --- CONCL ---
-    sys.reachUnionExact (params.tFinal - params.tStart) (construct U_ext) (construct params.X₀)
-      ⊆ construct (sys.reachUnion U_ext params options) := by -- --- PROOF ---
+    sys.reachUnionExact (params.tFinal - params.tStart) (toSet U_ext) (toSet params.X₀)
+      ⊆ toSet (sys.reachUnion U_ext params options) := by -- --- PROOF ---
   intro y hy
   obtain ⟨k, hk, x, v, hx₀, hv, hstep, rfl⟩ := Set.mem_iUnion₂.mp hy
-  exact SetUnion.mem_construct_range (Nat.lt_succ_of_le hk)
+  exact SetUnion.mem_toSet_range (Nat.lt_succ_of_le hk)
     (sys.reach_outer U_ext options.hZonotopeOrder params.X₀ sys.contr.encloses_eval
       (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero])
       (sys.isTrajectory_of_map (Set.mem_singleton 0) hx₀ hv hstep) k)

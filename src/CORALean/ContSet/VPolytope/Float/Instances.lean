@@ -67,7 +67,7 @@ instance : Reduce (VPolytope (Vec 𝕋 n)) (Vec ℝ n) where
 instance : Mtimes (Mat 𝕋) 𝒱𝒫[𝕋] where
   mtimes M P := (VPolytope.mtimes M P).materialise
   mtimes_outer M P := by
-    simp only [ContSet.construct_mat, Set.biUnion_singleton, VPolytope.materialise_eq]
+    simp only [ContSet.toSet_mat, Set.biUnion_singleton, VPolytope.materialise_eq]
     exact VPolytope.mtimes_outer M P
 
 end CORALean.Float

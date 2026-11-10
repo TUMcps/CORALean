@@ -189,7 +189,7 @@ theorem MatExp.expIntegralDiff_mem_constCorrectionMatrix (A : Mat ℝ n n) {r : 
     (hr : 0 < r) (η : ℕ) (hε : ‖r • A‖ / ((η : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r
-      ∈ (MatExp.constCorrectionMatrix A r η).construct := by -- --- PROOF ---
+      ∈ (MatExp.constCorrectionMatrix A r η).toSet := by -- --- PROOF ---
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
   have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr
   set f : ℕ → Mat ℝ n n := fun i =>

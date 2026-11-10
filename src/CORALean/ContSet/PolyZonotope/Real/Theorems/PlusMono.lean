@@ -45,8 +45,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- A larger pair of operands denotes a larger sum. -/
 theorem PolyZonotope.plus_mono {pZ₁ pZ₂ qZ₁ qZ₂ : PolyZonotope α}
-    (h₁ : pZ₁.construct ⊆ pZ₂.construct) (h₂ : qZ₁.construct ⊆ qZ₂.construct) :
-    (pZ₁.plus qZ₁).construct ⊆ (pZ₂.plus qZ₂).construct := by
+    (h₁ : pZ₁.toSet ⊆ pZ₂.toSet) (h₂ : qZ₁.toSet ⊆ qZ₂.toSet) :
+    (pZ₁.plus qZ₁).toSet ⊆ (pZ₂.plus qZ₂).toSet := by
   rw [← PolyZonotope.plus_exact, ← PolyZonotope.plus_exact]
   exact Set.add_subset_add h₁ h₂
 

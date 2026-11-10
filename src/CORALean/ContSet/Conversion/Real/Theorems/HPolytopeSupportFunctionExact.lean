@@ -49,8 +49,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.supportFunction_exact (P : HPolytope (Vec ℝ n)) :
-    P.supportFunction.construct = P.construct :=
-  SupportFunction.ofSet_exact P.convex_construct P.isClosed_construct
+    P.supportFunction.toSet = P.toSet :=
+  SupportFunction.ofSet_exact P.convex_toSet P.isClosed_toSet
 
 end CORALean.Real
 

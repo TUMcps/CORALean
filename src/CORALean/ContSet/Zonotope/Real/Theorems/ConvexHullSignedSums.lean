@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.SignedSums
-public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
+public import CORALean.ContSet.Zonotope.Real.Theorems.ToSetEqConvexHullCorner
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
@@ -11,7 +11,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 [1, Prop. 6.1, Eq. 39]: `C(Z±(R)) = Z(R)`, the centered zonotope with generators `R` being the
 convex hull of the images of the cube's vertices. With a center `c`, translate both sides
-(`Zonotope.construct_eq_convexHull_corner`).
+(`Zonotope.toSet_eq_convexHull_corner`).
 
 ## Inputs
 * `R` – family of vectors
@@ -46,8 +46,8 @@ variable {n p : ℕ}
 
 theorem Zonotope.convexHull_signedSums (R : Fin p → Vec ℝ n) : -- --- CONCL ---
     convexHull ℝ (Zonotope.signedSums R) =
-      (⟨p, 0, R⟩ : Zonotope (Vec ℝ n)).construct := by -- --- PROOF ---
-  rw [Zonotope.construct_eq_convexHull_corner]
+      (⟨p, 0, R⟩ : Zonotope (Vec ℝ n)).toSet := by -- --- PROOF ---
+  rw [Zonotope.toSet_eq_convexHull_corner]
   congr 1
   -- the corners are the signed sums, the center being `0`
   ext x

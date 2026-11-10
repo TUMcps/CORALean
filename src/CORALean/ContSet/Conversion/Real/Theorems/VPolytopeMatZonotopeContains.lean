@@ -45,9 +45,9 @@ variable {m n : ℕ}
 /-- Every member of the matrix polytope lies in the matrix zonotope enclosing its vertices. -/
 theorem VPolytope.matZonotope_contains (P : VPolytope (Mat ℝ m n)) [NeZero P.k]
     (dir : (Fin P.k → Vec ℝ (n * m)) → Vec ℝ (n * m)) : -- --- CONCL ---
-    P.construct ⊆ (P.matZonotope dir).construct := by -- --- PROOF ---
-  rw [VPolytope.construct_eq_convexHull]
-  refine convexHull_min (Set.range_subset_iff.mpr fun l => ?_) (Zonotope.convex_construct _)
+    P.toSet ⊆ (P.matZonotope dir).toSet := by -- --- PROOF ---
+  rw [VPolytope.toSet_eq_convexHull]
+  refine convexHull_min (Set.range_subset_iff.mpr fun l => ?_) (Zonotope.convex_toSet _)
   -- vertex `l` is in the enclosure of the cloud, hence in its image under the inverse reshape
   have h := Zonotope.enclosePointsMaiga_mem dir (fun l => matVecEquiv (P.V l)) l
   rw [← Zonotope.compactZeros_exact] at h

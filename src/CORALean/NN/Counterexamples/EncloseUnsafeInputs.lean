@@ -63,9 +63,9 @@ private abbrev aux_X : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ _ => 1⟩
 /-- [1, Prop. 2] fails for an output set that only encloses `Φ(X)`. -/
 theorem SetBasedNet.encloseUnsafeInputs_counterexample : -- --- CONCL ---
     ∃ (N : SetBasedNet 1 1) (Φ : Vec ℝ 1 → Vec ℝ 1) (X : Zonotope (Vec ℝ 1)) (A : Mat ℝ 1 1)
-      (b : Vec ℝ 1), Φ '' X.construct ⊆ (N.forward X).construct ∧
-      ¬ {x ∈ X.construct | Φ x ∈ (HPolytope.ineqs A b).construct} ⊆
-        (N.encloseUnsafeInputs X A b).construct := by -- --- PROOF ---
+      (b : Vec ℝ 1), Φ '' X.toSet ⊆ (N.forward X).toSet ∧
+      ¬ {x ∈ X.toSet | Φ x ∈ (HPolytope.ineqs A b).toSet} ⊆
+        (N.encloseUnsafeInputs X A b).toSet := by -- --- PROOF ---
   refine ⟨aux_N, fun x i => -x i, aux_X, fun _ _ => -1, fun _ => -1 / 2, ?_, ?_⟩
   · -- `Φ(X) = [-1, 1] ⊆ Y`: the point `-β` is reached with the factors `(-β, 0)`
     rintro _ ⟨x, ⟨β, hβ, rfl⟩, rfl⟩
@@ -89,7 +89,7 @@ theorem SetBasedNet.encloseUnsafeInputs_counterexample : -- --- CONCL ---
     obtain ⟨β, -, hP, hx⟩ : ∃ β : Fin 1 → ℝ, (∀ j, |β j| ≤ 1) ∧
         β ∈ (HPolytope.ineqs (aux_N.unsafeInputConstraints aux_X (fun _ _ => -1)
           (fun _ => -1 / 2)).1 (aux_N.unsafeInputConstraints aux_X (fun _ _ => -1)
-          (fun _ => -1 / 2)).2).construct ∧
+          (fun _ => -1 / 2)).2).toSet ∧
         (fun _ => (-1 : ℝ)) = (0 : Vec ℝ 1) + ∑ j : Fin 1, β j • (fun _ => (1 : ℝ)) := hmem
     have hβ : β 0 = -1 := by
       have := congrFun hx 0

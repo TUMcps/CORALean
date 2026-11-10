@@ -56,7 +56,7 @@ theorem LinearSysDT.IsTrajectory.canonical {sys : LinearSysDT 𝕋 n} {X₀ : S 
     {W : S sys.r} {V : S sys.s} {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ sys.m}
     {w : ℕ → Vec ℝ sys.r} {v : ℕ → Vec ℝ sys.s} {y : ℕ → Vec ℝ sys.q}
     (traj : sys.IsTrajectory X₀ U W V x u w v y) {U' : S n}
-    (hU' : ∀ k, toRealMat sys.B *ᵥ u k + toRealVec sys.c + toRealMat sys.E *ᵥ w k ∈ construct U') :
+    (hU' : ∀ k, toRealMat sys.B *ᵥ u k + toRealVec sys.c + toRealMat sys.E *ᵥ w k ∈ toSet U') :
     sys.IsCanonicalTrajectory X₀ U' x
       (fun k => toRealMat sys.B *ᵥ u k + toRealVec sys.c + toRealMat sys.E *ᵥ w k) where
   init := traj.init

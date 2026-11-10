@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Interval.Real.Interval
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 

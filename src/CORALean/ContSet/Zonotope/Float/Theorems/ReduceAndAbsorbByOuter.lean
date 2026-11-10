@@ -64,7 +64,7 @@ private theorem Zonotope.aux_abs_absorbed_le_radius (Z : Zonotope (Vec 𝕋 n))
 /-- The merged block covers the absorbed generators and the box together. -/
 private theorem Zonotope.aux_abs_merged_le_radius (Z : Zonotope (Vec 𝕋 n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) {β : Vec ℝ Z.h} {e : Vec ℝ n}
-    (hβ : ∀ j, |β j| ≤ 1) (he : e ∈ Z.I_error.construct) (i : Fin n) : -- --- CONCL ---
+    (hβ : ∀ j, |β j| ≤ 1) (he : e ∈ Z.I_error.toSet) (i : Fin n) : -- --- CONCL ---
     |(∑ l, toReal (Z.G (part.right l) i) * β (part.right l))
         + (e i - (toReal (Z.I_error.inf i) + toReal (Z.I_error.sup i)) / 2)|
       ≤ toReal
@@ -88,7 +88,7 @@ private theorem Zonotope.aux_sum_univ_reduceAndAbsorbBy {Z : Zonotope (Vec 𝕋 
 
 theorem Zonotope.reduceAndAbsorbBy_outer (Z : Zonotope (Vec 𝕋 n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : -- --- CONCL ---
-    Z.construct ⊆ (Z.reduceAndAbsorbBy part).construct := by -- --- PROOF ---
+    Z.toSet ⊆ (Z.reduceAndAbsorbBy part).toSet := by -- --- PROOF ---
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hz'
   have hmerged := Zonotope.aux_abs_merged_le_radius Z part hβ he

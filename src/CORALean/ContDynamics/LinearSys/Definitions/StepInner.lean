@@ -62,14 +62,14 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 approximation of the states the step reaches. -/
 noncomputable def LinearSys.timePointStepInner (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ)
     (X₀ U : Zonotope (Vec ℝ n)) : Set (Vec ℝ n) :=
-  minkowskiDiff (sys.timePointStep (S := 𝒵) r η X₀ U).construct
+  minkowskiDiff (sys.timePointStep (S := 𝒵) r η X₀ U).toSet
     (Metric.closedBall (0 : Vec ℝ n) (sys.timePointStepError r η U))
 
 /-- The same over the whole step: the enclosure of the step minus the ball its
 own error is bounded by. -/
 noncomputable def LinearSys.timeIntervalInner (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ)
     (X₀ : Zonotope (Vec ℝ n)) : Set (Vec ℝ n) :=
-  minkowskiDiff (sys.timeInterval (S := 𝒵) r η X₀).construct
+  minkowskiDiff (sys.timeInterval (S := 𝒵) r η X₀).toSet
     (Metric.closedBall (0 : Vec ℝ n) (sys.timeIntervalStepError r η X₀))
 
 end CORALean

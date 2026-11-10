@@ -40,8 +40,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.containsAll_iff (zB : ZonoBundle α) (S : Set α) :
-    zB.containsAll S ↔ S ⊆ zB.construct :=
-  ((SetIntersection.subset_construct_iff (I := zB.toSetIntersection)).trans
+    zB.containsAll S ↔ S ⊆ zB.toSet :=
+  ((SetIntersection.subset_toSet_iff (I := zB.toSetIntersection)).trans
     List.forall_mem_ofFn_iff).symm
 
 end CORALean.Real

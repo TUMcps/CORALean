@@ -47,8 +47,8 @@ variable {m n : ℕ}
 theorem Ellipsoid.enclose_outer (orOA : Ellipsoid n → Ellipsoid n → Ellipsoid n)
     (hor : ∀ E₁ E₂, Ellipsoid.IsOrOuter E₁ E₂ (orOA E₁ E₂))
     (E : Ellipsoid n) (M : Mat ℝ n m) (Eplus : Ellipsoid m) : -- --- CONCL ---
-    Set.linComb E.construct ((M *ᵥ ·) '' Eplus.construct) ⊆
-      (Ellipsoid.enclose orOA E M Eplus).construct := by -- --- PROOF ---
+    Set.linComb E.toSet ((M *ᵥ ·) '' Eplus.toSet) ⊆
+      (Ellipsoid.enclose orOA E M Eplus).toSet := by -- --- PROOF ---
   rw [Ellipsoid.mtimes_exact]
   exact Ellipsoid.setLinComb_subset_of_isOrOuter (hor _ _)
 

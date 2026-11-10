@@ -133,7 +133,7 @@ theorem Zonotope.mem_scale_iff {n : ℕ} {κ : Type} (Z : Zonotope (Vec ℝ (n +
     (hN : ∀ S : Fin n → Fin Z.h, ∃ (i₁ i₂ : κ) (lam : ℝ), 0 < lam ∧
       N i₁ = lam • Z.facetNormal S ∧ N i₂ = -(lam • Z.facetNormal S))
     (α : Fin Z.h → ℝ) (hα : ∀ j, 0 ≤ α j) (y : Vec ℝ (n + 1)) : -- --- CONCL ---
-    y ∈ (⟨Z.h, Z.c, fun j => α j • Z.G j⟩ : Zonotope (Vec ℝ (n + 1))).construct ↔
+    y ∈ (⟨Z.h, Z.c, fun j => α j • Z.G j⟩ : Zonotope (Vec ℝ (n + 1))).toSet ↔
       ∀ i, N i ⬝ᵥ (y - Z.c) ≤ ∑ j, |N i ⬝ᵥ Z.G j| * α j := by -- --- PROOF ---
   constructor
   · -- every point of the stretched zonotope meets the stretched offsets
@@ -150,7 +150,7 @@ theorem Zonotope.mem_scale_iff {n : ℕ} {κ : Type} (Z : Zonotope (Vec ℝ (n +
   · -- the converse by closure: `y` is a limit of points of the stretched zonotope
     intro hy
     let Zα : Zonotope (Vec ℝ (n + 1)) := ⟨Z.h, Z.c, fun j => α j • Z.G j⟩
-    rw [← Zα.isClosed_construct.closure_eq, Metric.mem_closure_iff]
+    rw [← Zα.isClosed_toSet.closure_eq, Metric.mem_closure_iff]
     intro δ hδ
     set K : ℝ := ∑ j, ‖Z.G j‖ + 1 with hKdef
     have hK : 0 < K := by

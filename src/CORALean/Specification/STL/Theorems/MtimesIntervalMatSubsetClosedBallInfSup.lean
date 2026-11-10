@@ -49,7 +49,7 @@ variable {m n : ℕ}
 
 theorem STL.mtimesIntervalMat_subset_closedBall_infSup (IM : Interval (Mat ℝ m n))
     (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    (Zonotope.mtimesIntervalMat IM Z).construct ⊆ Metric.closedBall (0 : Vec ℝ m)
+    (Zonotope.mtimesIntervalMat IM Z).toSet ⊆ Metric.closedBall (0 : Vec ℝ m)
       (2 * (∑ i, ∑ j, (|IM.inf i j| + |IM.sup i j|)) * ∑ j, Z.absBound j) := by -- --- PROOF ---
   set s : ℝ := ∑ i, ∑ j, (|IM.inf i j| + |IM.sup i j|) with hs
   have hs0 : 0 ≤ s := Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => by positivity

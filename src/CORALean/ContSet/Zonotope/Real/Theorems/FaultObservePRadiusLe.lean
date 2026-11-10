@@ -78,7 +78,7 @@ theorem Zonotope.faultObserve_pRadius_le (A : Mat ℝ n n) (B : Mat ℝ n nu) (C
       let e := (A - L * C) *ᵥ θ + (Dx * Hw) *ᵥ s₁ - (L * (Dy * Hv)) *ᵥ s₂
       e ⬝ᵥ (P *ᵥ e) ≤ γ * (θ ⬝ᵥ (P *ᵥ θ)) + ((Dx * Hw) *ᵥ s₁) ⬝ᵥ ((Dx * Hw) *ᵥ s₁) +
         ((Dy * Hv) *ᵥ s₂) ⬝ᵥ ((Dy * Hv) *ᵥ s₂))
-    (hγ : 0 ≤ γ) (hℓ : ∀ z ∈ X.construct, (z - X.c) ⬝ᵥ (P *ᵥ (z - X.c)) ≤ ℓ)
+    (hγ : 0 ≤ γ) (hℓ : ∀ z ∈ X.toSet, (z - X.c) ⬝ᵥ (P *ᵥ (z - X.c)) ≤ ℓ)
     (hψw : ∀ s : Vec ℝ rw, (∀ i, |s i| ≤ 1) → ((Dx * Hw) *ᵥ s) ⬝ᵥ ((Dx * Hw) *ᵥ s) ≤ ψw)
     (hψv : ∀ s : Vec ℝ rv, (∀ i, |s i| ≤ 1) → ((Dy * Hv) *ᵥ s) ⬝ᵥ ((Dy * Hv) *ᵥ s) ≤ ψv)
     : -- --- CONCL ---

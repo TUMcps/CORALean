@@ -69,16 +69,16 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- [1, Lemma 1], conservative approximation: `Φ_r(Z) ⊆ e^{rA}Z + □(β_r)`. -/
 theorem LinearSys.reachSetExact_subset_mtimes_plus_cube (sys : LinearSys 𝕋 n)
     (Z U : Zonotope (Vec ℝ n)) {μ r : ℝ} (hA : 0 < ‖toRealMat sys.A‖) (hr : 0 ≤ r)
-    (hμ : 0 ≤ μ) (hU : U.construct = Metric.closedBall 0 μ) : -- --- CONCL ---
+    (hμ : 0 ≤ μ) (hU : U.toSet = Metric.closedBall 0 μ) : -- --- CONCL ---
     sys.reachSetExact (S := 𝒵) (Set.Icc 0 r) Z U r
       ⊆ ((Z.mtimes (exp (r • toRealMat sys.A))).plus
           (Zonotope.cube n ((Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖
-            * μ))).construct := by -- --- PROOF ---
+            * μ))).toSet := by -- --- PROOF ---
   have hx := Real.add_one_le_exp (r * ‖toRealMat sys.A‖)
   have hx0 := mul_nonneg hr hA.le
   have hβ : 0 ≤ (Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖ * μ :=
     mul_nonneg (div_nonneg (by linarith) hA.le) hμ
-  rw [sys.reachSetExact_eq (S := 𝒵) Z U hr (Zonotope.isBounded_construct U)]
+  rw [sys.reachSetExact_eq (S := 𝒵) Z U hr (Zonotope.isBounded_toSet U)]
   rintro _ ⟨_, ⟨z, hz, rfl⟩, v, hv, rfl⟩
   rw [← Zonotope.plus_exact, ← Zonotope.mtimes_exact, Zonotope.cube_exact n hβ]
   refine ⟨_, ⟨z, hz, rfl⟩, v, mem_closedBall_zero_iff.mpr ?_, rfl⟩

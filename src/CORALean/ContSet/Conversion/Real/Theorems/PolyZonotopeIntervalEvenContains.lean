@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeEvenContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemToSet
 public import Mathlib.Order.BourbakiWitt
 public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Theorems.Basic
@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 /-- [1, Prop. 1]: the tighter box contains the set. -/
 theorem PolyZonotope.intervalEven_contains (pZ : PolyZonotope (Vec ℝ n)) :
-    pZ.construct ⊆ pZ.intervalEven.construct :=
+    pZ.toSet ⊆ pZ.intervalEven.toSet :=
   subset_trans pZ.zonotopeEven_contains (Zonotope.interval_contains _)
 
 end CORALean.Real

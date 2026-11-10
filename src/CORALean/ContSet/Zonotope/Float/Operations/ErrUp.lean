@@ -9,7 +9,7 @@ public import CORALean.Global.Float.Sqrt
 # `Zonotope.errUp`
 
 [1]'s `err(·)` (eq. (11)) computed from above in `𝕋`: the Euclidean norm of the vector of
-`absBoundError`, each coordinate's farthest reach from the origin over the whole `construct`,
+`absBoundError`, each coordinate's farthest reach from the origin over the whole `toSet`,
 bounded by `normUp`, the sum of squares rounded up and a rounded-up square root. CDC'20's
 `errOp` (`Zonotope.errOp`) is the sup-norm radius of the same box, at most the Euclidean one;
 this is the Euclidean one itself.
@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- An upper bound on the Euclidean radius of `Z`'s box about the origin, `err (Z.construct)`;
+/-- An upper bound on the Euclidean radius of `Z`'s box about the origin, `err (Z.toSet)`;
 `64` Newton steps for the square root, which an error of any magnitude settles in. -/
 def Zonotope.errUp (Z : Zonotope (Vec 𝕋 n)) : 𝕋 :=
   normUp 64 fun j => Z.absBoundError j

@@ -88,7 +88,7 @@ private theorem ConPolyZono.aux_sum_union (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
 /-- The two directed midpoints bracket the exact one, halving being exact. -/
 private theorem ConPolyZono.aux_midpoint_mem (a b : Vec 𝕋 n) :
     (fun i => (toReal (a i) + toReal (b i)) / 2 - toReal (PolyZonotope.midpoint a b i))
-      ∈ (PolyZonotope.midpointResidual a b).construct :=
+      ∈ (PolyZonotope.midpointResidual a b).toSet :=
   Interval.sub_mem_residual fun i => by
     refine ⟨?_, ?_⟩
     · rw [toReal_half]
@@ -105,7 +105,7 @@ private theorem ConPolyZono.aux_halfDiff_mem (a b : Vec 𝕋 n) {t : ℝ}
     let dd := fun i : Fin n => (toReal (a i) - toReal (b i)) / 2 - toReal (PolyZonotope.halfDiff a
       b i)
     (fun i => (dd i) * t)
-      ∈ (PolyZonotope.halfDiffError a b).construct := by -- --- PROOF ---
+      ∈ (PolyZonotope.halfDiffError a b).toSet := by -- --- PROOF ---
   intro dd i
   have hdown : toReal (PolyZonotope.halfDiff a b i) = toReal (subDown (a i) (b i)) / 2 :=
     toReal_half _
@@ -162,9 +162,9 @@ private theorem ConPolyZono.aux_union_mem_nominal (cPZ₁ cPZ₂ : ConPolyZono �
 theorem ConPolyZono.union_point_mem (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) {y e : Vec ℝ n}
     (hy : y ∈ ((Real.ConPolyZono.union cPZ₁.nominalCore cPZ₂.nominalCore).relax
       (Fin.append (0 : Vec ℝ (1 + 1))
-        (Fin.append (toRealVec cPZ₁.cons.b_error) (toRealVec cPZ₂.cons.b_error)))).construct)
-    (he : e ∈ (cPZ₁.I_error.or cPZ₂.I_error).construct) : -- --- CONCL ---
-    y + e ∈ (cPZ₁.union cPZ₂).construct := by -- --- PROOF ---
+        (Fin.append (toRealVec cPZ₁.cons.b_error) (toRealVec cPZ₂.cons.b_error)))).toSet)
+    (he : e ∈ (cPZ₁.I_error.or cPZ₂.I_error).toSet) : -- --- CONCL ---
+    y + e ∈ (cPZ₁.union cPZ₂).toSet := by -- --- PROOF ---
   obtain ⟨a, β, ha, hβ, hsat, hy⟩ := (Real.ConPolyZono.mem_relax_iff _ _).mp hy
   set t := a (Real.ConPolyZono.unionSel cPZ₁.p cPZ₂.p) with ht
   have hz := ConPolyZono.aux_union_mem_nominal cPZ₁ cPZ₂ a ha hsat

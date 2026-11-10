@@ -26,18 +26,18 @@ namespace CORALean.Real
 
 open Pointwise in
 theorem Polygon.plus_exact (P Q : Polygon) : -- --- CONCL ---
-    ContSet.construct P + ContSet.construct Q =
-      ContSet.construct (Polygon.plus P Q) := by -- --- PROOF ---
+    ContSet.toSet P + ContSet.toSet Q =
+      ContSet.toSet (Polygon.plus P Q) := by -- --- PROOF ---
   refine Set.Subset.antisymm (SetUnion.plus_outer P Q) ?_
   intro x hx
-  obtain ⟨t, ht, hx⟩ := SetUnion.mem_construct.mp hx
+  obtain ⟨t, ht, hx⟩ := SetUnion.mem_toSet.mp hx
   obtain ⟨⟨p, q⟩, hpq, rfl⟩ := List.mem_map.mp ht
   obtain ⟨hp, hq⟩ := List.mem_product.mp hpq
-  have hx' : x ∈ VPolytope.construct (VPolytope.plus p q) := hx
+  have hx' : x ∈ VPolytope.toSet (VPolytope.plus p q) := hx
   rw [← VPolytope.plus_exact] at hx'
   obtain ⟨a, ha, b, hb, rfl⟩ := hx'
-  exact ⟨a, SetUnion.mem_construct.mpr ⟨p, hp, ha⟩, b,
-    SetUnion.mem_construct.mpr ⟨q, hq, hb⟩, rfl⟩
+  exact ⟨a, SetUnion.mem_toSet.mpr ⟨p, hp, ha⟩, b,
+    SetUnion.mem_toSet.mpr ⟨q, hq, hb⟩, rfl⟩
 
 end CORALean.Real
 

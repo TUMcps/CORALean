@@ -75,7 +75,7 @@ theorem GNN.evalLayers_mem_gcnActSteps_uncertain (R : Relaxation ℝ) (hR : R.En
     (haH : ∀ k, |aH k| ≤ 1) : -- --- CONCL ---
     GNN.evalLayers (GNN.messagePassing (GNN.adjAt A U lam)) L c σ W (H.point aH)
       ∈ (GNN.gcnActSteps L c W acts ((GNN.messagePassingEnclosure R A U).padBack H.p)
-          (H.padFront (GNN.messagePassingEnclosure R A U).p) rfl).construct := by -- --- PROOF ---
+          (H.padFront (GNN.messagePassingEnclosure R A U).p) rfl).toSet := by -- --- PROOF ---
   -- the enclosure keeps nothing independent, so a member of it is a point of it
   obtain ⟨aP, haP, hP⟩ := PolyZonotope.exists_point_of_q_zero (GNN.messagePassingEnclosure R A U)
     rfl (GNN.messagePassing_mem_enclosure R hR A U hA lam hlam)

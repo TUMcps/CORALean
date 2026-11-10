@@ -37,7 +37,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.splitLongestGen_union (cPZ : ConPolyZono (Vec ℝ n)) :
-    cPZ.splitLongestGen.1.construct ∪ cPZ.splitLongestGen.2.construct = cPZ.construct := by
+    cPZ.splitLongestGen.1.toSet ∪ cPZ.splitLongestGen.2.toSet = cPZ.toSet := by
   unfold ConPolyZono.splitLongestGen
   cases cPZ.longestFactor with
   | some r => exact cPZ.splitDepFactor_union r

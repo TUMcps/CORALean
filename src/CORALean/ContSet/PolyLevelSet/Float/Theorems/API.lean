@@ -6,8 +6,8 @@ public import CORALean.ContSet.PolyLevelSet.Float.Theorems.EvalNominalCoreCartPr
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.EvalNominalCoreRelax
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemAndRowsIff
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemCartProdIff
-public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
-public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEqUnit
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemToSetIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemToSetIffOfEqUnit
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemPadVarsIff
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemRelaxIff
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.ToRealMatCartProd

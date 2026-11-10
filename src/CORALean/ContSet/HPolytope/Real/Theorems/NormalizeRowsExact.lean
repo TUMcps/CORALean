@@ -36,7 +36,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.normalizeRows_exact (P : HPolytope (Vec ℝ n)) : -- --- CONCL ---
-    P.normalizeRows.construct = P.construct := by -- --- PROOF ---
+    P.normalizeRows.toSet = P.toSet := by -- --- PROOF ---
   ext x
   -- one row at a time: dividing both sides by `c ≠ 0`, a norm, so `c > 0`
   have key : ∀ (c a b : ℝ), 0 < c → (c⁻¹ * a ≤ b / c ↔ a ≤ b) := by

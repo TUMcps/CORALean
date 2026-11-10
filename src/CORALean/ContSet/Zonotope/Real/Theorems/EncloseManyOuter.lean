@@ -53,15 +53,15 @@ variable {m q : ℕ}
 
 theorem Zonotope.encloseMany_outer (Zs : Fin (q + 1) → Zonotope (Vec ℝ (m + 1)))
     (direction : Vec ℝ (m + 1)) (hd : direction ≠ 0) (i : Fin (q + 1)) : -- --- CONCL ---
-    (Zs i).construct ⊆ (Zonotope.encloseMany Zs direction).construct := by -- --- PROOF ---
+    (Zs i).toSet ⊆ (Zonotope.encloseMany Zs direction).toSet := by -- --- PROOF ---
   intro x hx
   have hunit := Zonotope.encloseManyBasis_isUnit direction hd
   have hdet : IsUnit (Zonotope.encloseManyBasis direction).det := hunit
   -- the cell, its parallelotope, and the rotated parallelotope
-  have h1 : x ∈ ((Zs i).reduceGirard 1).construct := Zonotope.reduceGirard_outer _ _ hx
+  have h1 : x ∈ ((Zs i).reduceGirard 1).toSet := Zonotope.reduceGirard_outer _ _ hx
   have h2 : (Zonotope.encloseManyBasis direction)⁻¹ *ᵥ x ∈
       (Zonotope.mtimes (Zonotope.encloseManyBasis direction)⁻¹
-        ((Zs i).reduceGirard 1)).construct := by
+        ((Zs i).reduceGirard 1)).toSet := by
     rw [← Zonotope.mtimes_exact]
     exact ⟨x, h1, rfl⟩
   -- its interval hull, then the hull over all cells

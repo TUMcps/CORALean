@@ -55,9 +55,9 @@ namespace CORALean.Real
 /-- The convex hull of two non-empty operands, exactly. -/
 theorem ConPolyZono.convHull_exact_of_nonempty {n : ℕ} (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n))
     (hq₁ : cPZ₁.qI = 0) (hq₂ : cPZ₂.qI = 0)
-    (hne₁ : cPZ₁.construct.Nonempty) (hne₂ : cPZ₂.construct.Nonempty) : -- --- CONCL ---
-    convexHull ℝ (cPZ₁.construct ∪ cPZ₂.construct)
-      = (cPZ₁.convHull cPZ₂).construct := by -- --- PROOF ---
+    (hne₁ : cPZ₁.toSet.Nonempty) (hne₂ : cPZ₂.toSet.Nonempty) : -- --- CONCL ---
+    convexHull ℝ (cPZ₁.toSet ∪ cPZ₂.toSet)
+      = (cPZ₁.convHull cPZ₂).toSet := by -- --- PROOF ---
   have hq : (cPZ₁.linComb cPZ₂).qI = 0 := by simp [ConPolyZono.linComb, hq₁, hq₂]
   have hrk : Module.finrank ℝ (Vec ℝ n) + 1 ≤ n + 1 := by rw [Module.finrank_fin_fun ℝ]
   rw [ConPolyZono.convHull, ConPolyZono.convHullSingle_exact _ _ hq hrk,
@@ -65,16 +65,16 @@ theorem ConPolyZono.convHull_exact_of_nonempty {n : ℕ} (cPZ₁ cPZ₂ : ConPol
   obtain ⟨y₁, hy₁⟩ := hne₁
   obtain ⟨y₂, hy₂⟩ := hne₂
   refine le_antisymm (convexHull_mono ?_)
-    (convexHull_min ?_ (convex_convexHull ℝ (cPZ₁.construct ∪ cPZ₂.construct)))
+    (convexHull_min ?_ (convex_convexHull ℝ (cPZ₁.toSet ∪ cPZ₂.toSet)))
   · -- the union sits inside the combination, and only here is a point needed
     rintro x (hx | hx)
     · exact ⟨x, hx, y₂, hy₂, 1, ⟨zero_le_one, le_refl 1⟩, by simp⟩
     · exact ⟨y₁, hy₁, x, hx, 0, ⟨le_refl 0, zero_le_one⟩, by simp⟩
   · -- and the combination inside the hull, every segment being a convex one
     rintro x ⟨z₁, hz₁, z₂, hz₂, lam, ⟨hl₀, hl₁⟩, rfl⟩
-    exact (convex_convexHull ℝ (cPZ₁.construct ∪ cPZ₂.construct))
-      (subset_convexHull ℝ (cPZ₁.construct ∪ cPZ₂.construct) (Or.inl hz₁))
-      (subset_convexHull ℝ (cPZ₁.construct ∪ cPZ₂.construct) (Or.inr hz₂))
+    exact (convex_convexHull ℝ (cPZ₁.toSet ∪ cPZ₂.toSet))
+      (subset_convexHull ℝ (cPZ₁.toSet ∪ cPZ₂.toSet) (Or.inl hz₁))
+      (subset_convexHull ℝ (cPZ₁.toSet ∪ cPZ₂.toSet) (Or.inr hz₂))
       (a := lam) (b := 1 - lam) hl₀ (by linarith) (by ring)
 
 end CORALean.Real

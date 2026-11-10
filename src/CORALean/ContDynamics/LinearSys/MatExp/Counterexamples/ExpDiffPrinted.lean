@@ -53,7 +53,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 theorem MatExp.not_expDiff_mulVec_mem_unscaled_correctionMatrix : -- --- CONCL ---
     let A : Mat ℝ 1 1 := Matrix.diagonal fun _ : Fin 1 => (1 : ℝ)
-    ¬ ∃ F ∈ (MatExp.correctionMatrix A (1 / 10) (0 + 2)).construct,
+    ¬ ∃ F ∈ (MatExp.correctionMatrix A (1 / 10) (0 + 2)).toSet,
       exp ((0 : ℝ) • A) *ᵥ (fun _ => (1 : ℝ)) - (fun _ => (1 : ℝ))
         = ((exp ((1 / 10 : ℝ) • A) - 1) + F) *ᵥ (fun _ => (1 : ℝ)) := by -- --- PROOF ---
   intro A

@@ -89,7 +89,7 @@ private theorem aux_pow_smul_split (v : α) (β : ℝ) (k : ℕ) : -- --- CONCL 
 theorem Zonotope.ofOneParamPoly_contains (v : ℕ → α) (N : ℕ) {β : ℝ}
     (hβ : |β| ≤ 1) : -- --- CONCL ---
     ∑ k ∈ Finset.range (N + 1), β ^ k • v k ∈
-      (Zonotope.ofOneParamPoly v N).construct := by -- --- PROOF ---
+      (Zonotope.ofOneParamPoly v N).toSet := by -- --- PROOF ---
   refine ⟨fun j => if Odd (j.val + 1) then β ^ (j.val + 1) else 2 * β ^ (j.val + 1) - 1,
     fun j => ?_, ?_⟩
   · -- an odd power is in `[-1, 1]`, an even one in `[0, 1]`

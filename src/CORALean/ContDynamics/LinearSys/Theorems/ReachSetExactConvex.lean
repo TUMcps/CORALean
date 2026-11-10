@@ -60,8 +60,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- [1, Sec. 4.2]: from a convex initial set under a convex bounded input set, the reachable
 set at any `t ≥ 0` is convex. -/
 theorem LinearSys.reachSetExact_convex (sys : LinearSys 𝕋 n) {R₀ U : S n} {t : ℝ} (ht : 0 ≤ t)
-    (hR₀ : Convex ℝ (construct R₀)) (hUconv : Convex ℝ (construct U))
-    (hU : Bornology.IsBounded (construct U)) :
+    (hR₀ : Convex ℝ (toSet R₀)) (hUconv : Convex ℝ (toSet U))
+    (hU : Bornology.IsBounded (toSet U)) :
     Convex ℝ (sys.reachSetExact (Set.Icc 0 t) R₀ U t) :=
   sys.reachSetExact_eq R₀ U ht hU ▸
     (hR₀.linear_image (mulVecLin (exp (t • toRealMat sys.A)))).add

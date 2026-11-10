@@ -78,13 +78,13 @@ private theorem aux_absErrCoraCex_exp {M : Mat ℝ 3 3} (hM : M ^ 3 = 0) :
 inputs in `U`, `t ∈ [0, tmax]`, `th = tmax/2`, `η = 3`, which `GuardMap.abstractionError` holds. -/
 theorem GuardMap.abstractionErrorCora_counterexample : -- --- CONCL ---
     ∃ (A : Mat ℝ 3 3) (U R₀ : Zonotope (Vec ℝ 3)) (tmax t : ℝ) (x₀ : Vec ℝ 3)
-      (u : ℝ → Vec ℝ 3), t ∈ Set.Icc 0 tmax ∧ x₀ ∈ R₀.construct ∧
-      (∀ τ ∈ Set.Ioc (0:ℝ) t, u (t - τ) ∈ U.construct) ∧
+      (u : ℝ → Vec ℝ 3), t ∈ Set.Icc 0 tmax ∧ x₀ ∈ R₀.toSet ∧
+      (∀ τ ∈ Set.Ioc (0:ℝ) t, u (t - τ) ∈ U.toSet) ∧
       AEStronglyMeasurable (fun τ => u (t - τ)) (volume.restrict (Set.Ioc 0 t)) ∧
       exp (t • A) *ᵥ x₀ + (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
           - GuardMap.sdcFlow A (GuardMap.sdcInput A U.c (tmax / 2) 3 R₀.c) x₀ t
         ∉ (GuardMap.abstractionErrorCora A U R₀ (tmax / 2) tmax
-          3).construct := by -- --- PROOF ---
+          3).toSet := by -- --- PROOF ---
   refine ⟨aux_absErrCoraCex_A, Zonotope.ofPoint 0, Zonotope.ofPoint ![0, 0, 1], 2, 2,
     ![0, 0, 1], fun _ => 0,
     ⟨by norm_num, le_rfl⟩, Zonotope.mem_ofPoint _, fun _ _ => Zonotope.mem_ofPoint _,

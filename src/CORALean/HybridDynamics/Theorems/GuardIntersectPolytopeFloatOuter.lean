@@ -69,11 +69,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem Location.guardIntersectPolytopeFloat_outer (Bs : List (Mat 𝕋 n n)) (R₀ : Zonotope (Vec 𝕋 n))
     (Rs : List (Zonotope (Vec 𝕋 n))) (guard : ConZonotope 𝕋 (Vec 𝕋 n))
     (horth : ∀ B ∈ Bs, Scalar.toRealMat B * (Scalar.toRealMat B)ᵀ = 1)
-    {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ R₀ :: Rs) {x : Vec ℝ n} (hx : x ∈ R.construct)
-    (hg : x ∈ guard.construct) : -- --- CONCL ---
-    x ∈ (Location.guardIntersectPolytopeFloat Bs R₀ Rs guard).construct := by -- --- PROOF ---
+    {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ R₀ :: Rs) {x : Vec ℝ n} (hx : x ∈ R.toSet)
+    (hg : x ∈ guard.toSet) : -- --- CONCL ---
+    x ∈ (Location.guardIntersectPolytopeFloat Bs R₀ Rs guard).toSet := by -- --- PROOF ---
   have hfold : ∀ (Is : List (Interval (Vec 𝕋 n))) (J : Interval (Vec 𝕋 n)) (y : Vec ℝ n),
-      (y ∈ J.construct ∨ ∃ I ∈ Is, y ∈ I.construct) → y ∈ (Is.foldl Interval.or J).construct := by
+      (y ∈ J.toSet ∨ ∃ I ∈ Is, y ∈ I.toSet) → y ∈ (Is.foldl Interval.or J).toSet := by
     intro Is
     induction Is with
     | nil => exact fun J y h => h.resolve_right (by simp)
@@ -87,7 +87,7 @@ theorem Location.guardIntersectPolytopeFloat_outer (Bs : List (Mat 𝕋 n n)) (R
         · exact Or.inl (Interval.or_outer J I' (Or.inr hy))
         · exact Or.inr ⟨I', hI', hy⟩
   -- member `i` of the bundle, whose basis is orthogonal
-  refine SetIntersection.mem_construct_ofFn.mpr fun i => ?_
+  refine SetIntersection.mem_toSet_ofFn.mpr fun i => ?_
   have hB := horth Bs[i] (List.getElem_mem i.isLt)
   unfold Location.guardIntersectPolytopeFloat
   dsimp only
@@ -103,9 +103,9 @@ theorem Location.guardIntersectPolytopeFloat_outer (Bs : List (Mat 𝕋 n n)) (R
     Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ
       (ConZonotope.intersection (Zonotope.conZonotope R') guard) with hcutOf
   -- the state in its cut, boxed in the basis
-  have hcut : ∀ R' : Zonotope (Vec 𝕋 n), x ∈ R'.construct →
+  have hcut : ∀ R' : Zonotope (Vec 𝕋 n), x ∈ R'.toSet →
       Scalar.toRealMat Bᵀ *ᵥ x ∈
-        ((cutOf R').interval).construct :=
+        ((cutOf R').interval).toSet :=
     fun R' hx' => by
     simp only [hcutOf]
     have h5 := ConZonotope.intersection_outer _ guard ⟨Zonotope.conZonotope_contains _ hx', hg⟩

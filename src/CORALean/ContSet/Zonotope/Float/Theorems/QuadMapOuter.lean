@@ -47,8 +47,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.quadMap_outer (Q : Fin m → Mat 𝕋 n n) (Z : Zonotope (Vec 𝕋 n)) :
-    Real.PolyZonotope.quadEval (fun k => toRealMat (Q k)) '' Z.construct
-      ⊆ (Z.quadMap Q).construct :=
+    Real.PolyZonotope.quadEval (fun k => toRealMat (Q k)) '' Z.toSet
+      ⊆ (Z.quadMap Q).toSet :=
   (Set.image_mono Z.polyZonotope_contains).trans
     ((PolyZonotope.quadMap_outer Q Z.polyZonotope).trans
       (PolyZonotope.quadMap Q Z.polyZonotope).zonotope_contains)

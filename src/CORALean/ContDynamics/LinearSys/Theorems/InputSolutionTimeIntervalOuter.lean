@@ -51,16 +51,16 @@ theorem LinearSys.IsCanonicalTrajectory.inputSolution_timeInterval_outer
     {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {r : ℝ}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U))
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U))
     (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
     (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
     (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
     -- `0 ∈ U` is what `inputReach_mono` needs, and the only extra hypothesis here
-    (h0 : (0 : Vec ℝ n) ∈ construct U)
+    (h0 : (0 : Vec ℝ n) ∈ toSet U)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)
-      ∈ construct (sys.inputSolution r η U) := by -- --- PROOF ---
+      ∈ toSet (sys.inputSolution r η U) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   have hmemt : (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)
       ∈ sys.inputReach U t :=

@@ -46,8 +46,8 @@ theorem Interval.scale_box_counterexample : -- --- CONCL ---
     let b : Vec ℝ 1 := fun _ => 1
     let β : Vec ℝ 1 := fun _ => -1
     (fun _ => (1 / 2 : ℝ)) ∈ Set.extremePoints ℝ
-        ((⟨0, b⟩ : Interval (Vec ℝ 1)).construct ∩ Interval.hyperplane β (-1 / 2)) ∧
-      (⟨0, fun i => β i * b i⟩ : Interval (Vec ℝ 1)).construct = ∅ := by -- --- PROOF ---
+        ((⟨0, b⟩ : Interval (Vec ℝ 1)).toSet ∩ Interval.hyperplane β (-1 / 2)) ∧
+      (⟨0, fun i => β i * b i⟩ : Interval (Vec ℝ 1)).toSet = ∅ := by -- --- PROOF ---
   intro b β
   refine ⟨?_, ?_⟩
   · -- in the box, on the plane, and on an edge, there being one coordinate only

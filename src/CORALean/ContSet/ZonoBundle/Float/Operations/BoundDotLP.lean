@@ -54,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 bundle's constrained zonotope. -/
 def ZonoBundle.boundDotLP (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) :
-    FloatBound 𝕋 zB.construct c where
+    FloatBound 𝕋 zB.toSet c where
   val := minimum (zB.boundDot hk a hc).val ((zB.conZonotopeAll hk).boundDot a hc).val
   le x hx := by
     rw [toReal_minimum]

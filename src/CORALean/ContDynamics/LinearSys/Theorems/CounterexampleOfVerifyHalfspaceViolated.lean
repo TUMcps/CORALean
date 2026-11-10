@@ -73,9 +73,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 row `i` and a step `j`, and the counterexample run there is an `IsCanonicalTrajectory` on
 `[0, t_end]` whose state at `t_j ∈ [0, t_end]` violates `H_(i,·) x ≤ f_(i)`. -/
 theorem LinearSys.counterexample_of_verifyHalfspace_violated (sys : LinearSys 𝕋 n)
-    (R₀ U : S n) (hU : Bornology.IsBounded (construct U)) {tEnd : ℝ} (htEnd : 0 < tEnd)
-    {ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} (hν₀ : ∀ d, ν₀ d ∈ construct R₀)
-    (hνU : ∀ d, νU d ∈ construct U) {c : Vec ℝ n}
+    (R₀ U : S n) (hU : Bornology.IsBounded (toSet U)) {tEnd : ℝ} (htEnd : 0 < tEnd)
+    {ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} (hν₀ : ∀ d, ν₀ d ∈ toSet R₀)
+    (hνU : ∀ d, νU d ∈ toSet U) {c : Vec ℝ n}
     (hc : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, d c ≤ d (νU d)) {ι : Type} (H : ι → Vec ℝ n →ₗ[ℝ] ℝ)
     (f : ι → ℝ) {bndUp : (r : ℕ) → Fin (2 ^ r) → ι → ℝ} {r fuel : ℕ}
     (h : verifyHalfspace bndUp

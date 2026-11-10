@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.CanonicalFormFloat
 public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterSubMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
@@ -60,11 +60,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem LinearSys.canonicalFormFloat_state_outer (sys : LinearSys 𝕋 n)
     (U : Zonotope (Vec 𝕋 sys.m)) (uVec : Vec 𝕋 sys.m) (W : Zonotope (Vec 𝕋 sys.r))
     (V : Zonotope (Vec 𝕋 sys.s)) (vVec : Vec 𝕋 sys.s)
-    {u : Vec ℝ sys.m} (hu : u ∈ U.construct) {w : Vec ℝ sys.r}
-    (hw : w ∈ W.construct) : -- --- CONCL ---
+    {u : Vec ℝ sys.m} (hu : u ∈ U.toSet) {w : Vec ℝ sys.r}
+    (hw : w ∈ W.toSet) : -- --- CONCL ---
     let G := sys.canonicalFormFloat U uVec W V vVec
     toRealMat sys.B *ᵥ (toRealVec uVec + u) + toRealVec sys.c + toRealMat sys.E *ᵥ w ∈
-      G.2.1.construct + G.2.2.1.construct := by -- --- PROOF ---
+      G.2.1.toSet + G.2.2.1.toSet := by -- --- PROOF ---
   intro G
   -- the part that moves, `B (u - centerU) + E (w - centerW)`, and the offset
   refine ⟨toRealMat sys.B *ᵥ (u - toRealVec U.c) + toRealMat sys.E *ᵥ (w - toRealVec W.c), ?_,

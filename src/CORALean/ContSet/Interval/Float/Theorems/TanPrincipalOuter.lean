@@ -46,7 +46,7 @@ theorem Interval.tanPrincipal_outer [SoundFloatArithmetic 𝕋] (p : ℕ) (I : I
     (hI : ∀ i, -(Real.pi / 2) < toReal (I.inf i) ∧ toReal (I.sup i) < Real.pi / 2)
     (hc : ∀ i, 0 < toReal (cosDown p (I.inf i)) ∧ 0 < toReal (cosDown p (I.sup i)))
     : -- --- CONCL ---
-    (fun x i => Real.tan (x i)) '' I.construct ⊆ (I.tanPrincipal p).construct := by -- --- PROOF ---
+    (fun x i => Real.tan (x i)) '' I.toSet ⊆ (I.tanPrincipal p).toSet := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩ i
   have hx' : toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i) := hx i
   have hD : ∀ y, toReal (I.inf i) ≤ y → y ≤ toReal (I.sup i) →

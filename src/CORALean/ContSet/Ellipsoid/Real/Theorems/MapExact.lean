@@ -47,7 +47,7 @@ private theorem aux_toMatrix'_mulVec (f : Vec ℝ n →ₗ[ℝ] Vec ℝ m) (x : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.map_exact (f : Vec ℝ n →ₗ[ℝ] Vec ℝ m) (E : Ellipsoid n) :
-    f '' E.construct = (Ellipsoid.map f E).construct := by
+    f '' E.toSet = (Ellipsoid.map f E).toSet := by
   rw [Ellipsoid.map, ← Ellipsoid.mtimes_exact]
   exact Set.image_congr fun x _ => (aux_toMatrix'_mulVec f x).symm
 

@@ -54,7 +54,7 @@ open Matrix
 /-- `quadMap`'s set is inside `quadMapTri`'s: the pair block re-indexed by `j < k` alone. -/
 private theorem Zonotope.aux_quadMap_subset_quadMapTri {n m : ℕ} (Q : Fin m → Mat ℝ n n)
     (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    (Z.quadMap Q).construct ⊆ (Z.quadMapTri Q).construct := by -- --- PROOF ---
+    (Z.quadMap Q).toSet ⊆ (Z.quadMapTri Q).toSet := by -- --- PROOF ---
   rintro x ⟨(β : Fin (Z.h + Z.h + Z.h * Z.h) → ℝ), hβ, rfl⟩
   set e := Zonotope.step_quadMapPairIdx Z.h with he
   -- the pair generator of `(j, k)`, coordinate `i`
@@ -93,8 +93,8 @@ private theorem Zonotope.aux_quadMap_subset_quadMapTri {n m : ℕ} (Q : Fin m �
 /-- [1, Lemma 1 (generators)]: `{λ | λᵢ = xᵀQ⁽ⁱ⁾x, x ∈ Z} ⊆ Z.quadMapTri Q`, `σ = C(p + 2, 2) - 1`
 generators. -/
 theorem Zonotope.quadMapTri_outer {n m : ℕ} (Q : Fin m → Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) :
-    (fun x : Vec ℝ n => fun i => x ⬝ᵥ (Q i *ᵥ x)) '' Z.construct
-      ⊆ (Z.quadMapTri Q).construct :=
+    (fun x : Vec ℝ n => fun i => x ⬝ᵥ (Q i *ᵥ x)) '' Z.toSet
+      ⊆ (Z.quadMapTri Q).toSet :=
   (Zonotope.quadMap_outer Q Z).trans (Zonotope.aux_quadMap_subset_quadMapTri Q Z)
 
 end CORALean.Real

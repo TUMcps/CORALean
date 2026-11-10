@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 def Polygon.boundDot (P : Polygon 𝕋) {c : Vec ℝ 2 →ₗ[ℝ] ℝ} (a : Vec 𝕋 2)
     (hc : ∀ x : Vec ℝ 2, c x = ∑ j, toReal (a j) * x j) :
-    FloatBound 𝕋 (ContSet.construct P) c where
+    FloatBound 𝕋 (ContSet.toSet P) c where
   val := (P.sets.map fun p => (p.boundDot a hc).val).foldr maximum
     ((P.sets.map fun p => (p.boundDot a hc).val).headD zero)
   le x hx := by
@@ -58,7 +58,7 @@ def Polygon.boundDot (P : Polygon 𝕋) {c : Vec ℝ 2 →ₗ[ℝ] ℝ} (a : Vec
         rcases List.mem_cons.mp h with rfl | h
         · rw [List.foldr_cons, toReal_maximum]; exact le_max_left _ _
         · rw [List.foldr_cons, toReal_maximum]; exact le_trans (ih h) (le_max_right _ _)
-    obtain ⟨p, hp, hxp⟩ := SetUnion.mem_construct.mp hx
+    obtain ⟨p, hp, hxp⟩ := SetUnion.mem_toSet.mp hx
     exact le_trans ((p.boundDot a hc).le x hxp)
       (hfold _ _ (List.mem_map_of_mem hp))
 

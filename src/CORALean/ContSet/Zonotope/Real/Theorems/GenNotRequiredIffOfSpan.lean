@@ -54,7 +54,7 @@ namespace CORALean.Real
 theorem Zonotope.gen_not_required_iff_of_span {n : ℕ} (Zm Zs : Zonotope (Vec ℝ (n + 2)))
     (hspan : Submodule.span ℝ (Set.range Zm.G) = ⊤)
     (Red : Finset (Bool × Finset (Fin Zm.h))) (hRed : ∀ j ∈ Red, j.2.card = n + 1)
-    (hmin : minkowskiDiff Zm.construct Zs.construct
+    (hmin : minkowskiDiff Zm.toSet Zs.toSet
       = {x | ∀ j, j.2.card = n + 1 → j ∉ Red →
           dotProductEquiv ℝ _ (Zm.minkDiffRowNormal j) x ≤ Zm.minkDiffRowOffset Zs j})
     (hirr : ∀ j, j.2.card = n + 1 → j ∉ Red →
@@ -63,7 +63,7 @@ theorem Zonotope.gen_not_required_iff_of_span {n : ℕ} (Zm Zs : Zonotope (Vec �
         ⊆ {x | dotProductEquiv ℝ _ (Zm.minkDiffRowNormal j) x ≤ Zm.minkDiffRowOffset Zs j})
     (i : Fin Zm.h) :
     ∑ j ∈ Red, (if i ∈ j.2 then 1 else 0) = 2 * (Zm.h - 1).choose n
-      ↔ minkowskiDiff Zm.construct Zs.construct
+      ↔ minkowskiDiff Zm.toSet Zs.toSet
           = {x | ∀ j, j.2.card = n + 1 → i ∉ j.2 →
               dotProductEquiv ℝ _ (Zm.minkDiffRowNormal j) x ≤ Zm.minkDiffRowOffset Zs j} :=
   Zm.gen_not_required_iff Zs (fun j => dotProductEquiv ℝ _ (Zm.minkDiffRowNormal j))

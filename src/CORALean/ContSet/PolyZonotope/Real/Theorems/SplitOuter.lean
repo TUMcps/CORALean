@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 theorem PolyZonotope.split_outer (pZ : PolyZonotope (Vec ℝ n))
     (j : Fin pZ.splitParallelotope.h) :
-    pZ.construct ⊆ (pZ.split j).fst.construct ∪ (pZ.split j).snd.construct := by
+    pZ.toSet ⊆ (pZ.split j).fst.toSet ∪ (pZ.split j).snd.toSet := by
   unfold PolyZonotope.split
   rw [← Zonotope.polyZonotope_exact, ← Zonotope.polyZonotope_exact,
     Zonotope.split_union pZ.splitParallelotope j]

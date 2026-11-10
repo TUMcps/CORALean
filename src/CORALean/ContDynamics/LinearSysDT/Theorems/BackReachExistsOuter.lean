@@ -53,16 +53,16 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 
 theorem LinearSysDT.backReachExists_outer (sys : LinearSysDT 𝕋 n) {Ainv : Mat 𝕋 n n}
     (hA : toRealMat Ainv * toRealMat sys.A = 1) (T U negU : S n)
-    (hneg : -construct U ⊆ construct negU) (k : ℕ) : -- --- CONCL ---
+    (hneg : -toSet U ⊆ toSet negU) (k : ℕ) : -- --- CONCL ---
     sys.backReachSetExistsExact T U k ⊆
-      construct (sys.backReachExists ⟨T, negU, 0, k⟩ ⟨Ainv⟩) := by -- --- PROOF ---
+      toSet (sys.backReachExists ⟨T, negU, 0, k⟩ ⟨Ainv⟩) := by -- --- PROOF ---
   induction k with
   | zero => exact subset_rfl
   | succ k ih =>
     rintro x ⟨u, hu, hx⟩
     -- the step's own state, with the chosen input paid back out of `negU`
     have hstep : toRealMat sys.A *ᵥ x ∈
-        construct (plus (sys.backReachExists ⟨T, negU, 0, k⟩ ⟨Ainv⟩) negU) := by
+        toSet (plus (sys.backReachExists ⟨T, negU, 0, k⟩ ⟨Ainv⟩) negU) := by
       have hsplit : toRealMat sys.A *ᵥ x = (toRealMat sys.A *ᵥ x + u) + -u := by abel
       rw [hsplit]
       exact plus_outer _ _ (Set.add_mem_add (ih hx) (hneg (Set.neg_mem_neg.mpr hu)))

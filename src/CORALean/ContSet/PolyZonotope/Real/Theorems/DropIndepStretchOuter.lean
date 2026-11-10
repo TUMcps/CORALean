@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.DropIndepStretch
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemToSet
 public import CORALean.Global.Partition
 public import Mathlib.Tactic.Positivity
 
@@ -77,7 +77,7 @@ theorem PolyZonotope.dropIndepStretch_outer {n : ℕ} (pZ : PolyZonotope (Vec �
     (hE : ∀ j k' l, (k' = k j ∨ l = partD.left j) →
       pZ.E k' l = if k' = k j ∧ l = partD.left j then 1 else 0)
     (hPinv : IsUnit (pZ.dropIndepMat partD).det) : -- --- CONCL ---
-    pZ.construct ⊆ (pZ.dropIndepStretch partD partI).construct := by -- --- PROOF ---
+    pZ.toSet ⊆ (pZ.dropIndepStretch partD partI).toSet := by -- --- PROOF ---
   set P := pZ.dropIndepMat partD with hPdef
   set i0 := partI.right 0 with hi0def
   set γ : Fin n → ℝ := P⁻¹ *ᵥ pZ.GI i0 with hγdef
@@ -98,8 +98,8 @@ theorem PolyZonotope.dropIndepStretch_outer {n : ℕ} (pZ : PolyZonotope (Vec �
   have hunpicked : ∀ j' : Fin r, ∀ j, pZ.E (k j) (partD.right j') = 0 :=
     fun j' j => hzero_row j (partD.right j') (PolyZonotope.aux_dropIndep_ne partD j j')
   intro x hx
-  obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_construct_iff.mp hx
-  rw [PolyZonotope.mem_construct_iff]
+  obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_toSet_iff.mp hx
+  rw [PolyZonotope.mem_toSet_iff]
   -- the compensated factor vector: nudged at the `n` picked factors alone
   set a' : Fin pZ.p → ℝ := fun k' =>
     if h : ∃ j, k' = k j then (a k' + β i0 * γ h.choose) / (1 + |γ h.choose|) else a k'

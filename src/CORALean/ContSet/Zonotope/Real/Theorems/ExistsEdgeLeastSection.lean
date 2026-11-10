@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Zonotope.Real.Theorems.CrossSupport
 public import CORALean.ContSet.Zonotope.Real.Theorems.EdgePointLeast
 public import CORALean.ContSet.Zonotope.Real.Theorems.SegmentMeetsVlineIff
-public import CORALean.ContSet.Zonotope.Real.Theorems.CornerMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerMemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottom
 public import CORALean.ContSet.Zonotope.Real.Theorems.CrossNegOfHorizontal
@@ -178,8 +178,8 @@ private theorem Zonotope.aux_edge (Z : Zonotope (Vec ℝ 2)) {σ : ℝ} (hσ : �
     ∃ y : ℝ,
       (![γ, y] : Vec ℝ 2) ∈ segment ℝ (Z.corner fun j => decide (r j < r a))
         (Z.corner fun j => decide (r j ≤ r a)) ∧
-      (![γ, y] : Vec ℝ 2) ∈ Z.construct ∧
-      ∀ y', (![γ, y'] : Vec ℝ 2) ∈ Z.construct → y ≤ y' := by -- --- PROOF ---
+      (![γ, y] : Vec ℝ 2) ∈ Z.toSet ∧
+      ∀ y', (![γ, y'] : Vec ℝ 2) ∈ Z.toSet → y ≤ y' := by -- --- PROOF ---
   classical
   -- the far end of the edge is `P_a + 2 g_a`
   have hQP : Z.corner (fun j => decide (r j ≤ r a))
@@ -216,17 +216,17 @@ theorem Zonotope.exists_edge_least_section (Z : Zonotope (Vec ℝ 2)) (hh : 0 < 
     {r : Fin Z.h → ℤ} (hr : Function.Injective r)
     (hord : ∀ i j, r i < r j → 0 ≤ σ * (Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0)) (γ : ℝ)
     (hγ : 0 ≤ σ * (γ - Z.corner (fun _ => false) 0))
-    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) : -- --- CONCL ---
+    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.toSet) : -- --- CONCL ---
     ∃ a : Fin Z.h, ∃ y : ℝ,
       (![γ, y] : Vec ℝ 2) ∈ segment ℝ (Z.corner fun j => decide (r j < r a))
         (Z.corner fun j => decide (r j ≤ r a)) ∧
-      (![γ, y] : Vec ℝ 2) ∈ Z.construct ∧
-      ∀ y', (![γ, y'] : Vec ℝ 2) ∈ Z.construct → y ≤ y' := by -- --- PROOF ---
+      (![γ, y] : Vec ℝ 2) ∈ Z.toSet ∧
+      ∀ y', (![γ, y'] : Vec ℝ 2) ∈ Z.toSet → y ≤ y' := by -- --- PROOF ---
   classical
   obtain ⟨y₀, hy₀⟩ := hne
   set P0 := Z.corner (fun _ => false) with hP0
   have hσne : σ ≠ 0 := by rcases hσ with rfl | rfl <;> norm_num
-  have hbot := fun z (hz : z ∈ Z.construct) => Z.corner_bottom_le (fun j => (hH j).1) hz
+  have hbot := fun z (hz : z ∈ Z.toSet) => Z.corner_bottom_le (fun j => (hH j).1) hz
   by_cases hA : ∃ a, 0 < σ * Z.G a 0
   swap
   · -- no right-pointing generator: the lowest corner is on the line
@@ -249,7 +249,7 @@ theorem Zonotope.exists_edge_least_section (Z : Zonotope (Vec ℝ 2)) (hh : 0 < 
     · rw [hpt, hs]
       exact left_mem_segment ℝ _ _
     · rw [hpt]
-      exact Z.corner_mem_construct _
+      exact Z.corner_mem_toSet _
   -- the first right-pointing generator whose cumulative reach passes the line
   set ω : Fin Z.h → ℝ := fun j => 2 * max (σ * Z.G j 0) 0 with hω
   set τ : ℝ := σ * (γ - P0 0) with hτ

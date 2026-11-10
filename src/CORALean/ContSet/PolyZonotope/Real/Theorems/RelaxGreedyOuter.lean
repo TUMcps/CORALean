@@ -47,7 +47,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- [1, Thm. 2]: `[1, Alg. 2]` returns a set containing `PZ`. -/
 theorem PolyZonotope.relaxGreedy_outer (η : ℕ) (fuel : ℕ) (PZ : PolyZonotope α) : -- --- CONCL ---
-    PZ.construct ⊆ (PolyZonotope.relaxGreedy η fuel PZ).construct := by -- --- PROOF ---
+    PZ.toSet ⊆ (PolyZonotope.relaxGreedy η fuel PZ).toSet := by -- --- PROOF ---
   induction fuel generalizing PZ with
   | zero => exact Set.Subset.rfl
   | succ fuel ih =>

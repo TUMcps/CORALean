@@ -52,7 +52,7 @@ variable {n : ℕ}
 theorem Location.guardIntersectZonoGirard_outer (Bs : List (Mat ℝ n n))
     (R₀ : Real.Zonotope (Vec ℝ n)) (Rs : List (Real.Zonotope (Vec ℝ n))) (nv : Vec ℝ n) (γ : ℝ)
     (horth : ∀ B ∈ Bs, B * Bᵀ = 1) {R : Real.Zonotope (Vec ℝ n)} (hR : R ∈ R₀ :: Rs)
-    {x : Vec ℝ n} (hx : x ∈ R.construct) (hg : x ⬝ᵥ nv = γ) : -- --- CONCL ---
+    {x : Vec ℝ n} (hx : x ∈ R.toSet) (hg : x ⬝ᵥ nv = γ) : -- --- CONCL ---
     x ∈ Location.guardIntersectZonoGirard Bs R₀ Rs nv γ := by -- --- PROOF ---
   -- the cut of the set `R` is on both sides of `x·ℓ`
   have hup : ∀ ℓ : Vec ℝ n, x ⬝ᵥ ℓ ≤ Rs.foldl (fun m Z => max m (Location.zonoGirardUpper Z nv γ ℓ))
@@ -97,7 +97,7 @@ theorem Location.guardIntersectZonoGirard_outer (Bs : List (Mat ℝ n n))
         · rcases List.mem_cons.mp hZ' with rfl | hZ'
           · exact Or.inl (le_trans (min_le_right _ _) h)
           · exact Or.inr ⟨Z', hZ', h⟩
-    have hneg : ∀ Z : Real.Zonotope (Vec ℝ n), x ∈ Z.construct →
+    have hneg : ∀ Z : Real.Zonotope (Vec ℝ n), x ∈ Z.toSet →
         -Location.zonoGirardUpper Z nv γ (-ℓ) ≤ x ⬝ᵥ ℓ := fun Z hZ => by
       have := Location.zonoGirardUpper_le Z nv γ (-ℓ) hZ hg
       rw [dotProduct_neg] at this

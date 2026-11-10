@@ -37,7 +37,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.starSet_exact (cZ : ConZonotope (Vec ℝ n)) : -- --- CONCL ---
-    cZ.starSet.construct = cZ.construct := by -- --- PROOF ---
+    cZ.starSet.toSet = cZ.toSet := by -- --- PROOF ---
   ext x
   -- the same factors: a coordinate of `c + Σ β j • G j` is `c i + Σ G j i * β j`
   have hpt : ∀ β : Fin cZ.h → ℝ, (x = cZ.c + ∑ j, β j • cZ.G j) ↔

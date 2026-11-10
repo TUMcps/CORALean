@@ -43,8 +43,8 @@ structure TaylorModelOn (n : ℕ) where
   I : Interval (Vec ℝ n)
 
 /-- `{T(x) | x ∈ I}` with `T(x) = {p(x) + b | b ∈ B}`. -/
-def TaylorModelOn.construct (T : TaylorModelOn n) : Set (Vec ℝ n) :=
-  {y | ∃ x ∈ T.I.construct, ∃ b ∈ T.B.construct, y = T.p x + b}
+def TaylorModelOn.toSet (T : TaylorModelOn n) : Set (Vec ℝ n) :=
+  {y | ∃ x ∈ T.I.toSet, ∃ b ∈ T.B.toSet, y = T.p x + b}
 
 end CORALean.Real
 

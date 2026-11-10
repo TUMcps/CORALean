@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Float.Operations.CartProd
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.NominalSetCartProd
-public import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
+public import CORALean.ContSet.InflatedContSet.Theorems.AppendToSet
 
 @[expose] public section
 
@@ -43,12 +43,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 theorem PolyZonotope.cartProd_exact (pZ₁ : PolyZonotope (Vec 𝕋 n₁))
     (pZ₂ : PolyZonotope (Vec 𝕋 n₂)) :
-    (pZ₁.cartProd pZ₂).construct = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
-      (pZ₁.construct ×ˢ pZ₂.construct) := by
+    (pZ₁.cartProd pZ₂).toSet = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
+      (pZ₁.toSet ×ˢ pZ₂.toSet) := by
   -- the nominal part: the exact product, mapped through the append
   have hN := PolyZonotope.nominalSet_cartProd pZ₁ pZ₂
   -- the error box is the stack of the two, and stacking distributes over the sum
-  exact CORALean.Float.InflatedContSet.append_construct (s₁ := pZ₁) (s₂ := pZ₂) hN rfl
+  exact CORALean.Float.InflatedContSet.append_toSet (s₁ := pZ₁) (s₂ := pZ₂) hN rfl
 
 end CORALean.Float
 

@@ -99,7 +99,7 @@ theorem LinearSysDT.reachLTVCora_counterexample (o : ℕ) (uTransVec : Option (�
     let u : Vec ℝ 1 := fun _ => 1
     (x 0 = 0 ∧ ∀ i < 2, x (i + 1) = A (i + 1) *ᵥ x i + B (i + 1) *ᵥ u) ∧
       x 2 ∉ (LinearSysDT.reachLTVCora A B 0 (Zonotope.ofPoint 0) (Zonotope.ofPoint 0)
-        (Zonotope.ofPoint 0) u uTransVec o 2).1.construct := by -- --- PROOF ---
+        (Zonotope.ofPoint 0) u uTransVec o 2).1.toSet := by -- --- PROOF ---
   intro A B x u
   refine ⟨⟨rfl, fun i hi => ?_⟩, ?_⟩
   -- the run: `x(1) = 1·0 + 0·1`, `x(2) = 1·0 + 1·1`

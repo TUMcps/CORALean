@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (Fullspace n) (Vec ℝ n) := ⟨Fullspace.construct⟩
+instance : ContSet (Fullspace n) (Vec ℝ n) := ⟨Fullspace.toSet⟩
 
 instance : ConvexSet (Fullspace n) (Vec ℝ n) := ⟨fun _ => convex_univ⟩
 

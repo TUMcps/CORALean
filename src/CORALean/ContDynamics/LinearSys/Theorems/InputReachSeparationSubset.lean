@@ -84,7 +84,7 @@ private theorem aux_aestronglyMeasurable_comp_add_left {f : ℝ → Vec ℝ n} {
 some run over `[0,a]` contributes, propagated across the remaining `b`, plus
 what some run over `[0,b]` contributes. -/
 theorem LinearSys.inputReach_separation_subset (sys : LinearSys 𝕋 n) {U : S n} {a b : ℝ}
-    (ha : 0 ≤ a) (hb : 0 ≤ b) (hbdd : Bornology.IsBounded (construct U)) : -- --- CONCL ---
+    (ha : 0 ≤ a) (hb : 0 ≤ b) (hbdd : Bornology.IsBounded (toSet U)) : -- --- CONCL ---
     sys.inputReach U (a + b)
       ⊆ (fun y => exp (b • toRealMat sys.A) *ᵥ y) '' sys.inputReach U a
         + sys.inputReach U b := by -- --- PROOF ---
@@ -100,13 +100,13 @@ theorem LinearSys.inputReach_separation_subset (sys : LinearSys 𝕋 n) {U : S n
   have hab0 : (0:ℝ) ≤ a + b := by linarith
   have huint := intervalIntegrable_expSub_mulVec (A := A) (c := a + b) hab0 hbdd humem humeas
   -- the given input on the first window, which is a subwindow of its own
-  have hu₁mem : ∀ s ∈ Set.Icc (0:ℝ) a, u s ∈ construct U :=
+  have hu₁mem : ∀ s ∈ Set.Icc (0:ℝ) a, u s ∈ toSet U :=
     fun s hs => humem s ⟨hs.1, hs.2.trans hab⟩
   have hu₁meas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 a)) :=
     humeas.mono_measure (Measure.restrict_mono (Set.Icc_subset_Icc le_rfl hab) le_rfl)
   have hu₁int := intervalIntegrable_expSub_mulVec (A := A) (c := a) ha hbdd hu₁mem hu₁meas
   -- and on the second, shifted back to a window starting at zero
-  have hu₂mem : ∀ t ∈ Set.Icc (0:ℝ) b, u (a + t) ∈ construct U :=
+  have hu₂mem : ∀ t ∈ Set.Icc (0:ℝ) b, u (a + t) ∈ toSet U :=
     fun t ht => humem _ ⟨by linarith [ht.1], by linarith [ht.2]⟩
   have hu₂meas : AEStronglyMeasurable (fun t => u (a + t))
       (volume.restrict (Set.Icc 0 b)) := by

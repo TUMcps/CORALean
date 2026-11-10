@@ -38,7 +38,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.containsPoint_iff (E : Ellipsoid n) (hr : E.rank = n) (p : Vec ℝ n) :
-    E.containsPoint p ↔ p ∈ E.construct := by
+    E.containsPoint p ↔ p ∈ E.toSet := by
   have := E.ellipsoidNorm_le_one_iff hr (p - E.q)
   rw [add_sub_cancel] at this
   exact this

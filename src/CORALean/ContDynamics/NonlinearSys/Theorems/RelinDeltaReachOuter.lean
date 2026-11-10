@@ -91,10 +91,10 @@ theorem NonlinearSys.IsTrajectory.relinDeltaReach_outer {sys : NonlinearSys n m}
     (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
     (hR : ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt), x t ∈ (steps i).R)
     (q : ℕ) (hε : ∀ i < N, ‖Δt • (steps i).A‖ / (((q + 2 : ℕ) : ℝ) + 2) < 1)
-    (hconv : ∀ i < N, Convex ℝ (construct (steps i).linInput))
-    (hclosed : ∀ i < N, IsClosed (construct (steps i).linInput))
-    (hbdd : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
-    (h0 : ∀ i < N, (0 : Vec ℝ n) ∈ construct (steps i).linInput)
+    (hconv : ∀ i < N, Convex ℝ (toSet (steps i).linInput))
+    (hclosed : ∀ i < N, IsClosed (toSet (steps i).linInput))
+    (hbdd : ∀ i < N, Bornology.IsBounded (toSet (steps i).linInput))
+    (h0 : ∀ i < N, (0 : Vec ℝ n) ∈ toSet (steps i).linInput)
     (hRconv : ∀ i < N, Convex ℝ (MatExp.inputRemainderSet (steps i).A Δt (q + 2) (steps
       i).linInput))
     (hRclosed : ∀ i < N, IsClosed (MatExp.inputRemainderSet (steps i).A Δt (q + 2) (steps
@@ -103,7 +103,7 @@ theorem NonlinearSys.IsTrajectory.relinDeltaReach_outer {sys : NonlinearSys n m}
       i).linInput))
     {o : ℕ} (ho : 0 < o) (i : ℕ) (hi : i < N)
     {t : ℝ} (ht : t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt)) : -- --- CONCL ---
-    x t - x ((i : ℝ) * Δt) ∈ construct (sys.relinDeltaReach ⟨R₀, 0, i⟩ ⟨⟨Δt, o, ho⟩, (q + 2)⟩ steps
+    x t - x ((i : ℝ) * Δt) ∈ toSet (sys.relinDeltaReach ⟨R₀, 0, i⟩ ⟨⟨Δt, o, ho⟩, (q + 2)⟩ steps
       (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt (q + 2)
         (steps i).linInput)) := by -- --- PROOF ---
   set Ud : ℕ → S n := fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt (q + 2)
@@ -132,7 +132,7 @@ theorem NonlinearSys.IsTrajectory.relinDeltaReach_outer {sys : NonlinearSys n m}
   have hbeta : (i : ℝ) * Δt + s = t := by rw [hs_def]; ring
   have key := hlin.deltaReach_outer_inputSolution hΔt subset_rfl (m := q) (hε i hi) hs0 hsΔt
     (hconv i hi) (hclosed i hi) (hbdd i hi) (hRconv i hi) (hRclosed i hi) (hRbdd i hi) (h0 i hi)
-  show x t - x ((i : ℝ) * Δt) ∈ construct (Plus.plus
+  show x t - x ((i : ℝ) * Δt) ∈ toSet (Plus.plus
     ((NonlinearSys.linearize (steps i).A).deltaReach Δt (q + 2)
       (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud)) (Ud i))
   simp only [add_zero] at key

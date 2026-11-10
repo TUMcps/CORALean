@@ -41,12 +41,12 @@ variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α] [Plus S 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SetIntersection.plus_outer (I J : SetIntersection S) : -- --- CONCL ---
-    ContSet.construct I + ContSet.construct J ⊆
-      ContSet.construct (SetIntersection.plus I J) := by -- --- PROOF ---
+    ContSet.toSet I + ContSet.toSet J ⊆
+      ContSet.toSet (SetIntersection.plus I J) := by -- --- PROOF ---
   rintro _ ⟨a, ha, b, hb, rfl⟩
-  have ha := SetIntersection.mem_construct.mp ha
-  have hb := SetIntersection.mem_construct.mp hb
-  refine SetIntersection.mem_construct.mpr ?_
+  have ha := SetIntersection.mem_toSet.mp ha
+  have hb := SetIntersection.mem_toSet.mp hb
+  refine SetIntersection.mem_toSet.mpr ?_
   intro r hr
   obtain ⟨p, hp, rfl⟩ := List.mem_map.mp hr
   obtain ⟨hs, ht⟩ := List.mem_product.mp hp

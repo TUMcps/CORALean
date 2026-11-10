@@ -72,14 +72,14 @@ variable {n p : ℕ}
 private theorem LinearSysDT.aux_observeIntervalState_Rx (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
     (R₀ W : Zonotope (Vec ℝ n)) (V : Zonotope (Vec ℝ sys.q)) (u : ℕ → Vec ℝ sys.m)
     (y : ℕ → Vec ℝ sys.q) (k : ℕ) : -- --- CONCL ---
-    (sys.observeIntervalState L R₀ W V u y k).Rx.construct =
-      (((sys.A - L * sys.C) ^ k) *ᵥ ·) '' R₀.construct := by -- --- PROOF ---
+    (sys.observeIntervalState L R₀ W V u y k).Rx.toSet =
+      (((sys.A - L * sys.C) ^ k) *ᵥ ·) '' R₀.toSet := by -- --- PROOF ---
   induction k with
   | zero => simp [LinearSysDT.observeIntervalState]
   | succ k ih =>
     -- one more step maps the set through `A - L C`
     show (Zonotope.mtimes (sys.A - L * sys.C)
-      (sys.observeIntervalState L R₀ W V u y k).Rx).construct = _
+      (sys.observeIntervalState L R₀ W V u y k).Rx).toSet = _
     rw [← Zonotope.mtimes_exact, ih, Set.image_image]
     simp [Matrix.mulVec_mulVec, pow_succ']
 
@@ -87,15 +87,15 @@ private theorem LinearSysDT.aux_observeIntervalState_Rx (sys : LinearSysDT ℝ n
 private theorem LinearSysDT.aux_observeIntervalState_D (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
     (R₀ W : Zonotope (Vec ℝ n)) (V : Zonotope (Vec ℝ sys.q)) (u : ℕ → Vec ℝ sys.m)
     (y : ℕ → Vec ℝ sys.q) (k : ℕ) : -- --- CONCL ---
-    (sys.observeIntervalState L R₀ W V u y k).D.construct =
+    (sys.observeIntervalState L R₀ W V u y k).D.toSet =
       (((sys.A - L * sys.C) ^ k) *ᵥ ·) ''
-        ((Zonotope.mtimes (-L) V).plus W).construct := by -- --- PROOF ---
+        ((Zonotope.mtimes (-L) V).plus W).toSet := by -- --- PROOF ---
   induction k with
   | zero => simp [LinearSysDT.observeIntervalState]
   | succ k ih =>
     -- one more step maps the set through `A - L C`
     show (Zonotope.mtimes (sys.A - L * sys.C)
-      (sys.observeIntervalState L R₀ W V u y k).D).construct = _
+      (sys.observeIntervalState L R₀ W V u y k).D).toSet = _
     rw [← Zonotope.mtimes_exact, ih, Set.image_image]
     simp [Matrix.mulVec_mulVec, pow_succ']
 
@@ -103,15 +103,15 @@ private theorem LinearSysDT.aux_observeIntervalState_D (sys : LinearSysDT ℝ n)
 private theorem LinearSysDT.aux_observeIntervalState_Rwv (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
     (R₀ W : Zonotope (Vec ℝ n)) (V : Zonotope (Vec ℝ sys.q)) (u : ℕ → Vec ℝ sys.m)
     (y : ℕ → Vec ℝ sys.q) (d : ℕ → Vec ℝ n)
-    (hd : ∀ j, d j ∈ ((Zonotope.mtimes (-L) V).plus W).construct) (k : ℕ) : -- --- CONCL ---
+    (hd : ∀ j, d j ∈ ((Zonotope.mtimes (-L) V).plus W).toSet) (k : ℕ) : -- --- CONCL ---
     ∑ m ∈ Finset.range k, ((sys.A - L * sys.C) ^ m) *ᵥ d m ∈
-      (sys.observeIntervalState L R₀ W V u y k).Rwv.construct := by -- --- PROOF ---
+      (sys.observeIntervalState L R₀ W V u y k).Rwv.toSet := by -- --- PROOF ---
   induction k with
   | zero => simpa [LinearSysDT.observeIntervalState] using Interval.mem_point 0
   | succ k ih =>
     -- the new term is in the box of `D` after `k` steps
     have hk : ((sys.A - L * sys.C) ^ k) *ᵥ d k ∈
-        (sys.observeIntervalState L R₀ W V u y k).D.interval.construct := by
+        (sys.observeIntervalState L R₀ W V u y k).D.interval.toSet := by
       refine Zonotope.interval_contains _ ?_
       rw [LinearSysDT.aux_observeIntervalState_D]
       exact ⟨_, hd k, rfl⟩
@@ -133,14 +133,14 @@ private theorem LinearSysDT.aux_observeInterval_error (A : Mat ℝ n n) (L : Mat
 theorem LinearSysDT.observeInterval_outer (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
     (R₀ W : Zonotope (Vec ℝ n)) (V : Zonotope (Vec ℝ sys.q)) (u : ℕ → Vec ℝ sys.m)
     (y : ℕ → Vec ℝ sys.q) (x w : ℕ → Vec ℝ n) (v : ℕ → Vec ℝ sys.q)
-    (h0 : x 0 - R₀.c ∈ R₀.construct) (hw : ∀ k, w k ∈ W.construct)
-    (hv : ∀ k, v k ∈ V.construct) (hstep : ∀ k, x (k + 1) = sys.A *ᵥ x k + sys.B *ᵥ u k + w k)
+    (h0 : x 0 - R₀.c ∈ R₀.toSet) (hw : ∀ k, w k ∈ W.toSet)
+    (hv : ∀ k, v k ∈ V.toSet) (hstep : ∀ k, x (k + 1) = sys.A *ᵥ x k + sys.B *ᵥ u k + w k)
     (hy : ∀ k, y k = sys.C *ᵥ x k + v k) (k : ℕ) : -- --- CONCL ---
-    x k ∈ (sys.observeInterval L R₀ W V u y k).construct := by -- --- PROOF ---
+    x k ∈ (sys.observeInterval L R₀ W V u y k).toSet := by -- --- PROOF ---
   set s := sys.observeIntervalState L R₀ W V u y with hs
   set d : ℕ → Vec ℝ n := fun j => w j - L *ᵥ v j with hdef
   -- the disturbance terms lie in `D`
-  have hd : ∀ j, d j ∈ ((Zonotope.mtimes (-L) V).plus W).construct := fun j => by
+  have hd : ∀ j, d j ∈ ((Zonotope.mtimes (-L) V).plus W).toSet := fun j => by
     rw [← Zonotope.plus_exact, ← Zonotope.mtimes_exact]
     exact ⟨_, ⟨v j, hv j, rfl⟩, w j, hw j, by simp [hdef, Matrix.neg_mulVec, sub_eq_neg_add]⟩
   -- the error recursion
@@ -166,7 +166,7 @@ theorem LinearSysDT.observeInterval_outer (sys : LinearSysDT ℝ n) (L : Mat ℝ
       rw [Finset.sum_congr rfl fun m hm => by rw [this m hm]]
       abel
   -- the three parts of `x k = x̂ + (a + b)`
-  have ha : ((sys.A - L * sys.C) ^ k) *ᵥ (x 0 - (s 0).x) ∈ (s k).Rx.construct := by
+  have ha : ((sys.A - L * sys.C) ^ k) *ᵥ (x 0 - (s 0).x) ∈ (s k).Rx.toSet := by
     rw [LinearSysDT.aux_observeIntervalState_Rx]
     exact ⟨_, h0, rfl⟩
   have hb := LinearSysDT.aux_observeIntervalState_Rwv sys L R₀ W V u y

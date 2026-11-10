@@ -52,9 +52,9 @@ omit [Module ℝ α] [Module ℝ β] in
 /-- Each block answers to its own polytope, as `ConZonotope.aux_mem_plus_P_iff`. -/
 private theorem ConZonotope.aux_mem_cartProd_P_iff (cZ₁ : ConZonotope α) (cZ₂ : ConZonotope β)
     (β' : Vec ℝ (cZ₁.cartProd cZ₂).h) :
-    β' ∈ (cZ₁.cartProd cZ₂).P.construct ↔
-      blockLeft cZ₁.h cZ₂.h β' ∈ cZ₁.P.construct
-        ∧ blockRight cZ₁.h cZ₂.h β' ∈ cZ₂.P.construct :=
+    β' ∈ (cZ₁.cartProd cZ₂).P.toSet ↔
+      blockLeft cZ₁.h cZ₂.h β' ∈ cZ₁.P.toSet
+        ∧ blockRight cZ₁.h cZ₂.h β' ∈ cZ₂.P.toSet :=
   HPolytope.mem_intersection_iff
 
 private theorem ConZonotope.aux_value_cartProd (cZ₁ : ConZonotope α) (cZ₂ : ConZonotope β)
@@ -70,7 +70,7 @@ private theorem ConZonotope.aux_value_cartProd (cZ₁ : ConZonotope α) (cZ₂ :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.cartProd_exact (cZ₁ : ConZonotope α) (cZ₂ : ConZonotope β) : -- --- CONCL ---
-    cZ₁.construct ×ˢ cZ₂.construct = (cZ₁.cartProd cZ₂).construct := by -- --- PROOF ---
+    cZ₁.toSet ×ˢ cZ₂.toSet = (cZ₁.cartProd cZ₂).toSet := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro ⟨_, _⟩ ⟨⟨β₁, hβ₁, hP₁, rfl⟩, ⟨β₂, hβ₂, hP₂, rfl⟩⟩
     refine ⟨Fin.append β₁ β₂, ?_, ?_, ?_⟩

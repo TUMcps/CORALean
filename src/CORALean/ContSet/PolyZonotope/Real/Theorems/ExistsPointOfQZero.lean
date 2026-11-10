@@ -7,7 +7,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 /-!
 # With no independent block, every member is a point
 
-`point_mem_construct` read backwards, and only available under the hypothesis: `construct` is
+`point_mem_toSet` read backwards, and only available under the hypothesis: `toSet` is
 the image of `point` *widened* by the independent block, so a member is a point exactly when
 that block is empty. `dependent` empties it without moving the set, and `mul` produces sets
 already empty there. Stated at `q = 0` rather than at `dependent` because both callers need
@@ -42,7 +42,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.exists_point_of_q_zero (pZ : PolyZonotope α) (hq : pZ.q = 0) {x : α}
-    (hx : x ∈ pZ.construct) : -- --- CONCL ---
+    (hx : x ∈ pZ.toSet) : -- --- CONCL ---
     ∃ a : Fin pZ.p → ℝ, (∀ k, |a k| ≤ 1) ∧ x = pZ.point a := by -- --- PROOF ---
   obtain ⟨a, β, ha, -, rfl⟩ := hx
   have hempty : IsEmpty (Fin pZ.q) := by rw [hq]; infer_instance

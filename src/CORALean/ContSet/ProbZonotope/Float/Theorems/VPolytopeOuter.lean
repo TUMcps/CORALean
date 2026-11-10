@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.vPolytope_contains (P : ProbZonotope 𝕋 n) :
-    P.Z.construct ⊆ P.vPolytope.construct :=
+    P.Z.toSet ⊆ P.vPolytope.toSet :=
   Zonotope.vPolytope_contains P.Z
 
 end CORALean.Float

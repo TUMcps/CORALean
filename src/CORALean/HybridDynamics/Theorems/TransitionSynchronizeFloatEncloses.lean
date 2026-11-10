@@ -52,7 +52,7 @@ theorem Transition.synchronizeFloat_encloses (compIdx : Fin q → Fin k)
     (t : ∀ i : Fin q, Transition (fun k => HPolytope 𝕋 (Vec 𝕋 k)) (L (compIdx i)) 𝕋 n)
     (idStates : Finset (Fin n)) (locID : ∀ c, L c) : -- --- CONCL ---
     let T := Transition.synchronizeFloat compIdx t idStates locID
-    ⋂ i, (t i).guard.construct ⊆ T.guard.construct ∧
+    ⋂ i, (t i).guard.toSet ⊆ T.guard.toSet ∧
       T.target = Transition.synchronizeTarget locID compIdx (fun i => (t i).target) ∧
       ∃ (W : Mat ℝ n n) (w : Vec ℝ n),
         (∀ a b, toReal (T.W a b).inf ≤ W a b ∧ W a b ≤ toReal (T.W a b).sup) ∧

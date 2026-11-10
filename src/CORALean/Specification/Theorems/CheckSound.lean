@@ -8,7 +8,7 @@ public import CORALean.Specification.Operations.Check
 # A passed check is the specification, on what the representation denotes
 
 `check`'s two instances each carry their own soundness, so this is a case split and
-nothing more. Stated on `construct s`, not on the set `s` was computed to enclose:
+nothing more. Stated on `toSet s`, not on the set `s` was computed to enclose:
 `HoldsOfOuter` is the step from one to the other, and `NN`'s `holds_of_check`, like
 every system's, takes both steps at once.
 
@@ -42,7 +42,7 @@ variable {ContSet S α : Type} [CORALean.ContSet ContSet α] [CORALean.ContSet S
 
 theorem Specification.check_sound [Contains ContSet S] [IsDisjoint ContSet S]
     (spec : Specification ContSet) (s : S) (h : spec.check s) : -- --- CONCL ---
-    spec.Holds (construct s) := by -- --- PROOF ---
+    spec.Holds (toSet s) := by -- --- PROOF ---
   obtain ⟨t, k⟩ := spec
   cases k
   · exact Contains.contains_sound t s h

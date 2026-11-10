@@ -50,8 +50,8 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [OfInterval S �
 /-- `f(x,u) - A x` lies in `linInput` wherever the step's certificate holds. -/
 theorem NonlinearSysDT.LinStep.linInput_outer {sys : NonlinearSysDT n m} {U : S m}
     (step : sys.LinStep 𝕋 U) {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ step.R)
-    (hu : u ∈ construct U) : -- --- CONCL ---
-    sys.f x u - Scalar.toRealMat step.A *ᵥ x ∈ construct step.linInput := by -- --- PROOF ---
+    (hu : u ∈ toSet U) : -- --- CONCL ---
+    sys.f x u - Scalar.toRealMat step.A *ᵥ x ∈ toSet step.linInput := by -- --- PROOF ---
   -- the real readings of the step's data
   set A := Scalar.toRealMat step.A
   set B := Scalar.toRealMat step.B
@@ -67,7 +67,7 @@ theorem NonlinearSysDT.LinStep.linInput_outer {sys : NonlinearSysDT n m} {U : S 
     funext i
     simp only [us, Scalar.toRealVec_apply, Pi.neg_apply]
     exact (SoundFloatArithmetic.toReal_neg _).symm
-  have hshift : u - us ∈ construct (U ⊞ ofInterval (Interval.point
+  have hshift : u - us ∈ toSet (U ⊞ ofInterval (Interval.point
       (-step.us))) := by
     rw [sub_eq_add_neg, hneg]
     exact plus_outer _ _ (Set.add_mem_add hu

@@ -49,12 +49,12 @@ theorem LinearSysDT.computeGOFloat_outer (sys : LinearSysDT 𝕋 n) (out : Outpu
     (nk : ℕ) (k j : Fin nk) : -- --- CONCL ---
     let G := sys.computeGO out nk
     let F := sys.computeGOFloat out nk
-    G.A k ∈ (F.A k).construct ∧ G.B k j ∈ (F.B k j).construct ∧ G.C k ∈ (F.C k).construct ∧
-      G.D k j ∈ (F.D k j).construct := by -- --- PROOF ---
+    G.A k ∈ (F.A k).toSet ∧ G.B k j ∈ (F.B k j).toSet ∧ G.C k ∈ (F.C k).toSet ∧
+      G.D k j ∈ (F.D k j).toSet := by -- --- PROOF ---
   intro G F
   -- a stored zero matrix reads as the zero matrix
   have hz : ∀ {a b : ℕ}, (0 : Mat ℝ a b) ∈
-      (Interval.point (show Mat 𝕋 a b from fun _ _ => zero)).construct := fun {a b} => by
+      (Interval.point (show Mat 𝕋 a b from fun _ _ => zero)).toSet := fun {a b} => by
     have h : toRealMat (show Mat 𝕋 a b from fun _ _ => zero) = 0 := by
       funext i l
       simp [toRealMat, toReal_zero]

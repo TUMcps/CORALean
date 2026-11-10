@@ -9,7 +9,7 @@ public import CORALean.NN.Theorems.NeuronMergingOuter
 /-!
 # `ReducesAt` is sound
 
-Induction on the derivation. `nil`: `eval` is the identity, so `image` is `construct s` itself.
+Induction on the derivation. `nil`: `eval` is the identity, so `image` is `toSet s` itself.
 `keep`: `hg.enclose_outer` moves the point past the layer, then the hypothesis at that set. `merge`:
 `neuronMerging_sandwich_outer` moves it past the sandwich, then the hypothesis at that set;
 `image_eq_eval_image` reopens each of those sets to a point. `widen`: `linearWithError_mem`, the
@@ -49,7 +49,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n
 in the enclosure `nn'.enclose s` builds. -/
 theorem NeuralNetwork.reducesAt_outer :
     ∀ {n m : ℕ} {s : S n} {nn nn' : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m},
-      NeuralNetwork.ReducesAt s nn nn' f → f '' construct s ⊆ construct (nn'.enclose s)
+      NeuralNetwork.ReducesAt s nn nn' f → f '' toSet s ⊆ toSet (nn'.enclose s)
   | _, _, s, _, _, _, .nil _ hid => by
       rintro _ ⟨x, hx, rfl⟩
       rw [hid x]
@@ -67,7 +67,7 @@ theorem NeuralNetwork.reducesAt_outer :
       rintro _ ⟨x, hx, rfl⟩
       rw [hcomp x]
       -- the layer runs the box's nonempty hull, which holds the box
-      have hE := Float.Interval.construct_subset_nonemptyHull _ hc
+      have hE := Float.Interval.toSet_subset_nonemptyHull _ hc
       exact reducesAt_outer h ⟨_, Layer.linearWithError_mem W hE s hx, rfl⟩
   | _, _, s, _, _, _, .freeze (σ := σ) _ part W0 c0 b0 E0 hc0 R hR W1 c1 Y hY hcomp h => by
       rintro _ ⟨x, hx, rfl⟩
@@ -77,15 +77,15 @@ theorem NeuralNetwork.reducesAt_outer :
           = (W0 *ᵥ x + c0) ∘ part.left :=
         funext fun i => by simp [Matrix.mulVec, Matrix.submatrix_apply, dotProduct]
       have hc : c0 ∘ part.left - b0 ∘ part.left
-          ∈ construct (⟨E0.inf ∘ part.left, E0.sup ∘ part.left⟩ : Float.Interval (Vec ℝ _)) :=
+          ∈ toSet (⟨E0.inf ∘ part.left, E0.sup ∘ part.left⟩ : Float.Interval (Vec ℝ _)) :=
         fun i => hc0 (part.left i)
       have hA1 := Layer.linearWithError_mem (S := S) (W0.submatrix part.left id)
-        (Float.Interval.construct_subset_nonemptyHull _ hc) s hx
+        (Float.Interval.toSet_subset_nonemptyHull _ hc) s hx
       rw [Float.toRealMat_real, hrow] at hA1
       have hA2 := (Layer.activation_encloses (S := S) hR).enclose_outer _ _ hA1
       -- the bucket is frozen at its own value, which its bounds admit
       have hw : v ∘ part.right
-          ∈ construct (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Float.Interval (Vec ℝ _)) :=
+          ∈ toSet (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Float.Interval (Vec ℝ _)) :=
         fun i => hY x hx (part.right i)
       -- layer `k+1`'s dot product splits along the survivors and the bucket
       have hval : W1 *ᵥ v + c1 = (W1.submatrix id part.left) *ᵥ (v ∘ part.left)

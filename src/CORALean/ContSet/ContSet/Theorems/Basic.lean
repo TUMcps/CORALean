@@ -26,27 +26,89 @@ open ContSet
 variable {S α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] [ContSet S α]
 
 
--- =============================  `CompactSet.isBounded_construct`  ============================= --
+-- ===============================  `CompactSet.isBounded_toSet`  =============================== --
 -- Authors:       Claude Sonnet 5
 -- Written:       02-September-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- `CompactSet.isBounded_construct`: compactness over a normed space gives boundedness for free. -/
-theorem CompactSet.isBounded_construct [CompactSet S α] (s : S) :
-    Bornology.IsBounded (construct s) :=
-  (CompactSet.isCompact_construct s).isBounded
+/-- `CompactSet.isBounded_toSet`: compactness over a normed space gives boundedness for free. -/
+theorem CompactSet.isBounded_toSet [CompactSet S α] (s : S) :
+    Bornology.IsBounded (toSet s) :=
+  (CompactSet.isCompact_toSet s).isBounded
 
 
--- =============================  `CompactSet.isClosed_construct`  ============================== --
+-- ===============================  `CompactSet.isClosed_toSet`  ================================ --
 -- Authors:       Claude Sonnet 5
 -- Written:       02-September-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- `CompactSet.isClosed_construct`: compactness over a normed space gives closedness for free. -/
-theorem CompactSet.isClosed_construct [CompactSet S α] (s : S) : IsClosed (construct s) :=
-  (CompactSet.isCompact_construct s).isClosed
+/-- `CompactSet.isClosed_toSet`: compactness over a normed space gives closedness for free. -/
+theorem CompactSet.isClosed_toSet [CompactSet S α] (s : S) : IsClosed (toSet s) :=
+  (CompactSet.isCompact_toSet s).isClosed
+
+end
+
+
+section
+
+open ContSet
+
+variable {S α : Type} [ContSet S α] [Isequal S]
+
+
+-- ====================================  `ContSet.eq_toSet`  ==================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- If `eq` holds the two representations denote one set. Sound, not exact: `eq` can fail on
+two representations of one set. -/
+theorem ContSet.eq_toSet {s t : S} (h : ContSet.eq s t) : toSet s = toSet t :=
+  Isequal.isequal_toSet s t h
+
+
+-- =================================  `ContSet.ne_of_toSet_ne`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- If the denoted sets differ, `ne` holds. Only this direction: `ne` can hold of two
+representations of one set, since `isequal` is conservative. -/
+theorem ContSet.ne_of_toSet_ne {s t : S} (h : toSet s ≠ toSet t) : ContSet.ne s t :=
+  fun hi => h (Isequal.isequal_toSet s t hi)
+
+end
+
+
+section
+
+open Matrix Pointwise
+open ContSet
+
+
+-- ====================================  `ContSet.mem_iff`  ===================================== --
+-- Authors:       Claude Opus 5
+-- Written:       16-August-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- Membership in a representation is membership in the set it denotes. -/
+theorem ContSet.mem_iff {S α : Type} [ContSet S α] {s : S} {x : α} :
+    x ∈ s ↔ x ∈ toSet s := Iff.rfl
+
+
+-- ===================================  `ContSet.toSet_set`  ==================================== --
+-- Authors:       Claude Opus 5
+-- Written:       16-August-2026
+-- Last update:   14-October-2026
+-- Reviewed:      ---
+
+/-- A set is its own `ContSet` representation. -/
+@[simp] theorem ContSet.toSet_set {α : Type} (X : Set α) : toSet X = X := rfl
 
 end
 
@@ -58,15 +120,15 @@ open ContSet
 open Scalar
 
 
--- =================================  `ContSet.construct_mat`  ================================== --
+-- ===================================  `ContSet.toSet_mat`  ==================================== --
 -- Authors:       Claude Opus 5
 -- Written:       16-August-2026
 -- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- A matrix is the set holding its real image, as a `ContSet`. -/
-@[simp] theorem ContSet.construct_mat {𝕋 : Type} [Scalar 𝕋] {m n : ℕ} (M : Mat 𝕋 m n) :
-    construct M = {toRealMat M} := rfl
+@[simp] theorem ContSet.toSet_mat {𝕋 : Type} [Scalar 𝕋] {m n : ℕ} (M : Mat 𝕋 m n) :
+    toSet M = {toRealMat M} := rfl
 
 
 -- ===================================  `matMulBilin_apply`  ==================================== --
@@ -96,68 +158,6 @@ end
 
 section
 
-open Matrix Pointwise
-open ContSet
-
-
--- =================================  `ContSet.construct_set`  ================================== --
--- Authors:       Claude Opus 5
--- Written:       16-August-2026
--- Last update:   14-October-2026
--- Reviewed:      ---
-
-/-- A set is its own `ContSet` representation. -/
-@[simp] theorem ContSet.construct_set {α : Type} (X : Set α) : construct X = X := rfl
-
-
--- ====================================  `ContSet.mem_iff`  ===================================== --
--- Authors:       Claude Opus 5
--- Written:       16-August-2026
--- Last update:   14-October-2026
--- Reviewed:      ---
-
-/-- Membership in a representation is membership in the set it denotes. -/
-theorem ContSet.mem_iff {S α : Type} [ContSet S α] {s : S} {x : α} :
-    x ∈ s ↔ x ∈ construct s := Iff.rfl
-
-end
-
-
-section
-
-open ContSet
-
-variable {S α : Type} [ContSet S α] [Isequal S]
-
-
--- ==================================  `ContSet.eq_construct`  ================================== --
--- Authors:       Claude Opus 5.5
--- Written:       03-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- If `eq` holds the two representations denote one set. Sound, not exact: `eq` can fail on
-two representations of one set. -/
-theorem ContSet.eq_construct {s t : S} (h : ContSet.eq s t) : construct s = construct t :=
-  Isequal.isequal_construct s t h
-
-
--- ===============================  `ContSet.ne_of_construct_ne`  =============================== --
--- Authors:       Claude Opus 5.5
--- Written:       03-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- If the denoted sets differ, `ne` holds. Only this direction: `ne` can hold of two
-representations of one set, since `isequal` is conservative. -/
-theorem ContSet.ne_of_construct_ne {s t : S} (h : construct s ≠ construct t) : ContSet.ne s t :=
-  fun hi => h (Isequal.isequal_construct s t hi)
-
-end
-
-
-section
-
 open ContSet Scalar
 
 variable {S α : Type} [ContSet S α]
@@ -170,7 +170,7 @@ variable {S α : Type} [ContSet S α]
 -- Reviewed:      ---
 
 /-- `uplus` denotes the set it is given, so it is exact, not only an outer bound. -/
-theorem ContSet.uplus_exact (s : S) : construct (ContSet.uplus s) = construct s := rfl
+theorem ContSet.uplus_exact (s : S) : toSet (ContSet.uplus s) = toSet s := rfl
 
 end
 
@@ -189,9 +189,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {S : Type} [ContSet S α]
 -- Reviewed:      ---
 
 /-- `linComb_outer` and `union_subset_setLinComb`: an enclosure of CORA's `or`. -/
-theorem LinComb.union_subset_linComb [LinComb S α] (s t : S) (hs : (construct s).Nonempty)
-    (ht : (construct t).Nonempty) :
-    construct s ∪ construct t ⊆ construct (LinComb.linComb s t) :=
+theorem LinComb.union_subset_linComb [LinComb S α] (s t : S) (hs : (toSet s).Nonempty)
+    (ht : (toSet t).Nonempty) :
+    toSet s ∪ toSet t ⊆ toSet (LinComb.linComb s t) :=
   (union_subset_setLinComb hs ht).trans (LinComb.linComb_outer s t)
 
 

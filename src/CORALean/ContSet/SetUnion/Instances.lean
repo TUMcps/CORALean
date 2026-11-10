@@ -53,7 +53,7 @@ instance [Reduce S α] : Reduce (SetUnion S) α where
 /-- A singleton is a union of one singleton. -/
 instance [OfPoint S α] : OfPoint (SetUnion S) α where
   ofPoint v := ⟨[OfPoint.ofPoint v]⟩
-  mem_ofPoint v := SetUnion.mem_construct.mpr ⟨_, List.mem_singleton_self _, OfPoint.mem_ofPoint v⟩
+  mem_ofPoint v := SetUnion.mem_toSet.mpr ⟨_, List.mem_singleton_self _, OfPoint.mem_ofPoint v⟩
 
 variable {T α : Type} [ContSet T α] [ContSet S α]
 

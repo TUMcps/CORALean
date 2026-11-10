@@ -43,7 +43,7 @@ variable {n : ℕ}
 
 /-- `f̄_𝒵(x) = sup_{μ ∈ Z} f_{N(μ, Σ)}(x)`. -/
 noncomputable def ProbZonotope.eph (P : ProbZonotope n) (x : EuclideanSpace ℝ (Fin n)) : ℝ :=
-  sSup ((fun μ => gaussPdf μ P.cov x) '' P.Z.construct)
+  sSup ((fun μ => gaussPdf μ P.cov x) '' P.Z.toSet)
 
 end CORALean.Real
 

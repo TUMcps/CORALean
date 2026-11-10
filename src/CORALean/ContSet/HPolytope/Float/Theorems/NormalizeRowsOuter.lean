@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem HPolytope.normalizeRows_outer (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n))
     (dom : Interval (Vec 𝕋 n)) :
-    P.construct ∩ dom.construct ⊆ (P.normalizeRows p dom).construct ∩ dom.construct :=
+    P.toSet ∩ dom.toSet ⊆ (P.normalizeRows p dom).toSet ∩ dom.toSet :=
   fun _ hx => HPolytope.scaleRows_outer (if P.isErrFree then P else P.absorbRounding)
     (by split <;> rename_i h
         exacts [HPolytope.errFree_of_isErrFree h, HPolytope.isErrFree_of_origin rfl rfl rfl]) _ _

@@ -5,7 +5,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Ellipsoid
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalReaches
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.AddSubMemNominalSet
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetOfFactor
 
 @[expose] public section
 
@@ -68,7 +68,7 @@ private theorem Interval.aux_ellipsoidG_ge (I : Interval (Vec 𝕋 n)) (σ : �
 /-- A box lies in its nominal ellipsoid. -/
 private theorem Interval.aux_subset_nominal_ellipsoid (I : Interval (Vec 𝕋 n)) (σ : 𝕋)
     (hσ : 0 < toReal σ) (hn : (n : ℝ) ≤ toReal (mulDown σ σ)) : -- --- CONCL ---
-    I.construct ⊆ nominalSet (I.ellipsoid σ) := by -- --- PROOF ---
+    I.toSet ⊆ nominalSet (I.ellipsoid σ) := by -- --- PROOF ---
   intro x hx
   have hreach : ∀ i, toReal (I.center i) - toReal (I.radiusFrom i) ≤ x i
       ∧ x i ≤ toReal (I.center i) + toReal (I.radiusFrom i) := fun i =>
@@ -167,8 +167,8 @@ private theorem Interval.aux_subset_nominal_ellipsoid (I : Interval (Vec 𝕋 n)
         div_mul_cancel₀ _ h]
       ring
   set F := Real.Ellipsoid.ofFactor Gr (toRealVec I.center) with hF
-  have hxF : x ∈ F.construct := by
-    rw [hF, Real.Ellipsoid.construct_ofFactor]
+  have hxF : x ∈ F.toSet := by
+    rw [hF, Real.Ellipsoid.toSet_ofFactor]
     exact ⟨u, hnorm, hx'⟩
   -- the stored diagonal dominates `diag(g)²`
   have hdom : (toRealMat (I.ellipsoid σ).Q - F.Q).PosSemidef := by
@@ -211,7 +211,7 @@ end
 
 theorem Interval.ellipsoid_contains (I : Interval (Vec 𝕋 n)) (σ : 𝕋) (hσ : 0 < toReal σ)
     (hn : (n : ℝ) ≤ toReal (mulDown σ σ)) :
-    I.construct ⊆ (I.ellipsoid σ).construct := fun x hx =>
+    I.toSet ⊆ (I.ellipsoid σ).toSet := fun x hx =>
   ⟨x, I.aux_subset_nominal_ellipsoid σ hσ hn hx, 0, fun i => by
     show toReal (zero : 𝕋) ≤ (0 : Vec ℝ n) i ∧ (0 : Vec ℝ n) i ≤ toReal (zero : 𝕋)
     rw [toReal_zero]

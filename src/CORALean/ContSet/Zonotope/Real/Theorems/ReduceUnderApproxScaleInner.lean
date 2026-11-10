@@ -50,7 +50,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 theorem Zonotope.reduceUnderApproxScale_inner (Z Zo : Zonotope α) (lam : Fin Zo.h → ℝ)
     (T : Mat ℝ Z.h Zo.h) (hG : ∀ j, lam j • Zo.G j = ∑ i, T i j • Z.G i)
     (hT : ∀ i, ∑ j, |T i j| ≤ 1) :
-    (Z.reduceUnderApproxScale Zo lam).construct ⊆ Z.construct := by
+    (Z.reduceUnderApproxScale Zo lam).toSet ⊆ Z.toSet := by
   have e : Z.reduceUnderApproxScale Zo lam = Z.mulGens T := by
     simp only [Zonotope.reduceUnderApproxScale, Zonotope.mulGens, hG]
   rw [e]

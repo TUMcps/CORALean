@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolu
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachShift
 public import CORALean.ContSet.ContSet.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 
 @[expose] public section
 
@@ -84,11 +84,11 @@ theorem LinearSys.IsCanonicalTrajectory.oneStepFloat_timeInterval_outer {sys : L
     {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {X U : Zonotope (Vec 𝕋
         n)}
     {W : Set (Vec ℝ n)} {x w : ℝ → Vec ℝ n} {u : Vec 𝕋 n}
-    (traj : sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) X.construct
+    (traj : sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) X.toSet
       W x w)
-    (h0 : (0 : Vec ℝ n) ∈ U.construct) {t : ℝ} (ht0 : 0 ≤ t) (htΔ : t ≤ toReal Δt)
-    (hWU : ∀ v ∈ W, v - toRealVec u ∈ U.construct) (hW : Bornology.IsBounded W) : -- --- CONCL ---
-    x t ∈ (sys.oneStepFloat X U u Δt η).Rti.construct := by -- --- PROOF ---
+    (h0 : (0 : Vec ℝ n) ∈ U.toSet) {t : ℝ} (ht0 : 0 ≤ t) (htΔ : t ≤ toReal Δt)
+    (hWU : ∀ v ∈ W, v - toRealVec u ∈ U.toSet) (hW : Bornology.IsBounded W) : -- --- CONCL ---
+    x t ∈ (sys.oneStepFloat X U u Δt η).Rti.toSet := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hη.1
   set A := Scalar.toRealMat sys.A with hA
   set r := toReal Δt with hr
@@ -97,19 +97,19 @@ theorem LinearSys.IsCanonicalTrajectory.oneStepFloat_timeInterval_outer {sys : L
   have hl0 : 0 ≤ lam := div_nonneg ht0 hΔt.le
   have hl1 : lam ≤ 1 := (div_le_one hΔt).mpr htΔ
   -- the `U`-input's share up to `t`, lifted to `Δt`, in `PU`
-  have hU := CompactSet.isBounded_construct U
-  have hp := traj.sub_mem_inputReach_shift (S := 𝒮) (U := U.construct) uR
+  have hU := CompactSet.isBounded_toSet U
+  have hp := traj.sub_mem_inputReach_shift (S := 𝒮) (U := U.toSet) uR
     hWU hW hU ⟨ht0, htΔ⟩
   have hPU := sys.inputReach_subset_inputSolutionFloat hΔt hη U
     (sys.inputReach_mono (S := 𝒵[𝕋]) hU h0 ht0 htΔ hp)
   -- the constant's share, in `Pu`
-  have hpt : uR ∈ (Zonotope.point u).construct := by
-    rw [Zonotope.construct_point]; exact rfl
+  have hpt : uR ∈ (Zonotope.point u).toSet := by
+    rw [Zonotope.toSet_point]; exact rfl
   have hPu := sys.inputReach_subset_inputSolutionFloat hΔt hη (Zonotope.point u)
     ⟨fun _ => uR, fun _ _ => hpt, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A uR hΔt.le).symm⟩
   -- the free motion, in `[e^{AΔt}] X`
-  have hex : exp (r • A) *ᵥ x 0 ∈ construct (Mtimes.mtimes (S := 𝒵[𝕋])
+  have hex : exp (r • A) *ᵥ x 0 ∈ toSet (Mtimes.mtimes (S := 𝒵[𝕋])
       (𝕄 := ℐ[𝕋]) (sys.expIntervalFloat Δt Δt (m + 2)) X) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) _ X
@@ -117,7 +117,7 @@ theorem LinearSys.IsCanonicalTrajectory.oneStepFloat_timeInterval_outer {sys : L
         (Set.mem_image_of_mem _ traj.init))
   -- the `linComb` of `X` and `Htp` holds the interpolated point
   have hHtp : exp (r • A) *ᵥ x 0 + Real.MatExp.expIntegral A r *ᵥ uR
-      ∈ construct (Plus.plus (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+      ∈ toSet (Plus.plus (Mtimes.mtimes (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋])
         (sys.expIntervalFloat Δt Δt (m + 2)) X)
         (sys.inputSolutionFloat Δt (m + 2) (Zonotope.point u))) :=
@@ -128,7 +128,7 @@ theorem LinearSys.IsCanonicalTrajectory.oneStepFloat_timeInterval_outer {sys : L
     ⟨x 0, traj.init, _, hHtp, 1 - lam, ⟨by linarith, by linarith⟩, by rw [sub_sub_cancel]⟩
   -- the two interpolation errors
   have hF : (exp (t • A) - 1 - lam • (exp (r • A) - 1)) *ᵥ x 0
-      ∈ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+      ∈ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋])
         (MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt (m + 2)) X) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
@@ -136,7 +136,7 @@ theorem LinearSys.IsCanonicalTrajectory.oneStepFloat_timeInterval_outer {sys : L
       (Set.mem_biUnion (MatExp.expDiff_mem_intervalCorrectionMatrix _ hΔt hη.2
         (Interval.mem_point sys.A) ht0 htΔ) (Set.mem_image_of_mem _ traj.init))
   have hG : (Real.MatExp.expIntegral A t - lam • Real.MatExp.expIntegral A r) *ᵥ uR
-      ∈ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+      ∈ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋])
         (MatExp.intervalConstCorrectionMatrix (Interval.point sys.A) Δt (m + 2))
         (Zonotope.point u)) :=

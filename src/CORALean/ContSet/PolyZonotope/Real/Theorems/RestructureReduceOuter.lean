@@ -43,7 +43,7 @@ variable {n : ℕ}
 /-- Sound at every order, the reduction and the boxing each contributing an
 enclosure. -/
 theorem PolyZonotope.restructureReduce_outer (pZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
-    pZ.construct ⊆ (pZ.restructureReduce o).construct :=
+    pZ.toSet ⊆ (pZ.restructureReduce o).toSet :=
   (PolyZonotope.reduce_outer pZ o).trans (PolyZonotope.restructure_outer _)
 
 end CORALean.Real

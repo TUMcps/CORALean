@@ -1,8 +1,8 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Mtimes
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqOfFactor
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MulGMulTranspose
 public import Mathlib.Data.Matrix.Mul
 
@@ -52,11 +52,11 @@ variable {n m : ℕ}
 
 theorem Ellipsoid.affine_image_exact (A : Mat ℝ m n) (b : Vec ℝ m)
     (E : Ellipsoid n) : -- --- CONCL ---
-    (fun x => A *ᵥ x + b) '' E.construct =
-      (⟨A * E.Q * Aᵀ, A *ᵥ E.q + b, (E.mtimes A).psd⟩ : Ellipsoid m).construct
+    (fun x => A *ᵥ x + b) '' E.toSet =
+      (⟨A * E.Q * Aᵀ, A *ᵥ E.q + b, (E.mtimes A).psd⟩ : Ellipsoid m).toSet
     := by -- --- PROOF ---
-  rw [E.construct_eq_sqrt]
-  rw [Ellipsoid.construct_eq_of_factor _ (A * E.G) (E.mul_G_mul_transpose A)]
+  rw [E.toSet_eq_sqrt]
+  rw [Ellipsoid.toSet_eq_of_factor _ (A * E.G) (E.mul_G_mul_transpose A)]
   ext y
   constructor
   · rintro ⟨_, ⟨u, hu, rfl⟩, rfl⟩

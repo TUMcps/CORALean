@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinParamSysDT.Operations.ToLinParam
 
 `LinearSysDT.IsCanonicalTrajectory.step`'s `x (k+1) = toRealMat sys.A *ᵥ x k + u k`,
 repackaged as `LinParamSysDT.IsCanonicalTrajectory.step`'s existential: the witness is
-`toRealMat sys.A` itself, and `construct sys.A = {toRealMat sys.A}` makes its
+`toRealMat sys.A` itself, and `toSet sys.A = {toRealMat sys.A}` makes its
 membership `rfl`.
 
 ## Inputs

@@ -47,8 +47,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n N : ℕ}
 
 theorem HPolytope.projectHighDim_exact (P : HPolytope 𝕋 (Vec 𝕋 n)) {dims : Fin n → Fin N}
     (hdims : Function.Injective dims) : -- --- CONCL ---
-    (P.projectHighDim dims).construct
-      = {x | (fun k => x (dims k)) ∈ P.construct
+    (P.projectHighDim dims).toSet
+      = {x | (fun k => x (dims k)) ∈ P.toSet
           ∧ ∀ j, (∀ k, dims k ≠ j) → x j = 0} := by -- --- PROOF ---
   unfold HPolytope.projectHighDim
   dsimp only
@@ -57,8 +57,8 @@ theorem HPolytope.projectHighDim_exact (P : HPolytope 𝕋 (Vec 𝕋 n)) {dims :
       ({ (P.lift_ dims).stackRows (HPolytope.eqs
           (fun r j => if j = s.orderEmbOfFin rfl r then (one : 𝕋) else zero)
           (fun _ => zero)) with I_error := (P.lift_ dims).I_error }
-        : HPolytope 𝕋 (Vec 𝕋 N)).construct
-        = {x | (fun k => x (dims k)) ∈ P.construct ∧ ∀ j, (∀ k, dims k ≠ j) → x j = 0} from
+        : HPolytope 𝕋 (Vec 𝕋 N)).toSet
+        = {x | (fun k => x (dims k)) ∈ P.toSet ∧ ∀ j, (∀ k, dims k ≠ j) → x j = 0} from
     key _ fun j => by simp
   intro s hs
   -- the unit rows of the new coordinates, and the description they complete
@@ -72,11 +72,11 @@ theorem HPolytope.projectHighDim_exact (P : HPolytope 𝕋 (Vec 𝕋 n)) {dims :
     rw [Function.ExtendByZero.hom_apply, Function.extend_apply' _ _ _ (by simpa using hj)]
     rfl
   have hN : InflatedContSet.nominalSet X
-      = ⇑(LinearMap.funLeft ℝ ℝ dims).toAddMonoidHom ⁻¹' P.nominal.construct
+      = ⇑(LinearMap.funLeft ℝ ℝ dims).toAddMonoidHom ⁻¹' P.nominal.toSet
         ∩ {x | ∀ j, (∀ k, dims k ≠ j) → x j = 0} := by
     ext y
-    show y ∈ ((P.lift_ dims).stackRows (HPolytope.eqs R fun _ => zero)).nominal.construct ↔
-      (fun k => y (dims k)) ∈ P.nominal.construct ∧ ∀ j, (∀ k, dims k ≠ j) → y j = 0
+    show y ∈ ((P.lift_ dims).stackRows (HPolytope.eqs R fun _ => zero)).nominal.toSet ↔
+      (fun k => y (dims k)) ∈ P.nominal.toSet ∧ ∀ j, (∀ k, dims k ≠ j) → y j = 0
     rw [HPolytope.mem_stackRows_nominal_iff, HPolytope.mem_lift_nominal_iff P hdims]
     refine and_congr Iff.rfl ?_
     rw [HPolytope.mem_nominal_iff_exact ⟨fun _ => toReal_zero, fun _ => toReal_zero⟩]
@@ -106,12 +106,12 @@ theorem HPolytope.projectHighDim_exact (P : HPolytope 𝕋 (Vec 𝕋 n)) {dims :
   -- the lifted rows plus the lifted box are the lift of the sum
   have key := HPolytope.preimage_inter_add_image
     (LinearMap.funLeft ℝ ℝ dims).toAddMonoidHom (Function.ExtendByZero.hom ℝ dims)
-    (fun e => funext fun k => hdims.extend_apply _ _ k) P.nominal.construct
-    P.I_error.construct {x | ∀ j, (∀ k, dims k ≠ j) → x j = 0}
+    (fun e => funext fun k => hdims.extend_apply _ _ k) P.nominal.toSet
+    P.I_error.toSet {x | ∀ j, (∀ k, dims k ≠ j) → x j = 0}
     (fun x e => ⟨fun h j hj => by simpa [hS e j hj] using h j hj,
       fun h j hj => by simp [hS e j hj, h j hj]⟩)
   ext x
-  show x ∈ _ + (P.lift_ dims).I_error.construct ↔ _
+  show x ∈ _ + (P.lift_ dims).I_error.toSet ↔ _
   rw [hN, HPolytope.lift_errorBox P hdims]
   refine (Set.ext_iff.mp key x).trans ?_
   simp only [Set.mem_inter_iff, Set.mem_preimage, Set.mem_setOf_eq]

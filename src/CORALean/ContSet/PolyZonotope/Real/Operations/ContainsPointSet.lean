@@ -51,7 +51,7 @@ noncomputable def PolyZonotope.containsPointSet (pZ : PolyZonotope (Vec ℝ n)) 
   let pZsplit := pZ.splitMany splits
   -- `polytope(reduce(zonotope(·), 'girard', order))`, one per piece
   let qZsplit : List (Set (Vec ℝ n)) :=
-    pZsplit.map (fun q => (q.zonotopeEven.reduceGirard order).vPolytope.construct)
+    pZsplit.map (fun q => (q.zonotopeEven.reduceGirard order).vPolytope.toSet)
   ∀ i, ∃ Q ∈ qZsplit, points i ∈ Q
 
 end CORALean.Real

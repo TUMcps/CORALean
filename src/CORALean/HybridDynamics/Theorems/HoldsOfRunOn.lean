@@ -56,8 +56,8 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
 ends at. -/
 theorem HybridAutomaton.holds_of_isInvariantOn {HA : HybridAutomaton S G L 𝕋 n}
     {R : ℕ → L → S n} (hinv : HA.IsInvariantOn R) (spec : Specification ContSet) {m k : ℕ}
-    {ℓ ℓ' : L} {x y : Vec ℝ n} (run : HA.IsRunOn m ℓ x ℓ' y) (hx : x ∈ construct (R k ℓ))
-    (h : spec.Holds (construct (R (k + m) ℓ'))) : spec.Holds {y} :=
+    {ℓ ℓ' : L} {x y : Vec ℝ n} (run : HA.IsRunOn m ℓ x ℓ' y) (hx : x ∈ toSet (R k ℓ))
+    (h : spec.Holds (toSet (R (k + m) ℓ'))) : spec.Holds {y} :=
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (run.mem_of_isInvariantOn hinv hx)) h
 
 end CORALean

@@ -9,7 +9,7 @@ public import Mathlib.Analysis.RCLike.Lemmas
 # `reachSetExact` is compact
 
 Induction on `k`, the step being a linear image — continuous, `Vec ℝ n` being
-finite-dimensional, so `IsCompact.image` carries it — summed with `construct U`
+finite-dimensional, so `IsCompact.image` carries it — summed with `toSet U`
 by `IsCompact.add`. Compactness rather than closedness: a sum of two closed sets
 need not be closed, so closedness alone would not survive the step, while a sum
 of two compact sets is compact.
@@ -52,12 +52,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- The exact set reached in `k` steps is compact whenever the initial and input
 sets are. -/
 theorem LinearSysDT.reachSetExact_isCompact (sys : LinearSysDT 𝕋 n) {R₀ U : S n}
-    (hR₀ : IsCompact (construct R₀)) (hU : IsCompact (construct U)) (k : ℕ) : -- --- CONCL ---
+    (hR₀ : IsCompact (toSet R₀)) (hU : IsCompact (toSet U)) (k : ℕ) : -- --- CONCL ---
     IsCompact (sys.reachSetExact R₀ U k) := by -- --- PROOF ---
   induction k with
   | zero => exact hR₀
   | succ k ih =>
-    show IsCompact (mulVecLin (toRealMat sys.A) '' sys.reachSetExact R₀ U k + construct U)
+    show IsCompact (mulVecLin (toRealMat sys.A) '' sys.reachSetExact R₀ U k + toSet U)
     exact (ih.image (mulVecLin (toRealMat sys.A)).continuous_of_finiteDimensional).add hU
 
 end CORALean

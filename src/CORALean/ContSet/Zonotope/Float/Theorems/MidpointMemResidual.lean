@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Zonotope.midpoint_mem_residual (a b : Vec 𝕋 n) :
     (fun i => (toReal (a i) + toReal (b i)) / 2 - toReal (Zonotope.midpoint a b i))
-      ∈ (Zonotope.midpointResidual a b).construct :=
+      ∈ (Zonotope.midpointResidual a b).toSet :=
   Interval.sub_mem_residual fun i => by
     refine ⟨?_, ?_⟩
     · rw [toReal_half]

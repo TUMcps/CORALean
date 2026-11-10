@@ -56,9 +56,9 @@ theorem NonlinearSys.FloatModel.Encloses.relinRunAtFloat_outer
       fm.relinRunAtFloat U options pt k R = some Rs → Rs.length = k ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
           sys.IsTrajectory (S := 𝒮)
-            (Set.Icc 0 ((k : ℝ) * toReal options.Δt)) R.construct U.construct x u y →
+            (Set.Icc 0 ((k : ℝ) * toReal options.Δt)) R.toSet U.toSet x u y →
           ∀ (j : ℕ) (hj : j < Rs.length), ∀ t ∈ Set.Icc ((j : ℝ) * toReal options.Δt)
-            (((j : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[j].construct := by -- --- PROOF ---
+            (((j : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[j].toSet := by -- --- PROOF ---
   intro k
   induction k with
   | zero =>
@@ -89,7 +89,7 @@ theorem NonlinearSys.FloatModel.Encloses.relinRunAtFloat_outer
       have hmaps : Set.MapsTo (fun s => Δt + s) (Set.Icc 0 ((k : ℝ) * Δt))
           (Set.Icc 0 (((k + 1 : ℕ) : ℝ) * Δt)) := fun s hs =>
         ⟨by linarith [hs.1], by push_cast; linarith [hs.2]⟩
-      have shifted := traj.shift (R₀' := Rt.construct) hmaps (hsub ⟨hΔt.le, le_rfl⟩) hend
+      have shifted := traj.shift (R₀' := Rt.toSet) hmaps (hsub ⟨hΔt.le, le_rfl⟩) hend
       have hj' : j < rest.length := by simpa using hj
       have key := hrestout shifted j hj' (t - Δt)
         ⟨by push_cast at ht; linarith [ht.1], by push_cast at ht; linarith [ht.2]⟩

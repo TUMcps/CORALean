@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.IntervalSupportFunc
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ToSetEqIInter
 public import CORALean.ContSet.ContSet.Theorems.SupportFuncLeCoeIff
 public import CORALean.ContSet.SetIntersection.Theorems.IsCompact
 public import CORALean.ContSet.Zonotope.Real.Instances
@@ -43,16 +43,16 @@ variable {n : ℕ}
 /-- The support-function box contains the bundle. -/
 theorem ZonoBundle.intervalSupportFunc_outer (zB : ZonoBundle (Vec ℝ n))
     (hk : 0 < zB.k) : -- --- CONCL ---
-    zB.construct ⊆ zB.intervalSupportFunc.construct := by -- --- PROOF ---
+    zB.toSet ⊆ zB.intervalSupportFunc.toSet := by -- --- PROOF ---
   intro x hx i
   -- every linear functional is bounded above on the compact bundle
-  have hc : IsCompact zB.construct :=
-    SetIntersection.isCompact_construct (I := zB.toSetIntersection)
+  have hc : IsCompact zB.toSet :=
+    SetIntersection.isCompact_toSet (I := zB.toSetIntersection)
       (List.ofFn_eq_nil_iff.not.mpr hk.ne')
-  have hle : ∀ ℓ : Vec ℝ n →ₗ[ℝ] ℝ, Continuous ℓ → ℓ x ≤ (supportFunc zB.construct ℓ).toReal := by
+  have hle : ∀ ℓ : Vec ℝ n →ₗ[ℝ] ℝ, Continuous ℓ → ℓ x ≤ (supportFunc zB.toSet ℓ).toReal := by
     intro ℓ hℓ
     obtain ⟨M, hM⟩ := hc.bddAbove_image hℓ.continuousOn
-    have hbd : supportFunc zB.construct ℓ ≤ (M : EReal) :=
+    have hbd : supportFunc zB.toSet ℓ ≤ (M : EReal) :=
       supportFunc_le_coe_iff.mpr fun y hy => hM ⟨y, hy, rfl⟩
     have h := EReal.toReal_le_toReal (le_iSup₂_of_le x hx le_rfl : (ℓ x : EReal) ≤ _)
       (EReal.coe_ne_bot _) (ne_top_of_le_ne_top (EReal.coe_ne_top M) hbd)

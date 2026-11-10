@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.isFullDim_sound {E : Ellipsoid 𝕋 n} (h : E.isFullDim = true) : -- --- CONCL ---
-    (interior E.construct).Nonempty := by -- --- PROOF ---
+    (interior E.toSet).Nonempty := by -- --- PROOF ---
   simp only [Ellipsoid.isFullDim, List.all_eq_true, List.mem_finRange, forall_const,
     Bool.and_eq_true] at h
   obtain ⟨⟨hs, hc⟩, hbox⟩ := h
@@ -60,7 +60,7 @@ theorem Ellipsoid.isFullDim_sound {E : Ellipsoid 𝕋 n} (h : E.isFullDim = true
     rw [Matrix.rank_of_isUnit _ hu, Fintype.card_fin]
   -- an interior point of the nominal ellipsoid, moved by a member of the box
   obtain ⟨x, hx⟩ := (CORALean.Real.Ellipsoid.isFullDim_iff (nominal E).ellipsoid).mpr hrank
-  have he : (fun i => toReal (E.I_error.inf i)) ∈ E.I_error.construct := fun i =>
+  have he : (fun i => toReal (E.I_error.inf i)) ∈ E.I_error.toSet := fun i =>
     ⟨le_refl _, toReal_le_of_le (hbox i)⟩
   exact ⟨_, subset_interior_add_left (Set.add_mem_add hx he)⟩
 

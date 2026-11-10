@@ -40,7 +40,7 @@ variable {n : ℕ}
 structure EmptySet (n : ℕ) where
 
 /-- `∅`, whatever it is applied to — there is only one thing it can be. -/
-def EmptySet.construct (_ : EmptySet n) : Set (Vec ℝ n) := ∅
+def EmptySet.toSet (_ : EmptySet n) : Set (Vec ℝ n) := ∅
 
 end CORALean.Real
 

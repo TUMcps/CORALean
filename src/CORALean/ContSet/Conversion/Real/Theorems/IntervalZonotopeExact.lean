@@ -48,7 +48,7 @@ variable {n : ℕ}
 /-- A nonempty box is exactly its zonotope. -/
 theorem Interval.zonotope_exact (I : Interval (Vec ℝ n))
     (hI : ∀ i, I.inf i ≤ I.sup i) : -- --- CONCL ---
-    I.zonotope.construct = I.construct := by -- --- PROOF ---
+    I.zonotope.toSet = I.toSet := by -- --- PROOF ---
   refine Set.Subset.antisymm ?_ (Interval.zonotope_contains I)
   rintro x ⟨β, hβ, rfl⟩ i
   -- the generators' sum: only the diagonal reaches each coordinate

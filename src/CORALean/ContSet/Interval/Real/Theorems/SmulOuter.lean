@@ -41,8 +41,8 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.smul_outer (c : ℝ) (I : Interval α) {v : α} (hv : v ∈ I.construct) :
-    c • v ∈ (Interval.smul c I).construct := by
+theorem Interval.smul_outer (c : ℝ) (I : Interval α) {v : α} (hv : v ∈ I.toSet) :
+    c • v ∈ (Interval.smul c I).toSet := by
   intro i
   simp only [Interval.smul, entry_ofEntry, entry_smul]
   exact Interval.mul_between_endpoints (hv i).1 (hv i).2

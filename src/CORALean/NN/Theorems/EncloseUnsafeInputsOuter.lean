@@ -75,14 +75,14 @@ private theorem aux_sum_castLE_add {q₀ q : ℕ} (hq : q₀ ≤ q) (f : Fin q �
 theorem SetBasedNet.encloseUnsafeInputs_outer {N : SetBasedNet n k} {Φ : Vec ℝ n → Vec ℝ k}
     (hN : N.IsRelaxationOf Φ) (X : Zonotope (Vec ℝ n)) (A : Mat ℝ p k)
     (b : Vec ℝ p) : -- --- CONCL ---
-    {x ∈ X.construct | Φ x ∈ (HPolytope.ineqs A b).construct} ⊆
-        (N.encloseUnsafeInputs X A b).construct ∧
-      (N.encloseUnsafeInputs X A b).construct ⊆ X.construct := by -- --- PROOF ---
+    {x ∈ X.toSet | Φ x ∈ (HPolytope.ineqs A b).toSet} ⊆
+        (N.encloseUnsafeInputs X A b).toSet ∧
+      (N.encloseUnsafeInputs X A b).toSet ⊆ X.toSet := by -- --- PROOF ---
   refine ⟨fun x ⟨⟨β, hβ, hx⟩, hU⟩ => ⟨β, hβ, ?_, hx⟩, fun x ⟨β, hβ, _, hx⟩ => ⟨β, hβ, hx⟩⟩
   -- the output of the unsafe input in the latent space: `Φ(x) = c_y + G_y β'`
   obtain ⟨β', hβ', hfirst, hy⟩ := N.forward_latent hN X β hβ
   change β ∈ (HPolytope.ineqs (N.unsafeInputConstraints X A b).1
-    (N.unsafeInputConstraints X A b).2).construct
+    (N.unsafeInputConstraints X A b).2).toSet
   rw [HPolytope.mem_ineqs_iff] at hU ⊢
   intro i
   have hUi := hU i

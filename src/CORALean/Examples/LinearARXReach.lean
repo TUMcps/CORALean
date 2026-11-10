@@ -43,7 +43,7 @@ def Example.arx : LinearARX ℝ 1 1 2 where
 
 /-- The steady state `y ≡ 2` under `u ≡ 1` is a run for any boxes containing `(2, 2)` and `1`. -/
 theorem Example.arx_steady_isTrajectory (Y₀ : Interval (Vec ℝ 2)) (U : Interval (Vec ℝ 1))
-    (hY : ![(2 : ℝ), 2] ∈ construct Y₀) (hU : (![1] : Vec ℝ 1) ∈ construct U) :
+    (hY : ![(2 : ℝ), 2] ∈ toSet Y₀) (hU : (![1] : Vec ℝ 1) ∈ toSet U) :
     Example.arx.IsTrajectory (S := ℐ𝒱) Y₀ U (fun _ => ![2]) (fun _ => ![1])
     where
   init := by
@@ -58,9 +58,9 @@ theorem Example.arx_steady_isTrajectory (Y₀ : Interval (Vec ℝ 2)) (U : Inter
     norm_num
 
 /-- Hence the window of outputs at step `k` is in the converted system's reach. -/
-example (Y₀ : Interval (Vec ℝ 2)) (U : Interval (Vec ℝ 1)) (hY : ![(2 : ℝ), 2] ∈ construct Y₀)
-    (hU : (![1] : Vec ℝ 1) ∈ construct U) {o : ℕ} (ho : 0 < o) (k : ℕ) :
-    LinearARX.stack 2 (fun _ => (![2] : Vec ℝ 1)) k ∈ construct
+example (Y₀ : Interval (Vec ℝ 2)) (U : Interval (Vec ℝ 1)) (hY : ![(2 : ℝ), 2] ∈ toSet Y₀)
+    (hU : (![1] : Vec ℝ 1) ∈ toSet U) {o : ℕ} (ho : 0 < o) (k : ℕ) :
+    LinearARX.stack 2 (fun _ => (![2] : Vec ℝ 1)) k ∈ toSet
       (Example.arx.toLinearSysDT.reach (S := ℐ𝒱)
         ⟨Y₀, Example.arx.inputSet (S := ℐ𝒱) U, 0, k⟩ ⟨o, ho⟩) :=
   Example.arx.reach_outer (S := ℐ𝒱) ho Y₀ U

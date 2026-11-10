@@ -11,7 +11,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.MapPoint
 
 What [1, Prop. 2.12] calls a Cartesian product, and what it cannot mean: both
 coordinates are read off one factor vector, so the result is a subset of
-`construct pZ₁ ×ˢ construct pZ₂` and generally a proper one — `cartProd` is
+`toSet pZ₁ ×ˢ toSet pZ₂` and generally a proper one — `cartProd` is
 what computes the product itself.
 
 The two embeddings are linear, so `map_point` carries each operand's point into

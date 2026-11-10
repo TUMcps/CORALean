@@ -71,15 +71,15 @@ input in `U`, is in `timePointStep`. -/
 theorem LinearSys.timePointStep_outer [∀ n, ConvexSet (S n) (Vec ℝ n)]
     [∀ n, CompactSet (S n) (Vec ℝ n)] (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (X₀ U : S n) : -- --- CONCL ---
-    (fun x₀ => exp (r • toRealMat sys.A) *ᵥ x₀) '' construct X₀ + sys.inputReach U r
-      ⊆ construct (sys.timePointStep r η X₀ U) := by -- --- PROOF ---
+    (fun x₀ => exp (r • toRealMat sys.A) *ᵥ x₀) '' toSet X₀ + sys.inputReach U r
+      ⊆ toSet (sys.timePointStep r η X₀ U) := by -- --- PROOF ---
   rintro _ ⟨_, ⟨x₀, hx₀, rfl⟩, z, hz, rfl⟩
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
   · exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx₀))
-  · exact sys.inputReach_subset_inputSolution hr η hε (ConvexSet.convex_construct U)
-      (CompactSet.isClosed_construct U) (CompactSet.isBounded_construct U)
-      (ConvexSet.convex_construct _) (CompactSet.isClosed_construct _)
-      (CompactSet.isBounded_construct _) hz
+  · exact sys.inputReach_subset_inputSolution hr η hε (ConvexSet.convex_toSet U)
+      (CompactSet.isClosed_toSet U) (CompactSet.isBounded_toSet U)
+      (ConvexSet.convex_toSet _) (CompactSet.isClosed_toSet _)
+      (CompactSet.isBounded_toSet _) hz
 
 end CORALean
 

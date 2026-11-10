@@ -39,8 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.matPolytope_exact (P : VPolytope (Vec 𝕋 n)) : -- --- CONCL ---
-    (fun v => (fun i _ => v i : Mat ℝ n 1)) '' P.construct
-      = ContSet.construct (P.matPolytope : VPolytope (Mat 𝕋 n 1)) := by -- --- PROOF ---
+    (fun v => (fun i _ => v i : Mat ℝ n 1)) '' P.toSet
+      = ContSet.toSet (P.matPolytope : VPolytope (Mat 𝕋 n 1)) := by -- --- PROOF ---
   have hnom : (fun v => (fun i _ => v i : Mat ℝ n 1)) '' nominalSet P
       = nominalSet (P.matPolytope : VPolytope (Mat 𝕋 n 1)) :=
     CORALean.Real.VPolytope.matPolytope_exact (nominal P)

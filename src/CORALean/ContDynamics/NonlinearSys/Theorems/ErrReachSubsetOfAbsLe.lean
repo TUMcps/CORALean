@@ -58,8 +58,8 @@ theorem NonlinearSys.errReach_subset_of_abs_le (A : Mat ℝ n n) (r : ℝ) (θ L
     (h : ∀ i, (Real.MatExp.absMat (A⁻¹ * (NormedSpace.exp (r • A) - 1)) *ᵥ L) i ≤ (r • θ) i)
     : -- --- CONCL ---
     (fun x => (A⁻¹ * (NormedSpace.exp (r • A) - 1)) *ᵥ x) ''
-        (⟨-L, L⟩ : Real.Interval (Vec ℝ n)).construct
-      ⊆ (⟨-(r • θ), r • θ⟩ : Real.Interval (Vec ℝ n)).construct := by -- --- PROOF ---
+        (⟨-L, L⟩ : Real.Interval (Vec ℝ n)).toSet
+      ⊆ (⟨-(r • θ), r • θ⟩ : Real.Interval (Vec ℝ n)).toSet := by -- --- PROOF ---
   set N : Mat ℝ n n := A⁻¹ * (NormedSpace.exp (r • A) - 1)
   rintro _ ⟨x, hx, rfl⟩ i
   have hx' : ∀ j, |x j| ≤ L j := fun j => by

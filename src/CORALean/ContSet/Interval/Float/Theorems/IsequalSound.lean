@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.isequal_sound {I J : Interval (Vec 𝕋 n)} (h : Interval.isequal I J = true) :
-    I.construct = J.construct := by
+    I.toSet = J.toSet := by
   rw [Interval.isequal, Bool.and_eq_true] at h
   exact Set.Subset.antisymm (Interval.le_subset h.1) (Interval.le_subset h.2)
 

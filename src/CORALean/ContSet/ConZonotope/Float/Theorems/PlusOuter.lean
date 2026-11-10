@@ -62,7 +62,7 @@ private theorem ConZonotope.aux_sum_univ_plus {cZ₁ cZ₂ : ConZonotope 𝕋 (V
 private theorem ConZonotope.aux_plus_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     nominalSet cZ₁ + nominalSet cZ₂ ⊆
       nominalSet (cZ₁.plus cZ₂)
-        + (Zonotope.centerResidual cZ₁.c cZ₂.c).construct := by -- --- PROOF ---
+        + (Zonotope.centerResidual cZ₁.c cZ₂.c).toSet := by -- --- PROOF ---
   rintro _ ⟨z₁, hz₁', z₂, hz₂', rfl⟩
   obtain ⟨β₁, hβ₁, hP₁, hz₁⟩ := ConZonotope.mem_nominalSet_iff.mp hz₁'
   obtain ⟨β₂, hβ₂, hP₂, hz₂⟩ := ConZonotope.mem_nominalSet_iff.mp hz₂'
@@ -87,8 +87,8 @@ private theorem ConZonotope.aux_plus_nominal (cZ₁ cZ₂ : ConZonotope 𝕋 (Ve
     ring
 
 private theorem ConZonotope.aux_plus_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    (I_error cZ₁).construct + (I_error cZ₂).construct
-      + (Zonotope.centerResidual cZ₁.c cZ₂.c).construct ⊆ (I_error (cZ₁.plus cZ₂)).construct :=
+    (I_error cZ₁).toSet + (I_error cZ₂).toSet
+      + (Zonotope.centerResidual cZ₁.c cZ₂.c).toSet ⊆ (I_error (cZ₁.plus cZ₂)).toSet :=
   subset_trans (Set.add_subset_add_right (Interval.plus_outer cZ₁.I_error cZ₂.I_error))
     (Interval.plus_outer _ _)
 
@@ -96,7 +96,7 @@ private theorem ConZonotope.aux_plus_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.plus_outer (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    cZ₁.construct + cZ₂.construct ⊆ (cZ₁.plus cZ₂).construct :=
+    cZ₁.toSet + cZ₂.toSet ⊆ (cZ₁.plus cZ₂).toSet :=
   InflatedContSet.plus_subset (ConZonotope.aux_plus_nominal cZ₁ cZ₂)
     (ConZonotope.aux_plus_error cZ₁ cZ₂)
 

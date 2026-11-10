@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.norm_smul_le_normUpperBound (A : Interval (Mat 𝕋 n n)) (r : 𝕋) {M : Mat ℝ n n}
-    (hM : M ∈ A.construct) :
+    (hM : M ∈ A.toSet) :
     ‖toReal r • M‖ ≤ toReal (MatExp.normUpperBound (Interval.smul r r A)) :=
   le_trans (Real.Interval.norm_le_absMax (Interval.smul_outer le_rfl le_rfl A hM))
     (MatExp.norm_absMax_le_normUpperBound _)

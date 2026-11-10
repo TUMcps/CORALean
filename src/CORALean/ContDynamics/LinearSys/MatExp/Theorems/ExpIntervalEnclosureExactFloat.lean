@@ -50,15 +50,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.exp_mem_expIntervalEnclosureExact (A : Interval (Mat 𝕋 n n)) (t : 𝕋)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) {κ : ℕ} (hκ : 2 ≤ κ)
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) {κ : ℕ} (hκ : 2 ≤ κ)
     (hε : toReal (MatExp.normUpperBound (Interval.smul t t A)) / ((κ : ℝ) + 2) ≤ 1 / 2)
     : -- --- CONCL ---
     exp (toReal t • M) ∈
-      (MatExp.expIntervalEnclosureExact A t κ).construct := by -- --- PROOF ---
+      (MatExp.expIntervalEnclosureExact A t κ).toSet := by -- --- PROOF ---
   -- the remainder bound that widens both ends
   set ρ := MatExp.expRemainderBound (MatExp.normUpperBound (Interval.smul t t A)) κ with hρ
   refine Interval.mem_mat_iff.mpr fun i j => ?_
-  have hMB : toReal t • M ∈ (Interval.smul t t A).construct :=
+  have hMB : toReal t • M ∈ (Interval.smul t t A).toSet :=
     Interval.smul_outer (le_refl _) (le_refl _) A hM
   have htay := Interval.mem_mat_iff.mp (MatExp.expTaylor_mem_expIntervalTaylorExact A t hM hκ) i j
   have hb := MatExp.abs_entry_exp_sub_expTaylor_le (Interval.smul t t A) κ hMB hε i j

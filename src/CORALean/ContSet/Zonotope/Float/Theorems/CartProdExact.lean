@@ -7,7 +7,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import CORALean.Global.AppendLinear
 public import CORALean.ContSet.Zonotope.Float.Theorems.NominalCartProdC
 public import CORALean.ContSet.Zonotope.Float.Theorems.NominalCartProdG
-public import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
+public import CORALean.ContSet.InflatedContSet.Theorems.AppendToSet
 
 @[expose] public section
 
@@ -64,21 +64,21 @@ private theorem Zonotope.aux_nominal_cartProd (Z₁ : Zonotope (Vec 𝕋 n₁))
 
 theorem Zonotope.cartProd_exact (Z₁ : Zonotope (Vec 𝕋 n₁))
     (Z₂ : Zonotope (Vec 𝕋 n₂)) : -- --- CONCL ---
-    (Z₁.cartProd Z₂).construct = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
-      (Z₁.construct ×ˢ Z₂.construct) := by -- --- PROOF ---
+    (Z₁.cartProd Z₂).toSet = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
+      (Z₁.toSet ×ˢ Z₂.toSet) := by -- --- PROOF ---
   -- the nominal part: the exact product's set, mapped through the append
   have hN : InflatedContSet.nominalSet (Z₁.cartProd Z₂) =
       (appendLinear n₁ n₂) '' (InflatedContSet.nominalSet Z₁ ×ˢ InflatedContSet.nominalSet Z₂) := by
     unfold InflatedContSet.nominalSet
     rw [Zonotope.aux_nominal_cartProd]
-    show (Real.Zonotope.map _ _).construct =
-      _ '' (Real.Zonotope.construct _ ×ˢ Real.Zonotope.construct _)
+    show (Real.Zonotope.map _ _).toSet =
+      _ '' (Real.Zonotope.toSet _ ×ˢ Real.Zonotope.toSet _)
     rw [← Real.Zonotope.map_exact, Real.Zonotope.cartProd_exact]
   -- the error box is the stack of the two, and stacking distributes over the sum
   have hφ : ⇑(appendLinear n₁ n₂) = fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2 :=
     funext appendLinear_apply
   rw [hφ] at hN
-  exact CORALean.Float.InflatedContSet.append_construct (s₁ := Z₁) (s₂ := Z₂) hN rfl
+  exact CORALean.Float.InflatedContSet.append_toSet (s₁ := Z₁) (s₂ := Z₂) hN rfl
 
 
 end CORALean.Float

@@ -45,7 +45,7 @@ theorem LevelSet.representsa_fullspace_sound (L : CORALean.Real.LevelSet n)
     (O : Fin L.m → Interval 𝕋)
     (hO : ∀ i x, toReal (O i).inf ≤ L.f x i ∧ L.f x i ≤ toReal (O i).sup)
     (h : LevelSet.representsa_fullspace L O = true) : -- --- CONCL ---
-    L.construct = Set.univ := by -- --- PROOF ---
+    L.toSet = Set.univ := by -- --- PROOF ---
   refine CORALean.Real.LevelSet.representsa_fullspace_sound L
     (fun i => ⟨((toReal (O i).inf : ℝ) : EReal), ((toReal (O i).sup : ℝ) : EReal)⟩)
     (fun i x => ⟨EReal.coe_le_coe_iff.mpr (hO i x).1, EReal.coe_le_coe_iff.mpr (hO i x).2⟩) ?_

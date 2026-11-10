@@ -2,7 +2,7 @@ import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
 import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 import CORALean.ContSet.SetIntersection.Instances
 import CORALean.ContSet.Zonotope.Float.Instances
-import CORALean.ContSet.Zonotope.Float.Theorems.CenterMemConstruct
+import CORALean.ContSet.Zonotope.Float.Theorems.CenterMemToSet
 import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
@@ -89,27 +89,27 @@ def small : SetIntersection (Zonotope (Vec D 2)) := Reduce.reduce I 1
 /-! ## What the branch-wise operations guarantee -/
 
 /-- The Minkowski sum of the intersections lies in every pairwise sum. -/
-theorem sum_outer : ContSet.construct I + ContSet.construct J ⊆ ContSet.construct sum :=
+theorem sum_outer : ContSet.toSet I + ContSet.toSet J ⊆ ContSet.toSet sum :=
   SetIntersection.plus_outer I J
 
 /-- The linear image of the intersection lies in the intersection of the images. -/
 theorem image_outer :
-    (⋃ A ∈ ContSet.construct (identityMat D 2), (A *ᵥ ·) '' ContSet.construct I) ⊆
-      ContSet.construct image :=
+    (⋃ A ∈ ContSet.toSet (identityMat D 2), (A *ᵥ ·) '' ContSet.toSet I) ⊆
+      ContSet.toSet image :=
   SetIntersection.mtimes_outer (S := 𝒵[D]) (𝕄 := Mat D) (identityMat D 2) I
 
 /-- The reduced branches still contain the intersection. -/
-theorem small_outer : ContSet.construct I ⊆ ContSet.construct small :=
+theorem small_outer : ContSet.toSet I ⊆ ContSet.toSet small :=
   SetIntersection.reduce_outer I 1
 
 /-- The center of a zonotope with no error is one of its points. -/
-theorem center_mem (Z : Zonotope (Vec D 2)) (h : Z.I_error = box0) : toRealVec Z.c ∈ Z.construct :=
-  Zonotope.center_mem_construct Z fun i => by simp only [h, box0, toReal_d]; norm_num
+theorem center_mem (Z : Zonotope (Vec D 2)) (h : Z.I_error = box0) : toRealVec Z.c ∈ Z.toSet :=
+  Zonotope.center_mem_toSet Z fun i => by simp only [h, box0, toReal_d]; norm_num
 
 /-- The origin is in the square and the diamond, hence in `I`. -/
 theorem origin_mem_I : -- --- CONCL ---
-    toRealVec square.c ∈ ContSet.construct I := by -- --- PROOF ---
-  refine SetIntersection.mem_construct.mpr fun s hs => ?_
+    toRealVec square.c ∈ ContSet.toSet I := by -- --- PROOF ---
+  refine SetIntersection.mem_toSet.mpr fun s hs => ?_
   simp only [I, List.mem_cons, List.not_mem_nil, or_false] at hs
   rcases hs with rfl | rfl
   · exact center_mem _ rfl
@@ -118,9 +118,9 @@ theorem origin_mem_I : -- --- CONCL ---
 
 /-- The origin is in `I` and in `J`, so `0 + 0` is in `I + J`, and by `sum_outer` in `sum`. -/
 theorem origin_add_origin_mem_sum : -- --- CONCL ---
-    toRealVec square.c + toRealVec square.c ∈ ContSet.construct sum := by -- --- PROOF ---
+    toRealVec square.c + toRealVec square.c ∈ ContSet.toSet sum := by -- --- PROOF ---
   refine sum_outer (Set.add_mem_add origin_mem_I ?_)
-  refine SetIntersection.mem_construct.mpr fun s hs => ?_
+  refine SetIntersection.mem_toSet.mpr fun s hs => ?_
   simp only [J, List.mem_cons, List.not_mem_nil, or_false] at hs
   rcases hs with rfl | rfl
   · have : toRealVec square.c = toRealVec segment.c := rfl

@@ -43,9 +43,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.linComb_eq_convexHull (cZ₁ cZ₂ : ConZonotope α)
-    (h₁ : cZ₁.construct.Nonempty) (h₂ : cZ₂.construct.Nonempty) :
-    (cZ₁.linComb cZ₂).construct = convexHull ℝ (cZ₁.construct ∪ cZ₂.construct) := by
-  rw [convexHull_union_eq_setLinComb h₁ h₂ cZ₁.convex_construct cZ₂.convex_construct]
+    (h₁ : cZ₁.toSet.Nonempty) (h₂ : cZ₂.toSet.Nonempty) :
+    (cZ₁.linComb cZ₂).toSet = convexHull ℝ (cZ₁.toSet ∪ cZ₂.toSet) := by
+  rw [convexHull_union_eq_setLinComb h₁ h₂ cZ₁.convex_toSet cZ₂.convex_toSet]
   exact Set.Subset.antisymm (ConZonotope.linComb_inner cZ₁ cZ₂ h₁ h₂)
     (ConZonotope.linComb_outer cZ₁ cZ₂)
 

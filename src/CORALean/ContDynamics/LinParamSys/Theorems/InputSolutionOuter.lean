@@ -19,7 +19,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.IntervalInputRe
 /-!
 # `inputSolution` contains what the input contributes at every matrix of the set
 
-`LinearSys.inputSolution_outer` at a matrix drawn from `construct sys.A`: the run is `'constParam'`,
+`LinearSys.inputSolution_outer` at a matrix drawn from `toSet sys.A`: the run is `'constParam'`,
 so one member `A` is fixed and the argument about the integral is the point one unchanged. What
 changes is where each piece lands — every order is now an interval matrix, reached by
 `matPow_outer` and `smul_outer`, and the tail goes through the member's own remainder into the
@@ -80,8 +80,8 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes ℐ S]
 time, exactly as the operation builds it. -/
 private theorem LinParamSys.aux_inputTaylorSum_outer (sys : LinParamSys ℐ n) (r : ℝ) (U : S n)
     (x : ℕ → Vec ℝ n) : ∀ (η : ℕ),
-    (∀ i, i ≤ η → x i ∈ construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r i) U)) →
-    (∑ i ∈ Finset.range (η + 1), x i) ∈ construct (sys.inputTaylorSum r U η)
+    (∀ i, i ≤ η → x i ∈ toSet (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r i) U)) →
+    (∑ i ∈ Finset.range (η + 1), x i) ∈ toSet (sys.inputTaylorSum r U η)
   | 0, hx => by
     rw [Finset.sum_range_one]
     exact hx 0 (le_refl 0)
@@ -97,19 +97,19 @@ private theorem LinParamSys.aux_inputTaylorSum_outer (sys : LinParamSys ℐ n) (
 theorem LinParamSys.inputSolution_outer (sys : LinParamSys ℐ n)
     {r : ℝ} (hr : 0 < r) (η : ℕ)
     (hε : ‖(Interval.smul r sys.A).absMax‖ / ((η : ℝ) + 2) < 1)
-    {A : Mat ℝ n n} (hA : A ∈ construct sys.A) {U : S n}
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U))
+    {A : Mat ℝ n n} (hA : A ∈ toSet sys.A) {U : S n}
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U))
     -- the next three are asked of the product and not of `U`, `R(τ)` varying with `τ`
     (hRconv : Convex ℝ (MatExp.intervalInputRemainderSet sys.A r η U))
     (hRclosed : IsClosed (MatExp.intervalInputRemainderSet sys.A r η U))
     (hRbdd : Bornology.IsBounded (MatExp.intervalInputRemainderSet sys.A r η U))
     {u : ℝ → Vec ℝ n}
-    (hu : ∀ τ ∈ Set.Ioc (0:ℝ) r, u (r - τ) ∈ construct U)
+    (hu : ∀ τ ∈ Set.Ioc (0:ℝ) r, u (r - τ) ∈ toSet U)
     (hmeas : AEStronglyMeasurable (fun τ => u (r - τ)) (volume.restrict (Set.Ioc 0 r)))
     : -- --- CONCL ---
     (∫ s in (0:ℝ)..r, exp ((r - s) • A) *ᵥ u s)
-      ∈ construct (sys.inputSolution r η U) := by -- --- PROOF ---
+      ∈ toSet (sys.inputSolution r η U) := by -- --- PROOF ---
   -- the condition is checkable from the box; the member's own is what the tail needs
   have hnorm : ‖r • A‖ ≤ ‖(Interval.smul r sys.A).absMax‖ :=
     Interval.norm_le_absMax (Interval.smul_outer r sys.A hA)
@@ -142,7 +142,7 @@ theorem LinParamSys.inputSolution_outer (sys : LinParamSys ℐ n)
   -- each exact order lands in its own term of the operation
   have hterm : ∀ i, i ≤ η →
       (∫ τ in (0:ℝ)..r, ((Nat.factorial i : ℝ)⁻¹ * τ ^ i) • (A ^ i *ᵥ g τ))
-        ∈ construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r i) U) := by
+        ∈ toSet (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r i) U) := by
     intro i _
     have hgi : IntervalIntegrable (fun τ => τ ^ i • g τ) volume 0 r :=
       hint _ (r ^ i * C) ((continuous_pow i).aestronglyMeasurable.smul hmeas)
@@ -150,7 +150,7 @@ theorem LinParamSys.inputSolution_outer (sys : LinParamSys ℐ n)
           rw [norm_smul, Real.norm_eq_abs, abs_of_nonneg (pow_nonneg hτ.1.le i)]
           exact mul_le_mul (pow_le_pow_left₀ hτ.1.le hτ.2 i) (hgbd τ hτ) (norm_nonneg _)
             (pow_nonneg hr.le i))
-    have hy : (∫ τ in (0:ℝ)..r, τ ^ i • g τ) ∈ (r ^ (i + 1) / ((i : ℝ) + 1)) • construct U :=
+    have hy : (∫ τ in (0:ℝ)..r, τ ^ i • g τ) ∈ (r ^ (i + 1) / ((i : ℝ) + 1)) • toSet U :=
       integral_pow_smul_mem hconv hclosed hbdd hr i hmeas hu
     obtain ⟨z, hz, hzeq⟩ := hy
     -- the matrix leaves the integral, so convexity is asked only of `U`
@@ -208,11 +208,11 @@ theorem LinParamSys.inputSolution_outer (sys : LinParamSys ℐ n)
   -- every entry of `r · R(τ)` lies in the member's remainder, and so in the box's
   have hpt : ∀ τ ∈ Set.Ioc (0:ℝ) r,
       r • ((exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ)
-        ∈ construct (Mtimes.mtimes (𝕄 := ℐ)
+        ∈ toSet (Mtimes.mtimes (𝕄 := ℐ)
         (MatExp.intervalInputRemainder sys.A r η) U) := by
     intro τ hτ
     have hM : (r • (exp (τ • A) - MatExp.expTaylor (τ • A) η))
-        ∈ (MatExp.intervalInputRemainder sys.A r η).construct := by
+        ∈ (MatExp.intervalInputRemainder sys.A r η).toSet := by
       refine MatExp.intervalInputRemainder_contains sys.A hr η hε hA ?_
       refine Interval.mem_mat_iff.mpr fun j k => ?_
       have hb := MatExp.remainder_entry_le A η hr hτ.1.le hτ.2 hεA j k
@@ -226,7 +226,7 @@ theorem LinParamSys.inputSolution_outer (sys : LinParamSys ℐ n)
     exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion hM (Set.mem_image_of_mem _ (hu τ hτ)))
   -- the `r` scaled in above divides back out, leaving the integral itself in the product
   have hrem : (∫ τ in (0:ℝ)..r, (exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ)
-      ∈ construct (Mtimes.mtimes (𝕄 := ℐ)
+      ∈ toSet (Mtimes.mtimes (𝕄 := ℐ)
         (MatExp.intervalInputRemainder sys.A r η) U) := by
     have hI := integral_pow_smul_mem hRconv hRclosed hRbdd hr 0
       (f := fun τ => r • ((exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ))

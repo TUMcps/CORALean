@@ -46,9 +46,9 @@ variable {n : ℕ}
 
 /-- Orders `3 … κ` of any member's input series lie in the interval tail. -/
 theorem MatExp.inputTail_mem_inputIntervalTaylorTail (B : Interval (Mat ℝ n n)) (r : ℝ)
-    {N : Mat ℝ n n} (hN : N ∈ B.construct) (κ : ℕ) : -- --- CONCL ---
+    {N : Mat ℝ n n} (hN : N ∈ B.toSet) (κ : ℕ) : -- --- CONCL ---
     (∑ i ∈ Finset.Ico 3 (κ + 1), (r / (Nat.factorial (i + 1) : ℝ)) • N ^ i)
-      ∈ (MatExp.inputIntervalTaylorTail B r κ).construct := by -- --- PROOF ---
+      ∈ (MatExp.inputIntervalTaylorTail B r κ).toSet := by -- --- PROOF ---
   induction κ with
   | zero =>
     rw [Finset.Ico_eq_empty (by omega), Finset.sum_empty]

@@ -48,9 +48,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.isBounded_dropEqs_minkDiffOf {P : HPolytope (Vec ℝ n)} {T : Set (Vec ℝ n)}
-    (u : ∀ i, SupportBound T (P.A i)) (hP : Bornology.IsBounded P.dropEqs.construct)
+    (u : ∀ i, SupportBound T (P.A i)) (hP : Bornology.IsBounded P.dropEqs.toSet)
     (hT : T.Nonempty) : -- --- CONCL ---
-    Bornology.IsBounded (P.minkDiffOf T u).dropEqs.construct := by -- --- PROOF ---
+    Bornology.IsBounded (P.minkDiffOf T u).dropEqs.toSet := by -- --- PROOF ---
   obtain ⟨z, hz⟩ := hT
   refine (hP.add (Bornology.isBounded_singleton (x := -z))).subset fun x hx =>
     ⟨x + z, ⟨fun i => ?_, fun i => i.elim0⟩, -z, rfl, by simp⟩

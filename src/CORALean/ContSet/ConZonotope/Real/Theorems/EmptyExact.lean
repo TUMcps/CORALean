@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.Empty
-public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructEmptySet
+public import CORALean.ContSet.HPolytope.Real.Theorems.ToSetEmptySet
 
 @[expose] public section
 
@@ -34,12 +34,12 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.empty_exact (n : ℕ) : -- --- CONCL ---
-    (ConZonotope.empty n).construct = ∅ := by -- --- PROOF ---
+    (ConZonotope.empty n).toSet = ∅ := by -- --- PROOF ---
   ext x
-  simp only [ConZonotope.construct, Set.mem_setOf_eq, Set.mem_empty_iff_false, iff_false]
+  simp only [ConZonotope.toSet, Set.mem_setOf_eq, Set.mem_empty_iff_false, iff_false]
   rintro ⟨β, -, hβ, -⟩
-  have h : β ∈ (HPolytope.emptySet (Vec ℝ 0)).construct := hβ
-  rw [HPolytope.construct_emptySet] at h
+  have h : β ∈ (HPolytope.emptySet (Vec ℝ 0)).toSet := hβ
+  rw [HPolytope.toSet_emptySet] at h
   exact h
 
 end CORALean.Real

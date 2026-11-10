@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEqIInter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ToSetEqIInter
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Isequal
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsequalSound
 
@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ZonoBundle.isequal_sound {zB S : ZonoBundle (Vec 𝕋 n)}
     (h : zB.isequal S = true) : -- --- CONCL ---
-    zB.construct = S.construct := by -- --- PROOF ---
+    zB.toSet = S.toSet := by -- --- PROOF ---
   unfold ZonoBundle.isequal at h
   split at h
   · rename_i e
@@ -49,7 +49,7 @@ theorem ZonoBundle.isequal_sound {zB S : ZonoBundle (Vec 𝕋 n)}
     obtain ⟨k₂, Z₂⟩ := S
     simp only at e h
     subst e
-    rw [ZonoBundle.construct_eq_iInter, ZonoBundle.construct_eq_iInter]
+    rw [ZonoBundle.toSet_eq_iInter, ZonoBundle.toSet_eq_iInter]
     exact Set.iInter_congr fun i => Zonotope.isequal_sound (h i)
   · simp at h
 

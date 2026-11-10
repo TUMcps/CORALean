@@ -48,7 +48,7 @@ variable {n : ℕ}
 
 theorem Interval.sqrt_exact (I : Interval (Vec ℝ n))
     (hI : ∀ i, 0 ≤ I.inf i ∧ 0 ≤ I.sup i) :
-    I.sqrt.construct = (fun x i => Real.sqrt (x i)) '' I.construct := by
+    I.sqrt.toSet = (fun x i => Real.sqrt (x i)) '' I.toSet := by
   exact Interval.monotoneImage_exact Real.sqrt (Set.Ici 0) Set.ordConnected_Ici
     (fun a ha b _ h => Real.sqrt_lt_sqrt ha h) (Real.continuous_sqrt.continuousOn) I (hI)
 

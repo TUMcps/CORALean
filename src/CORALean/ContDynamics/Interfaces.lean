@@ -62,7 +62,7 @@ class Reach (Sys : ℕ → Type u) (P : outParam ((n : ℕ) → Sys n → Type))
   reachExact {n : ℕ} : (sys : Sys n) → P n sys → Set (Vec ℝ n)
   reach {n : ℕ} : (sys : Sys n) → P n sys → O → Option (SetUnion (S n))
   reach_outer {n : ℕ} (sys : Sys n) (params : P n sys) (options : O) {R : SetUnion (S n)}
-    (h : reach sys params options = some R) : reachExact sys params ⊆ construct R
+    (h : reach sys params options = some R) : reachExact sys params ⊆ toSet R
 
 end CORALean
 

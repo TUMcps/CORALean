@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.hPolytope_contains (P : VPolytope (Vec 𝕋 n)) (Aq : Mat 𝕋 q n) :
-    P.construct ⊆ (P.hPolytope Aq).construct :=
+    P.toSet ⊆ (P.hPolytope Aq).toSet :=
   HPolytope.subset_ofBounds _ _
 
 end CORALean.Float

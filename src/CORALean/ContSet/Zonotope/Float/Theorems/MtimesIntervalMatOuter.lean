@@ -55,8 +55,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n))
     (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    (⋃ A ∈ IM.construct, (A *ᵥ ·) '' Z.construct) ⊆
-      (Zonotope.mtimesIntervalMat IM Z).construct := by -- --- PROOF ---
+    (⋃ A ∈ IM.toSet, (A *ᵥ ·) '' Z.toSet) ⊆
+      (Zonotope.mtimesIntervalMat IM Z).toSet := by -- --- PROOF ---
   rintro y hy
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
   obtain ⟨A, hA, x, hxmem, rfl⟩ := hy
@@ -68,9 +68,9 @@ theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n))
   obtain ⟨t₀, ht₀, e₀, he₀, hsum⟩ := Zonotope.mtimes_outer C Z ⟨z + e, ⟨z, hz, e, he, rfl⟩, rfl⟩
   have hsum' : t₀ + e₀ = toRealMat C *ᵥ (z + e) := hsum
   -- `A` known only to within `matResidual` of the center matrix
-  have hR : R ∈ Rs.construct := Interval.sub_mem_matResidual fun i j => hA (i, j)
+  have hR : R ∈ Rs.toSet := Interval.sub_mem_matResidual fun i j => hA (i, j)
   -- the residual on the error box, box times box
-  have hRe : R *ᵥ e ∈ (Interval.mtimesIntervalMat Rs Z.I_error).construct :=
+  have hRe : R *ᵥ e ∈ (Interval.mtimesIntervalMat Rs Z.I_error).toSet :=
     Interval.mtimesIntervalMat_outer _ _ (Set.mem_biUnion hR ⟨e, he, rfl⟩)
   -- the residual on the nominal part, within the new generators
   have hbound := Zonotope.abs_residual_le IM hR hz

@@ -10,7 +10,7 @@ public import CORALean.HybridDynamics.HybridAutomaton
 One set per location, closed under both things a run does: flowing inside a location keeps the
 state in that location's set, and jumping out of it lands inside the target's. Everything a run can
 reach is then covered, by induction on the run (`Theorems.IsRunOuter`). `R` is in the state's
-representation `S`, the guard in `G`; they meet only as sets, `construct (R ℓ) ∩ construct e.guard`
+representation `S`, the guard in `G`; they meet only as sets, `toSet (R ℓ) ∩ toSet e.guard`
 (#39). An inductive invariant rather than a family indexed by step count, because a run here is
 unbounded in length. Both fields are obligations on the caller: `flow` is discharged by
 `Theorems.FlowOuter`, `jump` by `Theorems.JumpOuter`; neither is computed here.
@@ -38,11 +38,11 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 and a jump from the set lands in the target location's set. -/
 structure HybridAutomaton.IsInvariant (HA : HybridAutomaton S G L 𝕋 n) (R : L → S n) : Prop where
   flow {ℓ : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (h : (HA.loc ℓ).IsTrajectory τ x u w)
-    (h₀ : x 0 ∈ construct (R ℓ)) {t : ℝ} (ht : t ∈ Set.Icc 0 τ) :
-    x t ∈ construct (R ℓ)
+    (h₀ : x 0 ∈ toSet (R ℓ)) {t : ℝ} (ht : t ∈ Set.Icc 0 τ) :
+    x t ∈ toSet (R ℓ)
   jump {ℓ : L} {e : Transition G L 𝕋 n} (hmem : e ∈ (HA.loc ℓ).trans) {z : Vec ℝ n}
-    (hz : z ∈ construct (R ℓ)) (hguard : z ∈ construct e.guard) :
-    e.reset z ∈ construct (R e.target)
+    (hz : z ∈ toSet (R ℓ)) (hguard : z ∈ toSet e.guard) :
+    e.reset z ∈ toSet (R e.target)
 
 end CORALean
 

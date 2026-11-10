@@ -257,7 +257,7 @@ private theorem aux_hpMapCoraCex_quadMapMatZono {m ν : ℕ} (D : Fin m → Mat 
 
 /-- A point of a zonotope whose generators are `0` is its center. -/
 private theorem aux_hpMapCoraCex_mem {Z : Zonotope (Vec ℝ n)} (h : ∀ j, Z.G j = 0)
-    {x : Vec ℝ n} (hx : x ∈ Z.construct) : x = Z.c := by
+    {x : Vec ℝ n} (hx : x ∈ Z.toSet) : x = Z.c := by
   obtain ⟨β, -, rfl⟩ := hx
   simp [h]
 
@@ -265,9 +265,9 @@ private theorem aux_hpMapCoraCex_mem {Z : Zonotope (Vec ℝ n)} (h : ∀ j, Z.G 
 /-- The projection onto `cᵀx = d` of a zonotope whose generators are `0` is a point. -/
 private theorem aux_hpMapCoraCex_proj {R : Zonotope (Vec ℝ n)} (h : ∀ j, R.G j = 0) (c : Vec ℝ n)
     (d : ℝ) {x : Vec ℝ n}
-    (hx : x ∈ (ContSet.projectOnHyperplane (S := 𝒵) R c d).construct) : -- --- CONCL ---
+    (hx : x ∈ (ContSet.projectOnHyperplane (S := 𝒵) R c d).toSet) : -- --- CONCL ---
     x = (1 - vecMulVec c c) *ᵥ R.c + d • c := by -- --- PROOF ---
-  change x ∈ ((Zonotope.mtimes (1 - vecMulVec c c) R).plus (Zonotope.ofPoint (d • c))).construct
+  change x ∈ ((Zonotope.mtimes (1 - vecMulVec c c) R).plus (Zonotope.ofPoint (d • c))).toSet
     at hx
   have := aux_hpMapCoraCex_mem (aux_hpMapCoraCex_plus (aux_hpMapCoraCex_mtimes _ h)
     (aux_hpMapCoraCex_ofPoint _)) hx
@@ -291,11 +291,11 @@ private theorem aux_hpMapCoraCex_inputSet (inv : Zonotope (Vec ℝ 3)) :
 theorem Location.guardIntersectHyperplaneMapCoraErr_counterexample : -- --- CONCL ---
     ∃ (ℓ : Location 𝒵 𝒵 Unit ℝ 3) (nv : Vec ℝ 3) (d : ℝ) (R₀ : Zonotope (Vec ℝ 3))
       (tmax τ t : ℝ) (x : ℝ → Vec ℝ 3) (u : ℝ → Vec ℝ ℓ.dynamics.m)
-      (w : ℝ → Vec ℝ ℓ.dynamics.r), ℓ.IsTrajectory τ x u w ∧ x 0 ∈ R₀.construct ∧
+      (w : ℝ → Vec ℝ ℓ.dynamics.r), ℓ.IsTrajectory τ x u w ∧ x 0 ∈ R₀.toSet ∧
       t ∈ Set.Icc 0 τ ∧ t ≤ tmax ∧ nv ⬝ᵥ x t = d ∧
       ∀ guardOrder zonotopeOrder : ℕ, ∃ Z,
         ℓ.guardIntersectHyperplaneMapCoraErr nv d R₀ tmax 3 guardOrder zonotopeOrder = some Z ∧
-        x t ∉ Z.construct := by -- --- PROOF ---
+        x t ∉ Z.toSet := by -- --- PROOF ---
   set x : ℝ → Vec ℝ 3 := fun t => ![t ^ 2 / 2, t, 1] with hx
   set inv : Zonotope (Vec ℝ 3) := ⟨2, ![1, 1, 1], ![![1, 0, 0], ![0, 1, 0]]⟩
   refine ⟨⟨inv, LinearSys.canonical aux_hpMapCoraCex_A, Zonotope.ofPoint 0, Zonotope.ofPoint 0,

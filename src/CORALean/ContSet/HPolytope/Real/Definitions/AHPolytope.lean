@@ -12,7 +12,7 @@ public import Mathlib.Data.Matrix.Mul
 zonotope (`P` the unit box), a projection, a Minkowski sum and a convex hull of
 H-polytopes are all cheap to write down and expensive to put back into halfspaces.
 A set, not a representation: `ConZonotope` is the representation, and
-`ConZonotope.eq_construct_iff_isAffineImage` says the two describe the same sets.
+`ConZonotope.eq_toSet_iff_isAffineImage` says the two describe the same sets.
 
 ## Inputs
 * `xbar` – mean of length `n`
@@ -49,7 +49,7 @@ variable {n m : ℕ}
 /-- `x̄ + X P`, `[1, Def. 2]`. -/
 def HPolytope.ahPolytope (xbar : Vec ℝ n) (X : Mat ℝ n m) (P : HPolytope (Vec ℝ m)) :
     Set (Vec ℝ n) :=
-  {x | ∃ p ∈ P.construct, x = xbar + X *ᵥ p}
+  {x | ∃ p ∈ P.toSet, x = xbar + X *ᵥ p}
 
 end CORALean.Real
 

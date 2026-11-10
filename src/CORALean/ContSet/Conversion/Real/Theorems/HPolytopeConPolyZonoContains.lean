@@ -35,9 +35,9 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.conPolyZono_contains (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
-    P.construct ⊆ (HPolytope.conPolyZono up lo).construct :=
+theorem HPolytope.conPolyZono_contains (up : ∀ j, SupportBound P.toSet (LinearMap.proj j))
+    (lo : ∀ j, SupportBound P.toSet (-LinearMap.proj j)) :
+    P.toSet ⊆ (HPolytope.conPolyZono up lo).toSet :=
   (HPolytope.conPolyZono_exact up lo).symm.subset
 
 end CORALean.Real

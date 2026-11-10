@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrLoop
 The soundness of lines 8-11 of [1, Alg. 1], which are lines 7-10 of [2, Alg. 1]: an error the
 loop reports was computed from an applied error that contains it. That is line 11's exit
 condition read as sets, and it is what makes line 12's `abstrSol` an over-approximation. One
-hypothesis, on the caller's check: `sub a b = true` implies `construct a ⊆ construct b`; nothing
+hypothesis, on the caller's check: `sub a b = true` implies `toSet a ⊆ toSet b`; nothing
 asks the converse, so a test that gives up early loses iterations and never reports a wrong
 error. The induction is on the loop's own fuel; nothing here needs the loop to terminate.
 
@@ -57,10 +57,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- [1, Alg. 1] lines 8-11: the reported error is `abstrErr` of an applied
 error that contains it. -/
 theorem abstrErrLoop_subset {sub : S n → S n → Bool}
-    (hsub : ∀ a b : S n, sub a b = true → construct a ⊆ construct b)
+    (hsub : ∀ a b : S n, sub a b = true → toSet a ⊆ toSet b)
     (enlarge Φ : S n → S n) : -- --- CONCL ---
     ∀ (fuel : ℕ) (Ψ Ψ' : S n), abstrErrLoop sub enlarge Φ Ψ fuel = some Ψ' →
-      ∃ Ψapp, Ψ' = Φ Ψapp ∧ construct Ψ' ⊆ construct Ψapp := by -- --- PROOF ---
+      ∃ Ψapp, Ψ' = Φ Ψapp ∧ toSet Ψ' ⊆ toSet Ψapp := by -- --- PROOF ---
   intro fuel
   induction fuel with
   | zero => intro Ψ Ψ' h; rw [abstrErrLoop] at h; exact absurd h (by simp)

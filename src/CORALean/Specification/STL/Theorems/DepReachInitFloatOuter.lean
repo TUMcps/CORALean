@@ -1,11 +1,11 @@
 module
 
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
 public import CORALean.Specification.STL.Operations.DepReachInitFloat
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.Specification.STL.Theorems.DepBoxFloatOuter
 
 @[expose] public section
@@ -57,10 +57,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The float `interval(Z)` holds every point of `Z`. -/
 private theorem STL.aux_subset_depBoxFloat (Z : Float.Zonotope (Vec 𝕋 n)) :
-    Z.construct ⊆ (STL.depBoxFloat Z).construct := fun x hx =>
+    Z.toSet ⊆ (STL.depBoxFloat Z).toSet := fun x hx =>
   STL.depBoxFloat_outer (Zr := Real.Zonotope.ofPoint x)
     (fun y hy => (Real.Zonotope.mem_ofPoint_iff x y).1 hy ▸ hx)
-    (Real.Zonotope.center_mem_construct (STL.depBox (Real.Zonotope.ofPoint x)))
+    (Real.Zonotope.center_mem_toSet (STL.depBox (Real.Zonotope.ofPoint x)))
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -68,21 +68,21 @@ private theorem STL.aux_subset_depBoxFloat (Z : Float.Zonotope (Vec 𝕋 n)) :
 /-- The float state at `t₀` encloses the real one, with the exact products as the set `C₀`. -/
 theorem STL.depReachInitFloat_outer {X₀r : Real.Zonotope (Vec ℝ n)} {X₀f : Float.Zonotope (Vec 𝕋 n)}
     {csR : STL.DepReachConsts n} {csF : STL.DepReachConstsFloat 𝕋 n}
-    (hX : X₀r.construct ⊆ X₀f.construct) (hcs : csF.Encloses csR) : -- --- CONCL ---
+    (hX : X₀r.toSet ⊆ X₀f.toSet) (hcs : csF.Encloses csR) : -- --- CONCL ---
     (STL.depReachInitFloat X₀f csF).Encloses (STL.depReachInit X₀r csR)
-      {y | ∃ M ∈ csR.F.construct, ∃ x ∈ X₀r.construct, ∃ M' ∈ csR.G.construct,
+      {y | ∃ M ∈ csR.F.toSet, ∃ x ∈ X₀r.toSet, ∃ M' ∈ csR.G.toSet,
         y = M *ᵥ x + M' *ᵥ csR.ũ} := by -- --- PROOF ---
   obtain ⟨hu, -, -, hF, hG, -⟩ := hcs
   have hzero : toRealVec (fun _ : Fin n => (zero : 𝕋)) = 0 := funext fun i => toReal_zero
   refine ⟨hX, ?_, ?_, ?_⟩
   · intro x hx
     have hx : x = 0 := (Real.Zonotope.mem_ofPoint_iff _ x).1 hx
-    show x ∈ (Float.Zonotope.point (fun _ : Fin n => (zero : 𝕋))).construct
-    rw [Float.Zonotope.construct_point, Set.mem_singleton_iff, hx, hzero]
+    show x ∈ (Float.Zonotope.point (fun _ : Fin n => (zero : 𝕋))).toSet
+    rw [Float.Zonotope.toSet_point, Set.mem_singleton_iff, hx, hzero]
   · intro x hx
     have hx : x = 0 := (Real.Zonotope.mem_ofPoint_iff _ x).1 hx
-    show x ∈ (Float.Zonotope.point (fun _ : Fin n => (zero : 𝕋))).construct
-    rw [Float.Zonotope.construct_point, Set.mem_singleton_iff, hx, hzero]
+    show x ∈ (Float.Zonotope.point (fun _ : Fin n => (zero : 𝕋))).toSet
+    rw [Float.Zonotope.toSet_point, Set.mem_singleton_iff, hx, hzero]
   · rintro _ ⟨M, hM, x, hx, M', hM', rfl⟩
     refine STL.aux_subset_depBoxFloat _ (Float.Zonotope.plus_outer _ _
       (Set.add_mem_add ?_ ?_))

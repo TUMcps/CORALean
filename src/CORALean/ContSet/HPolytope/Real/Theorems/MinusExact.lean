@@ -38,7 +38,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.minus_exact (P : HPolytope α) (v : α) :
-    (· - v) '' P.construct = (P.minus v).construct := by
+    (· - v) '' P.toSet = (P.minus v).toSet := by
   have h := HPolytope.translate_exact (-v) P
   simp only [sub_eq_add_neg, add_comm _ (-v)]
   exact h

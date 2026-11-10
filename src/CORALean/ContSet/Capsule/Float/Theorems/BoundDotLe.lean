@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem Capsule.boundDot_le (C : Capsule 𝕋 n) {f : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hf : ∀ x : Vec ℝ n, f x = ∑ i, toReal (a i) * x i) (s : 𝕋)
     (hs : toReal (sqSumUp fun i => absolute (a i)) ≤ toReal (mulDown s s)) :
-    ∀ x ∈ C.construct, f x ≤ toReal (C.boundDot a hf s hs).val :=
+    ∀ x ∈ C.toSet, f x ≤ toReal (C.boundDot a hf s hs).val :=
   (C.boundDot a hf s hs).le
 
 end CORALean.Float

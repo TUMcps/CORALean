@@ -67,10 +67,10 @@ theorem STL.depReachFloat_point_outer (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) {Δt
     (hε' : toReal (MatExp.normUpperBound (Interval.smul Δt Δt (Interval.point A))) /
       ((η : ℝ) + 2) ≤ 1 / 2) {X₀r : Real.Zonotope (Vec ℝ n)} {X₀f : Float.Zonotope (Vec 𝕋 n)}
     {Ur : Real.Zonotope (Vec ℝ m)} {Uf : Float.Zonotope (Vec 𝕋 m)} (hc : Ur.c = toRealVec Uf.c)
-    (hU : Ur.construct ⊆ Uf.construct) (hX : X₀r.construct ⊆ X₀f.construct)
+    (hU : Ur.toSet ⊆ Uf.toSet) (hX : X₀r.toSet ⊆ X₀f.toSet)
     (i : ℕ) : -- --- CONCL ---
-    (STL.depReach (toRealMat A) (toRealMat B) X₀r Ur (toReal Δt) κ i).1.construct ⊆
-      (STL.depReachFloat A B X₀f Uf Δt κ η i).1.construct := by -- --- PROOF ---
+    (STL.depReach (toRealMat A) (toRealMat B) X₀r Ur (toReal Δt) κ i).1.toSet ⊆
+      (STL.depReachFloat A B X₀f Uf Δt κ η i).1.toSet := by -- --- PROOF ---
   exact STL.depReachPointFloat_outer
     (STL.depReachAtFloat_outer A Δt hε' hX (STL.depReachConstsFloat_outer A B hr κ hε hc hU) i)
 

@@ -83,19 +83,19 @@ theorem LinParamSys.IsConstTrajectory.initReachInputDependence_outer {sys : LinP
     {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A.interval).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
-    x r ∈ construct (sys.initReachInputDependence r (m + 2) Rinit Uc UG).1 ∧
-      x t ∈ construct (sys.initReachInputDependence r (m + 2) Rinit Uc UG).2 := by -- --- PROOF ---
+    x r ∈ toSet (sys.initReachInputDependence r (m + 2) Rinit Uc UG).1 ∧
+      x t ∈ toSet (sys.initReachInputDependence r (m + 2) Rinit Uc UG).2 := by -- --- PROOF ---
   -- the combined input `B u + c` is in `B_c Uconst ⊕ c` plus the deviation `B_Δ Uconst`
   obtain ⟨β, hβ, hBβ⟩ := traj.paramB
   set Uconst : Zonotope (Vec ℝ sys.m) := ⟨sys.A.h, Uc, UG⟩ with hUconst
   set BΔ : Zonotope (Mat ℝ n sys.m) := ⟨sys.B.h, 0, sys.B.G⟩ with hBΔ
-  have hu0 : Uc + ∑ i, p i • UG i ∈ construct Uconst := ⟨p, hp, rfl⟩
+  have hu0 : Uc + ∑ i, p i • UG i ∈ toSet Uconst := ⟨p, hp, rfl⟩
   -- the run's `B` deviates from the center by a member of `B_Δ`
-  have hD : B - sys.B.c ∈ construct BΔ := ⟨β, hβ, by
+  have hD : B - sys.B.c ∈ toSet BΔ := ⟨β, hβ, by
     show B - sys.B.c = 0 + ∑ j, β j • sys.B.G j
     rw [hBβ]; abel⟩
   have hwmem : (B - sys.B.c) *ᵥ (Uc + ∑ i, p i • UG i)
-      ∈ construct (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) BΔ Uconst) :=
+      ∈ toSet (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) BΔ Uconst) :=
     Mtimes.mtimes_outer (𝕄 := 𝕄𝒵) (S := 𝒵) BΔ Uconst
       (Set.mem_iUnion₂.mpr ⟨_, hD, _, hu0, rfl⟩)
   -- the combined input, split into the shared-parameter part and the deviation
@@ -112,7 +112,7 @@ theorem LinParamSys.IsConstTrajectory.initReachInputDependence_outer {sys : LinP
     rw [hv s hs]
     exact Plus.plus_outer _ _ (Set.add_mem_add ⟨p, hp, rfl⟩ hwmem)
   have trajL := trajC.toLinearSys
-  have hU := CompactSet.isBounded_construct ((⟨sys.A.h, sys.B.c *ᵥ Uc + sys.c,
+  have hU := CompactSet.isBounded_toSet ((⟨sys.A.h, sys.B.c *ᵥ Uc + sys.c,
     fun i => sys.B.c *ᵥ UG i⟩ : Zonotope (Vec ℝ n))
       ⊞ Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) BΔ Uconst)
   -- each time as variation of constants, the input the constant `B u(p) + c`

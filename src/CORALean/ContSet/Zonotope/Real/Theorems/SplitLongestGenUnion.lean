@@ -37,8 +37,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.splitLongestGen_union (Z : Zonotope (Vec ℝ n)) :
-    Z.splitLongestGen.1.construct ∪ Z.splitLongestGen.2.construct =
-      Z.construct := by
+    Z.splitLongestGen.1.toSet ∪ Z.splitLongestGen.2.toSet =
+      Z.toSet := by
   unfold Zonotope.splitLongestGen
   cases Z.longestGen with
   | some j => exact Z.split_union j

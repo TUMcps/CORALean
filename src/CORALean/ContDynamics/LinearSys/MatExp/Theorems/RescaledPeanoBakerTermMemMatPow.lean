@@ -53,9 +53,9 @@ variable {n : ℕ}
 `r • B`. -/
 theorem MatExp.rescaled_peanoBakerTerm_mem_matPow {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
-    (hAB : ∀ s, A s ∈ B.construct) (k : ℕ) {t r : ℝ} (ht : 0 < t) (hr : 0 ≤ r) : -- --- CONCL ---
+    (hAB : ∀ s, A s ∈ B.toSet) (k : ℕ) {t r : ℝ} (ht : 0 < t) (hr : 0 ≤ r) : -- --- CONCL ---
     (Nat.factorial k : ℝ) • ((r / t) ^ k • MatExp.peanoBakerTerm A k t)
-      ∈ (Interval.matPow (Interval.smul r B) k).construct := by -- --- PROOF ---
+      ∈ (Interval.matPow (Interval.smul r B) k).toSet := by -- --- PROOF ---
   have hm := Interval.mem_mat_iff.mp (MatExp.peanoBakerTerm_mem_matPow hA hAB k ht.le)
   have hst := Interval.matPow_smul B ht.le k
   have hsr := Interval.matPow_smul B hr k

@@ -73,7 +73,7 @@ noncomputable def NonlinDASys.reachAdaptiveLoop (sys : NonlinDASys n p m)
           sys.reachAdaptiveLoop T U tFinal tol η fuelErr fuelHalf fuel     -- while
             { t := st.t + pass.Δt, R := Rnext.1, h := T.nextH h pass,      -- t, R = Rnext.tp
               adm_x := pass.err.errorInt_x, adm_y := pass.err.errorInt_y }
-            (Runion ∪ Rnext.2.1.construct)                                  -- timeInt.set
+            (Runion ∪ Rnext.2.1.toSet)                                  -- timeInt.set
         else none
     else some (Runion, st.t)
 

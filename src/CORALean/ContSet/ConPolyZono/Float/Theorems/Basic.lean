@@ -40,21 +40,21 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
 
 /-- Costs nothing at all: `compactFactors_nominal` already is the exact equality. -/
 theorem ConPolyZono.compactFactors_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    cPZ.construct ⊆ cPZ.compactFactors.construct :=
+    cPZ.toSet ⊆ cPZ.compactFactors.toSet :=
   InflatedContSet.mono_subset (ConPolyZono.compactFactors_nominal cPZ).subset (subset_refl _)
 
 
--- ============================  `ConPolyZono.isCompact_construct`  ============================= --
+-- ==============================  `ConPolyZono.isCompact_toSet`  =============================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- What this denotes is a nominal set plus an error box, so `InflatedContSet.isCompact_construct`
+/-- What this denotes is a nominal set plus an error box, so `InflatedContSet.isCompact_toSet`
 carries compactness across: the nominal set is compact as over ℝ, the box by
 Heine–Borel. -/
-theorem ConPolyZono.isCompact_construct (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : IsCompact cPZ.construct :=
-  InflatedContSet.isCompact_construct cPZ
+theorem ConPolyZono.isCompact_toSet (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : IsCompact cPZ.toSet :=
+  InflatedContSet.isCompact_toSet cPZ
 
 
 -- ==================================  `ConPolyZono.mtimes_h`  ================================== --

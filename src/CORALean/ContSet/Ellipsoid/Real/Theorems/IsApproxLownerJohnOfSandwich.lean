@@ -55,8 +55,8 @@ variable {n : ℕ}
 /-- [1, Eq. 5]: the sandwich puts `E_j/(1+ε)` among the `ε`-approximate Löwner-John ellipses. -/
 theorem Ellipsoid.isApproxLownerJohn_of_sandwich {ε : ℝ} (hε : -1 < ε) (C : Set (Vec ℝ n))
     (E : Ellipsoid n)
-    (hin : (Ellipsoid.ofShape ((1 / ((n : ℝ) ^ 2 * (1 + ε))) • E.Q) E.q).construct ⊆ C)
-    (hout : C ⊆ E.construct) : -- --- CONCL ---
+    (hin : (Ellipsoid.ofShape ((1 / ((n : ℝ) ^ 2 * (1 + ε))) • E.Q) E.q).toSet ⊆ C)
+    (hout : C ⊆ E.toSet) : -- --- CONCL ---
     Ellipsoid.IsApproxLownerJohn ε C (Ellipsoid.ofShape ((1 / (1 + ε)) • E.Q) E.q)
     := by -- --- PROOF ---
   have hε' : 0 < 1 + ε := by linarith

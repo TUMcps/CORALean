@@ -50,10 +50,10 @@ open Float FloatOps SoundFloatArithmetic
 /-- The box of a bounded STL interval is the closure of its times. -/
 theorem STLInterval.set_interval (l u : ℝ) (lc rc : Bool) (b c z) : -- --- CONCL ---
     (fun x : Vec ℝ 1 => x 0) ''
-      (STLInterval.nonempty l (u : WithTop ℝ) lc rc b c z).interval.construct =
+      (STLInterval.nonempty l (u : WithTop ℝ) lc rc b c z).interval.toSet =
         closure (STLInterval.nonempty l (u : WithTop ℝ) lc rc b c z).set := by -- --- PROOF ---
   have himg : (fun x : Vec ℝ 1 => x 0) ''
-      (STLInterval.nonempty l (u : WithTop ℝ) lc rc b c z).interval.construct = Set.Icc l u :=
+      (STLInterval.nonempty l (u : WithTop ℝ) lc rc b c z).interval.toSet = Set.Icc l u :=
     (Real.Interval.stlInterval_exact _).symm
   rw [himg]
   show _ = closure (rawSet (toReal l : ℝ) (toEReal (u : WithTop ℝ)) lc rc)

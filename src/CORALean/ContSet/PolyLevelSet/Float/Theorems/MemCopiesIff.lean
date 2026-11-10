@@ -43,8 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A point of the copies is a point of `P`, box and rows, in every block of its variables. -/
 theorem PolyLevelSet.mem_copies_iff (P : PolyLevelSet 𝕋 n) (a : ℕ)
     (x : Vec ℝ (a * n)) : -- --- CONCL ---
-    x ∈ (P.copies a).construct
-      ↔ ∀ j, (fun k => x (finProdFinEquiv (j, k))) ∈ P.construct := by -- --- PROOF ---
+    x ∈ (P.copies a).toSet
+      ↔ ∀ j, (fun k => x (finProdFinEquiv (j, k))) ∈ P.toSet := by -- --- PROOF ---
   have hrow : ∀ j i, ((P.copies a).op (finProdFinEquiv (j, i))).IsMetWithin
       ((P.copies a).nominalCore.eval x (finProdFinEquiv (j, i)))
       |toReal ((P.copies a).b_error (finProdFinEquiv (j, i)))|

@@ -9,7 +9,7 @@ public import Mathlib.Analysis.Normed.Affine.AddTorsorBases
 # A spectrahedral shadow is full-dimensional iff its affine hull is everything
 
 A shadow is convex, so it has an interior point exactly when its affine hull is the whole space
-(`ContSet.IsFullDim` read at `construct`).
+(`ContSet.IsFullDim` read at `toSet`).
 
 ## Inputs
 * `S` – spectrahedral shadow
@@ -36,8 +36,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.isFullDim_iff_affineSpan (S : SpectraShadow (Vec ℝ n)) :
-    (interior S.construct).Nonempty ↔ affineSpan ℝ S.construct = ⊤ :=
-  (SpectraShadow.convex_construct S).interior_nonempty_iff_affineSpan_eq_top
+    (interior S.toSet).Nonempty ↔ affineSpan ℝ S.toSet = ⊤ :=
+  (SpectraShadow.convex_toSet S).interior_nonempty_iff_affineSpan_eq_top
 
 end CORALean.Real
 

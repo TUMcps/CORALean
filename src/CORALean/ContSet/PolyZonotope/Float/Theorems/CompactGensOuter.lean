@@ -109,7 +109,7 @@ private theorem PolyZonotope.aux_compactGap (pZ : PolyZonotope (Vec 𝕋 n)) (i 
 private theorem PolyZonotope.aux_compactGens_nominal
     (pZ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
     nominalSet pZ ⊆ nominalSet pZ.compactGens
-      + (PolyZonotope.generatorError (PolyZonotope.compactGap pZ)).construct := by -- --- PROOF ---
+      + (PolyZonotope.generatorError (PolyZonotope.compactGap pZ)).toSet := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, β, ha, hβ, hxi⟩ := PolyZonotope.mem_nominalSet_iff.mp hx
   -- the monomials on the kept exponents, and the exact fibre sums of coordinate `i`
@@ -148,7 +148,7 @@ private theorem PolyZonotope.aux_compactGens_nominal
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.compactGens_outer (pZ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    pZ.construct ⊆ pZ.compactGens.construct := by -- --- PROOF ---
+    pZ.toSet ⊆ pZ.compactGens.toSet := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', d, hd, hsum⟩ := PolyZonotope.aux_compactGens_nominal pZ hz
   refine ⟨z', hz', e + d, Interval.plus_outer _ _ ⟨e, he, d, hd, rfl⟩, ?_⟩

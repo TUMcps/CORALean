@@ -45,7 +45,7 @@ holds every point the narrower one's enclosure reaches. -/
 theorem Interval.polyZonotope_mono {I₁ I₂ : Interval (Vec ℝ n)}
     (hord : ∀ i, I₁.inf i ≤ I₁.sup i) (hlo : ∀ i, I₂.inf i ≤ I₁.inf i)
     (hhi : ∀ i, I₁.sup i ≤ I₂.sup i) : -- --- CONCL ---
-    I₁.polyZonotope.construct ⊆ I₂.polyZonotope.construct := by -- --- PROOF ---
+    I₁.polyZonotope.toSet ⊆ I₂.polyZonotope.toSet := by -- --- PROOF ---
   simp only [Interval.polyZonotope, ← Zonotope.polyZonotope_exact]
   rintro _ ⟨β, hβ, rfl⟩
   refine I₂.zonotope_contains ?_

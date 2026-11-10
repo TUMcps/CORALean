@@ -50,8 +50,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The dependent part's bound `u` over the feasible factors, plus the independent block's own
 extent in the direction `c`. -/
 noncomputable def ConPolyZono.supportBound (cPZ : ConPolyZono α) (c : α →ₗ[ℝ] ℝ)
-    (u : SupportBound (cPZ.polyZonotope.point '' cPZ.cons.construct) c) :
-    SupportBound cPZ.construct c where
+    (u : SupportBound (cPZ.polyZonotope.point '' cPZ.cons.toSet) c) :
+    SupportBound cPZ.toSet c where
   val := u.val + ∑ j, |c (cPZ.GI j)|
   le := by
     rintro _ ⟨a, β, hβ, hs, rfl⟩

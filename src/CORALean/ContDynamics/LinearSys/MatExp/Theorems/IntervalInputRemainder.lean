@@ -58,9 +58,9 @@ variable {n : ℕ}
 remainder of the whole box. -/
 theorem MatExp.intervalInputRemainder_contains (A : Interval (Mat ℝ n n)) {r : ℝ}
     (hr : 0 < r) (η : ℕ) (hε : ‖(Interval.smul r A).absMax‖ / ((η : ℝ) + 2) < 1)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) : -- --- CONCL ---
-    (MatExp.inputRemainder M r η).construct
-      ⊆ (MatExp.intervalInputRemainder A r η).construct := by -- --- PROOF ---
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) : -- --- CONCL ---
+    (MatExp.inputRemainder M r η).toSet
+      ⊆ (MatExp.intervalInputRemainder A r η).toSet := by -- --- PROOF ---
   intro N hN
   have hnorm : ‖r • M‖ ≤ ‖(Interval.smul r A).absMax‖ :=
     Interval.norm_le_absMax (Interval.smul_outer r A hM)

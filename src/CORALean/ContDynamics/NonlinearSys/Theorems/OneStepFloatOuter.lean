@@ -57,7 +57,7 @@ omit [ToRat 𝕋] in
 /-- The generator-free zonotope at `v` holds `v`. -/
 private theorem aux_oneStep_mem_pt {k : ℕ} (v : Vec 𝕋 k) : -- --- CONCL ---
     toRealVec v ∈ (⟨0, v, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
-      Zonotope (Vec 𝕋 k)).construct := by -- --- PROOF ---
+      Zonotope (Vec 𝕋 k)).toSet := by -- --- PROOF ---
   refine ⟨toRealVec v, Zonotope.mem_nominalSet_iff.mpr ⟨fun j => j.elim0, fun j => j.elim0,
     fun i => by simp [toRealVec]⟩, 0, fun i => ?_, add_zero _⟩
   show toReal (zero : 𝕋) ≤ (0 : Vec ℝ k) i ∧ (0 : Vec ℝ k) i ≤ toReal (zero : 𝕋)
@@ -75,11 +75,11 @@ theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n
       0 < toReal options.Δt ∧ ∀ {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
       {y : ℝ → Vec ℝ sys.q},
         sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
-          R.construct U x u y →
+          R.toSet U x u y →
         (∀ t ∈ Set.Icc 0 (toReal options.Δt),
-          sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs) ∈ V.construct) →
-        (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
-          x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
+          sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs) ∈ V.toSet) →
+        (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.toSet) ∧
+          x (toReal options.Δt) ∈ Rt.toSet := by -- --- PROOF ---
   intro Rτ Rt (hstep : NonlinearSys.oneStepFloat A xs V R options = some (Rτ, Rt))
   -- every `←` of the step succeeded: name what each returned
   unfold NonlinearSys.oneStepFloat at hstep
@@ -97,9 +97,9 @@ theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n
   have ltraj : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).IsCanonicalTrajectory (S := 𝒮)
       (Set.Icc 0 (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)))
       (R ⊞ (⟨0, (-xs), fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
-        Zonotope (Vec 𝕋 n))).construct
+        Zonotope (Vec 𝕋 n))).toSet
       ((fun u => Scalar.toRealMat (LinearSys.canonicalFloat A).B *ᵥ u +
-        Scalar.toRealVec (LinearSys.canonicalFloat A).c) '' V.construct)
+        Scalar.toRealVec (LinearSys.canonicalFloat A).c) '' V.toSet)
       (fun t => x t - toRealVec xs)
       (fun t => sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs)) := by
     rw [hTf]
@@ -117,8 +117,8 @@ theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n
   obtain ⟨N, -, hlen, hout⟩ := LinearSys.reachFloatInput_outer _ _ _ hS
   obtain ⟨N', -, -, hout'⟩ := LinearSys.reachFloatInput_timePoint_outer _ _ _ hS
   -- adding `x✱` back
-  have hback : ∀ {Z : Zonotope (Vec 𝕋 n)} {y : Vec ℝ n}, y - toRealVec xs ∈ Z.construct →
-      y ∈ construct (Z ⊞ (⟨0, xs, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
+  have hback : ∀ {Z : Zonotope (Vec 𝕋 n)} {y : Vec ℝ n}, y - toRealVec xs ∈ Z.toSet →
+      y ∈ toSet (Z ⊞ (⟨0, xs, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
         Zonotope (Vec 𝕋 n))) := fun {Z y} hy => by
     have := Plus.plus_outer Z (⟨0, xs, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
       Zonotope (Vec 𝕋 n)) (Set.add_mem_add hy (aux_oneStep_mem_pt xs))

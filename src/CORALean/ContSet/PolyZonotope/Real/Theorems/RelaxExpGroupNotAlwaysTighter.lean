@@ -142,7 +142,7 @@ private theorem aux_notTighter_chainGI1 : -- --- CONCL ---
 /-- Everything the pairwise route encloses is the center: both its generators
 are zero. -/
 private theorem aux_notTighter_chain_eq_zero {x : ℝ}
-    (hx : x ∈ aux_notTighter_chain.construct) : -- --- CONCL ---
+    (hx : x ∈ aux_notTighter_chain.toSet) : -- --- CONCL ---
     x = 0 := by -- --- PROOF ---
   obtain ⟨a, β, -, -, rfl⟩ := hx
   show (0 : ℝ) + (∑ i : Fin 1, PolyZonotope.monomial aux_notTighter_chain.E a i
@@ -154,7 +154,7 @@ private theorem aux_notTighter_chain_eq_zero {x : ℝ}
 /-- The group route's independent part is a genuine interval: the two widths
 are paid on the two generators separately. -/
 private theorem aux_notTighter_mem_group {s u : ℝ} (hs : |s| ≤ 1) (hu : |u| ≤ 1) : -- --- CONCL ---
-    2 * s + -2 * u ∈ aux_notTighter_group.construct := by -- --- PROOF ---
+    2 * s + -2 * u ∈ aux_notTighter_group.toSet := by -- --- PROOF ---
   refine ⟨fun _ => 0, fun j => if (j : ℕ) = 0 then s else u, fun _ => by norm_num, ?_, ?_⟩
   · -- both coefficients are the ones handed in, whichever index asks
     intro j
@@ -175,8 +175,8 @@ merges reaching the same generator enclose strictly less. -/
 theorem PolyZonotope.relaxExpGroup_not_always_tighter : -- --- CONCL ---
     ∃ (pZ : PolyZonotope ℝ) (part : Split (Fin pZ.h) into (Fin 1) ⊕ (Fin 2))
       (part₂ : Split (Fin (pZ.relaxExpMulti part).h) into (Fin 0) ⊕ (Fin 2)),
-      ((pZ.relaxExpMulti part).relaxExpMulti part₂).construct
-        ⊂ (pZ.relaxExpGroup part 0).construct := by -- --- PROOF ---
+      ((pZ.relaxExpMulti part).relaxExpMulti part₂).toSet
+        ⊂ (pZ.relaxExpGroup part 0).toSet := by -- --- PROOF ---
   refine ⟨aux_notTighter_pZ, aux_notTighter_part, aux_notTighter_part₂, ?_, ?_⟩
   · -- the pairwise route encloses the center alone, which the group route holds too
     intro x hx

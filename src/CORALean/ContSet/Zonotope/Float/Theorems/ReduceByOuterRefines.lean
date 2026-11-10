@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 
 @[expose] public section
@@ -59,9 +59,9 @@ private theorem Zonotope.aux_sum_univ_reduceBy {Z : Zonotope (Vec 𝕋 n)}
 
 theorem Zonotope.reduceBy_outer_refines (Z : Zonotope (Vec 𝕋 n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : -- --- CONCL ---
-    ((nominal Z).reduceBy part).construct ⊆ nominalSet (Z.reduceBy part) := by -- --- PROOF ---
+    ((nominal Z).reduceBy part).toSet ⊆ nominalSet (Z.reduceBy part) := by -- --- PROOF ---
   intro x hxmem
-  obtain ⟨β, hβ, hx⟩ := Real.Zonotope.mem_construct_iff.mp hxmem
+  obtain ⟨β, hβ, hx⟩ := Real.Zonotope.mem_toSet_iff.mp hxmem
   have hnonneg : ∀ i, (0:ℝ) ≤ ∑ l, |toReal (Z.G (part.right l) i)| :=
     fun i => Finset.sum_nonneg fun l _ => abs_nonneg _
   have hle : ∀ i, (∑ l, |toReal (Z.G (part.right l) i)|)

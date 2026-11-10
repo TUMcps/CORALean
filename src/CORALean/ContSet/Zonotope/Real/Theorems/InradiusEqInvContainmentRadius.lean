@@ -49,7 +49,7 @@ variable {n : ℕ}
 theorem Zonotope.inradius_eq_inv_containmentRadius (Z : Zonotope (Vec ℝ n))
     (hG : Function.Surjective Z.genMap) (hn : 0 < n) : -- --- CONCL ---
     ∃ d, IsGreatest ((fun p => Z.zonotopeNorm (p - Z.c)) '' Metric.closedBall Z.c 1) d ∧
-      IsGreatest {r | 0 ≤ r ∧ Metric.closedBall Z.c r ⊆ Z.construct}
+      IsGreatest {r | 0 ≤ r ∧ Metric.closedBall Z.c r ⊆ Z.toSet}
         (1 / d) := by -- --- PROOF ---
   have hball := (Z.zonotopeNorm_ball_eq hG).1
   obtain ⟨K, hK⟩ := exists_lipschitzWith_coeffNorm Z.genMap hG
@@ -72,7 +72,7 @@ theorem Zonotope.inradius_eq_inv_containmentRadius (Z : Zonotope (Vec ℝ n))
     exact lt_of_lt_of_le (lt_of_le_of_ne (coeffNorm_nonneg _ _)
       (Ne.symm ((coeffNorm_eq_zero_iff _ (hG e)).not.mpr he))) hle
   -- the cube of radius `r` fits iff `r d ≤ 1`
-  have key : ∀ r : ℝ, 0 ≤ r → (Metric.closedBall Z.c r ⊆ Z.construct ↔ r * d ≤ 1) := by
+  have key : ∀ r : ℝ, 0 ≤ r → (Metric.closedBall Z.c r ⊆ Z.toSet ↔ r * d ≤ 1) := by
     intro r hr
     rw [← hball]
     constructor

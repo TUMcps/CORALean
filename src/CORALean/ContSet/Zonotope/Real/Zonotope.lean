@@ -50,7 +50,7 @@ structure Zonotope (α : Type) where
 
 /-- The set a zonotope denotes: the center plus the generators weighted by coefficients in `[-1,
 1]`. -/
-def Zonotope.construct (Z : Zonotope α) : Set α :=
+def Zonotope.toSet (Z : Zonotope α) : Set α :=
   {x | ∃ β : Fin Z.h → ℝ, (∀ j, |β j| ≤ 1) ∧ x = Z.c + ∑ j, β j • Z.G j}
 
 end CORALean.Real

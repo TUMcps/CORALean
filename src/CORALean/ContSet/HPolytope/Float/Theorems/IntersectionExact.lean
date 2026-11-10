@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsConstructIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsToSetIff
 public import CORALean.ContSet.HPolytope.Float.Theorems.ErrFreeOfIsErrFree
 
 @[expose] public section
@@ -10,7 +10,7 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.ErrFreeOfIsErrFree
 # `HPolytope.intersection` is exact when both boxes are certified empty of error
 
 Then the rows are only stacked, and a point satisfies the stacked rows exactly when it satisfies
-each half (`HPolytope.mem_stackRows_construct_iff`), each polytope denoting its nominal part.
+each half (`HPolytope.mem_stackRows_toSet_iff`), each polytope denoting its nominal part.
 
 ## Inputs
 * `P₁` – H-polytope
@@ -43,9 +43,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem HPolytope.intersection_exact {P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)}
     (h₁ : P₁.isErrFree = true) (h₂ : P₂.isErrFree = true) :
-    P₁.construct ∩ P₂.construct = (P₁.intersection P₂).construct := by
+    P₁.toSet ∩ P₂.toSet = (P₁.intersection P₂).toSet := by
   rw [HPolytope.intersection, if_pos (by rw [h₁, h₂]; rfl)]
-  exact Set.ext fun _ => (HPolytope.mem_stackRows_construct_iff
+  exact Set.ext fun _ => (HPolytope.mem_stackRows_toSet_iff
     (HPolytope.errFree_of_isErrFree h₁) (HPolytope.errFree_of_isErrFree h₂)).symm
 
 end CORALean.Float

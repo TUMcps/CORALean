@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.IsFullDim
 public import Mathlib.Analysis.Normed.Module.FiniteDimension
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 @[expose] public section
@@ -54,7 +54,7 @@ private theorem HPolytope.aux_continuous_row {m : ℕ} (M : Mat ℝ m n) (i : Fi
 
 theorem HPolytope.isFullDim_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {x₀ : Vec 𝕋 n}
     (h : P.isFullDim x₀ = true) : -- --- CONCL ---
-    (interior P.construct).Nonempty := by -- --- PROOF ---
+    (interior P.toSet).Nonempty := by -- --- PROOF ---
   simp only [HPolytope.isFullDim, Bool.and_eq_true, beq_iff_eq, List.all_eq_true,
     List.mem_finRange, forall_const] at h
   obtain ⟨⟨hme, h1⟩, hbox⟩ := h
@@ -66,15 +66,15 @@ theorem HPolytope.isFullDim_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {x₀ : Vec 
     exact isOpen_iInter_of_finite fun i =>
       isOpen_lt (HPolytope.aux_continuous_row _ i) continuous_const
   -- which lies inside the nominal part, there being no equality row
-  have hsub : U ⊆ P.nominal.construct := fun x hx =>
+  have hsub : U ⊆ P.nominal.toSet := fun x hx =>
     HPolytope.mem_nominal_iff.mpr
       ⟨fun i => (hx i).le.trans (le_add_of_nonneg_right (abs_nonneg _)), fun i => (hme ▸ i).elim0⟩
   -- shifted by a point of the error box, it lies inside the polytope
-  have he : (fun j => toReal (P.I_error.inf j)) ∈ P.I_error.construct :=
+  have he : (fun j => toReal (P.I_error.inf j)) ∈ P.I_error.toSet :=
     Interval.mem_vec_iff.mpr fun j => ⟨le_rfl, toReal_le_of_le (hbox j)⟩
   have hV : IsOpen ((fun u => u + fun j => toReal (P.I_error.inf j)) '' U) :=
     (Homeomorph.addRight (fun j => toReal (P.I_error.inf j))).isOpenMap U hU
-  have hsub' : (fun u => u + fun j => toReal (P.I_error.inf j)) '' U ⊆ P.construct := by
+  have hsub' : (fun u => u + fun j => toReal (P.I_error.inf j)) '' U ⊆ P.toSet := by
     rintro _ ⟨u, hu, rfl⟩
     exact ⟨u, hsub hu, _, he, rfl⟩
   have hx₀ : toRealVec x₀ + (fun j => toReal (P.I_error.inf j))

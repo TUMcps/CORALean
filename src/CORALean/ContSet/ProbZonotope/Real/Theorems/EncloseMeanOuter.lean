@@ -50,29 +50,29 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.enclose_mean_outer (P : ProbZonotope n) (Ar : Mat ℝ n n) (m : ℝ)
-    (Rtrans : Vec ℝ n) {μ : Vec ℝ n} (hμ : μ ∈ P.Z.construct) {a : ℝ}
+    (Rtrans : Vec ℝ n) {μ : Vec ℝ n} (hμ : μ ∈ P.Z.toSet) {a : ℝ}
     (ha : a ∈ Set.Icc (0 : ℝ) 1) : -- --- CONCL ---
     a • μ + (1 - a) • (NormedSpace.exp Ar *ᵥ μ + Rtrans)
-      ∈ (P.enclose Ar m Rtrans).Z.construct := by -- --- PROOF ---
+      ∈ (P.enclose Ar m Rtrans).Z.toSet := by -- --- PROOF ---
   -- `μ` is a mean of the confidence zonotope, at the zero confidence coefficients
-  have h0 : (0 : Vec ℝ n) ∈ (confidenceZonotope (CFC.sqrt P.cov) m).construct :=
+  have h0 : (0 : Vec ℝ n) ∈ (confidenceZonotope (CFC.sqrt P.cov) m).toSet :=
     ⟨0, fun _ => by simp, by simp [confidenceZonotope]⟩
-  have hμ' : μ ∈ (P.zonotope m).construct := by
+  have hμ' : μ ∈ (P.zonotope m).toSet := by
     rw [ProbZonotope.zonotope, ← Zonotope.plus_exact]
     exact ⟨μ, hμ, 0, h0, add_zero μ⟩
   -- the point `Rtrans` is the zonotope with no generators
-  have hpt : Rtrans ∈ (⟨0, Rtrans, Fin.elim0⟩ : Zonotope (Vec ℝ n)).construct :=
+  have hpt : Rtrans ∈ (⟨0, Rtrans, Fin.elim0⟩ : Zonotope (Vec ℝ n)).toSet :=
     ⟨Fin.elim0, fun i => i.elim0, by simp⟩
   have hz : (NormedSpace.exp Ar - 1) *ᵥ μ + Rtrans ∈ (Zonotope.plus
       (Zonotope.mtimes (NormedSpace.exp Ar - 1) (P.zonotope m))
-      ⟨0, Rtrans, Fin.elim0⟩).construct := by
+      ⟨0, Rtrans, Fin.elim0⟩).toSet := by
     rw [← Zonotope.plus_exact]
     exact Set.add_mem_add (by rw [← Zonotope.mtimes_exact]; exact ⟨μ, hμ', rfl⟩) hpt
   -- the segment from `0` to `Zaux` lies in `deltaZ`
   have hd := Zonotope.linComb_outer (⟨0, 0, Fin.elim0⟩ : Zonotope (Vec ℝ n)) _
     ⟨0, ⟨Fin.elim0, fun i => i.elim0, by simp⟩, _, hz, a, ha, rfl⟩
   have hsum : μ + (a • (0 : Vec ℝ n) + (1 - a) • ((NormedSpace.exp Ar - 1) *ᵥ μ + Rtrans))
-      ∈ (P.enclose Ar m Rtrans).Z.construct := by
+      ∈ (P.enclose Ar m Rtrans).Z.toSet := by
     rw [ProbZonotope.enclose]
     simp only []
     rw [← Zonotope.plus_exact]

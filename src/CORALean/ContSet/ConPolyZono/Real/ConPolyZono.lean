@@ -68,8 +68,8 @@ structure ConPolyZono (α : Type) where
 /-- The set a constrained polynomial zonotope denotes: the points `c` plus the monomial-weighted
 dependent generators and the independent generators with coefficients in `[-1, 1]`, over the factors
 satisfying the constraint. -/
-def ConPolyZono.construct (cPZ : ConPolyZono α) : Set α :=
-  {x | ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ, (∀ j, |β j| ≤ 1) ∧ a ∈ cPZ.cons.construct
+def ConPolyZono.toSet (cPZ : ConPolyZono α) : Set α :=
+  {x | ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ, (∀ j, |β j| ≤ 1) ∧ a ∈ cPZ.cons.toSet
         ∧ x = cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i + ∑ j, β j • cPZ.GI j}
 
 end CORALean.Real

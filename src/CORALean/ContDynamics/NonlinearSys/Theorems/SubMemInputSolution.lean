@@ -89,23 +89,23 @@ theorem NonlinearSys.IsTrajectory.sub_mem_inputSolution [Mtimes ℐ S] {sys : No
     {R₀ L : S n} {U : S m} {x : ℝ → Vec ℝ n} {u₀ : Vec ℝ m} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {Δt : ℝ}
     {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (Set.Icc 0 Δt) R₀ U x (fun _ => u₀) y)
-    (cert : IsAbstractionError sys.f A B xs us R (construct U) L)
+    (cert : IsAbstractionError sys.f A B xs us R (toSet U) L)
     (hR : ∀ t ∈ Set.Icc 0 Δt, x t ∈ R) (hΔt : 0 < Δt) (η : ℕ)
     (hε : ‖Δt • A‖ / ((η : ℝ) + 2) < 1)
-    (hconv : Convex ℝ (construct L)) (hclosed : IsClosed (construct L))
-    (hbdd : Bornology.IsBounded (construct L))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder A Δt η) L)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
+    (hconv : Convex ℝ (toSet L)) (hclosed : IsClosed (toSet L))
+    (hbdd : Bornology.IsBounded (toSet L))
+    (hRconv : Convex ℝ (toSet (Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder A Δt η) L)))
+    (hRclosed : IsClosed (toSet (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder A Δt η) L)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
+    (hRbdd : Bornology.IsBounded (toSet (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder A Δt η) L))) : -- --- CONCL ---
     x Δt - (exp (Δt • A) *ᵥ x 0 + ∫ s in (0:ℝ)..Δt, exp ((Δt - s) • A) *ᵥ
       (sys.f xs us - A *ᵥ xs + B *ᵥ (u₀ - us))) ∈
-        construct ((NonlinearSys.linearize A).inputSolution Δt η L) := by -- --- PROOF ---
+        toSet ((NonlinearSys.linearize A).inputSolution Δt η L) := by -- --- PROOF ---
   set w : Vec ℝ n := sys.f xs us - A *ᵥ xs + B *ᵥ (u₀ - us)
-  have hu₀ : u₀ ∈ construct U := traj.input 0 ⟨le_rfl, hΔt.le⟩
+  have hu₀ : u₀ ∈ toSet U := traj.input 0 ⟨le_rfl, hΔt.le⟩
   set l : ℝ → Vec ℝ n := fun t => sys.f (x t) u₀ - A *ᵥ x t - w
-  have hl : ∀ t ∈ Set.Icc 0 Δt, l t ∈ construct L := fun t ht => by
+  have hl : ∀ t ∈ Set.Icc 0 Δt, l t ∈ toSet L := fun t ht => by
     have h := cert.encloses (x t) (hR t ht) u₀ hu₀
     have e : l t = sys.f (x t) u₀ - (sys.f xs us + A *ᵥ (x t - xs) + B *ᵥ (u₀ - us)) := by
       simp only [l, w, Matrix.mulVec_sub]
@@ -113,9 +113,9 @@ theorem NonlinearSys.IsTrajectory.sub_mem_inputSolution [Mtimes ℐ S] {sys : No
     rw [e]
     exact h
   -- the run as a linear one, with input `ũ(t) = f(x(t), u₀) - A x(t) = w + l(t)` in `{w} + L`
-  have hVb : Bornology.IsBounded (({w} : Set (Vec ℝ n)) + construct L) :=
+  have hVb : Bornology.IsBounded (({w} : Set (Vec ℝ n)) + toSet L) :=
     Bornology.isBounded_singleton.add hbdd
-  have lin := traj.linearize_window (t₀ := 0) (A := A) (V := {w} + construct L) hΔt.le
+  have lin := traj.linearize_window (t₀ := 0) (A := A) (V := {w} + toSet L) hΔt.le
     (by rw [zero_add]) fun t ht => by
       rw [zero_add] at ht
       exact Set.mem_add.mpr ⟨w, rfl, l t, hl t ht, by simp only [l]; abel⟩
@@ -140,7 +140,7 @@ theorem NonlinearSys.IsTrajectory.sub_mem_inputSolution [Mtimes ℐ S] {sys : No
     abel
   -- what `l` contributes is in `inputSolution`
   have hmem : (∫ s in (0:ℝ)..Δt, exp ((Δt - s) • A) *ᵥ l s) ∈
-      construct ((NonlinearSys.linearize A).inputSolution Δt η L) :=
+      toSet ((NonlinearSys.linearize A).inputSolution Δt η L) :=
     LinearSys.inputSolution_outer (NonlinearSys.linearize A) hΔt η hε hconv hclosed
       hbdd hRconv hRclosed hRbdd (u := l)
       (fun τ hτ => hl (Δt - τ) ⟨by linarith [hτ.2], by linarith [hτ.1]⟩)

@@ -40,11 +40,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.enclose₂_outer (orOA : Ellipsoid 𝕋 n → Ellipsoid 𝕋 n → Ellipsoid 𝕋 n)
-    (hor : ∀ E₁ E₂, E₁.construct ∪ E₂.construct ⊆ (orOA E₁ E₂).construct)
+    (hor : ∀ E₁ E₂, E₁.toSet ∪ E₂.toSet ⊆ (orOA E₁ E₂).toSet)
     (E E2 : Ellipsoid 𝕋 n) :
-    Set.linComb E.construct E2.construct ⊆ (Ellipsoid.enclose₂ orOA E E2).construct := by
+    Set.linComb E.toSet E2.toSet ⊆ (Ellipsoid.enclose₂ orOA E E2).toSet := by
   rintro _ ⟨y₁, h₁, y₂, h₂, l, ⟨hl0, hl1⟩, rfl⟩
-  exact (Ellipsoid.convex_construct _) (hor _ _ (Or.inl h₁)) (hor _ _ (Or.inr h₂)) hl0
+  exact (Ellipsoid.convex_toSet _) (hor _ _ (Or.inl h₁)) (hor _ _ (Or.inr h₂)) hl0
     (by linarith) (by ring)
 
 end CORALean.Float

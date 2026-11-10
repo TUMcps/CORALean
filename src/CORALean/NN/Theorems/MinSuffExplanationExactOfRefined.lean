@@ -62,8 +62,8 @@ under the containment [1, Prop. 2] states. -/
 theorem NeuralNetwork.minSuffExplanationExact_of_refined (nnAbs : NeuralNetwork S n m)
     (f : Vec ℝ n → Vec ℝ m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
-    (hrefine : ∀ E' : Finset (Fin n), f '' construct (ofInterval (explainBox x ε E') : S n)
-      ⊆ construct (nnAbs.enclose (ofInterval (explainBox x ε E'))))
+    (hrefine : ∀ E' : Finset (Fin n), f '' toSet (ofInterval (explainBox x ε E') : S n)
+      ⊆ toSet (nnAbs.enclose (ofInterval (explainBox x ε E'))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l)
     (hmin : IsMinSuffExplanationExact S f x ε E l) :
     nnAbs.IsMinSuffExplanationAbstract x ε E l :=

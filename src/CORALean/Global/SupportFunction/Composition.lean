@@ -15,7 +15,7 @@ taken of. So one bound per operand is enough, and a representation that can answ
 for itself can be enclosed after any of these without knowing how the result is described. What does
 *not* travel is an enclosure, and `exists_outer_without_supportBound` is that: every operation class
 guarantees exactly `exact ⊆ computed`, and a bound crosses an inclusion the other way, so a bound on
-`construct (plus s t)` never comes from bounds on the operands. `SupportWitness` travels the same
+`toSet (plus s t)` never comes from bounds on the operands. `SupportWitness` travels the same
 way, `union`'s `max` now chosen by a case split.
 
 ## Inputs

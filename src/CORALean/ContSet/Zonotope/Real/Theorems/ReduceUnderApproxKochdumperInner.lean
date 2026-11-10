@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxKochdumper
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulGensInner
-public import CORALean.ContSet.Zonotope.Real.Theorems.SortByLengthConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.SortByLengthToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumAbsLeOneOfSubsingletonSupport
 
 @[expose] public section
@@ -48,8 +48,8 @@ variable {n : ℕ}
 /-- [1, Sec. III-C]: the reduced zonotope is inside `Z`. -/
 theorem Zonotope.reduceUnderApproxKochdumper_inner [NeZero n] (Z : Zonotope (Vec ℝ n)) (r : ℕ)
     (hr : r ≤ Z.h) : -- --- CONCL ---
-    (Z.reduceUnderApproxKochdumper r hr).construct ⊆ Z.construct := by -- --- PROOF ---
-  rw [← Zonotope.sortByLength_construct Z]
+    (Z.reduceUnderApproxKochdumper r hr).toSet ⊆ Z.toSet := by -- --- PROOF ---
+  rw [← Zonotope.sortByLength_toSet Z]
   -- the result is `G_s T` for `T` with a `1` per kept generator and a sign per summed one
   let T : Mat ℝ Z.sortByLength.h r := fun j i =>
     if (i : ℕ) + 1 < r then (if (j : ℕ) = i then 1 else 0)

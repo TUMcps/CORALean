@@ -50,8 +50,8 @@ variable {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.mtimesMatZonotope_outer (M : Zonotope (Mat ℝ m n)) (Z : Zonotope (Vec ℝ n)) :
-    (⋃ A ∈ M.construct, (A *ᵥ ·) '' Z.construct)
-      ⊆ (Zonotope.mtimesMatZonotope M Z).construct := by
+    (⋃ A ∈ M.toSet, (A *ᵥ ·) '' Z.toSet)
+      ⊆ (Zonotope.mtimesMatZonotope M Z).toSet := by
   -- `h` first, with no expected type: against the goal directly its module instances time out
   have h := Zonotope.bilin_outer (Matrix.mulVecBilin ℝ ℝ) M Z
   simp only [← Matrix.mulVecBilin_apply ℝ ℝ]

@@ -74,22 +74,22 @@ theorem LinProbSys.IsTrajectory.zonotope_prob {sys : LinProbSys n m} {Ω : Type*
     {u : ℝ → Vec ℝ m} {x : ℝ → Ω → Vec ℝ n} (traj : sys.IsTrajectory P T X₀ U x₀ u x) {t : ℝ}
     (ht : t ∈ T) (h0 : 0 ≤ t) {Z : Zonotope (Vec ℝ n)}
     (hZ : exp (t • sys.A) *ᵥ x₀ + ∫ s in (0:ℝ)..t, exp ((t - s) • sys.A) *ᵥ (sys.B *ᵥ u s)
-      ∈ Z.construct) {γ : ℝ} (hγ : 0 < γ) : -- --- CONCL ---
+      ∈ Z.toSet) {γ : ℝ} (hγ : 0 < γ) : -- --- CONCL ---
     (gaussianReal 0 1 (Set.Icc (-γ) γ)) ^ n
-      ≤ P {ω | x t ω ∈ ((⟨Z, noiseCovariance sys.A sys.C t⟩ : ProbZonotope n).zonotope γ).construct}
+      ≤ P {ω | x t ω ∈ ((⟨Z, noiseCovariance sys.A sys.C t⟩ : ProbZonotope n).zonotope γ).toSet}
       := by -- --- PROOF ---
   set Q : ProbZonotope n := ⟨Z, noiseCovariance sys.A sys.C t⟩
   have hmeas := (traj.aemeasurable ht h0).1
   -- the confidence set, carried to Euclidean space, is closed
-  have hS : MeasurableSet (toLp 2 '' (Q.zonotope γ).construct) := by
-    rw [show toLp 2 '' (Q.zonotope γ).construct = ofLp ⁻¹' (Q.zonotope γ).construct from by
+  have hS : MeasurableSet (toLp 2 '' (Q.zonotope γ).toSet) := by
+    rw [show toLp 2 '' (Q.zonotope γ).toSet = ofLp ⁻¹' (Q.zonotope γ).toSet from by
       ext y; constructor
       · rintro ⟨z, hz, rfl⟩; exact hz
       · intro hy; exact ⟨ofLp y, hy, rfl⟩]
-    exact (Zonotope.isClosed_construct _).measurableSet.preimage (by fun_prop)
+    exact (Zonotope.isClosed_toSet _).measurableSet.preimage (by fun_prop)
   -- the event is the preimage of that set under `toLp (x t)`
-  have hev : {ω | x t ω ∈ (Q.zonotope γ).construct}
-      = (fun ω => toLp 2 (x t ω)) ⁻¹' (toLp 2 '' (Q.zonotope γ).construct) := by
+  have hev : {ω | x t ω ∈ (Q.zonotope γ).toSet}
+      = (fun ω => toLp 2 (x t ω)) ⁻¹' (toLp 2 '' (Q.zonotope γ).toSet) := by
     ext ω
     simp
   rw [hev, ← Measure.map_apply_of_aemeasurable hmeas hS]

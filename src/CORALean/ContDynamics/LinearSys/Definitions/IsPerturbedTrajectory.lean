@@ -45,8 +45,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 measurable on `T`, with the flow stated as an integral equation. -/
 structure LinearSys.IsPerturbedTrajectory (sys : LinearSys 𝕋 n) (T : Set ℝ) (U W : S n)
     (x u w : ℝ → Vec ℝ n) : Prop where
-  input (t : ℝ) (ht : t ∈ T) : u t ∈ construct U
-  disturbance (t : ℝ) (ht : t ∈ T) : w t ∈ construct W
+  input (t : ℝ) (ht : t ∈ T) : u t ∈ toSet U
+  disturbance (t : ℝ) (ht : t ∈ T) : w t ∈ toSet W
   measInput : AEStronglyMeasurable u (volume.restrict T)
   measDisturbance : AEStronglyMeasurable w (volume.restrict T)
   cont : ContinuousOn x T

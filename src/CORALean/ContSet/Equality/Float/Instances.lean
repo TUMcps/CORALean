@@ -35,33 +35,33 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 instance : Isequal (Interval (Vec 𝕋 n)) where
   isequal I J := Interval.isequal I J = true
-  isequal_construct _ _ h := Interval.isequal_sound h
+  isequal_toSet _ _ h := Interval.isequal_sound h
 
 -- zonotope, capsule, ellipsoid
 instance : Isequal (Zonotope (Vec 𝕋 n)) where
   isequal Z S := Zonotope.isequal Z S = true
-  isequal_construct _ _ h := Zonotope.isequal_sound h
+  isequal_toSet _ _ h := Zonotope.isequal_sound h
 
 instance : Isequal (Capsule 𝕋 n) where
   isequal C S := Capsule.isequal C S = true
-  isequal_construct _ _ h := Capsule.isequal_sound h
+  isequal_toSet _ _ h := Capsule.isequal_sound h
 
 instance : Isequal (Ellipsoid 𝕋 n) where
   isequal E S := Ellipsoid.isequal E S = true
-  isequal_construct _ _ h := Ellipsoid.isequal_sound h
+  isequal_toSet _ _ h := Ellipsoid.isequal_sound h
 
 -- the constrained and polynomial representations
 instance : Isequal (ConZonotope 𝕋 (Vec 𝕋 n)) where
   isequal Z S := ConZonotope.isequal Z S = true
-  isequal_construct _ _ h := ConZonotope.isequal_sound h
+  isequal_toSet _ _ h := ConZonotope.isequal_sound h
 
 instance : Isequal (PolyZonotope (Vec 𝕋 n)) where
   isequal Z S := PolyZonotope.isequal Z S = true
-  isequal_construct _ _ h := PolyZonotope.isequal_sound h
+  isequal_toSet _ _ h := PolyZonotope.isequal_sound h
 
 instance : Isequal (ConPolyZono 𝕋 (Vec 𝕋 n)) where
   isequal Z S := ConPolyZono.isequal Z S = true
-  isequal_construct _ _ h := ConPolyZono.isequal_sound h
+  isequal_toSet _ _ h := ConPolyZono.isequal_sound h
 
 -- and decided by the `Bool` itself
 instance : DecidableRel (Isequal.isequal (S := Interval (Vec 𝕋 n))) :=

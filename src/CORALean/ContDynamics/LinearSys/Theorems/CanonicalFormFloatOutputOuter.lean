@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.CanonicalFormFloat
 public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterSubMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
@@ -59,22 +59,22 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem LinearSys.canonicalFormFloat_output_outer (sys : LinearSys 𝕋 n)
     (U : Zonotope (Vec 𝕋 sys.m)) (uVec : Vec 𝕋 sys.m) (W : Zonotope (Vec 𝕋 sys.r))
     (V : Zonotope (Vec 𝕋 sys.s)) (vVec : Vec 𝕋 sys.s)
-    {u : Vec ℝ sys.m} (hu : u ∈ U.construct) {v : Vec ℝ sys.s}
-    (hv : v ∈ V.construct) : -- --- CONCL ---
+    {u : Vec ℝ sys.m} (hu : u ∈ U.toSet) {v : Vec ℝ sys.s}
+    (hv : v ∈ V.toSet) : -- --- CONCL ---
     let G := sys.canonicalFormFloat U uVec W V vVec
     toRealMat sys.D *ᵥ (toRealVec uVec + u) + toRealVec sys.k + toRealMat sys.F *ᵥ
         (toRealVec vVec + v) ∈
-      G.2.2.2.1.construct + G.2.2.2.2.construct := by -- --- PROOF ---
+      G.2.2.2.1.toSet + G.2.2.2.2.toSet := by -- --- PROOF ---
   intro G
   -- the part that moves, `D u + F (v - centerV)`, and the offset
   refine ⟨toRealMat sys.D *ᵥ u + toRealMat sys.F *ᵥ (v - toRealVec V.c), ?_,
     toRealMat sys.D *ᵥ toRealVec uVec + toRealVec sys.k +
       toRealMat sys.F *ᵥ (toRealVec V.c + toRealVec vVec), ?_, ?_⟩
   · -- `u` is `(u - centerU) + centerU`, in `U₀ ⊕ {centerU}`, and `v - centerV` is in `V₀`
-    have hu' : u ∈ (Zonotope.plus U.recenter (Zonotope.point U.c)).construct := by
+    have hu' : u ∈ (Zonotope.plus U.recenter (Zonotope.point U.c)).toSet := by
       have := Zonotope.plus_outer _ _ (Set.add_mem_add (Zonotope.sub_center_mem_recenter hu)
-        (show toRealVec U.c ∈ (Zonotope.point U.c).construct by
-          rw [Zonotope.construct_point]; exact rfl))
+        (show toRealVec U.c ∈ (Zonotope.point U.c).toSet by
+          rw [Zonotope.toSet_point]; exact rfl))
       rwa [sub_add_cancel] at this
     exact Zonotope.plus_outer _ _ (Set.add_mem_add
       (Zonotope.mtimes_outer sys.D _ ⟨_, hu', rfl⟩)

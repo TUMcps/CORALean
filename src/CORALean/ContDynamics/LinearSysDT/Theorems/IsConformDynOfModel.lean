@@ -88,9 +88,9 @@ private theorem aux_conform_delta (sys : LinearSysDT ℝ n) (x0 : Vec ℝ n) (u 
 
 /-- The disturbances' part of the deviation set holds the sum, one member of `W` per term. -/
 private theorem aux_conform_add (sys : LinearSysDT ℝ n) (W : S sys.r)
-    (ω : ℕ → Vec ℝ sys.r) (hω : ∀ j, ω j ∈ construct W) (k : ℕ) : -- --- CONCL ---
+    (ω : ℕ → Vec ℝ sys.r) (hω : ∀ j, ω j ∈ toSet W) (k : ℕ) : -- --- CONCL ---
     ∑ j ∈ Finset.range k, (sys.C * sys.A ^ j) *ᵥ (sys.E *ᵥ ω j)
-      ∈ construct (sys.conformAdd W k) := by -- --- PROOF ---
+      ∈ toSet (sys.conformAdd W k) := by -- --- PROOF ---
   induction k with
   | zero =>
     -- the empty sum is `0`, the point
@@ -100,9 +100,9 @@ private theorem aux_conform_add (sys : LinearSysDT ℝ n) (W : S sys.r)
     rw [Finset.sum_range_succ]
     refine Plus.plus_outer _ _ (Set.add_mem_add ih ?_)
     refine Mtimes.mtimes_outer _ _ ?_
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     refine Set.mem_image_of_mem _ (Mtimes.mtimes_outer _ _ ?_)
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Set.mem_image_of_mem _ (hω k)
 
 
@@ -112,7 +112,7 @@ theorem LinearSysDT.isConformDyn_of_model (sys : LinearSysDT ℝ n) (X₀ : S n)
     (V : S sys.s) (K : ℕ) (x0 : ι → Vec ℝ n) (u : ι → ℕ → Vec ℝ sys.m)
     (y : ι → ℕ → Vec ℝ sys.q)
     (hmodel : ∀ i, ∃ (x : ℕ → Vec ℝ n) (w : ℕ → Vec ℝ sys.r) (v : ℕ → Vec ℝ sys.s),
-      x 0 - x0 i ∈ construct X₀ ∧ (∀ j, w j ∈ construct W) ∧ (∀ j, v j ∈ construct V) ∧
+      x 0 - x0 i ∈ toSet X₀ ∧ (∀ j, w j ∈ toSet W) ∧ (∀ j, v j ∈ toSet V) ∧
       (∀ j, x (j + 1) = sys.A *ᵥ x j + sys.B *ᵥ u i j + sys.c + sys.E *ᵥ w j) ∧
       ∀ j, y i j = sys.C *ᵥ x j + sys.D *ᵥ u i j + sys.k + sys.F *ᵥ v j) : -- --- CONCL ---
     sys.IsConformDyn X₀ W V K x0 u y := by -- --- PROOF ---
@@ -149,10 +149,10 @@ theorem LinearSysDT.isConformDyn_of_model (sys : LinearSysDT ℝ n) (X₀ : S n)
   rw [hre]
   refine Plus.plus_outer _ _ (Set.add_mem_add (Plus.plus_outer _ _ (Set.add_mem_add ?_ hadd)) ?_)
   · refine Mtimes.mtimes_outer _ _ ?_
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Set.mem_image_of_mem _ hx0
   · refine Mtimes.mtimes_outer _ _ ?_
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Set.mem_image_of_mem _ (hv k)
 
 end CORALean

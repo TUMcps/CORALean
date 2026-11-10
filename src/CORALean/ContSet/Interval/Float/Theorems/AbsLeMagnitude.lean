@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.abs_le_magnitude {I : Interval (Vec 𝕋 n)} {b : Vec ℝ n} (hb : b ∈ I.construct)
+theorem Interval.abs_le_magnitude {I : Interval (Vec 𝕋 n)} {b : Vec ℝ n} (hb : b ∈ I.toSet)
     (i : Fin n) : |b i| ≤ toReal (I.magnitude i) := by
   have h : toReal (I.inf i) ≤ b i ∧ b i ≤ toReal (I.sup i) := hb i
   rw [Interval.magnitude, toReal_maximum, toReal_absolute, toReal_absolute]

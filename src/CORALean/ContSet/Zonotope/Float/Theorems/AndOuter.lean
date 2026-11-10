@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.and_outer (Z S : Zonotope (Vec 𝕋 n)) :
-    Z.construct ∩ S.construct ⊆ (Z.and_ S).construct :=
+    Z.toSet ∩ S.toSet ⊆ (Z.and_ S).toSet :=
   fun _ hx => ConZonotope.zonotope_contains _
     (ConZonotope.intersection_outer _ _
       ⟨Z.conZonotope_contains hx.1, S.conZonotope_contains hx.2⟩)

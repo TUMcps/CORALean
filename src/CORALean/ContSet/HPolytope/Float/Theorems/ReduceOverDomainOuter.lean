@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 public import CORALean.ContSet.HPolytope.Float.Theorems.AbsorbRoundingOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainRows
 public import CORALean.ContSet.HPolytope.Float.Theorems.RowScalePos
@@ -47,10 +47,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem HPolytope.reduceOverDomain_outer (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n)) (hm : 0 < P.m)
     (dom : Interval (Vec 𝕋 n)) : -- --- CONCL ---
-    P.construct ∩ dom.construct ⊆
-      (P.reduceOverDomain p dom true).construct ∩ dom.construct := by -- --- PROOF ---
+    P.toSet ∩ dom.toSet ⊆
+      (P.reduceOverDomain p dom true).toSet ∩ dom.toSet := by -- --- PROOF ---
   rintro x ⟨hP, hd⟩
-  refine ⟨(HPolytope.mem_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mpr
+  refine ⟨(HPolytope.mem_toSet_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mpr
     ⟨fun _ => ?_, fun r => r.elim0⟩, hd⟩
   -- the rows are read with the error box folded in
   have hQ := HPolytope.absorbRounding_outer P hP
@@ -69,7 +69,7 @@ theorem HPolytope.reduceOverDomain_outer (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋
     Interval.mulLo (subDown (Ainf j) (Ared j)) (subUp (Asup j) (Ared j)) (dom.inf j) (dom.sup j)
   obtain ⟨hlo, -⟩ := HPolytope.reduceOverDomain_rows p Q dom hd i₀
   -- row `0`, scaled by its positive scale, and its right-hand side under the hull's top
-  have hrow := ((HPolytope.mem_construct_iff hQe).mp hQ).1 i₀
+  have hrow := ((HPolytope.mem_toSet_iff hQe).mp hQ).1 i₀
   have hS := HPolytope.rowScale_pos p Q i₀
   have hscaled := mul_le_mul_of_nonneg_left hrow hS.le
   have hb1 := mul_le_mulUp (Q.b i₀) (Q.rowScale p i₀)

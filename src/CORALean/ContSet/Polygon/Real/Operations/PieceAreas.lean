@@ -33,7 +33,7 @@ namespace CORALean.Real
 
 /-- The sum of the pieces' own areas. -/
 noncomputable def Polygon.pieceAreas (P : Polygon) : ENNReal :=
-  (P.sets.map fun p => MeasureTheory.volume (VPolytope.construct p)).sum
+  (P.sets.map fun p => MeasureTheory.volume (VPolytope.toSet p)).sum
 
 end CORALean.Real
 

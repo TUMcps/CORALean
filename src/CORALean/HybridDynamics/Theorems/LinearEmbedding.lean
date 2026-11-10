@@ -57,9 +57,9 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 initial point, its combined input `B u + c + E w` in any set that holds it. -/
 theorem Location.IsTrajectory.linearSys {ℓ : Location S G L 𝕋 n} {τ : ℝ} {x : ℝ → Vec ℝ n}
     {u : ℝ → Vec ℝ ℓ.dynamics.m} {w : ℝ → Vec ℝ ℓ.dynamics.r} (traj : ℓ.IsTrajectory τ x u w)
-    {R₀ U' : S n} (h₀ : x 0 ∈ construct R₀)
+    {R₀ U' : S n} (h₀ : x 0 ∈ toSet R₀)
     (hU' : ∀ t ∈ Set.Icc 0 τ, toRealMat ℓ.dynamics.B *ᵥ u t + toRealVec ℓ.dynamics.c +
-      toRealMat ℓ.dynamics.E *ᵥ w t ∈ construct U') :
+      toRealMat ℓ.dynamics.E *ᵥ w t ∈ toSet U') :
     ℓ.dynamics.IsCanonicalTrajectory (Set.Icc 0 τ) R₀ U' x
       (fun t => toRealMat ℓ.dynamics.B *ᵥ u t + toRealVec ℓ.dynamics.c +
         toRealMat ℓ.dynamics.E *ᵥ w t) where

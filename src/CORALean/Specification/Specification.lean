@@ -53,9 +53,9 @@ variable {ContSet α : Type} [CORALean.ContSet ContSet α]
 /-- Membership required of every point, or of none. -/
 def Specification.Holds (spec : Specification ContSet) (X : Set α) : Prop :=
   match spec.kind with
-  | .safeSet => X ⊆ construct spec.set
-  | .unsafeSet => Disjoint X (construct spec.set)
-  | .invariant => X ⊆ construct spec.set
+  | .safeSet => X ⊆ toSet spec.set
+  | .unsafeSet => Disjoint X (toSet spec.set)
+  | .invariant => X ⊆ toSet spec.set
 
 /-- The specification that every point lies in the set `s`. -/
 def Specification.safeSet (s : ContSet) : Specification ContSet := ⟨s, .safeSet⟩

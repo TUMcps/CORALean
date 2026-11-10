@@ -6,7 +6,7 @@ public import CORALean.ContSet.Polygon.Real.Theorems.LinCombOuter
 public import CORALean.ContSet.Polygon.Real.Theorems.MinusExact
 public import CORALean.ContSet.Polygon.Real.Theorems.PlusExact
 public import CORALean.ContSet.Polygon.Real.Theorems.Basic
-public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructPoint
+public import CORALean.ContSet.VPolytope.Real.Theorems.ToSetPoint
 public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 public import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
 public import Mathlib.Analysis.Convex.PathConnected
@@ -54,19 +54,19 @@ open Pointwise
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The region of a point is that point. -/
-private theorem Polygon.aux_construct_ofPoint (v : Vec ℝ 2) : -- --- CONCL ---
-    ContSet.construct (OfPoint.ofPoint v : Polygon) = {v} := by -- --- PROOF ---
+private theorem Polygon.aux_toSet_ofPoint (v : Vec ℝ 2) : -- --- CONCL ---
+    ContSet.toSet (OfPoint.ofPoint v : Polygon) = {v} := by -- --- PROOF ---
   ext x
-  show x ∈ SetUnion.construct _ ↔ _
-  simp only [SetUnion.construct, OfPoint.ofPoint, List.mem_singleton, Set.iUnion_iUnion_eq_left]
-  change x ∈ (VPolytope.point v).construct ↔ _
-  rw [VPolytope.construct_point]
+  show x ∈ SetUnion.toSet _ ↔ _
+  simp only [SetUnion.toSet, OfPoint.ofPoint, List.mem_singleton, Set.iUnion_iUnion_eq_left]
+  change x ∈ (VPolytope.point v).toSet ↔ _
+  rw [VPolytope.toSet_point]
 
 /-- A hull of two pieces lies in any convex set holding both. -/
 private theorem Polygon.aux_linComb_subset {p q : VPolytope (Vec ℝ 2)} {C : Set (Vec ℝ 2)}
-    (hC : Convex ℝ C) (hp : p.construct ⊆ C) (hq : q.construct ⊆ C) : -- --- CONCL ---
-    (p.linComb q).construct ⊆ C := by -- --- PROOF ---
-  rw [VPolytope.construct_eq_convexHull]
+    (hC : Convex ℝ C) (hp : p.toSet ⊆ C) (hq : q.toSet ⊆ C) : -- --- CONCL ---
+    (p.linComb q).toSet ⊆ C := by -- --- PROOF ---
+  rw [VPolytope.toSet_eq_convexHull]
   refine convexHull_min ?_ hC
   rintro _ ⟨i, rfl⟩
   refine Fin.addCases (fun j => ?_) (fun j => ?_) i
@@ -78,9 +78,9 @@ private theorem Polygon.aux_linComb_subset {p q : VPolytope (Vec ℝ 2)} {C : Se
     exact hq (VPolytope.vertex_mem q j)
 
 /-- The mirrored subtrahend about the center is the points `c - b`. -/
-private theorem Polygon.aux_construct_mirror (B : Polygon) (c : Vec ℝ 2) : -- --- CONCL ---
-    ContSet.construct (Polygon.times (-1) (B.minus c))
-      = (fun b => c - b) '' ContSet.construct B := by -- --- PROOF ---
+private theorem Polygon.aux_toSet_mirror (B : Polygon) (c : Vec ℝ 2) : -- --- CONCL ---
+    ContSet.toSet (Polygon.times (-1) (B.minus c))
+      = (fun b => c - b) '' ContSet.toSet B := by -- --- PROOF ---
   -- `times (-1)` negates and `minus c` subtracts `c`
   rw [← Polygon.times_exact, ← Polygon.minus_exact, Set.image_image]
   refine Set.image_congr fun b _ => ?_
@@ -96,31 +96,31 @@ private theorem Polygon.aux_convex_mirror {B : Set (Vec ℝ 2)} (hB : Convex ℝ
     _ = a • (c - b₁) + b • (c - b₂) := by module
 
 /-- The `linComb` of two shifts of the mirror sweeps the mirror along the segment. -/
-private theorem Polygon.aux_edge (B : Polygon) (c : Vec ℝ 2) (hB : Convex ℝ (ContSet.construct B))
+private theorem Polygon.aux_edge (B : Polygon) (c : Vec ℝ 2) (hB : Convex ℝ (ContSet.toSet B))
     (u v : Vec ℝ 2) : -- --- CONCL ---
-    ContSet.construct (Polygon.linComb
+    ContSet.toSet (Polygon.linComb
         (Polygon.plus (Polygon.times (-1) (B.minus c)) (OfPoint.ofPoint u))
         (Polygon.plus (Polygon.times (-1) (B.minus c)) (OfPoint.ofPoint v)))
-      = (fun b => c - b) '' ContSet.construct B + segment ℝ u v := by -- --- PROOF ---
+      = (fun b => c - b) '' ContSet.toSet B + segment ℝ u v := by -- --- PROOF ---
   have hK := Polygon.aux_convex_mirror hB c
   -- each shift is the mirror plus a point
-  have hshift : ∀ w : Vec ℝ 2, ContSet.construct
+  have hshift : ∀ w : Vec ℝ 2, ContSet.toSet
       (Polygon.plus (Polygon.times (-1) (B.minus c)) (OfPoint.ofPoint w))
-        = (fun b => c - b) '' ContSet.construct B + {w} := fun w => by
-    rw [← Polygon.plus_exact, Polygon.aux_construct_mirror, Polygon.aux_construct_ofPoint]
+        = (fun b => c - b) '' ContSet.toSet B + {w} := fun w => by
+    rw [← Polygon.plus_exact, Polygon.aux_toSet_mirror, Polygon.aux_toSet_ofPoint]
   apply Set.Subset.antisymm
   · -- the sweep lies in the convex set `mirror + segment`
     intro z hz
-    obtain ⟨t, ht, hzt⟩ := SetUnion.mem_construct.mp hz
+    obtain ⟨t, ht, hzt⟩ := SetUnion.mem_toSet.mp hz
     obtain ⟨⟨p, q⟩, hpq, rfl⟩ := List.mem_map.mp ht
     obtain ⟨hp, hq⟩ := List.mem_product.mp hpq
     refine Polygon.aux_linComb_subset (hK.add (convex_segment u v)) ?_ ?_ hzt
     · intro y hy
-      have hy' := SetUnion.mem_construct.mpr ⟨p, hp, hy⟩
+      have hy' := SetUnion.mem_toSet.mpr ⟨p, hp, hy⟩
       rw [hshift] at hy'
       exact Set.add_subset_add_left (Set.singleton_subset_iff.mpr (left_mem_segment ℝ u v)) hy'
     · intro y hy
-      have hy' := SetUnion.mem_construct.mpr ⟨q, hq, hy⟩
+      have hy' := SetUnion.mem_toSet.mpr ⟨q, hq, hy⟩
       rw [hshift] at hy'
       exact Set.add_subset_add_left (Set.singleton_subset_iff.mpr (right_mem_segment ℝ u v)) hy'
   · -- a mirror point plus a point of the segment is a segment between two shifts
@@ -205,33 +205,33 @@ private theorem Polygon.aux_minkDiff_outer {A B : Set (Vec ℝ 2)} {c : Vec ℝ 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.minkDiff_sandwich (A B : Polygon) (V : List (Vec ℝ 2))
-    (hB : Convex ℝ (ContSet.construct B)) (hc : Polygon.center B ∈ ContSet.construct B)
+    (hB : Convex ℝ (ContSet.toSet B)) (hc : Polygon.center B ∈ ContSet.toSet B)
     (hV : (⋃ e ∈ V.zip (V.rotate 1), segment ℝ e.1 e.2)
-      = frontier ((fun x => x - Polygon.center B) '' ContSet.construct A)) : -- --- CONCL ---
-    interior {x | ∀ b ∈ ContSet.construct B, x + b ∈ ContSet.construct A}
+      = frontier ((fun x => x - Polygon.center B) '' ContSet.toSet A)) : -- --- CONCL ---
+    interior {x | ∀ b ∈ ContSet.toSet B, x + b ∈ ContSet.toSet A}
         ⊆ Polygon.minkDiff A B V ∧
       Polygon.minkDiff A B V ⊆
-        {x | ∀ b ∈ ContSet.construct B, x + b ∈ ContSet.construct A} := by -- --- PROOF ---
+        {x | ∀ b ∈ ContSet.toSet B, x + b ∈ ContSet.toSet A} := by -- --- PROOF ---
   -- the swept region is the mirror plus the boundary
-  have hdiff : ContSet.construct (⟨(V.zip (V.rotate 1)).flatMap fun e => (Polygon.linComb
+  have hdiff : ContSet.toSet (⟨(V.zip (V.rotate 1)).flatMap fun e => (Polygon.linComb
       (Polygon.plus (Polygon.times (-1) (B.minus (Polygon.center B))) (OfPoint.ofPoint e.1))
       (Polygon.plus (Polygon.times (-1) (B.minus (Polygon.center B))) (OfPoint.ofPoint e.2))).sets⟩
         : Polygon)
-      = (fun b => Polygon.center B - b) '' ContSet.construct B
-        + frontier ((fun x => x - Polygon.center B) '' ContSet.construct A) := by
+      = (fun b => Polygon.center B - b) '' ContSet.toSet B
+        + frontier ((fun x => x - Polygon.center B) '' ContSet.toSet A) := by
     rw [← hV]
     ext z
     constructor
     · -- a point of the union lies in one edge's sweep, mirror plus segment
       intro hz
-      obtain ⟨t, ht, hzt⟩ := SetUnion.mem_construct.mp hz
+      obtain ⟨t, ht, hzt⟩ := SetUnion.mem_toSet.mp hz
       obtain ⟨e, he, hte⟩ := List.mem_flatMap.mp ht
       have h := Polygon.aux_edge B (Polygon.center B) hB e.1 e.2
-      have hzE : z ∈ ContSet.construct (Polygon.linComb
+      have hzE : z ∈ ContSet.toSet (Polygon.linComb
           (Polygon.plus (Polygon.times (-1) (B.minus (Polygon.center B))) (OfPoint.ofPoint e.1))
           (Polygon.plus (Polygon.times (-1) (B.minus (Polygon.center B)))
             (OfPoint.ofPoint e.2))) :=
-        SetUnion.mem_construct.mpr ⟨t, hte, hzt⟩
+        SetUnion.mem_toSet.mpr ⟨t, hte, hzt⟩
       rw [h] at hzE
       obtain ⟨k, hk, s, hs, rfl⟩ := hzE
       exact ⟨k, hk, s, Set.mem_biUnion he hs, rfl⟩
@@ -239,16 +239,16 @@ theorem Polygon.minkDiff_sandwich (A B : Polygon) (V : List (Vec ℝ 2))
       rintro ⟨k, hk, s, hs, rfl⟩
       obtain ⟨e, he, hse⟩ := Set.mem_iUnion₂.mp hs
       have h := Polygon.aux_edge B (Polygon.center B) hB e.1 e.2
-      have hzE : k + s ∈ (fun b => Polygon.center B - b) '' ContSet.construct B
+      have hzE : k + s ∈ (fun b => Polygon.center B - b) '' ContSet.toSet B
           + segment ℝ e.1 e.2 := ⟨k, hk, s, hse, rfl⟩
       rw [← h] at hzE
-      obtain ⟨t, ht, hzt⟩ := SetUnion.mem_construct.mp hzE
-      exact SetUnion.mem_construct.mpr ⟨t, List.mem_flatMap.mpr ⟨e, he, ht⟩, hzt⟩
+      obtain ⟨t, ht, hzt⟩ := SetUnion.mem_toSet.mp hzE
+      exact SetUnion.mem_toSet.mpr ⟨t, List.mem_flatMap.mpr ⟨e, he, ht⟩, hzt⟩
   -- the shifted minuend, and the minuend closed
-  have hA : ContSet.construct (A.minus (Polygon.center B))
-      = (fun x => x - Polygon.center B) '' ContSet.construct A :=
+  have hA : ContSet.toSet (A.minus (Polygon.center B))
+      = (fun x => x - Polygon.center B) '' ContSet.toSet A :=
     (Polygon.minus_exact A _).symm
-  have hAcl : IsClosed (ContSet.construct A) := (Polygon.isCompact_construct A).isClosed
+  have hAcl : IsClosed (ContSet.toSet A) := (Polygon.isCompact_toSet A).isClosed
   -- the result is the closure of the shifted minuend's interior off the sweep
   unfold Polygon.minkDiff Polygon.subtract
   simp only
@@ -262,8 +262,8 @@ theorem Polygon.minkDiff_sandwich (A B : Polygon) (V : List (Vec ℝ 2))
     refine closure_minimal ?_ ?_
     · rintro x ⟨h1, h2⟩
       exact Polygon.aux_minkDiff_inner hB hc h1 h2
-    · have : {x | ∀ b ∈ ContSet.construct B, x + b ∈ ContSet.construct A}
-          = ⋂ b ∈ ContSet.construct B, (fun x => x + b) ⁻¹' ContSet.construct A := by
+    · have : {x | ∀ b ∈ ContSet.toSet B, x + b ∈ ContSet.toSet A}
+          = ⋂ b ∈ ContSet.toSet B, (fun x => x + b) ⁻¹' ContSet.toSet A := by
         ext x; simp
       rw [this]
       exact isClosed_biInter fun b _ => hAcl.preimage (by fun_prop)

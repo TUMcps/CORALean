@@ -51,7 +51,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 theorem PolyZonotope.linComb_exact_of_dependent (pZ₁ pZ₂ : PolyZonotope α)
     (h₁ : pZ₁.q = 0) (h₂ : pZ₂.q = 0) : -- --- CONCL ---
-    Set.linComb pZ₁.construct pZ₂.construct = (pZ₁.linComb pZ₂).construct := by -- --- PROOF ---
+    Set.linComb pZ₁.toSet pZ₂.toSet = (pZ₁.linComb pZ₂).toSet := by -- --- PROOF ---
   refine Set.eq_of_subset_of_subset (PolyZonotope.linComb_outer pZ₁ pZ₂) ?_
   rintro x ⟨a, β, ha, hβ, rfl⟩
   -- the fresh factor, whose unit bound is the segment parameter's `λ ∈ [0,1]`

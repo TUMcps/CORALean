@@ -46,8 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A point of the start and of every shadow folded in is a point of the left fold of `inter`. -/
 private theorem ZonoBundle.aux_mem_foldl_inter {x : Vec ℝ n} :
-    ∀ (Ss : List (SpectraShadow 𝕋 (Vec 𝕋 n))) (S : SpectraShadow 𝕋 (Vec 𝕋 n)), x ∈ S.construct →
-      (∀ T ∈ Ss, x ∈ T.construct) → x ∈ (Ss.foldl SpectraShadow.inter S).construct
+    ∀ (Ss : List (SpectraShadow 𝕋 (Vec 𝕋 n))) (S : SpectraShadow 𝕋 (Vec 𝕋 n)), x ∈ S.toSet →
+      (∀ T ∈ Ss, x ∈ T.toSet) → x ∈ (Ss.foldl SpectraShadow.inter S).toSet
   | [], _, h, _ => h
   | T :: Ts, S, h, hT => ZonoBundle.aux_mem_foldl_inter Ts (S.inter T)
       (SpectraShadow.inter_outer S T ⟨h, hT T List.mem_cons_self⟩)
@@ -57,13 +57,13 @@ private theorem ZonoBundle.aux_mem_foldl_inter {x : Vec ℝ n} :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.spectraShadow_contains (zB : ZonoBundle (Vec 𝕋 n)) : -- --- CONCL ---
-    zB.construct ⊆ zB.spectraShadow.construct := by -- --- PROOF ---
+    zB.toSet ⊆ zB.spectraShadow.toSet := by -- --- PROOF ---
   intro x hx
   -- every member's shadow holds the point
-  have hall : ∀ T ∈ List.ofFn (fun i => Zonotope.spectraShadow (zB.Z i)), x ∈ T.construct := by
+  have hall : ∀ T ∈ List.ofFn (fun i => Zonotope.spectraShadow (zB.Z i)), x ∈ T.toSet := by
     intro T hT
     obtain ⟨i, rfl⟩ := List.mem_ofFn.mp hT
-    exact Zonotope.spectraShadow_contains _ (SetIntersection.mem_construct_ofFn.mp hx i)
+    exact Zonotope.spectraShadow_contains _ (SetIntersection.mem_toSet_ofFn.mp hx i)
   unfold ZonoBundle.spectraShadow
   -- so the fold of their intersections does, or the whole space when there is none
   split

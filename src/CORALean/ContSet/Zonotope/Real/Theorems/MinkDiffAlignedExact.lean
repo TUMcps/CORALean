@@ -61,7 +61,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 theorem Zonotope.minkDiffAligned_exact (Z₁ Z₂ : Zonotope α) (hh : Z₁.h = Z₂.h)
     (μ : Fin Z₁.h → ℝ) (hμ0 : ∀ i, 0 ≤ μ i) (hμ1 : ∀ i, μ i ≤ 1)
     (hG : ∀ i, Z₂.G (Fin.cast hh i) = μ i • Z₁.G i) :
-    (Z₁.minkDiffAligned Z₂ hh).construct = minkowskiDiff Z₁.construct Z₂.construct :=
+    (Z₁.minkDiffAligned Z₂ hh).toSet = minkowskiDiff Z₁.toSet Z₂.toSet :=
   Set.Subset.antisymm (Z₁.minkDiffAligned_inner Z₂ hh μ hμ0 hμ1 hG)
     (Z₁.minkDiffAligned_outer Z₂ hh μ hμ0 hμ1 hG)
 

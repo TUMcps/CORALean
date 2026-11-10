@@ -77,8 +77,8 @@ private theorem Interval.aux_square_between {a b : 𝕋} {x : ℝ} (h₁ : toRea
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.exactSquare_outer (A : Interval (Mat 𝕋 n n)) {M : Mat ℝ n n}
-    (hM : M ∈ A.construct) : -- --- CONCL ---
-    M * M ∈ A.exactSquare.construct := by -- --- PROOF ---
+    (hM : M ∈ A.toSet) : -- --- CONCL ---
+    M * M ∈ A.exactSquare.toSet := by -- --- PROOF ---
   have hm := Interval.mem_mat_iff.mp hM
   refine Interval.mem_mat_iff.mpr fun i j => ?_
   rw [Matrix.mul_apply]

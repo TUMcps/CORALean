@@ -71,7 +71,7 @@ instance : Scalar ℝ where
   toRealVec_apply _ _ := rfl
 
 /-- The family of sets of real vectors, `(S := 𝒮)`: the denotations every representation's
-`construct` lands in. -/
+`toSet` lands in. -/
 notation "𝒮" => fun n => Set (Vec ℝ n)
 
 /-- True by `rfl`, but a proof about the real layer has to rewrite with it. -/

@@ -46,9 +46,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n p q : �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.kron_outer {I : Interval (Mat 𝕋 m n)} {J : Interval (Mat 𝕋 p q)}
-    {A : Mat ℝ m n} {B : Mat ℝ p q} (hA : A ∈ I.construct) (hB : B ∈ J.construct) : -- --- CONCL ---
+    {A : Mat ℝ m n} {B : Mat ℝ p q} (hA : A ∈ I.toSet) (hB : B ∈ J.toSet) : -- --- CONCL ---
     Matrix.reindex finProdFinEquiv finProdFinEquiv (A ⊗ₖ B) ∈
-      (Interval.kron I J).construct := by -- --- PROOF ---
+      (Interval.kron I J).toSet := by -- --- PROOF ---
   have h := Real.Interval.mem_mat_iff.mp (Real.Interval.kron_outer hA hB)
   refine Real.Interval.mem_mat_iff.mpr fun i j => ?_
   have h' := h i j

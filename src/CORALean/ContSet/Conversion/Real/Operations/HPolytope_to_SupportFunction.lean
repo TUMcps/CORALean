@@ -35,7 +35,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def HPolytope.supportFunction (P : HPolytope α) : SupportFunction α :=
-  SupportFunction.ofSet P.construct
+  SupportFunction.ofSet P.toSet
 
 end CORALean.Real
 

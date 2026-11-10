@@ -52,22 +52,22 @@ def ParallelHybridAutomaton.zonoLifting :
   dist := Zonotope.stackProd
   mem_inv gs x hx := by
     -- the product is exactly the blocks' sets, and the blocks of a stack are what was stacked
-    show stack x ∈ (HPolytope.stackProd gs).construct
+    show stack x ∈ (HPolytope.stackProd gs).toSet
     rw [HPolytope.stackProd_exact]
     intro i
     rw [unstack_stack]
     exact hx i
   mem_guard i g x hx := by
     -- the lifted guard asks of a point only that its block `i` be in `g`
-    show stack x ∈ (HPolytope.comap (blockProj i) g).construct
+    show stack x ∈ (HPolytope.comap (blockProj i) g).toSet
     rw [HPolytope.comap_blockProj_exact]
-    show unstack (stack x) i ∈ g.construct
+    show unstack (stack x) i ∈ g.toSet
     rw [unstack_stack]
     exact hx
   mem_input b us g hg hz := by
     -- the components' points, stacked, are in the product, and `selectGlobal` takes them to `g`
     choose v hv hva using hg
-    show g ∈ (Zonotope.mtimes (selectGlobal b) (Zonotope.stackProd us)).construct
+    show g ∈ (Zonotope.mtimes (selectGlobal b) (Zonotope.stackProd us)).toSet
     rw [← Zonotope.mtimes_exact, ← selectGlobal_mulVec_stack b v g hva hz]
     refine ⟨stack v, ?_, rfl⟩
     rw [Zonotope.stackProd_exact]
@@ -76,7 +76,7 @@ def ParallelHybridAutomaton.zonoLifting :
     exact hv i
   mem_dist ws w hw := by
     -- as `mem_inv`, at the product of the disturbance sets
-    show stack w ∈ (Zonotope.stackProd ws).construct
+    show stack w ∈ (Zonotope.stackProd ws).toSet
     rw [Zonotope.stackProd_exact]
     intro i
     rw [unstack_stack]

@@ -54,16 +54,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The fold of Minkowski sums holds the sum of one point from each summand. -/
 private theorem Zonotope.aux_foldl_plus_mem {ι : Type} (l : List ι) (Zs : ι → Zonotope (Vec 𝕋 n))
-    (ys : ι → Vec ℝ n) (hys : ∀ i ∈ l, ys i ∈ (Zs i).construct) : -- --- CONCL ---
-    ∀ (acc : Zonotope (Vec 𝕋 n)) (y : Vec ℝ n), y ∈ acc.construct →
-      y + (l.map ys).sum ∈ (l.foldl (fun A i => A.plus (Zs i)) acc).construct := by -- --- PROOF ---
+    (ys : ι → Vec ℝ n) (hys : ∀ i ∈ l, ys i ∈ (Zs i).toSet) : -- --- CONCL ---
+    ∀ (acc : Zonotope (Vec 𝕋 n)) (y : Vec ℝ n), y ∈ acc.toSet →
+      y + (l.map ys).sum ∈ (l.foldl (fun A i => A.plus (Zs i)) acc).toSet := by -- --- PROOF ---
   induction l with
   | nil => intro acc y hy; simpa using hy
   | cons i l ih =>
     intro acc y hy
     simp only [List.foldl_cons, List.map_cons, List.sum_cons]
     -- one step of the fold, then the rest
-    have h1 : y + ys i ∈ (acc.plus (Zs i)).construct :=
+    have h1 : y + ys i ∈ (acc.plus (Zs i)).toSet :=
       Zonotope.plus_outer acc (Zs i) (Set.add_mem_add hy (hys i List.mem_cons_self))
     have := ih (fun j hj => hys j (List.mem_cons_of_mem _ hj)) _ _ h1
     rwa [add_assoc] at this
@@ -78,10 +78,10 @@ theorem Zonotope.tensorMultiplication_zono_outer (Z : Zonotope (Vec 𝕋 n))
     (hmap : ∀ p q, L.map p = L.map q →
       ({L.perm p 0, L.perm p 1, L.perm p 2} : Multiset (Fin Z.absorbRounding.h)) =
         {L.perm q 0, L.perm q 1, L.perm q 2})
-    {β : Fin M.h → ℝ} (hβ : ∀ j, |β j| ≤ 1) {x : Vec ℝ n} (hx : x ∈ Z.construct) : -- --- CONCL ---
+    {β : Fin M.h → ℝ} (hβ : ∀ j, |β j| ≤ 1) {x : Vec ℝ n} (hx : x ∈ Z.toSet) : -- --- CONCL ---
     Real.Zonotope.tensorEval (fun i a b c => toReal (M.c i a b c)
         + ∑ j, β j * toReal (M.G j i a b c)) x
-      ∈ (Z.tensorMultiplication_zono M L).construct := by -- --- PROOF ---
+      ∈ (Z.tensorMultiplication_zono M L).toSet := by -- --- PROOF ---
   -- the tensor of the point, center and generators at the coefficients `β`
   set Mt : Tensor3 ℝ n := fun i a b c => toReal (M.c i a b c) + ∑ j, β j * toReal (M.G j i a b c)
     with hMt

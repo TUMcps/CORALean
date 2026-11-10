@@ -11,7 +11,7 @@ public import Mathlib.LinearAlgebra.Span.Defs
 The first two tests of CORA's `@zonoBundle/isFullDim`: it answers `false` if a member
 zonotope is not full-dimensional (its generators do not span the ambient space), the rank test of
 `Zonotope.isFullDim`. Its last step, `isFullDim(polytope(zB))`, tests the intersection itself
-and is not formalized. CORA also answers `false` for a bundle without members, whose `construct`
+and is not formalized. CORA also answers `false` for a bundle without members, whose `toSet`
 here is the whole space.
 
 ## Inputs

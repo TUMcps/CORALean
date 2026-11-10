@@ -67,7 +67,7 @@ private theorem ConPolyZono.aux_plus_nominal
     (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     nominalSet cPZ₁ + nominalSet cPZ₂ ⊆
       nominalSet (cPZ₁.plus cPZ₂)
-        + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).construct := by -- --- PROOF ---
+        + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).toSet := by -- --- PROOF ---
   rintro _ ⟨x₁, hx₁', x₂, hx₂', rfl⟩
   obtain ⟨a₁, β₁, ha₁, hβ₁, hs₁, hx₁⟩ := ConPolyZono.mem_nominalSet_iff.mp hx₁'
   obtain ⟨a₂, β₂, ha₂, hβ₂, hs₂, hx₂⟩ := ConPolyZono.mem_nominalSet_iff.mp hx₂'
@@ -104,9 +104,9 @@ private theorem ConPolyZono.aux_plus_nominal
 
 /-- The box absorbs the two incoming boxes and the center rounding. -/
 private theorem ConPolyZono.aux_plus_error (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    cPZ₁.I_error.construct + cPZ₂.I_error.construct
-        + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).construct ⊆
-            (cPZ₁.plus cPZ₂).I_error.construct :=
+    cPZ₁.I_error.toSet + cPZ₂.I_error.toSet
+        + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).toSet ⊆
+            (cPZ₁.plus cPZ₂).I_error.toSet :=
   subset_trans (Set.add_subset_add_right (Interval.plus_outer cPZ₁.I_error cPZ₂.I_error))
     (Interval.plus_outer _ _)
 
@@ -114,7 +114,7 @@ private theorem ConPolyZono.aux_plus_error (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Ve
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.plus_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    cPZ₁.construct + cPZ₂.construct ⊆ (cPZ₁.plus cPZ₂).construct :=
+    cPZ₁.toSet + cPZ₂.toSet ⊆ (cPZ₁.plus cPZ₂).toSet :=
   InflatedContSet.plus_subset (ConPolyZono.aux_plus_nominal cPZ₁ cPZ₂)
     (ConPolyZono.aux_plus_error cPZ₁ cPZ₂)
 

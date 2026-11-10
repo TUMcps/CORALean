@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ZonoBundle.Real.Operations.ConvHull
 public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeConZonotopeExact
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsToSetEqIffHPolytope
 public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.VPolytope_to_ConZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_ConZonotope
@@ -50,18 +50,18 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.exists_hPolytope_convHull (zB₁ zB₂ : ZonoBundle (Vec ℝ n))
-    (hk₁ : 0 < zB₁.k) (hk₂ : 0 < zB₂.k) (hne₁ : zB₁.construct.Nonempty)
-    (hne₂ : zB₂.construct.Nonempty) : -- --- CONCL ---
+    (hk₁ : 0 < zB₁.k) (hk₂ : 0 < zB₂.k) (hne₁ : zB₁.toSet.Nonempty)
+    (hne₂ : zB₂.toSet.Nonempty) : -- --- CONCL ---
     ∃ P : HPolytope (Vec ℝ n),
-      P.construct = convexHull ℝ (zB₁.construct ∪ zB₂.construct) := by -- --- PROOF ---
+      P.toSet = convexHull ℝ (zB₁.toSet ∪ zB₂.toSet) := by -- --- PROOF ---
   have hV := VPolytope.convHull_exact (zB₁.vPolytopeAll hk₁ hne₁) (zB₂.vPolytopeAll hk₂ hne₂)
   rw [ZonoBundle.vPolytopeAll_exact, ZonoBundle.vPolytopeAll_exact] at hV
   -- the joined vertices denote the hull, so their constrained zonotope does
-  have hc : (zB₁.encloseTightVertices zB₂ hk₁ hk₂ hne₁ hne₂).conZonotope.construct
-      = convexHull ℝ (zB₁.construct ∪ zB₂.construct) := by
+  have hc : (zB₁.encloseTightVertices zB₂ hk₁ hk₂ hne₁ hne₂).conZonotope.toSet
+      = convexHull ℝ (zB₁.toSet ∪ zB₂.toSet) := by
     rw [← VPolytope.conZonotope_exact]
     exact hV
-  obtain ⟨P, hP, -⟩ := ConZonotope.exists_construct_eq_iff_hPolytope.mp ⟨_, hc⟩
+  obtain ⟨P, hP, -⟩ := ConZonotope.exists_toSet_eq_iff_hPolytope.mp ⟨_, hc⟩
   exact ⟨P, hP⟩
 
 

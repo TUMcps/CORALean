@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.sup_isLUB (P : ProbZonotope n) (m : ℝ) : -- --- CONCL ---
-    IsLUB ((fun x : Vec ℝ n => ‖x‖) '' (P.zonotope m).construct) (P.sup m) := by -- --- PROOF ---
+    IsLUB ((fun x : Vec ℝ n => ‖x‖) '' (P.zonotope m).toSet) (P.sup m) := by -- --- PROOF ---
   set Z := P.zonotope m
   have hI : P.interval m = Z.interval := rfl
   have hsup : P.sup m = max ‖Z.interval.inf‖ ‖Z.interval.sup‖ := by

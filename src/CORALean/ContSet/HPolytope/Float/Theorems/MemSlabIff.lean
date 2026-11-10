@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemSlabNominalIff
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 
 @[expose] public section
 
@@ -41,9 +41,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mem_slab_iff {A : Mat 𝕋 q n} {lo hi : Vec 𝕋 q} {x : Vec ℝ n} :
-    x ∈ (HPolytope.slab A lo hi).construct ↔
+    x ∈ (HPolytope.slab A lo hi).toSet ↔
       ∀ i, toReal (lo i) ≤ (toRealMat A *ᵥ x) i ∧ (toRealMat A *ᵥ x) i ≤ toReal (hi i) := by
-  rw [HPolytope.construct_eq_nominal fun _ =>
+  rw [HPolytope.toSet_eq_nominal fun _ =>
     ⟨SoundFloatArithmetic.toReal_zero, SoundFloatArithmetic.toReal_zero⟩]
   exact HPolytope.mem_slab_nominal_iff
 

@@ -75,11 +75,11 @@ theorem NonlinearSysDT.observeStepFloat_outer (sys : NonlinearSysDT n m) {U : Zo
     (C : Mat 𝕋 p n) (σ : Vec 𝕋 p) (W : Zonotope (Vec 𝕋 n))
     (options : LinearSysDT.ObserveStripOptions 𝕋 (Zonotope (Vec 𝕋 n)) n p) (y : Vec 𝕋 p)
     (Xhat : Zonotope (Vec 𝕋 n)) {x : Vec ℝ n} {u : Vec ℝ m} {w : Vec ℝ n}
-    (hx : x ∈ Xhat.construct) (hR : x ∈ step.R) (hu : u ∈ construct U) (hw : w ∈ W.construct)
+    (hx : x ∈ Xhat.toSet) (hR : x ∈ step.R) (hu : u ∈ toSet U) (hw : w ∈ W.toSet)
     (hy : ∀ i, |(Scalar.toRealMat C *ᵥ (sys.f x u + w) - Scalar.toRealVec y) i|
       ≤ Scalar.toReal (σ i)) : -- --- CONCL ---
     sys.f x u + w ∈
-      (sys.observeStepFloat step o C σ W options y Xhat).construct := by -- --- PROOF ---
+      (sys.observeStepFloat step o C σ W options y Xhat).toSet := by -- --- PROOF ---
   -- the prediction: the linearized step on the widened input holds `f(x, u)`
   have key := LinearSysDT.reach_one_outer (S := 𝒵[𝕋])
     (NonlinearSysDT.linearize step.A) o.hZonotopeOrder
@@ -97,7 +97,7 @@ theorem NonlinearSysDT.observeStepFloat_outer (sys : NonlinearSysDT n m) {U : Zo
     rw [Nat.sub_zero, Nat.fold_succ, Nat.fold_zero]
   have hpred : sys.f x u + w ∈
     ((sys.reach (S := 𝒵[𝕋]) ⟨Xhat, U, 0, 1⟩ o (fun _ => step)).plus
-      W).construct := by
+      W).toSet := by
     rw [hone]
     exact Zonotope.plus_outer _ _ ⟨_, key, w, hw, rfl⟩
   unfold NonlinearSysDT.observeStepFloat

@@ -48,9 +48,9 @@ variable {n : ℕ}
 
 /-- The box heuristic's split is exact. -/
 theorem ZonoBundle.splitBox_union (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) (j : Fin n) :
-    (zB.split (ZonoBundle.dirBox n) (zB.enclosingBox (ZonoBundle.dirBox n) i) j).fst.construct
-      ∪ (zB.split (ZonoBundle.dirBox n) (zB.enclosingBox (ZonoBundle.dirBox n) i) j).snd.construct
-      = zB.construct :=
+    (zB.split (ZonoBundle.dirBox n) (zB.enclosingBox (ZonoBundle.dirBox n) i) j).fst.toSet
+      ∪ (zB.split (ZonoBundle.dirBox n) (zB.enclosingBox (ZonoBundle.dirBox n) i) j).snd.toSet
+      = zB.toSet :=
   ZonoBundle.split_union_enclosingBox _ (by simp [ZonoBundle.dirBox]) zB i j
 
 end CORALean.Real

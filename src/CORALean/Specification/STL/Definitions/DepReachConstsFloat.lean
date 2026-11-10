@@ -58,9 +58,9 @@ structure STL.DepReachConstsFloat (𝕋 : Type) (n : ℕ) where
 /-- The float constants hold the real ones. -/
 def STL.DepReachConstsFloat.Encloses (csF : STL.DepReachConstsFloat 𝕋 n)
     (csR : STL.DepReachConsts n) : Prop :=
-  csR.ũ ∈ csF.ũ.construct ∧ csR.U₀.construct ⊆ csF.U₀.construct ∧ csR.T ∈ csF.T.construct ∧
-    csR.F.construct ⊆ csF.F.construct ∧ csR.G.construct ⊆ csF.G.construct ∧
-    csR.D.construct ⊆ csF.D.construct
+  csR.ũ ∈ csF.ũ.toSet ∧ csR.U₀.toSet ⊆ csF.U₀.toSet ∧ csR.T ∈ csF.T.toSet ∧
+    csR.F.toSet ⊆ csF.F.toSet ∧ csR.G.toSet ⊆ csF.G.toSet ∧
+    csR.D.toSet ⊆ csF.D.toSet
 
 end CORALean
 

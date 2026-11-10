@@ -52,12 +52,12 @@ theorem SyntaxTree.contains_times {I J : Dom} {a b : ℝ} (ha : Dom.contains I a
   have hJ : J.IsNonempty := fun i => by
     obtain rfl : i = 0 := Subsingleton.elim i 0
     exact hb.1.trans hb.2
-  have hx : (fun _ => a : Vec ℝ 1) ∈ I.construct := by
+  have hx : (fun _ => a : Vec ℝ 1) ∈ I.toSet := by
     intro i; obtain rfl : i = 0 := Subsingleton.elim i 0; exact ha
-  have hy : (fun _ => b : Vec ℝ 1) ∈ J.construct := by
+  have hy : (fun _ => b : Vec ℝ 1) ∈ J.toSet := by
     intro i; obtain rfl : i = 0 := Subsingleton.elim i 0; exact hb
   have hm : (fun i => (fun _ => a : Vec ℝ 1) i * (fun _ => b : Vec ℝ 1) i : Vec ℝ 1) ∈
-      (I.times J).construct := by
+      (I.times J).toSet := by
     rw [Real.Interval.times_exact hI hJ]; exact ⟨_, hx, _, hy, rfl⟩
   exact hm 0
 

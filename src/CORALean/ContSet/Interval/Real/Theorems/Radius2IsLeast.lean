@@ -52,10 +52,10 @@ private theorem Interval.aux_sup_sub_center (I : Interval (Vec ℝ n)) : I.sup -
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.radius₂_isLeast {I : Interval (Vec ℝ n)} (hI : I.IsNonempty) : -- --- CONCL ---
-    IsLeast {ρ : ℝ | construct I ⊆ {x | ‖x - I.center‖₂ ≤ ρ}}
+    IsLeast {ρ : ℝ | toSet I ⊆ {x | ‖x - I.center‖₂ ≤ ρ}}
       I.radius₂ := by -- --- PROOF ---
   refine ⟨fun x hx => Interval.norm₂_sub_center_le hx, fun ρ hρ => ?_⟩
-  have hsup : I.sup ∈ construct I := fun i => ⟨hI i, le_refl _⟩
+  have hsup : I.sup ∈ toSet I := fun i => ⟨hI i, le_refl _⟩
   have h : ‖I.sup - I.center‖₂ ≤ ρ := hρ hsup
   rw [Interval.aux_sup_sub_center] at h
   exact h

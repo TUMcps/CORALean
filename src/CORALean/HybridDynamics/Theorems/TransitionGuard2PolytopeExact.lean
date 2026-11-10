@@ -40,8 +40,8 @@ variable {G P : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] [∀ n, ContSet
 
 /-- An exact conversion gives the same guard. -/
 theorem Transition.guard2polytope_exact (conv : G n → P n)
-    (h : ∀ g, construct (conv g) = construct g) (e : Transition G L 𝕋 n) :
-    construct (e.guard2polytope conv).guard = construct e.guard :=
+    (h : ∀ g, toSet (conv g) = toSet g) (e : Transition G L 𝕋 n) :
+    toSet (e.guard2polytope conv).guard = toSet e.guard :=
   h e.guard
 
 end CORALean

@@ -44,9 +44,9 @@ variable {S : Type} [ContSet S (Vec ℝ 2)] [Real.ExactVertices S (Vec ℝ 2)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ContSet.construct_polygon (s : S) : construct (ContSet.polygon s) = construct s := by
+theorem ContSet.toSet_polygon (s : S) : toSet (ContSet.polygon s) = toSet s := by
   unfold ContSet.polygon
-  rw [Polygon.construct_ofPieces]
+  rw [Polygon.toSet_ofPieces]
   simpa using Real.ExactVertices.vertices_exact s
 
 end CORALean

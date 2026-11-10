@@ -63,11 +63,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- [1, Sec. 4.2]: the run from `x₀ ∈ R₀` under inputs of `U` held piecewise is an
 `IsCanonicalTrajectory` on `[0, t]`. -/
 theorem LinearSys.isTrajectory_heldInput (sys : LinearSys 𝕋 n) (R₀ U : S n)
-    (hU : Bornology.IsBounded (construct U)) {t : ℝ} (ht : 0 ≤ t) (Δt : ℝ) {x₀ : Vec ℝ n}
-    (hx₀ : x₀ ∈ construct R₀) {v : ℕ → Vec ℝ n} (hv : ∀ j, v j ∈ construct U) :
+    (hU : Bornology.IsBounded (toSet U)) {t : ℝ} (ht : 0 ≤ t) (Δt : ℝ) {x₀ : Vec ℝ n}
+    (hx₀ : x₀ ∈ toSet R₀) {v : ℕ → Vec ℝ n} (hv : ∀ j, v j ∈ toSet U) :
     sys.IsCanonicalTrajectory (Set.Icc 0 t) R₀ U (sys.closedForm x₀ (LinearSys.heldInput Δt v))
       (LinearSys.heldInput Δt v) :=
-  let hu : ∀ s ∈ Set.Icc (0:ℝ) t, LinearSys.heldInput Δt v s ∈ construct U := fun _ _ => hv _
+  let hu : ∀ s ∈ Set.Icc (0:ℝ) t, LinearSys.heldInput Δt v s ∈ toSet U := fun _ _ => hv _
   let hmeas := (LinearSys.heldInput_measurable Δt v).aestronglyMeasurable
     (μ := volume.restrict (Set.Icc 0 t))
   ⟨(sys.closedForm_zero x₀ _).symm ▸ hx₀, hu, hmeas,

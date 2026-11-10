@@ -50,7 +50,7 @@ variable {n N : ℕ}
 
 theorem Zonotope.andAveraging_outer (Z : Fin N → Zonotope (Vec ℝ n)) (w : Fin N → ℝ)
     (hw : ∑ j, w j ≠ 0) : -- --- CONCL ---
-    (⋂ j, (Z j).construct) ⊆ (Zonotope.andAveraging Z w).construct := by -- --- PROOF ---
+    (⋂ j, (Z j).toSet) ⊆ (Zonotope.andAveraging Z w).toSet := by -- --- PROOF ---
   intro x hx
   rw [Set.mem_iInter] at hx
   -- Eq. 16: the coefficients `zʲ` of `x` in each zonotope

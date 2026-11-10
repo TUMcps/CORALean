@@ -179,7 +179,7 @@ Interval ops (fields besides `I`; result `I` unless said):
 | `enclose` | `I2` | `Interval.linComb` |
 | `le`, `lt`, `isequal` | `I2`, `tol` | `Interval.le`, `.lt`, `.isequal`; `value` |
 | `isFullDim` | `tol` | `Interval.isFullDim`; `value` |
-| `isBounded` | `tol` | constant `true`, `Interval.isCompact_construct`; `value` |
+| `isBounded` | `tol` | constant `true`, `Interval.isCompact_toSet`; `value` |
 | `representsa` | `type` (`emptySet`, `point`, `origin`), `tol` | `Interval.representsa_emptySet`, `_point`, `_origin`; `value`. At `nearest` the emptiness test is the machine's `sup < inf` (see `ltStrict` below) |
 | `contains`, `isIntersecting` | `I2` or `Z`, `tol` | `Contains`, `IsDisjoint` (`containsBoxOuter`, `isDisjointBoxOuter`); `contains`, `disjoint` |
 | `center`, `rad`, `infimum`, `supremum` | | `Interval.center`, `.radius`, `.infimum`, `.supremum`; `value` (vector) |
@@ -415,7 +415,7 @@ the field `n` and call the exact-layer definitions. A set result is `E` or `F`, 
 | `lift`, `projectHighDim`, `project` | `N`, `dims` | `EmptySet.lift_`, `.projectHighDim_`, `.project`, and the `Fullspace` ones |
 | `mtimes` | `M` (`m x n`) | the `Mtimes (Mat 𝕋)` instances of `EmptySet`, `Fullspace`; `E` or `F`, `{"n": m}`: the whole space for `fullspace`, whatever the rank (CORA's answer is an interval for a matrix with a zero row) |
 | `supportFunc` | `dir`, `type` (`upper`) | `EmptySet.supportFunc` (`-inf`), `Fullspace.supportFunc` (`inf`, `0` at the zero direction); `value` |
-| `representsa` | `type` (`emptySet`, `point`, `origin`, `fullspace`), `tol` | the answers the exact layer proves: `emptySet.representsa` is `true` for `emptySet` and `false` for the others (`EmptySet.construct_ne_singleton`, `.construct_ne_univ`); `fullspace.representsa` is `true` for `fullspace` and `false` for the others (`Fullspace.construct_ne_empty`, `.construct_ne_singleton`, which needs `n > 0`, `n = 0` is refused); `value` |
+| `representsa` | `type` (`emptySet`, `point`, `origin`, `fullspace`), `tol` | the answers the exact layer proves: `emptySet.representsa` is `true` for `emptySet` and `false` for the others (`EmptySet.toSet_ne_singleton`, `.toSet_ne_univ`); `fullspace.representsa` is `true` for `fullspace` and `false` for the others (`Fullspace.toSet_ne_empty`, `.toSet_ne_singleton`, which needs `n > 0`, `n = 0` is refused); `value` |
 | `vertices` (`fullspace`) | `n` (1 to 20) | `Fullspace.vertices`: `V` has one column per corner of `[-inf, inf]^n`, column `l` has `inf` in row `j` where `signEquiv n l j`, else `-inf` |
 | `Inf`, `empty`, `not` | `n` | `Fullspace.Inf`, `EmptySet.empty`, `.not`, `Fullspace.not` |
 | `interval`, `polytope` | | `Interval.empty`, `Interval.Inf`, `HPolytope.emptySet`, `HPolytope.fullspace` |

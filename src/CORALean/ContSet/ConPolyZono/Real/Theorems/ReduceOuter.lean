@@ -51,7 +51,7 @@ variable {n : ℕ}
 it bounds mean anything. Neither choice shows here: any ranking would discharge
 this line, and compaction contributes an equality. -/
 theorem ConPolyZono.reduce_outer (cPZ : ConPolyZono (Vec ℝ n)) (o : ℕ) :
-    cPZ.construct ⊆ (cPZ.reduce o).construct :=
+    cPZ.toSet ⊆ (cPZ.reduce o).toSet :=
   (ConPolyZono.compact_exact cPZ).subset.trans
     (ConPolyZono.reduceGirard_outer cPZ.compact o)
 

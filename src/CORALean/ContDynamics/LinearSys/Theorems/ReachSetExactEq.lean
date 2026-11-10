@@ -51,9 +51,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- The reachable set at `t` is exactly `e^{tA} R₀ ⊕ inputReach U t`. -/
 theorem LinearSys.reachSetExact_eq (sys : LinearSys 𝕋 n) (R₀ U : S n) {t : ℝ} (ht : 0 ≤ t)
-    (hU : Bornology.IsBounded (construct U)) :
+    (hU : Bornology.IsBounded (toSet U)) :
     sys.reachSetExact (Set.Icc 0 t) R₀ U t
-      = (exp (t • toRealMat sys.A)).mulVecLin '' construct R₀ + sys.inputReach U t :=
+      = (exp (t • toRealMat sys.A)).mulVecLin '' toSet R₀ + sys.inputReach U t :=
   Set.Subset.antisymm
     (sys.reachSetExact_subset_mulVecLin_image_add_inputReach R₀ U ht hU)
     (sys.mulVecLin_image_add_inputReach_subset_reachSetExact R₀ U ht hU)

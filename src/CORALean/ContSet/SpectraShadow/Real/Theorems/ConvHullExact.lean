@@ -3,22 +3,22 @@ module
 public import CORALean.ContSet.SpectraShadow.Real.Operations.ConvHull
 public import CORALean.ContSet.SpectraShadow.Real.Operations.SingletonOne
 public import CORALean.ContSet.SpectraShadow.Real.Operations.Basic
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.ConeConstruct
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.ConeToSet
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.CartProdExact
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.InterExact
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.PlusExact
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.ProjectExact
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.Convex
 public import Mathlib.Analysis.Convex.Hull
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.HyperplaneOneConstruct
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.SingletonOneConstruct
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.HyperplaneOneToSet
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.SingletonOneToSet
 
 @[expose] public section
 
 /-!
 # `SpectraShadow.convHull_` is exactly the convex hull of the union
 
-The cones are `s x` for `s > 0` and the origin (`cone_construct`), so a point of their sum at
+The cones are `s x` for `s > 0` and the origin (`cone_toSet`), so a point of their sum at
 height `1` is `s₁ x₁ + s₂ x₂` with `s₁ + s₂ = 1`, `sᵢ > 0`, or one of the two summands is the
 origin and the point is the other shadow's. Every such point is a convex combination of points
 of the union; conversely the union is inside, and the result is convex (a shadow), so it holds
@@ -52,14 +52,14 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.convHull_exact (S₁ S₂ : SpectraShadow (Vec ℝ n)) : -- --- CONCL ---
-    (S₁.convHull_ S₂).construct = convexHull ℝ (S₁.construct ∪ S₂.construct) := by -- --- PROOF ---
+    (S₁.convHull_ S₂).toSet = convexHull ℝ (S₁.toSet ∪ S₂.toSet) := by -- --- PROOF ---
   set app : Vec ℝ n → Vec ℝ (n + 1) := fun x => Fin.append x (fun _ : Fin 1 => (1 : ℝ)) with happ
   -- the cone of a shadow at height one
-  have hcone : ∀ S : SpectraShadow (Vec ℝ n), (S.cartProd SpectraShadow.singletonOne).cone.construct
-      = {z : Vec ℝ (n + 1) | z = 0 ∨ ∃ s : ℝ, 0 < s ∧ ∃ x ∈ S.construct, z = s • app x} := by
+  have hcone : ∀ S : SpectraShadow (Vec ℝ n), (S.cartProd SpectraShadow.singletonOne).cone.toSet
+      = {z : Vec ℝ (n + 1) | z = 0 ∨ ∃ s : ℝ, 0 < s ∧ ∃ x ∈ S.toSet, z = s • app x} := by
     intro S
-    rw [SpectraShadow.cone_construct (Nat.succ_pos n), ← SpectraShadow.cartProd_exact,
-      SpectraShadow.singletonOne_construct]
+    rw [SpectraShadow.cone_toSet (Nat.succ_pos n), ← SpectraShadow.cartProd_exact,
+      SpectraShadow.singletonOne_toSet]
     ext z
     simp only [Set.mem_setOf_eq, Set.prod_singleton, Set.image_image, Set.mem_image]
     constructor <;> rintro (h | ⟨s, hs, x, hx, rfl⟩)
@@ -69,15 +69,15 @@ theorem SpectraShadow.convHull_exact (S₁ S₂ : SpectraShadow (Vec ℝ n)) : -
     · exact Or.inl h
     · exact Or.inr ⟨s, hs, _, ⟨x, hx, rfl⟩, rfl⟩
   -- the result is the projection of the sum of the two cones, cut at height one
-  have key : (S₁.convHull_ S₂).construct
+  have key : (S₁.convHull_ S₂).toSet
       = (fun w k => w (Fin.castAdd 1 k)) ''
-        (({z : Vec ℝ (n + 1) | z = 0 ∨ ∃ s : ℝ, 0 < s ∧ ∃ x ∈ S₁.construct, z = s • app x}
-          + {z : Vec ℝ (n + 1) | z = 0 ∨ ∃ s : ℝ, 0 < s ∧ ∃ x ∈ S₂.construct, z = s • app x})
+        (({z : Vec ℝ (n + 1) | z = 0 ∨ ∃ s : ℝ, 0 < s ∧ ∃ x ∈ S₁.toSet, z = s • app x}
+          + {z : Vec ℝ (n + 1) | z = 0 ∨ ∃ s : ℝ, 0 < s ∧ ∃ x ∈ S₂.toSet, z = s • app x})
           ∩ {w : Vec ℝ (n + 1) | w (Fin.natAdd n 0) = 1}) := by
     unfold SpectraShadow.convHull_
     simp only []
     rw [← SpectraShadow.project_exact, ← SpectraShadow.inter_exact, ← SpectraShadow.plus_exact,
-      hcone, hcone, SpectraShadow.hyperplaneOne_construct]
+      hcone, hcone, SpectraShadow.hyperplaneOne_toSet]
   -- the coordinates of `s • app x`: the last is `s`, the first `n` are `s x`
   have hlast : ∀ (s : ℝ) (x : Vec ℝ n), (s • app x) (Fin.natAdd n 0) = s := fun s x => by
     simp [happ]
@@ -104,14 +104,14 @@ theorem SpectraShadow.convHull_exact (S₁ S₂ : SpectraShadow (Vec ℝ n)) : -
       simp [happ]
     -- both summands off the apex: heights `s₁ + s₂ = 1`, a convex combination
     · simp only [Set.mem_setOf_eq, Pi.add_apply, hlast] at hw
-      have := (convex_convexHull ℝ (S₁.construct ∪ S₂.construct))
+      have := (convex_convexHull ℝ (S₁.toSet ∪ S₂.toSet))
         (subset_convexHull ℝ _ (Or.inl hx₁)) (subset_convexHull ℝ _ (Or.inr hx₂)) hs₁.le hs₂.le hw
       convert this using 1
       funext k
       simp [hinit]
   -- the hull is inside, as both sets are and the result is convex
   · rw [← key]
-    refine convexHull_min ?_ (SpectraShadow.convex_construct _)
+    refine convexHull_min ?_ (SpectraShadow.convex_toSet _)
     rw [key]
     have hx1 : ∀ x : Vec ℝ n, app x (Fin.natAdd n 0) = 1 := fun x => by simp [happ]
     have hx2 : ∀ x : Vec ℝ n, (fun k => app x (Fin.castAdd 1 k)) = x := fun x => by

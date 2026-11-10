@@ -41,14 +41,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 theorem Polygon.representsaEmptySet_sound (P : Polygon 𝕋)
     (h : Polygon.representsaEmptySet P = true) : -- --- CONCL ---
-    ContSet.construct P = ∅ := by -- --- PROOF ---
+    ContSet.toSet P = ∅ := by -- --- PROOF ---
   simp only [Polygon.representsaEmptySet, List.all_eq_true, beq_iff_eq] at h
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   intro hx
-  obtain ⟨p, hp, y, hy, e, he, rfl⟩ := SetUnion.mem_construct.mp hx
+  obtain ⟨p, hp, y, hy, e, he, rfl⟩ := SetUnion.mem_toSet.mp hx
   have hk : p.k = 0 := h p hp
-  have : y ∈ (Real.VPolytope.construct (InflatedContSet.nominal p)) := hy
+  have : y ∈ (Real.VPolytope.toSet (InflatedContSet.nominal p)) := hy
   obtain ⟨β, -, hsum, -⟩ := this
   have hs : IsEmpty (Fin (InflatedContSet.nominal p).k) := ⟨fun j => by
     have hj : j.val < p.k := j.2

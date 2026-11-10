@@ -136,7 +136,7 @@ noncomputable def NonlinearSys.abstrReach (sys : NonlinearSys n m)
   -- 18. `R([0,t_end])`, the union of the time-interval sets of iterations 1 to `K`
   ⋃ j < options.K, ⋃ s ∈ sys.step_abstrRun U options.lin options.Φ options.sub options.enlarge
     options.Δt tend options.η options.taylorTermsAbstr options.ρ
-    options.fuel X₀ (j + 1), construct s.Rτ
+    options.fuel X₀ (j + 1), toSet s.Rτ
 
 end CORALean
 

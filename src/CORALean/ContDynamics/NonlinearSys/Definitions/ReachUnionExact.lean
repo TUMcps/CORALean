@@ -48,7 +48,7 @@ inputs in `sys.U`, is at, at some time of that horizon. -/
 def NonlinearSys.WithSteps.reachUnionExact (sys : NonlinearSys.WithSteps S Rg m n) (tFinal : ℝ)
     (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
   ⋃ t ∈ Set.Icc 0 tFinal, sys.sys.reachSetExact (S := 𝒮)
-    (Set.Icc 0 tFinal) X (construct sys.U) t
+    (Set.Icc 0 tFinal) X (toSet sys.U) t
 
 end CORALean
 

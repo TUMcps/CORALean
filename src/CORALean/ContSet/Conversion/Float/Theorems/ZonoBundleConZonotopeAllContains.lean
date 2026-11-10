@@ -42,8 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 private theorem ZonoBundle.aux_subset_interFrom {S : Set (Vec ℝ n)} : -- --- CONCL ---
     ∀ {k : ℕ} (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (Z : Fin k → Zonotope (Vec 𝕋 n)),
-      S ⊆ cZ.construct → (∀ i, S ⊆ (Z i).construct) →
-      S ⊆ (ZonoBundle.interFrom cZ Z).construct := by -- --- PROOF ---
+      S ⊆ cZ.toSet → (∀ i, S ⊆ (Z i).toSet) →
+      S ⊆ (ZonoBundle.interFrom cZ Z).toSet := by -- --- PROOF ---
   intro k
   induction k with
   | zero => intro cZ _ h _; exact h
@@ -56,7 +56,7 @@ private theorem ZonoBundle.aux_subset_interFrom {S : Set (Vec ℝ n)} : -- --- C
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.conZonotopeAll_contains (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k) :
-    zB.construct ⊆ (zB.conZonotopeAll hk).construct :=
+    zB.toSet ⊆ (zB.conZonotopeAll hk).toSet :=
   ZonoBundle.aux_subset_interFrom _ _ (zB.conZonotope_contains ⟨0, hk⟩)
     fun _ => zB.zonotope_contains _
 

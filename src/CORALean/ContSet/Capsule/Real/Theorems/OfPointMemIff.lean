@@ -39,7 +39,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.mem_ofPoint_iff (v x : Vec ℝ n) : -- --- CONCL ---
-    x ∈ (Capsule.ofPoint v).construct ↔ x = v := by -- --- PROOF ---
+    x ∈ (Capsule.ofPoint v).toSet ↔ x = v := by -- --- PROOF ---
   constructor
   · rintro ⟨t, -, h⟩
     simp only [Capsule.ofPoint] at h

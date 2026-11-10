@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.absorbRounding_outer (pZ : PolyZonotope (Vec 𝕋 n)) :
-    pZ.construct ⊆ pZ.absorbRounding.construct := fun x hx =>
+    pZ.toSet ⊆ pZ.absorbRounding.toSet := fun x hx =>
   ⟨x, PolyZonotope.absorbRounding_nominal pZ hx, 0,
     PolyZonotope.zero_mem_absorbRounding_err pZ, add_zero x⟩
 

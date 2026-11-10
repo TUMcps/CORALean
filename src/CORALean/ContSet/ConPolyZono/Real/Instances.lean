@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsequalToSet
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombOuter
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MtimesExact
@@ -48,12 +48,12 @@ scoped notation "𝒞𝒫𝒵" => fun n => ConPolyZono (Vec ℝ n)
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (ConPolyZono α) α := ⟨ConPolyZono.construct⟩
+instance : ContSet (ConPolyZono α) α := ⟨ConPolyZono.toSet⟩
 
 /-- At every ambient type, as the set-level statement is: it is the coefficient
 space that has to be finite-dimensional, and that one is `Fin p × Fin qI`. -/
 instance {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] : CompactSet (ConPolyZono α) α :=
-  ⟨ConPolyZono.isCompact_construct⟩
+  ⟨ConPolyZono.isCompact_toSet⟩
 
 instance : Plus (ConPolyZono α) α where
   plus := ConPolyZono.plus
@@ -82,7 +82,7 @@ noncomputable instance : Reduce (ConPolyZono (Vec ℝ n)) (Vec ℝ n) where
 instance : Mtimes (Mat ℝ) (𝒞𝒫𝒵) where
   mtimes := ConPolyZono.mtimes
   mtimes_outer M cPZ := by
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (ConPolyZono.mtimes_exact M cPZ).subset
 
 instance : Reindex 𝒞𝒫𝒵 where
@@ -92,7 +92,7 @@ instance : Reindex 𝒞𝒫𝒵 where
 /-- `ConPolyZono.isequal`, structural at tolerance `0`: sound, not exact. -/
 instance : Isequal (ConPolyZono α) where
   isequal := ConPolyZono.isequal
-  isequal_construct _ _ := ConPolyZono.isequal_construct
+  isequal_toSet _ _ := ConPolyZono.isequal_toSet
 
 end CORALean.Real
 

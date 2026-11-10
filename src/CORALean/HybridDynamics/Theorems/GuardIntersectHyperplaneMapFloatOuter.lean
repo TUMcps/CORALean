@@ -125,8 +125,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 /-- A sum of members is a member of the float interval-matrix sum. -/
 private theorem Interval.aux_sum_mem_sumTermsMat (f : ℕ → Interval (Mat 𝕋 m n)) (M : ℕ → Mat ℝ m n)
-    (N : ℕ) (h : ∀ k, k < N → M k ∈ (f k).construct) : -- --- CONCL ---
-    ∑ k ∈ Finset.range N, M k ∈ (Interval.sumTermsMat f N).construct := by -- --- PROOF ---
+    (N : ℕ) (h : ∀ k, k < N → M k ∈ (f k).toSet) : -- --- CONCL ---
+    ∑ k ∈ Finset.range N, M k ∈ (Interval.sumTermsMat f N).toSet := by -- --- PROOF ---
   induction N with
   | zero =>
     -- the empty sum is `0`, the stored point `0` read as reals
@@ -152,7 +152,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 private theorem GuardMap.aux_sdcInput_mem_sdcInputFloat (A : Mat 𝕋 n n) (uc : Vec 𝕋 n) {t : 𝕋}
     (η : ℕ) (x₀ : Vec 𝕋 n) (ht : 0 ≤ toReal t) : -- --- CONCL ---
     GuardMap.sdcInput (toRealMat A) (toRealVec uc) (toReal t) η (toRealVec x₀)
-      ∈ (GuardMap.step_sdcInputFloat A uc t η x₀).construct := by -- --- PROOF ---
+      ∈ (GuardMap.step_sdcInputFloat A uc t η x₀).toSet := by -- --- PROOF ---
   -- `tᵖ/q!` between the corner products
   have hcoef : ∀ p q : ℕ, toReal (Interval.mulLo (powDown t p) (powUp t p)
       (MatExp.invFactorialBounds q).inf (MatExp.invFactorialBounds q).sup)
@@ -162,7 +162,7 @@ private theorem GuardMap.aux_sdcInput_mem_sdcInputFloat (A : Mat 𝕋 n n) (uc :
     rw [div_eq_mul_inv]
     exact Interval.mul_between_corners (powDown_le ht le_rfl p) (le_powUp ht le_rfl p)
       (MatExp.invFactorialBounds_mem q).1 (MatExp.invFactorialBounds_mem q).2
-  have hpow : ∀ i, toRealMat A ^ i ∈ (Interval.matPow (Interval.point A) i).construct := fun i =>
+  have hpow : ∀ i, toRealMat A ^ i ∈ (Interval.matPow (Interval.point A) i).toSet := fun i =>
     Interval.matPow_outer _ (Interval.mem_point A) i
   -- `Θ`, reindexed by `i = k + 2`
   have hΘ : (∑ i ∈ Finset.Ico 2 (η + 1), (toReal t ^ (i - 1) / (i.factorial : ℝ)) •
@@ -173,7 +173,7 @@ private theorem GuardMap.aux_sdcInput_mem_sdcInputFloat (A : Mat 𝕋 n n) (uc :
         (Interval.mulHi (powDown t (k + 1)) (powUp t (k + 1))
           (MatExp.invFactorialBounds (k + 2)).inf
           (MatExp.invFactorialBounds (k + 2)).sup)
-        (Interval.matPow (Interval.point A) (k + 2))) (η - 1)).construct := by
+        (Interval.matPow (Interval.point A) (k + 2))) (η - 1)).toSet := by
     rw [Finset.sum_Ico_eq_sum_range, show η + 1 - 2 = η - 1 by omega]
     refine Interval.aux_sum_mem_sumTermsMat _ _ _ fun k _ => ?_
     rw [show 2 + k = k + 2 by ring, show k + 2 - 1 = k + 1 by omega]
@@ -185,7 +185,7 @@ private theorem GuardMap.aux_sdcInput_mem_sdcInputFloat (A : Mat 𝕋 n n) (uc :
           (MatExp.invFactorialBounds (k + 1)).sup)
         (Interval.mulHi (powDown t k) (powUp t k) (MatExp.invFactorialBounds (k + 1)).inf
           (MatExp.invFactorialBounds (k + 1)).sup)
-        (Interval.matPow (Interval.point A) k)) (η + 1)).construct :=
+        (Interval.matPow (Interval.point A) k)) (η + 1)).toSet :=
     Interval.aux_sum_mem_sumTermsMat _ _ _ fun k _ =>
       Interval.smul_outer (hcoef k (k + 1)).1 (hcoef k (k + 1)).2 _ (hpow k)
   -- the products with `x₀` and `u_c`, and their sum
@@ -205,7 +205,7 @@ private theorem GuardMap.aux_hitPoint_mem_hitPointFloat (A : Mat 𝕋 n n) (b nv
     ∀ K ∈ GuardMap.step_hitPointFloat A b nv d x₀,
       toRealVec nv ⬝ᵥ (toRealMat A *ᵥ toRealVec x₀ + toRealVec b) ≠ 0 ∧
         GuardMap.hitPoint (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d) (toRealVec x₀)
-          ∈ K.construct := by -- --- PROOF ---
+          ∈ K.toSet := by -- --- PROOF ---
   intro K (hK : GuardMap.step_hitPointFloat A b nv d x₀ = some K)
   simp only [GuardMap.step_hitPointFloat] at hK
   split_ifs at hK with hc
@@ -294,7 +294,7 @@ private theorem GuardMap.aux_hitJacobian_mem_hitJacobianFloat (A : Mat 𝕋 n n)
     (d : 𝕋) (x₀ : Vec 𝕋 n) : -- --- CONCL ---
     ∀ L ∈ GuardMap.step_hitJacobianFloat A b nv d x₀,
       GuardMap.hitJacobian (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d) (toRealVec x₀)
-        ∈ L.construct := by -- --- PROOF ---
+        ∈ L.toSet := by -- --- PROOF ---
   intro L (hL : GuardMap.step_hitJacobianFloat A b nv d x₀ = some L)
   simp only [GuardMap.step_hitJacobianFloat] at hL
   split_ifs at hL with hc
@@ -401,7 +401,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- `nᵀx − d` of a point of a float zonotope lies in `halfspaceRange`. -/
 private theorem Zonotope.aux_halfspaceRange_mem (nv : Vec 𝕋 n) (d : 𝕋) {Z : Zonotope (Vec 𝕋 n)}
     {x : Vec ℝ n}
-    (hx : x ∈ Z.construct) : -- --- CONCL ---
+    (hx : x ∈ Z.toSet) : -- --- CONCL ---
     toReal (Z.halfspaceRange nv d).inf ≤ toRealVec nv ⬝ᵥ x - toReal d ∧
       toRealVec nv ⬝ᵥ x - toReal d ≤ toReal (Z.halfspaceRange nv d).sup := by -- --- PROOF ---
   obtain ⟨a, ha, e, he, rfl⟩ := hx
@@ -475,11 +475,11 @@ end
 
 /-- `s v ∈ [a, b] Z` for `s ∈ [a, b]` and `v ∈ Z`, `[a, b]` the interval matrix `[a, b] I`. -/
 private theorem aux_hpMapF_smul_mem {a b : 𝕋} {s : ℝ} (h₁ : toReal a ≤ s) (h₂ : s ≤ toReal b)
-    {Z : Zonotope (Vec 𝕋 n)} {v : Vec ℝ n} (hv : v ∈ Z.construct) : -- --- CONCL ---
+    {Z : Zonotope (Vec 𝕋 n)} {v : Vec ℝ n} (hv : v ∈ Z.toSet) : -- --- CONCL ---
     s • v ∈ (Zonotope.mtimesIntervalMat (Interval.smul a b
-      (Interval.point (diagonalBlock fun _ => (one : 𝕋)))) Z).construct := by -- --- PROOF ---
+      (Interval.point (diagonalBlock fun _ => (one : 𝕋)))) Z).toSet := by -- --- PROOF ---
   have hone : (1 : Mat ℝ n n) ∈
-      (Interval.point (diagonalBlock fun _ : Fin n => (one : 𝕋))).construct := by
+      (Interval.point (diagonalBlock fun _ : Fin n => (one : 𝕋))).toSet := by
     have h := Interval.mem_point (diagonalBlock fun _ : Fin n => (one : 𝕋))
     convert h using 1
     funext i j
@@ -583,8 +583,8 @@ private theorem aux_hpMapF_center {lo hi c : 𝕋} {y : ℝ} (h1 : toReal lo ≤
 `[φ̲, φ̄]` on a convex `S` holding `x₀` and the stored center `ξ` of `R₀red`, and `τ(ξ)` within
 `τ_g` of `τ_c`. -/
 private theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋)
-    (R₀ R0red : Zonotope (Vec 𝕋 n)) (hcen : R0red.c = R₀.c) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.construct)
-    (hx₀' : x₀ ∈ R0red.construct) {S : Set (Vec ℝ n)} (hS : Convex ℝ S)
+    (R₀ R0red : Zonotope (Vec 𝕋 n)) (hcen : R0red.c = R₀.c) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.toSet)
+    (hx₀' : x₀ ∈ R0red.toSet) {S : Set (Vec ℝ n)} (hS : Convex ℝ S)
     (hξS : toRealVec R0red.c ∈ S) (hx₀S : x₀ ∈ S)
     (hΛne : ∀ x ∈ S, toRealVec nv ⬝ᵥ (toRealMat A *ᵥ x + toRealVec b) ≠ 0) {φlo φhi : 𝕋}
     (hφ : ∀ x ∈ S, toReal φlo ≤ 1 / (toRealVec nv ⬝ᵥ (toRealMat A *ᵥ x + toRealVec b)) ^ 2 ∧
@@ -608,7 +608,7 @@ private theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋
                 ((GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).I_error.sup l m)⟩)
             (fun (j : Fin (1 + R0red.h + R0red.h)) i =>
               (GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i).G j)
-            R0red.recenter))).construct := by -- --- PROOF ---
+            R0red.recenter))).toSet := by -- --- PROOF ---
   -- the Hessian zonotope of coordinate `i`
   set hz := fun i => GuardMap.hitHessianMatZonoFloat A b nv d R0red τc τg i with hhz
   set Ar := toRealMat A with hAr
@@ -644,7 +644,7 @@ private theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋
   set fac : Fin (1 + R0red.h + R0red.h) → ℝ :=
     Fin.append (Fin.append ![κ] (0 : Fin R0red.h → ℝ)) fun α => κ * (0 : Fin R0red.h → ℝ) α
     with hfac
-  have hQ : ∀ i, ∃ E ∈ (hz i).I_error.construct,
+  have hQ : ∀ i, ∃ E ∈ (hz i).I_error.toSet,
       GuardMap.hitHessianNum Ar br nr (toReal d) ξ i
         = (toRealMat (hz i).c + E)
           + ∑ j, fac j • toRealMat ((hz i).G j) :=
@@ -662,7 +662,7 @@ private theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋
       · rw [hfac, Fin.append_left, Fin.append_left, Fin.fin_one_eq_zero j]; simpa using hκ
       · rw [hfac, Fin.append_left, Fin.append_right]; simp
     · rw [hfac, Fin.append_right]; simp
-  have hνmem : ν ∈ R0red.recenter.construct := Zonotope.sub_center_mem_recenter hx₀'
+  have hνmem : ν ∈ R0red.recenter.toSet := Zonotope.sub_center_mem_recenter hx₀'
   have hqmem : (fun i => ν ⬝ᵥ (GuardMap.hitHessianNum Ar br nr (toReal d) ξ i *ᵥ ν))
       ∈ (Zonotope.quadMapMatZono
             (fun i => ⟨fun l m => addDown
@@ -672,7 +672,7 @@ private theorem aux_hpMapF_res1 (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋
                 ((hz i).I_error.sup l m)⟩)
             (fun (j : Fin (1 + R0red.h + R0red.h)) i =>
               (hz i).G j)
-            R0red.recenter).construct := by
+            R0red.recenter).toSet := by
     refine Zonotope.quadMapMatZono_outer _ _ _ ⟨ν, hνmem, fun i => toRealMat
       (hz i).c + E i, fun i => ?_, fac, hfac1,
       fun i => by dsimp only; exact congrArg (fun M => ν ⬝ᵥ (M *ᵥ ν)) (hEeq i)⟩
@@ -708,10 +708,10 @@ mapped set, `η ≥ 1`. -/
 theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[𝕋] G L 𝕋 n) (nv : Vec 𝕋 n)
     (d : 𝕋) (R₀ : Zonotope (Vec 𝕋 n)) (tmax : 𝕋) {η : ℕ} (guardOrder zonotopeOrder p : ℕ)
     (hη : 1 ≤ η) {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.IsTrajectory τ x u w)
-    (h₀ : x 0 ∈ R₀.construct) {t : ℝ} (ht : t ∈ Set.Icc 0 τ) (htmax : t ≤ toReal tmax)
+    (h₀ : x 0 ∈ R₀.toSet) {t : ℝ} (ht : t ∈ Set.Icc 0 τ) (htmax : t ≤ toReal tmax)
     (hhit : toRealVec nv ⬝ᵥ x t = toReal d) : -- --- CONCL ---
     ∀ Z ∈ ℓ.guardIntersectHyperplaneMapFloat nv d R₀ tmax η guardOrder zonotopeOrder p,
-      x t ∈ Z.construct := by -- --- PROOF ---
+      x t ∈ Z.toSet := by -- --- PROOF ---
   intro Z (hZ : ℓ.guardIntersectHyperplaneMapFloat nv d R₀ tmax η guardOrder zonotopeOrder p = some
       Z)
   set x₀ := x 0 with hx₀def
@@ -727,7 +727,7 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[�
     rw [hR0red]
     unfold Zonotope.reduceGirard
     split_ifs <;> rfl
-  have hsub : ∀ y ∈ R₀.construct, y ∈ R0red.construct :=
+  have hsub : ∀ y ∈ R₀.toSet, y ∈ R0red.toSet :=
     fun y hy => by rw [hR0red]; exact Zonotope.reduceGirard_outer R₀ guardOrder hy
   -- the returned set, and the float tests it passed
   simp only [Location.guardIntersectHyperplaneMapFloat, Zonotope.materialise_eq,
@@ -742,7 +742,7 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[�
     -- the run, in closed form
     have tr := traj.linearSys (R₀ := R₀) h₀ traj.inputSetFloat_mem
     have hvoc := tr.variation_of_constants (a := 0) (b := t) (Set.Icc_subset_Icc_right ht.2)
-      le_rfl ht.1 (Zonotope.isCompact_construct ℓ.inputSetFloat).isBounded
+      le_rfl ht.1 (Zonotope.isCompact_toSet ℓ.inputSetFloat).isBounded
     simp only [sub_zero] at hvoc
     -- the combined input `B u + c + E w` of the stay
     set uc : ℝ → Vec ℝ n := fun s => toRealMat ℓ.dynamics.B *ᵥ u s + toRealVec ℓ.dynamics.c +
@@ -750,10 +750,10 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[�
     have hvoc' : x t = exp (t • Ar) *ᵥ x₀ + ∫ s in (0:ℝ)..t, exp ((t - s) • Ar) *ᵥ uc s := hvoc
     have hmeas := tr.aestronglyMeasurable_input_reflected (c := t) (r := t)
       (by rw [sub_self]; exact Set.Icc_subset_Icc_right ht.2)
-    have hu : ∀ s ∈ Set.Ioc (0:ℝ) t, uc (t - s) ∈ ℓ.inputSetFloat.construct := fun s hs =>
+    have hu : ∀ s ∈ Set.Ioc (0:ℝ) t, uc (t - s) ∈ ℓ.inputSetFloat.toSet := fun s hs =>
       have hs' : t - s ∈ Set.Icc 0 τ := ⟨by linarith [hs.2], by linarith [hs.1, ht.2]⟩
       ℓ.inputSetFloat_outer (traj.input _ hs') (traj.dist _ hs')
-    have hUn : ℓ.inputSetFloat.construct.Nonempty := ⟨_, ℓ.inputSetFloat_outer
+    have hUn : ℓ.inputSetFloat.toSet.Nonempty := ⟨_, ℓ.inputSetFloat_outer
       (traj.input 0 ⟨le_rfl, traj.nonneg⟩) (traj.dist 0 ⟨le_rfl, traj.nonneg⟩)⟩
     -- its error to the constant flow of the exact `b`, then of the float `b̲`
     have he := GuardMap.abstractionErrorFloat_outer ℓ.dynamics.A ℓ.inputSetFloat R0red hη
@@ -775,7 +775,7 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[�
         tmax η).plus
         (⟨fun i => Interval.mulLo zero tmax zero (subUp (bI.sup i) (bI.inf i)),
           fun i => Interval.mulHi zero tmax zero (subUp (bI.sup i) (bI.inf i))⟩ :
-            Interval (Vec 𝕋 n)).zonotope).construct := by
+            Interval (Vec 𝕋 n)).zonotope).toSet := by
       rw [hesplit]
       refine Zonotope.plus_outer _ _ (Set.add_mem_add he (Interval.zonotope_contains _
         fun i => ?_))
@@ -792,11 +792,11 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[�
     have hxt : x t = x₀ + t • (Ar *ᵥ x₀ + br) + e := by
       rw [he_def, GuardMap.sdcFlow]; abel
     -- `Λ(x₀) ≠ 0`: the denominator's range over `AR₀ + b`
-    have hflow : ∀ (Z' : Zonotope (Vec 𝕋 n)) y, y ∈ Z'.construct →
-        Ar *ᵥ y + br ∈ ((Zonotope.mtimes ℓ.dynamics.A Z').plus (Zonotope.point bI.inf)).construct :=
+    have hflow : ∀ (Z' : Zonotope (Vec 𝕋 n)) y, y ∈ Z'.toSet →
+        Ar *ᵥ y + br ∈ ((Zonotope.mtimes ℓ.dynamics.A Z').plus (Zonotope.point bI.inf)).toSet :=
       fun Z' y hy => Zonotope.plus_outer _ _ (Set.add_mem_add (Zonotope.mtimes_outer ℓ.dynamics.A Z'
-        ⟨y, hy, rfl⟩) (by rw [Zonotope.construct_point]; rfl))
-    have hrange : ∀ (Z' : Zonotope (Vec 𝕋 n)) y, y ∈ Z'.construct →
+        ⟨y, hy, rfl⟩) (by rw [Zonotope.toSet_point]; rfl))
+    have hrange : ∀ (Z' : Zonotope (Vec 𝕋 n)) y, y ∈ Z'.toSet →
         toReal (((Zonotope.mtimes ℓ.dynamics.A Z').plus (Zonotope.point bI.inf)).halfspaceRange nv
           zero).inf
           ≤ nr ⬝ᵥ (Ar *ᵥ y + br) ∧ nr ⬝ᵥ (Ar *ᵥ y + br) ≤
@@ -826,17 +826,17 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[�
       field_simp
       ring
     -- the convex set `R₀red ⊖ ξ ⊕ ξ` the ranges are taken over, holding `ξ` and `R₀red`
-    have hhull : ∀ y ∈ R0red.construct,
-        y ∈ (R0red.recenter.plus (Zonotope.point R0red.c)).construct :=
+    have hhull : ∀ y ∈ R0red.toSet,
+        y ∈ (R0red.recenter.plus (Zonotope.point R0red.c)).toSet :=
       fun y hy => by
         have h := Zonotope.plus_outer _ _ (Set.add_mem_add (Zonotope.sub_center_mem_recenter hy)
-          (show toRealVec R0red.c ∈ (Zonotope.point R0red.c).construct by
-            rw [Zonotope.construct_point]; rfl))
+          (show toRealVec R0red.c ∈ (Zonotope.point R0red.c).toSet by
+            rw [Zonotope.toSet_point]; rfl))
         rwa [sub_add_cancel] at h
-    have hξS : toRealVec R0red.c ∈ (R0red.recenter.plus (Zonotope.point R0red.c)).construct := by
+    have hξS : toRealVec R0red.c ∈ (R0red.recenter.plus (Zonotope.point R0red.c)).toSet := by
       have h := Zonotope.plus_outer _ _ (Set.add_mem_add (Zonotope.zero_mem_recenter R0red)
-        (show toRealVec R0red.c ∈ (Zonotope.point R0red.c).construct by
-            rw [Zonotope.construct_point]; rfl))
+        (show toRealVec R0red.c ∈ (Zonotope.point R0red.c).toSet by
+            rw [Zonotope.toSet_point]; rfl))
       rwa [zero_add] at h
     have hx₀S := hhull x₀ (hsub x₀ h₀)
     have hΛS := fun y hy => hrange (R0red.recenter.plus (Zonotope.point R0red.c)) y hy
@@ -852,7 +852,7 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[�
       (by rw [toReal_neg]; linarith [hdξ.2]) (by rw [toReal_neg]; linarith [hdξ.1])
       hinvξ.1 hinvξ.2
     -- `Λ ≠ 0` and `1/Λ² ∈ [φ̲, φ̄]` on the hull
-    have hΛneS : ∀ y ∈ (R0red.recenter.plus (Zonotope.point R0red.c)).construct,
+    have hΛneS : ∀ y ∈ (R0red.recenter.plus (Zonotope.point R0red.c)).toSet,
         nr ⬝ᵥ (Ar *ᵥ y + br) ≠ 0 := fun y hy => by
       rcases aux_hpMapF_sign hcΛ with h | h
       · exact (lt_of_lt_of_le h (hΛS y hy).1).ne'
@@ -904,7 +904,7 @@ theorem Location.guardIntersectHyperplaneMapFloat_outer (ℓ : Location 𝒵[�
       rw [hsplit]
       -- `res1` holds `y_h(x₀)`, `τ(ξ)` within `τ_g` of `τ_c`
       exact Zonotope.plus_outer _ _ (Set.add_mem_add (aux_hpMapF_res1 ℓ.dynamics.A bI.inf nv d R₀
-        R0red hcen h₀ (hsub x₀ h₀) (Zonotope.convex_construct _) hξS hx₀S hΛneS hφS
+        R0red hcen h₀ (hsub x₀ h₀) (Zonotope.convex_toSet _) hξS hx₀S hΛneS hφS
         (aux_hpMapF_center hτ.1 hτ.2) hk hL) hres2)
   · simp at hZ
 

@@ -42,7 +42,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem EmptySet.contains_iff {S : Type} [ContSet S (Vec ℝ n)] (E : EmptySet n) (s : S) :
-    ContSet.construct s ⊆ E.construct ↔ ContSet.construct s = ∅ :=
+    ContSet.toSet s ⊆ E.toSet ↔ ContSet.toSet s = ∅ :=
   Set.subset_empty_iff
 
 end CORALean.Real

@@ -40,7 +40,7 @@ namespace CORALean.Real
 /-- The rank test holds for the arc `(a, a²)` of `ℝ²`, whose set has empty interior. -/
 theorem PolyZonotope.isFullDim_cora_counterexample : -- --- CONCL ---
     ∃ pZ : PolyZonotope (Vec ℝ 2), pZ.isFullDimCora ∧
-      ¬ (interior pZ.construct).Nonempty := by -- --- PROOF ---
+      ¬ (interior pZ.toSet).Nonempty := by -- --- PROOF ---
   refine ⟨⟨1, 2, 0, 0, fun j => Pi.single j (1 : ℝ), fun _ j => (j : ℕ) + 1, Fin.elim0⟩, ?_, ?_⟩
   · -- the two unit vectors are generators, so the span is everything
     have hspan : Submodule.span ℝ (Set.range (fun j : Fin 2 => (Pi.single j (1 : ℝ) : Vec ℝ 2))
@@ -55,7 +55,7 @@ theorem PolyZonotope.isFullDim_cora_counterexample : -- --- CONCL ---
   · -- the set lies on the parabola `x₁ = x₀²`, and no ball does
     rintro ⟨y, hy⟩
     -- every point of the set is `(a, a²)`
-    have hmem : ∀ x ∈ PolyZonotope.construct (⟨1, 2, 0, 0, fun j => Pi.single j (1 : ℝ),
+    have hmem : ∀ x ∈ PolyZonotope.toSet (⟨1, 2, 0, 0, fun j => Pi.single j (1 : ℝ),
         fun _ j => (j : ℕ) + 1, Fin.elim0⟩ : PolyZonotope (Vec ℝ 2)), x 1 = x 0 ^ 2 := by
       rintro x ⟨a, β, -, -, rfl⟩
       simp [PolyZonotope.monomial, Fin.sum_univ_two]

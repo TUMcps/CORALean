@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.DiscretizeReachSetExactSu
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactSuperset
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSubsetDiscretizeReachSetExactAddError
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetExactInnerOfOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
@@ -76,21 +76,21 @@ theorem LinearSys.reachInner_inner (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 
   set Q := Zonotope.mtimes (MatExp.expIntegral (toRealMat sys.A) Δt) U with hQ
   -- the run minus its error lies in the zero-order-hold reachable set
   have hinner := (sys.discretize Δt).reachSetExact_inner_of_outer (S := 𝒵)
-    (Zonotope.convex_construct R₀) (Zonotope.isCompact_construct R₀)
-    (Zonotope.convex_construct Q) (Zonotope.isCompact_construct Q) k
-    ⟨_, Zonotope.center_mem_construct _⟩ (Zonotope.isBounded_construct _)
+    (Zonotope.convex_toSet R₀) (Zonotope.isCompact_toSet R₀)
+    (Zonotope.convex_toSet Q) (Zonotope.isCompact_toSet Q) k
+    ⟨_, Zonotope.center_mem_toSet _⟩ (Zonotope.isBounded_toSet _)
     (sys.reach_subset_discretize_reachSetExact_add_error hΔt η hε ho R₀ U k)
   -- each step's held input is `stepInputConst` at a point of `U`
-  have hstep : construct Q ⊆ (fun c => sys.stepInputConst c Δt) '' construct U := by
+  have hstep : toSet Q ⊆ (fun c => sys.stepInputConst c Δt) '' toSet U := by
     intro v hv
-    have hv' : v ∈ Q.construct := hv
+    have hv' : v ∈ Q.toSet := hv
     rw [hQ, ← Zonotope.mtimes_exact] at hv'
     obtain ⟨c, hc, rfl⟩ := hv'
     exact ⟨c, hc, rfl⟩
   have hzoh := sys.discretize_reachSetExact_subset_inputReach (S := 𝒵) hΔt R₀ U Q
-    (Zonotope.isBounded_construct U) ⟨_, Zonotope.center_mem_construct U⟩ hstep k
+    (Zonotope.isBounded_toSet U) ⟨_, Zonotope.center_mem_toSet U⟩ hstep k
   exact hinner.trans (hzoh.trans (sys.mulVecLin_image_add_inputReach_subset_reachSetExact
-    (S := 𝒵) R₀ U (by positivity) (Zonotope.isBounded_construct U)))
+    (S := 𝒵) R₀ U (by positivity) (Zonotope.isBounded_toSet U)))
 
 end CORALean
 

@@ -7,7 +7,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Definitions.Unchecked
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsequalToSet
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MapExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusOuter
@@ -44,11 +44,11 @@ variable {n : ℕ}
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (Ellipsoid n) (Vec ℝ n) := ⟨Ellipsoid.construct⟩
+instance : ContSet (Ellipsoid n) (Vec ℝ n) := ⟨Ellipsoid.toSet⟩
 
-instance : ConvexSet (Ellipsoid n) (Vec ℝ n) := ⟨Ellipsoid.convex_construct⟩
+instance : ConvexSet (Ellipsoid n) (Vec ℝ n) := ⟨Ellipsoid.convex_toSet⟩
 
-instance : CompactSet (Ellipsoid n) (Vec ℝ n) := ⟨Ellipsoid.isCompact_construct⟩
+instance : CompactSet (Ellipsoid n) (Vec ℝ n) := ⟨Ellipsoid.isCompact_toSet⟩
 
 instance : OfPoint (Ellipsoid n) (Vec ℝ n) where
   ofPoint := Ellipsoid.ofPoint
@@ -72,7 +72,7 @@ decision and instance search may not make one. -/
 instance : Mtimes (Mat ℝ) (fun n => Ellipsoid n) where
   mtimes := Ellipsoid.mtimes
   mtimes_outer M E := by
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (Ellipsoid.mtimes_exact M E).subset
 
 /-- `map_exact` carries no hypothesis at all — `M Q Mᵀ` is exact for every `M`, singular ones
@@ -84,19 +84,19 @@ noncomputable instance : Reindex (fun n => Ellipsoid n) where
 /-- `Ellipsoid.isequal`, the same `Q` and `q` at tolerance `0`. -/
 instance : Isequal (Ellipsoid n) where
   isequal := Ellipsoid.isequal
-  isequal_construct _ _ := Ellipsoid.isequal_construct
+  isequal_toSet _ _ := Ellipsoid.isequal_toSet
 
 /-- Unchecked fields denote what CORA's constructor makes of them (`Ellipsoid.ofShape`). -/
 noncomputable instance : ContSet (Ellipsoid.Unchecked n) (Vec ℝ n) :=
-  ⟨fun D => D.ellipsoid.construct⟩
+  ⟨fun D => D.ellipsoid.toSet⟩
 
 /-- Convex as the ellipsoid they denote is. -/
 instance : ConvexSet (Ellipsoid.Unchecked n) (Vec ℝ n) :=
-  ⟨fun D => ConvexSet.convex_construct D.ellipsoid⟩
+  ⟨fun D => ConvexSet.convex_toSet D.ellipsoid⟩
 
 /-- Compact as the ellipsoid they denote is. -/
 instance : CompactSet (Ellipsoid.Unchecked n) (Vec ℝ n) :=
-  ⟨fun D => CompactSet.isCompact_construct D.ellipsoid⟩
+  ⟨fun D => CompactSet.isCompact_toSet D.ellipsoid⟩
 
 end CORALean.Real
 

@@ -58,7 +58,7 @@ theorem Zonotope.aligned_subset_of_maxIn_counterexample : -- --- CONCL ---
       (∀ (c' : Vec ℝ 1) (a' : Fin Z.h → ℝ), (∀ i, 0 ≤ a' i ∧ a' i ≤ 1) →
         (∀ l, (H *ᵥ c') l + ∑ i, |(H *ᵥ Z.G i) l| * a' i ≤ h l) →
         ∑ i, ‖Z.G i‖ * Real.log (a' i) ≤ ∑ i, ‖Z.G i‖ * Real.log (a i)) ∧
-      ¬ (Z.aligned c a).construct ⊆ (E *ᵥ ·) '' {w | ∀ l, (H *ᵥ w) l ≤ h l} := by -- --- PROOF ---
+      ¬ (Z.aligned c a).toSet ⊆ (E *ᵥ ·) '' {w | ∀ l, (H *ᵥ w) l ≤ h l} := by -- --- PROOF ---
   refine ⟨⟨1, 0, fun _ _ => 1⟩, !![1; -1], ![1, 1], !![1 / 2], 0, fun _ => 1,
     fun _ => ⟨zero_le_one, le_rfl⟩, ?_, ?_, ?_⟩
   -- feasible: `±0 + 1 ≤ 1`
@@ -72,7 +72,7 @@ theorem Zonotope.aligned_subset_of_maxIn_counterexample : -- --- CONCL ---
   -- `1 ∈ [-1, 1]`, while `1 = w / 2` needs `w = 2 ∉ W`
   · intro hsub
     have hmem : ((fun _ => 1 : Fin 1 → ℝ) : Vec ℝ 1) ∈ (Zonotope.aligned
-        (⟨1, 0, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1)) 0 (fun _ => (1 : ℝ))).construct := by
+        (⟨1, 0, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1)) 0 (fun _ => (1 : ℝ))).toSet := by
       refine ⟨fun _ => 1, fun _ => by simp, ?_⟩
       funext i
       simp [Zonotope.aligned]

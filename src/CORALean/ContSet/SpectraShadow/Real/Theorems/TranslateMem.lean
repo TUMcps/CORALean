@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.mem_translate_iff (S : SpectraShadow α) (v x : α) : -- --- CONCL ---
-    x ∈ (S.translate v).construct ↔ x - v ∈ S.construct := by -- --- PROOF ---
+    x ∈ (S.translate v).toSet ↔ x - v ∈ S.toSet := by -- --- PROOF ---
   constructor
   · rintro ⟨β, hβ, rfl⟩
     refine ⟨β, hβ, ?_⟩

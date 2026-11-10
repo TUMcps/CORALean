@@ -44,7 +44,7 @@ variable [∀ n, Recenter (S n) (Vec ℝ n)]
 `enlarge S f`: `minus_outer`, `times_outer` and `plus_outer` in turn. -/
 theorem ContSet.enlarge_outer (s : S n) (f : Vec 𝕋 n) : -- --- CONCL ---
     (fun x : Vec ℝ n => Recenter.center s + fun i => toReal (f i) * (x i - Recenter.center s i)) ''
-      construct s ⊆ construct (ContSet.enlarge s f) := by -- --- PROOF ---
+      toSet s ⊆ toSet (ContSet.enlarge s f) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   have h1 := ContSet.minus_outer s (Recenter.center s) ⟨x, hx, rfl⟩
   have h2 := ContSet.times_outer f (ContSet.minus s (Recenter.center s))

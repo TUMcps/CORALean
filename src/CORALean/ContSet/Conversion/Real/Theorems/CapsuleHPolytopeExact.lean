@@ -1,14 +1,14 @@
 module
 
-public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
-public import CORALean.ContSet.Capsule.Real.Theorems.MemConstructIffNorm
+public import CORALean.ContSet.Capsule.Real.Theorems.ToSetEqEmpty
+public import CORALean.ContSet.Capsule.Real.Theorems.MemToSetIffNorm
 public import CORALean.ContSet.Conversion.Real.Operations.Capsule_to_HPolytope
 public import CORALean.ContSet.Conversion.Real.Theorems.GramSchmidtVecColZero
 public import CORALean.ContSet.Conversion.Real.Theorems.GramSchmidtVecOrthogonal
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalHPolytopeExact
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
-public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructEmptySet
+public import CORALean.ContSet.HPolytope.Real.Theorems.ToSetEmptySet
 public import CORALean.ContSet.HPolytope.Real.Theorems.OfPointMemIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.TranslateExact
 
@@ -58,8 +58,8 @@ private theorem aux_norm₂_nonpos_iff {n : ℕ} {v : Vec ℝ n} : ‖v‖₂ �
 
 /-- At radius `0` a capsule is its segment. -/
 private theorem aux_mem_of_r_eq_zero {n : ℕ} {C : Capsule n} (hr : C.r = 0) (x : Vec ℝ n) :
-    x ∈ C.construct ↔ ∃ t ∈ Set.Icc (-1 : ℝ) 1, x - C.c = t • C.g := by
-  rw [Capsule.mem_construct_iff_norm₂, hr]
+    x ∈ C.toSet ↔ ∃ t ∈ Set.Icc (-1 : ℝ) 1, x - C.c = t • C.g := by
+  rw [Capsule.mem_toSet_iff_norm₂, hr]
   refine exists_congr fun t => and_congr_right fun _ => ?_
   rw [aux_norm₂_nonpos_iff, sub_eq_zero]
 
@@ -111,16 +111,16 @@ private theorem aux_exists_abs_sub_le_iff {d a r : ℝ} (hr : 0 ≤ r) : -- --- 
 
 /-- `aux_1D` is exact: the capsule on the line is the interval `c ± (|g| + r)`. -/
 private theorem aux_hPolytope_1D (C : Capsule (0 + 1)) (hr : 0 ≤ C.r) : -- --- CONCL ---
-    C.interval.hPolytope.construct = C.construct := by -- --- PROOF ---
+    C.interval.hPolytope.toSet = C.toSet := by -- --- PROOF ---
   rw [Interval.hPolytope_exact]
   ext x
-  rw [Capsule.mem_construct_iff_norm₂]
+  rw [Capsule.mem_toSet_iff_norm₂]
   -- one coordinate: `‖v‖₂ = |v 0|`
   have h1 : ∀ v : Vec ℝ (0 + 1), ‖v‖₂ = |v 0| := fun v => by
     simp [norm₂, Real.sqrt_sq_eq_abs]
   simp only [h1, Pi.sub_apply, Pi.smul_apply, smul_eq_mul]
   rw [aux_exists_abs_sub_le_iff hr, abs_le]
-  simp only [Interval.construct, Capsule.interval, Set.mem_setOf_eq]
+  simp only [Interval.toSet, Capsule.interval, Set.mem_setOf_eq]
   constructor
   · intro hx
     obtain ⟨h₁, h₂⟩ : C.c 0 - (|C.g 0| + C.r) ≤ x 0 ∧ x 0 ≤ C.c 0 + (|C.g 0| + C.r) := hx 0
@@ -133,7 +133,7 @@ private theorem aux_hPolytope_1D (C : Capsule (0 + 1)) (hr : 0 ≤ C.r) : -- ---
 /-- CORA's `aux_exactLineConversion` is exact at `r = 0`, `g ≠ 0`. -/
 private theorem aux_hPolytope_line (C : Capsule (m + 1)) (hr : C.r = 0)
     (hg : C.g ≠ 0) : -- --- CONCL ---
-    C.hPolytopeOfLine.construct = C.construct := by -- --- PROOF ---
+    C.hPolytopeOfLine.toSet = C.toSet := by -- --- PROOF ---
   set Q := gramSchmidtVec C.g with hQdef
   set q : Fin (m + 1) → Vec ℝ (m + 1) := Qᵀ with hqdef
   -- the columns are orthonormal, span, and the first is `g / ‖g‖₂`
@@ -215,23 +215,23 @@ private theorem aux_hPolytope_line (C : Capsule (m + 1)) (hr : C.r = 0)
 
 /-- Where CORA's `polytope(C)` returns before `'outer'` — `n ≤ 1`, or no radius — it is exact. -/
 theorem Capsule.hPolytope_exact {n : ℕ} (C : Capsule n) (h : n ≤ 1 ∨ C.r ≤ 0) : -- --- CONCL ---
-    C.hPolytope.construct = C.construct := by -- --- PROOF ---
+    C.hPolytope.toSet = C.toSet := by -- --- PROOF ---
   cases n with
   | zero =>
-    show (if C.r < 0 then _ else _ : HPolytope (Vec ℝ 0)).construct = _
+    show (if C.r < 0 then _ else _ : HPolytope (Vec ℝ 0)).toSet = _
     split_ifs with hr
-    · rw [HPolytope.construct_emptySet, Capsule.construct_eq_empty hr]
+    · rw [HPolytope.toSet_emptySet, Capsule.toSet_eq_empty hr]
     · -- `Vec ℝ 0` is a single point, and a radius `≥ 0` keeps it
       ext x
-      rw [HPolytope.mem_ofPoint_iff, Capsule.mem_construct_iff_norm₂]
+      rw [HPolytope.mem_ofPoint_iff, Capsule.mem_toSet_iff_norm₂]
       refine ⟨fun _ => ⟨0, ⟨by norm_num, by norm_num⟩, ?_⟩, fun _ => funext fun i => i.elim0⟩
       rw [show (x - C.c) - (0 : ℝ) • C.g = 0 from funext fun i => i.elim0, norm₂_zero]
       exact not_lt.mp hr
   | succ m =>
     show (if C.r < 0 then _ else if m = 0 then _ else if C.g = 0 ∧ C.r = 0 then _
-      else if C.r = 0 then _ else _ : HPolytope (Vec ℝ (m + 1))).construct = _
+      else if C.r = 0 then _ else _ : HPolytope (Vec ℝ (m + 1))).toSet = _
     split_ifs with hr hm hpt hline
-    · rw [HPolytope.construct_emptySet, Capsule.construct_eq_empty hr]
+    · rw [HPolytope.toSet_emptySet, Capsule.toSet_eq_empty hr]
     · subst hm
       exact aux_hPolytope_1D C (not_lt.mp hr)
     · -- a point: the capsule is `{c}`

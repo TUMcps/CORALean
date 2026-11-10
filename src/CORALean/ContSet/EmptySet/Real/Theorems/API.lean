@@ -5,8 +5,8 @@ public import CORALean.ContSet.EmptySet.Real.Theorems.RadiusEq
 public import CORALean.ContSet.EmptySet.Real.Theorems.CenterIsSomeIff
 public import CORALean.ContSet.EmptySet.Real.Theorems.AndExact
 public import CORALean.ContSet.EmptySet.Real.Theorems.Basic
-public import CORALean.ContSet.EmptySet.Real.Theorems.ConstructNeSingleton
-public import CORALean.ContSet.EmptySet.Real.Theorems.ConstructNeUniv
+public import CORALean.ContSet.EmptySet.Real.Theorems.ToSetNeSingleton
+public import CORALean.ContSet.EmptySet.Real.Theorems.ToSetNeUniv
 public import CORALean.ContSet.EmptySet.Real.Theorems.LiftExact
 public import CORALean.ContSet.EmptySet.Real.Theorems.ProjectExact
 public import CORALean.ContSet.EmptySet.Real.Theorems.ProjectHighDimExact

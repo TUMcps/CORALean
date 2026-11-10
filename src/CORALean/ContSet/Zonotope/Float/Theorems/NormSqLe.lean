@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.normSq_le (Z : Zonotope (Vec 𝕋 n)) {σ : 𝕋}
-    (hσ : toReal Z.normSq ≤ toReal (mulDown σ σ)) {x : Vec ℝ n} (hx : x ∈ Z.construct) :
+    (hσ : toReal Z.normSq ≤ toReal (mulDown σ σ)) {x : Vec ℝ n} (hx : x ∈ Z.toSet) :
     ‖x‖₂ ≤ toReal (absolute σ) :=
   Interval.norm_le Z.interval hσ (Zonotope.interval_contains Z hx)
 

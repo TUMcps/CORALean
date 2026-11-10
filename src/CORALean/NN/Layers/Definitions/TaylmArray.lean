@@ -10,7 +10,7 @@ public import CORALean.ContSet.Taylm.Float.Taylm
 
 CORA's `evaluateTaylm` passes a column of `taylm` objects through a network: one model per
 neuron, all over the same `d` variables. `TaylmArray 𝕋 d m` is that column, and denotes the
-range set `Taylm.construct` gives it, so the shared variables stay shared. The dimension `m` is
+range set `Taylm.toSet` gives it, so the shared variables stay shared. The dimension `m` is
 the layer's, the number of variables `d` the input's, and a layer maps `TaylmArray 𝕋 d n` to
 `TaylmArray 𝕋 d m`.
 -/
@@ -37,7 +37,7 @@ structure TaylmArray (𝕋 : Type) (d m : ℕ) where
 /-- An array of Taylor models denotes the range of the column, so that the shared variables stay
 shared. -/
 noncomputable instance (m : ℕ) : ContSet (TaylmArray 𝕋 d m) (Vec ℝ m) where
-  construct T := Float.Taylm.construct T.taylm
+  toSet T := Float.Taylm.toSet T.taylm
 
 end CORALean
 

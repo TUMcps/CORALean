@@ -49,9 +49,9 @@ variable {d k : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.one_le_volumeRatio (Z : Zonotope (Vec ℝ (d + k))) (P : HPolytope (Vec ℝ (d + k)))
-    (hd : 0 < d) (hZP : Z.construct ⊆ P.construct)
+    (hd : 0 < d) (hZP : Z.toSet ⊆ P.toSet)
     (hpos : ∀ i : Fin (k + 1), 0 < MeasureTheory.volume
-      (Z.project (fun j : Fin d => (⟨j + i, by omega⟩ : Fin (d + k)))).construct) : -- --- CONCL ---
+      (Z.project (fun j : Fin d => (⟨j + i, by omega⟩ : Fin (d + k)))).toSet) : -- --- CONCL ---
     1 ≤ Z.volumeRatio P := by -- --- PROOF ---
   unfold Zonotope.volumeRatio
   simp only
@@ -59,13 +59,13 @@ theorem Zonotope.one_le_volumeRatio (Z : Zonotope (Vec ℝ (d + k))) (P : HPolyt
   calc ((k + 1 : ℕ) : ENNReal) = ∑ _i : Fin (k + 1), (1 : ENNReal) := by simp
     _ ≤ _ := Finset.sum_le_sum fun i _ => ?_
   set proj : Fin d → Fin (d + k) := fun j => ⟨j + i, by omega⟩ with hproj
-  have hsub : (Z.project proj).construct ⊆
-      (LinearMap.funLeft ℝ ℝ proj) '' P.construct := by
+  have hsub : (Z.project proj).toSet ⊆
+      (LinearMap.funLeft ℝ ℝ proj) '' P.toSet := by
     rw [Zonotope.project, ← Zonotope.map_exact]
     exact Set.image_mono hZP
   have hle := MeasureTheory.measure_mono (μ := MeasureTheory.volume) hsub
-  have hfin : MeasureTheory.volume (Z.project proj).construct < ⊤ :=
-    (Zonotope.isCompact_construct _).measure_lt_top
+  have hfin : MeasureTheory.volume (Z.project proj).toSet < ⊤ :=
+    (Zonotope.isCompact_toSet _).measure_lt_top
   refine ENNReal.one_le_rpow ?_ (by positivity)
   rw [ENNReal.le_div_iff_mul_le (Or.inl (hpos i).ne') (Or.inl hfin.ne), one_mul]
   exact hle

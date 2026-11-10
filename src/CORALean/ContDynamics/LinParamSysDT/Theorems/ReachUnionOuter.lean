@@ -48,10 +48,10 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 theorem LinParamSysDT.reachUnion_outer (sys : LinParamSysDT 𝕄 n)
     (params : Reach.InputParams (S n) (S n) ℕ) (options : LinParamSysDT.ReachOptions) :
     sys.reachUnionExact params.X₀ params.U (params.tFinal - params.tStart)
-      ⊆ construct (sys.reachUnion params options) := by
+      ⊆ toSet (sys.reachUnion params options) := by
   intro y hy
   obtain ⟨k, hk, hy⟩ := Set.mem_iUnion₂.mp hy
-  exact SetUnion.mem_construct_range (Nat.lt_succ_of_le hk)
+  exact SetUnion.mem_toSet_range (Nat.lt_succ_of_le hk)
     (sys.reachSetExact_subset_reach options.hZonotopeOrder params.X₀ params.U k hy)
 
 end CORALean

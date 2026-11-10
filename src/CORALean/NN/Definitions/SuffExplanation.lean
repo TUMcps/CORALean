@@ -53,7 +53,7 @@ still beats every rival everywhere in the `ε`-box around the rest. Stated of th
 exact map, which a network is sound at rather than stores. -/
 def IsSuffExplanation (f : Vec ℝ n → Vec ℝ m) (x : Vec ℝ n) (ε : ℝ)
     (E : Finset (Fin n)) (l : Fin m) : Prop :=
-  ∀ x', x' ∈ construct (explainBox x ε E) → ∀ j, j ≠ l → f x' j < f x' l
+  ∀ x', x' ∈ toSet (explainBox x ε E) → ∀ j, j ≠ l → f x' j < f x' l
 
 end CORALean
 

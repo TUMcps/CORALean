@@ -49,9 +49,9 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.simulate_mem_reach (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : S n)
-    {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) {u : ℕ → Vec ℝ n}
-    (hu : ∀ k, u k ∈ construct U) (k : ℕ) :
-    sys.simulate x₀ u k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
+    {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ toSet R₀) {u : ℕ → Vec ℝ n}
+    (hu : ∀ k, u k ∈ toSet U) (k : ℕ) :
+    sys.simulate x₀ u k ∈ toSet (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer ho R₀ U (sys.simulate_isTrajectory hx₀ hu) k
 
 end CORALean

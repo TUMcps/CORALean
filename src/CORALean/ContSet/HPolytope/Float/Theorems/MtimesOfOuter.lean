@@ -43,9 +43,9 @@ variable {P : HPolytope 𝕋 (Vec 𝕋 n)}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mtimesOf_outer (M : Mat 𝕋 p n) (Aq : Mat 𝕋 q p)
-    (u : ∀ i, FloatBound 𝕋 P.construct ((Real.HPolytope.rowLin (toRealMat Aq) i).comp
+    (u : ∀ i, FloatBound 𝕋 P.toSet ((Real.HPolytope.rowLin (toRealMat Aq) i).comp
         (mulVecLin (toRealMat M)))) :
-    (toRealMat M *ᵥ ·) '' P.construct ⊆ (HPolytope.mtimesOf M Aq u).construct :=
+    (toRealMat M *ᵥ ·) '' P.toSet ⊆ (HPolytope.mtimesOf M Aq u).toSet :=
   HPolytope.subset_ofBounds _ _
 
 end CORALean.Float

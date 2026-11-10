@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexMemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsPolytopeCexMemToSet
 public import Mathlib.Analysis.Convex.Basic
 public import Mathlib.Tactic.Linarith
 public import Mathlib.Tactic.FinCases
@@ -39,23 +39,23 @@ namespace CORALean.Real
 /-- `(3, 1)` and `(-3, 1)` are in the set, `(0, 1)` between them is not: `a c = 1` forces
 `a = ±1`, and then `2a + b ≠ 0`. -/
 theorem PolyZonotope.isPolytopeCex_not_convex : -- --- CONCL ---
-    ¬ Convex ℝ PolyZonotope.isPolytopeCex.construct := by -- --- PROOF ---
+    ¬ Convex ℝ PolyZonotope.isPolytopeCex.toSet := by -- --- PROOF ---
   intro hc
   -- both points are in the set, via the factors `(1, 1, 1)` and `(-1, -1, -1)`
-  have hP : (![3, 1] : Vec ℝ 2) ∈ PolyZonotope.isPolytopeCex.construct := by
-    rw [PolyZonotope.isPolytopeCex_mem_construct]
+  have hP : (![3, 1] : Vec ℝ 2) ∈ PolyZonotope.isPolytopeCex.toSet := by
+    rw [PolyZonotope.isPolytopeCex_mem_toSet]
     refine ⟨![1, 1, 1], fun k => by fin_cases k <;> simp, ?_⟩
     funext i
     fin_cases i <;> norm_num [Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
-  have hQ : (![-3, 1] : Vec ℝ 2) ∈ PolyZonotope.isPolytopeCex.construct := by
-    rw [PolyZonotope.isPolytopeCex_mem_construct]
+  have hQ : (![-3, 1] : Vec ℝ 2) ∈ PolyZonotope.isPolytopeCex.toSet := by
+    rw [PolyZonotope.isPolytopeCex_mem_toSet]
     refine ⟨![-1, -1, -1], fun k => by fin_cases k <;> simp, ?_⟩
     funext i
     fin_cases i <;> norm_num [Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
   -- convexity puts the midpoint in the set
   have hm := hc hP hQ (by norm_num : (0 : ℝ) ≤ 1 / 2) (by norm_num : (0 : ℝ) ≤ 1 / 2)
     (by norm_num)
-  rw [PolyZonotope.isPolytopeCex_mem_construct] at hm
+  rw [PolyZonotope.isPolytopeCex_mem_toSet] at hm
   -- the midpoint is `(0, 1)`, which no factors reach
   obtain ⟨a, ha, hx⟩ := hm
   have h0 := congrFun hx 0

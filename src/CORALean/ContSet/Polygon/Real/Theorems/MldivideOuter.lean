@@ -39,9 +39,9 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.mldivide_outer (P Sp : Polygon) {S : Set (Vec ℝ 2)}
-    (hSp : ContSet.construct Sp ⊆ S)
-    (hreg : ContSet.construct P = closure (interior (ContSet.construct P))) :
-    ContSet.construct P \ S ⊆ Polygon.subtract P Sp :=
+    (hSp : ContSet.toSet Sp ⊆ S)
+    (hreg : ContSet.toSet P = closure (interior (ContSet.toSet P))) :
+    ContSet.toSet P \ S ⊆ Polygon.subtract P Sp :=
   fun _ hx => (Polygon.subtract_outer P Sp hreg).1 ⟨hx.1, fun h => hx.2 (hSp h)⟩
 
 end CORALean.Real

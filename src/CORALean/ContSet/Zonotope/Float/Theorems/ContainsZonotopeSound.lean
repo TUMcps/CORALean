@@ -81,7 +81,7 @@ private theorem Zonotope.aux_mulResidual_bound {m h : ℕ} (A : Mat 𝕋 n m) (G
 
 /-- `step_errBound` bounds every member of a float box. -/
 private theorem Zonotope.aux_abs_le_errBound (E : Interval (Vec 𝕋 n)) {e : Vec ℝ n}
-    (he : e ∈ E.construct) (i : Fin n) : -- --- CONCL ---
+    (he : e ∈ E.toSet) (i : Fin n) : -- --- CONCL ---
     |e i| ≤ toReal (Zonotope.step_errBound E i) := by -- --- PROOF ---
   have h1 : toReal (E.inf i) ≤ e i := (he i).1
   have h2 : e i ≤ toReal (E.sup i) := (he i).2
@@ -114,7 +114,7 @@ private theorem Zonotope.aux_entryDeviation_bound (x e lo hi : Vec 𝕋 n) {y : 
 
 theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope (Vec 𝕋 n)} {H : Mat 𝕋 Z₂.h n}
     (h : Z₂.containsZonotope Z₁ H = true) : -- --- CONCL ---
-    Z₁.construct ⊆ Z₂.construct := by -- --- PROOF ---
+    Z₁.toSet ⊆ Z₂.toSet := by -- --- PROOF ---
   simp only [Zonotope.containsZonotope, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨⟨⟨hball, hbud⟩, hres⟩, hE⟩ := h
@@ -124,7 +124,7 @@ theorem Zonotope.containsZonotope_sound {Z₂ Z₁ : Zonotope (Vec 𝕋 n)} {H :
   obtain ⟨p, hp, e₁, he₁, rfl⟩ := Set.mem_add.mp hx
   obtain ⟨β, hβ, hp'⟩ := Zonotope.mem_nominalSet_iff.mp hp
   -- the second error box's lower corner, and the real objects
-  have he₂ : (fun i => toReal (Z₂.I_error.inf i)) ∈ (I_error Z₂).construct := fun i =>
+  have he₂ : (fun i => toReal (Z₂.I_error.inf i)) ∈ (I_error Z₂).toSet := fun i =>
     ⟨le_refl _, toReal_le_of_le (hE i)⟩
   -- every entry's leftover (center residual, `G₁ - G₂ Γ`, error box) fits in `B`
   have hres' : ∀ i, |toReal (Z₁.c i) - toReal (Z₂.I_error.inf i)

@@ -38,8 +38,8 @@ variable {n : ℕ}
 
 /-- The polytopes of `cellPolytopes` denote the boxes of `cellIntervals`, one for one. -/
 theorem GridPartition.cellPolytopes_exact (P : GridPartition n) (cs : List ℕ) :
-    (P.cellPolytopes cs).map Real.HPolytope.construct =
-      (P.cellIntervals cs).map Real.Interval.construct := by
+    (P.cellPolytopes cs).map Real.HPolytope.toSet =
+      (P.cellIntervals cs).map Real.Interval.toSet := by
   unfold GridPartition.cellPolytopes
   rw [List.map_map]
   exact List.map_congr_left fun B _ => Real.Interval.hPolytope_exact B

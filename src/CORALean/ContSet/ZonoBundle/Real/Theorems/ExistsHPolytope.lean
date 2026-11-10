@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.Basic
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsToSetEqIffHPolytope
 
 @[expose] public section
 
@@ -37,8 +37,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.exists_hPolytope (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k) :
-    ∃ P : HPolytope (Vec ℝ n), P.construct = zB.construct := by
-  obtain ⟨P, hP, -⟩ := ConZonotope.exists_construct_eq_iff_hPolytope.mp
+    ∃ P : HPolytope (Vec ℝ n), P.toSet = zB.toSet := by
+  obtain ⟨P, hP, -⟩ := ConZonotope.exists_toSet_eq_iff_hPolytope.mp
     (zB.exists_conZonotope hk)
   exact ⟨P, hP⟩
 

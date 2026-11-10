@@ -37,8 +37,8 @@ namespace CORALean.Real
 
 /-- Every piece of each polygon lies inside one piece of the other. -/
 def Polygon.isequalPieces (P Q : Polygon) : Prop :=
-  (∀ p ∈ P.sets, ∃ q ∈ Q.sets, VPolytope.construct p ⊆ VPolytope.construct q) ∧
-    ∀ q ∈ Q.sets, ∃ p ∈ P.sets, VPolytope.construct q ⊆ VPolytope.construct p
+  (∀ p ∈ P.sets, ∃ q ∈ Q.sets, VPolytope.toSet p ⊆ VPolytope.toSet q) ∧
+    ∀ q ∈ Q.sets, ∃ p ∈ P.sets, VPolytope.toSet q ⊆ VPolytope.toSet p
 
 end CORALean.Real
 

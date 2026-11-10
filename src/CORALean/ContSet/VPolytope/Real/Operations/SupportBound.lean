@@ -50,7 +50,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- Noncomputable only in the supremum: over a finite vertex list the value is a
 maximum, and the float layer computes it as one. -/
 noncomputable def VPolytope.supportBound (P : VPolytope α) (c : α →ₗ[ℝ] ℝ) :
-    SupportBound P.construct c where
+    SupportBound P.toSet c where
   val := ⨆ l, c (P.V l)
   -- the function spelt out: `le_ciSup` cannot guess it from the goal
   le _ hx := P.le_of_forall_le c

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.Lift
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatIff
-public import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemToSet
 
 @[expose] public section
 
@@ -56,9 +56,9 @@ open Matrix
 theorem ConZonotope.mem_iff_append_mem_lift {n m₁ m₂ h : ℕ} (c : Vec ℝ n)
     (G : Fin h → Vec ℝ n) (A : Mat ℝ (m₁ + m₂) h) (b : Vec ℝ (m₁ + m₂))
     (z : Vec ℝ n) : -- --- CONCL ---
-    z ∈ (ConZonotope.ofMat c G A b).construct ↔
+    z ∈ (ConZonotope.ofMat c G A b).toSet ↔
       (Fin.append z (0 : Vec ℝ m₁) : Vec ℝ (n + m₁))
-        ∈ (ConZonotope.lift (m₂ := m₂) c G A b).construct := by -- --- PROOF ---
+        ∈ (ConZonotope.lift (m₂ := m₂) c G A b).toSet := by -- --- PROOF ---
   unfold ConZonotope.lift
   rw [ConZonotope.mem_ofMat_iff, ConZonotope.mem_ofMat_iff]
   -- the generators' coefficients enter as `βⱼ · Aᵢⱼ`; `Aβ` writes them `Aᵢⱼ · βⱼ`

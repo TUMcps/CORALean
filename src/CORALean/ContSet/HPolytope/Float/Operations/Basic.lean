@@ -197,8 +197,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n n₁ n₂ 
 
 /-- Membership splits with the rows, each half read on the nominal part it came from. -/
 theorem HPolytope.mem_stackRows_iff {P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)} {x : Vec ℝ n} :
-    x ∈ (P₁.stackRows P₂).construct ↔ x ∈ P₁.nominal.construct ∧ x ∈ P₂.nominal.construct := by
-  rw [HPolytope.construct_eq_nominal fun _ => ⟨toReal_zero, toReal_zero⟩]
+    x ∈ (P₁.stackRows P₂).toSet ↔ x ∈ P₁.nominal.toSet ∧ x ∈ P₂.nominal.toSet := by
+  rw [HPolytope.toSet_eq_nominal fun _ => ⟨toReal_zero, toReal_zero⟩]
   exact HPolytope.mem_stackRows_nominal_iff
 
 end

@@ -6,7 +6,7 @@ public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
 public import CORALean.ContSet.HPolytope.Float.Operations.Intersection
 public import CORALean.ContSet.Conversion.Float.Theorems.NegIdentityMatMulVec
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsConstructIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsToSetIff
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemIneqsIff
 
 @[expose] public section
@@ -65,10 +65,10 @@ private theorem aux_identityMat_mulVec (x : Vec ℝ n) (i : Fin n) : -- --- CONC
 
 -- the two row blocks are exactly the two ends of the box, so nothing rounds
 theorem Interval.hPolytope_exact (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
-    (Interval.hPolytope I).construct = I.construct := by -- --- PROOF ---
+    (Interval.hPolytope I).toSet = I.toSet := by -- --- PROOF ---
   ext x
   simp only [Interval.hPolytope]
-  rw [HPolytope.mem_stackRows_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)
+  rw [HPolytope.mem_stackRows_toSet_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)
     (HPolytope.isErrFree_of_origin rfl rfl rfl), HPolytope.mem_ineqs_iff, HPolytope.mem_ineqs_iff]
   constructor
   · rintro ⟨hup, hlo⟩ j

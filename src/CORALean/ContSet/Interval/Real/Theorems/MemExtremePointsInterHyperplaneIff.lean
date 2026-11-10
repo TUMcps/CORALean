@@ -54,8 +54,8 @@ variable {n : ℕ}
 
 theorem Interval.mem_extremePoints_inter_hyperplane_iff {I : Interval (Vec ℝ n)} {a : Vec ℝ n}
     (ha : ∀ i, a i ≠ 0) {α : ℝ} {x : Vec ℝ n} : -- --- CONCL ---
-    x ∈ Set.extremePoints ℝ (I.construct ∩ Interval.hyperplane a α) ↔
-      x ∈ I.construct ∩ Interval.hyperplane a α ∧ I.IsOnEdge x := by -- --- PROOF ---
+    x ∈ Set.extremePoints ℝ (I.toSet ∩ Interval.hyperplane a α) ↔
+      x ∈ I.toSet ∩ Interval.hyperplane a α ∧ I.IsOnEdge x := by -- --- PROOF ---
   constructor
   · -- two coordinates strictly inside: `x ± ε(aⱼeᵢ - aᵢeⱼ)` stay in `B ∩ P`
     intro hx
@@ -85,7 +85,7 @@ theorem Interval.mem_extremePoints_inter_hyperplane_iff {I : Interval (Vec ℝ n
         Finset.sum_ite_eq', Finset.mem_univ, if_true]
       ring
     -- `x + s • d` for `|s| ≤ ε` is in `B ∩ P`
-    have hmem : ∀ s : ℝ, |s| ≤ ε → x + s • d ∈ I.construct ∩ Interval.hyperplane a α := by
+    have hmem : ∀ s : ℝ, |s| ≤ ε → x + s • d ∈ I.toSet ∩ Interval.hyperplane a α := by
       intro s hs
       refine ⟨fun k => ?_, ?_⟩
       · change I.inf k ≤ x k + s * d k ∧ x k + s * d k ≤ I.sup k

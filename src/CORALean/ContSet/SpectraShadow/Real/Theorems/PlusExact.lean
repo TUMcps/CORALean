@@ -64,7 +64,7 @@ private theorem SpectraShadow.aux_gen_plus (S₁ S₂ : SpectraShadow α) (β : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.plus_exact (S₁ S₂ : SpectraShadow α) : -- --- CONCL ---
-    S₁.construct + S₂.construct = (S₁.plus S₂).construct := by -- --- PROOF ---
+    S₁.toSet + S₂.toSet = (S₁.plus S₂).toSet := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨x₁, ⟨β₁, h₁, rfl⟩, x₂, ⟨β₂, h₂, rfl⟩, rfl⟩
     refine ⟨Fin.append β₁ β₂, ?_, ?_⟩

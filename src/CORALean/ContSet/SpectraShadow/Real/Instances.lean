@@ -35,9 +35,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (SpectraShadow α) α := ⟨SpectraShadow.construct⟩
+instance : ContSet (SpectraShadow α) α := ⟨SpectraShadow.toSet⟩
 
-instance : ConvexSet (SpectraShadow α) α := ⟨SpectraShadow.convex_construct⟩
+instance : ConvexSet (SpectraShadow α) α := ⟨SpectraShadow.convex_toSet⟩
 
 instance : Plus (SpectraShadow α) α where
   plus := SpectraShadow.plus
@@ -46,7 +46,7 @@ instance : Plus (SpectraShadow α) α where
 instance : Mtimes (Mat ℝ) (fun n => SpectraShadow (Vec ℝ n)) where
   mtimes := SpectraShadow.mtimes
   mtimes_outer M S := by
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (SpectraShadow.mtimes_exact M S).subset
 
 /-- CORA's `linComb` is not the convex hull, but for a shadow, which is convex, the segments are

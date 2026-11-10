@@ -51,10 +51,10 @@ hold at `x`, if both polynomial parts take the same value there and `x'` is in `
 theorem PolyLevelSet.mem_congr (P : PolyLevelSet n) {q' : ℕ} {A' : Mat ℝ P.m q'}
     {R' : Fin n' → Fin q' → ℕ} {D' : Interval (Vec ℝ n')} {x : Vec ℝ n} {x' : Vec ℝ n'}
     (h : A' *ᵥ PolyZonotope.monomial R' x' = P.A *ᵥ PolyZonotope.monomial P.R x)
-    (hD : x' ∈ D'.construct ↔ x ∈ P.dom.construct) : -- --- CONCL ---
-    x' ∈ (⟨P.m, q', A', R', P.b, P.op, D'⟩ : PolyLevelSet n').construct
-      ↔ x ∈ P.construct := by -- --- PROOF ---
-  show (x' ∈ D'.construct ∧ ∀ i, (P.op i).holds ((A' *ᵥ PolyZonotope.monomial R' x' - P.b) i)) ↔ _
+    (hD : x' ∈ D'.toSet ↔ x ∈ P.dom.toSet) : -- --- CONCL ---
+    x' ∈ (⟨P.m, q', A', R', P.b, P.op, D'⟩ : PolyLevelSet n').toSet
+      ↔ x ∈ P.toSet := by -- --- PROOF ---
+  show (x' ∈ D'.toSet ∧ ∀ i, (P.op i).holds ((A' *ᵥ PolyZonotope.monomial R' x' - P.b) i)) ↔ _
   rw [h, hD]
   rfl
 

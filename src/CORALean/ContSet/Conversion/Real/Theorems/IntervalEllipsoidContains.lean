@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.ellipsoid_contains (I : Interval (Vec ℝ n)) :
-    I.construct ⊆ I.ellipsoid.construct :=
+    I.toSet ⊆ I.ellipsoid.toSet :=
   subset_trans I.zonotope_contains (Zonotope.ellipsoid_contains _)
 
 end CORALean.Real

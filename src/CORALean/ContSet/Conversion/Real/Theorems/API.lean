@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleConPolyZonoContains
 public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleConPolyZonoExact
-public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleConstructEqSegmentAddBall
+public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleToSetEqSegmentAddBall
 public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleEllipsoidContains
 public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleHPolytopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleHPolytopeExact
@@ -35,7 +35,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeVPolytopeExac
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeZonoBundleContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConPolyZonoExact
-public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConPolyZonoOfFactorConstruct
+public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConPolyZonoOfFactorToSet
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidContainsZonotopeInnerNorm
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidHPolytopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidIntervalAttained

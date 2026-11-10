@@ -11,7 +11,7 @@ CORA's `priv_precompStatError` at `tensorOrder = 2`: `0.5*quadMap(Z,H)`, the sec
 the expansion evaluated on the set itself rather than boxed. `quadMapDep` keeps it in the factors
 `pZ` is written in, where `quadMap` would run `dependent` first. Two departures from CORA, both in
 what the caller does: the shift by the linearization point is here, `linReach` having done it
-before the call; and `Q` is the halved Hessian family. A caller wanting all of `construct pZ`
+before the call; and `Q` is the halved Hessian family. A caller wanting all of `toSet pZ`
 covered runs `dependent` on `pZ` first, which is exact.
 
 ## Inputs

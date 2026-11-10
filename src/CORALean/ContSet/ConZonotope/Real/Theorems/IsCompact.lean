@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ToSetEqImage
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompactDomain
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
@@ -15,7 +15,7 @@ The image of `domain` under the same affine map a zonotope uses. The domain is
 compact, and a continuous image of a compact set is compact.
 
 Stated at `Vec`, unlike the zonotope's: it is the coefficient space that has to
-be finite-dimensional, and `HPolytope.isClosed_construct` asks for that.
+be finite-dimensional, and `HPolytope.isClosed_toSet` asks for that.
 
 ## Inputs
 * `cZ` – constrained zonotope
@@ -42,8 +42,8 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.isCompact_construct (cZ : ConZonotope α) : IsCompact cZ.construct := by
-  rw [ConZonotope.construct_eq_image]
+theorem ConZonotope.isCompact_toSet (cZ : ConZonotope α) : IsCompact cZ.toSet := by
+  rw [ConZonotope.toSet_eq_image]
   exact cZ.isCompact_domain.image (Zonotope.continuous_affine cZ.zonotope)
 
 end CORALean.Real

@@ -39,8 +39,8 @@ variable {m₁ m₂ n : ℕ}
 
 theorem Interval.vertcat_exact (I : Interval (Mat ℝ m₁ n))
     (J : Interval (Mat ℝ m₂ n)) : -- --- CONCL ---
-    (I.vertcat J).construct = (fun p : Mat ℝ m₁ n × Mat ℝ m₂ n => Fin.append p.1 p.2) ''
-      (I.construct ×ˢ J.construct) := by -- --- PROOF ---
+    (I.vertcat J).toSet = (fun p : Mat ℝ m₁ n × Mat ℝ m₂ n => Fin.append p.1 p.2) ''
+      (I.toSet ×ˢ J.toSet) := by -- --- PROOF ---
   ext B
   constructor
   · intro hB

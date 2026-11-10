@@ -67,7 +67,7 @@ private theorem PolyZonotope.aux_sum_compactGens (pZ : PolyZonotope α)
 
 -- so both inclusions hold at the very same coefficients
 theorem PolyZonotope.compactGens_exact (pZ : PolyZonotope α) : -- --- CONCL ---
-    pZ.construct = pZ.compactGens.construct := by -- --- PROOF ---
+    pZ.toSet = pZ.compactGens.toSet := by -- --- PROOF ---
   have key : ∀ (a : Fin pZ.p → ℝ) (β : Fin pZ.q → ℝ),
       pZ.c + (∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i) + ∑ j, β j • pZ.GI j
         = pZ.c + (∑ j : Fin pZ.compactGens.h,

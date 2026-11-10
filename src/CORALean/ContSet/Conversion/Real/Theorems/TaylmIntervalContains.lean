@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Taylm.Real.Operations.Bounds
 public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
-public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Taylm.Real.Theorems.MemToSetIff
 public import CORALean.ContSet.Interval.Real.Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
@@ -44,9 +44,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.interval_contains {m : ℕ} (T : Fin m → Taylm n) : -- --- CONCL ---
-    Taylm.construct T ⊆ (Taylm.interval T).construct := by -- --- PROOF ---
+    Taylm.toSet T ⊆ (Taylm.interval T).toSet := by -- --- PROOF ---
   intro x hx i
-  obtain ⟨f, hf, t, ht, hxf⟩ := (Taylm.mem_construct_iff T x).1 hx
+  obtain ⟨f, hf, t, ht, hxf⟩ := (Taylm.mem_toSet_iff T x).1 hx
   have := Taylm.bounds_mem (hf i) ht
   rw [← hxf i] at this
   exact this

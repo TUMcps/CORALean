@@ -41,11 +41,11 @@ variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n k : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ContSet.project_outer (s : S n) (dims : Fin k → Fin n) : -- --- CONCL ---
-    (fun x : Vec ℝ n => (fun i => x (dims i) : Vec ℝ k)) '' construct s ⊆
-      construct (ContSet.project (𝕋 := 𝕋) s dims) := by -- --- PROOF ---
+    (fun x : Vec ℝ n => (fun i => x (dims i) : Vec ℝ k)) '' toSet s ⊆
+      toSet (ContSet.project (𝕋 := 𝕋) s dims) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   refine Mtimes.mtimes_outer (𝕄 := Mat 𝕋) _ s ?_
-  simp only [ContSet.construct_mat, Set.biUnion_singleton, Set.mem_image]
+  simp only [ContSet.toSet_mat, Set.biUnion_singleton, Set.mem_image]
   refine ⟨x, hx, ?_⟩
   funext i
   -- the selection matrix reads back as the real indicator matrix

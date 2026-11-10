@@ -47,7 +47,7 @@ variable {n : ℕ}
 theorem GridPartition.intersectingCells_inner (P : GridPartition n) (hP : P.IsWellFormed)
     (I : Real.Interval (Vec ℝ n)) (hI : ∀ j, I.inf j ≤ I.sup j) (hn : n ≠ 0) {c : ℕ}
     (hc : c ∈ P.intersectingCells I) (h0 : c ≠ 0) : -- --- CONCL ---
-    ∃ x ∈ (P.cellInterval c).construct,
+    ∃ x ∈ (P.cellInterval c).toSet,
       ∀ j, I.inf j - GridPartition.tol ≤ x j ∧ x j ≤ I.sup j + GridPartition.tol
         := by -- --- PROOF ---
   have hchk : c ∈ (P.intersectingCells I).filter (fun c => 0 < c ∧ c ≤ P.nrOfCells) := by

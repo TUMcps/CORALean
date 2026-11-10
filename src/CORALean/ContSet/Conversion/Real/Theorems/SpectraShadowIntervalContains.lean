@@ -51,10 +51,10 @@ variable {n : ℕ}
 
 theorem SpectraShadow.interval_contains (S : SpectraShadow (Vec ℝ n))
     (hb : S.isBounded) : -- --- CONCL ---
-    S.construct ⊆ S.interval.construct := by -- --- PROOF ---
+    S.toSet ⊆ S.interval.toSet := by -- --- PROOF ---
   intro x hx
   -- a member makes the set nonempty, so the `interval.empty` branch is not taken
-  have hne : S.construct ≠ ∅ := Set.nonempty_iff_ne_empty.mp ⟨x, hx⟩
+  have hne : S.toSet ≠ ∅ := Set.nonempty_iff_ne_empty.mp ⟨x, hx⟩
   have hnemp : ¬ S.representsa_emptySet := fun h => hne ((S.representsa_emptySet_iff).mp h)
   intro i
   simp only [SpectraShadow.interval, if_neg hnemp]

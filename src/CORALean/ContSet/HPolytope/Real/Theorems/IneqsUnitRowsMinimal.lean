@@ -56,9 +56,9 @@ variable {q n : ℕ}
 
 theorem HPolytope.ineqs_unit_rows_minimal (A : Mat ℝ q n) (hA : ∀ i, A i ⬝ᵥ A i = 1)
     (hinj : Function.Injective A) (j : Fin q) : -- --- CONCL ---
-    (HPolytope.ineqs A 1).construct ≠
+    (HPolytope.ineqs A 1).toSet ≠
       (HPolytope.ineqs (A.submatrix (dropIdx j) id)
-        fun i => (1 : Vec ℝ q) (dropIdx j i)).construct := by -- --- PROOF ---
+        fun i => (1 : Vec ℝ q) (dropIdx j i)).toSet := by -- --- PROOF ---
   -- distinct unit vectors: `aᵢ · aⱼ < 1`
   have hlt : ∀ i, i ≠ j → A i ⬝ᵥ A j < 1 := fun i hij => by
     have hne : A i - A j ≠ 0 := sub_ne_zero.mpr fun h => hij (hinj h)
@@ -81,7 +81,7 @@ theorem HPolytope.ineqs_unit_rows_minimal (A : Mat ℝ q n) (hA : ∀ i, A i ⬝
       exact hlt _ (hne i))
   intro heq
   have hmem : A j + s • A j ∈ (HPolytope.ineqs (A.submatrix (dropIdx j) id)
-      fun i => (1 : Vec ℝ q) (dropIdx j i)).construct :=
+      fun i => (1 : Vec ℝ q) (dropIdx j i)).toSet :=
     HPolytope.mem_ineqs_iff.mpr fun i => (hstep i).le
   rw [← heq] at hmem
   have hrow := HPolytope.mem_ineqs_iff.mp hmem j

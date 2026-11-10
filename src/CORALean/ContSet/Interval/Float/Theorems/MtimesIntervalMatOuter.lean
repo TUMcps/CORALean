@@ -44,8 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 private theorem Interval.aux_mtimesIntervalMat_outer_refines (IM : Interval (Mat 𝕋 m n))
     (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
-    (Real.Interval.mtimesIntervalMat IM.nominal I.nominal).construct
-      ⊆ (Interval.mtimesIntervalMat IM I).construct := by -- --- PROOF ---
+    (Real.Interval.mtimesIntervalMat IM.nominal I.nominal).toSet
+      ⊆ (Interval.mtimesIntervalMat IM I).toSet := by -- --- PROOF ---
   intro X hX i
   have h := hX i
   simp only [Real.Interval.mtimesIntervalMat, Interval.nominal, RealImage.realImage,
@@ -64,7 +64,7 @@ private theorem Interval.aux_mtimesIntervalMat_outer_refines (IM : Interval (Mat
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n)) (I : Interval (Vec 𝕋 n)) :
-    (⋃ A ∈ IM.construct, (A *ᵥ ·) '' I.construct) ⊆ (Interval.mtimesIntervalMat IM I).construct :=
+    (⋃ A ∈ IM.toSet, (A *ᵥ ·) '' I.toSet) ⊆ (Interval.mtimesIntervalMat IM I).toSet :=
   subset_trans (Real.Interval.mtimesIntervalMat_outer IM.nominal I.nominal)
     (Interval.aux_mtimesIntervalMat_outer_refines IM I)
 

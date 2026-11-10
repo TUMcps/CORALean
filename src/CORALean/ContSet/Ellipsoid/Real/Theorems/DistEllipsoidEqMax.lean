@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestDot
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemToSet
 public import CORALean.Global.NearestPointSeparates
 public import Mathlib.Topology.Algebra.Group.Pointwise
 
@@ -61,7 +61,7 @@ private theorem aux_norm₂_neg (x : Vec ℝ n) : ‖-x‖₂ = ‖x‖₂ := by
 
 /-- The least value of `lᵀ x` on an ellipsoid, from the largest of `-lᵀ x`. -/
 private theorem aux_isLeast_dot (E : Ellipsoid n) (l : Vec ℝ n) : -- --- CONCL ---
-    IsLeast ((l ⬝ᵥ ·) '' E.construct) (l ⬝ᵥ E.q - √(l ⬝ᵥ (E.Q *ᵥ l))) := by -- --- PROOF ---
+    IsLeast ((l ⬝ᵥ ·) '' E.toSet) (l ⬝ᵥ E.q - √(l ⬝ᵥ (E.Q *ᵥ l))) := by -- --- PROOF ---
   obtain ⟨⟨x, hx, hxv⟩, hub⟩ := E.isGreatest_dot (-l)
   have hsq : (-l) ⬝ᵥ (E.Q *ᵥ -l) = l ⬝ᵥ (E.Q *ᵥ l) := by
     rw [Matrix.mulVec_neg, neg_dotProduct, dotProduct_neg, neg_neg]
@@ -80,33 +80,33 @@ private theorem aux_isLeast_dot (E : Ellipsoid n) (l : Vec ℝ n) : -- --- CONCL
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.dist_ellipsoid_eq_max (E₁ E₂ : Ellipsoid n) : -- --- CONCL ---
-    (Disjoint E₁.construct E₂.construct → ∃ d > 0,
-      IsLeast {t | ∃ x ∈ E₁.construct, ∃ y ∈ E₂.construct, t = ‖x - y‖₂} d ∧
+    (Disjoint E₁.toSet E₂.toSet → ∃ d > 0,
+      IsLeast {t | ∃ x ∈ E₁.toSet, ∃ y ∈ E₂.toSet, t = ‖x - y‖₂} d ∧
       IsGreatest {t | ∃ l : Vec ℝ n, ‖l‖₂ = 1 ∧ t = l ⬝ᵥ E₁.q - √(l ⬝ᵥ (E₁.Q *ᵥ l)) -
         l ⬝ᵥ E₂.q - √(l ⬝ᵥ (E₂.Q *ᵥ l))} d) ∧
-    ((E₁.construct ∩ E₂.construct).Nonempty → ∀ l : Vec ℝ n,
+    ((E₁.toSet ∩ E₂.toSet).Nonempty → ∀ l : Vec ℝ n,
       l ⬝ᵥ E₁.q - √(l ⬝ᵥ (E₁.Q *ᵥ l)) - l ⬝ᵥ E₂.q - √(l ⬝ᵥ (E₂.Q *ᵥ l)) ≤
         0) := by -- --- PROOF ---
   refine ⟨fun hdisj => ?_, fun ⟨z, hz1, hz2⟩ l => ?_⟩
   · -- the origin is not in `E₂ - E₁`, a compact convex set
-    set K := E₂.construct + -E₁.construct with hK
-    have hmemK : ∀ x ∈ E₁.construct, ∀ y ∈ E₂.construct, y - x ∈ K := fun x hx y hy =>
+    set K := E₂.toSet + -E₁.toSet with hK
+    have hmemK : ∀ x ∈ E₁.toSet, ∀ y ∈ E₂.toSet, y - x ∈ K := fun x hx y hy =>
       ⟨y, hy, -x, by simpa using hx, (sub_eq_add_neg y x).symm⟩
     have h0 : (0 : Vec ℝ n) ∉ K := by
       rintro ⟨y, hy, z, hz, hyz⟩
-      have hx : -z ∈ E₁.construct := by simpa using hz
+      have hx : -z ∈ E₁.toSet := by simpa using hz
       have : y = -z := eq_neg_of_add_eq_zero_left hyz
       exact Set.disjoint_left.mp hdisj hx (this ▸ hy)
     obtain ⟨p, hp, hd, hleast, hsep⟩ := nearest_point_separates K
-      (E₂.isCompact_construct.add E₁.isCompact_construct.neg).isClosed
-      (E₂.convex_construct.add E₁.convex_construct.neg) ⟨_, hmemK _ E₁.q_mem_construct _
-        E₂.q_mem_construct⟩ 0 h0
+      (E₂.isCompact_toSet.add E₁.isCompact_toSet.neg).isClosed
+      (E₂.convex_toSet.add E₁.convex_toSet.neg) ⟨_, hmemK _ E₁.q_mem_toSet _
+        E₂.q_mem_toSet⟩ 0 h0
     obtain ⟨y₀, hy₀, z₀, hz₀, rfl⟩ := hp
-    have hx₀ : -z₀ ∈ E₁.construct := by simpa using hz₀
+    have hx₀ : -z₀ ∈ E₁.toSet := by simpa using hz₀
     simp only [zero_sub] at hd hleast hsep
     rw [aux_norm₂_neg] at hd
     -- every pair is at least `‖p‖₂` apart, so `lᵀ x - lᵀ y ≥ ‖p‖₂` along `l = -p/‖p‖₂`
-    have hgap : ∀ x ∈ E₁.construct, ∀ y ∈ E₂.construct,
+    have hgap : ∀ x ∈ E₁.toSet, ∀ y ∈ E₂.toSet,
         (y₀ + z₀) ⬝ᵥ (y₀ + z₀) ≤ (y₀ + z₀) ⬝ᵥ (y - x) := fun x hx y hy => by
       have := hsep _ (hmemK x hx y hy)
       rw [neg_dotProduct, neg_dotProduct] at this
@@ -114,7 +114,7 @@ theorem Ellipsoid.dist_ellipsoid_eq_max (E₁ E₂ : Ellipsoid n) : -- --- CONCL
     set d := ‖y₀ + z₀‖₂ with hdd
     have hpp : (y₀ + z₀) ⬝ᵥ (y₀ + z₀) = d ^ 2 := dotProduct_self _
     set l := -(d⁻¹ • (y₀ + z₀)) with hl
-    have hlx : ∀ x ∈ E₁.construct, ∀ y ∈ E₂.construct, d ≤ l ⬝ᵥ x - l ⬝ᵥ y :=
+    have hlx : ∀ x ∈ E₁.toSet, ∀ y ∈ E₂.toSet, d ≤ l ⬝ᵥ x - l ⬝ᵥ y :=
       fun x hx y hy => by
         have hg := hgap x hx y hy
         rw [dotProduct_sub, hpp] at hg

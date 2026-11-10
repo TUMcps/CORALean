@@ -55,7 +55,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem LinearSys.exp_mem_expIntervalFloat (sys : LinearSys 𝕋 n) {tLo tHi : 𝕋} {η : ℕ}
     (hη : sys.IsOrderAdmissibleFloat tLo tHi η) {t : ℝ} (htLo : toReal tLo ≤ t)
     (htHi : t ≤ toReal tHi) :
-    exp (t • Scalar.toRealMat sys.A) ∈ (sys.expIntervalFloat tLo tHi η).construct := by
+    exp (t • Scalar.toRealMat sys.A) ∈ (sys.expIntervalFloat tLo tHi η).toSet := by
   rw [LinearSys.expIntervalFloat, Interval.materialiseMat_eq]
   exact MatExp.exp_mem_expIntervalEnclosure _ η
     (Interval.smul_outer htLo htHi _ (Interval.mem_point sys.A)) hη.2

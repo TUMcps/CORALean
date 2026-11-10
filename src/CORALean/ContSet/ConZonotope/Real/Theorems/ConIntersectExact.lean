@@ -54,9 +54,9 @@ variable {n m : ℕ}
 private theorem ConZonotope.aux_mem_conIntersect_P_iff (cZ₁ : ConZonotope (Vec ℝ n))
     (cZ₂ : ConZonotope (Vec ℝ m)) (M : Mat ℝ m n)
     (β : Vec ℝ (cZ₁.conIntersect cZ₂ M).h) : -- --- CONCL ---
-    β ∈ (cZ₁.conIntersect cZ₂ M).P.construct ↔
-      (blockLeft cZ₁.h cZ₂.h β ∈ cZ₁.P.construct
-        ∧ blockRight cZ₁.h cZ₂.h β ∈ cZ₂.P.construct)
+    β ∈ (cZ₁.conIntersect cZ₂ M).P.toSet ↔
+      (blockLeft cZ₁.h cZ₂.h β ∈ cZ₁.P.toSet
+        ∧ blockRight cZ₁.h cZ₂.h β ∈ cZ₂.P.toSet)
       ∧ ∀ i, (∑ j, (M *ᵥ cZ₁.G j) i * β (Fin.castAdd cZ₂.h j))
           - ∑ j, cZ₂.G j i * β (Fin.natAdd cZ₁.h j)
           = cZ₂.c i - (M *ᵥ cZ₁.c) i := by -- --- PROOF ---
@@ -102,8 +102,8 @@ private theorem ConZonotope.aux_image_coord (cZ : ConZonotope (Vec ℝ n)) (M : 
 
 theorem ConZonotope.conIntersect_exact (cZ₁ : ConZonotope (Vec ℝ n)) (cZ₂ : ConZonotope (Vec ℝ m))
     (M : Mat ℝ m n) : -- --- CONCL ---
-    {x | x ∈ cZ₁.construct ∧ M *ᵥ x ∈ cZ₂.construct}
-      = (cZ₁.conIntersect cZ₂ M).construct := by -- --- PROOF ---
+    {x | x ∈ cZ₁.toSet ∧ M *ᵥ x ∈ cZ₂.toSet}
+      = (cZ₁.conIntersect cZ₂ M).toSet := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro x ⟨⟨β₁, hβ₁, hP₁, hx₁⟩, β₂, hβ₂, hP₂, hx₂⟩
     refine ⟨Fin.append β₁ β₂, ?_, ?_, ?_⟩

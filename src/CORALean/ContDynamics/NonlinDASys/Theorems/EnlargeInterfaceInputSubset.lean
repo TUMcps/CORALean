@@ -58,9 +58,9 @@ variable {m : ℕ}
 /-- [1, Eq. 14]: `Λ U ⊆ Λ Û` for `λ_U ≥ 1`, `Λ Λ = Λ` and `ĉ` the center of `U`. -/
 theorem NonlinDASys.image_subset_enlargeInterfaceInput {lamU : ℝ} (hlam : 1 ≤ lamU)
     {Λ : Mat ℝ m m} (hΛ : Λ * Λ = Λ) (U : Zonotope (Vec ℝ m)) : -- --- CONCL ---
-    (Λ *ᵥ ·) '' U.construct
+    (Λ *ᵥ ·) '' U.toSet
       ⊆ (Λ *ᵥ ·) ''
-        (NonlinDASys.enlargeInterfaceInput lamU Λ U.c U).construct := by -- --- PROOF ---
+        (NonlinDASys.enlargeInterfaceInput lamU Λ U.c U).toSet := by -- --- PROOF ---
   have hpos : 0 < lamU := lt_of_lt_of_le one_pos hlam
   rintro _ ⟨z, ⟨β, hβ, rfl⟩, rfl⟩
   -- the point of `Û` over `z` scales the coefficients by `1 / λ_U`
@@ -70,18 +70,18 @@ theorem NonlinDASys.image_subset_enlargeInterfaceInput {lamU : ℝ} (hlam : 1 �
     rw [hs, ht, Finset.smul_sum]
     exact Finset.sum_congr rfl fun j _ => by rw [smul_smul, div_eq_inv_mul]
   -- the coefficients `β / λ_U` stay in `[-1, 1]`
-  have hsmem : U.c + s ∈ U.construct :=
+  have hsmem : U.c + s ∈ U.toSet :=
     ⟨fun j => β j / lamU, fun j => by
       rw [abs_div, abs_of_pos hpos]
       exact (div_le_one hpos).2 ((hβ j).trans hlam), rfl⟩
   -- membership in the pieces of `Û`, by the exactness of `plus` and `mtimes`
-  have h1 : s ∈ (U.plus (Zonotope.ofPoint (-U.c))).construct := by
+  have h1 : s ∈ (U.plus (Zonotope.ofPoint (-U.c))).toSet := by
     rw [← Zonotope.plus_exact]
     have := Set.add_mem_add hsmem (Zonotope.mem_ofPoint (-U.c))
     convert this using 1
     abel
   have h2 : ((lamU - 1) • Λ + 1) *ᵥ s ∈
-      (Zonotope.mtimes ((lamU - 1) • Λ + 1) (U.plus (Zonotope.ofPoint (-U.c)))).construct := by
+      (Zonotope.mtimes ((lamU - 1) • Λ + 1) (U.plus (Zonotope.ofPoint (-U.c)))).toSet := by
     rw [← Zonotope.mtimes_exact]
     exact ⟨s, h1, rfl⟩
   have h3 := Set.add_mem_add h2 (Zonotope.mem_ofPoint U.c)

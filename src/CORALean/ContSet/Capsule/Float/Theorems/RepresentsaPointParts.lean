@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 private theorem Capsule.aux_error_eq_origin {C : Capsule 𝕋 n}
     (h : ∀ i, ((le (C.I_error.inf i) zero = true ∧ le zero (C.I_error.inf i) = true) ∧
       le (C.I_error.sup i) zero = true) ∧ le zero (C.I_error.sup i) = true) : -- --- CONCL ---
-    C.I_error.construct = {0} := by -- --- PROOF ---
+    C.I_error.toSet = {0} := by -- --- PROOF ---
   ext x
   rw [Set.mem_singleton_iff]
   have hb : ∀ i, toReal (C.I_error.inf i) = 0 ∧ toReal (C.I_error.sup i) = 0 := fun i => by
@@ -68,7 +68,7 @@ private theorem Capsule.aux_error_eq_origin {C : Capsule 𝕋 n}
 /-- What `true` certifies: the box is the origin, and the nominal capsule a point. -/
 theorem Capsule.representsa_point_parts {C : Capsule 𝕋 n}
     (h : Capsule.representsa_point C = true) : -- --- CONCL ---
-    C.I_error.construct = {0} ∧ Real.Capsule.representsa_point C.nominal := by -- --- PROOF ---
+    C.I_error.toSet = {0} ∧ Real.Capsule.representsa_point C.nominal := by -- --- PROOF ---
   simp only [Capsule.representsa_point, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨⟨⟨hg, hr₁⟩, hr₂⟩, hI⟩ := h

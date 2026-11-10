@@ -12,7 +12,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderS
 # The time-point reachable set inside an exact sum, not a representation
 
 `reachSetExact_subset_timeInterval_inputSolution` encloses `reachSetExact T R₀ U t` in
-`construct (Plus.plus (timeInterval ...) (inputSolution ...))`, paying for
+`toSet (Plus.plus (timeInterval ...) (inputSolution ...))`, paying for
 the whole step's wrapping effect even at `t = r`, the step's end. What a
 trajectory gives there instead: `variation_of_constants` splits `x r` into
 `e^{Ar} x 0`, exact, and the input's integral, inside `inputReach`, which
@@ -79,15 +79,15 @@ where a computed representation is what is wanted instead. -/
 theorem LinearSys.reachSetExact_subset_image_inputSolution (sys : LinearSys 𝕋 n) {T : Set ℝ}
     (R₀ U : S n) {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U))
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U))
     (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
     (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
     (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r η
       U)) : -- --- CONCL ---
     sys.reachSetExact T R₀ U r
-      ⊆ (exp (r • toRealMat sys.A)).mulVecLin '' construct R₀
-        + construct (sys.inputSolution r η U) := by -- --- PROOF ---
+      ⊆ (exp (r • toRealMat sys.A)).mulVecLin '' toSet R₀
+        + toSet (sys.inputSolution r η U) := by -- --- PROOF ---
   rintro _ ⟨x, u, traj, rfl⟩
   have hmem : (∫ s in (0:ℝ)..r, exp ((r - s) • toRealMat sys.A) *ᵥ u s)
       ∈ sys.inputReach U r :=

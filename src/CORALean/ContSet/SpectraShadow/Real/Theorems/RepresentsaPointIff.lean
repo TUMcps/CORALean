@@ -38,7 +38,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.representsa_point_iff (S : SpectraShadow (Vec ℝ n)) : -- --- CONCL ---
-    S.representsa_point ↔ ∃ p, S.construct = {p} := by -- --- PROOF ---
+    S.representsa_point ↔ ∃ p, S.toSet = {p} := by -- --- PROOF ---
   unfold SpectraShadow.representsa_point
   constructor
   · -- every member is squeezed to `p` coordinate by coordinate

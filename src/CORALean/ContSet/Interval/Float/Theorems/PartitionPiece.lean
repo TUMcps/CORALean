@@ -124,8 +124,8 @@ private theorem Interval.aux_partition_piece (a b : 𝕋) (s k : ℕ) (hs : 0 < 
 /-- Each real piece is inside the float piece with the same index. -/
 theorem Interval.partition_piece (I : Interval (Vec 𝕋 n)) (splits : ℕ)
     (ind : Fin n → Fin splits) : -- --- CONCL ---
-    (I.nominal.partition splits ind).construct ⊆
-      (I.partition splits ind).construct := by -- --- PROOF ---
+    (I.nominal.partition splits ind).toSet ⊆
+      (I.partition splits ind).toSet := by -- --- PROOF ---
   -- coordinate by coordinate, the piece of the one index
   intro x hx i
   have hs : 0 < splits := lt_of_le_of_lt (Nat.zero_le _) (ind i).isLt

@@ -39,9 +39,9 @@ variable {n N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.projectHighDim_exact (P : VPolytope (Vec ℝ n)) (dims : Fin n → Fin N) :
-    (P.projectHighDim dims).construct
+    (P.projectHighDim dims).toSet
       = (fun y => (Matrix.of fun (i : Fin N) (k : Fin n) =>
-          if dims k = i then (1 : ℝ) else 0) *ᵥ y) '' P.construct :=
+          if dims k = i then (1 : ℝ) else 0) *ᵥ y) '' P.toSet :=
   (VPolytope.map_exact _ P).symm
 
 end CORALean.Real

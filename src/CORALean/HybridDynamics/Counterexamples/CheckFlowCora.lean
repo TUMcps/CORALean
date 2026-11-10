@@ -102,11 +102,11 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type}
 `t = 1/g`. -/
 private theorem aux_checkFlowCora_run (ℓ : Location 𝒵 G L ℝ 2) {g : ℝ} (hg : 1 ≤ g)
     (hA : ℓ.dynamics.A = !![0, 1; 0, 0]) (hc : ℓ.dynamics.c = ![0, -g])
-    (hU : 0 ∈ ContSet.construct ℓ.U) (hW : 0 ∈ ContSet.construct ℓ.W)
-    (hinv : ∀ x : Vec ℝ 2, 0 ≤ x 0 → x ∈ ContSet.construct ℓ.inv) : -- --- CONCL ---
+    (hU : 0 ∈ ContSet.toSet ℓ.U) (hW : 0 ∈ ContSet.toSet ℓ.W)
+    (hinv : ∀ x : Vec ℝ 2, 0 ≤ x 0 → x ∈ ContSet.toSet ℓ.inv) : -- --- CONCL ---
     ∃ τ x u w, ℓ.IsTrajectory τ x u w ∧
       (∀ t ∈ Set.Icc 0 τ, x t ∈ (⟨2, ![1 / 2, 0], ![![1 / 2, 0], ![0, 1]]⟩ :
-        Real.Zonotope (Vec ℝ 2)).construct) ∧ (![-1, 0] : Vec ℝ 2) ⬝ᵥ x τ = 0 := by -- --- PROOF ---
+        Real.Zonotope (Vec ℝ 2)).toSet) ∧ (![-1, 0] : Vec ℝ 2) ⬝ᵥ x τ = 0 := by -- --- PROOF ---
   have hg0 : 0 < g := by linarith
   set R : Real.Zonotope (Vec ℝ 2) := ⟨2, ![1 / 2, 0], ![![1 / 2, 0], ![0, 1]]⟩ with hR
   set c : Vec ℝ 2 := ![-1, 0] with hcdef
@@ -180,13 +180,13 @@ private theorem aux_checkFlowCora_run (ℓ : Location 𝒵 G L ℝ 2) {g : ℝ} 
 theorem Location.checkFlowCora_drops_hit_counterexample
     (ℓ : Location 𝒵 G L ℝ 2) {g : ℝ} (hg : 1 ≤ g)
     (hA : ℓ.dynamics.A = !![0, 1; 0, 0]) (hB : ℓ.dynamics.B = 0) (hc : ℓ.dynamics.c = ![0, -g])
-    (hU : 0 ∈ ContSet.construct ℓ.U) (hW : 0 ∈ ContSet.construct ℓ.W)
-    (hinv : ∀ x : Vec ℝ 2, 0 ≤ x 0 → x ∈ ContSet.construct ℓ.inv) : -- --- CONCL ---
+    (hU : 0 ∈ ContSet.toSet ℓ.U) (hW : 0 ∈ ContSet.toSet ℓ.W)
+    (hinv : ∀ x : Vec ℝ 2, 0 ≤ x 0 → x ∈ ContSet.toSet ℓ.inv) : -- --- CONCL ---
     let R : Real.Zonotope (Vec ℝ 2) := ⟨2, ![1 / 2, 0], ![![1 / 2, 0], ![0, 1]]⟩
     let c : Vec ℝ 2 := ![-1, 0]
     R ∉ ℓ.checkFlowCora 0 0 c 0 [R] ∧
       R ∈ ℓ.checkFlow c 0 [R] ∧
-      ∃ τ x u w, ℓ.IsTrajectory τ x u w ∧ (∀ t ∈ Set.Icc 0 τ, x t ∈ R.construct) ∧
+      ∃ τ x u w, ℓ.IsTrajectory τ x u w ∧ (∀ t ∈ Set.Icc 0 τ, x t ∈ R.toSet) ∧
         c ⬝ᵥ x τ = 0 := by -- --- PROOF ---
   intro R c
   have hg0 : 0 < g := by linarith
@@ -202,7 +202,7 @@ theorem Location.checkFlowCora_drops_hit_counterexample
       linarith
   -- the tree: the flow at `(0, -1)` of `R` points out
   · by_contra hdrop
-    have hx : (![0, -1] : Vec ℝ 2) ∈ (R : Real.Zonotope (Vec ℝ 2)).construct :=
+    have hx : (![0, -1] : Vec ℝ 2) ∈ (R : Real.Zonotope (Vec ℝ 2)).toSet :=
       ⟨![-1, -1], by intro j; fin_cases j <;> simp, by
         funext i; fin_cases i <;> simp [R, Fin.sum_univ_two]⟩
     have h := Location.checkFlow_dropped ℓ c 0 [R] (List.mem_singleton_self R) hdrop hx hU hW

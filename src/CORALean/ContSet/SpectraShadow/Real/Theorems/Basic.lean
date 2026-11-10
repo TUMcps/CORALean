@@ -72,7 +72,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- At any tolerance `tol ≥ 0` the point test never rejects a member of the set. -/
 theorem SpectraShadow.containsPoint_of_mem (S : SpectraShadow α) {p : α}
-    (hp : p ∈ S.construct) {tol : ℝ} (htol : 0 ≤ tol) : S.containsPoint p tol := by
+    (hp : p ∈ S.toSet) {tol : ℝ} (htol : 0 ≤ tol) : S.containsPoint p tol := by
   obtain ⟨β, s, h1, h2, h3⟩ := (S.containsPoint_zero_iff p).mpr hp
   exact ⟨β, s, h1, fun i => (h2 i).trans htol, h3⟩
 
@@ -85,8 +85,8 @@ theorem SpectraShadow.containsPoint_of_mem (S : SpectraShadow α) {p : α}
 
 /-- Every point of the set is below the support function: it is a supremum. -/
 theorem SpectraShadow.le_supportFunc_of_mem (S : SpectraShadow α) (c : α →ₗ[ℝ] ℝ) {x : α}
-    (hx : x ∈ S.construct) : ((c x : ℝ) : EReal) ≤ S.supportFunc c :=
-  le_iSup₂ (f := fun x (_ : x ∈ S.construct) => ((c x : ℝ) : EReal)) x hx
+    (hx : x ∈ S.toSet) : ((c x : ℝ) : EReal) ≤ S.supportFunc c :=
+  le_iSup₂ (f := fun x (_ : x ∈ S.toSet) => ((c x : ℝ) : EReal)) x hx
 
 
 -- ==============================  `SpectraShadow.lmi_of_A_zero`  =============================== --
@@ -110,7 +110,7 @@ theorem SpectraShadow.lmi_of_A_zero (S : SpectraShadow α) (β : Fin S.m → ℝ
 
 /-- A certified bound (`SupportBound`) is above the support function. -/
 theorem SpectraShadow.supportFunc_le_of_bound (S : SpectraShadow α) (c : α →ₗ[ℝ] ℝ)
-    (u : SupportBound S.construct c) : S.supportFunc c ≤ (u.val : EReal) :=
+    (u : SupportBound S.toSet c) : S.supportFunc c ≤ (u.val : EReal) :=
   iSup₂_le fun x hx => EReal.coe_le_coe_iff.mpr (u.le x hx)
 
 

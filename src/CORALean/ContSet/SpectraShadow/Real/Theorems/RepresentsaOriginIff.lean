@@ -40,16 +40,16 @@ variable {n : ℕ}
 
 theorem SpectraShadow.representsa_origin_iff (S : SpectraShadow (Vec ℝ n))
     (hn : 0 < n) : -- --- CONCL ---
-    S.representsa_origin ↔ S.construct = {0} := by -- --- PROOF ---
+    S.representsa_origin ↔ S.toSet = {0} := by -- --- PROOF ---
   unfold SpectraShadow.representsa_origin
   constructor
   · intro h
     -- nonempty: the support in the first axis is `0`, not `⊥`
-    have hne : S.construct ≠ ∅ := fun he =>
+    have hne : S.toSet ≠ ∅ := fun he =>
       absurd ((S.supportFunc_eq_bot_iff _).mpr he |>.symm.trans (h ⟨0, hn⟩).1) (by simp)
     obtain ⟨x₀, hx₀⟩ := Set.nonempty_iff_ne_empty.mpr hne
     -- every member has both its coordinates' bounds at `0`
-    have hzero : ∀ x ∈ S.construct, x = 0 := by
+    have hzero : ∀ x ∈ S.toSet, x = 0 := by
       intro x hx
       funext i
       have h1 := (S.le_supportFunc_of_mem (LinearMap.proj i : Vec ℝ n →ₗ[ℝ] ℝ) hx)

@@ -69,7 +69,7 @@ theorem NeurNetContrSysDT.ofFull_isTrajectory_iff (plant : P)
     {v : ℕ → Vec ℝ (NeurNetContrSysDT.ofFull plant contr dt).nExt}
     {w : ℕ → Vec ℝ (nrOfDisturbances plant)} : -- --- CONCL ---
     (NeurNetContrSysDT.ofFull plant contr dt).IsTrajectory π R₀ U_ext W x v w ↔
-      ContDynamicsDT.IsTrajectory plant (construct R₀) Set.univ W x (fun k => π (x k))
+      ContDynamicsDT.IsTrajectory plant (toSet R₀) Set.univ W x (fun k => π (x k))
         w := by -- --- PROOF ---
   -- the plant's input is the network's output, and its input set everything
   have hin : ∀ a e, (NeurNetContrSysDT.ofFull plant contr dt).input a e = a := fun a e =>

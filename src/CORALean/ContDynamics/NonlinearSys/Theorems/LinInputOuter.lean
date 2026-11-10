@@ -61,15 +61,15 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Real.OfInterval S
 /-- The remainder of the split lies in `linInput` wherever the certificate holds. -/
 theorem linInput_outer {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)}
-    {U : S m} {L : S n} (cert : IsAbstractionError f A B xs us R (construct U) L)
-    {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ R) (hu : u ∈ construct U) : -- --- CONCL ---
-    f x u - A *ᵥ x ∈ construct (linInput f A B xs us U L) := by -- --- PROOF ---
+    {U : S m} {L : S n} (cert : IsAbstractionError f A B xs us R (toSet U) L)
+    {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ R) (hu : u ∈ toSet U) : -- --- CONCL ---
+    f x u - A *ᵥ x ∈ toSet (linInput f A B xs us U L) := by -- --- PROOF ---
   have hsplit : f x u - A *ᵥ x
       = ((f xs us - A *ᵥ xs) + B *ᵥ (u - us))
         + (f x u - (f xs us + A *ᵥ (x - xs) + B *ᵥ (u - us))) := by
     simp only [Matrix.mulVec_sub]
     abel
-  have hshift : u - us ∈ construct (U ⊞ ofInterval (Real.Interval.point (-us))) := by
+  have hshift : u - us ∈ toSet (U ⊞ ofInterval (Real.Interval.point (-us))) := by
     rw [sub_eq_add_neg]
     exact plus_outer _ _ (Set.add_mem_add hu (ofInterval_outer _ (Real.Interval.mem_point _)))
   rw [hsplit]

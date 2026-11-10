@@ -76,7 +76,7 @@ the point multilinear in the factors — and then nothing is lost, as nothing is
 lost at a zonotope's corners. -/
 private theorem PolyZonotope.aux_vPolytopeCorners_contains_of_binary (pZ : PolyZonotope α)
     (hE : ∀ k i, pZ.E k i ≤ 1) : -- --- CONCL ---
-    pZ.construct ⊆ pZ.vPolytopeCorners.construct := by -- --- PROOF ---
+    pZ.toSet ⊆ pZ.vPolytopeCorners.toSet := by -- --- PROOF ---
   rintro _ ⟨a, β, ha, hb, rfl⟩
   -- how far from `-1` towards `1` each factor and each coefficient sits
   obtain ⟨t, hta, htb⟩ : ∃ t : Fin (pZ.p + pZ.q) → ℝ,
@@ -217,12 +217,12 @@ private theorem PolyZonotope.aux_binarize_E_le (pZ : PolyZonotope α) (k : Fin p
   · exact Nat.zero_le 1
 
 private theorem PolyZonotope.aux_binarize_contains (pZ : PolyZonotope α) : -- --- CONCL ---
-    pZ.construct ⊆ pZ.binarize.construct := by -- --- PROOF ---
+    pZ.toSet ⊆ pZ.binarize.toSet := by -- --- PROOF ---
   rintro _ ⟨a, β, ha, hb, rfl⟩
   -- what the given-up columns and the independent block reach is a zonotope's
   have hmem : (0 : α) + ∑ i, PolyZonotope.monomial pZ.E a i
         • (if ∀ k, pZ.E k i ≤ 1 then (0:α) else pZ.G i)
-      + ∑ j, β j • pZ.GI j ∈ pZ.high.construct := ⟨a, β, ha, hb, rfl⟩
+      + ∑ j, β j • pZ.GI j ∈ pZ.high.toSet := ⟨a, β, ha, hb, rfl⟩
   obtain ⟨γ, hγ, hγeq⟩ := pZ.high.zonotopeEven_contains hmem
   rw [zero_add] at hγeq
   refine ⟨a, γ, ha, hγ, ?_⟩
@@ -252,7 +252,7 @@ private theorem PolyZonotope.aux_binarize_contains (pZ : PolyZonotope α) : -- -
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.vPolytopeSplit_contains (pZ : PolyZonotope α) :
-    pZ.construct ⊆ pZ.vPolytopeSplit.construct :=
+    pZ.toSet ⊆ pZ.vPolytopeSplit.toSet :=
   subset_trans pZ.aux_binarize_contains
     (PolyZonotope.aux_vPolytopeCorners_contains_of_binary _ pZ.aux_binarize_E_le)
 

@@ -70,12 +70,12 @@ variable [OfScalarPoint 𝕋 S] [IntersectStrip 𝕋 S] {n p : ℕ}
 theorem LinearSysDT.observeStripBased_outer (sys : LinearSysDT 𝕋 n) (σ : Vec 𝕋 sys.q)
     (W R₀ : S n) (u : ℕ → Vec 𝕋 sys.m) (y : ℕ → Vec 𝕋 sys.q)
     (options : LinearSysDT.ObserveStripOptions 𝕋 (S n) n sys.q) (x w : ℕ → Vec ℝ n)
-    (h0 : x 0 ∈ construct R₀) (hw : ∀ k, w k ∈ construct W)
+    (h0 : x 0 ∈ toSet R₀) (hw : ∀ k, w k ∈ toSet W)
     (hstep : ∀ k, x (k + 1) =
       toRealMat sys.A *ᵥ x k + toRealMat sys.B *ᵥ toRealVec (u k) + toRealVec sys.c + w k)
     (hy : ∀ k i, |(toRealMat sys.C *ᵥ x k - toRealVec (y k)) i| ≤ toReal (σ i))
     (k : ℕ) : -- --- CONCL ---
-    x k ∈ construct (sys.observeStripBased σ W R₀ u y options k) := by -- --- PROOF ---
+    x k ∈ toSet (sys.observeStripBased σ W R₀ u y options k) := by -- --- PROOF ---
   induction k with
   | zero =>
     unfold LinearSysDT.observeStripBased

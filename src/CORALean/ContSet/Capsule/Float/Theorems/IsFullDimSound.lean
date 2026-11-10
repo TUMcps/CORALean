@@ -44,14 +44,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Capsule.isFullDim_sound {C : Capsule 𝕋 n}
     (h : Capsule.isFullDim C = true) : -- --- CONCL ---
-    (interior C.construct).Nonempty := by -- --- PROOF ---
+    (interior C.toSet).Nonempty := by -- --- PROOF ---
   simp only [Capsule.isFullDim, Bool.or_eq_true, Bool.and_eq_true, decide_eq_true_eq,
     List.any_eq_true, List.all_eq_true, List.mem_finRange, true_and, forall_const] at h
   obtain ⟨hI, h⟩ := h
   -- the nominal part translated by the box's lower corner lies in the set
-  have he : toRealVec C.I_error.inf ∈ C.I_error.construct :=
+  have he : toRealVec C.I_error.inf ∈ C.I_error.toSet :=
     Interval.mem_vec_iff.mpr fun i => ⟨le_rfl, toReal_le_of_le (hI i)⟩
-  have hsub : InflatedContSet.nominalSet C + {toRealVec C.I_error.inf} ⊆ C.construct :=
+  have hsub : InflatedContSet.nominalSet C + {toRealVec C.I_error.inf} ⊆ C.toSet :=
     Set.add_subset_add_left (Set.singleton_subset_iff.mpr he)
   refine Set.Nonempty.mono (interior_mono hsub) ?_
   rw [Set.add_singleton]

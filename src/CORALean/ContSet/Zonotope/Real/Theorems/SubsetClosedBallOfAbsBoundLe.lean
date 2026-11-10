@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import Mathlib.Analysis.Normed.Ring.Basic
 
 @[expose] public section
@@ -47,9 +47,9 @@ variable {n : ℕ}
 coordinate's `absBound` stays under `r`. -/
 theorem Zonotope.subset_closedBall_of_absBound_le {Z : Zonotope (Vec ℝ n)} {r : ℝ} (hr : 0 ≤ r)
     (h : ∀ j, Z.absBound j ≤ r) : -- --- CONCL ---
-    Z.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r := by -- --- PROOF ---
+    Z.toSet ⊆ Metric.closedBall (0 : Vec ℝ n) r := by -- --- PROOF ---
   intro x hx
-  obtain ⟨β, hβ, hxeq⟩ := Zonotope.mem_construct_iff.mp hx
+  obtain ⟨β, hβ, hxeq⟩ := Zonotope.mem_toSet_iff.mp hx
   rw [Metric.mem_closedBall, dist_zero_right, pi_norm_le_iff_of_nonneg hr]
   intro j
   rw [Real.norm_eq_abs]

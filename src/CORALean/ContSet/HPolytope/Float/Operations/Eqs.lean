@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 
 @[expose] public section
 

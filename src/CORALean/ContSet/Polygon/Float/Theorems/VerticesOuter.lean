@@ -9,7 +9,7 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 # The polygon lies in the hull of its stored vertices, inflated by its error box
 
 Each piece is its nominal polytope (the hull of the stored vertices,
-`VPolytope.construct_eq_convexHull`) plus its error box, so a point of the polygon is a point of
+`VPolytope.toSet_eq_convexHull`) plus its error box, so a point of the polygon is a point of
 the hull of all the stored vertices plus the error box of the piece it came from. Outer only: the
 float polygon is the nominal one only up to those boxes.
 
@@ -41,14 +41,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.vertices_outer (P : Polygon 𝕋) : -- --- CONCL ---
-    ContSet.construct P ⊆ ⋃ p ∈ P.sets,
-      (convexHull ℝ {v | v ∈ P.vertices.map toRealVec} + p.I_error.construct) := by -- --- PROOF ---
+    ContSet.toSet P ⊆ ⋃ p ∈ P.sets,
+      (convexHull ℝ {v | v ∈ P.vertices.map toRealVec} + p.I_error.toSet) := by -- --- PROOF ---
   intro x hx
-  obtain ⟨p, hp, hxp⟩ := SetUnion.mem_construct.mp hx
+  obtain ⟨p, hp, hxp⟩ := SetUnion.mem_toSet.mp hx
   obtain ⟨y, hy, e, he, rfl⟩ := hxp
   refine Set.mem_biUnion hp ⟨y, ?_, e, he, rfl⟩
   have hy' : y ∈ convexHull ℝ (Set.range (Real.VPolytope.V (InflatedContSet.nominal p))) := by
-    rw [← Real.VPolytope.construct_eq_convexHull]; exact hy
+    rw [← Real.VPolytope.toSet_eq_convexHull]; exact hy
   refine convexHull_mono ?_ hy'
   rintro _ ⟨l, rfl⟩
   have hl : l.val < p.k := l.2

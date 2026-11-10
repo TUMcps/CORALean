@@ -14,7 +14,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralAddMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 
 @[expose] public section
 
@@ -73,9 +73,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 private theorem LinParamSys.aux_expIntegral_mem_constPropagateFloat
     (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η : ℕ} (ρ : ℕ)
     (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {A : Mat ℝ n n}
-    (hA : A ∈ sys.A.construct) (uc : Vec 𝕋 n) (k : ℕ) : -- --- CONCL ---
+    (hA : A ∈ sys.A.toSet) (uc : Vec 𝕋 n) (k : ℕ) : -- --- CONCL ---
     Real.MatExp.expIntegral A ((k : ℝ) * toReal Δt) *ᵥ Scalar.toRealVec uc
-      ∈ (sys.constPropagateFloat Δt η ρ uc k).construct := by -- --- PROOF ---
+      ∈ (sys.constPropagateFloat Δt η ρ uc k).toSet := by -- --- PROOF ---
   induction k with
   | zero =>
     -- nothing has been contributed by `t_0 = 0`, and `{0}` holds that
@@ -95,7 +95,7 @@ private theorem LinParamSys.aux_expIntegral_mem_constPropagateFloat
     rw [htk, hrec]
     -- the earlier part, carried across one window by `[e^{[A]Δt}]`
     have h1 : exp (toReal Δt • A) *ᵥ (Real.MatExp.expIntegral A ((k : ℝ) * toReal Δt)
-        *ᵥ Scalar.toRealVec uc) ∈ construct (Mtimes.mtimes (S := 𝒵[𝕋])
+        *ᵥ Scalar.toRealVec uc) ∈ toSet (Mtimes.mtimes (S := 𝒵[𝕋])
           (𝕄 := ℐ[𝕋]) (sys.expIntervalFloat Δt Δt η)
           (sys.constPropagateFloat Δt η ρ uc k)) :=
       Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
@@ -125,7 +125,7 @@ theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n) {c : V
             (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart))
             params.X₀ params.U x u A B →
           ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
-            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
+            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].toSet := by -- --- PROOF ---
   intro Rs (h : sys.reachFloatInput c params options = some Rs)
   obtain ⟨X₀, U, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options
@@ -153,12 +153,12 @@ theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n) {c : V
   obtain ⟨u, traj⟩ : ∃ u : ℝ → Vec ℝ n, sys.IsCanonicalConstTrajectory (S := 𝒵[𝕋])
       (Set.Icc 0 ((tFinal : ℝ) - tStart)) X₀ V x u A := by
     refine ⟨_, trajB.canonical fun s hs => ?_⟩
-    have hBu : B *ᵥ uIn s ∈ (B *ᵥ ·) '' construct U := ⟨uIn s, trajB.input s hs, rfl⟩
+    have hBu : B *ᵥ uIn s ∈ (B *ᵥ ·) '' toSet U := ⟨uIn s, trajB.input s hs, rfl⟩
     exact Plus.plus_outer _ _ (Set.add_mem_add
       (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) sys.B U
         (Set.mem_iUnion₂.mpr ⟨B, trajB.paramB, hBu⟩))
-      (show sys.c ∈ (Zonotope.point c).construct by
-        rw [Zonotope.construct_point, Set.mem_singleton_iff]; exact hc.symm))
+      (show sys.c ∈ (Zonotope.point c).toSet by
+        rw [Zonotope.toSet_point, Set.mem_singleton_iff]; exact hc.symm))
   -- window `k` lies inside the horizon
   have hkN : ((k : ℝ) + 1) * Δ ≤ (tFinal : ℝ) - tStart := by
     rw [← hNΔt]
@@ -173,23 +173,23 @@ theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n) {c : V
     Set.Icc_subset_Icc_right (ht.2.trans hkN)
   -- the run is the point system `⟨A⟩`'s, split into its free motion and its input's integral
   have lin := traj.toLinearSys
-  have hU : Bornology.IsBounded (construct (construct V)) := CompactSet.isBounded_construct V
+  have hU : Bornology.IsBounded (toSet (toSet V)) := CompactSet.isBounded_toSet V
   have hvoc := lin.variation_of_constants hTt le_rfl ht0 hU
   simp only [Scalar.toRealMat_real, sub_zero] at hvoc
   -- the input, split along `V ⊆ {ũ} ⊞ Ũ`
-  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - ũ ∈ construct (Recenter.recenter V) :=
+  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - ũ ∈ toSet (Recenter.recenter V) :=
     fun s hs => Recenter.sub_center_mem_recenter (traj.input s (hTt hs))
   have hmeas₀ : AEStronglyMeasurable (fun s => u s - ũ) (volume.restrict (Set.Icc 0 t)) :=
     (lin.aestronglyMeasurable_input hTt).sub aestronglyMeasurable_const
   have hint₁ := intervalIntegrable_expSub_mulVec (S := 𝒵[𝕋])
     (A := A) (c := t) ht0
-    (CompactSet.isBounded_construct
+    (CompactSet.isBounded_toSet
       (OfScalarPoint.ofVec (S := 𝒵[𝕋]) uc : Zonotope (Vec 𝕋 n)))
     (fun _ _ => OfScalarPoint.mem_ofVec (S := 𝒵[𝕋]) uc)
       aestronglyMeasurable_const
   have hint₀ := intervalIntegrable_expSub_mulVec (S := 𝒵[𝕋])
     (A := A) (c := t) ht0
-    (CompactSet.isBounded_construct (Recenter.recenter V)) hmem₀ hmeas₀
+    (CompactSet.isBounded_toSet (Recenter.recenter V)) hmem₀ hmeas₀
   have hsum : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
       = (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ ũ)
         + ∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ (u s - ũ) := by
@@ -221,7 +221,7 @@ theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n) {c : V
     abel
   -- the first window holds the free motion and the constant's share at `s`
   have hfirst : exp ((t - k * Δ) • A) *ᵥ x 0 + Real.MatExp.expIntegral A (t - k * Δ) *ᵥ ũ
-      ∈ construct (Reduce.reduce (sys.timeIntervalFloat Δt η' X₀
+      ∈ toSet (Reduce.reduce (sys.timeIntervalFloat Δt η' X₀
         ⊞ sys.constInputSolutionFloat Δt η' uc) ρ) :=
     Reduce.reduce_outer _ ρ (Plus.plus_outer (sys.timeIntervalFloat Δt η' X₀)
       (sys.constInputSolutionFloat Δt η' uc) (Set.add_mem_add
@@ -229,7 +229,7 @@ theorem LinParamSys.reachFloatInput_outer (sys : LinParamSys ℐ[𝕋] n) {c : V
         (sys.expIntegral_mem_constInputSolutionFloat hΔt hadm traj.param uc hτ0 htk)))
   have hHτ := sys.reachStepkFloat_outer hadm.1 traj.param hfirst _ hH
   have hPc := sys.aux_expIntegral_mem_constPropagateFloat ρ hΔt hadm traj.param uc k
-  have hPR : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ (u s - ũ)) ∈ PRtk.construct :=
+  have hPR : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ (u s - ũ)) ∈ PRtk.toSet :=
     sys.inputReach_subset_particularSolutionFloat hΔt hadm traj.param
     (Recenter.zero_mem_recenter V) ht0 htk1 _ hP
     ⟨fun s => u s - ũ, hmem₀, hmeas₀, by simp only [Scalar.toRealMat_real]⟩

@@ -11,7 +11,7 @@ public import CORALean.HybridDynamics.Operations.Basic
 CORA's `hybridAutomaton`, [1, Def. 1] and [2, Def. 1] without invariants: the locations, indexed by
 a type (`Fin k` is the intended index). A run alternates: flow inside a location over `[0, τ]`
 staying in its invariant, then a jump through a transition whose guard the endpoint meets, landing
-at the reset image in the target location; the guard is read as `construct e.guard` and never
+at the reset image in the target location; the guard is read as `toSet e.guard` and never
 otherwise (#39). The flow is [1, Def. 1]'s `ẋ = A x + u`, `u ∈ U`, read as a Carathéodory run
 (`Location.IsTrajectory`). `IsRun` is an inductive family, so its recursion principle is the
 chaining argument: `Theorems.IsRunOuter` is an `induction` with one case per constructor, and
@@ -61,7 +61,7 @@ inductive HybridAutomaton.IsRun {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec 
       HA.IsRun ℓ (x 0) ℓ (x τ)
   | jump {ℓ ℓ' : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} {y : Vec ℝ n} {e : Transition G L 𝕋 n}
       (h : (HA.loc ℓ).IsTrajectory τ x u w) (hmem : e ∈ (HA.loc ℓ).trans)
-      (hguard : x τ ∈ construct e.guard)
+      (hguard : x τ ∈ toSet e.guard)
       (rest : HA.IsRun e.target (e.reset (x τ)) ℓ' y) :
       HA.IsRun ℓ (x 0) ℓ' y
 
@@ -75,7 +75,7 @@ inductive HybridAutomaton.IsRunOn {S G : ℕ → Type} [∀ n, ContSet (S n) (Ve
       HA.IsRunOn 0 ℓ (x 0) ℓ (x τ)
   | jump {k : ℕ} {ℓ ℓ' : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} {y : Vec ℝ n}
       {e : Transition G L 𝕋 n} (h : (HA.loc ℓ).IsTrajectory τ x u w)
-      (hmem : e ∈ (HA.loc ℓ).trans) (hguard : x τ ∈ construct e.guard)
+      (hmem : e ∈ (HA.loc ℓ).trans) (hguard : x τ ∈ toSet e.guard)
       (rest : HA.IsRunOn k e.target (e.reset (x τ)) ℓ' y) :
       HA.IsRunOn (k + 1) ℓ (x 0) ℓ' y
 

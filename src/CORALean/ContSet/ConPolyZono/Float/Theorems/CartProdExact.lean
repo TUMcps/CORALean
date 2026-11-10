@@ -6,7 +6,7 @@ public import CORALean.Global.Float.GenBlockDiag
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.RelaxCartProd
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
 public import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
-public import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
+public import CORALean.ContSet.InflatedContSet.Theorems.AppendToSet
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.ToRealMatCartProd
 
 @[expose] public section
@@ -142,23 +142,23 @@ private theorem ConPolyZono.aux_nominal_cartProd (cPZ₁ : ConPolyZono 𝕋 (Vec
 
 theorem ConPolyZono.cartProd_exact (cPZ₁ : ConPolyZono 𝕋 (Vec 𝕋 n₁))
     (cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n₂)) : -- --- CONCL ---
-    (cPZ₁.cartProd cPZ₂).construct = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
-      (cPZ₁.construct ×ˢ cPZ₂.construct) := by -- --- PROOF ---
+    (cPZ₁.cartProd cPZ₂).toSet = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
+      (cPZ₁.toSet ×ˢ cPZ₂.toSet) := by -- --- PROOF ---
   -- the nominal part: the exact product, mapped through the append
   have hN : InflatedContSet.nominalSet (cPZ₁.cartProd cPZ₂) =
       (appendLinear n₁ n₂) ''
         (InflatedContSet.nominalSet cPZ₁ ×ˢ InflatedContSet.nominalSet cPZ₂) := by
     unfold InflatedContSet.nominalSet
     rw [ConPolyZono.aux_nominal_cartProd]
-    show (Real.ConPolyZono.map _ _).construct = _ ''
-      (Real.ConPolyZono.construct _ ×ˢ Real.ConPolyZono.construct _)
+    show (Real.ConPolyZono.map _ _).toSet = _ ''
+      (Real.ConPolyZono.toSet _ ×ˢ Real.ConPolyZono.toSet _)
     rw [← Real.ConPolyZono.map_exact, Real.ConPolyZono.relax_cartProd]
     rfl
   have hφ : ⇑(appendLinear n₁ n₂) = fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2 :=
     funext appendLinear_apply
   rw [hφ] at hN
   -- the error box is the stack of the two, and stacking distributes over the sum
-  exact CORALean.Float.InflatedContSet.append_construct (s₁ := cPZ₁) (s₂ := cPZ₂) hN rfl
+  exact CORALean.Float.InflatedContSet.append_toSet (s₁ := cPZ₁) (s₂ := cPZ₂) hN rfl
 
 end CORALean.Float
 

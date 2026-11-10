@@ -47,7 +47,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SupportFunction.exists_not_hPolytope :
-    ∃ S : SupportFunction (Vec ℝ 2), ¬ ∃ P : HPolytope (Vec ℝ 2), P.construct = S.construct := by
+    ∃ S : SupportFunction (Vec ℝ 2), ¬ ∃ P : HPolytope (Vec ℝ 2), P.toSet = S.toSet := by
   obtain ⟨E, hE⟩ := Ellipsoid.exists_not_hPolytope
   exact ⟨E.supportFunction, fun ⟨P, hP⟩ => hE ⟨P, hP.trans E.supportFunction_exact⟩⟩
 

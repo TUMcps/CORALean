@@ -60,11 +60,11 @@ private abbrev PolyZonotope.aux_aff : PolyZonotope (Vec ℝ 1) :=
 /-- [1]'s property (6) fails for `zonotope`: `α²` and `1 + α` denote `[0,1]` and
 `[0,2]`, whose enclosures are `[-1,1]` and `[0,2]`. -/
 theorem PolyZonotope.zonotope_not_mono : -- --- CONCL ---
-    ¬ ∀ pZ₁ pZ₂ : PolyZonotope (Vec ℝ 1), pZ₁.construct ⊆ pZ₂.construct →
-      pZ₁.zonotope.construct ⊆ pZ₂.zonotope.construct := by -- --- PROOF ---
+    ¬ ∀ pZ₁ pZ₂ : PolyZonotope (Vec ℝ 1), pZ₁.toSet ⊆ pZ₂.toSet →
+      pZ₁.zonotope.toSet ⊆ pZ₂.zonotope.toSet := by -- --- PROOF ---
   intro hmono
   -- the square's value is the affine one's, read at the factor `α² - 1`
-  have hsub : PolyZonotope.aux_sq.construct ⊆ PolyZonotope.aux_aff.construct := by
+  have hsub : PolyZonotope.aux_sq.toSet ⊆ PolyZonotope.aux_aff.toSet := by
     rintro _ ⟨a, β, ha, _, rfl⟩
     have hsq : a 0 ^ 2 ≤ 1 := by nlinarith [abs_le.1 (ha 0)]
     refine ⟨fun _ => a 0 ^ 2 - 1, Fin.elim0, fun k => ?_, fun j => j.elim0, ?_⟩
@@ -73,7 +73,7 @@ theorem PolyZonotope.zonotope_not_mono : -- --- CONCL ---
     · funext i
       simp [PolyZonotope.monomial]
   -- `-1` is in the square's enclosure, its generator being free there
-  have hmem : (fun _ => -1 : Vec ℝ 1) ∈ PolyZonotope.aux_sq.zonotope.construct := by
+  have hmem : (fun _ => -1 : Vec ℝ 1) ∈ PolyZonotope.aux_sq.zonotope.toSet := by
     refine ⟨fun _ => -1, fun j => by norm_num, ?_⟩
     funext i
     simp [PolyZonotope.zonotope]

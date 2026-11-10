@@ -40,7 +40,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem EmptySet.supportFunc_lower (E : EmptySet n) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
-    ⨅ x ∈ construct E, ((c x : ℝ) : EReal) = ⊤ := by
+    ⨅ x ∈ toSet E, ((c x : ℝ) : EReal) = ⊤ := by
   change ⨅ x ∈ (∅ : Set (Vec ℝ n)), ((c x : ℝ) : EReal) = ⊤
   simp
 

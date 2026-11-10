@@ -48,9 +48,9 @@ variable {α γ : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup γ] [Mod
 
 /-- A weighted point meets the weighted constraints. -/
 private theorem HPolytope.aux_mem_halfScaled_comap {f : γ →ₗ[ℝ] α} {t : γ →ₗ[ℝ] ℝ} {P : HPolytope α}
-    {x : γ} {w : ℝ} {y : α} (hw : (t x + 1) / 2 = w) (hw0 : 0 ≤ w) (hy : y ∈ P.construct)
+    {x : γ} {w : ℝ} {y : α} (hw : (t x + 1) / 2 = w) (hw0 : 0 ≤ w) (hy : y ∈ P.toSet)
     (hf : f x = w • y) : -- --- CONCL ---
-    x ∈ ((P.comap f).halfScaled t).construct := by -- --- PROOF ---
+    x ∈ ((P.comap f).halfScaled t).toSet := by -- --- PROOF ---
   refine HPolytope.mem_halfScaled_iff.mpr ⟨fun i => ?_, fun i => ?_⟩
   -- the rows of the preimage are `P`'s own, read at the block
   · show P.A i (f x) ≤ (t x + 1) / 2 * P.b i
@@ -65,10 +65,10 @@ end
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.linComb_outer (cZ₁ cZ₂ : ConZonotope α) : -- --- CONCL ---
-    Set.linComb cZ₁.construct cZ₂.construct ⊆ (cZ₁.linComb cZ₂).construct := by -- --- PROOF ---
+    Set.linComb cZ₁.toSet cZ₂.toSet ⊆ (cZ₁.linComb cZ₂).toSet := by -- --- PROOF ---
   rintro x ⟨y₁, ⟨β₁, hβ₁, hP₁, rfl⟩, y₂, ⟨β₂, hβ₂, hP₂, rfl⟩, lam, ⟨hl0, hl1⟩, rfl⟩
-  have hd₁ : β₁ ∈ cZ₁.domain.construct := ConZonotope.mem_domain_iff.mpr ⟨hβ₁, hP₁⟩
-  have hd₂ : β₂ ∈ cZ₂.domain.construct := ConZonotope.mem_domain_iff.mpr ⟨hβ₂, hP₂⟩
+  have hd₁ : β₁ ∈ cZ₁.domain.toSet := ConZonotope.mem_domain_iff.mpr ⟨hβ₁, hP₁⟩
+  have hd₂ : β₂ ∈ cZ₂.domain.toSet := ConZonotope.mem_domain_iff.mpr ⟨hβ₂, hP₂⟩
   have hm0 : (0:ℝ) ≤ 1 - lam := by linarith
   have hm1 : (1:ℝ) - lam ≤ 1 := by linarith
   -- the concatenated coefficient vector: the two scaled blocks, then the weight

@@ -90,11 +90,11 @@ private theorem aux_integral_mem_smul_of_mem_smul {K : Set (Vec ℝ n)} (hK : Co
 
 /-- A member of `B` maps the hull of order `k` into the hull of order `k + 1`. -/
 private theorem aux_mulVec_mem_hull {B : Interval (Mat ℝ n n)} {U : Set (Vec ℝ n)} {M : Mat ℝ n n}
-    (hM : M ∈ B.construct) {k : ℕ} {y : Vec ℝ n}
+    (hM : M ∈ B.toSet) {k : ℕ} {y : Vec ℝ n}
     (hy : y ∈ closure (convexHull ℝ
-      {z | ∃ N ∈ (Interval.matPow B k).construct, ∃ v ∈ U, z = N *ᵥ v})) : -- --- CONCL ---
+      {z | ∃ N ∈ (Interval.matPow B k).toSet, ∃ v ∈ U, z = N *ᵥ v})) : -- --- CONCL ---
     M *ᵥ y ∈ closure (convexHull ℝ
-      {z | ∃ N ∈ (Interval.matPow B (k + 1)).construct, ∃ v ∈ U, z = N *ᵥ v}) := by -- --- PROOF ---
+      {z | ∃ N ∈ (Interval.matPow B (k + 1)).toSet, ∃ v ∈ U, z = N *ᵥ v}) := by -- --- PROOF ---
   have hc : Continuous (Matrix.mulVecLin M) := (Matrix.mulVecLin M).continuous_of_finiteDimensional
   have h := image_closure_subset_closure_image hc (Set.mem_image_of_mem _ hy)
   rw [LinearMap.image_convexHull] at h
@@ -111,15 +111,15 @@ private theorem aux_mulVec_mem_hull {B : Interval (Mat ℝ n n)} {U : Set (Vec �
 `k`-th box power applied to the input set. -/
 theorem MatExp.peanoBakerInputTerm_mem {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
-    (hAB : ∀ s, A s ∈ B.construct) {u : ℝ → Vec ℝ n}
+    (hAB : ∀ s, A s ∈ B.toSet) {u : ℝ → Vec ℝ n}
     (hu : ∀ a b, IntervalIntegrable u volume a b) {U : Set (Vec ℝ n)} {t : ℝ} (ht : 0 ≤ t)
     (huU : ∀ s ∈ Set.Icc 0 t, u s ∈ U) (k : ℕ) : -- --- CONCL ---
     ∀ s ∈ Set.Icc 0 t, MatExp.peanoBakerInputTerm A u k s
       ∈ (s ^ (k + 1) / (Nat.factorial (k + 1) : ℝ)) • closure (convexHull ℝ
-        {z | ∃ N ∈ (Interval.matPow B k).construct, ∃ v ∈ U, z = N *ᵥ v}) := by -- --- PROOF ---
+        {z | ∃ N ∈ (Interval.matPow B k).toSet, ∃ v ∈ U, z = N *ᵥ v}) := by -- --- PROOF ---
   -- the hull of the products of the order-`k` power with the inputs
   set H : ℕ → Set (Vec ℝ n) := fun k =>
-    convexHull ℝ {z | ∃ N ∈ (Interval.matPow B k).construct, ∃ v ∈ U, z = N *ᵥ v} with hH
+    convexHull ℝ {z | ∃ N ∈ (Interval.matPow B k).toSet, ∃ v ∈ U, z = N *ᵥ v} with hH
   -- the hull at every order is closed, convex and holds a point
   have hne : ∀ k, (closure (H k)).Nonempty := fun k =>
     ⟨_, subset_closure (subset_convexHull ℝ _
@@ -139,7 +139,7 @@ theorem MatExp.peanoBakerInputTerm_mem {B : Interval (Mat ℝ n n)} {A : ℝ →
   -- every window inside the whole one, and the identity the zeroth power
   have hsub : ∀ s ∈ Set.Icc 0 t, Set.uIcc 0 s ⊆ Set.uIcc 0 t := fun s hs => by
     rw [Set.uIcc_of_le hs.1, Set.uIcc_of_le ht]; exact Set.Icc_subset_Icc le_rfl hs.2
-  have h1 : (1 : Mat ℝ n n) ∈ (Interval.matPow B 0).construct := Interval.mem_point 1
+  have h1 : (1 : Mat ℝ n n) ∈ (Interval.matPow B 0).toSet := Interval.mem_point 1
   induction k with
   | zero =>
     intro s hs
@@ -150,7 +150,7 @@ theorem MatExp.peanoBakerInputTerm_mem {B : Interval (Mat ℝ n n)} {A : ℝ →
       ((hw 0).mono_set (hsub s hs))
       (fun σ _ => by positivity) (fun σ hσ => by
         have hm : u σ ∈ closure (convexHull ℝ
-            {z | ∃ N ∈ (Interval.matPow B 0).construct, ∃ v ∈ U, z = N *ᵥ v}) :=
+            {z | ∃ N ∈ (Interval.matPow B 0).toSet, ∃ v ∈ U, z = N *ᵥ v}) :=
           subset_closure (subset_convexHull ℝ _
             ⟨1, h1, u σ, huU σ ⟨hσ.1, hσ.2.trans hs.2⟩, by simp⟩)
         simpa using hm)

@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
-public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConPolyZonoOfFactorConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemToSetIff
+public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConPolyZonoOfFactorToSet
 
 @[expose] public section
 
@@ -9,7 +9,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConPolyZonoOfFa
 # An ellipsoid as a constrained polynomial zonotope
 
 [1, Prop. 3] with the factor `G = Q^(1/2)` the ellipsoid's own set is defined through, in place of
-[1]'s `V √Λ`: the factor form's conversion (`conPolyZonoOfFactor_construct`) read at `E.G`. Exact,
+[1]'s `V √Λ`: the factor form's conversion (`conPolyZonoOfFactor_toSet`) read at `E.G`. Exact,
 both directions, with no eigendecomposition paid for it.
 
 ## Inputs
@@ -43,8 +43,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.conPolyZono_exact (E : Ellipsoid n) :
-    E.construct = E.conPolyZono.construct :=
-  E.construct_eq_sqrt.trans <| Ellipsoid.conPolyZonoOfFactor_construct E.G E.q
+    E.toSet = E.conPolyZono.toSet :=
+  E.toSet_eq_sqrt.trans <| Ellipsoid.conPolyZonoOfFactor_toSet E.G E.q
 
 end CORALean.Real
 

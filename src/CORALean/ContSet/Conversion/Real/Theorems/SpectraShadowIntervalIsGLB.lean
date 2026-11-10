@@ -44,8 +44,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.interval_isGLB (S : SpectraShadow (Vec ℝ n)) (hb : S.isBounded)
-    (hne : S.construct ≠ ∅) (i : Fin n) : -- --- CONCL ---
-    IsGLB ((fun x : Vec ℝ n => x i) '' S.construct) (S.interval.inf i) := by -- --- PROOF ---
+    (hne : S.toSet ≠ ∅) (i : Fin n) : -- --- CONCL ---
+    IsGLB ((fun x : Vec ℝ n => x i) '' S.toSet) (S.interval.inf i) := by -- --- PROOF ---
   have hnemp : ¬ S.representsa_emptySet := fun h => hne ((S.representsa_emptySet_iff).mp h)
   have e2 := S.supportFunc_eq_coe_toReal _ hne (hb i).2
   have hs : S.interval.inf i

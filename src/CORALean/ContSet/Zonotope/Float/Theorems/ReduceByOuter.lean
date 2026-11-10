@@ -52,7 +52,7 @@ private theorem Zonotope.aux_reduceBy_nominal (Z : Zonotope (Vec 𝕋 n))
 
 theorem Zonotope.reduceBy_outer (Z : Zonotope (Vec 𝕋 n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) :
-    Z.construct ⊆ (Z.reduceBy part).construct :=
+    Z.toSet ⊆ (Z.reduceBy part).toSet :=
   mono_subset (Zonotope.aux_reduceBy_nominal Z part) (subset_refl _)
 
 end CORALean.Float

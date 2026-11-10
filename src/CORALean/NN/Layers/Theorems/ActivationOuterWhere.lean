@@ -56,10 +56,10 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 /-- `σ` coordinatewise lands in the layer's output at every point of a set whose box the
 relaxation is sound on: the proof of `Layer.activation_encloses`, which asks of the box nothing. -/
 theorem Layer.activation_outer_where {R : Relaxation 𝕋} {P : 𝕋 → 𝕋 → Prop}
-    (hR : R.EnclosesWhere σ P) (s : S n) (x : Vec ℝ n) (hx : x ∈ construct s)
+    (hR : R.EnclosesWhere σ P) (s : S n) (x : Vec ℝ n) (hx : x ∈ toSet s)
     (hP : ∀ i, P ((interval s).inf i) ((interval s).sup i)) : -- --- CONCL ---
     (fun i => σ (x i)) ∈
-      construct ((Layer.activation (S := S) (n := n) R).enclose s) := by -- --- PROOF ---
+      toSet ((Layer.activation (S := S) (n := n) R).enclose s) := by -- --- PROOF ---
   have hbox := interval_outer s hx
   set J := interval s with hJ
   set A : Mat ℝ n n := Scalar.toRealMat (R.step_slopeMat J) with hA
@@ -78,7 +78,7 @@ theorem Layer.activation_outer_where {R : Relaxation 𝕋} {P : 𝕋 → 𝕋 �
     rw [hd]
     ring
   -- and the deviation is inside the box, `sound` bounding it and the rounding widening it
-  have hmem : d ∈ Interval.construct (R.box J) := by
+  have hmem : d ∈ Interval.toSet (R.box J) := by
     intro i
     have hlo : toReal (J.inf i) ≤ x i := (hbox i).1
     have hhi : x i ≤ toReal (J.sup i) := (hbox i).2

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 
 @[expose] public section
 
@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem HPolytope.minkDiffOf_inner (P : HPolytope 𝕋 (Vec 𝕋 n)) (T : Set (Vec ℝ n))
     (u : ∀ i, FloatBound 𝕋 T (Real.HPolytope.rowLin (toRealMat P.A) i))
     (hker : ∀ i, ∀ y ∈ T, (toRealMat P.Ae *ᵥ y) i = 0) : -- --- CONCL ---
-    (P.minkDiffOf T u).construct ⊆ minkowskiDiff P.construct T := by -- --- PROOF ---
+    (P.minkDiffOf T u).toSet ⊆ minkowskiDiff P.toSet T := by -- --- PROOF ---
   intro x hx y hy
   obtain ⟨z, hz, e, he, rfl⟩ := Set.mem_add.mp hx
   obtain ⟨hle, heq⟩ := HPolytope.mem_nominal_iff.mp hz

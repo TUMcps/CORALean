@@ -63,8 +63,8 @@ example (sys : NeurNetContrSysDT (LinearSysDT ℝ 2) 𝒵 2) (U_ext : Zonotope (
     (R₀ : Zonotope (Vec ℝ 2)) {o : ℕ} (ho : 0 < o)
     {π : Vec ℝ 2 → Vec ℝ sys.m} (hπ : sys.contr.Encloses π)
     {x : ℕ → Vec ℝ 2} {v : ℕ → Vec ℝ sys.nExt} {w : ℕ → Vec ℝ sys.plant.r}
-    (traj : sys.IsTrajectory π R₀ (construct U_ext) {0} x v w) (k : ℕ) :
-    x k ∈ construct (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) :=
+    (traj : sys.IsTrajectory π R₀ (toSet U_ext) {0} x v w) (k : ℕ) :
+    x k ∈ toSet (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer U_ext ho R₀ hπ
     (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero]) traj k
 
@@ -74,9 +74,9 @@ example (sys : NeurNetContrSysDT (LinearSysDT ℝ 2) 𝒵 2) (U_ext : Zonotope (
     (R₀ : Zonotope (Vec ℝ 2)) {o : ℕ} (ho : 0 < o)
     (safe : Set (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ sys.m} (hπ : sys.contr.Encloses π)
     {x : ℕ → Vec ℝ 2} {v : ℕ → Vec ℝ sys.nExt} {w : ℕ → Vec ℝ sys.plant.r}
-    (traj : sys.IsTrajectory π R₀ (construct U_ext) {0} x v w) (k : ℕ)
+    (traj : sys.IsTrajectory π R₀ (toSet U_ext) {0} x v w) (k : ℕ)
     (h : (Specification.safeSet safe).Holds
-      (construct (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩))) :
+      (toSet (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩))) :
     (Specification.safeSet safe).Holds {x k} :=
   sys.holds_of_reach U_ext ho R₀ _ hπ
     (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero]) traj k h
@@ -99,7 +99,7 @@ example (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (W₂ : Mat �
     (x : ℕ → Vec ℝ 2) (v : ℕ → Vec ℝ (Example.nnControlledDT A W₁ b₁ W₂ b₂ dt).nExt)
     (w : ℕ → Vec ℝ 2) :
     (Example.nnControlledDT A W₁ b₁ W₂ b₂ dt).IsTrajectory π R₀ U_ext {0} x v w ↔
-      ContDynamicsDT.IsTrajectory (LinearSysDT.canonical A) (construct R₀) Set.univ {0} x
+      ContDynamicsDT.IsTrajectory (LinearSysDT.canonical A) (toSet R₀) Set.univ {0} x
         (fun k => π (x k)) w :=
   NeurNetContrSysDT.ofFull_isTrajectory_iff _ _ _ hU
 

@@ -68,9 +68,9 @@ theorem LinearSysDT.intersectDescriptor_outer (E T A : Mat ℝ n n) (N Λ : Mat 
     (B : Mat ℝ n nu) (D : Mat ℝ n nw) (Dd : Mat ℝ n nd) (C : Mat ℝ ny n) (F : Mat ℝ ny nv)
     (u : Vec ℝ nu) (y : Vec ℝ ny) (X : Zonotope (Vec ℝ n))
     (hTN : T * E + N * C = 1) (hTD : T * Dd = 0) : -- --- CONCL ---
-    LinearSysDT.descriptorPredictSet E A B D Dd X.construct u ∩
+    LinearSysDT.descriptorPredictSet E A B D Dd X.toSet u ∩
         LinearSysDT.measurementSet C F y ⊆
-      (X.intersectDescriptor T N Λ A B D C F u y).construct := by -- --- PROOF ---
+      (X.intersectDescriptor T N Λ A B D C F u y).toSet := by -- --- PROOF ---
   rintro x ⟨⟨xp, ⟨β, hβ, rfl⟩, ω, hω, d, hE⟩, α, hα, hC⟩
   -- a matrix's columns weighted by a vector are the matrix times it
   have hcol : ∀ {k : ℕ} (M : Mat ℝ n k) (v : Vec ℝ k), ∑ j, v j • (fun i => M i j) = M *ᵥ v :=

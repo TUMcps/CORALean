@@ -46,10 +46,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 theorem Capsule.project_exact (C : Capsule 𝕋 n) {dims : Fin m → Fin n}
     (hd : Function.Injective dims) (hI : C.I_error.nominal.IsNonempty) : -- --- CONCL ---
-    (C.project dims).construct =
-      (fun x : Vec ℝ n => fun i => x (dims i)) '' C.construct := by -- --- PROOF ---
-  show InflatedContSet.nominalSet (C.project dims) + (C.I_error.project dims).construct
-    = (LinearMap.funLeft ℝ ℝ dims) '' (InflatedContSet.nominalSet C + C.I_error.construct)
+    (C.project dims).toSet =
+      (fun x : Vec ℝ n => fun i => x (dims i)) '' C.toSet := by -- --- PROOF ---
+  show InflatedContSet.nominalSet (C.project dims) + (C.I_error.project dims).toSet
+    = (LinearMap.funLeft ℝ ℝ dims) '' (InflatedContSet.nominalSet C + C.I_error.toSet)
   rw [InflatedContSet.image_add]
   exact congrArg₂ (· + ·) (Real.Capsule.project_exact C.nominal hd)
     (Real.Interval.project_exact C.I_error.nominal dims hd hI)

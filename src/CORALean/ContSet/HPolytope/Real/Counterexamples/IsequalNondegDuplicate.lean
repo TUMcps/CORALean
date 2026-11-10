@@ -54,7 +54,7 @@ open Matrix
 theorem HPolytope.isequalNondeg_duplicate_counterexample : -- --- CONCL ---
     ∃ (A₁ : Mat ℝ 3 1) (b₁ : Vec ℝ 3) (A₂ : Mat ℝ 1 1) (b₂ : Vec ℝ 1),
       HPolytope.isequalNondeg A₁ b₁ A₂ b₂ = true ∧
-        (HPolytope.ineqs A₁ b₁).construct ≠ (HPolytope.ineqs A₂ b₂).construct := by -- --- PROOF ---
+        (HPolytope.ineqs A₁ b₁).toSet ≠ (HPolytope.ineqs A₂ b₂).toSet := by -- --- PROOF ---
   let A₁ : Mat ℝ 3 1 := !![1; 1; -1]
   let A₂ : Mat ℝ 1 1 := !![-1]
   -- every row is a unit vector, so line 1 changes nothing
@@ -82,7 +82,7 @@ theorem HPolytope.isequalNondeg_duplicate_counterexample : -- --- CONCL ---
     · fin_cases k
       exact ⟨by ext i; fin_cases i; rfl, rfl⟩
   -- `2` is in `[0, ∞)` and not in `[0, 1]`
-  · have h2 : (![2] : Vec ℝ 1) ∈ (HPolytope.ineqs A₂ ![0]).construct :=
+  · have h2 : (![2] : Vec ℝ 1) ∈ (HPolytope.ineqs A₂ ![0]).toSet :=
       HPolytope.mem_ineqs_iff.mpr fun k => by fin_cases k; simp [A₂, mulVec, dotProduct]
     rw [← he] at h2
     have := HPolytope.mem_ineqs_iff.mp h2 0

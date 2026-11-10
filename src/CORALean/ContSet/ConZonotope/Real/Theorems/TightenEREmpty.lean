@@ -62,7 +62,7 @@ theorem ConZonotope.tightenER_empty {nc ng : ℕ} (c : α) (G : Fin ng → α) (
     (hj : ((ConZonotope.tightenER A b k).1.sup j : EReal) < (ConZonotope.tightenER A b k).2.1 j ∨
       (ConZonotope.tightenER A b k).2.2 j < ((ConZonotope.tightenER A b k).1.inf j : EReal))
     : -- --- CONCL ---
-    (ConZonotope.ofMat c G A b).construct = ∅ := by -- --- PROOF ---
+    (ConZonotope.ofMat c G A b).toSet = ∅ := by -- --- PROOF ---
   refine Set.eq_empty_of_forall_notMem fun x hx => ?_
   obtain ⟨β, hbox, heq, -⟩ := ConZonotope.mem_ofMat_iff.mp hx
   obtain ⟨hE, hR⟩ := ConZonotope.tightenER_outer A b k hbox heq

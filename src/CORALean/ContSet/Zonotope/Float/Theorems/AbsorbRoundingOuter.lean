@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `absorbRounding` contains the set. -/
 theorem Zonotope.absorbRounding_outer (Z : Zonotope (Vec 𝕋 n)) :
-    Z.construct ⊆ Z.absorbRounding.construct := fun x hx =>
+    Z.toSet ⊆ Z.absorbRounding.toSet := fun x hx =>
   ⟨x, Zonotope.absorbRounding_nominal Z hx, 0,
     fun i => ⟨le_of_eq (by rw [Zonotope.absorbRounding]; exact toReal_zero),
       le_of_eq (by rw [Zonotope.absorbRounding]; exact toReal_zero.symm)⟩, add_zero x⟩

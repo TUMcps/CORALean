@@ -42,18 +42,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 theorem Polygon.pieceSubset_sound {p q : VPolytope (Vec 𝕋 2)}
     (h : Polygon.pieceSubset p q = true) : -- --- CONCL ---
-    p.construct ⊆ q.construct := by -- --- PROOF ---
+    p.toSet ⊆ q.toSet := by -- --- PROOF ---
   simp only [Polygon.pieceSubset, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨hV, hE⟩ := h
   -- the nominal hulls: every vertex of `p` is in the convex nominal `q`
   have hnom : nominalSet p ⊆ nominalSet q := by
-    show (nominal p).construct ⊆ (nominal q).construct
-    rw [CORALean.Real.VPolytope.construct_eq_convexHull]
+    show (nominal p).toSet ⊆ (nominal q).toSet
+    rw [CORALean.Real.VPolytope.toSet_eq_convexHull]
     exact convexHull_min (Set.range_subset_iff.mpr fun l => Polygon.pieceHolds_sound (hV l))
-      (nominal q).convex_construct
+      (nominal q).convex_toSet
   -- the boxes, corner by corner
-  have hbox : p.I_error.construct ⊆ q.I_error.construct := fun e he i =>
+  have hbox : p.I_error.toSet ⊆ q.I_error.toSet := fun e he i =>
     ⟨le_trans (toReal_le_of_le (hE i).1) (he i).1, le_trans (he i).2 (toReal_le_of_le (hE i).2)⟩
   exact Set.add_subset_add hnom hbox
 

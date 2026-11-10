@@ -47,8 +47,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- [1, Eq. 11]: `[-1, 1] ⊗ Z ⊆ (0, c, g⁽¹⁾, ..., g⁽ᵖ⁾)`. -/
 theorem Zonotope.unitIntervalMul_outer (Z : Zonotope α) : -- --- CONCL ---
-    (fun sx : ℝ × α => sx.1 • sx.2) '' (Set.Icc (-1 : ℝ) 1 ×ˢ Z.construct)
-      ⊆ Z.unitIntervalMul.construct := by -- --- PROOF ---
+    (fun sx : ℝ × α => sx.1 • sx.2) '' (Set.Icc (-1 : ℝ) 1 ×ˢ Z.toSet)
+      ⊆ Z.unitIntervalMul.toSet := by -- --- PROOF ---
   rintro _ ⟨⟨s, x⟩, ⟨hs, β, hβ, rfl⟩, rfl⟩
   have hs' : |s| ≤ 1 := abs_le.mpr hs
   -- the center's coefficient is `s`, generator `j`'s is `s βⱼ`

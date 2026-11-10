@@ -37,8 +37,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.volume_le (I : Interval (Vec 𝕋 n)) :
-    MeasureTheory.volume I.construct ≤ ENNReal.ofReal (toReal I.volume) := by
-  have h : I.construct = I.nominal.construct := rfl
+    MeasureTheory.volume I.toSet ≤ ENNReal.ofReal (toReal I.volume) := by
+  have h : I.toSet = I.nominal.toSet := rfl
   rw [h, Real.Interval.volume_eq]
   exact I.volume_nominal_le
 

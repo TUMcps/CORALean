@@ -49,7 +49,7 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.map_exact (f : α →ₗ[ℝ] β) (Z : Zonotope α) : -- --- CONCL ---
-    f '' Z.construct = (Z.map f).construct := by -- --- PROOF ---
+    f '' Z.toSet = (Z.map f).toSet := by -- --- PROOF ---
   have hf : ∀ b : Fin Z.h → ℝ, f (Z.c + ∑ j, b j • Z.G j)
       = (Z.map f).c + ∑ j, b j • (Z.map f).G j := by
     intro b

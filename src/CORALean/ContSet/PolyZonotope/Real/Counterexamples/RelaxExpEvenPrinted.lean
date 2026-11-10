@@ -53,9 +53,9 @@ theorem PolyZonotope.relaxExpEven_printed_counterexample : -- --- CONCL ---
       (∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) →
       (∀ k, Even (pZ.E k (part.right 0))) → Even (pZ.E k₀ (part.right 1)) →
       pZ.E k₀ (part.right 1) ≤ pZ.E k₀ (part.right 0) →
-      pZ.construct ⊆ { pZ.relaxExpEven part k₀ with
+      pZ.toSet ⊆ { pZ.relaxExpEven part k₀ with
         c := pZ.c + ((pZ.relaxWidth part k₀ : ℝ) / 2) • pZ.G (part.right 0)
-      }.construct := by -- --- PROOF ---
+      }.toSet := by -- --- PROOF ---
   intro h
   -- `0 = 0²` is in the set, with `α = 0`
   have hsub := h ⟨1, 2, 0, 0, ![1, 0], fun _ => ![2, 0], fun j => j.elim0⟩ 0

@@ -2,8 +2,8 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceBy
 public import CORALean.ContSet.ConPolyZono.Real.Operations.DropRadius
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUnit
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemToSet
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEqUnit
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
@@ -113,10 +113,10 @@ they are. -/
 theorem ConPolyZono.reduceBy_outer (cPZ : ConPolyZono (Vec ℝ n))
     (partD : Split (Fin cPZ.h) into (Fin d) ⊕ (Fin r))
     (partI : Split (Fin cPZ.qI) into (Fin dI) ⊕ (Fin rI)) : -- --- CONCL ---
-    cPZ.construct ⊆ (cPZ.reduceBy partD partI).construct := by -- --- PROOF ---
+    cPZ.toSet ⊆ (cPZ.reduceBy partD partI).toSet := by -- --- PROOF ---
   intro x hxmem
-  obtain ⟨a, β, hβ, hsat, hx⟩ := ConPolyZono.mem_construct_iff.mp hxmem
-  have ha := ((PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).mp hsat).1
+  obtain ⟨a, β, hβ, hsat, hx⟩ := ConPolyZono.mem_toSet_iff.mp hxmem
+  have ha := ((PolyLevelSet.mem_toSet_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).mp hsat).1
   have hbound : ∀ i,
       |(∑ l, cPZ.G (partD.right l) i * PolyZonotope.monomial cPZ.E a (partD.right l))
           + ∑ j, cPZ.GI (partI.right j) i * β (partI.right j)|
@@ -127,7 +127,7 @@ theorem ConPolyZono.reduceBy_outer (cPZ : ConPolyZono (Vec ℝ n))
   have hnonneg : ∀ i, (0:ℝ) ≤ cPZ.dropRadius partD partI i :=
     fun i => (abs_nonneg _).trans (hbound i)
   -- the witness: the same factors, plus one coefficient per coordinate scaled to the box
-  refine ConPolyZono.mem_construct_iff.mpr
+  refine ConPolyZono.mem_toSet_iff.mpr
     ⟨a, Fin.append (fun j => β (partI.left j))
         (fun i => Zonotope.coefficient (cPZ.dropRadius partD partI i)
           ((∑ l, cPZ.G (partD.right l) i * PolyZonotope.monomial cPZ.E a (partD.right l))

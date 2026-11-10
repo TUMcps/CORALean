@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose2
@@ -66,7 +66,7 @@ theorem Ellipsoid.dot_transpose {k : ℕ} (G : Mat ℝ n k) (w : Vec ℝ n) (a :
 /-- Outer, given the hull `orOA` encloses both operands (`Ellipsoid.IsOrOuter`). -/
 theorem Ellipsoid.enclose₂_outer (orOA : Ellipsoid n → Ellipsoid n → Ellipsoid n)
     (hor : ∀ E₁ E₂, Ellipsoid.IsOrOuter E₁ E₂ (orOA E₁ E₂)) (E E2 : Ellipsoid n) :
-    Set.linComb E.construct E2.construct ⊆ (Ellipsoid.enclose₂ orOA E E2).construct :=
+    Set.linComb E.toSet E2.toSet ⊆ (Ellipsoid.enclose₂ orOA E E2).toSet :=
   Ellipsoid.setLinComb_subset_of_isOrOuter (hor _ _)
 
 
@@ -93,7 +93,7 @@ theorem Ellipsoid.G_eq_zero_iff (E : Ellipsoid n) : E.G = 0 ↔ E.Q = 0 :=
   CFC.sqrt_eq_zero_iff E.Q E.psd.nonneg
 
 
--- =============================  `Ellipsoid.isBounded_construct`  ============================== --
+-- ===============================  `Ellipsoid.isBounded_toSet`  ================================ --
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   ---
@@ -101,36 +101,36 @@ theorem Ellipsoid.G_eq_zero_iff (E : Ellipsoid n) : E.G = 0 ↔ E.Q = 0 :=
 
 /-- Read off compactness rather than proved again: `‖G u‖ ≤ ‖G‖ ‖u‖₂` would need the
 operator norm, and the compactness proof already carries everything. -/
-theorem Ellipsoid.isBounded_construct (E : Ellipsoid n) : Bornology.IsBounded E.construct :=
-  E.isCompact_construct.isBounded
+theorem Ellipsoid.isBounded_toSet (E : Ellipsoid n) : Bornology.IsBounded E.toSet :=
+  E.isCompact_toSet.isBounded
 
 
--- ==============================  `Ellipsoid.isClosed_construct`  ============================== --
+-- ================================  `Ellipsoid.isClosed_toSet`  ================================ --
 -- Authors:       Claude Opus 5
 -- Written:       02-September-2026
 -- Last update:   04-September-2026
 -- Reviewed:      ---
 
-/-- Read off compactness, as for a zonotope and for the same reason: `construct` is
+/-- Read off compactness, as for a zonotope and for the same reason: `toSet` is
 an affine image, and an affine image of a merely closed set need not be closed. -/
-theorem Ellipsoid.isClosed_construct (E : Ellipsoid n) : IsClosed E.construct :=
-  E.isCompact_construct.isClosed
+theorem Ellipsoid.isClosed_toSet (E : Ellipsoid n) : IsClosed E.toSet :=
+  E.isCompact_toSet.isClosed
 
 
--- ================================  `Ellipsoid.mem_construct`  ================================= --
+-- ==================================  `Ellipsoid.mem_toSet`  =================================== --
 -- Authors:       Claude Opus 5
 -- Written:       04-September-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- An introduction rather than a characterisation: any affine image of a unit
-ball point is a point the ellipsoid contains. `Theorems/QMemConstruct` is the
+ball point is a point the ellipsoid contains. `Theorems/QMemToSet` is the
 same statement at `u = 0`, the center. -/
-theorem Ellipsoid.mem_construct {E : Ellipsoid n} {u : Vec ℝ n} (hu : ‖u‖₂ ≤ 1) :
-    E.q + E.G *ᵥ u ∈ E.construct := E.construct_eq_sqrt ▸ ⟨u, hu, rfl⟩
+theorem Ellipsoid.mem_toSet {E : Ellipsoid n} {u : Vec ℝ n} (hu : ‖u‖₂ ≤ 1) :
+    E.q + E.G *ᵥ u ∈ E.toSet := E.toSet_eq_sqrt ▸ ⟨u, hu, rfl⟩
 
 
--- =============================  `Ellipsoid.center_mem_construct`  ============================= --
+-- ===============================  `Ellipsoid.center_mem_toSet`  =============================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
@@ -138,9 +138,9 @@ theorem Ellipsoid.mem_construct {E : Ellipsoid n} {u : Vec ℝ n} (hu : ‖u‖�
 
 /-- CORA's `center` is the field `q`; it is the image of the zero coefficient vector,
 whatever the generators. -/
-theorem Ellipsoid.center_mem_construct (E : Ellipsoid n) : E.q ∈ E.construct := by
+theorem Ellipsoid.center_mem_toSet (E : Ellipsoid n) : E.q ∈ E.toSet := by
   have hu : ‖(0 : Vec ℝ n)‖₂ ≤ 1 := mem_unitBall₂.mp zero_mem_unitBall₂
-  simpa using Ellipsoid.mem_construct (E := E) hu
+  simpa using Ellipsoid.mem_toSet (E := E) hu
 
 
 -- =================================  `Ellipsoid.mem_ofPoint`  ================================== --
@@ -149,10 +149,10 @@ theorem Ellipsoid.center_mem_construct (E : Ellipsoid n) : E.q ∈ E.construct :
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- `ofPoint v` reuses `mem_construct` at `u = 0`, in `unitBall₂` because `norm₂_zero ≤ 1`. -/
-theorem Ellipsoid.mem_ofPoint (v : Vec ℝ n) : v ∈ (Ellipsoid.ofPoint v).construct := by
+/-- `ofPoint v` reuses `mem_toSet` at `u = 0`, in `unitBall₂` because `norm₂_zero ≤ 1`. -/
+theorem Ellipsoid.mem_ofPoint (v : Vec ℝ n) : v ∈ (Ellipsoid.ofPoint v).toSet := by
   have hu : ‖(0 : Vec ℝ n)‖₂ ≤ 1 := mem_unitBall₂.mp zero_mem_unitBall₂
-  simpa [Ellipsoid.ofPoint] using Ellipsoid.mem_construct (E := Ellipsoid.ofPoint v) hu
+  simpa [Ellipsoid.ofPoint] using Ellipsoid.mem_toSet (E := Ellipsoid.ofPoint v) hu
 
 
 -- ================================  `Ellipsoid.project_exact`  ================================= --
@@ -164,7 +164,7 @@ theorem Ellipsoid.mem_ofPoint (v : Vec ℝ n) : v ∈ (Ellipsoid.ofPoint v).cons
 /-- Reading the same coordinates of every member, no hypothesis on `dims`: a linear map is exact
 without injectivity, so nothing is added and nothing lost. -/
 theorem Ellipsoid.project_exact (E : Ellipsoid n) (dims : Fin m → Fin n) :
-    (fun x k => x (dims k)) '' E.construct = (E.project dims).construct :=
+    (fun x k => x (dims k)) '' E.toSet = (E.project dims).toSet :=
   Ellipsoid.map_exact (LinearMap.funLeft ℝ ℝ dims) E
 
 

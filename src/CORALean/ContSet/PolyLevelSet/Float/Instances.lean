@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (PolyLevelSet 𝕋 n) (Vec ℝ n) := ⟨PolyLevelSet.construct⟩
+instance : ContSet (PolyLevelSet 𝕋 n) (Vec ℝ n) := ⟨PolyLevelSet.toSet⟩
 
 instance : Intersection (PolyLevelSet 𝕋 n) (Vec ℝ n) where
   intersection := PolyLevelSet.and_

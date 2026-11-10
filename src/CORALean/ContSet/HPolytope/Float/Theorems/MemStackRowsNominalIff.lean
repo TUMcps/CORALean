@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.HPolytope.Float.Theorems.MulVecAppendLeft
 public import CORALean.Global.Float.ToRealMatMulVec
 public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 
 @[expose] public section
 
@@ -44,8 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- membership splits with the rows, each half read on the nominal part it came from
 theorem HPolytope.mem_stackRows_nominal_iff {P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)}
     {x : Vec ℝ n} : -- --- CONCL ---
-    x ∈ (P₁.stackRows P₂).nominal.construct
-      ↔ x ∈ P₁.nominal.construct ∧ x ∈ P₂.nominal.construct := by -- --- PROOF ---
+    x ∈ (P₁.stackRows P₂).nominal.toSet
+      ↔ x ∈ P₁.nominal.toSet ∧ x ∈ P₂.nominal.toSet := by -- --- PROOF ---
   rw [HPolytope.mem_nominal_iff, HPolytope.mem_nominal_iff, HPolytope.mem_nominal_iff]
   constructor
   · rintro ⟨hle, heq⟩

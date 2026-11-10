@@ -47,7 +47,7 @@ variable {n p q : ℕ} {M S : Type} [ContSet S (Vec ℝ q)]
 
 /-- Every measurement up to `K` of every test case lies in the computed reachable set. -/
 def Conform.PassesBF (T : M → Conform.TestCase n p q) (K : ℕ) (R : M → ℕ → S) : Prop :=
-  ∀ m, ∀ k ≤ K, (T m).y k ∈ construct (R m k)
+  ∀ m, ∀ k ≤ K, (T m).y k ∈ toSet (R m k)
 
 end CORALean
 

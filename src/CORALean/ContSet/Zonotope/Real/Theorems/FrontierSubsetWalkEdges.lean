@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Theorems.SectionEqIccWalkEdges
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemShearConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemShearToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemShearWalkEdges
 public import CORALean.ContSet.Zonotope.Real.Operations.Shear
 public import Mathlib.Tactic.Ring
@@ -80,12 +80,12 @@ private theorem Zonotope.aux_shear_cross (Z : Zonotope (Vec ℝ 2)) (κ : ℝ) (
 private theorem Zonotope.aux_oblique (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     (h1 : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0))
     (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0) (κ : ℝ)
-    {q : Vec ℝ 2} (hq : q ∈ Z.construct) (hnE : q ∉ Z.walkEdges) : -- --- CONCL ---
+    {q : Vec ℝ 2} (hq : q ∈ Z.toSet) (hnE : q ∉ Z.walkEdges) : -- --- CONCL ---
     ∃ t : ℝ, 0 < t ∧
-      ∀ s : ℝ, |s| ≤ t → (![q 0 + κ * s, q 1 + s] : Vec ℝ 2) ∈ Z.construct := by -- --- PROOF ---
+      ∀ s : ℝ, |s| ≤ t → (![q 0 + κ * s, q 1 + s] : Vec ℝ 2) ∈ Z.toSet := by -- --- PROOF ---
   -- the section of the sheared zonogon through `q`
-  have hqs : (![q 0 - κ * q 1, q 1] : Vec ℝ 2) ∈ (Z.shear κ).construct := by
-    rw [Z.mem_shear_construct]
+  have hqs : (![q 0 - κ * q 1, q 1] : Vec ℝ 2) ∈ (Z.shear κ).toSet := by
+    rw [Z.mem_shear_toSet]
     convert hq using 1
     ext k; fin_cases k <;> simp
   -- the sheared zonogon is sorted too, so the section theorem applies to it
@@ -116,7 +116,7 @@ private theorem Zonotope.aux_oblique (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
   have hin : q 1 + s ∈ Set.Icc yl yh :=
     ⟨by linarith [min_le_left (q 1 - yl) (yh - q 1)],
       by linarith [min_le_right (q 1 - yl) (yh - q 1)]⟩
-  rw [← hS, Set.mem_setOf_eq, Z.mem_shear_construct] at hin
+  rw [← hS, Set.mem_setOf_eq, Z.mem_shear_toSet] at hin
   convert hin using 1
   ext k; fin_cases k
   · simp; ring
@@ -128,10 +128,10 @@ private theorem Zonotope.aux_oblique (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
 theorem Zonotope.frontier_subset_walkEdges (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     (h1 : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0))
     (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0) : -- --- CONCL ---
-    frontier Z.construct ⊆ Z.walkEdges := by -- --- PROOF ---
+    frontier Z.toSet ⊆ Z.walkEdges := by -- --- PROOF ---
   intro q hq
   by_contra hnE
-  have hqZ : q ∈ Z.construct := Z.isClosed_construct.frontier_subset hq
+  have hqZ : q ∈ Z.toSet := Z.isClosed_toSet.frontier_subset hq
   -- a stretch of the lines `x - y = γ` and `x + y = γ` through `q`, on both sides
   obtain ⟨t₁, ht₁, hs₁⟩ := Z.aux_oblique hh h1 h2 1 hqZ hnE
   obtain ⟨t₂, ht₂, hs₂⟩ := Z.aux_oblique hh h1 h2 (-1) hqZ hnE
@@ -140,21 +140,21 @@ theorem Zonotope.frontier_subset_walkEdges (Z : Zonotope (Vec ℝ 2)) (hh : 0 < 
   have hδ1 : δ ≤ t₁ := min_le_left _ _
   have hδ2 : δ ≤ t₂ := min_le_right _ _
   -- the four corners of the square about `q` are in the zonogon
-  have c1 : (![q 0 + δ, q 1 + δ] : Vec ℝ 2) ∈ Z.construct := by
+  have c1 : (![q 0 + δ, q 1 + δ] : Vec ℝ 2) ∈ Z.toSet := by
     simpa using hs₁ δ (by rw [abs_of_pos hδpos]; exact hδ1)
-  have c2 : (![q 0 - δ, q 1 - δ] : Vec ℝ 2) ∈ Z.construct := by
+  have c2 : (![q 0 - δ, q 1 - δ] : Vec ℝ 2) ∈ Z.toSet := by
     simpa [sub_eq_add_neg] using hs₁ (-δ) (by rw [abs_neg, abs_of_pos hδpos]; exact hδ1)
-  have c3 : (![q 0 - δ, q 1 + δ] : Vec ℝ 2) ∈ Z.construct := by
+  have c3 : (![q 0 - δ, q 1 + δ] : Vec ℝ 2) ∈ Z.toSet := by
     simpa [sub_eq_add_neg] using hs₂ δ (by rw [abs_of_pos hδpos]; exact hδ2)
-  have c4 : (![q 0 + δ, q 1 - δ] : Vec ℝ 2) ∈ Z.construct := by
+  have c4 : (![q 0 + δ, q 1 - δ] : Vec ℝ 2) ∈ Z.toSet := by
     simpa [sub_eq_add_neg] using hs₂ (-δ) (by rw [abs_neg, abs_of_pos hδpos]; exact hδ2)
   -- so is the whole square, a convex combination of them
-  have hsq : ∀ a b : ℝ, |a| ≤ δ → |b| ≤ δ → (![q 0 + a, q 1 + b] : Vec ℝ 2) ∈ Z.construct := by
+  have hsq : ∀ a b : ℝ, |a| ≤ δ → |b| ≤ δ → (![q 0 + a, q 1 + b] : Vec ℝ 2) ∈ Z.toSet := by
     intro a b ha hb
     have ha' := abs_le.mp ha
     have hb' := abs_le.mp hb
     have h4 : 0 < 4 * δ ^ 2 := by positivity
-    have := Z.convex_construct.sum_mem (t := Finset.univ) (w := ![(δ + a) * (δ + b) / (4 * δ ^ 2),
+    have := Z.convex_toSet.sum_mem (t := Finset.univ) (w := ![(δ + a) * (δ + b) / (4 * δ ^ 2),
         (δ - a) * (δ - b) / (4 * δ ^ 2), (δ - a) * (δ + b) / (4 * δ ^ 2),
         (δ + a) * (δ - b) / (4 * δ ^ 2)])
       (z := ![![q 0 + δ, q 1 + δ], ![q 0 - δ, q 1 - δ], ![q 0 - δ, q 1 + δ],

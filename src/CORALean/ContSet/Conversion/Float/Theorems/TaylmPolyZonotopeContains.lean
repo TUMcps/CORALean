@@ -96,7 +96,7 @@ private theorem Taylm.aux_dep_apply (T : Fin m → Taylm 𝕋 n) (t : Vec ℝ n)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.polyZonotope_contains (T : Fin m → Taylm 𝕋 n) : -- --- CONCL ---
-    Taylm.construct T ⊆ (Taylm.polyZonotope T).construct := by -- --- PROOF ---
+    Taylm.toSet T ⊆ (Taylm.polyZonotope T).toSet := by -- --- PROOF ---
   rintro x ⟨t, ht, hx⟩
   -- the polynomial values are the nominal part, the rest of `x` is in the absorbed error box
   refine ⟨fun i => (T i).nominal.poly t, PolyZonotope.mem_nominalSet_iff.mpr

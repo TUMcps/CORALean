@@ -52,7 +52,7 @@ variable {n : ℕ}
 
 /-- Line clustering over-approximates, at whatever basis the runs settle on. -/
 theorem Zonotope.reduceLineCl_outer (Z : Zonotope (Vec ℝ n)) (o : ℕ) (ξ : ℝ) (fuel runs : ℕ) :
-    Z.construct ⊆ (Z.reduceLineCl o ξ fuel runs).construct := by
+    Z.toSet ⊆ (Z.reduceLineCl o ξ fuel runs).toSet := by
   unfold Zonotope.reduceLineCl
   split_ifs with hlt
   · exact Zonotope.reduceByBasis_outer Z _ (Z.lineClBasis_isUnit_det _ ξ fuel runs)

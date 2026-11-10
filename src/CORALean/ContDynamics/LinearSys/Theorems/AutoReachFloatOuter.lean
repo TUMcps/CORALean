@@ -72,9 +72,9 @@ private theorem LinearSys.aux_autoRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ 
       sys.IsAutoInvariantFloat X₀ V s →
       sys.IsAutoInvariantFloat X₀ V s' ∧ s.t ≤ s'.t ∧
         ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
-          U ⊆ V.construct → s.t < s'.t → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
-            ∃ w ∈ Ws, t ∈ Set.Icc (w.1 : ℝ) w.2.1 ∧ x t ∈ w.2.2.construct := by -- --- PROOF ---
+          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.toSet U x u →
+          U ⊆ V.toSet → s.t < s'.t → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
+            ∃ w ∈ Ws, t ∈ Set.Icc (w.1 : ℝ) w.2.1 ∧ x t ∈ w.2.2.toSet := by -- --- PROOF ---
   intro K
   induction K with
   | zero =>
@@ -109,7 +109,7 @@ omit [ToRat 𝕋] in
 private theorem LinearSys.aux_isAutoInvariantFloat_init (sys : LinearSys 𝕋 n)
     (X₀ V : Zonotope (Vec 𝕋 n)) (tend : 𝕋) : -- --- CONCL ---
     sys.IsAutoInvariantFloat X₀ V (LinearSys.autoInitFloat X₀ tend) := by -- --- PROOF ---
-  have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.construct := by
+  have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.toSet := by
     have h0 := Interval.zonotope_contains _ (Interval.mem_point fun _ : Fin n => (zero : 𝕋))
     rwa [show RealImage.realImage (fun _ : Fin n => (zero : 𝕋)) = (0 : Vec ℝ n) from
       funext fun _ => toReal_zero] at h0
@@ -135,9 +135,9 @@ theorem LinearSys.autoReachFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonoto
     {εmax ζ : ℚ} {ηmax fuel K : ℕ} : -- --- CONCL ---
     ∀ Rs ∈ sys.autoReachFloat X₀ V tend εmax ζ ηmax fuel K,
       ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-        sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
-        U ⊆ V.construct → ∀ t ∈ Set.Icc (0 : ℝ) (ToRat.toRat tend), t ≤ T →
-          ∃ w ∈ Rs, t ∈ Set.Icc (w.1 : ℝ) w.2.1 ∧ x t ∈ w.2.2.construct := by -- --- PROOF ---
+        sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.toSet U x u →
+        U ⊆ V.toSet → ∀ t ∈ Set.Icc (0 : ℝ) (ToRat.toRat tend), t ≤ T →
+          ∃ w ∈ Rs, t ∈ Set.Icc (w.1 : ℝ) w.2.1 ∧ x t ∈ w.2.2.toSet := by -- --- PROOF ---
   intro Rs (h : sys.autoReachFloat X₀ V tend εmax ζ ηmax fuel K = some Rs)
   unfold LinearSys.autoReachFloat at h
   split_ifs at h with hpos

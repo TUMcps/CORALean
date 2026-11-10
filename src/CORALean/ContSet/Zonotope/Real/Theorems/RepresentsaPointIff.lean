@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPoint
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import Mathlib.Algebra.Module.BigOperators
 
 @[expose] public section
@@ -11,7 +11,7 @@ public import Mathlib.Algebra.Module.BigOperators
 
 If `c + Gⱼ` (the coefficient `βⱼ = 1`, the others `0`) lies in `{c}` then `Gⱼ = 0`; conversely
 with no generator the combination is `0`. The origin is the point whose center is `0`. The empty
-set is never represented: `Zonotope.center_mem_construct` puts the center in every zonotope.
+set is never represented: `Zonotope.center_mem_toSet` puts the center in every zonotope.
 
 ## Inputs
 * `Z` – zonotope
@@ -39,10 +39,10 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.representsa_point_iff (Z : Zonotope α) : -- --- CONCL ---
-    Z.construct = {Z.c} ↔ Z.representsa_point := by -- --- PROOF ---
+    Z.toSet = {Z.c} ↔ Z.representsa_point := by -- --- PROOF ---
   constructor
   · intro h j
-    have hmem : Z.c + Z.G j ∈ Z.construct :=
+    have hmem : Z.c + Z.G j ∈ Z.toSet :=
       ⟨Pi.single j 1, fun i => by
         by_cases hij : i = j <;> simp [hij], by simp⟩
     rw [h] at hmem
@@ -53,7 +53,7 @@ theorem Zonotope.representsa_point_iff (Z : Zonotope α) : -- --- CONCL ---
     · rintro ⟨β, -, rfl⟩
       simp [h _]
     · rintro rfl
-      exact Zonotope.center_mem_construct Z
+      exact Zonotope.center_mem_toSet Z
 
 end CORALean.Real
 

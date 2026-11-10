@@ -58,7 +58,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 real matrix. -/
 private theorem aux_neg_mem_point {k l : ℕ} (A : Mat 𝕋 k l) : -- --- CONCL ---
     -Scalar.toRealMat A ∈
-      (Interval.point (α := Mat 𝕋 k l) (-A)).construct := by -- --- PROOF ---
+      (Interval.point (α := Mat 𝕋 k l) (-A)).toSet := by -- --- PROOF ---
   have h := Interval.mem_point (α := Mat 𝕋 k l) (-A)
   have he : (RealImage.realImage (α := Mat 𝕋 k l) (-A) : Mat ℝ k l)
       = -Scalar.toRealMat A := by
@@ -69,7 +69,7 @@ private theorem aux_neg_mem_point {k l : ℕ} (A : Mat 𝕋 k l) : -- --- CONCL 
 /-- The same for a vector. -/
 private theorem aux_neg_mem_point_vec {k : ℕ} (v : Vec 𝕋 k) : -- --- CONCL ---
     -toRealVec v ∈
-      (Interval.point (α := Vec 𝕋 k) (-v)).construct := by -- --- PROOF ---
+      (Interval.point (α := Vec 𝕋 k) (-v)).toSet := by -- --- PROOF ---
   have h := Interval.mem_point (α := Vec 𝕋 k) (-v)
   have he : (RealImage.realImage (α := Vec 𝕋 k) (-v) : Vec ℝ k) = -toRealVec v := by
     funext i
@@ -78,12 +78,12 @@ private theorem aux_neg_mem_point_vec {k : ℕ} (v : Vec 𝕋 k) : -- --- CONCL 
 
 /-- `(J - A)(y - ys)` lies in `([J] - A)(Y - ys)`. -/
 private theorem aux_mem_slopeTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {Y : Interval (Vec 𝕋 l)}
-    (A : Mat 𝕋 k l) (ys : Vec 𝕋 l) {J : Mat ℝ k l} (hJ : J ∈ IJ.construct) {y : Vec ℝ l}
-    (hy : y ∈ Y.construct) : -- --- CONCL ---
+    (A : Mat 𝕋 k l) (ys : Vec 𝕋 l) {J : Mat ℝ k l} (hJ : J ∈ IJ.toSet) {y : Vec ℝ l}
+    (hy : y ∈ Y.toSet) : -- --- CONCL ---
     (J - Scalar.toRealMat A) *ᵥ (y - toRealVec ys) ∈
       (Interval.mtimesIntervalMat (Interval.matPlus IJ (Interval.point (α := Mat 𝕋 k l)
         (-A))) (Interval.plus Y (Interval.point (α := Vec 𝕋 l)
-          (-ys)))).construct := by -- --- PROOF ---
+          (-ys)))).toSet := by -- --- PROOF ---
   have hM := Interval.matPlus_outer IJ _ hJ (aux_neg_mem_point A)
   have hd := Interval.plus_outer Y _ (Set.add_mem_add hy (aux_neg_mem_point_vec ys))
   rw [← sub_eq_add_neg] at hM hd
@@ -98,10 +98,10 @@ certifies the linearization at `A`, `B` over `X × U`. -/
 theorem NonlinearSys.FloatModel.Encloses.slopeRemainder_abstractionError
     {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) {xs : Vec 𝕋 n} {us : Vec 𝕋 m} {X : Interval (Vec 𝕋 n)}
-    {U : Interval (Vec 𝕋 m)} (hxs : toRealVec xs ∈ X.construct)
-    (hus : toRealVec us ∈ U.construct) :
+    {U : Interval (Vec 𝕋 m)} (hxs : toRealVec xs ∈ X.toSet)
+    (hus : toRealVec us ∈ U.toSet) :
     IsAbstractionError (S := ℐ𝒱[𝕋]) sys.f (Scalar.toRealMat A)
-      (Scalar.toRealMat B) (toRealVec xs) (toRealVec us) X.construct U.construct
+      (Scalar.toRealMat B) (toRealVec xs) (toRealVec us) X.toSet U.toSet
       (fm.slopeRemainder A B xs us X U) where
   encloses x hx u hu := by
     obtain ⟨Jx, hJx, Ju, hJu, hslope⟩ := h.slope_mem X U x hx _ hxs u hu _ hus

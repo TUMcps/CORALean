@@ -10,7 +10,7 @@ public import CORALean.NN.Definitions.Cat
 
 [1, Thm. 1]: an abstract transformer for every CAT function needs a domain with an affine
 transformer `Aff`, a meet `⊓` with a guard, a join `⊔` and a least element `⊥`, each sound. The
-abstract elements of dimension `n` are a representation `S n`, and `construct` is the concretization
+abstract elements of dimension `n` are a representation `S n`, and `toSet` is the concretization
 `γ` of [1, Sec. III (transformers)]; `CatDomain.IsOuter` is the inclusions the paper assumes.
 
 The paper also assumes `⊥ ⊓ E = ⊥` and `a ⊔ ⊥ = a`; neither is needed for soundness, so neither is
@@ -47,15 +47,15 @@ structure CatDomain (𝕋 : Type) (S : ℕ → Type) where
   join {n : ℕ} : S n → S n → S n
   bot (n : ℕ) : S n
 
-/-- The inclusions [1, Thm. 1] assumes, `γ` being `construct`. -/
+/-- The inclusions [1, Thm. 1] assumes, `γ` being `toSet`. -/
 structure CatDomain.IsOuter {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
     (D : CatDomain 𝕋 S) : Prop where
   aff_outer {m n : ℕ} (a : S m) (W : Mat 𝕋 n m) (b : Vec 𝕋 n) :
-    (fun x => toRealMat W *ᵥ x + toRealVec b) '' construct a ⊆ construct (D.aff a W b)
+    (fun x => toRealMat W *ᵥ x + toRealVec b) '' toSet a ⊆ toSet (D.aff a W b)
   meet_outer {n : ℕ} (a : S n) (E : CatCond n) :
-    construct a ∩ E.construct ⊆ construct (D.meet a E)
-  join_outer {n : ℕ} (a₁ a₂ : S n) : construct a₁ ∪ construct a₂ ⊆ construct (D.join a₁ a₂)
-  bot_empty (n : ℕ) : construct (D.bot n) = ∅
+    toSet a ∩ E.toSet ⊆ toSet (D.meet a E)
+  join_outer {n : ℕ} (a₁ a₂ : S n) : toSet a₁ ∪ toSet a₂ ⊆ toSet (D.join a₁ a₂)
+  bot_empty (n : ℕ) : toSet (D.bot n) = ∅
 
 end CORALean
 

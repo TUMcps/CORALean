@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 /-- The Lebesgue volume of the intersection. -/
 noncomputable def ZonoBundle.volume (zB : ZonoBundle (Vec ℝ n)) : ENNReal :=
-  MeasureTheory.volume zB.construct
+  MeasureTheory.volume zB.toSet
 
 end CORALean.Real
 

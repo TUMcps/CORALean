@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.VPolytope.Real.Operations.Intersection
 public import CORALean.ContSet.VPolytope.Real.Operations.EmptySet
-public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructEmptySet
+public import CORALean.ContSet.VPolytope.Real.Theorems.ToSetEmptySet
 public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_VPolytope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeIntervalContains
@@ -58,7 +58,7 @@ variable {n q₁ q₂ : ℕ}
 /-- `VPolytope.intersectionH` is compact. -/
 private theorem VPolytope.aux_intersectionH_isCompact (P₁ P₂ : VPolytope (Vec ℝ n))
     (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) :
-    IsCompact (VPolytope.intersectionH P₁ P₂ Aq₁ Aq₂).construct := by
+    IsCompact (VPolytope.intersectionH P₁ P₂ Aq₁ Aq₂).toSet := by
   refine HPolytope.isCompact_of_contains (W := P₁.interval.vPolytope) fun x hx => ?_
   have h := (HPolytope.mem_intersection_iff.mp hx).2
   rw [Interval.hPolytope_exact] at h
@@ -69,8 +69,8 @@ private theorem VPolytope.aux_intersectionH_isCompact (P₁ P₂ : VPolytope (Ve
 
 theorem VPolytope.intersection_outer (P₁ P₂ : VPolytope (Vec ℝ n))
     (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ)) : -- --- CONCL ---
-    P₁.construct ∩ P₂.construct ⊆ (P₁.intersection P₂ Aq₁ Aq₂).construct := by -- --- PROOF ---
-  have hsub : P₁.construct ∩ P₂.construct ⊆ (VPolytope.intersectionH P₁ P₂ Aq₁ Aq₂).construct := by
+    P₁.toSet ∩ P₂.toSet ⊆ (P₁.intersection P₂ Aq₁ Aq₂).toSet := by -- --- PROOF ---
+  have hsub : P₁.toSet ∩ P₂.toSet ⊆ (VPolytope.intersectionH P₁ P₂ Aq₁ Aq₂).toSet := by
     rintro x ⟨hx₁, hx₂⟩
     refine HPolytope.mem_intersection_iff.mpr ⟨HPolytope.mem_intersection_iff.mpr ⟨?_, ?_⟩, ?_⟩
     · exact P₁.hPolytope_contains Aq₁ hx₁
@@ -78,14 +78,14 @@ theorem VPolytope.intersection_outer (P₁ P₂ : VPolytope (Vec ℝ n))
     · rw [Interval.hPolytope_exact]
       exact P₁.interval_contains hx₁
   -- empty or not: an empty halfspace description leaves nothing to enumerate
-  by_cases h : (VPolytope.intersectionH P₁ P₂ Aq₁ Aq₂).construct.Nonempty
+  by_cases h : (VPolytope.intersectionH P₁ P₂ Aq₁ Aq₂).toSet.Nonempty
   · have he : P₁.intersection P₂ Aq₁ Aq₂
         = (VPolytope.intersectionH P₁ P₂ Aq₁ Aq₂).vPolytope h := dif_pos h
     rw [he]
     exact subset_trans hsub
       (HPolytope.vPolytope_contains _ (VPolytope.aux_intersectionH_isCompact P₁ P₂ Aq₁ Aq₂) h)
   · have he : P₁.intersection P₂ Aq₁ Aq₂ = VPolytope.emptySet (Vec ℝ n) := dif_neg h
-    rw [he, VPolytope.construct_emptySet]
+    rw [he, VPolytope.toSet_emptySet]
     rw [Set.not_nonempty_iff_eq_empty.mp h] at hsub
     exact hsub
 

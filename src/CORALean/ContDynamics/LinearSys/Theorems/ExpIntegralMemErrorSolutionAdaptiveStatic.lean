@@ -58,15 +58,15 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 theorem LinearSys.expIntegral_mem_errorSolutionAdaptive_static (sys : LinearSys 𝕋 n)
     {Δt : ℝ} (hΔt : 0 ≤ Δt) (η : ℕ) {Vdyn Vstat : S n} {v s : Vec ℝ n}
-    (hv : v ∈ construct Vdyn) (hs : s ∈ construct Vstat) : -- --- CONCL ---
+    (hv : v ∈ toSet Vdyn) (hs : s ∈ toSet Vstat) : -- --- CONCL ---
     MatExp.expIntegral (toRealMat sys.A) Δt *ᵥ v + MatExp.expIntegral (toRealMat sys.A) Δt *ᵥ s
-      ∈ construct (sys.errorSolutionAdaptive Δt η Vdyn (some Vstat)) := by -- --- PROOF ---
+      ∈ toSet (sys.errorSolutionAdaptive Δt η Vdyn (some Vstat)) := by -- --- PROOF ---
   set A := toRealMat sys.A
   -- the dynamic part is the case without a static set
   have hdyn := sys.expIntegral_mem_errorSolutionAdaptive hΔt η hv
   -- the static part: the integrated exponential is a member of `eAtInt`
   have hstat : MatExp.expIntegral A Δt *ᵥ s
-      ∈ construct (Mtimes.mtimes (𝕄 := ℐ) (MatExp.adaptiveIntegral A Δt η) Vstat) := by
+      ∈ toSet (Mtimes.mtimes (𝕄 := ℐ) (MatExp.adaptiveIntegral A Δt η) Vstat) := by
     refine Mtimes.mtimes_outer _ _ (Set.mem_biUnion ?_ (Set.mem_image_of_mem _ hs))
     refine Interval.mem_mat_iff.mpr fun j k => ?_
     have hmem := Interval.mem_mat_iff.mp

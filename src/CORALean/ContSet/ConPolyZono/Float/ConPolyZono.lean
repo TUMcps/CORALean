@@ -17,7 +17,7 @@ box that makes it an `InflatedContSet`. The constraint's `A` and `b` are read ba
 has two channels: the center and generators go into `I_error`; a constraint row records its own in
 the per-row slack `cons.b_error`, `|(A μ_R(α))ᵢ - bᵢ| ≤ |b_errorᵢ|`. The nominal set is the exact
 `ConPolyZono` that slack denotes (`Real.ConPolyZono.relax`; with no slack the stored fields' own,
-`Real.ConPolyZono.relax_zero_construct`). `plus` and `mtimes` pay nothing into the constraint;
+`Real.ConPolyZono.relax_zero_toSet`). `plus` and `mtimes` pay nothing into the constraint;
 `intersection` and `compact` need both channels.
 
 ## References
@@ -87,8 +87,8 @@ instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [Sou
   I_error cPZ := cPZ.I_error
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
-abbrev ConPolyZono.construct [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    Set (Vec ℝ n) := InflatedContSet.construct cPZ
+abbrev ConPolyZono.toSet [SoundFloatArithmetic 𝕋] (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
+    Set (Vec ℝ n) := InflatedContSet.toSet cPZ
 
 end CORALean.Float
 

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Capsule.Real.Operations.RepresentsaPoint
-public import CORALean.ContSet.Capsule.Real.Theorems.CenterMemConstructIff
+public import CORALean.ContSet.Capsule.Real.Theorems.CenterMemToSetIff
 
 @[expose] public section
 
@@ -38,14 +38,14 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.representsa_point_iff (hn : 0 < n) (C : Capsule n) : -- --- CONCL ---
-    C.construct = {C.c} ↔ C.representsa_point := by -- --- PROOF ---
+    C.toSet = {C.c} ↔ C.representsa_point := by -- --- PROOF ---
   constructor
   · intro h
     -- the center is in the set, so `0 ≤ r`
-    have hr0 : 0 ≤ C.r := (Capsule.center_mem_construct_iff C).mp (h ▸ rfl)
+    have hr0 : 0 ≤ C.r := (Capsule.center_mem_toSet_iff C).mp (h ▸ rfl)
     have hg : C.g = 0 := by
       by_contra hg
-      have hmem : C.c + C.g ∈ C.construct :=
+      have hmem : C.c + C.g ∈ C.toSet :=
         ⟨1, by norm_num, by simpa using hr0⟩
       rw [h] at hmem
       exact hg (add_eq_left.mp hmem)
@@ -55,7 +55,7 @@ theorem Capsule.representsa_point_iff (hn : 0 < n) (C : Capsule n) : -- --- CONC
     push Not at hr
     -- the point at distance `r` along the first axis
     set e : Vec ℝ n := Pi.single (⟨0, hn⟩ : Fin n) C.r with he
-    have hmem : C.c + e ∈ C.construct := by
+    have hmem : C.c + e ∈ C.toSet := by
       refine ⟨0, by norm_num, ?_⟩
       have e1 : ∀ i, (C.c + e) i - (C.c i + 0 * C.g i) = e i := fun i => by simp
       show Real.sqrt (∑ i, ((C.c + e) i - (C.c i + 0 * C.g i)) ^ 2) ≤ C.r

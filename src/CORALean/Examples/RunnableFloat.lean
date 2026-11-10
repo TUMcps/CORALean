@@ -1071,9 +1071,9 @@ def vdpReachAlg (alg : NonlinearSys.LinReachAlg) : Option (List (Zonotope (Vec D
 
 /-- The slope matrix between two points of a box lies in the model's Jacobian box. -/
 theorem vdp_jacX_mem {X : Interval (Vec D 2)} {U : Interval (Vec D 1)} {x x' : Vec ℝ 2}
-    (hx : x ∈ X.construct) (hx' : x' ∈ X.construct) : -- --- CONCL ---
+    (hx : x ∈ X.toSet) (hx' : x' ∈ X.toSet) : -- --- CONCL ---
     !![0, 1; -(x' 1 * (x 0 + x' 0)) - 1, 1 - x 0 * x 0]
-      ∈ (vdpModel.jacX X U).construct := by -- --- PROOF ---
+      ∈ (vdpModel.jacX X U).toSet := by -- --- PROOF ---
   have hx0 : toReal (X.inf 0) ≤ (x 0 : ℝ) ∧ (x 0 : ℝ) ≤ toReal (X.sup 0) := hx 0
   have hy0 : toReal (X.inf 0) ≤ (x' 0 : ℝ) ∧ (x' 0 : ℝ) ≤ toReal (X.sup 0) := hx' 0
   have hy1 : toReal (X.inf 1) ≤ (x' 1 : ℝ) ∧ (x' 1 : ℝ) ≤ toReal (X.sup 1) := hx' 1
@@ -1118,7 +1118,7 @@ theorem vdpHessModel_encloses : vdpHessModel.Encloses
     ⟨fun x u => ![x 1, (1 - x 0 * x 0) * x 1 - x 0 + u 0], 2, fun x _ => x⟩ where
   toEncloses := vdpModel_encloses
   taylor_mem X U xs us hxs _ x hx u _ := by
-    have hp : toRealVec xs ∈ (Interval.point xs).construct := Interval.mem_point (α := Vec D 2) xs
+    have hp : toRealVec xs ∈ (Interval.point xs).toSet := Interval.mem_point (α := Vec D 2) xs
     have hx0 : toReal (X.inf 0) ≤ (toRealVec xs 0 : ℝ) ∧ toRealVec xs 0 ≤ toReal (X.sup 0) := hxs 0
     have hx1 : toReal (X.inf 1) ≤ (x 1 : ℝ) ∧ (x 1 : ℝ) ≤ toReal (X.sup 1) := hx 1
     obtain ⟨a1, a2⟩ := vdp_negTwo_mem hx0.1 hx0.2
@@ -1289,7 +1289,7 @@ def verifySplitRun : Bool := net.verifySplit safeBox (fun X => (X, X)) 2 Z
 
 /-- What `checkSafe`'s `true` is worth: the specification on the network's exact image. -/
 example : safeBox.check (net.enclose Z) →
-    (safeBox.Holds (net.eval.out '' ContSet.construct Z)) :=
+    (safeBox.Holds (net.eval.out '' ContSet.toSet Z)) :=
   net.holds_of_check Z safeBox
 
 #eval checkSafe

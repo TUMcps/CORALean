@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Interval.diagVec_exact (I : Interval (Mat 𝕋 n n))
     (hI : ∀ i j, toReal (I.inf i j) ≤ toReal (I.sup i j)) :
-    I.diagVec.construct = (fun A i => A i i) '' I.construct :=
+    I.diagVec.toSet = (fun A i => A i i) '' I.toSet :=
   Real.Interval.diagVec_exact I.nominal hI
 
 end CORALean.Float

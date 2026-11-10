@@ -56,7 +56,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.conZonotope_contains (pZ : PolyZonotope (Vec 𝕋 n)) :
-    pZ.construct ⊆ pZ.conZonotope.construct :=
+    pZ.toSet ⊆ pZ.conZonotope.toSet :=
   subset_trans pZ.zonotope_contains pZ.zonotope.conZonotope_contains
 
 end CORALean.Float

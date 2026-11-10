@@ -54,10 +54,10 @@ def outMat {m n : ℕ} (W : Mat 𝕋 m n) : Interval (Mat 𝕋 m n) :=
 def outVec {m : ℕ} (b : Vec 𝕋 m) : Interval (Vec 𝕋 m) :=
   ⟨fun i => mulDown (b i) one, fun i => mulUp (b i) one⟩
 
-theorem mem_outMat {m n : ℕ} (W : Mat 𝕋 m n) : toRealMat W ∈ (outMat W).construct :=
+theorem mem_outMat {m n : ℕ} (W : Mat 𝕋 m n) : toRealMat W ∈ (outMat W).toSet :=
   fun p => ⟨mulDown_one_le (W p.1 p.2), le_mulUp_one (W p.1 p.2)⟩
 
-theorem mem_outVec {m : ℕ} (b : Vec 𝕋 m) : toRealVec b ∈ (outVec b).construct :=
+theorem mem_outVec {m : ℕ} (b : Vec 𝕋 m) : toRealVec b ∈ (outVec b).toSet :=
   fun i => ⟨mulDown_one_le (b i), le_mulUp_one (b i)⟩
 
 
@@ -217,9 +217,9 @@ set_option linter.unusedSectionVars false in
 /-- What `buildChain`'s enclosure is worth, restating `NeuralNetwork.enclose_outer`
 at it alone: the exact network's value at every point of `X`. -/
 theorem buildChain_sound (instUnchecked : ExactDyadic → 𝕋) (layers : List MnistAffine) (n : ℕ)
-    (X : S n) {x : Vec ℝ n} (hx : x ∈ construct X) :
+    (X : S n) {x : Vec ℝ n} (hx : x ∈ toSet X) :
     (buildChain (S := S) instUnchecked layers n).eval.out x
-      ∈ construct ((buildChain (S := S) instUnchecked layers n).enclose X) :=
+      ∈ toSet ((buildChain (S := S) instUnchecked layers n).enclose X) :=
   NeuralNetwork.enclose_outer _ X (Set.mem_image_of_mem _ hx)
 
 
@@ -247,7 +247,7 @@ theorem inputBox_sound (instUnchecked : ExactDyadic → 𝕋)
     (hExact : ∀ d : ExactDyadic, toReal (instUnchecked d) = (d.mantissa : ℝ) * 2 ^ d.exponent)
     (pixels : Array ℕ) (x : Vec ℝ pixels.size)
     (hx : ∀ i, x i = (pixels[i]'i.isLt : ℝ) / 255) : -- --- CONCL ---
-    x ∈ construct (inputBox instUnchecked pixels) := by -- --- PROOF ---
+    x ∈ toSet (inputBox instUnchecked pixels) := by -- --- PROOF ---
   intro i
   -- `k` and `255` read in exactly, both well inside any precision here
   have hk : toReal (instUnchecked (⟨(pixels[i] : ℤ), 0⟩ : ExactDyadic)) = (pixels[i] : ℝ) := by

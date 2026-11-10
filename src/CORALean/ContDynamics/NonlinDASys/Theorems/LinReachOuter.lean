@@ -105,17 +105,17 @@ theorem NonlinDASys.IsTrajectory.linReach_outer {sys : NonlinDASys n p m} {Δt :
     (hL : ∀ x' y' u', (x', y', u') ∈ Rz → sys.g x' y' u' = 0 →
       (sys.f x' y' u' - (sys.f xs ys us + A *ᵥ (x' - xs) + B *ᵥ (u' - us) + C *ᵥ (y' - ys)))
         - (C * F_inv) *ᵥ (sys.g x' y' u' - (sys.g xs ys us + D *ᵥ (x' - xs) + E *ᵥ (u' - us)
-          + F *ᵥ (y' - ys))) ∈ Verror.construct)
+          + F *ᵥ (y' - ys))) ∈ Verror.toSet)
     (hLa : ∀ x' y' u', (x', y', u') ∈ Rz → sys.g x' y' u' = 0 →
       sys.g x' y' u' - (sys.g xs ys us + D *ᵥ (x' - xs) + E *ᵥ (u' - us) + F *ᵥ (y' - ys))
-        ∈ Verror_y.construct)
-    (hus : us ∈ U.construct) (h0 : (0 : Vec ℝ n) ∈ Verror.construct) {q : ℕ}
+        ∈ Verror_y.toSet)
+    (hus : us ∈ U.toSet) (h0 : (0 : Vec ℝ n) ∈ Verror.toSet) {q : ℕ}
     (hε : ‖Δt • (A - C * F_inv * D)‖ / (((q + 2 : ℕ) : ℝ) + 2) < 1) : -- --- CONCL ---
     let R := NonlinDASys.linReach (sys.f xs ys us) (sys.g xs ys us) A B C D E F_inv xs ys us
       Rinit U Verror Verror_y Δt (q + 2)
-    x Δt ∈ R.1.construct ∧
+    x Δt ∈ R.1.toSet ∧
       ∀ t ∈ Set.Icc 0 Δt,
-        x t ∈ R.2.1.construct ∧ (x t, y t) ∈ R.2.2.construct := by -- --- PROOF ---
+        x t ∈ R.2.1.toSet ∧ (x t, y t) ∈ R.2.2.toSet := by -- --- PROOF ---
   intro R
   set A_lin : Mat ℝ n n := A - C * F_inv * D with hA_lin
   set f0 : Vec ℝ n := sys.f xs ys us - (C * F_inv) *ᵥ sys.g xs ys us with hf0
@@ -125,14 +125,14 @@ theorem NonlinDASys.IsTrajectory.linReach_outer {sys : NonlinDASys n p m} {Δt :
   -- the shifted run is a run of the linear system `oneStep` is taken of
   have lin := traj.toLinearSys hF measurableSet_Icc hR hL
   -- `oneStep`'s side conditions, all of zonotopes
-  have hWU : ∀ v ∈ construct (S := Zonotope (Vec ℝ n)) W,
-      v - f0 ∈ construct (S := Zonotope (Vec ℝ n)) (U_lin.plus Verror) := by
+  have hWU : ∀ v ∈ toSet (S := Zonotope (Vec ℝ n)) W,
+      v - f0 ∈ toSet (S := Zonotope (Vec ℝ n)) (U_lin.plus Verror) := by
     intro v hv
     obtain ⟨a, ha, b, hb, rfl⟩ := (Zonotope.plus_exact _ _).symm.subset hv
     rw [(Zonotope.mem_ofPoint_iff _ _).mp ha, add_sub_cancel_left]
     exact hb
-  have h0U : (0 : Vec ℝ n) ∈ construct (S := Zonotope (Vec ℝ n)) (U_lin.plus Verror) := by
-    show (0 : Vec ℝ n) ∈ (U_lin.plus Verror).construct
+  have h0U : (0 : Vec ℝ n) ∈ toSet (S := Zonotope (Vec ℝ n)) (U_lin.plus Verror) := by
+    show (0 : Vec ℝ n) ∈ (U_lin.plus Verror).toSet
     rw [← Zonotope.plus_exact, ← zero_add (0 : Vec ℝ n)]
     refine Set.add_mem_add ?_ h0
     rw [hU_lin, ← Zonotope.mtimes_exact, ← Zonotope.plus_exact]
@@ -144,32 +144,32 @@ theorem NonlinDASys.IsTrajectory.linReach_outer {sys : NonlinDASys n p m} {Δt :
   set RM₂ : Zonotope (Vec ℝ n) := Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵)
     (MatExp.inputRemainder A_lin Δt (q + 2)) (U_lin.plus Verror) with hRM₂
   -- the time-varying input's interval-matrix images, and `{f0}`, are zonotopes too
-  have hRc := Zonotope.convex_construct RM₂
-  have hRk := Zonotope.isClosed_construct RM₂
-  have hRb := Zonotope.isBounded_construct RM₂
+  have hRc := Zonotope.convex_toSet RM₂
+  have hRk := Zonotope.isClosed_toSet RM₂
+  have hRb := Zonotope.isBounded_toSet RM₂
   -- the remainder's product with the point `f0`
   set RM : Zonotope (Vec ℝ n) := Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵)
     (MatExp.inputRemainder A_lin Δt (q + 2)) (Zonotope.ofPoint f0) with hRM
-  have pRc := Zonotope.convex_construct RM
-  have pRk := Zonotope.isClosed_construct RM
-  have pRb := Zonotope.isBounded_construct RM
+  have pRc := Zonotope.convex_toSet RM
+  have pRk := Zonotope.isClosed_toSet RM
+  have pRb := Zonotope.isBounded_toSet RM
   -- moving a shifted set back by `x*`
-  have hback : ∀ (Z : Zonotope (Vec ℝ n)) (v : Vec ℝ n), v - xs ∈ Z.construct →
-      v ∈ (Z.plus (Zonotope.ofPoint xs)).construct := by
+  have hback : ∀ (Z : Zonotope (Vec ℝ n)) (v : Vec ℝ n), v - xs ∈ Z.toSet →
+      v ∈ (Z.plus (Zonotope.ofPoint xs)).toSet := by
     intro Z v hv
     rw [← Zonotope.plus_exact]
     exact ⟨v - xs, hv, xs, Zonotope.mem_ofPoint _, sub_add_cancel v xs⟩
-  have hti : ∀ t ∈ Set.Icc 0 Δt, x t ∈ R.2.1.construct := by
+  have hti : ∀ t ∈ Set.Icc 0 Δt, x t ∈ R.2.1.toSet := by
     intro t ht
     exact hback _ _ (lin.oneStep_timeInterval_outer hΔt hε' h0U ht.1 ht.2 hWU
-      (Zonotope.isBounded_construct _) (Zonotope.convex_construct _)
-      (Zonotope.isClosed_construct _) (Zonotope.isBounded_construct _) hRc hRk hRb
-      (Zonotope.convex_construct _) (Zonotope.isClosed_construct _)
-      (Zonotope.isBounded_construct _) pRc pRk pRb)
-  refine ⟨hback _ _ (lin.oneStep_timePoint_outer hΔt hε' hWU (Zonotope.isBounded_construct _)
-      (Zonotope.convex_construct _) (Zonotope.isClosed_construct _)
-      (Zonotope.isBounded_construct _) hRc hRk hRb (Zonotope.convex_construct _)
-      (Zonotope.isClosed_construct _) (Zonotope.isBounded_construct _) pRc pRk pRb),
+      (Zonotope.isBounded_toSet _) (Zonotope.convex_toSet _)
+      (Zonotope.isClosed_toSet _) (Zonotope.isBounded_toSet _) hRc hRk hRb
+      (Zonotope.convex_toSet _) (Zonotope.isClosed_toSet _)
+      (Zonotope.isBounded_toSet _) pRc pRk pRb)
+  refine ⟨hback _ _ (lin.oneStep_timePoint_outer hΔt hε' hWU (Zonotope.isBounded_toSet _)
+      (Zonotope.convex_toSet _) (Zonotope.isClosed_toSet _)
+      (Zonotope.isBounded_toSet _) hRc hRk hRb (Zonotope.convex_toSet _)
+      (Zonotope.isClosed_toSet _) (Zonotope.isBounded_toSet _) pRc pRk pRb),
     fun t ht => ⟨hti t ht, ?_⟩⟩
   -- [1, Prop. 2]: the algebraic variable from the linearized constraint and its error
   have hg := traj.constraint t ht

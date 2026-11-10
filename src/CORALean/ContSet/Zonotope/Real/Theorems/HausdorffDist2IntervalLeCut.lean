@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.Global.EuclideanHausdorffDist
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
@@ -178,7 +178,7 @@ private theorem aux_exists_coeff_cut (g lam : Vec ℝ n) (hlam : ∀ i, |lam i| 
 /-- [1, Thm. 1], the `ω_cut` bound: the box is never further from the zonotope
 than what projecting onto each generator in turn cuts off, at `‖·‖₂`. -/
 theorem Zonotope.hausdorffDist₂_interval_le_cut (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    hausdorffDist₂ Z.construct Z.interval.construct
+    hausdorffDist₂ Z.toSet Z.interval.toSet
       ≤ Real.sqrt 2 * ∑ p, ‖Z.G p‖₂
           * Real.sqrt (1 - (∑ i, Z.G p i ^ 4) / ‖Z.G p‖₂ ^ 4) := by -- --- PROOF ---
   have hr : (0 : ℝ) ≤ Real.sqrt 2 * ∑ p, ‖Z.G p‖₂

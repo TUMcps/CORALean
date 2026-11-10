@@ -41,12 +41,12 @@ variable {n : ℕ}
 
 theorem HPolytope.reduceOverDomain_outer (P : HPolytope (Vec ℝ n)) (hm : 0 < P.m)
     (dom : Interval (Vec ℝ n)) : -- --- CONCL ---
-    P.construct ∩ dom.construct ⊆
-      (P.reduceOverDomain dom true).construct ∩ dom.construct := by -- --- PROOF ---
+    P.toSet ∩ dom.toSet ⊆
+      (P.reduceOverDomain dom true).toSet ∩ dom.toSet := by -- --- PROOF ---
   -- the point satisfies the first normalized row, and that row is below the supremum of `b`
   rintro x ⟨hxP, hxd⟩
   refine ⟨⟨fun i => ?_, fun i => Fin.elim0 i⟩, hxd⟩
-  have hxn : x ∈ P.normalizeRows.construct := by rw [HPolytope.normalizeRows_exact]; exact hxP
+  have hxn : x ∈ P.normalizeRows.toSet := by rw [HPolytope.normalizeRows_exact]; exact hxP
   have hrows := (HPolytope.reduceOverDomain_rows P dom hxd ⟨0, hm⟩).1
   have hbi : P.normalizeRows.b ⟨0, hm⟩ ≤ ⨆ k, P.normalizeRows.b k :=
     le_ciSup (f := P.normalizeRows.b) (Set.finite_range _).bddAbove ⟨0, hm⟩

@@ -74,24 +74,24 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- [1, Lemma 2], conservative approximation: `R_[0,r](Z) ⊆ P + □(α_r + β_r)`. -/
 theorem LinearSys.iUnion_reachSetExact_subset_linComb_plus_cube (sys : LinearSys 𝕋 n)
     (Z U : Zonotope (Vec ℝ n)) {μ r s : ℝ} (hA : 0 < ‖toRealMat sys.A‖) (hr : 0 ≤ r)
-    (hμ : 0 ≤ μ) (hU : U.construct = Metric.closedBall 0 μ)
-    (hs : ∀ z ∈ Z.construct, ‖z‖ ≤ s) : -- --- CONCL ---
+    (hμ : 0 ≤ μ) (hU : U.toSet = Metric.closedBall 0 μ)
+    (hs : ∀ z ∈ Z.toSet, ‖z‖ ≤ s) : -- --- CONCL ---
     ⋃ t ∈ Set.Icc (0:ℝ) r, sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) Z U t
       ⊆ ((Z.linComb (Z.mtimes (exp (r • toRealMat sys.A)))).plus
           (Zonotope.cube n ((Real.exp (r * ‖toRealMat sys.A‖) - 1 - r * ‖toRealMat sys.A‖) * s
             + (Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖
-              * μ))).construct := by -- --- PROOF ---
+              * μ))).toSet := by -- --- PROOF ---
   set A := toRealMat sys.A
   set a := ‖A‖
   have hx := Real.add_one_le_exp (r * a)
   have hx0 : 0 ≤ r * a := mul_nonneg hr hA.le
   have hα0 : 0 ≤ Real.exp (r * a) - 1 - r * a := by linarith
-  have hUle : ∀ u ∈ construct U, ‖u‖ ≤ μ := fun u hu => by
+  have hUle : ∀ u ∈ toSet U, ‖u‖ ≤ μ := fun u hu => by
     have : u ∈ Metric.closedBall (0 : Vec ℝ n) μ := hU ▸ hu
     exact mem_closedBall_zero_iff.mp this
   intro y hy
   obtain ⟨t, ⟨ht0, htr⟩, hyt⟩ := Set.mem_iUnion₂.mp hy
-  rw [sys.reachSetExact_eq (S := 𝒵) Z U ht0 (Zonotope.isBounded_construct U)] at hyt
+  rw [sys.reachSetExact_eq (S := 𝒵) Z U ht0 (Zonotope.isBounded_toSet U)] at hyt
   obtain ⟨_, ⟨z, hz, rfl⟩, v, hv, rfl⟩ := hyt
   have hz0 : 0 ≤ s := (norm_nonneg z).trans (hs z hz)
   have hβ0 : 0 ≤ (Real.exp (r * a) - 1) / a * μ := mul_nonneg (div_nonneg (by linarith) hA.le) hμ
@@ -101,7 +101,7 @@ theorem LinearSys.iUnion_reachSetExact_subset_linComb_plus_cube (sys : LinearSys
     · rw [← h, div_zero]; exact ⟨le_rfl, zero_le_one⟩
     · exact ⟨div_nonneg ht0 hr, (div_le_one h).mpr htr⟩
   set p : Vec ℝ n := (1 - t / r) • z + (t / r) • (exp (r • A) *ᵥ z) with hp
-  have hpP : p ∈ (Z.linComb (Z.mtimes (exp (r • A)))).construct := by
+  have hpP : p ∈ (Z.linComb (Z.mtimes (exp (r • A)))).toSet := by
     refine Zonotope.linComb_outer _ _ ⟨z, hz, exp (r • A) *ᵥ z, ?_, 1 - t / r,
       ⟨by linarith [hlam.2], by linarith [hlam.1]⟩, by rw [hp, sub_sub_cancel]⟩
     rw [← Zonotope.mtimes_exact]; exact ⟨z, hz, rfl⟩

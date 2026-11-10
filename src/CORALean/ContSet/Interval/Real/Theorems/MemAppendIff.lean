@@ -40,9 +40,9 @@ variable {n₁ n₂ : ℕ}
 /-- A point of the appended box is one whose two blocks lie in the two boxes. -/
 theorem Interval.mem_append_iff (I₁ : Interval (Vec ℝ n₁)) (I₂ : Interval (Vec ℝ n₂))
     (x : Vec ℝ (n₁ + n₂)) : -- --- CONCL ---
-    x ∈ (I₁.append I₂).construct
-      ↔ (fun k => x (Fin.castAdd n₂ k)) ∈ I₁.construct
-        ∧ (fun k => x (Fin.natAdd n₁ k)) ∈ I₂.construct := by -- --- PROOF ---
+    x ∈ (I₁.append I₂).toSet
+      ↔ (fun k => x (Fin.castAdd n₂ k)) ∈ I₁.toSet
+        ∧ (fun k => x (Fin.natAdd n₁ k)) ∈ I₂.toSet := by -- --- PROOF ---
   constructor
   · intro hx
     refine ⟨fun k => ?_, fun k => ?_⟩

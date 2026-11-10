@@ -44,8 +44,8 @@ variable {n : ℕ}
 /-- `contract(I) ⊆ I` and `∀ x ∈ I, c(x) = 0 ⇒ x ∈ contract(I)`, at every box `I`. -/
 def IsContractor (c : Vec ℝ n → ℝ) (contract : Interval (Vec ℝ n) → Interval (Vec ℝ n)) :
     Prop :=
-  ∀ I : Interval (Vec ℝ n), (contract I).construct ⊆ I.construct ∧
-    ∀ x ∈ I.construct, c x = 0 → x ∈ (contract I).construct
+  ∀ I : Interval (Vec ℝ n), (contract I).toSet ⊆ I.toSet ∧
+    ∀ x ∈ I.toSet, c x = 0 → x ∈ (contract I).toSet
 
 end CORALean.Real
 

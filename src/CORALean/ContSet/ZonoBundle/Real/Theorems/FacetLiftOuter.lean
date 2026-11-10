@@ -45,7 +45,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.facetLift_outer (P : HPolytope α) (Zadd : Zonotope α) :
-    P.construct + Zadd.construct ⊆ (P.facetLift Zadd).construct := by
+    P.toSet + Zadd.toSet ⊆ (P.facetLift Zadd).toSet := by
   rintro _ ⟨x, hx, y, hy, rfl⟩
   refine ⟨fun i => ?_, fun i => i.elim0⟩
   rw [map_add]

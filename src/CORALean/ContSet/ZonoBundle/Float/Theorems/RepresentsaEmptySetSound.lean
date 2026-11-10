@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 theorem ZonoBundle.representsa_emptySet_sound {zB : ZonoBundle (Vec 𝕋 n)}
     (h : zB.representsa_emptySet = true) : -- --- CONCL ---
-    zB.construct = ∅ := by -- --- PROOF ---
+    zB.toSet = ∅ := by -- --- PROOF ---
   unfold ZonoBundle.representsa_emptySet at h
   split at h
   · rename_i hk

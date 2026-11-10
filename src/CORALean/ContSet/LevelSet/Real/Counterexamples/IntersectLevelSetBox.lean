@@ -44,15 +44,15 @@ namespace CORALean.Real
 theorem intersectLevelSetBox_exact_counterexample : -- --- CONCL ---
     let I : Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 1⟩
     let p : Vec ℝ 1 → ℝ := fun x => x 0 / 2
-    (∀ x ∈ I.construct, I.inf 0 ≤ p x ∧ p x ≤ I.sup 0) ∧
-      I.construct ∩ {x | x 0 = p x} ≠ (intersectLevelSetBox I 0 p).construct := by -- --- PROOF ---
+    (∀ x ∈ I.toSet, I.inf 0 ≤ p x ∧ p x ≤ I.sup 0) ∧
+      I.toSet ∩ {x | x 0 = p x} ≠ (intersectLevelSetBox I 0 p).toSet := by -- --- PROOF ---
   intro I p
   refine ⟨fun x hx => ?_, fun heq => ?_⟩
   · have h : 0 ≤ x 0 ∧ x 0 ≤ 1 := hx 0
     simp only [I, p]
     constructor <;> linarith [h.1, h.2]
   · -- `½` is the image of `1`, but not a fixed point of `p`
-    have hmem : (fun _ => (1 / 2 : ℝ)) ∈ (intersectLevelSetBox I 0 p).construct := by
+    have hmem : (fun _ => (1 / 2 : ℝ)) ∈ (intersectLevelSetBox I 0 p).toSet := by
       refine ⟨fun _ => 1, fun _ => ?_, 0, fun _ => ⟨le_rfl, le_rfl⟩, ?_⟩
       · show (0 : ℝ) ≤ 1 ∧ (1 : ℝ) ≤ 1
         norm_num

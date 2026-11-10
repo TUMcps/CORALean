@@ -45,7 +45,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem RefinableNetwork.image_subset_encloseAt (rn : RefinableNetwork S n m)
-    (sch : Schedule) (X : S n) : rn.image (construct X) ⊆ construct (rn.encloseAt sch X) := by
+    (sch : Schedule) (X : S n) : rn.image (toSet X) ⊆ toSet (rn.encloseAt sch X) := by
   rintro _ ⟨x, hx, rfl⟩
   exact rn.encloseAt_outer sch X x hx
 

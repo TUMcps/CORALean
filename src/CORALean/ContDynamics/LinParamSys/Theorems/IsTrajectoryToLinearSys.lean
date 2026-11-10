@@ -15,7 +15,7 @@ at *every* matrix `Â` once the mismatch is paid into the input —
 `A t x + u = Â x + ((A t - Â) x + u)`.
 The price is `hV`: the input set has to hold the drift `(A t - Â) x t` as well as `u t`, so it is
 a set the caller supplies and not `U`; the drift is bounded by `‖A t - Â‖ ‖x t‖`, which
-`IsCanonicalTrajectory.norm_le` bounds a priori. `Â` need not lie in `construct sys.A`; the linear
+`IsCanonicalTrajectory.norm_le` bounds a priori. `Â` need not lie in `toSet sys.A`; the linear
 run lives on a measurable `T' ⊆ T`, where `x`'s continuity makes the drift measurable.
 
 ## Inputs
@@ -63,7 +63,7 @@ part of the input, and everything `LinearSys` proves applies again. -/
 theorem LinParamSys.IsCanonicalTrajectory.toLinearSys {sys : LinParamSys 𝕄 n} {T : Set ℝ}
     {R₀ U V : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u A) (Â : Mat ℝ n n) {T' : Set ℝ} (hT' : T' ⊆ T)
-    (hT'm : MeasurableSet T') (hV : ∀ t ∈ T', (A t - Â) *ᵥ x t + u t ∈ construct V) :
+    (hT'm : MeasurableSet T') (hV : ∀ t ∈ T', (A t - Â) *ᵥ x t + u t ∈ toSet V) :
     (LinearSys.canonical Â : LinearSys ℝ n).IsCanonicalTrajectory T' R₀ V x
       (fun t => (A t - Â) *ᵥ x t + u t) where
   init := traj.init

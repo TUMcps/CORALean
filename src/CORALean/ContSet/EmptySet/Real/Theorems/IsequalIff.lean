@@ -29,7 +29,7 @@ variable {n m : ℕ}
 
 open ContSet in
 theorem EmptySet.isequal_iff (E F : EmptySet n) :
-    E.isequal F = true ↔ construct E = construct F :=
+    E.isequal F = true ↔ toSet E = toSet F :=
   ⟨fun _ => rfl, fun _ => rfl⟩
 
 end CORALean.Real

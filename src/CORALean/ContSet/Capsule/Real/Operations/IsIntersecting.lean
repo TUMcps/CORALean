@@ -10,7 +10,7 @@ public import CORALean.ContSet.Capsule.Real.Operations.SegDist
 CORA's `@capsule/isIntersecting_.m` for two capsules, `aux_isIntersecting_capsule`: the axes are
 at most the sum of the radii apart (`dist < r₁ + r₂ | withinTol(dist, r₁ + r₂)`, `dist ≤ r₁ + r₂`
 at tolerance `0`). The emptiness test CORA runs first never sees a negative radius
-(`isempty(C.r)` only), so, unlike `construct`, this test does not read `r < 0` as `∅`. The point,
+(`isempty(C.r)` only), so, unlike `toSet`, this test does not read `r < 0` as `∅`. The point,
 hyperplane and generic operand types are not modelled.
 
 ## Inputs

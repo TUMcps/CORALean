@@ -69,7 +69,7 @@ private theorem VPolytope.aux_div_le {s sU k kD kU : ℝ} (hs : s ≤ sU) (hD : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.centerBox_meets (P : VPolytope (Vec 𝕋 n)) (hk : 0 < P.k) : -- --- CONCL ---
-    ∃ x ∈ P.centerBox.construct, {x} + P.I_error.construct ⊆ P.construct := by -- --- PROOF ---
+    ∃ x ∈ P.centerBox.toSet, {x} + P.I_error.toSet ⊆ P.toSet := by -- --- PROOF ---
   -- the exact mean of the nominal vertices
   refine ⟨(InflatedContSet.nominal P).center, ?_, ?_⟩
   · -- the two roundings of the count, the lower one floored at one

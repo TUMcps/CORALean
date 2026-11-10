@@ -79,9 +79,9 @@ theorem Location.guardTransitionLevelSet_outer {R T : Type} {den : R → Set (Ve
     {contract : Real.Interval (Vec ℝ n) → Real.Interval (Vec ℝ n)} (μ : ℕ)
     {intersect : Real.Interval (Vec ℝ n) → T} {reset : T → T} {unify : List T → T}
     (hbound : ∀ Rj, Real.IsRangeBound g (den Rj) (bound Rj).inf (bound Rj).sup)
-    (hbox : ∀ Rj, den Rj ⊆ (box Rj).construct) (hcontract : Real.IsContractor g contract)
+    (hbox : ∀ Rj, den Rj ⊆ (box Rj).toSet) (hcontract : Real.IsContractor g contract)
     (hintersect : ∀ I : Real.Interval (Vec ℝ n),
-      I.construct ∩ {x | g x = 0} ⊆ denT (intersect I))
+      I.toSet ∩ {x | g x = 0} ⊆ denT (intersect I))
     (hreset : ∀ F, r '' denT F ⊆ denT (reset F))
     (hunify : ∀ L, ∀ F ∈ L, denT F ⊆ denT (unify L))
     {Rs : List R} {Rj : R} (hRj : Rj ∈ Rs) {x : Vec ℝ n} (hx : x ∈ den Rj)
@@ -95,7 +95,7 @@ theorem Location.guardTransitionLevelSet_outer {R T : Type} {den : R → Set (Ve
     exact List.mem_filter.mpr ⟨hRj, by simpa using h⟩
   -- Step 2-3: its box is in some run, whose united contracted box holds `x`
   obtain ⟨c, hc, hxc⟩ := exists_mem_chunks μ _ (List.mem_map_of_mem (f := box) hhit)
-  have hxI : x ∈ (Location.guardIntersectLevelSet contract c.1 c.2).construct ∩ {x | g x = 0} :=
+  have hxI : x ∈ (Location.guardIntersectLevelSet contract c.1 c.2).toSet ∩ {x | g x = 0} :=
     Location.guardIntersectLevelSet_outer hcontract
       ⟨box Rj, by rcases hxc with h | h <;> simp [h], hbox Rj hx⟩ hg
   -- Steps 4-6: the operators' guarantees, chained

@@ -25,10 +25,10 @@ public import CORALean.ContSet.Capsule.Float.Operations.RepresentsaPoint
 public import CORALean.ContSet.Capsule.Float.Operations.IsFullDim
 public import CORALean.ContSet.Capsule.Float.Operations.ContainsPoint
 public import CORALean.ContSet.Capsule.Float.Theorems.Basic
-public import CORALean.ContSet.Capsule.Float.Theorems.MemConstructOfSplit
+public import CORALean.ContSet.Capsule.Float.Theorems.MemToSetOfSplit
 public import CORALean.ContSet.Capsule.Float.Theorems.SmulMemSymmetric
-public import CORALean.ContSet.Capsule.Float.Theorems.ConstructEqNominal
-public import CORALean.ContSet.Capsule.Float.Theorems.CenterMemConstructIff
+public import CORALean.ContSet.Capsule.Float.Theorems.ToSetEqNominal
+public import CORALean.ContSet.Capsule.Float.Theorems.CenterMemToSetIff
 public import CORALean.ContSet.Capsule.Float.Theorems.ReindexExact
 public import CORALean.ContSet.Capsule.Float.Theorems.Norm2LeErrorNorm
 public import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaPointParts

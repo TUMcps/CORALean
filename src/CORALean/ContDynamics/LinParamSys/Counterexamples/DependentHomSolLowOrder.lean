@@ -59,7 +59,7 @@ theorem LinParamSys.dependentHomSolLowOrder_counterexample {r δ : ℝ} (hδ : �
     let p : Fin 2 → ℝ := ![1, 0]
     let x : ℝ → Vec ℝ 2 := fun t => ![t ^ 2 / 2, t]
     x 0 = 0 ∧ (∀ t, HasDerivAt x ((∑ i, p i • Ag i) *ᵥ x t + ∑ i, p i • UG i) t) ∧
-      x r ∉ (LinParamSys.dependentHomSolLowOrder 0 Ag 0 0 UG r).construct + Z := by -- --- PROOF ---
+      x r ∉ (LinParamSys.dependentHomSolLowOrder 0 Ag 0 0 UG r).toSet + Z := by -- --- PROOF ---
   intro Ag UG p x
   refine ⟨?_, ?_, ?_⟩
   -- the start

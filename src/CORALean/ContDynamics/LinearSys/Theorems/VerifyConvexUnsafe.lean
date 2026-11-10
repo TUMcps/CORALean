@@ -96,8 +96,8 @@ end
 /-- [1, Alg. 3 (exits)]: a `violated` answer from `verifyConvex`, run at the
 continuous-time reachable set, means it really does meet a convex unsafe set. -/
 theorem LinearSys.not_holds_unsafeSet_of_verifyConvex_violated (sys : LinearSys 𝕋 n) (R₀ Uin : S n)
-    {t : ℝ} (ht : 0 ≤ t) (hR₀ : Convex ℝ (construct R₀)) (hUin : Convex ℝ (construct Uin))
-    (hbdd : Bornology.IsBounded (construct Uin)) {L : Set (Vec ℝ n)} (hL : Convex ℝ L)
+    {t : ℝ} (ht : 0 ≤ t) (hR₀ : Convex ℝ (toSet R₀)) (hUin : Convex ℝ (toSet Uin))
+    (hbdd : Bornology.IsBounded (toSet Uin)) {L : Set (Vec ℝ n)} (hL : Convex ℝ L)
     (bO : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (sys.reachSetExact (Set.Icc 0 t) R₀ Uin t) d)
     (bL : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound L d)
     (wO : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportWitness (sys.reachSetExact (Set.Icc 0 t) R₀ Uin t) d)

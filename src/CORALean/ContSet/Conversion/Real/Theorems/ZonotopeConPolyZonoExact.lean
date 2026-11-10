@@ -42,7 +42,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.conPolyZono_exact (Z : Zonotope α) :
-    Z.construct = Z.conPolyZono.construct :=
+    Z.toSet = Z.conPolyZono.toSet :=
   (Zonotope.polyZonotope_exact Z).trans (PolyZonotope.conPolyZono_exact _)
 
 end CORALean.Real

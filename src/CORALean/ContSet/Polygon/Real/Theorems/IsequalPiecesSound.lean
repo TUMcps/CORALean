@@ -37,16 +37,16 @@ namespace CORALean.Real
 
 theorem Polygon.isequalPieces_sound {P Q : Polygon}
     (h : Polygon.isequalPieces P Q) : -- --- CONCL ---
-    ContSet.construct P = ContSet.construct Q := by -- --- PROOF ---
+    ContSet.toSet P = ContSet.toSet Q := by -- --- PROOF ---
   refine Set.Subset.antisymm ?_ ?_
   · intro x hx
-    obtain ⟨p, hp, hxp⟩ := SetUnion.mem_construct.mp hx
+    obtain ⟨p, hp, hxp⟩ := SetUnion.mem_toSet.mp hx
     obtain ⟨q, hq, hpq⟩ := h.1 p hp
-    exact SetUnion.mem_construct.mpr ⟨q, hq, hpq hxp⟩
+    exact SetUnion.mem_toSet.mpr ⟨q, hq, hpq hxp⟩
   · intro x hx
-    obtain ⟨q, hq, hxq⟩ := SetUnion.mem_construct.mp hx
+    obtain ⟨q, hq, hxq⟩ := SetUnion.mem_toSet.mp hx
     obtain ⟨p, hp, hqp⟩ := h.2 q hq
-    exact SetUnion.mem_construct.mpr ⟨p, hp, hqp hxq⟩
+    exact SetUnion.mem_toSet.mpr ⟨p, hp, hqp hxq⟩
 
 end CORALean.Real
 

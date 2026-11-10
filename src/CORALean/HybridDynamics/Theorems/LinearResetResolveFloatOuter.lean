@@ -101,7 +101,7 @@ private theorem aux_ite_mul_const_le_sumUp {n₁ : ℕ} (P : Fin n₁ → Prop) 
 
 /-- Membership in a float interval vector, entry by entry. -/
 private theorem aux_mem_vec_iff {l : ℕ} {I : Interval (Vec 𝕋 l)} {v : Vec ℝ l} :
-    v ∈ I.construct ↔ ∀ i, toReal (I.inf i) ≤ v i ∧ v i ≤ toReal (I.sup i) :=
+    v ∈ I.toSet ↔ ∀ i, toReal (I.inf i) ≤ v i ∧ v i ≤ toReal (I.sup i) :=
   ⟨fun h i => h i, fun h i => h i⟩
 
 /-- A stored entry plus a sum over the inputs of all components, rounded down. -/
@@ -155,7 +155,7 @@ theorem LinearReset.resolveFloat_outer (A : Mat 𝕋 N N) (B : Mat 𝕋 N (∑ i
       (fun i => toRealMat (C i)) (fun i => toRealMat (D i)) (fun i => toRealVec (q i))
       stateBinds inputBinds
     let F := LinearReset.resolveFloat A B c C D q stateBinds inputBinds
-    R.1 ∈ F.1.construct ∧ R.2.1 ∈ F.2.1.construct ∧ R.2.2 ∈ F.2.2.construct := by -- --- PROOF ---
+    R.1 ∈ F.1.toSet ∧ R.2.1 ∈ F.2.1.toSet ∧ R.2.2 ∈ F.2.2.toSet := by -- --- PROOF ---
   intro R F
   have hU := aux_resolveUpdateFloat_outer B C D q stateBinds inputBinds
   refine ⟨Interval.mem_mat_iff.2 fun a b => ?_, Interval.mem_mat_iff.2 fun a u => ?_,

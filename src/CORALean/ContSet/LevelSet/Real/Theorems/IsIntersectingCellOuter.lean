@@ -45,9 +45,9 @@ variable {n m : ℕ}
 
 theorem LevelSet.isIntersecting_cell_outer (L : LevelSet n) (hne : ∀ i, L.op i ≠ .eq)
     (I : Interval (Vec ℝ n)) (B : Fin L.m → Interval ℝ) {tol : ℝ} (htol : 0 ≤ tol)
-    (hB : ∀ i, IsRangeBound (fun x => L.f x i) I.construct (B i).inf (B i).sup)
+    (hB : ∀ i, IsRangeBound (fun x => L.f x i) I.toSet (B i).inf (B i).sup)
     (h : ¬ LevelSet.isIntersecting_cell tol L.op B) : -- --- CONCL ---
-    L.construct ∩ I.construct = ∅ := by -- --- PROOF ---
+    L.toSet ∩ I.toSet = ∅ := by -- --- PROOF ---
   classical
   -- some row fails the test; a common point would satisfy it
   simp only [LevelSet.isIntersecting_cell, not_forall] at h

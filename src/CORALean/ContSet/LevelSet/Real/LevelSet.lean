@@ -59,7 +59,7 @@ structure LevelSet (n : ℕ) where
   op : Fin m → CompOp
 
 /-- The points meeting every constraint. -/
-def LevelSet.construct (L : LevelSet n) : Set (Vec ℝ n) :=
+def LevelSet.toSet (L : LevelSet n) : Set (Vec ℝ n) :=
   {x | ∀ i, (L.op i).holds (L.f x i)}
 
 end CORALean.Real

@@ -68,7 +68,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- A functional unbounded above on a shadow has support function `⊤`. -/
 private theorem SpectraShadow.aux_supportFunc_eq_top_of_unbounded (S : SpectraShadow α)
-    (c : α →ₗ[ℝ] ℝ) (h : ∀ M : ℝ, ∃ x ∈ S.construct, M < c x) : S.supportFunc c = ⊤ := by
+    (c : α →ₗ[ℝ] ℝ) (h : ∀ M : ℝ, ∃ x ∈ S.toSet, M < c x) : S.supportFunc c = ⊤ := by
   by_contra hne
   obtain ⟨M, hM⟩ := (S.supportFunc_ne_top_iff c).mp hne
   obtain ⟨x, hx, hlt⟩ := h M
@@ -79,7 +79,7 @@ end
 
 /-- The diagonal point `(t, t)` lies in the line example. -/
 private theorem SpectraShadow.aux_lineExample_mem (t : ℝ) : -- --- CONCL ---
-    (fun _ => t : Vec ℝ 2) ∈ SpectraShadow.lineExample.construct := by -- --- PROOF ---
+    (fun _ => t : Vec ℝ 2) ∈ SpectraShadow.lineExample.toSet := by -- --- PROOF ---
   refine ⟨fun j : Fin 2 => if j = 0 then t else 0, ?_, ?_⟩
   · -- `A₀ = I` and the second coefficient is `0`, where `A₁ = 0`
     rw [SpectraShadow.lmi_of_A_zero _ _ (fun i => ?_)]
@@ -95,7 +95,7 @@ private theorem SpectraShadow.aux_lineExample_mem (t : ℝ) : -- --- CONCL ---
 
 theorem SpectraShadow.representsa_fullspaceCora_line : -- --- CONCL ---
     SpectraShadow.lineExample.representsa_fullspaceCora
-      ∧ SpectraShadow.lineExample.construct ≠ Set.univ := by -- --- PROOF ---
+      ∧ SpectraShadow.lineExample.toSet ≠ Set.univ := by -- --- PROOF ---
   refine ⟨fun i => ⟨?_, ?_⟩, ?_⟩
   · -- the diagonal point `|M| + 1` exceeds any bound `M`
     refine SpectraShadow.lineExample.aux_supportFunc_eq_top_of_unbounded _ fun M => ?_
@@ -107,7 +107,7 @@ theorem SpectraShadow.representsa_fullspaceCora_line : -- --- CONCL ---
       simp; linarith [le_abs_self M, neg_abs_le M]⟩
   · -- `(1, 0)` is not on the diagonal
     intro h
-    have : (Pi.single 0 1 : Vec ℝ 2) ∈ SpectraShadow.lineExample.construct := by
+    have : (Pi.single 0 1 : Vec ℝ 2) ∈ SpectraShadow.lineExample.toSet := by
       rw [h]; trivial
     obtain ⟨β, -, hx⟩ := this
     exact SpectraShadow.lineExample_not_mem ⟨β, hx.symm⟩

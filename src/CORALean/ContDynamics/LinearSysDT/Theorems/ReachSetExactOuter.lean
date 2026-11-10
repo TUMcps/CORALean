@@ -51,7 +51,7 @@ theorem LinearSysDT.reachSetExact_outer (sys : LinearSysDT 𝕋 n) (R₀ U : S n
   induction k with
   | zero => exact traj.init
   | succ k ih =>
-    show x (k + 1) ∈ mulVecLin (toRealMat sys.A) '' sys.reachSetExact R₀ U k + construct U
+    show x (k + 1) ∈ mulVecLin (toRealMat sys.A) '' sys.reachSetExact R₀ U k + toSet U
     rw [traj.step k]
     exact Set.add_mem_add ⟨x k, ih, rfl⟩ (traj.input k)
 

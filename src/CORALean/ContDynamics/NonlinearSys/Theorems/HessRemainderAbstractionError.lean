@@ -60,7 +60,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 /-- A matrix's negation, stored entrywise, is a point interval at the negated real one. -/
 private theorem aux_hessRem_neg_mat {k l : ℕ} (A : Mat 𝕋 k l) : -- --- CONCL ---
     -Scalar.toRealMat A ∈
-      (Interval.point (α := Mat 𝕋 k l) (-A)).construct := by -- --- PROOF ---
+      (Interval.point (α := Mat 𝕋 k l) (-A)).toSet := by -- --- PROOF ---
   have h := Interval.mem_point (α := Mat 𝕋 k l) (-A)
   have he : (RealImage.realImage (α := Mat 𝕋 k l) (-A) : Mat ℝ k l)
       = -Scalar.toRealMat A := by
@@ -70,7 +70,7 @@ private theorem aux_hessRem_neg_mat {k l : ℕ} (A : Mat 𝕋 k l) : -- --- CONC
 
 /-- The same for a vector. -/
 private theorem aux_hessRem_neg_vec {k : ℕ} (v : Vec 𝕋 k) :
-    -toRealVec v ∈ (Interval.point (α := Vec 𝕋 k) (-v)).construct := by
+    -toRealVec v ∈ (Interval.point (α := Vec 𝕋 k) (-v)).toSet := by
   have h := Interval.mem_point (α := Vec 𝕋 k) (-v)
   have he : (RealImage.realImage (α := Vec 𝕋 k) (-v) : Vec ℝ k) = -toRealVec v :=
     funext fun i => toReal_neg (v i)
@@ -78,19 +78,19 @@ private theorem aux_hessRem_neg_vec {k : ℕ} (v : Vec 𝕋 k) :
 
 /-- `y - ys` lies in the box `Y - ys`. -/
 private theorem aux_hessRem_sub_mem {k : ℕ} {Y : Interval (Vec 𝕋 k)} (ys : Vec 𝕋 k) {y : Vec ℝ k}
-    (hy : y ∈ Y.construct) :
-    y - toRealVec ys ∈ (Interval.plus Y (Interval.point (-ys))).construct := by
+    (hy : y ∈ Y.toSet) :
+    y - toRealVec ys ∈ (Interval.plus Y (Interval.point (-ys))).toSet := by
   have hd := Interval.plus_outer Y _ (Set.add_mem_add hy (aux_hessRem_neg_vec ys))
   rwa [← sub_eq_add_neg] at hd
 
 /-- `(J - A)(y - ys)` lies in `([J] - A)(Y - ys)`. -/
 private theorem aux_hessRem_jacTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {Y : Interval (Vec 𝕋 l)}
-    (A : Mat 𝕋 k l) (ys : Vec 𝕋 l) {J : Mat ℝ k l} (hJ : J ∈ IJ.construct) {y : Vec ℝ l}
-    (hy : y ∈ Y.construct) : -- --- CONCL ---
+    (A : Mat 𝕋 k l) (ys : Vec 𝕋 l) {J : Mat ℝ k l} (hJ : J ∈ IJ.toSet) {y : Vec ℝ l}
+    (hy : y ∈ Y.toSet) : -- --- CONCL ---
     (J - Scalar.toRealMat A) *ᵥ (y - toRealVec ys) ∈
       (Interval.mtimesIntervalMat (Interval.matPlus IJ (Interval.point (α := Mat 𝕋 k l)
         (-A))) (Interval.plus Y (Interval.point (α := Vec 𝕋 l)
-          (-ys)))).construct := by -- --- PROOF ---
+          (-ys)))).toSet := by -- --- PROOF ---
   have hM := Interval.matPlus_outer IJ _ hJ (aux_hessRem_neg_mat A)
   rw [← sub_eq_add_neg] at hM
   exact Interval.mtimesIntervalMat_outer _ _
@@ -98,14 +98,14 @@ private theorem aux_hessRem_jacTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {
 
 /-- A point of a box is no larger in magnitude than the box's `normMag`. -/
 private theorem aux_hessRem_abs_le {k : ℕ} {I : Interval (Vec 𝕋 k)} {y : Vec ℝ k}
-    (hy : y ∈ I.construct) (j : Fin k) : |y j| ≤ toReal (I.normMag j) := by
+    (hy : y ∈ I.toSet) (j : Fin k) : |y j| ≤ toReal (I.normMag j) := by
   obtain ⟨h1, h2⟩ := hy j
   rw [Interval.normMag, toReal_maximum, toReal_absolute, toReal_absolute]
   exact abs_le_max_abs_abs h1 h2
 
 /-- A matrix of a box is entrywise no larger in magnitude than the larger end. -/
 private theorem aux_hessRem_abs_le_mat {k : ℕ} {I : Interval (Mat 𝕋 k k)} {M : Mat ℝ k k}
-    (hM : M ∈ I.construct) (j l : Fin k) :
+    (hM : M ∈ I.toSet) (j l : Fin k) :
     |M j l| ≤ toReal (maximum (absolute (I.inf j l)) (absolute (I.sup j l))) := by
   have h := hM (j, l)
   simp only [Entrywise.entry_mat] at h
@@ -133,10 +133,10 @@ private theorem aux_hessRem_half_mem {q : ℝ} {L : 𝕋} (hq : |q| ≤ toReal L
 theorem NonlinearSys.FloatHessModel.Encloses.hessRemainder_abstractionError
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) {xs : Vec 𝕋 n} {us : Vec 𝕋 m} {X : Interval (Vec 𝕋 n)}
-    {U : Interval (Vec 𝕋 m)} (hxs : toRealVec xs ∈ X.construct)
-    (hus : toRealVec us ∈ U.construct) :
+    {U : Interval (Vec 𝕋 m)} (hxs : toRealVec xs ∈ X.toSet)
+    (hus : toRealVec us ∈ U.toSet) :
     IsAbstractionError (S := ℐ𝒱[𝕋]) sys.f (Scalar.toRealMat A)
-      (Scalar.toRealMat B) (toRealVec xs) (toRealVec us) X.construct U.construct
+      (Scalar.toRealMat B) (toRealVec xs) (toRealVec us) X.toSet U.toSet
       (fm.hessRemainder A B xs us X U) where
   encloses x hx u hu := by
     obtain ⟨Jx, hJx, Ju, hJu, H, hH, htay⟩ := h.taylor_mem X U xs us hxs hus x hx u hu

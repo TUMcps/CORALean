@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `mul`'s point, read off `bilin`'s rather than `construct`: a product of the
+/-- `mul`'s point, read off `bilin`'s rather than `toSet`: a product of the
 two points, `pZ₂` read at `pZ₁`'s factors through `Fin.cast`. -/
 theorem PolyZonotope.mul_point (pZ₁ pZ₂ : PolyZonotope (Vec ℝ n)) (hp : pZ₁.p = pZ₂.p)
     (a : Fin pZ₁.p → ℝ) :

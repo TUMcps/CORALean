@@ -46,7 +46,7 @@ structure Capsule (n : ℕ) where
 
 /-- `r < 0` denotes `∅`: `Real.sqrt` never returns a negative value, so no `x`
 can satisfy the bound. -/
-def Capsule.construct (C : Capsule n) : Set (Vec ℝ n) :=
+def Capsule.toSet (C : Capsule n) : Set (Vec ℝ n) :=
   {x | ∃ t ∈ Set.Icc (-1 : ℝ) 1,
         Real.sqrt (∑ i, (x i - (C.c i + t * C.g i)) ^ 2) ≤ C.r}
 

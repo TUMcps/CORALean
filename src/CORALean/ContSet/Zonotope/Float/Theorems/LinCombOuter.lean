@@ -125,9 +125,9 @@ rounded. -/
 private theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     Set.linComb (nominalSet Z₁) (nominalSet Z₂) ⊆
       nominalSet (Z₁.linComb Z₂)
-        + ((Zonotope.midpointResidual Z₁.c Z₂.c).construct
+        + ((Zonotope.midpointResidual Z₁.c Z₂.c).toSet
             + (Zonotope.generatorError
-              (Zonotope.linCombGDiff Z₁ Z₂)).construct) := by -- --- PROOF ---
+              (Zonotope.linCombGDiff Z₁ Z₂)).toSet) := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁', y₂, hy₂', lam, ⟨hl0, hl1⟩, rfl⟩
   obtain ⟨β₁, hβ₁, hy₁⟩ := Zonotope.mem_nominalSet_iff.mp hy₁'
   obtain ⟨β₂, hβ₂, hy₂⟩ := Zonotope.mem_nominalSet_iff.mp hy₂'
@@ -178,10 +178,10 @@ private theorem Zonotope.aux_linComb_nominal (Z₁ Z₂ : Zonotope (Vec 𝕋 n))
 /-- The box absorbs the two incoming boxes, the center rounding and the
 generator roundings. -/
 private theorem Zonotope.aux_linComb_error (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) :
-    Set.linComb Z₁.I_error.construct Z₂.I_error.construct
-        + ((Zonotope.midpointResidual Z₁.c Z₂.c).construct
-            + (Zonotope.generatorError (Zonotope.linCombGDiff Z₁ Z₂)).construct)
-      ⊆ (Z₁.linComb Z₂).I_error.construct :=
+    Set.linComb Z₁.I_error.toSet Z₂.I_error.toSet
+        + ((Zonotope.midpointResidual Z₁.c Z₂.c).toSet
+            + (Zonotope.generatorError (Zonotope.linCombGDiff Z₁ Z₂)).toSet)
+      ⊆ (Z₁.linComb Z₂).I_error.toSet :=
   subset_trans
     (Set.add_subset_add (Interval.linComb_outer Z₁.I_error Z₂.I_error) (Interval.plus_outer _ _))
     (Interval.plus_outer _ _)
@@ -190,7 +190,7 @@ private theorem Zonotope.aux_linComb_error (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.linComb_outer (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) :
-    Set.linComb Z₁.construct Z₂.construct ⊆ (Z₁.linComb Z₂).construct :=
+    Set.linComb Z₁.toSet Z₂.toSet ⊆ (Z₁.linComb Z₂).toSet :=
   InflatedContSet.linComb_subset (Zonotope.aux_linComb_nominal Z₁ Z₂)
     (Zonotope.aux_linComb_error Z₁ Z₂)
 

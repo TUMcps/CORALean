@@ -50,7 +50,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The set over `p + r` factors is the set over `p`: the appended rows stand at
 exponent zero, and the center and both generator blocks never moved. -/
 theorem PolyZonotope.padBack_exact (r : ℕ) (pZ : PolyZonotope α) : -- --- CONCL ---
-    pZ.construct = (pZ.padBack r).construct := by -- --- PROOF ---
+    pZ.toSet = (pZ.padBack r).toSet := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨a, β, ha, hβ, rfl⟩
     -- the appended factors are given the value `0`, which no monomial reads

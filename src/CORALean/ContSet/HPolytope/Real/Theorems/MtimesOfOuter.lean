@@ -17,7 +17,7 @@ certificate is asked for: a bound on `(Aq i) ∘ M` over the source is a bound o
 * `P` – H-polytope
 * `M` – linear map
 * `Aq` – family indexed by `Fin q`
-* `u` – a support bound of `P.construct` along each row
+* `u` – a support bound of `P.toSet` along each row
 
 ## Hypotheses
 * none
@@ -43,8 +43,8 @@ variable {q : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mtimesOf_outer {P : HPolytope α} (M : α →ₗ[ℝ] β)
-    (Aq : Fin q → (β →ₗ[ℝ] ℝ)) (u : ∀ i, SupportBound P.construct ((Aq i).comp M)) :
-    ⇑M '' P.construct ⊆ (HPolytope.mtimesOf M Aq u).construct :=
+    (Aq : Fin q → (β →ₗ[ℝ] ℝ)) (u : ∀ i, SupportBound P.toSet ((Aq i).comp M)) :
+    ⇑M '' P.toSet ⊆ (HPolytope.mtimesOf M Aq u).toSet :=
   HPolytope.subset_ofBounds _ _
 
 end CORALean.Real

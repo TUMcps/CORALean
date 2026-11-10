@@ -8,7 +8,7 @@ public import CORALean.ContSet.VPolytope.Real.VPolytope
 # Every vertex is a point of the polytope
 
 The combination weighted entirely onto one vertex. Trivial as a statement and
-not as a proof: `construct` quantifies over coefficient families, so the witness
+not as a proof: `toSet` quantifies over coefficient families, so the witness
 has to be built and its sum computed, which is three rewrites through
 `Finset.sum_ite_eq'`.
 
@@ -41,7 +41,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.vertex_mem (P : VPolytope α) (j : Fin P.k) : -- --- CONCL ---
-    P.V j ∈ P.construct := by -- --- PROOF ---
+    P.V j ∈ P.toSet := by -- --- PROOF ---
   have hnn : ∀ l : Fin P.k, 0 ≤ (if l = j then (1:ℝ) else 0) := by
     intro l; split <;> [exact zero_le_one; exact le_rfl]
   have hsum : ∑ l : Fin P.k, (if l = j then (1:ℝ) else 0) = 1 := by

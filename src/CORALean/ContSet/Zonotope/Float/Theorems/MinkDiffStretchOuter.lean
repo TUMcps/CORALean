@@ -63,8 +63,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The float stretch encloses the real one at the nominal operands and `μ` read as reals. -/
 private theorem Zonotope.aux_minkDiffStretch_encloses (Z₁ Z₂ : Zonotope (Vec 𝕋 n))
     (μ : Fin Z₁.h → 𝕋) : -- --- CONCL ---
-    (Z₁.nominal.minkDiffStretch Z₂.nominal fun υ => toReal (μ υ)).construct
-      ⊆ (Z₁.minkDiffStretch Z₂ μ).construct := by -- --- PROOF ---
+    (Z₁.nominal.minkDiffStretch Z₂.nominal fun υ => toReal (μ υ)).toSet
+      ⊆ (Z₁.minkDiffStretch Z₂ μ).toSet := by -- --- PROOF ---
   intro x hx
   have h := Zonotope.ofEntryBounds_outer (Z₁.nominal.minkDiffStretch Z₂.nominal
       fun υ => toReal (μ υ)) (Interval.origin n)
@@ -82,15 +82,15 @@ private theorem Zonotope.aux_minkDiffStretch_encloses (Z₁ Z₂ : Zonotope (Vec
 stretch covers the Minkowski difference of the nominal operands. -/
 theorem Zonotope.minkDiffStretch_outer {ι : Type} (Z₁ Z₂ : Zonotope (Vec 𝕋 n)) (μ : Fin Z₁.h → 𝕋)
     (C : ι → (Vec ℝ n →ₗ[ℝ] ℝ)) (hμ0 : ∀ υ, 0 ≤ toReal (μ υ)) (b : ι → ℝ)
-    (hb : ∀ i, ∀ x ∈ minkowskiDiff Z₁.nominal.construct Z₂.nominal.construct,
+    (hb : ∀ i, ∀ x ∈ minkowskiDiff Z₁.nominal.toSet Z₂.nominal.toSet,
       C i (x - (Z₁.nominal.c - Z₂.nominal.c)) ≤ b i)
     (hμ : ∀ i, b i ≤ ∑ υ, |C i (Z₁.nominal.G υ)| * toReal (μ υ))
     (hCd : {y | ∀ i, C i (y - (Z₁.nominal.minkDiffStretch Z₂.nominal fun υ => toReal (μ υ)).c)
                 ≤ ∑ υ, |C i ((Z₁.nominal.minkDiffStretch Z₂.nominal fun υ => toReal (μ υ)).G υ)|}
-            ⊆ (Z₁.nominal.minkDiffStretch Z₂.nominal fun υ => toReal (μ υ)).construct)
+            ⊆ (Z₁.nominal.minkDiffStretch Z₂.nominal fun υ => toReal (μ υ)).toSet)
     :
-    minkowskiDiff Z₁.nominal.construct Z₂.nominal.construct
-      ⊆ (Z₁.minkDiffStretch Z₂ μ).construct :=
+    minkowskiDiff Z₁.nominal.toSet Z₂.nominal.toSet
+      ⊆ (Z₁.minkDiffStretch Z₂ μ).toSet :=
   subset_trans (Z₁.nominal.minkDiffStretch_outer Z₂.nominal C _ hμ0 b hb hμ hCd)
     (Zonotope.aux_minkDiffStretch_encloses Z₁ Z₂ μ)
 

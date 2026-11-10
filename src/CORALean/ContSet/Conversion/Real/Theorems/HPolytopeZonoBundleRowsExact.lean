@@ -67,16 +67,16 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 /-- Exact: the bundle of the rows' bounding zonotopes is the polytope. -/
 theorem HPolytope.zonoBundleRows_exact [NeZero n] (P : HPolytope (Vec ℝ n))
     (V : VPolytope (Vec ℝ n)) [NeZero V.k] (B : Fin (P.m + (P.me + P.me)) → Mat ℝ n n)
-    (hV : V.construct = P.construct) (hB : ∀ i, B i * (B i)ᵀ = 1)
+    (hV : V.toSet = P.toSet) (hB : ∀ i, B i * (B i)ᵀ = 1)
     (hrow : ∀ i x, P.rows i x = HPolytope.rowNorm (P.rows i) * ((B i)ᵀ *ᵥ x) 0) : -- --- CONCL ---
-    (P.zonoBundleRows V B).construct = P.construct := by -- --- PROOF ---
+    (P.zonoBundleRows V B).toSet = P.toSet := by -- --- PROOF ---
   have hBB : ∀ i, (B i)ᵀ * B i = 1 := fun i => by
     have := hB i
     rw [mul_eq_one_comm] at this
     simpa using this
   -- the box of the vertices in row `i`'s coordinates, its bounds, and the vertices inside it
   have hbox : ∀ (i : Fin (P.m + (P.me + P.me))) (j : Fin V.k),
-      (B i)ᵀ *ᵥ V.V j ∈ (Interval.enclosePoints fun j => (B i)ᵀ *ᵥ V.V j).construct :=
+      (B i)ᵀ *ᵥ V.V j ∈ (Interval.enclosePoints fun j => (B i)ᵀ *ᵥ V.V j).toSet :=
     fun i j => Interval.enclosePoints_outer _ j
   have hne : ∀ i, (Interval.enclosePoints fun j => (B i)ᵀ *ᵥ V.V j).IsNonempty (ι := Fin n) :=
     fun i c => by
@@ -86,14 +86,14 @@ theorem HPolytope.zonoBundleRows_exact [NeZero n] (P : HPolytope (Vec ℝ n))
   constructor
   · -- inside every zonotope: inside every halfspace
     intro hx
-    rw [HPolytope.mem_construct_iff_rows]
+    rw [HPolytope.mem_toSet_iff_rows]
     intro i
-    have hxi := SetIntersection.mem_construct_ofFn.mp hx i
+    have hxi := SetIntersection.mem_toSet_ofFn.mp hx i
     obtain ⟨y, hy, rfl⟩ : ∃ y ∈
-        (Interval.enclosePoints fun j => (B i)ᵀ *ᵥ V.V j).zonotope.construct,
+        (Interval.enclosePoints fun j => (B i)ᵀ *ᵥ V.V j).zonotope.toSet,
         B i *ᵥ y = x := by
       have : x ∈ (Zonotope.mtimes (B i)
-          (Interval.enclosePoints fun j => (B i)ᵀ *ᵥ V.V j).zonotope).construct := hxi
+          (Interval.enclosePoints fun j => (B i)ᵀ *ᵥ V.V j).zonotope).toSet := hxi
       rw [← Zonotope.mtimes_exact] at this
       exact this
     have hy' := Interval.zonotope_subset_of_isNonempty (hne i) hy
@@ -107,8 +107,8 @@ theorem HPolytope.zonoBundleRows_exact [NeZero n] (P : HPolytope (Vec ℝ n))
       exact h2
     obtain ⟨j₀, -, hj₀⟩ := Finset.exists_mem_eq_sup' Finset.univ_nonempty
       (fun j => ((B i)ᵀ *ᵥ V.V j) 0)
-    have hVj : V.V j₀ ∈ P.construct := hV ▸ V.vertex_mem j₀
-    have hrowj := HPolytope.mem_construct_iff_rows.mp hVj i
+    have hVj : V.V j₀ ∈ P.toSet := hV ▸ V.vertex_mem j₀
+    have hrowj := HPolytope.mem_toSet_iff_rows.mp hVj i
     have hnorm : 0 ≤ HPolytope.rowNorm (P.rows i) := _root_.Real.sqrt_nonneg _
     rw [hrow i, hfirst]
     calc HPolytope.rowNorm (P.rows i) * y 0
@@ -118,12 +118,12 @@ theorem HPolytope.zonoBundleRows_exact [NeZero n] (P : HPolytope (Vec ℝ n))
       _ ≤ P.rowsRhs i := hrowj
   · -- the polytope is the hull of its vertices, and every zonotope is convex and holds them
     intro hx
-    refine SetIntersection.mem_construct_ofFn.mpr fun i => ?_
-    rw [← hV, VPolytope.construct_eq_convexHull] at hx
-    refine convexHull_min ?_ (Zonotope.convex_construct _) hx
+    refine SetIntersection.mem_toSet_ofFn.mpr fun i => ?_
+    rw [← hV, VPolytope.toSet_eq_convexHull] at hx
+    refine convexHull_min ?_ (Zonotope.convex_toSet _) hx
     rintro _ ⟨j, rfl⟩
     show V.V j ∈ (Zonotope.mtimes (B i)
-      (Interval.enclosePoints fun j => (B i)ᵀ *ᵥ V.V j).zonotope).construct
+      (Interval.enclosePoints fun j => (B i)ᵀ *ᵥ V.V j).zonotope).toSet
     rw [← Zonotope.mtimes_exact]
     refine ⟨(B i)ᵀ *ᵥ V.V j, Interval.zonotope_contains _ (hbox i j), ?_⟩
     show B i *ᵥ ((B i)ᵀ *ᵥ V.V j) = V.V j

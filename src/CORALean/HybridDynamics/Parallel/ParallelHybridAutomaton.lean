@@ -79,8 +79,8 @@ structure ParallelHybridAutomaton.IsStay [∀ n, ContSet (S n) (Vec ℝ n)]
     (w : ∀ i, ℝ → Vec ℝ (P.sys ℓ i).r) (g : ℝ → Vec ℝ m) : Prop where
   nonneg : 0 ≤ τ
   input (i : Fin k) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :
-    ∃ v ∈ construct ((P.comp i).loc (ℓ i)).U, ∀ j a, P.bindsAt ℓ i j = .global a → v j = g t a
-  dist (i : Fin k) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : w i t ∈ construct ((P.comp i).loc (ℓ i)).W
+    ∃ v ∈ toSet ((P.comp i).loc (ℓ i)).U, ∀ j a, P.bindsAt ℓ i j = .global a → v j = g t a
+  dist (i : Fin k) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : w i t ∈ toSet ((P.comp i).loc (ℓ i)).W
   -- every component a Carathéodory run of its own location's whole equation
   meas (i : Fin k) : AEStronglyMeasurable (fun s => toRealMat (P.sys ℓ i).A *ᵥ x i s +
     toRealMat (P.sys ℓ i).B *ᵥ u i s + toRealVec (P.sys ℓ i).c + toRealMat (P.sys ℓ i).E *ᵥ w i s)
@@ -93,7 +93,7 @@ structure ParallelHybridAutomaton.IsStay [∀ n, ContSet (S n) (Vec ℝ n)]
     (toRealMat (P.sys ℓ i).A *ᵥ x i s + toRealMat (P.sys ℓ i).B *ᵥ u i s +
       toRealVec (P.sys ℓ i).c + toRealMat (P.sys ℓ i).E *ᵥ w i s)
   invariant (i : Fin k) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :
-    x i t ∈ construct ((P.comp i).loc (ℓ i)).inv
+    x i t ∈ toSet ((P.comp i).loc (ℓ i)).inv
   bound (i : Fin k) (j : Fin (P.sys ℓ i).m) (t : ℝ) (ht : t ∈ Set.Icc 0 τ) :
     u i t j = P.boundInput ℓ (fun c => x c t) (fun c => u c t) (g t) i j
 
@@ -108,7 +108,7 @@ inductive ParallelHybridAutomaton.IsRun [∀ n, ContSet (S n) (Vec ℝ n)]
   | jump {ℓ ℓ' : ∀ i, L i} {τ : ℝ} {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m}
       {y : ∀ i, Vec ℝ (n i)} {c : Fin k} {e : Transition G (L c) 𝕋 (n c)}
       (h : P.IsStay ℓ τ x u w g) (hmem : e ∈ ((P.comp c).loc (ℓ c)).trans)
-      (hguard : x c τ ∈ construct e.guard)
+      (hguard : x c τ ∈ toSet e.guard)
       (rest : P.IsRun (Function.update ℓ c e.target)
         (Function.update (fun i => x i τ) c (e.reset (x c τ))) ℓ' y) :
       P.IsRun ℓ (fun i => x i 0) ℓ' y

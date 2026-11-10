@@ -83,12 +83,12 @@ theorem LinProbSys.IsTrajectory.initReach_ti_mean (sys : LinProbSys n m) (Veig :
     (uTrans : Vec ℝ m) {r : ℝ} (hr : 0 < r) {k : ℕ}
     (hε : ‖r • sys.A‖ / (((k + 2 : ℕ) : ℝ) + 2) < 1) (gamma : ℝ) (originContained : Bool)
     (hA : IsUnit sys.A.det) (hoc : originContained = true → sys.B *ᵥ uTrans = 0)
-    (h0 : (0 : Vec ℝ m) ∈ U.construct) {Ω : Type*} [MeasurableSpace Ω] {P : Measure Ω}
+    (h0 : (0 : Vec ℝ m) ∈ U.toSet) {Ω : Type*} [MeasurableSpace Ω] {P : Measure Ω}
     {T : Set ℝ} {x₀ : Vec ℝ n} {u : ℝ → Vec ℝ m} {x : ℝ → Ω → Vec ℝ n}
     (traj : sys.IsTrajectory (S := 𝒵) P T Rinit.Z (U.plus (Zonotope.ofPoint uTrans)) x₀ u x)
     (hT : Set.Icc 0 r ⊆ T) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     ∫ ω, x t ω ∂P ∈ (sys.initReach Veig lambda Rinit gammaInit U uTrans r (k + 2) gamma
-      originContained).2.1.Z.construct := by -- --- PROOF ---
+      originContained).2.1.Z.toSet := by -- --- PROOF ---
   rw [traj.integral_eq (hT ⟨ht0, htr⟩) ht0]
   obtain ⟨w, hw, heq⟩ := traj.mean_eq_add_inputReach ht0
     ((Set.Icc_subset_Icc le_rfl htr).trans hT)

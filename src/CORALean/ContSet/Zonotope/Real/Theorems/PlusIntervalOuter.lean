@@ -53,7 +53,7 @@ variable {n : ℕ}
 /-- [1, Prop. 2]: a zonotope plus a box lies inside the zonotope built by concatenating
 the box's own generators onto it. -/
 theorem Zonotope.plus_interval_outer (Z : Zonotope (Vec ℝ n)) (I : Interval (Vec ℝ n)) :
-    Z.construct + I.construct ⊆ (Z.plus I.zonotope).construct := by
+    Z.toSet + I.toSet ⊆ (Z.plus I.zonotope).toSet := by
   rw [← Zonotope.plus_exact]
   exact Set.add_subset_add subset_rfl (Interval.zonotope_contains I)
 

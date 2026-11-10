@@ -67,13 +67,13 @@ theorem NonlinDASys.IsTrajectory.initReach_outer {sys : NonlinDASys n p m} {Δt 
     (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Δt) R₀ U x y u z)
     (hΔt : 0 < Δt) {lin : Zonotope (Vec ℝ n) → NonlinDASys.LinPoint n p m}
     {select : (Z : Zonotope (Vec ℝ n)) → Option (Fin Z.h)} {q : ℕ}
-    (hcert : ∀ Z : Zonotope (Vec ℝ n), x 0 ∈ Z.construct → (lin Z).Certifies sys U Δt q x y u)
+    (hcert : ∀ Z : Zonotope (Vec ℝ n), x 0 ∈ Z.toSet → (lin Z).Certifies sys U Δt q x y u)
     (fuel : ℕ) {Rstart : List (Zonotope (Vec ℝ n))}
-    (hstart : ∃ Z ∈ Rstart, x 0 ∈ Z.construct) : -- --- CONCL ---
+    (hstart : ∃ Z ∈ Rstart, x 0 ∈ Z.toSet) : -- --- CONCL ---
     ∃ R ∈ sys.initReach lin select U Δt (q + 2) fuel Rstart,
-      x Δt ∈ R.fst.construct ∧
+      x Δt ∈ R.fst.toSet ∧
         ∀ t ∈ Set.Icc 0 Δt,
-          x t ∈ R.snd.1.construct ∧ (x t, y t) ∈ R.snd.2.construct := by -- --- PROOF ---
+          x t ∈ R.snd.1.toSet ∧ (x t, y t) ∈ R.snd.2.toSet := by -- --- PROOF ---
   induction fuel generalizing Rstart with
   | zero =>
     obtain ⟨Z, hZ, hx0⟩ := hstart
@@ -97,7 +97,7 @@ theorem NonlinDASys.IsTrajectory.initReach_outer {sys : NonlinDASys n p m} {Δt 
           traj.output⟩ hΔt hF hR hL hLa hus h0 hε
     -- a split: the start lies in one half, and the halves are run again
     | some j =>
-      have hhalf : x 0 ∈ (Z.split j).fst.construct ∪ (Z.split j).snd.construct := by
+      have hhalf : x 0 ∈ (Z.split j).fst.toSet ∪ (Z.split j).snd.toSet := by
         rw [Zonotope.split_union]; exact hx0
       obtain ⟨R, hR, hRx⟩ := ih (Rstart := [(Z.split j).fst, (Z.split j).snd]) (by
         rcases hhalf with h | h

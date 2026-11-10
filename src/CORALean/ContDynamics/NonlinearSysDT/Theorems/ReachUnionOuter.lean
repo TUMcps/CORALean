@@ -52,8 +52,8 @@ variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋] [∀ n, Contai
 theorem NonlinearSysDT.WithSteps.reachUnion_outer (sys : NonlinearSysDT.WithSteps S Rg 𝕋 m n)
     (params : Reach.Params (S n) ℕ) (options : NonlinearSysDT.ReachOptions) : -- --- CONCL ---
     ∀ R ∈ sys.reachUnion params options,
-      sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
-        ⊆ construct R := by -- --- PROOF ---
+      sys.reachUnionExact (params.tFinal - params.tStart) (toSet params.X₀)
+        ⊆ toSet R := by -- --- PROOF ---
   intro R (hR : sys.reachUnion params options = some R) y hy
   simp only [NonlinearSysDT.WithSteps.reachUnion] at hR
   split at hR
@@ -61,12 +61,12 @@ theorem NonlinearSysDT.WithSteps.reachUnion_outer (sys : NonlinearSysDT.WithStep
   case isTrue hconf =>
     -- every test passed, so each step `k < K` starts inside its certified region
     have hsub : ∀ k < params.tFinal - params.tStart,
-        construct (sys.sys.reach ⟨params.X₀, sys.U, 0, k⟩ options sys.steps)
+        toSet (sys.sys.reach ⟨params.X₀, sys.U, 0, k⟩ options sys.steps)
           ⊆ (sys.steps k).R :=
       fun k hk => (Contains.contains_sound _ _
         (List.all_eq_true.mp hconf k (List.mem_range.mpr hk))).trans (sys.region_subset k)
     obtain ⟨k, hk, x, u, traj, rfl⟩ := Set.mem_iUnion₂.mp hy
-    -- the run from the bare set `construct R0` is a run from the representation `R0`
+    -- the run from the bare set `toSet R0` is a run from the representation `R0`
     have traj' : sys.sys.IsTrajectoryOn params.X₀ sys.U (params.tFinal - params.tStart) x u
         (fun k => sys.sys.g (x k) (u k)) :=
       ⟨traj.init, traj.input, traj.step, traj.output⟩
@@ -74,7 +74,7 @@ theorem NonlinearSysDT.WithSteps.reachUnion_outer (sys : NonlinearSysDT.WithStep
       (sys.sys.confinement_of_subset_on options.hZonotopeOrder sys.steps params.X₀ hsub traj')
       k hk
     rw [← Option.some_inj.mp hR]
-    exact SetUnion.mem_construct_range (Nat.lt_succ_of_le hk) hx
+    exact SetUnion.mem_toSet_range (Nat.lt_succ_of_le hk) hx
 
 end CORALean
 

@@ -8,7 +8,7 @@ public import CORALean.ContSet.ContSet.ContSet
 # `SetUnion`: the union of a list of representations
 
 The finite union CORA has no fixed combinator for: a caller lists branches and `SetUnion` denotes `⋃
-s ∈ sets, construct s`, `∅` at the empty list, matching `Set.iUnion` over an empty index. Generic
+s ∈ sets, toSet s`, `∅` at the empty list, matching `Set.iUnion` over an empty index. Generic
 over the member representation `S`, not split into `Real/` and `Float/`: the type stores nothing but
 a `List S`, so no arithmetic of its own sits here, and a float member type already routes every
 number through `S`. Not a fixed-size `Fin k → S` as `ZonoBundle` uses for its intersection: a union
@@ -35,17 +35,17 @@ variable {S α : Type}
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- A finite union of representations of the same type: `⋃ s ∈ sets, construct s`,
+/-- A finite union of representations of the same type: `⋃ s ∈ sets, toSet s`,
 which is `∅` when `sets = []`. -/
 structure SetUnion (S : Type) where
   sets : List S
 
 /-- What a `SetUnion` denotes: the union of what every member denotes. -/
-def SetUnion.construct [ContSet S α] (u : SetUnion S) : Set α :=
-  ⋃ s ∈ u.sets, ContSet.construct s
+def SetUnion.toSet [ContSet S α] (u : SetUnion S) : Set α :=
+  ⋃ s ∈ u.sets, ContSet.toSet s
 
-/-- A set union denotes `SetUnion.construct`, the points some member contains. -/
-instance [ContSet S α] : ContSet (SetUnion S) α := ⟨SetUnion.construct⟩
+/-- A set union denotes `SetUnion.toSet`, the points some member contains. -/
+instance [ContSet S α] : ContSet (SetUnion S) α := ⟨SetUnion.toSet⟩
 
 end CORALean
 

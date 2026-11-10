@@ -51,7 +51,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.vPolytope_contains (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) :
-    zB.construct ⊆ (zB.vPolytope i).construct :=
+    zB.toSet ⊆ (zB.vPolytope i).toSet :=
   subset_trans (zB.zonotope_contains i) (Zonotope.vPolytope_contains _)
 
 end CORALean.Real

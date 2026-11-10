@@ -35,13 +35,13 @@ open ContSet
 /-- Everything this representation denotes is compact. -/
 class CompactSet (S : Type) (α : outParam Type) [NormedAddCommGroup α] [NormedSpace ℝ α]
     [ContSet S α] where
-  isCompact_construct (s : S) : IsCompact (construct s)
+  isCompact_toSet (s : S) : IsCompact (toSet s)
 
 /-- Everything this representation denotes is convex. What an integral valued in
 the set needs, and what makes `linComb` a convex hull. -/
 class ConvexSet (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
     [ContSet S α] where
-  convex_construct (s : S) : Convex ℝ (construct s)
+  convex_toSet (s : S) : Convex ℝ (toSet s)
 
 /-- A representation with a sound Boolean test for full dimension: `true` means the denoted set has
 nonempty interior. -/

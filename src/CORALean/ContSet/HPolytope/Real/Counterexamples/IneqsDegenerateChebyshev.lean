@@ -49,7 +49,7 @@ open Matrix
 theorem HPolytope.ineqs_degenerate_chebyshev_counterexample : -- --- CONCL ---
     ∃ (A : Mat ℝ 2 1) (b : Vec ℝ 2) (c : Vec ℝ 1) (r : ℝ), 0 < r ∧
       (∀ j, (A *ᵥ c) j + r * ‖A j‖₂ ≤ b j) ∧
-      (interior (HPolytope.ineqs A b).construct).Nonempty := by -- --- PROOF ---
+      (interior (HPolytope.ineqs A b).toSet).Nonempty := by -- --- PROOF ---
   -- each row has Euclidean length one
   have hn : ∀ v : Vec ℝ 1, (v = ![1] ∨ v = ![-1]) → ‖v‖₂ = 1 := by
     rintro v (rfl | rfl) <;> simp [norm₂]

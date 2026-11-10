@@ -20,7 +20,7 @@ Outer, not exact: each cell is first reduced to a parallelotope containing it
 (`reduceGirard_outer`), mapped to the rotated frame by a member of the box that holds `R⁻¹`
 (`mtimesIntervalMat_outer`, `encloseManyBasisInv_mem`), boxed (`interval_contains`), and the box, a
 zonotope (`Interval.zonotope_contains`), is mapped back by `R` (`mtimes_outer`). The member of the
-box inverts `R`, so a point returns to itself. The statement is about the float sets (`construct`,
+box inverts `R`, so a point returns to itself. The statement is about the float sets (`toSet`,
 error boxes included) of the cells and of the result; the rotation is the one the stored floats read
 as, so it is invertible without any hypothesis on `direction` beyond the test `encloseMany` makes.
 Source: [1].
@@ -63,7 +63,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m q : ℕ}
 theorem Zonotope.encloseMany_outer (p : ℕ) (Zs : Fin (q + 1) → Zonotope (Vec 𝕋 (m + 1)))
     (direction : Vec 𝕋 (m + 1)) (i : Fin (q + 1)) : -- --- CONCL ---
     ∀ E ∈ Zonotope.encloseMany p Zs direction,
-      (Zs i).construct ⊆ E.construct := by -- --- PROOF ---
+      (Zs i).toSet ⊆ E.toSet := by -- --- PROOF ---
   intro E (hE : Zonotope.encloseMany p Zs direction = some E)
   unfold Zonotope.encloseMany at hE
   dsimp only at hE
@@ -84,7 +84,7 @@ theorem Zonotope.encloseMany_outer (p : ℕ) (Zs : Fin (q + 1) → Zonotope (Vec
   have h3 := Zonotope.interval_contains _ h2
   set hull : Fin (q + 1) → Interval (Vec 𝕋 (m + 1)) := fun i =>
     (Zonotope.mtimesIntervalMat IM ((Zs i).reduceGirard 1)).interval with hhull
-  have h4 : A *ᵥ x ∈ Interval.construct (⟨fun k => minimumOver fun i => (hull i).inf k,
+  have h4 : A *ᵥ x ∈ Interval.toSet (⟨fun k => minimumOver fun i => (hull i).inf k,
       fun k => maximumOver fun i => (hull i).sup k⟩ : Interval (Vec 𝕋 (m + 1))) := fun k =>
     ⟨le_trans (minimumOver_le (fun i => (hull i).inf k) i) (h3 k).1,
       le_trans (h3 k).2 (le_maximumOver (fun i => (hull i).sup k) i)⟩

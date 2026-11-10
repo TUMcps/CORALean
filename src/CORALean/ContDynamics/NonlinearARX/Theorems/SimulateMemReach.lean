@@ -57,13 +57,13 @@ variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋]
 theorem NonlinearARX.simulate_mem_reach (sys : NonlinearARX dy du p) {o : ℕ} (ho : 0 < o)
     {Y₀ : S (p * dy)} {U : S du} {V : S ((p + 1) * du)}
     (hV : ∀ v : Vec ℝ ((p + 1) * du),
-      (∀ a : Fin (p + 1), (fun b => v (finProdFinEquiv (a, b))) ∈ construct U) →
-        v ∈ construct V)
+      (∀ a : Fin (p + 1), (fun b => v (finProdFinEquiv (a, b))) ∈ toSet U) →
+        v ∈ toSet V)
     (steps : ℕ → sys.toNonlinearSysDT.LinStep 𝕋 V)
-    {y₀ : Vec ℝ (p * dy)} (hy₀ : y₀ ∈ construct Y₀) {u : ℕ → Vec ℝ du}
-    (hu : ∀ k, u k ∈ construct U)
+    {y₀ : Vec ℝ (p * dy)} (hy₀ : y₀ ∈ toSet Y₀) {u : ℕ → Vec ℝ du}
+    (hu : ∀ k, u k ∈ toSet U)
     (hR : ∀ k, NonlinearARX.stack p (sys.simulate y₀ u) k ∈ (steps k).R) (k : ℕ) :
-    NonlinearARX.stack p (sys.simulate y₀ u) k ∈ construct
+    NonlinearARX.stack p (sys.simulate y₀ u) k ∈ toSet
       (sys.toNonlinearSysDT.reach ⟨Y₀, V, 0, k⟩ ⟨o, ho⟩ steps) :=
   sys.reach_outer ho hV steps (sys.simulate_isTrajectory hy₀ hu) hR k
 

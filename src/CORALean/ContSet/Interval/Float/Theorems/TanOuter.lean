@@ -147,7 +147,7 @@ private theorem aux_tan_bounds [SoundFloatArithmetic 𝕋] (p : ℕ) {l u : 𝕋
 /-- Every coordinate is bounded only where the range is certified free of poles, so the box holds
 the tangent of every point of `I`, a pole included. -/
 theorem Interval.tan_outer [SoundFloatArithmetic 𝕋] (p : ℕ) (I : Interval (Vec 𝕋 n)) :
-    (fun x i => Real.tan (x i)) '' I.construct ⊆ (I.tan p).construct := by
+    (fun x i => Real.tan (x i)) '' I.toSet ⊆ (I.tan p).toSet := by
   rintro _ ⟨x, hx, rfl⟩ i
   have hx' : toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i) := hx i
   have hb := aux_tan_bounds p hx'.1 hx'.2

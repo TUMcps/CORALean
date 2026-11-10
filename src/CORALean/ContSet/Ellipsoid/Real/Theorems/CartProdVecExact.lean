@@ -1,8 +1,8 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.CartProdVec
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqOfFactor
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MulGMulTranspose
 
 @[expose] public section
@@ -11,7 +11,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.MulGMulTranspose
 # `Ellipsoid.cartProdVec` is the product with a point, exactly
 
 `blkdiag(Q, 0) = P Q Pᵀ` is factored by `P G`, `P = [I; 0]` the embedding
-(`construct_eq_of_factor`), and `E.q + E.G u` with the point appended is the padded center plus
+(`toSet_eq_of_factor`), and `E.q + E.G u` with the point appended is the padded center plus
 `P G u`, as the padding rows of `P` are zero.
 
 ## Inputs
@@ -43,13 +43,13 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.cartProdVec_exact (E : Ellipsoid n) (v : Vec ℝ m) : -- --- CONCL ---
-    (E.cartProdVec v).construct =
-      (fun x : Vec ℝ n => (Fin.append x v : Vec ℝ (n + m))) '' E.construct := by -- --- PROOF ---
-  rw [E.construct_eq_sqrt]
+    (E.cartProdVec v).toSet =
+      (fun x : Vec ℝ n => (Fin.append x v : Vec ℝ (n + m))) '' E.toSet := by -- --- PROOF ---
+  rw [E.toSet_eq_sqrt]
   set P : Mat ℝ (n + m) n := Matrix.of fun i j => Fin.addCases (fun i => if i = j then 1 else 0)
     (fun _ => 0) i with hP
   have hQ : (E.cartProdVec v).Q = P * E.Q * Pᵀ := rfl
-  rw [(E.cartProdVec v).construct_eq_of_factor (P * E.G)
+  rw [(E.cartProdVec v).toSet_eq_of_factor (P * E.G)
     (by rw [hQ]; exact E.mul_G_mul_transpose P)]
   -- `P` pads with zeros
   have hPw : ∀ w : Vec ℝ n, P *ᵥ w = Fin.append w 0 := fun w => by

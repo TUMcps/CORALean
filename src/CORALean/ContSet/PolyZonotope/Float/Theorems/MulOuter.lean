@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MulGClose
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MulExact
 
 @[expose] public section
@@ -49,15 +49,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 private theorem PolyZonotope.aux_mul_refines (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
     (hp : pZ₁.p = pZ₂.p) : -- --- CONCL ---
-    (Real.PolyZonotope.mul (nominal pZ₁) (nominal pZ₂) hp).construct
-      ⊆ (PolyZonotope.mul pZ₁ pZ₂ hp).construct := by -- --- PROOF ---
+    (Real.PolyZonotope.mul (nominal pZ₁) (nominal pZ₂) hp).toSet
+      ⊆ (PolyZonotope.mul pZ₁ pZ₂ hp).toSet := by -- --- PROOF ---
   intro x hx
-  obtain ⟨a, b, ha, hb, hx⟩ := Real.PolyZonotope.mem_construct_iff.mp hx
+  obtain ⟨a, b, ha, hb, hx⟩ := Real.PolyZonotope.mem_toSet_iff.mp hx
   have hbox : (fun i => ∑ l,
         (Real.PolyZonotope.mulG (nominal pZ₁) (nominal pZ₂) l i
           - toReal (PolyZonotope.mulGDown pZ₁ pZ₂ i l))
             * Real.PolyZonotope.monomial (PolyZonotope.mulE pZ₁ pZ₂ hp) a l)
-      ∈ (PolyZonotope.generatorError (PolyZonotope.mulGDiff pZ₁ pZ₂)).construct :=
+      ∈ (PolyZonotope.generatorError (PolyZonotope.mulGDiff pZ₁ pZ₂)).toSet :=
     PolyZonotope.mem_generatorError_monomial (PolyZonotope.mulG_close pZ₁ pZ₂) ha
   -- counts ascribed: through the projection they agree only after unfolding `mul`
   refine ⟨fun i => toReal ((PolyZonotope.mul pZ₁ pZ₂ hp).c i)
@@ -94,7 +94,7 @@ theorem PolyZonotope.mul_outer (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
     (fun a : Fin pZ₁.p → ℝ => Real.PolyZonotope.point (nominal pZ₁) a
         * Real.PolyZonotope.point (nominal pZ₂) (fun k => a (Fin.cast hp.symm k)))
         '' {a | ∀ k, |a k| ≤ 1}
-      ⊆ (PolyZonotope.mul pZ₁ pZ₂ hp).construct :=
+      ⊆ (PolyZonotope.mul pZ₁ pZ₂ hp).toSet :=
   subset_trans (Real.PolyZonotope.mul_exact (nominal pZ₁) (nominal pZ₂) hp).subset
     (PolyZonotope.aux_mul_refines pZ₁ pZ₂ hp)
 

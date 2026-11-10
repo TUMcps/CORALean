@@ -56,8 +56,8 @@ variable {n : ℕ}
 unreduced recursion owes is owed by the reduced one too. -/
 theorem LinearSysDT.reachErrorReducedOrders_contains_reachErrorOrders (sys : LinearSysDT ℝ n)
     {o : ℕ → ℕ} (ho : ∀ k, 0 < o k) (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : -- --- CONCL ---
-    (sys.reachErrorOrders ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
-      ⊆ (sys.reachErrorReducedOrders ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct := by -- --- PROOF ---
+    (sys.reachErrorOrders ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).toSet
+      ⊆ (sys.reachErrorReducedOrders ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).toSet := by -- --- PROOF ---
   induction k with
   | zero => exact subset_rfl
   | succ k ih =>

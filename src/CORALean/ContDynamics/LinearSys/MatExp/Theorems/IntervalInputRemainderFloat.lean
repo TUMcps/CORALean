@@ -52,9 +52,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem MatExp.inputRemainder_subset_intervalInputRemainder (A : Interval (Mat 𝕋 n n)) {r : 𝕋}
     (hr : 0 ≤ toReal r) (η : ℕ)
     (hε : toReal (MatExp.normUpperBound (Interval.smul r r A)) / ((η : ℝ) + 2) ≤ 1 / 2)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) : -- --- CONCL ---
-    (Real.MatExp.inputRemainder M (toReal r) η).construct
-      ⊆ (MatExp.intervalInputRemainder A r η).construct := by -- --- PROOF ---
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) : -- --- CONCL ---
+    (Real.MatExp.inputRemainder M (toReal r) η).toSet
+      ⊆ (MatExp.intervalInputRemainder A r η).toSet := by -- --- PROOF ---
   have hnorm := MatExp.norm_smul_le_normUpperBound A r hM
   have hE := MatExp.expRemainderBound_le η hnorm (le_trans (norm_nonneg _) hnorm) hε
   -- the exact width `r · E(r M)`, below the stored one

@@ -41,8 +41,8 @@ variable {n : ℕ}
 
 theorem HPolytope.reduceOverDomain_inner (P : HPolytope (Vec ℝ n)) (hme : P.me = 0)
     (dom : Interval (Vec ℝ n)) : -- --- CONCL ---
-    (P.reduceOverDomain dom false).construct ∩ dom.construct ⊆
-      P.construct ∩ dom.construct := by -- --- PROOF ---
+    (P.reduceOverDomain dom false).toSet ∩ dom.toSet ⊆
+      P.toSet ∩ dom.toSet := by -- --- PROOF ---
   -- every normalized row is below the reduced one plus the supremum, and `inf b` is below `b_i`
   rintro x ⟨hxR, hxd⟩
   refine ⟨?_, hxd⟩

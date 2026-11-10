@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.le_subset {I J : Interval (Vec 𝕋 n)} (h : Interval.le I J = true) :
-    I.construct ⊆ J.construct := by
+    I.toSet ⊆ J.toSet := by
   simp only [Interval.le, List.all_eq_true, List.mem_finRange, Bool.and_eq_true,
     forall_const] at h
   intro x hx j

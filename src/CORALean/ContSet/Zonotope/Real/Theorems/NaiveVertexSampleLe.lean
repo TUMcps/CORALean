@@ -50,12 +50,12 @@ variable {n N : ℕ} {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.naive_vertex_sample_le (Z : Zonotope (Vec ℝ n)) (H : E →ₗ[ℝ] Vec ℝ n)
-    (d : Vec ℝ n) {r : ℝ} (hr : IsGreatest ((fun p => coeffNorm H (p - d)) '' Z.construct) r)
+    (d : Vec ℝ n) {r : ℝ} (hr : IsGreatest ((fun p => coeffNorm H (p - d)) '' Z.toSet) r)
     (a : Fin N → Fin Z.h → Bool) (hN : (Finset.univ : Finset (Fin N)).Nonempty) :
     Finset.univ.sup' hN (fun i => coeffNorm H (Z.corner (a i) - d)) ≤ r := by
   refine Finset.sup'_le hN _ fun i _ => hr.2 ⟨Z.corner (a i), ?_, rfl⟩
   -- a corner is a point of the zonotope
-  rw [Z.construct_eq_convexHull_corner]
+  rw [Z.toSet_eq_convexHull_corner]
   exact subset_convexHull ℝ _ ⟨a i, rfl⟩
 
 end CORALean.Real

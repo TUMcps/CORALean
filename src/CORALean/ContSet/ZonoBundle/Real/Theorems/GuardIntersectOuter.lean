@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ToSetEqIInter
 public import CORALean.ContSet.ZonoBundle.Real.Operations.GuardIntersect
 public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.StackExact
@@ -67,30 +67,30 @@ result encloses the bundle cut by the guard. -/
 theorem ZonoBundle.guardIntersect_outer (zB : ZonoBundle (Vec ℝ n))
     (Aq : Fin q → (Vec ℝ n →ₗ[ℝ] ℝ)) (G : HPolytope (Vec ℝ n))
     (vert : HPolytope (Vec ℝ n) → κ → Vec ℝ n) (Λ : Fin s → Mat ℝ n n)
-    (hvert : ((HPolytope.stack fun i => (zB.Z i).hPolytope Aq).intersection G).construct
+    (hvert : ((HPolytope.stack fun i => (zB.Z i).hPolytope Aq).intersection G).toSet
       ⊆ convexHull ℝ
         (Set.range (vert ((HPolytope.stack fun i => (zB.Z i).hPolytope Aq).intersection G))))
     (hΛ : ∀ j, IsUnit (Λ j).det) : -- --- CONCL ---
-    zB.construct ∩ G.construct
-      ⊆ (zB.guardIntersect Aq G vert Λ).construct := by -- --- PROOF ---
+    zB.toSet ∩ G.toSet
+      ⊆ (zB.guardIntersect Aq G vert Λ).toSet := by -- --- PROOF ---
   set P := (HPolytope.stack fun i => (zB.Z i).hPolytope Aq).intersection G
   rintro x ⟨hx, hxG⟩
   -- the bundle and the guard, inside the cut
-  have hxP : x ∈ P.construct := by
+  have hxP : x ∈ P.toSet := by
     rw [← HPolytope.intersection_exact, HPolytope.stack_exact]
     refine ⟨Set.mem_iInter.mpr fun i => Zonotope.hPolytope_contains _ Aq ?_, hxG⟩
-    exact SetIntersection.mem_construct_ofFn.mp hx i
+    exact SetIntersection.mem_toSet_ofFn.mp hx i
   have hxV := hvert hxP
   -- and the cut, inside every parallelotope
-  rw [ZonoBundle.construct_eq_iInter]
+  rw [ZonoBundle.toSet_eq_iInter]
   show x ∈ ⋂ j, (Zonotope.mtimes (Λ j)
-    (Interval.enclosePoints fun l => (Λ j)⁻¹ *ᵥ vert P l).zonotope).construct
+    (Interval.enclosePoints fun l => (Λ j)⁻¹ *ᵥ vert P l).zonotope).toSet
   refine Set.mem_iInter.mpr fun j => ?_
-  have hbox : (Λ j)⁻¹ *ᵥ x ∈ (Interval.enclosePoints fun l => (Λ j)⁻¹ *ᵥ vert P l).construct := by
+  have hbox : (Λ j)⁻¹ *ᵥ x ∈ (Interval.enclosePoints fun l => (Λ j)⁻¹ *ᵥ vert P l).toSet := by
     have himg : (Λ j)⁻¹ *ᵥ x ∈ convexHull ℝ ((Matrix.mulVecLin (Λ j)⁻¹) '' Set.range (vert P)) := by
       rw [← LinearMap.image_convexHull]
       exact ⟨x, hxV, rfl⟩
-    refine convexHull_min ?_ (Interval.convex_construct _) himg
+    refine convexHull_min ?_ (Interval.convex_toSet _) himg
     rintro _ ⟨_, ⟨l, rfl⟩, rfl⟩
     exact Interval.enclosePoints_outer _ l
   rw [← Zonotope.mtimes_exact]

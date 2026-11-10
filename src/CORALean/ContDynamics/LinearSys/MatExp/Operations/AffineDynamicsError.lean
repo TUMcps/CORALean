@@ -54,7 +54,7 @@ variable {n : ℕ}
 /-- [1]'s eq. (23): `Δε^h_k(Δt,η) := 2·err(C) + √γ_h ‖G^{(-)}_h‖₂`. -/
 noncomputable def MatExp.affineDynamicsError (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n))
     (ũ : Vec ℝ n) (Δt : ℝ) (η : ℕ) : ℝ :=
-  2 * err (MatExp.curvatureEnclosure A H ũ Δt η).construct
+  2 * err (MatExp.curvatureEnclosure A H ũ Δt η).toSet
     + Real.sqrt H.h * genOpNorm₂ (MatExp.genMinus A H Δt)
 
 end CORALean.Real

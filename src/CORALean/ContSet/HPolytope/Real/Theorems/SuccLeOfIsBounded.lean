@@ -90,8 +90,8 @@ private theorem aux_exists_ne_zero_mulVec_nonpos (A : Mat ℝ q n) (hn : 0 < n)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.succ_le_of_isBounded {A : Mat ℝ q n} {b : Vec ℝ q} (hn : 0 < n)
-    (hne : (HPolytope.ineqs A b).construct.Nonempty)
-    (hb : Bornology.IsBounded (HPolytope.ineqs A b).construct) : n + 1 ≤ q := by
+    (hne : (HPolytope.ineqs A b).toSet.Nonempty)
+    (hb : Bornology.IsBounded (HPolytope.ineqs A b).toSet) : n + 1 ≤ q := by
   by_contra hq
   obtain ⟨d, hd0, hd⟩ := aux_exists_ne_zero_mulVec_nonpos A hn (by omega)
   exact hd0 (HPolytope.eq_zero_of_mulVec_nonpos hne hb hd)

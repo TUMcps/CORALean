@@ -40,9 +40,9 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- a zonotope is a continuous image of that ball, so compactness carries over
-theorem Zonotope.isCompact_construct (Z : Zonotope α) : -- --- CONCL ---
-    IsCompact Z.construct := by -- --- PROOF ---
-  have himg : Z.construct
+theorem Zonotope.isCompact_toSet (Z : Zonotope α) : -- --- CONCL ---
+    IsCompact Z.toSet := by -- --- PROOF ---
+  have himg : Z.toSet
       = (fun β : Fin Z.h → ℝ => Z.c + ∑ j, β j • Z.G j) '' Metric.closedBall 0 1 := by
     rw [Zonotope.closedBall_eq]
     ext x

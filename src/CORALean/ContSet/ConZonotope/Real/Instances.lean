@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsequalToSet
 public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.Interval.Real.Instances
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IntersectionExact
@@ -53,15 +53,15 @@ scoped notation "𝒞" => fun n => ConZonotope (Vec ℝ n)
 /-- At every ambient type, not only `Vec`: the constraints live on the
 coefficient space whatever the generators point into. -/
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSet (ConZonotope α) α :=
-  ⟨ConZonotope.construct⟩
+  ⟨ConZonotope.toSet⟩
 
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : ConvexSet (ConZonotope α) α :=
-  ⟨ConZonotope.convex_construct⟩
+  ⟨ConZonotope.convex_toSet⟩
 
 /-- Compactness comes from `domain` being a bounded polytope, not from the
 coefficient cube the constraints cut down. -/
 instance {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] : CompactSet (ConZonotope α) α :=
-  ⟨ConZonotope.isCompact_construct⟩
+  ⟨ConZonotope.isCompact_toSet⟩
 
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : OfPoint (ConZonotope α) α where
   ofPoint := ConZonotope.ofPoint
@@ -88,7 +88,7 @@ noncomputable instance : Reduce (ConZonotope (Vec ℝ n)) (Vec ℝ n) where
 instance : Mtimes (Mat ℝ) (𝒞) where
   mtimes := ConZonotope.mtimes
   mtimes_outer M C := by
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (ConZonotope.mtimes_exact M C).subset
 
 /-- The same operation at an interval matrix, which a discretization wants and
@@ -105,7 +105,7 @@ instance : Reindex 𝒞 where
 /-- `ConZonotope.isequal`, structural at tolerance `0`: sound, not exact. -/
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : Isequal (ConZonotope α) where
   isequal := ConZonotope.isequal
-  isequal_construct _ _ := ConZonotope.isequal_construct
+  isequal_toSet _ _ := ConZonotope.isequal_toSet
 
 end CORALean.Real
 

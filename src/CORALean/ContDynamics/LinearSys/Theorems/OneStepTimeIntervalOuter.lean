@@ -95,17 +95,17 @@ theorem LinearSys.IsCanonicalTrajectory.oneStep_timeInterval_outer {sys : Linear
     (hΔt : 0 < Δt) {m : ℕ}
     (hε : ‖Δt • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {X U W : S n}
     {x w : ℝ → Vec ℝ n} {u : Vec ℝ n}
-    (traj : sys.IsCanonicalTrajectory (Set.Icc 0 Δt) X W x w) (h0 : (0 : Vec ℝ n) ∈ construct U)
+    (traj : sys.IsCanonicalTrajectory (Set.Icc 0 Δt) X W x w) (h0 : (0 : Vec ℝ n) ∈ toSet U)
     {t : ℝ} (ht0 : 0 ≤ t) (htΔ : t ≤ Δt)
-    (hWU : ∀ v ∈ construct W, v - u ∈ construct U) (hW : Bornology.IsBounded (construct W))
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U))
+    (hWU : ∀ v ∈ toSet W, v - u ∈ toSet U) (hW : Bornology.IsBounded (toSet W))
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U))
     (hRconv : Convex ℝ (sys.inputRemainderSet Δt (m + 2) U))
     (hRclosed : IsClosed (sys.inputRemainderSet Δt (m + 2) U))
     (hRbdd : Bornology.IsBounded (sys.inputRemainderSet Δt (m + 2) U))
-    (pconv : Convex ℝ (construct (OfPoint.ofPoint (S := S n) u)))
-    (pclosed : IsClosed (construct (OfPoint.ofPoint (S := S n) u)))
-    (pbdd : Bornology.IsBounded (construct (OfPoint.ofPoint (S := S n) u)))
+    (pconv : Convex ℝ (toSet (OfPoint.ofPoint (S := S n) u)))
+    (pclosed : IsClosed (toSet (OfPoint.ofPoint (S := S n) u)))
+    (pbdd : Bornology.IsBounded (toSet (OfPoint.ofPoint (S := S n) u)))
     (pRconv : Convex ℝ (sys.inputRemainderSet Δt (m + 2) (OfPoint.ofPoint (S
       := S n) u)))
     (pRclosed : IsClosed (sys.inputRemainderSet Δt (m + 2) (OfPoint.ofPoint (S
@@ -113,7 +113,7 @@ theorem LinearSys.IsCanonicalTrajectory.oneStep_timeInterval_outer {sys : Linear
     (pRbdd : Bornology.IsBounded (sys.inputRemainderSet Δt (m + 2)
       (OfPoint.ofPoint (S := S n) u)))
     : -- --- CONCL ---
-    x t ∈ construct (sys.oneStep X U u Δt (m + 2)).Rti := by -- --- PROOF ---
+    x t ∈ toSet (sys.oneStep X U u Δt (m + 2)).Rti := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
   set lam : ℝ := t / Δt with hlam
   have hl0 : 0 ≤ lam := div_nonneg ht0 hΔt.le
@@ -125,11 +125,11 @@ theorem LinearSys.IsCanonicalTrajectory.oneStep_timeInterval_outer {sys : Linear
     hε pconv pclosed pbdd pRconv pRclosed pRbdd
     ⟨fun _ => u, fun _ _ => OfPoint.mem_ofPoint u, aestronglyMeasurable_const,
       (MatExp.expIntegral_constInput A u hΔt.le).symm⟩
-  have hex : exp (Δt • A) *ᵥ x 0 ∈ construct (Mtimes.mtimes (exp (Δt • A)) X) :=
+  have hex : exp (Δt • A) *ᵥ x 0 ∈ toSet (Mtimes.mtimes (exp (Δt • A)) X) :=
     Mtimes.mtimes_outer _ X (Set.mem_iUnion₂.mpr ⟨_, rfl, Set.mem_image_of_mem _ traj.init⟩)
   -- the hull of `X` and `Htp` holds the interpolated point
   have hHtp : exp (Δt • A) *ᵥ x 0 + MatExp.expIntegral A Δt *ᵥ u
-      ∈ construct (Plus.plus (Mtimes.mtimes (exp (Δt • A)) X)
+      ∈ toSet (Plus.plus (Mtimes.mtimes (exp (Δt • A)) X)
         (sys.inputSolution Δt (m + 2) (OfPoint.ofPoint u : S n))) :=
     Plus.plus_outer _ _ (Set.add_mem_add hex hPu)
   have hlin := LinComb.linComb_outer X (Plus.plus (Mtimes.mtimes (exp (Δt • A)) X)
@@ -137,11 +137,11 @@ theorem LinearSys.IsCanonicalTrajectory.oneStep_timeInterval_outer {sys : Linear
     ⟨x 0, traj.init, _, hHtp, 1 - lam, ⟨by linarith, by linarith⟩, by rw [sub_sub_cancel]⟩
   -- the two interpolation errors
   have hF : (exp (t • A) - 1 - lam • (exp (Δt • A) - 1)) *ᵥ x 0
-      ∈ construct (Mtimes.mtimes (𝕄 := ℐ) (MatExp.correctionMatrix A Δt (m + 2)) X) :=
+      ∈ toSet (Mtimes.mtimes (𝕄 := ℐ) (MatExp.correctionMatrix A Δt (m + 2)) X) :=
     Mtimes.mtimes_outer (𝕄 := ℐ) _ X (Set.mem_biUnion
       (MatExp.expDiff_mem_correctionMatrix A hΔt hε ht0 htΔ) (Set.mem_image_of_mem _ traj.init))
   have hG : (MatExp.expIntegral A t - lam • MatExp.expIntegral A Δt) *ᵥ u
-      ∈ construct (Mtimes.mtimes (𝕄 := ℐ) (MatExp.constCorrectionMatrix A Δt (m + 2))
+      ∈ toSet (Mtimes.mtimes (𝕄 := ℐ) (MatExp.constCorrectionMatrix A Δt (m + 2))
         (OfPoint.ofPoint (S := S n) u)) :=
     Mtimes.mtimes_outer (𝕄 := ℐ) _ _ (Set.mem_biUnion
       (MatExp.expIntegralDiff_mem_constCorrectionMatrix A hΔt (m + 2) hε ht0 htΔ)
@@ -155,7 +155,7 @@ theorem LinearSys.IsCanonicalTrajectory.oneStep_timeInterval_outer {sys : Linear
       smul_add]
     abel
   -- the four parts, regrouped into `((Hti ⊞ PU) ⊞ C_input)`
-  show x t ∈ construct (Plus.plus (Plus.plus _ _) _)
+  show x t ∈ toSet (Plus.plus (Plus.plus _ _) _)
   rw [hx]
   exact Plus.plus_outer _ _ (Set.add_mem_add (Plus.plus_outer _ _ (Set.add_mem_add
     (Plus.plus_outer _ _ (Set.add_mem_add hlin hF)) hPU)) hG)

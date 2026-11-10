@@ -83,13 +83,13 @@ variable [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 any support-function and support-vector oracles that are what they are named. -/
 theorem LinearSys.verifySearch_sound
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
-    (sys : LinearSys 𝕋 n) (X₀ U : S n) (hX₀ : Convex ℝ (construct X₀))
-    (hUconv : Convex ℝ (construct U)) {t : ℝ} (ht : 0 < t) {m : ℕ}
+    (sys : LinearSys 𝕋 n) (X₀ U : S n) (hX₀ : Convex ℝ (toSet X₀))
+    (hUconv : Convex ℝ (toSet U)) {t : ℝ} (ht : 0 < t) {m : ℕ}
     (hε : ‖t • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ}
-    (hρ : ∀ X : S n, ∀ x ∈ construct X, ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, d x ≤ ρ X d)
-    {ν₀ νU νL : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} (hν₀ : ∀ d, ν₀ d ∈ construct X₀)
-    (hνU : ∀ d, νU d ∈ construct U) {L : Set (Vec ℝ n)} (hL : Convex ℝ L)
+    (hρ : ∀ X : S n, ∀ x ∈ toSet X, ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, d x ≤ ρ X d)
+    {ν₀ νU νL : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} (hν₀ : ∀ d, ν₀ d ∈ toSet X₀)
+    (hνU : ∀ d, νU d ∈ toSet U) {L : Set (Vec ℝ n)} (hL : Convex ℝ L)
     (hνL : ∀ d, νL d ∈ L) {ρL : (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ} (hρL : ∀ d, ∀ y ∈ L, d y ≤ ρL d)
     {νhat : ℝ → (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} {inHull : List (Vec ℝ n) → Bool}
     (hhull : ∀ V, inHull V = true → (0 : Vec ℝ n) ∈ convexHull ℝ {v | v ∈ V})

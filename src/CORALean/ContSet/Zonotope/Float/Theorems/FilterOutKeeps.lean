@@ -10,7 +10,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.FilterOutCovered
 If the remainder of a cell after the union of all the other cells has nonempty interior, which is
 the criterion the exact `Zonotope.filterOut` keeps a cell by, the float `Zonotope.filterOut` keeps
 it too: a deleted cell lies in another cell (`filterOut_covered`), so its remainder is empty.
-The sets are the float zonotopes' own (`construct`, error boxes included). The converse fails by
+The sets are the float zonotopes' own (`toSet`, error boxes included). The converse fails by
 design: a cell covered only by several cells together is kept.
 
 Source: [1].
@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.filterOut_keeps (Zs : Fin m → Zonotope (Vec 𝕋 n)) (ind : Fin m)
-    (hint : (interior ((Zs ind).construct \ ⋃ j ∈ {j | j ≠ ind}, (Zs j).construct)).Nonempty)
+    (hint : (interior ((Zs ind).toSet \ ⋃ j ∈ {j | j ≠ ind}, (Zs j).toSet)).Nonempty)
     : -- --- CONCL ---
     ind ∈ Zonotope.filterOut Zs := by -- --- PROOF ---
   by_contra hout

@@ -57,7 +57,7 @@ private theorem aux_abs_le_max_abs {lo hi x : ℝ} (h1 : lo ≤ x) (h2 : x ≤ h
 
 /-- The dominating matrix bounds the norm of every member of the box. -/
 theorem Interval.norm_le_absMax {A : Interval (Mat ℝ m n)} {M : Mat ℝ m n}
-    (hM : M ∈ A.construct) : -- --- CONCL ---
+    (hM : M ∈ A.toSet) : -- --- CONCL ---
     ‖M‖ ≤ ‖A.absMax‖ := by -- --- PROOF ---
   have hentry : ∀ i j, ‖M i j‖₊ ≤ ‖A.absMax i j‖₊ := by
     intro i j

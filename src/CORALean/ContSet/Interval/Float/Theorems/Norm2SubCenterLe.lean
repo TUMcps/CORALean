@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.norm₂_sub_center_le (I : Interval (Vec 𝕋 n)) {σ : 𝕋}
-    (hσ : toReal I.radiusSq ≤ toReal (mulDown σ σ)) {x : Vec ℝ n} (hx : x ∈ I.construct) :
+    (hσ : toReal I.radiusSq ≤ toReal (mulDown σ σ)) {x : Vec ℝ n} (hx : x ∈ I.toSet) :
     ‖x - I.nominal.center‖₂ ≤ toReal (absolute σ) :=
   le_trans (Real.Interval.norm₂_sub_center_le (I := I.nominal) hx)
     (I.radius₂_nominal_le (fun i => le_trans (hx i).1 (hx i).2) hσ)

@@ -59,18 +59,18 @@ theorem LinearSys.IsCanonicalTrajectory.stepInput_outer [Mtimes ℐ S]
     {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u)
     (hΔt : 0 < Δt) (η : ℕ) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U))
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U))
     (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) Δt η U))
     (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) Δt η U))
     (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) Δt η U))
     (k : ℕ) (hT : Set.Icc ((k : ℝ) * Δt) (((k : ℝ) + 1) * Δt) ⊆ T) : -- --- CONCL ---
-    sys.stepInput u Δt k ∈ construct (sys.inputSolution Δt η U) := by -- --- PROOF ---
+    sys.stepInput u Δt k ∈ toSet (sys.inputSolution Δt η U) := by -- --- PROOF ---
   rw [show ((k : ℝ) + 1) * Δt = (k : ℝ) * Δt + Δt from by ring] at hT
   -- the reflected argument, in the form each lemma states it
   have hrefl : ∀ τ : ℝ, (k : ℝ) * Δt + (Δt - τ) = (k : ℝ) * Δt + Δt - τ := fun τ => by ring
   have hu : ∀ τ ∈ Set.Ioc (0 : ℝ) Δt,
-      (fun σ : ℝ => u ((k : ℝ) * Δt + σ)) (Δt - τ) ∈ construct U := by
+      (fun σ : ℝ => u ((k : ℝ) * Δt + σ)) (Δt - τ) ∈ toSet U := by
     intro τ hτ
     exact traj.input _ (hT ⟨by linarith [hτ.2], by linarith [hτ.1]⟩)
   have hmeas : AEStronglyMeasurable (fun τ : ℝ => (fun σ : ℝ => u ((k : ℝ) * Δt + σ)) (Δt - τ))

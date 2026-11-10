@@ -72,10 +72,10 @@ and disturbances in `W`, and the output under noise in `V`. -/
 structure LinearSys.IsTrajectory (sys : LinearSys 𝕋 n) (T : Set ℝ) (X₀ : S n) (U : S sys.m)
     (W : S sys.r) (V : S sys.s) (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ sys.m)
     (w : ℝ → Vec ℝ sys.r) (v : ℝ → Vec ℝ sys.s) (y : ℝ → Vec ℝ sys.q) : Prop where
-  init : x 0 ∈ construct X₀
-  input (t : ℝ) (ht : t ∈ T) : u t ∈ construct U
-  dist (t : ℝ) (ht : t ∈ T) : w t ∈ construct W
-  noise (t : ℝ) (ht : t ∈ T) : v t ∈ construct V
+  init : x 0 ∈ toSet X₀
+  input (t : ℝ) (ht : t ∈ T) : u t ∈ toSet U
+  dist (t : ℝ) (ht : t ∈ T) : w t ∈ toSet W
+  noise (t : ℝ) (ht : t ∈ T) : v t ∈ toSet V
   meas : AEStronglyMeasurable u (volume.restrict T)
   measDist : AEStronglyMeasurable w (volume.restrict T)
   cont : ContinuousOn x T
@@ -87,8 +87,8 @@ structure LinearSys.IsTrajectory (sys : LinearSys 𝕋 n) (T : Set ℝ) (X₀ : 
 coordinates drawn from `U`: `B`, `c` and `E` are already in `u`. -/
 structure LinearSys.IsCanonicalTrajectory (sys : LinearSys 𝕋 n) (T : Set ℝ) (R₀ U : S n)
     (x u : ℝ → Vec ℝ n) : Prop where
-  init : x 0 ∈ construct R₀
-  input (t : ℝ) (ht : t ∈ T) : u t ∈ construct U
+  init : x 0 ∈ toSet R₀
+  input (t : ℝ) (ht : t ∈ T) : u t ∈ toSet U
   meas : AEStronglyMeasurable u (volume.restrict T)
   cont : ContinuousOn x T
   flow (t : ℝ) (ht : t ∈ T) :

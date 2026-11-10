@@ -46,7 +46,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 -- with no constraint rows the system is vacuous
 theorem PolyZonotope.conPolyZono_contains (pZ : PolyZonotope (Vec 𝕋 n)) :
-    pZ.construct ⊆ pZ.conPolyZono.construct := by
+    pZ.toSet ⊆ pZ.conPolyZono.toSet := by
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_nominalSet_iff.mp hx
   exact ConPolyZono.mem_nominalSet_iff.mpr

@@ -43,8 +43,8 @@ variable {S α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] [FiniteDimen
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ContSet.isFullDim_iff_affineSpan (s : S) :
-    ContSet.IsFullDim s ↔ affineSpan ℝ (construct s) = ⊤ :=
-  (ConvexSet.convex_construct s).interior_nonempty_iff_affineSpan_eq_top
+    ContSet.IsFullDim s ↔ affineSpan ℝ (toSet s) = ⊤ :=
+  (ConvexSet.convex_toSet s).interior_nonempty_iff_affineSpan_eq_top
 
 end CORALean
 

@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- `ConZonotope.step_separatesAlong` is sound when `true`. -/
 private theorem ConZonotope.aux_separatesAlong_sound {cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)}
     {a : Vec 𝕋 n} (h : ConZonotope.step_separatesAlong cZ₁ cZ₂ a = true) : -- --- CONCL ---
-    Disjoint cZ₁.construct cZ₂.construct := by -- --- PROOF ---
+    Disjoint cZ₁.toSet cZ₂.toSet := by -- --- PROOF ---
   rw [Set.disjoint_left]
   intro x hx₁ hx₂
   have hlt := toReal_lt_of_ltStrict h
@@ -65,7 +65,7 @@ private theorem ConZonotope.aux_separatesAlong_sound {cZ₁ cZ₂ : ConZonotope 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.isDisjointLP_sound {cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)}
-    (h : cZ₁.isDisjointLP cZ₂ = true) : Disjoint cZ₁.construct cZ₂.construct := by
+    (h : cZ₁.isDisjointLP cZ₂ = true) : Disjoint cZ₁.toSet cZ₂.toSet := by
   rcases Bool.or_eq_true_iff.mp h with h | h
   · exact ConZonotope.aux_separatesAlong_sound h
   · exact ConZonotope.aux_separatesAlong_sound h

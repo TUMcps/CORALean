@@ -57,9 +57,9 @@ private theorem NonlinearSys.FloatHessModel.Encloses.aux_linReachRunFloat_outer
       fm.step_linReachRunFloat alg U options k R = some Rs → Rs.length = k ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
           sys.IsTrajectory (S := 𝒮)
-            (Set.Icc 0 ((k : ℝ) * toReal options.Δt)) R.construct U.construct x u y →
+            (Set.Icc 0 ((k : ℝ) * toReal options.Δt)) R.toSet U.toSet x u y →
           ∀ (j : ℕ) (hj : j < Rs.length), ∀ t ∈ Set.Icc ((j : ℝ) * toReal options.Δt)
-            (((j : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[j].construct := by -- --- PROOF ---
+            (((j : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[j].toSet := by -- --- PROOF ---
   intro k
   induction k with
   | zero =>
@@ -90,7 +90,7 @@ private theorem NonlinearSys.FloatHessModel.Encloses.aux_linReachRunFloat_outer
       have hmaps : Set.MapsTo (fun s => Δt + s) (Set.Icc 0 ((k : ℝ) * Δt))
           (Set.Icc 0 (((k + 1 : ℕ) : ℝ) * Δt)) := fun s hs =>
         ⟨by linarith [hs.1], by push_cast; linarith [hs.2]⟩
-      have shifted := traj.shift (R₀' := Rt.construct) hmaps (hsub ⟨hΔt.le, le_rfl⟩) hend
+      have shifted := traj.shift (R₀' := Rt.toSet) hmaps (hsub ⟨hΔt.le, le_rfl⟩) hend
       have hj' : j < rest.length := by simpa using hj
       have key := hrestout shifted j hj' (t - Δt)
         ⟨by push_cast at ht; linarith [ht.1], by push_cast at ht; linarith [ht.2]⟩
@@ -110,10 +110,10 @@ theorem NonlinearSys.FloatHessModel.Encloses.reachAlgFloat_outer
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
           sys.IsTrajectory (S := 𝒮)
-            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
-            params.U.construct x u y →
+            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.toSet
+            params.U.toSet x u y →
           ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
-            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
+            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].toSet := by -- --- PROOF ---
   intro Rs (hR : fm.reachAlgFloat alg params options = some Rs)
   unfold NonlinearSys.FloatHessModel.reachAlgFloat at hR
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hR

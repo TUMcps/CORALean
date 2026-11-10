@@ -77,14 +77,14 @@ example (k : ℕ) (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5) (sc sh : Vec �
 /-- Every output over the whole input set is in the zonotope that comes back. -/
 example {nn : NeuralNetwork 𝒵[𝕋] 6 2} {f : Vec ℝ 6 → Vec ℝ 2}
     (hf : nn.Encloses f) (X : Zonotope (Vec 𝕋 6)) {x : Vec ℝ 6}
-    (hx : x ∈ construct X) : f x ∈ construct (nn.enclose X) :=
+    (hx : x ∈ toSet X) : f x ∈ toSet (nn.enclose X) :=
   hf.enclose_outer X x hx
 
 /-- Robust classification, discharged by the same bound per rival label. -/
 example {nn : NeuralNetwork 𝒵[𝕋] 6 2} {f : Vec ℝ 6 → Vec ℝ 2}
     (hf : nn.Encloses f) (X : Zonotope (Vec 𝕋 6)) (l : Fin 2)
-    (u : ∀ j, SupportBound (construct (nn.enclose X)) (marginDir 2 j l))
-    (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ 6} (hx : x ∈ construct X)
+    (u : ∀ j, SupportBound (toSet (nn.enclose X)) (marginDir 2 j l))
+    (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ 6} (hx : x ∈ toSet X)
     {j : Fin 2} (hj : j ≠ l) : f x j < f x l :=
   NeuralNetwork.classifies hf X l u h hx hj
 
@@ -97,9 +97,9 @@ example (K : Fin 1 → Fin 2 → 𝕋) (b : Vec 𝕋 5) :
 
 /-- Exact at a float representation too, a relabelling carrying no scalar. -/
 example (X : Zonotope (Vec 𝕋 6)) :
-    construct ((Layer.reshape (S := 𝒵[𝕋])
+    toSet ((Layer.reshape (S := 𝒵[𝕋])
     (Fin.transposeEquiv 3 2)).enclose X)
-      = CORALean.reindexLin (Fin.transposeEquiv 3 2) '' construct X :=
+      = CORALean.reindexLin (Fin.transposeEquiv 3 2) '' toSet X :=
   Layer.reshape_exact (S := 𝒵[𝕋]) _ X
 
 

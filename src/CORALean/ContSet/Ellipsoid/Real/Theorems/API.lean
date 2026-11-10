@@ -1,25 +1,25 @@
 module
 
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GTranspose
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.AddMulVecMemConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.AddMulVecMemToSet
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MapSelection
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructSubsetOfLe
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetSubsetOfLe
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.AbsSubLeSqrtDiag
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfFactor
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetOfFactor
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsPinvQpinv
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqPinv
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqPinv
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemToSetIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MulGMulTranspose
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormPullbackEq
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfVolumeLeSupersetParallelotope
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqOfVolumeLeSupersetParallelotope
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.DetNeZeroOfSupersetParallelotope
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormSqAddTraceLeOfSupersetParallelotope
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemToSet
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqImage
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ContinuousAffine
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
@@ -35,7 +35,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.RepresentsaOriginIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.CartProdOuter
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.CartProdVecExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsFullDimIff
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsequalToSet
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.VerticesExact
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormUbLe
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEq
@@ -114,7 +114,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsBadDirIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.QuadNonnegOfDominant
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GoffinSpec
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.CenterOfMinVolume
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.SumNotConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.SumNotToSet
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ApplyMulVec
 
 /-!
@@ -125,11 +125,11 @@ enclosing there — at every admissible pair of scalings, of which
 `PlusScalingsAdmissible` picks out the curve Kurzhanski and Varaiya's `l`
 sweeps. `SupportBoundAttained` is what says the certificates give nothing away,
 and convexity, compactness and boundedness are what the reachability theorems
-consume. `ConstructEqImage` is what all three of those last transfer from the
-unit ball through. `mem_ofPoint` reuses `mem_construct` at the zero
-coefficient vector. `ConstructEqOfFactor` is how a statement about the shape matrix is proved on
+consume. `ToSetEqImage` is what all three of those last transfer from the
+unit ball through. `mem_ofPoint` reuses `mem_toSet` at the zero
+coefficient vector. `ToSetEqOfFactor` is how a statement about the shape matrix is proved on
 generators — any `F` with `F Fᵀ = Q` generates the ellipsoid. The definition is stated over `Q`
-through its pseudo-inverse, which `IsPinvQpinv` certifies; `ConstructEqSqrt` turns it into the image
-of the unit ball under `G = Q^(1/2)` that the proofs go through, `MemConstructIff` is that read
-pointwise, and `ConstructEqPinv` is the set at any pseudo-inverse, however CORA computes it.
+through its pseudo-inverse, which `IsPinvQpinv` certifies; `ToSetEqSqrt` turns it into the image
+of the unit ball under `G = Q^(1/2)` that the proofs go through, `MemToSetIff` is that read
+pointwise, and `ToSetEqPinv` is the set at any pseudo-inverse, however CORA computes it.
 -/

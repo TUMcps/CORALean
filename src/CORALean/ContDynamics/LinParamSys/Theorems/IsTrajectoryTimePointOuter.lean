@@ -76,12 +76,12 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 /-- The first `η + 1` terms at `t` lie in the interval Taylor truncation of `t • B`. -/
 private theorem aux_peanoBakerSum_mem {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
-    (hAB : ∀ s, A s ∈ B.construct) {t : ℝ} (ht : 0 ≤ t) (η : ℕ) : -- --- CONCL ---
+    (hAB : ∀ s, A s ∈ B.toSet) {t : ℝ} (ht : 0 ≤ t) (η : ℕ) : -- --- CONCL ---
     ∑ k ∈ Finset.range (η + 1), MatExp.peanoBakerTerm A k t
-      ∈ (MatExp.expIntervalTaylor (Interval.smul t B) η).construct := by -- --- PROOF ---
+      ∈ (MatExp.expIntervalTaylor (Interval.smul t B) η).toSet := by -- --- PROOF ---
   -- each term is `1/k!` times a member of the `k`-th box power
   have hterm : ∀ k, MatExp.peanoBakerTerm A k t ∈ (Interval.smul ((Nat.factorial k : ℝ)⁻¹)
-      (Interval.matPow (Interval.smul t B) k)).construct := fun k => by
+      (Interval.matPow (Interval.smul t B) k)).toSet := fun k => by
     have h := Interval.smul_outer ((Nat.factorial k : ℝ)⁻¹) _
       (MatExp.peanoBakerTerm_mem_matPow hA hAB k ht)
     rwa [smul_smul, inv_mul_cancel₀ (by positivity), one_smul] at h
@@ -97,11 +97,11 @@ private theorem aux_peanoBakerSum_mem {B : Interval (Mat ℝ n n)} {A : ℝ → 
 at time `t`, by a member of `B`'s exponential enclosure over the step `t`. -/
 private theorem MatExp.aux_exists_mem_expIntervalEnclosure_of_integral {B : Interval (Mat ℝ n n)}
     {A : ℝ → Mat ℝ n n} (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
-    (hAB : ∀ s, A s ∈ B.construct)
+    (hAB : ∀ s, A s ∈ B.toSet)
     {x : ℝ → Vec ℝ n} {t : ℝ} (ht : 0 ≤ t) (hxc : ContinuousOn x (Set.Icc 0 t))
     (hx : ∀ s ∈ Set.Icc 0 t, x s = x 0 + ∫ σ in (0:ℝ)..s, A σ *ᵥ x σ) (η : ℕ)
     (hε : ‖(Interval.smul t B).absMax‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
-    ∃ Φ ∈ (MatExp.expIntervalEnclosure (Interval.smul t B) η).construct,
+    ∃ Φ ∈ (MatExp.expIntervalEnclosure (Interval.smul t B) η).toSet,
       x t = Φ *ᵥ x 0 := by -- --- PROOF ---
   set T := ∑ k ∈ Finset.range (η + 1), MatExp.peanoBakerTerm A k t with hT
   set R := MatExp.expRemainderBound (Interval.smul t B).absMax η with hRdef
@@ -139,7 +139,7 @@ private theorem LinParamSys.IsCanonicalTrajectory.aux_exists_mem_expIntervalEncl
     (traj : sys.IsCanonicalTrajectory T R₀ U x u A) {t : ℝ} (ht : 0 ≤ t) (hT : Set.Icc 0 t ⊆ T)
     (hu : ∀ s ∈ Set.Ico 0 t, u s = 0) (η : ℕ)
     (hε : ‖(Interval.smul t sys.A).absMax‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
-    ∃ Φ ∈ construct (MatExp.expIntervalEnclosure (Interval.smul t sys.A) η),
+    ∃ Φ ∈ toSet (MatExp.expIntervalEnclosure (Interval.smul t sys.A) η),
       x t = Φ *ᵥ x 0 := by -- --- PROOF ---
   obtain ⟨Â, hÂi, hÂB, hx⟩ := traj.exists_integral_eq ht hT hu
   have hxc : ContinuousOn x (Set.Icc 0 t) := traj.cont.mono hT
@@ -157,7 +157,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timePoint_outer {sys : LinParamSys ℐ
     (traj : sys.IsCanonicalTrajectory T R₀ U x u A) {t : ℝ} (ht : 0 ≤ t) (hT : Set.Icc 0 t ⊆ T)
     (hu : ∀ s ∈ Set.Ico 0 t, u s = 0) (η : ℕ)
     (hε : ‖(Interval.smul t sys.A).absMax‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
-    x t ∈ construct (Mtimes.mtimes (𝕄 := ℐ)
+    x t ∈ toSet (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.expIntervalEnclosure (Interval.smul t sys.A) η) R₀) := by -- --- PROOF ---
   obtain ⟨Φ, hΦ, hx⟩ := traj.aux_exists_mem_expIntervalEnclosure ht hT hu η hε
   rw [hx]

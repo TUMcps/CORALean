@@ -60,7 +60,7 @@ theorem BReachE.hA : -- --- CONCL ---
 /-- The input set is symmetric about the origin, so it encloses its own
 negation and serves as `negU` unchanged. -/
 theorem BReachE.hneg : -- --- CONCL ---
-    -construct BReachE.U ⊆ construct BReachE.U := by -- --- PROOF ---
+    -toSet BReachE.U ⊆ toSet BReachE.U := by -- --- PROOF ---
   intro x hx
   have h := Set.mem_neg.mp hx
   intro i
@@ -74,7 +74,7 @@ theorem BReachE.hneg : -- --- CONCL ---
 /-- `0.7` is outside the computed set: one `plus` and one `mtimes` give
 `[-0.6, 0.6]`, and the box excludes the point on its own. -/
 theorem BReachE.not_mem : -- --- CONCL ---
-    (![(0.7:ℝ)] : Vec ℝ 1) ∉ construct (BReachE.sys.backReachExists (S := ℐ𝒱)
+    (![(0.7:ℝ)] : Vec ℝ 1) ∉ toSet (BReachE.sys.backReachExists (S := ℐ𝒱)
       ⟨BReachE.T, BReachE.U, 0, 1⟩ ⟨BReachE.Ainv⟩) := by -- --- PROOF ---
   intro h
   have hhi : (![(0.7:ℝ)] : Vec ℝ 1) 0 ≤
@@ -84,8 +84,8 @@ theorem BReachE.not_mem : -- --- CONCL ---
 
 /-- So no admissible input drives `0.7` into the target in one step — the
 guarantee an *outer* backward set gives, which is a negative one. -/
-example (u : Vec ℝ 1) (hu : u ∈ construct BReachE.U) :
-    BReachE.sys.simulate ![(0.7:ℝ)] (fun _ => u) 1 ∉ construct BReachE.T := fun hT =>
+example (u : Vec ℝ 1) (hu : u ∈ toSet BReachE.U) :
+    BReachE.sys.simulate ![(0.7:ℝ)] (fun _ => u) 1 ∉ toSet BReachE.T := fun hT =>
   BReachE.not_mem (BReachE.sys.backReachExists_outer (S := ℐ𝒱) BReachE.hA BReachE.T
     BReachE.U BReachE.U BReachE.hneg 1 ⟨u, hu, hT⟩)
 
@@ -103,7 +103,7 @@ theorem BReachE.mem : -- --- CONCL ---
 
 /-- `0.3` is in the target as well, which is what lets a run start there:
 `backReachSetExistsExact_isTrajectory` asks for a set the start lies in. -/
-theorem BReachE.memT : (![(0.3:ℝ)] : Vec ℝ 1) ∈ construct BReachE.T := by
+theorem BReachE.memT : (![(0.3:ℝ)] : Vec ℝ 1) ∈ toSet BReachE.T := by
   intro i
   show (![(-1:ℝ)] : Vec ℝ 1) i ≤ (![(0.3:ℝ)] : Vec ℝ 1) i ∧
     (![(0.3:ℝ)] : Vec ℝ 1) i ≤ (![(1:ℝ)] : Vec ℝ 1) i
@@ -114,7 +114,7 @@ whose run is in the target one step on. -/
 example : ∃ u : ℕ → Vec ℝ 1,
     BReachE.sys.IsCanonicalTrajectoryOn (S := ℐ𝒱) BReachE.T BReachE.U 1
       (BReachE.sys.simulate ![(0.3:ℝ)] u) u ∧
-    BReachE.sys.simulate ![(0.3:ℝ)] u 1 ∈ construct BReachE.T :=
+    BReachE.sys.simulate ![(0.3:ℝ)] u 1 ∈ toSet BReachE.T :=
   BReachE.sys.backReachSetExistsExact_isTrajectory (S := ℐ𝒱) BReachE.T BReachE.U
     BReachE.memT 1 BReachE.mem
 

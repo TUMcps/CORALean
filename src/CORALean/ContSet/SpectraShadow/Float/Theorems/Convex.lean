@@ -44,8 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SpectraShadow.convex_construct (S : SpectraShadow 𝕋 (Vec 𝕋 n)) : Convex ℝ S.construct :=
-  Convex.add (nominal S).convex_construct S.I_error.nominal.convex_construct
+theorem SpectraShadow.convex_toSet (S : SpectraShadow 𝕋 (Vec 𝕋 n)) : Convex ℝ S.toSet :=
+  Convex.add (nominal S).convex_toSet S.I_error.nominal.convex_toSet
 
 end CORALean.Float
 

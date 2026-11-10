@@ -195,7 +195,7 @@ private theorem aux_abs_remainder_le {C : Set (Vec ℝ d)} (hC : Convex ℝ C) {
 /-- The thesis's `max_{z ∈ Ẑ} |z - z✱| ≤ |c - z✱| + Σⱼ |g⁽ʲ⁾|`, which is the `γ`
 that `abstrErrLin` computes. -/
 private theorem aux_abs_sub_le_radius (Z : Zonotope (Vec ℝ d)) (zs : Vec ℝ d) {z : Vec ℝ d}
-    (hz : z ∈ Z.construct) (j : Fin d) : -- --- CONCL ---
+    (hz : z ∈ Z.toSet) (j : Fin d) : -- --- CONCL ---
     |z j - zs j| ≤ |Z.c j - zs j| + ∑ k, |Z.G k j| := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hz
   have hco : (Z.c + ∑ k, β k • Z.G k) j - zs j = Z.c j - zs j + ∑ k, β k * Z.G k j := by
@@ -229,8 +229,8 @@ theorem IsAbstractionError.of_hessian {f : Vec ℝ n → Vec ℝ m → Vec ℝ n
     {Hf : Fin n → Vec ℝ (n + m) → (Vec ℝ (n + m) →L[ℝ] Vec ℝ (n + m) →L[ℝ] ℝ)}
     {H : Fin n → Mat ℝ (n + m) (n + m)}
     (hf : ∀ x u, F (Fin.append x u) = f x u) (hC : Convex ℝ C)
-    (hzs : Fin.append xs us ∈ C) (hZC : Z.construct ⊆ C)
-    (hZ : ∀ x ∈ R, ∀ u ∈ U, Fin.append x u ∈ Z.construct)
+    (hzs : Fin.append xs us ∈ C) (hZC : Z.toSet ⊆ C)
+    (hZ : ∀ x ∈ R, ∀ u ∈ U, Fin.append x u ∈ Z.toSet)
     (hF : ∀ i, ∀ ξ ∈ C, HasFDerivAt (fun z => F z i) (Ff i ξ) ξ)
     (hH : ∀ i, ∀ ξ ∈ C, HasFDerivAt (Ff i) (Hf i ξ) ξ)
     (hHb : ∀ i, ∀ ξ ∈ C, ∀ j k, |Hf i ξ (Pi.single j 1) (Pi.single k 1)| ≤ H i j k)

@@ -41,7 +41,7 @@ variable {n q h : ℕ}
 /-- `p` is contained: `[p; b]` lies in the stacked zonotope. -/
 def ConZonotope.containsPoint (c : Vec ℝ n) (G : Fin h → Vec ℝ n) (A : Mat ℝ q h) (b : Vec ℝ q)
     (p : Vec ℝ n) : Prop :=
-  (p, b) ∈ (ConZonotope.stack c G A).construct
+  (p, b) ∈ (ConZonotope.stack c G A).toSet
 
 
 end CORALean.Real

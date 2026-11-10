@@ -89,10 +89,10 @@ private theorem Zonotope.aux_stripCoeff {k : ℕ} (a r : Vec ℝ k)
 /-- The Luenberger update of the diffusion observer holds the next state. -/
 private theorem Zonotope.aux_diffusionPropLuenberger_outer (F : Mat ℝ n n) (Q : Mat ℝ n nq)
     (Γ : ∀ i, Mat ℝ (p i) n) (r yb : ∀ i, Vec ℝ (p i)) (Zh : Fin N → Zonotope (Vec ℝ n))
-    (x : Vec ℝ n) (β : Vec ℝ nq) (hβ : ∀ j, |β j| ≤ 1) (i : Fin N) (hx : x ∈ (Zh i).construct)
+    (x : Vec ℝ n) (β : Vec ℝ nq) (hβ : ∀ j, |β j| ≤ 1) (i : Fin N) (hx : x ∈ (Zh i).toSet)
     (hy : ∀ j, |(Γ i *ᵥ x - yb i) j| ≤ r i j) : -- --- CONCL ---
     F *ᵥ x + Q *ᵥ β ∈
-      (Zonotope.diffusionPropLuenberger F Q Γ r yb Zh i).construct := by -- --- PROOF ---
+      (Zonotope.diffusionPropLuenberger F Q Γ r yb Zh i).toSet := by -- --- PROOF ---
   obtain ⟨γ, hγ, hRγ⟩ := Zonotope.aux_stripCoeff (yb i - Γ i *ᵥ x) (r i) (fun j => by
     rw [← abs_neg, Pi.sub_apply]
     simpa using hy j)
@@ -111,12 +111,12 @@ private theorem Zonotope.aux_diffusionPropStep_outer [∀ i, NeZero (m i)] (F : 
     (Q : Mat ℝ n nq)
     (Γ : ∀ i, Mat ℝ (p i) n) (r yb : ∀ i, Vec ℝ (p i)) (nb : ∀ i, Fin (m i) → Fin N) (o : ℕ)
     (Zh : Fin N → Zonotope (Vec ℝ n)) (x : Vec ℝ n) (β : Vec ℝ nq) (hβ : ∀ j, |β j| ≤ 1)
-    (hx : ∀ i, x ∈ (Zh i).construct) (hy : ∀ i j, |(Γ i *ᵥ x - yb i) j| ≤ r i j)
+    (hx : ∀ i, x ∈ (Zh i).toSet) (hy : ∀ i j, |(Γ i *ᵥ x - yb i) j| ≤ r i j)
     (hα : ∀ i a, 0 < ∑ s, ∑ l,
       ((Zonotope.diffusionPropLuenberger F Q Γ r yb Zh (nb i a)).G l s) ^ 2) (i : Fin N)
     : -- --- CONCL ---
     F *ᵥ x + Q *ᵥ β ∈
-      (Zonotope.diffusionPropStep F Q Γ r yb nb o Zh i).construct := by -- --- PROOF ---
+      (Zonotope.diffusionPropStep F Q Γ r yb nb o Zh i).toSet := by -- --- PROOF ---
   unfold Zonotope.diffusionPropStep
   exact Zonotope.diffusionUpdate_outer o _ (hα i) (Set.mem_iInter.mpr fun a =>
     Zonotope.aux_diffusionPropLuenberger_outer F Q Γ r yb Zh x β hβ (nb i a) (hx (nb i a))
@@ -128,13 +128,13 @@ private theorem Zonotope.aux_diffusionPropStep_outer [∀ i, NeZero (m i)] (F : 
 theorem Zonotope.diffusionProp_outer [∀ i, NeZero (m i)] (F : Mat ℝ n n) (Q : ℕ → Mat ℝ n nq)
     (Γ : ∀ i, Mat ℝ (p i) n) (r yb : ℕ → ∀ i, Vec ℝ (p i)) (nb : ∀ i, Fin (m i) → Fin N) (o : ℕ)
     (Z₀ : Zonotope (Vec ℝ n)) (x : ℕ → Vec ℝ n) (β : ℕ → Vec ℝ nq)
-    (hβ : ∀ k j, |β k j| ≤ 1) (h0 : x 0 ∈ Z₀.construct)
+    (hβ : ∀ k j, |β k j| ≤ 1) (h0 : x 0 ∈ Z₀.toSet)
     (hxs : ∀ k, x (k + 1) = F *ᵥ x k + Q (k + 1) *ᵥ β (k + 1))
     (hy : ∀ k i j, |(Γ i *ᵥ x k - yb (k + 1) i) j| ≤ r (k + 1) i j)
     (hα : ∀ k i a, 0 < ∑ s, ∑ l, ((Zonotope.diffusionPropLuenberger F (Q (k + 1)) Γ (r (k + 1))
       (yb (k + 1)) (Zonotope.diffusionProp F Q Γ r yb nb o Z₀ k) (nb i a)).G l s) ^ 2)
     (k : ℕ) (i : Fin N) : -- --- CONCL ---
-    x k ∈ (Zonotope.diffusionProp F Q Γ r yb nb o Z₀ k i).construct := by -- --- PROOF ---
+    x k ∈ (Zonotope.diffusionProp F Q Γ r yb nb o Z₀ k i).toSet := by -- --- PROOF ---
   induction k generalizing i with
   | zero => exact h0
   | succ k ih =>

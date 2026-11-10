@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.GetSubsetToSet
 
 @[expose] public section
 
@@ -45,8 +45,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 constructs at radius zero. -/
 theorem PolyZonotope.getSubset_fixed (pZ : PolyZonotope α) (k : Fin pZ.p) (v : ℝ)
     (hq : pZ.q = 0) : pZ.subsetAt {a | a k = v ∧ ∀ k', k' ≠ k → |a k'| ≤ 1}
-      = (pZ.getSubset k v 0).construct := by
-  rw [← PolyZonotope.getSubset_construct pZ k v 0 le_rfl hq]
+      = (pZ.getSubset k v 0).toSet := by
+  rw [← PolyZonotope.getSubset_toSet pZ k v 0 le_rfl hq]
   congr 1
   ext a
   simp [abs_nonpos_iff, sub_eq_zero]

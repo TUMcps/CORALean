@@ -43,9 +43,9 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem encloseNonlinearPrinted_counterexample : -- --- CONCL ---
-    ∃ H : Zonotope (Vec ℝ 1), ∃ x ∈ H.construct,
+    ∃ H : Zonotope (Vec ℝ 1), ∃ x ∈ H.toSet,
       (fun _ : Fin 1 => (fun t : ℝ => t + 1) (x 0)) ∉
-        (encloseNonlinearPrinted (fun t => t + 1) H).construct := by -- --- PROOF ---
+        (encloseNonlinearPrinted (fun t => t + 1) H).toSet := by -- --- PROOF ---
   let H : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ _ => 1⟩
   have hl : H.c 0 - ∑ j, |H.G j 0| = -1 := by simp [H]
   have hu : H.c 0 + ∑ j, |H.G j 0| = 1 := by simp [H]

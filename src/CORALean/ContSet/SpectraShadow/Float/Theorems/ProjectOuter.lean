@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.project_outer (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (dims : Fin m → Fin n) :
-    (fun x k => x (dims k)) '' S.construct ⊆ (S.project dims).construct :=
+    (fun x k => x (dims k)) '' S.toSet ⊆ (S.project dims).toSet :=
   image_subset (fun _ _ => rfl)
     (le_of_eq (Real.SpectraShadow.project_exact (nominal S) dims))
     (Interval.project_outer S.I_error dims)

@@ -12,7 +12,7 @@ CORA's `interval` with the same `inf` and `sup`, held in `𝕋` rather than ℝ.
 type it stores, as the exact layer's `Interval α` is: `Interval (Vec 𝕋 n)` is a box, and
 `Interval (Mat 𝕋 m n)` is CORA's `intervalMatrix`. `RealImage` says which real ambient type a stored
 one denotes, and that is all `nominal` needs; the exact layer's `Entrywise` reads the result, so the
-float layer needs no counterpart of that class. What it denotes is the exact layer's `construct` of
+float layer needs no counterpart of that class. What it denotes is the exact layer's `toSet` of
 `nominal`, fixed by definition rather than by a lemma. Each operation then owes only enclosure.
 The interval is the one [1, Sec. 2] introduces for CORA's `interval`, with its ends held in `𝕋`.
 There is no `I_error` and no `absorbRounding`: the interval is the error-box type itself.
@@ -52,10 +52,10 @@ def Interval.nominal {α β : Type} [RealImage α β] (I : Interval α) :
   ⟨RealImage.realImage I.inf, RealImage.realImage I.sup⟩
 
 /-- The set an interval of stored floats stands for: its nominal's. Without an error box there is
-nothing to inflate, so this is the class's `construct`, spelt for `I.construct` to resolve. -/
-def Interval.construct {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β]
+nothing to inflate, so this is the class's `toSet`, spelt for `I.toSet` to resolve. -/
+def Interval.toSet {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β]
     [Entrywise β ι] (I : Interval α) : Set β :=
-  I.nominal.construct
+  I.nominal.toSet
 
 end CORALean.Float
 

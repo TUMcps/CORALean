@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.acos_outer [SoundFloatArithmetic 𝕋] (p k : ℕ) (I : Interval (Vec 𝕋 n)) :
-    (fun x i => Real.arccos (x i)) '' I.construct ⊆ (I.acos p k).construct := by
+    (fun x i => Real.arccos (x i)) '' I.toSet ⊆ (I.acos p k).toSet := by
   rintro _ ⟨x, hx, rfl⟩ i
   have hx' : toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i) := hx i
   exact ⟨le_trans (acosDown_le p k _) (Real.antitone_arccos hx'.2),

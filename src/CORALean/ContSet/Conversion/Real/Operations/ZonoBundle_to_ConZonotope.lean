@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructFoldlIntersectionEq
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ToSetFoldlIntersectionEq
 
 @[expose] public section
 

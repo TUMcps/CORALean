@@ -40,7 +40,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The supremum of `c` over the set, `⊥` if it is empty and `⊤` if `c` is unbounded on it. -/
 noncomputable def SpectraShadow.supportFunc (S : SpectraShadow α) (c : α →ₗ[ℝ] ℝ) : EReal :=
-  ⨆ x ∈ S.construct, ((c x : ℝ) : EReal)
+  ⨆ x ∈ S.toSet, ((c x : ℝ) : EReal)
 
 end CORALean.Real
 

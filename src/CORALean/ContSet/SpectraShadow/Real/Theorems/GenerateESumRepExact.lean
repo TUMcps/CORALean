@@ -82,7 +82,7 @@ private theorem SpectraShadow.aux_lmi_esum (S : SpectraShadow (Vec ℝ n)) (x : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.generateESumRep_exact (S : SpectraShadow (Vec ℝ n)) : -- --- CONCL ---
-    S.generateESumRep.construct = S.construct := by -- --- PROOF ---
+    S.generateESumRep.toSet = S.toSet := by -- --- PROOF ---
   ext x
   constructor
   -- the inequality holds only if the shadow's does and `x - c - G y` is both `≥ 0` and `≤ 0`

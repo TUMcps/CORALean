@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeHPolytopeFacetsContains
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemFoldlIntersectionIff
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ToSetEqIInter
 
 @[expose] public section
 
@@ -40,9 +40,9 @@ variable {n : ℕ}
 
 /-- Every bundle lies in the members' facet polytopes, intersected. -/
 theorem ZonoBundle.hPolytopeAll_contains (zB : ZonoBundle (Vec ℝ (n + 1))) : -- --- CONCL ---
-    zB.construct ⊆ zB.hPolytopeAll.construct := by -- --- PROOF ---
+    zB.toSet ⊆ zB.hPolytopeAll.toSet := by -- --- PROOF ---
   intro x hx
-  rw [ZonoBundle.construct_eq_iInter, Set.mem_iInter] at hx
+  rw [ZonoBundle.toSet_eq_iInter, Set.mem_iInter] at hx
   rw [ZonoBundle.hPolytopeAll, HPolytope.mem_foldl_intersection_iff]
   -- the whole space, then each member's rows
   simp only [List.mem_ofFn, forall_exists_index, forall_apply_eq_imp_iff]

@@ -60,12 +60,12 @@ theorem ProbZonotope.zonotope_prob (p : ℕ) (P : ProbZonotope 𝕋 n) (M : 𝕋
     (hmM : m ≤ toReal M) {ν : Measure (EuclideanSpace ℝ (Fin n))}
     (hν : ν ∈ P.laws) : -- --- CONCL ---
     (gaussianReal 0 1 (Set.Icc (-m) m)) ^ n
-      ≤ ν (toLp 2 '' (P.zonotope p M).construct) := by -- --- PROOF ---
+      ≤ ν (toLp 2 '' (P.zonotope p M).toSet) := by -- --- PROOF ---
   obtain ⟨μ, hμ, S, hS, hpsd, rfl⟩ := hν
   -- the exact probabilistic zonotope with the point mean `μ`
   set Q : Real.ProbZonotope n := ⟨⟨0, μ, fun j => j.elim0⟩, S⟩ with hQ
-  have hμQ : μ ∈ Q.Z.construct :=
-    Real.Zonotope.mem_construct_iff.mpr ⟨fun j => j.elim0, fun j => j.elim0, fun i => by simp [hQ]⟩
+  have hμQ : μ ∈ Q.Z.toSet :=
+    Real.Zonotope.mem_toSet_iff.mpr ⟨fun j => j.elim0, fun j => j.elim0, fun i => by simp [hQ]⟩
   exact le_trans (Real.ProbZonotope.zonotope_prob Q hpsd hm ⟨μ, hμQ, rfl⟩)
     (measure_mono (Set.image_mono (ProbZonotope.zonotope_outer p P M hμ hS hpsd hm.le hmM)))
 

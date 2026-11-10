@@ -12,7 +12,7 @@ public import CORALean.HybridDynamics.Theorems.JumpOuter
 `InvariantOfEnclosure` without the two hypotheses no caller could meet. `FlowOuterSplit` stands in
 for `FlowOuterInputSolution`, so `0 ∈ ℓ.inputSet` is gone; and `hflow`'s containment is asked only
 of the part of the enclosure still inside `ℓ.inv`, so a dwell time long enough to leave the
-location need not be absorbed by `R`. The cut is `∩ construct (HA.loc ℓ).inv` on sets rather than
+location need not be absorbed by `R`. The cut is `∩ toSet (HA.loc ℓ).inv` on sets rather than
 `Location.timeIntervalInv`, which would need `Intersection` and shut out `Zonotope`; `hjump`
 names `Rg` for the same reason. Both cuts being set inclusions lets the invariant and the guard sit
 in their own representation `G`; `Examples.BouncingBall` runs it at a zonotope state (#39).
@@ -63,11 +63,11 @@ theorem HybridAutomaton.isInvariant_of_enclosure_cut [∀ n, OfPoint (S n) (Vec 
     (HA : HybridAutomaton S G L 𝕋 n) (R : L → S n)
     (hflow : ∀ (ℓ : L) (τ : ℝ), 0 < τ → ∃ m : ℕ,
       ‖τ • toRealMat (HA.loc ℓ).dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 ∧
-      construct ((HA.loc ℓ).timeIntervalSplit τ (m + 2) (R ℓ))
-        ∩ construct (HA.loc ℓ).inv ⊆ construct (R ℓ))
+      toSet ((HA.loc ℓ).timeIntervalSplit τ (m + 2) (R ℓ))
+        ∩ toSet (HA.loc ℓ).inv ⊆ toSet (R ℓ))
     (hjump : ∀ (ℓ : L) (e : Transition G L 𝕋 n), e ∈ (HA.loc ℓ).trans → ∃ Rg : S n,
-      construct (R ℓ) ∩ construct e.guard ⊆ construct Rg ∧
-      construct (e.jump Rg) ⊆ construct (R e.target)) :
+      toSet (R ℓ) ∩ toSet e.guard ⊆ toSet Rg ∧
+      toSet (e.jump Rg) ⊆ toSet (R e.target)) :
     HA.IsInvariant R where
   flow {ℓ τ x u w} h h₀ {t} ht := by
     rcases h.nonneg.lt_or_eq with hτ | hτ0

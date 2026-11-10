@@ -83,8 +83,8 @@ def HPolytope.step_noRows : HPolytope (Fin 2 → ℝ) where
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-private theorem HPolytope.aux_noRows_construct :
-    HPolytope.step_noRows.construct = Set.univ := by
+private theorem HPolytope.aux_noRows_toSet :
+    HPolytope.step_noRows.toSet = Set.univ := by
   ext x
   simp only [Set.mem_univ, iff_true]
   exact ⟨fun i => i.elim0, fun i => i.elim0⟩
@@ -94,11 +94,11 @@ private theorem HPolytope.aux_noRows_construct :
 
 /-- The set is `ℝ²`, which is no hyperplane `{x | f x = c}` with `f ≠ 0`; CORA answers `true`. -/
 theorem HPolytope.representsa_hyperplane_cora_counterexample : -- --- CONCL ---
-    HPolytope.step_noRows.construct = Set.univ ∧
+    HPolytope.step_noRows.toSet = Set.univ ∧
       (¬ ∃ (f : (Fin 2 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ), f ≠ 0 ∧
-        HPolytope.step_noRows.construct = {x | f x = c}) ∧
+        HPolytope.step_noRows.toSet = {x | f x = c}) ∧
       HPolytope.step_noRows.representsaHyperplaneCora = true := by -- --- PROOF ---
-  have hc := HPolytope.aux_noRows_construct
+  have hc := HPolytope.aux_noRows_toSet
   refine ⟨hc, ?_, by simp [HPolytope.representsaHyperplaneCora, HPolytope.step_noRows]⟩
   rintro ⟨f, c, hf, h⟩
   rw [hc] at h

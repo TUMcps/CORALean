@@ -48,9 +48,9 @@ variable {p q : ℕ}
 /-- [1, App. D]: intersecting the constraints with the new bounds gives the same set. -/
 theorem ConZonotope.fourierMotzkinBounds_inter_eq (C : Mat ℝ p q) (d : Vec ℝ p)
     (B : Interval (Vec ℝ q)) : -- --- CONCL ---
-    (HPolytope.ineqs C d).construct ∩ B.construct =
-      (HPolytope.ineqs C d).construct ∩
-        (ConZonotope.fourierMotzkinBounds C d B).construct := by -- --- PROOF ---
+    (HPolytope.ineqs C d).toSet ∩ B.toSet =
+      (HPolytope.ineqs C d).toSet ∩
+        (ConZonotope.fourierMotzkinBounds C d B).toSet := by -- --- PROOF ---
   refine Set.Subset.antisymm (fun β hβ => ⟨hβ.1, fourierMotzkinBounds_outer C d B hβ⟩)
     fun β ⟨hP, hβ⟩ => ⟨hP, fun j => ?_⟩
   -- `β̲₀(j) ≤ β̲(j)` and `β̄(j) ≤ β̄₀(j)`: the new box is inside the old

@@ -41,8 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.ofCenterRadius_outer (c r : Mat 𝕋 m n) : -- --- CONCL ---
-    (Real.Interval.ofCenterRadius (toRealMat c) (toRealMat r)).construct
-      ⊆ (Interval.ofCenterRadius c r).construct := by -- --- PROOF ---
+    (Real.Interval.ofCenterRadius (toRealMat c) (toRealMat r)).toSet
+      ⊆ (Interval.ofCenterRadius c r).toSet := by -- --- PROOF ---
   intro A hA
   refine Interval.mem_mat_iff.mpr fun i j => ?_
   have h : |A i j - toReal (c i j)| ≤ toReal (r i j) :=

@@ -19,7 +19,7 @@ chaining a guarantee along it is the family's own recursion.
 
 The guard and the invariant carry their own representation `G`, apart from the
 state's `S`, and every statement here asks `ContSet` of it and nothing else:
-they are read as `construct e.guard` and `construct ℓ.inv`, never computed with
+they are read as `toSet e.guard` and `toSet ℓ.inv`, never computed with
 (#39). `Examples.BouncingBall` is a zonotope state with halfspace guards.
 
 The exception is where a representation *computes* the cut: `Theorems.JumpIntersectionOuter`

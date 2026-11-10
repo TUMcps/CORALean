@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.SpectraShadow.Real.Operations.SupportFunc
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleConstruct
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleToSet
 
 @[expose] public section
 
@@ -74,7 +74,7 @@ theorem SpectraShadow.supportFuncCoraAllZero_ne_supportFunc : -- --- CONCL ---
   -- the set: the support in the one coordinate is `0`
   have h2 : SpectraShadow.pointExample.supportFunc
       (LinearMap.proj 0 : Vec ℝ 1 →ₗ[ℝ] ℝ) = 0 := by
-    rw [SpectraShadow.supportFunc, SpectraShadow.pointExample_construct]
+    rw [SpectraShadow.supportFunc, SpectraShadow.pointExample_toSet]
     simp
   rw [h1, h2]
   exact EReal.top_ne_zero

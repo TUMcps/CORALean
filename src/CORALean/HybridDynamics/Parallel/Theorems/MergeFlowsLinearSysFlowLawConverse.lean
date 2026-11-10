@@ -86,7 +86,7 @@ private theorem aux_bindsAt_distinct {𝕋 : Type} {P : ParallelHybridAutomaton 
 theorem ParallelHybridAutomaton.mergeFlowsLinearSys_isFlowLawConverse
     {P : ParallelHybridAutomaton S G k L ℝ n m} (hfeed : P.IsFeedthroughFree)
     (hdist : P.GlobalsDistinct)
-    (hne : ∀ (ℓ : ∀ i, L i) i, (construct ((P.comp i).loc (ℓ i)).U).Nonempty)
+    (hne : ∀ (ℓ : ∀ i, L i) i, (toSet ((P.comp i).loc (ℓ i)).U).Nonempty)
     {lift : ParallelHybridAutomaton.Lifting S G n m} (hex : lift.IsExact) : -- --- CONCL ---
     P.IsFlowLawConverse (fun ℓ => mergeFlowsLinearSys (P.sys ℓ) (P.bindsAt ℓ))
       (P.mergeInputSets lift) (P.mergeDistSets lift) := by -- --- PROOF ---

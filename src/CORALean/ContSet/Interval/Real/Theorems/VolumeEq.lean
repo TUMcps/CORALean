@@ -39,8 +39,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.volume_eq (I : Interval (Vec ℝ n)) : -- --- CONCL ---
-    MeasureTheory.volume (construct I) = I.volume := by -- --- PROOF ---
-  have hc : construct I = Set.Icc I.inf I.sup := by
+    MeasureTheory.volume (toSet I) = I.volume := by -- --- PROOF ---
+  have hc : toSet I = Set.Icc I.inf I.sup := by
     ext x
     exact ⟨fun h => ⟨fun i => (h i).1, fun i => (h i).2⟩, fun h i => ⟨h.1 i, h.2 i⟩⟩
   rw [hc]

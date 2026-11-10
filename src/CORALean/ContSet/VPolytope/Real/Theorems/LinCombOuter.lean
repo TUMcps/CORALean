@@ -41,18 +41,18 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 private theorem VPolytope.aux_subset_linComb_left (P₁ P₂ : VPolytope α) : -- --- CONCL ---
-    P₁.construct ⊆ (P₁.linComb P₂).construct := by -- --- PROOF ---
-  rw [VPolytope.construct_eq_convexHull P₁]
-  refine convexHull_min (Set.range_subset_iff.mpr fun j => ?_) (VPolytope.convex_construct _)
+    P₁.toSet ⊆ (P₁.linComb P₂).toSet := by -- --- PROOF ---
+  rw [VPolytope.toSet_eq_convexHull P₁]
+  refine convexHull_min (Set.range_subset_iff.mpr fun j => ?_) (VPolytope.convex_toSet _)
   have h := VPolytope.vertex_mem (P₁.linComb P₂) (Fin.castAdd P₂.k j)
   rwa [show (P₁.linComb P₂).V (Fin.castAdd P₂.k j) = P₁.V j from
     Fin.append_left P₁.V P₂.V j] at h
 
 -- and the same on the right block of the appended vertex list
 private theorem VPolytope.aux_subset_linComb_right (P₁ P₂ : VPolytope α) : -- --- CONCL ---
-    P₂.construct ⊆ (P₁.linComb P₂).construct := by -- --- PROOF ---
-  rw [VPolytope.construct_eq_convexHull P₂]
-  refine convexHull_min (Set.range_subset_iff.mpr fun j => ?_) (VPolytope.convex_construct _)
+    P₂.toSet ⊆ (P₁.linComb P₂).toSet := by -- --- PROOF ---
+  rw [VPolytope.toSet_eq_convexHull P₂]
+  refine convexHull_min (Set.range_subset_iff.mpr fun j => ?_) (VPolytope.convex_toSet _)
   have h := VPolytope.vertex_mem (P₁.linComb P₂) (Fin.natAdd P₁.k j)
   rwa [show (P₁.linComb P₂).V (Fin.natAdd P₁.k j) = P₂.V j from
     Fin.append_right P₁.V P₂.V j] at h
@@ -61,9 +61,9 @@ private theorem VPolytope.aux_subset_linComb_right (P₁ P₂ : VPolytope α) : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.linComb_outer (P₁ P₂ : VPolytope α) :
-    Set.linComb P₁.construct P₂.construct ⊆ (P₁.linComb P₂).construct := by
+    Set.linComb P₁.toSet P₂.toSet ⊆ (P₁.linComb P₂).toSet := by
   rintro _ ⟨y₁, hy₁, y₂, hy₂, lam, ⟨hlo, hup⟩, rfl⟩
-  exact VPolytope.convex_construct _ (VPolytope.aux_subset_linComb_left P₁ P₂ hy₁)
+  exact VPolytope.convex_toSet _ (VPolytope.aux_subset_linComb_left P₁ P₂ hy₁)
     (VPolytope.aux_subset_linComb_right P₁ P₂ hy₂) hlo (by linarith) (by ring)
 
 end CORALean.Real

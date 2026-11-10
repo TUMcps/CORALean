@@ -45,7 +45,7 @@ variable {m n : ℕ}
 /-- The corner of larger magnitude in every entry has the absolute values `absMax`. -/
 private theorem Interval.aux_exists_mem_abs_eq_absMax (A : Interval (Mat ℝ m n))
     (hA : ∀ p q, A.inf p q ≤ A.sup p q) : -- --- CONCL ---
-    ∃ M ∈ A.construct, ∀ i j, |M i j| = A.absMax i j := by -- --- PROOF ---
+    ∃ M ∈ A.toSet, ∀ i j, |M i j| = A.absMax i j := by -- --- PROOF ---
   classical
   refine ⟨Matrix.of fun p q => if |A.inf p q| ≤ |A.sup p q| then A.sup p q else A.inf p q,
     Interval.mem_mat_iff.mpr fun p q => ?_, fun i j => ?_⟩
@@ -64,7 +64,7 @@ private theorem Interval.aux_exists_mem_abs_eq_absMax (A : Interval (Mat ℝ m n
 /-- The maximum of the norm of `type` over a nonempty box is `matNorm`, and is attained. -/
 theorem Interval.matNorm_isGreatest (p : Interval.NormType) (A : Interval (Mat ℝ m n))
     (hA : ∀ r s, A.inf r s ≤ A.sup r s) : -- --- CONCL ---
-    IsGreatest ((fun M : Mat ℝ m n => p.eval M) '' A.construct) (A.matNorm p) := by -- --- PROOF ---
+    IsGreatest ((fun M : Mat ℝ m n => p.eval M) '' A.toSet) (A.matNorm p) := by -- --- PROOF ---
   have hmax : A.matNorm p = p.eval A.absMax := by
     unfold Interval.matNorm
     exact congrArg p.eval (funext fun i => funext fun j => Interval.abs_center_add_radius A hA i j)

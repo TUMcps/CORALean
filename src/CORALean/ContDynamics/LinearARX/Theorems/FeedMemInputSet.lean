@@ -46,16 +46,16 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 omit [ExactScalar 𝕋] [∀ n, Plus (S n) (Vec ℝ n)] in
 /-- A matrix times a point of `U` is in the `mtimes`. -/
 private theorem LinearARX.aux_mulVec_mem (M : Mat 𝕋 (p * dy) du) (U : S du) {v : Vec ℝ du}
-    (hv : v ∈ construct U) : toRealMat M *ᵥ v ∈ construct (mtimes M U) :=
+    (hv : v ∈ toSet U) : toRealMat M *ᵥ v ∈ toSet (mtimes M U) :=
   mtimes_outer M U (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hv))
 
 omit [ExactScalar 𝕋] in
 /-- The fold adds each listed term to a partial sum that is already enclosed. -/
 private theorem LinearARX.aux_foldl_mem (M : Fin (p + 1) → Mat 𝕋 (p * dy) du) (U : S du)
-    (w : Fin (p + 1) → Vec ℝ du) (hw : ∀ j, w j ∈ construct U) : -- --- CONCL ---
-    ∀ (l : List (Fin p)) (acc : S (p * dy)) (a : Vec ℝ (p * dy)), a ∈ construct acc →
+    (w : Fin (p + 1) → Vec ℝ du) (hw : ∀ j, w j ∈ toSet U) : -- --- CONCL ---
+    ∀ (l : List (Fin p)) (acc : S (p * dy)) (a : Vec ℝ (p * dy)), a ∈ toSet acc →
       a + (l.map fun j => toRealMat (M j.succ) *ᵥ w j.succ).sum ∈
-        construct (l.foldl (fun acc j => plus acc (mtimes (M j.succ) U)) acc) := by -- --- PROOF ---
+        toSet (l.foldl (fun acc j => plus acc (mtimes (M j.succ) U)) acc) := by -- --- PROOF ---
   intro l
   induction l with
   | nil => intro acc a ha; simpa using ha
@@ -70,8 +70,8 @@ private theorem LinearARX.aux_foldl_mem (M : Fin (p + 1) → Mat 𝕋 (p * dy) d
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.feed_mem_inputSet (sys : LinearARX 𝕋 dy du p) (U : S du) {u : ℕ → Vec ℝ du}
-    (hu : ∀ k, u k ∈ construct U) (k : ℕ) :
-    sys.feed u k ∈ construct (sys.inputSet U) := by
+    (hu : ∀ k, u k ∈ toSet U) (k : ℕ) :
+    sys.feed u k ∈ toSet (sys.inputSet U) := by
   unfold LinearARX.feed LinearARX.inputSet
   rw [Fin.sum_univ_succ, Fin.sum_univ_def]
   exact LinearARX.aux_foldl_mem sys.inputMat U (fun j => u (k + p - j)) (fun j => hu _)

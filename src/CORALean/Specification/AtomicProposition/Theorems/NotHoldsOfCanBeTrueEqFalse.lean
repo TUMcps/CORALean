@@ -44,7 +44,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 
 theorem AtomicProposition.not_holds_of_canBeTrue_eq_false (ap : AtomicProposition S n)
     (s : S n) (loc : ℕ) (h : ap.canBeTrue (𝕋 := 𝕋) s loc = false) {x : Vec ℝ n}
-    (hx : x ∈ construct s) : ¬ ap.Holds x loc :=
+    (hx : x ∈ toSet s) : ¬ ap.Holds x loc :=
   fun hh => by simp [AtomicProposition.canBeTrue_sound (𝕋 := 𝕋) ap s loc hx hh] at h
 
 end CORALean

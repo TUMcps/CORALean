@@ -49,9 +49,9 @@ open ContSet
 
 theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet ℋ𝒫 n) (j : Fin n)
     (b : Interval ℝ)
-    (hb : ∀ x ∈ construct s, b.inf ≤ x j ∧ x j ≤ b.sup) : -- --- CONCL ---
-    (fun (x : Vec ℝ n) => (Function.update x j (Real.relu (x j)) : Vec ℝ n)) '' construct s
-      ⊆ construct (s.reluNeuron j b) := by -- --- PROOF ---
+    (hb : ∀ x ∈ toSet s, b.inf ≤ x j ∧ x j ≤ b.sup) : -- --- CONCL ---
+    (fun (x : Vec ℝ n) => (Function.update x j (Real.relu (x j)) : Vec ℝ n)) '' toSet s
+      ⊆ toSet (s.reluNeuron j b) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   beta_reduce
   have hbx := hb x hx
@@ -104,7 +104,7 @@ theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet ℋ𝒫 n) (j : Fin n)
   · -- the old factors in the old box, the new one in `[0, u]`
     have hA : (fun k => (Fin.snoc (α := fun _ => ℝ) α β : Vec ℝ (s.m + 1)) (Fin.castAdd 1 k))
         = α := funext fun k => Fin.snoc_castSucc (α := fun _ => ℝ) _ _ _
-    exact (congrArg (· ∈ s.dom.construct) hA).mpr hα
+    exact (congrArg (· ∈ s.dom.toSet) hA).mpr hα
   · show 0 ≤ Fin.snoc (α := fun _ => ℝ) α β (Fin.natAdd s.m k)
       ∧ Fin.snoc (α := fun _ => ℝ) α β (Fin.natAdd s.m k) ≤ b.sup
     rw [hlast k, Fin.snoc_last]
@@ -113,7 +113,7 @@ theorem StarSet.reluNeuron_outer {n : ℕ} (s : StarSet ℋ𝒫 n) (j : Fin n)
     rw [HPolytope.lift_exact]
     have hA : (fun k => (Fin.snoc (α := fun _ => ℝ) α β : Vec ℝ (s.m + 1)) (Fin.castSucc k))
         = α := funext fun k => Fin.snoc_castSucc (α := fun _ => ℝ) _ _ _
-    exact (congrArg (· ∈ s.pred.construct) hA).mpr hcα
+    exact (congrArg (· ∈ s.pred.toSet) hA).mpr hcα
   · -- the three new rows
     fin_cases r
     · show ∑ k, Fin.snoc (α := fun _ => ℝ) 0 (-1) k * Fin.snoc (α := fun _ => ℝ) α β k ≤ 0

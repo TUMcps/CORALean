@@ -41,7 +41,7 @@ variable {n : ℕ}
 structure Fullspace (n : ℕ) where
 
 /-- `Set.univ`, whatever it is applied to. -/
-def Fullspace.construct (_ : Fullspace n) : Set (Vec ℝ n) := Set.univ
+def Fullspace.toSet (_ : Fullspace n) : Set (Vec ℝ n) := Set.univ
 
 end CORALean.Real
 

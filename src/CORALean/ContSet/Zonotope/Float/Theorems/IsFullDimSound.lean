@@ -45,14 +45,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Zonotope.isFullDim_sound {Z : Zonotope (Vec 𝕋 n)} {H : Mat 𝕋 Z.h n}
     (h : Z.isFullDimWith H = true) : -- --- CONCL ---
-    (interior Z.construct).Nonempty := by -- --- PROOF ---
+    (interior Z.toSet).Nonempty := by -- --- PROOF ---
   simp only [Zonotope.isFullDimWith, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨hc, hE⟩ := h
   obtain ⟨hB, -⟩ := Zonotope.ballCert_reach hc
   have hx : toRealVec Z.c ∈ interior (nominalSet Z) :=
     Zonotope.mem_interior hc _ fun i => by simpa [toRealVec] using hB
-  have he : (fun i => toReal (Z.I_error.inf i)) ∈ (I_error Z).construct := fun i =>
+  have he : (fun i => toReal (Z.I_error.inf i)) ∈ (I_error Z).toSet := fun i =>
     ⟨le_refl _, toReal_le_of_le (hE i)⟩
   exact ⟨_, subset_interior_add_left (Set.add_mem_add hx he)⟩
 

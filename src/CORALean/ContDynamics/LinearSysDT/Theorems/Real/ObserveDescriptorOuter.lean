@@ -76,11 +76,11 @@ theorem LinearSysDT.observeDescriptor_outer (E T A : Mat ℝ n n) (N G : Mat ℝ
     (B : Mat ℝ n nu) (D : Mat ℝ n nw) (Dd : Mat ℝ n nd) (C : Mat ℝ ny n) (F : Mat ℝ ny nv)
     (u : Vec ℝ nu) (X : Zonotope (Vec ℝ n)) (hTN : T * E + N * C = 1) (hTD : T * Dd = 0)
     (x x_plus : Vec ℝ n) (ω : Vec ℝ nw) (υ υ_plus : Vec ℝ nv) (d : Vec ℝ nd)
-    (hx : x ∈ X.construct) (hω : ∀ i, |ω i| ≤ 1) (hυ : ∀ i, |υ i| ≤ 1)
+    (hx : x ∈ X.toSet) (hω : ∀ i, |ω i| ≤ 1) (hυ : ∀ i, |υ i| ≤ 1)
     (hυp : ∀ i, |υ_plus i| ≤ 1)
     (hE : E *ᵥ x_plus = A *ᵥ x + B *ᵥ u + D *ᵥ ω + Dd *ᵥ d) : -- --- CONCL ---
     x_plus ∈ (X.observeDescriptor T N G A B D C F u (C *ᵥ x + F *ᵥ υ)
-      (C *ᵥ x_plus + F *ᵥ υ_plus)).construct := by -- --- PROOF ---
+      (C *ᵥ x_plus + F *ᵥ υ_plus)).toSet := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hx
   -- a matrix's columns weighted by a vector are the matrix times it
   have hcol : ∀ {k : ℕ} (M : Mat ℝ n k) (v : Vec ℝ k), ∑ j, v j • (fun i => M i j) = M *ᵥ v :=

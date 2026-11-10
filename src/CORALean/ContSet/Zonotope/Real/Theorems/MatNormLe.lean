@@ -44,7 +44,7 @@ variable {m n : ℕ}
 
 /-- No member of the matrix zonotope has a larger norm than `norm(intervalMatrix(matZ), type)`. -/
 theorem Zonotope.matNorm_le (p : Interval.NormType) (Z : Zonotope (Mat ℝ m n)) {M : Mat ℝ m n}
-    (hM : M ∈ Z.construct) : p.eval M ≤ Interval.matNorm p Z.interval := by
+    (hM : M ∈ Z.toSet) : p.eval M ≤ Interval.matNorm p Z.interval := by
   have hI := Z.interval_contains hM
   have hne : ∀ r s, Z.interval.inf r s ≤ Z.interval.sup r s := fun r s =>
     (Interval.mem_mat_iff.mp hI r s).1.trans (Interval.mem_mat_iff.mp hI r s).2

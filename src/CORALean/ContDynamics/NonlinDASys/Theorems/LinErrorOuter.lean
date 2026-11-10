@@ -5,7 +5,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import Mathlib.Data.Matrix.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
@@ -149,9 +149,9 @@ theorem NonlinDASys.linError_outer (Hd_c Hd_Δ : Fin n → Mat ℝ q q)
     {Hd : Fin n → Mat ℝ q q} {Ha : Fin p → Mat ℝ q q}
     (hHd : ∀ i j k, |Hd i j k - Hd_c i j k| ≤ Hd_Δ i j k)
     (hHa : ∀ i j k, |Ha i j k - Ha_c i j k| ≤ Ha_Δ i j k) {ν : Vec ℝ q}
-    (hν : ν ∈ R_Δ.construct) : -- --- CONCL ---
+    (hν : ν ∈ R_Δ.toSet) : -- --- CONCL ---
     (1 / 2 : ℝ) • ((fun i => ν ⬝ᵥ (Hd i *ᵥ ν)) - CF_inv *ᵥ (fun j => ν ⬝ᵥ (Ha j *ᵥ ν)))
-      ∈ (NonlinDASys.linError Hd_c Hd_Δ Ha_c Ha_Δ CF_inv R_Δ).construct := by -- --- PROOF ---
+      ∈ (NonlinDASys.linError Hd_c Hd_Δ Ha_c Ha_Δ CF_inv R_Δ).toSet := by -- --- PROOF ---
   set σc : Vec ℝ n := fun i => ν ⬝ᵥ (Hd_c i *ᵥ ν) with hσc
   set φc : Vec ℝ p := fun j => ν ⬝ᵥ (Ha_c j *ᵥ ν) with hφc
   -- [1, Lemma 1] at the one family `Hᵈ_c - CF⁻¹Hᵃ_c`: one set of factors for `σ_c` and `φ_c`
@@ -164,12 +164,12 @@ theorem NonlinDASys.linError_outer (Hd_c Hd_Δ : Fin n → Mat ℝ q q)
     rfl
   replace hβeq := hmid.symm.trans hβeq
   -- the radius parts, each in its box by the entrywise bound
-  obtain ⟨γ, hγ, hνγ⟩ := Zonotope.mem_construct_iff.mp hν
+  obtain ⟨γ, hγ, hνγ⟩ := Zonotope.mem_toSet_iff.mp hν
   have hbox : ∀ {k : ℕ} (H H_c H_Δ : Fin k → Mat ℝ q q),
       (∀ i j l, |H i j l - H_c i j l| ≤ H_Δ i j l) →
       (fun i => ν ⬝ᵥ ((H i - H_c i) *ᵥ ν)) ∈ (Interval.zonotope
         ⟨-(fun i => R_Δ.absBound ⬝ᵥ (H_Δ i *ᵥ R_Δ.absBound)),
-          fun i => R_Δ.absBound ⬝ᵥ (H_Δ i *ᵥ R_Δ.absBound)⟩).construct := by
+          fun i => R_Δ.absBound ⬝ᵥ (H_Δ i *ᵥ R_Δ.absBound)⟩).toSet := by
     intro k H H_c H_Δ hH
     refine Interval.zonotope_contains _ fun i => ?_
     exact abs_le.mp (NonlinDASys.aux_linError_abs_quad_le (fun j l => by simpa using hH i j l)

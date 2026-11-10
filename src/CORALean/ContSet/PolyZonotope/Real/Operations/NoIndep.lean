@@ -10,7 +10,7 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 CORA's `@polyZonotope/noIndep`: `pZ.GI = zeros(dim(pZ), 0)`, the independent generators dropped and
 nothing else changed. This is *not* `PolyZonotope.dependent`, which turns the independent block
 into dependent generators (and denotes the same set): `noIndep` denotes the part of the set the
-dependent factors reach alone, a subset (see `noIndep_construct`, `noIndep_subset`).
+dependent factors reach alone, a subset (see `noIndep_toSet`, `noIndep_subset`).
 
 ## Inputs
 * `pZ` – polynomial zonotope

@@ -81,16 +81,16 @@ noncomputable abbrev Krylov.step_krylovTerm (A : Mat ℝ n n) (δ : ℝ) (m j : 
 images of its center and generators. -/
 private theorem Krylov.aux_image_krylovTerm (A : Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) (δ : ℝ)
     {m j : ℕ} (hj : j + 1 ≤ m) : -- --- CONCL ---
-    Krylov.step_krylovTerm A δ m j '' Z.construct = (⟨Z.h, Krylov.step_krylovTerm A δ m j Z.c,
+    Krylov.step_krylovTerm A δ m j '' Z.toSet = (⟨Z.h, Krylov.step_krylovTerm A δ m j Z.c,
       fun i => Krylov.step_krylovTerm A δ m j (Z.G i)⟩ :
-        Zonotope (Vec ℝ n)).construct := by -- --- PROOF ---
+        Zonotope (Vec ℝ n)).toSet := by -- --- PROOF ---
   -- the term is the linear map `u ↦ (δ^{j+1}/(j+1)!) A^j u`
   have hlin : ∀ u, Krylov.step_krylovTerm A δ m j u
       = (δ ^ (j + 1) / (Nat.factorial (j + 1) : ℝ)) • (A ^ j *ᵥ u) := fun u => by
     rw [Krylov.step_krylovTerm, Krylov.augment_arnoldi_pow A u m (Nat.le_add_left 1 j) hj,
       Nat.add_sub_cancel]
   ext x
-  simp only [Set.mem_image, Zonotope.construct, Set.mem_setOf_eq, hlin]
+  simp only [Set.mem_image, Zonotope.toSet, Set.mem_setOf_eq, hlin]
   constructor
   · rintro ⟨u, ⟨β, hβ, rfl⟩, rfl⟩
     refine ⟨β, hβ, ?_⟩
@@ -108,15 +108,15 @@ private theorem Krylov.aux_image_krylovTerm (A : Mat ℝ n n) (Z : Zonotope (Vec
 `c_u` and the `g⁽ⁱ⁾_u`, plus [2, Prop. 2]'s remainder `E(δ)·δ·U` closed and convexified. -/
 theorem Krylov.inputReach_subset_krylovZonotope (A : Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) {δ : ℝ}
     (hδ : 0 < δ) (η m : ℕ) (hηm : η + 1 ≤ m) (hε : ‖δ • A‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
-    (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒮) Z.construct δ
+    (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒮) Z.toSet δ
       ⊆ (∑ j ∈ Finset.range (η + 1),
           (⟨Z.h, Krylov.step_krylovTerm A δ m j Z.c,
-            fun i => Krylov.step_krylovTerm A δ m j (Z.G i)⟩ : Zonotope (Vec ℝ n)).construct)
+            fun i => Krylov.step_krylovTerm A δ m j (Z.G i)⟩ : Zonotope (Vec ℝ n)).toSet)
         + closure (convexHull ℝ
-            (⋃ M ∈ (MatExp.inputRemainder A δ η).construct,
-              (M *ᵥ ·) '' Z.construct)) := by -- --- PROOF ---
-  refine (Krylov.inputReach_subset_krylovTaylor A Z.convex_construct Z.isClosed_construct
-    Z.isBounded_construct hδ η m hηm hε).trans (le_of_eq ?_)
+            (⋃ M ∈ (MatExp.inputRemainder A δ η).toSet,
+              (M *ᵥ ·) '' Z.toSet)) := by -- --- PROOF ---
+  refine (Krylov.inputReach_subset_krylovTaylor A Z.convex_toSet Z.isClosed_toSet
+    Z.isBounded_toSet hδ η m hηm hε).trans (le_of_eq ?_)
   congr 1
   refine Finset.sum_congr rfl fun j hj => ?_
   exact Krylov.aux_image_krylovTerm A Z δ (by simp at hj; omega)

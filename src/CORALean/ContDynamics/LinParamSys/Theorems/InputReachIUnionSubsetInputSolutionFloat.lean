@@ -59,15 +59,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem LinParamSys.inputReach_iUnion_subset_inputSolutionFloat
     (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {V : Zonotope (Vec 𝕋 n)}
-    (h0 : (0 : Vec ℝ n) ∈ V.construct) : -- --- CONCL ---
-    (⋃ A ∈ sys.A.construct, ⋃ t ∈ Set.Icc (0:ℝ) (toReal Δt),
+    (h0 : (0 : Vec ℝ n) ∈ V.toSet) : -- --- CONCL ---
+    (⋃ A ∈ sys.A.toSet, ⋃ t ∈ Set.Icc (0:ℝ) (toReal Δt),
         (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) V t)
-      ⊆ (sys.inputSolutionFloat Δt η V).construct := by -- --- PROOF ---
+      ⊆ (sys.inputSolutionFloat Δt η V).toSet := by -- --- PROOF ---
   simp only [Set.iUnion_subset_iff]
   intro A hA t ht
   -- `0 ∈ V`: what the input reaches by `t` it can still reach by `Δt`
   refine ((LinearSys.canonical A : LinearSys ℝ n).inputReach_mono (S := 𝒵[𝕋])
-    (CompactSet.isBounded_construct V) h0 ht.1 ht.2).trans ?_
+    (CompactSet.isBounded_toSet V) h0 ht.1 ht.2).trans ?_
   -- the time point `Δt` at the member `A`, inside the float enclosure
   exact sys.inputReach_subset_inputSolutionFloat hΔt hη hA V
 

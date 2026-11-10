@@ -70,12 +70,12 @@ theorem LinParamSys.IsCanonicalConstTrajectory.timeIntervalFloat_outer
     (traj : sys.IsCanonicalConstTrajectory (S := 𝒵[𝕋]) T R₀ U x u A) (hr : 0 < toReal r)
     (hT : Set.Icc 0 (toReal r) ⊆ T) (hη : sys.IsOrderAdmissibleFloat r r η) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ toReal r)
-    (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s) ∈ construct Ud) : -- --- CONCL ---
-    x t ∈ construct (Plus.plus (sys.timeIntervalFloat r η R₀) Ud) := by -- --- PROOF ---
+    (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s) ∈ toSet Ud) : -- --- CONCL ---
+    x t ∈ toSet (Plus.plus (sys.timeIntervalFloat r η R₀) Ud) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   have lin := traj.toLinearSys
   have hvoc := lin.variation_of_constants hTt le_rfl ht0
-    (CompactSet.isBounded_construct U)
+    (CompactSet.isBounded_toSet U)
   simp only [Scalar.toRealMat_real, sub_zero] at hvoc
   rw [hvoc]
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ hUd)

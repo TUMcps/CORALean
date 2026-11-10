@@ -105,8 +105,8 @@ def ballReach : Option (List (Unit × Zonotope (Vec D 2))) := ball.reachFloat 1 
 /-- Every run of the ball from `R0` lasting at most one second, with at most two
 bounces, ends in a set `ballReach` computed. -/
 example {T : ℝ} {k : ℕ} {x y : Vec ℝ 2} (run : ball.IsRunUntil T k () x () y) (hT : T ≤ 1)
-    (hk : k ≤ 2) (hx : x ∈ construct R0) {out : List (Unit × Zonotope (Vec D 2))}
-    (h : ballReach = some out) : ∃ p ∈ out, y ∈ construct p.2 := by
+    (hk : k ≤ 2) (hx : x ∈ toSet R0) {out : List (Unit × Zonotope (Vec D 2))}
+    (h : ballReach = some out) : ∃ p ∈ out, y ∈ toSet p.2 := by
   obtain ⟨p, hp, -, hy⟩ := ball.reachFloat_outer run (by exact_mod_cast hT) hk hx _ h
   exact ⟨p, hp, hy⟩
 

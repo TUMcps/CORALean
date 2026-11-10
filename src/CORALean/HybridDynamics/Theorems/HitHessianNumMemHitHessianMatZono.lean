@@ -64,11 +64,11 @@ variable {n : ℕ}
 `Θ(x₀)/Λ(x₀) = ψ_c + κψ_g`, `|κ| ≤ 1`. -/
 theorem GuardMap.hitHessianNum_mem_hitHessianMatZono (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ)
     (R₀ : Real.Zonotope (Vec ℝ n)) (ψc ψg : Vec ℝ n) (i : Fin n) {x₀ : Vec ℝ n}
-    (hx₀ : x₀ ∈ R₀.construct) {κ : ℝ} (hκ : |κ| ≤ 1)
+    (hx₀ : x₀ ∈ R₀.toSet) {κ : ℝ} (hκ : |κ| ≤ 1)
     (hψ : (nv ⬝ᵥ (A *ᵥ x₀ + b))⁻¹ •
       (-((nv ⬝ᵥ (A *ᵥ x₀ + b)) • nv) - (d - nv ⬝ᵥ x₀) • (nv ᵥ* A)) = ψc + κ • ψg) : -- --- CONCL ---
     GuardMap.hitHessianNum A b nv d x₀ i
-      ∈ (GuardMap.hitHessianMatZono A b nv d R₀ ψc ψg i).construct := by -- --- PROOF ---
+      ∈ (GuardMap.hitHessianMatZono A b nv d R₀ ψc ψg i).toSet := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hx₀
   -- the factors: `κ`, then `β_α`, then `κβ_α`
   refine ⟨Fin.append (Fin.append ![κ] β) (fun α => κ * β α), fun j => ?_,

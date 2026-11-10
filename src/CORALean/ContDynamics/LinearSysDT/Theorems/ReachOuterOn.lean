@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachOneOuter
 # `reach` contains every trajectory known only up to a bound
 
 Induction on the step count, whose step is `reach_one_outer` at the enclosure
-the induction hypothesis supplies. The only facts used about `construct` are
+the induction hypothesis supplies. The only facts used about `toSet` are
 the three that theorem uses — `plus_outer`, `reduce_outer` and `mtimes_outer`
 — so a representation buys into this by proving those and nothing else.
 
@@ -56,14 +56,14 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 every step within it. -/
 theorem LinearSysDT.reach_outer_on (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R₀ U : S n)
     {K : ℕ} {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectoryOn R₀ U K x u) : -- --- CONCL ---
-    ∀ k ≤ K, x k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
+    ∀ k ≤ K, x k ∈ toSet (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   intro k
   induction k with
   | zero => intro _; exact traj.init
   | succ k ih =>
     intro hk
     have hkK : k < K := Nat.lt_of_succ_le hk
-    show x (k + 1) ∈ construct (sys.reach ⟨sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩, U, 0, 1⟩ ⟨o, ho⟩)
+    show x (k + 1) ∈ toSet (sys.reach ⟨sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩, U, 0, 1⟩ ⟨o, ho⟩)
     rw [traj.step k hkK]
     exact sys.reach_one_outer ho _ _ (ih hkK.le) (traj.input k hkK)
 

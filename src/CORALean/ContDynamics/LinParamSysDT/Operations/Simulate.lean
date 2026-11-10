@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
 
 `simulate` takes the matrix at each step as an argument, one point computation
 per step chosen from `sys.A`, and carries no set instance of its own — the
-concrete meaning of `step`'s `∃ A ∈ construct sys.A`; not a field of `sys`,
+concrete meaning of `step`'s `∃ A ∈ toSet sys.A`; not a field of `sys`,
 since it is chosen afresh each run.
 
 ## Inputs
@@ -40,7 +40,7 @@ variable {n : ℕ} {𝕄 : ℕ → ℕ → Type}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- One sampled run of the dynamics from `x₀` under `u`, at a matrix `A k`
-chosen per step — the concrete meaning of `step`'s `∃ A ∈ construct sys.A`;
+chosen per step — the concrete meaning of `step`'s `∃ A ∈ toSet sys.A`;
 not a field of `sys`, since it is chosen afresh each run. -/
 def LinParamSysDT.simulate (sys : LinParamSysDT 𝕄 n) (A : ℕ → Mat ℝ n n)
     (x₀ : Vec ℝ n) (u : ℕ → Vec ℝ n) : ℕ → Vec ℝ n

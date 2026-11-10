@@ -44,12 +44,12 @@ variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
 
 theorem ContSet.projectHighDim_outer (s : S n) (N : ℕ) {proj : Fin n → Fin N}
     (hp : Function.Injective proj) : -- --- CONCL ---
-    (fun x : Vec ℝ n => Function.extend proj x (0 : Vec ℝ N)) '' construct s ⊆
-      construct (ContSet.projectHighDim_ (𝕋 := 𝕋) s N proj) := by -- --- PROOF ---
+    (fun x : Vec ℝ n => Function.extend proj x (0 : Vec ℝ N)) '' toSet s ⊆
+      toSet (ContSet.projectHighDim_ (𝕋 := 𝕋) s N proj) := by -- --- PROOF ---
   -- the padded point is the selection matrix applied to `x`, so `mtimes_outer` covers it
   rintro _ ⟨x, hx, rfl⟩
   refine Mtimes.mtimes_outer (𝕄 := Mat 𝕋) _ s ?_
-  simp only [ContSet.construct_mat, Set.biUnion_singleton, Set.mem_image]
+  simp only [ContSet.toSet_mat, Set.biUnion_singleton, Set.mem_image]
   refine ⟨x, hx, ?_⟩
   funext i
   -- the selection matrix reads back as the real indicator matrix

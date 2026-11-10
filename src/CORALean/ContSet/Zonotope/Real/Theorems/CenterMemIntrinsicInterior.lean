@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.VectorSpanConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.VectorSpanToSet
 public import Mathlib.Analysis.Convex.Intrinsic
 public import Mathlib.Analysis.Normed.Module.FiniteDimension
 
@@ -12,7 +12,7 @@ public import Mathlib.Analysis.Normed.Module.FiniteDimension
 `c` is in the interior of `Z = c + ∑ βⱼgⱼ, |βⱼ| ≤ 1` relative to its affine hull, whatever the
 dimension of `Z`: the map `β ↦ ∑ βⱼgⱼ` onto the span of the generators is open (both
 finite-dimensional), so it carries the open cube `|βⱼ| < 1` to an open neighbourhood of `0` in that
-span, which is the direction of the affine hull (`vectorSpan_construct`). Applied to a facet `Z.face
+span, which is the direction of the affine hull (`vectorSpan_toSet`). Applied to a facet `Z.face
 u`, its center `c + ∑ sign(u gⱼ)gⱼ` is a point "in the interior of `F`" as [1, Cor. 3.5] asks. Over
 any real normed space; `isFullDim_iff` is the full-dimensional case.
 
@@ -50,16 +50,16 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 /-- [1, Cor. 3.5]: the center of a zonotope is in its relative interior. -/
 theorem Zonotope.center_mem_intrinsicInterior (Z : Zonotope α) : -- --- CONCL ---
-    Z.c ∈ intrinsicInterior ℝ Z.construct := by -- --- PROOF ---
+    Z.c ∈ intrinsicInterior ℝ Z.toSet := by -- --- PROOF ---
   let L : (Fin Z.h → ℝ) →ₗ[ℝ] α := Fintype.linearCombination ℝ Z.G
   have hL : ∀ β, L β = ∑ j, β j • Z.G j := fun β => by
     simp [L, Fintype.linearCombination_apply]
-  have hc : Z.c ∈ Z.construct := ⟨0, fun _ => by simp, by simp⟩
-  have hcA : Z.c ∈ affineSpan ℝ Z.construct := subset_affineSpan ℝ _ hc
-  have hdir : (affineSpan ℝ Z.construct).direction = LinearMap.range L := by
-    rw [direction_affineSpan, Zonotope.vectorSpan_construct, Fintype.range_linearCombination]
+  have hc : Z.c ∈ Z.toSet := ⟨0, fun _ => by simp, by simp⟩
+  have hcA : Z.c ∈ affineSpan ℝ Z.toSet := subset_affineSpan ℝ _ hc
+  have hdir : (affineSpan ℝ Z.toSet).direction = LinearMap.range L := by
+    rw [direction_affineSpan, Zonotope.vectorSpan_toSet, Fintype.range_linearCombination]
   -- the affine hull, in coordinates about `c`, is the range of `L`
-  let φ : affineSpan ℝ Z.construct → LinearMap.range L := fun p =>
+  let φ : affineSpan ℝ Z.toSet → LinearMap.range L := fun p =>
     ⟨(p : α) - Z.c, by rw [← hdir]; exact AffineSubspace.vsub_mem_direction p.2 hcA⟩
   have hφ : Continuous φ := (continuous_subtype_val.sub continuous_const).subtype_mk _
   -- `L` onto its range is open, so the open cube maps to an open neighbourhood of `0`

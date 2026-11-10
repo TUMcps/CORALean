@@ -58,9 +58,9 @@ own radius `ε` is already inside what the step reaches. -/
 theorem LinearSys.exists_timePointStepInner_inner (sys : LinearSys 𝕋 n)
     (X₀ U : Zonotope (Vec ℝ n)) (η : ℕ) {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
     ∃ r : ℝ, 0 < r ∧ sys.timePointStepError r η U < ε ∧
-      minkowskiDiff (sys.timePointStep (S := 𝒵) r η X₀ U).construct
+      minkowskiDiff (sys.timePointStep (S := 𝒵) r η X₀ U).toSet
           (Metric.closedBall (0 : Vec ℝ n) ε)
-        ⊆ (fun x₀ => exp (r • toRealMat sys.A) *ᵥ x₀) '' X₀.construct
+        ⊆ (fun x₀ => exp (r • toRealMat sys.A) *ᵥ x₀) '' X₀.toSet
           + sys.inputReach (S := 𝒵) U r := by -- --- PROOF ---
   obtain ⟨r, hr, herr, hside⟩ := sys.exists_timePointStepError_lt U η hε
   refine ⟨r, hr, herr, ?_⟩

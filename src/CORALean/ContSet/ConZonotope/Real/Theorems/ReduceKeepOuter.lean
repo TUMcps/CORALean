@@ -38,7 +38,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.reduceKeep_outer (cZ : ConZonotope (Vec ℝ n)) (o : ℕ) :
-    cZ.construct ⊆ (cZ.reduceKeep o).construct := by
+    cZ.toSet ⊆ (cZ.reduceKeep o).toSet := by
   unfold ConZonotope.reduceKeep
   split_ifs with hlt
   · exact ConZonotope.reduceKeepBy_outer cZ _

@@ -43,7 +43,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.matMulRight_exact {p q r : ℕ} (M : Mat ℝ q r) (Z : Zonotope (Mat ℝ p q)) :
-    (· * M) '' Z.construct = (Zonotope.mapOf (matMulRight M) Z).construct :=
+    (· * M) '' Z.toSet = (Zonotope.mapOf (matMulRight M) Z).toSet :=
   Zonotope.map_exact (matMulRight M) Z
 
 end CORALean.Real

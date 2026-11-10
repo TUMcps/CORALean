@@ -57,10 +57,10 @@ own radius `ε` is already inside the states the flow visits over it. -/
 theorem LinearSys.exists_timeIntervalInner_inner (sys : LinearSys 𝕋 n)
     (X₀ : Zonotope (Vec ℝ n)) (η : ℕ) {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
     ∃ r : ℝ, 0 < r ∧ sys.timeIntervalStepError r η X₀ < ε ∧
-      minkowskiDiff (sys.timeInterval (S := 𝒵) r η X₀).construct
+      minkowskiDiff (sys.timeInterval (S := 𝒵) r η X₀).toSet
           (Metric.closedBall (0 : Vec ℝ n) ε)
         ⊆ ⋃ t ∈ Set.Icc (0:ℝ) r,
-            (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' X₀.construct := by -- --- PROOF ---
+            (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' X₀.toSet := by -- --- PROOF ---
   obtain ⟨r, hr, herr, hside⟩ := sys.exists_timeIntervalStepError_lt X₀ η hε
   refine ⟨r, hr, herr, ?_⟩
   -- the true error is under the tolerance, so its ball is inside the one taken off

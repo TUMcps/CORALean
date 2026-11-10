@@ -54,8 +54,8 @@ private theorem aux_toRealMat_ball_Q (r : 𝕋) :
 
 /-- The real ball `ellipsoid((toReal r)² I)` lies in the float one. -/
 theorem Ellipsoid.ball_contains (r : 𝕋) : -- --- CONCL ---
-    (Real.Ellipsoid.ofFactor (toReal r • (1 : Mat ℝ n n)) 0).construct
-      ⊆ (Ellipsoid.ball n r).construct := by -- --- PROOF ---
+    (Real.Ellipsoid.ofFactor (toReal r • (1 : Mat ℝ n n)) 0).toSet
+      ⊆ (Ellipsoid.ball n r).toSet := by -- --- PROOF ---
   intro x hx
   -- the stored shape dominates `r² I`: its diagonal is rounded up from `r · r`
   have hdom : (toRealMat (Ellipsoid.ball n r).Q
@@ -71,11 +71,11 @@ theorem Ellipsoid.ball_contains (r : 𝕋) : -- --- CONCL ---
   have hq : toRealVec (Ellipsoid.ball n r).q = 0 := funext fun _ => toReal_zero
   have hFq : (Real.Ellipsoid.ofFactor (toReal r • (1 : Mat ℝ n n)) 0).q = 0 := rfl
   rw [hq, zero_add, hFq, sub_zero] at h
-  have h0 : (0 : Vec ℝ n) ∈ (Ellipsoid.ball n r).I_error.construct := by
-    show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).construct
+  have h0 : (0 : Vec ℝ n) ∈ (Ellipsoid.ball n r).I_error.toSet := by
+    show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).toSet
     rw [Interval.origin_exact]
     exact Set.mem_singleton 0
-  exact InflatedContSet.nominalSet_subset_construct h0 h
+  exact InflatedContSet.nominalSet_subset_toSet h0 h
 
 end CORALean.Float
 

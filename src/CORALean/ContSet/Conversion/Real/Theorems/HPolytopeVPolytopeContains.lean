@@ -54,11 +54,11 @@ variable {n : ℕ}
 
 /-- Extreme points of a halfspace description. -/
 private theorem HPolytope.aux_eq_zero_of_extremePoint (P : HPolytope (Vec ℝ n)) {x : Vec ℝ n}
-    (hx : x ∈ P.construct.extremePoints ℝ) {d : Vec ℝ n}
+    (hx : x ∈ P.toSet.extremePoints ℝ) {d : Vec ℝ n}
     (htight : ∀ i, P.A i x = P.b i → P.A i d = 0) (heq : ∀ i, P.Ae i d = 0) : -- --- CONCL ---
     d = 0 := by -- --- PROOF ---
   by_contra hd
-  have hxmem : x ∈ P.construct := hx.1
+  have hxmem : x ∈ P.toSet := hx.1
   -- the rows with slack at `x` still have slack nearby
   have hUopen : IsOpen (⋂ i, {y : Vec ℝ n | P.A i x < P.b i → P.A i y < P.b i}) := by
     refine isOpen_iInter_of_finite fun i => ?_
@@ -73,7 +73,7 @@ private theorem HPolytope.aux_eq_zero_of_extremePoint (P : HPolytope (Vec ℝ n)
   have hdn : 0 < ‖d‖ := norm_pos_iff.mpr hd
   have ht : 0 < δ / (2 * ‖d‖) := div_pos hδ (by positivity)
   -- a step of that size along `d` stays inside every row, tight or slack
-  have hstep : ∀ ε : ℝ, |ε| = δ / (2 * ‖d‖) → x + ε • d ∈ P.construct := by
+  have hstep : ∀ ε : ℝ, |ε| = δ / (2 * ‖d‖) → x + ε • d ∈ P.toSet := by
     intro ε hε
     have hnorm : |ε| * ‖d‖ = δ / 2 := by
       rw [hε]
@@ -90,8 +90,8 @@ private theorem HPolytope.aux_eq_zero_of_extremePoint (P : HPolytope (Vec ℝ n)
     · rw [map_add, map_smul, heq i, smul_eq_mul, mul_zero, add_zero]
       exact hxmem.2 i
   -- so `x` lies in the open segment between two points of `P`, which it cannot
-  have hup : x + (δ / (2 * ‖d‖)) • d ∈ P.construct := hstep _ (abs_of_pos ht)
-  have hdown : x + (-(δ / (2 * ‖d‖))) • d ∈ P.construct :=
+  have hup : x + (δ / (2 * ‖d‖)) • d ∈ P.toSet := hstep _ (abs_of_pos ht)
+  have hdown : x + (-(δ / (2 * ‖d‖))) • d ∈ P.toSet :=
     hstep _ (by rw [abs_neg, abs_of_pos ht])
   have hseg : x ∈ openSegment ℝ (x + (-(δ / (2 * ‖d‖))) • d) (x + (δ / (2 * ‖d‖)) • d) := by
     refine ⟨1 / 2, 1 / 2, by norm_num, by norm_num, by norm_num, ?_⟩
@@ -112,20 +112,20 @@ end
 /-- The soundness half of vertex enumeration: a list holding every point the
 rows pin down encloses the polytope. An implementation must then show it found
 those points, never that its search was exhaustive in any other sense. -/
-private theorem HPolytope.aux_contains_of_pinned (hc : IsCompact P.construct)
-    (W : VPolytope (Vec ℝ n)) (hW : ∀ x ∈ P.construct,
+private theorem HPolytope.aux_contains_of_pinned (hc : IsCompact P.toSet)
+    (W : VPolytope (Vec ℝ n)) (hW : ∀ x ∈ P.toSet,
         (∀ d : Vec ℝ n, (∀ i, P.A i x = P.b i → P.A i d = 0) → (∀ i, P.Ae i d = 0) → d = 0) →
         x ∈ Set.range W.V) : -- --- CONCL ---
-    P.construct ⊆ W.construct := by -- --- PROOF ---
-  have hext : P.construct.extremePoints ℝ ⊆ Set.range W.V := fun x hx =>
+    P.toSet ⊆ W.toSet := by -- --- PROOF ---
+  have hext : P.toSet.extremePoints ℝ ⊆ Set.range W.V := fun x hx =>
     hW x hx.1 fun _ h₁ h₂ => P.aux_eq_zero_of_extremePoint hx h₁ h₂
   have hclosed : IsClosed (convexHull ℝ (Set.range W.V)) :=
     (Set.Finite.isCompact_convexHull ℝ (Set.finite_range W.V)).isClosed
-  calc P.construct = closure (convexHull ℝ (P.construct.extremePoints ℝ)) :=
-        (closure_convexHull_extremePoints hc P.convex_construct).symm
+  calc P.toSet = closure (convexHull ℝ (P.toSet.extremePoints ℝ)) :=
+        (closure_convexHull_extremePoints hc P.convex_toSet).symm
     _ ⊆ closure (convexHull ℝ (Set.range W.V)) := closure_mono (convexHull_mono hext)
     _ = convexHull ℝ (Set.range W.V) := hclosed.closure_eq
-    _ = W.construct := W.construct_eq_convexHull.symm
+    _ = W.toSet := W.toSet_eq_convexHull.symm
 
 
 section
@@ -133,7 +133,7 @@ variable {n : ℕ}
 
 /-- A point no direction is free at is the one its own tight rows name. -/
 private theorem HPolytope.aux_basicPoint_tightAt (P : HPolytope (Vec ℝ n)) {x : Vec ℝ n}
-    (hx : x ∈ P.construct)
+    (hx : x ∈ P.toSet)
     (hpin : ∀ d : Vec ℝ n, (∀ i, P.A i x = P.b i → P.A i d = 0) → (∀ i, P.Ae i d = 0) → d = 0)
     : -- --- CONCL ---
     P.basicPoint (P.tightAt x) = x := by -- --- PROOF ---
@@ -166,12 +166,12 @@ end
 -- =======================================  MAIN THEOREM  ======================================= --
 
 -- the other way: `aux_contains_of_pinned` asks only that every extreme point be listed
-theorem HPolytope.vPolytope_contains (P : HPolytope (Vec ℝ n)) (hc : IsCompact P.construct)
-    (hne : P.construct.Nonempty) : -- --- CONCL ---
-    P.construct ⊆ (P.vPolytope hne).construct := by -- --- PROOF ---
+theorem HPolytope.vPolytope_contains (P : HPolytope (Vec ℝ n)) (hc : IsCompact P.toSet)
+    (hne : P.toSet.Nonempty) : -- --- CONCL ---
+    P.toSet ⊆ (P.vPolytope hne).toSet := by -- --- PROOF ---
   refine HPolytope.aux_contains_of_pinned hc _ fun x hx hpin => ?_
   refine ⟨(signEquiv P.m).symm (P.tightAt x), ?_⟩
-  show (if P.basicPoint (signEquiv P.m ((signEquiv P.m).symm (P.tightAt x))) ∈ P.construct then
+  show (if P.basicPoint (signEquiv P.m ((signEquiv P.m).symm (P.tightAt x))) ∈ P.toSet then
       P.basicPoint (signEquiv P.m ((signEquiv P.m).symm (P.tightAt x))) else hne.choose) = x
   rw [Equiv.apply_symm_apply, P.aux_basicPoint_tightAt hx hpin, if_pos hx]
 

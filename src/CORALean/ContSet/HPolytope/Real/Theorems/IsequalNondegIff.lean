@@ -68,7 +68,7 @@ variable {q q' q₁ q₂ n : ℕ}
 
 /-- A row tight at an interior point would let a step along it leave the polytope. -/
 private theorem aux_strict_of_interior (A : Mat ℝ q n) (b : Vec ℝ q) (hA : ∀ i, A i ⬝ᵥ A i = 1)
-    {x : Vec ℝ n} (hx : x ∈ interior (HPolytope.ineqs A b).construct) (i : Fin q) : -- --- CONCL ---
+    {x : Vec ℝ n} (hx : x ∈ interior (HPolytope.ineqs A b).toSet) (i : Fin q) : -- --- CONCL ---
     (A *ᵥ x) i < b i := by -- --- PROOF ---
   obtain ⟨ε, hε, hball⟩ := Metric.mem_nhds_iff.mp (mem_interior_iff_mem_nhds.mp hx)
   set t := ε / (2 * (‖A i‖ + 1)) with ht
@@ -112,14 +112,14 @@ private theorem aux_eq_of_dir {a a' : Vec ℝ n} (ha : a ⬝ᵥ a = 1) (ha' : a'
 /-- A non-redundant row of a non-degenerate polytope is a row of every representation. -/
 private theorem aux_facet (A : Mat ℝ q n) (b : Vec ℝ q) (A' : Mat ℝ q' n) (b' : Vec ℝ q')
     (hA : ∀ i, A i ⬝ᵥ A i = 1) (hA' : ∀ k, A' k ⬝ᵥ A' k = 1)
-    (hint : (interior (HPolytope.ineqs A b).construct).Nonempty) (j : Fin q)
-    (hred : (HPolytope.ineqs A b).construct ≠
-      (HPolytope.ineqs (A.submatrix (dropIdx j) id) fun i => b (dropIdx j i)).construct)
-    (heq : (HPolytope.ineqs A b).construct = (HPolytope.ineqs A' b').construct) : -- --- CONCL ---
+    (hint : (interior (HPolytope.ineqs A b).toSet).Nonempty) (j : Fin q)
+    (hred : (HPolytope.ineqs A b).toSet ≠
+      (HPolytope.ineqs (A.submatrix (dropIdx j) id) fun i => b (dropIdx j i)).toSet)
+    (heq : (HPolytope.ineqs A b).toSet = (HPolytope.ineqs A' b').toSet) : -- --- CONCL ---
     ∃ k, A' k = A j ∧ b' k = b j := by -- --- PROOF ---
   -- a point kept by the other rows and cut off by row `j`
-  have hsub : (HPolytope.ineqs A b).construct ⊆ (HPolytope.ineqs (A.submatrix (dropIdx j) id)
-      fun i => b (dropIdx j i)).construct := fun x hx =>
+  have hsub : (HPolytope.ineqs A b).toSet ⊆ (HPolytope.ineqs (A.submatrix (dropIdx j) id)
+      fun i => b (dropIdx j i)).toSet := fun x hx =>
     HPolytope.mem_ineqs_iff.mpr fun i => HPolytope.mem_ineqs_iff.mp hx (dropIdx j i)
   obtain ⟨y, hyD, hyP⟩ := Set.exists_of_ssubset (ssubset_of_subset_of_ne hsub hred)
   have hyrows := HPolytope.mem_ineqs_iff.mp hyD
@@ -150,7 +150,7 @@ private theorem aux_facet (A : Mat ℝ q n) (b : Vec ℝ q) (A' : Mat ℝ q' n) 
     have hxi := hxs (dropIdx j i)
     have : (A *ᵥ y) (dropIdx j i) = ((A.submatrix (dropIdx j) id) *ᵥ y) i := rfl
     nlinarith
-  have hzP : z ∈ (HPolytope.ineqs A b).construct := by
+  have hzP : z ∈ (HPolytope.ineqs A b).toSet := by
     refine HPolytope.mem_ineqs_iff.mpr fun l => ?_
     revert l
     exact (forall_dropIdx_iff j).mpr ⟨hzj.le, fun i => (hzo i).le⟩
@@ -173,7 +173,7 @@ private theorem aux_facet (A : Mat ℝ q n) (b : Vec ℝ q) (A' : Mat ℝ q' n) 
     have hlt : ∀ k, (A' *ᵥ z) k < b' k := fun k =>
       lt_of_le_of_ne (HPolytope.mem_ineqs_iff.mp hzP' k) (hnone k)
     obtain ⟨s, hs, hsA⟩ := HPolytope.exists_pos_step_strict A' b' z (A j) hlt
-    have hmem : z + s • A j ∈ (HPolytope.ineqs A b).construct :=
+    have hmem : z + s • A j ∈ (HPolytope.ineqs A b).toSet :=
       heq ▸ HPolytope.mem_ineqs_iff.mpr fun k => (hsA k).le
     have hrow := HPolytope.mem_ineqs_iff.mp hmem j
     rw [Matrix.mulVec_add, Matrix.mulVec_smul, Pi.add_apply, Pi.smul_apply, smul_eq_mul, hzj]
@@ -185,7 +185,7 @@ private theorem aux_facet (A : Mat ℝ q n) (b : Vec ℝ q) (A' : Mat ℝ q' n) 
   have hdir : ∀ d : Vec ℝ n, A j ⬝ᵥ d ≤ 0 → A' k ⬝ᵥ d ≤ 0 := by
     intro d hd
     obtain ⟨s, hs, hsA⟩ := HPolytope.exists_pos_step_strict A _ z d hzs
-    have hmem : z + s • d ∈ (HPolytope.ineqs A b).construct := by
+    have hmem : z + s • d ∈ (HPolytope.ineqs A b).toSet := by
       refine HPolytope.mem_ineqs_iff.mpr fun l => ?_
       revert l
       refine (forall_dropIdx_iff j).mpr ⟨?_, fun i => ?_⟩
@@ -214,8 +214,8 @@ private theorem aux_facet (A : Mat ℝ q n) (b : Vec ℝ q) (A' : Mat ℝ q' n) 
 
 /-- Line 1 leaves the set alone. -/
 private theorem aux_normalize (A : Mat ℝ q n) (b : Vec ℝ q) (hA : ∀ i, A i ≠ 0) : -- --- CONCL ---
-    (HPolytope.ineqs (Matrix.of fun j => ‖A j‖₂⁻¹ • A j) fun j => b j / ‖A j‖₂).construct =
-      (HPolytope.ineqs A b).construct := by -- --- PROOF ---
+    (HPolytope.ineqs (Matrix.of fun j => ‖A j‖₂⁻¹ • A j) fun j => b j / ‖A j‖₂).toSet =
+      (HPolytope.ineqs A b).toSet := by -- --- PROOF ---
   have hpos : ∀ j, 0 < ‖A j‖₂ := fun j => by
     rcases (norm₂_nonneg (A j)).eq_or_lt with h | h
     · exfalso
@@ -249,11 +249,11 @@ private theorem aux_unit (A : Mat ℝ q n) (hA : ∀ i, A i ≠ 0) (j : Fin q) :
 /-- A row is redundant, in the support-function sense of line 4, exactly when dropping it
 leaves the set. -/
 private theorem aux_redundant_iff (A : Mat ℝ q n) (b : Vec ℝ q) (j : Fin q) : -- --- CONCL ---
-    supportFunc (HPolytope.ineqs (A.submatrix (dropIdx j) id) fun i => b (dropIdx j i)).construct
+    supportFunc (HPolytope.ineqs (A.submatrix (dropIdx j) id) fun i => b (dropIdx j i)).toSet
         (HPolytope.rowLin A j) ≤ (b j : EReal) ↔
-      (HPolytope.ineqs A b).construct =
+      (HPolytope.ineqs A b).toSet =
         (HPolytope.ineqs (A.submatrix (dropIdx j) id)
-          fun i => b (dropIdx j i)).construct := by -- --- PROOF ---
+          fun i => b (dropIdx j i)).toSet := by -- --- PROOF ---
   rw [supportFunc_le_coe_iff]
   constructor
   · intro h
@@ -271,30 +271,30 @@ private theorem aux_redundant_iff (A : Mat ℝ q n) (b : Vec ℝ q) (j : Fin q) 
 
 theorem HPolytope.isequalNondeg_iff (A₁ : Mat ℝ q₁ n) (b₁ : Vec ℝ q₁) (A₂ : Mat ℝ q₂ n)
     (b₂ : Vec ℝ q₂) (h₁ : ∀ j, A₁ j ≠ 0) (h₂ : ∀ k, A₂ k ≠ 0)
-    (hint₁ : (interior (HPolytope.ineqs A₁ b₁).construct).Nonempty)
-    (hint₂ : (interior (HPolytope.ineqs A₂ b₂).construct).Nonempty)
-    (hmin₁ : ∀ j, (HPolytope.ineqs A₁ b₁).construct ≠
-      (HPolytope.ineqs (A₁.submatrix (dropIdx j) id) fun i => b₁ (dropIdx j i)).construct)
-    (hmin₂ : ∀ k, (HPolytope.ineqs A₂ b₂).construct ≠
-      (HPolytope.ineqs (A₂.submatrix (dropIdx k) id) fun i => b₂ (dropIdx k i)).construct)
+    (hint₁ : (interior (HPolytope.ineqs A₁ b₁).toSet).Nonempty)
+    (hint₂ : (interior (HPolytope.ineqs A₂ b₂).toSet).Nonempty)
+    (hmin₁ : ∀ j, (HPolytope.ineqs A₁ b₁).toSet ≠
+      (HPolytope.ineqs (A₁.submatrix (dropIdx j) id) fun i => b₁ (dropIdx j i)).toSet)
+    (hmin₂ : ∀ k, (HPolytope.ineqs A₂ b₂).toSet ≠
+      (HPolytope.ineqs (A₂.submatrix (dropIdx k) id) fun i => b₂ (dropIdx k i)).toSet)
     : -- --- CONCL ---
     HPolytope.isequalNondeg A₁ b₁ A₂ b₂ = true ↔
-      (HPolytope.ineqs A₁ b₁).construct = (HPolytope.ineqs A₂ b₂).construct := by -- --- PROOF ---
+      (HPolytope.ineqs A₁ b₁).toSet = (HPolytope.ineqs A₂ b₂).toSet := by -- --- PROOF ---
   -- the normalized polytopes, and their dropped versions, are the originals
   have hN₁ := aux_normalize A₁ b₁ h₁
   have hN₂ := aux_normalize A₂ b₂ h₂
   have hD₁ : ∀ j, (HPolytope.ineqs ((Matrix.of fun j => ‖A₁ j‖₂⁻¹ • A₁ j).submatrix (dropIdx j) id)
-      fun i => b₁ (dropIdx j i) / ‖A₁ (dropIdx j i)‖₂).construct =
-      (HPolytope.ineqs (A₁.submatrix (dropIdx j) id) fun i => b₁ (dropIdx j i)).construct :=
+      fun i => b₁ (dropIdx j i) / ‖A₁ (dropIdx j i)‖₂).toSet =
+      (HPolytope.ineqs (A₁.submatrix (dropIdx j) id) fun i => b₁ (dropIdx j i)).toSet :=
     fun j => aux_normalize (A₁.submatrix (dropIdx j) id) _ fun i => h₁ _
   have hD₂ : ∀ k, (HPolytope.ineqs ((Matrix.of fun k => ‖A₂ k‖₂⁻¹ • A₂ k).submatrix (dropIdx k) id)
-      fun i => b₂ (dropIdx k i) / ‖A₂ (dropIdx k i)‖₂).construct =
-      (HPolytope.ineqs (A₂.submatrix (dropIdx k) id) fun i => b₂ (dropIdx k i)).construct :=
+      fun i => b₂ (dropIdx k i) / ‖A₂ (dropIdx k i)‖₂).toSet =
+      (HPolytope.ineqs (A₂.submatrix (dropIdx k) id) fun i => b₂ (dropIdx k i)).toSet :=
     fun k => aux_normalize (A₂.submatrix (dropIdx k) id) _ fun i => h₂ _
   -- each row of one list being a row of the other puts the other inside
   have hrows : ∀ {p r : ℕ} (C : Mat ℝ p n) (c : Vec ℝ p) (C' : Mat ℝ r n) (c' : Vec ℝ r),
       (∀ j, ∃ k, C j = C' k ∧ c j = c' k) →
-        (HPolytope.ineqs C' c').construct ⊆ (HPolytope.ineqs C c).construct := by
+        (HPolytope.ineqs C' c').toSet ⊆ (HPolytope.ineqs C c).toSet := by
     intro p r C c C' c' h x hx
     refine HPolytope.mem_ineqs_iff.mpr fun j => ?_
     obtain ⟨k, hCk, hck⟩ := h j
@@ -322,8 +322,8 @@ theorem HPolytope.isequalNondeg_iff (A₁ : Mat ℝ q₁ n) (b₁ : Vec ℝ q₁
   · intro heq
     -- every row of either is a facet row of the other
     have heqN : (HPolytope.ineqs (Matrix.of fun j => ‖A₁ j‖₂⁻¹ • A₁ j)
-        fun j => b₁ j / ‖A₁ j‖₂).construct = (HPolytope.ineqs (Matrix.of fun k => ‖A₂ k‖₂⁻¹ • A₂ k)
-        fun k => b₂ k / ‖A₂ k‖₂).construct := by rw [hN₁, hN₂, heq]
+        fun j => b₁ j / ‖A₁ j‖₂).toSet = (HPolytope.ineqs (Matrix.of fun k => ‖A₂ k‖₂⁻¹ • A₂ k)
+        fun k => b₂ k / ‖A₂ k‖₂).toSet := by rw [hN₁, hN₂, heq]
     refine ⟨fun j => Or.inl ?_, fun k => Or.inl ?_⟩
     · obtain ⟨k, hk, hb⟩ := aux_facet _ _ _ _ (aux_unit A₁ h₁) (aux_unit A₂ h₂)
         (by rw [hN₁]; exact hint₁) j (by rw [hN₁, hD₁ j]; exact hmin₁ j) heqN

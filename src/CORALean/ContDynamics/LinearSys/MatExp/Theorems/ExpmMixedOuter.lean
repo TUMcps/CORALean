@@ -55,16 +55,16 @@ variable {n : ℕ}
 
 /-- The two parts of `expmMixed` hold the Taylor sum and the rest of the series of every member. -/
 theorem MatExp.expmMixed_outer (A : Interval (Mat ℝ n n)) {r : ℝ} (hr : r ≠ 0) {k η : ℕ}
-    (hk : 2 ≤ k) (hη : k < η) {M : Mat ℝ n n} (hM : M ∈ A.construct) : -- --- CONCL ---
-    MatExp.expTaylor M k ∈ (MatExp.expmMixed A r k η).eI.construct ∧
+    (hk : 2 ≤ k) (hη : k < η) {M : Mat ℝ n n} (hM : M ∈ A.toSet) : -- --- CONCL ---
+    MatExp.expTaylor M k ∈ (MatExp.expmMixed A r k η).eI.toSet ∧
       exp M - MatExp.expTaylor M k ∈
-        (MatExp.expmMixed A r k η).eI2.construct := by -- --- PROOF ---
+        (MatExp.expmMixed A r k η).eI2.toSet := by -- --- PROOF ---
   -- the first part: the order-`k` Taylor sum
   obtain ⟨j, rfl⟩ : ∃ j, k = j + 2 := ⟨k - 2, by omega⟩
   refine ⟨MatExp.expmTerms_mem A hr j hM, ?_⟩
   -- the second part: `A * iPow{k}` encloses `M ^ (k + 1)`, and `expTaylor M k` is the partial sum
   have hP : M ^ (j + 2 + 1) ∈ (Interval.matMul A (Interval.powers A
-      (MatExp.dependentTerms (Interval.smul (1 / r) A) r).intSq (j + 2 - 2))).construct := by
+      (MatExp.dependentTerms (Interval.smul (1 / r) A) r).intSq (j + 2 - 2))).toSet := by
     rw [pow_succ']
     exact Interval.matMul_outer _ _ hM (MatExp.powers_intSq_mem A hr hM (by omega))
   have h := MatExp.expmFrom_outer A _ (η := η) (k := j + 2 + 1) hη hM hP

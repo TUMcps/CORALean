@@ -47,7 +47,7 @@ structure ProbZonotope (n : ℕ) where
 /-- The Gaussian laws `N(μ, Σ)` with `μ ∈ Z`: what `E[𝒵] ∈ Z` ranges over in [1, Def. 4]. -/
 noncomputable def ProbZonotope.laws (P : ProbZonotope n) :
     Set (Measure (EuclideanSpace ℝ (Fin n))) :=
-  {m | ∃ μ ∈ P.Z.construct, m = multivariateGaussian (toLp 2 μ) P.cov}
+  {m | ∃ μ ∈ P.Z.toSet, m = multivariateGaussian (toLp 2 μ) P.cov}
 
 end CORALean.Real
 

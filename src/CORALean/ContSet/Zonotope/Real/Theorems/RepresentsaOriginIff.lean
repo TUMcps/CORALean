@@ -36,11 +36,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.representsa_origin_iff (Z : Zonotope α) : -- --- CONCL ---
-    Z.construct = {0} ↔ Z.representsa_origin := by -- --- PROOF ---
+    Z.toSet = {0} ↔ Z.representsa_origin := by -- --- PROOF ---
   constructor
   · intro h
     have hc : Z.c = 0 := by
-      have := Zonotope.center_mem_construct Z
+      have := Zonotope.center_mem_toSet Z
       rw [h] at this
       exact this
     refine ⟨hc, (Zonotope.representsa_point_iff Z).mp ?_⟩

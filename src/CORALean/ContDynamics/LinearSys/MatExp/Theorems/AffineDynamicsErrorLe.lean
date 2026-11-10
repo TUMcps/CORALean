@@ -91,7 +91,7 @@ private theorem MatExp.aux_norm₂_le_of_mem_curvatureEnclosure (A : Mat ℝ n n
       ∧ |(MatExp.correctionMatrix A Δt η).sup j k| ≤ ρF)
     (hG : ∀ j k, |(MatExp.constCorrectionMatrix A Δt η).inf j k| ≤ ρG
       ∧ |(MatExp.constCorrectionMatrix A Δt η).sup j k| ≤ ρG) : -- --- CONCL ---
-    ∀ y ∈ (MatExp.curvatureEnclosure A H ũ Δt η).construct,
+    ∀ y ∈ (MatExp.curvatureEnclosure A H ũ Δt η).toSet,
       ‖y‖₂ ≤ Real.sqrt n * ((ρF + ρF) * ∑ j, H.absBound j
         + (ρG + ρG) * ∑ j, |ũ j|) := by -- --- PROOF ---
   obtain ⟨hFc, hFr⟩ := MatExp.aux_center_radius_le hF
@@ -164,7 +164,7 @@ theorem MatExp.affineDynamicsError_le (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n
     rw [Zonotope.absBound]; positivity
   have hSumU : (0:ℝ) ≤ ∑ j, |ũ j| := Finset.sum_nonneg fun j _ => abs_nonneg _
   -- the curvature enclosure, at `err`
-  have herr : 2 * err (MatExp.curvatureEnclosure A H ũ Δt η).construct
+  have herr : 2 * err (MatExp.curvatureEnclosure A H ũ Δt η).toSet
       ≤ 4 * (n : ℝ) * (ρF * ∑ j, H.absBound j + ρG * ∑ j, |ũ j|) := by
     have hr : (0:ℝ) ≤ Real.sqrt n * ((ρF + ρF) * ∑ j, H.absBound j + (ρG + ρG) * ∑ j, |ũ j|) :=
       mul_nonneg (Real.sqrt_nonneg _)

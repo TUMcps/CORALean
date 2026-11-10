@@ -41,8 +41,8 @@ noncomputable abbrev step_thinLine : SpectraShadow (Vec ℝ 1) :=
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-private theorem aux_thinLine_construct : -- --- CONCL ---
-    step_thinLine.construct = Set.univ := by -- --- PROOF ---
+private theorem aux_thinLine_toSet : -- --- CONCL ---
+    step_thinLine.toSet = Set.univ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_univ, iff_true]
   refine ⟨fun _ => x 0 * 10 ^ 9, ?_, ?_⟩
@@ -57,11 +57,11 @@ private theorem aux_thinLine_construct : -- --- CONCL ---
 
 theorem SpectraShadow.fullDimShortcut_thinLine_counterexample : -- --- CONCL ---
     step_thinLine.IsFullDimShortcutCora ∧
-      (interior step_thinLine.construct).Nonempty := by -- --- PROOF ---
+      (interior step_thinLine.toSet).Nonempty := by -- --- PROOF ---
   refine ⟨?_, ?_⟩
   · simp [SpectraShadow.IsFullDimShortcutCora, step_thinLine]
     norm_num
-  · rw [aux_thinLine_construct, interior_univ]
+  · rw [aux_thinLine_toSet, interior_univ]
     exact ⟨0, trivial⟩
 
 end CORALean.Real

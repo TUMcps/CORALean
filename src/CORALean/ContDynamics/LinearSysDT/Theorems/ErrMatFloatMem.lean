@@ -44,9 +44,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
 theorem LinearSysDT.errMatFloat_mem (A : Mat 𝕋 n n) (L : Mat 𝕋 n p)
     (C : Mat 𝕋 p n) : -- --- CONCL ---
     toRealMat A - toRealMat L * toRealMat C ∈
-      (LinearSysDT.errMatFloat A L C).construct := by -- --- PROOF ---
+      (LinearSysDT.errMatFloat A L C).toSet := by -- --- PROOF ---
   have hLC : toRealMat L * toRealMat C ∈
-      (Interval.matMul (Interval.point L) (Interval.point C)).construct :=
+      (Interval.matMul (Interval.point L) (Interval.point C)).toSet :=
     Interval.matMul_outer (Interval.point L) (Interval.point C)
     (Interval.mem_point L) (Interval.mem_point C)
   refine Interval.mem_mat_iff.mpr fun i j => ?_

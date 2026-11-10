@@ -614,7 +614,7 @@ open FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- ================================  `Interval.EBox.construct`  ================================= --
+-- ==================================  `Interval.EBox.toSet`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
 -- Last update:   ---
@@ -622,7 +622,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The points whose every coordinate lies above each stored lower bound and below each stored upper
 bound. -/
-def Interval.EBox.construct (B : Interval.EBox 𝕋 n) : Set (Vec ℝ n) :=
+def Interval.EBox.toSet (B : Interval.EBox 𝕋 n) : Set (Vec ℝ n) :=
   {x | ∀ i, (∀ l, B.lo i = some l → toReal l ≤ x i) ∧ (∀ u, B.hi i = some u → x i ≤ toReal u)}
 
 

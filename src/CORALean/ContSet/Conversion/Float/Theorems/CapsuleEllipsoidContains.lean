@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Capsule.ellipsoid_contains (C : Capsule 𝕋 n) (σ : 𝕋) (hσ : 0 < toReal σ)
     (hn : (n : ℝ) ≤ toReal (mulDown σ σ)) :
-    C.construct ⊆ (C.ellipsoid σ).construct :=
+    C.toSet ⊆ (C.ellipsoid σ).toSet :=
   subset_trans C.interval_contains (Interval.ellipsoid_contains _ σ hσ hn)
 
 end CORALean.Float

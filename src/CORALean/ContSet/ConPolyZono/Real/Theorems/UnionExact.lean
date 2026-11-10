@@ -11,10 +11,10 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.ExistsUnionFactorsLeft
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ExistsUnionFactorsRight
 public import CORALean.ContSet.Interval.Real.Operations.IsNonempty
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemAndRowsIff
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUnit
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEqUnit
 public import Mathlib.Tactic.Module
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLower
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEq
 
 @[expose] public section
 
@@ -83,13 +83,13 @@ private theorem ConPolyZono.aux_holds_unionLower_iff {p₁ p₂ : ℕ} {P₁ : P
 private theorem ConPolyZono.aux_mem_of_holds (cPZ₁ cPZ₂ : ConPolyZono α)
     (hE₁ : ConPolyZono.HasNoZeroCol cPZ₁.E) (hE₂ : ConPolyZono.HasNoZeroCol cPZ₂.E)
     (a : Fin (cPZ₁.p + cPZ₂.p + 2) → ℝ) (hab : ∀ k, |a k| ≤ 1)
-    (hup : a ∈ (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).construct)
+    (hup : a ∈ (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).toSet)
     (hlow : ∀ i, ((ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons).op i).holds
       ((ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons).eval a i)) : -- --- CONCL ---
     (2:ℝ)⁻¹ • (cPZ₁.c + cPZ₂.c)
         + (∑ i, PolyZonotope.monomial (ConPolyZono.unionE cPZ₁.E cPZ₂.E) a i
             • ConPolyZono.unionG cPZ₁.c cPZ₂.c cPZ₁.G cPZ₂.G i)
-      ∈ cPZ₁.construct ∪ cPZ₂.construct := by -- --- PROOF ---
+      ∈ cPZ₁.toSet ∪ cPZ₂.toSet := by -- --- PROOF ---
   replace hlow := (ConPolyZono.aux_holds_unionLower_iff cPZ₁.cons_eq cPZ₂.cons_eq a).mp hlow
   have hbr := (ConPolyZono.union_domain_iff (a (ConPolyZono.unionSel cPZ₁.p cPZ₂.p))
     (a (Fin.natAdd (cPZ₁.p + cPZ₂.p) 1))
@@ -101,7 +101,7 @@ private theorem ConPolyZono.aux_mem_of_holds (cPZ₁ cPZ₂ : ConPolyZono α)
   · -- the selector is `1`, so the second operand's block is pinned to zero
     left
     refine ⟨fun k => a (Fin.castAdd 2 (Fin.castAdd cPZ₂.p k)), fun _ => 0, fun _ => by simp,
-      (PolyLevelSet.mem_construct_iff_of_eq_unit cPZ₁.cons_eq cPZ₁.cons_dom).mpr
+      (PolyLevelSet.mem_toSet_iff_of_eq_unit cPZ₁.cons_eq cPZ₁.cons_dom).mpr
         ⟨fun k => hab _, fun r => ?_⟩, ?_⟩
     · have h := hlow (Fin.castAdd cPZ₂.cons.m r)
       rw [ConPolyZono.eval_unionLower, Fin.append_left, hx1] at h
@@ -116,7 +116,7 @@ private theorem ConPolyZono.aux_mem_of_holds (cPZ₁ cPZ₂ : ConPolyZono α)
   · -- and the mirror, the selector `-1` pinning the first operand's block
     right
     refine ⟨fun k => a (Fin.castAdd 2 (Fin.natAdd cPZ₁.p k)), fun _ => 0, fun _ => by simp,
-      (PolyLevelSet.mem_construct_iff_of_eq_unit cPZ₂.cons_eq cPZ₂.cons_dom).mpr
+      (PolyLevelSet.mem_toSet_iff_of_eq_unit cPZ₂.cons_eq cPZ₂.cons_dom).mpr
         ⟨fun k => hab _, fun r => ?_⟩, ?_⟩
     · have h := hlow (Fin.natAdd cPZ₁.cons.m r)
       rw [ConPolyZono.eval_unionLower, Fin.append_right, hx1] at h
@@ -137,13 +137,13 @@ theorem ConPolyZono.union_exact_of_noZeroCol (cPZ₁ cPZ₂ : ConPolyZono α)
     (hE₁ : ConPolyZono.HasNoZeroCol cPZ₁.E) (hR₁ : ConPolyZono.HasNoZeroCol cPZ₁.cons.R)
     (hE₂ : ConPolyZono.HasNoZeroCol cPZ₂.E)
     (hR₂ : ConPolyZono.HasNoZeroCol cPZ₂.cons.R) : -- --- CONCL ---
-    cPZ₁.construct ∪ cPZ₂.construct = (cPZ₁.union cPZ₂).construct := by -- --- PROOF ---
+    cPZ₁.toSet ∪ cPZ₂.toSet = (cPZ₁.union cPZ₂).toSet := by -- --- PROOF ---
   ext x
   simp only [Set.mem_union]
   constructor
   · rintro (⟨a₁, β₁, hβ₁, hsat₁, rfl⟩ | ⟨a₂, β₂, hβ₂, hsat₂, rfl⟩)
     · -- a point of the first operand, at the branch that selects it
-      have ha₁ := ((PolyLevelSet.mem_construct_iff_of_eq_unit cPZ₁.cons_eq cPZ₁.cons_dom).mp
+      have ha₁ := ((PolyLevelSet.mem_toSet_iff_of_eq_unit cPZ₁.cons_eq cPZ₁.cons_dom).mp
         hsat₁).1
       obtain ⟨a, hab, hu, hv, hx1, hy1⟩ :=
         ConPolyZono.exists_unionFactors_left (p₂ := cPZ₂.p) 1 (by norm_num) ha₁
@@ -163,7 +163,7 @@ theorem ConPolyZono.union_exact_of_noZeroCol (cPZ₁ cPZ₂ : ConPolyZono α)
           · rw [ConPolyZono.eval_unionLower, Fin.append_left]
             have h1 : (fun k => a (Fin.castAdd 2 (Fin.castAdd cPZ₂.p k))) = a₁ := funext hu
             rw [h1, hx1]
-            have h := ((PolyLevelSet.mem_construct_iff_of_eq cPZ₁.cons_eq).mp hsat₁).2 r
+            have h := ((PolyLevelSet.mem_toSet_iff_of_eq cPZ₁.cons_eq).mp hsat₁).2 r
             linarith
           · -- the other operand's rows, its whole left side pinned to zero
             rw [ConPolyZono.eval_unionLower, Fin.append_right]
@@ -192,7 +192,7 @@ theorem ConPolyZono.union_exact_of_noZeroCol (cPZ₁ cPZ₂ : ConPolyZono α)
         simp only [Finset.univ_eq_empty, Finset.sum_empty, add_zero]
         module
     · -- the mirror, a point of the second operand at the other branch
-      have ha₂ := ((PolyLevelSet.mem_construct_iff_of_eq_unit cPZ₂.cons_eq cPZ₂.cons_dom).mp
+      have ha₂ := ((PolyLevelSet.mem_toSet_iff_of_eq_unit cPZ₂.cons_eq cPZ₂.cons_dom).mp
         hsat₂).1
       obtain ⟨a, hab, hu, hv, hx1, hy1⟩ :=
         ConPolyZono.exists_unionFactors_right (p₁ := cPZ₁.p) (-1) (by norm_num) ha₂
@@ -220,7 +220,7 @@ theorem ConPolyZono.union_exact_of_noZeroCol (cPZ₁ cPZ₂ : ConPolyZono α)
           · rw [ConPolyZono.eval_unionLower, Fin.append_right]
             have h2 : (fun k => a (Fin.castAdd 2 (Fin.natAdd cPZ₁.p k))) = a₂ := funext hv
             rw [h2, hx1]
-            have h := ((PolyLevelSet.mem_construct_iff_of_eq cPZ₂.cons_eq).mp hsat₂).2 r
+            have h := ((PolyLevelSet.mem_toSet_iff_of_eq cPZ₂.cons_eq).mp hsat₂).2 r
             linarith
       · -- and the point, the selector `-1` moving the center to `c₂`
         have hβ₀ : (∑ j, β₂ j • cPZ₂.GI j) = 0 :=

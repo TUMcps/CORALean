@@ -47,7 +47,7 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 theorem LinearSysDT.simulate_mem_simulateBox (sys : LinearSysDT 𝕋 n) (x₀ : Vec 𝕋 n)
     (u : ℕ → Vec 𝕋 n) (k : ℕ) :
     sys.simulate (Scalar.toRealVec x₀) (fun j => Scalar.toRealVec (u j)) k ∈
-      construct (sys.simulateBox x₀ u k) :=
+      toSet (sys.simulateBox x₀ u k) :=
   sys.mem_simulateBoxIn _ _
     (x := sys.simulate (Scalar.toRealVec x₀) fun j => Scalar.toRealVec (u j))
     (u := fun j => Scalar.toRealVec (u j)) (Interval.mem_point x₀)

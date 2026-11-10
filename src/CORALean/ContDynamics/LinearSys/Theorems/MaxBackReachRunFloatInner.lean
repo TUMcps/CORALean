@@ -80,26 +80,26 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 theorem LinearSys.maxBackReachRunFloat_inner (sys : LinearSys 𝕋 n) (Bx : Interval (Vec 𝕋 n))
     (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) {U W₀ : Zonotope (Vec 𝕋 n)} {Zw : 𝕋 → 𝕋 → Zonotope (Vec 𝕋 n)}
     {t₀ Δt : 𝕋} {η : ℕ}
-    (ρ : ∀ (P : CORALean.Real.HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.construct)
-      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
+    (ρ : ∀ (P : CORALean.Real.HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.toSet)
+      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.toSet c)
     (P₁r P₂r : CORALean.Real.HPolytope (Vec ℝ n))
     (Ur W₀r : CORALean.Real.Zonotope (Vec ℝ n)) (Zwr : ℝ → CORALean.Real.Zonotope (Vec ℝ n))
-    (ht₀ : 0 ≤ toReal t₀) (hΔt : 0 < toReal Δt) (hU0 : (0 : Vec ℝ n) ∈ U.I_error.construct)
-    (hU : U.construct ⊆ construct Ur) (hWE : W₀.I_error = Interval.point fun _ => FloatOps.zero)
-    (hW₀r : W₀r.construct ⊆ W₀.construct)
+    (ht₀ : 0 ≤ toReal t₀) (hΔt : 0 < toReal Δt) (hU0 : (0 : Vec ℝ n) ∈ U.I_error.toSet)
+    (hU : U.toSet ⊆ toSet Ur) (hWE : W₀.I_error = Interval.point fun _ => FloatOps.zero)
+    (hW₀r : W₀r.toSet ⊆ W₀.toSet)
     (hZw : ∀ (tLo tHi : 𝕋) (t : ℝ), toReal tLo ≤ t → t ≤ toReal tHi →
-      construct (Zwr t) ⊆ (Zw tLo tHi).construct) (hP₁ : P₁.construct ⊆ P₁r.construct)
-    (hP₂ : P₂.construct ⊆ P₂r.construct) (hP₁0 : (0 : Vec ℝ n) ∈ P₁.I_error.construct)
-    (hP₂0 : (0 : Vec ℝ n) ∈ P₂.I_error.construct)
+      toSet (Zwr t) ⊆ (Zw tLo tHi).toSet) (hP₁ : P₁.toSet ⊆ P₁r.toSet)
+    (hP₂ : P₂.toSet ⊆ P₂r.toSet) (hP₁0 : (0 : Vec ℝ n) ∈ P₁.I_error.toSet)
+    (hP₂0 : (0 : Vec ℝ n) ∈ P₂.I_error.toSet)
     (hker₁ : ∀ i (y : Vec ℝ n), (toRealMat P₁.Ae *ᵥ y) i = 0)
     (hker₂ : ∀ i (y : Vec ℝ n), (toRealMat P₂.Ae *ᵥ y) i = 0)
     (hkerr₁ : ∀ (i : Fin P₁r.me) (y : Vec ℝ n), P₁r.Ae i y = 0)
     (hkerr₂ : ∀ (i : Fin P₂r.me) (y : Vec ℝ n), P₂r.Ae i y = 0)
-    (hP₁b : Bornology.IsBounded P₁r.dropEqs.construct)
-    (hP₂b : Bornology.IsBounded P₂r.dropEqs.construct) (k : ℕ) : -- --- CONCL ---
+    (hP₁b : Bornology.IsBounded P₁r.dropEqs.toSet)
+    (hP₂b : Bornology.IsBounded P₂r.dropEqs.toSet) (k : ℕ) : -- --- CONCL ---
     ∀ s ∈ sys.maxBackReachRunFloat Bx P₁ P₂ U W₀ Zw t₀ Δt η k,
       ∃ ηr, sys.reachOrderFloat t₀ t₀ η = some ηr ∧ sys.reachOrderFloat Δt Δt η = some ηr ∧
-        s.R ⊆ construct
+        s.R ⊆ toSet
           (sys.maxBackReachRun ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr (toReal t₀) (toReal Δt) ηr
             k).R := by -- --- PROOF ---
   intro s (h : sys.maxBackReachRunFloat Bx P₁ P₂ U W₀ Zw t₀ Δt η k = some s)

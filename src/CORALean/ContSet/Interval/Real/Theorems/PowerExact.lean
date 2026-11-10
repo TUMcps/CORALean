@@ -69,7 +69,7 @@ private theorem Interval.aux_pow_attained {a b : ℝ} (hab : a ≤ b) (k : ℕ) 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.power_exact (I : Interval (Vec ℝ n)) (hI : I.IsNonempty) (k : ℕ) : -- --- CONCL ---
-    (I.power k).construct = (fun x i => x i ^ k) '' I.construct := by -- --- PROOF ---
+    (I.power k).toSet = (fun x i => x i ^ k) '' I.toSet := by -- --- PROOF ---
   ext z
   constructor
   · intro hz

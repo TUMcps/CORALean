@@ -56,7 +56,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 def LinearSys.timeIntervalBackReachSetOfInputExact (sys : LinearSys 𝕋 n) (T : Set ℝ)
     (U W Xend : S n) (τ : Set ℝ) (u : ℝ → Vec ℝ n) : Set (Vec ℝ n) :=
   {x₀ | ∃ w x : ℝ → Vec ℝ n, sys.IsPerturbedTrajectory T U W x u w ∧
-      x 0 = x₀ ∧ ∃ t ∈ τ, x t ∈ construct Xend}
+      x 0 = x₀ ∧ ∃ t ∈ τ, x t ∈ toSet Xend}
 
 end CORALean
 

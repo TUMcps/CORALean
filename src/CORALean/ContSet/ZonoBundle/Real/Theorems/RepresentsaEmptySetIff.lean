@@ -38,7 +38,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.representsa_emptySet_iff (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k) :
-    zB.construct = ∅ ↔ zB.representsa_emptySet hk := by
+    zB.toSet = ∅ ↔ zB.representsa_emptySet hk := by
   rw [← ZonoBundle.conZonotopeAll_exact zB hk]
   exact ConZonotope.representsa_emptySet_iff _
 

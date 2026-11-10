@@ -50,7 +50,7 @@ variable {m : ℕ}
 
 theorem Interval.extremalLo_isLeast (C : Interval (Vec ℝ m)) (hC : C.IsNonempty)
     (h : Vec ℝ m) : -- --- CONCL ---
-    IsLeast {s | ∃ c ∈ C.construct, s = ∑ i, c i * h i} (C.extremalLo h) := by -- --- PROOF ---
+    IsLeast {s | ∃ c ∈ C.toSet, s = ∑ i, c i * h i} (C.extremalLo h) := by -- --- PROOF ---
   constructor
   · -- the corner the signs select is a coefficient vector in `C`
     refine ⟨fun i => if 0 ≤ h i then C.inf i else C.sup i, fun i => ?_, rfl⟩

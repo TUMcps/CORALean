@@ -66,16 +66,16 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 `d_H(R_[0,r](Z), P + □(α_r + β_r)) ≤ r‖A‖e^{r‖A‖}(µ/‖A‖ + (1/2 + r‖A‖) sup ‖x‖)`. -/
 theorem LinearSys.hausdorffDist_iUnion_reachSetExact_linComb_plus_cube_le
     (sys : LinearSys 𝕋 n) (Z U : Zonotope (Vec ℝ n)) {μ r s : ℝ} (hA : 0 < ‖toRealMat sys.A‖)
-    (hr : 0 < r) (hμ : 0 ≤ μ) (hU : U.construct = Metric.closedBall 0 μ)
-    (hs : ∀ z ∈ Z.construct, ‖z‖ ≤ s) : -- --- CONCL ---
+    (hr : 0 < r) (hμ : 0 ≤ μ) (hU : U.toSet = Metric.closedBall 0 μ)
+    (hs : ∀ z ∈ Z.toSet, ‖z‖ ≤ s) : -- --- CONCL ---
     Metric.hausdorffDist
       (⋃ t ∈ Set.Icc (0:ℝ) r, sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) Z U t)
       ((Z.linComb (Z.mtimes (exp (r • toRealMat sys.A)))).plus
           (Zonotope.cube n ((Real.exp (r * ‖toRealMat sys.A‖) - 1 - r * ‖toRealMat sys.A‖) * s
-            + (Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖ * μ))).construct
+            + (Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖ * μ))).toSet
       ≤ r * ‖toRealMat sys.A‖ * Real.exp (r * ‖toRealMat sys.A‖)
         * (μ / ‖toRealMat sys.A‖ + (1 / 2 + r * ‖toRealMat sys.A‖) * s) := by -- --- PROOF ---
-  have hs0 : 0 ≤ s := (norm_nonneg Z.c).trans (hs _ (Zonotope.center_mem_construct Z))
+  have hs0 : 0 ≤ s := (norm_nonneg Z.c).trans (hs _ (Zonotope.center_mem_toSet Z))
   have hbound : 0 ≤ r * ‖toRealMat sys.A‖ * Real.exp (r * ‖toRealMat sys.A‖)
       * (μ / ‖toRealMat sys.A‖ + (1 / 2 + r * ‖toRealMat sys.A‖) * s) := by
     have := Real.exp_nonneg (r * ‖toRealMat sys.A‖)

@@ -66,7 +66,7 @@ private theorem ConZonotope.aux_abs_sub_mid_le_iff {lo hi v : ℝ} (h : lo ≤ h
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.conPolyZono_exact (cZ : ConZonotope (Vec ℝ n)) : -- --- CONCL ---
-    cZ.construct = cZ.conPolyZono.construct := by -- --- PROOF ---
+    cZ.toSet = cZ.conPolyZono.toSet := by -- --- PROOF ---
   have hμ : ∀ β : Vec ℝ cZ.h, PolyZonotope.monomial (PolyZonotope.identE cZ.h) β = β :=
     fun β => funext fun j => PolyZonotope.monomial_identE β j
   ext x

@@ -67,7 +67,7 @@ private theorem Ellipsoid.aux_nominal_project (E : Ellipsoid 𝕋 n) (dims : Fin
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.project_outer (E : Ellipsoid 𝕋 n) (dims : Fin m → Fin n) : -- --- CONCL ---
-    (fun x k => x (dims k)) '' E.construct ⊆ (E.project dims).construct := by -- --- PROOF ---
+    (fun x k => x (dims k)) '' E.toSet ⊆ (E.project dims).toSet := by -- --- PROOF ---
   refine image_subset (fun _ _ => rfl) ?_ (Interval.project_outer E.I_error dims)
   by_cases h : (toRealMat E.Q).PosSemidef
   · -- the exact projection, at a positive semi-definite `Q`

@@ -55,10 +55,10 @@ variable {n : ℕ}
 it inside. -/
 theorem Zonotope.halfspaceRange_sound (nv : Vec ℝ n) (d : ℝ)
     (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    (0 < (Z.halfspaceRange nv d).inf → ∀ x ∈ Z.construct, d < nv ⬝ᵥ x) ∧
-      ((Z.halfspaceRange nv d).sup ≤ 0 → ∀ x ∈ Z.construct, nv ⬝ᵥ x ≤ d) := by -- --- PROOF ---
+    (0 < (Z.halfspaceRange nv d).inf → ∀ x ∈ Z.toSet, d < nv ⬝ᵥ x) ∧
+      ((Z.halfspaceRange nv d).sup ≤ 0 → ∀ x ∈ Z.toSet, nv ⬝ᵥ x ≤ d) := by -- --- PROOF ---
   -- `nᵀx - d = ω_c + Σᵢ βᵢω⁽ⁱ⁾`, the sum within `Σᵢ |ω⁽ⁱ⁾|`
-  have hbound : ∀ x ∈ Z.construct, |nv ⬝ᵥ x - d - (nv ⬝ᵥ Z.c - d)| ≤ ∑ i, |nv ⬝ᵥ Z.G i| := by
+  have hbound : ∀ x ∈ Z.toSet, |nv ⬝ᵥ x - d - (nv ⬝ᵥ Z.c - d)| ≤ ∑ i, |nv ⬝ᵥ Z.G i| := by
     rintro _ ⟨β, hβ, rfl⟩
     rw [dotProduct_add, dotProduct_sum]
     simp only [dotProduct_smul, smul_eq_mul]

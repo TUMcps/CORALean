@@ -33,32 +33,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- No point of the polygon reads more than the float value, an upper bound only. -/
 theorem Polygon.boundDot_le (P : Polygon 𝕋) {c : Vec ℝ 2 →ₗ[ℝ] ℝ} (a : Vec 𝕋 2)
     (hc : ∀ x : Vec ℝ 2, c x = ∑ j, toReal (a j) * x j) :
-    ∀ x ∈ ContSet.construct P, c x ≤ toReal (P.boundDot a hc).val :=
+    ∀ x ∈ ContSet.toSet P, c x ≤ toReal (P.boundDot a hc).val :=
   (P.boundDot a hc).le
-
-
--- ================================  `Polygon.construct_empty`  ================================= --
--- Authors:       Claude Opus 5.5
--- Written:       02-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- `Polygon.empty` is the empty set -/
-theorem Polygon.construct_empty :
-    ContSet.construct (Polygon.empty 𝕋) = (∅ : Set (Vec ℝ 2)) := by
-  ext x
-  simp [SetUnion.mem_construct, Polygon.empty]
-
-
--- ===============================  `Polygon.construct_ofPieces`  =============================== --
--- Authors:       Claude Opus 5.5
--- Written:       02-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- `Polygon.ofPieces` denotes the union -/
-theorem Polygon.construct_ofPieces (pieces : List (VPolytope (Vec 𝕋 2))) :
-    ContSet.construct (Polygon.ofPieces pieces) = ⋃ p ∈ pieces, VPolytope.construct p := rfl
 
 
 -- ===================================  `Polygon.plus_outer`  =================================== --
@@ -69,8 +45,32 @@ theorem Polygon.construct_ofPieces (pieces : List (VPolytope (Vec 𝕋 2))) :
 
 /-- By `SetUnion.plus_outer` at the float polytope's `plus`, whose rounding is in its error box. -/
 theorem Polygon.plus_outer (P Q : Polygon 𝕋) :
-    ContSet.construct P + ContSet.construct Q ⊆ ContSet.construct (Polygon.plus P Q) :=
+    ContSet.toSet P + ContSet.toSet Q ⊆ ContSet.toSet (Polygon.plus P Q) :=
   SetUnion.plus_outer P Q
+
+
+-- ==================================  `Polygon.toSet_empty`  =================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `Polygon.empty` is the empty set -/
+theorem Polygon.toSet_empty :
+    ContSet.toSet (Polygon.empty 𝕋) = (∅ : Set (Vec ℝ 2)) := by
+  ext x
+  simp [SetUnion.mem_toSet, Polygon.empty]
+
+
+-- =================================  `Polygon.toSet_ofPieces`  ================================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `Polygon.ofPieces` denotes the union -/
+theorem Polygon.toSet_ofPieces (pieces : List (VPolytope (Vec 𝕋 2))) :
+    ContSet.toSet (Polygon.ofPieces pieces) = ⋃ p ∈ pieces, VPolytope.toSet p := rfl
 
 end CORALean.Float
 

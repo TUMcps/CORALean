@@ -73,7 +73,7 @@ noncomputable def ConZonotope.step_cubCexCora : ConZonotope (Vec ℝ 1) where
 
 /-- The point `β = (1, -1)` of the input, `x = (2, -1)`. -/
 private theorem ConZonotope.aux_cubCex_mem : -- --- CONCL ---
-    (![(2 : ℝ), -1] : Vec ℝ 2) ∈ ConZonotope.step_cubCexIn.construct := by -- --- PROOF ---
+    (![(2 : ℝ), -1] : Vec ℝ 2) ∈ ConZonotope.step_cubCexIn.toSet := by -- --- PROOF ---
   refine ⟨![1, -1], ?_, ?_, ?_⟩
   -- both factors lie in `[-1, 1]`
   · intro j
@@ -95,7 +95,7 @@ private theorem ConZonotope.aux_cubCex_mem : -- --- CONCL ---
 /-- The same point is in `ConZonotope.cubMap`, which keeps the linear generator of `β₂`. -/
 private theorem ConZonotope.aux_cubMap_cex_mem :
     PolyZonotope.cubEval ConZonotope.step_cubCexTensor ![2, -1]
-      ∈ (ConZonotope.step_cubCexIn.cubMap ConZonotope.step_cubCexTensor).construct :=
+      ∈ (ConZonotope.step_cubCexIn.cubMap ConZonotope.step_cubCexTensor).toSet :=
   ConZonotope.cubMap_outer _ _ ⟨![2, -1], ConZonotope.aux_cubCex_mem, rfl⟩
 
 
@@ -103,13 +103,13 @@ private theorem ConZonotope.aux_cubMap_cex_mem :
 
 /-- CORA's result does not contain the cubic image `z = 8` of the point `x = (2, -1)`. -/
 theorem ConZonotope.cubMapCora_not_outer : -- --- CONCL ---
-    ∃ x ∈ ConZonotope.step_cubCexIn.construct,
+    ∃ x ∈ ConZonotope.step_cubCexIn.toSet,
       PolyZonotope.cubEval ConZonotope.step_cubCexTensor x
-        ∉ ConZonotope.step_cubCexCora.construct := by -- --- PROOF ---
+        ∉ ConZonotope.step_cubCexCora.toSet := by -- --- PROOF ---
   refine ⟨![2, -1], ConZonotope.aux_cubCex_mem, ?_⟩
   -- the three coefficients, as a plain vector
   have key : ∀ γ : Vec ℝ 3, (∀ j, |γ j| ≤ 1)
-      → γ ∈ (HPolytope.eqs (!![1, 0, 0] : Mat ℝ 1 3) ![0]).construct
+      → γ ∈ (HPolytope.eqs (!![1, 0, 0] : Mat ℝ 1 3) ![0]).toSet
       → PolyZonotope.cubEval ConZonotope.step_cubCexTensor ![2, -1]
         ≠ ![5 / 2] + ∑ j : Fin 3, γ j • (![![3], ![3 / 2], ![1]] : Fin 3 → Vec ℝ 1) j := by
     intro γ hγ hP hx

@@ -42,12 +42,12 @@ inductive OptEmpty (S : Type) where
   | of (s : S)
 
 /-- `∅` at `empty`, and what `S` denotes at everything else. -/
-def OptEmpty.construct [ContSet S α] : OptEmpty S → Set α
+def OptEmpty.toSet [ContSet S α] : OptEmpty S → Set α
   | .empty => ∅
-  | .of s => ContSet.construct s
+  | .of s => ContSet.toSet s
 
-/-- An `OptEmpty` denotes `OptEmpty.construct`. -/
-instance [ContSet S α] : ContSet (OptEmpty S) α := ⟨OptEmpty.construct⟩
+/-- An `OptEmpty` denotes `OptEmpty.toSet`. -/
+instance [ContSet S α] : ContSet (OptEmpty S) α := ⟨OptEmpty.toSet⟩
 
 end CORALean
 

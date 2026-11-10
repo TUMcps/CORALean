@@ -66,8 +66,8 @@ private theorem VPolytope.aux_setLinComb_eq_convexJoin (X Y : Set α) : -- --- C
     exact ⟨y₁, h₁, y₂, h₂, 1 - θ, ⟨by linarith, by linarith⟩, by rw [sub_sub_cancel]⟩
 
 /-- A point's polynomial zonotope denotes that point and nothing else. -/
-private theorem VPolytope.aux_ofPoint_construct (v : α) : -- --- CONCL ---
-    (PolyZonotope.ofPoint v).construct = {v} := by -- --- PROOF ---
+private theorem VPolytope.aux_ofPoint_toSet (v : α) : -- --- CONCL ---
+    (PolyZonotope.ofPoint v).toSet = {v} := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · -- neither generator block has a column, so nothing is added to the center
     rintro _ ⟨a, β, -, -, rfl⟩
@@ -116,9 +116,9 @@ private theorem VPolytope.aux_range_lastCases {k : ℕ} (V : Fin (k + 1 + 1) →
     · exact ⟨j.castSucc, rfl⟩
 
 /-- What the recursion denotes: the convex hull of the vertices it has read. -/
-private theorem VPolytope.aux_hullPZ_construct : -- --- CONCL ---
+private theorem VPolytope.aux_hullPZ_toSet : -- --- CONCL ---
     ∀ (r : ℕ) (V : Fin (r + 1) → α),
-    (VPolytope.aux_hullPZ r V).construct = convexHull ℝ (Set.range V) := by -- --- PROOF ---
+    (VPolytope.aux_hullPZ r V).toSet = convexHull ℝ (Set.range V) := by -- --- PROOF ---
   intro r
   induction r with
   | zero =>
@@ -131,16 +131,16 @@ private theorem VPolytope.aux_hullPZ_construct : -- --- CONCL ---
       · intro x hx
         exact ⟨0, (Set.mem_singleton_iff.mp hx).symm⟩
     rw [show VPolytope.aux_hullPZ 0 V = PolyZonotope.ofPoint (V 0) from rfl,
-      VPolytope.aux_ofPoint_construct, hrange, convexHull_singleton]
+      VPolytope.aux_ofPoint_toSet, hrange, convexHull_singleton]
   | succ k ih =>
     intro V
     have hq : (VPolytope.aux_hullPZ k fun i => V i.castSucc).q = 0 :=
       VPolytope.aux_hullPZ_q k _
     show ((VPolytope.aux_hullPZ k fun i => V i.castSucc).linComb
-        (PolyZonotope.ofPoint (V (Fin.last (k + 1))))).construct = _
+        (PolyZonotope.ofPoint (V (Fin.last (k + 1))))).toSet = _
     -- the hull of one more vertex is a segment away from the hull so far
     rw [← PolyZonotope.linComb_exact_of_dependent _ _ hq rfl, ih fun i => V i.castSucc,
-      VPolytope.aux_ofPoint_construct, VPolytope.aux_setLinComb_eq_convexJoin,
+      VPolytope.aux_ofPoint_toSet, VPolytope.aux_setLinComb_eq_convexJoin,
       convexJoin_comm, ← convexHull_insert (Set.range_nonempty _),
       ← VPolytope.aux_range_lastCases V]
 
@@ -150,14 +150,14 @@ private theorem VPolytope.aux_hullPZ_construct : -- --- CONCL ---
 /-- [1, Thm. 1]: a bounded polytope is a polynomial zonotope exactly, not merely
 within one. -/
 theorem VPolytope.exists_polyZonotope_exact (P : VPolytope α) (hk : 0 < P.k) : -- --- CONCL ---
-    ∃ pZ : PolyZonotope α, pZ.construct = P.construct := by -- --- PROOF ---
+    ∃ pZ : PolyZonotope α, pZ.toSet = P.toSet := by -- --- PROOF ---
   obtain ⟨k, V⟩ := P
   -- the recursion reads a non-empty list, which is what `hk` supplies
   have hk' : 0 < k := hk
   obtain ⟨r, rfl⟩ : ∃ r, k = r + 1 := ⟨k - 1, by omega⟩
   refine ⟨VPolytope.aux_hullPZ r V, ?_⟩
-  rw [VPolytope.construct_eq_convexHull (⟨r + 1, V⟩ : VPolytope α)]
-  exact VPolytope.aux_hullPZ_construct r V
+  rw [VPolytope.toSet_eq_convexHull (⟨r + 1, V⟩ : VPolytope α)]
+  exact VPolytope.aux_hullPZ_toSet r V
 
 end CORALean.Real
 

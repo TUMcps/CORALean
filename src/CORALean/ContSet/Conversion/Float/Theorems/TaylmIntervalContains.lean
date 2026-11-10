@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
-public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Taylm.Real.Theorems.MemToSetIff
 public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
@@ -43,9 +43,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.interval_contains {m : ℕ} (T : Fin m → Taylm 𝕋 n) : -- --- CONCL ---
-    Taylm.construct T ⊆ (Taylm.interval T).construct := by -- --- PROOF ---
+    Taylm.toSet T ⊆ (Taylm.interval T).toSet := by -- --- PROOF ---
   intro x hx i
-  obtain ⟨f, hf, t, ht, hxf⟩ := (Real.Taylm.mem_construct_iff _ x).1 hx
+  obtain ⟨f, hf, t, ht, hxf⟩ := (Real.Taylm.mem_toSet_iff _ x).1 hx
   have := Taylm.bounds_mem (hf i) ht
   rw [← hxf i] at this
   exact this

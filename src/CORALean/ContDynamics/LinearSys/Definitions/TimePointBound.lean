@@ -77,13 +77,13 @@ and `reachSetExact` named only in the conclusion. -/
 noncomputable def LinearSys.timePointBound (sys : LinearSys 𝕋 n) {T : Set ℝ} (R₀ U : S n)
     {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U))
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U))
     (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
     (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
     (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
-    (b₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (construct R₀) d)
-    (bP : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (construct (sys.inputSolution r η U)) d)
+    (b₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (toSet R₀) d)
+    (bP : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (toSet (sys.inputSolution r η U)) d)
     (c : Vec ℝ n →ₗ[ℝ] ℝ) :
     SupportBound (sys.reachSetExact T R₀ U r) c :=
   (SupportBound.image (mulVecLin (exp (r • toRealMat sys.A)))

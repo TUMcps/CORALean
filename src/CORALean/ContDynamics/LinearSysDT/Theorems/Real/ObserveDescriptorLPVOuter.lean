@@ -78,19 +78,19 @@ theorem LinearSysDT.observeDescriptorLPV_outer (E T : Mat ℝ n n) (N : Mat ℝ 
     (ρ : ℕ → Fin r → ℝ) (red : Zonotope (Vec ℝ n) → Zonotope (Vec ℝ n))
     (X₀ : Zonotope (Vec ℝ n)) (u : ℕ → Vec ℝ nu) (y : ℕ → Vec ℝ ny) (x : ℕ → Vec ℝ n)
     (b : ℕ → Vec ℝ m) (hTN : T * E + N * C = 1) (hρ : ∀ k, ∑ i, ρ k i = 1)
-    (hred : ∀ Z, Z.construct ⊆ (red Z).construct) (h0 : x 0 ∈ X₀.construct)
+    (hred : ∀ Z, Z.toSet ⊆ (red Z).toSet) (h0 : x 0 ∈ X₀.toSet)
     (hb : ∀ k i, |b k i| ≤ 1)
     (hstep : ∀ k, E *ᵥ x (k + 1) = (∑ j, ρ k j • A j) *ᵥ x k + (∑ j, ρ k j • B j) *ᵥ u k +
       (∑ j, ρ k j • D j) *ᵥ (Hd *ᵥ b k))
     (hy : ∀ k, y k = C *ᵥ x k + F *ᵥ (Hd *ᵥ b k)) (k : ℕ) : -- --- CONCL ---
     x k ∈ (LinearSysDT.observeDescriptorLPV T N C F Hd A B D Λ ρ red X₀ u y
-      k).construct := by -- --- PROOF ---
+      k).toSet := by -- --- PROOF ---
   induction k with
   | zero => exact h0
   | succ k ih =>
     -- [1, Thm. 1] at the scheduled matrices, then [1, Cor. 1]
     show x (k + 1) ∈ ((red (LinearSysDT.observeDescriptorLPV T N C F Hd A B D Λ ρ red X₀ u y
-      k)).intersectDescriptorLPV T N (ρ k) Λ A B D C F Hd (u k) (y (k + 1))).construct
+      k)).intersectDescriptorLPV T N (ρ k) Λ A B D C F Hd (u k) (y (k + 1))).toSet
     rw [Zonotope.intersectDescriptorLPV_eq _ _ _ _ _ _ _ _ _ _ _ _ _ (hρ k)]
     refine LinearSysDT.intersectDescriptorHd_outer E T _ N _ _ _ C F Hd (u k) (y (k + 1)) _ hTN
       ⟨⟨x k, hred _ ih, b k, hb k, ?_⟩, b (k + 1), hb (k + 1), ?_⟩

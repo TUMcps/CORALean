@@ -101,8 +101,8 @@ theorem PTC.flow_entries : -- --- CONCL ---
 
 /-- A slab is inside the box of the same bounds. -/
 theorem PTC.range_subset (lo hi : ℝ) {v : Vec ℝ 1}
-    (hv : v ∈ (PTC.range lo hi).construct) : -- --- CONCL ---
-    v ∈ (⟨![lo], ![hi]⟩ : Interval (Vec ℝ 1)).construct := by -- --- PROOF ---
+    (hv : v ∈ (PTC.range lo hi).toSet) : -- --- CONCL ---
+    v ∈ (⟨![lo], ![hi]⟩ : Interval (Vec ℝ 1)).toSet := by -- --- PROOF ---
   have h := HPolytope.mem_slab_iff.mp hv
   intro j
   rw [show j = 0 from Subsingleton.elim j 0]
@@ -115,10 +115,10 @@ theorem PTC.isInvariant : PTC.product.IsInvariant PTC.R where
   flow {ℓ τ x u w} h h₀ {t} ht := by
     -- in the location, so in each component's invariant, so in each component's box
     have hx := h.invariant t ht
-    change x t ∈ (HPolytope.stackProd fun i => ((PTC.parallel.comp i).loc (ℓ i)).inv).construct
+    change x t ∈ (HPolytope.stackProd fun i => ((PTC.parallel.comp i).loc (ℓ i)).inv).toSet
       at hx
     rw [HPolytope.stackProd_exact] at hx
-    change x t ∈ (Interval.stackProd PTC.box).construct
+    change x t ∈ (Interval.stackProd PTC.box).toSet
     rw [Interval.stackProd_exact]
     intro i
     fin_cases i
@@ -135,16 +135,16 @@ theorem PTC.isInvariant : PTC.product.IsInvariant PTC.R where
     -- a point of the product space is the stack of its blocks, and the reset acts on block `0`
     obtain ⟨x, rfl⟩ : ∃ x, z = stack x := ⟨unstack z, (stack_unstack z).symm⟩
     rw [ParallelHybridAutomaton.liftTransition_reset]
-    change stack x ∈ (Interval.stackProd PTC.box).construct at hz
+    change stack x ∈ (Interval.stackProd PTC.box).toSet at hz
     rw [Interval.stackProd_exact] at hz
     simp only [Set.mem_setOf_eq, unstack_stack] at hz
-    change _ ∈ (Interval.stackProd PTC.box).construct
+    change _ ∈ (Interval.stackProd PTC.box).toSet
     rw [Interval.stackProd_exact]
     simp only [Set.mem_setOf_eq, unstack_stack]
     intro i
     fin_cases i
     · -- the reset sends the position to `0`, which is in `[0, 2]`
-      show Function.update x 0 _ 0 ∈ (PTC.box 0).construct
+      show Function.update x 0 _ 0 ∈ (PTC.box 0).toSet
       rw [Function.update_self]
       intro j
       rw [show j = 0 from Subsingleton.elim j 0]
@@ -165,12 +165,12 @@ theorem PTC.isRun_toProduct {ℓ ℓ' : ∀ _ : Fin 2, Unit} {x y : ∀ _ : Fin 
 
 /-- Every tuple of states the parallel automaton reaches from the box, stacked, is in the box. -/
 theorem PTC.reachSetExact_subset (ℓ₀ ℓ : ∀ _ : Fin 2, Unit) : -- --- CONCL ---
-    stack '' PTC.parallel.reachSetExact PTC.box ℓ₀ ℓ ⊆ construct (PTC.R ℓ) := by -- --- PROOF ---
+    stack '' PTC.parallel.reachSetExact PTC.box ℓ₀ ℓ ⊆ toSet (PTC.R ℓ) := by -- --- PROOF ---
   refine ParallelHybridAutomaton.reachSetExact_subset_isInvariant
     (P := PTC.parallel) PTC.isFeedthroughFree (lift := ParallelHybridAutomaton.boxLifting)
     PTC.isInvariant (fun x hx => ?_) ℓ
   -- a stack of points of the boxes is in the stacked box
-  change stack x ∈ (Interval.stackProd PTC.box).construct
+  change stack x ∈ (Interval.stackProd PTC.box).toSet
   rw [Interval.stackProd_exact]
   simp only [Set.mem_setOf_eq, unstack_stack]
   exact hx

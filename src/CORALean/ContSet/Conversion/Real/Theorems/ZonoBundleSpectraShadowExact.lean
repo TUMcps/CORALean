@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ToSetEqIInter
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.InfExact
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.InterExact
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeSpectraShadowExact
@@ -47,8 +47,8 @@ variable {n : ℕ}
 /-- A left fold of `inter` is the intersection of what it starts from and what it folds in. -/
 private theorem ZonoBundle.aux_foldl_inter (Ss : List (SpectraShadow (Vec ℝ n)))
     (S : SpectraShadow (Vec ℝ n)) : -- --- CONCL ---
-    (Ss.foldl SpectraShadow.inter S).construct
-      = S.construct ∩ {x | ∀ T ∈ Ss, x ∈ T.construct} := by -- --- PROOF ---
+    (Ss.foldl SpectraShadow.inter S).toSet
+      = S.toSet ∩ {x | ∀ T ∈ Ss, x ∈ T.toSet} := by -- --- PROOF ---
   induction Ss generalizing S with
   | nil => simp
   | cons T Ts ih =>
@@ -61,11 +61,11 @@ private theorem ZonoBundle.aux_foldl_inter (Ss : List (SpectraShadow (Vec ℝ n)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.spectraShadow_exact (zB : ZonoBundle (Vec ℝ n)) : -- --- CONCL ---
-    zB.construct = zB.spectraShadow.construct := by -- --- PROOF ---
-  have hmem : ∀ x, x ∈ zB.construct ↔ ∀ T ∈ List.ofFn (fun i => (zB.Z i).spectraShadow),
-      x ∈ T.construct := by
+    zB.toSet = zB.spectraShadow.toSet := by -- --- PROOF ---
+  have hmem : ∀ x, x ∈ zB.toSet ↔ ∀ T ∈ List.ofFn (fun i => (zB.Z i).spectraShadow),
+      x ∈ T.toSet := by
     intro x
-    simp only [ZonoBundle.construct_eq_iInter, Set.mem_iInter, List.mem_ofFn,
+    simp only [ZonoBundle.toSet_eq_iInter, Set.mem_iInter, List.mem_ofFn,
       forall_exists_index, forall_apply_eq_imp_iff, ← Zonotope.spectraShadow_exact]
   unfold ZonoBundle.spectraShadow
   generalize hL : List.ofFn (fun i => (zB.Z i).spectraShadow) = L at hmem

@@ -77,14 +77,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A positive scaling of a non-empty nominal box sits inside the float scaling. -/
 private theorem aux_smul_subset (A : Interval (Mat 𝕋 n n)) {r : 𝕋} (hr : 0 < toReal r)
-    {M₀ : Mat ℝ n n} (hM₀ : M₀ ∈ A.construct) : -- --- CONCL ---
-    (Real.Interval.smul (toReal r) A.nominal).construct
-      ⊆ (Interval.smul r r A).construct := by -- --- PROOF ---
+    {M₀ : Mat ℝ n n} (hM₀ : M₀ ∈ A.toSet) : -- --- CONCL ---
+    (Real.Interval.smul (toReal r) A.nominal).toSet
+      ⊆ (Interval.smul r r A).toSet := by -- --- PROOF ---
   intro P hP
   have hw : ∀ i j, A.nominal.inf i j ≤ A.nominal.sup i j := fun i j =>
     (Real.Interval.mem_mat_iff.mp hM₀ i j).1.trans (Real.Interval.mem_mat_iff.mp hM₀ i j).2
   -- the point is `r` times a point of the box
-  have hmem : (toReal r)⁻¹ • P ∈ A.construct := by
+  have hmem : (toReal r)⁻¹ • P ∈ A.toSet := by
     refine Real.Interval.mem_mat_iff.mpr fun i j => ?_
     have h := Real.Interval.mem_mat_iff.mp hP i j
     simp only [Real.Interval.smul, Entrywise.ofEntry, Entrywise.entry] at h
@@ -105,20 +105,20 @@ private theorem aux_smul_subset (A : Interval (Mat 𝕋 n n)) {r : 𝕋} (hr : 0
 exponential enclosure plus a member of the float correction matrix applied to `x₀`. -/
 theorem MatExp.exists_mem_intervalCorrectionMatrix_of_remainder (A : Interval (Mat 𝕋 n n))
     {Â : ℝ → Mat ℝ n n} (hÂ : ∀ i j a b, IntervalIntegrable (fun s => Â s i j) volume a b)
-    (hÂB : ∀ s, Â s ∈ A.construct) {r : 𝕋} (hr : 0 < toReal r) {m : ℕ}
+    (hÂB : ∀ s, Â s ∈ A.toSet) {r : 𝕋} (hr : 0 < toReal r) {m : ℕ}
     (hε : toReal (MatExp.normUpperBound (Interval.smul r r A)) / (((m + 2 : ℕ) : ℝ) + 2)
       ≤ 1 / 2)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal r) (x₀ ρ : Vec ℝ n)
     (hρ : ‖ρ‖ ≤ ‖x₀‖ * Real.MatExp.expRemainderBound
       (Real.Interval.smul t A.nominal).absMax (m + 2)) : -- --- CONCL ---
-    ∃ Φ ∈ (MatExp.expIntervalEnclosure (Interval.smul r r A) (m + 2)).construct,
-      ∃ F ∈ (MatExp.intervalCorrectionMatrix A r (m + 2)).construct,
+    ∃ Φ ∈ (MatExp.expIntervalEnclosure (Interval.smul r r A) (m + 2)).toSet,
+      ∃ F ∈ (MatExp.intervalCorrectionMatrix A r (m + 2)).toSet,
         ∑ k ∈ Finset.range (m + 2 + 1), Real.MatExp.peanoBakerTerm Â k t *ᵥ x₀ + ρ
           = ((1 - t / toReal r) • x₀ + (t / toReal r) • (Φ *ᵥ x₀)) + F *ᵥ x₀ := by -- --- PROOF ---
   set η := m + 2 with hη
   set rr := toReal r with hrr
   set nrm := MatExp.normUpperBound (Interval.smul r r A) with hnrm
-  have hÂB' : ∀ s, Â s ∈ A.nominal.construct := hÂB
+  have hÂB' : ∀ s, Â s ∈ A.nominal.toSet := hÂB
   -- a member as long as the box, and the float remainder bound above the real one
   obtain ⟨M, hM, hMn⟩ := Real.Interval.exists_norm_eq_absMax (hÂB 0)
   have hrM : ‖rr • M‖ ≤ toReal nrm := MatExp.norm_smul_le_normUpperBound A r hM
@@ -146,7 +146,7 @@ theorem MatExp.exists_mem_intervalCorrectionMatrix_of_remainder (A : Interval (M
       min (toReal ((MatExp.intervalCorrTerm A r (i + 2)).inf j k)) 0 ≤ Cf i j k ∧
         Cf i j k ≤ max (toReal ((MatExp.intervalCorrTerm A r (i + 2)).sup j k)) 0) →
       ∑ i ∈ Finset.range (η - 1), Cf i + E
-        ∈ (MatExp.intervalCorrectionMatrix A r η).construct := by
+        ∈ (MatExp.intervalCorrectionMatrix A r η).toSet := by
     intro Cf hCf
     refine Real.Interval.mem_mat_iff.mpr fun j k => ?_
     -- each rounded sum brackets the exact one, term by term
@@ -192,15 +192,15 @@ theorem MatExp.exists_mem_intervalCorrectionMatrix_of_remainder (A : Interval (M
   have hlam1 : lam ≤ 1 := (div_le_one hr).mpr htr
   set Q : ℕ → Mat ℝ n n := fun k => (rr / t) ^ k • Real.MatExp.peanoBakerTerm Â k t with hQ
   have hQreal : ∀ k, (Nat.factorial k : ℝ) • Q k
-      ∈ (Real.Interval.matPow (Real.Interval.smul rr A.nominal) k).construct := fun k =>
+      ∈ (Real.Interval.matPow (Real.Interval.smul rr A.nominal) k).toSet := fun k =>
     Real.MatExp.rescaled_peanoBakerTerm_mem_matPow hÂ hÂB' k ht hr.le
   -- each order in the float power of `r • A`, and unscaled in the float power of `A`
   have hQmem : ∀ k, (Nat.factorial k : ℝ) • Q k
-      ∈ (Interval.matPow (Interval.smul r r A) k).construct := fun k =>
+      ∈ (Interval.matPow (Interval.smul r r A) k).toSet := fun k =>
     Interval.matPow_subset (Real.Interval.smul_outer rr _ (hÂB' 0))
       (aux_smul_subset A hr (hÂB 0)) k (hQreal k)
   have hNmem : ∀ k, (rr ^ k)⁻¹ • ((Nat.factorial k : ℝ) • Q k)
-      ∈ (Interval.matPow A k).construct := fun k => by
+      ∈ (Interval.matPow A k).toSet := fun k => by
     refine Interval.matPow_subset (hÂB' 0) subset_rfl k ?_
     -- dividing by `r^k` undoes the scaling of the box
     have hsc := Real.Interval.matPow_smul A.nominal hr.le k
@@ -218,21 +218,21 @@ theorem MatExp.exists_mem_intervalCorrectionMatrix_of_remainder (A : Interval (M
       div_mul_div_comm, mul_comm t rr, div_self (mul_ne_zero hr.ne' ht.ne'), one_pow, one_smul]
   -- the mapping matrix: the rescaled terms, each in its order of the float Taylor box
   have hΦ : ∑ k ∈ Finset.range (η + 1), Q k
-      ∈ (MatExp.expIntervalEnclosure (Interval.smul r r A) η).construct := by
+      ∈ (MatExp.expIntervalEnclosure (Interval.smul r r A) η).toSet := by
     have hterm : ∀ k, Q k ∈ (Interval.smul (MatExp.invFactorialBounds k).inf
         (MatExp.invFactorialBounds k).sup
-        (Interval.matPow (Interval.smul r r A) k)).construct := fun k => by
+        (Interval.matPow (Interval.smul r r A) k)).toSet := fun k => by
       have h := Interval.smul_outer (MatExp.invFactorialBounds_mem k).1
         (MatExp.invFactorialBounds_mem k).2 _ (hQmem k)
       rwa [smul_smul, inv_mul_cancel₀ (by positivity), one_smul] at h
     -- summed as the float Taylor box recurses, then widened by the bound
     have htay : ∀ η', ∑ k ∈ Finset.range (η' + 1), Q k
-        ∈ (MatExp.expIntervalTaylor (Interval.smul r r A) η').construct := by
+        ∈ (MatExp.expIntervalTaylor (Interval.smul r r A) η').toSet := by
       intro η'
       induction η' with
       | zero => rw [Finset.sum_range_one]; exact hterm 0
       | succ k ih =>
-        show _ ∈ (Interval.matPlus _ _).materialiseMat.construct
+        show _ ∈ (Interval.matPlus _ _).materialiseMat.toSet
         rw [Interval.materialiseMat_eq]
         have h := Interval.matPlus_outer _ _ (hterm (k + 1)) ih
         rw [add_comm (Q (k + 1)), ← Finset.sum_range_succ] at h

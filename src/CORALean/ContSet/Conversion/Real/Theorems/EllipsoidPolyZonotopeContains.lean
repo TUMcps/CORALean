@@ -44,7 +44,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.polyZonotope_contains (E : Ellipsoid n) :
-    E.construct ⊆ E.polyZonotope.construct :=
+    E.toSet ⊆ E.polyZonotope.toSet :=
   subset_trans E.zonotope_contains (Zonotope.polyZonotope_exact _).subset
 
 end CORALean.Real

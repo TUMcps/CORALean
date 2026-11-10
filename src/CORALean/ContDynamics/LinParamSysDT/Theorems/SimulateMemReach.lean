@@ -51,9 +51,9 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinParamSysDT.simulate_mem_reach (sys : LinParamSysDT 𝕄 n) {o : ℕ} (ho : 0 < o)
-    (R₀ U : S n) {A : ℕ → Mat ℝ n n} (hA : ∀ k, A k ∈ construct sys.A) {x₀ : Vec ℝ n}
-    (hx₀ : x₀ ∈ construct R₀) {u : ℕ → Vec ℝ n} (hu : ∀ k, u k ∈ construct U) (k : ℕ) :
-    sys.simulate A x₀ u k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
+    (R₀ U : S n) {A : ℕ → Mat ℝ n n} (hA : ∀ k, A k ∈ toSet sys.A) {x₀ : Vec ℝ n}
+    (hx₀ : x₀ ∈ toSet R₀) {u : ℕ → Vec ℝ n} (hu : ∀ k, u k ∈ toSet U) (k : ℕ) :
+    sys.simulate A x₀ u k ∈ toSet (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer ho R₀ U (sys.simulate_isTrajectory hA hx₀ hu) k
 
 end CORALean

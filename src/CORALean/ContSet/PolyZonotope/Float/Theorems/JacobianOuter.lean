@@ -63,8 +63,8 @@ private theorem PolyZonotope.aux_jacobianGap_bound (pZ : PolyZonotope (Vec 𝕋 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.jacobian_outer (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) : -- --- CONCL ---
-    (Real.PolyZonotope.jacobian (nominal pZ) k).construct ⊆
-      (pZ.jacobian k).construct := by -- --- PROOF ---
+    (Real.PolyZonotope.jacobian (nominal pZ) k).toSet ⊆
+      (pZ.jacobian k).toSet := by -- --- PROOF ---
   rintro _ ⟨a, β, ha, hβ, rfl⟩
   -- the stored multiples are off by `Δ`, which the box holds
   have hbox := PolyZonotope.mem_generatorError_monomial (E := (pZ.jacobian k).E) (a := a)

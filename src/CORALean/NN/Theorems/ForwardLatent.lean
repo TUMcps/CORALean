@@ -74,7 +74,7 @@ private theorem aux_exists_mid_rad {eLo eUp v : ℝ} (hlo : eLo ≤ v)
 
 /-- A coordinate of a point of `X` is a point of the row `X(i)`. -/
 private theorem aux_mem_row (X : Zonotope (Vec ℝ n)) (β : Fin X.h → ℝ) (hβ : ∀ j, |β j| ≤ 1)
-    (i : Fin n) : (fun _ => (X.c + ∑ j, β j • X.G j) i) ∈ (X.row i).construct :=
+    (i : Fin n) : (fun _ => (X.c + ∑ j, β j • X.G j) i) ∈ (X.row i).toSet :=
   ⟨β, hβ, by funext; simp [Zonotope.row, Finset.sum_apply]; rfl⟩
 
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.Specification.STL.Operations.DepBox
 public import Mathlib.Tactic.Ring
 
@@ -42,10 +42,10 @@ variable {n : ℕ}
 
 /-- A real zonotope reaches `c_i ± Σ_l |G_{i,l}|` in coordinate `i`. -/
 theorem STL.zonotope_extremes (Z : Real.Zonotope (Vec ℝ n)) (i : Fin n) : -- --- CONCL ---
-    (∃ x ∈ Z.construct, x i = Z.c i + ∑ l, |Z.G l i|) ∧
-      ∃ x ∈ Z.construct, x i = Z.c i - ∑ l, |Z.G l i| := by -- --- PROOF ---
+    (∃ x ∈ Z.toSet, x i = Z.c i + ∑ l, |Z.G l i|) ∧
+      ∃ x ∈ Z.toSet, x i = Z.c i - ∑ l, |Z.G l i| := by -- --- PROOF ---
   -- the signs of the generators in coordinate `i` push the coordinate to the extreme
-  have key : ∀ σ : ℝ, |σ| = 1 → ∃ x ∈ Z.construct,
+  have key : ∀ σ : ℝ, |σ| = 1 → ∃ x ∈ Z.toSet,
       x i = Z.c i + ∑ l, σ * (|Z.G l i|) := by
     intro σ hσ
     let β : Fin Z.h → ℝ := fun l => σ * (if 0 ≤ Z.G l i then 1 else -1)
@@ -53,7 +53,7 @@ theorem STL.zonotope_extremes (Z : Real.Zonotope (Vec ℝ n)) (i : Fin n) : -- -
       simp only [β, abs_mul, hσ, one_mul]
       split_ifs <;> simp
     refine ⟨fun j => Z.c j + ∑ l, Z.G l j * β l,
-      Real.Zonotope.mem_construct_iff.2 ⟨β, hβ, fun _ => rfl⟩, ?_⟩
+      Real.Zonotope.mem_toSet_iff.2 ⟨β, hβ, fun _ => rfl⟩, ?_⟩
     simp only [β]
     congr 1
     refine Finset.sum_congr rfl fun l _ => ?_

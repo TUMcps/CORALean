@@ -135,7 +135,7 @@ theorem Layer.maxPool_encloses (tap : Fin m → Fin (k + 1) → Fin n)
     rw [hsel, hd]
     ring
   -- the window's bound, at the rounded-up gap it was stated for
-  have hmem : d ∈ Interval.construct
+  have hmem : d ∈ Interval.toSet
       (⟨fun _ => zero, step_maxPoolGapUp tap p I⟩ : Interval (Vec 𝕋 m)) := by
     intro j
     have h := Real.aux_maxPool_bounds (tap j) (p j) (toRealVec I.inf) (toRealVec I.sup) x hbox
@@ -144,8 +144,8 @@ theorem Layer.maxPool_encloses (tap : Fin m → Fin (k + 1) → Fin n)
       rw [toReal_zero]
       exact h.1
     exact ⟨hz, h.2⟩
-  have hA' : A ∈ ContSet.construct (selectMat (𝕋 := 𝕋) fun j => tap j (p j)) := by
-    rw [ContSet.construct_mat]
+  have hA' : A ∈ ContSet.toSet (selectMat (𝕋 := 𝕋) fun j => tap j (p j)) := by
+    rw [ContSet.toSet_mat]
     exact hA
   rw [hsplit]
   exact plus_outer _ _ (Set.add_mem_add

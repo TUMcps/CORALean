@@ -34,7 +34,7 @@ variable {n : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- `norm(g, 2) + r`, the Euclidean norm written out as `Real.sqrt`, as `Capsule.construct`
+/-- `norm(g, 2) + r`, the Euclidean norm written out as `Real.sqrt`, as `Capsule.toSet`
 does. -/
 noncomputable def Capsule.radius (C : Capsule n) : ℝ := Real.sqrt (∑ i, C.g i ^ 2) + C.r
 

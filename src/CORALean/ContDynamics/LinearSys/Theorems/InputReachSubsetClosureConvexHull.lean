@@ -64,14 +64,14 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- [1, Prop. 11], eq. (20): `P^U(Δt) ⊆ cl conv(⊕_{i≤η} ÃᵢU₀ ⊕ E(Δt,η)ΔtU₀)` for `U₀` convex,
 closed, bounded and containing `0`. -/
 theorem LinearSys.inputReach_subset_closure_convexHull (sys : LinearSys 𝕋 n) {U : S n}
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U)) (h0 : (0 : Vec ℝ n) ∈ construct U) {Δt : ℝ}
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U)) (h0 : (0 : Vec ℝ n) ∈ toSet U) {Δt : ℝ}
     (hΔt : 0 < Δt) (η : ℕ) : -- --- CONCL ---
     sys.inputReach U Δt ⊆ closure (convexHull ℝ
-      (MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt
+      (MatExp.particularSolutionOuter (toRealMat sys.A) (toSet U) 0 Δt
         η)) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
-  set U0 := construct U with hU0
+  set U0 := toSet U with hU0
   set Eset := MatExp.intervalMulVecSet (MatExp.expRemainderMat A Δt η) (Δt • U0) with hEset
   -- the remainder block is bounded: it sits in `P̂^U_∞(Δt)`, `0` being in every other block
   have hsum0 : (0 : Vec ℝ n) ∈ ∑ i ∈ Finset.Ico 1 (η + 1),

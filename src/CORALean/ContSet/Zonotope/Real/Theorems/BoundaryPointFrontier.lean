@@ -43,12 +43,12 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 private theorem aux_step_props (Z : Zonotope α) {dir start : α} (hdir : dir ≠ 0)
-    (hs : start ∈ Z.construct) : -- --- CONCL ---
-    sSup {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.construct} ∈
-        {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.construct} ∧
-      BddAbove {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.construct} := by -- --- PROOF ---
-  have hbdd : BddAbove {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.construct} := by
-    obtain ⟨R, hR⟩ := isBounded_iff_forall_norm_le.mp Z.isBounded_construct
+    (hs : start ∈ Z.toSet) : -- --- CONCL ---
+    sSup {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.toSet} ∈
+        {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.toSet} ∧
+      BddAbove {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.toSet} := by -- --- PROOF ---
+  have hbdd : BddAbove {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.toSet} := by
+    obtain ⟨R, hR⟩ := isBounded_iff_forall_norm_le.mp Z.isBounded_toSet
     refine ⟨(R + ‖start‖) / ‖dir‖, fun t ht => ?_⟩
     have hd : 0 < ‖dir‖ := norm_pos_iff.mpr hdir
     rw [le_div_iff₀ hd]
@@ -57,25 +57,25 @@ private theorem aux_step_props (Z : Zonotope α) {dir start : α} (hdir : dir �
       calc ‖t • dir‖ = ‖(start + t • dir) - start‖ := by rw [add_sub_cancel_left]
         _ ≤ ‖start + t • dir‖ + ‖start‖ := norm_sub_le _ _
     linarith [hR _ ht.2]
-  have hclosed : IsClosed {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.construct} :=
-    isClosed_Ici.inter (Z.isClosed_construct.preimage (by fun_prop))
-  have hne : {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.construct}.Nonempty :=
+  have hclosed : IsClosed {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.toSet} :=
+    isClosed_Ici.inter (Z.isClosed_toSet.preimage (by fun_prop))
+  have hne : {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.toSet}.Nonempty :=
     ⟨0, le_refl _, by simpa using hs⟩
   exact ⟨hclosed.csSup_mem hne hbdd, hbdd⟩
 
 
 /-- The boundary point is in the zonotope. -/
 private theorem aux_boundaryPoint_mem (Z : Zonotope α) {dir start : α} (hdir : dir ≠ 0)
-    (hs : start ∈ Z.construct) : Z.boundaryPoint dir start ∈ Z.construct :=
+    (hs : start ∈ Z.toSet) : Z.boundaryPoint dir start ∈ Z.toSet :=
   (aux_step_props Z hdir hs).1.2
 
 /-- Nothing further along the ray is in the zonotope. -/
 private theorem aux_boundaryPoint_not_mem (Z : Zonotope α) {dir start : α} (hdir : dir ≠ 0)
-    (hs : start ∈ Z.construct) {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
-    Z.boundaryPoint dir start + ε • dir ∉ Z.construct := by -- --- PROOF ---
+    (hs : start ∈ Z.toSet) {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
+    Z.boundaryPoint dir start + ε • dir ∉ Z.toSet := by -- --- PROOF ---
   intro h
   obtain ⟨hmem, hbdd⟩ := aux_step_props Z hdir hs
-  have hle := le_csSup hbdd (a := sSup {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.construct} + ε)
+  have hle := le_csSup hbdd (a := sSup {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.toSet} + ε)
     ⟨by linarith [hmem.1], by
       simpa [Zonotope.boundaryPoint, add_smul, add_assoc] using h⟩
   linarith
@@ -85,9 +85,9 @@ private theorem aux_boundaryPoint_not_mem (Z : Zonotope α) {dir start : α} (hd
 
 /-- The boundary point is on the frontier of the zonotope. -/
 theorem Zonotope.boundaryPoint_mem_frontier (Z : Zonotope α) {dir start : α}
-    (hdir : dir ≠ 0) (hs : start ∈ Z.construct) : -- --- CONCL ---
-    Z.boundaryPoint dir start ∈ frontier Z.construct := by -- --- PROOF ---
-  refine ⟨by rw [Z.isClosed_construct.closure_eq]; exact aux_boundaryPoint_mem Z hdir hs,
+    (hdir : dir ≠ 0) (hs : start ∈ Z.toSet) : -- --- CONCL ---
+    Z.boundaryPoint dir start ∈ frontier Z.toSet := by -- --- PROOF ---
+  refine ⟨by rw [Z.isClosed_toSet.closure_eq]; exact aux_boundaryPoint_mem Z hdir hs,
     ?_⟩
   intro hint
   have hnhds := mem_interior_iff_mem_nhds.mp hint

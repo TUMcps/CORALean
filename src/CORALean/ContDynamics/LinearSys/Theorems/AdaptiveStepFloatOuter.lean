@@ -80,9 +80,9 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
       sys.IsAdaptiveInvariant V s' ∧ s.t < s'.t ∧ r.tStart = t₀ + s.t ∧
         r.tEnd = t₀ + min s'.t tf ∧
         ∀ {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (tf : ℝ)) X₀.construct U x u →
-          U ⊆ V.construct → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ tf →
-            x t ∈ r.R.construct := by -- --- PROOF ---
+          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (tf : ℝ)) X₀.toSet U x u →
+          U ⊆ V.toSet → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ tf →
+            x t ∈ r.R.toSet := by -- --- PROOF ---
   intro r s' (h : sys.adaptiveStepFloat X₀ V t₀ tf options s = some (r, s'))
   obtain ⟨h0, hlo, hhi, hP⟩ := hinv
   unfold LinearSys.adaptiveStepFloat at h
@@ -108,8 +108,8 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
     push_cast at h
     rwa [← ToRat.toReal_toRat]⟩
   -- `[e^{At_i}] Z` holds `e^{At_i} z`
-  have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct → exp (ti • A) *ᵥ z
-      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+  have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.toSet → exp (ti • A) *ᵥ z
+      ∈ ContSet.toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋]) eAt Z) :=
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) eAt Z
@@ -117,22 +117,22 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
         (LinearSys.squaringsFloat_spec (le_max_right _ _) _ hsq) hlo hhi)
         (Set.mem_image_of_mem _ hz))
   -- `{ũ}` and `[0, ũ]` hold what they are built from
-  have hpt : ũ ∈ (Interval.point V.c).zonotope.construct :=
+  have hpt : ũ ∈ (Interval.point V.c).zonotope.toSet :=
     Interval.zonotope_contains _ (Interval.mem_point V.c)
-  have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.construct := by
+  have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.toSet := by
     have h0 := Interval.zonotope_contains _ (Interval.mem_point fun _ : Fin n => (zero : 𝕋))
     rwa [show RealImage.realImage (fun _ : Fin n => (zero : 𝕋)) = (0 : Vec ℝ n) from
       funext fun _ => toReal_zero] at h0
-  have h0seg : (0 : Vec ℝ n) ∈ seg.construct := by
+  have h0seg : (0 : Vec ℝ n) ∈ seg.toSet := by
     refine LinComb.linComb_outer (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope
       (Interval.point V.c).zonotope ?_
     exact ⟨0, hzero, ũ, hpt, 1, ⟨zero_le_one, le_rfl⟩, by simp⟩
-  have hũseg : ũ ∈ seg.construct := by
+  have hũseg : ũ ∈ seg.toSet := by
     refine LinComb.linComb_outer (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope
       (Interval.point V.c).zonotope ?_
     exact ⟨0, hzero, ũ, hpt, 0, ⟨le_rfl, zero_le_one⟩, by simp⟩
   -- the constant `ũ` held over `[0, τ]` is an admissible input of any set holding `ũ`
-  have hconst : ∀ {W : Zonotope (Vec 𝕋 n)}, ũ ∈ W.construct → ∀ {τ : ℝ}, 0 ≤ τ →
+  have hconst : ∀ {W : Zonotope (Vec 𝕋 n)}, ũ ∈ W.toSet → ∀ {τ : ℝ}, 0 ≤ τ →
       Real.MatExp.expIntegral A τ *ᵥ ũ ∈ sys.inputReach (S := 𝒵[𝕋]) W τ :=
     fun hW _ hτ => ⟨fun _ => ũ, fun _ _ => hW, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A ũ hτ).symm⟩
@@ -145,7 +145,7 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
           *ᵥ p + q := by
     intro y hy
     obtain ⟨_, ⟨p, hp, rfl⟩, q, hq, rfl⟩ := sys.inputReach_separation_subset hΔr.le
-      hti0 (CompactSet.isBounded_construct Ũ) hy
+      hti0 (CompactSet.isBounded_toSet Ũ) hy
     exact ⟨p, hp, q, hq, rfl⟩
   -- the constant's share comes apart the same way
   have hΓ : ∀ {τ : ℝ}, 0 ≤ τ → Real.MatExp.expIntegral A (τ + ti) *ᵥ ũ
@@ -182,13 +182,13 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
     have hd := traj.sub_mem_inputReach_recenter (S' := 𝒵[𝕋]) (V := V)
       hUV ⟨ht0, htf⟩
     have hd' := sys.inputReach_mono (S := 𝒵[𝕋])
-      (CompactSet.isBounded_construct Ũ)
+      (CompactSet.isBounded_toSet Ũ)
       (Recenter.zero_mem_recenter V) ht0 ht.2 hd
     obtain ⟨p, hp, q, hq, hpq⟩ := hsep _ hd'
     -- the free motion and the constant over `[0, τ]`, inside `HR₀ ⊕ P̃^R`
     have hc := sys.inputReach_subset_inputSolutionFloat hΔr hadm seg
       (sys.inputReach_mono (S := 𝒵[𝕋])
-        (CompactSet.isBounded_construct seg) h0seg hτ0 hτΔ
+        (CompactSet.isBounded_toSet seg) h0seg hτ0 hτΔ
         (hconst hũseg hτ0))
     have hcore := Plus.plus_outer (sys.timeIntervalFloat Δt η X₀)
       (sys.inputSolutionFloat Δt η seg) (Set.add_mem_add

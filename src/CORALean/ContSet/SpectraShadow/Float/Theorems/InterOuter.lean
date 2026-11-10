@@ -49,7 +49,7 @@ open FloatOps InflatedContSet
 /-- `SpectraShadow.step_tieInter` contains the intersection of the nominal shadows. -/
 private theorem SpectraShadow.aux_tieInter_outer
     (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    nominalSet S₁ ∩ nominalSet S₂ ⊆ (S₁.step_tieInter S₂).construct := by -- --- PROOF ---
+    nominalSet S₁ ∩ nominalSet S₂ ⊆ (S₁.step_tieInter S₂).toSet := by -- --- PROOF ---
   rintro x ⟨h₁, h₂⟩
   obtain ⟨β₁, hP₁, hx₁⟩ := SpectraShadow.mem_nominalSet_iff.mp h₁
   obtain ⟨β₂, hP₂, hx₂⟩ := SpectraShadow.mem_nominalSet_iff.mp h₂
@@ -63,7 +63,7 @@ private theorem SpectraShadow.aux_tieInter_outer
   -- the box is the origin, so the nominal point is the point
   refine ⟨x, ?_, 0, ?_, add_zero x⟩
   swap
-  · show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).construct
+  · show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).toSet
     rw [Interval.origin_exact]
     rfl
   refine SpectraShadow.mem_nominalSet_iff.mpr ⟨Fin.append (Fin.append β₁ β₂) x, ?_, fun r => ?_⟩
@@ -109,7 +109,7 @@ end
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.inter_outer (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) :
-    S₁.construct ∩ S₂.construct ⊆ (S₁.inter S₂).construct :=
+    S₁.toSet ∩ S₂.toSet ⊆ (S₁.inter S₂).toSet :=
   subset_trans (Set.inter_subset_inter S₁.absorbRounding_nominal S₂.absorbRounding_nominal)
     (SpectraShadow.aux_tieInter_outer _ _)
 

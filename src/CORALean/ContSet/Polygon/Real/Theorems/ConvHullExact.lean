@@ -34,9 +34,9 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.convHull_exact (P : Polygon) :
-    VPolytope.construct (Polygon.convHull P) =
-      convexHull ℝ (ContSet.construct P) := by
-  rw [VPolytope.construct_eq_convexHull, ← Polygon.convexHull_vertices]
+    VPolytope.toSet (Polygon.convHull P) =
+      convexHull ℝ (ContSet.toSet P) := by
+  rw [VPolytope.toSet_eq_convexHull, ← Polygon.convexHull_vertices]
   congr 1
   ext v
   simp [Polygon.convHull, List.mem_iff_get]

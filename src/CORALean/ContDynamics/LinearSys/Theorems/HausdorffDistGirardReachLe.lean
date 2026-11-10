@@ -52,11 +52,11 @@ set_option maxHeartbeats 100000 in
 `d_H(R_[0,Nr](I), R_{N-1}) ≤ r‖A‖e^{‖A‖Nr}(2µ/‖A‖ + (1/2 + r‖A‖) sup ‖x‖)`. -/
 theorem LinearSys.hausdorffDist_girardReach_le (sys : LinearSys 𝕋 n) (I U : Zonotope (Vec ℝ n))
     {μ r s : ℝ} {N : ℕ} (hA : 0 < ‖toRealMat sys.A‖) (hr : 0 < r) (hμ : 0 ≤ μ)
-    (hU : U.construct = Metric.closedBall 0 μ) (hN : 1 ≤ N)
-    (hs : ∀ z ∈ I.construct, ‖z‖ ≤ s) : -- --- CONCL ---
+    (hU : U.toSet = Metric.closedBall 0 μ) (hN : 1 ≤ N)
+    (hs : ∀ z ∈ I.toSet, ‖z‖ ≤ s) : -- --- CONCL ---
     Metric.hausdorffDist
       (⋃ t ∈ Set.Icc (0:ℝ) (N * r), sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) I U t)
-      (⋃ Q ∈ sys.girardReach I μ r (N * r), Q.construct)
+      (⋃ Q ∈ sys.girardReach I μ r (N * r), Q.toSet)
       ≤ r * ‖toRealMat sys.A‖ * Real.exp (‖toRealMat sys.A‖ * (N * r))
         * (2 * μ / ‖toRealMat sys.A‖
           + (1 / 2 + r * ‖toRealMat sys.A‖) * s) := by -- --- PROOF ---
@@ -74,16 +74,16 @@ theorem LinearSys.hausdorffDist_girardReach_le (sys : LinearSys 𝕋 n) (I U : Z
   have hx0 : 0 < x := mul_pos hr hA
   have hex := Real.add_one_le_exp x
   have hβ0 : 0 ≤ β := mul_nonneg (div_nonneg (by linarith) hA.le) hμ
-  have hsA : ∀ z ∈ I.construct, ‖z‖ ≤ sA := fun z hz =>
+  have hsA : ∀ z ∈ I.toSet, ‖z‖ ≤ sA := fun z hz =>
     (I.isLUB_norm_image_fold_max_absBound).1 ⟨z, hz, rfl⟩
   have hsAs : sA ≤ s := (I.isLUB_norm_image_fold_max_absBound).2 (by
     rintro _ ⟨z, hz, rfl⟩; exact hs z hz)
-  have hsA0 : 0 ≤ sA := (norm_nonneg I.c).trans (hsA _ (Zonotope.center_mem_construct I))
-  have hUb : Bornology.IsBounded (construct U) := Zonotope.isBounded_construct U
-  have hUball : Metric.closedBall 0 μ ⊆ construct U := fun u hu => by
-    show u ∈ U.construct; rw [hU]; exact hu
+  have hsA0 : 0 ≤ sA := (norm_nonneg I.c).trans (hsA _ (Zonotope.center_mem_toSet I))
+  have hUb : Bornology.IsBounded (toSet U) := Zonotope.isBounded_toSet U
+  have hUball : Metric.closedBall 0 μ ⊆ toSet U := fun u hu => by
+    show u ∈ U.toSet; rw [hU]; exact hu
   -- the invariant: a point of `fⁱ(Q₀)` is near `Φ_t(I)` for a `t` in the `i`-th window
-  have hrec : ∀ i : ℕ, ∀ q ∈ (f^[i] Q₀).construct, ∃ t ∈ Set.Icc ((i : ℝ) * r) ((i + 1) * r),
+  have hrec : ∀ i : ℕ, ∀ q ∈ (f^[i] Q₀).toSet, ∃ t ∈ Set.Icc ((i : ℝ) * r) ((i + 1) * r),
       ∃ y ∈ sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) I U t,
         dist q y ≤ Real.exp (i * x) * δ₀ + μ * r * Real.exp x * (Real.exp (i * x) - 1) := by
     intro i
@@ -99,7 +99,7 @@ theorem LinearSys.hausdorffDist_girardReach_le (sys : LinearSys 𝕋 n) (I U : Z
       -- a step: `q = e^{rA}q' + w`, `q'` near `y'` by induction
       intro q hq
       rw [Function.iterate_succ_apply'] at hq
-      change q ∈ (((f^[i] Q₀).mtimes E).plus (Zonotope.cube n β)).construct at hq
+      change q ∈ (((f^[i] Q₀).mtimes E).plus (Zonotope.cube n β)).toSet at hq
       rw [← Zonotope.plus_exact, ← Zonotope.mtimes_exact, Zonotope.cube_exact n hβ0] at hq
       obtain ⟨_, ⟨q', hq', rfl⟩, w, hw, rfl⟩ := hq
       obtain ⟨t, ht, y', hy', hd'⟩ := ih q' hq'

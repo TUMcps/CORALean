@@ -52,10 +52,10 @@ variable {S T α β : Type} [ContSet S α] [ContSet T β]
 /-- Members that are the exact images under a bijection denote the image of the intersection. -/
 theorem SetIntersection.memberwise_image_exact {k : ℕ} {f : Fin k → S} {g : Fin k → T}
     (F : α → β) (hF : Function.Bijective F)
-    (h : ∀ i, ContSet.construct (g i) = F '' ContSet.construct (f i)) : -- --- CONCL ---
-    ContSet.construct (⟨List.ofFn g⟩ : SetIntersection T)
-      = F '' ContSet.construct (⟨List.ofFn f⟩ : SetIntersection S) := by -- --- PROOF ---
-  rw [SetIntersection.construct_ofFn, SetIntersection.construct_ofFn, Set.image_iInter hF]
+    (h : ∀ i, ContSet.toSet (g i) = F '' ContSet.toSet (f i)) : -- --- CONCL ---
+    ContSet.toSet (⟨List.ofFn g⟩ : SetIntersection T)
+      = F '' ContSet.toSet (⟨List.ofFn f⟩ : SetIntersection S) := by -- --- PROOF ---
+  rw [SetIntersection.toSet_ofFn, SetIntersection.toSet_ofFn, Set.image_iInter hF]
   exact Set.iInter_congr h
 
 end CORALean

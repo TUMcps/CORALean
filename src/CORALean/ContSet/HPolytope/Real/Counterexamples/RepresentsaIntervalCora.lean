@@ -61,7 +61,7 @@ noncomputable def HPolytope.representsaIntervalCora (P : HPolytope (Fin n → �
   let lower := ∑ i, if 0 ≤ a i then a i * lb i else a i * ub i  -- supportFunc_(I,a,'lower')
   if upper ≤ b then True                 -- constraint is redundant
   else if b < lower then True            -- empty: `res = true; I = interval.empty(n)`
-  else P.construct = ∅                   -- `res = representsa_(P,'emptySet',tol)`
+  else P.toSet = ∅                   -- `res = representsa_(P,'emptySet',tol)`
 
 end CORALean.Real
 
@@ -87,11 +87,11 @@ def HPolytope.step_squareCut : HPolytope (Fin 2 → ℝ) where
 
 /-- The polytope is the interval `[0, 0]²`, yet CORA does not accept it as an interval. -/
 theorem HPolytope.representsa_interval_cora_counterexample : -- --- CONCL ---
-    HPolytope.step_squareCut.construct = Set.Icc (0 : Fin 2 → ℝ) 0 ∧
+    HPolytope.step_squareCut.toSet = Set.Icc (0 : Fin 2 → ℝ) 0 ∧
       ¬ HPolytope.step_squareCut.representsaIntervalCora 0 (fun _ => 2) ![1, 1]
         0 := by -- --- PROOF ---
   -- the five rows pin both coordinates to `0`
-  have hc : HPolytope.step_squareCut.construct = Set.Icc (0 : Fin 2 → ℝ) 0 := by
+  have hc : HPolytope.step_squareCut.toSet = Set.Icc (0 : Fin 2 → ℝ) 0 := by
     ext x
     constructor
     · rintro ⟨h, -⟩
@@ -109,7 +109,7 @@ theorem HPolytope.representsa_interval_cora_counterexample : -- --- CONCL ---
       fin_cases i <;> simp [HPolytope.step_squareCut, a0, a1]
   -- the cut row is neither redundant nor excluding, so CORA asks for emptiness; `0` is a point
   refine ⟨hc, fun h => ?_⟩
-  have h0 : (0 : Fin 2 → ℝ) ∈ HPolytope.step_squareCut.construct := by
+  have h0 : (0 : Fin 2 → ℝ) ∈ HPolytope.step_squareCut.toSet := by
     rw [hc]; exact ⟨le_rfl, le_rfl⟩
   unfold HPolytope.representsaIntervalCora at h
   simp [Fin.sum_univ_two] at h

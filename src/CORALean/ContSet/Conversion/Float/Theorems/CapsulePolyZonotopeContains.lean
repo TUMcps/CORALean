@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.polyZonotope_contains (C : Capsule 𝕋 n) :
-    C.construct ⊆ C.polyZonotope.construct :=
+    C.toSet ⊆ C.polyZonotope.toSet :=
   subset_trans C.interval_contains (Interval.polyZonotope_contains _)
 
 end CORALean.Float

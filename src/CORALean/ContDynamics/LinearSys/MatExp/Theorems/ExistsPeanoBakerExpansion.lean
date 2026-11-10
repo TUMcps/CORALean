@@ -101,14 +101,14 @@ private theorem aux_pb_succ_mulVec {A : ℝ → Mat ℝ n n}
 
 /-- A member of the box stretches a vector by at most `‖B.absMax‖`. -/
 private theorem aux_pb_norm_mulVec_le {B : Interval (Mat ℝ n n)} {M : Mat ℝ n n}
-    (hM : M ∈ B.construct) (w : Vec ℝ n) : ‖M *ᵥ w‖ ≤ ‖B.absMax‖ * ‖w‖ :=
+    (hM : M ∈ B.toSet) (w : Vec ℝ n) : ‖M *ᵥ w‖ ≤ ‖B.absMax‖ * ‖w‖ :=
   le_trans (Matrix.linfty_opNorm_mulVec _ _)
     (mul_le_mul_of_nonneg_right (Interval.norm_le_absMax hM) (norm_nonneg _))
 
 /-- `‖P_k(s) v‖ ≤ s^k/k! · c^k ‖v‖`, the `k`-th term of the exponential of `c s`. -/
 private theorem aux_pb_norm_term_le {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
-    (hAB : ∀ s, A s ∈ B.construct) (v : Vec ℝ n) (k : ℕ) : -- --- CONCL ---
+    (hAB : ∀ s, A s ∈ B.toSet) (v : Vec ℝ n) (k : ℕ) : -- --- CONCL ---
     ∀ s, 0 ≤ s → ‖MatExp.peanoBakerTerm A k s *ᵥ v‖
       ≤ s ^ k / (Nat.factorial k : ℝ) * (‖B.absMax‖ ^ k * ‖v‖) := by -- --- PROOF ---
   induction k with
@@ -130,7 +130,7 @@ private theorem aux_pb_norm_term_le {B : Interval (Mat ℝ n n)} {A : ℝ → Ma
 
 /-- `‖V_k(s)‖ ≤ s^{k+1}/(k+1)! · c^k ν`, the input's terms. -/
 private theorem aux_pb_norm_input_le {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
-    (hAB : ∀ s, A s ∈ B.construct) {u : ℝ → Vec ℝ n} {t ν : ℝ}
+    (hAB : ∀ s, A s ∈ B.toSet) {u : ℝ → Vec ℝ n} {t ν : ℝ}
     (hν : ∀ s ∈ Set.Icc 0 t, ‖u s‖ ≤ ν) (k : ℕ) : -- --- CONCL ---
     ∀ s ∈ Set.Icc 0 t, ‖MatExp.peanoBakerInputTerm A u k s‖
       ≤ s ^ (k + 1) / (Nat.factorial (k + 1) : ℝ) * (‖B.absMax‖ ^ k * ν) := by -- --- PROOF ---
@@ -199,7 +199,7 @@ private theorem aux_pb_remainder_succ {A : ℝ → Mat ℝ n n}
 /-- What `L` orders leave is at most `X (c s)^L / L!`, `X` bounding the run. -/
 private theorem aux_pb_remainder_le {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
-    (hAB : ∀ s, A s ∈ B.construct) {u : ℝ → Vec ℝ n}
+    (hAB : ∀ s, A s ∈ B.toSet) {u : ℝ → Vec ℝ n}
     (hu : ∀ a b, IntervalIntegrable u volume a b)
     {x : ℝ → Vec ℝ n} {t : ℝ} (hxc : ContinuousOn x (Set.Icc 0 t))
     (hx : ∀ s ∈ Set.Icc 0 t, x s = x 0 + ∫ σ in (0:ℝ)..s, (A σ *ᵥ x σ + u σ)) {X : ℝ}
@@ -232,7 +232,7 @@ terms applied to `x(0)` and its input's first `η + 1` terms, each up to a remai
 of `‖x(0)‖` respectively `t ν` times the remainder bound at the box of the step. -/
 theorem MatExp.exists_peanoBaker_expansion {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
     (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
-    (hAB : ∀ s, A s ∈ B.construct) {u : ℝ → Vec ℝ n}
+    (hAB : ∀ s, A s ∈ B.toSet) {u : ℝ → Vec ℝ n}
     (hu : ∀ a b, IntervalIntegrable u volume a b)
     {x : ℝ → Vec ℝ n} {t : ℝ} (ht : 0 ≤ t) (hxc : ContinuousOn x (Set.Icc 0 t))
     (hx : ∀ s ∈ Set.Icc 0 t, x s = x 0 + ∫ σ in (0:ℝ)..s, (A σ *ᵥ x σ + u σ)) {ν : ℝ}

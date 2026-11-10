@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.sum₂_outer (I : Interval (Mat 𝕋 m n)) :
-    I.nominal.sum₂.construct ⊆ I.sum₂.construct := by
+    I.nominal.sum₂.toSet ⊆ I.sum₂.toSet := by
   intro y hy i
   exact ⟨le_trans (sumDown_le_sum _) (hy i).1, le_trans (hy i).2 (sum_le_sumUp _)⟩
 

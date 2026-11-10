@@ -56,7 +56,7 @@ theorem LinearSys.holds_of_check_wrappingFree [Contains ContSet (SetUnion (S n))
     {options : LinearSys.ReachStepOptions ℝ} (hΔt : 0 < options.Δt)
     (spec : Specification ContSet) :
     spec.check (sys.reachWrappingFree params options) →
-    (spec.Holds (sys.reachExact (params.tFinal - params.tStart) (construct params.X₀))) :=
+    (spec.Holds (sys.reachExact (params.tFinal - params.tStart) (toSet params.X₀))) :=
   fun h => spec.holds_of_outer (sys.reachWrappingFree_outer params hΔt) (spec.check_sound _ h)
 
 end CORALean

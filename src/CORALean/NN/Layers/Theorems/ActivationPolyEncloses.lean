@@ -89,7 +89,7 @@ theorem Layer.activationPoly_encloses {P : LayerRelaxation 𝕋 n m}
     rfl
   -- and the deviation from that polynomial is inside the box, which is `sound`
   have hdev : (fun i => σ (x i) - pv i)
-      ∈ (P.box s.interval).construct := by
+      ∈ (P.box s.interval).toSet := by
     intro i
     have hrel := abs_le.mp ((hP i).sound (hbox i).1 (hbox i).2)
     refine ⟨?_, hrel.2⟩

@@ -62,17 +62,17 @@ theorem Zonotope.image_subset_meanValueInclusion {n nw : ℕ}
     (f : Vec ℝ n → Vec ℝ nw → Vec ℝ n) (W : Set (Vec ℝ nw)) (X : Zonotope (Vec ℝ n))
     (I : Interval (Vec ℝ n)) (IM : Interval (Mat ℝ n X.h))
     (hdiff : ∀ w ∈ W, Differentiable ℝ fun x => f x w)
-    (hI : ∀ w ∈ W, f X.c w ∈ I.construct)
-    (hM : ∀ x ∈ X.construct, ∀ w ∈ W,
-      (Matrix.of fun i j => fderiv ℝ (fun x => f x w) x (X.G j) i : Mat ℝ n X.h) ∈ IM.construct)
+    (hI : ∀ w ∈ W, f X.c w ∈ I.toSet)
+    (hM : ∀ x ∈ X.toSet, ∀ w ∈ W,
+      (Matrix.of fun i j => fderiv ℝ (fun x => f x w) x (X.G j) i : Mat ℝ n X.h) ∈ IM.toSet)
     : -- --- CONCL ---
-    ∀ x ∈ X.construct, ∀ w ∈ W, f x w ∈
-      (Zonotope.meanValueInclusion I IM).construct := by -- --- PROOF ---
+    ∀ x ∈ X.toSet, ∀ w ∈ W, f x w ∈
+      (Zonotope.meanValueInclusion I IM).toSet := by -- --- PROOF ---
   intro x hx w hw
   obtain ⟨β, hβ, rfl⟩ := hx
   set d : Vec ℝ n := ∑ j, β j • X.G j with hd
   -- the mean value theorem on coordinate `i`, along the segment from the center to `x`
-  have key : ∀ i, ∃ ξ ∈ X.construct,
+  have key : ∀ i, ∃ ξ ∈ X.toSet,
       f (X.c + d) w i - f X.c w i = fderiv ℝ (fun x => f x w) ξ d i := by
     intro i
     have hder : ∀ t : ℝ, HasDerivAt (fun t : ℝ => f (X.c + t • d) w i)
@@ -94,7 +94,7 @@ theorem Zonotope.image_subset_meanValueInclusion {n nw : ℕ}
   choose ξ hξ hEq using key
   -- one matrix from the rows `∇ₓf(ξᵢ, w) H`
   set M : Mat ℝ n X.h := Matrix.of fun i j => fderiv ℝ (fun x => f x w) (ξ i) (X.G j) i with hMdef
-  have hMmem : M ∈ IM.construct := fun idx => hM (ξ idx.1) (hξ idx.1) w hw idx
+  have hMmem : M ∈ IM.toSet := fun idx => hM (ξ idx.1) (hξ idx.1) w hw idx
   have hfx : f (X.c + d) w = (M *ᵥ β) + f X.c w := by
     ext i
     have h1 : f (X.c + d) w i = f X.c w i + fderiv ℝ (fun x => f x w) (ξ i) d i := by

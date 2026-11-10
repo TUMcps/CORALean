@@ -78,7 +78,7 @@ noncomputable def NonlinearSys.outputSetCora (sys : NonlinearSys n m)
   let J := jacobianMat (fun x => h x p_u) p_x           -- [J,D_lin] = sys.out_jacobian(p_x,p_u)
   let D_lin := jacobianMat (fun v => h p_x v) p_u
   -- firstorder = J * (R + (-p_x)) + D_lin * (U + (-p_u)); secondorder = 0, thirdorder = 0
-  {y | ∃ x ∈ R.construct, ∃ v ∈ U'.construct,
+  {y | ∃ x ∈ R.toSet, ∃ v ∈ U'.toSet,
     y = zerothorder + J *ᵥ (x - p_x) + D_lin *ᵥ (v - p_u)}  -- Y = zerothorder + firstorder
 
 end CORALean

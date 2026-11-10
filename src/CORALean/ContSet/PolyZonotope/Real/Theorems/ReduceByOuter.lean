@@ -56,7 +56,7 @@ they are. -/
 theorem PolyZonotope.reduceBy_outer (pZ : PolyZonotope (Vec ℝ n))
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
     (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) :
-    pZ.construct ⊆ (pZ.reduceBy partD partI).construct := by
+    pZ.toSet ⊆ (pZ.reduceBy partD partI).toSet := by
   rw [← PolyZonotope.evalOn_unitBox pZ,
     ← PolyZonotope.evalOn_unitBox (pZ.reduceBy partD partI)]
   exact PolyZonotope.reduceBy_evalOn pZ partD partI fun _ ha => ha

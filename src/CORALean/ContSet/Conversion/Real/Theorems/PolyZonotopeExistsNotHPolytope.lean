@@ -45,9 +45,9 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.exists_not_hPolytope :
-    ∃ pZ : PolyZonotope (Vec ℝ 2), ¬ ∃ P : HPolytope (Vec ℝ 2), P.construct = pZ.construct :=
+    ∃ pZ : PolyZonotope (Vec ℝ 2), ¬ ∃ P : HPolytope (Vec ℝ 2), P.toSet = pZ.toSet :=
   ⟨PolyZonotope.isPolytopeCex, fun ⟨P, h⟩ =>
-    PolyZonotope.isPolytopeCex_not_convex (h ▸ P.convex_construct)⟩
+    PolyZonotope.isPolytopeCex_not_convex (h ▸ P.convex_toSet)⟩
 
 end CORALean.Real
 

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import Mathlib.Analysis.Normed.Ring.Lemmas
 public import Mathlib.Topology.MetricSpace.HausdorffDistance
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
@@ -56,7 +56,7 @@ variable {n : ℕ}
 /-- A coordinate of the box is within the generators' total length of the
 center's, each generator entry being at most that generator's norm. -/
 private theorem aux_abs_sub_center_le {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
-    (hx : x ∈ Z.interval.construct) (i : Fin n) : -- --- CONCL ---
+    (hx : x ∈ Z.interval.toSet) (i : Fin n) : -- --- CONCL ---
     |x i - Z.c i| ≤ ∑ p, ‖Z.G p‖ := by -- --- PROOF ---
   have hb := hx i
   simp only [Zonotope.interval, entry_ofEntry] at hb
@@ -74,13 +74,13 @@ private theorem aux_abs_sub_center_le {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
 /-- [1, Thm. 1], the `ω_rad` bound: the box is never further from the zonotope
 than the generators reach, measured in the norm `Vec ℝ n` carries. -/
 theorem Zonotope.hausdorffDist_interval_le (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    Metric.hausdorffDist Z.construct Z.interval.construct ≤ ∑ p, ‖Z.G p‖ := by -- --- PROOF ---
+    Metric.hausdorffDist Z.toSet Z.interval.toSet ≤ ∑ p, ‖Z.G p‖ := by -- --- PROOF ---
   have hr : (0 : ℝ) ≤ ∑ p, ‖Z.G p‖ := Finset.sum_nonneg fun _ _ => norm_nonneg _
   refine Metric.hausdorffDist_le_of_mem_dist hr
     (fun x hx => ⟨x, Z.interval_contains hx, by simpa using hr⟩) ?_
   -- the other way the box is reached from the center, which the zonotope holds
   intro x hx
-  refine ⟨Z.c, Z.center_mem_construct, ?_⟩
+  refine ⟨Z.c, Z.center_mem_toSet, ?_⟩
   rw [dist_eq_norm, pi_norm_le_iff_of_nonneg hr]
   exact fun i => by rw [Real.norm_eq_abs]; exact aux_abs_sub_center_le hx i
 

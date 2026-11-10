@@ -85,14 +85,14 @@ private theorem aux_sum_update_zero {v : Vec ℝ n} {i : Fin n} {a : ℝ}
 theorem Interval.exploreBN_eq_extremePoints {b : Vec ℝ n} {α : ℝ} (hb : Monotone b)
     (hb0 : ∀ i, 0 < b i) (hα : 0 ≤ α) : -- --- CONCL ---
     ↑(Interval.exploreBN b α) = Set.extremePoints ℝ
-      ((⟨0, b⟩ : Interval (Vec ℝ n)).construct ∩ Interval.hyperplane 1 α) := by -- --- PROOF ---
+      ((⟨0, b⟩ : Interval (Vec ℝ n)).toSet ∩ Interval.hyperplane 1 α) := by -- --- PROOF ---
   classical
   have hb0' : ∀ i, 0 ≤ b i := fun i => (hb0 i).le
   have hcorner : ∀ (l : Fin n → Bool) k,
       (⟨0, b⟩ : Interval (Vec ℝ n)).corner l k = if l k then b k else 0 := fun l k => rfl
   have hplane : ∀ x : Vec ℝ n, x ∈ Interval.hyperplane 1 α ↔ ∑ k, x k = α := fun x => by
     simp [Interval.hyperplane]
-  have hbox : ∀ x : Vec ℝ n, x ∈ (⟨0, b⟩ : Interval (Vec ℝ n)).construct ↔
+  have hbox : ∀ x : Vec ℝ n, x ∈ (⟨0, b⟩ : Interval (Vec ℝ n)).toSet ↔
       ∀ k, 0 ≤ x k ∧ x k ≤ b k := fun x => Iff.rfl
   -- the root face `(*, …, *)` has its vertex `0` below the plane
   have hroot : ∑ i, (⟨0, b⟩ : Interval (Vec ℝ n)).corner

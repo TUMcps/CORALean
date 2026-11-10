@@ -38,14 +38,14 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.representsaFullspace_iff (P : HPolytope α) : -- --- CONCL ---
-    P.representsaFullspace ↔ P.construct = Set.univ := by -- --- PROOF ---
+    P.representsaFullspace ↔ P.toSet = Set.univ := by -- --- PROOF ---
   constructor
   · rintro ⟨h1, h2⟩
     refine Set.eq_univ_of_forall fun x => ⟨fun i => ?_, fun r => ?_⟩
     · rw [(h1 i).1]; simpa using (h1 i).2
     · rw [(h2 r).1, (h2 r).2]; simp
   · intro h
-    have hx : ∀ x, x ∈ P.construct := fun x => h ▸ Set.mem_univ x
+    have hx : ∀ x, x ∈ P.toSet := fun x => h ▸ Set.mem_univ x
     have hb : ∀ i, 0 ≤ P.b i := fun i => by simpa using (hx 0).1 i
     -- scaling `x` so that the row exceeds its bound
     have hA : ∀ i, P.A i = 0 := fun i => by

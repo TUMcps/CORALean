@@ -62,16 +62,16 @@ from. -/
 theorem LinearSys.deltaReach_outer (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
-    (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀ - x₀) '' construct X₀
-      ⊆ construct (sys.deltaReach r (m + 2) X₀) := by -- --- PROOF ---
+    (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀ - x₀) '' toSet X₀
+      ⊆ toSet (sys.deltaReach r (m + 2) X₀) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
   rintro y ⟨x₀, hx₀, rfl⟩
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
   have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr
   -- the far end of the segment, and the origin as its own zero image
-  have hD : (exp (r • A) - 1) *ᵥ x₀ ∈ construct (Mtimes.mtimes (exp (r • A) - 1) X₀) :=
+  have hD : (exp (r • A) - 1) *ᵥ x₀ ∈ toSet (Mtimes.mtimes (exp (r • A) - 1) X₀) :=
     Mtimes.mtimes_outer _ _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx₀))
-  have hO : (0 : Vec ℝ n) ∈ construct (Mtimes.mtimes (0 : Mat ℝ n n)
+  have hO : (0 : Vec ℝ n) ∈ toSet (Mtimes.mtimes (0 : Mat ℝ n n)
       (Mtimes.mtimes (exp (r • A) - 1) X₀)) := by
     have h := Mtimes.mtimes_outer (0 : Mat ℝ n n) (Mtimes.mtimes (exp (r • A) - 1) X₀)
       (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hD))

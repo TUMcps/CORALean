@@ -66,9 +66,9 @@ instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [Sou
   I_error S := S.I_error
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
-abbrev SpectraShadow.construct [SoundFloatArithmetic 𝕋] (S : SpectraShadow 𝕋 (Vec 𝕋 n)) :
+abbrev SpectraShadow.toSet [SoundFloatArithmetic 𝕋] (S : SpectraShadow 𝕋 (Vec 𝕋 n)) :
     Set (Vec ℝ n) :=
-  InflatedContSet.construct S
+  InflatedContSet.toSet S
 
 end CORALean.Float
 

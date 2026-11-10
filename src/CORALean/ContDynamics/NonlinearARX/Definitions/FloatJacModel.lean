@@ -47,17 +47,17 @@ and Jacobian blocks at every point lie in the extensions. A user-supplied hypoth
 structure NonlinearARX.FloatJacModel.Encloses (fm : NonlinearARX.FloatJacModel 𝕋 dy du p)
     (sys : NonlinearARX dy du p) : Prop where
   f_mem (Y : Interval (Vec 𝕋 (p * dy))) (V : Interval (Vec 𝕋 ((p + 1) * du))) :
-    ∀ y ∈ construct Y, ∀ v ∈ construct V, sys.f y v ∈ construct (fm.f Y V)
+    ∀ y ∈ toSet Y, ∀ v ∈ toSet V, sys.f y v ∈ toSet (fm.f Y V)
   differentiableY (Y : Interval (Vec 𝕋 (p * dy))) (V : Interval (Vec 𝕋 ((p + 1) * du))) :
-    ∀ y ∈ construct Y, ∀ v ∈ construct V, DifferentiableAt ℝ (fun y' => sys.f y' v) y
+    ∀ y ∈ toSet Y, ∀ v ∈ toSet V, DifferentiableAt ℝ (fun y' => sys.f y' v) y
   differentiableU (Y : Interval (Vec 𝕋 (p * dy))) (V : Interval (Vec 𝕋 ((p + 1) * du))) :
-    ∀ y ∈ construct Y, ∀ v ∈ construct V, DifferentiableAt ℝ (fun v' => sys.f y v') v
+    ∀ y ∈ toSet Y, ∀ v ∈ toSet V, DifferentiableAt ℝ (fun v' => sys.f y v') v
   jacY_mem (Y : Interval (Vec 𝕋 (p * dy))) (V : Interval (Vec 𝕋 ((p + 1) * du))) :
-    ∀ y ∈ construct Y, ∀ v ∈ construct V,
-      jacobianMat (fun y' => sys.f y' v) y ∈ construct (fm.jacY Y V)
+    ∀ y ∈ toSet Y, ∀ v ∈ toSet V,
+      jacobianMat (fun y' => sys.f y' v) y ∈ toSet (fm.jacY Y V)
   jacU_mem (Y : Interval (Vec 𝕋 (p * dy))) (V : Interval (Vec 𝕋 ((p + 1) * du))) :
-    ∀ y ∈ construct Y, ∀ v ∈ construct V,
-      jacobianMat (fun v' => sys.f y v') v ∈ construct (fm.jacU Y V)
+    ∀ y ∈ toSet Y, ∀ v ∈ toSet V,
+      jacobianMat (fun v' => sys.f y v') v ∈ toSet (fm.jacU Y V)
 
 end CORALean
 

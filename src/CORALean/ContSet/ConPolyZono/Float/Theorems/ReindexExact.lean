@@ -13,7 +13,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Instances
 
 An equality, in the layer where every other guarantee is an enclosure, because a
 relabelling does no arithmetic. It is linear, so it distributes over the Minkowski
-sum that `InflatedContSet.construct` is: the relabelled nominal part plus the
+sum that `InflatedContSet.toSet` is: the relabelled nominal part plus the
 relabelled box, with no widening between them.
 
 ## Inputs
@@ -46,9 +46,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 theorem ConPolyZono.reindex_exact (e : Fin m ≃ Fin n)
     (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    (cPZ.reindex e).construct = reindexLin e '' cPZ.construct := by -- --- PROOF ---
-  show InflatedContSet.nominalSet (cPZ.reindex e) + (cPZ.I_error.reindex e).construct
-    = reindexLin e '' (InflatedContSet.nominalSet cPZ + cPZ.I_error.construct)
+    (cPZ.reindex e).toSet = reindexLin e '' cPZ.toSet := by -- --- PROOF ---
+  show InflatedContSet.nominalSet (cPZ.reindex e) + (cPZ.I_error.reindex e).toSet
+    = reindexLin e '' (InflatedContSet.nominalSet cPZ + cPZ.I_error.toSet)
   have h : InflatedContSet.nominalSet (cPZ.reindex e)
       = reindexLin e '' InflatedContSet.nominalSet cPZ :=
     (Real.ConPolyZono.map_exact (reindexLin e) (InflatedContSet.nominal cPZ)).symm

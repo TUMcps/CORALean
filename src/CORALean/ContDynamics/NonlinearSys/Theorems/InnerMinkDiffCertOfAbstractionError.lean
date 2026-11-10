@@ -83,8 +83,8 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
 from `X` [1, Prop. 1]'s hypotheses, (21) among them. -/
 theorem NonlinearSys.IsInnerMinkDiffCert.of_abstractionError [Mtimes ℐ S]
     (ops : NonlinearSys.InnerMinkDiffOps n (S n)) (sys : NonlinearSys n m) (u₀ : Vec ℝ m) (U : S m)
-    (hu₀ : u₀ ∈ construct U) {Δt : ℝ} (hΔt : 0 < Δt) (μ : ℝ) (fuel η : ℕ)
-    (herr : ∀ A L, ops.err Δt A L = construct ((NonlinearSys.linearize A).inputSolution Δt η L))
+    (hu₀ : u₀ ∈ toSet U) {Δt : ℝ} (hΔt : 0 < Δt) (μ : ℝ) (fuel η : ℕ)
+    (herr : ∀ A L, ops.err Δt A L = toSet ((NonlinearSys.linearize A).inputSolution Δt η L))
     {X : Set (Vec ℝ n)} {B : Mat ℝ n m} {R : Set (Vec ℝ n)}
     (hconf : ∀ x₀ ∈ X, ∀ x : ℝ → Vec ℝ n, x 0 = x₀ →
       (∀ t ∈ Icc 0 Δt, HasDerivWithinAt x (sys.f (x t) u₀) (Icc 0 Δt) t) →
@@ -93,11 +93,11 @@ theorem NonlinearSys.IsInnerMinkDiffCert.of_abstractionError [Mtimes ℐ S]
     (hex : ∀ x₀ ∈ X, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Icc 0 Δt,
       x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Icc 0 Δt) t) : -- --- CONCL ---
     ∀ st ∈ NonlinearSys.innerMinkDiffStep ops (fun x => sys.f x u₀) Δt μ fuel X,
-      IsAbstractionError sys.f st.A B st.xstar u₀ R (construct U) st.Lhat →
+      IsAbstractionError sys.f st.A B st.xstar u₀ R (toSet U) st.Lhat →
       ‖Δt • st.A‖ / ((η : ℝ) + 2) < 1 →
-      Convex ℝ (construct st.Lhat) →
-      IsClosed (construct st.Lhat) →
-      Bornology.IsBounded (construct st.Lhat) →
+      Convex ℝ (toSet st.Lhat) →
+      IsClosed (toSet st.Lhat) →
+      Bornology.IsBounded (toSet st.Lhat) →
       Convex ℝ (MatExp.inputRemainderSet st.A Δt η st.Lhat) →
       IsClosed (MatExp.inputRemainderSet st.A Δt η st.Lhat) →
       Bornology.IsBounded

@@ -5,7 +5,7 @@ import CORALean.ContSet.Conversion.Float.Instances
 import CORALean.ContSet.Conversion.Real.Instances
 import CORALean.ContSet.SetUnion.Instances
 import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 import CORALean.Global.Float.Instances.Real.Instances
 import CORALean.Specification.Instances
 import CORALean.ContDynamics.LinearSys.Operations.Canonical
@@ -39,13 +39,13 @@ open ContSet
 example :
     Reach.check (S := 𝒵)
       (⟨LinearSys.canonical !![-1, 1; 0, -2], ⟨2, 0, ![![1 / 10, 0], ![0, 1 / 10]]⟩,
-        Zonotope.center_mem_construct _⟩ : LinearSys.WithInput ℝ 𝒵 2)
+        Zonotope.center_mem_toSet _⟩ : LinearSys.WithInput ℝ 𝒵 2)
       ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩ ⟨1 / 10, 4⟩
       (Specification.safeSet (⟨![-1 / 2, -1 / 2], ![5 / 2, 5 / 2]⟩ : Float.Interval (Vec ℝ 2))) →
     ((Specification.safeSet (⟨![-1 / 2, -1 / 2], ![5 / 2, 5 / 2]⟩ : Float.Interval (Vec ℝ 2))).Holds
       (Reach.reachExact (S := 𝒵)
         (⟨LinearSys.canonical !![-1, 1; 0, -2], ⟨2, 0, ![![1 / 10, 0], ![0, 1 / 10]]⟩,
-          Zonotope.center_mem_construct _⟩ : LinearSys.WithInput ℝ 𝒵 2)
+          Zonotope.center_mem_toSet _⟩ : LinearSys.WithInput ℝ 𝒵 2)
         ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩)) :=
   Reach.holds_of_check (S := 𝒵) _ _ _ _
 

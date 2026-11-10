@@ -51,8 +51,8 @@ def Example.capDir : Vec ℝ 2 →ₗ[ℝ] ℝ :=
 box. `capZono` reaches at most `4` along `capDir`; `capObstacle` reaches back no further than
 `-8 + √2 < -4` — neither representation had to run an operation to say so. -/
 theorem Example.cap_holds : -- --- CONCL ---
-    (Specification.unsafeSet Example.capObstacle.construct).Holds
-      Example.capZono.construct := by -- --- PROOF ---
+    (Specification.unsafeSet Example.capObstacle.toSet).Holds
+      Example.capZono.toSet := by -- --- PROOF ---
   refine Specification.holds_unsafeSet_of_separating
     (Example.capZono.supportBound Example.capDir)
     (Example.capObstacle.supportBound (-Example.capDir)) ?_

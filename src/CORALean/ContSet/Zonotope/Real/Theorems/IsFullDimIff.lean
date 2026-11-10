@@ -13,7 +13,7 @@ The zonotope is the translate by `c` of the image of the cube `[-1, 1]^h` under 
 is an open set around `c`. If they do not, the zonotope lies in a translate of a proper subspace,
 which has no interior (`Submodule.eq_top_of_nonempty_interior'`).
 
-Stated at `construct`, which is what `ContSet.IsFullDim` unfolds to: the `ContSet` instance is
+Stated at `toSet`, which is what `ContSet.IsFullDim` unfolds to: the `ContSet` instance is
 declared after the theorems. Over any finite-dimensional real normed space, in particular `Vec ℝ n`.
 
 ## Inputs
@@ -44,13 +44,13 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] [FiniteDimensi
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.isFullDim_iff (Z : Zonotope α) : -- --- CONCL ---
-    (interior Z.construct).Nonempty ↔ Submodule.span ℝ (range Z.G) = ⊤ := by -- --- PROOF ---
+    (interior Z.toSet).Nonempty ↔ Submodule.span ℝ (range Z.G) = ⊤ := by -- --- PROOF ---
   let L : (Fin Z.h → ℝ) →ₗ[ℝ] α := Fintype.linearCombination ℝ Z.G
   have hL : ∀ β, L β = ∑ j, β j • Z.G j := fun β => by
     simp [L, Fintype.linearCombination_apply]
   have hrange : LinearMap.range L = Submodule.span ℝ (range Z.G) :=
     Fintype.range_linearCombination ℝ Z.G
-  have hsub : Z.construct ⊆ (fun v => Z.c + v) '' (LinearMap.range L : Set α) := by
+  have hsub : Z.toSet ⊆ (fun v => Z.c + v) '' (LinearMap.range L : Set α) := by
     rintro x ⟨β, -, rfl⟩
     exact ⟨L β, ⟨β, rfl⟩, by rw [hL]⟩
   constructor
@@ -77,7 +77,7 @@ theorem Zonotope.isFullDim_iff (Z : Zonotope α) : -- --- CONCL ---
       exact isOpen_set_pi Set.finite_univ fun j _ => Metric.isOpen_ball
     have hV : IsOpen ((fun v => Z.c + v) '' (L '' U)) :=
       (Homeomorph.addLeft Z.c).isOpenMap _ (hopen _ hU)
-    have hVsub : (fun v => Z.c + v) '' (L '' U) ⊆ Z.construct := by
+    have hVsub : (fun v => Z.c + v) '' (L '' U) ⊆ Z.toSet := by
       rintro _ ⟨_, ⟨β, hβ, rfl⟩, rfl⟩
       exact ⟨β, fun j => (hβ j).le, by rw [hL]⟩
     refine ⟨Z.c, interior_maximal hVsub hV ?_⟩

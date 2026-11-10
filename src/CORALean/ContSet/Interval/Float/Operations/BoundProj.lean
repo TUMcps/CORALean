@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 representation carrying an ambient error box charges its rounding through
 these. -/
 def Interval.boundProj (I : Interval (Vec 𝕋 n)) (j : Fin n) :
-    FloatBound 𝕋 I.construct (LinearMap.proj j) :=
+    FloatBound 𝕋 I.toSet (LinearMap.proj j) :=
   ⟨I.sup j, fun _ hx => (hx j).2⟩
 
 end CORALean.Float

@@ -68,7 +68,7 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 /-- Holding the input at the origin is admissible when `U` contains it, and
 contributes nothing. -/
 private theorem LinearSys.aux_zero_mem_inputReach (sys : LinearSys 𝕋 n) {U : S n} (τ : ℝ)
-    (h0 : (0 : Vec ℝ n) ∈ construct U) : (0 : Vec ℝ n) ∈ sys.inputReach U τ := by
+    (h0 : (0 : Vec ℝ n) ∈ toSet U) : (0 : Vec ℝ n) ∈ sys.inputReach U τ := by
   refine ⟨fun _ => 0, fun _ _ => h0, aestronglyMeasurable_const, ?_⟩
   simp
 
@@ -81,7 +81,7 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 /-- The growth with time of [1, Prop. 4]'s proof: with the origin in the input set, a
 longer window contributes at least everything a shorter one can. -/
 theorem LinearSys.inputReach_mono (sys : LinearSys 𝕋 n) {U : S n} {t r : ℝ}
-    (hbdd : Bornology.IsBounded (construct U)) (h0 : (0 : Vec ℝ n) ∈ construct U)
+    (hbdd : Bornology.IsBounded (toSet U)) (h0 : (0 : Vec ℝ n) ∈ toSet U)
     (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     sys.inputReach U t ⊆ sys.inputReach U r := by -- --- PROOF ---
   intro y hy

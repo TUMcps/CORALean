@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.levelSet_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) :
-    P.construct ⊆ P.absorbRounding.levelSet.construct := by
+    P.toSet ⊆ P.absorbRounding.levelSet.toSet := by
   rw [HPolytope.levelSet_exact]
   intro x hx
   exact (HPolytope.mem_nominal_of_origin (P := P.absorbRounding) rfl).mp

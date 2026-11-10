@@ -49,7 +49,7 @@ variable {n k : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.quadMap_exact (Q : Fin k → Mat ℝ n n) (cPZ : ConPolyZono (Vec ℝ n)) :
-    quadEval Q '' cPZ.construct = (cPZ.quadMap Q).construct := by
+    quadEval Q '' cPZ.toSet = (cPZ.quadMap Q).toSet := by
   rw [cPZ.dependent_exact]
   exact ConPolyZono.quadMapDep_exact Q cPZ.dependent rfl
 

@@ -1,7 +1,7 @@
 import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 import CORALean.ContSet.Zonotope.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Theorems.AndOuter
-import CORALean.ContSet.Zonotope.Float.Theorems.CenterMemConstruct
+import CORALean.ContSet.Zonotope.Float.Theorems.CenterMemToSet
 import CORALean.Global.Float.Instances.Dyadic.Instances
 import CORALean.Global.Float.Instances.Dyadic.Theorems.ToRealDef
 import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
@@ -67,17 +67,17 @@ def squareDiamond : Zonotope (Vec D 2) := square.and_ diamond
 #eval boxF squareDiamond.interval   -- the hull of the answer
 
 /-- Both zonotopes have no error, so their centers are points of them. -/
-theorem center_mem (Z : Zonotope (Vec D 2)) (h : Z.I_error = box0) : toRealVec Z.c ∈ Z.construct :=
-  Zonotope.center_mem_construct Z fun i => by simp only [h, box0, toReal_d]; norm_num
+theorem center_mem (Z : Zonotope (Vec D 2)) (h : Z.I_error = box0) : toRealVec Z.c ∈ Z.toSet :=
+  Zonotope.center_mem_toSet Z fun i => by simp only [h, box0, toReal_d]; norm_num
 
 /-- The origin is in both, hence in the answer. -/
-theorem origin_mem : toRealVec square.c ∈ squareDiamond.construct :=
+theorem origin_mem : toRealVec square.c ∈ squareDiamond.toSet :=
   Zonotope.and_outer square diamond ⟨center_mem square rfl, by
     have : toRealVec square.c = toRealVec diamond.c := rfl
     rw [this]; exact center_mem diamond rfl⟩
 
 /-- Everything in both lies in the answer. -/
-theorem squareDiamond_outer : square.construct ∩ diamond.construct ⊆ squareDiamond.construct :=
+theorem squareDiamond_outer : square.toSet ∩ diamond.toSet ⊆ squareDiamond.toSet :=
   Zonotope.and_outer square diamond
 
 end CORALean.Examples.AndZonotopeFloat

@@ -47,14 +47,14 @@ every parameter. A user-supplied hypothesis, checked by no run. -/
 structure NonlinParamSys.FloatModel.Encloses (fm : NonlinParamSys.FloatModel 𝕋 n m q)
     (sys : NonlinParamSys n m q) : Prop where
   f_mem (X : Interval (Vec 𝕋 n)) (U : Interval (Vec 𝕋 m)) (P : Interval (Vec 𝕋 q)) :
-    ∀ x ∈ construct X, ∀ u ∈ construct U, ∀ p ∈ construct P,
-      sys.f x u p ∈ construct (fm.f X U P)
+    ∀ x ∈ toSet X, ∀ u ∈ toSet U, ∀ p ∈ toSet P,
+      sys.f x u p ∈ toSet (fm.f X U P)
   jacX_mem (X : Interval (Vec 𝕋 n)) (U : Interval (Vec 𝕋 m)) (P : Interval (Vec 𝕋 q)) :
-    ∀ x ∈ construct X, ∀ u ∈ construct U, ∀ p ∈ construct P,
-      jacobianMat (fun x' => sys.f x' u p) x ∈ construct (fm.jacX X U P)
+    ∀ x ∈ toSet X, ∀ u ∈ toSet U, ∀ p ∈ toSet P,
+      jacobianMat (fun x' => sys.f x' u p) x ∈ toSet (fm.jacX X U P)
   jacU_mem (X : Interval (Vec 𝕋 n)) (U : Interval (Vec 𝕋 m)) (P : Interval (Vec 𝕋 q)) :
-    ∀ x ∈ construct X, ∀ u ∈ construct U, ∀ p ∈ construct P,
-      jacobianMat (fun u' => sys.f x u' p) u ∈ construct (fm.jacU X U P)
+    ∀ x ∈ toSet X, ∀ u ∈ toSet U, ∀ p ∈ toSet P,
+      jacobianMat (fun u' => sys.f x u' p) u ∈ toSet (fm.jacU X U P)
 
 end CORALean
 

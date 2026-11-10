@@ -49,7 +49,7 @@ namespace CORALean.Real
 generators, and no independent ones. -/
 private theorem PolyZonotope.aux_curve_mem (x : Fin 3 → ℝ) : -- --- CONCL ---
     x ∈ (⟨1, 3, 0, 0, ![Pi.single 0 1, Pi.single 1 1, Pi.single 2 1],
-        fun _ j => ![1, 2, 4] j, Fin.elim0⟩ : PolyZonotope (Fin 3 → ℝ)).construct
+        fun _ j => ![1, 2, 4] j, Fin.elim0⟩ : PolyZonotope (Fin 3 → ℝ)).toSet
       ↔ ∃ t : ℝ, |t| ≤ 1 ∧ x = ![t, t ^ 2, t ^ 4] := by -- --- PROOF ---
   constructor
   · rintro ⟨a, β, ha, -, rfl⟩
@@ -125,21 +125,21 @@ private theorem PolyZonotope.aux_no_chord (s t lam : ℝ) (hs : |s| ≤ 1) (ht :
 
 /-- The chord set `linComb(pZ, pZ)` is not convex, so it is not the convex hull of `pZ`. -/
 theorem PolyZonotope.convHull_cora_counterexample : -- --- CONCL ---
-    ∃ pZ : PolyZonotope (Fin 3 → ℝ), ¬ Convex ℝ (pZ.linComb pZ).construct
-      ∧ (pZ.linComb pZ).construct ≠ convexHull ℝ pZ.construct := by -- --- PROOF ---
+    ∃ pZ : PolyZonotope (Fin 3 → ℝ), ¬ Convex ℝ (pZ.linComb pZ).toSet
+      ∧ (pZ.linComb pZ).toSet ≠ convexHull ℝ pZ.toSet := by -- --- PROOF ---
   set pZ : PolyZonotope (Fin 3 → ℝ) := ⟨1, 3, 0, 0, ![Pi.single 0 1, Pi.single 1 1, Pi.single 2 1],
     fun _ j => ![1, 2, 4] j, Fin.elim0⟩ with hpZ
   -- the chord set is not convex
-  have hnc : ¬ Convex ℝ (pZ.linComb pZ).construct := by
+  have hnc : ¬ Convex ℝ (pZ.linComb pZ).toSet := by
     intro hconv
     rw [← PolyZonotope.linComb_exact_of_dependent pZ pZ rfl rfl] at hconv
     -- the chord from `γ(1)` to `γ(-1)` has midpoint `(0, 1, 1)`, and `γ(0) = 0` is a chord point
-    have hM : (![0, 1, 1] : Fin 3 → ℝ) ∈ Set.linComb pZ.construct pZ.construct :=
+    have hM : (![0, 1, 1] : Fin 3 → ℝ) ∈ Set.linComb pZ.toSet pZ.toSet :=
       ⟨![1, 1, 1], (PolyZonotope.aux_curve_mem _).mpr ⟨1, by simp, by simp⟩,
         ![-1, 1, 1], (PolyZonotope.aux_curve_mem _).mpr
           ⟨-1, by simp, by funext i; fin_cases i <;> norm_num⟩,
         1 / 2, ⟨by norm_num, by norm_num⟩, by funext i; fin_cases i <;> norm_num⟩
-    have hO : (0 : Fin 3 → ℝ) ∈ Set.linComb pZ.construct pZ.construct :=
+    have hO : (0 : Fin 3 → ℝ) ∈ Set.linComb pZ.toSet pZ.toSet :=
       ⟨0, (PolyZonotope.aux_curve_mem _).mpr ⟨0, by simp, by funext i; fin_cases i <;> simp⟩,
         0, (PolyZonotope.aux_curve_mem _).mpr ⟨0, by simp, by funext i; fin_cases i <;> simp⟩,
         1, ⟨by norm_num, by norm_num⟩, by simp⟩

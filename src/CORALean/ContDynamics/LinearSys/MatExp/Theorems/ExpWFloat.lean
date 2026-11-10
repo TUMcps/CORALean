@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.expW_mem (M : Mat 𝕋 n n) (t : 𝕋) : -- --- CONCL ---
-    Real.MatExp.expW (toRealMat M) (toReal t) ∈ (MatExp.expW M t).construct := by -- --- PROOF ---
+    Real.MatExp.expW (toRealMat M) (toReal t) ∈ (MatExp.expW M t).toSet := by -- --- PROOF ---
   refine Interval.mem_mat_iff.mpr fun i j => ?_
   have hh := MatExp.halfSqBounds_mem t
   have hd := Interval.mul_between_corners hh.1 hh.2 (dotDown_le (M i) fun k => M k j)

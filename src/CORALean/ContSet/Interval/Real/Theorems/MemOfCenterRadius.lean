@@ -48,7 +48,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.mem_ofCenterRadius (c r x : α) :
-    x ∈ (Interval.ofCenterRadius c r).construct ↔ ∀ i, |entry x i - entry c i| ≤ entry r i := by
+    x ∈ (Interval.ofCenterRadius c r).toSet ↔ ∀ i, |entry x i - entry c i| ≤ entry r i := by
   refine forall_congr' fun i => ?_
   simp only [Interval.ofCenterRadius, entry_sub, entry_add, abs_le]
   constructor <;> rintro ⟨h₁, h₂⟩ <;> constructor <;> linarith

@@ -78,19 +78,19 @@ theorem STL.depReachStepFloat_outer (A : Mat 𝕋 n n) (Δt : 𝕋) {η : ℕ}
   set Φ := exp (toReal Δt • toRealMat A)
   -- the real exponential lies in the float enclosure of the point box `Δt A`
   have hΦ : Φ ∈
-      (MatExp.expIntervalEnclosure (Interval.smul Δt Δt (Interval.point A)) η).construct :=
+      (MatExp.expIntervalEnclosure (Interval.smul Δt Δt (Interval.point A)) η).toSet :=
     MatExp.exp_mem_expIntervalEnclosure _ η
       (Interval.smul_outer le_rfl le_rfl _ (Float.Interval.mem_point A)) hε
   -- the image by a member of an interval matrix lies in the float product
   have key : ∀ {M : Mat ℝ n n} {IM : Interval (Mat 𝕋 n n)} {S : Set (Vec ℝ n)}
-      {Z : Float.Zonotope (Vec 𝕋 n)}, M ∈ IM.construct → S ⊆ Z.construct →
-      (M *ᵥ ·) '' S ⊆ (Float.Zonotope.mtimesIntervalMat IM Z).construct := by
+      {Z : Float.Zonotope (Vec 𝕋 n)}, M ∈ IM.toSet → S ⊆ Z.toSet →
+      (M *ᵥ ·) '' S ⊆ (Float.Zonotope.mtimesIntervalMat IM Z).toSet := by
     rintro M IM S Z hM hS _ ⟨x, hx, rfl⟩
     exact Float.Zonotope.mtimesIntervalMat_outer _ _ (Set.mem_iUnion₂.2 ⟨M, hM, ⟨x, hS hx, rfl⟩⟩)
-  have hTu : csR.T *ᵥ csR.ũ ∈ (Float.Zonotope.mtimesIntervalMat csF.T csF.ũ).construct :=
+  have hTu : csR.T *ᵥ csR.ũ ∈ (Float.Zonotope.mtimesIntervalMat csF.T csF.ũ).toSet :=
     key hT (Set.singleton_subset_iff.2 hu) ⟨csR.ũ, rfl, rfl⟩
-  have hTU : (Real.Zonotope.mtimes csR.T csR.U₀).construct ⊆
-      (Float.Zonotope.mtimesIntervalMat csF.T csF.U₀).construct := by
+  have hTU : (Real.Zonotope.mtimes csR.T csR.U₀).toSet ⊆
+      (Float.Zonotope.mtimesIntervalMat csF.T csF.U₀).toSet := by
     rw [← Real.Zonotope.mtimes_exact]
     exact key hT hU₀
   -- the four sets, then the box of `D`

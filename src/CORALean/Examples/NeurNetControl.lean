@@ -92,10 +92,10 @@ example (sys : NeurNetContrSys (LinearSys ℝ 2) 𝒵 2) (U_ext : Zonotope (Vec 
     (hdt : sys.dt = (N : ℝ) * Δt) (hε : ‖Δt • sys.augment.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
     {π : Vec ℝ 2 → Vec ℝ sys.m} (hπ : sys.contr.Encloses π)
     {x : ℝ → Vec ℝ 2} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ sys.plant.r}
-    (traj : sys.IsTrajectory π H R₀ (construct U_ext) {0} x v w) (i : ℕ)
+    (traj : sys.IsTrajectory π H R₀ (toSet U_ext) {0} x v w) (i : ℕ)
     (hi : i ≤ H) :
     x ((i : ℝ) * sys.dt) ∈
-      construct (sys.reach U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) :=
+      toSet (sys.reach U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) :=
   sys.reach_outer U_ext o η N ho hΔt hdt hε hπ
     (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero]) traj i hi
 
@@ -106,10 +106,10 @@ example (sys : NeurNetContrSys (LinearSys ℝ 2) 𝒵 2) (U_ext : Zonotope (Vec 
     (hdt : sys.dt = (N : ℝ) * Δt) (hε : ‖Δt • sys.augment.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ}
     (safe : Set (Vec ℝ 2)) {π : Vec ℝ 2 → Vec ℝ sys.m} (hπ : sys.contr.Encloses π)
     {x : ℝ → Vec ℝ 2} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ sys.plant.r}
-    (traj : sys.IsTrajectory π H R₀ (construct U_ext) {0} x v w) (i : ℕ)
+    (traj : sys.IsTrajectory π H R₀ (toSet U_ext) {0} x v w) (i : ℕ)
     (hi : i ≤ H)
     (h : (Specification.safeSet safe).Holds
-      (construct (sys.reach U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩))) :
+      (toSet (sys.reach U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩))) :
     (Specification.safeSet safe).Holds {x ((i : ℝ) * sys.dt)} :=
   sys.holds_of_reach U_ext o η N ho hΔt hdt hε hπ
     (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero]) traj _ i hi h
@@ -122,7 +122,7 @@ example (A : Mat ℝ 2 2) (W₁ : Mat ℝ 3 2) (b₁ : Vec ℝ 3) (W₂ : Mat �
     (x : ℝ → Vec ℝ 2) (v : ℝ → Vec ℝ (Example.nnControlled A W₁ b₁ W₂ b₂ dt).nExt)
     (w : ℝ → Vec ℝ 2) :
     (Example.nnControlled A W₁ b₁ W₂ b₂ dt).IsTrajectory π H R₀ U_ext {0} x v w ↔
-      x 0 ∈ construct R₀ ∧ ∀ i < H, ContDynamics.IsTrajectory (LinearSys.canonical A)
+      x 0 ∈ toSet R₀ ∧ ∀ i < H, ContDynamics.IsTrajectory (LinearSys.canonical A)
         (Set.Icc 0 dt) Set.univ {π (x ((i : ℝ) * dt))} {0} (fun t => x ((i : ℝ) * dt + t))
         (fun _ => π (x ((i : ℝ) * dt))) (fun t => w ((i : ℝ) * dt + t)) :=
   NeurNetContrSys.ofFull_isTrajectory_iff _ _ _ hU

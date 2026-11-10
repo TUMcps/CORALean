@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.Vertices
-public import CORALean.ContSet.Interval.Real.Theorems.ConstructSubsetConvexHullVertices
+public import CORALean.ContSet.Interval.Real.Theorems.ToSetSubsetConvexHullVertices
 public import CORALean.ContSet.Interval.Real.Theorems.Convex
 public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 
@@ -12,7 +12,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 
 `Interval.vertices` are the matrices with every entry at an end of its interval. For a nonempty
 box they lie in the box, which is convex, so their hull lies in it; the other inclusion is
-`construct_subset_convexHull_vertices`. A crossed box has vertices outside the box, so
+`toSet_subset_convexHull_vertices`. A crossed box has vertices outside the box, so
 nonemptiness is a hypothesis.
 
 ## Inputs
@@ -43,7 +43,7 @@ variable {m n : ℕ}
 /-- A nonempty box is the convex hull of its vertices. -/
 theorem Interval.convexHull_vertices (A : Interval (Mat ℝ m n))
     (hA : ∀ p q, A.inf p q ≤ A.sup p q) : -- --- CONCL ---
-    convexHull ℝ (A.vertices : Set (Mat ℝ m n)) = A.construct := by -- --- PROOF ---
+    convexHull ℝ (A.vertices : Set (Mat ℝ m n)) = A.toSet := by -- --- PROOF ---
   -- the vertices are the matrices with every entry at an end
   have hv : (A.vertices : Set (Mat ℝ m n))
       = {M | ∀ i j, M i j = A.inf i j ∨ M i j = A.sup i j} := by
@@ -61,8 +61,8 @@ theorem Interval.convexHull_vertices (A : Interval (Mat ℝ m n))
       · simp only [hs, decide_false, Bool.false_eq_true, if_false]
         exact ((h i j).resolve_right hs).symm
   -- the hull lies in the convex box, since the vertices do
-  refine Set.Subset.antisymm ?_ (hv ▸ Interval.construct_subset_convexHull_vertices A)
-  refine convexHull_min ?_ (Interval.convex_construct A)
+  refine Set.Subset.antisymm ?_ (hv ▸ Interval.toSet_subset_convexHull_vertices A)
+  refine convexHull_min ?_ (Interval.convex_toSet A)
   rw [hv]
   intro M hM
   refine Interval.mem_mat_iff.mpr fun i j => ?_

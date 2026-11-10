@@ -41,15 +41,15 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.matPow_outer (M : Zonotope (Mat ℝ n n)) {A : Mat ℝ n n}
-    (hA : A ∈ M.construct) (k : ℕ) : -- --- CONCL ---
-    A ^ k ∈ (M.matPow k).construct := by -- --- PROOF ---
+    (hA : A ∈ M.toSet) (k : ℕ) : -- --- CONCL ---
+    A ^ k ∈ (M.matPow k).toSet := by -- --- PROOF ---
   induction k with
   | zero =>
       rw [pow_zero]
       exact Zonotope.mem_ofPoint (1 : Mat ℝ n n)
   -- the previous power paired with the base itself, which is what `matMul` bounds
   | succ k ih =>
-      have hmem : A * A ^ k ∈ (Zonotope.matMul M (M.matPow k)).construct :=
+      have hmem : A * A ^ k ∈ (Zonotope.matMul M (M.matPow k)).toSet :=
         Zonotope.matMul_outer M (M.matPow k) (Set.mem_biUnion hA ⟨A ^ k, ih, rfl⟩)
       rw [pow_succ']
       exact hmem

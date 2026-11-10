@@ -43,7 +43,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 
 /-- Every point of the set, box included, is a nominal point of `absorbRounding`. -/
 theorem StarSet.absorbRounding_nominal (s : StarSet 𝕋 n) : -- --- CONCL ---
-    s.construct ⊆ nominalSet s.absorbRounding := by -- --- PROOF ---
+    s.toSet ⊆ nominalSet s.absorbRounding := by -- --- PROOF ---
   -- a point is a nominal point plus an error within the box
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨α, ⟨hbox, hP⟩, hy⟩ := StarSet.mem_nominalSet_iff s y |>.mp hy
@@ -55,9 +55,9 @@ theorem StarSet.absorbRounding_nominal (s : StarSet 𝕋 n) : -- --- CONCL ---
   refine (StarSet.mem_nominalSet_iff _ _).mpr
     ⟨Fin.append α e, ⟨(Interval.mem_append_iff s.dom s.I_error _).mpr ⟨?_, ?_⟩,
       (HPolytope.mem_lift_nominal_iff s.pred (Fin.castAdd_injective s.m n)).mpr ?_⟩, fun i => ?_⟩
-  · exact (congrArg (· ∈ s.dom.construct) hA).mpr hbox
-  · exact (congrArg (· ∈ s.I_error.construct) hB).mpr he
-  · exact (congrArg (· ∈ s.pred.nominal.construct) hA).mpr hP
+  · exact (congrArg (· ∈ s.dom.toSet) hA).mpr hbox
+  · exact (congrArg (· ∈ s.I_error.toSet) hB).mpr he
+  · exact (congrArg (· ∈ s.pred.nominal.toSet) hA).mpr hP
   -- the point: the identity generators add the error
   · have hunit : ∀ k : Fin n, toReal (if k = i then (one : 𝕋) else zero) = if k = i then 1 else 0 :=
       fun k => by split_ifs <;> simp [toReal_one, toReal_zero]

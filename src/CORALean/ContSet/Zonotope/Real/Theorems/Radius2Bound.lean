@@ -52,8 +52,8 @@ private theorem Zonotope.aux_interval_center (Z : Zonotope (Vec ℝ n)) :
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.construct_subset_ball_radius₂ (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    Z.construct ⊆ {x | ‖x - Z.c‖₂ ≤ Z.radius₂} := by -- --- PROOF ---
+theorem Zonotope.toSet_subset_ball_radius₂ (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
+    Z.toSet ⊆ {x | ‖x - Z.c‖₂ ≤ Z.radius₂} := by -- --- PROOF ---
   intro x hx
   show ‖x - Z.c‖₂ ≤ min _ _
   refine le_min ?_ ?_

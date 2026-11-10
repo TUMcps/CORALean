@@ -52,7 +52,7 @@ variable {n : ℕ}
 
 /-- [1, Def. 3]: `{x | aᵀx = b ∧ C x ≤ d}`. -/
 def IdentHA.conHyperplane (a : Vec ℝ n) (b : ℝ) (cs : List (Vec ℝ n × ℝ)) : Set (Vec ℝ n) :=
-  {x | a ⬝ᵥ x = b ∧ x ∈ (IdentHA.polytope cs).construct}
+  {x | a ⬝ᵥ x = b ∧ x ∈ (IdentHA.polytope cs).toSet}
 
 /-- A decision tree of hyperplane splits: left `aᵀx ≤ b`, right `aᵀx ≥ b`. -/
 inductive IdentHA.SplitTree (n : ℕ) where

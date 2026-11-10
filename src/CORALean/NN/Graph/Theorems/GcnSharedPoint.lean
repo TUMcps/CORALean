@@ -13,7 +13,7 @@ public import CORALean.NN.Graph.Theorems.Basic
 `gcnShared` is `bilin` and then `map`, so its point is `bilin_point` and then `map_point`: at the
 factor vector `a` the step is the plain matrix product `P.point a * H.point a * W`.
 
-Read over `point` rather than over `construct` because a *chain* of steps is: the recursion carries
+Read over `point` rather than over `toSet` because a *chain* of steps is: the recursion carries
 one factor vector from step to step, and that keeps a recurring edge identified. `Fin.cast` is the
 whole bookkeeping — the two sets share a factor set, so the cast is the identity.
 

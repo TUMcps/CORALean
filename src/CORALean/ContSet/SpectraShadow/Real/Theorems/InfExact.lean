@@ -36,9 +36,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.Inf_exact (n : ℕ) : -- --- CONCL ---
-    (SpectraShadow.Inf n).construct = Set.univ := by -- --- PROOF ---
+    (SpectraShadow.Inf n).toSet = Set.univ := by -- --- PROOF ---
   ext x
-  simp only [SpectraShadow.construct, Set.mem_setOf_eq, Set.mem_univ, iff_true]
+  simp only [SpectraShadow.toSet, Set.mem_setOf_eq, Set.mem_univ, iff_true]
   -- the coefficients are `x` itself, read through the unit vectors
   refine ⟨fun i => x ⟨i.1, i.2⟩, ?_, ?_⟩
   · rw [SpectraShadow.A₀_add_sum_eq (SpectraShadow.Inf n) _ (fun _ => rfl)]

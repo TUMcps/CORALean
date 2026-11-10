@@ -52,24 +52,24 @@ variable [InflatedContSet S₁ N₁ (Vec 𝕋 n) (Vec ℝ n)]
 theorem plus_subset {s₁ : S₁} {s₂ : S₂} {t : T} {D : Set (Vec ℝ n)}
     (hnominal : nominalSet s₁ + nominalSet s₂ ⊆
       nominalSet t + D)
-    (herror : (I_error s₁).construct + (I_error s₂).construct + D ⊆ (I_error t).construct)
+    (herror : (I_error s₁).toSet + (I_error s₂).toSet + D ⊆ (I_error t).toSet)
     : -- --- CONCL ---
-    construct s₁ + construct s₂ ⊆ construct t := by -- --- PROOF ---
-  show nominalSet s₁ + (I_error s₁).construct
-      + (nominalSet s₂ + (I_error s₂).construct) ⊆
-    nominalSet t + (I_error t).construct
+    toSet s₁ + toSet s₂ ⊆ toSet t := by -- --- PROOF ---
+  show nominalSet s₁ + (I_error s₁).toSet
+      + (nominalSet s₂ + (I_error s₂).toSet) ⊆
+    nominalSet t + (I_error t).toSet
   -- the four summands regrouped so each hypothesis applies to one pair
-  calc nominalSet s₁ + (I_error s₁).construct
-        + (nominalSet s₂ + (I_error s₂).construct)
+  calc nominalSet s₁ + (I_error s₁).toSet
+        + (nominalSet s₂ + (I_error s₂).toSet)
       = nominalSet s₁ + nominalSet s₂
-        + ((I_error s₁).construct + (I_error s₂).construct) := add_add_add_comm _ _ _ _
+        + ((I_error s₁).toSet + (I_error s₂).toSet) := add_add_add_comm _ _ _ _
     _ ⊆ nominalSet t + D
-        + ((I_error s₁).construct + (I_error s₂).construct) :=
+        + ((I_error s₁).toSet + (I_error s₂).toSet) :=
         Set.add_subset_add_right hnominal
     _ = nominalSet t
-        + ((I_error s₁).construct + (I_error s₂).construct + D) := by
+        + ((I_error s₁).toSet + (I_error s₂).toSet + D) := by
         rw [add_assoc, add_comm D _]
-    _ ⊆ nominalSet t + (I_error t).construct :=
+    _ ⊆ nominalSet t + (I_error t).toSet :=
         Set.add_subset_add_left herror
 
 end CORALean.Float.InflatedContSet

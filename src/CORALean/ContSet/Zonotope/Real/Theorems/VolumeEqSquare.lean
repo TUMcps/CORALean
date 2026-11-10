@@ -42,17 +42,17 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.volume_eq_of_h_eq (Z : Zonotope (Vec ℝ n)) (hh : Z.h = n) : -- --- CONCL ---
-    MeasureTheory.volume Z.construct = Z.volume := by -- --- PROOF ---
+    MeasureTheory.volume Z.toSet = Z.volume := by -- --- PROOF ---
   obtain ⟨h, c, G⟩ := Z
   simp only at hh
   subst hh
   -- the generator matrix `M` has the generators as columns
   let M : Mat ℝ h h := Matrix.of fun i k => G k i
   -- the zonotope is a translate of the image of the cube
-  have hcon : (Zonotope.mk h c G).construct =
+  have hcon : (Zonotope.mk h c G).toSet =
       (fun v => -c + v) ⁻¹' ((Matrix.toLin' M) '' Set.Icc (fun _ => (-1 : ℝ)) (fun _ => 1)) := by
     ext x
-    simp only [Zonotope.construct, Set.mem_setOf_eq, Set.mem_preimage, Set.mem_image,
+    simp only [Zonotope.toSet, Set.mem_setOf_eq, Set.mem_preimage, Set.mem_image,
       Set.mem_Icc]
     constructor
     · -- a point of the zonotope

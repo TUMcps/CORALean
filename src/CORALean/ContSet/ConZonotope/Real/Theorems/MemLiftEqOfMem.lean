@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.LiftEq
-public import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemToSet
 
 @[expose] public section
 
@@ -45,10 +45,10 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.mem_liftEq_of_mem (cZ : ConZonotope (Vec ℝ n)) {x : Vec ℝ n}
-    (hx : x ∈ cZ.construct) : -- --- CONCL ---
+    (hx : x ∈ cZ.toSet) : -- --- CONCL ---
     (Fin.append x (0 : Vec ℝ cZ.P.me) : Vec ℝ (n + cZ.P.me)) ∈
-      cZ.liftEq.construct := by -- --- PROOF ---
-  obtain ⟨β, hβ, hP, hxi⟩ := ConZonotope.mem_construct_iff.mp hx
+      cZ.liftEq.toSet := by -- --- PROOF ---
+  obtain ⟨β, hβ, hP, hxi⟩ := ConZonotope.mem_toSet_iff.mp hx
   -- a linear functional is the sum of its values at the unit vectors
   have hlin : ∀ f : Vec ℝ cZ.h →ₗ[ℝ] ℝ,
       f β = ∑ j, f (Pi.single j (1 : ℝ) : Vec ℝ cZ.h) * β j := by
@@ -58,7 +58,7 @@ theorem ConZonotope.mem_liftEq_of_mem (cZ : ConZonotope (Vec ℝ n)) {x : Vec �
     refine Finset.sum_congr rfl fun j _ => ?_
     rw [show (Pi.single j (β j) : Vec ℝ cZ.h) = β j • (Pi.single j (1 : ℝ) : Vec ℝ cZ.h) by
       ext k; by_cases hk : k = j <;> simp [hk], map_smul, smul_eq_mul, mul_comm]
-  refine ConZonotope.mem_construct_iff.mpr ⟨β, hβ, ⟨hP.1, fun i => i.elim0⟩, fun k => ?_⟩
+  refine ConZonotope.mem_toSet_iff.mpr ⟨β, hβ, ⟨hP.1, fun i => i.elim0⟩, fun k => ?_⟩
   refine Fin.addCases (fun i => ?_) (fun i => ?_) k
   · simp only [ConZonotope.liftEq, Fin.append_left]
     exact hxi i

@@ -41,7 +41,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [OfScalarPoint 𝕋 S]
 /-- Every `p - x`, `x` in `S` and `p` read as reals, is in `minusFromScalar p S`: `uminus_outer`
 then `plus_outer`. -/
 theorem ContSet.minusFromScalar_outer (p : Vec 𝕋 n) (s : S n) :
-    (fun x => toRealVec p - x) '' construct s ⊆ construct (ContSet.minusFromScalar p s) := by
+    (fun x => toRealVec p - x) '' toSet s ⊆ toSet (ContSet.minusFromScalar p s) := by
   rintro _ ⟨x, hx, rfl⟩
   have h1 := ContSet.uminus_outer (𝕋 := 𝕋) s ⟨x, hx, rfl⟩
   exact Plus.plus_outer _ _ ⟨-x, h1, toRealVec p, OfScalarPoint.mem_ofVec _, neg_add_eq_sub _ _⟩

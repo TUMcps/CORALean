@@ -41,8 +41,8 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem EmptySet.projectHighDim_exact (E : EmptySet n) (N : ℕ) (proj : Fin n → Fin N) :
-    construct (E.projectHighDim_ N proj) =
-      (fun (x : Vec ℝ n) => (Function.extend proj x 0 : Vec ℝ N)) '' construct E := by
+    toSet (E.projectHighDim_ N proj) =
+      (fun (x : Vec ℝ n) => (Function.extend proj x 0 : Vec ℝ N)) '' toSet E := by
   change (∅ : Set (Vec ℝ N)) = _ '' (∅ : Set (Vec ℝ n))
   exact (Set.image_empty _).symm
 

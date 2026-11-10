@@ -93,17 +93,17 @@ private theorem Zonotope.aux_matMulDown_sub_le (M : Mat 𝕋 m n) (Z : Zonotope 
 
 This needs `0` to lie in the error box of `Z`. -/
 theorem Zonotope.mtimes_subset_add_box (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n))
-    (h : (0 : Vec ℝ n) ∈ Z.I_error.construct) : -- --- CONCL ---
-    (Zonotope.mtimes M Z).construct ⊆
-      (toRealMat M *ᵥ ·) '' Z.construct
-        + (Zonotope.mtimesBox M Z).construct := by -- --- PROOF ---
+    (h : (0 : Vec ℝ n) ∈ Z.I_error.toSet) : -- --- CONCL ---
+    (Zonotope.mtimes M Z).toSet ⊆
+      (toRealMat M *ᵥ ·) '' Z.toSet
+        + (Zonotope.mtimesBox M Z).toSet := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁, y₂, hy₂, rfl⟩
   obtain ⟨β, hβ, hy₁eq⟩ := Zonotope.mem_nominalSet_iff.mp hy₁
   -- `Z`'s own point, at the coefficients `mtimes`'s stored generators used
   set x : Vec ℝ n := fun k => toReal (Z.c k) + ∑ l, toReal (Z.G l k) * β l with hxdefeq
-  have hxmem : (toRealMat M *ᵥ x) ∈ (toRealMat M *ᵥ ·) '' Z.construct := by
+  have hxmem : (toRealMat M *ᵥ x) ∈ (toRealMat M *ᵥ ·) '' Z.toSet := by
     refine ⟨x, ?_, rfl⟩
-    have hh : x + (0 : Vec ℝ n) ∈ nominalSet Z + Z.I_error.construct :=
+    have hh : x + (0 : Vec ℝ n) ∈ nominalSet Z + Z.I_error.toSet :=
       Set.add_mem_add (Zonotope.mem_nominalSet_iff.mpr ⟨β, hβ, fun _ => rfl⟩) h
     rwa [add_zero] at hh
   -- the rounding gap of generator `j` at coordinate `i`
@@ -117,7 +117,7 @@ theorem Zonotope.mtimes_subset_add_box (M : Mat 𝕋 m n) (Z : Zonotope (Vec �
   -- the center's rounding gap, bounded in `𝕋` as `plusBox`'s is
   have hg1 : (fun i => toReal (mulVecDown M Z.c i) - ∑ k, toReal (M i k) * toReal (Z.c k)) ∈
       (⟨fun i => subDown (mulVecDown M Z.c i) (mulVecUp M Z.c i), fun _ => (zero : 𝕋)⟩ :
-        Interval (Vec 𝕋 m)).construct := fun i =>
+        Interval (Vec 𝕋 m)).toSet := fun i =>
     ⟨by show toReal (subDown (mulVecDown M Z.c i) (mulVecUp M Z.c i)) ≤
           toReal (mulVecDown M Z.c i) - ∑ k, toReal (M i k) * toReal (Z.c k)
         have h1 := subDown_le_sub (mulVecDown M Z.c i) (mulVecUp M Z.c i)
@@ -131,10 +131,10 @@ theorem Zonotope.mtimes_subset_add_box (M : Mat 𝕋 m n) (Z : Zonotope (Vec �
         rw [toReal_zero]; linarith⟩
   -- each generator's rounding gap, scaled by the same coefficients `β`
   have hg2 : (fun i => ∑ j, (gap i j) * β j) ∈
-      (Zonotope.generatorError (matMulDiff M (fun i j => Z.G j i))).construct :=
+      (Zonotope.generatorError (matMulDiff M (fun i j => Z.G j i))).toSet :=
     Zonotope.mem_generatorError (fun i j => Zonotope.aux_matMulDown_sub_le M Z i j) hβ
   -- `g` and `mtimes`'s own error box, read back into `mtimesBox` by two more `⊆` steps
-  have hgmem : g + y₂ ∈ (Zonotope.mtimesBox M Z).construct := by
+  have hgmem : g + y₂ ∈ (Zonotope.mtimesBox M Z).toSet := by
     have hg12 : g = (fun i => toReal (mulVecDown M Z.c i) - ∑ k, toReal (M i k) * toReal (Z.c k))
         + fun i => ∑ j, (gap i j) * β j := by
       rw [hgdefeq]; rfl

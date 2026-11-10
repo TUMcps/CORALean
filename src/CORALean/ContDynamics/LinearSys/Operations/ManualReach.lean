@@ -53,7 +53,7 @@ time-interval sets, `K` standing for `t_end/Δt`. -/
 noncomputable def LinearSys.manualReach (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec ℝ n))
     (Δt : ℝ) (η ρ K : ℕ) : Set (Vec ℝ n) :=
   -- 12.-13. R̂([0,t_end]), the union of the time-interval sets R̂(τ_k)
-  ⋃ k < K, construct (sys.manualStep X₀ U Δt η ρ (sys.manualRun X₀ U Δt η ρ k)).2
+  ⋃ k < K, toSet (sys.manualStep X₀ U Δt η ρ (sys.manualRun X₀ U Δt η ρ k)).2
 
 end CORALean
 

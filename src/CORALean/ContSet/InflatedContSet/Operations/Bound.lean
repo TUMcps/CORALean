@@ -45,8 +45,8 @@ variable [ContSet N (Vec ℝ n)] [InflatedContSet S N (Vec 𝕋 n) (Vec ℝ n)]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def InflatedContSet.boundOfParts {c : Vec ℝ n →ₗ[ℝ] ℝ} {s : S}
-    (u : FloatBound 𝕋 (nominalSet s) c) (v : FloatBound 𝕋 (I_error s).construct c) :
-    FloatBound 𝕋 (InflatedContSet.construct s) c :=
+    (u : FloatBound 𝕋 (nominalSet s) c) (v : FloatBound 𝕋 (I_error s).toSet c) :
+    FloatBound 𝕋 (InflatedContSet.toSet s) c :=
   u.add v
 
 end CORALean.Float

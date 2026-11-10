@@ -34,7 +34,7 @@ namespace CORALean.Real
 
 /-- The convex hull of the pieces lies inside the region. -/
 def Polygon.isConvex (P : Polygon) : Prop :=
-  VPolytope.construct (Polygon.convHull P) ⊆ ContSet.construct P
+  VPolytope.toSet (Polygon.convHull P) ⊆ ContSet.toSet P
 
 end CORALean.Real
 

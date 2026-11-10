@@ -11,7 +11,7 @@ public import CORALean.ContSet.OptEmpty.OptEmpty
 Everything `S` gives, lifted: `empty` absorbs a binary operation and passes a unary one through,
 which the class obligations survive because `∅` is a subset of everything. The operations stay
 inside the instances rather than earning files of their own: each is `S`'s operation on `of`, and
-`empty` everywhere else. No `Recenter`: it asks `0 ∈ construct (recenter s)` unconditionally, which
+`empty` everywhere else. No `Recenter`: it asks `0 ∈ toSet (recenter s)` unconditionally, which
 `empty` cannot meet, as for `Interval` and a crossed box. `MinkDiff` transfers, and a representation
 with no `MinkDiff` of its own gets one here at the wrapper instead, as `Zonotope` does.
 -/
@@ -36,20 +36,20 @@ variable {S α : Type} [ContSet S α]
 /-- At a normed ambient type, where `∅` is compact and the rest is `S`'s. -/
 instance [NormedAddCommGroup α] [NormedSpace ℝ α] [CompactSet S α] :
     CompactSet (OptEmpty S) α where
-  isCompact_construct s := by
+  isCompact_toSet s := by
     cases s with
     | empty => exact isCompact_empty
-    | of s => exact CompactSet.isCompact_construct s
+    | of s => exact CompactSet.isCompact_toSet s
 
 section
 
 variable [AddCommGroup α] [Module ℝ α]
 
 instance [ConvexSet S α] : ConvexSet (OptEmpty S) α where
-  convex_construct s := by
+  convex_toSet s := by
     cases s with
     | empty => exact convex_empty
-    | of s => exact ConvexSet.convex_construct s
+    | of s => exact ConvexSet.convex_toSet s
 
 instance [Plus S α] : Plus (OptEmpty S) α where
   plus s t := match s, t with

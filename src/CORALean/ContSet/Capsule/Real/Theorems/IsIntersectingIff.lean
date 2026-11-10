@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Capsule.Real.Operations.IsIntersecting
 public import CORALean.ContSet.Capsule.Real.Theorems.SegDistMem
-public import CORALean.ContSet.Capsule.Real.Theorems.MemConstructIffNorm
+public import CORALean.ContSet.Capsule.Real.Theorems.MemToSetIffNorm
 
 @[expose] public section
 
@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 theorem Capsule.isIntersecting_iff {C₁ C₂ : Capsule n} (h₁ : 0 ≤ C₁.r)
     (h₂ : 0 ≤ C₂.r) : -- --- CONCL ---
-    C₁.isIntersecting_ C₂ ↔ (C₁.construct ∩ C₂.construct).Nonempty := by -- --- PROOF ---
+    C₁.isIntersecting_ C₂ ↔ (C₁.toSet ∩ C₂.toSet).Nonempty := by -- --- PROOF ---
   constructor
   · -- the nearest axis points `A`, `B` and the point a fraction `θ` of the way from `A` to `B`
     intro h
@@ -70,11 +70,11 @@ theorem Capsule.isIntersecting_iff {C₁ C₂ : Capsule n} (h₁ : 0 ≤ C₁.r)
       have hr₂ : C₂.r = 0 := by linarith
       have hAB0 : ‖A - B‖₂ = 0 := le_antisymm (by linarith) (norm₂_nonneg _)
       refine ⟨A, ?_, ?_⟩
-      · rw [Capsule.mem_construct_iff_norm₂]
+      · rw [Capsule.mem_toSet_iff_norm₂]
         refine ⟨t₁, ht₁, ?_⟩
         have : (A - C₁.c) - t₁ • C₁.g = 0 := by rw [hA]; abel
         rw [this, norm₂_zero, hr₁]
-      · rw [Capsule.mem_construct_iff_norm₂]
+      · rw [Capsule.mem_toSet_iff_norm₂]
         refine ⟨t₂, ht₂, ?_⟩
         have : (A - C₂.c) - t₂ • C₂.g = A - B := by rw [hB]; abel
         rw [this, hAB0, hr₂]
@@ -86,14 +86,14 @@ theorem Capsule.isIntersecting_iff {C₁ C₂ : Capsule n} (h₁ : 0 ≤ C₁.r)
       obtain ⟨k1, k2⟩ := key θ
       -- `A + θ (B - A)` is within `r₁` of `A` and within `r₂` of `B`
       refine ⟨A + θ • (B - A), ?_, ?_⟩
-      · rw [Capsule.mem_construct_iff_norm₂]
+      · rw [Capsule.mem_toSet_iff_norm₂]
         refine ⟨t₁, ht₁, ?_⟩
         have : ((A + θ • (B - A)) - C₁.c) - t₁ • C₁.g = (A + θ • (B - A)) - A := by
           rw [hA]; abel
         rw [this, k1, abs_of_nonneg hθ0]
         calc θ * ‖A - B‖₂ ≤ θ * (C₁.r + C₂.r) := mul_le_mul_of_nonneg_left hAB hθ0
           _ = C₁.r := by rw [hθ]; field_simp
-      · rw [Capsule.mem_construct_iff_norm₂]
+      · rw [Capsule.mem_toSet_iff_norm₂]
         refine ⟨t₂, ht₂, ?_⟩
         have : ((A + θ • (B - A)) - C₂.c) - t₂ • C₂.g = (A + θ • (B - A)) - B := by
           rw [hB]; abel
@@ -103,7 +103,7 @@ theorem Capsule.isIntersecting_iff {C₁ C₂ : Capsule n} (h₁ : 0 ≤ C₁.r)
           _ = C₂.r := by rw [hθ]; field_simp; ring
   · -- a common point `x`: the triangle inequality through it bounds the axis distance
     rintro ⟨x, hx₁, hx₂⟩
-    rw [Capsule.mem_construct_iff_norm₂] at hx₁ hx₂
+    rw [Capsule.mem_toSet_iff_norm₂] at hx₁ hx₂
     obtain ⟨t₁, ht₁, hx₁⟩ := hx₁
     obtain ⟨t₂, ht₂, hx₂⟩ := hx₂
     have hle : Capsule.segDist C₁ C₂ ≤ ‖(C₁.c + t₁ • C₁.g) - (C₂.c + t₂ • C₂.g)‖₂ :=

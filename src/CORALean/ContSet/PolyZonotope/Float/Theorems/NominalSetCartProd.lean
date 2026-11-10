@@ -123,8 +123,8 @@ theorem PolyZonotope.nominalSet_cartProd (pZ₁ : PolyZonotope (Vec 𝕋 n₁))
         (InflatedContSet.nominalSet pZ₁ ×ˢ InflatedContSet.nominalSet pZ₂) := by
     unfold InflatedContSet.nominalSet
     rw [PolyZonotope.aux_nominal_cartProd]
-    show (Real.PolyZonotope.map _ _).construct = _ ''
-      (Real.PolyZonotope.construct _ ×ˢ Real.PolyZonotope.construct _)
+    show (Real.PolyZonotope.map _ _).toSet = _ ''
+      (Real.PolyZonotope.toSet _ ×ˢ Real.PolyZonotope.toSet _)
     rw [← Real.PolyZonotope.map_exact, Real.PolyZonotope.cartProd_exact]
   have hφ : ⇑(appendLinear n₁ n₂) = fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2 :=
     funext appendLinear_apply

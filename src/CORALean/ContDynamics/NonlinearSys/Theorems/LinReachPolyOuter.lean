@@ -86,11 +86,11 @@ theorem NonlinearSys.IsTrajectory.linReachPoly_outer {sys : NonlinearSys n m} {T
     (h : sys.linReachPoly U A B xs us H E Δt η errorOrder intermediateOrder Rinit abstrerr fuel
       = some step)
     (hT : Set.Icc 0 Δt ⊆ T) (hR : ∀ t ∈ Set.Icc 0 Δt, x t ∈ step.R) (hΔt : 0 ≤ Δt)
-    (hU : Bornology.IsBounded (construct step.linInput))
+    (hU : Bornology.IsBounded (toSet step.linInput))
     (hUd : (NonlinearSys.linearize A).stepInput
-      (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt 0 ∈ construct Ud) {o : ℕ} (ho : 0 < o)
+      (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt 0 ∈ toSet Ud) {o : ℕ} (ho : 0 < o)
     : -- --- CONCL ---
-    x Δt ∈ construct (((NonlinearSys.linearize A).discretize Δt).reach (S := 𝒫𝒵)
+    x Δt ∈ toSet (((NonlinearSys.linearize A).discretize Δt).reach (S := 𝒫𝒵)
       ⟨Rinit, Ud, 0, 1⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   -- the step is the linearization at the `A`, `B`, `xs`, `us` the run was handed
   unfold NonlinearSys.linReachPoly at h

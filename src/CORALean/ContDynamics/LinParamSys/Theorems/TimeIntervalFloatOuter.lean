@@ -58,9 +58,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem LinParamSys.timeIntervalFloat_outer
     (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) (R : Zonotope (Vec 𝕋 n))
-    {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) {x : Vec ℝ n} (hx : x ∈ R.construct) {s : ℝ}
+    {A : Mat ℝ n n} (hA : A ∈ sys.A.toSet) {x : Vec ℝ n} (hx : x ∈ R.toSet) {s : ℝ}
     (hs0 : 0 ≤ s) (hs : s ≤ toReal Δt) : -- --- CONCL ---
-    exp (s • A) *ᵥ x ∈ (sys.timeIntervalFloat Δt η R).construct := by -- --- PROOF ---
+    exp (s • A) *ᵥ x ∈ (sys.timeIntervalFloat Δt η R).toSet := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hη.1
   set r := toReal Δt
   have hl0 : 0 ≤ s / r := div_nonneg hs0 hΔt.le
@@ -72,7 +72,7 @@ theorem LinParamSys.timeIntervalFloat_outer
     simp only [Matrix.sub_mulVec, smul_mulVec, Matrix.one_mulVec, sub_smul, smul_sub, one_smul]
     abel
   -- `e^{AΔt} x` lies in `[e^{AΔt}] R`
-  have hE : exp (r • A) *ᵥ x ∈ construct
+  have hE : exp (r • A) *ᵥ x ∈ toSet
     (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
       (sys.expIntervalFloat Δt Δt (m + 2)) R) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
@@ -80,7 +80,7 @@ theorem LinParamSys.timeIntervalFloat_outer
       (Set.mem_biUnion (sys.exp_mem_expIntervalFloat hη hA le_rfl le_rfl)
         (Set.mem_image_of_mem _ hx))
   -- the interpolation error lies in `[F] R`
-  have hF : (exp (s • A) - 1 - (s / r) • (exp (r • A) - 1)) *ᵥ x ∈ construct
+  have hF : (exp (s • A) - 1 - (s / r) • (exp (r • A) - 1)) *ᵥ x ∈ toSet
       (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
         (MatExp.intervalCorrectionMatrix sys.A Δt (m + 2)) R) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])

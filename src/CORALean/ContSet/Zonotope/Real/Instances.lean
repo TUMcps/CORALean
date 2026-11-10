@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.IsequalToSet
 public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.VPolytope.Real.Interfaces
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeExact
@@ -63,10 +63,10 @@ scoped notation "𝒵" => fun n => Zonotope (Vec ℝ n)
 coordinates. The operation instances below stay at `Vec`, because `reduce`
 does. -/
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSet (Zonotope α) α :=
-  ⟨Zonotope.construct⟩
+  ⟨Zonotope.toSet⟩
 
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : ConvexSet (Zonotope α) α :=
-  ⟨Zonotope.convex_construct⟩
+  ⟨Zonotope.convex_toSet⟩
 
 /-- The `2^h` sign corners, whose hull is the zonotope (`vPolytope_exact`). -/
 noncomputable instance {α : Type} [AddCommGroup α] [Module ℝ α] : ExactVertices (Zonotope α) α :=
@@ -75,7 +75,7 @@ noncomputable instance {α : Type} [AddCommGroup α] [Module ℝ α] : ExactVert
 /-- Compactness, not the closed-and-bounded pair: an affine image of the
 coefficient cube is what a zonotope is, and only compactness survives it. -/
 instance {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] : CompactSet (Zonotope α) α :=
-  ⟨Zonotope.isCompact_construct⟩
+  ⟨Zonotope.isCompact_toSet⟩
 
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : OfPoint (Zonotope α) α where
   ofPoint := Zonotope.ofPoint
@@ -110,7 +110,7 @@ instance : Reindex (𝒵) where
 instance : Mtimes (Mat ℝ) (𝒵) where
   mtimes := Zonotope.mtimes
   mtimes_outer M Z := by
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (Zonotope.mtimes_exact M Z).subset
 
 /-- `OfPoint` again, at the family: ℝ is its own scalar, so the point is stored as it is. -/
@@ -171,7 +171,7 @@ noncomputable instance {α : Type} [AddCommGroup α] [Module ℝ α] :
     cases s <;> cases t
     -- only the pair of zonotopes has anything to prove; `∅` discharges the rest
     case of.of Z₁ Z₂ =>
-      show ContSet.construct (Z₁.minkDiffOrEmpty Z₂) ⊆ _
+      show ContSet.toSet (Z₁.minkDiffOrEmpty Z₂) ⊆ _
       cases hE : Z₁.minkDiffOrEmpty Z₂ with
       | empty => exact Set.empty_subset _
       | of D => exact Zonotope.minkDiffOrEmpty_inner Z₁ Z₂ hE
@@ -180,7 +180,7 @@ noncomputable instance {α : Type} [AddCommGroup α] [Module ℝ α] :
 /-- `Zonotope.isequal`, structural at tolerance `0`: sound, not exact. -/
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : Isequal (Zonotope α) where
   isequal := Zonotope.isequal
-  isequal_construct _ _ := Zonotope.isequal_construct
+  isequal_toSet _ _ := Zonotope.isequal_toSet
 
 end CORALean.Real
 

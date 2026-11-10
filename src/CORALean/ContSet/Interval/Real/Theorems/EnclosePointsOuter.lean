@@ -40,7 +40,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.enclosePoints_outer {κ : Type} [Fintype κ] [Nonempty κ] (p : κ → α) (k : κ) :
-    p k ∈ (Interval.enclosePoints p).construct := by
+    p k ∈ (Interval.enclosePoints p).toSet := by
   intro i
   simp only [Interval.enclosePoints, Entrywise.entry_ofEntry]
   exact ⟨Finset.inf'_le (fun k => entry (p k) i) (Finset.mem_univ k),

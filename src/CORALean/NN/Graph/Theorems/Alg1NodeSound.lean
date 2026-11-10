@@ -70,11 +70,11 @@ theorem GNN.alg1Node_isSound (R : Relaxation ℝ) (hR : R.Encloses invSqrt) (A :
     (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (L : ℕ) (c : ℕ → ℕ) (σ : ℕ → ℝ → ℝ)
     (W : ∀ s, Mat ℝ (c s) (c (s + 1))) (acts : ∀ s, GNN.ActLayer N (c (s + 1)))
     (hσ : ∀ s, (acts s).Encloses (σ s)) (X : PolyZonotope (Mat ℝ N (c 0))) {x : Mat ℝ N (c 0)}
-    (hx : x ∈ X.construct) : -- --- CONCL ---
+    (hx : x ∈ X.toSet) : -- --- CONCL ---
     GNN.evalLayers (GNN.messagePassing (GNN.adjAt A U lam)) L c σ W x
-      ∈ (GNN.alg1Node R A U L c W acts X).construct := by -- --- PROOF ---
+      ∈ (GNN.alg1Node R A U L c W acts X).toSet := by -- --- PROOF ---
   -- the input is a point of its dependent form, whose independent block is empty
-  have hx' : x ∈ X.dependent.construct := X.dependent_exact ▸ hx
+  have hx' : x ∈ X.dependent.toSet := X.dependent_exact ▸ hx
   obtain ⟨aH, haH, rfl⟩ := PolyZonotope.exists_point_of_q_zero X.dependent rfl hx'
   exact GNN.evalLayers_mem_gcnActSteps_uncertain R hR A U hA lam hlam L c σ W acts hσ
     X.dependent aH haH

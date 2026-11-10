@@ -83,14 +83,14 @@ private theorem aux_jacobianMat_param (g0 : Vec ℝ k → Vec ℝ n) (gi : Fin q
 theorem NonlinParamSys.jacobianFamily_mem (F : Vec ℝ k → Vec ℝ q → Vec ℝ n)
     (hAff : ∀ z p, F z p = F z 0 + ∑ i, p i • (F z (Pi.single i 1) - F z 0)) (z : Vec ℝ k)
     (hd : ∀ p, DifferentiableAt ℝ (fun w => F w p) z) (I : Interval (Vec ℝ q)) {p : Vec ℝ q}
-    (hp : p ∈ I.construct) : -- --- CONCL ---
+    (hp : p ∈ I.toSet) : -- --- CONCL ---
     let Δ := fun i : Fin q => jacobianMat (fun w => F w (Pi.single i 1)) z - jacobianMat (fun w =>
       F w 0) z
     jacobianMat (fun w => F w p) z ∈
       (⟨q, jacobianMat (fun w => F w 0) z + ∑ i, I.center i •
           (Δ i),
         fun i => I.radius i • (Δ i)⟩ :
-        Zonotope (Mat ℝ n k)).construct := by -- --- PROOF ---
+        Zonotope (Mat ℝ n k)).toSet := by -- --- PROOF ---
   intro Δ
   obtain ⟨β, hβ, hpi⟩ := I.exists_coeff_of_mem hp
   refine ⟨β, hβ, ?_⟩

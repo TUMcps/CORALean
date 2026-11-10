@@ -62,12 +62,12 @@ noncomputable def HPolytope.isequalNondeg (A₁ : Mat ℝ q₁ n) (b₁ : Vec �
   -- lines 2-7: a row of `P₁` with no equal row in `P₂` has to be redundant in `P₁`
   let pass₁ : Prop := ∀ j, (∃ k, nA₁ j = nA₂ k ∧ nb₁ j = nb₂ k) ∨
     supportFunc
-      (HPolytope.ineqs (nA₁.submatrix (dropIdx j) id) fun i => nb₁ (dropIdx j i)).construct
+      (HPolytope.ineqs (nA₁.submatrix (dropIdx j) id) fun i => nb₁ (dropIdx j i)).toSet
       (HPolytope.rowLin nA₁ j) ≤ (nb₁ j : EReal)
   -- line 8: the same with the indices 1 and 2 switched
   let pass₂ : Prop := ∀ k, (∃ j, nA₂ k = nA₁ j ∧ nb₂ k = nb₁ j) ∨
     supportFunc
-      (HPolytope.ineqs (nA₂.submatrix (dropIdx k) id) fun i => nb₂ (dropIdx k i)).construct
+      (HPolytope.ineqs (nA₂.submatrix (dropIdx k) id) fun i => nb₂ (dropIdx k i)).toSet
       (HPolytope.rowLin nA₂ k) ≤ (nb₂ k : EReal)
   -- line 9: both passes, `⊤`
   if pass₁ ∧ pass₂ then true else false

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxRaghuraman
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulGensInner
-public import CORALean.ContSet.Zonotope.Real.Theorems.SortByLengthConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.SortByLengthToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumAbsLeOneOfSubsingletonSupport
 
 @[expose] public section
@@ -49,9 +49,9 @@ variable {n : ℕ}
 /-- [1, Sec. III-B]: the reduced zonotope is inside `Z`. -/
 theorem Zonotope.reduceUnderApproxRaghuraman_inner (Z : Zonotope (Vec ℝ n)) (r : ℕ)
     (hr : r ≤ Z.h) : -- --- CONCL ---
-    (Z.reduceUnderApproxRaghuraman r hr).construct ⊆ Z.construct := by -- --- PROOF ---
+    (Z.reduceUnderApproxRaghuraman r hr).toSet ⊆ Z.toSet := by -- --- PROOF ---
   -- the result is `Z_s T`, and `Z_s` is `Z` with its generators permuted
-  rw [← Zonotope.sortByLength_construct Z]
+  rw [← Zonotope.sortByLength_toSet Z]
   refine Zonotope.mulGens_inner _ _ fun j => ?_
   -- the printed `P`, so that the two cases of an entry can be named
   let P : Fin Z.sortByLength.h → Fin Z.sortByLength.h → ℝ :=

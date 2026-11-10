@@ -77,10 +77,10 @@ from `R₀`, with no assumption on where `ℓ.inputSetFloat` sits. -/
 theorem Location.IsTrajectory.timeIntervalSplitFloat_outer
     {ℓ : Location 𝒵[𝕋] G L 𝕋 n} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w}
     (traj : ℓ.IsTrajectory τ x u w)
-    {R₀ : Zonotope (Vec 𝕋 n)} (h₀ : x 0 ∈ construct R₀) {r : 𝕋} {η : ℕ} (hr : 0 < toReal r)
+    {R₀ : Zonotope (Vec 𝕋 n)} (h₀ : x 0 ∈ toSet R₀) {r : 𝕋} {η : ℕ} (hr : 0 < toReal r)
     (hη : ℓ.dynamics.IsOrderAdmissibleFloat r r η) {t : ℝ} (ht0 : 0 ≤ t) (htτ : t ≤ τ)
     (htr : t ≤ toReal r) : -- --- CONCL ---
-    x t ∈ construct (ℓ.timeIntervalSplitFloat r η R₀) := by -- --- PROOF ---
+    x t ∈ toSet (ℓ.timeIntervalSplitFloat r η R₀) := by -- --- PROOF ---
   set A := Scalar.toRealMat ℓ.dynamics.A with hA
   set ũ := Recenter.center ℓ.inputSetFloat with hũ
   -- `x t` less its free motion and the constant's share is one `Ũ`-input's share
@@ -89,19 +89,19 @@ theorem Location.IsTrajectory.timeIntervalSplitFloat_outer
       subset_rfl
     ⟨ht0, htτ⟩
   -- `{ũ}` and `[0, ũ]` hold what they are built from
-  have hpt : ũ ∈ (Interval.point ℓ.inputSetFloat.c).zonotope.construct :=
+  have hpt : ũ ∈ (Interval.point ℓ.inputSetFloat.c).zonotope.toSet :=
     Interval.zonotope_contains _ (Interval.mem_point ℓ.inputSetFloat.c)
-  have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.construct := by
+  have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.toSet := by
     have h0 := Interval.zonotope_contains _ (Interval.mem_point fun _ : Fin n => (zero : 𝕋))
     rwa [show RealImage.realImage (fun _ : Fin n => (zero : 𝕋)) = (0 : Vec ℝ n) from
       funext fun _ => toReal_zero] at h0
   set seg := LinComb.linComb (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope
     (Interval.point ℓ.inputSetFloat.c).zonotope with hseg
-  have h0seg : (0 : Vec ℝ n) ∈ seg.construct :=
+  have h0seg : (0 : Vec ℝ n) ∈ seg.toSet :=
     LinComb.linComb_outer (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope
       (Interval.point ℓ.inputSetFloat.c).zonotope
       ⟨0, hzero, ũ, hpt, 1, ⟨zero_le_one, le_rfl⟩, by simp⟩
-  have hũseg : ũ ∈ seg.construct :=
+  have hũseg : ũ ∈ seg.toSet :=
     LinComb.linComb_outer (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope
       (Interval.point ℓ.inputSetFloat.c).zonotope
       ⟨0, hzero, ũ, hpt, 0, ⟨le_rfl, zero_le_one⟩, by simp⟩
@@ -111,11 +111,11 @@ theorem Location.IsTrajectory.timeIntervalSplitFloat_outer
     ⟨fun _ => ũ, fun _ _ => hũseg, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A ũ ht0).symm⟩
   have hc := ℓ.dynamics.inputReach_subset_inputSolutionFloat hr hη seg
-    (ℓ.dynamics.inputReach_mono (CompactSet.isBounded_construct seg) h0seg ht0 htr hconst)
+    (ℓ.dynamics.inputReach_mono (CompactSet.isBounded_toSet seg) h0seg ht0 htr hconst)
   -- the recentered input's share, lifted from `t` to `r`
   have hU := ℓ.dynamics.inputReach_subset_inputSolutionFloat hr hη
     (Recenter.recenter ℓ.inputSetFloat)
-    (ℓ.dynamics.inputReach_mono (CompactSet.isBounded_construct _)
+    (ℓ.dynamics.inputReach_mono (CompactSet.isBounded_toSet _)
       (Recenter.zero_mem_recenter ℓ.inputSetFloat) ht0 htr hrest)
   have hH := ℓ.dynamics.timeIntervalFloat_outer hr hη R₀ h₀ ht0 htr
   have hx : x t = (exp (t • A) *ᵥ x 0 + Real.MatExp.expIntegral A t *ᵥ ũ)

@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.HPolytope.Float.Operations.ScaleRows
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemSetRhsNominal
 public import CORALean.ContSet.HPolytope.Float.Theorems.Basic
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 
 @[expose] public section
@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- What rounding a scaled row costs, bounded over a domain. -/
 private theorem HPolytope.aux_scaleDev_between (v : Vec 𝕋 n) (s : 𝕋) (dom : Interval (Vec 𝕋 n))
-    {x : Vec ℝ n} (hx : x ∈ dom.construct) : -- --- CONCL ---
+    {x : Vec ℝ n} (hx : x ∈ dom.toSet) : -- --- CONCL ---
     toReal (HPolytope.step_scaleDevLo v s dom)
         ≤ ∑ j, (toReal s * toReal (v j) - toReal (mulDown (v j) s)) * x j
       ∧ ∑ j, (toReal s * toReal (v j) - toReal (mulDown (v j) s)) * x j
@@ -79,12 +79,12 @@ private theorem HPolytope.aux_scaleDev_between (v : Vec 𝕋 n) (s : 𝕋) (dom 
 theorem HPolytope.scaleRows_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (hP : P.IsErrFree)
     (sA : Fin P.m → 𝕋) (sE : Fin P.me → 𝕋)
     (hA : ∀ i, 0 < toReal (sA i)) (dom : Interval (Vec 𝕋 n)) : -- --- CONCL ---
-    P.construct ∩ dom.construct ⊆
-      (P.scaleRows sA sE dom).construct ∩ dom.construct := by -- --- PROOF ---
+    P.toSet ∩ dom.toSet ⊆
+      (P.scaleRows sA sE dom).toSet ∩ dom.toSet := by -- --- PROOF ---
   -- a point of the polytope in the domain, and its two blocks of rows
   rintro x ⟨hP', hd⟩
   refine ⟨?_, hd⟩
-  obtain ⟨h1, h2⟩ := (HPolytope.mem_construct_iff hP).mp hP'
+  obtain ⟨h1, h2⟩ := (HPolytope.mem_toSet_iff hP).mp hP'
   -- the stored row is the scaled row less the deviation
   have hsplit : ∀ {k : ℕ} (M : Mat 𝕋 k n) (s : Fin k → 𝕋) (i : Fin k),
       (toRealMat (fun i j => mulDown (M i j) (s i)) *ᵥ x) i

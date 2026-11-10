@@ -75,8 +75,8 @@ private theorem Zonotope.aux_mulVec_sum {m q : ℕ} {ι : Type} [Fintype ι] (M 
 
 theorem Zonotope.intersectStrip_outer (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Mat ℝ n p)
     (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    Z.construct ∩ {x | ∀ i, |(C *ᵥ x - y) i| ≤ φ i} ⊆
-      (Z.intersectStrip C φ y Λ).construct := by -- --- PROOF ---
+    Z.toSet ∩ {x | ∀ i, |(C *ᵥ x - y) i| ≤ φ i} ⊆
+      (Z.intersectStrip C φ y Λ).toSet := by -- --- PROOF ---
   rintro x ⟨⟨β, hβ, rfl⟩, hs⟩
   -- the strip coefficients: `φ_i γ_i = (C x - y)_i`
   set x := Z.c + ∑ j, β j • Z.G j with hx

@@ -42,9 +42,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- back: each listed vertex is a corner, and every corner lies in the zonotope
 theorem Zonotope.contains_vPolytope (Z : Zonotope α) : -- --- CONCL ---
-    Z.vPolytope.construct ⊆ Z.construct := by -- --- PROOF ---
-  rw [VPolytope.construct_eq_convexHull]
-  refine convexHull_min ?_ Z.convex_construct
+    Z.vPolytope.toSet ⊆ Z.toSet := by -- --- PROOF ---
+  rw [VPolytope.toSet_eq_convexHull]
+  refine convexHull_min ?_ Z.convex_toSet
   rintro _ ⟨l, rfl⟩
   exact ⟨fun j => if signEquiv Z.h l j then (1 : ℝ) else -1,
     fun j => by dsimp only; split_ifs <;> norm_num, rfl⟩

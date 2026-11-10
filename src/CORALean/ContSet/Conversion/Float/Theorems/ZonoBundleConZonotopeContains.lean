@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.conZonotope_contains (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) :
-    zB.construct ⊆ (zB.conZonotope i).construct :=
+    zB.toSet ⊆ (zB.conZonotope i).toSet :=
   subset_trans (zB.zonotope_contains i) (Zonotope.conZonotope_contains _)
 
 end CORALean.Float

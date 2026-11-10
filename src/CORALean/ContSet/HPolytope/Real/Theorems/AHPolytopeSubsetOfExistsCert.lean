@@ -59,7 +59,7 @@ variable {n nx ny qx qy : ℕ}
 `x̄ + X Px ⊆ ȳ + Y Py`. -/
 theorem HPolytope.ahPolytope_subset_of_exists_cert {xbar ybar : Vec ℝ n} {X : Mat ℝ n nx}
     {Y : Mat ℝ n ny} {Hx : Mat ℝ qx nx} {hx : Vec ℝ qx} {Hy : Mat ℝ qy ny} {hy : Vec ℝ qy}
-    (_hfull : (interior (HPolytope.ineqs Hx hx).construct).Nonempty)
+    (_hfull : (interior (HPolytope.ineqs Hx hx).toSet).Nonempty)
     (h : ∃ (Γ : Mat ℝ ny nx) (β : Vec ℝ ny) (Λ : Mat ℝ qy qx), X = Y * Γ ∧
         ybar - xbar = Y *ᵥ β ∧ (∀ i j, 0 ≤ Λ i j) ∧ Λ * Hx = Hy * Γ ∧
         Λ *ᵥ hx ≤ hy + Hy *ᵥ β) : -- --- CONCL ---

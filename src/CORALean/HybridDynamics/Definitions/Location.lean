@@ -50,8 +50,8 @@ state equation, inside the invariant throughout. -/
 structure Location.IsTrajectory (ℓ : Location S G L 𝕋 n) (τ : ℝ) (x : ℝ → Vec ℝ n)
     (u : ℝ → Vec ℝ ℓ.dynamics.m) (w : ℝ → Vec ℝ ℓ.dynamics.r) : Prop where
   nonneg : 0 ≤ τ
-  input (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : u t ∈ construct ℓ.U
-  dist (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : w t ∈ construct ℓ.W
+  input (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : u t ∈ toSet ℓ.U
+  dist (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : w t ∈ toSet ℓ.W
   meas : AEStronglyMeasurable (fun s => toRealMat ℓ.dynamics.A *ᵥ x s +
     toRealMat ℓ.dynamics.B *ᵥ u s + toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w s)
       (volume.restrict (Set.Icc 0 τ))
@@ -62,7 +62,7 @@ structure Location.IsTrajectory (ℓ : Location S G L 𝕋 n) (τ : ℝ) (x : �
   flow (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : x t = x 0 + ∫ s in (0:ℝ)..t,
     (toRealMat ℓ.dynamics.A *ᵥ x s + toRealMat ℓ.dynamics.B *ᵥ u s + toRealVec ℓ.dynamics.c +
       toRealMat ℓ.dynamics.E *ᵥ w s)
-  invariant (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : x t ∈ construct ℓ.inv
+  invariant (t : ℝ) (ht : t ∈ Set.Icc 0 τ) : x t ∈ toSet ℓ.inv
 
 end CORALean
 

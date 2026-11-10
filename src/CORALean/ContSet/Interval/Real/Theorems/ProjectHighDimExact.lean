@@ -41,8 +41,8 @@ variable {m N : ℕ}
 
 theorem Interval.projectHighDim_exact (I : Interval (Vec ℝ m)) (proj : Fin m → Fin N)
     (hproj : Function.Injective proj) : -- --- CONCL ---
-    (I.projectHighDim_ N proj).construct =
-      (fun x => Function.extend proj x 0) '' I.construct := by -- --- PROOF ---
+    (I.projectHighDim_ N proj).toSet =
+      (fun x => Function.extend proj x 0) '' I.toSet := by -- --- PROOF ---
   by_cases hI : I.IsNonempty
   -- a nonempty box pads coordinate by coordinate
   · have hne : ¬I.representsa_emptySet := fun h => h hI
@@ -79,7 +79,7 @@ theorem Interval.projectHighDim_exact (I : Interval (Vec ℝ m)) (proj : Fin m �
         exact ⟨le_refl _, le_refl _⟩
   -- a crossed box gives `empty N`, and has no members
   · have hemp : I.representsa_emptySet := hI
-    have hI' : I.construct = ∅ := (Interval.not_isNonempty_iff I).1 hI
+    have hI' : I.toSet = ∅ := (Interval.not_isNonempty_iff I).1 hI
     rw [Interval.projectHighDim_, if_pos hemp, hI', Set.image_empty]
     obtain ⟨i, _⟩ := not_forall.1 hI
     exact Interval.empty_exact (Nat.pos_of_ne_zero fun h => by subst h; exact (proj i).elim0)

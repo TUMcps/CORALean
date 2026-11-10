@@ -66,11 +66,11 @@ theorem NonlinDASys.IsTrajectory.linReachAt_outer {sys : NonlinDASys n p m}
     {z : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x y u z)
     (hΔt : 0 < Δt) {k : ℕ}
     (hc : L.Certifies sys U Δt k x y u) : -- --- CONCL ---
-    x Δt ∈ (NonlinDASys.linReachAt sys L Rinit U Δt (k + 2)).1.construct ∧
+    x Δt ∈ (NonlinDASys.linReachAt sys L Rinit U Δt (k + 2)).1.toSet ∧
       ∀ t ∈ Set.Icc 0 Δt,
-        x t ∈ (NonlinDASys.linReachAt sys L Rinit U Δt (k + 2)).2.1.construct ∧
+        x t ∈ (NonlinDASys.linReachAt sys L Rinit U Δt (k + 2)).2.1.toSet ∧
         (x t, y t)
-          ∈ (NonlinDASys.linReachAt sys L Rinit U Δt (k + 2)).2.2.construct := by -- --- PROOF ---
+          ∈ (NonlinDASys.linReachAt sys L Rinit U Δt (k + 2)).2.2.toSet := by -- --- PROOF ---
   obtain ⟨F, Rz, hF, hR, hL, hLa, hus, h0, hε⟩ := hc
   exact NonlinDASys.IsTrajectory.linReach_outer traj hΔt hF hR hL hLa hus h0 hε
 

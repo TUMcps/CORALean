@@ -66,9 +66,9 @@ theorem LinParamSys.timeIntervalZonoFloat_outer
       / (((m + 2 : ℕ) : ℝ) + 2) ≤ 1 / 2)
     (hεF : toReal (MatExp.normUpperBound (Interval.smul Δt Δt sys.A.matInterval))
       / (((m + 2 : ℕ) : ℝ) + 2) ≤ 1 / 2)
-    (R : Zonotope (Vec 𝕋 n)) {A : Mat ℝ n n} (hA : A ∈ sys.A.construct) {x : Vec ℝ n}
-    (hx : x ∈ R.construct) {s : ℝ} (hs0 : 0 ≤ s) (hs : s ≤ toReal Δt) : -- --- CONCL ---
-    exp (s • A) *ᵥ x ∈ (sys.timeIntervalZonoFloat Δt (m + 2) R).construct := by -- --- PROOF ---
+    (R : Zonotope (Vec 𝕋 n)) {A : Mat ℝ n n} (hA : A ∈ sys.A.toSet) {x : Vec ℝ n}
+    (hx : x ∈ R.toSet) {s : ℝ} (hs0 : 0 ≤ s) (hs : s ≤ toReal Δt) : -- --- CONCL ---
+    exp (s • A) *ᵥ x ∈ (sys.timeIntervalZonoFloat Δt (m + 2) R).toSet := by -- --- PROOF ---
   set r := toReal Δt
   have hl0 : 0 ≤ s / r := div_nonneg hs0 hΔt.le
   have hl1 : s / r ≤ 1 := (div_le_one hΔt).mpr hs
@@ -79,9 +79,9 @@ theorem LinParamSys.timeIntervalZonoFloat_outer
     simp only [Matrix.sub_mulVec, smul_mulVec, Matrix.one_mulVec, sub_smul, smul_sub, one_smul]
     abel
   -- `Δt • A` lies in the scaled matrix zonotope, so `e^{AΔt} x` in its exponential times `R`
-  have hrA : r • A ∈ (Zonotope.matSmul Δt Δt sys.A).construct :=
+  have hrA : r • A ∈ (Zonotope.matSmul Δt Δt sys.A).toSet :=
     Zonotope.matSmul_outer le_rfl le_rfl sys.A hA
-  have hE : exp (r • A) *ᵥ x ∈ construct
+  have hE : exp (r • A) *ᵥ x ∈ toSet
     (Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋]) (S := 𝒵[𝕋])
       (MatExp.expMatZonoEnclosure (Zonotope.matSmul Δt Δt sys.A) (m + 2)) R) :=
     Mtimes.mtimes_outer (𝕄 := 𝕄𝒵[𝕋])
@@ -89,7 +89,7 @@ theorem LinParamSys.timeIntervalZonoFloat_outer
       (Set.mem_biUnion (MatExp.exp_mem_expMatZonoEnclosure _ (m + 2) hrA hεe)
         (Set.mem_image_of_mem _ hx))
   -- the interpolation error lies in `F R`
-  have hF : (exp (s • A) - 1 - (s / r) • (exp (r • A) - 1)) *ᵥ x ∈ construct
+  have hF : (exp (s • A) - 1 - (s / r) • (exp (r • A) - 1)) *ᵥ x ∈ toSet
       (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
         (MatExp.matZonoCorrectionMatrix sys.A Δt (m + 2)) R) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])

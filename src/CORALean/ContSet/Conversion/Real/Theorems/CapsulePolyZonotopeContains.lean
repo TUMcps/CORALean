@@ -42,7 +42,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.polyZonotope_contains (C : Capsule n) :
-    C.construct ⊆ C.polyZonotope.construct :=
+    C.toSet ⊆ C.polyZonotope.toSet :=
   subset_trans C.interval_contains (Interval.polyZonotope_contains _)
 
 end CORALean.Real

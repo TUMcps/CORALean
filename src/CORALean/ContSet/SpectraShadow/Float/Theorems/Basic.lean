@@ -64,7 +64,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `or` is `convHull_`, so `convHull_outer` is its guarantee: an enclosure. -/
 theorem SpectraShadow.or_outer (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) :
-    convexHull ℝ (S₁.construct ∪ S₂.construct) ⊆ (S₁.or S₂).construct :=
+    convexHull ℝ (S₁.toSet ∪ S₂.toSet) ⊆ (S₁.or S₂).toSet :=
   SpectraShadow.convHull_outer S₁ S₂
 
 end

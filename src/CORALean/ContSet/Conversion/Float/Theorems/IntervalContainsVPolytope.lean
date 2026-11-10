@@ -44,17 +44,17 @@ the point `0`, and the nominal corners are the exact layer's, whose hull
 `Real.Interval.vPolytope_exact` shows to be the box. -/
 theorem Interval.contains_vPolytope (I : Interval (Vec 𝕋 n))
     (hI : ∀ i, toReal (I.inf i) ≤ toReal (I.sup i)) : -- --- CONCL ---
-    (Interval.vPolytope I).construct ⊆ I.construct := by -- --- PROOF ---
+    (Interval.vPolytope I).toSet ⊆ I.toSet := by -- --- PROOF ---
   rintro y ⟨x, hx, e, he, rfl⟩
   have hV : (fun (l : Fin (2 ^ n)) (i : Fin n) =>
         toReal (if signEquiv n l i then I.sup i else I.inf i))
       = fun (l : Fin (2 ^ n)) => Real.Interval.corner I.nominal (signEquiv n l) := by
     funext l i
     exact apply_ite toReal _ _ _
-  have hx' : x ∈ Real.VPolytope.construct
+  have hx' : x ∈ Real.VPolytope.toSet
       ⟨2 ^ n, fun l i => toReal (if signEquiv n l i then I.sup i else I.inf i)⟩ := hx
   rw [hV] at hx'
-  have hxI : x ∈ I.construct := Real.Interval.contains_vPolytope I.nominal hI hx'
+  have hxI : x ∈ I.toSet := Real.Interval.contains_vPolytope I.nominal hI hx'
   have he0 : e = 0 := by
     funext i
     have h : toReal (zero : 𝕋) ≤ e i ∧ e i ≤ toReal (zero : 𝕋) := he i

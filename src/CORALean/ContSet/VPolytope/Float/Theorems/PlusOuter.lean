@@ -15,7 +15,7 @@ public import CORALean.ContSet.VPolytope.Float.Operations.Plus
 
 `InflatedContSet.plus_subset` splits this in two. The nominal obligation is the
 exact `plus_exact` — which makes the sum of the two hulls the hull of the
-pairwise sums — followed by `construct_subset_add`, since every stored vertex is
+pairwise sums — followed by `toSet_subset_add`, since every stored vertex is
 within `columnGap` of the exact one. The error obligation is two applications of
 `Interval.plus_outer`.
 
@@ -53,19 +53,19 @@ private theorem VPolytope.aux_plus_nominal (P₁ P₂ : VPolytope (Vec 𝕋 n)) 
     nominalSet P₁ + nominalSet P₂ ⊆
       nominalSet (P₁.plus P₂) + (VPolytope.columnGap
         (VPolytope.pairSum addDown P₁ P₂)
-          (VPolytope.pairSum addUp P₁ P₂)).construct := by -- --- PROOF ---
+          (VPolytope.pairSum addUp P₁ P₂)).toSet := by -- --- PROOF ---
   have hexact : nominalSet P₁ + nominalSet P₂
-      = ((nominal P₁).plus (nominal P₂)).construct :=
+      = ((nominal P₁).plus (nominal P₂)).toSet :=
     Real.VPolytope.plus_exact _ _
   rw [hexact]
-  refine Real.VPolytope.construct_subset_add _ _ (Real.Interval.convex_construct _) fun l => ?_
+  refine Real.VPolytope.toSet_subset_add _ _ (Real.Interval.convex_toSet _) fun l => ?_
   exact VPolytope.mem_columnGap fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩
 
 -- the box absorbs the two incoming boxes and that pairwise-sum gap
 private theorem VPolytope.aux_plus_error (P₁ P₂ : VPolytope (Vec 𝕋 n)) :
-    (I_error P₁).construct + (I_error P₂).construct
+    (I_error P₁).toSet + (I_error P₂).toSet
       + (VPolytope.columnGap (VPolytope.pairSum addDown P₁ P₂)
-          (VPolytope.pairSum addUp P₁ P₂)).construct ⊆ (I_error (P₁.plus P₂)).construct :=
+          (VPolytope.pairSum addUp P₁ P₂)).toSet ⊆ (I_error (P₁.plus P₂)).toSet :=
   subset_trans (Set.add_subset_add_right (Interval.plus_outer P₁.I_error P₂.I_error))
     (Interval.plus_outer _ _)
 
@@ -73,7 +73,7 @@ private theorem VPolytope.aux_plus_error (P₁ P₂ : VPolytope (Vec 𝕋 n)) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.plus_outer (P₁ P₂ : VPolytope (Vec 𝕋 n)) :
-    P₁.construct + P₂.construct ⊆ (P₁.plus P₂).construct :=
+    P₁.toSet + P₂.toSet ⊆ (P₁.plus P₂).toSet :=
   InflatedContSet.plus_subset (VPolytope.aux_plus_nominal P₁ P₂)
     (VPolytope.aux_plus_error P₁ P₂)
 

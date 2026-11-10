@@ -53,9 +53,9 @@ theorem LinearSys.reachFloat_timePoint_outer (sys : LinearSys 𝕋 n)
     {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
     ∀ Rti Rtp, (Rti, Rtp) ∈ sys.reachFloat params options →
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-        Rtp.length = N + 1 ∧ ∀ (k : ℕ) (hk : k < Rtp.length), ∀ x₀ ∈ params.X₀.construct,
+        Rtp.length = N + 1 ∧ ∀ (k : ℕ) (hk : k < Rtp.length), ∀ x₀ ∈ params.X₀.toSet,
           exp (((k : ℝ) * toReal options.Δt) • Scalar.toRealMat sys.A) *ᵥ x₀
-            ∈ Rtp[k].construct := by -- --- PROOF ---
+            ∈ Rtp[k].toSet := by -- --- PROOF ---
   intro Rti Rtp (h : sys.reachFloat params options = some (Rti, Rtp))
   obtain ⟨X₀, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options

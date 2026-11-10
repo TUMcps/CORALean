@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
-public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqAdd
+public import CORALean.ContSet.Capsule.Real.Theorems.ToSetEqEmpty
+public import CORALean.ContSet.Capsule.Real.Theorems.ToSetEqAdd
 public import Mathlib.Analysis.Normed.Order.Lattice
 public import Mathlib.Analysis.Normed.Ring.Basic
 public import Mathlib.Topology.Algebra.Module.ModuleTopology
@@ -11,7 +11,7 @@ public import Mathlib.Topology.Algebra.Module.ModuleTopology
 /-!
 # A capsule is compact
 
-At `C.r < 0` the set is `∅`. Otherwise `construct_eq_add` writes `C.construct`
+At `C.r < 0` the set is `∅`. Otherwise `toSet_eq_add` writes `C.toSet`
 as the sum of the segment, a continuous image of the compact `Icc`, and the
 ball, closed (the sum of squares is continuous) and bounded (no coordinate of
 a point inside it exceeds `C.r` in size) in the finite-dimensional `Vec ℝ n`.
@@ -43,10 +43,10 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.isCompact_construct (C : Capsule n) : -- --- CONCL ---
-    IsCompact C.construct := by -- --- PROOF ---
+theorem Capsule.isCompact_toSet (C : Capsule n) : -- --- CONCL ---
+    IsCompact C.toSet := by -- --- PROOF ---
   rcases lt_or_ge C.r 0 with hr | hr
-  · rw [Capsule.construct_eq_empty hr]
+  · rw [Capsule.toSet_eq_empty hr]
     exact isCompact_empty
   · have hball : IsCompact {y : Vec ℝ n | ∑ i, y i ^ 2 ≤ C.r ^ 2} := by
       refine IsCompact.of_isClosed_subset (isCompact_closedBall (0 : Vec ℝ n) C.r)
@@ -62,7 +62,7 @@ theorem Capsule.isCompact_construct (C : Capsule n) : -- --- CONCL ---
         _ ≤ C.r ^ 2 := hy
     have hseg : IsCompact ((fun t : ℝ => C.c + t • C.g) '' Set.Icc (-1 : ℝ) 1) :=
       isCompact_Icc.image (continuous_const.add (continuous_id.smul continuous_const))
-    rw [Capsule.construct_eq_add hr]
+    rw [Capsule.toSet_eq_add hr]
     exact hseg.add hball
 
 end CORALean.Real

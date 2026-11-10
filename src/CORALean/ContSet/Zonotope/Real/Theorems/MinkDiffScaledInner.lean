@@ -79,8 +79,8 @@ theorem Zonotope.minkDiffScaled_inner (Z1 Z2 : Zonotope α) (φ : Fin (Z1.h + Z2
     (hB : ∀ i, Z2.G i = ∑ j, ΓB j i • Z1.G j)
     (hc : Z1.c - (cd + Z2.c) = ∑ j, β j • Z1.G j)
     (hbound : ∀ j, (∑ k, |ΓA j k|) + (∑ i, |ΓB j i|) + |β j| ≤ 1) : -- --- CONCL ---
-    (⟨Z1.h + Z2.h, cd, fun k => φ k • Fin.append Z1.G Z2.G k⟩ : Zonotope α).construct
-      ⊆ minkowskiDiff Z1.construct Z2.construct := by -- --- PROOF ---
+    (⟨Z1.h + Z2.h, cd, fun k => φ k • Fin.append Z1.G Z2.G k⟩ : Zonotope α).toSet
+      ⊆ minkowskiDiff Z1.toSet Z2.toSet := by -- --- PROOF ---
   rintro x ⟨ψ, hψ, rfl⟩ y ⟨μ, hμ, rfl⟩
   -- the two blocks of `x`'s own sum, each regrouped into `Z1`'s generators via `hA`, `hB`
   have hx : cd + ∑ k, ψ k • φ k • Fin.append Z1.G Z2.G k

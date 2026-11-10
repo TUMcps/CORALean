@@ -44,8 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Inner: the renamed set lies in the original. -/
 theorem PolyZonotope.replaceId_subset (pZ : PolyZonotope (Vec 𝕋 n)) {p' : ℕ}
     (f : Fin pZ.p → Fin p') :
-    (pZ.replaceId f).construct ⊆ pZ.construct := by
-  have h : nominalSet (pZ.replaceId f) = ((nominal pZ).replaceId f).construct := rfl
+    (pZ.replaceId f).toSet ⊆ pZ.toSet := by
+  have h : nominalSet (pZ.replaceId f) = ((nominal pZ).replaceId f).toSet := rfl
   rintro _ ⟨y, hy, e, he, rfl⟩
   rw [h] at hy
   exact ⟨y, Real.PolyZonotope.replaceId_subset (nominal pZ) f hy, e, he, rfl⟩

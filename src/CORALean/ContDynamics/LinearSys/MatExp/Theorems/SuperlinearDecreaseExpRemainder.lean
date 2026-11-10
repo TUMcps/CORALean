@@ -12,7 +12,7 @@ public import CORALean.Global.HasSuperlinearDecrease
 
 [1, Lemma 1]: `∀φ∈(0,1): E(φΔt,η) ⊆ φ·E(Δt,η)`, `E` being `MatExp.expRemainder`, an
 entrywise-uniform box, so a member of the smaller one scaled back up by `φ⁻¹` is a member of the
-larger, and `expRemainderBound_superlinear` is what keeps it inside. Stated at `construct`, the
+larger, and `expRemainderBound_superlinear` is what keeps it inside. Stated at `toSet`, the
 interval matrix as a set, which is what `Def. 1` quantifies over; `HasSuperlinearDecrease` is
 satisfied literally, with `E`'s own `Δt` filling `Def. 1`'s length argument. `hΔt`, the side
 condition at `Δt` alone, is the hypothesis `Enclosures.lean` already carries: `φ < 1` sends it
@@ -60,7 +60,7 @@ variable {n : ℕ}
 does, at every order `η` and every `Δt` meeting the usual side condition. -/
 theorem MatExp.superlinearDecrease_expRemainder {A : Mat ℝ n n} {Δt : ℝ} (η : ℕ)
     (hΔt : ‖Δt • A‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
-    HasSuperlinearDecrease (fun δ => (MatExp.expRemainder A δ η).construct)
+    HasSuperlinearDecrease (fun δ => (MatExp.expRemainder A δ η).toSet)
     Δt := by -- --- PROOF ---
   intro φ hφ M hM
   obtain ⟨hφ0, hφ1⟩ := hφ

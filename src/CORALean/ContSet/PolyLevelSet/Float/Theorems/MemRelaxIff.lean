@@ -44,11 +44,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The slack-free relaxed rows denote the exact relaxation by the read-back slack. -/
 theorem PolyLevelSet.mem_relax_iff {P : PolyLevelSet 𝕋 n} (h : ∀ i, P.op i = .eq)
     (D : Interval (Vec 𝕋 P.m)) (x : Vec ℝ (n + P.m)) : -- --- CONCL ---
-    x ∈ (P.relax D).construct
-      ↔ x ∈ (P.nominalCore.relax (toRealVec P.b_error) D.nominal).construct := by -- --- PROOF ---
+    x ∈ (P.relax D).toSet
+      ↔ x ∈ (P.nominalCore.relax (toRealVec P.b_error) D.nominal).toSet := by -- --- PROOF ---
   refine and_congr ?_ (forall_congr' fun i => ?_)
   -- the boxes: both are the appended read-back boxes
-  · show x ∈ (P.dom.append D).construct ↔ x ∈ (P.dom.nominal.append D.nominal).construct
+  · show x ∈ (P.dom.append D).toSet ↔ x ∈ (P.dom.nominal.append D.nominal).toSet
     rw [Interval.mem_append_iff, Real.Interval.mem_append_iff]
     rfl
   · show (P.op i).IsMetWithin ((P.relax D).nominalCore.eval x i) |toReal (zero : 𝕋)|

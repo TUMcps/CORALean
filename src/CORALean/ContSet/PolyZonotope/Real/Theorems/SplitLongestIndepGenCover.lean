@@ -53,8 +53,8 @@ private theorem PolyZonotope.aux_sum_update_smul {q : ℕ} (β : Fin q → ℝ) 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.splitLongestIndepGen_cover (pZ : PolyZonotope (Vec ℝ n)) : -- --- CONCL ---
-    pZ.construct ⊆ pZ.splitLongestIndepGen.1.construct
-      ∪ pZ.splitLongestIndepGen.2.construct := by -- --- PROOF ---
+    pZ.toSet ⊆ pZ.splitLongestIndepGen.1.toSet
+      ∪ pZ.splitLongestIndepGen.2.toSet := by -- --- PROOF ---
   unfold PolyZonotope.splitLongestIndepGen
   cases hm : (List.finRange pZ.q).argmax (fun i => ∑ c, pZ.GI i c ^ 2) with
   | none => exact Set.subset_union_left

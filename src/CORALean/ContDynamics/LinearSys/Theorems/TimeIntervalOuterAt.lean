@@ -56,8 +56,8 @@ time at once. -/
 theorem LinearSys.timeInterval_outer_at (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
-    (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' construct X₀
-      ⊆ construct (sys.timeInterval r (m + 2) X₀) := by -- --- PROOF ---
+    (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' toSet X₀
+      ⊆ toSet (sys.timeInterval r (m + 2) X₀) := by -- --- PROOF ---
   -- the two lifts `timeInterval_outer_setLinComb` stops short of
   refine (sys.timeInterval_outer_setLinComb hr hε X₀ ht0 htr).trans
     ((Set.add_subset_add ?_ subset_rfl).trans (Plus.plus_outer _ _))

@@ -63,7 +63,7 @@ private theorem aux_norm₂_mulVec_le_frobenius (M : Mat ℝ m n) (y : Vec ℝ n
 
 /-- The linear image of a capsule lies in `Capsule.mtimes`. -/
 theorem Capsule.mtimes_outer (M : Mat ℝ m n) (C : Capsule n) : -- --- CONCL ---
-    (fun x => M.mulVec x) '' C.construct ⊆ (C.mtimes M).construct := by -- --- PROOF ---
+    (fun x => M.mulVec x) '' C.toSet ⊆ (C.mtimes M).toSet := by -- --- PROOF ---
   rintro _ ⟨x, ⟨t, ht, hx⟩, rfl⟩
   refine ⟨t, ht, ?_⟩
   have hb : ‖x - (C.c + t • C.g)‖₂ ≤ C.r := hx

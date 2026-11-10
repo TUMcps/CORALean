@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Interval.cosh_outer (p : ℕ) (I : Interval (Vec 𝕋 n))
     (hI : ∀ i, toReal (I.sup i) ≤ 2 ^ p / 2 ∧ -toReal (I.inf i) ≤ 2 ^ p / 2) : -- --- CONCL ---
-    (fun x i => Real.cosh (x i)) '' I.construct ⊆ (I.cosh p).construct := by -- --- PROOF ---
+    (fun x i => Real.cosh (x i)) '' I.toSet ⊆ (I.cosh p).toSet := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩ i
   have hx' : toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i) := hx i
   obtain ⟨h1, h2⟩ := hI i

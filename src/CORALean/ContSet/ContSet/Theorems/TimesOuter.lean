@@ -42,11 +42,11 @@ variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
 /-- Every point of `S`, scaled coordinate by coordinate by `v` read as reals, is in
 `times v S`: `mtimes_outer` at `diag v`, whose real reading is `diag` of the read vector. -/
 theorem ContSet.times_outer (v : Vec 𝕋 n) (s : S n) : -- --- CONCL ---
-    (fun y : Vec ℝ n => fun i => toReal (v i) * y i) '' construct s ⊆
-      construct (ContSet.times v s) := by -- --- PROOF ---
+    (fun y : Vec ℝ n => fun i => toReal (v i) * y i) '' toSet s ⊆
+      toSet (ContSet.times v s) := by -- --- PROOF ---
   rintro _ ⟨y, hy, rfl⟩
   refine Mtimes.mtimes_outer (𝕄 := Mat 𝕋) _ s ?_
-  simp only [ContSet.construct_mat, Set.biUnion_singleton, Set.mem_image]
+  simp only [ContSet.toSet_mat, Set.biUnion_singleton, Set.mem_image]
   refine ⟨y, hy, ?_⟩
   have hD : toRealMat (Matrix.diagonal v : Mat 𝕋 n n) = Matrix.diagonal (toRealVec v) := by
     ext i j

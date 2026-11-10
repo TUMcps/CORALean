@@ -82,7 +82,7 @@ theorem Capsule.isIntersecting_cora_counterexample : -- --- CONCL ---
         quadprog H f lb ub ∈ Set.Icc lb ub ∧ ∀ y ∈ Set.Icc lb ub,
           1 / 2 * (quadprog H f lb ub ⬝ᵥ H *ᵥ quadprog H f lb ub) + f ⬝ᵥ quadprog H f lb ub ≤
             1 / 2 * (y ⬝ᵥ H *ᵥ y) + f ⬝ᵥ y
-    (C₁.construct ∩ C₂.construct).Nonempty ∧ (∃ quadprog, IsQuadprog quadprog) ∧
+    (C₁.toSet ∩ C₂.toSet).Nonempty ∧ (∃ quadprog, IsQuadprog quadprog) ∧
       ∀ quadprog, IsQuadprog quadprog →
         ¬ Capsule.isIntersectingCora quadprog C₁ C₂ := by -- --- PROOF ---
   intro C₁ C₂ IsQuadprog

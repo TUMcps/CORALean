@@ -43,8 +43,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.vPolytope_contains (cZ : ConZonotope α)
-    (hne : cZ.domain.construct.Nonempty) : -- --- CONCL ---
-    cZ.construct ⊆ (cZ.vPolytope hne).construct := by -- --- PROOF ---
+    (hne : cZ.domain.toSet.Nonempty) : -- --- CONCL ---
+    cZ.toSet ⊆ (cZ.vPolytope hne).toSet := by -- --- PROOF ---
   rintro _ ⟨β, hβ, hP, rfl⟩
   obtain ⟨lam, hlam0, hlam1, hlamv⟩ :=
     cZ.domain.vPolytope_contains cZ.isCompact_domain hne (ConZonotope.mem_domain_iff.mpr ⟨hβ, hP⟩)

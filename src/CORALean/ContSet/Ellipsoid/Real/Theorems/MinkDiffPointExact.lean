@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.MinkDiffPoint
 public import CORALean.ContSet.ContSet.ContSet
 
@@ -39,9 +39,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.minkDiffPoint_exact (E : Ellipsoid n) (s : Vec ℝ n) : -- --- CONCL ---
-    (E.minkDiffPoint s).construct = minkowskiDiff E.construct {s} := by -- --- PROOF ---
+    (E.minkDiffPoint s).toSet = minkowskiDiff E.toSet {s} := by -- --- PROOF ---
   -- the ellipsoid as `q + G u`, `‖u‖₂ ≤ 1`
-  simp only [Ellipsoid.construct_eq_sqrt] at *
+  simp only [Ellipsoid.toSet_eq_sqrt] at *
   ext x
   constructor
   · rintro ⟨u, hu, rfl⟩ y hy

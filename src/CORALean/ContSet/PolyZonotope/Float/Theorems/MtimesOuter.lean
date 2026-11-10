@@ -55,7 +55,7 @@ private theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n)
     (pZ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
     (toRealMat M *ᵥ ·) '' nominalSet pZ ⊆
       nominalSet (PolyZonotope.mtimes M pZ)
-        + (PolyZonotope.mtimesResidual M pZ).construct := by -- --- PROOF ---
+        + (PolyZonotope.mtimesResidual M pZ).toSet := by -- --- PROOF ---
   -- the exact product of a column with row `i` of `M`, and what its stored rounding is short
   set ex : Vec 𝕋 n → Fin m → ℝ := fun g i => ∑ k, toReal (M i k) * toReal (g k)
   set gap : Vec 𝕋 n → Fin m → ℝ := fun g i => ex g i - toReal (mulVecDown M g i)
@@ -63,14 +63,14 @@ private theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n)
   obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_nominalSet_iff.mp hx'
   have hres : (fun i => gap pZ.c i)
       ∈ (Interval.residual (mulVecDown M pZ.c) (mulVecUp M pZ.c)
-          (mulVecDown M pZ.c)).construct :=
+          (mulVecDown M pZ.c)).toSet :=
     Interval.sub_mem_residual (fun i => ⟨dotDown_le (M i) pZ.c, le_dotUp (M i) pZ.c⟩)
   -- the two generator blocks' shortfalls, each bounded by a coefficient inside `[-1,1]`
   have hdepBox : (fun i => ∑ l, gap (pZ.G l) i * Real.PolyZonotope.monomial pZ.E a l)
-      ∈ (PolyZonotope.generatorError (matMulDiff M (fun i l => pZ.G l i))).construct :=
+      ∈ (PolyZonotope.generatorError (matMulDiff M (fun i l => pZ.G l i))).toSet :=
     PolyZonotope.mem_generatorError_monomial (PolyZonotope.matMul_close M pZ.G) ha
   have hindBox : (fun i => ∑ j, gap (pZ.GI j) i * β j)
-      ∈ (PolyZonotope.generatorError (matMulDiff M (fun i j => pZ.GI j i))).construct :=
+      ∈ (PolyZonotope.generatorError (matMulDiff M (fun i j => pZ.GI j i))).toSet :=
     PolyZonotope.mem_generatorError (PolyZonotope.matMul_close M pZ.GI) hβ
   refine ⟨fun i => toReal ((PolyZonotope.mtimes M pZ).c i)
             + (∑ l : Fin pZ.h, toReal ((PolyZonotope.mtimes M pZ).G l i)
@@ -104,8 +104,8 @@ private theorem PolyZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n)
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
 private theorem PolyZonotope.aux_mtimes_error (M : Mat 𝕋 m n) (pZ : PolyZonotope (Vec 𝕋 n)) :
-    (toRealMat M *ᵥ ·) '' (I_error pZ).construct + (PolyZonotope.mtimesResidual M pZ).construct ⊆
-      (I_error (PolyZonotope.mtimes M pZ)).construct :=
+    (toRealMat M *ᵥ ·) '' (I_error pZ).toSet + (PolyZonotope.mtimesResidual M pZ).toSet ⊆
+      (I_error (PolyZonotope.mtimes M pZ)).toSet :=
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M pZ.I_error))
     (Interval.plus_outer _ _)
 
@@ -113,7 +113,7 @@ private theorem PolyZonotope.aux_mtimes_error (M : Mat 𝕋 m n) (pZ : PolyZonot
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.mtimes_outer (M : Mat 𝕋 m n) (pZ : PolyZonotope (Vec 𝕋 n)) :
-    (toRealMat M *ᵥ ·) '' pZ.construct ⊆ (PolyZonotope.mtimes M pZ).construct :=
+    (toRealMat M *ᵥ ·) '' pZ.toSet ⊆ (PolyZonotope.mtimes M pZ).toSet :=
   map_subset (fun x y => Matrix.mulVec_add _ x y)
     (PolyZonotope.aux_mtimes_nominal M pZ) (PolyZonotope.aux_mtimes_error M pZ)
 

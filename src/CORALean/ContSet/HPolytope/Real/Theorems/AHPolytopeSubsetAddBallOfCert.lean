@@ -103,10 +103,10 @@ theorem HPolytope.ahPolytope_subset_add_ball_of_cert {x₁ x₂ : Vec ℝ n} {X�
     (c₂ : x₁ - X₁ *ᵥ β₃ - β₄ = x₂) (g₂ : X₁ * Γ₃ + Γ₄ = X₂) : -- --- CONCL ---
     HPolytope.ahPolytope x₁ X₁ (HPolytope.ineqs H₁ h₁)
         ⊆ HPolytope.ahPolytope x₂ X₂ (HPolytope.ineqs H₂ h₂)
-          + (HPolytope.ineqs HB (D • hB)).construct ∧
+          + (HPolytope.ineqs HB (D • hB)).toSet ∧
       HPolytope.ahPolytope x₂ X₂ (HPolytope.ineqs H₂ h₂)
         ⊆ HPolytope.ahPolytope x₁ X₁ (HPolytope.ineqs H₁ h₁)
-          + (HPolytope.ineqs HB (D • hB)).construct := by -- --- PROOF ---
+          + (HPolytope.ineqs HB (D • hB)).toSet := by -- --- PROOF ---
   -- `x̄ + X p = (x̄' + X' (Γ p - β)) + (Γ' p - β')`, each piece certified
   have key : ∀ {ma mb qa qb : ℕ} {xa xb : Vec ℝ n} {Xa : Mat ℝ n ma} {Xb : Mat ℝ n mb}
       {Ha : Mat ℝ qa ma} {ha : Vec ℝ qa} {Hb : Mat ℝ qb mb} {hb : Vec ℝ qb}
@@ -116,7 +116,7 @@ theorem HPolytope.ahPolytope_subset_add_ball_of_cert {x₁ x₂ : Vec ℝ n} {X�
       Λb *ᵥ ha ≤ D • hB + HB *ᵥ βb → xb - Xb *ᵥ βa - βb = xa → Xb * Γa + Γb = Xa →
       HPolytope.ahPolytope xa Xa (HPolytope.ineqs Ha ha)
         ⊆ HPolytope.ahPolytope xb Xb (HPolytope.ineqs Hb hb)
-          + (HPolytope.ineqs HB (D • hB)).construct := by
+          + (HPolytope.ineqs HB (D • hB)).toSet := by
     intro ma mb qa qb xa xb Xa Xb Ha ha Hb hb Λa Λb Γa Γb βa βb hΛa hΛb ea eb fa fb c g
     rintro _ ⟨p, hp, rfl⟩
     refine Set.mem_add.mpr ⟨xb + Xb *ᵥ (Γa *ᵥ p - βa),

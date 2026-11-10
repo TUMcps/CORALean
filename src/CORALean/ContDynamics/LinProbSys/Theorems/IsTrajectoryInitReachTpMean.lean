@@ -80,7 +80,7 @@ theorem LinProbSys.IsTrajectory.initReach_tp_mean (sys : LinProbSys n m) (Veig :
     (traj : sys.IsTrajectory (S := 𝒵) P T Rinit.Z (U.plus (Zonotope.ofPoint uTrans)) x₀ u x)
     (hT : Set.Icc 0 r ⊆ T) : -- --- CONCL ---
     ∫ ω, x r ω ∂P ∈ (sys.initReach Veig lambda Rinit gammaInit U uTrans r η gamma
-      originContained).1.Z.construct := by -- --- PROOF ---
+      originContained).1.Z.toSet := by -- --- PROOF ---
   rw [traj.integral_eq (hT ⟨hr.le, le_rfl⟩) hr.le]
   obtain ⟨w, hw, heq⟩ := traj.mean_eq_add_inputReach hr.le hT
   rw [heq]

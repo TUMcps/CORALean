@@ -8,7 +8,7 @@ public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContain
 public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.AbsLeAbsBoundError
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
@@ -78,14 +78,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 private theorem STL.aux_depBloating_sum (A : Mat 𝕋 n n) {r : 𝕋} (hr : 0 ≤ toReal r)
     (η : ℕ) : -- --- CONCL ---
     ∑ j ∈ Finset.Icc 1 η, Real.MatExp.particularCoeff (toRealMat A) (toReal r) j
-      ∈ (MatExp.particularCoeffSum (Interval.point A) r 1 η).construct := by -- --- PROOF ---
-  have hM : toRealMat A ∈ (Interval.point A).construct := Float.Interval.mem_point A
+      ∈ (MatExp.particularCoeffSum (Interval.point A) r 1 η).toSet := by -- --- PROOF ---
+  have hM : toRealMat A ∈ (Interval.point A).toSet := Float.Interval.mem_point A
   -- the point `0` holds the empty sum
   have hzero : (0 : Mat ℝ n n)
-      ∈ (Interval.point fun _ _ => (zero : 𝕋) : Interval (Mat 𝕋 n n)).construct :=
+      ∈ (Interval.point fun _ _ => (zero : 𝕋) : Interval (Mat 𝕋 n n)).toSet :=
     Interval.mem_mat_iff.mpr fun _ _ => by simp [Interval.point, toReal_zero]
   have hterm : ∀ i, Real.MatExp.particularCoeff (toRealMat A) (toReal r) i
-      ∈ (MatExp.intervalInputTerm (Interval.point A) r i).construct :=
+      ∈ (MatExp.intervalInputTerm (Interval.point A) r i).toSet :=
     fun i => MatExp.smul_pow_mem_intervalInputTerm _ hr hM i
   have hIcc : Finset.Icc 1 η = Finset.Ico 1 (η + 1) := by
     ext x; simp [Finset.mem_Icc, Finset.mem_Ico]
@@ -103,7 +103,7 @@ private theorem STL.aux_depBloating_sum (A : Mat 𝕋 n n) {r : 𝕋} (hr : 0 �
 
 /-- The reach of a real zonotope is under the float `absBoundError` of one holding it. -/
 private theorem STL.aux_absBound_le_absBoundError {Zr : Real.Zonotope (Vec ℝ n)}
-    {Zf : Float.Zonotope (Vec 𝕋 n)} (h : Zr.construct ⊆ Zf.construct) (i : Fin n) : -- --- CONCL ---
+    {Zf : Float.Zonotope (Vec 𝕋 n)} (h : Zr.toSet ⊆ Zf.toSet) (i : Fin n) : -- --- CONCL ---
     Zr.absBound i ≤ toReal (Zf.absBoundError i) := by -- --- PROOF ---
   obtain ⟨⟨x₁, hx₁, e₁⟩, ⟨x₂, hx₂, e₂⟩⟩ := STL.zonotope_extremes Zr i
   have b₁ := Float.Zonotope.abs_le_absBoundError (h hx₁) i
@@ -127,10 +127,10 @@ private theorem STL.aux_absBound_le_absBoundError {Zr : Real.Zonotope (Vec ℝ n
 theorem STL.depBloatingFloat_outer (A : Mat 𝕋 n n) {Δt : 𝕋} (hr : 0 ≤ toReal Δt) (κ : ℕ)
     (hε : toReal (MatExp.normUpperBound (Interval.smul Δt Δt (Interval.point A))) /
       ((κ : ℝ) + 2) ≤ 1 / 2) {U₀r : Real.Zonotope (Vec ℝ n)} {U₀f : Float.Zonotope (Vec 𝕋 n)}
-    (hU : U₀r.construct ⊆ U₀f.construct) : -- --- CONCL ---
-    (STL.depBloating (toRealMat A) U₀r (toReal Δt) κ).construct ⊆
-      (STL.depBloatingFloat A U₀f Δt κ).construct := by -- --- PROOF ---
-  have hM : toRealMat A ∈ (Interval.point A).construct := Float.Interval.mem_point A
+    (hU : U₀r.toSet ⊆ U₀f.toSet) : -- --- CONCL ---
+    (STL.depBloating (toRealMat A) U₀r (toReal Δt) κ).toSet ⊆
+      (STL.depBloatingFloat A U₀f Δt κ).toSet := by -- --- PROOF ---
+  have hM : toRealMat A ∈ (Interval.point A).toSet := Float.Interval.mem_point A
   unfold STL.depBloating STL.depBloatingFloat
   dsimp only
   rw [← Real.Zonotope.plus_exact, ← Real.Zonotope.plus_exact]
@@ -147,11 +147,11 @@ theorem STL.depBloatingFloat_outer (A : Mat 𝕋 n n) {Δt : 𝕋} (hr : 0 ≤ t
     have hfold : ∀ m, ((List.range m).foldl
         (fun Z j => Z.plus (Real.Zonotope.mtimes
           (Real.MatExp.particularCoeff (toRealMat A) (toReal Δt) (j + 1)) U₀r))
-        (Real.Zonotope.ofPoint (0 : Vec ℝ n))).construct ⊆
+        (Real.Zonotope.ofPoint (0 : Vec ℝ n))).toSet ⊆
         ((List.range m).foldl
         (fun Z j => Z.plus (Float.Zonotope.mtimesIntervalMat
           (MatExp.intervalInputTerm (Interval.point A) Δt (j + 1)) U₀f))
-        (Float.Zonotope.point (fun _ => (zero : 𝕋)))).construct := by
+        (Float.Zonotope.point (fun _ => (zero : 𝕋)))).toSet := by
       intro m
       -- the empty fold is the point zero on both sides
       induction m with
@@ -159,7 +159,7 @@ theorem STL.depBloatingFloat_outer (A : Mat 𝕋 n n) {Δt : 𝕋} (hr : 0 ≤ t
         intro x hx
         simp only [List.range_zero, List.foldl_nil] at hx ⊢
         rw [Real.Zonotope.mem_ofPoint_iff] at hx
-        rw [Float.Zonotope.construct_point]
+        rw [Float.Zonotope.toSet_point]
         show x = toRealVec (fun _ => (zero : 𝕋))
         rw [hx]
         funext i
@@ -179,7 +179,7 @@ theorem STL.depBloatingFloat_outer (A : Mat 𝕋 n n) {Δt : 𝕋} (hr : 0 ≤ t
     -- the radius matrix `X = 2Δt E` of the symmetric interval matrix, and its center `0`
     set X : Mat ℝ n n := (2 * toReal Δt) • Real.MatExp.expRemainderMat (toRealMat A) (toReal Δt) κ
       with hX
-    obtain ⟨β, hβ, hyβ⟩ := Real.Zonotope.mem_construct_iff.1 hy
+    obtain ⟨β, hβ, hyβ⟩ := Real.Zonotope.mem_toSet_iff.1 hy
     refine Float.Interval.mem_vec_iff.2 fun i => ?_
     have hctr : Real.Interval.center (⟨-X, X⟩ : Real.Interval (Mat ℝ n n)) = 0 := by
       simp [Real.Interval.center]

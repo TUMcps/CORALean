@@ -49,9 +49,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem LinearSys.timePointStepFloat_outer (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
     (hη : sys.IsOrderAdmissibleFloat Δt Δt η) (R : Zonotope (Vec 𝕋 n)) {x : Vec ℝ n}
-    (hx : x ∈ R.construct) :
+    (hx : x ∈ R.toSet) :
     exp (toReal Δt • Scalar.toRealMat sys.A) *ᵥ x
-      ∈ (sys.timePointStepFloat Δt η R).construct :=
+      ∈ (sys.timePointStepFloat Δt η R).toSet :=
   Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) _ R
     (Set.mem_biUnion (sys.exp_mem_expIntervalFloat hη le_rfl le_rfl) (Set.mem_image_of_mem _ hx))
 

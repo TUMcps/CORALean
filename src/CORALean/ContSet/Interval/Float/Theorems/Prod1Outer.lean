@@ -43,8 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Interval.prod₁_outer : -- --- CONCL ---
     ∀ {m : ℕ} (I : Interval (Mat 𝕋 m n)),
-    (fun A : Mat ℝ m n => fun j => ∏ i, A i j) '' I.nominal.construct ⊆
-      I.prod₁.construct := by -- --- PROOF ---
+    (fun A : Mat ℝ m n => fun j => ∏ i, A i j) '' I.nominal.toSet ⊆
+      I.prod₁.toSet := by -- --- PROOF ---
   -- no rows: the point `1`, whose reading is the real `1`
   intro m
   induction m with
@@ -62,9 +62,9 @@ theorem Interval.prod₁_outer : -- --- CONCL ---
     set tl : Interval (Mat 𝕋 m n) := ⟨fun i => I.inf i.succ, fun i => I.sup i.succ⟩ with htl
     let row0 : Interval (Vec 𝕋 n) := ⟨fun j => I.inf 0 j, fun j => I.sup 0 j⟩
     have hT : (fun j => ∏ i : Fin m, A i.succ j) ∈
-        (Interval.prod₁ tl).construct :=
+        (Interval.prod₁ tl).toSet :=
       ih _ ⟨fun i => A i.succ, fun p => hA (p.1.succ, p.2), rfl⟩
-    have hrow : A 0 ∈ row0.construct := fun j => hA (0, j)
+    have hrow : A 0 ∈ row0.toSet := fun j => hA (0, j)
     have h := Interval.times_outer row0 (Interval.prod₁ tl)
       ⟨A 0, hrow, _, hT, rfl⟩
     have e : I.prod₁ = row0.times (Interval.prod₁ tl) := by

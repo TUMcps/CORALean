@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Zonotope
-public import CORALean.ContSet.Zonotope.Real.Theorems.GeneratorHullEqConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.GeneratorHullEqToSet
 public import Mathlib.Tactic.Abel
 public import Mathlib.Tactic.FieldSimp
 public import Mathlib.Tactic.Linarith
@@ -56,11 +56,11 @@ theorem Zonotope.generatorHull_symm (s : Vec ℝ n) (m : ℕ) (g : Fin m → Vec
     y ∈ Zonotope.generatorHull s m g ↔
       (2 : ℝ) • (s + (1 / 2 : ℝ) • ∑ i, g i) - y
         ∈ Zonotope.generatorHull s m g := by -- --- PROOF ---
-  rw [Zonotope.generatorHull_eq_construct]
+  rw [Zonotope.generatorHull_eq_toSet]
   set c : Vec ℝ n := s + (1 / 2 : ℝ) • ∑ i, g i with hc
   -- reflecting through `c` negates every coefficient, in either direction
-  have key : ∀ y : Vec ℝ n, y ∈ (Zonotope.mk m c (fun i => (1 / 2 : ℝ) • g i)).construct →
-      (2 : ℝ) • c - y ∈ (Zonotope.mk m c (fun i => (1 / 2 : ℝ) • g i)).construct := by
+  have key : ∀ y : Vec ℝ n, y ∈ (Zonotope.mk m c (fun i => (1 / 2 : ℝ) • g i)).toSet →
+      (2 : ℝ) • c - y ∈ (Zonotope.mk m c (fun i => (1 / 2 : ℝ) • g i)).toSet := by
     rintro y ⟨β, hβ, rfl⟩
     refine ⟨fun i => -β i, fun i => by simpa using hβ i, ?_⟩
     simp only [neg_smul, Finset.sum_neg_distrib]

@@ -124,7 +124,7 @@ noncomputable def LinearSys.step_minBackReachRun (sys : LinearSys 𝕋 n)
 value less what the direction's input trajectory takes off it. -/
 @[step_of LinearSys.minBackReachTimeInterval]
 noncomputable def LinearSys.step_minBackReachSupport (sys : LinearSys 𝕋 n)
-    (ρ : ∀ (cZ : ConZonotope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound cZ.construct c)
+    (ρ : ∀ (cZ : ConZonotope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound cZ.toSet c)
     (CZ : ConZonotope (Vec ℝ n)) (W₀ U₀ : Zonotope (Vec ℝ n))
     (Zw : ℝ → Zonotope (Vec ℝ n)) (N : Mat ℝ q n) (t₀ Δt : ℝ) (η : ℕ)
     (k : ℕ) (j : Fin q) : ℝ :=
@@ -135,7 +135,7 @@ noncomputable def LinearSys.step_minBackReachSupport (sys : LinearSys 𝕋 n)
 `min` — a union's support is the largest of its parts', see the findings. -/
 @[step_of LinearSys.minBackReachTimeInterval]
 noncomputable def LinearSys.step_minBackReachP (sys : LinearSys 𝕋 n)
-    (ρ : ∀ (cZ : ConZonotope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound cZ.construct c)
+    (ρ : ∀ (cZ : ConZonotope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound cZ.toSet c)
     (CZ : ConZonotope (Vec ℝ n)) (W₀ U₀ : Zonotope (Vec ℝ n))
     (Zw : ℝ → Zonotope (Vec ℝ n)) (N : Mat ℝ q n) (t₀ Δt : ℝ) (η : ℕ) : ℕ → Fin q → ℝ
   | 0 => fun j => sys.step_minBackReachSupport ρ CZ W₀ U₀ Zw N t₀ Δt η 0 j
@@ -148,7 +148,7 @@ noncomputable def LinearSys.step_minBackReachP (sys : LinearSys 𝕋 n)
 /-- [1, Alg. 2] line 16: `R̂^∀∃(-τ)`, the `ω` steps' sets united, each cut by the
 polytope `⟨N,p⟩_H` the propagated support functions built. -/
 noncomputable def LinearSys.minBackReachTimeInterval (sys : LinearSys 𝕋 n)
-    (ρ : ∀ (cZ : ConZonotope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound cZ.construct c)
+    (ρ : ∀ (cZ : ConZonotope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound cZ.toSet c)
     (CZ : ConZonotope (Vec ℝ n)) (W₀ U₀ : Zonotope (Vec ℝ n))
     (Zw : ℝ → Zonotope (Vec ℝ n)) (N : Mat ℝ q n) (t₀ tend : ℝ) (η ω : ℕ) : Set (Vec ℝ n) :=
   -- 1. Δt ← (t_end - t₀)/ω
@@ -156,7 +156,7 @@ noncomputable def LinearSys.minBackReachTimeInterval (sys : LinearSys 𝕋 n)
   -- 4. and 14. ⟨N,p⟩_H
   let P := HPolytope.ineqs N
     (sys.step_minBackReachP ρ CZ W₀ U₀ Zw N t₀ Δt η (ω - 1))
-  ⋃ k < ω, ((sys.step_minBackReachRun CZ W₀ U₀ Zw t₀ Δt η k).R.construct ∩ P.construct)
+  ⋃ k < ω, ((sys.step_minBackReachRun CZ W₀ U₀ Zw t₀ Δt η k).R.toSet ∩ P.toSet)
 
 end CORALean
 

@@ -71,8 +71,8 @@ theorem LinearSys.reach_outer (sys : LinearSys 𝕋 n) {params : Reach.Params (S
     {options : LinearSys.ReachStepOptions ℝ} (htFinal : params.tStart < params.tFinal)
     (hΔt : 0 < options.Δt) (hη : 2 ≤ options.η)
     (hε : ‖options.Δt • toRealMat sys.A‖ / ((options.η : ℝ) + 2) < 1) : -- --- CONCL ---
-    sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
-      ⊆ construct (sys.reach params options) := by -- --- PROOF ---
+    sys.reachExact (params.tFinal - params.tStart) (toSet params.X₀)
+      ⊆ toSet (sys.reach params options) := by -- --- PROOF ---
   unfold LinearSys.reach
   have htFinal := sub_pos.mpr htFinal
   obtain ⟨X₀, tStart, tF⟩ := params
@@ -86,7 +86,7 @@ theorem LinearSys.reach_outer (sys : LinearSys 𝕋 n) {params : Reach.Params (S
     (div_pos htFinal hΔt)).ne'
   rw [max_eq_right hN] at hk
   -- window `k` holds `e^{At} x₀`, and `k < N`
-  exact SetUnion.mem_construct_range hk
+  exact SetUnion.mem_toSet_range hk
     (sys.reachStepk_outer hΔt hη hε X₀ hkt htk (Set.mem_image_of_mem _ hx₀))
 
 end CORALean

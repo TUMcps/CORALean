@@ -50,17 +50,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.dependentTerms_outer (A : Interval (Mat 𝕋 n n)) (r : 𝕋) {M : Mat ℝ n n}
-    (hM : M ∈ A.construct) : -- --- CONCL ---
-    toReal r ^ 2 • (M * M) ∈ (MatExp.dependentTerms A r).intSq.construct ∧
+    (hM : M ∈ A.toSet) : -- --- CONCL ---
+    toReal r ^ 2 • (M * M) ∈ (MatExp.dependentTerms A r).intSq.toSet ∧
       1 + Real.MatExp.expW M (toReal r) ∈
-        (MatExp.dependentTerms A r).intH.construct := by -- --- PROOF ---
+        (MatExp.dependentTerms A r).intH.toSet := by -- --- PROOF ---
   -- the squared step is bracketed by the directed products
   have hlo : toReal (mulDown r r) ≤ toReal r ^ 2 := by
     rw [sq]; exact mulDown_le_mul r r
   have hhi : toReal r ^ 2 ≤ toReal (mulUp r r) := by
     rw [sq]; exact mul_le_mulUp r r
   -- the identity is the zeroth power
-  have h1 : (1 : Mat ℝ n n) ∈ (Interval.point (diagonalBlock fun _ => (one : 𝕋))).construct := by
+  have h1 : (1 : Mat ℝ n n) ∈ (Interval.point (diagonalBlock fun _ => (one : 𝕋))).toSet := by
     have h := Interval.matPow_outer A hM 0
     rw [pow_zero] at h
     exact h

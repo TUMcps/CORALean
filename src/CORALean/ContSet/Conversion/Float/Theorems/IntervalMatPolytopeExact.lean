@@ -43,12 +43,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 theorem Interval.matPolytope_exact (I : Interval (Mat 𝕋 m n))
     (hI : ∀ i j, toReal (I.inf i j) ≤ toReal (I.sup i j)) : -- --- CONCL ---
-    InflatedContSet.construct I.matPolytope = I.construct := by -- --- PROOF ---
+    InflatedContSet.toSet I.matPolytope = I.toSet := by -- --- PROOF ---
   -- the stacked bounds are ordered too
   have hv : ∀ k, toReal (I.vec.inf k) ≤ toReal (I.vec.sup k) := fun k => hI _ _
   -- unstack the exact corners of the stacked box
   have h1 := VPolytope.unvec_exact (Interval.vPolytope I.vec)
-  have h2 : InflatedContSet.construct (Interval.vPolytope I.vec) = I.vec.construct :=
+  have h2 : InflatedContSet.toSet (Interval.vPolytope I.vec) = I.vec.toSet :=
     Interval.vPolytope_exact I.vec hv
   rw [h2, Interval.vec_exact, Set.image_image] at h1
   rw [Interval.matPolytope]

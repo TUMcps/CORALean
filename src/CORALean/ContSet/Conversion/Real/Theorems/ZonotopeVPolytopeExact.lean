@@ -60,7 +60,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.vPolytope_exact (Z : Zonotope α) :
-    Z.vPolytope.construct = Z.construct :=
+    Z.vPolytope.toSet = Z.toSet :=
   Set.Subset.antisymm Z.contains_vPolytope Z.vPolytope_contains
 
 end CORALean.Real

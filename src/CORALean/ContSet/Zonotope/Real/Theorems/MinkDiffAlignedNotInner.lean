@@ -52,16 +52,16 @@ approximation of the difference, let alone equal to it. -/
 theorem Zonotope.minkDiffAligned_not_inner (γ : ℝ) (hγ : γ < 0 ∨ 1 < γ) : -- --- CONCL ---
     ∃ (Z₁ Z₂ : Zonotope ℝ) (hh : Z₁.h = Z₂.h),
       (∀ i, Z₂.G (Fin.cast hh i) = γ • Z₁.G i) ∧
-        ¬ (Z₁.minkDiffAligned Z₂ hh).construct
-            ⊆ minkowskiDiff Z₁.construct Z₂.construct := by -- --- PROOF ---
+        ¬ (Z₁.minkDiffAligned Z₂ hh).toSet
+            ⊆ minkowskiDiff Z₁.toSet Z₂.toSet := by -- --- PROOF ---
   refine ⟨⟨1, 0, fun _ => 1⟩, ⟨1, 0, fun _ => γ⟩, rfl, fun i => by simp, ?_⟩
   intro hsub
   -- the closed form `(0, 1 - γ)` reaches `1 - γ`, at coefficient `1`
   have hp : (1 - γ) ∈ (Zonotope.minkDiffAligned (⟨1, 0, fun _ => 1⟩ : Zonotope ℝ)
-      ⟨1, 0, fun _ => γ⟩ rfl).construct := by
+      ⟨1, 0, fun _ => γ⟩ rfl).toSet := by
     refine ⟨fun _ => 1, fun j => by norm_num, ?_⟩
     simp [Zonotope.minkDiffAligned]
-  have hy : (-γ) ∈ (⟨1, 0, fun _ => γ⟩ : Zonotope ℝ).construct := by
+  have hy : (-γ) ∈ (⟨1, 0, fun _ => γ⟩ : Zonotope ℝ).toSet := by
     refine ⟨fun _ => -1, fun j => by norm_num, ?_⟩
     simp
   -- but `1 - γ + (-γ)` is outside `[-1, 1]` at either sign of the violation

@@ -41,7 +41,7 @@ variable {n : ℕ}
 /-- Girard's is the rule `reduce` runs, and this line is the whole of that
 choice: any other would discharge it too. -/
 theorem Zonotope.reduce_outer (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
-    Z.construct ⊆ (Z.reduce o).construct :=
+    Z.toSet ⊆ (Z.reduce o).toSet :=
   Zonotope.reduceGirard_outer Z o
 
 end CORALean.Real

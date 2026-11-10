@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.matPow_outer (A : Interval (Mat ℝ n n)) {M : Mat ℝ n n}
-    (hM : M ∈ A.construct) (k : ℕ) : M ^ k ∈ (Interval.matPow A k).construct := by
+    (hM : M ∈ A.toSet) (k : ℕ) : M ^ k ∈ (Interval.matPow A k).toSet := by
   induction k with
   | zero => rw [pow_zero]; exact Interval.mem_point 1
   | succ k ih => rw [pow_succ']; exact Interval.matMul_outer A (A.matPow k) hM ih

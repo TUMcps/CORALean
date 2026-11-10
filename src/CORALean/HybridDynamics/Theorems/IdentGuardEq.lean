@@ -57,14 +57,14 @@ surface `aᵀx = b` that the reset `H x + k` maps into `Y = ⟨C, d⟩_P`. -/
 theorem IdentHA.conHyperplane_identGuard (a : Vec ℝ n) (b : ℝ) (H : Mat ℝ n n) (k : Vec ℝ n)
     (cs : List (Vec ℝ n × ℝ)) : -- --- CONCL ---
     IdentHA.conHyperplane a b (IdentHA.identGuard H k cs)
-      = {x | a ⬝ᵥ x = b ∧ H *ᵥ x + k ∈ (IdentHA.polytope cs).construct} := by -- --- PROOF ---
+      = {x | a ⬝ᵥ x = b ∧ H *ᵥ x + k ∈ (IdentHA.polytope cs).toSet} := by -- --- PROOF ---
   ext x
   -- `cᵀ(H x + k) = (Hᵀc)ᵀx + cᵀk`
   have hid : ∀ c : Vec ℝ n, c ⬝ᵥ (H *ᵥ x + k) = (Hᵀ *ᵥ c) ⬝ᵥ x + c ⬝ᵥ k := fun c => by
     rw [dotProduct_add, dotProduct_mulVec, mulVec_transpose]
   simp only [IdentHA.conHyperplane, IdentHA.identGuard, Set.mem_setOf_eq]
   refine and_congr_right fun _ => ?_
-  rw [IdentHA.mem_polytope_construct_iff, IdentHA.mem_polytope_construct_iff]
+  rw [IdentHA.mem_polytope_toSet_iff, IdentHA.mem_polytope_toSet_iff]
   simp only [List.mem_map, forall_exists_index, and_imp]
   refine ⟨fun h q hq => ?_, fun h p q hq hp => ?_⟩
   · have := h _ q hq rfl

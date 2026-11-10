@@ -38,7 +38,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- Nonempty, and the generators of both blocks span a space of the ambient dimension. -/
 def ConPolyZono.isFullDimCora (cPZ : ConPolyZono α) : Prop :=
-  cPZ.construct.Nonempty
+  cPZ.toSet.Nonempty
     ∧ Module.finrank ℝ (Submodule.span ℝ (Set.range cPZ.G ∪ Set.range cPZ.GI))
       = Module.finrank ℝ α
 

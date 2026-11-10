@@ -96,7 +96,7 @@ private theorem aux_psd {k : ℕ} (M : Mat ℝ k k) (lo hi : Mat 𝕋 k k)
 
 theorem SpectraShadow.isFullDim_sound {S : SpectraShadow 𝕋 (Vec 𝕋 n)} {β : Vec 𝕋 S.m} {δ : 𝕋}
     (h : S.isFullDim β δ = true) : -- --- CONCL ---
-    (interior S.construct).Nonempty := by -- --- PROOF ---
+    (interior S.toSet).Nonempty := by -- --- PROOF ---
   simp only [SpectraShadow.isFullDim, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨⟨⟨⟨hsym, hdom⟩, hδ⟩, hc⟩, hbox⟩ := h
@@ -177,7 +177,7 @@ theorem SpectraShadow.isFullDim_sound {S : SpectraShadow 𝕋 (Vec 𝕋 n)} {β 
     simp [Matrix.mulVec, dotProduct, toRealMat, toRealVec]
   have hint := interior_maximal hWsub hWopen (Set.mem_image_of_mem _ (Set.mem_image_of_mem _ hβ))
   -- the ordered error box moves an interior point of the nominal shadow into the shadow
-  have he : (fun i => toReal (S.I_error.inf i)) ∈ S.I_error.construct := fun i =>
+  have he : (fun i => toReal (S.I_error.inf i)) ∈ S.I_error.toSet := fun i =>
     ⟨le_refl _, toReal_le_of_le (hbox i)⟩
   exact ⟨_, subset_interior_add_left (Set.add_mem_add hint he)⟩
 

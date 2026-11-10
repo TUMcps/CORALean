@@ -47,7 +47,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- `PolyZonotope.shift` is exactly the translate. -/
 private theorem PolyZonotope.aux_shift_exact (pZ : PolyZonotope α) (v : α) : -- --- CONCL ---
-    (fun x => x + v) '' pZ.construct = (pZ.shift v).construct := by -- --- PROOF ---
+    (fun x => x + v) '' pZ.toSet = (pZ.shift v).toSet := by -- --- PROOF ---
   have key : ∀ (a : Fin pZ.p → ℝ) (b : Fin pZ.q → ℝ),
       pZ.c + ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i + ∑ j, b j • pZ.GI j + v =
         (pZ.shift v).c + ∑ i, PolyZonotope.monomial (pZ.shift v).E a i • (pZ.shift v).G i
@@ -68,7 +68,7 @@ end
 
 theorem GNN.linearPolyZonotope_exact (W : Mat ℝ F₂ F₁) (b : Vec ℝ F₂)
     (pZ : PolyZonotope (Mat ℝ N F₁)) :
-    GNN.linear W b '' pZ.construct = (GNN.linearPolyZonotope W b pZ).construct := by
+    GNN.linear W b '' pZ.toSet = (GNN.linearPolyZonotope W b pZ).toSet := by
   rw [GNN.linearPolyZonotope, ← PolyZonotope.aux_shift_exact, ← PolyZonotope.map_exact,
     ← Set.image_comp]
   rfl

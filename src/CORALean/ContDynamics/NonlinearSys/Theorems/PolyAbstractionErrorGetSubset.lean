@@ -97,7 +97,7 @@ theorem IsPolyAbstractionError.getSubset {f : Vec ℝ n → Vec ℝ m → Vec �
         - (f xs us + A *ᵥ (pZ.point (Function.update b k (cen + rad * b k)) - xs)
           + B *ᵥ (u - us))
         - L.point (Function.update (fun j : Fin L.p => b (Fin.cast hp j)) (Fin.cast hp.symm k)
-            (cen + rad * b (Fin.cast hp (Fin.cast hp.symm k)))) ∈ W.construct
+            (cen + rad * b (Fin.cast hp (Fin.cast hp.symm k)))) ∈ W.toSet
     rw [hupd]
     exact cert.encloses _ (hBa' b hb) u hu
 

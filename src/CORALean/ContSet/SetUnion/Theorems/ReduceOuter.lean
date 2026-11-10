@@ -39,10 +39,10 @@ variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α] [Reduce 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SetUnion.reduce_outer (u : SetUnion S) (o : ℕ) :
-    ContSet.construct u ⊆ ContSet.construct (SetUnion.reduce u o) := by
+    ContSet.toSet u ⊆ ContSet.toSet (SetUnion.reduce u o) := by
   intro x hx
-  obtain ⟨s, hs, hx⟩ := SetUnion.mem_construct.mp hx
-  exact SetUnion.mem_construct.mpr
+  obtain ⟨s, hs, hx⟩ := SetUnion.mem_toSet.mp hx
+  exact SetUnion.mem_toSet.mpr
     ⟨Reduce.reduce s o, List.mem_map.mpr ⟨s, hs, rfl⟩, Reduce.reduce_outer s o hx⟩
 
 end CORALean

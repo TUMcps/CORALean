@@ -72,7 +72,7 @@ private theorem Interval.aux_hPolytope_b_natAdd (I : Interval (Vec ℝ n)) (j : 
 /-- Membership is those two halves read back as the box's two bounds. -/
 private theorem Interval.aux_mem_hPolytope_iff {I : Interval (Vec ℝ n)}
     {x : Vec ℝ n} : -- --- CONCL ---
-    x ∈ (Interval.hPolytope I).construct ↔ ∀ j, I.inf j ≤ x j ∧ x j ≤ I.sup j := by -- --- PROOF ---
+    x ∈ (Interval.hPolytope I).toSet ↔ ∀ j, I.inf j ≤ x j ∧ x j ≤ I.sup j := by -- --- PROOF ---
   constructor
   · rintro ⟨hle, -⟩ j
     have hup : x j ≤ I.sup j := by
@@ -97,7 +97,7 @@ private theorem Interval.aux_mem_hPolytope_iff {I : Interval (Vec ℝ n)}
 
 -- so the two descriptions denote the same set, with nothing given away
 theorem Interval.hPolytope_exact (I : Interval (Vec ℝ n)) : -- --- CONCL ---
-    (Interval.hPolytope I).construct = I.construct := by -- --- PROOF ---
+    (Interval.hPolytope I).toSet = I.toSet := by -- --- PROOF ---
   ext x
   constructor
   · intro hx i

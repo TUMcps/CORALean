@@ -44,7 +44,7 @@ variable {n q : ℕ}
 
 theorem ZonoBundle.hPolytope_contains (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k)
     (Aq : Fin q → (Vec ℝ n →ₗ[ℝ] ℝ)) :
-    zB.construct ⊆ (zB.hPolytope i Aq).construct :=
+    zB.toSet ⊆ (zB.hPolytope i Aq).toSet :=
   subset_trans (zB.zonotope_contains i) (Zonotope.hPolytope_contains _ _)
 
 end CORALean.Real

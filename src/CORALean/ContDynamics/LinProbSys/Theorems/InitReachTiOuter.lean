@@ -88,12 +88,12 @@ variable {n m : ℕ}
 
 /-- `0` is in every confidence zonotope, its center. -/
 private theorem LinProbSys.aux_zero_mem_confidenceZonotope (G : Mat ℝ n n) (γ : ℝ) :
-    (0 : Vec ℝ n) ∈ (confidenceZonotope G γ).construct :=
+    (0 : Vec ℝ n) ∈ (confidenceZonotope G γ).toSet :=
   ⟨fun _ => 0, fun _ => by simp, by simp [confidenceZonotope]⟩
 
 /-- A mean of a probabilistic zonotope is in its `γ`-zonotope. -/
 private theorem LinProbSys.aux_mem_zonotope {P : ProbZonotope n} {x : Vec ℝ n}
-    (hx : x ∈ P.Z.construct) (γ : ℝ) : x ∈ (P.zonotope γ).construct := by
+    (hx : x ∈ P.Z.toSet) (γ : ℝ) : x ∈ (P.zonotope γ).toSet := by
   have h := Set.add_mem_add hx (LinProbSys.aux_zero_mem_confidenceZonotope (CFC.sqrt P.cov) γ)
   rw [add_zero, Zonotope.plus_exact] at h
   exact h
@@ -106,13 +106,13 @@ theorem LinProbSys.initReach_ti_outer (sys : LinProbSys n m) (Veig : Mat ℝ n n
     (uTrans : Vec ℝ m) {r : ℝ} (hr : 0 < r) {k : ℕ}
     (hε : ‖r • sys.A‖ / (((k + 2 : ℕ) : ℝ) + 2) < 1) (gamma : ℝ) (originContained : Bool)
     (hA : IsUnit sys.A.det) (hoc : originContained = true → sys.B *ᵥ uTrans = 0)
-    (h0 : (0 : Vec ℝ m) ∈ U.construct) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ Rinit.Z.construct)
+    (h0 : (0 : Vec ℝ m) ∈ U.toSet) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ Rinit.Z.toSet)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) {w : Vec ℝ n}
     (hw : w ∈ (LinearSys.canonical sys.A : LinearSys ℝ n).inputReach (S := 𝒵)
         (Zonotope.mtimes sys.B U) t) : -- --- CONCL ---
     exp (t • sys.A) *ᵥ x₀ + MatExp.expIntegral sys.A t *ᵥ (sys.B *ᵥ uTrans) + w
       ∈ (sys.initReach Veig lambda Rinit gammaInit U uTrans r (k + 2) gamma
-          originContained).2.1.Z.construct := by -- --- PROOF ---
+          originContained).2.1.Z.toSet := by -- --- PROOF ---
   set A := sys.A with hAdef
   set v := sys.B *ᵥ uTrans with hv
   set E := exp (r • A) with hE
@@ -122,27 +122,27 @@ theorem LinProbSys.initReach_ti_outer (sys : LinProbSys n m) (Veig : Mat ℝ n n
   set F := MatExp.correctionMatrix A r (k + 2) with hF
   have hs0 : 0 ≤ s := div_nonneg ht0 hr.le
   have hs1 : s ≤ 1 := (div_le_one hr).mpr htr
-  have hM : M ∈ F.construct := MatExp.expDiff_mem_correctionMatrix A hr hε ht0 htr
-  have hx₀γ : x₀ ∈ (Rinit.zonotope gammaInit).construct := LinProbSys.aux_mem_zonotope hx₀ _
+  have hM : M ∈ F.toSet := MatExp.expDiff_mem_correctionMatrix A hr hε ht0 htr
+  have hx₀γ : x₀ ∈ (Rinit.zonotope gammaInit).toSet := LinProbSys.aux_mem_zonotope hx₀ _
   -- the segment from `x₀` towards `e^{Ar} x₀ + Rtrans`, inside `Raux`
   have hz : (E - 1) *ᵥ x₀ + Rtrans ∈ ((Zonotope.mtimes (E - 1) (Rinit.zonotope gammaInit)).plus
-      ⟨0, Rtrans, Fin.elim0⟩).construct := by
+      ⟨0, Rtrans, Fin.elim0⟩).toSet := by
     rw [← Zonotope.plus_exact, ← Zonotope.mtimes_exact]
     exact Set.add_mem_add (Set.mem_image_of_mem _ hx₀γ) (Zonotope.mem_ofPoint Rtrans)
   have hseg : s • ((E - 1) *ᵥ x₀ + Rtrans) ∈ (Zonotope.linComb ⟨0, 0, Fin.elim0⟩
       ((Zonotope.mtimes (E - 1) (Rinit.zonotope gammaInit)).plus
-        ⟨0, Rtrans, Fin.elim0⟩)).construct := by
+        ⟨0, Rtrans, Fin.elim0⟩)).toSet := by
     refine Zonotope.linComb_outer _ _ ⟨0, Zonotope.mem_ofPoint 0, _, hz, 1 - s,
       ⟨by linarith, by linarith⟩, ?_⟩
     rw [smul_zero, zero_add, sub_sub_cancel]
   have h1 := Set.add_mem_add hx₀ hseg
   rw [Zonotope.plus_exact] at h1
   -- the interpolation error of `x₀`, and of the constant input
-  have h2 : M *ᵥ x₀ ∈ (Zonotope.mtimesIntervalMat F (Rinit.zonotope gammaInit)).construct :=
+  have h2 : M *ᵥ x₀ ∈ (Zonotope.mtimesIntervalMat F (Rinit.zonotope gammaInit)).toSet :=
     Zonotope.mtimesIntervalMat_outer _ _ (Set.mem_biUnion hM (Set.mem_image_of_mem _ hx₀γ))
   have h3 : (A⁻¹ * M) *ᵥ v ∈ (if originContained then Zonotope.ofPoint 0
       else Zonotope.mtimesIntervalMat (Interval.matMul (Interval.point A⁻¹) F)
-        (Zonotope.ofPoint v)).construct := by
+        (Zonotope.ofPoint v)).toSet := by
     cases originContained with
     | true =>
       rw [hoc rfl, mulVec_zero]
@@ -153,20 +153,20 @@ theorem LinProbSys.initReach_ti_outer (sys : LinProbSys n m) (Veig : Mat ℝ n n
         (Set.mem_image_of_mem _ (Zonotope.mem_ofPoint v)))
   have h4 := Zonotope.mem_ofPoint (-Rtrans)
   -- the time-varying input, in the input solution of the whole step
-  have hV0 : (0 : Vec ℝ n) ∈ construct (Zonotope.mtimes sys.B U) := by
-    show _ ∈ (Zonotope.mtimes sys.B U).construct
+  have hV0 : (0 : Vec ℝ n) ∈ toSet (Zonotope.mtimes sys.B U) := by
+    show _ ∈ (Zonotope.mtimes sys.B U).toSet
     rw [← Zonotope.mtimes_exact]
     exact ⟨0, h0, mulVec_zero _⟩
-  have hw' : w ∈ Zonotope.construct
+  have hw' : w ∈ Zonotope.toSet
       ((LinearSys.canonical A : LinearSys ℝ n).inputSolution (S := 𝒵) r (k + 2)
         (Zonotope.mtimes sys.B U)) :=
     LinearSys.inputReach_subset_inputSolution (S := 𝒵) (LinearSys.canonical A) hr (k + 2) hε
-    (Zonotope.convex_construct _) (Zonotope.isClosed_construct _)
-    (Zonotope.isCompact_construct _).isBounded (Zonotope.convex_construct _)
-    (Zonotope.isClosed_construct _) (Zonotope.isCompact_construct _).isBounded
+    (Zonotope.convex_toSet _) (Zonotope.isClosed_toSet _)
+    (Zonotope.isCompact_toSet _).isBounded (Zonotope.convex_toSet _)
+    (Zonotope.isClosed_toSet _) (Zonotope.isCompact_toSet _).isBounded
     -- the input reached by `t` is reached by the whole step, `0 ∈ B U` growing it
     (LinearSys.inputReach_mono (S := 𝒵) (LinearSys.canonical A)
-      (Zonotope.isCompact_construct _).isBounded hV0 ht0 htr hw)
+      (Zonotope.isCompact_toSet _).isBounded hV0 ht0 htr hw)
   have h5 := Set.add_mem_add (Set.add_mem_add (Set.add_mem_add hw' (Zonotope.mem_ofPoint Rtrans))
     (Zonotope.mem_ofPoint (0 : Vec ℝ n)))
     (LinProbSys.aux_zero_mem_confidenceZonotope

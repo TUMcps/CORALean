@@ -43,9 +43,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.diagonal_mem {n : ℕ} (lo hi : Vec 𝕋 n) (v : Vec ℝ n)
-    (hv : v ∈ (⟨lo, hi⟩ : Interval (Vec 𝕋 n)).construct) : -- --- CONCL ---
+    (hv : v ∈ (⟨lo, hi⟩ : Interval (Vec 𝕋 n)).toSet) : -- --- CONCL ---
     Matrix.diagonal v ∈
-      (⟨diagonalBlock lo, diagonalBlock hi⟩ : Interval (Mat 𝕋 n n)).construct := by -- --- PROOF ---
+      (⟨diagonalBlock lo, diagonalBlock hi⟩ : Interval (Mat 𝕋 n n)).toSet := by -- --- PROOF ---
   refine Interval.mem_mat_iff.mpr fun i j => ?_
   by_cases hij : i = j
   · -- on the diagonal the bounds are the vector's

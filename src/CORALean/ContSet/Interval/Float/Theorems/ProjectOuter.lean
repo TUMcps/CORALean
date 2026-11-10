@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.project_outer (I : Interval (Vec 𝕋 n)) (dims : Fin m → Fin n) :
-    (fun x k => x (dims k)) '' I.construct ⊆ (I.project dims).construct := by
+    (fun x k => x (dims k)) '' I.toSet ⊆ (I.project dims).toSet := by
   rintro _ ⟨x, hx, rfl⟩ k
   exact hx (dims k)
 

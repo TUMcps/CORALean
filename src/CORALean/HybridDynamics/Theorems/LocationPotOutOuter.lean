@@ -35,16 +35,16 @@ omit [Scalar 𝕋] in
 theorem Location.potOut_outer [∀ n, Intersection (S n) (Vec ℝ n)]
     [∀ n, IsDisjoint (S n) (S n)] (ℓ : Location S S L 𝕋 n) (Rs : List (S n))
     (minInd maxInd : List ℕ) {k : ℕ} (hk : k < Rs.length) {x : Vec ℝ n}
-    (hx : x ∈ construct Rs[k]) (hinv : x ∈ construct ℓ.inv) : -- --- CONCL ---
+    (hx : x ∈ toSet Rs[k]) (hinv : x ∈ toSet ℓ.inv) : -- --- CONCL ---
     ∃ h : k < (ℓ.potOut Rs minInd maxInd).length,
-      x ∈ construct (ℓ.potOut Rs minInd maxInd)[k] := by -- --- PROOF ---
+      x ∈ toSet (ℓ.potOut Rs minInd maxInd)[k] := by -- --- PROOF ---
   unfold Location.potOut
   set cut := Rs.mapIdx fun k R =>
     if (minInd.zip maxInd).any (fun (a, b) => max a 1 ≤ k + 1 && k + 1 ≤ b)
     then Intersection.intersection ℓ.inv R else R with hcut
   have hlen : cut.length = Rs.length := by simp [hcut]
   -- the cut keeps `x`
-  have hxc : x ∈ construct (cut[k]'(by omega)) := by
+  have hxc : x ∈ toSet (cut[k]'(by omega)) := by
     simp only [hcut, List.getElem_mapIdx]
     split
     · exact Intersection.intersection_outer _ _ ⟨hinv, hx⟩

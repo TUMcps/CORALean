@@ -1,0 +1,57 @@
+module
+
+public import CORALean.ContSet.PolyZonotope.Float.Operations.RmId
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.RmIdToSet
+
+@[expose] public section
+
+/-!
+# `rmId` pins the removed factors at `1`, in float too
+
+The stored floats are untouched and the nominal part is the exact layer's `rmId` of the original's,
+so the exact theorem carries over with the error box as it was.
+
+## Inputs
+* `pZ` – polynomial zonotope
+* `S` – factors to remove
+
+## Hypotheses
+* none
+
+## Conclusion
+* result is the set with those factors fixed at one
+-/
+
+-- Authors:       Claude Opus 5.5
+-- Written:       04-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+open Pointwise FloatOps SoundFloatArithmetic InflatedContSet
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem PolyZonotope.rmId_toSet (pZ : PolyZonotope (Vec 𝕋 n))
+    (S : Finset (Fin pZ.p)) : -- --- CONCL ---
+    (pZ.rmId S).toSet
+      = {x | ∃ (a : Fin pZ.p → ℝ) (β : Fin pZ.q → ℝ), (∀ k, |a k| ≤ 1) ∧ (∀ k ∈ S, a k = 1)
+          ∧ (∀ j, |β j| ≤ 1) ∧ x = (nominal pZ).point a + ∑ j, β j • (nominal pZ).GI j}
+        + pZ.I_error.toSet := by -- --- PROOF ---
+  have h : nominalSet (pZ.rmId S) = ((nominal pZ).rmId S).toSet := rfl
+  show nominalSet (pZ.rmId S) + (pZ.rmId S).I_error.toSet = _
+  rw [h, Real.PolyZonotope.rmId_toSet (nominal pZ) S]
+  rfl
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

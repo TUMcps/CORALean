@@ -70,30 +70,30 @@ zonotopes of `R₀` and `U`, widened by `reachErrorFloat`, at `Δt > 0` and an a
 given both error boxes bracket `0`. -/
 theorem LinearSys.discretizeEnclosureFloat_reach_subset_add_errorFloat (sys : LinearSys 𝕋 n)
     {Δt : 𝕋} (hΔt : 0 < toReal Δt) {η : ℕ} (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {o : ℕ}
-    (ho : 0 < o) {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.I_error.construct)
-    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ) : -- --- CONCL ---
+    (ho : 0 < o) {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.I_error.toSet)
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.toSet) (k : ℕ) : -- --- CONCL ---
     ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
-        ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).construct
+        ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).toSet
       ⊆ (sys.discretize (toReal Δt)).reachSetExact (S := 𝒵)
           (nominal R₀)
           (Real.Zonotope.mtimes (Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt))
             (nominal U)) k
-        + (sys.reachErrorFloat Δt η o ho R₀ U k).construct := by -- --- PROOF ---
+        + (sys.reachErrorFloat Δt η o ho R₀ U k).toSet := by -- --- PROOF ---
   set eA := sys.expIntervalFloat Δt Δt η
   set Q := Real.Zonotope.mtimes (Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt))
     (nominal U)
   have he := sys.exp_mem_expIntervalFloat hη (t := toReal Δt) le_rfl le_rfl
   -- the claim with the two summands of the budget kept apart
   suffices h : ∀ k, ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
-        ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).construct
+        ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩).toSet
       ⊆ (sys.discretize (toReal Δt)).reachSetExact (S := 𝒵)
           (nominal R₀) Q k
-        + (sys.reachExcessFloat Δt η o ho R₀ U k).construct
-        + (sys.reachInputErrorFloat Δt η U k).construct by
+        + (sys.reachExcessFloat Δt η o ho R₀ U k).toSet
+        + (sys.reachInputErrorFloat Δt η U k).toSet by
     intro x hx
     obtain ⟨_, ⟨z, hz, d, hd, rfl⟩, i, hi, rfl⟩ := h k hx
-    have hdi : d + i ∈ (sys.reachErrorFloat Δt η o ho R₀ U k).construct := by
-      show _ ∈ ContSet.construct
+    have hdi : d + i ∈ (sys.reachErrorFloat Δt η o ho R₀ U k).toSet := by
+      show _ ∈ ContSet.toSet
         (sys.reachExcessFloat Δt η o ho R₀ U k ⊞ sys.reachInputErrorFloat Δt η U k)
       exact Plus.plus_outer _ _ (Set.add_mem_add hd hi)
     exact ⟨z, hz, d + i, hdi, (add_assoc _ _ _).symm⟩
@@ -102,9 +102,9 @@ theorem LinearSys.discretizeEnclosureFloat_reach_subset_add_errorFloat (sys : Li
   | zero =>
     -- `R₀`'s point is its nominal part plus its error box; nothing is owed to the input yet
     rintro _ ⟨a, ha, e₀, he₀, rfl⟩
-    have h0 : (0 : Vec ℝ n) ∈ (sys.reachInputErrorFloat Δt η U 0).construct := by
-      show (0 : Vec ℝ n) ∈ (Zonotope.point fun _ : Fin n => (zero : 𝕋)).construct
-      rw [Zonotope.construct_point]
+    have h0 : (0 : Vec ℝ n) ∈ (sys.reachInputErrorFloat Δt η U 0).toSet := by
+      show (0 : Vec ℝ n) ∈ (Zonotope.point fun _ : Fin n => (zero : 𝕋)).toSet
+      rw [Zonotope.toSet_point]
       funext i
       simp [toRealVec, toReal_zero]
     exact ⟨a + e₀, ⟨a, ha, e₀, Interval.zonotope_contains _ he₀, rfl⟩, 0, h0, add_zero _⟩
@@ -112,7 +112,7 @@ theorem LinearSys.discretizeEnclosureFloat_reach_subset_add_errorFloat (sys : Li
     set Rk := (sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
       ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩ with hRk
     set W := sys.timePointStepInputFloat Δt η Rk U
-    have hRk0 : (0 : Vec ℝ n) ∈ Rk.I_error.construct :=
+    have hRk0 : (0 : Vec ℝ n) ∈ Rk.I_error.toSet :=
       sys.zero_mem_discretizeEnclosureFloat_reach_error hΔt.le hη ho hR₀ hU k
     intro x hx
     rw [sys.discretizeEnclosureFloat_reach_succ] at hx
@@ -125,25 +125,25 @@ theorem LinearSys.discretizeEnclosureFloat_reach_subset_add_errorFloat (sys : Li
     set E := exp (toReal Δt • Scalar.toRealMat sys.A)
     have hEd : E *ᵥ d ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) eA
-        (sys.reachExcessFloat Δt η o ho R₀ U k)).construct :=
+        (sys.reachExcessFloat Δt η o ho R₀ U k)).toSet :=
       Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋]) eA _
         (Set.mem_biUnion he ⟨d, hd, rfl⟩)
     have hEi : E *ᵥ i ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) eA
-        (sys.reachInputErrorFloat Δt η U k)).construct :=
+        (sys.reachInputErrorFloat Δt η U k)).toSet :=
       Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋]) eA _
         (Set.mem_biUnion he ⟨i, hi, rfl⟩)
     -- the step's two outputs, each one more application of the same sum
-    have hD : E *ᵥ d + b + g ∈ (sys.reachExcessFloat Δt η o ho R₀ U (k + 1)).construct := by
-      show _ ∈ ContSet.construct
+    have hD : E *ᵥ d + b + g ∈ (sys.reachExcessFloat Δt η o ho R₀ U (k + 1)).toSet := by
+      show _ ∈ ContSet.toSet
         ((Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eA
         (sys.reachExcessFloat Δt η o ho R₀ U k) ⊞ sys.timePointStepExcessFloat Δt η Rk U) ⊞
           Zonotope.reduceGirardBox W o)
       exact Plus.plus_outer _ _ (Set.add_mem_add (Plus.plus_outer _ _ (Set.add_mem_add hEd hb)) hg)
-    have hI : E *ᵥ i + t ∈ (sys.reachInputErrorFloat Δt η U (k + 1)).construct := by
-      show _ ∈ ContSet.construct
+    have hI : E *ᵥ i + t ∈ (sys.reachInputErrorFloat Δt η U (k + 1)).toSet := by
+      show _ ∈ ContSet.toSet
         (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eA
         (sys.reachInputErrorFloat Δt η U k) ⊞ sys.timePointStepErrorBoxFloat Δt η U)
       exact Plus.plus_outer _ _ (Set.add_mem_add hEi ht)

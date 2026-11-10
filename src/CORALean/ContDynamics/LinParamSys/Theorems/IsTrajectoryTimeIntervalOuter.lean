@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 # A time-varying run stays in the step enclosure, the drift paid as input
 
 `IsCanonicalConstTrajectory.timeInterval_outer` at `'varParam'`. The homogeneous half is unchanged —
-`timeInterval` is the box's and knows no member, so freezing `Â ∈ construct sys.A` costs
+`timeInterval` is the box's and knows no member, so freezing `Â ∈ toSet sys.A` costs
 nothing there. What changes is the second half: `IsCanonicalTrajectory.toLinearSys` turns the
 parameter mismatch into input, so the set `Vd` has to hold the drift `(A s - Â) x s` as well as
 `u s`. This is not CORA's `'varParam'` branch: `Interval.matPow` admits a different member at each
@@ -79,12 +79,12 @@ theorem LinParamSys.IsCanonicalTrajectory.timeInterval_outer {sys : LinParamSys 
     {R₀ U V Vd : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n} {r : ℝ}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    {Â : Mat ℝ n n} (hÂ : Â ∈ construct sys.A)
-    (hV : ∀ s ∈ T, (A s - Â) *ᵥ x s + u s ∈ construct V)
-    (hVb : Bornology.IsBounded (construct V)) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r)
+    {Â : Mat ℝ n n} (hÂ : Â ∈ toSet sys.A)
+    (hV : ∀ s ∈ T, (A s - Â) *ᵥ x s + u s ∈ toSet V)
+    (hVb : Bornology.IsBounded (toSet V)) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r)
     (hVd : (∫ s in (0:ℝ)..t, exp ((t - s) • Â) *ᵥ ((A s - Â) *ᵥ x s + u s))
-      ∈ construct Vd) : -- --- CONCL ---
-    x t ∈ construct (Plus.plus (sys.timeInterval r (m + 2) R₀) Vd) := by -- --- PROOF ---
+      ∈ toSet Vd) : -- --- CONCL ---
+    x t ∈ toSet (Plus.plus (sys.timeInterval r (m + 2) R₀) Vd) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   -- the run is a point system's run at `Â`, its input enlarged by the drift
   have lin := traj.toLinearSys Â hTt measurableSet_Icc fun s hs => hV s (hTt hs)

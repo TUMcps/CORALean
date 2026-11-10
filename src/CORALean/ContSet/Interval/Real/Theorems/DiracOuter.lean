@@ -51,7 +51,7 @@ noncomputable def Interval.step_diracValue (t : ℝ) : EReal := by
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.dirac_zero_outer (I : Interval (Vec ℝ m)) {x : Vec ℝ m} (hx : x ∈ I.construct)
+theorem Interval.dirac_zero_outer (I : Interval (Vec ℝ m)) {x : Vec ℝ m} (hx : x ∈ I.toSet)
     (i : Fin m) : -- --- CONCL ---
     (Interval.dirac 0 I).1 i ≤ Interval.step_diracValue (x i) ∧
       Interval.step_diracValue (x i) ≤ (Interval.dirac 0 I).2 i := by -- --- PROOF ---

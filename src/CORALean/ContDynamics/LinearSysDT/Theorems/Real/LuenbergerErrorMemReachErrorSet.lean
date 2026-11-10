@@ -70,8 +70,8 @@ variable {n nu ny nw nv : ℕ}
 theorem LinearSysDT.luenbergerError_mem_reachErrorSet (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
     (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ sys.r)) (V : Zonotope (Vec ℝ sys.s))
     (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q) (x xh : ℕ → Vec ℝ n) (w : ℕ → Vec ℝ sys.r)
-    (v : ℕ → Vec ℝ sys.s) (h0 : x 0 ∈ X₀.construct) (hw : ∀ k, w k ∈ W.construct)
-    (hv : ∀ k, v k ∈ V.construct)
+    (v : ℕ → Vec ℝ sys.s) (h0 : x 0 ∈ X₀.toSet) (hw : ∀ k, w k ∈ W.toSet)
+    (hv : ∀ k, v k ∈ V.toSet)
     (hstep : ∀ k, x (k + 1) = sys.A *ᵥ x k + sys.B *ᵥ u k + sys.E *ᵥ w k)
     (hy : ∀ k, y k = sys.C *ᵥ x k + sys.F *ᵥ v k) (hxh0 : xh 0 = X₀.c)
     (hxh : ∀ k, xh (k + 1) = sys.A *ᵥ xh k + sys.B *ᵥ u k + L *ᵥ (y k - sys.C *ᵥ xh k))
@@ -99,7 +99,7 @@ theorem LinearSysDT.luenbergerError_mem_reachErrorSet (sys : LinearSysDT ℝ n) 
       rw [Finset.sum_congr rfl fun m hm => by rw [this m hm]]
       abel
   -- the three parts of `Ω_k`
-  have he0 : x 0 - xh 0 ∈ (⟨X₀.h, 0, X₀.G⟩ : Zonotope (Vec ℝ n)).construct := by
+  have he0 : x 0 - xh 0 ∈ (⟨X₀.h, 0, X₀.G⟩ : Zonotope (Vec ℝ n)).toSet := by
     obtain ⟨β, hβ, hx⟩ := h0
     exact ⟨β, hβ, by rw [hxh0, hx]; simp⟩
   have hsplit : ∑ m ∈ Finset.range k, (M ^ m) *ᵥ d (k - 1 - m) =

@@ -51,7 +51,7 @@ variable {n : ℕ}
 /-- Boxing the independent block is the only step that widens; making the box
 dependent is an equality. -/
 theorem PolyZonotope.restructure_outer (pZ : PolyZonotope (Vec ℝ n)) :
-    pZ.construct ⊆ pZ.restructure.construct :=
+    pZ.toSet ⊆ pZ.restructure.toSet :=
   (PolyZonotope.reduceBy_outer pZ _ _).trans (PolyZonotope.dependent_exact _).subset
 
 end CORALean.Real

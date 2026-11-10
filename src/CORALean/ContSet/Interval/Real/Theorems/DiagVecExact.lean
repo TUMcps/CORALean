@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 theorem Interval.diagVec_exact (I : Interval (Mat ℝ n n))
     (hI : ∀ i j, I.inf i j ≤ I.sup i j) : -- --- CONCL ---
-    I.diagVec.construct = (fun A i => A i i) '' I.construct := by -- --- PROOF ---
+    I.diagVec.toSet = (fun A i => A i i) '' I.toSet := by -- --- PROOF ---
   ext x
   constructor
   · intro hx

@@ -53,7 +53,7 @@ private theorem Capsule.aux_abs_le_norm₂ (v : Vec ℝ n) (i : Fin n) : |v i| �
 
 theorem Capsule.isDisjoint_sound (k : ℕ) {C₁ C₂ : Capsule 𝕋 n}
     (h : C₁.isDisjoint k C₂ = true) : -- --- CONCL ---
-    Disjoint C₁.construct C₂.construct := by -- --- PROOF ---
+    Disjoint C₁.toSet C₂.toSet := by -- --- PROOF ---
   rw [Set.disjoint_left]
   intro x hx₁ hx₂
   -- the two bounding radii, and the coordinate that separates the centers

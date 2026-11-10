@@ -54,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q₁ q₂ 
 
 theorem VPolytope.intersectionCut_outer (P₁ P₂ : VPolytope (Vec 𝕋 n)) (Aq₁ : Mat 𝕋 q₁ n)
     (Aq₂ : Mat 𝕋 q₂ n) : -- --- CONCL ---
-    P₁.construct ∩ P₂.construct ⊆ (P₁.intersectionCut P₂ Aq₁ Aq₂).construct := by -- --- PROOF ---
+    P₁.toSet ∩ P₂.toSet ⊆ (P₁.intersectionCut P₂ Aq₁ Aq₂).toSet := by -- --- PROOF ---
   rintro x ⟨h₁, h₂⟩
   refine Interval.vPolytope_contains _ ?_
   refine (P₂.hPolytope Aq₂).contractBox_outer _ ⟨?_, P₂.hPolytope_contains Aq₂ h₂⟩

@@ -43,9 +43,9 @@ noncomputable def ZonoBundle.vPolytope (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB
 
 /-- CORA's `vertices_` of a bundle: the vertices of `conZonotope(zB)`. -/
 noncomputable def ZonoBundle.vPolytopeAll (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k)
-    (hne : zB.construct.Nonempty) : VPolytope (Vec ℝ n) :=
+    (hne : zB.toSet.Nonempty) : VPolytope (Vec ℝ n) :=
   -- the coefficient domain of `conZonotope(zB)` is nonempty when the bundle is
-  have hdom : (zB.conZonotopeAll hk).domain.construct.Nonempty := by
+  have hdom : (zB.conZonotopeAll hk).domain.toSet.Nonempty := by
     obtain ⟨x, hx⟩ := hne
     rw [← ZonoBundle.conZonotopeAll_exact zB hk] at hx
     obtain ⟨β, hb, hP, -⟩ := hx

@@ -52,8 +52,8 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ r)]
 /-- A specification checked on the output set holds of the output. -/
 private theorem OutputEq.aux_holds_of_outputSet (out : OutputEq 𝕋 n m r) (R : S n) (U : S m)
     (spec : Specification ContSet) {x : Vec ℝ n} {u : Vec ℝ m}
-    (hx : x ∈ construct R) (hu : u ∈ construct U)
-    (h : spec.Holds (construct (out.outputSet R U))) : spec.Holds {out.eval x u} :=
+    (hx : x ∈ toSet R) (hu : u ∈ toSet U)
+    (h : spec.Holds (toSet (out.outputSet R U))) : spec.Holds {out.eval x u} :=
   spec.holds_of_outer (Set.singleton_subset_iff.mpr (out.outputSet_outer R U hx hu)) h
 
 
@@ -61,7 +61,7 @@ private theorem OutputEq.aux_holds_of_outputSet (out : OutputEq 𝕋 n m r) (R :
 
 theorem OutputEq.holds_of_check [Contains ContSet (S r)] [IsDisjoint ContSet (S r)]
     (out : OutputEq 𝕋 n m r) (R : S n) (U : S m) (spec : Specification ContSet)
-    {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ construct R) (hu : u ∈ construct U) :
+    {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ toSet R) (hu : u ∈ toSet U) :
     spec.check (out.outputSet R U) → (spec.Holds {out.eval x u}) :=
   fun h => out.aux_holds_of_outputSet R U spec hx hu (spec.check_sound _ h)
 

@@ -38,7 +38,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def ConZonotope.vPolytope (cZ : ConZonotope α)
-    (hne : cZ.domain.construct.Nonempty) : VPolytope α where
+    (hne : cZ.domain.toSet.Nonempty) : VPolytope α where
   k := (cZ.domain.vPolytope hne).k
   V := fun l => cZ.c + ∑ j, ((cZ.domain.vPolytope hne).V l) j • cZ.G j
 

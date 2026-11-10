@@ -80,11 +80,11 @@ private theorem aux_adaptStep_finish {fm : NonlinearSys.FloatHessModel 𝕋 n m}
     (hF : fm.orderStepFloat κ U { options with Δt := Δ } R = some F) : -- --- CONCL ---
     t₀ < t₀ + ToRat.toRat Δ ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
       sys.IsTrajectory (S := 𝒮) (Set.Icc 0 ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ))
-        R.construct U.construct x u y →
+        R.toSet U.toSet x u y →
       (∀ t ∈ Set.Icc 0 ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ),
-          x t ∈ (Reduce.reduce F.1 options.ρ).construct) ∧
+          x t ∈ (Reduce.reduce F.1 options.ρ).toSet) ∧
         x ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ) ∈
-          (Reduce.reduce F.2 options.ρ).construct := by -- --- PROOF ---
+          (Reduce.reduce F.2 options.ρ).toSet := by -- --- PROOF ---
   -- the time of the step, exactly, is the step size
   have hcast : ((t₀ + ToRat.toRat Δ - t₀ : ℚ) : ℝ) = toReal Δ := by
     rw [add_sub_cancel_left, ToRat.toReal_toRat]
@@ -112,9 +112,9 @@ theorem NonlinearSys.FloatHessModel.Encloses.adaptStepFloat_outer
     ∀ s' ∈ fm.adaptStepFloat U options ζδ ζh ζZ ζK prec bis fuel s,
       s.t < s'.t ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
         sys.IsTrajectory (S := 𝒮) (Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ))
-          s.R.construct U.construct x u y →
-        (∀ t ∈ Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ), x t ∈ s'.Rτ.construct) ∧
-          x ((s'.t - s.t : ℚ) : ℝ) ∈ s'.R.construct := by -- --- PROOF ---
+          s.R.toSet U.toSet x u y →
+        (∀ t ∈ Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ), x t ∈ s'.Rτ.toSet) ∧
+          x ((s'.t - s.t : ℚ) : ℝ) ∈ s'.R.toSet := by -- --- PROOF ---
   intro s' (hstep : fm.adaptStepFloat U options ζδ ζh ζZ ζK prec bis fuel s = some s')
   unfold NonlinearSys.FloatHessModel.adaptStepFloat at hstep
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hstep

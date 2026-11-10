@@ -53,20 +53,20 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 /-- The real midpoint of the stored bounds lies between `centerLo` and `center`. -/
 theorem Interval.center_mem_centerBox (I : Interval (Vec 𝕋 n)) :
-    I.nominal.center ∈ I.centerBox.construct :=
+    I.nominal.center ∈ I.centerBox.toSet :=
   fun i => ⟨I.centerLo_le i, I.center_ge i⟩
 
 
--- ===============================  `Interval.convex_construct`  ================================ --
+-- =================================  `Interval.convex_toSet`  ================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       26-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- The set of a float interval is the nominal one's, which is convex. -/
-theorem Interval.convex_construct {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β]
-    [Entrywise β ι] (I : Interval α) : Convex ℝ I.construct :=
-  I.nominal.convex_construct
+theorem Interval.convex_toSet {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β]
+    [Entrywise β ι] (I : Interval α) : Convex ℝ I.toSet :=
+  I.nominal.convex_toSet
 
 
 -- ================================  `Interval.convHull_outer`  ================================= --
@@ -77,8 +77,8 @@ theorem Interval.convex_construct {α β ι : Type} [RealImage α β] [AddCommGr
 
 /-- A box is convex, so it contains the convex hull of whatever the union of two boxes lies in. -/
 theorem Interval.convHull_outer (I₁ I₂ : Interval (Vec 𝕋 n)) :
-    convexHull ℝ (I₁.construct ∪ I₂.construct) ⊆ (I₁.convHull I₂).construct :=
-  convexHull_min (Interval.or_outer I₁ I₂) (Real.Interval.convex_construct _)
+    convexHull ℝ (I₁.toSet ∪ I₂.toSet) ⊆ (I₁.convHull I₂).toSet :=
+  convexHull_min (Interval.or_outer I₁ I₂) (Real.Interval.convex_toSet _)
 
 
 -- ===============================  `Interval.ctranspose_exact`  ================================ --
@@ -89,7 +89,7 @@ theorem Interval.convHull_outer (I₁ I₂ : Interval (Vec 𝕋 n)) :
 
 /-- The same for the conjugate transpose, which over the reals a float reads as is the transpose. -/
 theorem Interval.ctranspose_exact (I : Interval (Mat 𝕋 m n)) :
-    I.ctranspose.construct = Matrix.conjTranspose '' I.construct :=
+    I.ctranspose.toSet = Matrix.conjTranspose '' I.toSet :=
   Real.Interval.ctranspose_exact I.nominal
 
 
@@ -101,8 +101,8 @@ theorem Interval.ctranspose_exact (I : Interval (Mat 𝕋 m n)) :
 
 /-- The difference is in the `Interval.minus` box, and `Interval.halve` is exact. -/
 theorem Interval.halve_minus_mem {n : ℕ} {P Q : Interval (Vec 𝕋 n)} {x y : Vec ℝ n}
-    (hx : x ∈ P.construct) (hy : y ∈ Q.construct) :
-    (1 / 2 : ℝ) • (x - y) ∈ (Interval.halve (Interval.minus P Q)).construct :=
+    (hx : x ∈ P.toSet) (hy : y ∈ Q.toSet) :
+    (1 / 2 : ℝ) • (x - y) ∈ (Interval.halve (Interval.minus P Q)).toSet :=
   Interval.halve_outer (Interval.minus_outer P Q (Set.sub_mem_sub hx hy))
 
 
@@ -114,8 +114,8 @@ theorem Interval.halve_minus_mem {n : ℕ} {P Q : Interval (Vec 𝕋 n)} {x y : 
 
 /-- The sum is in the `Interval.plus` box, and `Interval.halve` is exact. -/
 theorem Interval.halve_plus_mem {n : ℕ} {P Q : Interval (Vec 𝕋 n)} {x y : Vec ℝ n}
-    (hx : x ∈ P.construct) (hy : y ∈ Q.construct) :
-    (1 / 2 : ℝ) • (x + y) ∈ (Interval.halve (Interval.plus P Q)).construct :=
+    (hx : x ∈ P.toSet) (hy : y ∈ Q.toSet) :
+    (1 / 2 : ℝ) • (x + y) ∈ (Interval.halve (Interval.plus P Q)).toSet :=
   Interval.halve_outer (Interval.plus_outer P Q (Set.add_mem_add hx hy))
 
 
@@ -127,22 +127,22 @@ theorem Interval.halve_plus_mem {n : ℕ} {P Q : Interval (Vec 𝕋 n)} {x y : V
 
 /-- No bound is stored, so the box denotes all of `ℝⁿ`; nothing rounds. -/
 theorem Interval.Inf_exact (n : ℕ) :
-    (Interval.Inf n : Interval.EBox 𝕋 n).construct = Set.univ := by
+    (Interval.Inf n : Interval.EBox 𝕋 n).toSet = Set.univ := by
   ext x
-  simp [Interval.Inf, Interval.EBox.construct]
+  simp [Interval.Inf, Interval.EBox.toSet]
 
 
--- =============================  `Interval.infimum_mem_construct`  ============================= --
+-- ===============================  `Interval.infimum_mem_toSet`  =============================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- Nonempty as the exact layer reads the stored bounds: `inf ≤ sup` coordinatewise. -/
-theorem Interval.infimum_mem_construct {α β ι : Type} [RealImage α β] [AddCommGroup β]
+theorem Interval.infimum_mem_toSet {α β ι : Type} [RealImage α β] [AddCommGroup β]
     [Module ℝ β] [Entrywise β ι] (I : Interval α) (h : I.nominal.IsNonempty) :
-    RealImage.realImage I.infimum ∈ I.construct :=
-  Real.Interval.infimum_mem_construct I.nominal h
+    RealImage.realImage I.infimum ∈ I.toSet :=
+  Real.Interval.infimum_mem_toSet I.nominal h
 
 
 -- ==================================  `Interval.mem_mat_iff`  ================================== --
@@ -154,7 +154,7 @@ theorem Interval.infimum_mem_construct {α β ι : Type} [RealImage α β] [AddC
 /-- `Real.Interval.mem_mat_iff` read through `nominal`: both bounds are the stored
 floats read as reals, so the statement needs no unfolding at the use site. -/
 theorem Interval.mem_mat_iff {I : Interval (Mat 𝕋 m n)} {A : Mat ℝ m n} :
-    A ∈ I.construct ↔ ∀ i j, toReal (I.inf i j) ≤ A i j ∧ A i j ≤ toReal (I.sup i j) :=
+    A ∈ I.toSet ↔ ∀ i j, toReal (I.inf i j) ≤ A i j ∧ A i j ≤ toReal (I.sup i j) :=
   ⟨fun h i j => h (i, j), fun h p => h p.1 p.2⟩
 
 
@@ -166,7 +166,7 @@ theorem Interval.mem_mat_iff {I : Interval (Mat 𝕋 m n)} {A : Mat ℝ m n} :
 
 /-- A point of a repeated box is one whose every block lies in the box; nothing rounds. -/
 theorem Interval.mem_repVec_iff (a : ℕ) (I : Interval (Vec 𝕋 n)) (x : Vec ℝ (a * n)) :
-    x ∈ (I.repVec a).construct ↔ ∀ j, (fun k => x (finProdFinEquiv (j, k))) ∈ I.construct :=
+    x ∈ (I.repVec a).toSet ↔ ∀ j, (fun k => x (finProdFinEquiv (j, k))) ∈ I.toSet :=
   Real.Interval.mem_repVec_iff a I.nominal x
 
 
@@ -179,7 +179,7 @@ theorem Interval.mem_repVec_iff (a : ℕ) (I : Interval (Vec 𝕋 n)) (x : Vec �
 /-- A box of vectors, read coordinate by coordinate: both bounds are the stored floats read as
 reals, so the statement needs no unfolding at the use site. -/
 theorem Interval.mem_vec_iff {I : Interval (Vec 𝕋 n)} {x : Vec ℝ n} :
-    x ∈ I.construct ↔ ∀ j, toReal (I.inf j) ≤ x j ∧ x j ≤ toReal (I.sup j) :=
+    x ∈ I.toSet ↔ ∀ j, toReal (I.inf j) ≤ x j ∧ x j ≤ toReal (I.sup j) :=
   Iff.rfl
 
 
@@ -216,8 +216,8 @@ theorem Interval.nominal_unit (n : ℕ) :
 
 /-- A point of the stored unit box is one whose every coordinate has modulus at most `1`. -/
 theorem Interval.mem_unit_iff (x : Vec ℝ n) :
-    x ∈ (Interval.unit n : Interval (Vec 𝕋 n)).construct ↔ ∀ k, |x k| ≤ 1 := by
-  rw [Interval.construct, Interval.nominal_unit]
+    x ∈ (Interval.unit n : Interval (Vec 𝕋 n)).toSet ↔ ∀ k, |x k| ≤ 1 := by
+  rw [Interval.toSet, Interval.nominal_unit]
   exact Real.Interval.mem_unit_iff x
 
 
@@ -229,22 +229,22 @@ theorem Interval.mem_unit_iff (x : Vec ℝ n) :
 
 /-- With a certificate `σ`, every member of the box has Euclidean norm at most `|σ|`. -/
 theorem Interval.norm_le (I : Interval (Vec 𝕋 n)) {σ : 𝕋}
-    (hσ : toReal I.normSq ≤ toReal (mulDown σ σ)) {x : Vec ℝ n} (hx : x ∈ I.construct) :
+    (hσ : toReal I.normSq ≤ toReal (mulDown σ σ)) {x : Vec ℝ n} (hx : x ∈ I.toSet) :
     ‖x‖₂ ≤ toReal (absolute σ) :=
   le_trans (Real.Interval.norm_le (I := I.nominal) hx) (I.norm_nominal_le hσ)
 
 
--- ============================  `Interval.supremum_mem_construct`  ============================= --
+-- ==============================  `Interval.supremum_mem_toSet`  =============================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- Nonempty as the exact layer reads the stored bounds: `inf ≤ sup` coordinatewise. -/
-theorem Interval.supremum_mem_construct {α β ι : Type} [RealImage α β] [AddCommGroup β]
+theorem Interval.supremum_mem_toSet {α β ι : Type} [RealImage α β] [AddCommGroup β]
     [Module ℝ β] [Entrywise β ι] (I : Interval α) (h : I.nominal.IsNonempty) :
-    RealImage.realImage I.supremum ∈ I.construct :=
-  Real.Interval.supremum_mem_construct I.nominal h
+    RealImage.realImage I.supremum ∈ I.toSet :=
+  Real.Interval.supremum_mem_toSet I.nominal h
 
 
 -- ==================================  `Interval.times_outer`  ================================== --
@@ -255,7 +255,7 @@ theorem Interval.supremum_mem_construct {α β ι : Type} [RealImage α β] [Add
 
 /-- Each coordinate is `Float.Interval.mul_between_corners`, which already pays the rounding. -/
 theorem Interval.times_outer (I J : Interval (Vec 𝕋 n)) :
-    Set.image2 (fun x y i => x i * y i) I.construct J.construct ⊆ (I.times J).construct := by
+    Set.image2 (fun x y i => x i * y i) I.toSet J.toSet ⊆ (I.times J).toSet := by
   rintro _ ⟨x, hx, y, hy, rfl⟩ i
   exact Interval.mul_between_corners (hx i).1 (hx i).2 (hy i).1 (hy i).2
 
@@ -268,7 +268,7 @@ theorem Interval.times_outer (I J : Interval (Vec 𝕋 n)) :
 
 /-- The set is unchanged, definitionally. -/
 theorem Interval.uplus_exact {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β]
-    [Entrywise β ι] (I : Interval α) : I.uplus.construct = I.construct := rfl
+    [Entrywise β ι] (I : Interval α) : I.uplus.toSet = I.toSet := rfl
 
 end
 

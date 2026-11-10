@@ -7,8 +7,8 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
 /-!
 # `bilin` is exactly the pairing over shared factors
 
-What exactness can mean here: `construct (bilin f pZ₁ pZ₂)` is not
-`f '' (construct pZ₁ ×ˢ construct pZ₂)`. Both sets are functions of one shared factor vector,
+What exactness can mean here: `toSet (bilin f pZ₁ pZ₂)` is not
+`f '' (toSet pZ₁ ×ˢ toSet pZ₂)`. Both sets are functions of one shared factor vector,
 so `f` at their points ranges over far fewer points than `f` over the two sets independently.
 The claim is about the evaluation map: the result is exactly the image of the admissible
 factors under `a ↦ f (point pZ₁ a) (point pZ₂ a)`, with `pZ₂` read at the same factors through
@@ -48,7 +48,7 @@ theorem PolyZonotope.bilin_exact (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ₁ :
     (pZ₂ : PolyZonotope β) (hp : pZ₁.p = pZ₂.p) : -- --- CONCL ---
     (fun a : Fin pZ₁.p → ℝ => f (pZ₁.point a) (pZ₂.point fun k => a (Fin.cast hp.symm k)))
         '' {a | ∀ k, |a k| ≤ 1}
-      = (pZ₁.bilin f pZ₂ hp).construct := by -- --- PROOF ---
+      = (pZ₁.bilin f pZ₂ hp).toSet := by -- --- PROOF ---
   -- the result has an empty independent block, so a point of it is the sum alone
   have hpt : ∀ (a : Fin pZ₁.p → ℝ) (b : Fin 0 → ℝ),
       f (pZ₁.point a) (pZ₂.point fun k => a (Fin.cast hp.symm k))

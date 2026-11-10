@@ -74,13 +74,13 @@ where the input enclosure is supplied rather than computed. -/
 theorem LinearSys.reachSetExact_subset_timeInterval_inputSolution (sys : LinearSys 𝕋 n)
     {T : Set ℝ} (R₀ U : S n) {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U))
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U))
     (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U))
     (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U))
     (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U))
-    (h0 : (0 : Vec ℝ n) ∈ construct U) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
-    sys.reachSetExact T R₀ U t ⊆ construct (Plus.plus (sys.timeInterval r (m + 2) R₀)
+    (h0 : (0 : Vec ℝ n) ∈ toSet U) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
+    sys.reachSetExact T R₀ U t ⊆ toSet (Plus.plus (sys.timeInterval r (m + 2) R₀)
       (sys.inputSolution r (m + 2) U)) := by -- --- PROOF ---
   rintro _ ⟨x, u, traj, rfl⟩
   exact traj.timeInterval_outer_inputSolution hr hT hε ht0 htr hconv hclosed hbdd

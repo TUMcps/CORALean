@@ -40,7 +40,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.linComb_outer (I₁ I₂ : Interval α) : -- --- CONCL ---
-    Set.linComb I₁.construct I₂.construct ⊆ (I₁.linComb I₂).construct := by -- --- PROOF ---
+    Set.linComb I₁.toSet I₂.toSet ⊆ (I₁.linComb I₂).toSet := by -- --- PROOF ---
   rintro x ⟨y₁, h₁, y₂, h₂, lam, ⟨hl0, hl1⟩, rfl⟩
   intro i
   have a1 := h₁ i

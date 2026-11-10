@@ -46,9 +46,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.cartProdVec_exact (E : Ellipsoid 𝕋 n) (v : Vec 𝕋 m) : -- --- CONCL ---
-    (E.cartProdVec v).construct =
+    (E.cartProdVec v).toSet =
       (fun x : Vec ℝ n => (Fin.append x (toRealVec v) : Vec ℝ (n + m))) ''
-        E.construct := by -- --- PROOF ---
+        E.toSet := by -- --- PROOF ---
   -- the nominal ellipsoid is the exact layer's product
   set B : Mat ℝ (n + m) (n + m) := toRealMat (E.cartProdVec v).Q with hB
   set P : Mat ℝ (n + m) n := Matrix.of fun i j => Fin.addCases (fun i => if i = j then 1 else 0)
@@ -95,12 +95,12 @@ theorem Ellipsoid.cartProdVec_exact (E : Ellipsoid 𝕋 n) (v : Vec 𝕋 m) : --
       refine Fin.addCases (fun i => ?_) (fun i => ?_) i <;> simp [toRealVec, Ellipsoid.cartProdVec]
   have hNs : nominalSet (E.cartProdVec v)
       = (fun x : Vec ℝ n => (Fin.append x (toRealVec v) : Vec ℝ (n + m))) '' nominalSet E := by
-    show (nominal (E.cartProdVec v)).ellipsoid.construct = _ '' (nominal E).ellipsoid.construct
+    show (nominal (E.cartProdVec v)).ellipsoid.toSet = _ '' (nominal E).ellipsoid.toSet
     rw [hN]
     exact Real.Ellipsoid.cartProdVec_exact _ _
   -- the error box: the original's on the first coordinates, zero on the rest
-  have hI : ∀ e : Vec ℝ (n + m), e ∈ (E.cartProdVec v).I_error.construct ↔
-      (fun i => e (Fin.castAdd m i)) ∈ E.I_error.construct ∧ ∀ i, e (Fin.natAdd n i) = 0 := by
+  have hI : ∀ e : Vec ℝ (n + m), e ∈ (E.cartProdVec v).I_error.toSet ↔
+      (fun i => e (Fin.castAdd m i)) ∈ E.I_error.toSet ∧ ∀ i, e (Fin.natAdd n i) = 0 := by
     intro e
     rw [Interval.mem_vec_iff, Interval.mem_vec_iff]
     constructor
@@ -117,7 +117,7 @@ theorem Ellipsoid.cartProdVec_exact (E : Ellipsoid 𝕋 n) (v : Vec 𝕋 m) : --
       · simp only [Ellipsoid.cartProdVec, Fin.append_right, toReal_zero, h₂ i]
         exact ⟨le_rfl, le_rfl⟩
   -- the two sums, the padding moved between the summands
-  show nominalSet (E.cartProdVec v) + (E.cartProdVec v).I_error.construct = _
+  show nominalSet (E.cartProdVec v) + (E.cartProdVec v).I_error.toSet = _
   rw [hNs]
   ext x
   constructor

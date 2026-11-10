@@ -64,11 +64,11 @@ variable {n : ℕ}
 tolerance `ε` lands the step inside `‖A‖ * r + rU + ε`. -/
 theorem Zonotope.oneStep_subset_closedBall_of_reduceBoxOrder (A : Mat ℝ n n) (hn : 0 < n)
     {Z U : Zonotope (Vec ℝ n)} {r rU ε : ℝ}
-    (hZ : Z.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r)
-    (hU : U.construct ⊆ Metric.closedBall (0 : Vec ℝ n) rU) (hε : 0 ≤ ε) : -- --- CONCL ---
+    (hZ : Z.toSet ⊆ Metric.closedBall (0 : Vec ℝ n) r)
+    (hU : U.toSet ⊆ Metric.closedBall (0 : Vec ℝ n) rU) (hε : 0 ≤ ε) : -- --- CONCL ---
     (Zonotope.reduce (Zonotope.plus (Zonotope.mtimes A Z) U)
         (Zonotope.reduceBoxOrder (Zonotope.plus (Zonotope.mtimes A Z) U)
-          (Metric.closedBall (0 : Vec ℝ n) ε))).construct
+          (Metric.closedBall (0 : Vec ℝ n) ε))).toSet
       ⊆ Metric.closedBall (0 : Vec ℝ n) (‖A‖ * r + rU + ε) := by -- --- PROOF ---
   apply Zonotope.oneStep_subset_closedBall A hZ hU
   exact Zonotope.reduceBoxOrder_spec (Zonotope.plus (Zonotope.mtimes A Z) U) hn

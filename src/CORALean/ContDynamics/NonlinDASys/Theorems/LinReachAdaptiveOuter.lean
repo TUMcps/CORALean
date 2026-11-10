@@ -78,10 +78,10 @@ theorem NonlinDASys.IsTrajectory.linReachAdaptive_outer {sys : NonlinDASys n p m
     (hΔt : 0 < pass.Δt)
     (hc : (pass.linPoint (T.taylor Rstart)).Certifies sys U pass.Δt k x y u) : -- --- CONCL ---
     let lr := NonlinDASys.linReachAt sys (pass.linPoint (T.taylor Rstart)) Rstart U pass.Δt (k + 2)
-    x pass.Δt ∈ lr.1.construct ∧
+    x pass.Δt ∈ lr.1.toSet ∧
       ∀ t ∈ Set.Icc 0 pass.Δt,
-        x t ∈ lr.2.1.construct ∧
-        (x t, y t) ∈ lr.2.2.construct := by -- --- PROOF ---
+        x t ∈ lr.2.1.toSet ∧
+        (x t, y t) ∈ lr.2.2.toSet := by -- --- PROOF ---
   intro lr
   exact traj.linReachAt_outer hΔt hc
 

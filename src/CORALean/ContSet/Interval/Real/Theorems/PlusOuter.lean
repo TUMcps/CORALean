@@ -41,7 +41,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.plus_outer (I₁ I₂ : Interval α) :
-    I₁.construct + I₂.construct ⊆ (I₁.plus I₂).construct := by
+    I₁.toSet + I₂.toSet ⊆ (I₁.plus I₂).toSet := by
   rintro _ ⟨x₁, hx₁, x₂, hx₂, rfl⟩ i
   rw [Interval.plus, Entrywise.entry_add, Entrywise.entry_add, Entrywise.entry_add]
   exact ⟨add_le_add (hx₁ i).1 (hx₂ i).1, add_le_add (hx₁ i).2 (hx₂ i).2⟩

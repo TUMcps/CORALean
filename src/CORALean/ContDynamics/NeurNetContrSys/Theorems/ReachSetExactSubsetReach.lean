@@ -81,8 +81,8 @@ theorem NeurNetContrSys.reachSetExact_subset_reach (sys : NeurNetContrSys (Linea
     (hε : ‖Δt • sys.augment.A‖ / ((η : ℝ) + 2) < 1) {H : ℕ} (R₀ : S n)
     {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Encloses π) (W : Set (Vec ℝ sys.plant.r))
     (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) {i : ℕ} (hi : i ≤ H) : -- --- CONCL ---
-    sys.reachSetExact π H R₀ (construct U_ext) W ((i : ℝ) * sys.dt)
-      ⊆ construct (sys.reach U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) := by -- --- PROOF ---
+    sys.reachSetExact π H R₀ (toSet U_ext) W ((i : ℝ) * sys.dt)
+      ⊆ toSet (sys.reach U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) := by -- --- PROOF ---
   rintro _ ⟨x, v, w, traj, rfl⟩
   exact sys.reach_outer U_ext o η N ho hΔt hdt hε hπ hW traj i hi
 

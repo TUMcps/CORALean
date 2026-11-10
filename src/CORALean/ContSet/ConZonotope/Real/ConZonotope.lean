@@ -17,7 +17,7 @@ an `HPolytope` over the coefficient space rather than the matrix equation `A β 
 constraints are a polytope and every polytope operation applies to them directly: `ofMat` recovers
 CORA's form, and `plus` and `mtimesIntervalMat` state their constraints by `comap` and
 `intersection`. That generalizes CORA, which admits equalities only; a halfspace description carries
-both. The unit box stays outside `P`, imposed by `construct`, which is what lets `zonotope` be an
+both. The unit box stays outside `P`, imposed by `toSet`, which is what lets `zonotope` be an
 enclosure whatever `P` says. Over any real module, as a zonotope is: the constraints live on the
 coefficient space `Vec ℝ h`, whatever the generators point into.
 
@@ -56,8 +56,8 @@ structure ConZonotope (α : Type) where
 
 /-- The set a constrained zonotope denotes: the points `c` plus the generators weighted by
 coefficients in `[-1, 1]` that lie in `P`. -/
-def ConZonotope.construct (cZ : ConZonotope α) : Set α :=
-  {x | ∃ β : Fin cZ.h → ℝ, (∀ j, |β j| ≤ 1) ∧ β ∈ cZ.P.construct
+def ConZonotope.toSet (cZ : ConZonotope α) : Set α :=
+  {x | ∃ β : Fin cZ.h → ℝ, (∀ j, |β j| ≤ 1) ∧ β ∈ cZ.P.toSet
         ∧ x = cZ.c + ∑ j, β j • cZ.G j}
 
 end CORALean.Real

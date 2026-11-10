@@ -51,8 +51,8 @@ private theorem HPolytope.aux_stackProd_be (gs : ∀ i, HPolytope (Vec ℝ (n i)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.stackProd_exact (gs : ∀ i, HPolytope (Vec ℝ (n i))) : -- --- CONCL ---
-    (HPolytope.stackProd gs).construct =
-      {z | ∀ i, unstack z i ∈ (gs i).construct} := by -- --- PROOF ---
+    (HPolytope.stackProd gs).toSet =
+      {z | ∀ i, unstack z i ∈ (gs i).toSet} := by -- --- PROOF ---
   ext z
   constructor
   · rintro ⟨h1, h2⟩ i

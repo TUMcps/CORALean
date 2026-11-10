@@ -54,7 +54,7 @@ private theorem HPolytope.aux_unitBox_A_natAdd (j : Fin n) :
 
 -- membership is those two halves read back as a bound on the magnitude
 theorem HPolytope.mem_unitBox_iff {x : Vec ℝ n} : -- --- CONCL ---
-    x ∈ (HPolytope.unitBox n).construct ↔ ∀ j, |x j| ≤ 1 := by -- --- PROOF ---
+    x ∈ (HPolytope.unitBox n).toSet ↔ ∀ j, |x j| ≤ 1 := by -- --- PROOF ---
   constructor
   · rintro ⟨hle, -⟩ j
     have hup : x j ≤ 1 := by

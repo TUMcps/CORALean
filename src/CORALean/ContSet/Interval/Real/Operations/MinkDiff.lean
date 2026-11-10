@@ -9,7 +9,7 @@ public import CORALean.ContSet.Interval.Real.Interval
 
 CORA's `@interval/minkDiff`: bounds subtract like-to-like, `inf` from `inf` and
 `sup` from `sup` — not `inf` from `sup`. A crossed result denotes `∅`, exactly
-as `Interval.construct`'s own docstring says, so no `IsNonempty` hypothesis
+as `Interval.toSet`'s own docstring says, so no `IsNonempty` hypothesis
 belongs here.
 
 ## Inputs

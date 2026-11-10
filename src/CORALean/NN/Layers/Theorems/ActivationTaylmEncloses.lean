@@ -5,7 +5,7 @@ public import CORALean.ContSet.Taylm.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.PowOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.SmulOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.SumOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Taylm.Real.Theorems.MemToSetIff
 public import CORALean.NN.Layers.Definitions.Basic
 public import CORALean.NN.Layers.Operations.ActivationTaylm
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
@@ -56,13 +56,13 @@ theorem Layer.activationTaylm_encloses {P : LayerRelaxation 𝕋 n deg}
   refine ⟨fun s x hx => ?_⟩
   -- the point is a point of the box and the values of functions the input models enclose
   have hbox := Taylm.interval_contains s.taylm hx
-  obtain ⟨f, hf, t, ht, hxf⟩ := (Real.Taylm.mem_construct_iff _ x).1 hx
+  obtain ⟨f, hf, t, ht, hxf⟩ := (Real.Taylm.mem_toSet_iff _ x).1 hx
   -- the fit's coefficients on each neuron's range, and the deviation of `σ` from the fit at `x`
   set c : Fin n → Fin (deg + 1) → ℝ := fun i k =>
     toReal ((P i).coeffs ((Taylm.interval s.taylm).inf i) ((Taylm.interval s.taylm).sup i) k)
     with hc
   set dv : Fin n → ℝ := fun i => σ (x i) - Real.evalPoly (c i) (x i) with hdv
-  refine (Real.Taylm.mem_construct_iff _ _).2
+  refine (Real.Taylm.mem_toSet_iff _ _).2
     ⟨fun i s' => (c i 0 + dv i) + ∑ k : Fin deg, c i k.succ * f i s' ^ ((k : ℕ) + 1), ?_, t, ht,
       fun i => ?_⟩
   · -- each output model encloses the fit at `f i` plus the constant deviation

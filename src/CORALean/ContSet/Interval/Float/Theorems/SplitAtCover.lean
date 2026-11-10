@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.splitAt_cover (I : Interval (Vec 𝕋 n)) (j : Fin n) : -- --- CONCL ---
-    I.construct ⊆ (I.splitAt j).1.construct ∪ (I.splitAt j).2.construct := by -- --- PROOF ---
+    I.toSet ⊆ (I.splitAt j).1.toSet ∪ (I.splitAt j).2.toSet := by -- --- PROOF ---
   intro x hx
   -- the rounded-down midpoint is at most the rounded-up one
   have hlo : toReal (half (addDown (I.inf j) (I.sup j))) ≤

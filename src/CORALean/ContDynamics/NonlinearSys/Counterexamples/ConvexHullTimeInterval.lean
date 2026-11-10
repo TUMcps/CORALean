@@ -108,8 +108,8 @@ private theorem NonlinearSys.aux_innerAbstrErr_zero {n : ℕ} (Δt : ℝ) (η : 
 
 /-- [2, (19), (28)]: `F = G = {0}` for `A = 0`, any `η`. -/
 private theorem NonlinearSys.aux_zero_depCurvature {n : ℕ} (Δt : ℝ) (η : ℕ) : -- --- CONCL ---
-    (STL.depCurvatureF (0 : Mat ℝ n n) Δt η).construct = {0} ∧
-      (STL.depCurvatureG (0 : Mat ℝ n n) Δt η).construct = {0} := by -- --- PROOF ---
+    (STL.depCurvatureF (0 : Mat ℝ n n) Δt η).toSet = {0} ∧
+      (STL.depCurvatureG (0 : Mat ℝ n n) Δt η).toSet = {0} := by -- --- PROOF ---
   have hE := NonlinearSys.aux_expRemainderMat_zero (n := n) Δt η
   have hT : ∀ i j k, Real.MatExp.corrTerm (0 : Mat ℝ n n) Δt (i + 2) j k = 0 := fun i j k => by
     simp [Real.MatExp.corrTerm, zero_pow (Nat.succ_ne_zero (i + 1))]
@@ -117,7 +117,7 @@ private theorem NonlinearSys.aux_zero_depCurvature {n : ℕ} (Δt : ℝ) (η : �
     simp [Real.MatExp.constCorrTerm, zero_pow (Nat.succ_ne_zero i)]
   constructor <;> (
     ext M
-    simp only [Real.Interval.construct, STL.depCurvatureF, STL.depCurvatureG, hT, hK, hE,
+    simp only [Real.Interval.toSet, STL.depCurvatureF, STL.depCurvatureG, hT, hK, hE,
       min_self, max_self, Finset.sum_const_zero, Matrix.zero_apply, sub_zero, add_zero, mul_zero,
       mem_setOf_eq, mem_singleton_iff, Entrywise.entry_mat]
     constructor

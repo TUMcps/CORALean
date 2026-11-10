@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.CompactAlignedIneq
 public import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
-public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
+public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictToSet
 
 @[expose] public section
 
@@ -39,13 +39,13 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.compactAlignedIneq_exact (P : HPolytope (Vec ℝ n)) : -- --- CONCL ---
-    P.compactAlignedIneq.construct = P.construct := by -- --- PROOF ---
+    P.compactAlignedIneq.toSet = P.toSet := by -- --- PROOF ---
   rw [← P.normalizeRows_exact]
   unfold HPolytope.compactAlignedIneq
   generalize P.normalizeRows = Q
-  simp only [HPolytope.restrict_construct, Finset.mem_filter, Finset.mem_univ, true_and]
+  simp only [HPolytope.restrict_toSet, Finset.mem_filter, Finset.mem_univ, true_and]
   ext x
-  simp only [Set.mem_setOf_eq, HPolytope.construct]
+  simp only [Set.mem_setOf_eq, HPolytope.toSet]
   constructor
   · rintro ⟨h1, h2⟩
     refine ⟨fun i => ?_, fun r => h2 r trivial⟩

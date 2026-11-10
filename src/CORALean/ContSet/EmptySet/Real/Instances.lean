@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (EmptySet n) (Vec ℝ n) := ⟨EmptySet.construct⟩
+instance : ContSet (EmptySet n) (Vec ℝ n) := ⟨EmptySet.toSet⟩
 
 instance : ConvexSet (EmptySet n) (Vec ℝ n) := ⟨fun _ => convex_empty⟩
 

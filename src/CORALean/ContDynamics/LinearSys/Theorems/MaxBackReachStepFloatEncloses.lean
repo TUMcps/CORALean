@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetInputS
 public import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachCZFloatInner
 public import CORALean.ContDynamics.LinearSys.Theorems.MinkowskiDiffSubsetMaxBackReachCZ
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
-public import CORALean.ContSet.ConZonotope.Float.Theorems.ConstructEqNominal
+public import CORALean.ContSet.ConZonotope.Float.Theorems.ToSetEqNominal
 public import CORALean.ContSet.ConZonotope.Float.Operations.LinCombSameCenter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsNominalIff
@@ -19,10 +19,10 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MulVecAppendLeft
 public import CORALean.Global.Float.ToRealMatMulVec
 public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledLeft
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsConstructIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsToSetIff
 public import CORALean.ContSet.HPolytope.Float.Theorems.MulVecAppendLast
 public import CORALean.ContSet.HPolytope.Float.Theorems.MulVecPadLeft
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
 public import CORALean.ContSet.HPolytope.Float.Theorems.MulVecPadRight
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MtimesNominalErr
@@ -145,7 +145,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 private theorem HPolytope.aux_mem_halfScaledRight {P : HPolytope 𝕋 (Vec 𝕋 n₂)} {z : Vec ℝ n₁}
     {y : Vec ℝ n₂} {t : ℝ}
     (h : Fin.append (Fin.append z y) (fun _ : Fin 1 => t)
-      ∈ (HPolytope.halfScaledRight n₁ P).construct) : -- --- CONCL ---
+      ∈ (HPolytope.halfScaledRight n₁ P).toSet) : -- --- CONCL ---
     (∀ i, (toRealMat P.A *ᵥ y) i ≤ (1 - t) / 2 * toReal (P.b i) + |toReal (P.b_error i)|) ∧
       ∀ i, |(toRealMat P.Ae *ᵥ y) i - (1 - t) / 2 * toReal (P.be i)|
         ≤ |toReal (P.be_error i)| := by -- --- PROOF ---
@@ -186,7 +186,7 @@ private theorem HPolytope.aux_mem_halfScaledRight {P : HPolytope 𝕋 (Vec 𝕋 
 private theorem HPolytope.aux_mem_halfScaledLeft {P : HPolytope 𝕋 (Vec 𝕋 n₁)} {y : Vec ℝ n₁}
     {z : Vec ℝ n₂} {t : ℝ}
     (h : Fin.append (Fin.append y z) (fun _ : Fin 1 => t)
-      ∈ (P.halfScaledLeft n₂).construct) : -- --- CONCL ---
+      ∈ (P.halfScaledLeft n₂).toSet) : -- --- CONCL ---
     (∀ i, (toRealMat P.A *ᵥ y) i ≤ (t + 1) / 2 * toReal (P.b i) + |toReal (P.b_error i)|) ∧
       ∀ i, |(toRealMat P.Ae *ᵥ y) i - (t + 1) / 2 * toReal (P.be i)|
         ≤ |toReal (P.be_error i)| := by -- --- PROOF ---
@@ -233,12 +233,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A block meeting a polytope's rows and the unit box's at weight `lam` is `lam` times a
 coefficient vector of the polytope inside the unit box, the polytope being nonempty there. -/
 private theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 (Vec 𝕋 k))
-    (hne : ∃ β : Vec ℝ k, (∀ j, |β j| ≤ 1) ∧ β ∈ P.nominal.construct) {γ : Vec ℝ k} {lam : ℝ}
+    (hne : ∃ β : Vec ℝ k, (∀ j, |β j| ≤ 1) ∧ β ∈ P.nominal.toSet) {γ : Vec ℝ k} {lam : ℝ}
     {Q : HPolytope 𝕋 (Vec 𝕋 k)} (hQ : Q = P.stackRows (HPolytope.unitBox 𝕋 k))
     (hl0 : 0 ≤ lam)
     (hA : ∀ i, (toRealMat Q.A *ᵥ γ) i ≤ lam * toReal (Q.b i))
     (hE : ∀ i, (toRealMat Q.Ae *ᵥ γ) i = lam * toReal (Q.be i)) : -- --- CONCL ---
-    ∃ β : Vec ℝ k, (∀ j, |β j| ≤ 1) ∧ β ∈ P.nominal.construct ∧ lam • β = γ := by -- --- PROOF ---
+    ∃ β : Vec ℝ k, (∀ j, |β j| ≤ 1) ∧ β ∈ P.nominal.toSet ∧ lam • β = γ := by -- --- PROOF ---
   obtain rfl | hpos := hl0.eq_or_lt
   · -- zero weight: the unit-box rows pin the block to the origin
     obtain ⟨β, hβ, hP⟩ := hne
@@ -255,7 +255,7 @@ private theorem ConZonotope.aux_blockCoeff {k : ℕ} (P : HPolytope 𝕋 (Vec �
   · -- positive weight: divide through, the rows then holding as stated
     refine ⟨lam⁻¹ • γ, ?_⟩
     -- the divided vector meets the rows at weight one, and the unit box
-    have hmem : lam⁻¹ • γ ∈ Q.nominal.construct := by
+    have hmem : lam⁻¹ • γ ∈ Q.nominal.toSet := by
       refine HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => ?_⟩
       · -- the inequality rows scale by `lam⁻¹`
         rw [Matrix.mulVec_smul, Pi.smul_apply, smul_eq_mul]
@@ -300,7 +300,7 @@ private theorem ConZonotope.aux_linCombSameCenter_subset (cZ₁ cZ₂ : ConZonot
   -- the three row groups of the hull's coefficient polytope
   have hP' : β ∈ (((cZ₁.P.stackRows (HPolytope.unitBox 𝕋 cZ₁.h)).halfScaledLeft
       cZ₂.h).stackRows (HPolytope.halfScaledRight cZ₁.h
-        (cZ₂.P.stackRows (HPolytope.unitBox 𝕋 cZ₂.h)))).nominal.construct := hP
+        (cZ₂.P.stackRows (HPolytope.unitBox 𝕋 cZ₂.h)))).nominal.toSet := hP
   obtain ⟨hL, hR⟩ := HPolytope.mem_stackRows_nominal_iff.mp hP'
   rw [hβeq] at hL hR
   replace hL := (HPolytope.mem_nominal_of_origin rfl).mpr hL
@@ -401,23 +401,23 @@ end Float
 theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : Interval (Vec 𝕋 n))
     (P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)) {U W₀ : Zonotope (Vec 𝕋 n)} {Zw : 𝕋 → 𝕋 → Zonotope (Vec 𝕋 n)}
     {Δt : 𝕋} {η : ℕ} {s : LinearSys.MaxBackReachStateFloat 𝕋 n}
-    (ρ : ∀ (P : CORALean.Real.HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.construct)
-      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
+    (ρ : ∀ (P : CORALean.Real.HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.toSet)
+      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.toSet c)
     (P₁r P₂r : CORALean.Real.HPolytope (Vec ℝ n))
     (Ur W₀r : CORALean.Real.Zonotope (Vec ℝ n)) (Zwr : ℝ → CORALean.Real.Zonotope (Vec ℝ n))
     (sr : LinearSys.MaxBackReachState n) (hs : s.Encloses sr) (hΔt : 0 < toReal Δt)
-    (hU0 : (0 : Vec ℝ n) ∈ U.I_error.construct) (hU : U.construct ⊆ construct Ur)
-    (hWE : W₀.I_error = Interval.point fun _ => FloatOps.zero) (hW₀r : W₀r.construct ⊆ W₀.construct)
-    (hZw : construct (Zwr sr.t) ⊆ (Zw s.tEnc.inf s.tEnc.sup).construct)
-    (hP₁ : P₁.construct ⊆ P₁r.construct)
-    (hP₂ : P₂.construct ⊆ P₂r.construct) (hP₁0 : (0 : Vec ℝ n) ∈ P₁.I_error.construct)
-    (hP₂0 : (0 : Vec ℝ n) ∈ P₂.I_error.construct)
+    (hU0 : (0 : Vec ℝ n) ∈ U.I_error.toSet) (hU : U.toSet ⊆ toSet Ur)
+    (hWE : W₀.I_error = Interval.point fun _ => FloatOps.zero) (hW₀r : W₀r.toSet ⊆ W₀.toSet)
+    (hZw : toSet (Zwr sr.t) ⊆ (Zw s.tEnc.inf s.tEnc.sup).toSet)
+    (hP₁ : P₁.toSet ⊆ P₁r.toSet)
+    (hP₂ : P₂.toSet ⊆ P₂r.toSet) (hP₁0 : (0 : Vec ℝ n) ∈ P₁.I_error.toSet)
+    (hP₂0 : (0 : Vec ℝ n) ∈ P₂.I_error.toSet)
     (hker₁ : ∀ i (y : Vec ℝ n), (toRealMat P₁.Ae *ᵥ y) i = 0)
     (hker₂ : ∀ i (y : Vec ℝ n), (toRealMat P₂.Ae *ᵥ y) i = 0)
     (hkerr₁ : ∀ (i : Fin P₁r.me) (y : Vec ℝ n), P₁r.Ae i y = 0)
     (hkerr₂ : ∀ (i : Fin P₂r.me) (y : Vec ℝ n), P₂r.Ae i y = 0)
-    (hP₁b : Bornology.IsBounded P₁r.dropEqs.construct)
-    (hP₂b : Bornology.IsBounded P₂r.dropEqs.construct) : -- --- CONCL ---
+    (hP₁b : Bornology.IsBounded P₁r.dropEqs.toSet)
+    (hP₂b : Bornology.IsBounded P₂r.dropEqs.toSet) : -- --- CONCL ---
     ∀ η' ∈ sys.reachOrderFloat Δt Δt η,
       ∀ s' ∈ sys.maxBackReachStepFloat Bx P₁ P₂ U W₀ Zw Δt η s,
         s'.Encloses
@@ -452,19 +452,19 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
     have := add_le_addUp s.tEnc.sup Δt
     linarith [hs.le_tEnc_sup]
   -- the matrices are in their interval matrices
-  have hΦk : Φk' ∈ Φk.construct := sys.exp_mem_expIntervalFloat hadmk hs.tEnc_inf_le hs.le_tEnc_sup
-  have hI : Ξ ∈ I.construct := sys.expIntegral_mem_adaptiveIntegralFloat hΔt.le hadm'
-  have hM : Φk' * Ξ ∈ M.construct := Interval.matMul_outer _ _ hΦk hI
-  have hT0 : (0 : Vec ℝ n) ∈ T.I_error.construct := by
-    show (0 : Vec ℝ n) ∈ ((Zonotope.mtimesIntervalMat M U).materialise).I_error.construct
+  have hΦk : Φk' ∈ Φk.toSet := sys.exp_mem_expIntervalFloat hadmk hs.tEnc_inf_le hs.le_tEnc_sup
+  have hI : Ξ ∈ I.toSet := sys.expIntegral_mem_adaptiveIntegralFloat hΔt.le hadm'
+  have hM : Φk' * Ξ ∈ M.toSet := Interval.matMul_outer _ _ hΦk hI
+  have hT0 : (0 : Vec ℝ n) ∈ T.I_error.toSet := by
+    show (0 : Vec ℝ n) ∈ ((Zonotope.mtimesIntervalMat M U).materialise).I_error.toSet
     rw [Zonotope.materialise_eq]
     exact Zonotope.zero_mem_mtimesIntervalMat_error hM hU0
   -- the disturbance sets: the exact `Ẑ_{W₀}` is inside the float one
-  have h5 : construct (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW₀ ⊆
-      ZW₀.construct := by
+  have h5 : toSet (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW₀ ⊆
+      ZW₀.toSet := by
     show (CORALean.Real.Zonotope.plus sr.ZW₀ (CORALean.Real.Zonotope.mtimes Φk'
-      (sys.inputSolution (S := 𝒵) Δ η' W₀r))).construct
-      ⊆ ZW₀.construct
+      (sys.inputSolution (S := 𝒵) Δ η' W₀r))).toSet
+      ⊆ ZW₀.toSet
     rw [← CORALean.Real.Zonotope.plus_exact]
     rintro _ ⟨a, ha, b, hb, rfl⟩
     rw [← CORALean.Real.Zonotope.mtimes_exact] at hb
@@ -474,23 +474,23 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
         (S := 𝒵[𝕋]) Φk _
         (Set.mem_biUnion hΦk (Set.mem_image_of_mem _ (hW hb')))))
   -- and so is the new `Ẑ_W`: the new `Ẑ_{W₀}` plus the disturbance part
-  have h6 : construct (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW ⊆
-      ZW.construct := by
+  have h6 : toSet (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW ⊆
+      ZW.toSet := by
     intro x hx
     have hx2 : x ∈ (CORALean.Real.Zonotope.plus
         (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW₀
-          (Zwr sr.t)).construct := hx
+          (Zwr sr.t)).toSet := hx
     rw [← CORALean.Real.Zonotope.plus_exact] at hx2
     obtain ⟨a, ha, b, hb, rfl⟩ := hx2
     exact Plus.plus_outer ZW₀ _ (Set.add_mem_add (h5 ha) (hZw hb))
   refine ⟨h1lo, h1hi, ?_, ?_, h5, h6, ?_⟩
   -- the error box of the new `Z̲_U` holds `0`
-  · show (0 : Vec ℝ n) ∈ ((Zonotope.plus s.ZU T).materialise).I_error.construct
+  · show (0 : Vec ℝ n) ∈ ((Zonotope.plus s.ZU T).materialise).I_error.toSet
     rw [Zonotope.materialise_eq]
     exact Zonotope.zero_mem_plus_error hs.zero_mem hT0
   -- a point of the new `Z̲_U`: the old one's, plus the new term's, plus the boxes
   · intro x hx
-    have hx' : x ∈ (Zonotope.plus s.ZU T).construct := by
+    have hx' : x ∈ (Zonotope.plus s.ZU T).toSet := by
       have h := hx
       simp only [ZU, Plus.plus, Zonotope.materialise_eq] at h
       exact h
@@ -498,7 +498,7 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
       Zonotope.plus_subset_add_box s.ZU T hs.zero_mem hT0 hx'
     -- the old point is an exact one plus its error, the new term an exact image plus the box
     obtain ⟨u₁, hu₁, e₁, he₁, rfl⟩ := hs.ZU sa hsa
-    have htb' : tb ∈ (Zonotope.mtimesIntervalMat M U).construct := by
+    have htb' : tb ∈ (Zonotope.mtimesIntervalMat M U).toSet := by
       have h := htb
       simp only [T, Mtimes.mtimes, Zonotope.materialise_eq] at h
       exact h
@@ -507,7 +507,7 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
     -- the exact point is `u₁` plus the exact term, the error the three together
     refine ⟨u₁ + Φk' *ᵥ (Ξ *ᵥ u), ?_, e₁ + b + p, fun i => ?_, ?_⟩
     · show _ ∈ (CORALean.Real.Zonotope.plus sr.ZU (CORALean.Real.Zonotope.mtimes Φk'
-        (CORALean.Real.Zonotope.mtimes Ξ Ur))).construct
+        (CORALean.Real.Zonotope.mtimes Ξ Ur))).toSet
       rw [← CORALean.Real.Zonotope.plus_exact]
       refine ⟨u₁, hu₁, _, ?_, rfl⟩
       rw [← CORALean.Real.Zonotope.mtimes_exact]
@@ -536,9 +536,9 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
     -- the exact matrices of line 12, and their intervals
     set Φ : Mat ℝ n n := exp ((-(sr.t + Δ)) • A) with hΦ
     set Ψ' : Mat ℝ n n := exp ((sr.t + Δ) • A) with hΨ'
-    have hΦn : Φ ∈ Φn.construct := sys.exp_mem_expIntervalFloat hadmn
+    have hΦn : Φ ∈ Φn.toSet := sys.exp_mem_expIntervalFloat hadmn
       (by rw [toReal_neg]; linarith) (by rw [toReal_neg]; linarith)
-    have hΨ : Ψ' ∈ Ψ.construct := sys.exp_mem_expIntervalFloat hadmk1 h1lo h1hi
+    have hΨ : Ψ' ∈ Ψ.toSet := sys.exp_mem_expIntervalFloat hadmk1 h1lo h1hi
     have hΦΨ : Φ * Ψ' = 1 := by
       have hcomm : Commute ((-(sr.t + Δ)) • A) ((sr.t + Δ) • A) :=
         ((Commute.refl _).smul_left _).smul_right _
@@ -547,7 +547,7 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
       exact h
     -- the hull part: a point `z` of the stored hull, mapped within the rounding of `Φ̄ z`
     have ha' : a ∈ nominalSet (ConZonotope.mtimesNominal Φn.inf H) :=
-      (ConZonotope.construct_eq_nominal rfl).subset ha
+      (ConZonotope.toSet_eq_nominal rfl).subset ha
     obtain ⟨z, hz, hzerr⟩ := ConZonotope.mtimesNominal_err Φn.inf H ha'
     have hne₁ : (nominalSet C₁).Nonempty :=
       ConZonotope.zeroFeasible_nonempty (Bool.and_eq_true_iff.mp hc).1
@@ -577,7 +577,7 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
               (mul_le_mul_of_nonneg_left (hζ₂ k) (by linarith))
         _ = toReal (ζ k) := by ring
     -- the second summand: `Φ` applied to a point of `Z̲_U(t_k)`, within `DU`
-    have hb' : -b ∈ (Zonotope.mtimesIntervalMat Φn s.ZU).construct := by
+    have hb' : -b ∈ (Zonotope.mtimesIntervalMat Φn s.ZU).toSet := by
       have h := Set.mem_neg.mp hb
       simp only [Mtimes.mtimes, Zonotope.materialise_eq] at h
       exact h
@@ -648,37 +648,37 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
         exact le_trans (abs_add_le _ _) (by linarith)
       exact Interval.abs_mulVec_le_magnitudeMat hΨ hdd i
     -- each converted set, moved by that distance, stays in the exact one
-    have hδmem : δ ∈ (Interval.mk (-ρe) ρe).construct := fun i => by
+    have hδmem : δ ∈ (Interval.mk (-ρe) ρe).toSet := fun i => by
       have h := abs_le.mp (hδle i)
       show toReal (neg (ρe i)) ≤ δ i ∧ δ i ≤ toReal (ρe i)
       rw [toReal_neg]
       exact ⟨h.1, h.2⟩
     have hblock : ∀ (P : HPolytope 𝕋 (Vec 𝕋 n)) (Pr : CORALean.Real.HPolytope (Vec ℝ n)),
-        P.construct ⊆ Pr.construct → (0 : Vec ℝ n) ∈ P.I_error.construct →
+        P.toSet ⊆ Pr.toSet → (0 : Vec ℝ n) ∈ P.I_error.toSet →
         (∀ i (y : Vec ℝ n), (toRealMat P.Ae *ᵥ y) i = 0) →
         (∀ (i : Fin Pr.me) (y : Vec ℝ n), Pr.Ae i y = 0) →
-        ∀ hPrb : Bornology.IsBounded Pr.dropEqs.construct,
+        ∀ hPrb : Bornology.IsBounded Pr.dropEqs.toSet,
         ∀ y ∈ nominalSet (LinearSys.maxBackReachCZFloat Bx P ZWe),
           y + δ ∈ (LinearSys.maxBackReachCZ ρ Pr hPrb
-            (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW).construct := by
+            (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW).toSet := by
       intro P Pr hP hP0 hker hkerr hPrb y hy
-      have hyc : y ∈ (LinearSys.maxBackReachCZFloat Bx P ZWe).construct :=
+      have hyc : y ∈ (LinearSys.maxBackReachCZFloat Bx P ZWe).toSet :=
         ⟨y, hy, 0, hP0, add_zero y⟩
       have hin := LinearSys.maxBackReachCZFloat_inner Bx P ZWe (fun i y _ => hker i y) hyc
       refine LinearSys.minkowskiDiff_subset_maxBackReachCZ ρ Pr _ hPrb hkerr (fun w hw => ?_)
       -- the widened disturbance set holds `w` moved by `δ`, which `y` survives
-      have hwδ : w + δ ∈ ZWe.construct :=
+      have hwδ : w + δ ∈ ZWe.toSet :=
         Plus.plus_outer ZW _ (Set.add_mem_add (h6 hw) (Interval.zonotope_contains _ hδmem))
       have h := hin (w + δ) hwδ
-      have h' : y + δ + w ∈ P.construct := by
+      have h' : y + δ + w ∈ P.toSet := by
         rw [show y + δ + w = y + (w + δ) by abel]
         exact h
       exact hP h'
     -- the moved point is a segment between the two exact sets, so in their hull
     have hyseg : z + δ ∈ Set.linComb (LinearSys.maxBackReachCZ ρ P₁r hP₁b
-          (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW).construct
+          (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW).toSet
         (LinearSys.maxBackReachCZ ρ P₂r hP₂b
-          (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW).construct :=
+          (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW).toSet :=
       ⟨y₁ + δ, hblock P₁ P₁r hP₁ hP₁0 hker₁ hkerr₁ hP₁b y₁ hy₁, y₂ + δ,
         hblock P₂ P₂r hP₂ hP₂0 hker₂ hkerr₂ hP₂b y₂ hy₂, lam, ⟨hl0, hl1⟩, by rw [hzeq]; module⟩
     have hlin := CORALean.Real.ConZonotope.linComb_outer _ _ hyseg
@@ -691,7 +691,7 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
               (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW))
           (CORALean.Real.Zonotope.conZonotope
             (CORALean.Real.Zonotope.mtimes (-(1 : Mat ℝ n n)) sr.ZU))) := rfl
-    change a + b ∈ (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).R.construct
+    change a + b ∈ (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).R.toSet
     rw [hR, ← CORALean.Real.ConZonotope.mtimes_exact, ← CORALean.Real.ConZonotope.plus_exact,
       ← CORALean.Real.Zonotope.conZonotope_exact, ← CORALean.Real.Zonotope.mtimes_exact]
     refine ⟨z + δ + (-(1 : Mat ℝ n n)) *ᵥ u, Set.add_mem_add hlin ⟨u, hu, rfl⟩, ?_⟩

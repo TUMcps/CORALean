@@ -38,8 +38,8 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Fullspace.lift_exact (F : Fullspace n) (N : ℕ) (dims : Fin n → Fin N) :
-    (F.lift_ N dims).construct =
-      {y : Vec ℝ N | (fun i => y (dims i) : Vec ℝ n) ∈ F.construct} := by
+    (F.lift_ N dims).toSet =
+      {y : Vec ℝ N | (fun i => y (dims i) : Vec ℝ n) ∈ F.toSet} := by
   ext y
   exact ⟨fun _ => Set.mem_univ _, fun _ => Set.mem_univ _⟩
 

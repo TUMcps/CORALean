@@ -53,7 +53,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.quadMap_exact (Q : Fin m → Mat ℝ n n) (pZ : PolyZonotope (Vec ℝ n)) :
-    quadEval Q '' pZ.construct = (pZ.quadMap Q).construct := by
+    quadEval Q '' pZ.toSet = (pZ.quadMap Q).toSet := by
   rw [pZ.dependent_exact]
   exact PolyZonotope.quadMapDep_exact Q pZ.dependent rfl
 

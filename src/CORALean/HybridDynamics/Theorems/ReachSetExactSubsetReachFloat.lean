@@ -55,8 +55,8 @@ theorem HybridAutomaton.reachSetExact_subset_reachFloat
     (ℓ : L) : -- --- CONCL ---
     ∀ out ∈ HA.reachFloat tFinal options K ℓ₀ X₀,
       (⋃ (T : ℝ) (_ : T ≤ tFinal) (k : ℕ) (_ : k ≤ K),
-          {y | ∃ x ∈ construct X₀, HA.IsRunUntil T k ℓ₀ x ℓ y})
-        ⊆ {y | ∃ p ∈ out, p.1 = ℓ ∧ y ∈ construct p.2} := by -- --- PROOF ---
+          {y | ∃ x ∈ toSet X₀, HA.IsRunUntil T k ℓ₀ x ℓ y})
+        ⊆ {y | ∃ p ∈ out, p.1 = ℓ ∧ y ∈ toSet p.2} := by -- --- PROOF ---
   intro out (h : HA.reachFloat tFinal options K ℓ₀ X₀ = some out) y hy
   simp only [Set.mem_iUnion, Set.mem_setOf_eq] at hy
   obtain ⟨T, hT, k, hk, x, hx, run⟩ := hy

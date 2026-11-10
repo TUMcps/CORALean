@@ -41,15 +41,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.vec_exact (P : VPolytope (Mat 𝕋 m n)) : -- --- CONCL ---
-    InflatedContSet.construct P.vec =
-      matVecEquiv '' InflatedContSet.construct P := by -- --- PROOF ---
+    InflatedContSet.toSet P.vec =
+      matVecEquiv '' InflatedContSet.toSet P := by -- --- PROOF ---
   -- the nominal hull and the box are each exactly stacked
   have hn : nominalSet P.vec = matVecEquiv '' nominalSet P :=
     (Real.VPolytope.vec_exact P.nominal).symm
-  have hb : (I_error P.vec).construct = matVecEquiv '' (I_error P).construct :=
+  have hb : (I_error P.vec).toSet = matVecEquiv '' (I_error P).toSet :=
     Interval.vec_exact P.I_error
   -- and the image of a Minkowski sum under an additive map is the sum of the images
-  show nominalSet P.vec + (I_error P.vec).construct = _
+  show nominalSet P.vec + (I_error P.vec).toSet = _
   rw [hn, hb]
   exact (Set.image_add matVecEquiv.toLinearMap).symm
 

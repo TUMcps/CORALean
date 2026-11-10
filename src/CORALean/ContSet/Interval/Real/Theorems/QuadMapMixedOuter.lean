@@ -43,7 +43,7 @@ variable {m n : ℕ}
 
 theorem Interval.quadMapMixed_outer (Q : Fin m → Mat ℝ n n) (I₁ I₂ : Interval (Vec ℝ n)) :
     (fun p : Vec ℝ n × Vec ℝ n => PolyZonotope.quadBilin Q p.1 p.2) ''
-        (I₁.construct ×ˢ I₂.construct) ⊆ (I₁.quadMapMixed Q I₂).construct := by
+        (I₁.toSet ×ˢ I₂.toSet) ⊆ (I₁.quadMapMixed Q I₂).toSet := by
   rintro _ ⟨⟨x, y⟩, ⟨hx, hy⟩, rfl⟩
   refine Zonotope.interval_contains _ (Zonotope.bilin_outer (PolyZonotope.quadBilin Q) _ _ ?_)
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop]

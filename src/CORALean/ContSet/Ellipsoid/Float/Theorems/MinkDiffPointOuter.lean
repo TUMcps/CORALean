@@ -45,12 +45,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.minkDiffPoint_outer (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n) : -- --- CONCL ---
-    (fun x => x - toRealVec s) '' E.construct ⊆ (E.minkDiffPoint s).construct := by -- --- PROOF ---
+    (fun x => x - toRealVec s) '' E.toSet ⊆ (E.minkDiffPoint s).toSet := by -- --- PROOF ---
   rintro _ ⟨_, ⟨y, hy, e, he, rfl⟩, rfl⟩
   -- the center's rounding, which the residual box holds
   let r : Vec ℝ n := fun i => toReal (E.q i) + toReal ((-s) i)
     - toReal (addDown (E.q i) ((-s) i))
-  have hr : r ∈ (Ellipsoid.centerResidual E.q (-s)).construct :=
+  have hr : r ∈ (Ellipsoid.centerResidual E.q (-s)).toSet :=
     Interval.sub_mem_residual fun _ => ⟨addDown_le_add _ _, add_le_addUp _ _⟩
   -- the same offset from the center, at the stored one
   have hy' := Ellipsoid.add_sub_mem_nominalSet (E := E.minkDiffPoint s)

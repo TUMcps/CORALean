@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEqIInter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ToSetEqIInter
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Split
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.IntersectionExact
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
@@ -53,26 +53,26 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ZonoBundle.split_outer (Λ : Mat 𝕋 n n) (B : Interval (Vec 𝕋 n)) (j : Fin n)
     (zB : ZonoBundle (Vec 𝕋 n))
-    (hB : zB.construct ⊆ (toRealMat Λ *ᵥ ·) '' B.construct) : -- --- CONCL ---
-    zB.construct ⊆
-      (zB.split Λ B j).1.construct ∪ (zB.split Λ B j).2.construct := by -- --- PROOF ---
+    (hB : zB.toSet ⊆ (toRealMat Λ *ᵥ ·) '' B.toSet) : -- --- CONCL ---
+    zB.toSet ⊆
+      (zB.split Λ B j).1.toSet ∪ (zB.split Λ B j).2.toSet := by -- --- PROOF ---
   intro x hx
   -- the point lies in the float parallelotope
-  have hΨ : x ∈ (Zonotope.mtimes Λ B.zonotope).construct := by
+  have hΨ : x ∈ (Zonotope.mtimes Λ B.zonotope).toSet := by
     obtain ⟨y, hy, rfl⟩ := hB hx
     exact Zonotope.mtimes_outer Λ B.zonotope ⟨y, Interval.zonotope_contains B hy, rfl⟩
   -- a one-member bundle denotes its member
   have h1 : ∀ Z : Zonotope (Vec 𝕋 n),
-      ZonoBundle.construct (⟨1, fun _ => Z⟩ : ZonoBundle (Vec 𝕋 n)) = Z.construct :=
-    fun Z => (ZonoBundle.construct_eq_iInter _).trans (Set.iInter_const (ι := Fin 1) Z.construct)
+      ZonoBundle.toSet (⟨1, fun _ => Z⟩ : ZonoBundle (Vec 𝕋 n)) = Z.toSet :=
+    fun Z => (ZonoBundle.toSet_eq_iInter _).trans (Set.iInter_const (ι := Fin 1) Z.toSet)
   -- so in one of the two halves, and the bundle half is the bundle cut with it
   rcases Zonotope.split_outer (Zonotope.mtimes Λ B.zonotope) j hΨ with h | h
   · left
-    show x ∈ (zB.intersection _).construct
+    show x ∈ (zB.intersection _).toSet
     rw [ZonoBundle.intersection_exact, h1]
     exact ⟨hx, h⟩
   · right
-    show x ∈ (zB.intersection _).construct
+    show x ∈ (zB.intersection _).toSet
     rw [ZonoBundle.intersection_exact, h1]
     exact ⟨hx, h⟩
 

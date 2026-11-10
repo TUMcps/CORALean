@@ -41,9 +41,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Inner: the corner is a point of `abs Z` when the error box holds `0`. -/
-theorem Zonotope.abs_corner_mem_construct (Z : Zonotope (Vec 𝕋 n))
+theorem Zonotope.abs_corner_mem_toSet (Z : Zonotope (Vec 𝕋 n))
     (h0 : ∀ i, toReal (Z.I_error.inf i) ≤ 0 ∧ 0 ≤ toReal (Z.I_error.sup i)) :
-    (fun i => (nominal Z).absBound i) ∈ Z.abs.construct :=
+    (fun i => (nominal Z).absBound i) ∈ Z.abs.toSet :=
   ⟨_, Zonotope.abs_corner_mem_nominalSet Z, 0, h0, add_zero _⟩
 
 end CORALean.Float

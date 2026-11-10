@@ -85,7 +85,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- Holding the input at the origin is admissible when `U` contains it, and contributes nothing —
 `InputReachMono.lean`'s own helper of the same name, restated here since that one is file-local. -/
 private theorem LinearSys.aux_zero_mem_reach (sys : LinearSys 𝕋 n) {U : S n} (τ : ℝ)
-    (h0 : (0 : Vec ℝ n) ∈ construct U) : (0 : Vec ℝ n) ∈ sys.inputReach U τ := by
+    (h0 : (0 : Vec ℝ n) ∈ toSet U) : (0 : Vec ℝ n) ∈ sys.inputReach U τ := by
   refine ⟨fun _ => 0, fun _ _ => h0, aestronglyMeasurable_const, ?_⟩
   simp
 
@@ -97,20 +97,20 @@ every `t ∈ [t_k,t_k+Δt_k]`, between the exact `P^U(t)` and the recursively co
 `P̂^U(t_k) ⊕ e^{At_k}P̂^U(Δt_k)`. -/
 theorem LinearSys.hausdorffDist₂_inputReach_tau_le (sys : LinearSys 𝕋 n) {U : S n}
     {tk Δt : ℝ} (htk : 0 ≤ tk) (η : ℕ) {Pk : Set (Vec ℝ n)} {εk : ℝ}
-    (hbdd : Bornology.IsBounded (construct U)) (h0 : (0 : Vec ℝ n) ∈ construct U)
+    (hbdd : Bornology.IsBounded (toSet U)) (h0 : (0 : Vec ℝ n) ∈ toSet U)
     (hcP : IsCompact (sys.inputReach U tk)) (hcQ : IsCompact Pk) (hQne : Pk.Nonempty)
     (hcPs : ∀ s, 0 ≤ s → s ≤ Δt → IsCompact (sys.inputReach U s))
-    (hcQΔ : IsCompact (MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η))
+    (hcQΔ : IsCompact (MatExp.particularSolutionOuter (toRealMat sys.A) (toSet U) 0 Δt η))
     (hstep : hausdorffDist₂ (sys.inputReach U tk) Pk ≤ εk)
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U)) (hΔt : 0 < Δt)
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U)) (hΔt : 0 < Δt)
     {t : ℝ} (ht1 : tk ≤ t) (ht2 : t ≤ tk + Δt) : -- --- CONCL ---
     hausdorffDist₂ (sys.inputReach U t)
         (Pk + (fun x => exp (tk • toRealMat sys.A) *ᵥ x)
-          '' MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η)
+          '' MatExp.particularSolutionOuter (toRealMat sys.A) (toSet U) 0 Δt η)
       ≤ εk + MatExp.particularSolutionTauError
-        (toRealMat sys.A) tk (construct U) Δt η := by -- --- PROOF ---
+        (toRealMat sys.A) tk (toSet U) Δt η := by -- --- PROOF ---
   set A := toRealMat sys.A
-  set U0 := construct U
+  set U0 := toSet U
   set Y := (fun x => exp (tk • A) *ᵥ x) '' MatExp.particularSolutionOuter A U0 0 Δt η with hY
   set s := t - tk with hs
   have hs0 : 0 ≤ s := by rw [hs]; linarith

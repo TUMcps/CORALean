@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.cos_outer [SoundFloatArithmetic 𝕋] (p : ℕ) (I : Interval (Vec 𝕋 n)) :
-    (fun x i => Real.cos (x i)) '' I.construct ⊆ (I.cos p).construct := by
+    (fun x i => Real.cos (x i)) '' I.toSet ⊆ (I.cos p).toSet := by
   rintro _ ⟨x, hx, rfl⟩ i
   have hx' : toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i) := hx i
   exact cosRange_mem p hx'.1 hx'.2

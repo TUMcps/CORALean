@@ -50,10 +50,10 @@ open Matrix
 
 theorem HPolytope.polyNorm_isAsymmNorm_counterexample : -- --- CONCL ---
     ∃ (H : Mat ℝ 2 1) (h : Vec ℝ 2), (∀ i, h i ≠ 0) ∧
-      (HPolytope.ineqs H h).construct.Nonempty ∧
-      Bornology.IsBounded (HPolytope.ineqs H h).construct ∧
+      (HPolytope.ineqs H h).toSet.Nonempty ∧
+      Bornology.IsBounded (HPolytope.ineqs H h).toSet ∧
       ¬ ∀ x, HPolytope.polyNorm H h x ≤ 1 ↔
-        x ∈ (HPolytope.ineqs H h).construct := by -- --- PROOF ---
+        x ∈ (HPolytope.ineqs H h).toSet := by -- --- PROOF ---
   refine ⟨!![1; -1], ![2, -1], fun i => by fin_cases i <;> norm_num, ⟨![1], ?_⟩, ?_, fun h => ?_⟩
   · refine HPolytope.mem_ineqs_iff.mpr fun i => ?_
     fin_cases i <;> norm_num [mulVec, dotProduct]

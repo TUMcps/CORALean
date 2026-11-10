@@ -126,8 +126,8 @@ theorem Zonotope.correctedStep_pRadius_le (A : Mat ℝ n n) (B : Mat ℝ n nu) (
   haveI : Invertible P := hP.isUnit.invertible
   set Z := X.correctedStep (P⁻¹ * Y) A B Dw C Dv u y
   -- the radius of `X` bounds every offset
-  have hbdd : BddAbove ((fun z => (z - X.c) ⬝ᵥ (P *ᵥ (z - X.c))) '' X.construct) := by
-    refine (X.isCompact_construct.image ?_).bddAbove
+  have hbdd : BddAbove ((fun z => (z - X.c) ⬝ᵥ (P *ᵥ (z - X.c))) '' X.toSet) := by
+    refine (X.isCompact_toSet.image ?_).bddAbove
     have h : Continuous fun z : Vec ℝ n => z - X.c := continuous_id.sub continuous_const
     exact h.dotProduct (continuous_const.matrix_mulVec h)
   refine csSup_le ⟨_, Z.c, ⟨0, by simp, by simp⟩, rfl⟩ ?_

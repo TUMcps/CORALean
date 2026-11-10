@@ -153,7 +153,7 @@ private theorem PolyZonotope.aux_reduceBy_nominal (pZ : PolyZonotope (Vec 𝕋 n
 theorem PolyZonotope.reduceBy_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (partD : Split (Fin pZ.h) into (Fin d) ⊕ (Fin r))
     (partI : Split (Fin pZ.q) into (Fin dI) ⊕ (Fin rI)) :
-    pZ.construct ⊆ (pZ.reduceBy partD partI).construct :=
+    pZ.toSet ⊆ (pZ.reduceBy partD partI).toSet :=
   mono_subset (PolyZonotope.aux_reduceBy_nominal pZ partD partI) (subset_refl _)
 
 end CORALean.Float

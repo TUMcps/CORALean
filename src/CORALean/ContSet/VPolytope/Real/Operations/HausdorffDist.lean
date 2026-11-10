@@ -46,10 +46,10 @@ noncomputable def VPolytope.hausdorffDist (P S : VPolytope (Vec ℝ n)) : ℝ :=
   let val₀ : ℝ := 0
   -- `for i = 1:size(V_P,2): val = max(val, aux_distPolyPoint(S, V_P(:,i)))`
   let valP : ℝ := (List.finRange P.k).foldl
-    (fun val i => max val (VPolytope.distPoint S.construct (P.V i))) val₀
+    (fun val i => max val (VPolytope.distPoint S.toSet (P.V i))) val₀
   -- `for i = 1:size(V_S,2): val = max(val, aux_distPolyPoint(P, V_S(:,i)))`
   (List.finRange S.k).foldl
-    (fun val i => max val (VPolytope.distPoint P.construct (S.V i))) valP
+    (fun val i => max val (VPolytope.distPoint P.toSet (S.V i))) valP
 
 end CORALean.Real
 

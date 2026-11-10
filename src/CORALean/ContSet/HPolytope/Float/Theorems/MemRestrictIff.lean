@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.Restrict
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 
 @[expose] public section
 
@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem HPolytope.mem_restrict_iff {P : HPolytope 𝕋 (Vec 𝕋 n)} {keepA : Fin P.m → Bool}
     {keepE : Fin P.me → Bool} {x : Vec ℝ n} : -- --- CONCL ---
-    x ∈ (P.restrict keepA keepE).nominal.construct ↔
+    x ∈ (P.restrict keepA keepE).nominal.toSet ↔
       (∀ i, keepA i = true → (toRealMat P.A *ᵥ x) i ≤ toReal (P.b i) + |toReal (P.b_error i)|)
         ∧ ∀ r, keepE r = true → |(toRealMat P.Ae *ᵥ x) r - toReal (P.be r)|
           ≤ |toReal (P.be_error r)| := by -- --- PROOF ---

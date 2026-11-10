@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.project_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (dims : Fin m → Fin n) :
-    (fun x k => x (dims k)) '' cZ.construct ⊆ (cZ.project dims).construct :=
+    (fun x k => x (dims k)) '' cZ.toSet ⊆ (cZ.project dims).toSet :=
   image_subset (fun _ _ => rfl)
     (le_of_eq (Real.ConZonotope.project_exact (nominal cZ) dims))
     (Interval.project_outer cZ.I_error dims)

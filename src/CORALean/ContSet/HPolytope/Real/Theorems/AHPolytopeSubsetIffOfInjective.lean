@@ -62,7 +62,7 @@ variable {n nx ny qx qy : ℕ}
 theorem HPolytope.ahPolytope_subset_iff_of_injective {xbar ybar : Vec ℝ n} {X : Mat ℝ n nx}
     {Y : Mat ℝ n ny} {Hx : Mat ℝ qx nx} {hx : Vec ℝ qx} {Hy : Mat ℝ qy ny} {hy : Vec ℝ qy}
     (hY : Function.Injective Y.mulVec)
-    (hfull : (interior (HPolytope.ineqs Hx hx).construct).Nonempty) : -- --- CONCL ---
+    (hfull : (interior (HPolytope.ineqs Hx hx).toSet).Nonempty) : -- --- CONCL ---
     HPolytope.ahPolytope xbar X (HPolytope.ineqs Hx hx)
         ⊆ HPolytope.ahPolytope ybar Y (HPolytope.ineqs Hy hy) ↔
       ∃ (Γ : Mat ℝ ny nx) (β : Vec ℝ ny) (Λ : Mat ℝ qy qx), X = Y * Γ ∧
@@ -72,8 +72,8 @@ theorem HPolytope.ahPolytope_subset_iff_of_injective {xbar ybar : Vec ℝ n} {X 
   · intro hsub
     obtain ⟨p0, hp0⟩ := hfull
     obtain ⟨ε, hε, hball⟩ := Metric.isOpen_iff.mp isOpen_interior p0 hp0
-    have hmem : ∀ p ∈ (HPolytope.ineqs Hx hx).construct,
-        ∃ q ∈ (HPolytope.ineqs Hy hy).construct, xbar + X *ᵥ p = ybar + Y *ᵥ q :=
+    have hmem : ∀ p ∈ (HPolytope.ineqs Hx hx).toSet,
+        ∃ q ∈ (HPolytope.ineqs Hy hy).toSet, xbar + X *ᵥ p = ybar + Y *ᵥ q :=
       fun p hp => by
         obtain ⟨q, hq, he⟩ := hsub ⟨p, hp, rfl⟩
         exact ⟨q, hq, he⟩
@@ -81,7 +81,7 @@ theorem HPolytope.ahPolytope_subset_iff_of_injective {xbar ybar : Vec ℝ n} {X 
     -- each column of `X` is a difference of two points of `Y Py`, scaled
     have hcol : ∀ k, ∃ w : Vec ℝ ny, Y *ᵥ w = X *ᵥ Pi.single k 1 := by
       intro k
-      have hin : p0 + (ε / 2) • Pi.single k (1 : ℝ) ∈ (HPolytope.ineqs Hx hx).construct := by
+      have hin : p0 + (ε / 2) • Pi.single k (1 : ℝ) ∈ (HPolytope.ineqs Hx hx).toSet := by
         refine interior_subset (hball ?_)
         rw [Metric.mem_ball, dist_eq_norm, add_sub_cancel_left, norm_smul, Pi.norm_single,
           norm_one, mul_one, Real.norm_eq_abs, abs_of_pos (half_pos hε)]
@@ -112,8 +112,8 @@ theorem HPolytope.ahPolytope_subset_iff_of_injective {xbar ybar : Vec ℝ n} {X 
       rw [mulVec_sub, mulVec_mulVec, ← hXΓ, eq_sub_of_add_eq he0.symm]
       abel
     -- injectivity turns the containment into `Γ p - β ∈ Py`
-    have hPx : (HPolytope.ineqs Hx hx).construct
-        ⊆ (HPolytope.ineqs (Hy * Γ) (hy + Hy *ᵥ β)).construct := by
+    have hPx : (HPolytope.ineqs Hx hx).toSet
+        ⊆ (HPolytope.ineqs (Hy * Γ) (hy + Hy *ᵥ β)).toSet := by
       intro p hp
       obtain ⟨q, hq, he⟩ := hmem p hp
       have hq' : Γ *ᵥ p - β = q := hY (by

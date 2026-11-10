@@ -46,15 +46,15 @@ namespace CORALean.Real
 
 theorem SupportFunction.exists_not_ellipsoid : -- --- CONCL ---
     ∃ S : SupportFunction (Vec ℝ 1),
-      ¬ ∃ E : Ellipsoid 1, E.construct = S.construct := by -- --- PROOF ---
+      ¬ ∃ E : Ellipsoid 1, E.toSet = S.toSet := by -- --- PROOF ---
   refine ⟨⟨fun _ => ⊤⟩, ?_⟩
   rintro ⟨E, hE⟩
   -- the support function with value `+∞` everywhere denotes the whole space
-  have huniv : (SupportFunction.construct ⟨fun _ => ⊤⟩ : Set (Vec ℝ 1)) = Set.univ :=
+  have huniv : (SupportFunction.toSet ⟨fun _ => ⊤⟩ : Set (Vec ℝ 1)) = Set.univ :=
     Set.eq_univ_of_forall fun x ℓ => le_top
   rw [huniv] at hE
   -- which is not compact
-  have hc : IsCompact (Set.univ : Set (Vec ℝ 1)) := hE ▸ E.isCompact_construct
+  have hc : IsCompact (Set.univ : Set (Vec ℝ 1)) := hE ▸ E.isCompact_toSet
   exact NoncompactSpace.noncompact_univ hc
 
 end CORALean.Real

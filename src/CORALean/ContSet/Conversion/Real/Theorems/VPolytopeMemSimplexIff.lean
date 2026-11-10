@@ -36,7 +36,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.mem_simplex_iff {k : ℕ} {β : Vec ℝ k} : -- --- CONCL ---
-    β ∈ (VPolytope.simplex k).construct ↔ (∀ j, 0 ≤ β j) ∧ ∑ j, β j = 1 := by -- --- PROOF ---
+    β ∈ (VPolytope.simplex k).toSet ↔ (∀ j, 0 ≤ β j) ∧ ∑ j, β j = 1 := by -- --- PROOF ---
   constructor
   · rintro ⟨hle, heq⟩
     refine ⟨fun j => ?_, ?_⟩

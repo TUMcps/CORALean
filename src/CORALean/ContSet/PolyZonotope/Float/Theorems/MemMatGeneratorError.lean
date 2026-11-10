@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m h : ℕ}
 theorem PolyZonotope.mem_matGeneratorError {G : Fin h → Mat 𝕋 n m} {Δ : Fin h → Mat ℝ n m}
     {t : Fin h → ℝ} (hG : ∀ l i j, |Δ l i j| ≤ |toReal (G l i j)|)
     (ht : ∀ l, |t l| ≤ 1) : -- --- CONCL ---
-    ∑ l, t l • Δ l ∈ (PolyZonotope.matGeneratorError G).construct := by -- --- PROOF ---
+    ∑ l, t l • Δ l ∈ (PolyZonotope.matGeneratorError G).toSet := by -- --- PROOF ---
   rintro ⟨i, j⟩
   -- entry `(i, j)` of the combination, the scalar on the right
   have he : Entrywise.entry (∑ l, t l • Δ l) (i, j) = ∑ l, Δ l i j * t l := by

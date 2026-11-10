@@ -63,7 +63,7 @@ private theorem Interval.aux_continuousOn_artanh : -- --- CONCL ---
 
 theorem Interval.atanh_exact (I : Interval (Vec ℝ n))
     (hI : ∀ i, (-1 < I.inf i ∧ I.inf i < 1) ∧ (-1 < I.sup i ∧ I.sup i < 1)) :
-    I.atanh.construct = (fun x i => Real.artanh (x i)) '' I.construct := by
+    I.atanh.toSet = (fun x i => Real.artanh (x i)) '' I.toSet := by
   exact Interval.monotoneImage_exact Real.artanh (Set.Ioo (-1) 1) Set.ordConnected_Ioo
     Real.strictMonoOn_artanh Interval.aux_continuousOn_artanh I hI
 

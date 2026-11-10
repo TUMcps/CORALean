@@ -86,8 +86,8 @@ theorem Zonotope.scaled_rpi {ng : ℕ} (G : Fin ng → α) (c : α) (φ : Fin ng
     (hA : ∀ j, φ j • A (G j) = ∑ i, Γ1 i j • G i) (hW : ∀ k, W.G k = ∑ i, Γ2 i k • G i)
     (hc : c - A c - W.c = ∑ i, β i • G i)
     (hbound : ∀ i, (∑ j, |Γ1 i j|) + (∑ k, |Γ2 i k|) + |β i| ≤ φ i) : -- --- CONCL ---
-    (A · : α → α) '' (⟨ng, c, fun j => φ j • G j⟩ : Zonotope α).construct + W.construct
-      ⊆ (⟨ng, c, fun j => φ j • G j⟩ : Zonotope α).construct := by -- --- PROOF ---
+    (A · : α → α) '' (⟨ng, c, fun j => φ j • G j⟩ : Zonotope α).toSet + W.toSet
+      ⊆ (⟨ng, c, fun j => φ j • G j⟩ : Zonotope α).toSet := by -- --- PROOF ---
   rintro y ⟨_, ⟨x, ⟨ψ, hψ, rfl⟩, rfl⟩, w, ⟨μ, hμ, rfl⟩, rfl⟩
   dsimp only
   -- `A`'s image of `x`: `φⱼ • A Gⱼ`'s own regrouping via `Γ1`, at `hA`

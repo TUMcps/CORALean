@@ -69,7 +69,7 @@ theorem STL.tendsto_depReachAt_C_zero (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ 
     (U : Zonotope (Vec ℝ m)) (κ : ℕ) (T : ℝ) : -- --- CONCL ---
     Tendsto (fun Δt : ℝ => sSup ((fun v => ‖v‖) ''
       ⋃ i ∈ {i : ℕ | (i : ℝ) * Δt ≤ T},
-        (STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i).C.construct))
+        (STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i).C.toSet))
       (𝓝[>] (0 : ℝ)) (𝓝 0) := by -- --- PROOF ---
   have hcz : ∀ g : ℝ → ℝ, Continuous g → g 0 = 0 →
       Tendsto g (𝓝[>] (0 : ℝ)) (𝓝 0) := fun g hc h0 => by
@@ -154,7 +154,7 @@ theorem STL.tendsto_depReachAt_C_zero (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ 
     exact add_nonneg (mul_nonneg (mul_nonneg two_pos.le (h1 _)) (h2 X₀))
       (mul_nonneg (mul_nonneg two_pos.le (h1 _)) (h2 ũ))
   -- `C₀` lies in the ball of radius `ρ0`
-  have hC0 : ∀ Δt : ℝ, (STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ 0).C.construct
+  have hC0 : ∀ Δt : ℝ, (STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ 0).C.toSet
       ⊆ Metric.closedBall (0 : Vec ℝ n) (ρ0 Δt) := fun Δt =>
     STL.depBox_subset_closedBall (hρ0nn Δt)
       (Zonotope.plus_subset_closedBall

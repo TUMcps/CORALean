@@ -43,7 +43,7 @@ variable {m n : ℕ}
 /-- `absMax` is the entrywise supremum of the absolute values of the members, and is attained. -/
 theorem Interval.absMax_isGreatest (A : Interval (Mat ℝ m n)) (hA : ∀ p q, A.inf p q ≤ A.sup p q)
     (i : Fin m) (j : Fin n) : -- --- CONCL ---
-    IsGreatest ((fun M : Mat ℝ m n => |M i j|) '' A.construct) (A.absMax i j) := by -- --- PROOF ---
+    IsGreatest ((fun M : Mat ℝ m n => |M i j|) '' A.toSet) (A.absMax i j) := by -- --- PROOF ---
   classical
   refine ⟨?_, ?_⟩
   · -- the corner of larger magnitude in every entry

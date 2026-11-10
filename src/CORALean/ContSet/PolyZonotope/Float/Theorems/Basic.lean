@@ -60,22 +60,22 @@ omit [SoundFloatArithmetic 𝕋] in
 
 /-- Costs nothing at all: `compactFactors_nominal` already is the exact equality. -/
 theorem PolyZonotope.compactFactors_outer (pZ : PolyZonotope (Vec 𝕋 n)) :
-    pZ.construct ⊆ pZ.compactFactors.construct :=
+    pZ.toSet ⊆ pZ.compactFactors.toSet :=
   InflatedContSet.mono_subset (PolyZonotope.compactFactors_nominal pZ).subset
     (subset_refl _)
 
 
--- ============================  `PolyZonotope.isCompact_construct`  ============================ --
+-- ==============================  `PolyZonotope.isCompact_toSet`  ============================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- What this denotes is a nominal set plus an error box, so `InflatedContSet.isCompact_construct`
+/-- What this denotes is a nominal set plus an error box, so `InflatedContSet.isCompact_toSet`
 carries compactness across: the nominal set is compact as over ℝ, the box by
 Heine–Borel. -/
-theorem PolyZonotope.isCompact_construct (pZ : PolyZonotope (Vec 𝕋 n)) : IsCompact pZ.construct :=
-  InflatedContSet.isCompact_construct pZ
+theorem PolyZonotope.isCompact_toSet (pZ : PolyZonotope (Vec 𝕋 n)) : IsCompact pZ.toSet :=
+  InflatedContSet.isCompact_toSet pZ
 
 
 -- =================================  `PolyZonotope.linComb_h`  ================================= --
@@ -184,7 +184,7 @@ theorem PolyZonotope.repTab_getD (E : Fin p → Fin h → ℕ) (l : Fin h) :
 /-- Boxing the independent block is the step that widens; making the box dependent only adds
 a zero to the error box. -/
 theorem PolyZonotope.restructure_outer (pZ : PolyZonotope (Vec 𝕋 n)) :
-    pZ.construct ⊆ pZ.restructure.construct :=
+    pZ.toSet ⊆ pZ.restructure.toSet :=
   (PolyZonotope.reduceBy_outer pZ _ _).trans (PolyZonotope.absorbRounding_outer _)
 
 end

@@ -46,7 +46,7 @@ noncomputable def ProbZonotope.pyramid (P : ProbZonotope n) {k : ℕ} (mArray : 
     (Q : Set (EuclideanSpace ℝ (Fin n))) : ℝ :=
   let maxVal : Fin (k + 1) → ℝ := P.pyramidLevels mArray
   let msZ : Fin k → Set (EuclideanSpace ℝ (Fin n)) :=
-    fun i => toLp 2 '' (P.zonotope (mArray i)).construct
+    fun i => toLp 2 '' (P.zonotope (mArray i)).toSet
   let Pint : Fin k → Set (EuclideanSpace ℝ (Fin n)) := fun i => msZ i ∩ Q
   let V : Fin k → ℝ := fun i => volume.real (Pint i)
   let probPartial : Fin k → ℝ := fun i => (maxVal i.succ - maxVal i.castSucc) * V i

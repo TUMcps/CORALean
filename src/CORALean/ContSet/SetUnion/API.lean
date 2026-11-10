@@ -8,7 +8,7 @@ public import CORALean.ContSet.SetUnion.Instances
 /-!
 # The union of a list of representations, collected
 
-`SetUnion S` denotes `⋃ s ∈ sets, construct s` at whatever `S` denotes, `∅` at
+`SetUnion S` denotes `⋃ s ∈ sets, toSet s` at whatever `S` denotes, `∅` at
 the empty list. `Operations/` maps a member's own `Mtimes`, `Plus` or `Reduce`
 over the branches; `Theorems/` proves each is still outer, and that `mtimes`
 is exact when every branch's own is; `Instances.lean` is what turns those

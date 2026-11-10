@@ -16,7 +16,7 @@ The fresh variables range over the box `D`; at `D = [-1, 1]ᵐ` an equation wide
 `|(A μ_R(x))ᵢ - bᵢ| ≤ |sᵢ|` (`exists_relax_iff`).
 
 Not one of CORA's operations: it is what a float constraint's per-row slack `b_error` denotes
-(`Float.PolyLevelSet.construct`), and how a constrained polynomial zonotope holds such a slack as a
+(`Float.PolyLevelSet.toSet`), and how a constrained polynomial zonotope holds such a slack as a
 factor per row (`ConPolyZono.relax`).
 
 ## Inputs

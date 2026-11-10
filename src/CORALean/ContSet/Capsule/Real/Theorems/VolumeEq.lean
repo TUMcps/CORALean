@@ -303,12 +303,12 @@ private theorem aux_vol_cyl {r : ℝ} (hr : 0 ≤ r) : -- --- CONCL ---
     measurableSet_closedBall.nullMeasurableSet, EuclideanSpace.volume_closedBall]
   simp
 
--- the capsule of `Capsule.construct` is the translate of the Euclidean one
-private theorem aux_construct_eq (C : Capsule (m + 1)) : -- --- CONCL ---
-    C.construct = (fun x : Vec ℝ (m + 1) => -C.c + x) ⁻¹'
+-- the capsule of `Capsule.toSet` is the translate of the Euclidean one
+private theorem aux_toSet_eq (C : Capsule (m + 1)) : -- --- CONCL ---
+    C.toSet = (fun x : Vec ℝ (m + 1) => -C.c + x) ⁻¹'
       ((WithLp.toLp 2) ⁻¹' aux_Kcap (WithLp.toLp 2 C.g : aux_E m) C.r) := by -- --- PROOF ---
   ext x
-  simp only [Capsule.construct, aux_Kcap, mem_setOf_eq, mem_preimage]
+  simp only [Capsule.toSet, aux_Kcap, mem_setOf_eq, mem_preimage]
   refine exists_congr fun t => and_congr_right fun _ => ?_
   rw [EuclideanSpace.norm_eq]
   have : ∀ i, ‖((WithLp.toLp 2 (-C.c + x) : aux_E m) - t • (WithLp.toLp 2 C.g : aux_E m)) i‖ ^ 2
@@ -323,13 +323,13 @@ private theorem aux_construct_eq (C : Capsule (m + 1)) : -- --- CONCL ---
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.volume_eq {n : ℕ} (hn : 0 < n) (C : Capsule n) : -- --- CONCL ---
-    MeasureTheory.volume C.construct = C.volume := by -- --- PROOF ---
+    MeasureTheory.volume C.toSet = C.volume := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
   by_cases hr : C.r < 0
   · -- no point is within a negative radius
-    have : C.construct = ∅ := by
+    have : C.toSet = ∅ := by
       ext x
-      simp only [Capsule.construct, mem_setOf_eq, mem_empty_iff_false, iff_false, not_exists,
+      simp only [Capsule.toSet, mem_setOf_eq, mem_empty_iff_false, iff_false, not_exists,
         not_and]
       intro t _
       exact not_le.mpr (lt_of_lt_of_le hr (Real.sqrt_nonneg _))
@@ -338,7 +338,7 @@ theorem Capsule.volume_eq {n : ℕ} (hn : 0 < n) (C : Capsule n) : -- --- CONCL 
     simp [hr]
   rw [not_lt] at hr
   -- translation, coordinates and rotation preserve the measure, leaving the two balls
-  rw [aux_construct_eq, measure_preimage_add,
+  rw [aux_toSet_eq, measure_preimage_add,
     (PiLp.volume_preserving_toLp (Fin (m + 1))).measure_preimage
       (aux_meas_Kcap _ hr).nullMeasurableSet,
     aux_vol_Kcap _ hr, aux_vol_cyl hr, aux_vol_ball]

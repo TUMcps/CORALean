@@ -22,13 +22,13 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 # What `ZonoBundle` instantiates
 
 A bundle is `SetIntersection` at its members, so every guarantee here is a general theorem of that
-class at the members' own: `ConvexSet` is `SetIntersection.convex_construct`; `Plus` and `LinComb`
+class at the members' own: `ConvexSet` is `SetIntersection.convex_toSet`; `Plus` and `LinComb`
 are `pairwise_outer` at `Zonotope.plus_exact` and `Zonotope.linComb_outer`; `Mtimes`, at a point
 matrix and at a matrix zonotope, and `Reduce`, which reduces each member, are
 `memberwise_outer`; `Reindex` is `memberwise_image_exact` at `reindexLin e`. `Intersection` is
 `intersection_exact`, appending the two families; `OfPoint` bundles one point-zonotope. `CompactSet`
 is not an instance: at `k = 0` the set is `univ`, so the unconditional obligation fails;
-`SetIntersection.isCompact_construct` states the conditional fact. No `MinkDiff` either (#85).
+`SetIntersection.isCompact_toSet` states the conditional fact. No `MinkDiff` either (#85).
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
@@ -51,10 +51,10 @@ scoped notation "𝒵ℬ" => fun n => ZonoBundle (Vec ℝ n)
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (ZonoBundle α) α := ⟨ZonoBundle.construct⟩
+instance : ContSet (ZonoBundle α) α := ⟨ZonoBundle.toSet⟩
 
 instance : ConvexSet (ZonoBundle α) α :=
-  ⟨fun zB => SetIntersection.convex_construct zB.toSetIntersection⟩
+  ⟨fun zB => SetIntersection.convex_toSet zB.toSetIntersection⟩
 
 /-- Every pair of members summed, each sum exact. -/
 instance : Plus (ZonoBundle α) α where
@@ -88,7 +88,7 @@ instance : Reindex (𝒵ℬ) where
 instance : Mtimes (Mat ℝ) (𝒵ℬ) where
   mtimes := ZonoBundle.mtimes
   mtimes_outer M zB := by
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact SetIntersection.memberwise_outer _ Set.monotone_image fun i =>
       ⟨i, (Zonotope.mtimes_exact M (zB.Z i)).subset⟩
 
@@ -96,7 +96,7 @@ instance : Mtimes (Mat ℝ) (𝒵ℬ) where
 interval matrix would throw away. Componentwise, as `mtimes` is. -/
 noncomputable instance : Mtimes 𝕄𝒵 (𝒵ℬ) where
   mtimes := ZonoBundle.mtimesMatZonotope
-  mtimes_outer M zB := SetIntersection.memberwise_outer (fun X => ⋃ A ∈ M.construct, (A *ᵥ ·) '' X)
+  mtimes_outer M zB := SetIntersection.memberwise_outer (fun X => ⋃ A ∈ M.toSet, (A *ᵥ ·) '' X)
     (fun _ _ h => Set.biUnion_mono subset_rfl fun _ _ => Set.image_mono h) fun i =>
       ⟨i, Zonotope.mtimesMatZonotope_outer M (zB.Z i)⟩
 

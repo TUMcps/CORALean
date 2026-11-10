@@ -8,7 +8,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.GTranspose
 # The generator matrix factors the shape matrix
 
 `G Gᵀ = Q`: `G` is symmetric and squares to `Q`, `Q` being positive semi-definite. This is what
-every statement in the shape matrix is proved through, by `Theorems/ConstructEqOfFactor`.
+every statement in the shape matrix is proved through, by `Theorems/ToSetEqOfFactor`.
 
 ## Inputs
 * `E` – ellipsoid

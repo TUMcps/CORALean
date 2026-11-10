@@ -119,8 +119,8 @@ private theorem ConZonotope.aux_quadMap_pairblock {h : ℕ} (f : Fin h → Fin h
 /-- Outer only: the new factors are free. -/
 theorem ConZonotope.quadMap_outer (Q : Fin m → Mat ℝ n n)
     (cZ : ConZonotope (Vec ℝ n)) : -- --- CONCL ---
-    (fun x : Vec ℝ n => fun i => x ⬝ᵥ (Q i *ᵥ x)) '' cZ.construct
-      ⊆ (cZ.quadMap Q).construct := by -- --- PROOF ---
+    (fun x : Vec ℝ n => fun i => x ⬝ᵥ (Q i *ᵥ x)) '' cZ.toSet
+      ⊆ (cZ.quadMap Q).toSet := by -- --- PROOF ---
   -- the square's coefficient `2pⱼ² - 1`, `pⱼ²`'s image of `[-1, 1]`
   rintro _ ⟨x, ⟨p, hp, hP, rfl⟩, rfl⟩
   have hq : ∀ j, |2 * (p j) ^ 2 - 1| ≤ 1 := fun j => by
@@ -135,7 +135,7 @@ theorem ConZonotope.quadMap_outer (Q : Fin m → Mat ℝ n n)
     (fun l => by
       simp only [hβ, Fin.append_right, abs_mul]
       exact mul_le_one₀ (hp _) (abs_nonneg _) (hp _)), ?_, ?_⟩
-  · show (blockLeft cZ.h cZ.h) ((blockLeft (cZ.h + cZ.h) (cZ.h * cZ.h)) β) ∈ cZ.P.construct
+  · show (blockLeft cZ.h cZ.h) ((blockLeft (cZ.h + cZ.h) (cZ.h * cZ.h)) β) ∈ cZ.P.toSet
     rw [hβ, blockLeft_append, blockLeft_append]
     exact hP
   -- coordinate `i` is the bilinear form of `Q i` at `(x, x)`

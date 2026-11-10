@@ -13,7 +13,7 @@ The whole content of the construction, and the only place bilinearity is used:
 `sum_ext_eq_point` makes each point one sum, `f` distributes over both, and adding the two
 exponent columns (sound only because the factors are shared) turns each pair of monomials into
 one, at the flat index `finProdFinEquiv` matches to the pair. Stated over `point` rather than
-`construct`, since the recursion that raises the order needs it at each step.
+`toSet`, since the recursion that raises the order needs it at each step.
 
 ## Inputs
 * `f` – bilinear map
@@ -90,7 +90,7 @@ private theorem PolyZonotope.aux_bilin_pair (f : α →ₗ[ℝ] β →ₗ[ℝ] �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `bilin`'s point, read off the expansion above rather than `construct`: `f`
+/-- `bilin`'s point, read off the expansion above rather than `toSet`: `f`
 at the two points, `pZ₂` read at `pZ₁`'s factors through `Fin.cast`. -/
 theorem PolyZonotope.bilin_point (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ₁ : PolyZonotope α)
     (pZ₂ : PolyZonotope β) (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ) : -- --- CONCL ---

@@ -48,25 +48,25 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.interval_eq_hull (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    Z.interval = Interval.hull Z.construct := by -- --- PROOF ---
+    Z.interval = Interval.hull Z.toSet := by -- --- PROOF ---
   -- each bound is attained, and bounds every point
   have hin := Z.interval_contains
-  have hinf : Z.interval.inf = (Interval.hull Z.construct).inf := funext fun i => by
+  have hinf : Z.interval.inf = (Interval.hull Z.toSet).inf := funext fun i => by
     obtain ⟨z, hz, hzi⟩ := (Z.interval_attained i).2
-    show _ = sInf ((fun x : Vec ℝ n => x i) '' Z.construct)
-    refine (IsLeast.csInf_eq (s := (fun x : Vec ℝ n => x i) '' Z.construct)
+    show _ = sInf ((fun x : Vec ℝ n => x i) '' Z.toSet)
+    refine (IsLeast.csInf_eq (s := (fun x : Vec ℝ n => x i) '' Z.toSet)
       ⟨⟨z, hz, hzi⟩, ?_⟩).symm
     rintro _ ⟨x, hx, rfl⟩
     exact (hin hx i).1
-  have hsup : Z.interval.sup = (Interval.hull Z.construct).sup := funext fun i => by
+  have hsup : Z.interval.sup = (Interval.hull Z.toSet).sup := funext fun i => by
     obtain ⟨z, hz, hzi⟩ := (Z.interval_attained i).1
-    show _ = sSup ((fun x : Vec ℝ n => x i) '' Z.construct)
-    refine (IsGreatest.csSup_eq (s := (fun x : Vec ℝ n => x i) '' Z.construct)
+    show _ = sSup ((fun x : Vec ℝ n => x i) '' Z.toSet)
+    refine (IsGreatest.csSup_eq (s := (fun x : Vec ℝ n => x i) '' Z.toSet)
       ⟨⟨z, hz, hzi⟩, ?_⟩).symm
     rintro _ ⟨x, hx, rfl⟩
     exact (hin hx i).2
   calc Z.interval = ⟨Z.interval.inf, Z.interval.sup⟩ := rfl
-    _ = Interval.hull Z.construct := by rw [hinf, hsup]
+    _ = Interval.hull Z.toSet := by rw [hinf, hsup]
 
 end CORALean.Real
 

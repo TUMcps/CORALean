@@ -42,12 +42,12 @@ variable {n : ℕ}
 
 /-- The support-function box of a nonempty bundle is its bounding box, exactly. -/
 theorem ZonoBundle.intervalSupportFunc_exact (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k)
-    (hne : zB.construct.Nonempty) : -- --- CONCL ---
-    zB.intervalSupportFunc.construct = zB.box := by -- --- PROOF ---
+    (hne : zB.toSet.Nonempty) : -- --- CONCL ---
+    zB.intervalSupportFunc.toSet = zB.box := by -- --- PROOF ---
   obtain ⟨y₀, hy₀⟩ := hne
   -- a bound on a coordinate over the bundle bounds its support value, the bundle having a point
-  have hle : ∀ (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (b : ℝ), (∀ y ∈ zB.construct, ℓ y ≤ b) →
-      (supportFunc zB.construct ℓ).toReal ≤ b := by
+  have hle : ∀ (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (b : ℝ), (∀ y ∈ zB.toSet, ℓ y ≤ b) →
+      (supportFunc zB.toSet ℓ).toReal ≤ b := by
     intro ℓ b hb
     have h := EReal.toReal_le_toReal (supportFunc_le_coe_iff.mpr hb)
       (ne_bot_of_le_ne_bot (EReal.coe_ne_bot (ℓ y₀)) (le_iSup₂_of_le y₀ hy₀ le_rfl))
@@ -56,14 +56,14 @@ theorem ZonoBundle.intervalSupportFunc_exact (zB : ZonoBundle (Vec ℝ n)) (hk :
   refine Set.Subset.antisymm (fun x hx => Set.mem_iInter.mpr fun I j => ?_)
     (Set.iInter_subset_of_subset ⟨_, zB.intervalSupportFunc_outer hk⟩ subset_rfl)
   -- each end of the support box lies inside the ends of any box holding the bundle
-  have hI : ∀ y ∈ zB.construct, I.1.inf j ≤ y j ∧ y j ≤ I.1.sup j := fun y hy => I.2 hy j
+  have hI : ∀ y ∈ zB.toSet, I.1.inf j ≤ y j ∧ y j ≤ I.1.sup j := fun y hy => I.2 hy j
   have hup := hle (LinearMap.proj j) (I.1.sup j) fun y hy => (hI y hy).2
   have hlo := hle (-LinearMap.proj j) (-I.1.inf j) fun y hy => by
     simp only [LinearMap.neg_apply, LinearMap.proj_apply, neg_le_neg_iff]
     exact (hI y hy).1
   obtain ⟨hx₁, hx₂⟩ := hx j
-  change -(supportFunc zB.construct (-LinearMap.proj j)).toReal ≤ x j at hx₁
-  change x j ≤ (supportFunc zB.construct (LinearMap.proj j)).toReal at hx₂
+  change -(supportFunc zB.toSet (-LinearMap.proj j)).toReal ≤ x j at hx₁
+  change x j ≤ (supportFunc zB.toSet (LinearMap.proj j)).toReal at hx₂
   show I.1.inf j ≤ x j ∧ x j ≤ I.1.sup j
   exact ⟨by linarith, by linarith⟩
 

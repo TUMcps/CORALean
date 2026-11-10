@@ -91,8 +91,8 @@ variable {n : ℕ}
 private theorem Zonotope.aux_intersectStrip_dev (c l : Vec ℝ n) (φ y : ℝ) (Z : Zonotope (Vec ℝ n))
     {z : Vec ℝ n}
     (hz : z ∈ (Z.intersectStrip (Matrix.of fun _ => c : Mat ℝ 1 n) (fun _ => φ) (fun _ => y)
-      (Matrix.of fun r _ => l r : Mat ℝ n 1)).construct) : -- --- CONCL ---
-    ∃ z₁ ∈ Z.construct, ∃ η : ℝ, |η| ≤ 1 ∧
+      (Matrix.of fun r _ => l r : Mat ℝ n 1)).toSet) : -- --- CONCL ---
+    ∃ z₁ ∈ Z.toSet, ∃ η : ℝ, |η| ≤ 1 ∧
       z - (Z.intersectStrip (Matrix.of fun _ => c : Mat ℝ 1 n) (fun _ => φ) (fun _ => y)
         (Matrix.of fun r _ => l r : Mat ℝ n 1)).c
         = (1 - vecMulVec l c) *ᵥ (z₁ - Z.c) + (φ * η) • l := by -- --- PROOF ---
@@ -177,7 +177,7 @@ private theorem aux_stripsUpTo_dev (C : Mat ℝ p n) (φ y : Vec ℝ p) (Λ : Ma
     (κ : ℕ → Mat ℝ n n) (u : ℕ → Vec ℝ n)
     (hκ : ∀ s : Fin p, κ s = 1 - vecMulVec (fun r => Λ r s) (C s))
     (hu : ∀ s : Fin p, u s = φ s • fun r => Λ r s) (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    ∀ s ≤ p, ∀ z ∈ (aux_stripsUpTo C φ y Λ Z s).construct, ∃ z₀ ∈ Z.construct, ∃ η : ℕ → ℝ,
+    ∀ s ≤ p, ∀ z ∈ (aux_stripsUpTo C φ y Λ Z s).toSet, ∃ z₀ ∈ Z.toSet, ∃ η : ℕ → ℝ,
       (∀ r, |η r| ≤ 1) ∧
         z - (aux_stripsUpTo C φ y Λ Z s).c = aux_stripDev κ u η s (z₀ - Z.c) := by -- --- PROOF ---
   intro s
@@ -214,7 +214,7 @@ theorem Zonotope.pRadius_predict_strips_le (A P : Mat ℝ n n) (F : Mat ℝ n m)
         + ∑ s : Fin p, η s • (Conform.prodJac κ p (p - s - 1) *ᵥ u s)
       e ⬝ᵥ (P *ᵥ e) ≤ β * (θ ⬝ᵥ (P *ᵥ θ)) + (F *ᵥ γ) ⬝ᵥ (F *ᵥ γ)
         + ∑ s : Fin p, φ s ^ 2 * η s ^ 2)
-    (hβ : 0 ≤ β) (hL : ∀ z ∈ X.construct, (z - X.c) ⬝ᵥ (P *ᵥ (z - X.c)) ≤ L)
+    (hβ : 0 ≤ β) (hL : ∀ z ∈ X.toSet, (z - X.c) ⬝ᵥ (P *ᵥ (z - X.c)) ≤ L)
     (hψ : ∀ γ : Vec ℝ m, (∀ j, |γ j| ≤ 1) → (F *ᵥ γ) ⬝ᵥ (F *ᵥ γ) ≤ ψ) : -- --- CONCL ---
     Zonotope.pRadius P (ContSet.intersectStripSeq (S := 𝒵) C φ y (fun _ => Λ)
         ((X.mtimes A).plus (⟨m, 0, fun j i => F i j⟩ : Zonotope (Vec ℝ n))))

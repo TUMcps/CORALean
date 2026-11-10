@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.IsBoundedIff
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleConstruct
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.PointExampleToSet
 
 @[expose] public section
 
@@ -37,7 +37,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.pointExample_isBounded : SpectraShadow.pointExample.isBounded := by
-  rw [SpectraShadow.isBounded_iff, SpectraShadow.pointExample_construct]
+  rw [SpectraShadow.isBounded_iff, SpectraShadow.pointExample_toSet]
   exact (Set.finite_singleton _).isBounded
 
 end CORALean.Real

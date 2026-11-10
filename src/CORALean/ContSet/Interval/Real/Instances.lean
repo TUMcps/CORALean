@@ -23,7 +23,7 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 `ConvexSet` and `CompactSet` carry a box to the reachability statements that read their topological
 hypotheses off the representation; convexity holds at every ambient type with coordinates,
 compactness only at `Vec`, where boundedness is stated. No `Recenter`: it asks
-`0 ∈ construct (recenter s)` unconditionally, and a crossed box denotes `∅`
+`0 ∈ toSet (recenter s)` unconditionally, and a crossed box denotes `∅`
 (`Theorems/RecenterZeroMem` and `RecenterSubMem` carry the nonemptiness). `Intersection` is
 coordinatewise and exact: the pointwise max of the lower bounds and min of the upper ones.
 -/
@@ -56,15 +56,15 @@ scoped notation "ℐ𝒱" => fun n => Interval (Vec ℝ n)
 instance too. The operation instances below are stated only at `Vec`, which is
 where an algorithm asks for them. -/
 instance {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι] :
-    ContSet (Interval α) α := ⟨Interval.construct⟩
+    ContSet (Interval α) α := ⟨Interval.toSet⟩
 
 instance {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι] :
-    ConvexSet (Interval α) α := ⟨Interval.convex_construct⟩
+    ConvexSet (Interval α) α := ⟨Interval.convex_toSet⟩
 
 /-- At `Vec ℝ n` alone: closedness and boundedness are read coordinatewise, but
 the norm they bound is not, so the ambient type has to be one the coordinates
 determine. -/
-instance : CompactSet (Interval (Vec ℝ n)) (Vec ℝ n) := ⟨Interval.isCompact_construct⟩
+instance : CompactSet (Interval (Vec ℝ n)) (Vec ℝ n) := ⟨Interval.isCompact_toSet⟩
 
 instance {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι] :
     OfPoint (Interval α) α where
@@ -108,7 +108,7 @@ instance : Reindex (ℐ𝒱) where
 instance : Mtimes (Mat ℝ) (ℐ𝒱) where
   mtimes := Interval.mtimes
   mtimes_outer M I := by
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Interval.mtimes_outer M I
 
 /-- The same operation at an interval matrix, which a discretization wants. A

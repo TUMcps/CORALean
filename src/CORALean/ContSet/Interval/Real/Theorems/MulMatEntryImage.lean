@@ -60,14 +60,14 @@ variable {n p q : ℕ}
 theorem Interval.image_mul_apply_eq (IM : Interval (Mat ℝ n p))
     (hIM : ∀ i k, IM.inf i k ≤ IM.sup i k) (N : Mat ℝ p q) (i : Fin n)
     (j : Fin q) : -- --- CONCL ---
-    (fun M : Mat ℝ n p => (M * N) i j) '' IM.construct =
+    (fun M : Mat ℝ n p => (M * N) i j) '' IM.toSet =
       Set.Icc ((IM.center * N) i j - (IM.radius * N.map abs) i j)
         ((IM.center * N) i j + (IM.radius * N.map abs) i j) := by -- --- PROOF ---
   have hc : ∀ a k, IM.center a k = (IM.inf a k + IM.sup a k) / 2 := fun a k => by
     simp only [Interval.center, Matrix.smul_apply, Matrix.add_apply, smul_eq_mul]; ring
   have hr : ∀ a k, IM.radius a k = (IM.sup a k - IM.inf a k) / 2 := fun a k => by
     simp only [Interval.radius, Matrix.smul_apply, Matrix.sub_apply, smul_eq_mul]; ring
-  have hmem : ∀ M : Mat ℝ n p, M ∈ IM.construct ↔ ∀ a k, IM.inf a k ≤ M a k ∧ M a k ≤ IM.sup a k :=
+  have hmem : ∀ M : Mat ℝ n p, M ∈ IM.toSet ↔ ∀ a k, IM.inf a k ≤ M a k ∧ M a k ≤ IM.sup a k :=
     fun M => ⟨fun h a k => h (a, k), fun h ak => h ak.1 ak.2⟩
   -- the spread of the entry about the center's
   have hdev : ∀ M : Mat ℝ n p, (M * N) i j - (IM.center * N) i j

@@ -42,8 +42,8 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.minkDiff_inner (I₁ I₂ : Interval α) : -- --- CONCL ---
-    (I₁.minkDiff I₂).construct
-      ⊆ minkowskiDiff I₁.construct I₂.construct := by -- --- PROOF ---
+    (I₁.minkDiff I₂).toSet
+      ⊆ minkowskiDiff I₁.toSet I₂.toSet := by -- --- PROOF ---
   intro x hx y hy i
   have hlo : entry I₁.inf i - entry I₂.inf i ≤ entry x i := by
     have h := (hx i).1

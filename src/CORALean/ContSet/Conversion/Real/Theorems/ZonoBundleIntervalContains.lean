@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.interval_contains (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) :
-    zB.construct ⊆ (zB.interval i).construct :=
+    zB.toSet ⊆ (zB.interval i).toSet :=
   subset_trans (zB.zonotope_contains i) (Zonotope.interval_contains _)
 
 end CORALean.Real

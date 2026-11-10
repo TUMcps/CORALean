@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
@@ -56,9 +56,9 @@ variable {n q r : ℕ}
 /-- Boxing what a partition drops over-approximates, whichever partition it is. -/
 theorem Zonotope.reduceBy_outer (Z : Zonotope (Vec ℝ n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : -- --- CONCL ---
-    Z.construct ⊆ (Z.reduceBy part).construct := by -- --- PROOF ---
+    Z.toSet ⊆ (Z.reduceBy part).toSet := by -- --- PROOF ---
   intro x hxmem
-  obtain ⟨β, hβ, hx⟩ := Zonotope.mem_construct_iff.mp hxmem
+  obtain ⟨β, hβ, hx⟩ := Zonotope.mem_toSet_iff.mp hxmem
   have hbound : ∀ i, |∑ l, Z.G (part.right l) i * β (part.right l)|
       ≤ ∑ l, |Z.G (part.right l) i| := by
     intro i
@@ -71,7 +71,7 @@ theorem Zonotope.reduceBy_outer (Z : Zonotope (Vec ℝ n))
   have hnonneg : ∀ i, (0:ℝ) ≤ ∑ l, |Z.G (part.right l) i| :=
     fun i => (abs_nonneg _).trans (hbound i)
   -- the witness: kept coefficients, plus one per coordinate scaled to the dropped reach
-  refine Zonotope.mem_construct_iff.mpr
+  refine Zonotope.mem_toSet_iff.mpr
     ⟨Fin.append (fun l => β (part.left l)) (fun i =>
       Zonotope.coefficient (∑ l, |Z.G (part.right l) i|)
         (∑ l, Z.G (part.right l) i * β (part.right l))), ?_, fun i => ?_⟩

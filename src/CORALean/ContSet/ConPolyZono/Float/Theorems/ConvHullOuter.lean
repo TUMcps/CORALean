@@ -14,7 +14,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConvHullSingleConsIff
 public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.ExistsRelaxIff
-public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemToSetIffOfEq
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialConvHullEPadE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Relax
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
@@ -71,10 +71,10 @@ open Matrix
 /-- The stored hull's constraints hold wherever the copies' and the weights' do. -/
 private theorem ConPolyZono.aux_convHullSingle_satisfies_of_real (a : ℕ)
     (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (v : Fin (a * cPZ.p + a) → ℝ)
-    (hcopy : ∀ j, (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) ∈ cPZ.cons.construct)
+    (hcopy : ∀ j, (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) ∈ cPZ.cons.toSet)
     (hv : ∀ j, |v (Fin.natAdd (a * cPZ.p) j)| ≤ 1)
     (hw : ∑ j, v (Fin.natAdd (a * cPZ.p) j) = 1 - (a : ℝ)) : -- --- CONCL ---
-    v ∈ (cPZ.convHullSingle a).cons.construct := by -- --- PROOF ---
+    v ∈ (cPZ.convHullSingle a).cons.toSet := by -- --- PROOF ---
   refine (PolyLevelSet.mem_cartProd_iff _ _ v).mpr
     ⟨(PolyLevelSet.mem_copies_iff _ _ _).mpr hcopy, (PolyLevelSet.mem_linear_iff _ _ _ _ _ _).mpr
       ⟨(Interval.mem_unit_iff _).mpr hv, ?_⟩⟩
@@ -106,7 +106,7 @@ private theorem ConPolyZono.aux_toReal_convHullG (a : ℕ) {h : ℕ} (c : Vec �
 whose weights add up to `1 - a`. -/
 private theorem ConPolyZono.aux_convHullSingle_mem (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (v : Fin (a * cPZ.p + a) → ℝ) (hv : ∀ k, |v k| ≤ 1)
-    (hcopy : ∀ j, (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) ∈ cPZ.cons.construct)
+    (hcopy : ∀ j, (fun k => v (Fin.castAdd a (finProdFinEquiv (j, k)))) ∈ cPZ.cons.toSet)
     (hw : ∑ j, v (Fin.natAdd (a * cPZ.p) j) = 1 - (a : ℝ)) : -- --- CONCL ---
     (fun i => toReal ((cPZ.convHullSingle a).c i)
       + ∑ l, toReal ((cPZ.convHullSingle a).G l i)
@@ -124,17 +124,17 @@ private theorem ConPolyZono.aux_convHullSingle_mem (a : ℕ) (cPZ : ConPolyZono 
 private theorem ConPolyZono.aux_convHullSingle_outer (a : ℕ) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (hq : cPZ.qI = 0)
     (ha : n + 1 ≤ a) : -- --- CONCL ---
-    convexHull ℝ cPZ.construct ⊆ (cPZ.convHullSingle a).construct := by -- --- PROOF ---
+    convexHull ℝ cPZ.toSet ⊆ (cPZ.convHullSingle a).toSet := by -- --- PROOF ---
   intro x hx
   -- the hull of the nominal set plus the box is the nominal hull plus the box
-  have hx' : x ∈ convexHull ℝ (nominalSet cPZ + cPZ.I_error.construct) := hx
-  have hconv : Convex ℝ cPZ.I_error.construct := Real.Interval.convex_construct _
+  have hx' : x ∈ convexHull ℝ (nominalSet cPZ + cPZ.I_error.toSet) := hx
+  have hconv : Convex ℝ cPZ.I_error.toSet := Real.Interval.convex_toSet _
   rw [convexHull_add, hconv.convexHull_eq] at hx'
   obtain ⟨r, hr, e, he, rfl⟩ := hx'
   -- the nominal hull is the exact form on the read-back operand
   have hR := Real.ConPolyZono.convHullSingle_exact a (nominal cPZ) hq
     (by rw [Module.finrank_fin_fun]; exact ha)
-  have hr' : r ∈ (Real.ConPolyZono.convHullSingle a (nominal cPZ)).construct := by
+  have hr' : r ∈ (Real.ConPolyZono.convHullSingle a (nominal cPZ)).toSet := by
     rw [hR]
     exact hr
   obtain ⟨v, β, hβ, hsat, hr⟩ := hr'
@@ -150,13 +150,13 @@ private theorem ConPolyZono.aux_convHullSingle_outer (a : ℕ) (cPZ : ConPolyZon
   have hw : ∀ k, |w k| ≤ 1 := Fin.addCases (fun x => by simpa [hwdef] using hv _)
     (fun j => by simpa [hwdef] using hv _)
   -- a copy's slack factor makes up what its row is off by, so the row is within its slack
-  have hcopy : ∀ j, (fun k => w (Fin.castAdd a (finProdFinEquiv (j, k)))) ∈ cPZ.cons.construct := by
+  have hcopy : ∀ j, (fun k => w (Fin.castAdd a (finProdFinEquiv (j, k)))) ∈ cPZ.cons.toSet := by
     intro j
     have hcopyw : (fun k => w (Fin.castAdd a (finProdFinEquiv (j, k))))
         = fun k => v (Fin.castAdd a (finProdFinEquiv (j, Fin.castAdd cPZ.cons.m k))) :=
       funext fun k => by simp only [hwdef, Fin.append_left, Equiv.symm_apply_apply]
     rw [hcopyw]
-    refine (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mpr
+    refine (PolyLevelSet.mem_toSet_iff_of_eq cPZ.cons_eq).mpr
       ((Real.PolyLevelSet.exists_relax_iff (P := cPZ.cons.nominalCore) cPZ.cons_eq
         (toRealVec cPZ.cons.b_error) _).mp
           ⟨fun i => v (Fin.castAdd a (finProdFinEquiv (j, Fin.natAdd cPZ.p i))), ?_⟩)
@@ -178,7 +178,7 @@ private theorem ConPolyZono.aux_convHullSingle_outer (a : ℕ) (cPZ : ConPolyZon
   -- what storing `a c` from below leaves to pay
   have hd : (fun i => (a : ℝ) * toReal (cPZ.c i) - toReal (nsmulDown a (cPZ.c i)))
       ∈ (Interval.residual (fun i => nsmulDown a (cPZ.c i)) (fun i => nsmulUp a (cPZ.c i))
-        (fun i => nsmulDown a (cPZ.c i))).construct :=
+        (fun i => nsmulDown a (cPZ.c i))).toSet :=
     Interval.sub_mem_residual fun i => ⟨nsmulDown_le a (cPZ.c i), le_nsmulUp a (cPZ.c i)⟩
   refine ⟨_, hz, e + _, Interval.plus_outer _ _ ⟨e, he, _, hd, rfl⟩, ?_⟩
   funext i
@@ -205,16 +205,16 @@ end
 
 theorem ConPolyZono.convHull_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (hq₁ : cPZ₁.qI = 0) (hq₂ : cPZ₂.qI = 0)
-    (hne₁ : cPZ₁.construct.Nonempty) (hne₂ : cPZ₂.construct.Nonempty) : -- --- CONCL ---
-    convexHull ℝ (cPZ₁.construct ∪ cPZ₂.construct)
-      ⊆ (cPZ₁.convHull cPZ₂).construct := by -- --- PROOF ---
+    (hne₁ : cPZ₁.toSet.Nonempty) (hne₂ : cPZ₂.toSet.Nonempty) : -- --- CONCL ---
+    convexHull ℝ (cPZ₁.toSet ∪ cPZ₂.toSet)
+      ⊆ (cPZ₁.convHull cPZ₂).toSet := by -- --- PROOF ---
   obtain ⟨y₁, hy₁⟩ := hne₁
   obtain ⟨y₂, hy₂⟩ := hne₂
   have hq : (cPZ₁.linComb cPZ₂).qI = 0 := by
     show cPZ₁.qI + cPZ₂.qI = 0
     omega
   -- the union sits inside the combination, and only here is a point needed
-  have hsub : cPZ₁.construct ∪ cPZ₂.construct ⊆ (cPZ₁.linComb cPZ₂).construct := by
+  have hsub : cPZ₁.toSet ∪ cPZ₂.toSet ⊆ (cPZ₁.linComb cPZ₂).toSet := by
     refine subset_trans ?_ (ConPolyZono.linComb_outer cPZ₁ cPZ₂)
     rintro x (hx | hx)
     · exact ⟨x, hx, y₂, hy₂, 1, ⟨zero_le_one, le_refl 1⟩, by simp⟩

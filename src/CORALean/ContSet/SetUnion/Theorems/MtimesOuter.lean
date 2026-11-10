@@ -45,13 +45,13 @@ variable {𝕄 : ℕ → ℕ → Type} {S : ℕ → Type}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SetUnion.mtimes_outer {m n : ℕ} (M : 𝕄 m n) (u : SetUnion (S n)) : -- --- CONCL ---
-    (⋃ A ∈ ContSet.construct M, (A *ᵥ ·) '' ContSet.construct u) ⊆
-      ContSet.construct (SetUnion.mtimes M u) := by -- --- PROOF ---
+    (⋃ A ∈ ContSet.toSet M, (A *ᵥ ·) '' ContSet.toSet u) ⊆
+      ContSet.toSet (SetUnion.mtimes M u) := by -- --- PROOF ---
   intro x hx
   simp only [Set.mem_iUnion, Set.mem_image] at hx
   obtain ⟨A, hA, a, ha, rfl⟩ := hx
-  obtain ⟨s, hs, ha⟩ := SetUnion.mem_construct.mp ha
-  refine SetUnion.mem_construct.mpr ⟨Mtimes.mtimes M s, List.mem_map.mpr ⟨s, hs, rfl⟩, ?_⟩
+  obtain ⟨s, hs, ha⟩ := SetUnion.mem_toSet.mp ha
+  refine SetUnion.mem_toSet.mpr ⟨Mtimes.mtimes M s, List.mem_map.mpr ⟨s, hs, rfl⟩, ?_⟩
   refine Mtimes.mtimes_outer M s ?_
   simp only [Set.mem_iUnion, Set.mem_image]
   exact ⟨A, hA, a, ha, rfl⟩

@@ -69,7 +69,7 @@ variable {n : ℕ}
 theorem gainDim_tendsto_pow_const (A : Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) (i : Fin n)
     {j : ℕ} (hj : ∑ l, |(A ^ j *ᵥ Z.G l) i| ≠ 0)
     (hjmin : ∀ p < j, ∑ l, |(A ^ p *ᵥ Z.G l) i| = 0) {δ : ℝ} (hδ : 0 ≤ δ) : -- --- CONCL ---
-    Tendsto (fun h => gainDim (fun _ => A) (fun _ => Z.construct) h δ i) (𝓝[>] (0:ℝ))
+    Tendsto (fun h => gainDim (fun _ => A) (fun _ => Z.toSet) h δ i) (𝓝[>] (0:ℝ))
       (𝓝 (δ ^ (j + 1))) := by -- --- PROOF ---
   classical
   -- the `i`-th row of `Aᵖ`'s generators, and the constant that bounds its norm
@@ -156,9 +156,9 @@ theorem gainDim_tendsto_pow_const (A : Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) (
     simpa [hgd, heq] using hne
   -- the box-diameter series, split at order `j`, is exactly `t^{j+1} * g t` for every `t ≥ 0`
   have hexpall : ∀ h : ℝ, 0 ≤ h →
-      boxDiameter (abstrSolInf (fun _ => A) (fun _ => Z.construct) h) i = h ^ (j + 1) * g h := by
+      boxDiameter (abstrSolInf (fun _ => A) (fun _ => Z.toSet) h) i = h ^ (j + 1) * g h := by
     intro h hh
-    rw [boxDiameter_abstrSolInf (fun _ => A) (fun _ => Z.construct) hh rfl i]
+    rw [boxDiameter_abstrSolInf (fun _ => A) (fun _ => Z.toSet) hh rfl i]
     -- `f` is the printed series, `f'` its tail from order `j`, both in `row`
     set f : ℕ → ℝ := fun p => h ^ (p + 1) / (Nat.factorial (p + 1) : ℝ) * row p with hfd
     set f' : ℕ → ℝ := fun k => h ^ (k + j + 1) / (Nat.factorial (k + j + 1) : ℝ) * row (k + j)
@@ -215,9 +215,9 @@ theorem gainDim_tendsto_pow_const (A : Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) (
           rw [tsum_mul_left]
       _ = h ^ (j + 1) * g h := by simp only [hgd]; ring
   have hexp : ∀ᶠ t in 𝓝[≥] (0:ℝ),
-      boxDiameter (abstrSolInf (fun _ => A) (fun _ => Z.construct) t) i = t ^ (j + 1) * g t := by
+      boxDiameter (abstrSolInf (fun _ => A) (fun _ => Z.toSet) t) i = t ^ (j + 1) * g t := by
     filter_upwards [self_mem_nhdsWithin] with t ht using hexpall t ht
-  exact gainDim_tendsto_pow (fun _ => A) (fun _ => Z.construct) i hδ hgcont hg0 hexp
+  exact gainDim_tendsto_pow (fun _ => A) (fun _ => Z.toSet) i hδ hgcont hg0 hexp
 
 end CORALean
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Real.Operations.EBoxConstruct
+public import CORALean.ContSet.Interval.Real.Operations.EBoxToSet
 public import CORALean.ContSet.Interval.Real.Operations.Lift
 
 @[expose] public section
@@ -40,9 +40,9 @@ variable {m N : ℕ}
 
 theorem Interval.lift_exact (I : Interval (Vec ℝ m)) (N : ℕ) (proj : Fin m → Fin N)
     (hp : Function.Injective proj) : -- --- CONCL ---
-    (I.lift_ N proj).construct = {x | (fun i => x (proj i)) ∈ I.construct} := by -- --- PROOF ---
+    (I.lift_ N proj).toSet = {x | (fun i => x (proj i)) ∈ I.toSet} := by -- --- PROOF ---
   ext x
-  simp only [Interval.EBox.construct, Interval.lift_, Set.mem_setOf_eq, Interval.construct]
+  simp only [Interval.EBox.toSet, Interval.lift_, Set.mem_setOf_eq, Interval.toSet]
   constructor
   · intro h i
     have := h (proj i)

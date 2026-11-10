@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 public import CORALean.ContSet.InflatedContSet.Operations.Bound
 public import CORALean.ContSet.Interval.Float.Operations.BoundDot
 public import CORALean.Global.Float.FloatBound
@@ -245,7 +245,7 @@ def ConZonotope.step_nominalBoundWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c
 /-- The bound at any weights, the error box's reach added upward. -/
 def ConZonotope.boundDotWeights (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j)
-    (y : Vec 𝕋 cZ.P.m) (zu zl : Vec 𝕋 cZ.P.me) : FloatBound 𝕋 cZ.construct c :=
+    (y : Vec 𝕋 cZ.P.m) (zu zl : Vec 𝕋 cZ.P.me) : FloatBound 𝕋 cZ.toSet c :=
   InflatedContSet.boundOfParts (cZ.step_nominalBoundWeights a hc y zu zl) (cZ.I_error.boundDot a hc)
 
 end CORALean.Float

@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 private theorem Interval.aux_linComb_outer_refines (I₁ I₂ : Interval (Vec 𝕋 n)) : -- --- CONCL ---
-    (I₁.nominal.linComb I₂.nominal).construct ⊆ (I₁.linComb I₂).construct := by -- --- PROOF ---
+    (I₁.nominal.linComb I₂.nominal).toSet ⊆ (I₁.linComb I₂).toSet := by -- --- PROOF ---
   intro x hx i
   refine ⟨?_, ?_⟩
   · show toReal (minimum (I₁.inf i) (I₂.inf i)) ≤ x i
@@ -57,7 +57,7 @@ private theorem Interval.aux_linComb_outer_refines (I₁ I₂ : Interval (Vec �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.linComb_outer (I₁ I₂ : Interval (Vec 𝕋 n)) :
-    Set.linComb I₁.construct I₂.construct ⊆ (I₁.linComb I₂).construct :=
+    Set.linComb I₁.toSet I₂.toSet ⊆ (I₁.linComb I₂).toSet :=
   subset_trans (Real.Interval.linComb_outer I₁.nominal I₂.nominal)
     (Interval.aux_linComb_outer_refines I₁ I₂)
 

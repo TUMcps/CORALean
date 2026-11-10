@@ -49,7 +49,7 @@ variable {n : ℕ}
 /-- The reduced zonotope lies inside the original plus the box the reduction
 introduced — at every order, the no-op branch included. -/
 theorem Zonotope.reduce_subset_add_box (Z : Zonotope (Vec ℝ n)) (o : ℕ) : -- --- CONCL ---
-    (Z.reduce o).construct ⊆ Z.construct + (Z.reduceBox o).construct := by -- --- PROOF ---
+    (Z.reduce o).toSet ⊆ Z.toSet + (Z.reduceBox o).toSet := by -- --- PROOF ---
   unfold Zonotope.reduce Zonotope.reduceGirard Zonotope.reduceBox
   split_ifs with hlt
   · exact Z.reduceBy_subset_add_box _

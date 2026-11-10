@@ -51,15 +51,15 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.supportFunction_exact (E : Ellipsoid n) : -- --- CONCL ---
-    E.supportFunction.construct = E.construct := by -- --- PROOF ---
+    E.supportFunction.toSet = E.toSet := by -- --- PROOF ---
   -- the closed form is the support function of the set: it bounds it, and is attained
-  have h : E.supportFunction = SupportFunction.ofSet E.construct := by
+  have h : E.supportFunction = SupportFunction.ofSet E.toSet := by
     refine congrArg SupportFunction.mk (funext fun ℓ => le_antisymm ?_ ?_)
     · obtain ⟨x, hx, hxv⟩ := E.supportBound_attained ℓ
       exact hxv ▸ le_iSup₂ (f := fun y _ => (ℓ y : EReal)) x hx
     · exact iSup₂_le fun y hy => EReal.coe_le_coe_iff.mpr ((E.supportBound ℓ).le y hy)
   rw [h]
-  exact SupportFunction.ofSet_exact E.convex_construct E.isCompact_construct.isClosed
+  exact SupportFunction.ofSet_exact E.convex_toSet E.isCompact_toSet.isClosed
 
 end CORALean.Real
 

@@ -68,10 +68,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- [1, Sec. 4.2]: the convex hull of the simulated support vectors, one per direction `ℓ j`,
 lies in the exact reachable set `R(t_k)`. -/
 theorem LinearSys.convexHull_supportCounterexample_subset_reachSetExact (sys : LinearSys 𝕋 n)
-    (R₀ U : S n) (hR₀ : Convex ℝ (construct R₀)) (hUconv : Convex ℝ (construct U))
-    (hU : Bornology.IsBounded (construct U)) {Δt : ℝ} (hΔt : 0 < Δt)
-    {ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} (hν₀ : ∀ d, ν₀ d ∈ construct R₀)
-    (hνU : ∀ d, νU d ∈ construct U) {ι : Type} (ℓ : ι → Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) :
+    (R₀ U : S n) (hR₀ : Convex ℝ (toSet R₀)) (hUconv : Convex ℝ (toSet U))
+    (hU : Bornology.IsBounded (toSet U)) {Δt : ℝ} (hΔt : 0 < Δt)
+    {ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} (hν₀ : ∀ d, ν₀ d ∈ toSet R₀)
+    (hνU : ∀ d, νU d ∈ toSet U) {ι : Type} (ℓ : ι → Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) :
     convexHull ℝ (Set.range fun j => sys.heldSim Δt
         (sys.supportCounterexample Δt ν₀ νU (ℓ j) k).1
         (sys.supportCounterexample Δt ν₀ νU (ℓ j) k).2 k)

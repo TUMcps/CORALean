@@ -76,8 +76,8 @@ private theorem Interval.aux_exists_mul_eq {a b c d z : ℝ} (hab : a ≤ b) (hc
 
 theorem Interval.times_exact {I J : Interval (Vec ℝ n)} (hI : I.IsNonempty)
     (hJ : J.IsNonempty) : -- --- CONCL ---
-    (I.times J).construct =
-      Set.image2 (fun x y i => x i * y i) I.construct J.construct := by -- --- PROOF ---
+    (I.times J).toSet =
+      Set.image2 (fun x y i => x i * y i) I.toSet J.toSet := by -- --- PROOF ---
   refine Set.Subset.antisymm (fun z hz => ?_) (Interval.times_outer I J)
   have h : ∀ i, ∃ y x, (I.inf i ≤ y ∧ y ≤ I.sup i) ∧ (J.inf i ≤ x ∧ x ≤ J.sup i) ∧
       y * x = z i :=

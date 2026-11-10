@@ -2,10 +2,10 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_StarSet
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialPadE
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemToSet
 public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Instances
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUnit
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEqUnit
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialIdentE
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
@@ -55,18 +55,18 @@ variable {n : ℕ}
 /-- The constraint rows say the constraint of the factors, the other two blocks in the unit box. -/
 private theorem ConPolyZono.aux_mem_starConsRows (cPZ : ConPolyZono (Vec ℝ n))
     (ζ : Vec ℝ (cPZ.p + cPZ.qI + cPZ.h)) : -- --- CONCL ---
-    ζ ∈ cPZ.starConsRows.construct
-      ↔ ((fun k => ζ (Fin.castAdd cPZ.h (Fin.castAdd cPZ.qI k))) ∈ cPZ.cons.construct
-        ∧ (fun j => ζ (Fin.castAdd cPZ.h (Fin.natAdd cPZ.p j))) ∈ (Interval.unit cPZ.qI).construct)
+    ζ ∈ cPZ.starConsRows.toSet
+      ↔ ((fun k => ζ (Fin.castAdd cPZ.h (Fin.castAdd cPZ.qI k))) ∈ cPZ.cons.toSet
+        ∧ (fun j => ζ (Fin.castAdd cPZ.h (Fin.natAdd cPZ.p j))) ∈ (Interval.unit cPZ.qI).toSet)
         ∧ (fun l => ζ (Fin.natAdd (cPZ.p + cPZ.qI) l))
-          ∈ (Interval.unit cPZ.h).construct := by -- --- PROOF ---
+          ∈ (Interval.unit cPZ.h).toSet := by -- --- PROOF ---
   exact (PolyLevelSet.mem_padVars_iff _ _ ζ).trans
     (and_congr_left' (PolyLevelSet.mem_padVars_iff _ _ _))
 
 /-- The generator rows say each `z` is its generator's monomial at the factors, on the unit box. -/
 private theorem ConPolyZono.aux_mem_starGenRows (cPZ : ConPolyZono (Vec ℝ n))
     (ζ : Vec ℝ (cPZ.p + cPZ.qI + cPZ.h)) : -- --- CONCL ---
-    ζ ∈ cPZ.starGenRows.construct ↔ ζ ∈ (Interval.unit _).construct
+    ζ ∈ cPZ.starGenRows.toSet ↔ ζ ∈ (Interval.unit _).toSet
       ∧ ∀ l, ζ (Fin.natAdd (cPZ.p + cPZ.qI) l)
       = PolyZonotope.monomial cPZ.E (fun k => ζ (Fin.castAdd cPZ.h (Fin.castAdd cPZ.qI k)))
         l := by -- --- PROOF ---
@@ -110,11 +110,11 @@ private theorem ConPolyZono.aux_starSet_point (cPZ : ConPolyZono (Vec ℝ n))
 /-- The star set with the polynomial level set predicate denotes the constrained polynomial
 zonotope. -/
 theorem ConPolyZono.starSet_exact (cPZ : ConPolyZono (Vec ℝ n)) : -- --- CONCL ---
-    cPZ.starSet.construct = cPZ.construct := by -- --- PROOF ---
+    cPZ.starSet.toSet = cPZ.toSet := by -- --- PROOF ---
   ext x
-  rw [ConPolyZono.mem_construct_iff]
+  rw [ConPolyZono.mem_toSet_iff]
   show (∃ ζ : Vec ℝ (cPZ.p + cPZ.qI + cPZ.h),
-    (ζ ∈ (Interval.unit _).construct ∧ ζ ∈ (cPZ.starConsRows.and_ cPZ.starGenRows).construct)
+    (ζ ∈ (Interval.unit _).toSet ∧ ζ ∈ (cPZ.starConsRows.and_ cPZ.starGenRows).toSet)
     ∧ ∀ i, x i = cPZ.c i + ∑ k, cPZ.starSet.G i k * ζ k) ↔ _
   constructor
   -- the factors and the independent coefficients, read off the coefficients
@@ -131,7 +131,7 @@ theorem ConPolyZono.starSet_exact (cPZ : ConPolyZono (Vec ℝ n)) : -- --- CONCL
     ring
   -- back: the factors, the independent coefficients and the monomials appended
   · rintro ⟨a, β, hβ, hs, hx⟩
-    have ha := ((PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).mp hs).1
+    have ha := ((PolyLevelSet.mem_toSet_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).mp hs).1
     set ζ : Vec ℝ (cPZ.p + cPZ.qI + cPZ.h) :=
       Fin.append (Fin.append a β) (PolyZonotope.monomial cPZ.E a) with hζ
     have hleft : ∀ k, ζ (Fin.castAdd cPZ.h (Fin.castAdd cPZ.qI k)) = a k := fun k => by
@@ -143,7 +143,7 @@ theorem ConPolyZono.starSet_exact (cPZ : ConPolyZono (Vec ℝ n)) : -- --- CONCL
     have hright : ∀ l, |ζ (Fin.natAdd (cPZ.p + cPZ.qI) l)| ≤ 1 := fun l => by
       rw [hζ, Fin.append_right]
       exact PolyZonotope.abs_monomial_le_one cPZ.E ha l
-    have hbox : ζ ∈ (Interval.unit _).construct := (Interval.mem_unit_iff ζ).mpr
+    have hbox : ζ ∈ (Interval.unit _).toSet := (Interval.mem_unit_iff ζ).mpr
       (Fin.addCases (Fin.addCases (fun k => by rw [hleft]; exact ha k)
         (fun j => by rw [hmid]; exact hβ j)) hright)
     refine ⟨ζ, ⟨hbox, ?_⟩, fun i => ?_⟩

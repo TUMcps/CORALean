@@ -76,7 +76,7 @@ private theorem Zonotope.aux_mtimes_nominal (M : Mat 𝕋 m n)
     (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     (toRealMat M *ᵥ ·) '' nominalSet Z ⊆
       nominalSet (Zonotope.mtimes M Z)
-        + (Zonotope.mtimesResidual M Z).construct := by -- --- PROOF ---
+        + (Zonotope.mtimesResidual M Z).toSet := by -- --- PROOF ---
   rintro _ ⟨x, hx', rfl⟩
   obtain ⟨β, hβ, hx⟩ := Zonotope.mem_nominalSet_iff.mp hx'
   -- the generators are wrong by this much, entrywise
@@ -123,8 +123,8 @@ private theorem Zonotope.aux_mtimes_nominal (M : Mat 𝕋 m n)
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
 private theorem Zonotope.aux_mtimes_error (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) :
-    (toRealMat M *ᵥ ·) '' (I_error Z).construct + (Zonotope.mtimesResidual M Z).construct ⊆
-      (I_error (Zonotope.mtimes M Z)).construct :=
+    (toRealMat M *ᵥ ·) '' (I_error Z).toSet + (Zonotope.mtimesResidual M Z).toSet ⊆
+      (I_error (Zonotope.mtimes M Z)).toSet :=
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M Z.I_error))
     (Interval.plus_outer _ _)
 
@@ -132,7 +132,7 @@ private theorem Zonotope.aux_mtimes_error (M : Mat 𝕋 m n) (Z : Zonotope (Vec 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.mtimes_outer (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) :
-    (toRealMat M *ᵥ ·) '' Z.construct ⊆ (Zonotope.mtimes M Z).construct :=
+    (toRealMat M *ᵥ ·) '' Z.toSet ⊆ (Zonotope.mtimes M Z).toSet :=
   map_subset (fun x y => Matrix.mulVec_add _ x y)
     (Zonotope.aux_mtimes_nominal M Z) (Zonotope.aux_mtimes_error M Z)
 

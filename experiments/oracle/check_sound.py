@@ -97,7 +97,7 @@ def parse_zonotope(z):
 def hull(c, h, G, einf, esup):
     """The interval hull `c ± Σ|G| ± E`, coordinatewise -- `Zonotope.interval`'s own formula,
     over ℚ rather than a rounded `𝕋`. Exact: a zonotope's own axis-aligned extent is achieved by
-    some point of its construct, generator coefficients and the error box chosen independently
+    some point of its `toSet`, generator coefficients and the error box chosen independently
     per coordinate."""
     n = len(c)
     radius = [sum(abs(G[i][j]) for j in range(h)) for i in range(n)]

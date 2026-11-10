@@ -75,7 +75,7 @@ omit [ToRat 𝕋] in
 /-- The generator-free zonotope at `v` holds `v`. -/
 private theorem aux_linReach_mem_pt {k : ℕ} (v : Vec 𝕋 k) : -- --- CONCL ---
     toRealVec v ∈ (⟨0, v, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
-      Zonotope (Vec 𝕋 k)).construct := by -- --- PROOF ---
+      Zonotope (Vec 𝕋 k)).toSet := by -- --- PROOF ---
   refine ⟨toRealVec v, Zonotope.mem_nominalSet_iff.mpr ⟨fun j => j.elim0, fun j => j.elim0,
     fun i => by simp [toRealVec]⟩, 0, fun i => ?_, add_zero _⟩
   show toReal (zero : 𝕋) ≤ (0 : Vec ℝ k) i ∧ (0 : Vec ℝ k) i ≤ toReal (zero : 𝕋)
@@ -86,9 +86,9 @@ omit [ToRat 𝕋] in
 /-- A box widened to a point holds the box and the point. -/
 private theorem aux_linReach_mem_hull {k : ℕ} (I : Interval (Vec 𝕋 k))
     (v : Vec 𝕋 k) : -- --- CONCL ---
-    I.construct ⊆ (⟨fun i => minimum (I.inf i) (v i), fun i => maximum (I.sup i) (v i)⟩ :
-      Interval (Vec 𝕋 k)).construct ∧ toRealVec v ∈ (⟨fun i => minimum (I.inf i) (v i),
-        fun i => maximum (I.sup i) (v i)⟩ : Interval (Vec 𝕋 k)).construct := by -- --- PROOF ---
+    I.toSet ⊆ (⟨fun i => minimum (I.inf i) (v i), fun i => maximum (I.sup i) (v i)⟩ :
+      Interval (Vec 𝕋 k)).toSet ∧ toRealVec v ∈ (⟨fun i => minimum (I.inf i) (v i),
+        fun i => maximum (I.sup i) (v i)⟩ : Interval (Vec 𝕋 k)).toSet := by -- --- PROOF ---
   refine ⟨fun y hy i => ?_, fun i => ?_⟩
   · show toReal (minimum (I.inf i) (v i)) ≤ y i ∧ y i ≤ toReal (maximum (I.sup i) (v i))
     rw [toReal_minimum, toReal_maximum]
@@ -102,18 +102,18 @@ omit [ToRat 𝕋] in
 /-- `f(x, u) - A(x - x✱)` is in `f(z✱) ⊕ B(U - u✱) ⊕ L` once the remainder is in `L`. -/
 private theorem aux_linReach_input {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m}
     (h : fm.Encloses sys) (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) (xs : Vec 𝕋 n) {U : Zonotope (Vec 𝕋 m)}
-    {L : Zonotope (Vec 𝕋 n)} {x : Vec ℝ n} {u : Vec ℝ m} (hu : u ∈ U.construct)
+    {L : Zonotope (Vec 𝕋 n)} {x : Vec ℝ n} {u : Vec ℝ m} (hu : u ∈ U.toSet)
     (hL : sys.f x u - (sys.f (toRealVec xs) (toRealVec U.c) + Scalar.toRealMat A *ᵥ
-      (x - toRealVec xs) + Scalar.toRealMat B *ᵥ (u - toRealVec U.c)) ∈ L.construct)
+      (x - toRealVec xs) + Scalar.toRealMat B *ᵥ (u - toRealVec U.c)) ∈ L.toSet)
     : -- --- CONCL ---
     sys.f x u - Scalar.toRealMat A *ᵥ (x - toRealVec xs) ∈
       (((fm.f (Interval.point xs) (Interval.point U.c)).zonotope ⊞
         Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B (Recenter.recenter U)) ⊞
-          L).construct := by -- --- PROOF ---
+          L).toSet := by -- --- PROOF ---
   set us := toRealVec U.c
-  have hf₀ : sys.f (toRealVec xs) us ∈ (fm.f (Interval.point xs) (Interval.point U.c)).construct :=
+  have hf₀ : sys.f (toRealVec xs) us ∈ (fm.f (Interval.point xs) (Interval.point U.c)).toSet :=
     h.f_mem _ _ _ (Interval.mem_point (α := Vec 𝕋 n) xs) _ (Interval.mem_point (α := Vec 𝕋 m) U.c)
-  have hBu : Scalar.toRealMat B *ᵥ (u - us) ∈ construct
+  have hBu : Scalar.toRealMat B *ᵥ (u - us) ∈ toSet
     (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
       (Recenter.recenter U)) :=
     Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B _
@@ -139,9 +139,9 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
     ∀ Rτ Rt, (Rτ, Rt) ∈ fm.linReachFloat alg U options R →
       0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
         sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
-          R.construct U.construct x u y →
-        (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
-          x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
+          R.toSet U.toSet x u y →
+        (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.toSet) ∧
+          x (toReal options.Δt) ∈ Rt.toSet := by -- --- PROOF ---
   intro Rτ Rt (hstep : fm.linReachFloat alg U options R = some (Rτ, Rt))
   unfold NonlinearSys.FloatHessModel.linReachFloat at hstep
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hstep
@@ -154,23 +154,23 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
     ⟨fun i => minimum (Ω.inf i) (xs i), fun i => maximum (Ω.sup i) (xs i)⟩ with hX_def
   set U' : Interval (Vec 𝕋 m) :=
     ⟨fun i => minimum (U.interval.inf i) (U.c i), fun i => maximum (U.interval.sup i) (U.c i)⟩
-  have hUU' : U.construct ⊆ U'.construct :=
+  have hUU' : U.toSet ⊆ U'.toSet :=
     fun v hv => (aux_linReach_mem_hull U.interval U.c).1 (Zonotope.interval_contains U hv)
   have hxsX := (aux_linReach_mem_hull Ω xs).2
   have husU' := (aux_linReach_mem_hull U.interval U.c).2
   -- a run stays in `Ω`, so in `X`
   have hconf : 0 < toReal Δt → ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
-      sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) R.construct
-        U.construct x u y → ∀ t ∈ Set.Icc 0 (toReal Δt), x t ∈ X.construct :=
+      sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) R.toSet
+        U.toSet x u y → ∀ t ∈ Set.Icc 0 (toReal Δt), x t ∈ X.toSet :=
     fun hΔt {x u y} traj t ht => (aux_linReach_mem_hull Ω xs).1
       (h.regionFloat_confined hΔt.le traj (Zonotope.interval_contains U) (a := 0)
         (by rw [zero_add]) (Zonotope.interval_contains R traj.init) _ hΩ t (by rwa [zero_add]))
   -- the `'lin'` input set holds the field less its linear part
-  have hlin : ∀ {x : Vec ℝ n} {u : Vec ℝ m}, x ∈ X.construct → u ∈ U.construct →
+  have hlin : ∀ {x : Vec ℝ n} {u : Vec ℝ m}, x ∈ X.toSet → u ∈ U.toSet →
       sys.f x u - Scalar.toRealMat A *ᵥ (x - toRealVec xs) ∈
         (((fm.f (Interval.point xs) (Interval.point U.c)).zonotope ⊞
           Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B (Recenter.recenter U)) ⊞
-            (fm.hessRemainder A B xs U.c X U').zonotope).construct := fun {x u} hx hu =>
+            (fm.hessRemainder A B xs U.c X U').zonotope).toSet := fun {x u} hx hu =>
     aux_linReach_input h.toEncloses A B xs hu (Interval.zonotope_contains _
       ((h.hessRemainder_abstractionError A B hxsX husU').encloses x hx u (hUU' hu)))
   cases alg with
@@ -185,7 +185,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
     set Rdelta := R ⊞ (⟨0, (-xs), fun j => j.elim0,
       ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n)) with hRdelta
     -- the start, `x(0) - x✱ ∈ Rdelta`
-    have hx₀ : x 0 - toRealVec xs ∈ Rdelta.construct := by
+    have hx₀ : x 0 - toRealVec xs ∈ Rdelta.toSet := by
       have hneg : toRealVec (-xs) = -toRealVec xs := toRealVec_neg _
       have hp := aux_linReach_mem_pt (-xs)
       rw [hneg] at hp
@@ -194,10 +194,10 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
       rwa [← sub_eq_add_neg] at this
     -- `x - x✱` is a run of the `'lin'` linearization, so its differences are in `Rdiff`
     have ltraj : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).IsCanonicalTrajectory
-        (S := 𝒮) (Set.Icc 0 (toReal Δt)) Rdelta.construct
+        (S := 𝒮) (Set.Icc 0 (toReal Δt)) Rdelta.toSet
         (((fm.f (Interval.point xs) (Interval.point U.c)).zonotope ⊞
           Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B (Recenter.recenter U)) ⊞
-            (fm.hessRemainder A B xs U.c X U').zonotope).construct
+            (fm.hessRemainder A B xs U.c X U').zonotope).toSet
         (fun t => x t - toRealVec xs)
         (fun t => sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs)) :=
       traj.linearize_sub measurableSet_Icc hx₀ fun s hs =>

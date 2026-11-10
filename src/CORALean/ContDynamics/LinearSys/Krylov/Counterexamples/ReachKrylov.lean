@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Arnoldi
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.Augment
 public import CORALean.ContSet.Zonotope.Real.Operations.OfPoint
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 public import Mathlib.Analysis.Calculus.Deriv.Prod
@@ -74,7 +74,7 @@ theorem Krylov.reach_krylov_counterexample : -- --- CONCL ---
       ∃ x w : ℝ → Vec ℝ 2,
         (LinearSys.canonical A : LinearSys ℝ 2).IsCanonicalTrajectory (S := 𝒮)
           (Set.Icc 0 t) {0} {u} x w ∧
-        ∀ E : Mat ℝ 2 2, x t ∉ (Rtp E).construct := by -- --- PROOF ---
+        ∀ E : Mat ℝ 2 2, x t ∉ (Rtp E).toSet := by -- --- PROOF ---
   intro A u t ε C v K τ γ V box Htp RTrans Rtp
   have hC : C = !![0, 0, 1; 1, 1, 0; 0, 0, 0] := by
     ext i j
@@ -123,9 +123,9 @@ theorem Krylov.reach_krylov_counterexample : -- --- CONCL ---
     · refine (((Real.hasDerivAt_exp s).sub_const 1).sub (hasDerivAt_id s)).congr_deriv ?_
       simp [A, u]
   -- every point of a box `⟨c, εI⟩` has `|z₂ - c₂| ≤ ε`
-  have hbox : ∀ (c z : Vec ℝ 2), z ∈ (box c).construct → |z 1 - c 1| ≤ ε := by
+  have hbox : ∀ (c z : Vec ℝ 2), z ∈ (box c).toSet → |z 1 - c 1| ≤ ε := by
     intro c z hz
-    obtain ⟨β, hβ, hz⟩ := Zonotope.mem_construct_iff.1 hz
+    obtain ⟨β, hβ, hz⟩ := Zonotope.mem_toSet_iff.1 hz
     have h := hz 1
     simp only [box, Fin.sum_univ_two] at h
     have hε : (0 : ℝ) ≤ ε := by positivity

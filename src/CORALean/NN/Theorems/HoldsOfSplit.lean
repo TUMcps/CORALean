@@ -11,7 +11,7 @@ public import CORALean.Specification.Theorems.HoldsIUnion
 
 `hcov` is a cover, not a partition: the parts may overlap and may stick out beyond `X`, all that
 matters is that nothing in `X` is missed — which is what a splitter that rounds outward still gives.
-Read `nn.eval '' construct X ⊆ ⋃ i, nn.eval '' construct (parts i)`, each part's image inside its
+Read `nn.eval '' toSet X ⊆ ⋃ i, nn.eval '' toSet (parts i)`, each part's image inside its
 own enclosed set, then `holds_iUnion` with `holds_of_outer`. Which parts to split into owes no
 proof: the theorem holds at every cover, so the splitting heuristic is free. At `Interval`, `ι :=
 Bool` and `parts := fun b => if b then (I.splitAt j).1 else (I.splitAt j).2` with `hcov` supplied by
@@ -56,14 +56,14 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
 overshoot `X`, so this is a cover a splitter produces, not a `Partition`. -/
 theorem NeuralNetwork.holds_of_split {ι : Type} {nn : NeuralNetwork S n m}
     {f : Vec ℝ n → Vec ℝ m} (hf : nn.Encloses f) (X : S n)
-    (parts : ι → S n) (hcov : construct X ⊆ ⋃ i, construct (parts i))
+    (parts : ι → S n) (hcov : toSet X ⊆ ⋃ i, toSet (parts i))
     (spec : Specification ContSet)
-    (h : ∀ i, spec.Holds (construct (nn.enclose (parts i)))) : -- --- CONCL ---
-    spec.Holds (f '' construct X) := by -- --- PROOF ---
-  have hsub : f '' construct X ⊆ ⋃ i, construct (nn.enclose (parts i)) :=
-    calc f '' construct X ⊆ f '' ⋃ i, construct (parts i) := Set.image_mono hcov
-      _ = ⋃ i, f '' construct (parts i) := Set.image_iUnion
-      _ ⊆ ⋃ i, construct (nn.enclose (parts i)) :=
+    (h : ∀ i, spec.Holds (toSet (nn.enclose (parts i)))) : -- --- CONCL ---
+    spec.Holds (f '' toSet X) := by -- --- PROOF ---
+  have hsub : f '' toSet X ⊆ ⋃ i, toSet (nn.enclose (parts i)) :=
+    calc f '' toSet X ⊆ f '' ⋃ i, toSet (parts i) := Set.image_mono hcov
+      _ = ⋃ i, f '' toSet (parts i) := Set.image_iUnion
+      _ ⊆ ⋃ i, toSet (nn.enclose (parts i)) :=
           Set.iUnion_mono fun i => hf.image_subset (parts i)
   exact spec.holds_of_outer hsub (spec.holds_iUnion h)
 

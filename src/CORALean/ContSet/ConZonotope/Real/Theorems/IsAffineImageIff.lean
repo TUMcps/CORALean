@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ToSetEqImage
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConZonotopeExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemUnitBoxIff
@@ -15,7 +15,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.HPolytope_to_ConZonoto
 
 `[1, Thm. 4]`: a non-empty set is a constrained zonotope iff it is an "AH-polytope", an affine image
 `xbar + X·P` of an H-Rep polytope `P`. Both halves are already here under other names:
-`construct_eq_image` reads a constrained zonotope this way with `X` its generator map and `P` its
+`toSet_eq_image` reads a constrained zonotope this way with `X` its generator map and `P` its
 `domain`; `HPolytope.conZonotope` is the other way, composed with `map` and a center shift. `P`
 bounded (a `SupportBound` pair per coordinate) is [1]'s own assumption made explicit. Non-emptiness
 is not needed: the iff holds at `∅` too.
@@ -51,12 +51,12 @@ variable {n : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- Shifting a constrained zonotope's center shifts its construct by the same
+/-- Shifting a constrained zonotope's center shifts its `toSet` by the same
 amount — the translation half of an affine image. -/
-private theorem ConZonotope.aux_construct_shift (cZ : ConZonotope (Vec ℝ n))
+private theorem ConZonotope.aux_toSet_shift (cZ : ConZonotope (Vec ℝ n))
     (v : Vec ℝ n) : -- --- CONCL ---
-    ({ cZ with c := v + cZ.c } : ConZonotope (Vec ℝ n)).construct
-      = (fun y => v + y) '' cZ.construct := by -- --- PROOF ---
+    ({ cZ with c := v + cZ.c } : ConZonotope (Vec ℝ n)).toSet
+      = (fun y => v + y) '' cZ.toSet := by -- --- PROOF ---
   ext x
   constructor
   · rintro ⟨β, hβ, hP, rfl⟩
@@ -67,16 +67,16 @@ private theorem ConZonotope.aux_construct_shift (cZ : ConZonotope (Vec ℝ n))
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.eq_construct_iff_isAffineImage {S : Set (Vec ℝ n)} : -- --- CONCL ---
-    (∃ cZ : ConZonotope (Vec ℝ n), cZ.construct = S) ↔
+theorem ConZonotope.eq_toSet_iff_isAffineImage {S : Set (Vec ℝ n)} : -- --- CONCL ---
+    (∃ cZ : ConZonotope (Vec ℝ n), cZ.toSet = S) ↔
       ∃ (m : ℕ) (X : Vec ℝ m →ₗ[ℝ] Vec ℝ n) (xbar : Vec ℝ n) (P : HPolytope (Vec ℝ m))
-        (_ : ∀ j, SupportBound P.construct (LinearMap.proj j))
-        (_ : ∀ j, SupportBound P.construct (-LinearMap.proj j)),
-        (fun ξ => xbar + X ξ) '' P.construct = S := by -- --- PROOF ---
+        (_ : ∀ j, SupportBound P.toSet (LinearMap.proj j))
+        (_ : ∀ j, SupportBound P.toSet (-LinearMap.proj j)),
+        (fun ξ => xbar + X ξ) '' P.toSet = S := by -- --- PROOF ---
   constructor
   -- a constrained zonotope's own generators are its affine map, its domain the polytope
   · rintro ⟨cZ, rfl⟩
-    have hsub : cZ.domain.construct ⊆ (HPolytope.unitBox cZ.h).construct :=
+    have hsub : cZ.domain.toSet ⊆ (HPolytope.unitBox cZ.h).toSet :=
       fun _ hx => (HPolytope.mem_intersection_iff.mp hx).1
     refine ⟨cZ.h, (⟨cZ.h, cZ.c, cZ.G⟩ : Zonotope (Vec ℝ n)).genMap, cZ.c, cZ.domain,
       fun j => ⟨1, fun x hx => (abs_le.mp (HPolytope.mem_unitBox_iff.mp (hsub hx) j)).2⟩,
@@ -88,12 +88,12 @@ theorem ConZonotope.eq_construct_iff_isAffineImage {S : Set (Vec ℝ n)} : -- --
         = fun β : Vec ℝ cZ.h => cZ.c + ∑ j, β j • cZ.G j := by
       funext ξ; rfl
     rw [hfun]
-    exact (ConZonotope.construct_eq_image cZ).symm
+    exact (ConZonotope.toSet_eq_image cZ).symm
   -- back: Scott et al.'s conversion gives the polytope as a constrained zonotope, `map` the rest
   · rintro ⟨m, X, xbar, P, up, lo, rfl⟩
     refine ⟨{ (HPolytope.conZonotope up lo).map X with
         c := xbar + ((HPolytope.conZonotope up lo).map X).c }, ?_⟩
-    rw [ConZonotope.aux_construct_shift, ← ConZonotope.map_exact, HPolytope.conZonotope_exact,
+    rw [ConZonotope.aux_toSet_shift, ← ConZonotope.map_exact, HPolytope.conZonotope_exact,
       Set.image_image]
 
 end CORALean.Real

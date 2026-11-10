@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 theorem Interval.vec_representsa_origin_sound {I : Interval (Mat 𝕋 m n)}
     (h : I.vec.representsa_origin = true) :
-    I.construct = {0} := by
+    I.toSet = {0} := by
   have h1 := Interval.representsa_origin_sound h
   rw [Interval.vec_exact, ← map_zero matVecEquiv, ← Set.image_singleton] at h1
   exact matVecEquiv.injective.image_injective h1

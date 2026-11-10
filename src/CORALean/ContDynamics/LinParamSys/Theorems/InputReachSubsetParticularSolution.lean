@@ -75,11 +75,11 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes ℐ S]
 /-- The recursion encloses the member's propagation of the one-step set, window
 by window: `plus` absorbs one propagated copy at a time. -/
 private theorem LinParamSys.aux_propagate_subset_particularSolution (sys : LinParamSys ℐ n)
-    (Δt : ℝ) (η : ℕ) (U : S n) {A : Mat ℝ n n} (hA : A ∈ construct sys.A) :
+    (Δt : ℝ) (η : ℕ) (U : S n) {A : Mat ℝ n n} (hA : A ∈ toSet sys.A) :
     ∀ k : ℕ,
     (LinearSys.canonical A : LinearSys ℝ n).propagateInputSolution Δt
-        (construct (sys.inputSolution Δt η U)) (k + 1)
-      ⊆ construct (sys.particularSolution Δt η U k)
+        (toSet (sys.inputSolution Δt η U)) (k + 1)
+      ⊆ toSet (sys.particularSolution Δt η U k)
   | 0 => by
     -- `{0} + e^{A·0} P^R(Δt)` is `P^R(Δt)` itself
     intro y hy
@@ -104,27 +104,27 @@ theorem LinParamSys.inputReach_subset_particularSolution
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
     (sys : LinParamSys ℐ n) {Δt : ℝ} (hΔt : 0 < Δt) {η : ℕ}
     (hε : ‖(Interval.smul Δt sys.A).absMax‖ / ((η : ℝ) + 2) < 1)
-    {A : Mat ℝ n n} (hA : A ∈ construct sys.A) {U : S n}
-    (h0 : (0 : Vec ℝ n) ∈ construct U) (k : ℕ) {t : ℝ} (ht0 : 0 ≤ t)
+    {A : Mat ℝ n n} (hA : A ∈ toSet sys.A) {U : S n}
+    (h0 : (0 : Vec ℝ n) ∈ toSet U) (k : ℕ) {t : ℝ} (ht0 : 0 ≤ t)
     (htk : t ≤ ((k + 1 : ℕ) : ℝ) * Δt) : -- --- CONCL ---
     (LinearSys.canonical A : LinearSys ℝ n).inputReach U t
-      ⊆ construct (sys.particularSolution Δt η U k) := by -- --- PROOF ---
+      ⊆ toSet (sys.particularSolution Δt η U k) := by -- --- PROOF ---
   set L : LinearSys ℝ n := LinearSys.canonical A
-  have hbdd := CompactSet.isBounded_construct U
+  have hbdd := CompactSet.isBounded_toSet U
   -- [1, Thm. 1]: one step of the input under `A`, inside the box's `inputSolution`
-  have hΔ : L.inputReach U Δt ⊆ construct (sys.inputSolution Δt η U) :=
-    sys.inputReach_subset_inputSolution hΔt η hε hA (ConvexSet.convex_construct U)
-      (CompactSet.isClosed_construct U) hbdd (ConvexSet.convex_construct _)
-      (CompactSet.isClosed_construct _) (CompactSet.isBounded_construct _)
+  have hΔ : L.inputReach U Δt ⊆ toSet (sys.inputSolution Δt η U) :=
+    sys.inputReach_subset_inputSolution hΔt η hε hA (ConvexSet.convex_toSet U)
+      (CompactSet.isClosed_toSet U) hbdd (ConvexSet.convex_toSet _)
+      (CompactSet.isClosed_toSet _) (CompactSet.isBounded_toSet _)
   calc L.inputReach U t
       -- [1, Sec. 3.3]: `0 ∈ U`, so the window's right end bounds every earlier time
       ⊆ L.inputReach U (((k + 1 : ℕ) : ℝ) * Δt) := L.inputReach_mono hbdd h0 ht0 htk
     -- [1, Alg. 1]: exactly the one-step set, propagated `k + 1` times
     _ = L.propagateInputSolution Δt (L.inputReach U Δt) (k + 1) :=
       (L.propagateInputSolution_inputReach hΔt.le hbdd ⟨0, h0⟩ (k + 1)).symm
-    _ ⊆ L.propagateInputSolution Δt (construct (sys.inputSolution Δt η U)) (k + 1) :=
+    _ ⊆ L.propagateInputSolution Δt (toSet (sys.inputSolution Δt η U)) (k + 1) :=
       L.propagateInputSolution_mono Δt hΔ (k + 1)
-    _ ⊆ construct (sys.particularSolution Δt η U k) :=
+    _ ⊆ toSet (sys.particularSolution Δt η U k) :=
       sys.aux_propagate_subset_particularSolution Δt η U hA k
 
 end CORALean

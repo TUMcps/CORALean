@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.SplitDepFactor
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetToSet
 public import CORALean.ContSet.Interval.Real.Theorems.Basic
 
 @[expose] public section
@@ -39,11 +39,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.splitDepFactor_union (cPZ : ConPolyZono α) (r : Fin cPZ.p) : -- --- CONCL ---
-    (cPZ.splitDepFactor r).1.construct ∪ (cPZ.splitDepFactor r).2.construct
-      = cPZ.construct := by -- --- PROOF ---
+    (cPZ.splitDepFactor r).1.toSet ∪ (cPZ.splitDepFactor r).2.toSet
+      = cPZ.toSet := by -- --- PROOF ---
   simp only [ConPolyZono.splitDepFactor]
-  rw [ConPolyZono.getSubset_construct _ _ _ _ (by norm_num),
-    ConPolyZono.getSubset_construct _ _ _ _ (by norm_num)]
+  rw [ConPolyZono.getSubset_toSet _ _ _ _ (by norm_num),
+    ConPolyZono.getSubset_toSet _ _ _ _ (by norm_num)]
   ext x
   constructor
   · -- either half's factor vector is in the unit cube

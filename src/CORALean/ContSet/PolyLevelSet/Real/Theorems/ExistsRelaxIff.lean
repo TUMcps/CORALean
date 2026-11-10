@@ -45,10 +45,10 @@ variable {n : ℕ}
 is in `P`'s box and every row of `x` is met to within `|sᵢ|`. -/
 theorem PolyLevelSet.exists_relax_iff {P : PolyLevelSet n} (h : ∀ i, P.op i = .eq)
     (s : Vec ℝ P.m) (x : Vec ℝ n) : -- --- CONCL ---
-    (∃ y : Vec ℝ P.m, Fin.append x y ∈ (P.relax s (Interval.unit P.m)).construct)
-      ↔ x ∈ P.dom.construct ∧ ∀ i, |P.eval x i| ≤ |s i| := by -- --- PROOF ---
-  have key : ∀ y : Vec ℝ P.m, Fin.append x y ∈ (P.relax s (Interval.unit P.m)).construct
-      ↔ (x ∈ P.dom.construct ∧ ∀ i, |y i| ≤ 1) ∧ ∀ i, P.eval x i + s i * y i = 0 := by
+    (∃ y : Vec ℝ P.m, Fin.append x y ∈ (P.relax s (Interval.unit P.m)).toSet)
+      ↔ x ∈ P.dom.toSet ∧ ∀ i, |P.eval x i| ≤ |s i| := by -- --- PROOF ---
+  have key : ∀ y : Vec ℝ P.m, Fin.append x y ∈ (P.relax s (Interval.unit P.m)).toSet
+      ↔ (x ∈ P.dom.toSet ∧ ∀ i, |y i| ≤ 1) ∧ ∀ i, P.eval x i + s i * y i = 0 := by
     intro y
     rw [PolyLevelSet.mem_relax_iff, Interval.mem_unit_iff]
     simp only [Fin.append_left, Fin.append_right]

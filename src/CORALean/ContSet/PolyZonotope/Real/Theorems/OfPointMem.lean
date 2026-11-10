@@ -35,7 +35,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.mem_ofPoint (v : α) : v ∈ (PolyZonotope.ofPoint v).construct := by
+theorem PolyZonotope.mem_ofPoint (v : α) : v ∈ (PolyZonotope.ofPoint v).toSet := by
   refine ⟨Fin.elim0, Fin.elim0, fun k => k.elim0, fun j => j.elim0, ?_⟩
   show v = v + ∑ i : Fin 0, PolyZonotope.monomial Fin.elim0 Fin.elim0 i • Fin.elim0 i
         + ∑ j : Fin 0, Fin.elim0 j • Fin.elim0 j

@@ -40,11 +40,11 @@ structure NonlinearSys.WithSteps (S Rg : ℕ → Type) [∀ n, ContSet (S n) (Ve
   U : S m
   steps : ℕ → sys.LinStep U
   region : ℕ → Rg n
-  region_subset (i : ℕ) : construct (region i) ⊆ (steps i).R
+  region_subset (i : ℕ) : toSet (region i) ⊆ (steps i).R
   M : ℝ
   M_pos : 0 < M
-  norm_f_le (i : ℕ) : ∀ y ∈ (steps i).R, ∀ v ∈ construct U, ‖sys.f y v‖ ≤ M
-  zero_mem_linInput (i : ℕ) : (0 : Vec ℝ n) ∈ construct (steps i).linInput
+  norm_f_le (i : ℕ) : ∀ y ∈ (steps i).R, ∀ v ∈ toSet U, ‖sys.f y v‖ ≤ M
+  zero_mem_linInput (i : ℕ) : (0 : Vec ℝ n) ∈ toSet (steps i).linInput
 
 end CORALean
 

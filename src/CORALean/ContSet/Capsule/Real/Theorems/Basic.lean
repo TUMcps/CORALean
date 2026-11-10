@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Capsule.Real.Operations.Empty
 public import CORALean.ContSet.Capsule.Real.Operations.OfPoint
-public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
+public import CORALean.ContSet.Capsule.Real.Theorems.ToSetEqEmpty
 
 @[expose] public section
 
@@ -29,8 +29,8 @@ variable {n : ℕ}
 -- Reviewed:      ---
 
 /-- `Capsule.empty` denotes the empty set -/
-theorem Capsule.empty_exact (n : ℕ) : (Capsule.empty n).construct = ∅ :=
-  Capsule.construct_eq_empty (by simp [Capsule.empty])
+theorem Capsule.empty_exact (n : ℕ) : (Capsule.empty n).toSet = ∅ :=
+  Capsule.toSet_eq_empty (by simp [Capsule.empty])
 
 
 -- ==================================  `Capsule.mem_ofPoint`  =================================== --
@@ -41,7 +41,7 @@ theorem Capsule.empty_exact (n : ℕ) : (Capsule.empty n).construct = ∅ :=
 
 /-- `ofPoint v` states its own `g` and `r`, both `0`, so the segment endpoint at
 any `t` collapses to `v` and the ball shrinks to `Real.sqrt 0 ≤ 0`. -/
-theorem Capsule.mem_ofPoint (v : Vec ℝ n) : v ∈ (Capsule.ofPoint v).construct := by
+theorem Capsule.mem_ofPoint (v : Vec ℝ n) : v ∈ (Capsule.ofPoint v).toSet := by
   refine ⟨0, Set.mem_Icc.mpr ⟨by norm_num, by norm_num⟩, ?_⟩
   simp [Capsule.ofPoint]
 

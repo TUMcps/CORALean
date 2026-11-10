@@ -146,7 +146,7 @@ noncomputable def NonlinearSys.polyReachReach
   -- 18. `R([0,t_f])`, the union of the time-interval sets of iterations 1 to `K`
   ⋃ j < options.K, ⋃ s ∈ NonlinearSys.step_polyReachRun U options.UΔ options.taylor options.combine
     options.post options.sub options.enlarge options.Δt tf options.η options.fuel
-    X₀ (j + 1), construct s.Rτ
+    X₀ (j + 1), toSet s.Rτ
 
 end CORALean
 

@@ -40,29 +40,7 @@ variable {s n N : ℕ} {α β : Type} [AddCommGroup α] [Module ℝ α] [AddComm
 /-- By `rfl`: precomposing every constraint with `f` is what asking the constraints
 about `f x` means. -/
 theorem HPolytope.comap_exact (f : β →ₗ[ℝ] α) (P : HPolytope α) :
-    (HPolytope.comap f P).construct = f ⁻¹' P.construct := rfl
-
-
--- ============================  `HPolytope.construct_eq_feasible`  ============================= --
--- Authors:       Claude Opus 5
--- Written:       02-September-2026
--- Last update:   05-September-2026
--- Reviewed:      ---
-
-/-- A halfspace description's own construct is `Feasible` -/
-theorem HPolytope.construct_eq_feasible (P : HPolytope α) :
-    P.construct = Feasible P.A P.b P.Ae P.be := rfl
-
-
--- ===========================  `HPolytope.construct_subset_dropEqs`  =========================== --
--- Authors:       Claude Opus 5.5
--- Written:       19-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- Dropping the equalities only widens the set. -/
-theorem HPolytope.construct_subset_dropEqs (P : HPolytope α) : P.construct ⊆ P.dropEqs.construct :=
-  fun _ hx => ⟨hx.1, fun i => i.elim0⟩
+    (HPolytope.comap f P).toSet = f ⁻¹' P.toSet := rfl
 
 
 -- ==================================  `HPolytope.lift_exact`  ================================== --
@@ -74,7 +52,7 @@ theorem HPolytope.construct_subset_dropEqs (P : HPolytope α) : P.construct ⊆ 
 /-- A point of the higher-dimensional space is in the lifted polytope exactly when its coordinates
 `dims` form a point of `P`; the other coordinates are free. -/
 theorem HPolytope.lift_exact (P : HPolytope (Vec ℝ n)) (dims : Fin n → Fin N) :
-    (P.lift_ dims).construct = {x : Vec ℝ N | (fun k => x (dims k)) ∈ P.construct} :=
+    (P.lift_ dims).toSet = {x : Vec ℝ N | (fun k => x (dims k)) ∈ P.toSet} :=
   HPolytope.comap_exact (LinearMap.funLeft ℝ ℝ dims) P
 
 
@@ -86,7 +64,7 @@ theorem HPolytope.lift_exact (P : HPolytope (Vec ℝ n)) (dims : Fin n → Fin N
 
 /-- Membership in `HPolytope.eqs` -/
 theorem HPolytope.mem_eqs_iff {Ae : Mat ℝ s n} {be : Vec ℝ s} {x : Vec ℝ n} :
-    x ∈ (HPolytope.eqs Ae be).construct ↔ ∀ i, (Ae *ᵥ x) i = be i :=
+    x ∈ (HPolytope.eqs Ae be).toSet ↔ ∀ i, (Ae *ᵥ x) i = be i :=
   ⟨fun h i => h.2 i, fun h => ⟨fun i => i.elim0, h⟩⟩
 
 
@@ -98,7 +76,7 @@ theorem HPolytope.mem_eqs_iff {Ae : Mat ℝ s n} {be : Vec ℝ s} {x : Vec ℝ n
 
 /-- Membership in `HPolytope.ineqs` -/
 theorem HPolytope.mem_ineqs_iff {A : Mat ℝ s n} {b : Vec ℝ s} {x : Vec ℝ n} :
-    x ∈ (HPolytope.ineqs A b).construct ↔ ∀ i, (A *ᵥ x) i ≤ b i :=
+    x ∈ (HPolytope.ineqs A b).toSet ↔ ∀ i, (A *ᵥ x) i ≤ b i :=
   ⟨fun h i => h.1 i, fun h => ⟨h, fun i => i.elim0⟩⟩
 
 
@@ -110,7 +88,7 @@ theorem HPolytope.mem_ineqs_iff {A : Mat ℝ s n} {b : Vec ℝ s} {x : Vec ℝ n
 
 /-- `ofPoint v` has no inequalities and reads coordinate `i` back through
 `LinearMap.proj i`, so each equality row holds by `LinearMap.proj_apply`. -/
-theorem HPolytope.mem_ofPoint (v : Vec ℝ n) : v ∈ (HPolytope.ofPoint v).construct :=
+theorem HPolytope.mem_ofPoint (v : Vec ℝ n) : v ∈ (HPolytope.ofPoint v).toSet :=
   ⟨fun i => i.elim0, fun i => LinearMap.proj_apply i v⟩
 
 
@@ -122,7 +100,7 @@ theorem HPolytope.mem_ofPoint (v : Vec ℝ n) : v ∈ (HPolytope.ofPoint v).cons
 
 /-- A point of the relaxed polytope meets every inequality up to its added `rᵢ`. -/
 theorem HPolytope.mem_relax_iff {P : HPolytope α} {r : Fin P.m → ℝ} {x : α} :
-    x ∈ (P.relax r).construct ↔ (∀ i, P.A i x ≤ P.b i + r i) ∧ ∀ i, P.Ae i x = P.be i :=
+    x ∈ (P.relax r).toSet ↔ (∀ i, P.A i x ≤ P.b i + r i) ∧ ∀ i, P.Ae i x = P.be i :=
   Iff.rfl
 
 
@@ -147,7 +125,7 @@ theorem HPolytope.polyNorm_le_iff {H : Mat ℝ s n} {h : Vec ℝ s} {x : Vec ℝ
 
 /-- Nothing here solves a linear program. It consumes the answers. -/
 theorem HPolytope.subset_ofBounds {S : Set α} (Aq : Fin s → (α →ₗ[ℝ] ℝ))
-    (u : ∀ i, SupportBound S (Aq i)) : S ⊆ (HPolytope.ofBounds Aq u).construct :=
+    (u : ∀ i, SupportBound S (Aq i)) : S ⊆ (HPolytope.ofBounds Aq u).toSet :=
   fun _ hx => ⟨fun i => (u i).le _ hx, fun i => i.elim0⟩
 
 
@@ -158,9 +136,31 @@ theorem HPolytope.subset_ofBounds {S : Set α} (Aq : Fin s → (α →ₗ[ℝ] �
 -- Reviewed:      ---
 
 /-- Writing every equality as its two halves leaves the set unchanged. -/
-theorem HPolytope.toIneqs_exact (P : HPolytope α) : P.toIneqs.construct = P.construct :=
-  Set.ext fun _ => ⟨fun h => HPolytope.mem_construct_iff_rows.mpr h.1,
-    fun h => ⟨HPolytope.mem_construct_iff_rows.mp h, fun i => i.elim0⟩⟩
+theorem HPolytope.toIneqs_exact (P : HPolytope α) : P.toIneqs.toSet = P.toSet :=
+  Set.ext fun _ => ⟨fun h => HPolytope.mem_toSet_iff_rows.mpr h.1,
+    fun h => ⟨HPolytope.mem_toSet_iff_rows.mp h, fun i => i.elim0⟩⟩
+
+
+-- ==============================  `HPolytope.toSet_eq_feasible`  =============================== --
+-- Authors:       Claude Opus 5
+-- Written:       02-September-2026
+-- Last update:   05-September-2026
+-- Reviewed:      ---
+
+/-- A halfspace description's own `toSet` is `Feasible` -/
+theorem HPolytope.toSet_eq_feasible (P : HPolytope α) :
+    P.toSet = Feasible P.A P.b P.Ae P.be := rfl
+
+
+-- =============================  `HPolytope.toSet_subset_dropEqs`  ============================= --
+-- Authors:       Claude Opus 5.5
+-- Written:       19-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- Dropping the equalities only widens the set. -/
+theorem HPolytope.toSet_subset_dropEqs (P : HPolytope α) : P.toSet ⊆ P.dropEqs.toSet :=
+  fun _ hx => ⟨hx.1, fun i => i.elim0⟩
 
 
 -- ================================  `HPolytope.volume_lt_top`  ================================= --
@@ -172,7 +172,7 @@ theorem HPolytope.toIneqs_exact (P : HPolytope α) : P.toIneqs.construct = P.con
 /-- The case where CORA's value is a number rather than `Inf`: a bounded set has finite Lebesgue
 measure. -/
 theorem HPolytope.volume_lt_top {P : HPolytope (Vec ℝ n)}
-    (h : Bornology.IsBounded P.construct) : P.volume < ⊤ :=
+    (h : Bornology.IsBounded P.toSet) : P.volume < ⊤ :=
   h.measure_lt_top
 
 end CORALean.Real

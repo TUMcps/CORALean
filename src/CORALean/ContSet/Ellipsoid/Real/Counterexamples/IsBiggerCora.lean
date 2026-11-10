@@ -57,8 +57,8 @@ open scoped MatrixOrder
 
 theorem Ellipsoid.isBigger_cora_counterexample : -- --- CONCL ---
     ∃ E₁ E₂ : Ellipsoid 1, E₁.isBiggerCora E₂ ∧
-      ¬ ((fun x => x - E₂.q) '' E₂.construct ⊆
-        (fun x => x - E₁.q) '' E₁.construct) := by -- --- PROOF ---
+      ¬ ((fun x => x - E₂.q) '' E₂.toSet ⊆
+        (fun x => x - E₁.q) '' E₁.toSet) := by -- --- PROOF ---
   -- the data: shape `1` and shape `4`
   let E₁ : Ellipsoid 1 := ⟨1, 0, .one⟩
   let E₂ : Ellipsoid 1 := ⟨(4 : ℝ) • 1, 0, PosSemidef.one.smul (by norm_num)⟩

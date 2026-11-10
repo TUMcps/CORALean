@@ -13,7 +13,7 @@ nominal parts of `R₀` and `U` — by `reachInnerFloat_inner`. A float computat
 something about the true reachable set is what the two-layer design is for: `reachInnerFloat` is
 `Set (Vec ℝ n)`, the same real space every layer denotes into. `minkowskiDiff` is a specification
 and computes nothing, as at `reachInner`; a representation-level version would first need a real
-zonotope standing for the float run's whole construct, which no operation here builds.
+zonotope standing for the float run's whole `toSet`, which no operation here builds.
 
 ## Inputs
 * `sys` – system
@@ -50,8 +50,8 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 approximation of the exact reachable set, as a set. -/
 noncomputable def LinearSysDT.reachInnerFloat (sys : LinearSysDT 𝕋 n) (o : ℕ) (ho : 0 < o)
     (R₀ U : Zonotope (Vec 𝕋 n)) (k : ℕ) : Set (Vec ℝ n) :=
-  minkowskiDiff (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
-    (sys.reachErrorFloat ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
+  minkowskiDiff (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).toSet
+    (sys.reachErrorFloat ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).toSet
 
 end CORALean
 

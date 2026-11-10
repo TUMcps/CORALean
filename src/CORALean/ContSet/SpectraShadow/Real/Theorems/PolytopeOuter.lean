@@ -43,11 +43,11 @@ variable {n N : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 private theorem aux_polytopeOuter_row (S : SpectraShadow (Vec ℝ n)) (c : Vec ℝ n)
-    (dirs : Fin N → (Vec ℝ n →ₗ[ℝ] ℝ)) {x : Vec ℝ n} (hx : x ∈ S.construct) (i : Fin N)
+    (dirs : Fin N → (Vec ℝ n →ₗ[ℝ] ℝ)) {x : Vec ℝ n} (hx : x ∈ S.toSet) (i : Fin N)
     (hi : (S.translate (-c)).supportFunc (dirs i) ≠ ⊤ ∧
       (S.translate (-c)).supportFunc (dirs i) ≠ ⊥) : -- --- CONCL ---
     dirs i x ≤ ((S.translate (-c)).supportFunc (dirs i)).toReal + dirs i c := by -- --- PROOF ---
-  have hmem : x - c ∈ (S.translate (-c)).construct := by
+  have hmem : x - c ∈ (S.translate (-c)).toSet := by
     rw [SpectraShadow.mem_translate_iff]
     simpa using hx
   have hle := (S.translate (-c)).le_supportFunc_of_mem (dirs i) hmem
@@ -61,9 +61,9 @@ private theorem aux_polytopeOuter_row (S : SpectraShadow (Vec ℝ n)) (c : Vec �
 
 theorem SpectraShadow.polytopeOuter_outer (S : SpectraShadow (Vec ℝ n)) (c : Vec ℝ n)
     (dirs : Fin N → (Vec ℝ n →ₗ[ℝ] ℝ)) : -- --- CONCL ---
-    S.construct ⊆ (S.polytopeOuter c dirs).construct := by -- --- PROOF ---
+    S.toSet ⊆ (S.polytopeOuter c dirs).toSet := by -- --- PROOF ---
   intro x hx
-  have hne : S.construct ≠ ∅ := Set.nonempty_iff_ne_empty.1 ⟨x, hx⟩
+  have hne : S.toSet ≠ ∅ := Set.nonempty_iff_ne_empty.1 ⟨x, hx⟩
   unfold SpectraShadow.polytopeOuter
   rw [if_neg hne]
   refine ⟨fun r => ?_, fun r => Fin.elim0 r⟩

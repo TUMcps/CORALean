@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSysDT.Theorems.ErrMatFloatMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter
 
 @[expose] public section
@@ -68,11 +68,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
 theorem LinearSysDT.observePropagationFloat_outer (sys : LinearSysDT 𝕋 n)
     (gain : Zonotope (Vec 𝕋 n) → Mat 𝕋 n sys.q) (order : ℕ) (W R₀ : Zonotope (Vec 𝕋 n))
     (V : Zonotope (Vec 𝕋 sys.q)) (u : ℕ → Vec 𝕋 sys.m) (y : ℕ → Vec 𝕋 sys.q) (x w : ℕ → Vec ℝ n)
-    (v : ℕ → Vec ℝ sys.q) (h0 : x 0 ∈ R₀.construct) (hw : ∀ k, w k ∈ W.construct)
-    (hv : ∀ k, v k ∈ V.construct)
+    (v : ℕ → Vec ℝ sys.q) (h0 : x 0 ∈ R₀.toSet) (hw : ∀ k, w k ∈ W.toSet)
+    (hv : ∀ k, v k ∈ V.toSet)
     (hstep : ∀ k, x (k + 1) = toRealMat sys.A *ᵥ x k + toRealMat sys.B *ᵥ toRealVec (u k) + w k)
     (hy : ∀ k, toRealVec (y k) = toRealMat sys.C *ᵥ x k + v k) (k : ℕ) : -- --- CONCL ---
-    x k ∈ (sys.observePropagationFloat gain order W R₀ V u y k).construct := by -- --- PROOF ---
+    x k ∈ (sys.observePropagationFloat gain order W R₀ V u y k).toSet := by -- --- PROOF ---
   induction k with
   | zero => exact h0
   | succ k ih =>
@@ -88,31 +88,31 @@ theorem LinearSysDT.observePropagationFloat_outer (sys : LinearSysDT 𝕋 n)
       abel
     -- (A - L C) x_k is in the first summand, the matrix being in the interval matrix
     have h1 : (toRealMat sys.A - toRealMat L * toRealMat sys.C) *ᵥ x k ∈
-        (Zonotope.mtimesIntervalMat (LinearSysDT.errMatFloat sys.A L sys.C) S).construct :=
+        (Zonotope.mtimesIntervalMat (LinearSysDT.errMatFloat sys.A L sys.C) S).toSet :=
       Zonotope.mtimesIntervalMat_outer _ S
         (Set.mem_iUnion₂.mpr ⟨_, LinearSysDT.errMatFloat_mem sys.A L sys.C, ⟨x k, ih, rfl⟩⟩)
     -- `B u_k` is `B` applied to the point `u_k`
     have h2 : toRealMat sys.B *ᵥ toRealVec (u k) ∈
-        (Zonotope.mtimes sys.B (Zonotope.point (u k))).construct := by
+        (Zonotope.mtimes sys.B (Zonotope.point (u k))).toSet := by
       refine Zonotope.mtimes_outer sys.B _ ⟨toRealVec (u k), ?_, rfl⟩
-      rw [Zonotope.construct_point]
+      rw [Zonotope.toSet_point]
       exact rfl
     -- `L y_k` is the gain applied to the point `y_k`
     have h3 : toRealMat L *ᵥ toRealVec (y k) ∈
-        (Zonotope.mtimes L (Zonotope.point (y k))).construct := by
+        (Zonotope.mtimes L (Zonotope.point (y k))).toSet := by
       refine Zonotope.mtimes_outer L _ ⟨toRealVec (y k), ?_, rfl⟩
-      rw [Zonotope.construct_point]
+      rw [Zonotope.toSet_point]
       exact rfl
     -- `(-L) v_k` is in the product of `-L` with `V`
     have h4 : toRealMat (-L) *ᵥ v k ∈
-        (Zonotope.mtimes (-L) V).construct :=
+        (Zonotope.mtimes (-L) V).toSet :=
       Zonotope.mtimes_outer _ V ⟨v k, hv k, rfl⟩
     -- the sum of the five points is in the sum of the five sets, then reduced
     show x (k + 1) ∈ (Zonotope.reduce (((((Zonotope.mtimesIntervalMat
       (LinearSysDT.errMatFloat sys.A L sys.C) S).plus
       (Zonotope.mtimes sys.B (Zonotope.point (u k)))).plus
       (Zonotope.mtimes L (Zonotope.point (y k)))).plus
-      (Zonotope.mtimes (-L) V)).plus W) order).construct
+      (Zonotope.mtimes (-L) V)).plus W) order).toSet
     refine Zonotope.reduce_outer _ _ ?_
     rw [heq]
     exact Zonotope.plus_outer _ _ ⟨_, Zonotope.plus_outer _ _ ⟨_, Zonotope.plus_outer _ _

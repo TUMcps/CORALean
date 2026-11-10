@@ -4,7 +4,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Operations.ContainsPoint
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.IsPsdSound
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.QuadLeQuadUp
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.AddMulVecMemConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.AddMulVecMemToSet
 
 @[expose] public section
 
@@ -12,7 +12,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.AddMulVecMemConstruct
 # A `true` from `Ellipsoid.containsPoint` proves membership
 
 The certified `Q` makes the nominal part the ellipsoid of `Q`; `wᵀ Q w ≤ quadUp w ≤ 1` puts
-`q + Q w` in it (`Real.Ellipsoid.add_mulVec_mem_construct`), and the remainder `p - q - Q w` lies
+`q + Q w` in it (`Real.Ellipsoid.add_mulVec_mem_toSet`), and the remainder `p - q - Q w` lies
 between the two directed roundings the test compared with the error box, so in the box.
 
 ## Inputs
@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Ellipsoid.containsPoint_sound {E : Ellipsoid 𝕋 n} {p w : Vec 𝕋 n}
     (h : E.containsPoint p w = true) : -- --- CONCL ---
-    toRealVec p ∈ E.construct := by -- --- PROOF ---
+    toRealVec p ∈ E.toSet := by -- --- PROOF ---
   simp only [Ellipsoid.containsPoint, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨⟨hpsd, hw⟩, hbox⟩ := h
@@ -55,9 +55,9 @@ theorem Ellipsoid.containsPoint_sound {E : Ellipsoid 𝕋 n} {p w : Vec 𝕋 n}
   have hq : toRealVec w ⬝ᵥ (toRealMat E.Q *ᵥ toRealVec w) ≤ 1 :=
     le_trans (E.quad_le_quadUp w) ((toReal_le_of_le hw).trans_eq toReal_one)
   have hy : toRealVec E.q + toRealMat E.Q *ᵥ toRealVec w ∈ nominalSet E := by
-    show _ ∈ (nominal E).ellipsoid.construct
+    show _ ∈ (nominal E).ellipsoid.toSet
     rw [Ellipsoid.nominal_of_psd hpsd']
-    exact Real.Ellipsoid.add_mulVec_mem_construct ⟨toRealMat E.Q, toRealVec E.q, hpsd'⟩ hq
+    exact Real.Ellipsoid.add_mulVec_mem_toSet ⟨toRealMat E.Q, toRealVec E.q, hpsd'⟩ hq
   refine ⟨_, hy, toRealVec p - (toRealVec E.q + toRealMat E.Q *ᵥ toRealVec w), fun i => ?_,
     by abel⟩
   -- the remainder lies between the two roundings the test compared with the box

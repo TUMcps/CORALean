@@ -62,7 +62,7 @@ theorem Zonotope.hyperplanePolyhedron_eq (L : Mat ℝ n n) (hL : L * Lᵀ = 1)
     (m M : Vec ℝ n → ℝ) (hmM : ∀ i, m (L i) ≤ M (L i)) : -- --- CONCL ---
     ContSet.hyperplanePolyhedron (Finset.univ.image fun i => L i) m M
       = (Zonotope.mk n (∑ i, ((m (L i) + M (L i)) / 2) • L i)
-          (fun i => ((M (L i) - m (L i)) / 2) • L i)).construct := by -- --- PROOF ---
+          (fun i => ((M (L i) - m (L i)) / 2) • L i)).toSet := by -- --- PROOF ---
   have hLT : Lᵀ * L = 1 := mul_eq_one_comm.1 hL
   -- the rows are orthonormal
   have hrow : ∀ i j, L i ⬝ᵥ L j = if i = j then 1 else 0 := by
@@ -94,7 +94,7 @@ theorem Zonotope.hyperplanePolyhedron_eq (L : Mat ℝ n n) (hL : L * Lᵀ = 1)
     simp only [smul_dotProduct, hrow, smul_eq_mul, mul_ite, mul_one, mul_zero,
       Finset.sum_ite_eq', Finset.mem_univ, if_true]
   simp only [ContSet.hyperplanePolyhedron, Set.mem_setOf_eq, Finset.mem_image, Finset.mem_univ,
-    true_and, forall_exists_index, forall_apply_eq_imp_iff, Zonotope.construct]
+    true_and, forall_exists_index, forall_apply_eq_imp_iff, Zonotope.toSet]
   constructor
   · -- a point of the box is a point of the zonotope
     intro hx

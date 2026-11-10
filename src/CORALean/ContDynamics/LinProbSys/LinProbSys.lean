@@ -59,8 +59,8 @@ distributed as `N(e^{At} x₀ + ∫₀ᵗ e^{A(t-s)} B u(s) ds, Σ_s(t))`, the s
 structure LinProbSys.IsTrajectory (sys : LinProbSys n m) {Ω : Type*} [MeasurableSpace Ω]
     (P : Measure Ω) (T : Set ℝ) (X₀ : S n) (U : S m) (x₀ : Vec ℝ n) (u : ℝ → Vec ℝ m)
     (x : ℝ → Ω → Vec ℝ n) : Prop where
-  init : x₀ ∈ construct X₀
-  input (t : ℝ) (ht : t ∈ T) : u t ∈ construct U
+  init : x₀ ∈ toSet X₀
+  input (t : ℝ) (ht : t ∈ T) : u t ∈ toSet U
   meas : AEStronglyMeasurable u (volume.restrict T)
   law (t : ℝ) (ht : t ∈ T) (h0 : 0 ≤ t) :
     P.map (fun ω => toLp 2 (x t ω))

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 public import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
@@ -75,12 +75,12 @@ private theorem Ellipsoid.aux_volume_unitBall : -- --- CONCL ---
 
 /-- The Lebesgue volume of the ellipsoid is CORA's `volume_`, `V_n √det Q`. -/
 theorem Ellipsoid.volume_eq (E : Ellipsoid n) : -- --- CONCL ---
-    MeasureTheory.volume E.construct = E.volume := by -- --- PROOF ---
+    MeasureTheory.volume E.toSet = E.volume := by -- --- PROOF ---
   -- the ellipsoid is a translate of the image of the unit ball
-  have hcon : E.construct =
+  have hcon : E.toSet =
       (fun v => -E.q + v) ⁻¹' ((Matrix.toLin' E.G) '' {u : Vec ℝ n | ‖u‖₂ ≤ 1}) := by
     ext x
-    simp only [Ellipsoid.construct_eq_sqrt, Set.mem_setOf_eq, Set.mem_preimage, Set.mem_image]
+    simp only [Ellipsoid.toSet_eq_sqrt, Set.mem_setOf_eq, Set.mem_preimage, Set.mem_image]
     constructor
     · rintro ⟨u, hu, rfl⟩
       exact ⟨u, hu, by simp⟩

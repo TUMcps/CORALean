@@ -39,9 +39,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {P 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- The float polytope lies in CORA's `conPolyZono(conZonotope(P))`. -/
-theorem HPolytope.conPolyZono_contains (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : -- --- CONCL ---
-    P.construct ⊆ (HPolytope.conPolyZono up lo).construct := by -- --- PROOF ---
+theorem HPolytope.conPolyZono_contains (up : ∀ j, FloatBound 𝕋 P.toSet (LinearMap.proj j))
+    (lo : ∀ j, FloatBound 𝕋 P.toSet (-LinearMap.proj j)) : -- --- CONCL ---
+    P.toSet ⊆ (HPolytope.conPolyZono up lo).toSet := by -- --- PROOF ---
   -- `conZonotope(P)` holds `P`
   have h₁ := HPolytope.conZonotope_contains up lo
   -- and its constrained polynomial zonotope holds that

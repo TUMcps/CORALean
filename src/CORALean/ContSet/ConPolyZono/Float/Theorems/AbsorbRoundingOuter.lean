@@ -41,10 +41,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `absorbRounding` contains the set. -/
 theorem ConPolyZono.absorbRounding_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    cPZ.construct ⊆ cPZ.absorbRounding.construct :=
-  (cPZ.absorbRounding_nominal).trans (nominalSet_subset_construct
+    cPZ.toSet ⊆ cPZ.absorbRounding.toSet :=
+  (cPZ.absorbRounding_nominal).trans (nominalSet_subset_toSet
     (by
-      show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).construct
+      show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).toSet
       rw [Interval.origin_exact]
       exact Set.mem_singleton _))
 

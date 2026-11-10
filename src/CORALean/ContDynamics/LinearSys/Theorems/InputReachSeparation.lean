@@ -94,7 +94,7 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 a run over `[0,a]` can contribute, propagated across the remaining `b`, plus
 everything a run over `[0,b]` can. -/
 theorem LinearSys.inputReach_separation (sys : LinearSys 𝕋 n) {U : S n} {a b : ℝ}
-    (ha : 0 ≤ a) (hb : 0 ≤ b) (hbdd : Bornology.IsBounded (construct U)) : -- --- CONCL ---
+    (ha : 0 ≤ a) (hb : 0 ≤ b) (hbdd : Bornology.IsBounded (toSet U)) : -- --- CONCL ---
     (fun y => exp (b • toRealMat sys.A) *ᵥ y) '' sys.inputReach U a + sys.inputReach U b
       ⊆ sys.inputReach U (a + b) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
@@ -110,7 +110,7 @@ theorem LinearSys.inputReach_separation (sys : LinearSys 𝕋 n) {U : S n} {a b 
   have hu₁int := intervalIntegrable_expSub_mulVec (A := A) (c := a) ha hbdd hu₁mem hu₁meas
   have hu₂int := intervalIntegrable_expSub_mulVec (A := A) (c := b) hb hbdd hu₂mem hu₂meas
   -- the concatenation is admissible on the joined window
-  have hmem : ∀ s ∈ Set.Icc (0:ℝ) (a + b), aux_concat u₁ u₂ a s ∈ construct U := by
+  have hmem : ∀ s ∈ Set.Icc (0:ℝ) (a + b), aux_concat u₁ u₂ a s ∈ toSet U := by
     intro s hs
     simp only [aux_concat]
     split_ifs with h

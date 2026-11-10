@@ -41,17 +41,17 @@ open CORALean Pointwise
 /-- The documented set `Set.linComb C (M C + Cplus)` is not inside `Capsule.enclose`. -/
 theorem Capsule.enclose_cora_counterexample : -- --- CONCL ---
     ∃ (C Cplus : Capsule 1) (M : Mat ℝ 1 1),
-      ¬ Set.linComb C.construct
-          ((fun y => M.mulVec y) '' C.construct + Cplus.construct) ⊆
-        (C.enclose M Cplus).construct := by -- --- PROOF ---
+      ¬ Set.linComb C.toSet
+          ((fun y => M.mulVec y) '' C.toSet + Cplus.toSet) ⊆
+        (C.enclose M Cplus).toSet := by -- --- PROOF ---
   refine ⟨⟨0, 0, 0⟩, ⟨fun _ => 1, 0, 0⟩, 0, fun h => ?_⟩
-  have h0 : (0 : Vec ℝ 1) ∈ (Capsule.mk (0 : Vec ℝ 1) 0 0).construct :=
+  have h0 : (0 : Vec ℝ 1) ∈ (Capsule.mk (0 : Vec ℝ 1) 0 0).toSet :=
     ⟨0, by simp, by simp⟩
   have h1 : (fun _ => (1 : ℝ) : Vec ℝ 1) ∈
-      (Capsule.mk (fun _ => (1 : ℝ) : Vec ℝ 1) 0 0).construct := ⟨0, by simp, by simp⟩
-  have hm : (fun _ => (1 : ℝ) : Vec ℝ 1) ∈ Set.linComb (Capsule.mk (0 : Vec ℝ 1) 0 0).construct
-      ((fun y => (0 : Mat ℝ 1 1).mulVec y) '' (Capsule.mk (0 : Vec ℝ 1) 0 0).construct +
-        (Capsule.mk (fun _ => (1 : ℝ) : Vec ℝ 1) 0 0).construct) :=
+      (Capsule.mk (fun _ => (1 : ℝ) : Vec ℝ 1) 0 0).toSet := ⟨0, by simp, by simp⟩
+  have hm : (fun _ => (1 : ℝ) : Vec ℝ 1) ∈ Set.linComb (Capsule.mk (0 : Vec ℝ 1) 0 0).toSet
+      ((fun y => (0 : Mat ℝ 1 1).mulVec y) '' (Capsule.mk (0 : Vec ℝ 1) 0 0).toSet +
+        (Capsule.mk (fun _ => (1 : ℝ) : Vec ℝ 1) 0 0).toSet) :=
     ⟨0, h0, fun _ => 1, ⟨_, ⟨0, h0, rfl⟩, fun _ => 1, h1, by simp⟩, 0, by simp, by simp⟩
   obtain ⟨t, -, ht⟩ := h hm
   simp [Capsule.enclose, Capsule.convHull, Capsule.mtimes, Capsule.radius] at ht

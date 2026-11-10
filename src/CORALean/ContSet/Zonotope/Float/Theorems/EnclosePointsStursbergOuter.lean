@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Zonotope.Float.Operations.EnclosePointsStursberg
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n N : ℕ}
 
 theorem Zonotope.enclosePointsStursberg_outer [NeZero N] (pts : Fin N → Vec 𝕋 n) (U : Mat 𝕋 n n)
     (hU : toRealMat U * (toRealMat U)ᵀ = 1) (j : Fin N) : -- --- CONCL ---
-    toRealVec (pts j) ∈ (Zonotope.enclosePointsStursberg pts U).construct := by -- --- PROOF ---
+    toRealVec (pts j) ∈ (Zonotope.enclosePointsStursberg pts U).toSet := by -- --- PROOF ---
   unfold Zonotope.enclosePointsStursberg
   dsimp only
   set mean : Vec 𝕋 n := fun i => divUp (sumUp fun j => pts j i) (sumUp fun _ : Fin N => one)
@@ -66,11 +66,11 @@ theorem Zonotope.enclosePointsStursberg_outer [NeZero N] (pts : Fin N → Vec �
      fun i => maximumOver fun j => (oriented j).sup i⟩ with hbox
   -- the centered point lies between its two directed differences
   set d : Vec ℝ n := toRealVec (pts j) - toRealVec mean with hd
-  have hdmem : d ∈ (sample j).construct := fun i =>
+  have hdmem : d ∈ (sample j).toSet := fun i =>
     ⟨subDown_le_sub (pts j i) (mean i), sub_le_subUp (pts j i) (mean i)⟩
   -- its rotation lies in the interval product, then in the box
   have h1 := Interval.mtimes_outer U.transpose (sample j) ⟨d, hdmem, rfl⟩
-  have h2 : toRealMat U.transpose *ᵥ d ∈ box.construct := fun i =>
+  have h2 : toRealMat U.transpose *ᵥ d ∈ box.toSet := fun i =>
     ⟨le_trans (minimumOver_le (fun j => (oriented j).inf i) j) (h1 i).1,
       le_trans (h1 i).2 (le_maximumOver (fun j => (oriented j).sup i) j)⟩
   -- rotated back it is the centered point, and `plus` moves it to the mean
@@ -82,7 +82,7 @@ theorem Zonotope.enclosePointsStursberg_outer [NeZero N] (pts : Fin N → Vec �
     rw [this, hU, Matrix.one_mulVec]
   rw [h4] at h3
   have h5 := Zonotope.plus_outer (Zonotope.mtimes U box.zonotope) (Zonotope.point mean)
-    ⟨d, h3, toRealVec mean, by rw [Zonotope.construct_point]; rfl, rfl⟩
+    ⟨d, h3, toRealVec mean, by rw [Zonotope.toSet_point]; rfl, rfl⟩
   simpa only [hd, sub_add_cancel] using h5
 
 end CORALean.Float

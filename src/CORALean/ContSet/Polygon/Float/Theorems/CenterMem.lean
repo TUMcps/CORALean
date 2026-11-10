@@ -50,10 +50,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.center_mem_interval (P : Polygon 𝕋)
-    (h0 : MeasureTheory.volume (ContSet.construct P) ≠ 0) :
-    Real.Polygon.regionCenter (ContSet.construct P) ∈ (Polygon.interval P).construct :=
-  Real.Polygon.regionCenter_mem (Polygon.isCompact_construct P)
-    (Real.Interval.convex_construct _) (Real.Interval.isClosed_construct _)
+    (h0 : MeasureTheory.volume (ContSet.toSet P) ≠ 0) :
+    Real.Polygon.regionCenter (ContSet.toSet P) ∈ (Polygon.interval P).toSet :=
+  Real.Polygon.regionCenter_mem (Polygon.isCompact_toSet P)
+    (Real.Interval.convex_toSet _) (Real.Interval.isClosed_toSet _)
     (Polygon.interval_contains P) h0
 
 end CORALean.Float

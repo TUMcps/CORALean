@@ -71,7 +71,7 @@ theorem MatExp.step_expIntervalTaylorTail_eq_impl : -- --- CONCL ---
 
 /-- The stored zero matrix is the point `0`. -/
 private theorem aux_zero_mem_point :
-    (0 : Mat ℝ n n) ∈ (Interval.point (α := Mat 𝕋 n n) fun _ _ => zero).construct := by
+    (0 : Mat ℝ n n) ∈ (Interval.point (α := Mat 𝕋 n n) fun _ _ => zero).toSet := by
   have h : toRealMat (fun _ _ => zero : Mat 𝕋 n n) = 0 := by
     funext i j; simp [toRealMat, toReal_zero]
   rw [← h]
@@ -84,9 +84,9 @@ private theorem aux_zero_mem_point :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.taylorTail_mem_expIntervalTaylorTail (B : Interval (Mat 𝕋 n n))
-    {N : Mat ℝ n n} (hN : N ∈ B.construct) (κ : ℕ) : -- --- CONCL ---
+    {N : Mat ℝ n n} (hN : N ∈ B.toSet) (κ : ℕ) : -- --- CONCL ---
     (∑ i ∈ Finset.Ico 3 (κ + 1), ((Nat.factorial i : ℝ)⁻¹) • N ^ i)
-      ∈ (MatExp.expIntervalTaylorTail B κ).construct := by -- --- PROOF ---
+      ∈ (MatExp.expIntervalTaylorTail B κ).toSet := by -- --- PROOF ---
   induction κ with
   | zero =>
     rw [Finset.Ico_eq_empty (by omega), Finset.sum_empty]
@@ -105,7 +105,7 @@ theorem MatExp.taylorTail_mem_expIntervalTaylorTail (B : Interval (Mat 𝕋 n n)
         add_comm (∑ i ∈ Finset.Ico 3 (m + 2 + 1), ((Nat.factorial i : ℝ)⁻¹) • N ^ i)
           (((Nat.factorial (m + 2 + 1) : ℝ))⁻¹ • N ^ (m + 2 + 1))]
       show _ ∈ (Interval.matPlus _
-        (MatExp.expIntervalTaylorTail B (m + 2))).materialiseMat.construct
+        (MatExp.expIntervalTaylorTail B (m + 2))).materialiseMat.toSet
       rw [Interval.materialiseMat_eq]
       exact Interval.matPlus_outer _ _
         (Interval.smul_outer (MatExp.invFactorialBounds_mem (m + 3)).1

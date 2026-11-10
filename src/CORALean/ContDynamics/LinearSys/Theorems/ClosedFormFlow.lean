@@ -118,8 +118,8 @@ private theorem aux_aestronglyMeasurable_mulVec2 {γ : Type} [MeasurableSpace γ
 `closedForm`, plus the input itself, integrates to — proved by folding the
 triangle `0 ≤ σ ≤ ρ ≤ τ` into a rectangle and swapping the iterated integral. -/
 private theorem aux_duhamel_swap (sys : LinearSys 𝕋 n) {U : S n} {t : ℝ} (_ht : 0 ≤ t)
-    (hU : Bornology.IsBounded (construct U)) {u : ℝ → Vec ℝ n}
-    (hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s ∈ construct U)
+    (hU : Bornology.IsBounded (toSet U)) {u : ℝ → Vec ℝ n}
+    (hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s ∈ toSet U)
     (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 t))) {τ : ℝ}
     (hτ : τ ∈ Set.Icc (0:ℝ) t) : -- --- CONCL ---
     (∫ ρ in (0:ℝ)..τ,
@@ -130,7 +130,7 @@ private theorem aux_duhamel_swap (sys : LinearSys 𝕋 n) {U : S n} {t : ℝ} (_
   set A := toRealMat sys.A
   obtain ⟨hτ0, hτt⟩ := hτ
   obtain ⟨Cu, hCu⟩ := hU.exists_norm_le
-  have hu' : ∀ s ∈ Set.Icc (0:ℝ) τ, u s ∈ construct U := fun s hs =>
+  have hu' : ∀ s ∈ Set.Icc (0:ℝ) τ, u s ∈ toSet U := fun s hs =>
     hu s (Set.Icc_subset_Icc_right hτt hs)
   have hmeas' : AEStronglyMeasurable u (volume.restrict (Set.Icc (0:ℝ) τ)) :=
     hmeas.mono_measure (Measure.restrict_mono (Set.Icc_subset_Icc_right hτt) le_rfl)
@@ -296,8 +296,8 @@ private theorem aux_duhamel_swap (sys : LinearSys 𝕋 n) {U : S n} {t : ℝ} (_
 /-- The closed form satisfies the raw integral equation, at every point of the
 window, for `u` merely bounded and measurable there. -/
 theorem LinearSys.closedForm_flow (sys : LinearSys 𝕋 n) (x0 : Vec ℝ n) {U : S n} {t : ℝ}
-    (ht : 0 ≤ t) (hU : Bornology.IsBounded (construct U)) {u : ℝ → Vec ℝ n}
-    (hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s ∈ construct U)
+    (ht : 0 ≤ t) (hU : Bornology.IsBounded (toSet U)) {u : ℝ → Vec ℝ n}
+    (hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s ∈ toSet U)
     (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 t))) {τ : ℝ}
     (hτ : τ ∈ Set.Icc (0:ℝ) t) : -- --- CONCL ---
     sys.closedForm x0 u τ
@@ -305,7 +305,7 @@ theorem LinearSys.closedForm_flow (sys : LinearSys 𝕋 n) (x0 : Vec ℝ n) {U :
         + ∫ ρ in (0:ℝ)..τ, (toRealMat sys.A *ᵥ sys.closedForm x0 u ρ + u ρ) := by -- --- PROOF ---
   set A := toRealMat sys.A with hAeq
   obtain ⟨hτ0, hτt⟩ := hτ
-  have hu' : ∀ s ∈ Set.Icc (0:ℝ) τ, u s ∈ construct U := fun s hs =>
+  have hu' : ∀ s ∈ Set.Icc (0:ℝ) τ, u s ∈ toSet U := fun s hs =>
     hu s (Set.Icc_subset_Icc_right hτt hs)
   have hmeas' : AEStronglyMeasurable u (volume.restrict (Set.Icc (0:ℝ) τ)) :=
     hmeas.mono_measure (Measure.restrict_mono (Set.Icc_subset_Icc_right hτt) le_rfl)

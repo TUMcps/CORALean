@@ -90,8 +90,8 @@ private theorem aux_rest_le (C : Mat ℝ p q) (B : Interval (Vec ℝ q)) (β : V
 /-- [1, Prop. 3]: the bounds enclose the constrained hypercube. -/
 theorem ConZonotope.fourierMotzkinBounds_outer (C : Mat ℝ p q) (d : Vec ℝ p)
     (B : Interval (Vec ℝ q)) : -- --- CONCL ---
-    (HPolytope.ineqs C d).construct ∩ B.construct ⊆
-      (ConZonotope.fourierMotzkinBounds C d B).construct := by -- --- PROOF ---
+    (HPolytope.ineqs C d).toSet ∩ B.toSet ⊆
+      (ConZonotope.fourierMotzkinBounds C d B).toSet := by -- --- PROOF ---
   rintro β ⟨hP, hB⟩ j
   have hB' : ∀ k, B.inf k ≤ β k ∧ β k ≤ B.sup k := fun k => hB k
   -- row `i` isolates `β(j)`: `C(i,j) β(j) ≤ d(i) - C⁺ Σ β̲₀ - C⁻ Σ β̄₀`

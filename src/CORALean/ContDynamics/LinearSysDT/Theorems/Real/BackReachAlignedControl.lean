@@ -68,13 +68,13 @@ theorem LinearSysDT.backReachAligned_control {A : Mat ℝ n n} (hA : IsUnit A.de
     (B : Mat ℝ n m) (E : Mat ℝ n p) (K : Vec ℝ n) (U : Zonotope (Vec ℝ m)) (W : Set (Vec ℝ p))
     (Z₀ : Zonotope (Vec ℝ n)) (σ : (Z : Zonotope (Vec ℝ n)) → Vec ℝ n × (Fin Z.h → ℝ))
     (hσ : ∀ Z, (∀ i, 0 ≤ (σ Z).2 i ∧ (σ Z).2 i ≤ 1) ∧
-      (E *ᵥ ·) '' W ⊆ (Z.aligned (σ Z).1 (σ Z).2).construct) (k : ℕ) (x : Vec ℝ n)
-    (hx : x ∈ (Zonotope.backReachAligned A B K U Z₀ σ (k + 1)).construct) : -- --- CONCL ---
+      (E *ᵥ ·) '' W ⊆ (Z.aligned (σ Z).1 (σ Z).2).toSet) (k : ℕ) (x : Vec ℝ n)
+    (hx : x ∈ (Zonotope.backReachAligned A B K U Z₀ σ (k + 1)).toSet) : -- --- CONCL ---
     let Zk := Zonotope.backReachAligned A B K U Z₀ σ k
-    (∃ u ∈ U.construct, A *ᵥ x + B *ᵥ u + K
-      ∈ (Zk.minkDiffAligned (Zk.aligned (σ Zk).1 (σ Zk).2) rfl).construct) ∧
-    ∀ u, A *ᵥ x + B *ᵥ u + K ∈ (Zk.minkDiffAligned (Zk.aligned (σ Zk).1 (σ Zk).2) rfl).construct →
-      ∀ w ∈ W, A *ᵥ x + B *ᵥ u + E *ᵥ w + K ∈ Zk.construct := by -- --- PROOF ---
+    (∃ u ∈ U.toSet, A *ᵥ x + B *ᵥ u + K
+      ∈ (Zk.minkDiffAligned (Zk.aligned (σ Zk).1 (σ Zk).2) rfl).toSet) ∧
+    ∀ u, A *ᵥ x + B *ᵥ u + K ∈ (Zk.minkDiffAligned (Zk.aligned (σ Zk).1 (σ Zk).2) rfl).toSet →
+      ∀ w ∈ W, A *ᵥ x + B *ᵥ u + E *ᵥ w + K ∈ Zk.toSet := by -- --- PROOF ---
   intro Zk
   refine ⟨?_, fun u hu w hw => ?_⟩
   -- `Ax + K = d - Bu` for a point `d` of the difference

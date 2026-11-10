@@ -57,14 +57,14 @@ private abbrev aux_Z : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ _ => -1⟩
 /-- [1, Eq. 13] as printed misses a point of the constrained zonotope. -/
 theorem Zonotope.intervalOfFactorBoundsPrinted_counterexample : -- --- CONCL ---
     ∃ (Z : Zonotope (Vec ℝ 1)) (C : Mat ℝ 0 Z.h) (d : Vec ℝ 0) (B : Interval (Vec ℝ Z.h)),
-      (∀ β : Vec ℝ Z.h, (∀ j, |β j| ≤ 1) → β ∈ (HPolytope.ineqs C d).construct →
-        β ∈ B.construct) ∧
-      ¬ (Z.constrain C d).construct ⊆ (⟨
+      (∀ β : Vec ℝ Z.h, (∀ j, |β j| ≤ 1) → β ∈ (HPolytope.ineqs C d).toSet →
+        β ∈ B.toSet) ∧
+      ¬ (Z.constrain C d).toSet ⊆ (⟨
         Z.c + (fun i j => (Z.G j i + |Z.G j i|) / 2 : Mat ℝ 1 Z.h) *ᵥ B.inf -
           (fun i j => (Z.G j i - |Z.G j i|) / 2 : Mat ℝ 1 Z.h) *ᵥ B.sup,
         Z.c + (fun i j => (Z.G j i + |Z.G j i|) / 2 : Mat ℝ 1 Z.h) *ᵥ B.sup -
           (fun i j => (Z.G j i - |Z.G j i|) / 2 : Mat ℝ 1 Z.h) *ᵥ B.inf⟩ :
-        Interval (Vec ℝ 1)).construct := by -- --- PROOF ---
+        Interval (Vec ℝ 1)).toSet := by -- --- PROOF ---
   refine ⟨aux_Z, fun i => i.elim0, fun i => i.elim0, ⟨fun _ => -1, fun _ => 1⟩,
     fun β hβ _ j => abs_le.1 (hβ j), fun hsub => ?_⟩
   -- `0 = 0 + 0 · (-1)` is in `Z`, and the printed interval is `[1, -1]`

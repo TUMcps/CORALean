@@ -77,7 +77,7 @@ private theorem Zonotope.aux_det_eq_zero (Z : Zonotope (Vec ℝ n)) (hr : Z.rank
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.volume_eq_of_rank_lt (Z : Zonotope (Vec ℝ n)) (hr : Z.rank < n) : -- --- CONCL ---
-    MeasureTheory.volume Z.construct = Z.volume := by -- --- PROOF ---
+    MeasureTheory.volume Z.toSet = Z.volume := by -- --- PROOF ---
   have h0 : Z.volume = 0 := by
     unfold Zonotope.volume
     rw [ENNReal.ofReal_eq_zero]

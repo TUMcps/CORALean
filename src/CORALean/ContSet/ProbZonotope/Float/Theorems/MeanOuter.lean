@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.mean_outer (P : ProbZonotope 𝕋 n) :
-    (fun m => ∫ x, x ∂m) '' P.laws ⊆ toLp 2 '' P.mean.construct := by
+    (fun m => ∫ x, x ∂m) '' P.laws ⊆ toLp 2 '' P.mean.toSet := by
   rintro _ ⟨_, ⟨μ, hμ, S, hS, hp, rfl⟩, rfl⟩
   exact ⟨μ, hμ, integral_id_multivariateGaussian.symm⟩
 

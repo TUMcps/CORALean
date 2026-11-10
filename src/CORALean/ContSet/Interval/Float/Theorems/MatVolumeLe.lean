@@ -42,9 +42,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.matVolume_le (I : Interval (Mat 𝕋 m n)) : -- --- CONCL ---
-    MeasureTheory.volume {f : Fin m → Fin n → ℝ | (Matrix.of f : Mat ℝ m n) ∈ I.construct}
+    MeasureTheory.volume {f : Fin m → Fin n → ℝ | (Matrix.of f : Mat ℝ m n) ∈ I.toSet}
       ≤ ENNReal.ofReal (toReal I.matVolume) := by -- --- PROOF ---
-  have h : I.construct = I.nominal.construct := rfl
+  have h : I.toSet = I.nominal.toSet := rfl
   rw [h, Real.Interval.matVolume_eq]
   have key : ∀ F : Fin m → Fin n → ENNReal, ∏ i, ∏ j, F i j =
       ∏ k : Fin (n * m), F (finProdFinEquiv.symm k).2 (finProdFinEquiv.symm k).1 := by

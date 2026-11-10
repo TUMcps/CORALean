@@ -71,7 +71,7 @@ theorem LinearSysDT.control_of_mem_underS (sys : LinearSysDT ℝ n) (hΦ : IsUni
     let w := fun Z : Zonotope (Vec ℝ n) => Z.c + ∑ j, α j • Z.extremalGen (s j)
     let x₀ := sys.A⁻¹ ^ N *ᵥ w (Ω₀.mtimes (sys.A ^ N))
     let v := fun i => sys.A⁻¹ ^ (N - 1 - i) *ᵥ w (U.mtimes (sys.A ^ (N - 1 - i)))
-    x₀ ∈ Ω₀.construct ∧ (∀ i < N, v i ∈ U.construct) ∧
+    x₀ ∈ Ω₀.toSet ∧ (∀ i < N, v i ∈ U.toSet) ∧
       ∀ x : ℕ → Vec ℝ n, x 0 = x₀ → (∀ i < N, x (i + 1) = sys.A *ᵥ x i + v i) →
         x N = y := by -- --- PROOF ---
   intro w x₀ v
@@ -88,7 +88,7 @@ theorem LinearSysDT.control_of_mem_underS (sys : LinearSysDT ℝ n) (hΦ : IsUni
       rw [pow_succ, pow_succ', mul_assoc, ← mul_assoc sys.A, mul_nonsing_inv _ hΦ, one_mul, ih]
   -- `Φ^{-k}` of the point of `(ΦᵏZ)̲` with coefficients `α` lies in `Z`
   have hin : ∀ (Z : Zonotope (Vec ℝ n)) (k : ℕ),
-      sys.A⁻¹ ^ k *ᵥ w (Z.mtimes (sys.A ^ k)) ∈ Z.construct := fun Z k => by
+      sys.A⁻¹ ^ k *ᵥ w (Z.mtimes (sys.A ^ k)) ∈ Z.toSet := fun Z k => by
       have h := (Z.mtimes (sys.A ^ k)).underS_subset s ⟨α, hα, rfl⟩
       rw [← Zonotope.mtimes_exact] at h
       obtain ⟨z, hz, hzw⟩ := h

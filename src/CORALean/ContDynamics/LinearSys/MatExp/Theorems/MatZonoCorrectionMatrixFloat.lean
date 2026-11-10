@@ -67,7 +67,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Every member's correction term lies in the float matrix-zonotope term. -/
 private theorem MatExp.aux_corrTerm_mem_matZonoCorrTerm (M : Zonotope (Mat 𝕋 n n)) {r : 𝕋}
-    (hr : 0 ≤ toReal r) {i : ℕ} (hi : 2 ≤ i) {A : Mat ℝ n n} (hA : A ∈ M.construct)
+    (hr : 0 ≤ toReal r) {i : ℕ} (hi : 2 ≤ i) {A : Mat ℝ n n} (hA : A ∈ M.toSet)
     (j k : Fin n) : -- --- CONCL ---
     toReal ((MatExp.matZonoCorrTerm M r i).inf j k) ≤ Real.MatExp.corrTerm A (toReal r) i j k
       ∧ Real.MatExp.corrTerm A (toReal r) i j k
@@ -88,7 +88,7 @@ private theorem MatExp.aux_corrTerm_mem_matZonoCorrTerm (M : Zonotope (Mat 𝕋 
   have hhi' : Real.MatExp.corrCoeff i * ρ ≤ toReal (zero : 𝕋) := by
     rw [toReal_zero]; exact mul_nonpos_of_nonpos_of_nonneg hc0 hρ
   -- the member's power, in the power's box
-  have hpow : A ^ i ∈ (M.matPow i).matInterval.construct :=
+  have hpow : A ^ i ∈ (M.matPow i).matInterval.toSet :=
     Zonotope.matInterval_contains _ (Zonotope.matPow_outer M hA i)
   have hmem := Real.Interval.mem_mat_iff.mp (Interval.smul_outer hlo hhi' _ hpow) j k
   simp only [Interval.nominal, RealImage.realImage, toRealMat, Matrix.smul_apply,
@@ -106,10 +106,10 @@ theorem MatExp.expDiff_mem_matZonoCorrectionMatrix (Z : Zonotope (Mat 𝕋 n n))
     (hr : 0 < toReal r) {m : ℕ}
     (hε : toReal (MatExp.normUpperBound (Interval.smul r r Z.matInterval))
       / (((m + 2 : ℕ) : ℝ) + 2) ≤ 1 / 2)
-    {M : Mat ℝ n n} (hM : M ∈ Z.construct) {t : ℝ} (ht0 : 0 ≤ t)
+    {M : Mat ℝ n n} (hM : M ∈ Z.toSet) {t : ℝ} (ht0 : 0 ≤ t)
     (htr : t ≤ toReal r) : -- --- CONCL ---
     exp (t • M) - 1 - (t / toReal r) • (exp (toReal r • M) - 1)
-      ∈ (MatExp.matZonoCorrectionMatrix Z r (m + 2)).construct := by -- --- PROOF ---
+      ∈ (MatExp.matZonoCorrectionMatrix Z r (m + 2)).toSet := by -- --- PROOF ---
   have hnorm := MatExp.norm_smul_le_normUpperBound Z.matInterval r
     (Zonotope.matInterval_contains Z hM)
   have hden : (0 : ℝ) < ((m + 2 : ℕ) : ℝ) + 2 := by positivity

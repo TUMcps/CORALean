@@ -43,11 +43,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.polygon_inner (E : Ellipsoid 𝕋 2) (W : List (Vec 𝕋 2)) : -- --- CONCL ---
-    ContSet.construct (E.polygon W) ⊆ E.construct := by -- --- PROOF ---
-  rw [Ellipsoid.polygon, Polygon.construct_ofPieces]
+    ContSet.toSet (E.polygon W) ⊆ E.toSet := by -- --- PROOF ---
+  rw [Ellipsoid.polygon, Polygon.toSet_ofPieces]
   simp only [List.mem_singleton, Set.iUnion_iUnion_eq_left]
   rw [VPolytope.enclosePoints_exact]
-  refine convexHull_min ?_ E.convex_construct
+  refine convexHull_min ?_ E.convex_toSet
   rintro _ ⟨l, rfl⟩
   -- the kept direction `kept[l]` passed the test with its own vertex
   have hmem := List.getElem_mem (l := W.filter fun w => E.containsPoint

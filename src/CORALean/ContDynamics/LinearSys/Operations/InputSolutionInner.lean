@@ -54,7 +54,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- Everything a constant input of `U` contributes over `[0, Δt]`. -/
 noncomputable def LinearSys.inputSolutionInner (sys : LinearSys 𝕋 n) (U : S n) (Δt : ℝ) :
     Set (Vec ℝ n) :=
-  (fun s => MatExp.expIntegral (toRealMat sys.A) Δt *ᵥ s) '' construct U
+  (fun s => MatExp.expIntegral (toRealMat sys.A) Δt *ᵥ s) '' toSet U
 
 end CORALean
 

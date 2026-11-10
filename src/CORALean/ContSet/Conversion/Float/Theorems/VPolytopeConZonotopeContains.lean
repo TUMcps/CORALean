@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n k : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.conZonotope_contains (P : VPolytope (Vec 𝕋 n)) : -- --- CONCL ---
-    P.construct ⊆ P.conZonotope.construct := by -- --- PROOF ---
+    P.toSet ⊆ P.conZonotope.toSet := by -- --- PROOF ---
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨β, hnn, hsum, hval⟩ := hx
   -- a convex coefficient already lies inside the unit box, so that constraint costs nothing

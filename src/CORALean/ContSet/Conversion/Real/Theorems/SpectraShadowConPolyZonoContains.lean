@@ -44,7 +44,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.conPolyZono_contains (S : SpectraShadow α) (hb : S.base.isBounded) :
-    S.construct ⊆ S.conPolyZono.construct := by
+    S.toSet ⊆ S.conPolyZono.toSet := by
   rw [SpectraShadow.conPolyZono, ← Zonotope.conPolyZono_exact]
   exact S.zonotope_contains hb
 

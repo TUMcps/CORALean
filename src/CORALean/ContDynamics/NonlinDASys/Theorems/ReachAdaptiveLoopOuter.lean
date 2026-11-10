@@ -74,13 +74,13 @@ theorem NonlinDASys.reachAdaptiveLoop_outer (sys : NonlinDASys n p m)
     {z : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Tmax) R0 U x y u z)
     (hT : tFinal ≤ Tmax)
     (hcert : ∀ (st : NonlinDASys.AdaptState n p) (h : ℝ) (lastStep : Bool)
-      (pass : NonlinDASys.AdaptPass n p), 0 ≤ st.t → x st.t ∈ st.R.construct →
+      (pass : NonlinDASys.AdaptPass n p), 0 ≤ st.t → x st.t ∈ st.R.toSet →
       sys.linReachAdaptive T st.R U (k + 2) fuelErr fuelHalf st.adm_x st.adm_y h lastStep
         = some pass → 0 < pass.Δt → pass.Δt ≤ tFinal - st.t →
       (pass.linPoint (T.taylor st.R)).Certifies sys U pass.Δt k
         (fun s => x (st.t + s)) (fun s => y (st.t + s)) (fun s => u (st.t + s))) : -- --- CONCL ---
     ∀ (fuel : ℕ) (st : NonlinDASys.AdaptState n p) (Runion : Set (Vec ℝ n)),
-      0 ≤ st.t → x st.t ∈ st.R.construct →
+      0 ≤ st.t → x st.t ∈ st.R.toSet →
       (0 < st.t → ∀ t ∈ Set.Icc 0 st.t, x t ∈ Runion) → st.t ≤ tFinal →
       ∀ res tEnd, sys.reachAdaptiveLoop T U tFinal tol (k + 2) fuelErr fuelHalf fuel st Runion
           = some (res, tEnd) → 0 < tEnd → ∀ t ∈ Set.Icc 0 tEnd, x t ∈ res := by -- --- PROOF ---

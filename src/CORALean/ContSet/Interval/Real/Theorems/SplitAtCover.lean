@@ -41,7 +41,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι] [Dec
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.splitAt_cover (I : Interval α) (j : ι) : -- --- CONCL ---
-    I.construct ⊆ (I.splitAt j).1.construct ∪ (I.splitAt j).2.construct := by -- --- PROOF ---
+    I.toSet ⊆ (I.splitAt j).1.toSet ∪ (I.splitAt j).2.toSet := by -- --- PROOF ---
   intro x hx
   unfold Interval.splitAt
   rcases le_total (entry x j) (entry I.center j) with h | h

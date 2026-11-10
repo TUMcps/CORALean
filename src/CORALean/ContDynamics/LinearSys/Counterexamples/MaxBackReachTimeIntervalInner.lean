@@ -297,9 +297,9 @@ private theorem LinearSys.aux_mem_maxBackReachPoly (X : HPolytope (Vec ℝ 3))
     (heq : ∀ i, X.Ae i x = X.be i)
     (hnorm : ∀ i, ∑ j, X.A i (Pi.single j 1) ^ 2 ≤ (101 / 100) ^ 2)
     (hrow : ∀ i, X.A i x + g (X.A i) + 101 / 900 ≤ X.b i) : -- --- CONCL ---
-    let XF := X.minkDiffOf FB.construct fun i => FB.supportBound (X.A i)
-    x ∈ (XF.minkDiffOf (⟨0, 0, μ⟩ : Capsule 3).construct
-      fun i => (⟨0, 0, μ⟩ : Capsule 3).supportBound (XF.A i)).construct := by -- --- PROOF ---
+    let XF := X.minkDiffOf FB.toSet fun i => FB.supportBound (X.A i)
+    x ∈ (XF.minkDiffOf (⟨0, 0, μ⟩ : Capsule 3).toSet
+      fun i => (⟨0, 0, μ⟩ : Capsule 3).supportBound (XF.A i)).toSet := by -- --- PROOF ---
   intro XF
   refine ⟨fun i => ?_, heq⟩
   show X.A i x ≤ X.b i - (FB.supportBound (X.A i)).val -
@@ -315,10 +315,10 @@ private theorem LinearSys.aux_mem_maxBackReachPoly (X : HPolytope (Vec ℝ 3))
 /-- No run from `(7/4, -16, 256)` with zero input and disturbance meets the box in `[0, 1/8]`: its
 first coordinate is `5/4 + 128(t - 1/16)² > 1`. -/
 private theorem LinearSys.aux_not_mem_timeIntervalBackReach_shift3 (Xend : HPolytope (Vec ℝ 3))
-    (hX : ∀ x ∈ Xend.construct, x 0 ≤ 1) : -- --- CONCL ---
+    (hX : ∀ x ∈ Xend.toSet, x 0 ≤ 1) : -- --- CONCL ---
     ![7 / 4, -16, 256] ∉ LinearSys.timeIntervalBackReachSetExistsForallExact (S := 𝒮)
       (LinearSys.canonical (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3))
-        (Icc 0 (1 / 8)) {0} {0} Xend.construct (Icc 0 (1 / 8)) := by -- --- PROOF ---
+        (Icc 0 (1 / 8)) {0} {0} Xend.toSet (Icc 0 (1 / 8)) := by -- --- PROOF ---
   rintro ⟨u, hu, humeas, hall⟩
   obtain ⟨x, traj, hx0, t, ht, hxt⟩ :=
     hall (fun _ => 0) (fun _ _ => rfl) aestronglyMeasurable_const
@@ -370,18 +370,18 @@ theorem LinearSys.maxBackReachTimeInterval_inner_counterexample (η : ℕ)
       (MatExp.correctionMatrix A Δt η) B                    -- F box(X_end), (19)
     let μ := sys.maxBackReachMu Δt B                        -- 3. µ, (22)
     let Bμ : Capsule 3 := ⟨0, 0, μ⟩
-    let XF₁ := Xend.minkDiffOf FB.construct fun i => FB.supportBound (Xend.A i)
-    let P₁ := XF₁.minkDiffOf Bμ.construct
+    let XF₁ := Xend.minkDiffOf FB.toSet fun i => FB.supportBound (Xend.A i)
+    let P₁ := XF₁.minkDiffOf Bμ.toSet
       fun i => Bμ.supportBound (XF₁.A i)                    -- 4. P₁ = (X_end ⊖ F box) ⊖ B_µ
     let X₂ := Xend.comap (exp (-(Δt • A))).mulVecLin        -- e^{AΔt}X_end
-    let XF₂ := X₂.minkDiffOf FB.construct fun i => FB.supportBound (X₂.A i)
-    let P₂ := XF₂.minkDiffOf Bμ.construct
+    let XF₂ := X₂.minkDiffOf FB.toSet fun i => FB.supportBound (X₂.A i)
+    let P₂ := XF₂.minkDiffOf Bμ.toSet
       fun i => Bμ.supportBound (XF₂.A i)                    -- 5. P₂ = (e^{AΔt}X_end ⊖ F box) ⊖ B_µ
     let R := (exp ((-Δt) • A) *ᵥ ·) ''
-      convexHull ℝ (P₁.construct ∪ P₂.construct)            -- 11.-12., (54) at k = 0, U = W = {0}
+      convexHull ℝ (P₁.toSet ∪ P₂.toSet)            -- 11.-12., (54) at k = 0, U = W = {0}
     ![7 / 4, -16, 256] ∈ R ∧
       ![7 / 4, -16, 256] ∉ sys.timeIntervalBackReachSetExistsForallExact (S := 𝒮)
-        (Icc 0 Δt) {0} {0} Xend.construct (Icc 0 Δt) := by -- --- PROOF ---
+        (Icc 0 Δt) {0} {0} Xend.toSet (Icc 0 Δt) := by -- --- PROOF ---
   intro A sys Δt Xend B FB μ Bμ XF₁ P₁ X₂ XF₂ P₂ R
   have hμ := LinearSys.aux_maxBackReachMu_shift3
   have hFB := LinearSys.aux_supportBound_shift3 hη
@@ -393,7 +393,7 @@ theorem LinearSys.maxBackReachTimeInterval_inner_counterexample (η : ℕ)
   refine ⟨?_, LinearSys.aux_not_mem_timeIntervalBackReach_shift3 Xend fun x hx => by
     simpa [Xend] using hx.1 0⟩
   -- `x₀ = (3/4, 0, 256)` is in `P₁`
-  have h₁ : (![3 / 4, 0, 256] : Vec ℝ 3) ∈ P₁.construct :=
+  have h₁ : (![3 / 4, 0, 256] : Vec ℝ 3) ∈ P₁.toSet :=
     LinearSys.aux_mem_maxBackReachPoly Xend FB _ hFB hμ _ (fun i => i.elim0)
       (fun i => by fin_cases i <;> simp [Xend, Fin.sum_univ_three] <;> norm_num)
       (fun i => by
@@ -403,7 +403,7 @@ theorem LinearSys.maxBackReachTimeInterval_inner_counterexample (η : ℕ)
     fun i v => by
       show Xend.A i (exp (-(Δt • A)) *ᵥ v) = _
       rw [hM]
-  have h₂ : (![11 / 4, 32, 256] : Vec ℝ 3) ∈ P₂.construct :=
+  have h₂ : (![11 / 4, 32, 256] : Vec ℝ 3) ∈ P₂.toSet :=
     LinearSys.aux_mem_maxBackReachPoly X₂ FB _ hFB hμ _ (fun i => i.elim0)
       (by
         simp only [hX₂, Fin.sum_univ_three]

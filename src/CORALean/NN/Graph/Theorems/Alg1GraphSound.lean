@@ -76,17 +76,17 @@ theorem GNN.alg1Graph_isSound (R : Relaxation ℝ) (hR : R.Encloses invSqrt) (A 
     (hσ : ∀ s, (acts s).Encloses (σ s))
     (g : ∀ t, Vec ℝ (c (L + t)) → Vec ℝ (c (L + (t + 1))))
     (f : ∀ t, PolyZonotope (Vec ℝ (c (L + t))) → PolyZonotope (Vec ℝ (c (L + (t + 1)))))
-    (hf : ∀ t S x, x ∈ S.construct → g t x ∈ (f t S).construct)
-    (X : PolyZonotope (Mat ℝ N (c 0))) {x : Mat ℝ N (c 0)} (hx : x ∈ X.construct) : -- --- CONCL ---
+    (hf : ∀ t S x, x ∈ S.toSet → g t x ∈ (f t S).toSet)
+    (X : PolyZonotope (Mat ℝ N (c 0))) {x : Mat ℝ N (c 0)} (hx : x ∈ X.toSet) : -- --- CONCL ---
     GNN.tailEval T (fun t => c (L + t)) g
         (fun j => (GNN.onesRow N *
           GNN.evalLayers (GNN.messagePassing (GNN.adjAt A U lam)) L c σ W x) 0 j)
-      ∈ (GNN.alg1Graph R A U L T c W acts f X).construct := by -- --- PROOF ---
+      ∈ (GNN.alg1Graph R A U L T c W acts f X).toSet := by -- --- PROOF ---
   -- the pooled graph layers are a point of the pooled enclosure
   have hnode := GNN.alg1Node_isSound R hR A U hA lam hlam L c σ W acts hσ X hx
   have hpool : (fun j => (GNN.onesRow N *
       GNN.evalLayers (GNN.messagePassing (GNN.adjAt A U lam)) L c σ W x) 0 j)
-      ∈ (GNN.sumPool (GNN.alg1Node R A U L c W acts X)).construct := by
+      ∈ (GNN.sumPool (GNN.alg1Node R A U L c W acts X)).toSet := by
     rw [← GNN.sumPool_exact]
     exact ⟨_, hnode, rfl⟩
   exact GNN.tailEval_mem_tailEnclose T (fun t => c (L + t)) g f hf _ _ hpool

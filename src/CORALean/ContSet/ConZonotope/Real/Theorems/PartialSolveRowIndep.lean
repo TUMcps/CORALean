@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveToSetEq
 
 @[expose] public section
 
@@ -8,7 +8,7 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
 # The partial-solve `Z̃` does not depend on the row it solves
 
 [1, Sec. 4.2 (choice of j)]: eliminating `ξ_j` "using any constraint with `a_ij ≠ 0` gives the same
-result (see A.4)". By `partialSolve_construct_eq` both sets are
+result (see A.4)". By `partialSolve_toSet_eq` both sets are
 `{Gξ + c : Aξ = b, |ξ_i| ≤ 1, ∀ i ≠ j}`, which names no row.
 
 ## Inputs
@@ -54,10 +54,10 @@ namespace CORALean.Real
 theorem ConZonotope.partialSolve_row_indep {n q h : ℕ} (c : Vec ℝ n) (G : Fin h → Vec ℝ n)
     (A : Mat ℝ q h) (b : Vec ℝ q) (r r' : Fin q) (j : Fin h) (hAj : A r j ≠ 0)
     (hAj' : A r' j ≠ 0) : -- --- CONCL ---
-    (ConZonotope.partialSolve c G A b r j).construct
-      = (ConZonotope.partialSolve c G A b r' j).construct := by -- --- PROOF ---
-  rw [ConZonotope.partialSolve_construct_eq c G A b r j hAj,
-    ConZonotope.partialSolve_construct_eq c G A b r' j hAj']
+    (ConZonotope.partialSolve c G A b r j).toSet
+      = (ConZonotope.partialSolve c G A b r' j).toSet := by -- --- PROOF ---
+  rw [ConZonotope.partialSolve_toSet_eq c G A b r j hAj,
+    ConZonotope.partialSolve_toSet_eq c G A b r' j hAj']
 
 end CORALean.Real
 

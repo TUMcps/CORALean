@@ -54,7 +54,7 @@ on `k` needs: one step forward moves the start, not the target. -/
 private theorem LinearSysDT.aux_backReachSetForallExact_from (sys : LinearSysDT 𝕋 n) (T U : S n)
     {R₀ : S n} {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory R₀ U x u)
     (k : ℕ) : -- --- CONCL ---
-    ∀ j, x j ∈ sys.backReachSetForallExact T U k → x (j + k) ∈ construct T := by -- --- PROOF ---
+    ∀ j, x j ∈ sys.backReachSetForallExact T U k → x (j + k) ∈ toSet T := by -- --- PROOF ---
   induction k with
   | zero => exact fun j hj => hj
   | succ k ih =>
@@ -71,7 +71,7 @@ private theorem LinearSysDT.aux_backReachSetForallExact_from (sys : LinearSysDT 
 
 theorem LinearSysDT.backReachSetForallExact_isTrajectory (sys : LinearSysDT 𝕋 n) (T U : S n)
     {R₀ : S n} {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory R₀ U x u) (k : ℕ)
-    (hx : x 0 ∈ sys.backReachSetForallExact T U k) : x k ∈ construct T := by
+    (hx : x 0 ∈ sys.backReachSetForallExact T U k) : x k ∈ toSet T := by
   have h := sys.aux_backReachSetForallExact_from T U traj k 0 hx
   rwa [Nat.zero_add] at h
 

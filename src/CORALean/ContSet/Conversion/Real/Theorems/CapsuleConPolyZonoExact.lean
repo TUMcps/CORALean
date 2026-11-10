@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Real.Operations.Capsule_to_ConPolyZono
-public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleConstructEqSegmentAddBall
+public import CORALean.ContSet.Conversion.Real.Theorems.CapsuleToSetEqSegmentAddBall
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConPolyZonoExact
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConPolyZonoExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
@@ -11,7 +11,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.PlusExact
 /-!
 # CORA's `conPolyZono(C)` is the capsule
 
-The capsule is its segment plus its ball (`Capsule.construct_eq_segment_add_ball`, for `0 ≤ r`),
+The capsule is its segment plus its ball (`Capsule.toSet_eq_segment_add_ball`, for `0 ≤ r`),
 each conversion is exact, and so is the sum (`ConPolyZono.plus_exact`), taken here in the order
 CORA takes it (segment, ball).
 
@@ -42,8 +42,8 @@ variable {n : ℕ}
 
 /-- CORA's `conPolyZono(C)` denotes the capsule, for a nonnegative radius. -/
 theorem Capsule.conPolyZono_exact (C : Capsule n) (hr : 0 ≤ C.r) :
-    C.construct = C.conPolyZono.construct := by
-  rw [C.construct_eq_segment_add_ball hr, Capsule.conPolyZono, ← ConPolyZono.plus_exact,
+    C.toSet = C.conPolyZono.toSet := by
+  rw [C.toSet_eq_segment_add_ball hr, Capsule.conPolyZono, ← ConPolyZono.plus_exact,
     ← Ellipsoid.conPolyZono_exact, ← Zonotope.conPolyZono_exact]
 
 end CORALean.Real

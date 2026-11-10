@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.spectraShadow_exact (E : Ellipsoid n) : -- --- CONCL ---
-    E.construct = E.spectraShadow.construct := by -- --- PROOF ---
+    E.toSet = E.spectraShadow.toSet := by -- --- PROOF ---
   -- the shadow's point is its free variable
   have hx : ∀ u : Vec ℝ n, E.spectraShadow.c + ∑ i, u i • E.spectraShadow.G i = u := fun u => by
     funext r

@@ -45,8 +45,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 theorem PolyZonotope.cubMap_outer (T : Fin m → Fin n → Mat 𝕋 n n)
     (pZ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    Real.PolyZonotope.cubEval (fun i k => toRealMat (T i k)) '' pZ.construct
-      ⊆ (pZ.cubMap T).construct := by -- --- PROOF ---
+    Real.PolyZonotope.cubEval (fun i k => toRealMat (T i k)) '' pZ.toSet
+      ⊆ (pZ.cubMap T).toSet := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   obtain ⟨a, β, ha, hβ, hz⟩ :=
     PolyZonotope.mem_nominalSet_iff.mp (PolyZonotope.absorbRounding_nominal pZ hx)

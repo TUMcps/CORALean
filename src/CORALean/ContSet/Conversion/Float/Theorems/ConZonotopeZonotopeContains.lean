@@ -47,7 +47,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.zonotope_contains (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    cZ.construct ⊆ cZ.zonotope.construct :=
+    cZ.toSet ⊆ cZ.zonotope.toSet :=
   mono_subset (Real.ConZonotope.zonotope_contains (nominal cZ)) subset_rfl
 
 end CORALean.Float

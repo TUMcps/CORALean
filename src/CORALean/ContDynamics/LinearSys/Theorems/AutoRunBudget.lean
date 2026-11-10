@@ -99,7 +99,7 @@ private theorem aux_autoTuneOrder_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ 
     (hle : ∀ a b : ℝ, le a b = true → a ≤ b) (H : Zonotope (Vec ℝ n)) (ũ : Vec ℝ n) (tk : ℝ)
     (U₀ : Zonotope (Vec ℝ n)) {Δt εaτ εnτ : ℝ} : -- --- CONCL ---
     ∀ (m η η' : ℕ), sys.autoTuneOrder le H ũ tk U₀ Δt εaτ εnτ η m = some η' →
-      MatExp.particularSolutionError (toRealMat sys.A) tk U₀.construct Δt η'
+      MatExp.particularSolutionError (toRealMat sys.A) tk U₀.toSet Δt η'
         ≤ εaτ := by -- --- PROOF ---
   intro m
   induction m with
@@ -122,7 +122,7 @@ private theorem aux_autoTuneSearch_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ
     {tk tend εmax ζ εaAcc : ℝ} (ηmax : ℕ) (U₀ : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     ∀ (m : ℕ) (Δt Δtk : ℝ) (ηk : ℕ), 0 < Δt →
       sys.autoTuneSearch le H ũ tk tend εmax ζ εaAcc ηmax U₀ Δt m = some (Δtk, ηk) →
-        0 < Δtk ∧ MatExp.particularSolutionError (toRealMat sys.A) tk U₀.construct Δtk ηk
+        0 < Δtk ∧ MatExp.particularSolutionError (toRealMat sys.A) tk U₀.toSet Δtk ηk
           ≤ (tk + Δtk) / tend * (1 - ζ) * εmax - εaAcc := by -- --- PROOF ---
   intro m
   induction m with
@@ -145,7 +145,7 @@ private theorem aux_autoTuneDeltaT_le (sys : LinearSys 𝕋 n) {le : ℝ → ℝ
     (hΔtprev : 0 < Δtprev) {Δtk : ℝ} {ηk : ℕ}
     (h : sys.autoTuneDeltaT le H ũ tk tend εmax ζ εaAcc Δtprev ηmax fuel U₀
       = some (Δtk, ηk)) :
-    0 < Δtk ∧ MatExp.particularSolutionError (toRealMat sys.A) tk U₀.construct Δtk ηk
+    0 < Δtk ∧ MatExp.particularSolutionError (toRealMat sys.A) tk U₀.toSet Δtk ηk
       ≤ (tk + Δtk) / tend * (1 - ζ) * εmax - εaAcc :=
   aux_autoTuneSearch_le sys hle H ũ ηmax U₀ fuel _ _ _ (by linarith) h
 

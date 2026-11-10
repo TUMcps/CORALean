@@ -245,10 +245,10 @@ def handlePolyMinkDiff (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   let d ← aux_h "minkDiff" dops req "P"
   match ← aux_probe "minkDiff" dops req d.n with
   | .box I =>
-    pure [aux_hSet dops (d.P.minkDiffOf I.construct fun i =>
+    pure [aux_hSet dops (d.P.minkDiffOf I.toSet fun i =>
       I.boundDot (c := Real.HPolytope.rowLin (toRealMat d.P.A) i) (d.P.A i) fun _ => rfl)]
   | .zono Z =>
-    pure [aux_hSet dops (d.P.minkDiffOf Z.construct fun i =>
+    pure [aux_hSet dops (d.P.minkDiffOf Z.toSet fun i =>
       Z.boundDot (c := Real.HPolytope.rowLin (toRealMat d.P.A) i) (d.P.A i) fun _ => rfl)]
 
 /-- Every op of this file, without the `polytope.` prefix. -/

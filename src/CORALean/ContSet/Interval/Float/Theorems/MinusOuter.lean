@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 private theorem Interval.aux_minus_outer_refines (I₁ I₂ : Interval (Vec 𝕋 n)) :
-    (I₁.nominal.minus I₂.nominal).construct ⊆ (I₁.minus I₂).construct := by
+    (I₁.nominal.minus I₂.nominal).toSet ⊆ (I₁.minus I₂).toSet := by
   intro x hx i
   exact ⟨le_trans (subDown_le_sub _ _) (hx i).1, le_trans (hx i).2 (sub_le_subUp _ _)⟩
 
@@ -50,7 +50,7 @@ private theorem Interval.aux_minus_outer_refines (I₁ I₂ : Interval (Vec 𝕋
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.minus_outer (I₁ I₂ : Interval (Vec 𝕋 n)) :
-    I₁.construct - I₂.construct ⊆ (I₁.minus I₂).construct :=
+    I₁.toSet - I₂.toSet ⊆ (I₁.minus I₂).toSet :=
   subset_trans (Real.Interval.minus_outer I₁.nominal I₂.nominal)
     (Interval.aux_minus_outer_refines I₁ I₂)
 

@@ -139,9 +139,9 @@ theorem run_outer {Rs : List (Zonotope (Vec D 1))} (h : run = some Rs) :
     ∃ N : ℕ, (N : ℝ) * toReal (d 1 (-3) : D) = ((1 : ℚ) : ℝ) - ((0 : ℚ) : ℝ) ∧ Rs.length = N ∧
       ∀ {x : ℝ → Vec ℝ 1} {y : ℝ → Vec ℝ 1} {u : ℝ → Vec ℝ 1} {z : ℝ → Vec ℝ daeSys.q},
         daeSys.IsTrajectory (S := 𝒮) (Set.Icc 0 (((1 : ℚ) : ℝ) - ((0 : ℚ) : ℝ)))
-          X₀.construct U₀.construct x y u z →
+          X₀.toSet U₀.toSet x y u z →
         ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal (d 1 (-3) : D))
-          (((k : ℝ) + 1) * toReal (d 1 (-3) : D)), x t ∈ Rs[k].construct :=
+          (((k : ℝ) + 1) * toReal (d 1 (-3) : D)), x t ∈ Rs[k].toSet :=
   NonlinDASys.reachFloat_outer daeRed model_encloses _ (run_eq.trans h)
 
 end CORALean.Examples.NonlinDASysFloat

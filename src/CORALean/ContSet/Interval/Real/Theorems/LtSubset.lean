@@ -46,7 +46,7 @@ private theorem aux_lt_le {I J : Interval α} (h : I.lt J) : I.le J :=
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.lt_subset {I J : Interval α} (h : I.lt J) :
-    I.construct ⊆ J.construct :=
+    I.toSet ⊆ J.toSet :=
   Interval.le_subset (aux_lt_le h)
 
 

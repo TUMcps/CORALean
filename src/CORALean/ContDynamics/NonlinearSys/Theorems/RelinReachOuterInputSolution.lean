@@ -77,15 +77,15 @@ theorem NonlinearSys.IsTrajectory.relinReach_outer_inputSolution [Mtimes ℐ S]
     (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
     (hR : ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt), x t ∈ (steps i).R)
     (η : ℕ) (hε : ∀ i < N, ‖Δt • (steps i).A‖ / ((η : ℝ) + 2) < 1)
-    (hconv : ∀ i < N, Convex ℝ (construct (steps i).linInput))
-    (hclosed : ∀ i < N, IsClosed (construct (steps i).linInput))
-    (hbdd : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
+    (hconv : ∀ i < N, Convex ℝ (toSet (steps i).linInput))
+    (hclosed : ∀ i < N, IsClosed (toSet (steps i).linInput))
+    (hbdd : ∀ i < N, Bornology.IsBounded (toSet (steps i).linInput))
     (hRconv : ∀ i < N, Convex ℝ (MatExp.inputRemainderSet (steps i).A Δt η (steps i).linInput))
     (hRclosed : ∀ i < N, IsClosed (MatExp.inputRemainderSet (steps i).A Δt η (steps i).linInput))
     (hRbdd : ∀ i < N, Bornology.IsBounded (MatExp.inputRemainderSet (steps i).A Δt η (steps
       i).linInput)) {o : ℕ} (ho : 0 < o)
     : -- --- CONCL ---
-    ∀ i ≤ N, x ((i : ℝ) * Δt) ∈ construct (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps (fun i =>
+    ∀ i ≤ N, x ((i : ℝ) * Δt) ∈ toSet (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps (fun i =>
       (NonlinearSys.linearize (steps i).A).inputSolution Δt η
         (steps i).linInput)) := by -- --- PROOF ---
   -- everything above is per step, so the loop is `relinReach_outer` plus one enclosure

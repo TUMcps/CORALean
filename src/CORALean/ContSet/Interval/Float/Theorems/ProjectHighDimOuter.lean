@@ -41,8 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m N : ℕ}
 
 theorem Interval.projectHighDim_outer (I : Interval (Vec 𝕋 m)) (proj : Fin m → Fin N)
     (hproj : Function.Injective proj) : -- --- CONCL ---
-    (fun x => Function.extend proj x 0) '' I.construct ⊆
-      (I.projectHighDim_ N proj).construct := by -- --- PROOF ---
+    (fun x => Function.extend proj x 0) '' I.toSet ⊆
+      (I.projectHighDim_ N proj).toSet := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩ j
   -- a box certified empty has no member to pad
   by_cases hemp : I.representsa_emptySet = true

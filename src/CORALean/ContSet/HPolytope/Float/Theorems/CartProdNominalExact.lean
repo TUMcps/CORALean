@@ -44,11 +44,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 theorem HPolytope.cartProd_nominal_exact (P₁ : HPolytope 𝕋 (Vec 𝕋 n₁))
     (P₂ : HPolytope 𝕋 (Vec 𝕋 n₂)) : -- --- CONCL ---
-    (P₁.cartProd P₂).nominal.construct
-      = blockLeft n₁ n₂ ⁻¹' P₁.nominal.construct
-        ∩ blockRight n₁ n₂ ⁻¹' P₂.nominal.construct := by -- --- PROOF ---
+    (P₁.cartProd P₂).nominal.toSet
+      = blockLeft n₁ n₂ ⁻¹' P₁.nominal.toSet
+        ∩ blockRight n₁ n₂ ⁻¹' P₂.nominal.toSet := by -- --- PROOF ---
   ext y
-  show y ∈ ((P₁.padLeft n₂).stackRows (HPolytope.padRight n₁ P₂)).nominal.construct ↔ _
+  show y ∈ ((P₁.padLeft n₂).stackRows (HPolytope.padRight n₁ P₂)).nominal.toSet ↔ _
   rw [HPolytope.mem_stackRows_nominal_iff, HPolytope.mem_padLeft_nominal_iff,
     HPolytope.mem_padRight_nominal_iff]
   exact Iff.rfl

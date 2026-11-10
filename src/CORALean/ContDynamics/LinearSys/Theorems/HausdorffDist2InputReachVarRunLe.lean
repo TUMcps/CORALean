@@ -79,7 +79,7 @@ private theorem aux_isCompact_sum_range_var (f : ℕ → Set (Vec ℝ n)) (hf : 
 
 /-- Nothing has flowed in yet at `t = 0`: the exact particular solution is the origin. -/
 private theorem aux_inputReach_zero_var (sys : LinearSys 𝕋 n) {U : S n}
-    (hne : (construct U).Nonempty) : -- --- CONCL ---
+    (hne : (toSet U).Nonempty) : -- --- CONCL ---
     sys.inputReach U 0 = {0} := by -- --- PROOF ---
   obtain ⟨c, hc⟩ := hne
   refine Set.eq_singleton_iff_unique_mem.mpr ⟨⟨fun _ => c, fun _ _ => hc,
@@ -94,31 +94,31 @@ private theorem aux_inputReach_zero_var (sys : LinearSys 𝕋 n) {U : S n}
 distance between the exact particular solution at `t_k` and eq. (20)'s recursively accumulated
 outer-approximation is under the summed one-step errors of eq. (25). -/
 theorem LinearSys.hausdorffDist₂_inputReach_run_var_le (sys : LinearSys 𝕋 n) {U : S n}
-    (Δt : ℕ → ℝ) (η : ℕ → ℕ) (hΔt : ∀ j, 0 < Δt j) (hbdd : Bornology.IsBounded (construct U))
-    (hne : (construct U).Nonempty)
+    (Δt : ℕ → ℝ) (η : ℕ → ℕ) (hΔt : ∀ j, 0 < Δt j) (hbdd : Bornology.IsBounded (toSet U))
+    (hne : (toSet U).Nonempty)
     (hcP : ∀ t : ℝ, 0 ≤ t → IsCompact (sys.inputReach U t))
     (hcQΔ : ∀ j, IsCompact
-      (MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 (Δt j) (η j)))
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (h0 : (0 : Vec ℝ n) ∈ construct U) (k : ℕ) : -- --- CONCL ---
+      (MatExp.particularSolutionOuter (toRealMat sys.A) (toSet U) 0 (Δt j) (η j)))
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (h0 : (0 : Vec ℝ n) ∈ toSet U) (k : ℕ) : -- --- CONCL ---
     hausdorffDist₂ (sys.inputReach U (∑ i ∈ Finset.range k, Δt i))
         (∑ j ∈ Finset.range k,
           (fun x => exp ((∑ i ∈ Finset.range j, Δt i) • toRealMat sys.A) *ᵥ x)
-            '' MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 (Δt j) (η j))
+            '' MatExp.particularSolutionOuter (toRealMat sys.A) (toSet U) 0 (Δt j) (η j))
       ≤ ∑ j ∈ Finset.range k, MatExp.particularSolutionError
-          (toRealMat sys.A) (∑ i ∈ Finset.range j, Δt i) (construct U) (Δt j)
+          (toRealMat sys.A) (∑ i ∈ Finset.range j, Δt i) (toSet U) (Δt j)
           (η j) := by -- --- PROOF ---
   obtain ⟨c, hc⟩ := hne
   have hsum_nn : ∀ j, 0 ≤ ∑ i ∈ Finset.range j, Δt i :=
     fun j => Finset.sum_nonneg fun i _ => (hΔt i).le
-  have hQΔne : ∀ j, (MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0
+  have hQΔne : ∀ j, (MatExp.particularSolutionOuter (toRealMat sys.A) (toSet U) 0
       (Δt j) (η j)).Nonempty := fun j =>
     ⟨0, MatExp.zero_mem_particularSolutionOuter _ h0 0 (Δt j) (η j)⟩
   have hcont : ∀ t : ℝ, Continuous (fun x : Vec ℝ n => exp (t • toRealMat sys.A) *ᵥ x) :=
     fun t => (mulVecL (exp (t • toRealMat sys.A))).continuous
   have hsumc := aux_isCompact_sum_range_var
     (fun j => (fun x => exp ((∑ i ∈ Finset.range j, Δt i) • toRealMat sys.A) *ᵥ x)
-      '' MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 (Δt j) (η j))
+      '' MatExp.particularSolutionOuter (toRealMat sys.A) (toSet U) 0 (Δt j) (η j))
     (fun j => (hcQΔ j).image (hcont _)) (fun j => (hQΔne j).image _)
   induction k with
   | zero =>

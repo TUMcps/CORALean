@@ -61,8 +61,8 @@ theorem MDiff.hker : ∀ i : Fin MDiff.P.me, ∀ y ∈ MDiff.T, MDiff.P.Ae i y =
 
 /-- `0.5` is in the certified difference `[-0.7, 0.7]`, and so — by
 `minkDiffOf_inner` — genuinely in the true difference. -/
-example : (![(0.5:ℝ)] : Vec ℝ 1) ∈ minkowskiDiff MDiff.P.construct MDiff.T := by
-  have hmem : (![(0.5:ℝ)] : Vec ℝ 1) ∈ (MDiff.P.minkDiffOf MDiff.T MDiff.u).construct := by
+example : (![(0.5:ℝ)] : Vec ℝ 1) ∈ minkowskiDiff MDiff.P.toSet MDiff.T := by
+  have hmem : (![(0.5:ℝ)] : Vec ℝ 1) ∈ (MDiff.P.minkDiffOf MDiff.T MDiff.u).toSet := by
     refine ⟨fun i => ?_, fun i => i.elim0⟩
     fin_cases i <;>
       simp [HPolytope.minkDiffOf, MDiff.P, MDiff.u, Matrix.cons_val_zero, Matrix.cons_val_one,
@@ -73,8 +73,8 @@ example : (![(0.5:ℝ)] : Vec ℝ 1) ∈ minkowskiDiff MDiff.P.construct MDiff.T
 /-- `0.75` genuinely sits in the true difference — every point of `T` still
 lands back in `P` — yet the loose `0.3` bound leaves it out of `minkDiffOf`'s
 `[-0.7, 0.7]`, exactly the under-approximation the class allows. -/
-example : (![(0.75:ℝ)] : Vec ℝ 1) ∈ minkowskiDiff MDiff.P.construct MDiff.T ∧
-    (![(0.75:ℝ)] : Vec ℝ 1) ∉ (MDiff.P.minkDiffOf MDiff.T MDiff.u).construct := by
+example : (![(0.75:ℝ)] : Vec ℝ 1) ∈ minkowskiDiff MDiff.P.toSet MDiff.T ∧
+    (![(0.75:ℝ)] : Vec ℝ 1) ∉ (MDiff.P.minkDiffOf MDiff.T MDiff.u).toSet := by
   constructor
   · rintro y ⟨hlo, hhi⟩
     refine ⟨fun i => ?_, fun i => i.elim0⟩

@@ -63,7 +63,7 @@ theorem LinParamSys.IsCanonicalTrajectory.exists_measurable_param {sys : LinPara
         (traj : sys.IsCanonicalTrajectory T R₀ U x u A)
     {t : ℝ} (ht : 0 ≤ t) (hT : Set.Icc 0 t ⊆ T) : -- --- CONCL ---
     ∃ Â : ℝ → Mat ℝ n n, (∀ i j, Measurable fun s => Â s i j) ∧
-      (∀ s, Â s ∈ construct sys.A) ∧
+      (∀ s, Â s ∈ toSet sys.A) ∧
       ∀ᵐ s ∂(volume.restrict (Set.Icc 0 t)), Â s = A s := by -- --- PROOF ---
   classical
   have h0 : (0:ℝ) ∈ T := hT ⟨le_rfl, ht⟩
@@ -77,7 +77,7 @@ theorem LinParamSys.IsCanonicalTrajectory.exists_measurable_param {sys : LinPara
   have hGm : ∀ i j, Measurable fun s => G s i j :=
     fun i j => (hAij i j).stronglyMeasurable_mk.measurable
   -- where the representatives lie in the box, a measurable set
-  set E : Set ℝ := {s | G s ∈ construct sys.A} with hE
+  set E : Set ℝ := {s | G s ∈ toSet sys.A} with hE
   have hEm : MeasurableSet E := by
     have hEq : E = ⋂ i, ⋂ j,
         ({s | sys.A.inf i j ≤ G s i j} ∩ {s | G s i j ≤ sys.A.sup i j}) := by
@@ -96,9 +96,9 @@ theorem LinParamSys.IsCanonicalTrajectory.exists_measurable_param {sys : LinPara
     rw [hite]
     exact Measurable.ite hEm (hGm i j) measurable_const
   · by_cases hs : s ∈ E
-    · show (if s ∈ E then G s else A 0) ∈ construct sys.A
+    · show (if s ∈ E then G s else A 0) ∈ toSet sys.A
       rw [if_pos hs]; exact hs
-    · show (if s ∈ E then G s else A 0) ∈ construct sys.A
+    · show (if s ∈ E then G s else A 0) ∈ toSet sys.A
       rw [if_neg hs]; exact traj.param 0 h0
   · -- almost every instant of the window has every representative right
     have hall : ∀ᵐ s ∂(volume.restrict (Set.Icc 0 t)),
@@ -109,7 +109,7 @@ theorem LinParamSys.IsCanonicalTrajectory.exists_measurable_param {sys : LinPara
     filter_upwards [hall, ae_restrict_mem measurableSet_Icc] with s hs hsI
     have hGs : G s = A s := Matrix.ext fun i j => hs i j
     have hsE : s ∈ E := by
-      show G s ∈ construct sys.A
+      show G s ∈ toSet sys.A
       rw [hGs]
       exact traj.param s (hT hsI)
     simp only [if_pos hsE, hGs]

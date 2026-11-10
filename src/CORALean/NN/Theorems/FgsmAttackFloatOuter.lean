@@ -91,14 +91,14 @@ private theorem aux_fwd_degenerate : -- --- CONCL ---
 
 theorem IntervalChain.fgsmAttack_outer {n m : ℕ} {c : IntervalChain 𝕋 n m}
     {r : Real.IntervalChain n m} (hc : c.Encloses r) (hs : r.IsSmooth) (X : Interval (Vec 𝕋 n))
-    {x : Vec ℝ n} (hx : x ∈ X.construct) (t : Vec 𝕋 m) (E : Interval 𝕋) {ε : ℝ}
+    {x : Vec ℝ n} (hx : x ∈ X.toSet) (t : Vec 𝕋 m) (E : Interval 𝕋) {ε : ℝ}
     (hε : toReal E.inf ≤ ε ∧ ε ≤ toReal E.sup)
     (lossDerF : Interval (Vec 𝕋 m) → Interval (Vec 𝕋 m) → Interval (Vec 𝕋 m))
     {lossDer : Vec ℝ m → Vec ℝ m → Vec ℝ m}
-    (hl : ∀ (T Y : Interval (Vec 𝕋 m)) (t' y' : Vec ℝ m), t' ∈ T.construct → y' ∈ Y.construct →
-      lossDer t' y' ∈ (lossDerF T Y).construct) : -- --- CONCL ---
+    (hl : ∀ (T Y : Interval (Vec 𝕋 m)) (t' y' : Vec ℝ m), t' ∈ T.toSet → y' ∈ Y.toSet →
+      lossDer t' y' ∈ (lossDerF T Y).toSet) : -- --- CONCL ---
     r.toChain.fgsmAttack x (toRealVec t) ε lossDer
-      ∈ (c.fgsmAttack X t E lossDerF).construct := by -- --- PROOF ---
+      ∈ (c.fgsmAttack X t E lossDerF).toSet := by -- --- PROOF ---
   -- the output of the network lies in the forward box
   have hy := (IntervalChain.fwd_outer hc (X, X) (x, x) hx hx).1
   rw [aux_fwd_degenerate] at hy
@@ -109,7 +109,7 @@ theorem IntervalChain.fgsmAttack_outer {n m : ℕ} {c : IntervalChain 𝕋 n m}
   have hstep : (fun i => ε * Real.sign (r.toChain.backprop x
       (lossDer (toRealVec t) (r.toChain.eval x)) i)) ∈
       (Interval.times (⟨fun _ => E.inf, fun _ => E.sup⟩ : Interval (Vec 𝕋 n))
-        (c.backpropAt X (lossDerF (Interval.point t) (c.fwd (X, X)).1)).sign).construct :=
+        (c.backpropAt X (lossDerF (Interval.point t) (c.fwd (X, X)).1)).sign).toSet :=
     Interval.times_outer _ _ ⟨fun _ => ε, fun _ => hε, _, hsign, rfl⟩
   exact Interval.plus_outer _ _ (Set.add_mem_add hx hstep)
 

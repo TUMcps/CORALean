@@ -64,7 +64,7 @@ private theorem Zonotope.aux_methodCBasis_isUnit_det (Z : Zonotope (Vec ℝ n))
 
 /-- [1, Sec. 5.4.2]: method C's parallelotope encloses the zonotope. -/
 theorem Zonotope.methodC_outer (Z : Zonotope (Vec ℝ n)) (κ κ' : ℕ) :
-    Z.construct ⊆ (Z.methodC κ κ').construct :=
+    Z.toSet ⊆ (Z.methodC κ κ').toSet :=
   Z.parallelotope_outer (Z.aux_methodCBasis_isUnit_det κ κ')
 
 end CORALean.Real

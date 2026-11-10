@@ -58,11 +58,11 @@ def NonlinDASys.LinPoint.Certifies (L : NonlinDASys.LinPoint n p m) (sys : Nonli
     (∀ x' y' u', (x', y', u') ∈ Rz → sys.g x' y' u' = 0 →
       (sys.f x' y' u' - (sys.f L.xs L.ys L.us + L.A *ᵥ (x' - L.xs) + L.B *ᵥ (u' - L.us)
         + L.C *ᵥ (y' - L.ys))) - (L.C * L.F_inv) *ᵥ (sys.g x' y' u' - (sys.g L.xs L.ys L.us
-          + L.D *ᵥ (x' - L.xs) + L.E *ᵥ (u' - L.us) + F *ᵥ (y' - L.ys))) ∈ L.Verror.construct) ∧
+          + L.D *ᵥ (x' - L.xs) + L.E *ᵥ (u' - L.us) + F *ᵥ (y' - L.ys))) ∈ L.Verror.toSet) ∧
     (∀ x' y' u', (x', y', u') ∈ Rz → sys.g x' y' u' = 0 →
       sys.g x' y' u' - (sys.g L.xs L.ys L.us + L.D *ᵥ (x' - L.xs) + L.E *ᵥ (u' - L.us)
-        + F *ᵥ (y' - L.ys)) ∈ L.Verror_y.construct) ∧
-    L.us ∈ U.construct ∧ (0 : Vec ℝ n) ∈ L.Verror.construct ∧
+        + F *ᵥ (y' - L.ys)) ∈ L.Verror_y.toSet) ∧
+    L.us ∈ U.toSet ∧ (0 : Vec ℝ n) ∈ L.Verror.toSet ∧
     ‖Δt • (L.A - L.C * L.F_inv * L.D)‖ / (((q + 2 : ℕ) : ℝ) + 2) < 1
 
 end CORALean

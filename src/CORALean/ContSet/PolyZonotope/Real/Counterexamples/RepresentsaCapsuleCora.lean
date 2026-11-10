@@ -86,11 +86,11 @@ def PolyZonotope.step_point (c : Vec ℝ 2) : PolyZonotope (Vec ℝ 2) :=
 /-- CORA's test errors on `{c}`, which is the capsule `Capsule.ofPoint c`. -/
 theorem PolyZonotope.representsa_capsule_cora_crash (c : Vec ℝ 2) :
     (PolyZonotope.step_point c).representsaCapsuleCora = none ∧
-      (PolyZonotope.step_point c).construct = (Capsule.ofPoint c).construct := by
+      (PolyZonotope.step_point c).toSet = (Capsule.ofPoint c).toSet := by
   refine ⟨by simp [PolyZonotope.representsaCapsuleCora, PolyZonotope.step_point], ?_⟩
   ext x
   rw [Capsule.mem_ofPoint_iff]
-  simp [PolyZonotope.construct, PolyZonotope.step_point, eq_comm]
+  simp [PolyZonotope.toSet, PolyZonotope.step_point, eq_comm]
 
 end CORALean.Real
 

@@ -84,19 +84,19 @@ theorem NonlinearSys.IsTrajectory.relinReach_outer {sys : NonlinearSys n m} {T :
     {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory T R₀ U x u y) (hΔt : 0 ≤ Δt)
     (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
     (hR : ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt), x t ∈ (steps i).R)
-    (hU : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
+    (hU : ∀ i < N, Bornology.IsBounded (toSet (steps i).linInput))
     (hUd : ∀ i < N, (NonlinearSys.linearize (steps i).A).stepInput
-      (fun t => sys.f (x t) (u t) - (steps i).A *ᵥ x t) Δt i ∈ construct (Ud i))
+      (fun t => sys.f (x t) (u t) - (steps i).A *ᵥ x t) Δt i ∈ toSet (Ud i))
     {o : ℕ} (ho : 0 < o) : -- --- CONCL ---
     ∀ i ≤ N,
       x ((i : ℝ) * Δt) ∈
-        construct (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud) := by -- --- PROOF ---
+        toSet (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud) := by -- --- PROOF ---
   intro i
   -- the induction is on the step count, every hypothesis being asked per step
   induction i with
   | zero =>
     intro _
-    show x (((0 : ℕ) : ℝ) * Δt) ∈ construct R₀
+    show x (((0 : ℕ) : ℝ) * Δt) ∈ toSet R₀
     simpa using traj.init
   | succ i ih =>
     intro hi
@@ -123,20 +123,20 @@ theorem NonlinearSys.IsTrajectory.relinReach_outer {sys : NonlinearSys n m} {T :
     -- step `i`'s input enclosure, moved from the original clock onto the shifted one
     have hUd1 : ∀ k < 1, (NonlinearSys.linearize (steps i).A).stepInput
         (fun t => sys.f (x ((i : ℝ) * Δt + t)) (u ((i : ℝ) * Δt + t))
-          - (steps i).A *ᵥ x ((i : ℝ) * Δt + t)) Δt k ∈ construct (Ud i) := by
+          - (steps i).A *ᵥ x ((i : ℝ) * Δt + t)) Δt k ∈ toSet (Ud i) := by
       intro k hk
       obtain rfl : k = 0 := Nat.lt_one_iff.mp hk
       have hshift := (NonlinearSys.linearize (steps i).A).stepInput_shift
         (fun s => sys.f (x s) (u s) - (steps i).A *ᵥ x s) Δt i
       show (NonlinearSys.linearize (steps i).A).stepInput
         (fun t => (fun s => sys.f (x s) (u s) - (steps i).A *ᵥ x s) ((i : ℝ) * Δt + t))
-        Δt 0 ∈ construct (Ud i)
+        Δt 0 ∈ toSet (Ud i)
       rw [hshift]
       exact hUd i hiN
     -- one step of the linear guarantee, at horizon 1, on the shifted run
     have key := shifted.reach_outer_horizon (K := 1) (steps i).cert hT1 hR1 hΔt
       (hU i hiN) hUd1 ho 1 le_rfl
-    show x (((i + 1 : ℕ) : ℝ) * Δt) ∈ construct
+    show x (((i + 1 : ℕ) : ℝ) * Δt) ∈ toSet
       (((NonlinearSys.linearize (steps i).A).discretize Δt).reach
         ⟨sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud, Ud i, 0, 1⟩ ⟨o, ho⟩)
     rw [show ((i + 1 : ℕ) : ℝ) * Δt = (i : ℝ) * Δt + ((1 : ℕ) : ℝ) * Δt from by

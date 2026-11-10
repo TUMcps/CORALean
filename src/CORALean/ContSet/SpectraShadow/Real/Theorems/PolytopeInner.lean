@@ -42,10 +42,10 @@ variable {n N : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.polytopeInner_inner (S : SpectraShadow (Vec ℝ n)) (c : Vec ℝ n)
-    (v : Fin N → Vec ℝ n) (hv : ∀ i, v i ∈ (S.translate (-c)).construct) :
-    (SpectraShadow.polytopeInner (N := N) c v).construct ⊆ S.construct := by
+    (v : Fin N → Vec ℝ n) (hv : ∀ i, v i ∈ (S.translate (-c)).toSet) :
+    (SpectraShadow.polytopeInner (N := N) c v).toSet ⊆ S.toSet := by
   rintro x ⟨β, hβ0, hβ1, rfl⟩
-  refine Convex.sum_mem (SpectraShadow.convex_construct S) (fun j _ => hβ0 j) hβ1 (fun j _ => ?_)
+  refine Convex.sum_mem (SpectraShadow.convex_toSet S) (fun j _ => hβ0 j) hβ1 (fun j _ => ?_)
   have := (S.mem_translate_iff (-c) (v j)).1 (hv j)
   simpa [SpectraShadow.polytopeInner] using this
 

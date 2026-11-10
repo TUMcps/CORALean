@@ -39,14 +39,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.shrink_outer (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k) : -- --- CONCL ---
-    zB.construct ⊆ (zB.shrink hk).construct := by -- --- PROOF ---
+    zB.toSet ⊆ (zB.shrink hk).toSet := by -- --- PROOF ---
   intro x hx
   have hP : x ∈ (⟨zB.k, fun i => Zonotope.reduceMethC (zB.Z i) 1⟩ :
-    ZonoBundle (Vec 𝕋 n)).construct :=
-    SetIntersection.mem_construct_ofFn.mpr fun i =>
-      Zonotope.reduceMethC_outer _ 1 (SetIntersection.mem_construct_ofFn.mp hx i)
+    ZonoBundle (Vec 𝕋 n)).toSet :=
+    SetIntersection.mem_toSet_ofFn.mpr fun i =>
+      Zonotope.reduceMethC_outer _ 1 (SetIntersection.mem_toSet_ofFn.mp hx i)
   -- every new member is a parallelotope around the reduced bundle
-  exact SetIntersection.mem_construct_ofFn.mpr fun i =>
+  exact SetIntersection.mem_toSet_ofFn.mpr fun i =>
     ZonoBundle.enclosingParallelotope_outer (⟨zB.k, fun i => Zonotope.reduceMethC (zB.Z i) 1⟩ :
       ZonoBundle (Vec 𝕋 n)) hk _ hP
 

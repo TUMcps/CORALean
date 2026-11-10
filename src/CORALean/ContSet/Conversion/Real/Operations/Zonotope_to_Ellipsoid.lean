@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Ellipsoid.Real.Operations.OfFactor
 public import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse

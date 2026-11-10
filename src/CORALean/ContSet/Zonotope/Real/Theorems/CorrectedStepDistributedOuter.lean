@@ -68,11 +68,11 @@ variable {n nu nw ny nv q : ℕ} {m : Fin q → ℕ}
 theorem Zonotope.correctedStepDistributed_outer (Λ : Mat ℝ n ny) (A : ∀ a, Mat ℝ n (m a))
     (B : Mat ℝ n nu) (Dw : Mat ℝ n nw) (C : Mat ℝ ny n) (Dv : Mat ℝ ny nv) (u : Vec ℝ nu)
     (y : Vec ℝ ny) (X : ∀ a, Zonotope (Vec ℝ (m a))) (x : ∀ a, Vec ℝ (m a))
-    (hx : ∀ a, x a ∈ (X a).construct) (ϖ : Vec ℝ nw) (hϖ : ∀ j, |ϖ j| ≤ 1) (σ : Vec ℝ nv)
+    (hx : ∀ a, x a ∈ (X a).toSet) (ϖ : Vec ℝ nw) (hϖ : ∀ j, |ϖ j| ≤ 1) (σ : Vec ℝ nv)
     (hσ : ∀ j, |σ j| ≤ 1)
     (hy : y = C *ᵥ (∑ a, A a *ᵥ x a + B *ᵥ u + Dw *ᵥ ϖ) + Dv *ᵥ σ) : -- --- CONCL ---
     ∑ a, A a *ᵥ x a + B *ᵥ u + Dw *ᵥ ϖ ∈
-      (Zonotope.correctedStepDistributed Λ A B Dw C Dv u y X).construct := by -- --- PROOF ---
+      (Zonotope.correctedStepDistributed Λ A B Dw C Dv u y X).toSet := by -- --- PROOF ---
   choose β hβ hxa using hx
   have hcol : ∀ {k : ℕ} (M : Mat ℝ n k) (v : Vec ℝ k), ∑ j, v j • (fun i => M i j) = M *ᵥ v :=
     fun M v => by ext i; simp [Matrix.mulVec, dotProduct, mul_comm]

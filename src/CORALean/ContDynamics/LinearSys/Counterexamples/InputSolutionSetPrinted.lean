@@ -62,9 +62,9 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 theorem LinearSys.inputSolutionSet_printed_counterexample : -- --- CONCL ---
     ¬ ∀ (n : ℕ) (sys : LinearSys ℝ n) (U : Zonotope (Vec ℝ n)) (Δt : ℝ), 0 < Δt → ∀ η : ℕ,
       sys.inputReach (S := 𝒵) U Δt
-        ⊆ (∑ i ∈ Finset.Icc 1 η, (fun s => sys.inputTerm Δt i *ᵥ s) '' construct U)
-          + ⋃ M ∈ (MatExp.inputRemainder (toRealMat sys.A) Δt η).construct,
-              (fun s => M *ᵥ s) '' construct U := by -- --- PROOF ---
+        ⊆ (∑ i ∈ Finset.Icc 1 η, (fun s => sys.inputTerm Δt i *ᵥ s) '' toSet U)
+          + ⋃ M ∈ (MatExp.inputRemainder (toRealMat sys.A) Δt η).toSet,
+              (fun s => M *ᵥ s) '' toSet U := by -- --- PROOF ---
   intro h
   -- the constant input `1` reaches `1` over `[0, 1]` at `A = 0`
   have hmem : (fun _ => 1 : Vec ℝ 1) ∈

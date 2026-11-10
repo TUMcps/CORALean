@@ -9,7 +9,7 @@ public import CORALean.Specification.SyntaxTree.SyntaxTree
 /-!
 # The image of a point lies in the image of its interval
 
-An interval op that is exact for a function `f` (`J.construct = f '' I.construct`) holds `f t`
+An interval op that is exact for a function `f` (`J.toSet = f '' I.toSet`) holds `f t`
 wherever `I`
 holds `t`, one coordinate: what the forward value of a node needs.
 
@@ -44,14 +44,14 @@ variable {n : ℕ} {B : Real.Interval (Vec ℝ n)} {t : SyntaxTree n}
 
 /-- If `J` is the image of `I` under `f`, it holds `f t` where `I` holds `t`. -/
 theorem SyntaxTree.contains_of_image {I J : Dom} {f : ℝ → ℝ}
-    (h : J.construct = (fun x i => f (x i)) '' I.construct) {t : ℝ}
+    (h : J.toSet = (fun x i => f (x i)) '' I.toSet) {t : ℝ}
     (ht : Dom.contains I t) : -- --- CONCL ---
     Dom.contains J (f t) := by -- --- PROOF ---
-  have hx : (fun _ => t : Vec ℝ 1) ∈ I.construct := by
+  have hx : (fun _ => t : Vec ℝ 1) ∈ I.toSet := by
     intro i
     obtain rfl : i = 0 := Subsingleton.elim i 0
     exact ht
-  have hmem : (fun i => f ((fun _ => t : Vec ℝ 1) i) : Vec ℝ 1) ∈ J.construct := by
+  have hmem : (fun i => f ((fun _ => t : Vec ℝ 1) i) : Vec ℝ 1) ∈ J.toSet := by
     rw [h]; exact ⟨_, hx, rfl⟩
   have := hmem 0
   exact this

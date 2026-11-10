@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.Not
 public import CORALean.ContSet.HPolytope.Float.Theorems.AbsorbRoundingOuter
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 
 @[expose] public section
 
@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem HPolytope.not_inner {P : HPolytope 𝕋 (Vec 𝕋 n)} {ε : 𝕋}
     (hε : 0 < toReal ε) : -- --- CONCL ---
     ∀ Q ∈ P.not ε,
-      Q.construct ⊆ P.construct ᶜ := by -- --- PROOF ---
+      Q.toSet ⊆ P.toSet ᶜ := by -- --- PROOF ---
   intro Q (h : P.not ε = some Q)
   unfold HPolytope.not at h
   dsimp only at h
@@ -54,8 +54,8 @@ theorem HPolytope.not_inner {P : HPolytope 𝕋 (Vec 𝕋 n)} {ε : 𝕋}
     intro x hx hxP
     have hxQ := HPolytope.absorbRounding_outer P hxP
     have hE : (P.absorbRounding).IsErrFree := HPolytope.isErrFree_of_origin rfl rfl rfl
-    have h1 := ((HPolytope.mem_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mp hx).1 0
-    have h2 := ((HPolytope.mem_construct_iff hE).mp hxQ).1 (Fin.cast hm.1.symm 0)
+    have h1 := ((HPolytope.mem_toSet_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mp hx).1 0
+    have h2 := ((HPolytope.mem_toSet_iff hE).mp hxQ).1 (Fin.cast hm.1.symm 0)
     have hd := subDown_le_sub (neg (P.absorbRounding.b (Fin.cast hm.1.symm 0))) ε
     simp only [toReal_neg] at hd
     -- the negated row sums to the negated sum

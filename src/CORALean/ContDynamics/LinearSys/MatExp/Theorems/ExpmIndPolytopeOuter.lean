@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExponentialRemaind
 public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.VPolytope.Real.Theorems.PlusExact
 public import CORALean.ContSet.VPolytope.Real.Theorems.MapExact
-public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructPoint
+public import CORALean.ContSet.VPolytope.Real.Theorems.ToSetPoint
 public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalMatrixContains
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalMatPolytopeExact
 
@@ -55,10 +55,10 @@ variable {n : ℕ}
 
 /-- The left fold of `VPolytope.plus` over `f s, …, f (s + m - 1)` contains `a + ∑ x (s + j)`. -/
 private theorem MatExp.aux_foldl_plus_mem_poly (f : ℕ → VPolytope (Mat ℝ n n)) (x : ℕ → Mat ℝ n n)
-    (s m : ℕ) (hx : ∀ j, j < m → x (s + j) ∈ (f (s + j)).construct) {acc : VPolytope (Mat ℝ n n)}
-    {a : Mat ℝ n n} (ha : a ∈ acc.construct) : -- --- CONCL ---
+    (s m : ℕ) (hx : ∀ j, j < m → x (s + j) ∈ (f (s + j)).toSet) {acc : VPolytope (Mat ℝ n n)}
+    {a : Mat ℝ n n} (ha : a ∈ acc.toSet) : -- --- CONCL ---
     a + ∑ j ∈ Finset.range m, x (s + j) ∈ ((List.range' s m).foldl
-      (fun e i => VPolytope.plus e (f i)) acc).construct := by -- --- PROOF ---
+      (fun e i => VPolytope.plus e (f i)) acc).toSet := by -- --- PROOF ---
   -- peel the last index off both the list and the sum
   induction m with
   | zero => simpa using ha
@@ -73,14 +73,14 @@ private theorem MatExp.aux_foldl_plus_mem_poly (f : ℕ → VPolytope (Mat ℝ n
 
 /-- `e^M` of every member `M` of the matrix polytope lies in `expmInd`. -/
 theorem MatExp.expmIndPolytope_outer (P : VPolytope (Mat ℝ n n)) (η : ℕ) {M : Mat ℝ n n}
-    (hM : M ∈ P.construct) : -- --- CONCL ---
-    exp M ∈ (MatExp.expmIndPolytope P η).construct := by -- --- PROOF ---
+    (hM : M ∈ P.toSet) : -- --- CONCL ---
+    exp M ∈ (MatExp.expmIndPolytope P η).toSet := by -- --- PROOF ---
   -- the running product `ePpow` encloses the powers of the member
-  have hpow : ∀ i, M ^ i ∈ ((fun Q => VPolytope.matMul Q P)^[i] (VPolytope.point 1)).construct := by
+  have hpow : ∀ i, M ^ i ∈ ((fun Q => VPolytope.matMul Q P)^[i] (VPolytope.point 1)).toSet := by
     intro i
     induction i with
     | zero =>
-      rw [pow_zero, Function.iterate_zero_apply, VPolytope.construct_point]
+      rw [pow_zero, Function.iterate_zero_apply, VPolytope.toSet_point]
       rfl
     | succ i ih =>
       rw [pow_succ, Function.iterate_succ_apply']
@@ -93,8 +93,8 @@ theorem MatExp.expmIndPolytope_outer (P : VPolytope (Mat ℝ n n)) (η : ℕ) {M
     (fun j _ => by
       rw [← VPolytope.map_exact]
       exact ⟨_, hpow (1 + j), by simp⟩)
-    (show (1 : Mat ℝ n n) ∈ (VPolytope.point (1 : Mat ℝ n n)).construct by
-      rw [VPolytope.construct_point]; rfl)
+    (show (1 : Mat ℝ n n) ∈ (VPolytope.point (1 : Mat ℝ n n)).toSet by
+      rw [VPolytope.toSet_point]; rfl)
   -- they are the Taylor sum of the member
   have hT : MatExp.expTaylor M η =
       1 + ∑ j ∈ Finset.range η, ((Nat.factorial (1 + j) : ℝ)⁻¹) • M ^ (1 + j) := by

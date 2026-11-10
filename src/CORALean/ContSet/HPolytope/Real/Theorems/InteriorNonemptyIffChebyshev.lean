@@ -81,9 +81,9 @@ private theorem aux_ball_subset_iff (a c : Vec ℝ n) {r : ℝ} (hr : 0 ≤ r) (
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.ineqs_interior_nonempty_iff (A : Mat ℝ q n) (b : Vec ℝ q) : -- --- CONCL ---
-    (interior (HPolytope.ineqs A b).construct).Nonempty ↔
+    (interior (HPolytope.ineqs A b).toSet).Nonempty ↔
       ∃ (c : Vec ℝ n) (r : ℝ), 0 < r ∧ ∀ j, (A *ᵥ c) j + r * ‖A j‖₂ ≤ b j := by -- --- PROOF ---
-  have hdeg := interior_eq_empty_iff_forall_ball (HPolytope.ineqs A b).construct
+  have hdeg := interior_eq_empty_iff_forall_ball (HPolytope.ineqs A b).toSet
   rw [← Set.not_nonempty_iff_eq_empty] at hdeg
   rw [← not_iff_not, hdeg]
   push Not
@@ -92,10 +92,10 @@ theorem HPolytope.ineqs_interior_nonempty_iff (A : Mat ℝ q n) (b : Vec ℝ q) 
     by_contra hall
     push Not at hall
     -- every row holds the ball, so the ball is inside and `c` is a point
-    have hball : ∀ x : Vec ℝ n, ‖x‖₂ ≤ r → c + x ∈ (HPolytope.ineqs A b).construct :=
+    have hball : ∀ x : Vec ℝ n, ‖x‖₂ ≤ r → c + x ∈ (HPolytope.ineqs A b).toSet :=
       fun x hx => HPolytope.mem_ineqs_iff.mpr fun j =>
         (aux_ball_subset_iff (A j) c hr.le (b j)).mpr (hall j) x hx
-    have hc : c ∈ (HPolytope.ineqs A b).construct := by
+    have hc : c ∈ (HPolytope.ineqs A b).toSet := by
       simpa using hball 0 (by rw [norm₂_zero]; exact hr.le)
     obtain ⟨x, hx, hxn⟩ := h c hc r hr
     exact hxn (hball x hx)

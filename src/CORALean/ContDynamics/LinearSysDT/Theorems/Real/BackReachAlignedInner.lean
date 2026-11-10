@@ -65,9 +65,9 @@ theorem LinearSysDT.backReachAligned_inner {A : Mat ℝ n n} (hA : IsUnit A.det)
     (E : Mat ℝ n p) (K : Vec ℝ n) (U : Zonotope (Vec ℝ m)) (W : Set (Vec ℝ p))
     (Z₀ : Zonotope (Vec ℝ n)) (σ : (Z : Zonotope (Vec ℝ n)) → Vec ℝ n × (Fin Z.h → ℝ))
     (hσ : ∀ Z, (∀ i, 0 ≤ (σ Z).2 i ∧ (σ Z).2 i ≤ 1) ∧
-      (E *ᵥ ·) '' W ⊆ (Z.aligned (σ Z).1 (σ Z).2).construct) (k : ℕ) : -- --- CONCL ---
-    (Zonotope.backReachAligned A B K U Z₀ σ k).construct
-      ⊆ LinearSysDT.backReachSetRobustExact A B E K U.construct W Z₀.construct
+      (E *ᵥ ·) '' W ⊆ (Z.aligned (σ Z).1 (σ Z).2).toSet) (k : ℕ) : -- --- CONCL ---
+    (Zonotope.backReachAligned A B K U Z₀ σ k).toSet
+      ⊆ LinearSysDT.backReachSetRobustExact A B E K U.toSet W Z₀.toSet
         k := by -- --- PROOF ---
   induction k with
   | zero => exact subset_rfl
@@ -77,8 +77,8 @@ theorem LinearSysDT.backReachAligned_inner {A : Mat ℝ n n} (hA : IsUnit A.det)
     obtain ⟨d, hd, _, ⟨u, hu, rfl⟩, hsum⟩ := hx
     set Zk := Zonotope.backReachAligned A B K U Z₀ σ k
     -- the difference by the aligned zonotope is inside `X_k ⊖ EW`
-    have hdiff : d ∈ minkowskiDiff (LinearSysDT.backReachSetRobustExact A B E K U.construct W
-        Z₀.construct k) ((E *ᵥ ·) '' W) :=
+    have hdiff : d ∈ minkowskiDiff (LinearSysDT.backReachSetRobustExact A B E K U.toSet W
+        Z₀.toSet k) ((E *ᵥ ·) '' W) :=
       minkowskiDiff_mono ih (hσ Zk).2 (Zk.minkDiffAligned_inner (Zk.aligned (σ Zk).1 (σ Zk).2)
         rfl (σ Zk).2 (fun i => ((hσ Zk).1 i).1) (fun i => ((hσ Zk).1 i).2) (fun _ => rfl) hd)
     rw [LinearSysDT.backReachSetRobustExact_succ, Set.mem_preimage]

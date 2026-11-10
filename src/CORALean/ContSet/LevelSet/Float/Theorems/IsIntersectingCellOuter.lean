@@ -48,10 +48,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem LevelSet.isIntersecting_cell_outer (L : CORALean.Real.LevelSet n)
     (hne : ∀ i, L.op i ≠ .eq) (I : Interval (Vec 𝕋 n)) (B : Fin L.m → Interval 𝕋) {tol : 𝕋}
     (htol : 0 ≤ toReal tol)
-    (hB : ∀ i, CORALean.Real.IsRangeBound (fun x => L.f x i) I.construct
+    (hB : ∀ i, CORALean.Real.IsRangeBound (fun x => L.f x i) I.toSet
       (toReal (B i).inf) (toReal (B i).sup))
     (h : LevelSet.isIntersecting_cell tol L.op B = false) : -- --- CONCL ---
-    L.construct ∩ I.construct = ∅ := by -- --- PROOF ---
+    L.toSet ∩ I.toSet = ∅ := by -- --- PROOF ---
   refine CORALean.Real.LevelSet.isIntersecting_cell_outer L hne I.nominal
     (fun i => ⟨toReal (B i).inf, toReal (B i).sup⟩) htol hB ?_
   -- the refuting row, and the real test failing there

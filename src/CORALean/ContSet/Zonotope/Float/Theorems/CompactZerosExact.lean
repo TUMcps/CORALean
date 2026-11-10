@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Float.Operations.CompactZeros
-public import CORALean.ContSet.Zonotope.Real.Theorems.FilterGenConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.FilterGenToSet
 
 @[expose] public section
 
@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.compactZeros_exact (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    Z.compactZeros.construct = Z.construct := by -- --- PROOF ---
+    Z.compactZeros.toSet = Z.toSet := by -- --- PROOF ---
   have hz : ∀ j, Z.step_keepColumn j = false → (nominal Z).G j = 0 := by
     intro j hj
     funext i
@@ -53,11 +53,11 @@ theorem Zonotope.compactZeros_exact (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL -
     exact le_antisymm h₁ h₂
   have hN : nominal Z.compactZeros = (nominal Z).filterGen Z.step_keepColumn := rfl
   have hE : I_error Z.compactZeros = I_error Z := rfl
-  show ContSet.construct (nominal Z.compactZeros) + (I_error Z.compactZeros).construct =
-    ContSet.construct (nominal Z) + (I_error Z).construct
+  show ContSet.toSet (nominal Z.compactZeros) + (I_error Z.compactZeros).toSet =
+    ContSet.toSet (nominal Z) + (I_error Z).toSet
   rw [hN, hE]
   congr 1
-  exact CORALean.Real.Zonotope.filterGen_construct _ _ hz
+  exact CORALean.Real.Zonotope.filterGen_toSet _ _ hz
 
 end CORALean.Float
 

@@ -5,8 +5,8 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.AbsSubLeBoxRadius
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.IsOuterFactorSound
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.NominalCenterEq
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.NominalDominated
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructSubsetOfLe
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetSubsetOfLe
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 
@@ -16,7 +16,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 # An ellipsoid lies in its zonotope, over a floating-point scalar
 
 A certified factor `F` has `F Fᵀ ⪰ Q`, so the nominal ellipsoid lies in `{q + F u | ‖u‖₂ ≤ 1}`
-(`construct_subset_of_le`), and `‖u‖₂ ≤ 1` bounds every coordinate of `u` by one: `u` is a
+(`toSet_subset_of_le`), and `‖u‖₂ ≤ 1` bounds every coordinate of `u` by one: `u` is a
 coefficient vector of the parallelotope. The error box is carried over. Without a certificate the
 offset from the center lies in the box `q ± sqrt(diag(Q))` (`abs_sub_le_boxRadius`), which joins
 the error box.
@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.zonotope_contains (E : Ellipsoid 𝕋 n) : -- --- CONCL ---
-    E.construct ⊆ E.zonotope.construct := by -- --- PROOF ---
+    E.toSet ⊆ E.zonotope.toSet := by -- --- PROOF ---
   rintro _ ⟨x, hx, e, he, rfl⟩
   by_cases hok : Ellipsoid.isOuterFactor E.Q (Ellipsoid.outerFactor E.Q) = true
   · -- certified: `F Fᵀ ⪰ Q` dominates the nominal shape
@@ -60,9 +60,9 @@ theorem Ellipsoid.zonotope_contains (E : Ellipsoid 𝕋 n) : -- --- CONCL ---
         simpa [conjTranspose_eq_transpose_of_trivial] using
           Matrix.posSemidef_self_mul_conjTranspose F
       · simpa [sub_add_sub_cancel] using (Ellipsoid.posSemidef_of_isOuterFactor hok).add h
-    have hx' := Real.Ellipsoid.construct_subset_of_le (E₂ := Real.Ellipsoid.ofFactor F
+    have hx' := Real.Ellipsoid.toSet_subset_of_le (E₂ := Real.Ellipsoid.ofFactor F
       (toRealVec E.q)) hle (Ellipsoid.nominal_q E) hx
-    rw [Real.Ellipsoid.construct_ofFactor] at hx'
+    rw [Real.Ellipsoid.toSet_ofFactor] at hx'
     obtain ⟨u, hu, rfl⟩ := hx'
     -- `u` is a coefficient vector of the parallelotope on `F`'s columns
     unfold Ellipsoid.zonotope
@@ -74,7 +74,7 @@ theorem Ellipsoid.zonotope_contains (E : Ellipsoid 𝕋 n) : -- --- CONCL ---
     exact Finset.sum_congr rfl fun j _ => mul_comm _ _
   · -- uncertified: the center, and the offset in the box beside the error box
     have hbox : x - toRealVec E.q
-        ∈ (Interval.symmetric (Ellipsoid.boxRadius 64 E)).construct := by
+        ∈ (Interval.symmetric (Ellipsoid.boxRadius 64 E)).toSet := by
       rw [Interval.mem_vec_iff]
       intro i
       have h := Ellipsoid.abs_sub_le_boxRadius hx 64 i

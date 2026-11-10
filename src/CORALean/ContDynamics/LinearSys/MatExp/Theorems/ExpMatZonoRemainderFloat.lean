@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.mem_expMatZonoRemainder {b : 𝕋} {D : Mat ℝ m m}
-    (hD : ∀ i j, |D i j| ≤ toReal b) : D ∈ (MatExp.expMatZonoRemainder m b).construct := by
+    (hD : ∀ i j, |D i j| ≤ toReal b) : D ∈ (MatExp.expMatZonoRemainder m b).toSet := by
   refine Interval.mem_mat_iff.mpr fun i j => ?_
   show toReal (neg b) ≤ D i j ∧ D i j ≤ toReal b
   rw [toReal_neg]

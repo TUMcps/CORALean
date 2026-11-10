@@ -66,7 +66,7 @@ theorem GNN.gcn_mem_gcnUncertain (R : Relaxation ℝ) (hR : R.Encloses invSqrt) 
     (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) (W : Mat ℝ F₁ F₂) (H : PolyZonotope (Mat ℝ N F₁))
     (aH : Fin H.p → ℝ) (haH : ∀ k, |aH k| ≤ 1) : -- --- CONCL ---
     GNN.messagePassing (GNN.adjAt A U lam) * H.point aH * W
-      ∈ (GNN.gcnUncertain W (GNN.messagePassingEnclosure R A U) H).construct := by -- --- PROOF ---
+      ∈ (GNN.gcnUncertain W (GNN.messagePassingEnclosure R A U) H).toSet := by -- --- PROOF ---
   -- the enclosure keeps nothing independent, so a member of it is a point of it
   obtain ⟨aP, haP, hP⟩ := PolyZonotope.exists_point_of_q_zero (GNN.messagePassingEnclosure R A U)
     rfl (GNN.messagePassing_mem_enclosure R hR A U hA lam hlam)

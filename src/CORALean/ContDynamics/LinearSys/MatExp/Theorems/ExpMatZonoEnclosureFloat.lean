@@ -65,7 +65,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 /-- `Zonotope.matPlusInterval` over-approximates the sum. -/
 private theorem Zonotope.aux_matPlusInterval_outer (Z : Zonotope (Mat 𝕋 m n))
     (I : Interval (Mat 𝕋 m n)) :
-    Z.construct + I.construct ⊆ (Zonotope.matPlusInterval Z I).construct := by
+    Z.toSet + I.toSet ⊆ (Zonotope.matPlusInterval Z I).toSet := by
   rintro _ ⟨_, ⟨a, ha, e, he, rfl⟩, x, hx, rfl⟩
   refine ⟨a, ha, e + x, Interval.matPlus_outer _ _ he hx, ?_⟩
   show a + (e + x) = a + e + x
@@ -77,9 +77,9 @@ end
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.exp_mem_expMatZonoEnclosure (M : Zonotope (Mat 𝕋 n n)) (η : ℕ)
-    {A : Mat ℝ n n} (hA : A ∈ M.construct)
+    {A : Mat ℝ n n} (hA : A ∈ M.toSet)
     (hε : toReal (MatExp.normUpperBound M.matInterval) / ((η : ℝ) + 2) ≤ 1 / 2) : -- --- CONCL ---
-    exp A ∈ (MatExp.expMatZonoEnclosure M η).construct := by -- --- PROOF ---
+    exp A ∈ (MatExp.expMatZonoEnclosure M η).toSet := by -- --- PROOF ---
   have hnorm : ‖A‖ ≤ toReal (MatExp.normUpperBound M.matInterval) :=
     le_trans (Real.Interval.norm_le_absMax (Zonotope.matInterval_contains M hA))
       (MatExp.norm_absMax_le_normUpperBound _)
@@ -93,7 +93,7 @@ theorem MatExp.exp_mem_expMatZonoEnclosure (M : Zonotope (Mat 𝕋 n n)) (η : �
       ≤ toReal (MatExp.expRemainderBound (MatExp.normUpperBound M.matInterval) η) :=
     le_trans (Real.norm_exp_sub_expTaylor_le A η hεA) (MatExp.expRemainderBound_le η hnorm hnn hε)
   have hrem : exp A - Real.MatExp.expTaylor A η ∈ (MatExp.expMatZonoRemainder n
-      (MatExp.expRemainderBound (MatExp.normUpperBound M.matInterval) η)).construct :=
+      (MatExp.expRemainderBound (MatExp.normUpperBound M.matInterval) η)).toSet :=
     MatExp.mem_expMatZonoRemainder fun i j => le_trans (Real.abs_entry_le_norm _ i j) htail
   have hmem := Zonotope.aux_matPlusInterval_outer _ _
     (Set.add_mem_add (MatExp.expTaylor_mem_expMatZonoTaylor M hA η) hrem)

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.SupportRadius
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import Mathlib.Data.Real.Sign
 public import Mathlib.Tactic.Ring
 
@@ -50,8 +50,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.support_dotProduct (Z : Zonotope (Vec ℝ n)) (c : Vec ℝ n) : -- --- CONCL ---
-    IsGreatest ((fun x => c ⬝ᵥ x) '' Z.construct) (c ⬝ᵥ Z.c + Z.supportRadius c) ∧
-    IsLeast ((fun x => c ⬝ᵥ x) '' Z.construct) (c ⬝ᵥ Z.c - Z.supportRadius c) := by -- --- PROOF ---
+    IsGreatest ((fun x => c ⬝ᵥ x) '' Z.toSet) (c ⬝ᵥ Z.c + Z.supportRadius c) ∧
+    IsLeast ((fun x => c ⬝ᵥ x) '' Z.toSet) (c ⬝ᵥ Z.c - Z.supportRadius c) := by -- --- PROOF ---
   -- the value of `cᵀx` at the coefficients `β`
   have hval : ∀ β : Fin Z.h → ℝ, c ⬝ᵥ (Z.c + ∑ j, β j • Z.G j) =
       c ⬝ᵥ Z.c + ∑ j, β j * (c ⬝ᵥ Z.G j) := by

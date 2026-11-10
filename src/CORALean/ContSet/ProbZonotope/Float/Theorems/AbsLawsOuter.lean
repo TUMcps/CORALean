@@ -45,11 +45,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ProbZonotope.abs_laws_outer (P : ProbZonotope 𝕋 n)
     (h0 : ∀ i, toReal (P.Z.I_error.inf i) ≤ 0 ∧ 0 ≤ toReal (P.Z.I_error.sup i))
-    {S : Mat ℝ n n} (hS : S ∈ P.cov.construct) (hp : S.PosSemidef) : -- --- CONCL ---
+    {S : Mat ℝ n n} (hS : S ∈ P.cov.toSet) (hp : S.PosSemidef) : -- --- CONCL ---
     (CORALean.Real.ProbZonotope.abs ⟨nominal P.Z, S⟩).laws ⊆ P.abs.laws := by -- --- PROOF ---
   rintro _ ⟨μ, hμ, rfl⟩
   have hμ' : μ ∈ nominalSet P.Z.abs := by
-    have : μ ∈ (CORALean.Real.Zonotope.abs (nominal P.Z)).construct := hμ
+    have : μ ∈ (CORALean.Real.Zonotope.abs (nominal P.Z)).toSet := hμ
     rw [← Zonotope.abs_nominal] at this
     exact this
   exact ⟨μ, ⟨_, hμ', 0, h0, add_zero _⟩, S, hS, hp, rfl⟩

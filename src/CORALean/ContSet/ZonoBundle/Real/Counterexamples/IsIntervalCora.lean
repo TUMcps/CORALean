@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ToSetEqIInter
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 public import CORALean.ContSet.Zonotope.Real.Operations.IsBox
 public import Mathlib.Algebra.BigOperators.Pi
@@ -49,14 +49,14 @@ variable {n : ℕ}
 -- The model: CORA's code as printed, kept only to be refuted.
 /-- CORA's test: `n = 1`, or an empty set, or every pass of the loop finds `Z{1}` a box. -/
 def ZonoBundle.isIntervalCora (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k) : Prop :=
-  n = 1 ∨ zB.construct = ∅ ∨ ∀ _i : Fin zB.k, (zB.Z ⟨0, hk⟩).IsBox
+  n = 1 ∨ zB.toSet = ∅ ∨ ∀ _i : Fin zB.k, (zB.Z ⟨0, hk⟩).IsBox
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.isIntervalCora_counterexample : -- --- CONCL ---
     ∃ (zB : ZonoBundle (Vec ℝ 2)) (hk : 0 < zB.k), zB.isIntervalCora hk
-      ∧ ¬ ∃ I : Interval (Vec ℝ 2), zB.construct = I.construct := by -- --- PROOF ---
+      ∧ ¬ ∃ I : Interval (Vec ℝ 2), zB.toSet = I.toSet := by -- --- PROOF ---
   -- the box and the diagonal
   let Z₁ : Zonotope (Vec ℝ 2) := ⟨2, fun _ => 0, fun j => Pi.single j 1⟩
   let Z₂ : Zonotope (Vec ℝ 2) := ⟨1, fun _ => 0, fun _ _ => 1⟩
@@ -64,7 +64,7 @@ theorem ZonoBundle.isIntervalCora_counterexample : -- --- CONCL ---
   have hk : 0 < zB.k := Nat.two_pos
   have h10 : ¬ ((1 : Fin 2) = 0) := by simp
   -- the box is the unit cube, the diagonal the points with equal coordinates in `[-1, 1]`
-  have hZ₁ : ∀ x : Vec ℝ 2, x ∈ Z₁.construct ↔ ∀ i, |x i| ≤ 1 := by
+  have hZ₁ : ∀ x : Vec ℝ 2, x ∈ Z₁.toSet ↔ ∀ i, |x i| ≤ 1 := by
     intro x
     constructor
     · rintro ⟨β, hβ, rfl⟩ i
@@ -74,7 +74,7 @@ theorem ZonoBundle.isIntervalCora_counterexample : -- --- CONCL ---
       funext i
       simp [Z₁, Finset.sum_apply, Pi.single_apply, -Fin.sum_univ_two]
   -- the diagonal
-  have hZ₂ : ∀ x : Vec ℝ 2, x ∈ Z₂.construct ↔ ∃ t : ℝ, |t| ≤ 1 ∧ ∀ i, x i = t := by
+  have hZ₂ : ∀ x : Vec ℝ 2, x ∈ Z₂.toSet ↔ ∃ t : ℝ, |t| ≤ 1 ∧ ∀ i, x i = t := by
     intro x
     constructor
     · rintro ⟨β, hβ, rfl⟩
@@ -84,29 +84,29 @@ theorem ZonoBundle.isIntervalCora_counterexample : -- --- CONCL ---
       funext i
       simp [Z₂, hx i]
   -- the bundle is the diagonal inside the cube
-  have hmem : ∀ x : Vec ℝ 2, x ∈ zB.construct ↔
+  have hmem : ∀ x : Vec ℝ 2, x ∈ zB.toSet ↔
       (∀ i, |x i| ≤ 1) ∧ ∃ t : ℝ, |t| ≤ 1 ∧ ∀ i, x i = t := by
     intro x
-    simp only [ZonoBundle.construct_eq_iInter, Set.mem_iInter]
+    simp only [ZonoBundle.toSet_eq_iInter, Set.mem_iInter]
     rw [Fin.forall_fin_two]
     simp only [zB, if_pos, h10, if_false, hZ₁, hZ₂]
   have hIc : ∀ (J : Interval (Vec ℝ 2)) (x : Vec ℝ 2),
-      x ∈ J.construct ↔ ∀ i, J.inf i ≤ x i ∧ x i ≤ J.sup i := fun _ _ => Iff.rfl
+      x ∈ J.toSet ↔ ∀ i, J.inf i ≤ x i ∧ x i ≤ J.sup i := fun _ _ => Iff.rfl
   refine ⟨zB, hk, Or.inr (Or.inr fun _ => ⟨⟨fun _ => -1, fun _ => 1⟩, ?_⟩), ?_⟩
   · -- the first member is the box `[-1, 1]²`
     ext x
     have h00 : (⟨0, hk⟩ : Fin zB.k) = 0 := rfl
-    show x ∈ (if (⟨0, hk⟩ : Fin zB.k) = 0 then Z₁ else Z₂).construct ↔ _
+    show x ∈ (if (⟨0, hk⟩ : Fin zB.k) = 0 then Z₁ else Z₂).toSet ↔ _
     rw [if_pos h00, hZ₁, hIc]
     simp [abs_le]
   · -- a box holding `(1, 1)` and `(-1, -1)` holds `(1, -1)`, which is not on the diagonal
     rintro ⟨I, hI⟩
-    have hp : (fun _ => (1 : ℝ) : Vec ℝ 2) ∈ zB.construct :=
+    have hp : (fun _ => (1 : ℝ) : Vec ℝ 2) ∈ zB.toSet :=
       (hmem _).mpr ⟨fun i => by simp, 1, by simp, fun i => rfl⟩
-    have hm : (fun _ => (-1 : ℝ) : Vec ℝ 2) ∈ zB.construct :=
+    have hm : (fun _ => (-1 : ℝ) : Vec ℝ 2) ∈ zB.toSet :=
       (hmem _).mpr ⟨fun i => by simp, -1, by simp, fun i => rfl⟩
     rw [hI, hIc] at hp hm
-    have hq : (fun i : Fin 2 => if i = 0 then (1 : ℝ) else -1 : Vec ℝ 2) ∈ I.construct := by
+    have hq : (fun i : Fin 2 => if i = 0 then (1 : ℝ) else -1 : Vec ℝ 2) ∈ I.toSet := by
       rw [hIc, Fin.forall_fin_two]
       exact ⟨⟨(hp 0).1, (hp 0).2⟩, (hm 1).1, (hm 1).2⟩
     rw [← hI, hmem] at hq

@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Ellipsoid.representsa_origin_sound {E : Ellipsoid 𝕋 n}
     (h : E.representsa_origin = true) : -- --- CONCL ---
-    E.construct = {0} := by -- --- PROOF ---
+    E.toSet = {0} := by -- --- PROOF ---
   simp only [Ellipsoid.representsa_origin, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨⟨hG, hq⟩, hE⟩ := h
@@ -59,7 +59,7 @@ theorem Ellipsoid.representsa_origin_sound {E : Ellipsoid 𝕋 n}
   have hN : InflatedContSet.nominalSet E = {0} :=
     (Real.Ellipsoid.representsa_origin_iff (InflatedContSet.nominal E).ellipsoid).2
       ⟨by rw [E.nominal_q, hq0], hN0⟩
-  show InflatedContSet.nominalSet E + E.I_error.construct = _
+  show InflatedContSet.nominalSet E + E.I_error.toSet = _
   rw [hN, Interval.representsa_origin_sound hE, Set.singleton_add_singleton, add_zero]
 
 end CORALean.Float

@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem rotMat_mem (p n : ℕ) (i j : Fin n) (angle : 𝕋) : -- --- CONCL ---
-    Real.rotMat n i j (toReal angle) ∈ (rotMat p n i j angle).construct := by -- --- PROOF ---
+    Real.rotMat n i j (toReal angle) ∈ (rotMat p n i j angle).toSet := by -- --- PROOF ---
   rintro ⟨a, b⟩
   have hc := And.intro (cosDown_le p angle) (le_cosUp p angle)
   have hs := And.intro (sinDown_le p angle) (le_sinUp p angle)

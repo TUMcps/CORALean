@@ -44,8 +44,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.interval_isLUB (S : SpectraShadow (Vec ℝ n)) (hb : S.isBounded)
-    (hne : S.construct ≠ ∅) (i : Fin n) : -- --- CONCL ---
-    IsLUB ((fun x : Vec ℝ n => x i) '' S.construct) (S.interval.sup i) := by -- --- PROOF ---
+    (hne : S.toSet ≠ ∅) (i : Fin n) : -- --- CONCL ---
+    IsLUB ((fun x : Vec ℝ n => x i) '' S.toSet) (S.interval.sup i) := by -- --- PROOF ---
   have hnemp : ¬ S.representsa_emptySet := fun h => hne ((S.representsa_emptySet_iff).mp h)
   have e1 := S.supportFunc_eq_coe_toReal _ hne (hb i).1
   have hs : S.interval.sup i = (S.supportFunc (LinearMap.proj i : Vec ℝ n →ₗ[ℝ] ℝ)).toReal := by

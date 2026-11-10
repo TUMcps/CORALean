@@ -68,7 +68,7 @@ private theorem VPolytope.aux_weights (P : VPolytope (Vec 𝕋 n)) (z : Vec ℝ 
 
 theorem VPolytope.isFullDim_sound {P : VPolytope (Vec 𝕋 n)} {H : Mat 𝕋 P.k (n + 1)}
     (h : P.isFullDimWith H = true) : -- --- CONCL ---
-    (interior P.construct).Nonempty := by -- --- PROOF ---
+    (interior P.toSet).Nonempty := by -- --- PROOF ---
   simp only [VPolytope.isFullDimWith, Bool.and_eq_true, Nat.ble_eq, List.all_eq_true,
     List.mem_finRange, forall_const] at h
   obtain ⟨⟨⟨hk, hkδ⟩, hc⟩, hE⟩ := h
@@ -119,7 +119,7 @@ theorem VPolytope.isFullDim_sound {P : VPolytope (Vec 𝕋 n)} {H : Mat 𝕋 P.k
       exact this.symm
   have hx : m ∈ interior (nominalSet P) :=
     interior_maximal hUsub hU fun i _ => by simpa [Metric.mem_ball] using hB
-  have he : (fun i => toReal (P.I_error.inf i)) ∈ (I_error P).construct := fun i =>
+  have he : (fun i => toReal (P.I_error.inf i)) ∈ (I_error P).toSet := fun i =>
     ⟨le_refl _, toReal_le_of_le (hE i)⟩
   exact ⟨_, subset_interior_add_left (Set.add_mem_add hx he)⟩
 

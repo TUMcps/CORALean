@@ -12,9 +12,9 @@ reals with `toReal`, `toRealMat` or `toRealVec` (or to a `nominal`): the exact o
 floats denote, `Real.HPolytope.rowLin (toRealMat M) i`. The check is syntactic and finds only the
 bare forms; a wrapper that adds an argument or a coercion is for the reviewer.
 
-One definition is a bare wrapper on purpose, and recognized by its form: `X.construct` in the
-main file `ContSet/X/Float/X.lean` of a float set that has no error box. It is the `construct` the
-`ContSet` instance and every `I.construct` in a statement resolve through by dot notation, so it
+One definition is a bare wrapper on purpose, and recognized by its form: `X.toSet` in the
+main file `ContSet/X/Float/X.lean` of a float set that has no error box. It is the `toSet` the
+`ContSet` instance and every `I.toSet` in a statement resolve through by dot notation, so it
 must exist under that name; it is the nominal set's, spelt out for the class. There is no list.
 """
 import re
@@ -73,10 +73,10 @@ def wrappers(path):
     return out
 
 
-def is_own_construct(path, name):
-    """`X.construct` in the float main file `ContSet/X/Float/X.lean`: the class's `construct`."""
+def is_own_toSet(path, name):
+    """`X.toSet` in the float main file `ContSet/X/Float/X.lean`: the class's `toSet`."""
     parts = path.relative_to(SRC).as_posix().split("/")
-    return (name == f"{path.stem}.construct" and len(parts) >= 5 and parts[-2] == "Float"
+    return (name == f"{path.stem}.toSet" and len(parts) >= 5 and parts[-2] == "Float"
             and parts[-3] == path.stem and parts[-4] == "ContSet"
             and not re.search(r"^\s*I_error\s*:", path.read_text(encoding="utf-8"), re.M))
 
@@ -88,7 +88,7 @@ def main():
             continue
         rel = path.relative_to(ROOT).as_posix()
         for ln, name in wrappers(path):
-            if is_own_construct(path, name):
+            if is_own_toSet(path, name):
                 continue
             msgs.append(f"{rel}:{ln}: `{name}` only applies the exact operation to what the floats denote"
                         f" — delete it and write the exact operation at the use sites")

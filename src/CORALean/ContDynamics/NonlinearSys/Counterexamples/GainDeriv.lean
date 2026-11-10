@@ -58,7 +58,7 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 private theorem aux_boxDiameter_gainDerivExample {t : ℝ} (ht0 : 0 ≤ t)
     (ht1 : t < 1) : -- --- CONCL ---
     boxDiameter (abstrSolInf (fun _ => (0 : Mat ℝ 1 1))
-      (fun s => (⟨1, 0, fun _ => fun _ => 1 - s⟩ : Zonotope (Vec ℝ 1)).construct) t) 0
+      (fun s => (⟨1, 0, fun _ => fun _ => 1 - s⟩ : Zonotope (Vec ℝ 1)).toSet) t) 0
       = 2 * (t * (1 - t)) := by -- --- PROOF ---
   rw [boxDiameter_abstrSolInf (fun _ => (0 : Mat ℝ 1 1)) _ ht0 rfl 0]
   congr 1
@@ -70,7 +70,7 @@ private theorem aux_boxDiameter_gainDerivExample {t : ℝ} (ht0 : 0 ≤ t)
 /-- The gain of the example: `δ(1 - δh)/(1 - h)` for `δ = 1/2` on `(0,1)`. -/
 private theorem aux_gainDim_gainDerivExample {s : ℝ} (hs0 : 0 < s) (hs1 : s < 1) :
     gainDim (fun _ => (0 : Mat ℝ 1 1))
-      (fun s => (⟨1, 0, fun _ => fun _ => 1 - s⟩ : Zonotope (Vec ℝ 1)).construct) s (1 / 2) 0
+      (fun s => (⟨1, 0, fun _ => fun _ => 1 - s⟩ : Zonotope (Vec ℝ 1)).toSet) s (1 / 2) 0
       = (1 / 2) * ((1 - s / 2) / (1 - s)) := by
   rw [gainDim, aux_boxDiameter_gainDerivExample (by positivity) (by linarith),
     aux_boxDiameter_gainDerivExample hs0.le hs1]
@@ -88,7 +88,7 @@ theorem gainDim_deriv_counterexample : -- --- CONCL ---
       (∀ k l, ContDiff ℝ ⊤ (fun t => A t k l)) ∧ (∀ k, ContDiff ℝ ⊤ (fun t => G t k)) ∧
       (∀ p, DifferentiableAt ℝ (fun t => |(A t ^ p *ᵥ G t) 0|) 0) ∧ G 0 0 ≠ 0 ∧
       Tendsto (fun h => deriv (fun s => gainDim A
-        (fun s => (⟨1, 0, fun _ => G s⟩ : Zonotope (Vec ℝ 1)).construct) s (1 / 2) 0) h)
+        (fun s => (⟨1, 0, fun _ => G s⟩ : Zonotope (Vec ℝ 1)).toSet) s (1 / 2) 0) h)
         (𝓝[>] (0:ℝ)) (𝓝 (1 / 4)) := by -- --- PROOF ---
   refine ⟨fun _ => 0, fun t _ => 1 - t, fun k l => contDiff_const, fun k => ?_, fun p => ?_,
     by simp, ?_⟩
@@ -101,11 +101,11 @@ theorem gainDim_deriv_counterexample : -- --- CONCL ---
   · -- near `h`, the gain is the explicit quotient
     have hderiv : ∀ h : ℝ, 0 < h → h < 1 →
         deriv (fun s => gainDim (fun _ => (0 : Mat ℝ 1 1))
-          (fun s => (⟨1, 0, fun _ => fun _ => 1 - s⟩ : Zonotope (Vec ℝ 1)).construct) s (1 / 2) 0) h
+          (fun s => (⟨1, 0, fun _ => fun _ => 1 - s⟩ : Zonotope (Vec ℝ 1)).toSet) s (1 / 2) 0) h
           = 1 / (4 * (1 - h) ^ 2) := by
       intro h hh0 hh1
       have hnear : (fun s => gainDim (fun _ => (0 : Mat ℝ 1 1))
-          (fun s => (⟨1, 0, fun _ => fun _ => 1 - s⟩ : Zonotope (Vec ℝ 1)).construct) s (1 / 2) 0)
+          (fun s => (⟨1, 0, fun _ => fun _ => 1 - s⟩ : Zonotope (Vec ℝ 1)).toSet) s (1 / 2) 0)
           =ᶠ[𝓝 h] fun s => (1 / 2) * ((1 - s / 2) / (1 - s)) := by
         filter_upwards [isOpen_Ioo.mem_nhds (show h ∈ Set.Ioo 0 1 from ⟨hh0, hh1⟩)] with s hs
         exact aux_gainDim_gainDerivExample hs.1 hs.2

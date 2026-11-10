@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Float.Theorems.VecNominal
-public import CORALean.ContSet.Interval.Real.Theorems.VecConstruct
+public import CORALean.ContSet.Interval.Real.Theorems.VecToSet
 public import CORALean.Global.MatVec
 
 @[expose] public section
@@ -41,8 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.vec_exact (I : Interval (Mat 𝕋 m n)) :
-    I.vec.construct = matVecEquiv '' I.construct :=
-  Real.Interval.vec_construct I.nominal
+    I.vec.toSet = matVecEquiv '' I.toSet :=
+  Real.Interval.vec_toSet I.nominal
 
 end CORALean.Float
 

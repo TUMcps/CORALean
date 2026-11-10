@@ -88,7 +88,7 @@ private theorem PolyZonotope.aux_prod_univ_partZonotope_p {pZ : PolyZonotope α}
 /-- `partZonotope` encloses the original. -/
 theorem PolyZonotope.partZonotope_outer (pZ : PolyZonotope α)
     (V : Finset (Fin pZ.p)) : -- --- CONCL ---
-    pZ.construct ⊆ (pZ.partZonotope V).construct := by -- --- PROOF ---
+    pZ.toSet ⊆ (pZ.partZonotope V).toSet := by -- --- PROOF ---
   rintro _ ⟨a, β, ha, hβ, rfl⟩
   have hmem : ∀ i, pZ.partPattern V i ∈ pZ.partPatterns V := fun i =>
     List.mem_dedup.mpr (List.mem_ofFn.mpr ⟨i, rfl⟩)

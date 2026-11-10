@@ -28,7 +28,7 @@ variable {n : ℕ}
 
 open ContSet in
 theorem EmptySet.center_isSome_iff (E : EmptySet n) :
-    E.center.isSome ↔ (construct E).Nonempty := by
+    E.center.isSome ↔ (toSet E).Nonempty := by
   change (none : Option (Vec ℝ n)).isSome ↔ (∅ : Set (Vec ℝ n)).Nonempty
   simp
 

@@ -44,9 +44,9 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.ellipsoid_contains (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
-    P.construct ⊆ (HPolytope.ellipsoid up lo).construct :=
+theorem HPolytope.ellipsoid_contains (up : ∀ j, SupportBound P.toSet (LinearMap.proj j))
+    (lo : ∀ j, SupportBound P.toSet (-LinearMap.proj j)) :
+    P.toSet ⊆ (HPolytope.ellipsoid up lo).toSet :=
   subset_trans (HPolytope.zonotope_contains up lo) (Zonotope.ellipsoid_contains _)
 
 end CORALean.Real

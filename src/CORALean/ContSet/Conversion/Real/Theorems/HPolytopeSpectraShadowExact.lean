@@ -44,7 +44,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.spectraShadow_exact (P : HPolytope (Vec ℝ n)) : -- --- CONCL ---
-    P.construct = P.spectraShadow.construct := by -- --- PROOF ---
+    P.toSet = P.spectraShadow.toSet := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · intro x hx
     refine ⟨x, (HPolytope.posSemidef_spectraShadow_iff P x).mpr hx, ?_⟩
@@ -52,11 +52,11 @@ theorem HPolytope.spectraShadow_exact (P : HPolytope (Vec ℝ n)) : -- --- CONCL
     rw [zero_add]
     exact HPolytope.eq_sum_single x
   · rintro _ ⟨β, hβ, rfl⟩
-    show (0 + ∑ i, β i • (Pi.single i 1 : Fin n → ℝ)) ∈ P.construct
+    show (0 + ∑ i, β i • (Pi.single i 1 : Fin n → ℝ)) ∈ P.toSet
     have e : (∑ i, β i • (Pi.single i 1 : Fin n → ℝ)) = β :=
       (HPolytope.eq_sum_single β).symm
     rw [zero_add]
-    exact Eq.mpr (congrArg (· ∈ P.construct) e) ((HPolytope.posSemidef_spectraShadow_iff P β).mp hβ)
+    exact Eq.mpr (congrArg (· ∈ P.toSet) e) ((HPolytope.posSemidef_spectraShadow_iff P β).mp hβ)
 
 end CORALean.Real
 

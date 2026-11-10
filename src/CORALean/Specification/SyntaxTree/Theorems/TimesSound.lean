@@ -77,12 +77,12 @@ private theorem SyntaxTree.funHanTimes_operand {int prev other : Dom} {a b : ℝ
       rcases h0 0 with h1 | h1
       · exact (h1.trans_le hb.1).ne'
       · exact (hb.2.trans_lt h1).ne
-    have hx : (fun _ => a * b : Vec ℝ 1) ∈ int.construct := by
+    have hx : (fun _ => a * b : Vec ℝ 1) ∈ int.toSet := by
       intro i; obtain rfl : i = 0 := Subsingleton.elim i 0; exact hi
-    have hy : (fun _ => b : Vec ℝ 1) ∈ prev.construct := by
+    have hy : (fun _ => b : Vec ℝ 1) ∈ prev.toSet := by
       intro i; obtain rfl : i = 0 := Subsingleton.elim i 0; exact hb
     have hq : (fun i => (fun _ => a * b : Vec ℝ 1) i / (fun _ => b : Vec ℝ 1) i : Vec ℝ 1) ∈
-        (Real.Interval.rdivide int prev).construct := by
+        (Real.Interval.rdivide int prev).toSet := by
       rw [Real.Interval.rdivide_exact hI hJ h0]; exact ⟨_, hx, _, hy, rfl⟩
     have hq0 := hq 0
     -- the fact `Dom.contains (Real.Interval.rdivide int prev) a`

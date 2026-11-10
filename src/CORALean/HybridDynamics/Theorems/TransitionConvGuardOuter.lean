@@ -40,10 +40,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {L : Type} {n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `construct` of the cut guard contains the guard's intersection with the invariant. -/
+/-- `toSet` of the cut guard contains the guard's intersection with the invariant. -/
 theorem Transition.convGuard_guard_outer (e : Transition (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n)
     (inv : HPolytope 𝕋 (Vec 𝕋 n)) :
-    e.guard.construct ∩ inv.construct ⊆ (e.convGuard inv).guard.construct :=
+    e.guard.toSet ∩ inv.toSet ⊆ (e.convGuard inv).guard.toSet :=
   HPolytope.intersection_outer e.guard inv
 
 end CORALean

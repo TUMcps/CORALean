@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinParamSysDT.LinParamSysDT
 # The set reachable in `k` steps, at every matrix the set holds
 
 `LinearSysDT.reachSetExact`'s recursion, one step's image taken at every
-`A ∈ construct sys.A` rather than at a fixed matrix: no `reduce`, no enclosure,
+`A ∈ toSet sys.A` rather than at a fixed matrix: no `reduce`, no enclosure,
 and nothing an implementation is free to widen.
 
 ## Inputs
@@ -41,8 +41,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n : ℕ}
 /-- Every state reachable in exactly `k` steps from `R₀` under inputs in `U`, at
 every matrix `sys.A` holds. -/
 def LinParamSysDT.reachSetExact (sys : LinParamSysDT 𝕄 n) (R₀ U : S n) : ℕ → Set (Vec ℝ n)
-  | 0 => construct R₀
-  | k + 1 => (⋃ A ∈ construct sys.A, (A *ᵥ ·) '' sys.reachSetExact R₀ U k) + construct U
+  | 0 => toSet R₀
+  | k + 1 => (⋃ A ∈ toSet sys.A, (A *ᵥ ·) '' sys.reachSetExact R₀ U k) + toSet U
 
 end CORALean
 

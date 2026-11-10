@@ -47,16 +47,16 @@ structure LinearSys.MaxBackReachStateFloat.Encloses (s : LinearSys.MaxBackReachS
   /-- And from above. -/
   le_tEnc_sup : sr.t ≤ toReal s.tEnc.sup
   /-- The error box of `Z̲_U` holds `0`, which the box lemmas ask of an operand. -/
-  zero_mem : (0 : Vec ℝ n) ∈ s.ZU.I_error.construct
+  zero_mem : (0 : Vec ℝ n) ∈ s.ZU.I_error.toSet
   /-- Every point of the float `Z̲_U` is a point of the exact one plus an error within `UErr`. -/
-  ZU : ∀ x ∈ s.ZU.construct, ∃ u ∈ construct sr.ZU, ∃ e : Vec ℝ n,
+  ZU : ∀ x ∈ s.ZU.toSet, ∃ u ∈ toSet sr.ZU, ∃ e : Vec ℝ n,
     (∀ i, |e i| ≤ toReal (s.UErr i)) ∧ x = u + e
   /-- The float `Ẑ_{W₀}` holds the exact one. -/
-  ZW₀ : construct sr.ZW₀ ⊆ s.ZW₀.construct
+  ZW₀ : toSet sr.ZW₀ ⊆ s.ZW₀.toSet
   /-- The float `Ẑ_W` holds the exact one. -/
-  ZW : construct sr.ZW ⊆ s.ZW.construct
+  ZW : toSet sr.ZW ⊆ s.ZW.toSet
   /-- The float `R̂^{∃∀}` is inside the exact one. -/
-  R : s.R ⊆ construct sr.R
+  R : s.R ⊆ toSet sr.R
 
 end CORALean
 

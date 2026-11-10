@@ -50,7 +50,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.SubsetOfBounds
 public import CORALean.ContSet.LevelSet.Real.Theorems.AndExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.LinCombExactOfDependent
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.OfPointMem
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemToSet
 public import CORALean.ContSet.SpectraShadow.Real.SpectraShadow
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.Basic
 public import CORALean.ContSet.SpectraShadow.Real.Theorems.IsBoundedIff
@@ -94,7 +94,7 @@ variable {n : ℕ}
 -- Reviewed:      ---
 
 /-- Through the zonotope; the constrained zonotope with nothing to satisfy loses nothing. -/
-theorem Ellipsoid.conZonotope_contains (E : Ellipsoid n) : E.construct ⊆ E.conZonotope.construct :=
+theorem Ellipsoid.conZonotope_contains (E : Ellipsoid n) : E.toSet ⊆ E.conZonotope.toSet :=
   subset_trans E.zonotope_contains (Zonotope.conZonotope_exact _).subset
 
 
@@ -105,7 +105,7 @@ theorem Ellipsoid.conZonotope_contains (E : Ellipsoid n) : E.construct ⊆ E.con
 -- Reviewed:      19-October-2026 (Tobias Ladner)
 
 /-- `Ellipsoid.interval_contains`: its `interval` contains it. -/
-theorem Ellipsoid.interval_contains (E : Ellipsoid n) : E.construct ⊆ E.interval.construct :=
+theorem Ellipsoid.interval_contains (E : Ellipsoid n) : E.toSet ⊆ E.interval.toSet :=
   Interval.subset_ofBounds _ _
 
 
@@ -117,7 +117,7 @@ theorem Ellipsoid.interval_contains (E : Ellipsoid n) : E.construct ⊆ E.interv
 
 /-- `Interval.polyZonotope_contains`: its `polyZonotope` contains it. -/
 theorem Interval.polyZonotope_contains (I : Interval (Vec ℝ n)) :
-    I.construct ⊆ I.polyZonotope.construct :=
+    I.toSet ⊆ I.polyZonotope.toSet :=
   subset_trans I.zonotope_contains (Zonotope.polyZonotope_exact _).subset
 
 
@@ -160,7 +160,7 @@ theorem Interval.polyZonotope_q (I : Interval (Vec ℝ n)) : I.polyZonotope.q = 
 
 /-- The polynomial level set and its level set denote one set, the box's rows meeting its box, so
 everything proved of a `LevelSet` holds of it. -/
-theorem PolyLevelSet.levelSet_exact (P : PolyLevelSet n) : P.levelSet.construct = P.construct := by
+theorem PolyLevelSet.levelSet_exact (P : PolyLevelSet n) : P.levelSet.toSet = P.toSet := by
   rw [PolyLevelSet.levelSet, LevelSet.and_exact, Interval.levelSet_exact]
   rfl
 
@@ -173,7 +173,7 @@ theorem PolyLevelSet.levelSet_exact (P : PolyLevelSet n) : P.levelSet.construct 
 
 /-- `PolyZonotope.interval_contains`: its `interval` contains it. -/
 theorem PolyZonotope.interval_contains (pZ : PolyZonotope (Vec ℝ n)) :
-    pZ.construct ⊆ pZ.interval.construct :=
+    pZ.toSet ⊆ pZ.interval.toSet :=
   subset_trans pZ.zonotope_contains (Zonotope.interval_contains _)
 
 
@@ -186,7 +186,7 @@ theorem PolyZonotope.interval_contains (pZ : PolyZonotope (Vec ℝ n)) :
 /-- Through its box. A tighter zonotope enclosure of a vertex list is a fitting
 problem rather than a conversion, so the box is what a definition can give. -/
 theorem VPolytope.zonotope_contains (P : VPolytope (Vec ℝ n)) :
-    P.construct ⊆ P.zonotope.construct :=
+    P.toSet ⊆ P.zonotope.toSet :=
   subset_trans P.interval_contains (Interval.zonotope_contains _)
 
 
@@ -198,7 +198,7 @@ theorem VPolytope.zonotope_contains (P : VPolytope (Vec ℝ n)) :
 
 /-- Exact: the vertex list spans the bundle. -/
 theorem ZonoBundle.vPolytopeAll_exact (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k)
-    (hne : zB.construct.Nonempty) : (zB.vPolytopeAll hk hne).construct = zB.construct :=
+    (hne : zB.toSet.Nonempty) : (zB.vPolytopeAll hk hne).toSet = zB.toSet :=
   (ConZonotope.vPolytope_exact _ _).trans (ZonoBundle.conZonotopeAll_exact zB hk)
 
 end
@@ -232,7 +232,7 @@ theorem HPolytope.eq_sum_single (β : Fin n → ℝ) :
 
 /-- A finite support value of a nonempty set is the real it reads as. -/
 theorem SpectraShadow.supportFunc_eq_coe_toReal {α : Type} [AddCommGroup α] [Module ℝ α]
-    (S : SpectraShadow α) (c : α →ₗ[ℝ] ℝ) (hne : S.construct ≠ ∅)
+    (S : SpectraShadow α) (c : α →ₗ[ℝ] ℝ) (hne : S.toSet ≠ ∅)
     (hfin : S.supportFunc c ≠ ⊤) : S.supportFunc c = ((S.supportFunc c).toReal : ℝ) :=
   (EReal.coe_toReal hfin (fun h => hne ((S.supportFunc_eq_bot_iff c).mp h))).symm
 
@@ -254,9 +254,9 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 
 /-- Bounded because something bounded contains it, which is what an enclosure
 already computed says. -/
-theorem HPolytope.isCompact_of_contains {W : VPolytope (Vec ℝ n)} (h : P.construct ⊆ W.construct) :
-    IsCompact P.construct :=
-  Metric.isCompact_of_isClosed_isBounded P.isClosed_construct (W.isBounded_construct.subset h)
+theorem HPolytope.isCompact_of_contains {W : VPolytope (Vec ℝ n)} (h : P.toSet ⊆ W.toSet) :
+    IsCompact P.toSet :=
+  Metric.isCompact_of_isClosed_isBounded P.isClosed_toSet (W.isBounded_toSet.subset h)
 
 
 -- ===============================  `HPolytope.vPolytope_exact`  ================================ --
@@ -266,8 +266,8 @@ theorem HPolytope.isCompact_of_contains {W : VPolytope (Vec ℝ n)} (h : P.const
 -- Reviewed:      ---
 
 /-- `HPolytope.vPolytope_exact`: its `vPolytope` is exactly it. -/
-theorem HPolytope.vPolytope_exact (P : HPolytope (Vec ℝ n)) (hc : IsCompact P.construct)
-    (hne : P.construct.Nonempty) : (P.vPolytope hne).construct = P.construct :=
+theorem HPolytope.vPolytope_exact (P : HPolytope (Vec ℝ n)) (hc : IsCompact P.toSet)
+    (hne : P.toSet.Nonempty) : (P.vPolytope hne).toSet = P.toSet :=
   Set.Subset.antisymm (P.contains_vPolytope hne) (P.vPolytope_contains hc hne)
 
 end
@@ -286,7 +286,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- `PolyZonotope.vPolytope_contains`: its `vPolytope` contains it. -/
 theorem PolyZonotope.vPolytope_contains (pZ : PolyZonotope α) :
-    pZ.construct ⊆ pZ.vPolytope.construct :=
+    pZ.toSet ⊆ pZ.vPolytope.toSet :=
   subset_trans pZ.zonotope_contains (Zonotope.vPolytope_contains _)
 
 end
@@ -306,7 +306,7 @@ variable {n m : ℕ}
 /-- CORA's `conPolyZono(taylm)`, which goes through `polyZonotope` and adds no constraint;
 exact where that is. -/
 theorem Taylm.conPolyZono_exact (T : Fin m → Taylm n) (hT : ∀ i, (T i).rem.inf ≤ (T i).rem.sup) :
-    (Taylm.conPolyZono T).construct = Taylm.construct T :=
+    (Taylm.conPolyZono T).toSet = Taylm.toSet T :=
   ((Taylm.polyZonotope T).conPolyZono_exact).symm.trans (Taylm.polyZonotope_exact T hT)
 
 end
@@ -325,7 +325,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {n : ℕ}
 
 /-- `VPolytope.polyZonotope_contains`: its `polyZonotope` contains it. -/
 theorem VPolytope.polyZonotope_contains (P : VPolytope (Vec ℝ n)) :
-    P.construct ⊆ P.polyZonotope.construct :=
+    P.toSet ⊆ P.polyZonotope.toSet :=
   subset_trans P.zonotope_contains (Zonotope.polyZonotope_exact _).subset
 
 end

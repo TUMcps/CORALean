@@ -57,7 +57,7 @@ variable {n : ℕ}
 over the elapsed times `[0,Δt]` of the step. -/
 noncomputable def MatExp.affineTimeIntervalSolution (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n))
     (ũ : Vec ℝ n) (Δt : ℝ) : Set (Vec ℝ n) :=
-  {y | ∃ t ∈ Set.Icc (0:ℝ) Δt, ∃ x ∈ H.construct,
+  {y | ∃ t ∈ Set.Icc (0:ℝ) Δt, ∃ x ∈ H.toSet,
     y = (exp (t • A)).mulVec x + (MatExp.expIntegral A t).mulVec ũ}
 
 end CORALean.Real

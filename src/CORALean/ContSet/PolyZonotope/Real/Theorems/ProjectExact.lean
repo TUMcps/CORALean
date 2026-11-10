@@ -46,7 +46,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.project_exact (pZ : PolyZonotope (Vec ℝ n)) (i : Fin n) :
-    (LinearMap.proj i : Vec ℝ n →ₗ[ℝ] ℝ) '' pZ.construct = (pZ.project i).construct :=
+    (LinearMap.proj i : Vec ℝ n →ₗ[ℝ] ℝ) '' pZ.toSet = (pZ.project i).toSet :=
   PolyZonotope.map_exact (LinearMap.proj i) pZ
 
 end CORALean.Real

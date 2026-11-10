@@ -51,7 +51,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.OrOuter
 public import CORALean.ContSet.Interval.Real.Theorems.EnclosePointsOuter
 public import CORALean.ContSet.Interval.Real.Theorems.OriginExact
 public import CORALean.ContSet.Interval.Real.Theorems.AbsExact
-public import CORALean.ContSet.Interval.Real.Theorems.ConstructEqSingleton
+public import CORALean.ContSet.Interval.Real.Theorems.ToSetEqSingleton
 public import CORALean.ContSet.Interval.Real.Theorems.EmptyExact
 public import CORALean.ContSet.Interval.Real.Theorems.ExpExact
 public import CORALean.ContSet.Interval.Real.Theorems.MonotoneImageExact
@@ -126,7 +126,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.ExistsNormEqAbsMax
 public import CORALean.ContSet.Interval.Real.Theorems.PowerBetween
 public import CORALean.ContSet.Interval.Real.Theorems.PowerExact
 public import CORALean.ContSet.Interval.Real.Theorems.MulMatEntryImage
-public import CORALean.ContSet.Interval.Real.Theorems.ConstructSubsetConvexHullVertices
+public import CORALean.ContSet.Interval.Real.Theorems.ToSetSubsetConvexHullVertices
 public import CORALean.ContSet.Interval.Real.Theorems.LiftExact
 public import CORALean.ContSet.Interval.Real.Theorems.DiracOuter
 public import CORALean.ContSet.Interval.Real.Theorems.DiracOffZero
@@ -188,7 +188,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.MatContainsZeroIff
 public import CORALean.ContSet.Interval.Real.Theorems.MatContainsSound
 public import CORALean.ContSet.Interval.Real.Theorems.MatVolumeEq
 public import CORALean.ContSet.Interval.Real.Theorems.ConvexHullVertices
-public import CORALean.ContSet.Interval.Real.Theorems.VecConstruct
+public import CORALean.ContSet.Interval.Real.Theorems.VecToSet
 public import CORALean.ContSet.Interval.Real.Theorems.VecRepresentsa
 public import CORALean.ContSet.Interval.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.Interval.Real.Theorems.SubsetOfBounds

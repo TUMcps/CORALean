@@ -41,7 +41,7 @@ open Classical in
 theorem Interval.exploreBN_neg_counterexample : -- --- CONCL ---
     let b : Vec ℝ 1 := fun _ => 1
     (fun _ => (-1 : ℝ)) ∈ Interval.exploreBN b (-1) ∧
-      (fun _ => (-1 : ℝ)) ∉ (⟨0, b⟩ : Interval (Vec ℝ 1)).construct := by -- --- PROOF ---
+      (fun _ => (-1 : ℝ)) ∉ (⟨0, b⟩ : Interval (Vec ℝ 1)).toSet := by -- --- PROOF ---
   intro b
   constructor
   · unfold Interval.exploreBN

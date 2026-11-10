@@ -13,7 +13,7 @@ remainder it will tolerate and `expRemainderOrder` names the least order meeting
 buys is in `timeIntervalStepEps_outer`: the side condition `‖rA‖/(η+2) < 1` a caller of
 `timeInterval` has to discharge is discharged by the selector, so `0 < ε` is all that is left.
 **`ε` is one term of the enclosure's error and not all of it.** [1] tunes the step too.
-`timeInterval_subset_reach_add_error` measures how far `construct` of the result exceeds what
+`timeInterval_subset_reach_add_error` measures how far `toSet` of the result exceeds what
 the flow visits, and `ε` reaches only the second-order part of that: over a whole step the convex
 hull costs a first-order excess no order touches.
 

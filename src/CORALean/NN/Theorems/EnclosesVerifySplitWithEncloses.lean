@@ -75,11 +75,11 @@ end
 counterexample from a `false` result, and never that further splitting would help. -/
 theorem NeuralNetwork.Encloses.verifySplitWith_sound {nn : NeuralNetwork S n m}
     {f : Vec ℝ n → Vec ℝ m} (hf : nn.Encloses f) (spec : Specification ContSet) (check : S m → Bool)
-    (hcheck : ∀ s, check s → spec.Holds (construct s))
+    (hcheck : ∀ s, check s → spec.Holds (toSet s))
     (splitter : S n → S n × S n)
-    (hcov : ∀ Y : S n, construct Y ⊆ construct (splitter Y).1 ∪ construct (splitter Y).2)
+    (hcov : ∀ Y : S n, toSet Y ⊆ toSet (splitter Y).1 ∪ toSet (splitter Y).2)
     (d : ℕ) (X : S n) (hverify : nn.verifySplitWith check splitter d X) : -- --- CONCL ---
-    spec.Holds (f '' construct X) := by -- --- PROOF ---
+    spec.Holds (f '' toSet X) := by -- --- PROOF ---
   induction d generalizing X with
   | zero => exact hf.holds_of_enclose X spec (hcheck _ hverify)
   | succ d ih =>
@@ -87,12 +87,12 @@ theorem NeuralNetwork.Encloses.verifySplitWith_sound {nn : NeuralNetwork S n m}
     rcases hverify with h | h
     · exact hf.holds_of_enclose X spec (hcheck _ h)
     · rw [Bool.and_eq_true] at h
-      have hsub : f '' construct X
-          ⊆ f '' construct (splitter X).1 ∪ f '' construct (splitter X).2 :=
-        calc f '' construct X
-            ⊆ f '' (construct (splitter X).1 ∪ construct (splitter X).2) :=
+      have hsub : f '' toSet X
+          ⊆ f '' toSet (splitter X).1 ∪ f '' toSet (splitter X).2 :=
+        calc f '' toSet X
+            ⊆ f '' (toSet (splitter X).1 ∪ toSet (splitter X).2) :=
               Set.image_mono (hcov X)
-          _ = f '' construct (splitter X).1 ∪ f '' construct (splitter X).2 :=
+          _ = f '' toSet (splitter X).1 ∪ f '' toSet (splitter X).2 :=
               Set.image_union ..
       exact spec.holds_of_outer hsub (spec.aux_holds_union (ih _ h.1) (ih _ h.2))
 

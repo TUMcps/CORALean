@@ -99,14 +99,14 @@ noncomputable example (K : Fin 1 → Fin 2 → ℝ) (b : Vec ℝ 5)
 /-- Every output over the whole input set is in the zonotope that comes back. -/
 example {nn : NeuralNetwork 𝒵 6 2} {f : Vec ℝ 6 → Vec ℝ 2} (hf : nn.Encloses f)
     (X : Zonotope (Vec ℝ 6)) {x : Vec ℝ 6}
-    (hx : x ∈ construct X) : f x ∈ construct (nn.enclose X) :=
+    (hx : x ∈ toSet X) : f x ∈ toSet (nn.enclose X) :=
   hf.enclose_outer X x hx
 
 /-- Robust classification at two labels, unchanged by the layers in between. -/
 example {nn : NeuralNetwork 𝒵 6 2} {f : Vec ℝ 6 → Vec ℝ 2} (hf : nn.Encloses f)
     (X : Zonotope (Vec ℝ 6)) (l : Fin 2)
-    (u : ∀ j, SupportBound (construct (nn.enclose X)) (marginDir 2 j l))
-    (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ 6} (hx : x ∈ construct X)
+    (u : ∀ j, SupportBound (toSet (nn.enclose X)) (marginDir 2 j l))
+    (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ 6} (hx : x ∈ toSet X)
     {j : Fin 2} (hj : j ≠ l) : f x j < f x l :=
   NeuralNetwork.classifies hf X l u h hx hj
 
@@ -119,8 +119,8 @@ example (K : Fin 1 → Fin 2 → ℝ) (b : Vec ℝ 5) :
 
 /-- The reshape loses nothing, and no hypothesis is needed to say so. -/
 example (X : Zonotope (Vec ℝ 6)) :
-    construct ((Layer.reshape (S := 𝒵) (Fin.transposeEquiv 3 2)).enclose X)
-      = reindexLin (Fin.transposeEquiv 3 2) '' construct X :=
+    toSet ((Layer.reshape (S := 𝒵) (Fin.transposeEquiv 3 2)).enclose X)
+      = reindexLin (Fin.transposeEquiv 3 2) '' toSet X :=
   Layer.reshape_exact (S := 𝒵) _ X
 
 /-- Average pooling is not in the chain above because it is the convolution

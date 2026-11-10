@@ -60,7 +60,7 @@ theorem MatExp.inputOneParam_contains (C G : Mat ℝ n n) (c_c g_c : Vec ℝ n) 
     {β : ℝ} (hβ : |β| ≤ 1) : -- --- CONCL ---
     ∑ i ∈ Finset.range (η + 1), (r ^ (i + 1) / (i + 1).factorial) •
         ((C + β • G) ^ i *ᵥ (c_c + β • g_c)) ∈
-      (MatExp.inputOneParam C G c_c g_c r η).construct := by -- --- PROOF ---
+      (MatExp.inputOneParam C G c_c g_c r η).toSet := by -- --- PROOF ---
   set a : ℕ → ℝ := fun i => r ^ (i + 1) / (i + 1).factorial with ha
   set u : ℕ → Mat ℝ n n := fun k =>
     if k = 0 then ∑ i ∈ Finset.range (η + 1), a i • MatExp.oneParamD C i

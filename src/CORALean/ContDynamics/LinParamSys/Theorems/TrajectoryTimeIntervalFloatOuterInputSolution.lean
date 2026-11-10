@@ -75,22 +75,22 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- `t^{k+1}/(k+1)!` times the hull of order `k` over the nominal box lies in the
 float input term applied to `U`, at `t ≤ r`, when `0 ∈ U`. -/
 private theorem aux_hull_subset_intervalInputTerm (sys : LinParamSys ℐ[𝕋] n)
-    {U : Zonotope (Vec 𝕋 n)} {M₀ : Mat ℝ n n} (hM₀ : M₀ ∈ sys.A.construct)
-    (h0 : (0 : Vec ℝ n) ∈ construct U) {r : 𝕋} {t : ℝ} (hr : 0 < toReal r) (ht0 : 0 ≤ t)
+    {U : Zonotope (Vec 𝕋 n)} {M₀ : Mat ℝ n n} (hM₀ : M₀ ∈ sys.A.toSet)
+    (h0 : (0 : Vec ℝ n) ∈ toSet U) {r : 𝕋} {t : ℝ} (hr : 0 < toReal r) (ht0 : 0 ≤ t)
     (htr : t ≤ toReal r) (k : ℕ) {y : Vec ℝ n}
     (hy : y ∈ (t ^ (k + 1) / (Nat.factorial (k + 1) : ℝ)) • closure (convexHull ℝ
-      {z | ∃ N ∈ (Real.Interval.matPow sys.A.nominal k).construct, ∃ v ∈ construct U,
+      {z | ∃ N ∈ (Real.Interval.matPow sys.A.nominal k).toSet, ∃ v ∈ toSet U,
         z = N *ᵥ v})) : -- --- CONCL ---
-    y ∈ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+    y ∈ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
     (S := 𝒵[𝕋])
       (MatExp.intervalInputTerm sys.A r k) U) := by -- --- PROOF ---
-  set T := construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+  set T := toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
     (S := 𝒵[𝕋])
     (MatExp.intervalInputTerm sys.A r k) U) with hTdef
-  have hconv : Convex ℝ T := Zonotope.convex_construct _
-  have hclosed : IsClosed T := Zonotope.isClosed_construct _
-  set K := closure (convexHull ℝ {z | ∃ N ∈ (Real.Interval.matPow sys.A.nominal k).construct,
-    ∃ v ∈ construct U, z = N *ᵥ v}) with hK
+  have hconv : Convex ℝ T := Zonotope.convex_toSet _
+  have hclosed : IsClosed T := Zonotope.isClosed_toSet _
+  set K := closure (convexHull ℝ {z | ∃ N ∈ (Real.Interval.matPow sys.A.nominal k).toSet,
+    ∃ v ∈ toSet U, z = N *ᵥ v}) with hK
   set cr := toReal r ^ (k + 1) / (Nat.factorial (k + 1) : ℝ) with hcr
   set ct := t ^ (k + 1) / (Nat.factorial (k + 1) : ℝ) with hct
   have hcr0 : 0 < cr := by positivity
@@ -107,7 +107,7 @@ private theorem aux_hull_subset_intervalInputTerm (sys : LinParamSys ℐ[𝕋] n
       show cr • (N *ᵥ v) ∈ T
       rw [← Matrix.smul_mulVec]
       have hc := MatExp.taylorCoeffBounds_mem (𝕋 := 𝕋) hr.le (k + 1)
-      have hmem : cr • N ∈ (MatExp.intervalInputTerm sys.A r k).construct := by
+      have hmem : cr • N ∈ (MatExp.intervalInputTerm sys.A r k).toSet := by
         rw [MatExp.intervalInputTerm, Interval.materialiseMat_eq]
         exact Interval.smul_outer hc.1 hc.2 _
           (Interval.matPow_subset hM₀ subset_rfl k hN)
@@ -134,8 +134,8 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer_inputSolution
     (hΔt : 0 < toReal Δt)
     (hT : Set.Icc 0 (toReal Δt) ⊆ T)
     (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal Δt)
-    (h0 : (0 : Vec ℝ n) ∈ construct U) : -- --- CONCL ---
-    x t ∈ construct (Plus.plus (sys.timeIntervalFloat Δt η R₀)
+    (h0 : (0 : Vec ℝ n) ∈ toSet U) : -- --- CONCL ---
+    x t ∈ toSet (Plus.plus (sys.timeIntervalFloat Δt η R₀)
       (sys.inputSolutionFloat Δt η U)) := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hη.1
   set r := toReal Δt with hr
@@ -143,10 +143,10 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer_inputSolution
   let sysR : LinParamSys ℐ n := LinParamSys.canonical sys.A.nominal
   have trajR : sysR.IsCanonicalTrajectory (S := 𝒵[𝕋]) T R₀ U x u A :=
     ⟨traj.init, traj.input, traj.param, traj.meas, traj.measParam, traj.cont, traj.flow⟩
-  have hcpt : IsCompact (construct U) := Zonotope.isCompact_construct U
+  have hcpt : IsCompact (toSet U) := Zonotope.isCompact_toSet U
   obtain ⟨Â, hÂi, hÂB, hx⟩ := trajR.exists_integral_eq_of_measurable hΔt.le hT
   have hxc : ContinuousOn x (Set.Icc 0 r) := traj.cont.mono hT
-  have huU : ∀ s ∈ Set.Icc 0 r, u s ∈ construct U := fun s hs => traj.input s (hT hs)
+  have huU : ∀ s ∈ Set.Icc 0 r, u s ∈ toSet U := fun s hs => traj.input s (hT hs)
   -- the input cut off outside the step, integrable over every window
   obtain ⟨C, hC⟩ := hcpt.isBounded.exists_norm_le
   set ũ : ℝ → Vec ℝ n := (Set.Icc 0 r).indicator u with hũ
@@ -193,7 +193,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer_inputSolution
   rw [heq, hhom]
   have hx₀ := traj.init
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
-  · have hE : Φ *ᵥ x 0 ∈ construct
+  · have hE : Φ *ᵥ x 0 ∈ toSet
       (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
         (sys.expIntervalFloat Δt Δt (m + 2)) R₀) := by
       refine Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
@@ -202,7 +202,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer_inputSolution
       rw [LinParamSys.expIntervalFloat, Interval.materialiseMat_eq]
       exact hΦ
     -- and the correction term `F x₀` in `[F] R₀`
-    have hFm : F *ᵥ x 0 ∈ construct
+    have hFm : F *ᵥ x 0 ∈ toSet
       (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
         (MatExp.intervalCorrectionMatrix sys.A Δt (m + 2)) R₀) :=
       Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
@@ -215,7 +215,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer_inputSolution
   -- the input half: each kept order in its float term, summed as `inputTaylorSumFloat` recurses
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
   · have hterm : ∀ k, Real.MatExp.peanoBakerInputTerm Â ũ k t
-        ∈ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        ∈ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
           (S := 𝒵[𝕋])
           (MatExp.intervalInputTerm sys.A Δt k) U) := fun k =>
       aux_hull_subset_intervalInputTerm sys (hÂB 0) h0 hΔt ht0 htr k
@@ -223,7 +223,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer_inputSolution
           (fun s hs => by rw [hũr s ⟨hs.1, hs.2.trans htr⟩]; exact huU s ⟨hs.1, hs.2.trans htr⟩)
           k t ⟨ht0, le_rfl⟩)
     have hsum : ∀ j, ∑ k ∈ Finset.range (j + 1), Real.MatExp.peanoBakerInputTerm Â ũ k t
-        ∈ construct (sys.inputTaylorSumFloat Δt U j) := by
+        ∈ toSet (sys.inputTaylorSumFloat Δt U j) := by
       intro j
       induction j with
       | zero => rw [Finset.sum_range_one]; exact hterm 0
@@ -254,7 +254,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer_inputSolution
     obtain ⟨E, hE, hEv⟩ := Real.exists_mulVec_eq_of_norm_le
       ((mul_nonneg hΔt.le hEf0).trans hw) hρ
     -- within `E(r)·r` entrywise is what the float remainder box says
-    have hEm : E ∈ (MatExp.intervalInputRemainder sys.A Δt (m + 2)).construct :=
+    have hEm : E ∈ (MatExp.intervalInputRemainder sys.A Δt (m + 2)).toSet :=
       Interval.mem_mat_iff.mpr fun i j => by
         have h := abs_le.mp (hE i j)
         show toReal (neg _) ≤ E i j ∧ E i j ≤ toReal _

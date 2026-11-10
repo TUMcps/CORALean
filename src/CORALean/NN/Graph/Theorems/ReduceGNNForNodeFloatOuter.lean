@@ -82,10 +82,10 @@ end
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem GNN.reduceGNNForNodeFloat_outer (A : Mat 𝕋 N N) (v : Fin N) (L : ℕ)
-    (P : Interval (Mat 𝕋 N N)) (hP : Real.GNN.messagePassing (toRealMat A) ∈ P.construct)
-    (W : ℕ → Interval (Mat 𝕋 F F)) (Wr : ℕ → Mat ℝ F F) (hW : ∀ k, Wr k ∈ (W k).construct)
-    (Xi : Interval (Mat 𝕋 N F)) (X : Mat ℝ N F) (hX : X ∈ Xi.construct) : -- --- CONCL ---
-    ∃ Z ∈ (GNN.reduceGNNForNodeFloat A v L P W Xi).construct,
+    (P : Interval (Mat 𝕋 N N)) (hP : Real.GNN.messagePassing (toRealMat A) ∈ P.toSet)
+    (W : ℕ → Interval (Mat 𝕋 F F)) (Wr : ℕ → Mat ℝ F F) (hW : ∀ k, Wr k ∈ (W k).toSet)
+    (Xi : Interval (Mat 𝕋 N F)) (X : Mat ℝ N F) (hX : X ∈ Xi.toSet) : -- --- CONCL ---
+    ∃ Z ∈ (GNN.reduceGNNForNodeFloat A v L P W Xi).toSet,
       ∀ a, (GNN.reduceKeepFloat (GNN.support A) v L L).orderEmbOfFin rfl a = v →
         Z a = Real.GNN.evalSteps (Real.GNN.messagePassing (toRealMat A)) L
           (fun i : Fin L => Wr i) X v := by -- --- PROOF ---

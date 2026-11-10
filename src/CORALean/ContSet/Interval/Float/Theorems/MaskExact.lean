@@ -51,9 +51,9 @@ private theorem Interval.aux_mask_nominal (keep : Fin m → Fin n → Prop)
 
 theorem Interval.mask_exact (keep : Fin m → Fin n → Prop) [∀ i j, Decidable (keep i j)]
     (I : Interval (Mat 𝕋 m n)) (hI : ∀ i j, toReal (I.inf i j) ≤ toReal (I.sup i j)) :
-    (I.mask keep).construct = (fun (A : Mat ℝ m n) (i : Fin m) (j : Fin n) =>
-      if keep i j then A i j else 0) '' I.construct := by
-  show (I.mask keep).nominal.construct = _
+    (I.mask keep).toSet = (fun (A : Mat ℝ m n) (i : Fin m) (j : Fin n) =>
+      if keep i j then A i j else 0) '' I.toSet := by
+  show (I.mask keep).nominal.toSet = _
   rw [Interval.aux_mask_nominal]
   exact Real.Interval.mask_exact keep I.nominal hI
 

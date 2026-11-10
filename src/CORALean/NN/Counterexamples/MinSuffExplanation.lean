@@ -59,7 +59,7 @@ theorem minSuffExplanation_iff_counterexample (f : Vec ℝ n → Vec ℝ m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m) : -- --- CONCL ---
     IsMinSuffExplanation f x ε E l ↔
       IsSuffExplanation f x ε E l ∧ ∀ i ∈ E,
-        ∃ x' ∈ construct (explainBox x ε (E \ {i})),
+        ∃ x' ∈ toSet (explainBox x ε (E \ {i})),
           ∃ j, j ≠ l ∧ f x' l ≤ f x' j := by -- --- PROOF ---
   constructor
   · rintro ⟨hsuff, hmin⟩

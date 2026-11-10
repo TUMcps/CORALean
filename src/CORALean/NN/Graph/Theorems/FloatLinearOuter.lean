@@ -2,7 +2,7 @@ module
 
 public import CORALean.NN.Graph.Operations.FloatLinear
 public import CORALean.NN.Graph.Operations.Linear
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.CenterMemConstruct
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CenterMemToSet
 public import CORALean.NN.Graph.Operations.Basic
 public import CORALean.NN.Graph.Theorems.FloatRightMatMulVec
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusOuter
@@ -56,9 +56,9 @@ end
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem GNN.linear_outer (W : Mat 𝕋 F₂ F₁) (b : Vec 𝕋 F₂) (pZ : PolyZonotope (Vec 𝕋 (N * F₁)))
-    (H : Mat ℝ N F₁) (hH : GNN.flatten H ∈ pZ.construct) : -- --- CONCL ---
+    (H : Mat ℝ N F₁) (hH : GNN.flatten H ∈ pZ.toSet) : -- --- CONCL ---
     GNN.flatten (Real.GNN.linear (toRealMat W) (toRealVec b) H)
-      ∈ (GNN.linear W b pZ).construct := by -- --- PROOF ---
+      ∈ (GNN.linear W b pZ).toSet := by -- --- PROOF ---
   have h1 := PolyZonotope.mtimes_outer (GNN.rightMat N W.transpose) pZ ⟨_, hH, rfl⟩
   beta_reduce at h1
   rw [GNN.rightMat_mulVec] at h1

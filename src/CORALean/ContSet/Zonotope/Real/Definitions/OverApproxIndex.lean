@@ -47,8 +47,8 @@ variable {n : ℕ}
 
 /-- [1, Sec. 5.3.1]'s `Θ = (V(S_red) / V(S_orig))^{1/n}`, at `W = I`. -/
 noncomputable def Zonotope.overApproxIndex (Sred Sorig : Zonotope (Vec ℝ n)) : ℝ :=
-  let Vred : ℝ := (MeasureTheory.volume Sred.construct).toReal
-  let Vorig : ℝ := (MeasureTheory.volume Sorig.construct).toReal
+  let Vred : ℝ := (MeasureTheory.volume Sred.toSet).toReal
+  let Vorig : ℝ := (MeasureTheory.volume Sorig.toSet).toReal
   (Vred / Vorig) ^ ((n : ℝ)⁻¹)
 
 end CORALean.Real

@@ -64,8 +64,8 @@ inductive Cat.Evaluates : {m n : ℕ} → Cat 𝕋 m n → Vec ℝ m → Vec ℝ
   | affine {m n : ℕ} (W : Mat 𝕋 n m) (b : Vec 𝕋 n) (x : Vec ℝ m) :
       Cat.Evaluates (.affine W b) x (toRealMat W *ᵥ x + toRealVec b)
   | cases {m n k : ℕ} (E : Fin k → CatCond m) (f : Fin k → Cat 𝕋 m n) (i : Fin k)
-      {x : Vec ℝ m} {y : Vec ℝ n} (hi : x ∈ (E i).construct)
-      (hfirst : ∀ j < i, x ∉ (E j).construct)
+      {x : Vec ℝ m} {y : Vec ℝ n} (hi : x ∈ (E i).toSet)
+      (hfirst : ∀ j < i, x ∉ (E j).toSet)
       (hy : Cat.Evaluates (f i) x y) : Cat.Evaluates (.cases k E f) x y
   | comp {m l n : ℕ} (f₂ : Cat 𝕋 l n) (f₁ : Cat 𝕋 m l) {x : Vec ℝ m} (z : Vec ℝ l)
       {y : Vec ℝ n} (h₁ : Cat.Evaluates f₁ x z) (h₂ : Cat.Evaluates f₂ z y) : Cat.Evaluates (.comp

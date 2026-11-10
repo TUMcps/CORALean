@@ -39,7 +39,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.mem_ofPoint_iff (v x : α) : -- --- CONCL ---
-    x ∈ (ConPolyZono.ofPoint v).construct ↔ x = v := by -- --- PROOF ---
+    x ∈ (ConPolyZono.ofPoint v).toSet ↔ x = v := by -- --- PROOF ---
   constructor
   · rintro ⟨a, β, _, _, h⟩
     simpa [ConPolyZono.ofPoint] using h

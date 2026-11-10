@@ -41,9 +41,9 @@ variable {n m : ℕ}
 
 theorem Fullspace.projectHighDim_exact (F : Fullspace n) (N : ℕ) (proj : Fin n → Fin N)
     (hN : n = N) (hproj : Function.Injective proj) : -- --- CONCL ---
-    (F.projectHighDim_ N proj).construct =
+    (F.projectHighDim_ N proj).toSet =
       (fun (x : Vec ℝ n) => (Function.extend proj x 0 : Vec ℝ N)) ''
-        F.construct := by -- --- PROOF ---
+        F.toSet := by -- --- PROOF ---
   subst hN
   have hsurj : Function.Surjective proj := Finite.injective_iff_surjective.mp hproj
   ext y

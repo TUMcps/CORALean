@@ -95,12 +95,12 @@ every vertex of `P̌` in `R(t) - L`, a `safe` answer means `R(t) ∩ L = ∅` an
 means `R(t) ∩ L ≠ ∅`. -/
 theorem LinearSys.verifySearchLoop_sound
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
-    (sys : LinearSys 𝕋 n) (X₀ U : S n) (hX₀ : Convex ℝ (construct X₀))
-    (hUconv : Convex ℝ (construct U)) {t : ℝ} {m : ℕ}
+    (sys : LinearSys 𝕋 n) (X₀ U : S n) (hX₀ : Convex ℝ (toSet X₀))
+    (hUconv : Convex ℝ (toSet U)) {t : ℝ} {m : ℕ}
     {ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ}
-    (hρ : ∀ X : S n, ∀ x ∈ construct X, ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, d x ≤ ρ X d)
-    {ν₀ νU νL : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} (hν₀ : ∀ d, ν₀ d ∈ construct X₀)
-    (hνU : ∀ d, νU d ∈ construct U) {L : Set (Vec ℝ n)} (hL : Convex ℝ L)
+    (hρ : ∀ X : S n, ∀ x ∈ toSet X, ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, d x ≤ ρ X d)
+    {ν₀ νU νL : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} (hν₀ : ∀ d, ν₀ d ∈ toSet X₀)
+    (hνU : ∀ d, νU d ∈ toSet U) {L : Set (Vec ℝ n)} (hL : Convex ℝ L)
     (hνL : ∀ d, νL d ∈ L) {ρL : (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ} (hρL : ∀ d, ∀ y ∈ L, d y ≤ ρL d)
     {νhat : ℝ → (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} {inHull : List (Vec ℝ n) → Bool}
     (hhull : ∀ V, inHull V = true → (0 : Vec ℝ n) ∈ convexHull ℝ {v | v ∈ V})
@@ -119,7 +119,7 @@ theorem LinearSys.verifySearchLoop_sound
   | succ fuel ih =>
     -- `R(t)` is convex, so is `R(t) - L`, and the bounds of `Alg. 1` hold along `ℓ_i`
     have ht0 : 0 ≤ t := hk ▸ mul_nonneg s.k.cast_nonneg hΔt.le
-    have hU : Bornology.IsBounded (construct U) := CompactSet.isBounded_construct U
+    have hU : Bornology.IsBounded (toSet U) := CompactSet.isBounded_toSet U
     have hRL : Convex ℝ (sys.reachSetExact (Set.Icc 0 t) X₀ U t - L) :=
       (sys.reachSetExact_convex ht0 hX₀ hUconv hU).sub hL
     have hup := (sys.supportUpper_outer hΔt hε X₀ U hρ s.ℓ s.k).1

@@ -39,8 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.unvec_exact (P : VPolytope (Vec 𝕋 (n * m))) : -- --- CONCL ---
-    InflatedContSet.construct P.unvec =
-      matVecEquiv.symm '' InflatedContSet.construct P := by -- --- PROOF ---
+    InflatedContSet.toSet P.unvec =
+      matVecEquiv.symm '' InflatedContSet.toSet P := by -- --- PROOF ---
   -- stacking the unstacked polytope gives the polytope back
   have h : P.unvec.vec = P := by
     cases P with

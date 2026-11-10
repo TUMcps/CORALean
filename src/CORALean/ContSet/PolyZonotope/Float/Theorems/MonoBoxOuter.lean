@@ -47,9 +47,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.monoBox_outer {p h : ℕ} (E : Fin p → Fin h → ℕ) (X : Interval (Vec 𝕋 p))
-    {a : Vec ℝ p} (ha : a ∈ X.construct) : -- --- CONCL ---
+    {a : Vec ℝ p} (ha : a ∈ X.toSet) : -- --- CONCL ---
     (fun l => Real.PolyZonotope.monomial E a l) ∈
-      (PolyZonotope.monoBox E X).construct := by -- --- PROOF ---
+      (PolyZonotope.monoBox E X).toSet := by -- --- PROOF ---
   rw [PolyZonotope.monoBox, Interval.materialise_eq]
   refine Interval.prod₁_outer _ ⟨fun k l => a k ^ E k l, fun q => ?_, rfl⟩
   -- each entry is the power of one factor, inside that power's interval

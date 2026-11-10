@@ -42,7 +42,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.zonoBundle_contains (S : SpectraShadow α) (hb : S.base.isBounded) :
-    S.construct ⊆ S.zonoBundle.construct := by
+    S.toSet ⊆ S.zonoBundle.toSet := by
   rw [SpectraShadow.zonoBundle, ← Zonotope.zonoBundle_exact]
   exact S.zonotope_contains hb
 

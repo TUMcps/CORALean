@@ -43,14 +43,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.intervalMatrix_contains (P : VPolytope (Mat 𝕋 m n)) : -- --- CONCL ---
-    InflatedContSet.construct P ⊆ P.intervalMatrix.construct := by -- --- PROOF ---
+    InflatedContSet.toSet P ⊆ P.intervalMatrix.toSet := by -- --- PROOF ---
   intro A hA
   -- the stacked matrix is in the stacked polytope, hence in its box
-  have h0 : matVecEquiv A ∈ InflatedContSet.construct P.vec := by
+  have h0 : matVecEquiv A ∈ InflatedContSet.toSet P.vec := by
     rw [VPolytope.vec_exact]; exact ⟨A, hA, rfl⟩
-  have h1 : matVecEquiv A ∈ P.vec.interval.construct := VPolytope.interval_contains P.vec h0
+  have h1 : matVecEquiv A ∈ P.vec.interval.toSet := VPolytope.interval_contains P.vec h0
   -- so the matrix is in the unstacked box, and the rebuild keeps it
-  have h2 : A ∈ P.vec.interval.unvec.construct := by
+  have h2 : A ∈ P.vec.interval.unvec.toSet := by
     rw [Interval.unvec_exact]
     exact ⟨_, h1, matVecEquiv.symm_apply_apply A⟩
   exact Interval.intervalMatrix_outer _ h2

@@ -73,7 +73,7 @@ theorem HPolytope.ahPolytope_subset_sum_of_cert {ny qy : Fin N → ℕ} {xbar : 
     (hc : ∑ i, (ybar i - Y i *ᵥ β i) = xbar) (hX : ∑ i, Y i * Γ i = X) : -- --- CONCL ---
     HPolytope.ahPolytope xbar X (HPolytope.ineqs Hx hx) ⊆
       {x | ∃ q : (i : Fin N) → Vec ℝ (ny i),
-        (∀ i, q i ∈ (HPolytope.ineqs (Hy i) (hy i)).construct) ∧
+        (∀ i, q i ∈ (HPolytope.ineqs (Hy i) (hy i)).toSet) ∧
         x = ∑ i, (ybar i + Y i *ᵥ q i)} := by -- --- PROOF ---
   rintro _ ⟨p, hp, rfl⟩
   refine ⟨fun i => Γ i *ᵥ p - β i, fun i => HPolytope.mem_ineqs_of_cert (hΛ i) (h1 i) (h2 i) hp,

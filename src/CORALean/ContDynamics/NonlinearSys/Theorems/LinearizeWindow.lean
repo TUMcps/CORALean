@@ -70,7 +70,7 @@ theorem NonlinearSys.IsTrajectory.linearize_window {sys : NonlinearSys n m} {T :
       (fun t => sys.f (x (t₀ + t)) (u (t₀ + t)) - A *ᵥ x (t₀ + t)) := by -- --- PROOF ---
   have hmaps : Set.MapsTo (fun t => t₀ + t) (Set.Icc 0 τ) T :=
     fun t ht => hT ⟨by linarith [ht.1], by linarith [ht.2]⟩
-  have traj' : sys.IsTrajectory (S := 𝒮) T (construct R₀) (construct U) x u y :=
+  have traj' : sys.IsTrajectory (S := 𝒮) T (toSet R₀) (toSet U) x u y :=
     ⟨traj.init, traj.input, traj.meas, traj.integrable, traj.cont, traj.flow, traj.output⟩
   have shifted := traj'.shift (R₀' := ({x t₀} : Set (Vec ℝ n))) hmaps
     (hT ⟨le_rfl, by linarith⟩) rfl

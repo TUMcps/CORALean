@@ -43,13 +43,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ZonoBundle.intervalAll_contains (zB : ZonoBundle (Vec 𝕋 n))
     (hk : 0 < zB.k) : -- --- CONCL ---
-    zB.construct ⊆ (zB.intervalAll hk).construct := by -- --- PROOF ---
+    zB.toSet ⊆ (zB.intervalAll hk).toSet := by -- --- PROOF ---
   intro x hx
-  have hmem : ∀ i, x ∈ (Zonotope.interval (zB.Z i)).construct := fun i =>
-    Zonotope.interval_contains _ (SetIntersection.mem_construct_ofFn.mp hx i)
+  have hmem : ∀ i, x ∈ (Zonotope.interval (zB.Z i)).toSet := fun i =>
+    Zonotope.interval_contains _ (SetIntersection.mem_toSet_ofFn.mp hx i)
   -- every box the fold meets holds `x`, so the running intersection does
-  suffices h : ∀ (l : List (Fin zB.k)) (I : Interval (Vec 𝕋 n)), x ∈ I.construct →
-      x ∈ (l.foldl (fun I i => Interval.intersection I (Zonotope.interval (zB.Z i))) I).construct
+  suffices h : ∀ (l : List (Fin zB.k)) (I : Interval (Vec 𝕋 n)), x ∈ I.toSet →
+      x ∈ (l.foldl (fun I i => Interval.intersection I (Zonotope.interval (zB.Z i))) I).toSet
     from
     h _ _ (hmem _)
   intro l

@@ -58,9 +58,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem STL.depCurvatureGFloat_outer (A : Mat 𝕋 n n) {Δt : 𝕋} (hr : 0 ≤ toReal Δt) (κ : ℕ)
     (hε : toReal (MatExp.normUpperBound (Interval.smul Δt Δt (Interval.point A))) /
       ((κ : ℝ) + 2) ≤ 1 / 2) : -- --- CONCL ---
-    (STL.depCurvatureG (toRealMat A) (toReal Δt) κ).construct ⊆
-      (STL.depCurvatureGFloat A Δt κ).construct := by -- --- PROOF ---
-  have hM : toRealMat A ∈ (Interval.point A).construct := Float.Interval.mem_point A
+    (STL.depCurvatureG (toRealMat A) (toReal Δt) κ).toSet ⊆
+      (STL.depCurvatureGFloat A Δt κ).toSet := by -- --- PROOF ---
+  have hM : toRealMat A ∈ (Interval.point A).toSet := Float.Interval.mem_point A
   have hnorm := MatExp.norm_smul_le_normUpperBound (Interval.point A) Δt hM
   -- the scaled matrix has a norm under the bound the Taylor order admits
   have hlt : ‖toReal Δt • toRealMat A‖ / ((κ : ℝ) + 2) < 1 :=

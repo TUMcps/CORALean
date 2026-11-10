@@ -54,10 +54,10 @@ variable {n : ℕ}
 
 /-- The Taylor sum `Σ_{i ≤ k+2} Mⁱ/i!` of order `k + 2` is in `expmTerms` of that order. -/
 theorem MatExp.expmTerms_mem (A : Interval (Mat ℝ n n)) {r : ℝ} (hr : r ≠ 0) (k : ℕ)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) : -- --- CONCL ---
-    MatExp.expTaylor M (k + 2) ∈ (MatExp.expmTerms A r (k + 2)).construct := by -- --- PROOF ---
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) : -- --- CONCL ---
+    MatExp.expTaylor M (k + 2) ∈ (MatExp.expmTerms A r (k + 2)).toSet := by -- --- PROOF ---
   -- the member scaled by `1 / r` is in the scaled box, and `dependentTerms` encloses its terms
-  have hM' : r⁻¹ • M ∈ (Interval.smul (1 / r) A).construct := by
+  have hM' : r⁻¹ • M ∈ (Interval.smul (1 / r) A).toSet := by
     have h := Interval.smul_outer (1 / r) A hM
     simpa only [one_div] using h
   have hH := (MatExp.dependentTerms_outer (Interval.smul (1 / r) A) r hM').2
@@ -65,7 +65,7 @@ theorem MatExp.expmTerms_mem (A : Interval (Mat ℝ n n)) {r : ℝ} (hr : r ≠ 
     rw [← MatExp.expTaylor_two, smul_smul, mul_inv_cancel₀ hr, one_smul]
   -- the powers `iPow{i}` enclose `M ^ i`, starting from the exact square
   have hpow : ∀ j, 3 ≤ j → M ^ j ∈ (Interval.powers A
-      (MatExp.dependentTerms (Interval.smul (1 / r) A) r).intSq (j - 2)).construct :=
+      (MatExp.dependentTerms (Interval.smul (1 / r) A) r).intSq (j - 2)).toSet :=
     fun j hj => MatExp.powers_intSq_mem A hr hM (by omega)
   -- the Taylor terms `3 … k + 2`, added to `H`, enclose the partial sum
   have hfold := MatExp.foldl_plus_mem

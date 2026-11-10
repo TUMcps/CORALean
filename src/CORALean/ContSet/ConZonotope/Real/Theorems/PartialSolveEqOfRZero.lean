@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveToSetEq
 
 @[expose] public section
 
@@ -11,7 +11,7 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
 `j`, then (A.1) and (A.4) imply that `Z = Z̃` when `j` is selected". This is the inference with
 (A.1) as its hypothesis. `ρ^L_j ≤ ξ_j ≤ ρ^U_j` for every `ξ` with `Aξ = b` and `|ξ_i| ≤ 1` for
 `i ≠ j`, and `r_j = 0`, make the dropped bound `|ξ_j| ≤ 1` redundant. Then `Z̃`, which is `Z`
-without that bound (`partialSolve_construct_eq`), is `Z`.
+without that bound (`partialSolve_toSet_eq`), is `Z`.
 
 Algorithm 1's `R_j` need not satisfy (A.1) (`tightenER_not_superset`), and then `r_j = 0` does not
 give `Z = Z̃` (`partialSolve_rZero_counterexample`).
@@ -66,9 +66,9 @@ theorem ConZonotope.partialSolve_eq_of_rZero {n q h : ℕ} (c : Vec ℝ n) (G : 
     (hA1 : ∀ ξ : Vec ℝ h, (∀ i, i ≠ j → |ξ i| ≤ 1) → (∀ i, (A *ᵥ ξ) i = b i) →
       ρL ≤ ξ j ∧ ξ j ≤ ρU)
     (hr : max 0 (max |ρL| |ρU| - 1) = 0) : -- --- CONCL ---
-    (ConZonotope.partialSolve c G A b r j).construct
-      = (ConZonotope.ofMat c G A b).construct := by -- --- PROOF ---
-  rw [ConZonotope.partialSolve_construct_eq c G A b r j hAj]
+    (ConZonotope.partialSolve c G A b r j).toSet
+      = (ConZonotope.ofMat c G A b).toSet := by -- --- PROOF ---
+  rw [ConZonotope.partialSolve_toSet_eq c G A b r j hAj]
   ext x
   rw [Set.mem_setOf_eq, ConZonotope.mem_ofMat_iff]
   -- `r_j = 0` is `|ρL|, |ρU| ≤ 1`

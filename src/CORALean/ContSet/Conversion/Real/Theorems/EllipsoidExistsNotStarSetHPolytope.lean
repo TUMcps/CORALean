@@ -38,7 +38,7 @@ namespace CORALean.Real
 
 /-- The unit disc is no star set with a polytope predicate. -/
 theorem Ellipsoid.exists_not_starSet_hPolytope :
-    ∃ E : Ellipsoid 2, ¬ ∃ s : StarSet ℋ𝒫 2, s.construct = E.construct := by
+    ∃ E : Ellipsoid 2, ¬ ∃ s : StarSet ℋ𝒫 2, s.toSet = E.toSet := by
   obtain ⟨E, hE⟩ := Ellipsoid.exists_not_hPolytope
   exact ⟨E, fun ⟨s, hs⟩ => hE (hs ▸ StarSet.exists_hPolytope_exact s)⟩
 

@@ -56,7 +56,7 @@ theorem Zonotope.underS_inter_hyperplane_iff (Z : Zonotope (Vec ℝ n)) (s : Fin
     (j : Fin ℓ) (fₑ : ℝ) : -- --- CONCL ---
     ((∃ x ∈ Z.underS s, x ⬝ᵥ s j = fₑ) ↔ ∃ x ∈ Z.boxS (Finset.univ.image s), x ⬝ᵥ s j = fₑ) ∧
       ((∃ x ∈ Z.boxS (Finset.univ.image s), x ⬝ᵥ s j = fₑ) ↔
-        ∃ x ∈ Z.construct, x ⬝ᵥ s j = fₑ) := by -- --- PROOF ---
+        ∃ x ∈ Z.toSet, x ⬝ᵥ s j = fₑ) := by -- --- PROOF ---
   -- a sign times its argument is the modulus
   have hsm : ∀ r : ℝ, Real.sign r * r = |r| := fun r => by
     rcases lt_trichotomy r 0 with h | h | h

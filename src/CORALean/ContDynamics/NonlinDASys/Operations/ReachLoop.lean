@@ -95,7 +95,7 @@ noncomputable def NonlinDASys.reachLoop (sys : NonlinDASys n p m)
               T.A T.B T.C T.D T.E T.F_inv T.xs T.ys T.us Rk U rr.L.1 rr.L.2 r η
             -- 20.-21. `t_k ← t_k + r`, `R_union ← R_union ∪ R(τ_k)`
             NonlinDASys.reachLoop sys taylor corollary1 sub Lmax lam r η U splitFn fuel
-              (tk + r) tf R.1 rr.L (Runion ∪ rr.Rti.construct)
+              (tk + r) tf R.1 rr.L (Runion ∪ rr.Rti.toSet)
       else some Runion
 
 end CORALean

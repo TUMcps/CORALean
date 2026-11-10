@@ -41,8 +41,8 @@ variable {n : ℕ}
 /-- The star set with the identity as its generators and the polytope as its predicate, the
 coefficient box the certified bounds of the coordinates. -/
 def HPolytope.starSet (P : HPolytope (Vec ℝ n))
-    (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : StarSet ℋ𝒫 n where
+    (up : ∀ j, SupportBound P.toSet (LinearMap.proj j))
+    (lo : ∀ j, SupportBound P.toSet (-LinearMap.proj j)) : StarSet ℋ𝒫 n where
   m := n
   c := 0
   G := fun i k => if i = k then 1 else 0

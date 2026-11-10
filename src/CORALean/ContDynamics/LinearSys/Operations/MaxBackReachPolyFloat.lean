@@ -62,11 +62,11 @@ def LinearSys.maxBackReachPolyFloat (p : ℕ) (X : HPolytope 𝕋 (Vec 𝕋 n))
     (FB : Zonotope (Vec 𝕋 n)) (μ : 𝕋) :
     HPolytope 𝕋 (Vec 𝕋 n) :=
   let ball : Capsule 𝕋 n := ⟨fun _ => zero, fun _ => zero, maximum zero μ, Interval.origin n⟩ -- B_μ
-  let XF := X.minkDiffOf FB.construct fun i =>                      -- ⊖ F box(X_end)
+  let XF := X.minkDiffOf FB.toSet fun i =>                      -- ⊖ F box(X_end)
     let u := FB.conZonotope.boundDot (c := Real.HPolytope.rowLin (toRealMat X.A) i) (X.A i) fun _
         => rfl
     ⟨u.val, fun x hx => u.le x (Zonotope.conZonotope_contains FB hx)⟩
-  XF.minkDiffOf ball.construct fun i =>                             -- ⊖ B_μ
+  XF.minkDiffOf ball.toSet fun i =>                             -- ⊖ B_μ
     ball.boundDotUp (f := Real.HPolytope.rowLin (toRealMat XF.A) i) (XF.A i) (fun _ => rfl) p
 
 end CORALean

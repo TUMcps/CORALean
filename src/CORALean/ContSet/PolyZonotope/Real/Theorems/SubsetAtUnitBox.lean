@@ -2,15 +2,15 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemToSet
 
 @[expose] public section
 
 /-!
-# With no independent block, the unit box reaches all of `construct`
+# With no independent block, the unit box reaches all of `toSet`
 
 `point` ignores the independent block, so the factor domain indexes all of
-`construct` exactly when there is none: `hq : pZ.q = 0` is load-bearing, not a
+`toSet` exactly when there is none: `hq : pZ.q = 0` is load-bearing, not a
 simplifying assumption. With `q > 0` the inclusion is strict and a subset
 statement is only ever about the dependent part — [1, Def. 3]'s point: dependency
 lives in the dependent block, the independent one carries none.
@@ -47,13 +47,13 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- With no independent block, the factor unit box reaches everything `construct`
+/-- With no independent block, the factor unit box reaches everything `toSet`
 does. -/
 theorem PolyZonotope.subsetAt_unitBox (pZ : PolyZonotope α) (hq : pZ.q = 0) : -- --- CONCL ---
-    pZ.subsetAt {a | ∀ k, |a k| ≤ 1} = pZ.construct := by -- --- PROOF ---
+    pZ.subsetAt {a | ∀ k, |a k| ≤ 1} = pZ.toSet := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨a, ha, rfl⟩
-    exact pZ.point_mem_construct ha
+    exact pZ.point_mem_toSet ha
   · intro x hx
     obtain ⟨a, ha, rfl⟩ := pZ.exists_point_of_q_zero hq hx
     exact ⟨a, ha, rfl⟩

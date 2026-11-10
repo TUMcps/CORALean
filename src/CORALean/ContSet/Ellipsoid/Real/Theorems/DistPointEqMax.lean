@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsGreatestDot
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemToSet
 public import CORALean.Global.NearestPointSeparates
 
 @[expose] public section
@@ -52,14 +52,14 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.dist_point_eq_max (E : Ellipsoid n) (a : Vec ℝ n) : -- --- CONCL ---
-    (a ∉ E.construct → ∃ d > 0, IsLeast ((fun x => ‖a - x‖₂) '' E.construct) d ∧
+    (a ∉ E.toSet → ∃ d > 0, IsLeast ((fun x => ‖a - x‖₂) '' E.toSet) d ∧
       IsGreatest {t | ∃ l : Vec ℝ n, ‖l‖₂ = 1 ∧
         t = l ⬝ᵥ a - l ⬝ᵥ E.q - √(l ⬝ᵥ (E.Q *ᵥ l))} d) ∧
-    (a ∈ E.construct → ∀ l : Vec ℝ n, l ⬝ᵥ a - l ⬝ᵥ E.q - √(l ⬝ᵥ (E.Q *ᵥ l)) ≤
+    (a ∈ E.toSet → ∀ l : Vec ℝ n, l ⬝ᵥ a - l ⬝ᵥ E.q - √(l ⬝ᵥ (E.Q *ᵥ l)) ≤
       0) := by -- --- PROOF ---
   refine ⟨fun ha => ?_, fun ha l => ?_⟩
-  · obtain ⟨p, hp, hd, hleast, hsep⟩ := nearest_point_separates E.construct
-      E.isClosed_construct E.convex_construct ⟨_, E.q_mem_construct⟩ a ha
+  · obtain ⟨p, hp, hd, hleast, hsep⟩ := nearest_point_separates E.toSet
+      E.isClosed_toSet E.convex_toSet ⟨_, E.q_mem_toSet⟩ a ha
     refine ⟨‖a - p‖₂, hd, hleast, ⟨⟨‖a - p‖₂⁻¹ • (a - p), ?_, ?_⟩, ?_⟩⟩
     · rw [norm₂_smul, abs_of_pos (inv_pos.mpr hd), inv_mul_cancel₀ hd.ne']
     -- at `l = (a - p)/d` the maximum over `E` is taken at `p`

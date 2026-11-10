@@ -73,10 +73,10 @@ theorem NonlinearSys.FloatHessModel.Encloses.adaptRunFloat_outer
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
           sys.IsTrajectory (S := 𝒮)
             (Set.Icc 0 ((((s :: ss).getLast (List.cons_ne_nil _ _)).t - s.t : ℚ) : ℝ))
-            s.R.construct U.construct x u y →
+            s.R.toSet U.toSet x u y →
           ∀ (j : ℕ) (hj : j < ss.length), ∀ t ∈ Set.Icc
             ((((s :: ss)[j]'(Nat.lt_succ_of_lt hj)).t - s.t : ℚ) : ℝ) ((ss[j].t - s.t : ℚ) : ℝ),
-            x t ∈ ss[j].Rτ.construct := by -- --- PROOF ---
+            x t ∈ ss[j].Rτ.toSet := by -- --- PROOF ---
   intro k
   -- induction on the iteration count, for every start state
   induction k with
@@ -120,7 +120,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.adaptRunFloat_outer
         have hmaps : Set.MapsTo (fun r => ((s'.t - s.t : ℚ) : ℝ) + r)
             (Set.Icc 0 ((L - s'.t : ℚ) : ℝ)) (Set.Icc 0 ((L - s.t : ℚ) : ℝ)) :=
           fun r hr => ⟨by linarith [hr.1], by rw [hLs]; linarith [hr.2]⟩
-        have shifted := traj.shift (R₀' := s'.R.construct) hmaps (hsub ⟨hΔ.le, le_rfl⟩) hend
+        have shifted := traj.shift (R₀' := s'.R.toSet) hmaps (hsub ⟨hΔ.le, le_rfl⟩) hend
         have hj' : j < rest.length := by simpa using hj
         have key := hind shifted j hj' (t - ((s'.t - s.t : ℚ) : ℝ)) ⟨?_, ?_⟩
         · simpa using key

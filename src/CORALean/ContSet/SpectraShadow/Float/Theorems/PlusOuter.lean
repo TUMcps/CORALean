@@ -92,7 +92,7 @@ private theorem SpectraShadow.aux_plus_nominal
     (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     (nominalSet S₁) + (nominalSet S₂) ⊆
       (nominalSet (S₁.plus S₂))
-        + (SpectraShadow.centerResidual S₁.c S₂.c).construct := by -- --- PROOF ---
+        + (SpectraShadow.centerResidual S₁.c S₂.c).toSet := by -- --- PROOF ---
   rintro _ ⟨z₁, hz₁', z₂, hz₂', rfl⟩
   obtain ⟨β₁, hP₁, hz₁⟩ := SpectraShadow.mem_nominalSet_iff.mp hz₁'
   obtain ⟨β₂, hP₂, hz₂⟩ := SpectraShadow.mem_nominalSet_iff.mp hz₂'
@@ -113,9 +113,9 @@ private theorem SpectraShadow.aux_plus_nominal
 
 /-- The box absorbs the two incoming boxes and the center rounding. -/
 private theorem SpectraShadow.aux_plus_error (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) :
-    S₁.I_error.construct + S₂.I_error.construct +
-        (SpectraShadow.centerResidual S₁.c S₂.c).construct ⊆
-      (S₁.plus S₂).I_error.construct :=
+    S₁.I_error.toSet + S₂.I_error.toSet +
+        (SpectraShadow.centerResidual S₁.c S₂.c).toSet ⊆
+      (S₁.plus S₂).I_error.toSet :=
   subset_trans (Set.add_subset_add_right (Interval.plus_outer S₁.I_error S₂.I_error))
     (Interval.plus_outer _ _)
 
@@ -123,7 +123,7 @@ private theorem SpectraShadow.aux_plus_error (S₁ S₂ : SpectraShadow 𝕋 (Ve
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.plus_outer (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) :
-    S₁.construct + S₂.construct ⊆ (S₁.plus S₂).construct :=
+    S₁.toSet + S₂.toSet ⊆ (S₁.plus S₂).toSet :=
   InflatedContSet.plus_subset (SpectraShadow.aux_plus_nominal S₁ S₂)
     (SpectraShadow.aux_plus_error S₁ S₂)
 

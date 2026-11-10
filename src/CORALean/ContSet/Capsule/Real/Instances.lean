@@ -4,7 +4,7 @@ public import CORALean.ContSet.Capsule.Real.Theorems.Basic
 public import CORALean.ContSet.Capsule.Real.Theorems.ConvHullOuter
 public import CORALean.ContSet.Capsule.Real.Theorems.Convex
 public import CORALean.ContSet.Capsule.Real.Theorems.IsCompact
-public import CORALean.ContSet.Capsule.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.Capsule.Real.Theorems.IsequalToSet
 public import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
 public import CORALean.ContSet.Capsule.Real.Theorems.PlusOuter
 public import CORALean.ContSet.Capsule.Real.Theorems.ReindexExact
@@ -41,11 +41,11 @@ variable {n : ℕ}
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (Capsule n) (Vec ℝ n) := ⟨Capsule.construct⟩
+instance : ContSet (Capsule n) (Vec ℝ n) := ⟨Capsule.toSet⟩
 
-instance : ConvexSet (Capsule n) (Vec ℝ n) := ⟨Capsule.convex_construct⟩
+instance : ConvexSet (Capsule n) (Vec ℝ n) := ⟨Capsule.convex_toSet⟩
 
-instance : CompactSet (Capsule n) (Vec ℝ n) := ⟨Capsule.isCompact_construct⟩
+instance : CompactSet (Capsule n) (Vec ℝ n) := ⟨Capsule.isCompact_toSet⟩
 
 instance : OfPoint (Capsule n) (Vec ℝ n) where
   ofPoint := Capsule.ofPoint
@@ -73,7 +73,7 @@ CORA's `max(eig(M Mᵀ))`, the square of it (see `Capsule.mtimes_cora_counterexa
 noncomputable instance : Mtimes (Mat ℝ) (fun n => Capsule n) where
   mtimes := Capsule.mtimes
   mtimes_outer M C := by
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Capsule.mtimes_outer M C
 
 /-- CORA's `convHull_`, a ball around the segment between the two centers. -/
@@ -84,7 +84,7 @@ noncomputable instance : LinComb (Capsule n) (Vec ℝ n) where
 /-- `Capsule.isequal`, structural at tolerance `0`: sound, not exact. -/
 instance : Isequal (Capsule n) where
   isequal := Capsule.isequal
-  isequal_construct _ _ := Capsule.isequal_construct
+  isequal_toSet _ _ := Capsule.isequal_toSet
 
 end CORALean.Real
 

@@ -92,9 +92,9 @@ theorem Zonotope.minkDiffDegenerateCora_counterexample : -- --- CONCL ---
     ∀ (U : Mat ℝ 2 2) (S : Mat ℝ 2 1) (V : Mat ℝ 1 1), Uᵀ * U = 1 → S 1 0 = 0 →
       (!![1; 0] : Mat ℝ 2 1) = U * S * Vᵀ →
       ∀ minkDiffRec : Zonotope (Vec ℝ 1) → Zonotope (Vec ℝ 1) → Zonotope (Vec ℝ 1),
-        (minkowskiDiff minuend.construct subtrahend.construct).Nonempty ∧
-        Disjoint (minuend.minkDiffDegenerateCora subtrahend U 1 (by norm_num) minkDiffRec).construct
-          (minkowskiDiff minuend.construct subtrahend.construct) := by -- --- PROOF ---
+        (minkowskiDiff minuend.toSet subtrahend.toSet).Nonempty ∧
+        Disjoint (minuend.minkDiffDegenerateCora subtrahend U 1 (by norm_num) minkDiffRec).toSet
+          (minkowskiDiff minuend.toSet subtrahend.toSet) := by -- --- PROOF ---
   intro M Sb U S V hU hS hsvd rec
   -- the SVD forces `U 1 0 = 0`, orthogonality then `U 0 1 = 0`
   have h00 := congrFun (congrFun hsvd 0) 0
@@ -114,7 +114,7 @@ theorem Zonotope.minkDiffDegenerateCora_counterexample : -- --- CONCL ---
     hU10] at hc hr
   have hU01 : U 0 1 = 0 := by nlinarith [sq_nonneg (U 0 1)]
   -- every point of the difference has second coordinate `1` (take `y = 0`)
-  have hdiff : ∀ x ∈ minkowskiDiff M.construct Sb.construct, x 1 = 1 := by
+  have hdiff : ∀ x ∈ minkowskiDiff M.toSet Sb.toSet, x 1 = 1 := by
     intro x hx
     obtain ⟨β, -, hβ⟩ := hx 0 ⟨fun _ => 0, fun _ => by simp, by simp [Sb]⟩
     have := congrFun hβ 1

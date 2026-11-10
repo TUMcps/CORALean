@@ -53,18 +53,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
 
 theorem Zonotope.intersectStrip_outer (C : Mat 𝕋 p n) (φ y : Vec 𝕋 p) (Λ : Mat 𝕋 n p)
     (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    Z.construct ∩ {x | ∀ i, |(toRealMat C *ᵥ x - toRealVec y) i| ≤ toReal (φ i)} ⊆
-      (Z.intersectStrip C φ y Λ).construct := by -- --- PROOF ---
+    Z.toSet ∩ {x | ∀ i, |(toRealMat C *ᵥ x - toRealVec y) i| ≤ toReal (φ i)} ⊆
+      (Z.intersectStrip C φ y Λ).toSet := by -- --- PROOF ---
   rintro x ⟨hx, hs⟩
   set ΛC : Interval (Mat 𝕋 n n) := Interval.matMul (Interval.point Λ) (Interval.point C) with hΛC
   -- the real matrix `I - Λ C` lies in the rounded interval matrix
-  have hΛCmem : toRealMat Λ * toRealMat C ∈ ΛC.construct :=
+  have hΛCmem : toRealMat Λ * toRealMat C ∈ ΛC.toSet :=
     Interval.matMul_outer (Interval.point Λ) (Interval.point C) (Interval.mem_point Λ)
       (Interval.mem_point C)
   have hA : (1 - toRealMat Λ * toRealMat C : Mat ℝ n n) ∈
       (({ inf := fun i j => subDown (if i = j then one else zero) (ΛC.sup i j)
           sup := fun i j => subUp (if i = j then one else zero) (ΛC.inf i j) } :
-        Interval (Mat 𝕋 n n))).construct := by
+        Interval (Mat 𝕋 n n))).toSet := by
     refine Interval.mem_mat_iff.mpr fun i j => ?_
     obtain ⟨h₁, h₂⟩ := Interval.mem_mat_iff.mp hΛCmem i j
     have hδ : toReal (if i = j then (one : 𝕋) else zero) = (1 : Mat ℝ n n) i j := by
@@ -84,7 +84,7 @@ theorem Zonotope.intersectStrip_outer (C : Mat 𝕋 p n) (φ y : Vec 𝕋 p) (Λ
   -- `C x` is a point of the strip zonotope
   let strip : Zonotope (Vec 𝕋 p) :=
     { h := p, c := y, G := fun j i => if i = j then φ i else zero, I_error := Interval.origin p }
-  have hCx : toRealMat C *ᵥ x ∈ strip.construct := by
+  have hCx : toRealMat C *ᵥ x ∈ strip.toSet := by
     refine ⟨toRealMat C *ᵥ x, ?_, 0, ?_, add_zero _⟩
     · -- the coefficients `(C x - y)_i / φ_i` lie in `[-1, 1]` and reach `C x`
       refine Zonotope.mem_nominalSet_iff.mpr ⟨fun i => (toRealMat C *ᵥ x - toRealVec y) i /
@@ -116,7 +116,7 @@ theorem Zonotope.intersectStrip_outer (C : Mat 𝕋 p n) (φ y : Vec 𝕋 p) (Λ
           simp only [Pi.sub_apply, toRealVec]
           show _ = toReal (y i) + _
           ring
-    · have hE : (InflatedContSet.I_error strip).construct = {0} := Interval.origin_exact p
+    · have hE : (InflatedContSet.I_error strip).toSet = {0} := Interval.origin_exact p
       rw [hE]
       exact Set.mem_singleton _
   have h2 := Zonotope.mtimes_outer Λ strip ⟨_, hCx, rfl⟩

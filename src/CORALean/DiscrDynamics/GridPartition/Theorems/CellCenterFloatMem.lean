@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem GridPartition.cellCenter_mem (P : GridPartition 𝕋 n) (cs : List ℕ) : -- --- CONCL ---
-    List.Forall₂ (fun z B => z ∈ B.construct) (P.nominal.cellCenter cs)
+    List.Forall₂ (fun z B => z ∈ B.toSet) (P.nominal.cellCenter cs)
       (P.cellCenter cs) := by -- --- PROOF ---
   unfold GridPartition.cellCenter CORALean.GridPartition.cellCenter
   by_cases h : ∀ c ∈ cs, 0 < c ∧ c ≤ P.nrOfCells

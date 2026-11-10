@@ -19,7 +19,7 @@ range bound it computes (`interval`) assumes that box. A term is a coefficient a
 vector; the polynomial is a list of them, unsorted and possibly repeating an exponent. Variables are
 positional, `Fin n`, where CORA matches them by name (`priv_rescale_dim`). What it means is
 functional: `T.Encloses f` says `f t - p t ∈ [rem.inf, rem.sup]` on the box, which is what CORA's
-arithmetic is sound for. `construct` is the range set of an array of models over the same variables.
+arithmetic is sound for. `toSet` is the range set of an array of models over the same variables.
 
 ## References
 
@@ -68,7 +68,7 @@ def Taylm.Encloses (T : Taylm n) (f : Vec ℝ n → ℝ) : Prop :=
   ∀ t ∈ Taylm.box n, T.rem.inf ≤ f t - T.poly t ∧ f t - T.poly t ≤ T.rem.sup
 
 /-- The range set of an array of models sharing their variables. -/
-def Taylm.construct {m : ℕ} (T : Fin m → Taylm n) : Set (Vec ℝ m) :=
+def Taylm.toSet {m : ℕ} (T : Fin m → Taylm n) : Set (Vec ℝ m) :=
   {x | ∃ t ∈ Taylm.box n, ∀ i,
     (T i).rem.inf ≤ x i - (T i).poly t ∧ x i - (T i).poly t ≤ (T i).rem.sup}
 

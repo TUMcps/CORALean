@@ -59,7 +59,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- A measurable parameter inside a box is integrable over every window. -/
 private theorem aux_intervalIntegrable_param {B : Interval (Mat ℝ n n)} {A : ℝ → Mat ℝ n n}
-    (hA : ∀ i j, Measurable fun s => A s i j) (hAB : ∀ s, A s ∈ B.construct) (i j : Fin n)
+    (hA : ∀ i j, Measurable fun s => A s i j) (hAB : ∀ s, A s ∈ B.toSet) (i j : Fin n)
     (a b : ℝ) : -- --- CONCL ---
     IntervalIntegrable (fun s => A s i j) volume a b := by -- --- PROOF ---
   rw [intervalIntegrable_iff]
@@ -84,7 +84,7 @@ theorem LinParamSys.IsCanonicalTrajectory.exists_integral_eq {sys : LinParamSys 
     {t : ℝ} (ht : 0 ≤ t) (hT : Set.Icc 0 t ⊆ T) (hu : ∀ s ∈ Set.Ico 0 t, u s = 0) : -- --- CONCL ---
     ∃ Â : ℝ → Mat ℝ n n,
       (∀ i j a b, IntervalIntegrable (fun s => Â s i j) volume a b) ∧
-      (∀ s, Â s ∈ construct sys.A) ∧
+      (∀ s, Â s ∈ toSet sys.A) ∧
       ∀ s ∈ Set.Icc 0 t, x s = x 0 + ∫ σ in (0:ℝ)..s, Â σ *ᵥ x σ := by -- --- PROOF ---
   obtain ⟨Â, hÂm, hÂB, hae⟩ := traj.exists_measurable_param ht hT
   refine ⟨Â, aux_intervalIntegrable_param hÂm hÂB, hÂB, fun s hs => ?_⟩

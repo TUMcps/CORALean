@@ -54,12 +54,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem PolyZonotope.subs_outer (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
     (pZin : PolyZonotope (Vec 𝕋 nu))
     (idu : Fin nu → Fin pZ.p) (share : Fin pZin.p → Option (Fin pZ.p)) : -- --- CONCL ---
-    (Real.PolyZonotope.subs (nominal pZ) (nominal pZin) idu share).construct
-        + pZ.I_error.construct ⊆ (pZ.subs pZin idu share).construct := by -- --- PROOF ---
+    (Real.PolyZonotope.subs (nominal pZ) (nominal pZin) idu share).toSet
+        + pZ.I_error.toSet ⊆ (pZ.subs pZin idu share).toSet := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   -- the exact substituted set
   set R := Real.PolyZonotope.subs (nominal pZ) (nominal pZin) idu share with hR
-  obtain ⟨a, β, ha, hβ, hz⟩ := Real.PolyZonotope.mem_construct_iff.mp hz
+  obtain ⟨a, β, ha, hβ, hz⟩ := Real.PolyZonotope.mem_toSet_iff.mp hz
   obtain ⟨hlen, hget⟩ := List.forall₂_iff_get.mp (PolyZonotope.subsTerms_rel pZ pZin idu)
   -- the two term lists, exact and stored, and the stored monomials
   set mon := Real.PolyZonotope.monomial (pZ.subs pZin idu share).E a with hmon_def
@@ -94,7 +94,7 @@ theorem PolyZonotope.subs_outer (pZ : PolyZonotope (Vec 𝕋 n)) {nu : ℕ}
     ρ l * toReal (pZ.G (st.get l).1 i) - toReal (pZ.step_subsGDown pZin idu i l)
     with hΔ
   have hbox : (fun i => ∑ l, Δ i l * mon l)
-      ∈ (PolyZonotope.generatorError (pZ.step_subsGDiff pZin idu)).construct :=
+      ∈ (PolyZonotope.generatorError (pZ.step_subsGDiff pZin idu)).toSet :=
     PolyZonotope.mem_generatorError_monomial (fun i l =>
       PolyZonotope.subsG_close pZ pZin idu l i (hm l).2.2.1 (hm l).2.2.2) ha
   -- the exact point's generator sum, over the stored terms

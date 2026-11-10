@@ -76,13 +76,13 @@ variable {n : ℕ}
 theorem LinearSysDT.reachOrders_step_subset_closedBall_of_reduceBoxOrder (sys : LinearSysDT ℝ n)
     (hn : 0 < n) {o : ℕ → ℕ} (ho : ∀ k, 0 < o k) {R₀ U : Zonotope (Vec ℝ n)}
     {r rU ε : ℝ} (hε : 0 ≤ ε) (k : ℕ)
-    (hR : (sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
+    (hR : (sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).toSet
         ⊆ Metric.closedBall (0 : Vec ℝ n) r)
-    (hU : U.construct ⊆ Metric.closedBall (0 : Vec ℝ n) rU)
+    (hU : U.toSet ⊆ Metric.closedBall (0 : Vec ℝ n) rU)
     (heq : o (k + 1) = Zonotope.reduceBoxOrder
         (Zonotope.plus (Zonotope.mtimes sys.A (sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)) U)
         (Metric.closedBall (0 : Vec ℝ n) ε)) : -- --- CONCL ---
-    (sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩).construct
+    (sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩).toSet
       ⊆ Metric.closedBall (0 : Vec ℝ n) (‖sys.A‖ * r + rU + ε) := by -- --- PROOF ---
   rw [show sys.reachOrders (S := 𝒵) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩
       = Zonotope.reduce

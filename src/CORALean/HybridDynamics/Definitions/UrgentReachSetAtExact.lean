@@ -51,7 +51,7 @@ inductive HybridAutomaton.IsUrgentRunAt {S G : ℕ → Type} [∀ n, ContSet (S 
   | jump {r : ℝ} {ℓ ℓ' : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} {y : Vec ℝ n}
       {e : Transition G L 𝕋 n} (h : (HA.loc ℓ).IsTrajectory τ x u w)
       (hfree : (HA.loc ℓ).IsGuardFreeBefore τ x) (hmem : e ∈ (HA.loc ℓ).trans)
-      (hguard : x τ ∈ construct e.guard)
+      (hguard : x τ ∈ toSet e.guard)
       (rest : HA.IsUrgentRunAt r e.target (e.reset (x τ)) ℓ' y) :
       HA.IsUrgentRunAt (τ + r) ℓ (x 0) ℓ' y
 
@@ -59,7 +59,7 @@ inductive HybridAutomaton.IsUrgentRunAt {S G : ℕ → Type} [∀ n, ContSet (S 
 `X₀` is at, in location `vᵢ`, at time `r`. -/
 def HybridAutomaton.urgentReachSetAtExact (HA : HybridAutomaton S G L 𝕋 n) (X₀ : S n) (v₀ vᵢ : L)
     (r : ℝ) : Set (Vec ℝ n) :=
-  {y | ∃ x, x ∈ construct X₀ ∧ HA.IsUrgentRunAt r v₀ x vᵢ y}
+  {y | ∃ x, x ∈ toSet X₀ ∧ HA.IsUrgentRunAt r v₀ x vᵢ y}
 
 end CORALean
 

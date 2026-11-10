@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A passed test puts the origin in the nominal part. -/
 theorem HPolytope.containsOrigin_sound {P : HPolytope 𝕋 (Vec 𝕋 n)}
     (h : P.containsOrigin = true) : -- --- CONCL ---
-    (0 : Vec ℝ n) ∈ P.nominal.construct := by -- --- PROOF ---
+    (0 : Vec ℝ n) ∈ P.nominal.toSet := by -- --- PROOF ---
   simp only [HPolytope.containsOrigin, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     true_implies] at h
   obtain ⟨hA, hE⟩ := h

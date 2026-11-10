@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.InputSetFloat
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 
 @[expose] public section
 
@@ -41,13 +41,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem LinearSys.inputSetFloat_outer (sys : LinearSys 𝕋 n)
     (U : Zonotope (Vec 𝕋 sys.m)) : -- --- CONCL ---
-    (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) '' U.construct ⊆
-      (sys.inputSetFloat U).construct := by -- --- PROOF ---
+    (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) '' U.toSet ⊆
+      (sys.inputSetFloat U).toSet := by -- --- PROOF ---
   rintro _ ⟨u, hu, rfl⟩
   exact Plus.plus_outer _ _ (Set.add_mem_add
     (Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) sys.B U
       (Set.mem_biUnion (Set.mem_singleton _) (Set.mem_image_of_mem _ hu)))
-    (show _ ∈ (Zonotope.point sys.c).construct by rw [Zonotope.construct_point]; rfl))
+    (show _ ∈ (Zonotope.point sys.c).toSet by rw [Zonotope.toSet_point]; rfl))
 
 end CORALean
 

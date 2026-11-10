@@ -70,7 +70,7 @@ theorem Interval.vertex_edge_solution_iff {b : Vec ℝ n} (hb0 : ∀ i, 0 < b i)
       (∑ k, v k < α ∧ ∃ i, v i = 0 ∧ α - ∑ k, v k < b i)) ∧
     (∀ i, v i = 0 → ∑ k, v k < α → α - ∑ k, v k < b i →
       Function.update v i (α - ∑ k, v k) ∈
-        (⟨0, b⟩ : Interval (Vec ℝ n)).construct ∩ Interval.hyperplane 1 α) := by -- --- PROOF ---
+        (⟨0, b⟩ : Interval (Vec ℝ n)).toSet ∩ Interval.hyperplane 1 α) := by -- --- PROOF ---
   intro v
   have hplane : ∀ x : Vec ℝ n, x ∈ Interval.hyperplane 1 α ↔ ∑ k, x k = α := fun x => by
     simp [Interval.hyperplane]

@@ -45,7 +45,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.sort_exact (pZ : PolyZonotope α) : pZ.construct = pZ.sort.construct :=
+theorem PolyZonotope.sort_exact (pZ : PolyZonotope α) : pZ.toSet = pZ.sort.toSet :=
   pZ.reindex_exact (PolyZonotope.sortPerm pZ.E)
 
 end CORALean.Real

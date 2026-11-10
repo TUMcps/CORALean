@@ -82,10 +82,10 @@ theorem NonlinearSys.reachSetExact_subset_relinTimeInterval (sys : NonlinearSys 
     (hR : ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt),
       sys.reachSetExact T R₀ U t ⊆ (steps i).R)
     (q : ℕ) (hε : ∀ i < N, ‖Δt • (steps i).A‖ / (((q + 2 : ℕ) : ℝ) + 2) < 1)
-    (hconv : ∀ i < N, Convex ℝ (construct (steps i).linInput))
-    (hclosed : ∀ i < N, IsClosed (construct (steps i).linInput))
-    (hbdd : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
-    (h0 : ∀ i < N, (0 : Vec ℝ n) ∈ construct (steps i).linInput)
+    (hconv : ∀ i < N, Convex ℝ (toSet (steps i).linInput))
+    (hclosed : ∀ i < N, IsClosed (toSet (steps i).linInput))
+    (hbdd : ∀ i < N, Bornology.IsBounded (toSet (steps i).linInput))
+    (h0 : ∀ i < N, (0 : Vec ℝ n) ∈ toSet (steps i).linInput)
     (hRconv : ∀ i < N, Convex ℝ (MatExp.inputRemainderSet (steps i).A Δt (q + 2) (steps
       i).linInput))
     (hRclosed : ∀ i < N, IsClosed (MatExp.inputRemainderSet (steps i).A Δt (q + 2) (steps
@@ -94,7 +94,7 @@ theorem NonlinearSys.reachSetExact_subset_relinTimeInterval (sys : NonlinearSys 
       i).linInput))
     {o : ℕ} (ho : 0 < o) (i : ℕ) (hi : i < N)
     {t : ℝ} (ht : t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt)) : -- --- CONCL ---
-    sys.reachSetExact T R₀ U t ⊆ construct (sys.relinTimeInterval o ho Δt (q + 2) steps
+    sys.reachSetExact T R₀ U t ⊆ toSet (sys.relinTimeInterval o ho Δt (q + 2) steps
       (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt (q + 2)
         (steps i).linInput) R₀ i) := by -- --- PROOF ---
   rintro _ ⟨x, u, traj, rfl⟩

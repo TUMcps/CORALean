@@ -53,11 +53,11 @@ structure NonlinearSys.FloatHessModel.Encloses (fm : NonlinearSys.FloatHessModel
     (sys : NonlinearSys n m) : Prop extends NonlinearSys.FloatModel.Encloses fm.toFloatModel sys
     where
   taylor_mem (X : Interval (Vec 𝕋 n)) (U : Interval (Vec 𝕋 m)) (xs : Vec 𝕋 n) (us : Vec 𝕋 m) :
-    toRealVec xs ∈ X.construct → toRealVec us ∈ U.construct →
-    ∀ x ∈ X.construct, ∀ u ∈ U.construct,
-      ∃ Jx ∈ (fm.jacX (Interval.point xs) (Interval.point us)).construct,
-      ∃ Ju ∈ (fm.jacU (Interval.point xs) (Interval.point us)).construct,
-      ∃ H : Fin n → Mat ℝ (n + m) (n + m), (∀ i, H i ∈ (fm.hess X U i).construct) ∧
+    toRealVec xs ∈ X.toSet → toRealVec us ∈ U.toSet →
+    ∀ x ∈ X.toSet, ∀ u ∈ U.toSet,
+      ∃ Jx ∈ (fm.jacX (Interval.point xs) (Interval.point us)).toSet,
+      ∃ Ju ∈ (fm.jacU (Interval.point xs) (Interval.point us)).toSet,
+      ∃ H : Fin n → Mat ℝ (n + m) (n + m), (∀ i, H i ∈ (fm.hess X U i).toSet) ∧
         sys.f x u - sys.f (toRealVec xs) (toRealVec us)
           = Jx *ᵥ (x - toRealVec xs) + Ju *ᵥ (u - toRealVec us)
             + fun i => Fin.append (x - toRealVec xs) (u - toRealVec us)

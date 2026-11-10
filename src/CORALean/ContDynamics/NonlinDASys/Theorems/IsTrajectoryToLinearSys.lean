@@ -95,7 +95,7 @@ theorem NonlinDASys.IsTrajectory.toLinearSys {sys : NonlinDASys n p m} {T : Set 
     (hL : ∀ x' y' u', (x', y', u') ∈ Rz → sys.g x' y' u' = 0 →
       (sys.f x' y' u' - (sys.f xs ys us + A *ᵥ (x' - xs) + B *ᵥ (u' - us) + C *ᵥ (y' - ys)))
         - (C * F_inv) *ᵥ (sys.g x' y' u' - (sys.g xs ys us + D *ᵥ (x' - xs) + E *ᵥ (u' - us)
-          + F *ᵥ (y' - ys))) ∈ Verror.construct) :
+          + F *ᵥ (y' - ys))) ∈ Verror.toSet) :
     (LinearSys.canonical (A - C * F_inv * D) : LinearSys ℝ n).IsCanonicalTrajectory
         (S := 𝒵) T
       (Rinit.plus (Zonotope.ofPoint (-xs)))
@@ -104,18 +104,18 @@ theorem NonlinDASys.IsTrajectory.toLinearSys {sys : NonlinDASys n p m} {T : Set 
       (fun t => x t - xs)
       (fun t => sys.f (x t) (y t) (u t) - (A - C * F_inv * D) *ᵥ (x t - xs)) where
   init := by
-    show x 0 - xs ∈ (Rinit.plus (Zonotope.ofPoint (-xs))).construct
+    show x 0 - xs ∈ (Rinit.plus (Zonotope.ofPoint (-xs))).toSet
     rw [← Zonotope.plus_exact, sub_eq_add_neg]
     exact Set.add_mem_add traj.init (Zonotope.mem_ofPoint _)
   input t ht := by
     -- [1, Eq. 16]: the field is `Ã Δx` plus a point of `Ũ`
     obtain ⟨_, rfl, v, ⟨_, ⟨w, rfl, b, ⟨_, ⟨u', hu', rfl⟩, rfl⟩, rfl⟩, l, hl, rfl⟩, hsum⟩ :=
-      NonlinDASys.mem_linInclusion sys (U := U.construct) (L := Verror.construct) hF
+      NonlinDASys.mem_linInclusion sys (U := U.toSet) (L := Verror.toSet) hF
         (traj.input t ht) (traj.constraint t ht)
         (hL _ _ _ (hR t ht) (traj.constraint t ht))
     show sys.f (x t) (y t) (u t) - (A - C * F_inv * D) *ᵥ (x t - xs) ∈
       ((Zonotope.ofPoint (sys.f xs ys us - (C * F_inv) *ᵥ sys.g xs ys us)).plus
-        (((U.plus (Zonotope.ofPoint (-us))).mtimes (B - C * F_inv * E)).plus Verror)).construct
+        (((U.plus (Zonotope.ofPoint (-us))).mtimes (B - C * F_inv * E)).plus Verror)).toSet
     rw [← hsum, add_sub_cancel_left]
     rw [← Zonotope.plus_exact, ← Zonotope.plus_exact, ← Zonotope.mtimes_exact,
       ← Zonotope.plus_exact]

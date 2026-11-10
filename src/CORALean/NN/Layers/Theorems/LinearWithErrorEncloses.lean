@@ -54,10 +54,10 @@ theorem Layer.linearWithError_encloses (W : Mat 𝕋 m n) (b : Vec 𝕋 m) (E : 
       fun x => toRealMat W *ᵥ x + toRealVec b + E.nominal.center := by -- --- PROOF ---
   refine ⟨fun s x hx => ?_⟩
   have hbox : toRealVec b + E.nominal.center
-      ∈ construct (Interval.plus (Interval.point b) E) :=
+      ∈ toSet (Interval.plus (Interval.point b) E) :=
     Interval.plus_outer _ _ (Set.add_mem_add (Interval.mem_point b)
       (Real.Interval.mem_center E.nominal hE))
-  show toRealMat W *ᵥ x + toRealVec b + E.nominal.center ∈ construct
+  show toRealMat W *ᵥ x + toRealVec b + E.nominal.center ∈ toSet
       (plus (mtimes W s) (ofInterval (Interval.plus (Interval.point b) E)))
   rw [add_assoc]
   exact plus_outer _ _ (Set.add_mem_add

@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- Not the nominal shadow's own convexity read across: the set is that one plus
 the error box, and `Convex.add` is what carries the property over the sum. -/
 instance {n : ℕ} : ConvexSet (SpectraShadow 𝕋 (Vec 𝕋 n)) (Vec ℝ n) :=
-    ⟨SpectraShadow.convex_construct⟩
+    ⟨SpectraShadow.convex_toSet⟩
 
 instance {n : ℕ} : Plus (SpectraShadow 𝕋 (Vec 𝕋 n)) (Vec ℝ n) where
   plus S₁ S₂ := (S₁.plus S₂).materialise
@@ -49,7 +49,7 @@ generator is multiplied, so nothing needs a box that a free variable would escap
 instance : Mtimes (Mat 𝕋) (fun n => SpectraShadow 𝕋 (Vec 𝕋 n)) where
   mtimes M S := (S.mtimes M).materialise
   mtimes_outer M S := by
-    simp only [ContSet.construct_mat, Set.biUnion_singleton, SpectraShadow.materialise_eq]
+    simp only [ContSet.toSet_mat, Set.biUnion_singleton, SpectraShadow.materialise_eq]
     exact SpectraShadow.mtimes_outer M S
 
 /-- Both error boxes absorbed into the inequality, the two points tied to one: nothing rounds. -/

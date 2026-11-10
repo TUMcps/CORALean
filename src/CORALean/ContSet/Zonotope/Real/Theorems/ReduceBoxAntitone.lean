@@ -4,7 +4,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.GirardSplit
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBox
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 public import CORALean.ContSet.Zonotope.Real.Definitions.Coefficient
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
@@ -124,10 +124,10 @@ reduced to `n`, which every diagonal-block proof above would otherwise have to
 fight: at coordinate `i` its one active generator carries `β i`. -/
 private theorem Zonotope.aux_mem_reduceByBox_iff (Z : Zonotope (Vec ℝ n)) {q r : ℕ}
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) (x : Vec ℝ n) : -- --- CONCL ---
-    x ∈ (Z.reduceByBox part).construct ↔
+    x ∈ (Z.reduceByBox part).toSet ↔
       ∃ β : Fin n → ℝ, (∀ j, |β j| ≤ 1) ∧
         ∀ i, x i = (∑ l, |Z.G (part.right l) i|) * β i := by -- --- PROOF ---
-  unfold Zonotope.reduceByBox Zonotope.construct
+  unfold Zonotope.reduceByBox Zonotope.toSet
   simp only [Set.mem_setOf_eq]
   constructor
   · rintro ⟨β, hβ, hx⟩
@@ -147,7 +147,7 @@ private theorem Zonotope.aux_mem_reduceByBox_iff (Z : Zonotope (Vec ℝ n)) {q r
 contained in the smaller order's. -/
 theorem Zonotope.reduceBox_antitone (Z : Zonotope (Vec ℝ n)) {o o' : ℕ}
     (ho : o ≤ o') : -- --- CONCL ---
-    (Z.reduceBox o').construct ⊆ (Z.reduceBox o).construct := by -- --- PROOF ---
+    (Z.reduceBox o').toSet ⊆ (Z.reduceBox o).toSet := by -- --- PROOF ---
   unfold Zonotope.reduceBox
   split_ifs with hlt' hlt hlt
   · -- both below the threshold: the dropped generators nest, so does the box

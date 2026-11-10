@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulSubOneL
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSubOneSubLeSqMulExp
 public import CORALean.ContSet.Zonotope.Real.Instances
 public import CORALean.ContSet.Zonotope.Real.Operations.Cube
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.CubeExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemLinCombMtimesIff
@@ -88,11 +88,11 @@ private theorem aux_exp_sub_one_le_mul_exp (x : ℝ) : Real.exp x - 1 ≤ x * Re
 `P + □(α_r + β_r)` is within `r‖A‖e^{r‖A‖}(µ/‖A‖ + (1/2 + r‖A‖) sup ‖x‖)` of `R_[0,r](Z)`. -/
 theorem LinearSys.exists_mem_iUnion_reachSetExact_dist_le (sys : LinearSys 𝕋 n)
     (Z U : Zonotope (Vec ℝ n)) {μ r s : ℝ} (hA : 0 < ‖toRealMat sys.A‖) (hr : 0 < r)
-    (hμ : 0 ≤ μ) (hU : U.construct = Metric.closedBall 0 μ)
-    (hs : ∀ z ∈ Z.construct, ‖z‖ ≤ s) {q : Vec ℝ n}
+    (hμ : 0 ≤ μ) (hU : U.toSet = Metric.closedBall 0 μ)
+    (hs : ∀ z ∈ Z.toSet, ‖z‖ ≤ s) {q : Vec ℝ n}
     (hq : q ∈ ((Z.linComb (Z.mtimes (exp (r • toRealMat sys.A)))).plus
           (Zonotope.cube n ((Real.exp (r * ‖toRealMat sys.A‖) - 1 - r * ‖toRealMat sys.A‖) * s
-            + (Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖ * μ))).construct)
+            + (Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖ * μ))).toSet)
     : -- --- CONCL ---
     ∃ y ∈ ⋃ t ∈ Set.Icc (0:ℝ) r, sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) Z U t,
       dist q y ≤ r * ‖toRealMat sys.A‖ * Real.exp (r * ‖toRealMat sys.A‖)
@@ -104,18 +104,18 @@ theorem LinearSys.exists_mem_iUnion_reachSetExact_dist_le (sys : LinearSys 𝕋 
   have hex := Real.add_one_le_exp x
   have hα0 : 0 ≤ Real.exp x - 1 - x := by linarith
   have hβ0 : 0 ≤ (Real.exp x - 1) / a * μ := mul_nonneg (div_nonneg (by linarith) hA.le) hμ
-  have hs0 : 0 ≤ s := (norm_nonneg Z.c).trans (hs _ (Zonotope.center_mem_construct Z))
+  have hs0 : 0 ≤ s := (norm_nonneg Z.c).trans (hs _ (Zonotope.center_mem_toSet Z))
   -- `q = p + w`, `p` split at its coefficients
   rw [← Zonotope.plus_exact, Zonotope.cube_exact n (add_nonneg (mul_nonneg hα0 hs0) hβ0)] at hq
   obtain ⟨p, hp, w, hw, rfl⟩ := hq
   obtain ⟨β, γ, m, hβ, hγ, hm, hpeq⟩ := Zonotope.mem_linComb_mtimes_iff.mp hp
   set z := Z.c + ∑ j, β j • Z.G j with hzdef
   set z' := m • Z.c + ∑ j, γ j • Z.G j with hz'def
-  have hz : z ∈ Z.construct := ⟨β, hβ, rfl⟩
+  have hz : z ∈ Z.toSet := ⟨β, hβ, rfl⟩
   -- `z'` is a convex combination of `c + Σγg` and `-(c - Σγg)`, both of norm at most `s`
   have hz' : ‖z'‖ ≤ s := by
-    have h1 : Z.c + ∑ j, γ j • Z.G j ∈ Z.construct := ⟨γ, hγ, rfl⟩
-    have h2 : Z.c + ∑ j, (-γ j) • Z.G j ∈ Z.construct := ⟨fun j => -γ j, fun j => by
+    have h1 : Z.c + ∑ j, γ j • Z.G j ∈ Z.toSet := ⟨γ, hγ, rfl⟩
+    have h2 : Z.c + ∑ j, (-γ j) • Z.G j ∈ Z.toSet := ⟨fun j => -γ j, fun j => by
       rw [abs_neg]; exact hγ j, rfl⟩
     have hm1 := (abs_le.mp hm)
     have heq : z' = ((1 + m) / 2) • (Z.c + ∑ j, γ j • Z.G j)
@@ -128,14 +128,14 @@ theorem LinearSys.exists_mem_iUnion_reachSetExact_dist_le (sys : LinearSys 𝕋 
     nlinarith [hs _ h1, hs _ h2]
   -- the reachable companion: `e^{(r/2)A}z`, the input held at `0`
   have hr2 : r / 2 ∈ Set.Icc (0:ℝ) r := ⟨by linarith, by linarith⟩
-  have h0U : (0 : Vec ℝ n) ∈ construct U := by
-    show (0 : Vec ℝ n) ∈ U.construct
+  have h0U : (0 : Vec ℝ n) ∈ toSet U := by
+    show (0 : Vec ℝ n) ∈ U.toSet
     rw [hU]; exact Metric.mem_closedBall_self hμ
   have h0 : (0 : Vec ℝ n) ∈ sys.inputReach (S := 𝒵) U (r / 2) := by
     have := sys.expIntegral_mem_inputReach (S := 𝒵) hr2.1 h0U
     rwa [Matrix.mulVec_zero] at this
   refine ⟨exp ((r / 2) • A) *ᵥ z, Set.mem_iUnion₂.mpr ⟨r / 2, hr2, ?_⟩, ?_⟩
-  · rw [sys.reachSetExact_eq (S := 𝒵) Z U hr2.1 (Zonotope.isBounded_construct U)]
+  · rw [sys.reachSetExact_eq (S := 𝒵) Z U hr2.1 (Zonotope.isBounded_toSet U)]
     exact ⟨_, ⟨z, hz, rfl⟩, 0, h0, add_zero _⟩
   -- three pieces: the bloating `w`, the midpoint against the flow, and `(I - e^{rA})z'/2`
   have hint := MatExp.norm_exp_mulVec_sub_interpolate_le A hr2.1 hr2.2 z

@@ -1,0 +1,46 @@
+module
+
+public import CORALean.ContSet.Fullspace.Real.Fullspace
+
+@[expose] public section
+
+/-!
+# The full space is not empty
+
+`representsa_(fs,'emptySet')` is `false` for `fullspace`.
+
+## Inputs
+* `F` – full space
+
+## Hypotheses
+* none
+
+## Conclusion
+* the full space is not empty
+-/
+
+-- Authors:       Claude Opus 5.5
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem Fullspace.toSet_ne_empty (F : Fullspace n) : F.toSet ≠ ∅ := by
+  intro h
+  have : (0 : Vec ℝ n) ∈ F.toSet := Set.mem_univ _
+  rw [h] at this
+  exact this
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

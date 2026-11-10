@@ -86,8 +86,8 @@ private theorem aux_mulHi_attained {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ 
 the float product's endpoints. -/
 private theorem aux_entry_bound {X : Real.Interval (Mat ℝ m n)} {Y : Real.Interval (Mat ℝ n p)}
     {X' : Interval (Mat 𝕋 m n)} {Y' : Interval (Mat 𝕋 n p)} {M₀ : Mat ℝ m n} {N₀ : Mat ℝ n p}
-    (hM₀ : M₀ ∈ X.construct) (hN₀ : N₀ ∈ Y.construct) (hX : X.construct ⊆ X'.construct)
-    (hY : Y.construct ⊆ Y'.construct) (i : Fin m) (j : Fin p) {y x : Fin n → ℝ}
+    (hM₀ : M₀ ∈ X.toSet) (hN₀ : N₀ ∈ Y.toSet) (hX : X.toSet ⊆ X'.toSet)
+    (hY : Y.toSet ⊆ Y'.toSet) (i : Fin m) (j : Fin p) {y x : Fin n → ℝ}
     (hy : ∀ l, X.inf i l ≤ y l ∧ y l ≤ X.sup i l)
     (hx : ∀ l, Y.inf l j ≤ x l ∧ x l ≤ Y.sup l j) : -- --- CONCL ---
     toReal ((Interval.matMul X' Y').inf i j) ≤ ∑ l, y l * x l ∧
@@ -96,11 +96,11 @@ private theorem aux_entry_bound {X : Real.Interval (Mat ℝ m n)} {Y : Real.Inte
   -- row `i` of one member and column `j` of another, overwritten
   set M : Mat ℝ m n := Matrix.of fun i' l => if i' = i then y l else M₀ i' l
   set N : Mat ℝ n p := Matrix.of fun l j' => if j' = j then x l else N₀ l j'
-  have hM : M ∈ X.construct := Real.Interval.mem_mat_iff.mpr fun i' l => by
+  have hM : M ∈ X.toSet := Real.Interval.mem_mat_iff.mpr fun i' l => by
     by_cases h : i' = i
     · subst h; simpa [M] using hy l
     · simpa [M, h] using Real.Interval.mem_mat_iff.mp hM₀ i' l
-  have hN : N ∈ Y.construct := Real.Interval.mem_mat_iff.mpr fun l j' => by
+  have hN : N ∈ Y.toSet := Real.Interval.mem_mat_iff.mpr fun l j' => by
     by_cases h : j' = j
     · subst h; simpa [N] using hx l
     · simpa [N, h] using Real.Interval.mem_mat_iff.mp hN₀ l j'
@@ -114,9 +114,9 @@ float product. -/
 private theorem Interval.aux_matMul_subset {X : Real.Interval (Mat ℝ m n)}
     {Y : Real.Interval (Mat ℝ n p)}
     {X' : Interval (Mat 𝕋 m n)} {Y' : Interval (Mat 𝕋 n p)} {M₀ : Mat ℝ m n} {N₀ : Mat ℝ n p}
-    (hM₀ : M₀ ∈ X.construct) (hN₀ : N₀ ∈ Y.construct) (hX : X.construct ⊆ X'.construct)
-    (hY : Y.construct ⊆ Y'.construct) : -- --- CONCL ---
-    (Real.Interval.matMul X Y).construct ⊆ (Interval.matMul X' Y').construct := by -- --- PROOF ---
+    (hM₀ : M₀ ∈ X.toSet) (hN₀ : N₀ ∈ Y.toSet) (hX : X.toSet ⊆ X'.toSet)
+    (hY : Y.toSet ⊆ Y'.toSet) : -- --- CONCL ---
+    (Real.Interval.matMul X Y).toSet ⊆ (Interval.matMul X' Y').toSet := by -- --- PROOF ---
   intro P hP
   have hXw : ∀ i l, X.inf i l ≤ X.sup i l := fun i l =>
     (Real.Interval.mem_mat_iff.mp hM₀ i l).1.trans (Real.Interval.mem_mat_iff.mp hM₀ i l).2
@@ -138,9 +138,9 @@ end
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.matPow_subset {X : Real.Interval (Mat ℝ n n)} {X' : Interval (Mat 𝕋 n n)}
-    {M₀ : Mat ℝ n n} (hM₀ : M₀ ∈ X.construct) (hX : X.construct ⊆ X'.construct)
+    {M₀ : Mat ℝ n n} (hM₀ : M₀ ∈ X.toSet) (hX : X.toSet ⊆ X'.toSet)
     (k : ℕ) : -- --- CONCL ---
-    (Real.Interval.matPow X k).construct ⊆ (Interval.matPow X' k).construct := by -- --- PROOF ---
+    (Real.Interval.matPow X k).toSet ⊆ (Interval.matPow X' k).toSet := by -- --- PROOF ---
   induction k with
   | zero =>
     intro P hP
@@ -152,7 +152,7 @@ theorem Interval.matPow_subset {X : Real.Interval (Mat ℝ n n)} {X' : Interval 
     rw [h1, ← pow_zero M₀]
     exact Interval.matPow_outer X' (hX hM₀) 0
   | succ k ih =>
-    show _ ⊆ (Interval.matMul X' (Interval.matPow X' k)).materialiseMat.construct
+    show _ ⊆ (Interval.matMul X' (Interval.matPow X' k)).materialiseMat.toSet
     rw [Interval.materialiseMat_eq]
     exact Interval.aux_matMul_subset hM₀ (Real.Interval.matPow_outer X hM₀ k) hX ih
 

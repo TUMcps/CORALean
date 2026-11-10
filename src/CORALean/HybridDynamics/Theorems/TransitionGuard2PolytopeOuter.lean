@@ -41,8 +41,8 @@ variable {G P : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] [∀ n, ContSet
 
 /-- An outer conversion gives an outer guard: the old guard lies inside the new one. -/
 theorem Transition.guard2polytope_outer (conv : G n → P n)
-    (h : ∀ g, construct g ⊆ construct (conv g)) (e : Transition G L 𝕋 n) :
-    construct e.guard ⊆ construct (e.guard2polytope conv).guard :=
+    (h : ∀ g, toSet g ⊆ toSet (conv g)) (e : Transition G L 𝕋 n) :
+    toSet e.guard ⊆ toSet (e.guard2polytope conv).guard :=
   h e.guard
 
 end CORALean

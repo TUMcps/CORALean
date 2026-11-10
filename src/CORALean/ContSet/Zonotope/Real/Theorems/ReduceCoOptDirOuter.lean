@@ -53,7 +53,7 @@ variable {n : ℕ}
 /-- [1, Alg. 4], CoOpt_dir: `Z ⊆ reduceCoOptDir Z opt` for every solver `opt`. -/
 theorem Zonotope.reduceCoOptDir_outer (Z : Zonotope (Vec ℝ n))
     (opt : Mat ℝ n n → Mat ℝ n n) : -- --- CONCL ---
-    Z.construct ⊆ (Z.reduceCoOptDir opt).construct := by -- --- PROOF ---
+    Z.toSet ⊆ (Z.reduceCoOptDir opt).toSet := by -- --- PROOF ---
   unfold Zonotope.reduceCoOptDir
   dsimp only
   split_ifs with h

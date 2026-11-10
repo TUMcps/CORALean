@@ -6,7 +6,7 @@ public import CORALean.ContSet.Conversion.Float.Theorems.NegIdentityMatMulVec
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.VPolytope_to_ConZonotope
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsConstructIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsToSetIff
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemIneqsIff
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemEqsIff
 
@@ -51,9 +51,9 @@ private theorem VPolytope.aux_ones_mulVec (β : Vec ℝ k) (i : Fin 1) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.mem_simplex_iff {β : Vec ℝ k} : -- --- CONCL ---
-    β ∈ (VPolytope.simplex 𝕋 k).construct ↔ (∀ j, 0 ≤ β j) ∧ ∑ j, β j = 1 := by -- --- PROOF ---
+    β ∈ (VPolytope.simplex 𝕋 k).toSet ↔ (∀ j, 0 ≤ β j) ∧ ∑ j, β j = 1 := by -- --- PROOF ---
   simp only [VPolytope.simplex]
-  rw [HPolytope.mem_stackRows_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)
+  rw [HPolytope.mem_stackRows_toSet_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)
     (HPolytope.isErrFree_of_origin rfl rfl rfl), HPolytope.mem_ineqs_iff, HPolytope.mem_eqs_iff]
   -- both directions: a nonnegativity row each, and the ones-row equality
   constructor

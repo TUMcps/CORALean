@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemToSetIff
 public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
@@ -52,13 +52,13 @@ variable {n : ℕ}
 /-- [1, Thm. 2]: `r ≥ ⌈Z(S, 0)⌉²` puts the scaled zonotope in the ellipsoid. -/
 theorem Ellipsoid.contains_zonotopeInnerNorm (E : Ellipsoid n) {m : ℕ} (S : Fin m → Vec ℝ n)
     {r : ℝ} (hr : 0 < r) (hS : (⟨m, 0, S⟩ : Zonotope (Vec ℝ n)).maxNormSq ≤ r) : -- --- CONCL ---
-    (E.zonotopeInnerNorm S r).construct ⊆ E.construct := by -- --- PROOF ---
+    (E.zonotopeInnerNorm S r).toSet ⊆ E.toSet := by -- --- PROOF ---
   rintro _ ⟨β, hβ, rfl⟩
   change ∀ j : Fin m, |β j| ≤ 1 at hβ
   have hs : 0 < √r := Real.sqrt_pos.mpr hr
   -- the coefficient point `u = r^{-1/2} ∑ βⱼ sⱼ` is in the unit ball
   have hle := le_trans (Zonotope.sq_norm₂_le_maxNormSq ⟨m, 0, S⟩ hβ) hS
-  refine Ellipsoid.mem_construct_iff.2 ⟨(√r)⁻¹ • ∑ j, β j • S j, ?_, ?_⟩
+  refine Ellipsoid.mem_toSet_iff.2 ⟨(√r)⁻¹ • ∑ j, β j • S j, ?_, ?_⟩
   · rw [norm₂_smul, abs_of_pos (inv_pos.mpr hs), inv_mul_le_iff₀ hs, mul_one]
     calc ‖∑ j, β j • S j‖₂ = √(‖∑ j, β j • S j‖₂ ^ 2) := (Real.sqrt_sq (norm₂_nonneg _)).symm
       _ ≤ √r := Real.sqrt_le_sqrt hle

@@ -74,27 +74,27 @@ theorem NeurNetContrSys.reachWith_outer (sys : NeurNetContrSys P S n)
     (cp : S n → S sys.m → S (n + sys.m)) (pr : S (n + sys.m) → S n)
     (rx : S (n + sys.m) → S (n + sys.m) × List (S (n + sys.m)))
     {X₀ : S n} {U_ext : Set (Vec ℝ sys.nExt)} {W : Set (Vec ℝ (nrOfDisturbances sys.plant))}
-    (hcp : ∀ X Y x u, x ∈ construct X → u ∈ construct Y →
-      (Fin.append x u : Vec ℝ (n + _)) ∈ construct (cp X Y))
-    (hpr : ∀ Z z, z ∈ construct Z → (fun k => z (Fin.castAdd _ k)) ∈ construct (pr Z))
+    (hcp : ∀ X Y x u, x ∈ toSet X → u ∈ toSet Y →
+      (Fin.append x u : Vec ℝ (n + _)) ∈ toSet (cp X Y))
+    (hpr : ∀ Z z, z ∈ toSet Z → (fun k => z (Fin.castAdd _ k)) ∈ toSet (pr Z))
     (hrx : ∀ R (z : ℝ → Vec ℝ n) (u : Vec ℝ sys.m) (v' : ℝ → Vec ℝ sys.nExt) w,
-      (Fin.append (z 0) u : Vec ℝ (n + _)) ∈ construct R →
+      (Fin.append (z 0) u : Vec ℝ (n + _)) ∈ toSet R →
       ContDynamics.IsTrajectory sys.plant (Set.Icc 0 sys.dt) Set.univ (sys.inputSet {u} U_ext) W z
         (fun t => sys.input u (v' t)) w →
-      (Fin.append (z sys.dt) u : Vec ℝ (n + _)) ∈ construct (rx R).1 ∧
-        ∀ t ∈ Set.Icc 0 sys.dt, ∃ T ∈ (rx R).2, (Fin.append (z t) u : Vec ℝ (n + _)) ∈ construct T)
+      (Fin.append (z sys.dt) u : Vec ℝ (n + _)) ∈ toSet (rx R).1 ∧
+        ∀ t ∈ Set.Icc 0 sys.dt, ∃ T ∈ (rx R).2, (Fin.append (z t) u : Vec ℝ (n + _)) ∈ toSet T)
     {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Encloses π) {H : ℕ}
     {x : ℝ → Vec ℝ n} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ (nrOfDisturbances sys.plant)}
     (traj : sys.IsTrajectory π H X₀ U_ext W x v w) : -- --- CONCL ---
-    ∀ i ≤ H, x ((i : ℝ) * sys.dt) ∈ construct (sys.reachWith cp pr rx X₀ i).1 ∧
+    ∀ i ≤ H, x ((i : ℝ) * sys.dt) ∈ toSet (sys.reachWith cp pr rx X₀ i).1 ∧
       ∀ j < i, ∀ t ∈ Set.Icc ((j : ℝ) * sys.dt) (((j : ℝ) + 1) * sys.dt),
-        ∃ T ∈ (sys.reachWith cp pr rx X₀ i).2, x t ∈ construct T := by -- --- PROOF ---
+        ∃ T ∈ (sys.reachWith cp pr rx X₀ i).2, x t ∈ toSet T := by -- --- PROOF ---
   intro i
   induction i with
   | zero =>
     intro _
     refine ⟨?_, fun j hj => absurd hj (Nat.not_lt_zero j)⟩
-    show x (((0 : ℕ) : ℝ) * sys.dt) ∈ construct X₀
+    show x (((0 : ℕ) : ℝ) * sys.dt) ∈ toSet X₀
     simpa using traj.init
   | succ i ih =>
     intro hi

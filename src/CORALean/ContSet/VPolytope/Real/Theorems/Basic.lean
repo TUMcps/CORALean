@@ -38,8 +38,8 @@ variable {n m : ℕ}
 
 /-- An equality, not an enclosure: the polytope is the smallest convex set containing the points. -/
 theorem VPolytope.enclosePoints_exact {N : ℕ} (pts : Fin N → Vec ℝ n) :
-    (VPolytope.enclosePoints pts).construct = convexHull ℝ (Set.range pts) :=
-  VPolytope.construct_eq_convexHull _
+    (VPolytope.enclosePoints pts).toSet = convexHull ℝ (Set.range pts) :=
+  VPolytope.toSet_eq_convexHull _
 
 
 -- =================================  `VPolytope.matMul_outer`  ================================= --
@@ -50,8 +50,8 @@ theorem VPolytope.enclosePoints_exact {N : ℕ} (pts : Fin N → Vec ℝ n) :
 
 /-- The product of a member of each factor lies in the polytope of vertex products. -/
 theorem VPolytope.matMul_outer {p q r : ℕ} (P : VPolytope (Mat ℝ p q)) (Q : VPolytope (Mat ℝ q r))
-    {A : Mat ℝ p q} {B : Mat ℝ q r} (hA : A ∈ P.construct) (hB : B ∈ Q.construct) :
-    A * B ∈ (VPolytope.matMul P Q).construct :=
+    {A : Mat ℝ p q} {B : Mat ℝ q r} (hA : A ∈ P.toSet) (hB : B ∈ Q.toSet) :
+    A * B ∈ (VPolytope.matMul P Q).toSet :=
   VPolytope.bilin_outer matMulBilin P Q (Set.mem_iUnion₂.mpr ⟨A, hA, Set.mem_image_of_mem _ hB⟩)
 
 
@@ -63,7 +63,7 @@ theorem VPolytope.matMul_outer {p q r : ℕ} (P : VPolytope (Mat ℝ p q)) (Q : 
 
 /-- CORA's `numeric * matPolytope`: the vertices multiplied from the left, exactly. -/
 theorem VPolytope.matMulLeft_exact {p q r : ℕ} (A : Mat ℝ p q) (P : VPolytope (Mat ℝ q r)) :
-    (A * ·) '' P.construct = (P.map (matMulLeft A)).construct :=
+    (A * ·) '' P.toSet = (P.map (matMulLeft A)).toSet :=
   VPolytope.map_exact (matMulLeft A) P
 
 
@@ -75,7 +75,7 @@ theorem VPolytope.matMulLeft_exact {p q r : ℕ} (A : Mat ℝ p q) (P : VPolytop
 
 /-- CORA's `matPolytope * numeric`: the vertices multiplied from the right, exactly. -/
 theorem VPolytope.matMulRight_exact {p q r : ℕ} (B : Mat ℝ q r) (P : VPolytope (Mat ℝ p q)) :
-    (· * B) '' P.construct = (P.map (matMulRight B)).construct :=
+    (· * B) '' P.toSet = (P.map (matMulRight B)).toSet :=
   VPolytope.map_exact (matMulRight B) P
 
 
@@ -87,7 +87,7 @@ theorem VPolytope.matMulRight_exact {p q r : ℕ} (B : Mat ℝ q r) (P : VPolyto
 
 /-- The matrices of `matPolytope P` are exactly the vectors of `P` read as columns. -/
 theorem VPolytope.matPolytope_exact (P : VPolytope (Vec ℝ n)) :
-    (fun v => (fun i _ => v i : Mat ℝ n 1)) '' P.construct = P.matPolytope.construct :=
+    (fun v => (fun i _ => v i : Mat ℝ n 1)) '' P.toSet = P.matPolytope.toSet :=
   VPolytope.map_exact (colLin n) P
 
 
@@ -111,7 +111,7 @@ theorem VPolytope.mtimes_eq_map (M : Mat ℝ m n) (P : VPolytope (Vec ℝ n)) :
 /-- The union of two polytopes is not a polytope in general, so `or` returns its hull; that hull is
 exact, and contains the union. -/
 theorem VPolytope.or_exact {α : Type} [AddCommGroup α] [Module ℝ α] (P Q : VPolytope α) :
-    (P.or Q).construct = convexHull ℝ (P.construct ∪ Q.construct) :=
+    (P.or Q).toSet = convexHull ℝ (P.toSet ∪ Q.toSet) :=
   VPolytope.convHull_exact P Q
 
 
@@ -124,7 +124,7 @@ theorem VPolytope.or_exact {α : Type} [AddCommGroup α] [Module ℝ α] (P Q : 
 /-- Reading the same coordinates of every member, no hypothesis on `dims`: a linear map is exact
 without injectivity, so nothing is added and nothing lost. -/
 theorem VPolytope.project_exact (P : VPolytope (Vec ℝ n)) (dims : Fin m → Fin n) :
-    (fun x k => x (dims k)) '' P.construct = (P.project dims).construct :=
+    (fun x k => x (dims k)) '' P.toSet = (P.project dims).toSet :=
   VPolytope.map_exact (LinearMap.funLeft ℝ ℝ dims) P
 
 
@@ -136,7 +136,7 @@ theorem VPolytope.project_exact (P : VPolytope (Vec ℝ n)) (dims : Fin m → Fi
 
 /-- Exact: the stacked members are the members of `vec`. -/
 theorem VPolytope.vec_exact (P : VPolytope (Mat ℝ n m)) :
-    matVecEquiv '' P.construct = P.vec.construct :=
+    matVecEquiv '' P.toSet = P.vec.toSet :=
   VPolytope.map_exact matVecEquiv.toLinearMap P
 
 end
@@ -147,7 +147,7 @@ section
 variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 
--- =============================  `VPolytope.isCompact_construct`  ============================== --
+-- ===============================  `VPolytope.isCompact_toSet`  ================================ --
 -- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   04-September-2026
@@ -155,12 +155,12 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 /-- The hull of a finite set. A halfspace description is closed too but need not be
 bounded, which is why the two get separate proofs rather than one. -/
-theorem VPolytope.isCompact_construct (P : VPolytope α) : IsCompact P.construct := by
-  rw [VPolytope.construct_eq_convexHull]
+theorem VPolytope.isCompact_toSet (P : VPolytope α) : IsCompact P.toSet := by
+  rw [VPolytope.toSet_eq_convexHull]
   exact Set.Finite.isCompact_convexHull ℝ (Set.finite_range P.V)
 
 
--- =============================  `VPolytope.isBounded_construct`  ============================== --
+-- ===============================  `VPolytope.isBounded_toSet`  ================================ --
 -- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   04-September-2026
@@ -168,11 +168,11 @@ theorem VPolytope.isCompact_construct (P : VPolytope α) : IsCompact P.construct
 
 /-- Read off compactness. This is what a halfspace description cannot have: it
 admits unbounded sets, which is the difference between the two representations. -/
-theorem VPolytope.isBounded_construct (P : VPolytope α) : Bornology.IsBounded P.construct :=
-  P.isCompact_construct.isBounded
+theorem VPolytope.isBounded_toSet (P : VPolytope α) : Bornology.IsBounded P.toSet :=
+  P.isCompact_toSet.isBounded
 
 
--- ==============================  `VPolytope.isClosed_construct`  ============================== --
+-- ================================  `VPolytope.isClosed_toSet`  ================================ --
 -- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   04-September-2026
@@ -180,8 +180,8 @@ theorem VPolytope.isBounded_construct (P : VPolytope α) : Bornology.IsBounded P
 
 /-- Read off compactness. A halfspace description proves its own closedness
 directly, having no compactness to read it off. -/
-theorem VPolytope.isClosed_construct (P : VPolytope α) : IsClosed P.construct :=
-  P.isCompact_construct.isClosed
+theorem VPolytope.isClosed_toSet (P : VPolytope α) : IsClosed P.toSet :=
+  P.isCompact_toSet.isClosed
 
 end
 

@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ReduceCon
 public import Mathlib.Algebra.Module.BigOperators
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEq
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemEliminateOfMem
 
 @[expose] public section
@@ -82,9 +82,9 @@ reduced system and give the same value. -/
 theorem ConPolyZono.reduceCon_outer (cPZ : ConPolyZono α) (r : Fin cPZ.cons.m) (d : Fin cPZ.h)
     (t : Fin cPZ.cons.q) (hE : ∀ k, cPZ.E k d = cPZ.cons.R k t)
     (hA : cPZ.cons.A r t ≠ 0) : -- --- CONCL ---
-    cPZ.construct ⊆ (cPZ.reduceCon r d t).construct := by -- --- PROOF ---
+    cPZ.toSet ⊆ (cPZ.reduceCon r d t).toSet := by -- --- PROOF ---
   rintro x ⟨a, β, hβ, hsat, rfl⟩
-  have hrows := ((PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hsat).2
+  have hrows := ((PolyLevelSet.mem_toSet_iff_of_eq cPZ.cons_eq).mp hsat).2
   set μ := PolyZonotope.monomial cPZ.cons.R a with hμ
   set ν := PolyZonotope.monomial cPZ.E a with hν
   -- eq. (33): generator `d` and constraint generator `t` are the same monomial

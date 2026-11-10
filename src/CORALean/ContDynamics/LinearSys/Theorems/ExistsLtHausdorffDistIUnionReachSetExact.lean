@@ -56,8 +56,8 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 every hypothesis where the distance exceeds `r‖A‖e^{r‖A‖}(µ/‖A‖ + (1/2 + r) sup ‖x‖)`. -/
 theorem LinearSys.exists_lt_hausdorffDist_iUnion_reachSetExact : -- --- CONCL ---
     ∃ (sys : LinearSys ℝ 1) (Z U : Zonotope (Vec ℝ 1)) (μ r s : ℝ),
-      0 < ‖toRealMat sys.A‖ ∧ 0 < r ∧ 0 ≤ μ ∧ U.construct = Metric.closedBall 0 μ
-      ∧ IsGreatest ((fun x => ‖x‖) '' Z.construct) s
+      0 < ‖toRealMat sys.A‖ ∧ 0 < r ∧ 0 ≤ μ ∧ U.toSet = Metric.closedBall 0 μ
+      ∧ IsGreatest ((fun x => ‖x‖) '' Z.toSet) s
       ∧ r * ‖toRealMat sys.A‖ * Real.exp (r * ‖toRealMat sys.A‖)
             * (μ / ‖toRealMat sys.A‖ + (1 / 2 + r) * s)
         < Metric.hausdorffDist
@@ -65,7 +65,7 @@ theorem LinearSys.exists_lt_hausdorffDist_iUnion_reachSetExact : -- --- CONCL --
           ((Z.linComb (Z.mtimes (exp (r • toRealMat sys.A)))).plus
             (Zonotope.cube 1 ((Real.exp (r * ‖toRealMat sys.A‖) - 1 - r * ‖toRealMat sys.A‖) * s
               + (Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖
-                * μ))).construct := by -- --- PROOF ---
+                * μ))).toSet := by -- --- PROOF ---
   obtain ⟨hnorm, hgr, hd⟩ := LinearSys.girardExample_spec
   have he : 2.7182818283 < Real.exp 1 := Real.exp_one_gt_d9
   refine ⟨LinearSys.canonical (Matrix.diagonal fun _ => 100), ⟨1, fun _ => 1, fun _ _ => 1⟩,

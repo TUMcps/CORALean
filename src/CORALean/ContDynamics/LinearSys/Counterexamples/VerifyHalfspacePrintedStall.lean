@@ -70,9 +70,9 @@ theorem LinearSys.verifyHalfspacePrinted_stall_counterexample (m : ℕ) : -- ---
     (∃ x ∈ sys.reachSetExact (S := 𝒵) (Set.Icc 0 1) X₀ U 0, ∀ i, f i + 1 ≤ H i x) ∧
     -- and yet, for every sound oracle, `Alg. 2` as printed never exits
     ∀ (ρ : Zonotope (Vec ℝ 1) → (Vec ℝ 1 →ₗ[ℝ] ℝ) → ℝ)
-      (_ : ∀ X : Zonotope (Vec ℝ 1), ∀ x ∈ construct X, ∀ d : Vec ℝ 1 →ₗ[ℝ] ℝ, d x ≤ ρ X d)
-      (ν₀ νU : (Vec ℝ 1 →ₗ[ℝ] ℝ) → Vec ℝ 1) (_ : ∀ d, ν₀ d ∈ construct X₀)
-      (_ : ∀ d, νU d ∈ construct U) (_ : ∀ d : Vec ℝ 1 →ₗ[ℝ] ℝ, d 0 ≤ d (νU d))
+      (_ : ∀ X : Zonotope (Vec ℝ 1), ∀ x ∈ toSet X, ∀ d : Vec ℝ 1 →ₗ[ℝ] ℝ, d x ≤ ρ X d)
+      (ν₀ νU : (Vec ℝ 1 →ₗ[ℝ] ℝ) → Vec ℝ 1) (_ : ∀ d, ν₀ d ∈ toSet X₀)
+      (_ : ∀ d, νU d ∈ toSet U) (_ : ∀ d : Vec ℝ 1 →ₗ[ℝ] ℝ, d 0 ≤ d (νU d))
       (fuel : ℕ),
       verifyHalfspacePrinted
         (fun r k i => (sys.supportUpper (S := 𝒵) (1 / 2 ^ r) (m + 2) X₀ U ρ (H i)
@@ -82,14 +82,14 @@ theorem LinearSys.verifyHalfspacePrinted_stall_counterexample (m : ℕ) : -- ---
   intro sys X₀ U H f
   have hA : toRealMat sys.A = 1 := rfl
   have hnormA : ‖toRealMat sys.A‖ = 1 := by rw [hA]; exact norm_one
-  have hUbdd : Bornology.IsBounded (construct U) := CompactSet.isBounded_construct U
-  have hX₀ : ∀ z ∈ construct X₀, z 0 = 1 := by
+  have hUbdd : Bornology.IsBounded (toSet U) := CompactSet.isBounded_toSet U
+  have hX₀ : ∀ z ∈ toSet X₀, z 0 = 1 := by
     rintro z ⟨β, -, rfl⟩
     simp [X₀, Zonotope.ofPoint]
-  have h0U : (0 : Vec ℝ 1) ∈ construct U := ⟨fun _ => 0, by simp, by funext i; simp [U]⟩
+  have h0U : (0 : Vec ℝ 1) ∈ toSet U := ⟨fun _ => 0, by simp, by funext i; simp [U]⟩
   refine ⟨?_, ?_⟩
   · -- the run from `1` under the input `0` sits at `1` at time `0`
-    have hx₀ : (fun _ => (1 : ℝ)) ∈ construct X₀ := OfPoint.mem_ofPoint _
+    have hx₀ : (fun _ => (1 : ℝ)) ∈ toSet X₀ := OfPoint.mem_ofPoint _
     refine ⟨_, ⟨_, _, sys.isTrajectory_heldInput (S := 𝒵) X₀ U hUbdd zero_le_one 1 hx₀
       (v := fun _ => 0) (fun _ => h0U), rfl⟩, fun _ => ?_⟩
     rw [sys.closedForm_zero]

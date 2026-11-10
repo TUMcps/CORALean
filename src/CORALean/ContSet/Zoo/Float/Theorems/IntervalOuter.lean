@@ -47,11 +47,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem Zoo.interval_outer {Z : Zoo 𝕋 n} {f : Vec ℝ n → ℝ} (h : Z.Encloses f) {t : Vec ℝ n}
     (ht : t ∈ Real.Taylm.box n) : -- --- CONCL ---
     ∀ I ∈ Z.interval,
-      (fun _ => f t : Vec ℝ 1) ∈ I.construct := by -- --- PROOF ---
+      (fun _ => f t : Vec ℝ 1) ∈ I.toSet := by -- --- PROOF ---
   intro I (hI : Z.interval = some I)
   rw [Zoo.encloses_iff] at h
   have hT : ∀ T, Z.taylm = some T → (fun _ => f t : Vec ℝ 1) ∈
-      (⟨fun _ => T.bounds.inf, fun _ => T.bounds.sup⟩ : Interval (Vec 𝕋 1)).construct :=
+      (⟨fun _ => T.bounds.inf, fun _ => T.bounds.sup⟩ : Interval (Vec 𝕋 1)).toSet :=
     fun T hT i => Taylm.bounds_mem (h.1 T hT) ht
   unfold Zoo.interval at hI
   rcases hz : Z.taylm with _ | T <;> rcases hv : Z.ivl with _ | J <;>

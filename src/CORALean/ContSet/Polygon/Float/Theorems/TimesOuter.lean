@@ -40,8 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.times_outer (v : Vec 𝕋 2) (P : Polygon 𝕋) :
-    (diagonal (toRealVec v) *ᵥ ·) '' ContSet.construct P ⊆
-      ContSet.construct (Polygon.times v P) := by
+    (diagonal (toRealVec v) *ᵥ ·) '' ContSet.toSet P ⊆
+      ContSet.toSet (Polygon.times v P) := by
   have h : toRealMat (diagonalBlock v) = diagonal (toRealVec v) :=
     funext fun i => funext fun l => toReal_diagonalBlock v i l
   have := Polygon.mtimes_outer (diagonalBlock v) P

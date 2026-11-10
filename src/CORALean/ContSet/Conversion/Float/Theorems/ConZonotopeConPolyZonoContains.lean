@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Conversion.Real.Operations.ConZonotope_to_ConPolyZono
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 public import CORALean.ContSet.PolyZonotope.Real.Operations.IdentE
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_ConPolyZono
@@ -55,8 +55,8 @@ variable [SoundFloatArithmetic 𝕋]
 
 /-- The polytope's rows read as a constraint system over the factors themselves. -/
 private theorem ConZonotope.aux_satisfies_conPolyZono (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
-    {β : Vec ℝ cZ.h} (hβ : ∀ j, |β j| ≤ 1) (hP : β ∈ cZ.P.nominal.construct) : -- --- CONCL ---
-    β ∈ cZ.conPolyZono.cons.construct := by -- --- PROOF ---
+    {β : Vec ℝ cZ.h} (hβ : ∀ j, |β j| ≤ 1) (hP : β ∈ cZ.P.nominal.toSet) : -- --- CONCL ---
+    β ∈ cZ.conPolyZono.cons.toSet := by -- --- PROOF ---
   obtain ⟨hle, heq⟩ := HPolytope.mem_nominal_iff.mp hP
   have hm : Real.PolyZonotope.monomial (Real.PolyZonotope.identE cZ.h) β = β :=
     funext fun j => Real.PolyZonotope.monomial_identE β j
@@ -112,7 +112,7 @@ private theorem ConZonotope.aux_satisfies_conPolyZono (cZ : ConZonotope 𝕋 (Ve
 
 -- the point survives as it stands: identity exponents make every monomial a factor
 theorem ConZonotope.conPolyZono_contains (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    cZ.construct ⊆ cZ.conPolyZono.construct := by -- --- PROOF ---
+    cZ.toSet ⊆ cZ.conPolyZono.toSet := by -- --- PROOF ---
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨β, hβ, hP, hx⟩ := ConZonotope.mem_nominalSet_iff.mp hx
   refine ConPolyZono.mem_nominalSet_iff.mpr ⟨β, fun _ => 0, hβ, fun j => j.elim0,

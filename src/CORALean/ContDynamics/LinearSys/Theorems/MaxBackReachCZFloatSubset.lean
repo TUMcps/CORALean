@@ -60,16 +60,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- Line 11 in floats is inside the exact layer's `CZ(P ⊖ Ẑ_W(τ_k))`, for a float polytope inside
 the exact one and an exact disturbance set inside the float one. -/
 theorem LinearSys.maxBackReachCZFloat_subset
-    (ρ : ∀ (P : Real.HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.construct)
-      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
+    (ρ : ∀ (P : Real.HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.toSet)
+      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.toSet c)
     (Bx : Interval (Vec 𝕋 n)) (P : HPolytope 𝕋 (Vec 𝕋 n)) (ZW : Zonotope (Vec 𝕋 n))
     (Pr : Real.HPolytope (Vec ℝ n)) (ZWr : Real.Zonotope (Vec ℝ n))
-    (hPrb : Bornology.IsBounded Pr.dropEqs.construct)
-    (hP : P.construct ⊆ Pr.construct) (hZ : ZWr.construct ⊆ ZW.construct)
-    (hker : ∀ i, ∀ y ∈ ZW.construct, (toRealMat P.Ae *ᵥ y) i = 0)
+    (hPrb : Bornology.IsBounded Pr.dropEqs.toSet)
+    (hP : P.toSet ⊆ Pr.toSet) (hZ : ZWr.toSet ⊆ ZW.toSet)
+    (hker : ∀ i, ∀ y ∈ ZW.toSet, (toRealMat P.Ae *ᵥ y) i = 0)
     (hkerr : ∀ (i : Fin Pr.me) (y : Vec ℝ n), Pr.Ae i y = 0) :
-    (LinearSys.maxBackReachCZFloat Bx P ZW).construct ⊆
-      (LinearSys.maxBackReachCZ ρ Pr hPrb ZWr).construct := fun _ hx =>
+    (LinearSys.maxBackReachCZFloat Bx P ZW).toSet ⊆
+      (LinearSys.maxBackReachCZ ρ Pr hPrb ZWr).toSet := fun _ hx =>
   LinearSys.minkowskiDiff_subset_maxBackReachCZ ρ Pr ZWr hPrb hkerr
     (fun y hy => hP (LinearSys.maxBackReachCZFloat_inner Bx P ZW hker hx y (hZ hy)))
 

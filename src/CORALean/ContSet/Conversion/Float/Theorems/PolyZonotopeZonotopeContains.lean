@@ -48,7 +48,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.zonotope_contains (pZ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    pZ.construct ⊆ pZ.zonotope.construct := by -- --- PROOF ---
+    pZ.toSet ⊆ pZ.zonotope.toSet := by -- --- PROOF ---
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_nominalSet_iff.mp hx
   refine Zonotope.mem_nominalSet_iff.mpr

@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Ellipsoid.excludesPoint_sound {E : Ellipsoid 𝕋 n} {p a : Vec 𝕋 n} {s : 𝕋}
     (h : E.excludesPoint p a s = true) : -- --- CONCL ---
-    toRealVec p ∉ E.construct := by -- --- PROOF ---
+    toRealVec p ∉ E.toSet := by -- --- PROOF ---
   unfold Ellipsoid.excludesPoint at h
   split_ifs at h with hs
   intro hp

@@ -62,8 +62,8 @@ private theorem ConPolyZono.aux_forall_abs_sub_append_iff {m₁ m₂ : ℕ} (u�
 /-- The product relaxed by the two slacks side by side is the product of the relaxed operands. -/
 theorem ConPolyZono.relax_cartProd (cPZ₁ : ConPolyZono α) (cPZ₂ : ConPolyZono β)
     (s₁ : Vec ℝ cPZ₁.cons.m) (s₂ : Vec ℝ cPZ₂.cons.m) : -- --- CONCL ---
-    ((cPZ₁.cartProd cPZ₂).relax (Fin.append s₁ s₂)).construct
-      = (cPZ₁.relax s₁).construct ×ˢ (cPZ₂.relax s₂).construct := by -- --- PROOF ---
+    ((cPZ₁.cartProd cPZ₂).relax (Fin.append s₁ s₂)).toSet
+      = (cPZ₁.relax s₁).toSet ×ˢ (cPZ₂.relax s₂).toSet := by -- --- PROOF ---
   -- `Fin.sum_univ_add` at the product's generator counts, through the projections
   have hh : ∀ f : Fin (cPZ₁.h + cPZ₂.h) → α × β, ∑ i : Fin (cPZ₁.cartProd cPZ₂).h, f i
       = ∑ i, f (Fin.castAdd cPZ₂.h i) + ∑ i, f (Fin.natAdd cPZ₁.h i) := fun f => Fin.sum_univ_add f

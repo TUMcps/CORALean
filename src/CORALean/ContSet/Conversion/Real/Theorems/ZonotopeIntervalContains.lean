@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Interval.Real.Interval
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
@@ -53,7 +53,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 /-- [1, Prop. 1]: the box built from a zonotope's center and generator widths
 contains it. -/
 theorem Zonotope.interval_contains (Z : Zonotope α) : -- --- CONCL ---
-    Z.construct ⊆ Z.interval.construct := by -- --- PROOF ---
+    Z.toSet ⊆ Z.interval.toSet := by -- --- PROOF ---
   rintro x ⟨β, hβ, rfl⟩
   intro i
   have key : |∑ j, entry (Z.G j) i * β j| ≤ ∑ j, |entry (Z.G j) i| :=

@@ -44,16 +44,16 @@ distance-sign properties as `IsVerifySound`, read through the float-to-real map.
 structure LinearSys.IsVerifySoundFloat (Reach : Set (Vec ℝ n)) (reachFn : 𝕋 → Zonotope (Vec 𝕋 n))
     (innerApprox : Zonotope (Vec 𝕋 n) → 𝕋 → ConZonotope 𝕋 (Vec 𝕋 n))
     (distG distF : ConZonotope 𝕋 (Vec 𝕋 n) → HPolytope 𝕋 (Vec 𝕋 n) → 𝕋) : Prop where
-  outer (ε : 𝕋) : Reach ⊆ (reachFn ε).construct
-  inner (R : Zonotope (Vec 𝕋 n)) (ε : 𝕋) : (innerApprox R ε).construct ⊆ Reach
+  outer (ε : 𝕋) : Reach ⊆ (reachFn ε).toSet
+  inner (R : Zonotope (Vec 𝕋 n)) (ε : 𝕋) : (innerApprox R ε).toSet ⊆ Reach
   distG_nonpos (C : ConZonotope 𝕋 (Vec 𝕋 n)) (P : HPolytope 𝕋 (Vec 𝕋 n)) :
-    toReal (distG C P) ≤ 0 → C.construct ⊆ P.construct
+    toReal (distG C P) ≤ 0 → C.toSet ⊆ P.toSet
   distG_pos (C : ConZonotope 𝕋 (Vec 𝕋 n)) (P : HPolytope 𝕋 (Vec 𝕋 n)) :
-    0 < toReal (distG C P) → ¬ C.construct ⊆ P.construct
+    0 < toReal (distG C P) → ¬ C.toSet ⊆ P.toSet
   distF_pos (C : ConZonotope 𝕋 (Vec 𝕋 n)) (P : HPolytope 𝕋 (Vec 𝕋 n)) :
-    0 < toReal (distF C P) → Disjoint C.construct P.construct
+    0 < toReal (distF C P) → Disjoint C.toSet P.toSet
   distF_nonpos (C : ConZonotope 𝕋 (Vec 𝕋 n)) (P : HPolytope 𝕋 (Vec 𝕋 n)) :
-    toReal (distF C P) ≤ 0 → ¬ Disjoint C.construct P.construct
+    toReal (distF C P) ≤ 0 → ¬ Disjoint C.toSet P.toSet
 
 end CORALean
 

@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ConPolyZono.isequal_sound {Z S : ConPolyZono 𝕋 (Vec 𝕋 n)}
     (h : Z.isequal S = true) : -- --- CONCL ---
-    Z.construct = S.construct := by -- --- PROOF ---
+    Z.toSet = S.toSet := by -- --- PROOF ---
   unfold ConPolyZono.isequal at h
   split at h
   · rename_i e
@@ -83,8 +83,8 @@ theorem ConPolyZono.isequal_sound {Z S : ConPolyZono 𝕋 (Vec 𝕋 n)}
       have e₂' : RealImage.realImage u.sup = RealImage.realImage v.sup := e₂
       simp only [Interval.nominal, e₁', e₂']
     -- the error boxes
-    have hr : r₁.construct = r₂.construct := by
-      unfold Interval.construct
+    have hr : r₁.toSet = r₂.toSet := by
+      unfold Interval.toSet
       rw [hint hEi hEs]
     -- so the nominal sets are the same
     have hdn : d₁.nominal = Real.Interval.unit p₁ :=
@@ -104,8 +104,8 @@ theorem ConPolyZono.isequal_sound {Z S : ConPolyZono 𝕋 (Vec 𝕋 n)}
           ⟨m₁, q₁, toRealMat A₂, R₂, toRealVec b₂, o₁, d₁.nominal⟩, ho₂, hdn⟩ (toRealVec s₂)
       rw [hc, hG, hGI, hE₁, hE₂, hA, hb, hs]
     -- the sum of nominal set and error box, on both sides
-    change ContSet.construct (nominal Z') + r₁.construct
-      = ContSet.construct (nominal S') + r₂.construct
+    change ContSet.toSet (nominal Z') + r₁.toSet
+      = ContSet.toSet (nominal S') + r₂.toSet
     rw [hN, hr]
   · simp at h
 

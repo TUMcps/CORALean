@@ -1,9 +1,9 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.CompactZeros
-public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructEmptySet
+public import CORALean.ContSet.HPolytope.Real.Theorems.ToSetEmptySet
 public import CORALean.ContSet.HPolytope.Real.Theorems.NormalizeRowsExact
-public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
+public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictToSet
 
 @[expose] public section
 
@@ -41,14 +41,14 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.compactZeros_exact (P : HPolytope (Vec ℝ n)) : -- --- CONCL ---
-    P.compactZeros.construct = P.construct := by -- --- PROOF ---
+    P.compactZeros.toSet = P.toSet := by -- --- PROOF ---
   rw [← P.normalizeRows_exact]
   unfold HPolytope.compactZeros
   generalize P.normalizeRows = Q
   simp only []
   split_ifs with h
   · -- infeasible zero row: both sets are empty
-    have hQ : Q.construct = ∅ := by
+    have hQ : Q.toSet = ∅ := by
       refine Set.eq_empty_of_forall_notMem fun x hx => ?_
       rcases h with ⟨i, hA, hb⟩ | ⟨r, hA, hb⟩
       · have := hx.1 i
@@ -61,12 +61,12 @@ theorem HPolytope.compactZeros_exact (P : HPolytope (Vec ℝ n)) : -- --- CONCL 
         exact hb this.symm
     -- and so is the empty set
     rw [hQ]
-    exact HPolytope.construct_emptySet
+    exact HPolytope.toSet_emptySet
   · -- no infeasible row: the zero rows hold everywhere
     push Not at h
-    rw [HPolytope.restrict_construct]
+    rw [HPolytope.restrict_toSet]
     ext x
-    simp only [Set.mem_setOf_eq, Finset.mem_filter, Finset.mem_univ, true_and, HPolytope.construct]
+    simp only [Set.mem_setOf_eq, Finset.mem_filter, Finset.mem_univ, true_and, HPolytope.toSet]
     constructor
     · rintro ⟨h1, h2⟩
       refine ⟨fun i => ?_, fun r => ?_⟩

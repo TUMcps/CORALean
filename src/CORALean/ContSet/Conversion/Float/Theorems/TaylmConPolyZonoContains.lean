@@ -45,7 +45,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.conPolyZono_contains (T : Fin m → Taylm 𝕋 n) :
-    Taylm.construct T ⊆ (Taylm.conPolyZono T).construct :=
+    Taylm.toSet T ⊆ (Taylm.conPolyZono T).toSet :=
   (Taylm.polyZonotope_contains T).trans (PolyZonotope.conPolyZono_contains _)
 
 end CORALean.Float

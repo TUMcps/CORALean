@@ -100,8 +100,8 @@ private theorem ConZonotope.aux_family_eq_stacked (cZ : ConZonotope (Vec ℝ n))
 theorem ConZonotope.intersectStripFamily_exact (cZ : ConZonotope (Vec ℝ n))
     (H : Fin m → Mat ℝ p n) (r : Fin m → ℝ) (y : Fin m → Vec ℝ p) (lam : Fin m → Mat ℝ n p)
     (hr : ∀ j, 0 ≤ r j) : -- --- CONCL ---
-    (cZ.intersectStripFamily H r y lam).construct =
-      cZ.construct ∩ {x | ∀ j k, |(H j *ᵥ x - y j) k| ≤ r j} := by -- --- PROOF ---
+    (cZ.intersectStripFamily H r y lam).toSet =
+      cZ.toSet ∩ {x | ∀ j k, |(H j *ᵥ x - y j) k| ≤ r j} := by -- --- PROOF ---
   rw [ConZonotope.aux_family_eq_stacked, ConZonotope.intersectStrip_exact _ _ _ _ _
     fun q => hr _]
   -- the stacked strip rows are the strip rows of every `j`, read through the index equivalence

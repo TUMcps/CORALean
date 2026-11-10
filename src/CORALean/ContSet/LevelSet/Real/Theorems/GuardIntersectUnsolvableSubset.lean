@@ -63,15 +63,15 @@ variable {n : ℕ}
 /-- The same with any expansion of `g` that encloses it on the box. -/
 private theorem aux_guardIntersectUnsolvable_subset (I : Interval (Vec ℝ n)) (k : Fin n)
     {g : Vec ℝ n → ℝ} (b : ℝ) (a c : Vec ℝ n) (v : Vec ℝ n → ℝ) (l u : ℝ)
-    (hT : ∀ x ∈ I.construct, g x - (b + ∑ i, a i * (x i - c i) + v x) ∈ Set.Icc l u)
+    (hT : ∀ x ∈ I.toSet, g x - (b + ∑ i, a i * (x i - c i) + v x) ∈ Set.Icc l u)
     (ha : a k ≠ 0) (pk Dp : Vec ℝ n → ℝ)
     (hsplit : ∀ x, (-b + ∑ i, a i * c i - ∑ i ∈ Finset.univ.erase k, a i * x i - v x) / a k
       = pk x + Dp x)
     (Dl Du : ℝ)
-    (hD : ∀ x ∈ I.construct, ∀ r ∈ Set.Icc l u, Dl ≤ Dp x - r / a k ∧ Dp x - r / a k ≤ Du)
+    (hD : ∀ x ∈ I.toSet, ∀ r ∈ Set.Icc l u, Dl ≤ Dp x - r / a k ∧ Dp x - r / a k ≤ Du)
     : -- --- CONCL ---
-    I.construct ∩ {x | g x = 0} ⊆
-      (guardIntersectUnsolvable I k pk Dl Du).construct := by -- --- PROOF ---
+    I.toSet ∩ {x | g x = 0} ⊆
+      (guardIntersectUnsolvable I k pk Dl Du).toSet := by -- --- PROOF ---
   rintro x ⟨hxI, hxg⟩
   have hxg : g x = 0 := hxg
   set r := g x - (b + ∑ i, a i * (x i - c i) + v x) with hr
@@ -110,10 +110,10 @@ theorem guardIntersectUnsolvable_subset {I : Interval (Vec ℝ n)} {κ : ℕ} (k
     (hsplit : ∀ x, (-g I.center + ∑ i, taylorGrad g I.center i * I.center i
       - ∑ i ∈ Finset.univ.erase k, taylorGrad g I.center i * x i - taylorHigher g κ I.center x)
         / taylorGrad g I.center k = pk x + Dp x)
-    (Dl Du : ℝ) (hD : ∀ x ∈ I.construct, ∀ r ∈ Set.Icc T.l T.u,
+    (Dl Du : ℝ) (hD : ∀ x ∈ I.toSet, ∀ r ∈ Set.Icc T.l T.u,
       Dl ≤ Dp x - r / taylorGrad g I.center k ∧ Dp x - r / taylorGrad g I.center k ≤ Du)
     :
-    I.construct ∩ {x | g x = 0} ⊆ (guardIntersectUnsolvable I k pk Dl Du).construct :=
+    I.toSet ∩ {x | g x = 0} ⊆ (guardIntersectUnsolvable I k pk Dl Du).toSet :=
   aux_guardIntersectUnsolvable_subset I k _ _ _ _ _ _ (fun _ hx => T.mem hg hκ hx) ha pk Dp
     hsplit Dl Du hD
 

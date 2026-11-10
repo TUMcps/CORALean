@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.boxOut_outer (pZ : PolyZonotope (Vec 𝕋 n)) (removed : Fin pZ.h → Bool)
     (taken : Fin pZ.q → Bool) : -- --- CONCL ---
-    pZ.construct ⊆ (pZ.boxOut removed taken).construct := by -- --- PROOF ---
+    pZ.toSet ⊆ (pZ.boxOut removed taken).toSet := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨a, β, ha, hβ, hy⟩ := PolyZonotope.mem_nominalSet_iff.mp hy
   -- the removed generators reach `D i` in coordinate `i`, the box has radius `R i`

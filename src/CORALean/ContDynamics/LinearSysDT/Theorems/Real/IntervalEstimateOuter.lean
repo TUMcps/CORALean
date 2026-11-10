@@ -68,10 +68,10 @@ theorem LinearSysDT.intervalEstimate_outer (sys : LinearSysDT ℝ n) (L : Mat �
     (X₀ : Zonotope (Vec ℝ n))
     (W : Zonotope (Vec ℝ sys.r)) (V : Zonotope (Vec ℝ sys.s)) (u : ℕ → Vec ℝ sys.m)
     (y : ℕ → Vec ℝ sys.q) (x : ℕ → Vec ℝ n) (w : ℕ → Vec ℝ sys.r) (v : ℕ → Vec ℝ sys.s)
-    (h0 : x 0 ∈ X₀.construct) (hw : ∀ k, w k ∈ W.construct) (hv : ∀ k, v k ∈ V.construct)
+    (h0 : x 0 ∈ X₀.toSet) (hw : ∀ k, w k ∈ W.toSet) (hv : ∀ k, v k ∈ V.toSet)
     (hstep : ∀ k, x (k + 1) = sys.A *ᵥ x k + sys.B *ᵥ u k + sys.E *ᵥ w k)
     (hy : ∀ k, y k = sys.C *ᵥ x k + sys.F *ᵥ v k) (k : ℕ) : -- --- CONCL ---
-    x k ∈ (LinearSysDT.intervalEstimate sys L X₀ W V u y k).construct := by -- --- PROOF ---
+    x k ∈ (LinearSysDT.intervalEstimate sys L X₀ W V u y k).toSet := by -- --- PROOF ---
   set S := LinearSysDT.intervalEstimateState sys L X₀ W V u y
   -- the algorithm's estimate is the Luenberger observer from `p₀`
   have he := LinearSysDT.luenbergerError_mem_reachErrorSet sys L X₀ W V u y x

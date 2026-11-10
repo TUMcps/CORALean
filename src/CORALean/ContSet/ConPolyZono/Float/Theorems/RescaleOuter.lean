@@ -60,9 +60,9 @@ private def ConPolyZono.aux_RescaleInv (cPZ acc : ConPolyZono 𝕋 (Vec 𝕋 n))
       = ∑ j : Fin cPZ.qI, toReal (cPZ.GI j i) * β j)
   ∧ ∀ a : ℕ → ℝ, (∀ k, k < cPZ.p → |a k| ≤ 1)
     → (∀ k, k < cPZ.p → |ConPolyZono.aux_rescaleSub cen rad t a k| ≤ 1)
-    → (fun k : Fin cPZ.p => ConPolyZono.aux_rescaleSub cen rad t a k) ∈ cPZ.cons.construct
-    → (fun k : Fin acc.p => a k) ∈ acc.cons.construct
-      ∧ ∀ e ∈ cPZ.I_error.construct, ∃ e' ∈ acc.I_error.construct, ∀ i,
+    → (fun k : Fin cPZ.p => ConPolyZono.aux_rescaleSub cen rad t a k) ∈ cPZ.cons.toSet
+    → (fun k : Fin acc.p => a k) ∈ acc.cons.toSet
+      ∧ ∀ e ∈ cPZ.I_error.toSet, ∃ e' ∈ acc.I_error.toSet, ∀ i,
         (∑ l, toReal (acc.G l i) * Real.PolyZonotope.monomial acc.E (fun k : Fin acc.p => a k) l)
             + e' i
           = (∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E
@@ -177,9 +177,9 @@ private theorem ConPolyZono.aux_cover (lo hi : 𝕋) (v : ℝ)
 /-- Any midpoints and radii whose boxes cover every factor vector of `[-1,1]ᵖ` satisfying the
 constraints: the fold onto them encloses the set. -/
 private theorem ConPolyZono.aux_rescale_outer_of_cover (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
-    (cen rad : ℕ → 𝕋) (hcov : ∀ x : Fin cPZ.p → ℝ, (∀ k, |x k| ≤ 1) → x ∈ cPZ.cons.construct →
+    (cen rad : ℕ → 𝕋) (hcov : ∀ x : Fin cPZ.p → ℝ, (∀ k, |x k| ≤ 1) → x ∈ cPZ.cons.toSet →
       ∀ k : Fin cPZ.p, |x k - toReal (cen k)| ≤ toReal (rad k)) : -- --- CONCL ---
-    cPZ.construct ⊆ ConPolyZono.construct
+    cPZ.toSet ⊆ ConPolyZono.toSet
       ((List.range cPZ.p).foldl (ConPolyZono.rescaleStep cen rad) cPZ) := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨x, β, hx, hβ, hs, hy⟩ := ConPolyZono.mem_nominalSet_iff.mp hy
@@ -252,16 +252,16 @@ vector of the unit box satisfying them. -/
 theorem ConPolyZono.rescale_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (contract : Interval (Vec 𝕋 cPZ.p) → Interval (Vec 𝕋 cPZ.p))
     (hkeep : ∀ x : Vec ℝ cPZ.p,
-        x ∈ ((Interval.unit cPZ.p : Interval (Vec 𝕋 cPZ.p))).construct → x ∈ cPZ.cons.construct →
-      x ∈ (contract ((Interval.unit cPZ.p : Interval (Vec 𝕋 cPZ.p)))).construct) : -- --- CONCL ---
-    cPZ.construct ⊆ (cPZ.rescale contract).construct := by -- --- PROOF ---
+        x ∈ ((Interval.unit cPZ.p : Interval (Vec 𝕋 cPZ.p))).toSet → x ∈ cPZ.cons.toSet →
+      x ∈ (contract ((Interval.unit cPZ.p : Interval (Vec 𝕋 cPZ.p)))).toSet) : -- --- CONCL ---
+    cPZ.toSet ⊆ (cPZ.rescale contract).toSet := by -- --- PROOF ---
   unfold ConPolyZono.rescale
   dsimp only
   refine ConPolyZono.aux_rescale_outer_of_cover cPZ _ _ (fun x hx hs k => ?_)
   simp only [Fin.is_lt, dif_pos, Fin.eta]
   refine ConPolyZono.aux_cover _ _ _ ?_
   -- the unit box, read as reals
-  have hunit : x ∈ ((Interval.unit cPZ.p : Interval (Vec 𝕋 cPZ.p))).construct := fun i => by
+  have hunit : x ∈ ((Interval.unit cPZ.p : Interval (Vec 𝕋 cPZ.p))).toSet := fun i => by
     show toReal (neg one) ≤ x i ∧ x i ≤ toReal one
     rw [toReal_neg, toReal_one]
     exact abs_le.mp (hx i)

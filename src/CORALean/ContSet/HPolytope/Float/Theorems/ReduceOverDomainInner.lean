@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 public import CORALean.ContSet.HPolytope.Float.Theorems.ReduceOverDomainRows
 public import CORALean.ContSet.HPolytope.Float.Theorems.RowScalePos
 
@@ -49,10 +49,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem HPolytope.reduceOverDomain_inner (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n)) (hP : P.IsErrFree)
     (hme : P.me = 0)
     (dom : Interval (Vec 𝕋 n)) : -- --- CONCL ---
-    (P.reduceOverDomain p dom false).construct ∩ dom.construct ⊆
-      P.construct ∩ dom.construct := by -- --- PROOF ---
+    (P.reduceOverDomain p dom false).toSet ∩ dom.toSet ⊆
+      P.toSet ∩ dom.toSet := by -- --- PROOF ---
   rintro x ⟨hR, hd⟩
-  refine ⟨(HPolytope.mem_construct_iff hP).mpr ⟨fun i => ?_, fun r => absurd r.isLt (by omega)⟩, hd⟩
+  refine ⟨(HPolytope.mem_toSet_iff hP).mpr ⟨fun i => ?_, fun r => absurd r.isLt (by omega)⟩, hd⟩
   set Ainf : Vec 𝕋 n := fun j => minimumOver fun i => mulDown (P.A i j) (P.rowScale p i)
   set Asup : Vec 𝕋 n := fun j => maximumOver fun i => mulUp (P.A i j) (P.rowScale p i)
   set bInf : 𝕋 := minimumOver fun i => mulDown (P.b i) (P.rowScale p i)
@@ -62,7 +62,7 @@ theorem HPolytope.reduceOverDomain_inner (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋
   obtain ⟨-, hhi⟩ := HPolytope.reduceOverDomain_rows p P dom hd i
   -- the reduced row, under its stored lower bound
   have hred : ∑ j, toReal (Ared j) * x j ≤ toReal (subDown bInf prodSup) :=
-    ((HPolytope.mem_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mp hR).1
+    ((HPolytope.mem_toSet_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mp hR).1
       (⟨0, Nat.one_pos⟩ : Fin 1)
   have hsub := subDown_le_sub bInf prodSup
   -- the scaled right-hand side is above the hull's bottom

@@ -10,7 +10,7 @@ public import Mathlib.Tactic.Linarith
 # A level set that is no star set of CORA's predicate
 
 A star set `{c + G α | C α ≤ d, l ≤ α ≤ u}`, its predicate an `HPolytope`, is convex
-(`StarSet.convex_construct`), and a level set
+(`StarSet.convex_toSet`), and a level set
 need not be: `{x | x₀² - 1 = 0} = {-1, 1}` contains the two points and not their midpoint. So the
 equivalence of star sets and level sets of [1, Fig. 1 (Star Sets ↔ Level Sets)] needs a predicate
 beyond the linear one: with a level-set predicate it holds for bounded level sets
@@ -47,14 +47,14 @@ namespace CORALean.Real
 
 /-- `{-1, 1}` is a level set and no star set with a polytope predicate. -/
 theorem LevelSet.exists_not_starSet_hPolytope : -- --- CONCL ---
-    ∃ L : LevelSet 1, ¬ ∃ s : StarSet ℋ𝒫 1, s.construct = L.construct
+    ∃ L : LevelSet 1, ¬ ∃ s : StarSet ℋ𝒫 1, s.toSet = L.toSet
     := by -- --- PROOF ---
   refine ⟨⟨1, fun x _ => x 0 ^ 2 - 1, fun _ => .eq⟩, ?_⟩
   rintro ⟨s, hs⟩
   -- the two points `1` and `-1` are on the level set, and `0` is not
-  have h1 : (fun _ => 1 : Vec ℝ 1) ∈ s.construct := hs ▸ (fun _ => by simp [CompOp.holds])
-  have h2 : (fun _ => -1 : Vec ℝ 1) ∈ s.construct := hs ▸ (fun _ => by simp [CompOp.holds])
-  have h0 := s.convex_construct h1 h2 (by norm_num : (0 : ℝ) ≤ 1 / 2)
+  have h1 : (fun _ => 1 : Vec ℝ 1) ∈ s.toSet := hs ▸ (fun _ => by simp [CompOp.holds])
+  have h2 : (fun _ => -1 : Vec ℝ 1) ∈ s.toSet := hs ▸ (fun _ => by simp [CompOp.holds])
+  have h0 := s.convex_toSet h1 h2 (by norm_num : (0 : ℝ) ≤ 1 / 2)
     (by norm_num : (0 : ℝ) ≤ 1 / 2) (by norm_num)
   rw [hs] at h0
   have := h0 0

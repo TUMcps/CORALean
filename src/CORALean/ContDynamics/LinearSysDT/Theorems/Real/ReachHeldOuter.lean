@@ -74,7 +74,7 @@ private theorem aux_x_eq {sys : LinearSysDT ℝ n} {R₀ U : S n} {x : ℕ → V
 
 theorem LinearSysDT.reachHeld_outer (sys : LinearSysDT ℝ n) (R₀ U : S n)
     {x : ℕ → Vec ℝ n} {u : Vec ℝ n} (h : sys.IsCanonicalHeldTrajectory R₀ U x u) (N : ℕ) :
-    x N ∈ construct (sys.reachHeld ⟨R₀, U, 0, N⟩) := by
+    x N ∈ toSet (sys.reachHeld ⟨R₀, U, 0, N⟩) := by
   rw [aux_x_eq h N]
   exact plus_outer _ _ (Set.add_mem_add
     (mtimes_outer _ _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ h.init)))

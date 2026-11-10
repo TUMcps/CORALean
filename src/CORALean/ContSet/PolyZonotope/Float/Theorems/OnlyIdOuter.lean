@@ -44,11 +44,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Outer: the original lies in the sum of the two parts. -/
 theorem PolyZonotope.onlyId_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (S : Finset (Fin pZ.p)) : -- --- CONCL ---
-    pZ.construct ⊆ (pZ.onlyId S).1.construct + (pZ.onlyId S).2.construct := by -- --- PROOF ---
+    pZ.toSet ⊆ (pZ.onlyId S).1.toSet + (pZ.onlyId S).2.toSet := by -- --- PROOF ---
   rintro _ ⟨_, ⟨a, β, ha, hβ, rfl⟩, e, he, rfl⟩
   have hpt := PolyZonotope.onlyId_point pZ S a
-  have h0 : (0 : Vec ℝ n) ∈ (pZ.onlyId S).1.I_error.construct := by
-    show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).construct
+  have h0 : (0 : Vec ℝ n) ∈ (pZ.onlyId S).1.I_error.toSet := by
+    show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).toSet
     rw [Interval.origin_exact]; rfl
   -- the part of the first piece at the factors of `S`, and the remainder's point
   set y₁ := (nominal (pZ.onlyId S).1).point (fun k' => a (S.orderIsoOfFin rfl k').1) with hy₁
@@ -56,7 +56,7 @@ theorem PolyZonotope.onlyId_outer (pZ : PolyZonotope (Vec 𝕋 n))
   have hq : (nominal (pZ.onlyId S).1).q = 0 := rfl
   -- the first piece has no independent generators, so its point is a point of the set
   have hmem : y₁ ∈ nominalSet (pZ.onlyId S).1 := by
-    show y₁ ∈ (nominal (pZ.onlyId S).1).construct
+    show y₁ ∈ (nominal (pZ.onlyId S).1).toSet
     refine ⟨fun k' => a (S.orderIsoOfFin rfl k').1, fun j => (j : Fin 0).elim0, fun k => ha _,
       fun j => (j : Fin 0).elim0, ?_⟩
     have : ∑ j : Fin (nominal (pZ.onlyId S).1).q,

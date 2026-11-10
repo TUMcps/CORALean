@@ -38,8 +38,8 @@ variable {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.quadMap_outer (Q : Fin m → Mat ℝ n n) (I : Interval (Vec ℝ n)) :
-    (fun x : Vec ℝ n => PolyZonotope.quadBilin Q x x) '' I.construct
-      ⊆ (I.quadMap Q).construct := by
+    (fun x : Vec ℝ n => PolyZonotope.quadBilin Q x x) '' I.toSet
+      ⊆ (I.quadMap Q).toSet := by
   rintro _ ⟨x, hx, rfl⟩
   exact I.quadMapMixed_outer Q I ⟨⟨x, x⟩, ⟨hx, hx⟩, rfl⟩
 

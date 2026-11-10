@@ -48,10 +48,10 @@ variable {n : ℕ}
 
 /-- [1, Sec. 5.1]: `u + g` maximizes and `u - g` minimizes `x·s` over `Z`. -/
 theorem Zonotope.extremalGen_extremal (Z : Zonotope (Vec ℝ n)) (s : Vec ℝ n) : -- --- CONCL ---
-    (Z.c + Z.extremalGen s ∈ Z.construct ∧
-        ∀ x ∈ Z.construct, x ⬝ᵥ s ≤ (Z.c + Z.extremalGen s) ⬝ᵥ s) ∧
-      Z.c - Z.extremalGen s ∈ Z.construct ∧
-        ∀ x ∈ Z.construct, (Z.c - Z.extremalGen s) ⬝ᵥ s ≤ x ⬝ᵥ s := by -- --- PROOF ---
+    (Z.c + Z.extremalGen s ∈ Z.toSet ∧
+        ∀ x ∈ Z.toSet, x ⬝ᵥ s ≤ (Z.c + Z.extremalGen s) ⬝ᵥ s) ∧
+      Z.c - Z.extremalGen s ∈ Z.toSet ∧
+        ∀ x ∈ Z.toSet, (Z.c - Z.extremalGen s) ⬝ᵥ s ≤ x ⬝ᵥ s := by -- --- PROOF ---
   -- a sign is at most one in absolute value, and a sign times its argument is the modulus
   have hsg : ∀ r : ℝ, |Real.sign r| ≤ 1 := fun r => by
     rcases Real.sign_apply_eq r with h | h | h <;> simp [h]
@@ -65,7 +65,7 @@ theorem Zonotope.extremalGen_extremal (Z : Zonotope (Vec ℝ n)) (s : Vec ℝ n)
     simp only [Zonotope.extremalGen, sum_dotProduct, smul_dotProduct, smul_eq_mul]
     exact Finset.sum_congr rfl fun k _ => by rw [dotProduct_comm s, hsm]
   -- every point of `Z` stays within `Σⱼ |vⱼ·s|` of `u·s`
-  have hb : ∀ x ∈ Z.construct, Z.c ⬝ᵥ s - ∑ j, |Z.G j ⬝ᵥ s| ≤ x ⬝ᵥ s ∧
+  have hb : ∀ x ∈ Z.toSet, Z.c ⬝ᵥ s - ∑ j, |Z.G j ⬝ᵥ s| ≤ x ⬝ᵥ s ∧
       x ⬝ᵥ s ≤ Z.c ⬝ᵥ s + ∑ j, |Z.G j ⬝ᵥ s| := fun x hx =>
     (Z.inter_hyperplane_iff s (x ⬝ᵥ s)).1 ⟨x, hx, rfl⟩
   refine ⟨⟨⟨fun j => Real.sign (s ⬝ᵥ Z.G j), fun j => hsg _, rfl⟩, fun x hx => ?_⟩,

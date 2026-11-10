@@ -54,12 +54,12 @@ variable {n : ℕ}
 
 /-- `expmFrom` encloses the tail `e^M - Σ_{i < k} Mⁱ/i!` of the series, for `k ≤ η`. -/
 theorem MatExp.expmFrom_outer (A P : Interval (Mat ℝ n n)) {η k : ℕ} (hk : k ≤ η)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) (hP : M ^ k ∈ P.construct) : -- --- CONCL ---
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) (hP : M ^ k ∈ P.toSet) : -- --- CONCL ---
     exp M - ∑ i ∈ Finset.range k, ((Nat.factorial i : ℝ)⁻¹) • M ^ i
-      ∈ (MatExp.expmFrom A η k P).construct := by -- --- PROOF ---
+      ∈ (MatExp.expmFrom A η k P).toSet := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ : ∃ m, η = k + m := ⟨η - k, by omega⟩
   -- the powers continue from `P`
-  have hpow : ∀ j, M ^ (k + j) ∈ (Interval.powers A P j).construct := fun j => by
+  have hpow : ∀ j, M ^ (k + j) ∈ (Interval.powers A P j).toSet := fun j => by
     have h := Interval.powers_outer A P hM hP j
     rwa [← pow_add] at h
   have hfold := MatExp.foldl_plus_mem

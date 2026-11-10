@@ -69,18 +69,18 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 `H(t_{k+1})` for every `h` the float `H(t_k)` holds. -/
 private theorem LinearSys.aux_affineTimePointNextFloat_outer (sys : LinearSys 𝕋 n)
     {H : Zonotope (Vec 𝕋 n)} {ũ : Vec 𝕋 n} {Δt : 𝕋} {η : ℕ} (hΔt : 0 < toReal Δt)
-    (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {h : Vec ℝ n} (hh : h ∈ H.construct)
+    (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {h : Vec ℝ n} (hh : h ∈ H.toSet)
         : -- --- CONCL ---
     exp (toReal Δt • Scalar.toRealMat sys.A) *ᵥ h
         + Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt) *ᵥ toRealVec ũ
-      ∈ (sys.affineTimePointNextFloat H ũ Δt η).construct := by -- --- PROOF ---
+      ∈ (sys.affineTimePointNextFloat H ũ Δt η).toSet := by -- --- PROOF ---
   -- `e^{AΔt} h` in `[e^{AΔt}] H`
   have hexp := sys.exp_mem_expIntervalFloat hη le_rfl le_rfl
   have hmt := Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
     (S := 𝒵[𝕋])
     (sys.expIntervalFloat Δt Δt η) H (Set.mem_biUnion hexp (Set.mem_image_of_mem _ hh))
   -- the input held at `ũ` over `[0, Δt]` contributes the constant's share
-  have hpt : toRealVec ũ ∈ (Interval.point ũ).zonotope.construct :=
+  have hpt : toRealVec ũ ∈ (Interval.point ũ).zonotope.toSet :=
     Interval.zonotope_contains _ (Interval.mem_point ũ)
   have hreach : Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt) *ᵥ toRealVec ũ
       ∈ sys.inputReach (S := 𝒵[𝕋]) (Interval.point ũ).zonotope (toReal Δt) :=
@@ -96,11 +96,11 @@ end
 
 theorem LinearSys.affineTimeIntervalOuterFloat_outer (sys : LinearSys 𝕋 n) {H : Zonotope (Vec 𝕋 n)}
     {ũ : Vec 𝕋 n} {Δt : 𝕋} {η : ℕ} (hΔt : 0 < toReal Δt)
-    (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {h : Vec ℝ n} (hh : h ∈ H.construct) {τ : ℝ}
+    (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {h : Vec ℝ n} (hh : h ∈ H.toSet) {τ : ℝ}
     (hτ0 : 0 ≤ τ) (hτ : τ ≤ toReal Δt) :
     exp (τ • Scalar.toRealMat sys.A) *ᵥ h
         + Real.MatExp.expIntegral (Scalar.toRealMat sys.A) τ *ᵥ toRealVec ũ
-      ∈ (sys.affineTimeIntervalOuterFloat H ũ Δt η).construct :=
+      ∈ (sys.affineTimeIntervalOuterFloat H ũ Δt η).toSet :=
   sys.affineWindowFloat_outer hΔt hη hh (sys.aux_affineTimePointNextFloat_outer hΔt hη hh) hτ0 hτ
 
 end CORALean

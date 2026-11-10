@@ -29,10 +29,10 @@ open ContSet
 -- ========================================  INSTANCES  ========================================= --
 
 instance {α : Type} [AddCommGroup α] [Module ℝ α] :
-    ContSet (SupportFunction α) α := ⟨SupportFunction.construct⟩
+    ContSet (SupportFunction α) α := ⟨SupportFunction.toSet⟩
 
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : ConvexSet (SupportFunction α) α :=
-  ⟨SupportFunction.convex_construct⟩
+  ⟨SupportFunction.convex_toSet⟩
 
 end CORALean.Real
 

@@ -10,7 +10,7 @@ public import Mathlib.Data.Fintype.Card
 
 The rows of a polytope picked by two index sets, in their order: CORA's `A(idx,:)`, `b(idx)`,
 `Ae(idx,:)`, `be(idx)`, which every step of `compact_` ends with. The others are deleted;
-`Theorems.RestrictConstruct` says what is left.
+`Theorems.RestrictToSet` says what is left.
 
 ## Inputs
 * `P` – H-polytope

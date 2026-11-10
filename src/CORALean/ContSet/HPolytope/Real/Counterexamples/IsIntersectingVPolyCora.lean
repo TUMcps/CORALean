@@ -95,7 +95,7 @@ open Matrix
 theorem HPolytope.isIntersectingVPolyCora_counterexample : -- --- CONCL ---
     let P1 : HPolytope (Vec ℝ 2) := HPolytope.ineqs !![1, 0; 0, 1; -1, 0; 0, -1] ![1, 1, 1, 1]
     let P2 : VPolytope (Vec ℝ 2) := ⟨3, ![![5, 5], ![6, 5], ![5, 6]]⟩
-    Disjoint P1.construct P2.construct ∧
+    Disjoint P1.toSet P2.toSet ∧
       ∀ linprog : Set (Vec ℝ 2 × (Fin P2.k → ℝ)) → ℤ, (∀ S, linprog S = -2 → S = ∅) →
         P1.isIntersectingVPolyCora P2 linprog = true := by -- --- PROOF ---
   intro P1 P2

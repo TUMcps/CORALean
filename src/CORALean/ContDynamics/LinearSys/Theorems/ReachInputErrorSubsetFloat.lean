@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.ReachInputError
 public import CORALean.ContDynamics.LinearSys.Operations.ReachInputErrorFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepErrorBoxSubsetFloat
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 
@@ -60,8 +60,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem LinearSys.reachInputError_subset_float (sys : LinearSys 𝕋 n) {Δt : 𝕋}
     (hΔt : 0 ≤ toReal Δt) {η : ℕ} (hη : sys.IsOrderAdmissibleFloat Δt Δt η)
     (U : Zonotope (Vec 𝕋 n)) (k : ℕ) : -- --- CONCL ---
-    (sys.reachInputError (toReal Δt) η (nominal U) k).construct ⊆
-      ContSet.construct (sys.reachInputErrorFloat Δt η U k) := by -- --- PROOF ---
+    (sys.reachInputError (toReal Δt) η (nominal U) k).toSet ⊆
+      ContSet.toSet (sys.reachInputErrorFloat Δt η U k) := by -- --- PROOF ---
   have heA := sys.exp_mem_expIntervalFloat hη (t := toReal Δt) le_rfl le_rfl
   have hbox := sys.timePointStepErrorBox_subset_float hΔt hη U
   induction k with
@@ -72,16 +72,16 @@ theorem LinearSys.reachInputError_subset_float (sys : LinearSys 𝕋 n) {Δt : �
         + ∑ j, β j • (sys.reachInputError (toReal Δt) η (nominal U) 0).G j = 0 := by
       simp [LinearSys.reachInputError, Real.Zonotope.ofPoint]
     rw [h0]
-    show (0 : Vec ℝ n) ∈ (Zonotope.point fun _ : Fin n => (zero : 𝕋)).construct
-    rw [Zonotope.construct_point]
+    show (0 : Vec ℝ n) ∈ (Zonotope.point fun _ : Fin n => (zero : 𝕋)).toSet
+    rw [Zonotope.toSet_point]
     funext i
     simp [toRealVec, toReal_zero]
   | succ k ih =>
     -- one step: the previous error through `e^{AΔt}`, and the box paid afresh
     intro x hx
     have hx' : x ∈ (Real.Zonotope.mtimes (sys.discretize (toReal Δt)).A
-        (sys.reachInputError (toReal Δt) η (nominal U) k)).construct
-          + (sys.timePointStepErrorBox (toReal Δt) η (nominal U)).construct := by
+        (sys.reachInputError (toReal Δt) η (nominal U) k)).toSet
+          + (sys.timePointStepErrorBox (toReal Δt) η (nominal U)).toSet := by
       rw [Real.Zonotope.plus_exact]
       exact hx
     obtain ⟨y, hy, b, hb, rfl⟩ := hx'

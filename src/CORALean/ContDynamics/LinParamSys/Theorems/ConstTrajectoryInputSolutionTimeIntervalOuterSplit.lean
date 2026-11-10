@@ -109,21 +109,21 @@ theorem LinParamSys.IsCanonicalConstTrajectory.inputSolution_timeInterval_outer_
     (traj : sys.IsCanonicalConstTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) (η : ℕ)
     (hε : ‖(Interval.smul r sys.A).absMax‖ / ((η : ℝ) + 2) < 1)
     -- the split, then the segment, the constant, and the part holding the origin
-    (hsplit : ∀ y ∈ construct U, y - c ∈ construct U₀) (hcP : c ∈ construct P)
-    (hcS : ∀ lam ∈ Set.Icc (0:ℝ) 1, lam • c ∈ construct Sg)
-    (hbddP : Bornology.IsBounded (construct P))
-    (hconvS : Convex ℝ (construct Sg)) (hclosedS : IsClosed (construct Sg))
-    (hbddS : Bornology.IsBounded (construct Sg))
+    (hsplit : ∀ y ∈ toSet U, y - c ∈ toSet U₀) (hcP : c ∈ toSet P)
+    (hcS : ∀ lam ∈ Set.Icc (0:ℝ) 1, lam • c ∈ toSet Sg)
+    (hbddP : Bornology.IsBounded (toSet P))
+    (hconvS : Convex ℝ (toSet Sg)) (hclosedS : IsClosed (toSet Sg))
+    (hbddS : Bornology.IsBounded (toSet Sg))
     (hRconvS : Convex ℝ (MatExp.intervalInputRemainderSet sys.A r η Sg))
     (hRclosedS : IsClosed (MatExp.intervalInputRemainderSet sys.A r η Sg))
     (hRbddS : Bornology.IsBounded (MatExp.intervalInputRemainderSet sys.A r η Sg))
-    (h0₀ : (0 : Vec ℝ n) ∈ construct U₀) (hconv₀ : Convex ℝ (construct U₀))
-    (hclosed₀ : IsClosed (construct U₀)) (hbdd₀ : Bornology.IsBounded (construct U₀))
+    (h0₀ : (0 : Vec ℝ n) ∈ toSet U₀) (hconv₀ : Convex ℝ (toSet U₀))
+    (hclosed₀ : IsClosed (toSet U₀)) (hbdd₀ : Bornology.IsBounded (toSet U₀))
     (hRconv₀ : Convex ℝ (MatExp.intervalInputRemainderSet sys.A r η U₀))
     (hRclosed₀ : IsClosed (MatExp.intervalInputRemainderSet sys.A r η U₀))
     (hRbdd₀ : Bornology.IsBounded (MatExp.intervalInputRemainderSet sys.A r η U₀))
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
-    (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s) ∈ construct (Plus.plus (Plus.plus
+    (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s) ∈ toSet (Plus.plus (Plus.plus
       (sys.inputSolution r η Sg) (Mtimes.mtimes (𝕄 := ℐ)
         (MatExp.intervalConstCorrectionMatrix sys.A r η) P))
       (sys.inputSolution r η U₀)) := by -- --- PROOF ---
@@ -132,8 +132,8 @@ theorem LinParamSys.IsCanonicalConstTrajectory.inputSolution_timeInterval_outer_
   have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr
   -- the fixed member names the point system the closed form is read at
   have lin := traj.toLinearSys
-  have hmemP : ∀ s ∈ Set.Icc (0:ℝ) t, (fun _ : ℝ => c) s ∈ construct P := fun _ _ => hcP
-  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, (fun σ => u σ - c) s ∈ construct U₀ :=
+  have hmemP : ∀ s ∈ Set.Icc (0:ℝ) t, (fun _ : ℝ => c) s ∈ toSet P := fun _ _ => hcP
+  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, (fun σ => u σ - c) s ∈ toSet U₀ :=
     fun s hs => hsplit _ (traj.input s (hTt hs))
   have hmeas₀ : AEStronglyMeasurable (fun σ => u σ - c)
       (volume.restrict (Set.Icc 0 t)) :=

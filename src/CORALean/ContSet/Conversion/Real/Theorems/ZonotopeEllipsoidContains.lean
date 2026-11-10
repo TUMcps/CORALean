@@ -1,13 +1,13 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 public import Mathlib.LinearAlgebra.Matrix.DotProduct
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Ellipsoid
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetOfFactor
 
 @[expose] public section
 
@@ -16,7 +16,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
 
 A zonotope's cube is `‖β‖∞ ≤ 1`, an ellipsoid's ball `‖u‖₂ ≤ 1`, and the cube sits inside `√h` times
 the ball, so the same generators scaled by `√h` enclose, as the ellipsoid of shape `h G Gᵀ`, CORA's
-`fac*(G*G')` (`construct_ofFactor`): loose by `√h` in the worst direction, exact in none. Tighter
+`fac*(G*G')` (`toSet_ofFactor`): loose by `√h` in the worst direction, exact in none. Tighter
 enclosures (minimum volume, minimum trace) are optimisation problems. This one is the initial
 ellipse `E₀ = (m/2) G Gᵀ` of [2, Sec. 4.1]. CORA's `'outer:norm'` and `'inner:norm'` are [1, Thm. 1]
 and [1, Thm. 3]: shape `r E₀` for a factor `F` of `E₀ = F Fᵀ` and a bound `r` on the maximum, or
@@ -77,10 +77,10 @@ private theorem Zonotope.aux_coeff_sq_le {Z : Zonotope (Vec ℝ n)} {β : Fin Z.
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.ellipsoid_contains (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    Z.construct ⊆ Z.ellipsoid.construct := by -- --- PROOF ---
-  rw [Zonotope.ellipsoid, Ellipsoid.construct_ofFactor]
+    Z.toSet ⊆ Z.ellipsoid.toSet := by -- --- PROOF ---
+  rw [Zonotope.ellipsoid, Ellipsoid.toSet_ofFactor]
   intro x hx
-  obtain ⟨β, hβ, hxeq⟩ := Zonotope.mem_construct_iff.mp hx
+  obtain ⟨β, hβ, hxeq⟩ := Zonotope.mem_toSet_iff.mp hx
   refine ⟨fun j => β j / Real.sqrt Z.h, ?_, ?_⟩
   -- `h` coefficients each within `1/h` of the budget fill the ball exactly
   · have hsum : ∑ j : Fin Z.h, (β j / Real.sqrt Z.h) ^ 2 ≤ 1 := by

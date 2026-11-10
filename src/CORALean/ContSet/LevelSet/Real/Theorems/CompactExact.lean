@@ -38,12 +38,12 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LevelSet.compact_exact (L : LevelSet n) : -- --- CONCL ---
-    Sum.elim LevelSet.construct EmptySet.construct L.compact_ = L.construct := by -- --- PROOF ---
+    Sum.elim LevelSet.toSet EmptySet.toSet L.compact_ = L.toSet := by -- --- PROOF ---
   classical
   unfold LevelSet.compact_
   by_cases h : L.m = 2
   · rw [dif_pos h]
-    have key : ∀ x : Vec ℝ n, x ∈ L.construct ↔
+    have key : ∀ x : Vec ℝ n, x ∈ L.toSet ↔
         (L.op ⟨0, by omega⟩).holds (L.f x ⟨0, by omega⟩) ∧
         (L.op ⟨1, by omega⟩).holds (L.f x ⟨1, by omega⟩) := by
       intro x
@@ -67,7 +67,7 @@ theorem LevelSet.compact_exact (L : LevelSet n) : -- --- CONCL ---
     all_goals
       ext x
       rw [key x]
-      simp only [Sum.elim_inl, Sum.elim_inr, LevelSet.construct, EmptySet.construct,
+      simp only [Sum.elim_inl, Sum.elim_inr, LevelSet.toSet, EmptySet.toSet,
         Set.mem_setOf_eq, Set.mem_empty_iff_false, Fin.forall_fin_one]
       try have e := c1 x
       try have e := c6 x

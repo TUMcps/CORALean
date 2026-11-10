@@ -59,12 +59,12 @@ variable {n : ℕ}
 
 /-- Membership in a vector box, in coordinates. -/
 private theorem LevelSet.aux_mem_vecBox (I : Interval (Vec ℝ n)) (x : Vec ℝ n) :
-    x ∈ I.construct ↔ ∀ i, I.inf i ≤ x i ∧ x i ≤ I.sup i := Iff.rfl
+    x ∈ I.toSet ↔ ∀ i, I.inf i ≤ x i ∧ x i ≤ I.sup i := Iff.rfl
 
 /-- A coordinate step only narrows the box. -/
 private theorem LevelSet.aux_linearCoord_subset (fm : ℝ) (m : Vec ℝ n) (k : Interval (Vec ℝ n))
     (j : Fin n) (int : Interval (Vec ℝ n)) : -- --- CONCL ---
-    (LevelSet.step_linearCoord fm m k j int).construct ⊆ int.construct := by -- --- PROOF ---
+    (LevelSet.step_linearCoord fm m k j int).toSet ⊆ int.toSet := by -- --- PROOF ---
   unfold LevelSet.step_linearCoord
   split_ifs
   · intro x hx
@@ -81,10 +81,10 @@ private theorem LevelSet.aux_linearCoord_subset (fm : ℝ) (m : Vec ℝ n) (k : 
 
 /-- A coordinate step keeps every solution whose mean value form holds with a gradient in `k`. -/
 private theorem LevelSet.aux_linearCoord_mem {fm : ℝ} {m : Vec ℝ n} {k : Interval (Vec ℝ n)}
-    {j : Fin n} {int : Interval (Vec ℝ n)} {x : Vec ℝ n} (hx : x ∈ int.construct) (κ : Vec ℝ n)
+    {j : Fin n} {int : Interval (Vec ℝ n)} {x : Vec ℝ n} (hx : x ∈ int.toSet) (κ : Vec ℝ n)
     (hκ : ∀ i, k.inf i ≤ κ i ∧ κ i ≤ k.sup i)
     (heq : fm + ∑ i, κ i * (x i - m i) = 0) : -- --- CONCL ---
-    x ∈ (LevelSet.step_linearCoord fm m k j int).construct := by -- --- PROOF ---
+    x ∈ (LevelSet.step_linearCoord fm m k j int).toSet := by -- --- PROOF ---
   unfold LevelSet.step_linearCoord
   split_ifs with hc
   swap
@@ -144,10 +144,10 @@ private theorem LevelSet.aux_linearCoord_mem {fm : ℝ} {m : Vec ℝ n} {k : Int
 private theorem LevelSet.aux_linearFold (fm : ℝ) (m : Vec ℝ n)
     (k : Interval (Vec ℝ n)) : -- --- CONCL ---
     ∀ (l : List (Fin n)) (X : Interval (Vec ℝ n)),
-      (l.foldl (fun X j => step_linearCoord fm m k j X) X).construct ⊆ X.construct ∧
-      ∀ x ∈ X.construct, ∀ κ : Vec ℝ n, (∀ i, k.inf i ≤ κ i ∧ κ i ≤ k.sup i) →
+      (l.foldl (fun X j => step_linearCoord fm m k j X) X).toSet ⊆ X.toSet ∧
+      ∀ x ∈ X.toSet, ∀ κ : Vec ℝ n, (∀ i, k.inf i ≤ κ i ∧ κ i ≤ k.sup i) →
         fm + ∑ i, κ i * (x i - m i) = 0 →
-        x ∈ (l.foldl (fun X j => step_linearCoord fm m k j X) X).construct := by -- --- PROOF ---
+        x ∈ (l.foldl (fun X j => step_linearCoord fm m k j X) X).toSet := by -- --- PROOF ---
   intro l
   induction l with
   | nil => exact fun X => ⟨fun x hx => hx, fun x hx _ _ _ => hx⟩
@@ -186,18 +186,18 @@ private theorem LevelSet.aux_meanValue {f : Vec ℝ n → ℝ} (hf : Differentia
 private theorem LevelSet.aux_linearSweep_spec {f : Vec ℝ n → ℝ} (hf : Differentiable ℝ f)
     {grad : Interval (Vec ℝ n) → Interval (Vec ℝ n)} (hg : IsGradEnclosure f grad)
     (I : Interval (Vec ℝ n)) : -- --- CONCL ---
-    (LevelSet.step_linearSweep f grad I).construct ⊆ I.construct ∧
-      ∀ x ∈ I.construct, f x = 0 →
-        x ∈ (LevelSet.step_linearSweep f grad I).construct := by -- --- PROOF ---
+    (LevelSet.step_linearSweep f grad I).toSet ⊆ I.toSet ∧
+      ∀ x ∈ I.toSet, f x = 0 →
+        x ∈ (LevelSet.step_linearSweep f grad I).toSet := by -- --- PROOF ---
   -- the fold of `aux_linearFold`, at the center, the interval gradient and `f` of the center
   obtain ⟨h₁, h₂⟩ := LevelSet.aux_linearFold (f I.center) I.center (grad I) (List.finRange n) I
   refine ⟨h₁, fun x hx hfx => ?_⟩
   have hI : I.IsNonempty (ι := Fin n) := fun i => (hx i).1.trans (hx i).2
-  have hm : I.center ∈ I.construct := Interval.mem_center I hI
+  have hm : I.center ∈ I.toSet := Interval.mem_center I hI
   obtain ⟨t, ht, hmv⟩ := LevelSet.aux_meanValue hf I.center x
   -- the point of the segment lies in the box, so the gradient there lies in the interval gradient
-  have hξ : I.center + t • (x - I.center) ∈ I.construct := by
-    have := Interval.convex_construct I hm hx (sub_nonneg.mpr ht.2.le) ht.1.le
+  have hξ : I.center + t • (x - I.center) ∈ I.toSet := by
+    have := Interval.convex_toSet I hm hx (sub_nonneg.mpr ht.2.le) ht.1.le
       (by ring)
     convert this using 1
     module
@@ -212,9 +212,9 @@ private theorem LevelSet.aux_tightenDomainLinear {f : Vec ℝ n → ℝ} (hf : D
     {grad : Interval (Vec ℝ n) → Interval (Vec ℝ n)}
     (hg : IsGradEnclosure f grad) : -- --- CONCL ---
     ∀ (k : ℕ) (I : Interval (Vec ℝ n)),
-      (LevelSet.tightenDomainLinear f grad k I).construct ⊆ I.construct ∧
-      ∀ x ∈ I.construct, f x = 0 →
-        x ∈ (LevelSet.tightenDomainLinear f grad k I).construct := by -- --- PROOF ---
+      (LevelSet.tightenDomainLinear f grad k I).toSet ⊆ I.toSet ∧
+      ∀ x ∈ I.toSet, f x = 0 →
+        x ∈ (LevelSet.tightenDomainLinear f grad k I).toSet := by -- --- PROOF ---
   intro k
   induction k with
   | zero => exact fun I => ⟨fun x hx => hx, fun x hx _ => hx⟩

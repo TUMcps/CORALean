@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 theorem SpectraShadow.representsa_emptySet_sound {S : SpectraShadow 𝕋 (Vec 𝕋 n)} {Y : Mat 𝕋 S.k S.k}
     (h : S.representsa_emptySet Y = true) : -- --- CONCL ---
-    S.construct = ∅ := by -- --- PROOF ---
+    S.toSet = ∅ := by -- --- PROOF ---
   simp only [SpectraShadow.representsa_emptySet, SpectraShadow.dualCertified, Bool.and_eq_true,
     List.all_eq_true, List.mem_finRange, forall_const, decide_eq_true_eq] at h
   obtain ⟨⟨⟨⟨⟨hsym, hdom⟩, heq⟩, -⟩, hneg⟩, -⟩ := h

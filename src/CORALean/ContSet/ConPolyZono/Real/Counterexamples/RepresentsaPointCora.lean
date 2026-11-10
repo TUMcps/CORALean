@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Real.Operations.RepresentsaPoint
 public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import Mathlib.Tactic.Linarith
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEq
 public import CORALean.Global.StepOf
 
 @[expose] public section
@@ -61,30 +61,30 @@ def ConPolyZono.step_pinned : ConPolyZono ℝ :=
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-private theorem ConPolyZono.aux_infeasible_construct : -- --- CONCL ---
-    ConPolyZono.step_infeasible.construct = ∅ := by -- --- PROOF ---
+private theorem ConPolyZono.aux_infeasible_toSet : -- --- CONCL ---
+    ConPolyZono.step_infeasible.toSet = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   rintro ⟨a, β, -, hs, -⟩
   have h4 :=
-    ((PolyLevelSet.mem_construct_iff_of_eq ConPolyZono.step_infeasible.cons_eq).mp hs).2 (0 : Fin 1)
+    ((PolyLevelSet.mem_toSet_iff_of_eq ConPolyZono.step_infeasible.cons_eq).mp hs).2 (0 : Fin 1)
   have h3 := (Interval.mem_unit_iff a).mp hs.1 (0 : Fin 1)
   simp [ConPolyZono.step_infeasible, PolyZonotope.monomial, Matrix.mulVec, dotProduct] at h4 h3
   rw [h4] at h3
   norm_num [abs_of_pos] at h3
 
-private theorem ConPolyZono.aux_pinned_construct : -- --- CONCL ---
-    ConPolyZono.step_pinned.construct = {0} := by -- --- PROOF ---
+private theorem ConPolyZono.aux_pinned_toSet : -- --- CONCL ---
+    ConPolyZono.step_pinned.toSet = {0} := by -- --- PROOF ---
   ext x
   constructor
   · rintro ⟨a, β, -, hs, hx⟩
     have h1 :=
-      ((PolyLevelSet.mem_construct_iff_of_eq ConPolyZono.step_pinned.cons_eq).mp hs).2 (0 : Fin 1)
+      ((PolyLevelSet.mem_toSet_iff_of_eq ConPolyZono.step_pinned.cons_eq).mp hs).2 (0 : Fin 1)
     simp [ConPolyZono.step_pinned, PolyZonotope.monomial, Matrix.mulVec, dotProduct] at h1 hx
     exact hx.trans h1
   · intro hx
     refine ⟨fun _ => 0, Fin.elim0, fun j => j.elim0, ?_, ?_⟩
-    · refine (PolyLevelSet.mem_construct_iff_of_eq ConPolyZono.step_pinned.cons_eq).mpr
+    · refine (PolyLevelSet.mem_toSet_iff_of_eq ConPolyZono.step_pinned.cons_eq).mpr
         ⟨(Interval.mem_unit_iff _).mpr fun _ => by norm_num, fun i => ?_⟩
       simp [ConPolyZono.step_pinned, PolyZonotope.monomial, Matrix.mulVec, dotProduct]
     · simp [ConPolyZono.step_pinned, PolyZonotope.monomial, Set.mem_singleton_iff.mp hx]
@@ -94,11 +94,11 @@ private theorem ConPolyZono.aux_pinned_construct : -- --- CONCL ---
 
 /-- CORA says "point" for an empty set and "no point" for a point. -/
 theorem ConPolyZono.representsa_point_cora_counterexample : -- --- CONCL ---
-    (ConPolyZono.step_infeasible.construct = ∅ ∧
+    (ConPolyZono.step_infeasible.toSet = ∅ ∧
         ConPolyZono.step_infeasible.representsa_point = true) ∧
-      (ConPolyZono.step_pinned.construct = {0} ∧
+      (ConPolyZono.step_pinned.toSet = {0} ∧
         ConPolyZono.step_pinned.representsa_point = false) := by -- --- PROOF ---
-  refine ⟨⟨ConPolyZono.aux_infeasible_construct, ?_⟩, ⟨ConPolyZono.aux_pinned_construct, ?_⟩⟩
+  refine ⟨⟨ConPolyZono.aux_infeasible_toSet, ?_⟩, ⟨ConPolyZono.aux_pinned_toSet, ?_⟩⟩
   · simp [ConPolyZono.representsa_point, ConPolyZono.step_infeasible]
   · simp [ConPolyZono.representsa_point, ConPolyZono.step_pinned]
 

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Polygon.Real.Theorems.SampledHullMissesCircle
 public import CORALean.ContSet.Polygon.Real.Theorems.Basic
-public import CORALean.ContSet.Polygon.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Polygon.Real.Theorems.MemToSet
 public import CORALean.ContSet.Polygon.Real.Theorems.IsCompact
 public import CORALean.ContSet.Polygon.Real.Theorems.PlusExact
 public import CORALean.ContSet.Polygon.Real.Theorems.MtimesExact
@@ -24,7 +24,7 @@ public import CORALean.ContSet.Polygon.Real.Theorems.AndRegion
 public import CORALean.ContSet.Polygon.Real.Theorems.VolumeEqPieceAreas
 public import CORALean.ContSet.Polygon.Real.Theorems.RegionCenterMem
 public import CORALean.ContSet.Polygon.Real.Theorems.CenterMem
-public import CORALean.ContSet.Polygon.Real.Theorems.ConstructEqTriples
+public import CORALean.ContSet.Polygon.Real.Theorems.ToSetEqTriples
 public import CORALean.ContSet.Polygon.Real.Theorems.TriangulationExact
 public import CORALean.ContSet.Polygon.Real.Theorems.QuadMapOuter
 public import CORALean.ContSet.Polygon.Real.Theorems.QuadMapMixedOuter

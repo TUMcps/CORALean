@@ -1,9 +1,9 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Radius
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemToSet
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 
 @[expose] public section
@@ -81,7 +81,7 @@ private theorem Ellipsoid.aux_rayleigh (A : Mat ℝ n n) (hA : A.IsHermitian)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.isGreatest_radius (E : Ellipsoid n) (hn : 1 ≤ n) : -- --- CONCL ---
-    IsGreatest ((fun x => ‖x - E.q‖₂) '' E.construct)
+    IsGreatest ((fun x => ‖x - E.q‖₂) '' E.toSet)
       (E.radius 1 hn ⟨0, one_pos⟩) := by -- --- PROOF ---
   -- the shape matrix, its first eigenvalue `l0`
   have hQ : E.Q.IsHermitian := E.psd.isHermitian
@@ -96,7 +96,7 @@ theorem Ellipsoid.isGreatest_radius (E : Ellipsoid n) (hn : 1 ≤ n) : -- --- CO
   · -- attained at `q + G u*`
     by_cases hl : l0 ≤ 0
     · -- no spread: the center itself
-      refine ⟨E.q, E.q_mem_construct, ?_⟩
+      refine ⟨E.q, E.q_mem_toSet, ?_⟩
       have : Real.sqrt l0 = 0 := Real.sqrt_eq_zero_of_nonpos hl
       simp [this, norm₂_zero]
     · have hl := not_le.mp hl
@@ -128,11 +128,11 @@ theorem Ellipsoid.isGreatest_radius (E : Ellipsoid n) (hn : 1 ≤ n) : -- --- CO
         have h3 : ‖E.Gᵀ *ᵥ v‖₂ = Real.sqrt l0 := by
           rw [← h2]; exact (Real.sqrt_sq (norm₂_nonneg _)).symm
         rw [h3, inv_mul_cancel₀ hpos.ne']
-      refine ⟨E.q + E.G *ᵥ u, Ellipsoid.mem_construct hun, ?_⟩
+      refine ⟨E.q + E.G *ᵥ u, Ellipsoid.mem_toSet hun, ?_⟩
       simp only [add_sub_cancel_left, hGu]
       rw [norm₂_smul, hvn, mul_one, abs_of_pos hpos]
   · -- the bound
-    rw [E.construct_eq_sqrt]
+    rw [E.toSet_eq_sqrt]
     rintro _ ⟨x, ⟨u, hu, rfl⟩, rfl⟩
     simp only [add_sub_cancel_left]
     set v := E.G *ᵥ u with hv

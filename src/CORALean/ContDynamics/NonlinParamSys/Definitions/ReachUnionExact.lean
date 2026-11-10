@@ -50,7 +50,7 @@ def NonlinParamSys.WithSteps.reachUnionExact (sys : NonlinParamSys.WithSteps S R
     (tFinal : ℝ) (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
   ⋃ t ∈ Set.Icc 0 tFinal, {y | ∃ (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m)
     (π : Vec ℝ q), sys.sys.IsConstTrajectory (S := 𝒮)
-      (Set.Icc 0 tFinal) X (construct sys.aug.U) (construct sys.P) x u π
+      (Set.Icc 0 tFinal) X (toSet sys.aug.U) (toSet sys.P) x u π
         (fun t => sys.sys.g (x t) (u t) π) ∧ x t = y}
 
 end CORALean

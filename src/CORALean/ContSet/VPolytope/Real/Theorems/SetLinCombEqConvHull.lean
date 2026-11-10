@@ -49,11 +49,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.setLinComb_eq_convHull (P₁ P₂ : VPolytope α) (h₁ : P₁.construct.Nonempty)
-    (h₂ : P₂.construct.Nonempty) :
-    Set.linComb P₁.construct P₂.construct = (P₁.convHull P₂).construct := by
+theorem VPolytope.setLinComb_eq_convHull (P₁ P₂ : VPolytope α) (h₁ : P₁.toSet.Nonempty)
+    (h₂ : P₂.toSet.Nonempty) :
+    Set.linComb P₁.toSet P₂.toSet = (P₁.convHull P₂).toSet := by
   rw [VPolytope.convHull_exact,
-    convexHull_union_eq_setLinComb h₁ h₂ P₁.convex_construct P₂.convex_construct]
+    convexHull_union_eq_setLinComb h₁ h₂ P₁.convex_toSet P₂.convex_toSet]
 
 end CORALean.Real
 

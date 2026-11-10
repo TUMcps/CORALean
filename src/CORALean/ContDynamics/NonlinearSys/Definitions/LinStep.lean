@@ -44,7 +44,7 @@ structure NonlinearSys.LinStep (sys : NonlinearSys n m) (U : S m) where
   us : Vec ℝ m
   R : Set (Vec ℝ n)
   L : S n
-  cert : IsAbstractionError sys.f A B xs us R (construct U) L
+  cert : IsAbstractionError sys.f A B xs us R (toSet U) L
 
 end CORALean
 

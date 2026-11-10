@@ -8,7 +8,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Rows
 # `HPolytope.rowsRhs`
 
 The right-hand sides of `HPolytope.rows`: `b`, then `be`, then `-be`. A point lies in the
-polytope exactly when every row, with its right-hand side, holds (`mem_construct_iff_rows`): an
+polytope exactly when every row, with its right-hand side, holds (`mem_toSet_iff_rows`): an
 equality is the pair of opposite inequalities.
 
 ## Inputs

@@ -36,7 +36,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- `conZonotope/representsa_` at `point`: `G` is constant on a nonempty coefficient polytope. -/
 def ConZonotope.representsa_point (cZ : ConZonotope α) : Prop :=
-  ∃ β₀ ∈ cZ.domain.construct, ∀ β ∈ cZ.domain.construct,
+  ∃ β₀ ∈ cZ.domain.toSet, ∀ β ∈ cZ.domain.toSet,
     ∑ j, β j • cZ.G j = ∑ j, β₀ j • cZ.G j
 
 end CORALean.Real

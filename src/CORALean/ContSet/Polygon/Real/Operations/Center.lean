@@ -38,7 +38,7 @@ open MeasureTheory
 
 /-- The centroid of the region a polygon denotes. -/
 noncomputable def Polygon.center (P : Polygon) : Vec ℝ 2 :=
-  Polygon.regionCenter (ContSet.construct P)
+  Polygon.regionCenter (ContSet.toSet P)
 
 end CORALean.Real
 

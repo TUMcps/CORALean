@@ -195,7 +195,7 @@ noncomputable def GridPartition.volumeOf (K : Set (Vec ℝ n)) : ℝ := (Measure
 /-- `volPartial`: the volume of `K` inside cell `c`. -/
 noncomputable def GridPartition.cellVolume (P : GridPartition n) (K : Set (Vec ℝ n)) (c : ℕ) :
     ℝ :=
-  GridPartition.volumeOf (K ∩ (P.cellInterval c).construct)
+  GridPartition.volumeOf (K ∩ (P.cellInterval c).toSet)
 
 end CORALean
 

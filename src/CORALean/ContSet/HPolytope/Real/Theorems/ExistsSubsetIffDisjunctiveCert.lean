@@ -62,11 +62,11 @@ variable {n nx qx N : ℕ}
 
 theorem HPolytope.exists_subset_iff_disjunctive_cert {qy : Fin N → ℕ} {xbar : Vec ℝ n}
     {X : Mat ℝ n nx} {Hx : Mat ℝ qx nx} {hx : Vec ℝ qx} {Hy : (i : Fin N) → Mat ℝ (qy i) n}
-    {hy : (i : Fin N) → Vec ℝ (qy i)} (hnex : (HPolytope.ineqs Hx hx).construct.Nonempty)
-    (hne : ∀ i, (HPolytope.ineqs (Hy i) (hy i)).construct.Nonempty)
-    (hb : ∀ i, Bornology.IsBounded (HPolytope.ineqs (Hy i) (hy i)).construct) : -- --- CONCL ---
+    {hy : (i : Fin N) → Vec ℝ (qy i)} (hnex : (HPolytope.ineqs Hx hx).toSet.Nonempty)
+    (hne : ∀ i, (HPolytope.ineqs (Hy i) (hy i)).toSet.Nonempty)
+    (hb : ∀ i, Bornology.IsBounded (HPolytope.ineqs (Hy i) (hy i)).toSet) : -- --- CONCL ---
     (∃ i, HPolytope.ahPolytope xbar X (HPolytope.ineqs Hx hx)
-        ⊆ (HPolytope.ineqs (Hy i) (hy i)).construct) ↔
+        ⊆ (HPolytope.ineqs (Hy i) (hy i)).toSet) ↔
       ∃ (Λ : (i : Fin N) → Mat ℝ (qy i) qx) (δ : Fin N → ℝ) (β : Fin N → Vec ℝ n)
         (Γ : Fin N → Mat ℝ n nx), (∀ i j k, 0 ≤ Λ i j k) ∧ (∀ i, δ i = 0 ∨ δ i = 1) ∧
         (∀ i, Λ i * Hx = Hy i * Γ i) ∧ (∀ i, Λ i *ᵥ hx ≤ δ i • hy i - Hy i *ᵥ β i) ∧
@@ -75,8 +75,8 @@ theorem HPolytope.exists_subset_iff_disjunctive_cert {qy : Fin N → ℕ} {xbar 
   constructor
   -- `[1, Lemma 1]` at the chosen `i₀`, every other summand zero
   · rintro ⟨i₀, hsub⟩
-    have hPx : (HPolytope.ineqs Hx hx).construct
-        ⊆ (HPolytope.ineqs (Hy i₀ * X) (hy i₀ - Hy i₀ *ᵥ xbar)).construct := by
+    have hPx : (HPolytope.ineqs Hx hx).toSet
+        ⊆ (HPolytope.ineqs (Hy i₀ * X) (hy i₀ - Hy i₀ *ᵥ xbar)).toSet := by
       intro p hp
       have h := HPolytope.mem_ineqs_iff.mp (hsub ⟨p, hp, rfl⟩)
       refine HPolytope.mem_ineqs_iff.mpr fun k => ?_
@@ -120,7 +120,7 @@ theorem HPolytope.exists_subset_iff_disjunctive_cert {qy : Fin N → ℕ} {xbar 
     refine ⟨i₀, ?_⟩
     rintro _ ⟨p, hp, rfl⟩
     -- `rᵢ = Γᵢ p + βᵢ` satisfies `Hᵢ rᵢ ≤ δᵢ hᵢ`
-    have hr : ∀ i, Γ i *ᵥ p - -β i ∈ (HPolytope.ineqs (Hy i) (δ i • hy i)).construct :=
+    have hr : ∀ i, Γ i *ᵥ p - -β i ∈ (HPolytope.ineqs (Hy i) (δ i • hy i)).toSet :=
       fun i => HPolytope.mem_ineqs_of_cert (hΛ i) (h1 i)
         (by simpa [sub_eq_add_neg, mulVec_neg] using h2 i) hp
     have hzero : ∀ j, j ≠ i₀ → Γ j *ᵥ p - -β j = 0 := by

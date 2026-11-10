@@ -40,7 +40,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mem_halfScaled_iff {t : α →ₗ[ℝ] ℝ} {P : HPolytope α} {x : α} : -- --- CONCL ---
-    x ∈ (P.halfScaled t).construct ↔
+    x ∈ (P.halfScaled t).toSet ↔
       (∀ i, P.A i x ≤ (t x + 1) / 2 * P.b i) ∧ ∀ i,
         P.Ae i x = (t x + 1) / 2 * P.be i := by -- --- PROOF ---
   -- each row is `A x - (b/2) t x` against `b/2`, which is the weight times `b`

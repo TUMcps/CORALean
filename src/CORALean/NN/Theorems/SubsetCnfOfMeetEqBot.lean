@@ -60,15 +60,15 @@ variable {S α L : Type} [ContSet S α]
 /-- Every clause of `cnf` holds on `γ(a)` once `a` met with its negation is `⊥`. -/
 theorem subset_cnf_of_meet_eq_bot (sat : L → Set α) (neg : L → L)
     (hneg : ∀ l, sat (neg l) = (sat l)ᶜ) (meet : S → List L → S)
-    (hmeet : ∀ a ls, construct a ∩ {x | ∀ l ∈ ls, x ∈ sat l} ⊆ construct (meet a ls))
-    (bot : S) (hbot : construct bot = ∅) (a : S) (cnf : List (List L))
+    (hmeet : ∀ a ls, toSet a ∩ {x | ∀ l ∈ ls, x ∈ sat l} ⊆ toSet (meet a ls))
+    (bot : S) (hbot : toSet bot = ∅) (a : S) (cnf : List (List L))
     (h : ∀ c ∈ cnf, meet a (c.map neg) = bot) : -- --- CONCL ---
-    construct a ⊆ {x | ∀ c ∈ cnf, ∃ l ∈ c, x ∈ sat l} := by -- --- PROOF ---
+    toSet a ⊆ {x | ∀ c ∈ cnf, ∃ l ∈ c, x ∈ sat l} := by -- --- PROOF ---
   intro x hx c hc
   by_contra hno
   push Not at hno
   -- `x` satisfies every negated literal of the clause, so it is in the meet, which is `⊥`
-  have hin : x ∈ construct (meet a (c.map neg)) := hmeet a _ ⟨hx, fun l hl => by
+  have hin : x ∈ toSet (meet a (c.map neg)) := hmeet a _ ⟨hx, fun l hl => by
     obtain ⟨l', hl', rfl⟩ := List.mem_map.mp hl
     rw [hneg]
     exact hno l' hl'⟩

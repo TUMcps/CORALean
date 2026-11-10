@@ -4,7 +4,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import Mathlib.Algebra.BigOperators.Fin
 
 @[expose] public section
@@ -18,7 +18,7 @@ generator block is [1, Lemma 2]'s bound applied to `Z`'s own reach `|c| + Σ|g|`
 `radiusReach`. So at a symmetric matrix, mapping `Z` this way coincides with mapping
 `Z.interval.zonotope`, CORA's `S · box(Z)`. At a *symmetric* `IM` (`IM.inf = -IM.sup`),
 `IM.center = 0`, which turns the leading generators — the image of `Z`'s own — into an all-zero
-block on both sides; `aux_construct_append_zero_left` drops it, and `aux_absBound_interval_zonotope`
+block on both sides; `aux_toSet_append_zero_left` drops it, and `aux_absBound_interval_zonotope`
 is why the diagonal block is the same on both sides.
 
 ## Inputs
@@ -56,12 +56,12 @@ variable {m n : ℕ}
 /-- A leading block of all-zero generators changes nothing a zonotope denotes:
 its coefficients are free, and every one of them contributes nothing either
 way. -/
-private theorem aux_construct_append_zero_left {j k : ℕ} (c : Vec ℝ m)
+private theorem aux_toSet_append_zero_left {j k : ℕ} (c : Vec ℝ m)
     (G : Fin k → Vec ℝ m) : -- --- CONCL ---
-    (⟨j + k, c, Fin.append (fun _ => (0 : Vec ℝ m)) G⟩ : Zonotope (Vec ℝ m)).construct
-      = (⟨k, c, G⟩ : Zonotope (Vec ℝ m)).construct := by -- --- PROOF ---
+    (⟨j + k, c, Fin.append (fun _ => (0 : Vec ℝ m)) G⟩ : Zonotope (Vec ℝ m)).toSet
+      = (⟨k, c, G⟩ : Zonotope (Vec ℝ m)).toSet := by -- --- PROOF ---
   ext x
-  rw [Zonotope.mem_construct_iff, Zonotope.mem_construct_iff]
+  rw [Zonotope.mem_toSet_iff, Zonotope.mem_toSet_iff]
   constructor
   · rintro ⟨β, hβ, hx⟩
     refine ⟨fun l => β (Fin.natAdd j l), fun l => hβ _, fun i => ?_⟩
@@ -113,8 +113,8 @@ private theorem aux_absBound_interval_zonotope (Z : Zonotope (Vec ℝ n)) : -- -
 
 theorem Zonotope.mtimesIntervalMat_symm_box {IM : Interval (Mat ℝ m n)}
     (hIM : IM.inf = -IM.sup) (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    (Zonotope.mtimesIntervalMat IM Z).construct
-      = (Zonotope.mtimesIntervalMat IM Z.interval.zonotope).construct := by -- --- PROOF ---
+    (Zonotope.mtimesIntervalMat IM Z).toSet
+      = (Zonotope.mtimesIntervalMat IM Z.interval.zonotope).toSet := by -- --- PROOF ---
   have hIMc : IM.center = 0 := by
     simp only [Interval.center, hIM, neg_add_cancel, smul_zero]
   have hrad : Zonotope.radiusReach IM Z = Zonotope.radiusReach IM Z.interval.zonotope := by
@@ -131,7 +131,7 @@ theorem Zonotope.mtimesIntervalMat_symm_box {IM : Interval (Mat ℝ m n)}
       = (⟨Z.interval.zonotope.h + m, 0, Fin.append (fun _ => (0 : Vec ℝ m))
           (Matrix.diagonal (Zonotope.radiusReach IM Z))⟩ : Zonotope (Vec ℝ m)) := by
     simp only [Zonotope.mtimesIntervalMat, hIMc, Matrix.zero_mulVec, ← hrad]
-  rw [hL, hR, aux_construct_append_zero_left, aux_construct_append_zero_left]
+  rw [hL, hR, aux_toSet_append_zero_left, aux_toSet_append_zero_left]
 
 end CORALean.Real
 

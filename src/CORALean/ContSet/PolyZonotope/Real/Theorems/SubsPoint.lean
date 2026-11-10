@@ -18,7 +18,7 @@ which each replaced factor `idu ii` takes the value of output `ii` of `pZin` (at
 read off `a` through `subsFactor`) and every other factor keeps its value. The expansion into terms
 is only bookkeeping: a sum of terms evaluates to the product of the evaluations
 (`aux_evalTerms_subsMul`), a power to the power, and the factors' exponents of a shared identifier
-add (`ReplaceIdPoint`). `subs_construct` is the set equality; the independent block is `pZ`'s.
+add (`ReplaceIdPoint`). `subs_toSet` is the set equality; the independent block is `pZ`'s.
 
 ## Inputs
 * `pZ` – polynomial zonotope

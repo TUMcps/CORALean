@@ -58,8 +58,8 @@ theorem Layer.linear_refinable_isConvergent (W : Mat ℝ m n) (b : Vec ℝ m) : 
       (CORALean.Layer.linear_encloses W b)).IsConvergent := by -- --- PROOF ---
   intro s ε hε
   refine ⟨fun _ => 0, ?_⟩
-  show construct ((CORALean.Layer.linear (S := 𝒫𝒵) W b).enclose s)
-      ⊆ (fun x => W *ᵥ x + b) '' construct s + Metric.closedBall 0 ε
+  show toSet ((CORALean.Layer.linear (S := 𝒫𝒵) W b).enclose s)
+      ⊆ (fun x => W *ᵥ x + b) '' toSet s + Metric.closedBall 0 ε
   rw [Layer.linear_exact]
   intro y hy
   -- the enclosed set is the image already, so the ball contributes zero

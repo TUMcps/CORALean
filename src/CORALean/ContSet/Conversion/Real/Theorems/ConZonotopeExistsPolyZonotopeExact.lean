@@ -48,10 +48,10 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.exists_polyZonotope_exact (cZ : ConZonotope α)
-    (hne : cZ.construct.Nonempty) : -- --- CONCL ---
-    ∃ pZ : PolyZonotope α, pZ.construct = cZ.construct := by -- --- PROOF ---
+    (hne : cZ.toSet.Nonempty) : -- --- CONCL ---
+    ∃ pZ : PolyZonotope α, pZ.toSet = cZ.toSet := by -- --- PROOF ---
   -- a point of the set comes from a point of the coefficient domain
-  have hdom : cZ.domain.construct.Nonempty := by
+  have hdom : cZ.domain.toSet.Nonempty := by
     obtain ⟨x, β, hβ, hP, -⟩ := hne
     exact ⟨β, ConZonotope.mem_domain_iff.mpr ⟨hβ, hP⟩⟩
   have hV := cZ.vPolytope_exact hdom
@@ -60,7 +60,7 @@ theorem ConZonotope.exists_polyZonotope_exact (cZ : ConZonotope α)
     by_contra h
     have hk0 : (cZ.vPolytope hdom).k = 0 := by omega
     obtain ⟨x, hx⟩ := hne
-    rw [← hV, VPolytope.construct_eq_convexHull] at hx
+    rw [← hV, VPolytope.toSet_eq_convexHull] at hx
     have hrange : Set.range (cZ.vPolytope hdom).V = ∅ := by
       haveI : IsEmpty (Fin (cZ.vPolytope hdom).k) := by rw [hk0]; infer_instance
       exact Set.range_eq_empty _

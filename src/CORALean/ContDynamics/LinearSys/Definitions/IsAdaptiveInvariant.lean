@@ -53,7 +53,7 @@ def LinearSys.IsAdaptiveInvariant (sys : LinearSys 𝕋 n) (V : Float.Zonotope (
     (s : LinearSys.AdaptiveState 𝕋 n) : Prop :=
   0 ≤ s.t ∧ toReal s.tEnc.inf ≤ (s.t : ℝ) ∧ (s.t : ℝ) ≤ toReal s.tEnc.sup ∧
     ∀ y ∈ sys.inputReach (S := 𝒵[𝕋]) (Recenter.recenter V) s.t,
-      MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recenter.center V + y ∈ s.P.construct
+      MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recenter.center V + y ∈ s.P.toSet
 
 end CORALean
 

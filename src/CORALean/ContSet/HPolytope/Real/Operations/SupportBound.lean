@@ -73,7 +73,7 @@ def step_rhs (P : HPolytope (Vec ℝ n)) : Fin (P.m + (P.me + P.me)) → ℝ :=
 below — an unbounded description, or a pivot budget, linear in the problem
 size, that ran out. -/
 noncomputable def HPolytope.supportBound (P : HPolytope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
-    Option (SupportBound P.construct c) :=
+    Option (SupportBound P.toSet c) :=
   match dualCandidate (64 * (P.m + P.me + P.me + n + 1)) (step_ineqs P) (step_rhs P)
       (step_coeff c) with
   | none => none

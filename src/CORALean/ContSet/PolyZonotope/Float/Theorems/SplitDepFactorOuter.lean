@@ -43,8 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.splitDepFactor_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (k : Fin pZ.p) : -- --- CONCL ---
-    pZ.construct ⊆
-      (pZ.splitDepFactor k).1.construct ∪ (pZ.splitDepFactor k).2.construct := by -- --- PROOF ---
+    pZ.toSet ⊆
+      (pZ.splitDepFactor k).1.toSet ∪ (pZ.splitDepFactor k).2.toSet := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   -- the half and the negated half, read back as reals
   have hc : toReal (neg (half (one : 𝕋))) = -(2 : ℝ)⁻¹ := by
@@ -52,7 +52,7 @@ theorem PolyZonotope.splitDepFactor_outer (pZ : PolyZonotope (Vec 𝕋 n))
   have hr : toReal (half (one : 𝕋)) = (2 : ℝ)⁻¹ := by
     rw [toReal_half, toReal_one]; norm_num
   -- the point is in one of the exact halves of the stored set
-  have hz' : z ∈ (nominal pZ).construct := hz
+  have hz' : z ∈ (nominal pZ).toSet := hz
   rw [← Real.PolyZonotope.splitDepFactor_union (nominal pZ) k] at hz'
   rcases hz' with h | h
   · refine Or.inl (PolyZonotope.getSubset_outer pZ k _ _ ⟨z, ?_, e, he, rfl⟩)

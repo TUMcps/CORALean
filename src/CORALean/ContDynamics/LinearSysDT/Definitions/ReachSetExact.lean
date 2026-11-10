@@ -11,7 +11,7 @@ What `reach` encloses, written out: one linear image and one Minkowski sum per s
 Mathlib's, so this names no operation class and no representation computes it. A support bound
 travels *down* an inclusion, and every guarantee the operation classes give points the other way
 — `plus_outer`, `mtimes_outer` and `reduce_outer` all say the computed set is the *larger* one —
-so a bound on `R₀` and one on `U` cannot bound `construct (reach ...)`. They bound this instead,
+so a bound on `R₀` and one on `U` cannot bound `toSet (reach ...)`. They bound this instead,
 the set a specification is about. `Theorems.ReachSetExactOuter` puts every trajectory into it,
 `ReachSetExactSubsetReach` puts it inside `reach`, and `ReachSetBound` propagates a bound along it.
 
@@ -45,8 +45,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- Every state reachable in exactly `k` steps: no `reduce`, no enclosure, and
 nothing an implementation is free to widen. -/
 def LinearSysDT.reachSetExact (sys : LinearSysDT 𝕋 n) (R₀ U : S n) : ℕ → Set (Vec ℝ n)
-  | 0 => construct R₀
-  | k + 1 => mulVecLin (toRealMat sys.A) '' sys.reachSetExact R₀ U k + construct U
+  | 0 => toSet R₀
+  | k + 1 => mulVecLin (toRealMat sys.A) '' sys.reachSetExact R₀ U k + toSet U
 
 end CORALean
 

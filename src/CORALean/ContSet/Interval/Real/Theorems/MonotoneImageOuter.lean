@@ -42,8 +42,8 @@ variable {n : ℕ}
 
 /-- Monotone `f`, nothing else: the image lies in the box of endpoint images. -/
 theorem Interval.monotoneImage_outer (f : ℝ → ℝ) (hf : Monotone f) (I : Interval (Vec ℝ n)) :
-    (fun x i => f (x i)) '' I.construct
-      ⊆ (⟨fun i => f (I.inf i), fun i => f (I.sup i)⟩ : Interval (Vec ℝ n)).construct := by
+    (fun x i => f (x i)) '' I.toSet
+      ⊆ (⟨fun i => f (I.inf i), fun i => f (I.sup i)⟩ : Interval (Vec ℝ n)).toSet := by
   rintro _ ⟨x, hx, rfl⟩ i
   have hx' : I.inf i ≤ x i ∧ x i ≤ I.sup i := hx i
   exact ⟨hf hx'.1, hf hx'.2⟩

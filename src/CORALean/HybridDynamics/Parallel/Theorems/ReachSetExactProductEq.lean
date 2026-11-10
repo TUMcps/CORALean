@@ -54,10 +54,10 @@ variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 /-- `R₀'` is the product's initial set: its stacks are exactly the tuples of `R₀`. -/
 theorem ParallelHybridAutomaton.reachSetExact_product_eq {P : ParallelHybridAutomaton S G k L ℝ n m}
     (hfeed : P.IsFeedthroughFree) (hdist : P.GlobalsDistinct)
-    (hne : ∀ (ℓ : ∀ i, L i) i, (construct ((P.comp i).loc (ℓ i)).U).Nonempty)
+    (hne : ∀ (ℓ : ∀ i, L i) i, (toSet ((P.comp i).loc (ℓ i)).U).Nonempty)
     {lift : ParallelHybridAutomaton.Lifting S G n m} (hex : lift.IsExact) {R₀ : ∀ i, S (n i)}
     {R₀' : S (∑ i, n i)}
-    (hR₀ : ∀ x : ∀ i, Vec ℝ (n i), stack x ∈ construct R₀' ↔ ∀ i, x i ∈ construct (R₀ i))
+    (hR₀ : ∀ x : ∀ i, Vec ℝ (n i), stack x ∈ toSet R₀' ↔ ∀ i, x i ∈ toSet (R₀ i))
     (ℓ₀ ℓ : ∀ i, L i) :
     (P.product lift).reachSetExact R₀' ℓ₀ ℓ = stack '' P.reachSetExact R₀ ℓ₀ ℓ :=
   ParallelHybridAutomaton.reachSetExact_productWith_eq (P.mergeFlowsLinearSys_isFlowLaw hfeed lift)

@@ -55,13 +55,13 @@ theorem LinearSysDT.intervalEstimate_le_intervalObserver_counterexample : -- ---
     ¬ ∀ (n : ℕ) (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q) (X₀ : Zonotope (Vec ℝ n))
       (W : Zonotope (Vec ℝ sys.r)) (V : Zonotope (Vec ℝ sys.s)) (wl wu : Vec ℝ sys.r)
       (vl vu : Vec ℝ sys.s) (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q),
-      (∀ w ∈ W.construct, ∀ i, wl i ≤ w i ∧ w i ≤ wu i) →
-      (∀ v ∈ V.construct, ∀ i, vl i ≤ v i ∧ v i ≤ vu i) → ∀ (k : ℕ) (i : Fin n),
+      (∀ w ∈ W.toSet, ∀ i, wl i ≤ w i ∧ w i ≤ wu i) →
+      (∀ v ∈ V.toSet, ∀ i, vl i ≤ v i ∧ v i ≤ vu i) → ∀ (k : ℕ) (i : Fin n),
       let Alg := sys.intervalEstimate L X₀ W V u y
       let Obs := sys.intervalObserver L wl wu vl vu (Alg 0).inf (Alg 0).sup u y
       (Obs k).inf i ≤ (Alg k).inf i ∧ (Alg k).sup i ≤ (Obs k).sup i := by -- --- PROOF ---
   intro h
-  have hz : ∀ w ∈ (⟨0, 0, fun i => i.elim0⟩ : Zonotope (Vec ℝ 1)).construct, ∀ i : Fin 1,
+  have hz : ∀ w ∈ (⟨0, 0, fun i => i.elim0⟩ : Zonotope (Vec ℝ 1)).toSet, ∀ i : Fin 1,
       (fun _ => (0 : ℝ) : Vec ℝ 1) i ≤ w i ∧ w i ≤ (fun _ => (0 : ℝ) : Vec ℝ 1) i := by
     rintro w ⟨β, _, rfl⟩ i
     simp

@@ -51,15 +51,15 @@ variable {S N α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ �
 variable [ContSet N β] [InflatedContSet S N α β]
 
 /-- What the nominal part denotes. Generic code cannot write
-`s.nominal.construct`, since dot notation resolves through a head constant and
+`s.nominal.toSet`, since dot notation resolves through a head constant and
 `N` is a variable. -/
-abbrev nominalSet (s : S) : Set β := ContSet.construct (nominal s)
+abbrev nominalSet (s : S) : Set β := ContSet.toSet (nominal s)
 
 /-- The set an inflated representation denotes: the nominal set plus the error box. -/
-def construct (s : S) : Set β := nominalSet s + (I_error s).construct
+def toSet (s : S) : Set β := nominalSet s + (I_error s).toSet
 
-/-- An inflated representation denotes `InflatedContSet.construct`. -/
-instance : ContSet S β := ⟨construct⟩
+/-- An inflated representation denotes `InflatedContSet.toSet`. -/
+instance : ContSet S β := ⟨toSet⟩
 
 end InflatedContSet
 

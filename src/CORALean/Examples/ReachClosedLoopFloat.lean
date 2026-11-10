@@ -70,8 +70,8 @@ example (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) 𝒵[𝕋] n) (U_ext : Zon
     {o : ℕ} (ho : 0 < o)
     (R₀ : Zonotope (Vec 𝕋 n)) {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Encloses π)
     {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt} {w : ℕ → Vec ℝ sys.plant.r}
-    (traj : sys.IsTrajectory π R₀ (construct U_ext) {0} x v w) (k : ℕ) :
-    x k ∈ construct (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) :=
+    (traj : sys.IsTrajectory π R₀ (toSet U_ext) {0} x v w) (k : ℕ) :
+    x k ∈ toSet (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) :=
   sys.reach_outer (S := 𝒵[𝕋]) U_ext ho R₀ hπ
     (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero]) traj k
 
@@ -82,7 +82,7 @@ example (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) 𝒵[𝕋] n) (U_ext : Zon
     {π : Vec ℝ n → Vec ℝ sys.m}
     (hπ : sys.contr.Encloses π) {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt}
     {w : ℕ → Vec ℝ sys.plant.r}
-    (traj : sys.IsTrajectory π R₀ (construct U_ext) {0} x v w) (k : ℕ) :
+    (traj : sys.IsTrajectory π R₀ (toSet U_ext) {0} x v w) (k : ℕ) :
     spec.check (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) → (spec.Holds {x k}) :=
   sys.holds_of_check (S := 𝒵[𝕋]) U_ext ho R₀ spec hπ
     (fun v hv => by rw [Set.mem_singleton_iff.1 hv, Matrix.mulVec_zero]) traj k

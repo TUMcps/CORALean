@@ -11,8 +11,8 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterAt
 `timeInterval_outer_at`, quantified over the step's own time domain
 `[0, Δt]` in one statement, through `reachExact`, and at the Taylor order `η`
 itself rather than the `m + 2` it is admissible written as:
-`reachExact Δt (construct X₀)` is exactly the union over `t ∈ [0, Δt]` of the
-image of `construct X₀` under `exp (t • A)`, so unpacking one `t` and its
+`reachExact Δt (toSet X₀)` is exactly the union over `t ∈ [0, Δt]` of the
+image of `toSet X₀` under `exp (t • A)`, so unpacking one `t` and its
 bounds from membership, and `η`'s own `m + 2` witness from `2 ≤ η`, is all
 this adds.
 -/
@@ -47,8 +47,8 @@ omit [∀ n, Reduce (S n) (Vec ℝ n)] in
 `timeInterval`'s, at the order `η` itself. -/
 theorem LinearSys.timeInterval_outer (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 < Δt) {η : ℕ}
     (hη : 2 ≤ η) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (X₀ : S n) :
-    sys.reachExact Δt (construct X₀)
-      ⊆ construct (sys.timeInterval Δt η X₀) := by
+    sys.reachExact Δt (toSet X₀)
+      ⊆ toSet (sys.timeInterval Δt η X₀) := by
   obtain ⟨m, rfl⟩ : ∃ m, η = m + 2 := ⟨η - 2, by omega⟩
   rintro _ ⟨t, ⟨ht0, htr⟩, x₀, hx₀, rfl⟩
   exact sys.timeInterval_outer_at hΔt hε X₀ ht0 htr (Set.mem_image_of_mem _ hx₀)

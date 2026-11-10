@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.reduce_outer (cZ : ConZonotope (Vec ℝ n)) (o : ℕ) : -- --- CONCL ---
-    cZ.construct ⊆ (cZ.reduce o).construct := by -- --- PROOF ---
+    cZ.toSet ⊆ (cZ.reduce o).toSet := by -- --- PROOF ---
   rw [← ConZonotope.compact_exact cZ]
   unfold ConZonotope.reduce
   dsimp only

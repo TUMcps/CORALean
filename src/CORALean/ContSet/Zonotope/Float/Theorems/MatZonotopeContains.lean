@@ -42,8 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.matZonotope_contains (Z : Zonotope (Vec 𝕋 n)) {z : Vec ℝ n}
-    (hz : z ∈ Z.construct) : -- --- CONCL ---
-    (fun i _ => z i : Mat ℝ n 1) ∈ Z.matZonotope.construct := by -- --- PROOF ---
+    (hz : z ∈ Z.toSet) : -- --- CONCL ---
+    (fun i _ => z i : Mat ℝ n 1) ∈ Z.matZonotope.toSet := by -- --- PROOF ---
   obtain ⟨a, ha, e, he, rfl⟩ := hz
   obtain ⟨β, hβ, hai⟩ := Zonotope.mem_nominalSet_iff.mp ha
   refine ⟨fun i _ => a i, ⟨β, hβ, ?_⟩, fun i _ => e i, ?_, rfl⟩

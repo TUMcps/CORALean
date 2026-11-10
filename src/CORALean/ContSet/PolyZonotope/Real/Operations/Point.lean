@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
 # `PolyZonotope.point`
 
 The point a factor vector picks out, the independent block left aside;
-`construct` is the image of this map, widened by that block.
+`toSet` is the image of this map, widened by that block.
 
 It is what a product of two polynomial zonotopes is stated against. Both sets
 are functions of the *same* factors, so the exact claim is about

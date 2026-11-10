@@ -46,7 +46,7 @@ variable {n q h : ℕ}
 theorem ConZonotope.containsPoint_iff (c : Vec ℝ n) (G : Fin h → Vec ℝ n) (A : Mat ℝ q h)
     (b : Vec ℝ q) (p : Vec ℝ n) : -- --- CONCL ---
     ConZonotope.containsPoint c G A b p ↔
-      p ∈ (ConZonotope.ofMat c G A b).construct := by -- --- PROOF ---
+      p ∈ (ConZonotope.ofMat c G A b).toSet := by -- --- PROOF ---
   rw [ConZonotope.mem_ofMat_iff]
   constructor
   · -- a stacked coefficient vector gives both blocks: the generators and the constraint rows

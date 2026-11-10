@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ZonoBundle.enclosingParallelotope_outer (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k)
     (Γ : Mat 𝕋 n n) : -- --- CONCL ---
-    zB.construct ⊆ (zB.enclosingParallelotope hk Γ).construct := by -- --- PROOF ---
+    zB.toSet ⊆ (zB.enclosingParallelotope hk Γ).toSet := by -- --- PROOF ---
   intro x hx
   exact ZonoBundle.parallelotope_contains _ _ _ _
     (ZonoBundle.intervalAll_contains (zB.mtimes _) hk

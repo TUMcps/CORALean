@@ -46,19 +46,19 @@ namespace CORALean.Real
 
 theorem Polygon.quadMap_outer (P : Polygon) (Q : Fin 2 → Mat ℝ 2 2) (splits : ℕ)
     (pick : ℕ → PolyZonotope (Vec ℝ 2) → Bool) : -- --- CONCL ---
-    PolyZonotope.quadEval Q '' ContSet.construct P
-      ⊆ ContSet.construct (P.quadMap Q splits pick) := by -- --- PROOF ---
+    PolyZonotope.quadEval Q '' ContSet.toSet P
+      ⊆ ContSet.toSet (P.quadMap Q splits pick) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   -- the point lies in a triangle of the cover
   rw [← (Polygon.triangulation_exact P).2] at hx
-  obtain ⟨t, ht, hxt⟩ := SetUnion.mem_construct.mp hx
+  obtain ⟨t, ht, hxt⟩ := SetUnion.mem_toSet.mp hx
   -- its image lies in the polygon of the image of the triangle's polynomial zonotope
-  have himg : PolyZonotope.quadEval Q x ∈ (t.polyZonotope.quadMap Q).construct :=
+  have himg : PolyZonotope.quadEval Q x ∈ (t.polyZonotope.quadMap Q).toSet :=
     (PolyZonotope.quadMap_exact Q t.polyZonotope).subset
       ⟨x, VPolytope.polyZonotope_contains t hxt, rfl⟩
   have hpoly := PolyZonotope.polygon_outer (t.polyZonotope.quadMap Q) splits pick himg
-  obtain ⟨s, hs, hxs⟩ := SetUnion.mem_construct.mp hpoly
-  exact SetUnion.mem_construct.mpr ⟨s, List.mem_flatMap.mpr ⟨t, ht, hs⟩, hxs⟩
+  obtain ⟨s, hs, hxs⟩ := SetUnion.mem_toSet.mp hpoly
+  exact SetUnion.mem_toSet.mpr ⟨s, List.mem_flatMap.mpr ⟨t, ht, hs⟩, hxs⟩
 
 end CORALean.Real
 

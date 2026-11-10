@@ -70,7 +70,7 @@ instance : Reindex (fun k => ConZonotope 𝕋 (Vec 𝕋 k)) where
 instance : Mtimes (Mat 𝕋) (fun k => ConZonotope 𝕋 (Vec 𝕋 k)) where
   mtimes M cZ := (ConZonotope.mtimes M cZ).materialise
   mtimes_outer M cZ := by
-    simp only [ContSet.construct_mat, Set.biUnion_singleton, ConZonotope.materialise_eq]
+    simp only [ContSet.toSet_mat, Set.biUnion_singleton, ConZonotope.materialise_eq]
     exact ConZonotope.mtimes_outer M cZ
 
 /-- The same operation at a float interval matrix, as `Zonotope`'s is. -/

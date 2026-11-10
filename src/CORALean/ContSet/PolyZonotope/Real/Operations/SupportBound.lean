@@ -50,7 +50,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The dependent part's bound `u`, plus the independent block's own exact
 extent in the direction `c`. -/
 noncomputable def PolyZonotope.supportBound (pZ : PolyZonotope α) (c : α →ₗ[ℝ] ℝ)
-    (u : SupportBound (pZ.subsetAt {a | ∀ k, |a k| ≤ 1}) c) : SupportBound pZ.construct c where
+    (u : SupportBound (pZ.subsetAt {a | ∀ k, |a k| ≤ 1}) c) : SupportBound pZ.toSet c where
   val := u.val + ∑ j, |c (pZ.GI j)|
   le := by
     rintro _ ⟨a, β, ha, hβ, rfl⟩

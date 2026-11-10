@@ -90,9 +90,9 @@ private theorem LinearSys.aux_manualStepFloat_outer (sys : LinearSys 𝕋 n)
     ∀ s' R, (s', R) ∈ sys.step_manualStepFloat X₀ V Δt η ρ s →
       sys.IsManualInvariantFloat X₀ V s' ∧ (s'.t : ℝ) = s.t + toReal Δt ∧
         ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
-          U ⊆ V.construct → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
-            x t ∈ R.construct := by -- --- PROOF ---
+          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.toSet U x u →
+          U ⊆ V.toSet → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
+            x t ∈ R.toSet := by -- --- PROOF ---
   intro s' R (h : sys.step_manualStepFloat X₀ V Δt η ρ s = some (s', R))
   obtain ⟨h0, hlo, hhi, hH, hPu, hPU⟩ := hinv
   unfold LinearSys.step_manualStepFloat at h
@@ -111,8 +111,8 @@ private theorem LinearSys.aux_manualStepFloat_outer (sys : LinearSys 𝕋 n)
   have ht' : (((s.t + ToRat.toRat Δt : ℚ)) : ℝ) = toReal Δt + tk := by
     push_cast; rw [hΔq]; ring
   -- `[e^{At_k}] Z` and `[e^{At_{k+1}}] Z` hold `e^{At_k} z` and `e^{At_{k+1}} z`
-  have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct → exp (tk • A) *ᵥ z
-      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+  have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.toSet → exp (tk • A) *ᵥ z
+      ∈ ContSet.toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋])
         (sys.expSquaringFloat s.tEnc.inf s.tEnc.sup η sq) Z) :=
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
@@ -120,9 +120,9 @@ private theorem LinearSys.aux_manualStepFloat_outer (sys : LinearSys 𝕋 n)
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
         (LinearSys.squaringsFloat_spec hη.1 _ hsq) hlo hhi) (Set.mem_image_of_mem _ hz))
   -- the same at `t_{k+1}`, inside the bracket `[tLo ⊖ Δt, tHi ⊕ Δt]`
-  have hmt1 : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct
+  have hmt1 : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.toSet
       → exp ((toReal Δt + tk) • A) *ᵥ z
-        ∈ ContSet.construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        ∈ ContSet.toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
           (S := 𝒵[𝕋])
           (sys.expSquaringFloat (addDown s.tEnc.inf Δt) (addUp s.tEnc.sup Δt) η sq1) Z) :=
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
@@ -132,22 +132,22 @@ private theorem LinearSys.aux_manualStepFloat_outer (sys : LinearSys 𝕋 n)
         ((addDown_le_add _ _).trans (by linarith)) (le_trans (by linarith) (add_le_addUp _ _)))
         (Set.mem_image_of_mem _ hz))
   -- `{ũ}` and `[0, ũ]` hold what they are built from
-  have hpt : ũ ∈ (Interval.point V.c).zonotope.construct :=
+  have hpt : ũ ∈ (Interval.point V.c).zonotope.toSet :=
     Interval.zonotope_contains _ (Interval.mem_point V.c)
-  have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.construct := by
+  have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.toSet := by
     have h0 := Interval.zonotope_contains _ (Interval.mem_point fun _ : Fin n => (zero : 𝕋))
     rwa [show RealImage.realImage (fun _ : Fin n => (zero : 𝕋)) = (0 : Vec ℝ n) from
       funext fun _ => toReal_zero] at h0
-  have h0seg : (0 : Vec ℝ n) ∈ seg.construct := by
+  have h0seg : (0 : Vec ℝ n) ∈ seg.toSet := by
     refine LinComb.linComb_outer (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope
       (Interval.point V.c).zonotope ?_
     exact ⟨0, hzero, ũ, hpt, 1, ⟨zero_le_one, le_rfl⟩, by simp⟩
-  have hũseg : ũ ∈ seg.construct := by
+  have hũseg : ũ ∈ seg.toSet := by
     refine LinComb.linComb_outer (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope
       (Interval.point V.c).zonotope ?_
     exact ⟨0, hzero, ũ, hpt, 0, ⟨le_rfl, zero_le_one⟩, by simp⟩
   -- the constant `ũ` held over `[0, τ]` is an admissible input of any set holding `ũ`
-  have hconst : ∀ {W : Zonotope (Vec 𝕋 n)}, ũ ∈ W.construct → ∀ {τ : ℝ}, 0 ≤ τ →
+  have hconst : ∀ {W : Zonotope (Vec 𝕋 n)}, ũ ∈ W.toSet → ∀ {τ : ℝ}, 0 ≤ τ →
       Real.MatExp.expIntegral A τ *ᵥ ũ ∈ sys.inputReach (S := 𝒵[𝕋]) W τ :=
     fun hW _ hτ => ⟨fun _ => ũ, fun _ _ => hW, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A ũ hτ).symm⟩
@@ -159,10 +159,10 @@ private theorem LinearSys.aux_manualStepFloat_outer (sys : LinearSys 𝕋 n)
       y ∈ (Reduce.reduce (s.PU ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋])
         (sys.expSquaringFloat s.tEnc.inf s.tEnc.sup η sq) (sys.inputSolutionFloat Δt η Ũ))
-        ρ).construct := by
+        ρ).toSet := by
     intro y hy
     obtain ⟨_, ⟨p, hp, rfl⟩, q, hq, rfl⟩ := sys.inputReach_separation_subset hΔt.le
-      htk0 (CompactSet.isBounded_construct Ũ) hy
+      htk0 (CompactSet.isBounded_toSet Ũ) hy
     refine Reduce.reduce_outer (S := Zonotope (Vec 𝕋 n)) _ _
       (Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ ?_)
     have hmem := Set.add_mem_add (hPU q hq) (hmt (hPUΔ hp))
@@ -172,7 +172,7 @@ private theorem LinearSys.aux_manualStepFloat_outer (sys : LinearSys 𝕋 n)
       ∈ (s.Pu.zonotope ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋])
         (sys.expSquaringFloat s.tEnc.inf s.tEnc.sup η sq)
-        (sys.inputSolutionFloat Δt η (Interval.point V.c).zonotope)).interval.construct := by
+        (sys.inputSolutionFloat Δt η (Interval.point V.c).zonotope)).interval.toSet := by
     rw [Real.MatExp.expIntegral_add_mulVec A ũ hΔt.le htk0, add_comm]
     exact Zonotope.interval_contains _ (Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _
       (Set.add_mem_add (Interval.zonotope_contains _ hPu) (hmt hPuΔ)))
@@ -200,13 +200,13 @@ private theorem LinearSys.aux_manualStepFloat_outer (sys : LinearSys 𝕋 n)
     have hd := traj.sub_mem_inputReach_recenter (S' := 𝒵[𝕋]) (V := V)
       hUV ⟨ht0, htT⟩
     have hd' := sys.inputReach_mono (S := 𝒵[𝕋])
-      (CompactSet.isBounded_construct Ũ)
+      (CompactSet.isBounded_toSet Ũ)
       (Recenter.zero_mem_recenter V) ht0 ht.2 hd
     -- the free motion and the constant over `[0, τ]` from `H(t_k)`
     have hcore := sys.timeIntervalFloat_outer hΔt hη s.H (hH (x 0) traj.init) hτ0 hτΔ
     have hc := sys.inputReach_subset_inputSolutionFloat hΔt hη seg
       (sys.inputReach_mono (S := 𝒵[𝕋])
-        (CompactSet.isBounded_construct seg) h0seg hτ0 hτΔ
+        (CompactSet.isBounded_toSet seg) h0seg hτ0 hτΔ
         (hconst hũseg hτ0))
     -- the time splits as `t = τ + t_k`, so the exponentials factor
     have hexp : exp (t • A) = exp (τ • A) * exp (tk • A) := by
@@ -239,10 +239,10 @@ private theorem LinearSys.aux_manualRunFloat_outer (sys : LinearSys 𝕋 n) {X�
     ∀ {K : ℕ} {s : LinearSys.ManualStateFloat 𝕋 n} {Rs : List (Zonotope (Vec 𝕋 n))},
       sys.step_manualRunFloat X₀ V Δt η ρ K s = some Rs → sys.IsManualInvariantFloat X₀ V s →
       Rs.length = K ∧ ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-        sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
-        U ⊆ V.construct → ∀ (j : ℕ) (hj : j < Rs.length),
+        sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.toSet U x u →
+        U ⊆ V.toSet → ∀ (j : ℕ) (hj : j < Rs.length),
           ∀ t ∈ Set.Icc ((s.t : ℝ) + j * toReal Δt) (s.t + (j + 1) * toReal Δt), t ≤ T →
-            x t ∈ Rs[j].construct := by -- --- PROOF ---
+            x t ∈ Rs[j].toSet := by -- --- PROOF ---
   intro K
   induction K with
   | zero =>
@@ -275,7 +275,7 @@ omit [ToRat 𝕋] in
 private theorem LinearSys.aux_isManualInvariantFloat_init (sys : LinearSys 𝕋 n)
     (X₀ V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     sys.IsManualInvariantFloat X₀ V (LinearSys.step_manualInitFloat X₀) := by -- --- PROOF ---
-  have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.construct := by
+  have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.toSet := by
     have h0 := Interval.zonotope_contains _ (Interval.mem_point fun _ : Fin n => (zero : 𝕋))
     rwa [show RealImage.realImage (fun _ : Fin n => (zero : 𝕋)) = (0 : Vec ℝ n) from
       funext fun _ => toReal_zero] at h0
@@ -303,11 +303,11 @@ theorem LinearSys.manualReachFloat_outer (sys : LinearSys 𝕋 n)
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
           sys.IsCanonicalTrajectory (S := 𝒮)
-            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
+            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.toSet
             ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-              params.U.construct) x u →
+              params.U.toSet) x u →
           ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
-            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
+            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].toSet := by -- --- PROOF ---
   intro Rs (h : sys.manualReachFloat params options = some Rs)
   obtain ⟨X₀, U, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options
@@ -322,7 +322,7 @@ theorem LinearSys.manualReachFloat_outer (sys : LinearSys 𝕋 n)
   refine ⟨N, hNΔt, hlen, fun {x u} traj k hk t ht => ?_⟩
   -- the run's inputs `B u + c` are in `B U ⊕ c`'s float enclosure
   have hUV : (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-      U.construct ⊆ ContSet.construct V :=
+      U.toSet ⊆ ContSet.toSet V :=
     sys.inputSetFloat_outer U
   have hkN : (k : ℝ) + 1 ≤ N := by rw [hlen] at hk; exact_mod_cast hk
   refine hsnd traj hUV k hk t ⟨by simpa [LinearSys.step_manualInitFloat] using ht.1,

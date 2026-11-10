@@ -77,7 +77,7 @@ private theorem LinearSys.aux_exp_smul_lower (t : ℝ) : -- --- CONCL ---
 
 /-- The points of `V = [-1, 1] × {0}`, coordinatewise. -/
 private theorem LinearSys.aux_mem_segment (x : Vec ℝ 2) : -- --- CONCL ---
-    x ∈ (⟨1, 0, fun _ => ![1, 0]⟩ : Real.Zonotope (Vec ℝ 2)).construct ↔
+    x ∈ (⟨1, 0, fun _ => ![1, 0]⟩ : Real.Zonotope (Vec ℝ 2)).toSet ↔
       |x 0| ≤ 1 ∧ x 1 = 0 := by -- --- PROOF ---
   constructor
   · rintro ⟨β, hβ, rfl⟩
@@ -270,9 +270,9 @@ theorem LinearSys.particulateReach_printed_counterexample {η : ℕ} (hη : 1 �
     let V : Real.Zonotope (Vec ℝ 2) := ⟨1, 0, fun _ => ![1, 0]⟩
     let Wstar : Mat ℝ 2 2 := (1 / 2 * r ^ 2) • A + (1 / 6 * r ^ 3) • A ^ 2 -- W*(r)
     let printed : Set (Vec ℝ 2) :=
-      (fun v => (r • 1 + Wstar) *ᵥ v) '' V.construct +
-        ∑ i ∈ Finset.Icc 3 η, (fun v => sys.inputTerm r i *ᵥ v) '' V.construct +
-        ⋃ M ∈ (MatExp.inputRemainder A r η).construct, (fun v => M *ᵥ v) '' V.construct
+      (fun v => (r • 1 + Wstar) *ᵥ v) '' V.toSet +
+        ∑ i ∈ Finset.Icc 3 η, (fun v => sys.inputTerm r i *ᵥ v) '' V.toSet +
+        ⋃ M ∈ (MatExp.inputRemainder A r η).toSet, (fun v => M *ᵥ v) '' V.toSet
     ![0, r ^ 2 / 4] ∈ sys.inputReach (S := 𝒵) V r ∧ ![0, r ^ 2 / 4] ∉ printed := by -- --- PROOF ---
   intro A sys V Wstar printed
   refine ⟨?_, ?_⟩
@@ -289,7 +289,7 @@ theorem LinearSys.particulateReach_printed_counterexample {η : ℕ} (hη : 1 �
       · exact measurable_const
   · -- the printed set is a box of half-width `6r³/11` about the segment `{(rt, r²t/2)}`
     -- the orders from three up vanish, as `A² = 0`
-    have hS2 : ∑ i ∈ Finset.Icc 3 η, (fun v => sys.inputTerm r i *ᵥ v) '' V.construct = 0 := by
+    have hS2 : ∑ i ∈ Finset.Icc 3 η, (fun v => sys.inputTerm r i *ᵥ v) '' V.toSet = 0 := by
       refine Finset.sum_eq_zero fun i hi => ?_
       have hi3 : 3 ≤ i := (Finset.mem_Icc.mp hi).1
       have hT : sys.inputTerm r i = 0 := by

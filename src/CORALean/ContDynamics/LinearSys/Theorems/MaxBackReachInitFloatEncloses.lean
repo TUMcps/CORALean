@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemAdaptiveInt
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 public import CORALean.ContSet.ConZonotope.Float.Theorems.OriginExact
-public import CORALean.ContSet.ConZonotope.Float.Theorems.ConstructEqNominal
+public import CORALean.ContSet.ConZonotope.Float.Theorems.ToSetEqNominal
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
 public import CORALean.ContSet.Interval.Float.Theorems.AbsLeMagnitude
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatSubsetAddBox
@@ -75,9 +75,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem LinearSys.maxBackReachInitFloat_encloses (sys : LinearSys 𝕋 n) {U W₀ : Zonotope (Vec 𝕋 n)}
     {t₀ : 𝕋} {η : ℕ} (Ur W₀r : CORALean.Real.Zonotope (Vec ℝ n)) (ht₀ : 0 ≤ toReal t₀)
-    (hU0 : (0 : Vec ℝ n) ∈ U.I_error.construct) (hU : U.construct ⊆ construct Ur)
+    (hU0 : (0 : Vec ℝ n) ∈ U.I_error.toSet) (hU : U.toSet ⊆ toSet Ur)
     (hWE : W₀.I_error = Interval.point fun _ => FloatOps.zero)
-    (hW₀r : W₀r.construct ⊆ W₀.construct) : -- --- CONCL ---
+    (hW₀r : W₀r.toSet ⊆ W₀.toSet) : -- --- CONCL ---
     ∀ η' ∈ sys.reachOrderFloat t₀ t₀ η,
       ∀ s ∈ sys.maxBackReachInitFloat U W₀ t₀ η,
         s.Encloses (sys.maxBackReachInit Ur W₀r (toReal t₀) η') := by -- --- PROOF ---
@@ -95,19 +95,19 @@ theorem LinearSys.maxBackReachInitFloat_encloses (sys : LinearSys 𝕋 n) {U W�
   set I := MatExp.adaptiveIntegral (Interval.point sys.A) t₀ η'
   refine ⟨le_rfl, le_rfl, ?_, ?_, hW, ?_, ?_⟩
   -- the error box of `Z̲_U` holds `0`
-  · show (0 : Vec ℝ n) ∈ ((Zonotope.mtimesIntervalMat I U).materialise).I_error.construct
+  · show (0 : Vec ℝ n) ∈ ((Zonotope.mtimesIntervalMat I U).materialise).I_error.toSet
     rw [Zonotope.materialise_eq]
     exact Zonotope.zero_mem_mtimesIntervalMat_error hI hU0
   -- a point of the float `Z̲_U` is the exact integral of a point of `U`, plus the box
   · intro x hx
-    have hx' : x ∈ (Zonotope.mtimesIntervalMat I U).construct := by
+    have hx' : x ∈ (Zonotope.mtimesIntervalMat I U).toSet := by
       have h := hx
       simp only [Mtimes.mtimes, Zonotope.materialise_eq] at h
       exact h
     obtain ⟨_, ⟨u, hu, rfl⟩, b, hb, rfl⟩ :=
       Zonotope.mtimesIntervalMat_subset_add_box I U hU0 hI hx'
     refine ⟨_, ?_, b, fun i => Interval.abs_le_magnitude hb i, rfl⟩
-    show _ ∈ (CORALean.Real.Zonotope.mtimes _ Ur).construct
+    show _ ∈ (CORALean.Real.Zonotope.mtimes _ Ur).toSet
     rw [← CORALean.Real.Zonotope.mtimes_exact]
     exact ⟨u, hU hu, rfl⟩
   -- the exact disturbance set is the point `0`, and so is the float one
@@ -125,7 +125,7 @@ theorem LinearSys.maxBackReachInitFloat_encloses (sys : LinearSys 𝕋 n) {U W�
       have h := Set.mem_neg.mp hb
       rw [Zonotope.origin_exact] at h
       simpa using h
-    show a + b ∈ construct (CORALean.Real.Zonotope.ofPoint (0 : Vec ℝ n)).conZonotope
+    show a + b ∈ toSet (CORALean.Real.Zonotope.ofPoint (0 : Vec ℝ n)).conZonotope
     rw [ha0, hb0, add_zero]
     exact (CORALean.Real.Zonotope.conZonotope_exact _).subset
       (CORALean.Real.Zonotope.mem_ofPoint _)

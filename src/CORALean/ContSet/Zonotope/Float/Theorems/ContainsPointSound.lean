@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Zonotope.containsPoint_sound {Z : Zonotope (Vec 𝕋 n)} {H : Mat 𝕋 Z.h n} {p : Vec 𝕋 n}
     (h : Z.containsPoint H p = true) : -- --- CONCL ---
-    toRealVec p ∈ Z.construct := by -- --- PROOF ---
+    toRealVec p ∈ Z.toSet := by -- --- PROOF ---
   simp only [Zonotope.containsPoint, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨⟨hc, hd⟩, hE⟩ := h
@@ -52,7 +52,7 @@ theorem Zonotope.containsPoint_sound {Z : Zonotope (Vec 𝕋 n)} {H : Mat 𝕋 Z
     Zonotope.box_subset hc _ fun i =>
       le_trans (Zonotope.deviation_bound p Z.I_error.inf Z.c Z.c (toRealVec Z.c)
         (fun _ => le_refl _) (fun _ => le_refl _) i) hdev
-  have he : (fun i => toReal (Z.I_error.inf i)) ∈ (I_error Z).construct := fun i =>
+  have he : (fun i => toReal (Z.I_error.inf i)) ∈ (I_error Z).toSet := fun i =>
     ⟨le_refl _, toReal_le_of_le (hE i)⟩
   have hsum : toRealVec p = (fun i => toReal (p i) - toReal (Z.I_error.inf i))
       + fun i => toReal (Z.I_error.inf i) := by

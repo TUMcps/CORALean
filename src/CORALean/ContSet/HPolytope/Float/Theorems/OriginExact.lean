@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.Origin
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 
 @[expose] public section
 
@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.origin_exact (n : ℕ) : -- --- CONCL ---
-    (HPolytope.origin n : HPolytope 𝕋 (Vec 𝕋 n)).construct = {0} := by -- --- PROOF ---
+    (HPolytope.origin n : HPolytope 𝕋 (Vec 𝕋 n)).toSet = {0} := by -- --- PROOF ---
   -- the stored identity reads as ℝ's
   have hA : toRealMat (HPolytope.origin n : HPolytope 𝕋 (Vec 𝕋 n)).Ae = (1 : Mat ℝ n n) := by
     refine Matrix.ext fun (i : Fin n) (j : Fin n) => ?_
@@ -48,7 +48,7 @@ theorem HPolytope.origin_exact (n : ℕ) : -- --- CONCL ---
     · exact toReal_one
     · exact toReal_zero
   ext x
-  rw [(HPolytope.mem_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)),
+  rw [(HPolytope.mem_toSet_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)),
     Set.mem_singleton_iff, hA]
   simp only [HPolytope.origin, toReal_zero, Matrix.one_mulVec]
   constructor

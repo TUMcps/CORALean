@@ -54,8 +54,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 /-- The interval sum holds the real sum. -/
 private theorem LinearARX.aux_sumRangeFloat_mem (f : ℕ → Interval (Mat 𝕋 m n)) (M : ℕ → Mat ℝ m n)
-    (h : ∀ t, M t ∈ (f t).construct) (k : ℕ) : -- --- CONCL ---
-    ∑ t ∈ Finset.range k, M t ∈ (LinearARX.step_sumRangeFloat f k).construct := by -- --- PROOF ---
+    (h : ∀ t, M t ∈ (f t).toSet) (k : ℕ) : -- --- CONCL ---
+    ∑ t ∈ Finset.range k, M t ∈ (LinearARX.step_sumRangeFloat f k).toSet := by -- --- PROOF ---
   induction k with
   | zero =>
     -- the empty sum is the zero matrix, stored exactly
@@ -77,11 +77,11 @@ theorem LinearARX.computeGOFloat_outer (sys : LinearARX 𝕋 dy du p) (nk : ℕ)
     (k i : Fin nk) : -- --- CONCL ---
     let G := sys.computeGO nk
     let F := sys.computeGOFloat nk
-    G.C k ∈ (F.C k).construct ∧ G.D k i ∈ (F.D k i).construct := by -- --- PROOF ---
+    G.C k ∈ (F.C k).toSet ∧ G.D k i ∈ (F.D k i).toSet := by -- --- PROOF ---
   intro G F
   -- a stored zero matrix reads as the zero matrix
   have hz : ∀ {a b : ℕ}, (0 : Mat ℝ a b) ∈
-      (Interval.point (show Mat 𝕋 a b from fun _ _ => zero)).construct := fun {a b} => by
+      (Interval.point (show Mat 𝕋 a b from fun _ _ => zero)).toSet := fun {a b} => by
     have h : toRealMat (show Mat 𝕋 a b from fun _ _ => zero) = 0 := by
       funext r l
       simp [toRealMat, toReal_zero]

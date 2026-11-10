@@ -55,11 +55,11 @@ private theorem Zonotope.aux_sum_univ_reduceBy_box {Z : Zonotope (Vec 𝕋 n)}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `reduceBy` reaches no further than `Z.construct` widened by `reduceByBox`. -/
+/-- `reduceBy` reaches no further than `Z.toSet` widened by `reduceByBox`. -/
 theorem Zonotope.reduceBy_subset_add_box (Z : Zonotope (Vec 𝕋 n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : -- --- CONCL ---
-    (Z.reduceBy part).construct ⊆
-      Z.construct + (Zonotope.reduceByBox Z part).construct := by -- --- PROOF ---
+    (Z.reduceBy part).toSet ⊆
+      Z.toSet + (Zonotope.reduceByBox Z part).toSet := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁, y₂, hy₂, rfl⟩
   obtain ⟨β, hβ, hy₁eq⟩ := Zonotope.mem_nominalSet_iff.mp hy₁
   -- `Z`'s own coefficients: the kept half of `β`, the dropped half zeroed
@@ -91,7 +91,7 @@ theorem Zonotope.reduceBy_subset_add_box (Z : Zonotope (Vec 𝕋 n))
   -- the box's own point: the dropped rows' rounded-up radius, at `β`'s natAdd half
   set z : Vec ℝ n :=
     fun i => toReal (radius (fun i l => Z.G (part.right l) i) i) * β (Fin.natAdd q i) with hzdef
-  have hzero : (0 : Vec ℝ n) ∈ (Zonotope.reduceByBox Z part).I_error.construct := fun i =>
+  have hzero : (0 : Vec ℝ n) ∈ (Zonotope.reduceByBox Z part).I_error.toSet := fun i =>
     ⟨by show toReal (zero : 𝕋) ≤ (0 : Vec ℝ n) i
         rw [toReal_zero]; exact le_refl 0,
      by show (0 : Vec ℝ n) i ≤ toReal (zero : 𝕋)
@@ -101,7 +101,7 @@ theorem Zonotope.reduceBy_subset_add_box (Z : Zonotope (Vec 𝕋 n))
       show z i = toReal (zero : 𝕋) + ∑ x, toReal
           (diagonalBlock (radius fun i l => Z.G (part.right l) i) x i) * β (Fin.natAdd q x)
       rw [hzdef, toReal_zero, zero_add, hdiagsum]⟩
-  have hzmem : z ∈ (Zonotope.reduceByBox Z part).construct := by
+  have hzmem : z ∈ (Zonotope.reduceByBox Z part).toSet := by
     rw [show z = z + (0 : Vec ℝ n) from (add_zero z).symm]
     exact Set.add_mem_add hznom hzero
   refine ⟨_, Set.add_mem_add

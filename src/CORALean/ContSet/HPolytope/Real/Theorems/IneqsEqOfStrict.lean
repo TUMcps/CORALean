@@ -59,10 +59,10 @@ variable {q n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.ineqs_eq_of_strict (A : Mat ℝ q n) (b : Vec ℝ q) (J : Finset (Fin q))
-    (T : Set (Vec ℝ n)) (hne : (HPolytope.ineqs A b).construct.Nonempty)
-    (hT : (HPolytope.ineqs A b).construct ⊆ T)
+    (T : Set (Vec ℝ n)) (hne : (HPolytope.ineqs A b).toSet.Nonempty)
+    (hT : (HPolytope.ineqs A b).toSet ⊆ T)
     (hJ : ∀ x ∈ T, ∀ j ∈ J, (A *ᵥ x) j < b j) : -- --- CONCL ---
-    {x | ∀ i, i ∉ J → (A *ᵥ x) i ≤ b i} = (HPolytope.ineqs A b).construct := by -- --- PROOF ---
+    {x | ∀ i, i ∉ J → (A *ᵥ x) i ≤ b i} = (HPolytope.ineqs A b).toSet := by -- --- PROOF ---
   obtain ⟨p, hp⟩ := hne
   have hpr := HPolytope.mem_ineqs_iff.mp hp
   refine Set.Subset.antisymm (fun x hx => ?_)
@@ -97,7 +97,7 @@ theorem HPolytope.ineqs_eq_of_strict (A : Mat ℝ q n) (b : Vec ℝ q) (J : Fins
     rw [div_le_one (hpos j₀ hj₀V)]
     linarith [hj₀.2]
   -- `z` is a point of the polytope: rows kept hold along the segment, broken rows not yet
-  have hzP : z ∈ (HPolytope.ineqs A b).construct := by
+  have hzP : z ∈ (HPolytope.ineqs A b).toSet := by
     refine HPolytope.mem_ineqs_iff.mpr fun i => ?_
     rw [hz]
     by_cases hiV : i ∈ V

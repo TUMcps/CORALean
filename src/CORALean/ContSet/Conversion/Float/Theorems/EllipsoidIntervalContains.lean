@@ -51,7 +51,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- the box is that reach around the center, with the error box added on
 theorem Ellipsoid.interval_contains (E : Ellipsoid 𝕋 n) (s : Vec 𝕋 n)
     (hs : ∀ i, toReal (E.Q i i) ≤ toReal (mulDown (s i) (s i))) : -- --- CONCL ---
-    E.construct ⊆ (E.interval s).construct := by -- --- PROOF ---
+    E.toSet ⊆ (E.interval s).toSet := by -- --- PROOF ---
   rintro _ ⟨z, hzmem, e, he, rfl⟩ i
   -- the nominal point is within `|sᵢ|` of the center
   have hrow : |z i - toReal (E.q i)| ≤ toReal (absolute (s i)) := by

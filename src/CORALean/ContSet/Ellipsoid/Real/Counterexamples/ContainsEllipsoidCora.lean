@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemToSetIff
 public import Mathlib.Data.Matrix.Block
 public import Mathlib.Data.Matrix.ColumnRowPartitioned
 public import Mathlib.LinearAlgebra.Matrix.Rank
@@ -100,7 +100,7 @@ theorem Ellipsoid.containsEllipsoidCora_counterexample : -- --- CONCL ---
     let IsSdp := fun sdp : (A B C : Matrix (Fin 2 ⊕ Fin 1) (Fin 2 ⊕ Fin 1) ℝ) → ℝ =>
       ∀ A B C, (∃ L, ∀ ρ δ : ℝ, 0 ≤ δ → (δ • C - (A - ρ • B)).PosSemidef → L ≤ ρ) →
         ∀ ρ δ : ℝ, 0 ≤ δ → (δ • C - (A - ρ • B)).PosSemidef → sdp A B C ≤ ρ + 3 / 4
-    ¬ E₂.construct ⊆ E₁.construct ∧ (∃ sdp, IsSdp sdp) ∧
+    ¬ E₂.toSet ⊆ E₁.toSet ∧ (∃ sdp, IsSdp sdp) ∧
       ∀ (Hp : Mat ℝ 2 2) sdp (tol : ℝ), E₁.G * Hp * E₁.G = E₁.G → Hp * E₁.G * Hp = Hp →
         (E₁.G * Hp)ᵀ = E₁.G * Hp → (Hp * E₁.G)ᵀ = Hp * E₁.G → IsSdp sdp → 0 ≤ tol →
         E₁.containsEllipsoidCora E₂ Hp sdp tol := by -- --- PROOF ---
@@ -114,8 +114,8 @@ theorem Ellipsoid.containsEllipsoidCora_counterexample : -- --- CONCL ---
   refine ⟨?_, ?_, ?_⟩
   · -- the center `(0, 1)` of `E₂` has second coordinate `1`, every point of `E₁` has `0`
     intro h
-    obtain ⟨u, -, hu⟩ := Ellipsoid.mem_construct_iff.1
-      (h (Ellipsoid.mem_construct_iff.2 ⟨0, by rw [norm₂_zero]; norm_num, rfl⟩))
+    obtain ⟨u, -, hu⟩ := Ellipsoid.mem_toSet_iff.1
+      (h (Ellipsoid.mem_toSet_iff.2 ⟨0, by rw [norm₂_zero]; norm_num, rfl⟩))
     have := congrFun hu 1
     rw [hG₁] at this
     simp [E₁, E₂, dotProduct, Fin.sum_univ_two] at this

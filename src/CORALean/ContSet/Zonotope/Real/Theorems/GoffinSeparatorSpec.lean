@@ -93,22 +93,22 @@ private theorem Zonotope.aux_dot_self_pos {x : Vec ℝ (k + 1)} (hx : x ≠ 0) :
 
 /-- [1, Sec. 4.5]: `Z ⊆ {aᵀx ≤ b}`, `aᵀx₀ > b`, and `{aᵀx = b} ∩ Z` is the facet `F`. -/
 theorem Zonotope.goffinSeparator_spec (Z : Zonotope (Vec ℝ (k + 1))) (hc : Z.c = 0)
-    (hfull : Submodule.span ℝ (Set.range Z.G) = ⊤) {x₀ : Vec ℝ (k + 1)} (hx₀ : x₀ ∉ Z.construct)
-    {βstar : ℝ} (hβ : IsGreatest {β | β • x₀ ∈ Z.construct} βstar)
-    (w : Vec ℝ (k + 1)) (hw : w ≠ 0) (hmax : ∀ y ∈ Z.construct, w ⬝ᵥ y ≤ w ⬝ᵥ (βstar • x₀))
+    (hfull : Submodule.span ℝ (Set.range Z.G) = ⊤) {x₀ : Vec ℝ (k + 1)} (hx₀ : x₀ ∉ Z.toSet)
+    {βstar : ℝ} (hβ : IsGreatest {β | β • x₀ ∈ Z.toSet} βstar)
+    (w : Vec ℝ (k + 1)) (hw : w ≠ 0) (hmax : ∀ y ∈ Z.toSet, w ⬝ᵥ y ≤ w ⬝ᵥ (βstar • x₀))
     (H : Mat ℝ (k + 1) k) (hH : LinearIndependent ℝ fun i => Hᵀ i)
     (hHF : ∀ i, Hᵀ i ∈ vectorSpan ℝ
-      {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, w ⬝ᵥ y ≤ w ⬝ᵥ x}) : -- --- CONCL ---
+      {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, w ⬝ᵥ y ≤ w ⬝ᵥ x}) : -- --- CONCL ---
     let s := Zonotope.goffinSeparator βstar x₀ H
-    Z.construct ⊆ {x | s.1 ⬝ᵥ x ≤ s.2} ∧ s.2 < s.1 ⬝ᵥ x₀ ∧
-      {x | x ∈ Z.construct ∧ s.1 ⬝ᵥ x = s.2}
-        = {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, w ⬝ᵥ y ≤ w ⬝ᵥ x} := by -- --- PROOF ---
+    Z.toSet ⊆ {x | s.1 ⬝ᵥ x ≤ s.2} ∧ s.2 < s.1 ⬝ᵥ x₀ ∧
+      {x | x ∈ Z.toSet ∧ s.1 ⬝ᵥ x = s.2}
+        = {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, w ⬝ᵥ y ≤ w ⬝ᵥ x} := by -- --- PROOF ---
   intro s
   set a := (1 - H * (Hᵀ * H)⁻¹ * Hᵀ) *ᵥ x₀ with ha
-  set F := {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, w ⬝ᵥ y ≤ w ⬝ᵥ x} with hF
+  set F := {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, w ⬝ᵥ y ≤ w ⬝ᵥ x} with hF
   have hs : s = (a, a ⬝ᵥ (βstar • x₀)) := rfl
   -- `0` is interior: a point of the interior, its reflection, and their midpoint
-  have hneg : -Z.construct = Z.construct := by
+  have hneg : -Z.toSet = Z.toSet := by
     ext x
     constructor
     · rintro ⟨β, hβ1, hx⟩
@@ -119,21 +119,21 @@ theorem Zonotope.goffinSeparator_spec (Z : Zonotope (Vec ℝ (k + 1))) (hc : Z.c
     · rintro ⟨β, hβ1, rfl⟩
       refine ⟨-β, fun j => by simpa using hβ1 j, ?_⟩
       simp [hc, Finset.sum_neg_distrib]
-  have hint0 : (0 : Vec ℝ (k + 1)) ∈ interior Z.construct := by
+  have hint0 : (0 : Vec ℝ (k + 1)) ∈ interior Z.toSet := by
     -- `-y` is interior with `y`, `Z` being symmetric
     obtain ⟨y, hy⟩ := (Zonotope.isFullDim_iff Z).2 hfull
-    have hy' : -y ∈ interior Z.construct := by
-      have himg := (Homeomorph.neg (Vec ℝ (k + 1))).image_interior Z.construct
-      have hmem : -y ∈ (Homeomorph.neg (Vec ℝ (k + 1))) '' interior Z.construct := ⟨y, hy, rfl⟩
+    have hy' : -y ∈ interior Z.toSet := by
+      have himg := (Homeomorph.neg (Vec ℝ (k + 1))).image_interior Z.toSet
+      have hmem : -y ∈ (Homeomorph.neg (Vec ℝ (k + 1))) '' interior Z.toSet := ⟨y, hy, rfl⟩
       rw [himg] at hmem
       simpa [Set.image_neg_eq_neg, hneg] using hmem
-    have h := (Zonotope.convex_construct Z).interior hy hy' (by norm_num : (0 : ℝ) ≤ 1 / 2)
+    have h := (Zonotope.convex_toSet Z).interior hy hy' (by norm_num : (0 : ℝ) ≤ 1 / 2)
       (by norm_num : (0 : ℝ) ≤ 1 / 2) (by norm_num)
     simpa [← smul_add] using h
   -- a ball around `0` in `Z`, so a small enough multiple of any vector is in `Z`
-  have h0Z : (0 : Vec ℝ (k + 1)) ∈ Z.construct := interior_subset hint0
+  have h0Z : (0 : Vec ℝ (k + 1)) ∈ Z.toSet := interior_subset hint0
   obtain ⟨ε, hε, hball⟩ := Metric.mem_nhds_iff.1 (mem_interior_iff_mem_nhds.1 hint0)
-  have hsmall : ∀ v : Vec ℝ (k + 1), (ε / (2 * (‖v‖ + 1))) • v ∈ Z.construct := by
+  have hsmall : ∀ v : Vec ℝ (k + 1), (ε / (2 * (‖v‖ + 1))) • v ∈ Z.toSet := by
     intro v
     apply hball
     rw [Metric.mem_ball, dist_zero_right, norm_smul, Real.norm_eq_abs,
@@ -211,7 +211,7 @@ theorem Zonotope.goffinSeparator_spec (Z : Zonotope (Vec ℝ (k + 1))) (hc : Z.c
     lt_of_lt_of_le (by positivity : 0 < ε / (2 * (‖x₀‖ + 1))) (hβ.2 (hsmall x₀))
   have hβ1 : βstar < 1 := by
     by_contra h1
-    have hmem := (Zonotope.convex_construct Z).smul_mem_of_zero_mem h0Z hβ.1
+    have hmem := (Zonotope.convex_toSet Z).smul_mem_of_zero_mem h0Z hβ.1
       ⟨(inv_pos.2 hβ0).le, inv_le_one_of_one_le₀ (not_lt.1 h1)⟩
     rw [smul_smul, inv_mul_cancel₀ hβ0.ne', one_smul] at hmem
     exact hx₀ hmem

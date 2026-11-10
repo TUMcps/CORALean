@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.ExcludesPoint
-public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemToSet
 
 @[expose] public section
 
@@ -41,9 +41,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem HPolytope.excludesPoint_sound (P : HPolytope 𝕋 (Vec 𝕋 n)) (x : Vec 𝕋 n)
     (h : P.excludesPoint x = true) : -- --- CONCL ---
-    toRealVec x ∉ P.construct := by -- --- PROOF ---
+    toRealVec x ∉ P.toSet := by -- --- PROOF ---
   intro hx
-  obtain ⟨hA, hAe⟩ := HPolytope.rows_of_mem_construct hx
+  obtain ⟨hA, hAe⟩ := HPolytope.rows_of_mem_toSet hx
   -- a row of the stored matrix at the stored point, read exactly
   have hrow : ∀ {k : ℕ} (M : Mat 𝕋 k n) (i : Fin k),
       (toRealMat M *ᵥ toRealVec x) i = ∑ j, toReal (M i j) * toReal (x j) := fun M i => by

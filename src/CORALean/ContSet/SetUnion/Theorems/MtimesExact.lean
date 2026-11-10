@@ -46,21 +46,21 @@ variable {𝕄 : ℕ → ℕ → Type} {S : ℕ → Type}
 
 theorem SetUnion.mtimes_exact
     (hExact : ∀ {m n : ℕ} (M : 𝕄 m n) (s : S n),
-      (⋃ A ∈ ContSet.construct M, (A *ᵥ ·) '' ContSet.construct s) =
-        ContSet.construct (Mtimes.mtimes M s))
+      (⋃ A ∈ ContSet.toSet M, (A *ᵥ ·) '' ContSet.toSet s) =
+        ContSet.toSet (Mtimes.mtimes M s))
     {m n : ℕ} (M : 𝕄 m n) (u : SetUnion (S n)) : -- --- CONCL ---
-    (⋃ A ∈ ContSet.construct M, (A *ᵥ ·) '' ContSet.construct u) =
-      ContSet.construct (SetUnion.mtimes M u) := by -- --- PROOF ---
+    (⋃ A ∈ ContSet.toSet M, (A *ᵥ ·) '' ContSet.toSet u) =
+      ContSet.toSet (SetUnion.mtimes M u) := by -- --- PROOF ---
   refine Set.Subset.antisymm (SetUnion.mtimes_outer M u) ?_
   intro x hx
-  obtain ⟨t, ht, hx⟩ := SetUnion.mem_construct.mp hx
+  obtain ⟨t, ht, hx⟩ := SetUnion.mem_toSet.mp hx
   obtain ⟨s, hs, rfl⟩ := List.mem_map.mp ht
-  have hx' : x ∈ ⋃ A ∈ ContSet.construct M, (A *ᵥ ·) '' ContSet.construct s := by
+  have hx' : x ∈ ⋃ A ∈ ContSet.toSet M, (A *ᵥ ·) '' ContSet.toSet s := by
     rw [hExact M s]; exact hx
   simp only [Set.mem_iUnion, Set.mem_image] at hx'
   obtain ⟨A, hA, a, ha, rfl⟩ := hx'
   simp only [Set.mem_iUnion, Set.mem_image]
-  exact ⟨A, hA, a, SetUnion.mem_construct.mpr ⟨s, hs, ha⟩, rfl⟩
+  exact ⟨A, hA, a, SetUnion.mem_toSet.mpr ⟨s, hs, ha⟩, rfl⟩
 
 end CORALean
 

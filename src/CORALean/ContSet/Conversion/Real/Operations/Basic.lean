@@ -47,7 +47,7 @@ public import CORALean.ContSet.Taylm.Real.Operations.Bounds
 public import CORALean.ContSet.Taylm.Real.Taylm
 public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
-public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Taylm.Real.Theorems.MemToSetIff
 public import CORALean.ContSet.Taylm.Real.Theorems.MonomialSingle
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfAppend
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
@@ -298,8 +298,8 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 -- Reviewed:      ---
 
 /-- A halfspace description as a box -/
-def HPolytope.interval (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : Interval (Vec ℝ n) :=
+def HPolytope.interval (up : ∀ j, SupportBound P.toSet (LinearMap.proj j))
+    (lo : ∀ j, SupportBound P.toSet (-LinearMap.proj j)) : Interval (Vec ℝ n) :=
   Interval.ofBounds up lo
 
 end
@@ -337,8 +337,8 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 -- Reviewed:      ---
 
 /-- A halfspace description as a zonotope -/
-noncomputable def HPolytope.zonotope (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : Zonotope (Vec ℝ n) :=
+noncomputable def HPolytope.zonotope (up : ∀ j, SupportBound P.toSet (LinearMap.proj j))
+    (lo : ∀ j, SupportBound P.toSet (-LinearMap.proj j)) : Zonotope (Vec ℝ n) :=
   (HPolytope.interval up lo).zonotope
 
 
@@ -349,8 +349,8 @@ noncomputable def HPolytope.zonotope (up : ∀ j, SupportBound P.construct (Line
 -- Reviewed:      ---
 
 /-- A halfspace description as an ellipsoid -/
-noncomputable def HPolytope.ellipsoid (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : Ellipsoid n :=
+noncomputable def HPolytope.ellipsoid (up : ∀ j, SupportBound P.toSet (LinearMap.proj j))
+    (lo : ∀ j, SupportBound P.toSet (-LinearMap.proj j)) : Ellipsoid n :=
   (HPolytope.zonotope up lo).ellipsoid
 
 
@@ -361,8 +361,8 @@ noncomputable def HPolytope.ellipsoid (up : ∀ j, SupportBound P.construct (Lin
 -- Reviewed:      ---
 
 /-- A halfspace description as a polynomial zonotope -/
-noncomputable def HPolytope.polyZonotope (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : PolyZonotope (Vec ℝ n) :=
+noncomputable def HPolytope.polyZonotope (up : ∀ j, SupportBound P.toSet (LinearMap.proj j))
+    (lo : ∀ j, SupportBound P.toSet (-LinearMap.proj j)) : PolyZonotope (Vec ℝ n) :=
   (HPolytope.zonotope up lo).polyZonotope
 
 

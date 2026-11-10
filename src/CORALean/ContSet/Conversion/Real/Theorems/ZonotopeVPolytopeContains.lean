@@ -41,7 +41,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.vPolytope_contains (Z : Zonotope α) : -- --- CONCL ---
-    Z.construct ⊆ Z.vPolytope.construct := by -- --- PROOF ---
+    Z.toSet ⊆ Z.vPolytope.toSet := by -- --- PROOF ---
   rintro _ ⟨β, hβ, rfl⟩
   -- how far from `-1` towards `1` each coefficient sits
   set t : Fin Z.h → ℝ := fun j => (β j + 1) / 2 with htdef

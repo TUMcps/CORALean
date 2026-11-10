@@ -56,21 +56,21 @@ theorem LinearSys.IsCanonicalTrajectory.postDeltaSplit_outer {sys : LinearSys �
     {T : Set ℝ} {R₀ Ψ U₀ P Sg : S n} {x u : ℝ → Vec ℝ n} {c : Vec ℝ n} {r : ℝ}
     (traj : sys.IsCanonicalTrajectory T R₀ Ψ x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    (hbdd : Bornology.IsBounded (construct Ψ))
+    (hbdd : Bornology.IsBounded (toSet Ψ))
     -- the split, and the two sets the constant part is enclosed against
-    (hsplit : ∀ y ∈ construct Ψ, y - c ∈ construct U₀)
-    (hcP : c ∈ construct P)
-    (hcS : ∀ lam ∈ Set.Icc (0:ℝ) 1, lam • c ∈ construct Sg)
-    (hbddP : Bornology.IsBounded (construct P))
+    (hsplit : ∀ y ∈ toSet Ψ, y - c ∈ toSet U₀)
+    (hcP : c ∈ toSet P)
+    (hcS : ∀ lam ∈ Set.Icc (0:ℝ) 1, lam • c ∈ toSet Sg)
+    (hbddP : Bornology.IsBounded (toSet P))
     -- what the part holding the origin needs
-    (h0₀ : (0 : Vec ℝ n) ∈ construct U₀)
-    (hconv₀ : Convex ℝ (construct U₀)) (hclosed₀ : IsClosed (construct U₀))
-    (hbdd₀ : Bornology.IsBounded (construct U₀))
+    (h0₀ : (0 : Vec ℝ n) ∈ toSet U₀)
+    (hconv₀ : Convex ℝ (toSet U₀)) (hclosed₀ : IsClosed (toSet U₀))
+    (hbdd₀ : Bornology.IsBounded (toSet U₀))
     (hRconv₀ : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U₀))
     (hRclosed₀ : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U₀))
     (hRbdd₀ : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U₀))
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
-    x t - x 0 ∈ construct (sys.postDeltaSplit r (m + 2) R₀ Sg P U₀) :=
+    x t - x 0 ∈ toSet (sys.postDeltaSplit r (m + 2) R₀ Sg P U₀) :=
   traj.deltaReach_outer hr hT hε ht0 htr hbdd
     (traj.inputSolution_timeInterval_outer_split hr hT (m + 2) hε hsplit hcP hcS hbddP h0₀
       hconv₀ hclosed₀ hbdd₀ hRconv₀ hRclosed₀ hRbdd₀ ht0 htr)

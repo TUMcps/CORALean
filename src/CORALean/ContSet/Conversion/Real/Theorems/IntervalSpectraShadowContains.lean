@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.spectraShadow_contains (I : Interval (Vec ℝ n)) :
-    I.construct ⊆ I.spectraShadow.construct :=
+    I.toSet ⊆ I.spectraShadow.toSet :=
   subset_trans I.zonotope_contains (Zonotope.spectraShadow_exact _).subset
 
 end CORALean.Real

@@ -49,8 +49,8 @@ variable {m n : ℕ}
 -- and a sum of such products lies between the two corner sums, term by term
 theorem Interval.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
     (I : Interval (Vec ℝ n)) : -- --- CONCL ---
-    (⋃ A ∈ IM.construct, (A *ᵥ ·) '' I.construct)
-      ⊆ (Interval.mtimesIntervalMat IM I).construct := by -- --- PROOF ---
+    (⋃ A ∈ IM.toSet, (A *ᵥ ·) '' I.toSet)
+      ⊆ (Interval.mtimesIntervalMat IM I).toSet := by -- --- PROOF ---
   rintro y hy
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
   obtain ⟨A, hA, x, hx, rfl⟩ := hy

@@ -50,7 +50,7 @@ variable {n : ℕ}
 
 /-- CORA's `pca` over-approximates, at whatever principal axes it finds. -/
 theorem Zonotope.reducePCA_outer (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
-    Z.construct ⊆ (Z.reducePCA o).construct := by
+    Z.toSet ⊆ (Z.reducePCA o).toSet := by
   unfold Zonotope.reducePCA
   split_ifs with hlt
   · exact Zonotope.reduceByBasis_outer Z _ (Z.pcaBasis_isUnit_det _)

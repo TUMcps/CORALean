@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 point of `reduceBy_outer` holding at every pair of partitions: what separates
 the two is the order bound and nothing here. -/
 theorem PolyZonotope.reduceDependent_outer (pZ : PolyZonotope (Vec 𝕋 n)) (o : ℕ) :
-    pZ.construct ⊆ (pZ.reduceDependent o).construct :=
+    pZ.toSet ⊆ (pZ.reduceDependent o).toSet :=
   subset_trans (PolyZonotope.compact_outer pZ)
     (PolyZonotope.reduceGirardDependent_outer pZ.compact o)
 

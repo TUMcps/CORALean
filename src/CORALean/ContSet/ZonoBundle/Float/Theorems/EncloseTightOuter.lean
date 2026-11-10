@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEqIInter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ToSetEqIInter
 public import CORALean.ContSet.ZonoBundle.Float.Operations.EncloseTight
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.IntervalAllContains
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Mtimes
@@ -55,14 +55,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n r : ℕ}
 
 theorem ZonoBundle.encloseTight_outer (zB₁ zB₂ : ZonoBundle (Vec 𝕋 n)) (hk₁ : 0 < zB₁.k)
     (hk₂ : 0 < zB₂.k) (W : Fin r → Mat 𝕋 n n) (U : Mat 𝕋 n n) : -- --- CONCL ---
-    convexHull ℝ (zB₁.construct ∪ zB₂.construct)
-      ⊆ (zB₁.encloseTight zB₂ hk₁ hk₂ W U).construct := by -- --- PROOF ---
+    convexHull ℝ (zB₁.toSet ∪ zB₂.toSet)
+      ⊆ (zB₁.encloseTight zB₂ hk₁ hk₂ W U).toSet := by -- --- PROOF ---
   -- the bundle is convex, so the hull of the union is inside once the union is
-  refine convexHull_min ?_ (SetIntersection.convex_construct _)
+  refine convexHull_min ?_ (SetIntersection.convex_toSet _)
   intro x hx
   -- the two facts every member needs, at any candidate inverse `H`
   have hbox : ∀ H : Mat 𝕋 n n, toRealMat H *ᵥ x ∈
-      (((zB₁.mtimes H).intervalAll hk₁).or ((zB₂.mtimes H).intervalAll hk₂)).construct := by
+      (((zB₁.mtimes H).intervalAll hk₁).or ((zB₂.mtimes H).intervalAll hk₂)).toSet := by
     intro H
     refine Interval.or_outer _ _ ?_
     -- `H x` lies in the mapped bundle of whichever operand holds `x`, so in its box
@@ -75,7 +75,7 @@ theorem ZonoBundle.encloseTight_outer (zB₁ zB₂ : ZonoBundle (Vec 𝕋 n)) (h
         (ZonoBundle.intervalAll_contains (zB₂.mtimes H) hk₂
           (SetIntersection.memberwise_outer (Set.image (toRealMat H *ᵥ ·)) Set.monotone_image
             (fun i => ⟨i, Zonotope.mtimes_outer H (zB₂.Z i)⟩) ⟨x, h, rfl⟩))
-  have hreach : x ∈ ((zB₁.intervalAll hk₁).or (zB₂.intervalAll hk₂)).construct := by
+  have hreach : x ∈ ((zB₁.intervalAll hk₁).or (zB₂.intervalAll hk₂)).toSet := by
     refine Interval.or_outer _ _ ?_
     rcases hx with h | h
     · exact Or.inl (ZonoBundle.intervalAll_contains _ hk₁ h)
@@ -84,13 +84,13 @@ theorem ZonoBundle.encloseTight_outer (zB₁ zB₂ : ZonoBundle (Vec 𝕋 n)) (h
       ((zB₁.intervalAll hk₁).or (zB₂.intervalAll hk₂)).magnitude) := fun j =>
     le_trans (Interval.abs_le_magnitude hreach j) (le_maximumOver _ j)
   -- the transformations' members, then the Stursberg one
-  rw [ZonoBundle.construct_eq_iInter]
+  rw [ZonoBundle.toSet_eq_iInter]
   refine Set.mem_iInter.mpr fun i => ?_
   refine Fin.lastCases ?_ (fun i => ?_) i
-  · show x ∈ Zonotope.construct (Fin.snoc (α := fun _ => 𝒵[𝕋] n) _ _ (Fin.last r))
+  · show x ∈ Zonotope.toSet (Fin.snoc (α := fun _ => 𝒵[𝕋] n) _ _ (Fin.last r))
     rw [Fin.snoc_last]
     exact ZonoBundle.parallelotope_contains _ _ _ _ (hbox _) hm
-  · show x ∈ Zonotope.construct (Fin.snoc (α := fun _ => 𝒵[𝕋] n) _ _ (Fin.castSucc i))
+  · show x ∈ Zonotope.toSet (Fin.snoc (α := fun _ => 𝒵[𝕋] n) _ _ (Fin.castSucc i))
     rw [Fin.snoc_castSucc]
     exact ZonoBundle.parallelotope_contains _ _ _ _ (hbox _) hm
 

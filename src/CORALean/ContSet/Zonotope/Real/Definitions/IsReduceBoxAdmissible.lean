@@ -46,7 +46,7 @@ variable {n : ℕ}
 /-- An order meeting the admissible bound `B`: `reduceBox` at that order stays
 inside it. -/
 def Zonotope.IsReduceBoxAdmissible (Z : Zonotope (Vec ℝ n)) (B : Set (Vec ℝ n)) (o : ℕ) : Prop :=
-  (Z.reduceBox o).construct ⊆ B
+  (Z.reduceBox o).toSet ⊆ B
 
 end CORALean.Real
 

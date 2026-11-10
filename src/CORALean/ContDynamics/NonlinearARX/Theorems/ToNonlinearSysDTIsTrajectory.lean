@@ -51,8 +51,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem NonlinearARX.toNonlinearSysDT_isTrajectory (sys : NonlinearARX dy du p)
     {Y₀ : S (p * dy)} {U : S du} {V : S ((p + 1) * du)}
     (hV : ∀ v : Vec ℝ ((p + 1) * du),
-      (∀ a : Fin (p + 1), (fun b => v (finProdFinEquiv (a, b))) ∈ construct U) →
-        v ∈ construct V)
+      (∀ a : Fin (p + 1), (fun b => v (finProdFinEquiv (a, b))) ∈ toSet U) →
+        v ∈ toSet V)
     {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du} (traj : sys.IsTrajectory Y₀ U y u) :
     sys.toNonlinearSysDT.IsTrajectory Y₀ V (NonlinearARX.stack p y) (NonlinearARX.feed p u)
       (fun k => sys.toNonlinearSysDT.g (NonlinearARX.stack p y k) (NonlinearARX.feed p u k)) where

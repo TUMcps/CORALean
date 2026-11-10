@@ -61,9 +61,9 @@ private theorem Zonotope.aux_embed_apply (proj : Fin n → Fin N) (hproj : Funct
 
 theorem Zonotope.projectHighDim_exact (Z : Zonotope (Vec ℝ n)) (proj : Fin n → Fin N)
     (hproj : Function.Injective proj) : -- --- CONCL ---
-    (Z.projectHighDim_ proj).construct = {x | ∃ y ∈ Z.construct, (∀ k, x (proj k) = y k) ∧
+    (Z.projectHighDim_ proj).toSet = {x | ∃ y ∈ Z.toSet, (∀ k, x (proj k) = y k) ∧
       ∀ i, i ∉ Set.range proj → x i = 0} := by -- --- PROOF ---
-  show (Z.map (Zonotope.embed proj)).construct = _
+  show (Z.map (Zonotope.embed proj)).toSet = _
   rw [← Zonotope.map_exact (Zonotope.embed proj) Z]
   ext x
   constructor

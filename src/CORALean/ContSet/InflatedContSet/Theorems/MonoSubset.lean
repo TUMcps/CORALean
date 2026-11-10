@@ -43,8 +43,8 @@ variable [InflatedContSet S N (Vec 𝕋 n) (Vec ℝ n)] [InflatedContSet T M (Ve
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem mono_subset {s : S} {t : T} (hnominal : nominalSet s ⊆ nominalSet t)
-    (herror : (I_error s).construct ⊆ (I_error t).construct) :
-    construct s ⊆ construct t :=
+    (herror : (I_error s).toSet ⊆ (I_error t).toSet) :
+    toSet s ⊆ toSet t :=
   Set.add_subset_add hnominal herror
 
 end CORALean.Float.InflatedContSet

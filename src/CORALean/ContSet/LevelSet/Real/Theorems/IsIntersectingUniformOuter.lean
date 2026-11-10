@@ -46,9 +46,9 @@ variable {n m : ℕ}
 theorem LevelSet.isIntersecting_uniform_outer (L : LevelSet n) (I : Interval (Vec ℝ n))
     (B : Fin L.m → Interval ℝ) {tol : ℝ}
     (htol : 0 ≤ tol)
-    (hB : ∀ i, IsRangeBound (fun x => L.f x i) I.construct (B i).inf (B i).sup)
+    (hB : ∀ i, IsRangeBound (fun x => L.f x i) I.toSet (B i).inf (B i).sup)
     (h : ¬ L.isIntersecting_uniform tol B) : -- --- CONCL ---
-    L.construct ∩ I.construct = ∅ := by -- --- PROOF ---
+    L.toSet ∩ I.toSet = ∅ := by -- --- PROOF ---
   classical
   -- some row fails the test; a common point would satisfy it
   simp only [LevelSet.isIntersecting_uniform, not_forall] at h

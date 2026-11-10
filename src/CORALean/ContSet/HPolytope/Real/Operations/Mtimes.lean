@@ -17,7 +17,7 @@ it.
 ## Inputs
 * `M` – linear map
 * `Aq` – family indexed by `Fin q`
-* `u` – a support bound of `P.construct` along each row
+* `u` – a support bound of `P.toSet` along each row
 
 ## Output
 * the polytope on the directions `Aq` bounded by the image of the bounds `u`
@@ -40,7 +40,7 @@ variable {q : ℕ} {P : HPolytope α}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.mtimesOf (M : α →ₗ[ℝ] β) (Aq : Fin q → (β →ₗ[ℝ] ℝ))
-    (u : ∀ i, SupportBound P.construct ((Aq i).comp M)) : HPolytope β :=
+    (u : ∀ i, SupportBound P.toSet ((Aq i).comp M)) : HPolytope β :=
   HPolytope.ofBounds Aq fun i => SupportBound.image M (u i)
 
 end CORALean.Real

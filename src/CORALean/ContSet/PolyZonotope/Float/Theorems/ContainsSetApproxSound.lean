@@ -57,7 +57,7 @@ theorem PolyZonotope.containsSetApprox_sound (pZ S : PolyZonotope (Vec 𝕋 n))
     (guess : Interval (Vec 𝕋 n) → Interval (Vec 𝕋 (pZ.p + pZ.q)))
     (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter fuel : ℕ)
     (h : PolyZonotope.containsSetApprox pZ S guess inv iter fuel = true) : -- --- CONCL ---
-    S.construct ⊆ pZ.construct := by -- --- PROOF ---
+    S.toSet ⊆ pZ.toSet := by -- --- PROOF ---
   unfold PolyZonotope.containsSetApprox at h
   simp only [Bool.and_eq_true, beq_iff_eq] at h
   obtain ⟨⟨herr, -⟩, hit⟩ := h
@@ -70,7 +70,7 @@ theorem PolyZonotope.containsSetApprox_sound (pZ S : PolyZonotope (Vec 𝕋 n))
   -- a piece the test accepts is inside `pZ`
   have hproven : ∀ T : PolyZonotope (Vec 𝕋 n), PolyZonotope.innerGeneral pZ.indepFactors
       ⟨fun _ => neg one, fun _ => one⟩ (guess T.interval) T.interval inv iter = true →
-        T.construct ⊆ pZ.construct := by
+        T.toSet ⊆ pZ.toSet := by
     intro T hT x hx
     obtain ⟨a, ha, hpt⟩ := PolyZonotope.innerGeneral_subset_image _ _ _ _ inv iter hT
       (PolyZonotope.interval_contains T hx)
@@ -87,18 +87,18 @@ theorem PolyZonotope.containsSetApprox_sound (pZ S : PolyZonotope (Vec 𝕋 n))
   revert hit
   refine (Function.Iterate.rec
     (fun s : List (PolyZonotope (Vec 𝕋 n)) × ℕ × ℕ × Option Bool =>
-      (∀ x ∈ S.construct, x ∈ pZ.construct ∨ ∃ T ∈ s.fst, x ∈ T.construct) ∧
-        (s.snd.2.snd = some true → S.construct ⊆ pZ.construct))
+      (∀ x ∈ S.toSet, x ∈ pZ.toSet ∨ ∃ T ∈ s.fst, x ∈ T.toSet) ∧
+        (s.snd.2.snd = some true → S.toSet ⊆ pZ.toSet))
     (⟨fun x hx => Or.inr ⟨S, List.mem_singleton_self S, hx⟩, fun h => by cases h⟩) ?_ fuel).2
   · rintro ⟨L, cnt, splits, st⟩ ⟨hcov, hdone⟩
     cases st with
     | some r => exact ⟨hcov, hdone⟩
     | none =>
       -- the new list still covers what the old one did
-      have hcov' : ∀ x ∈ S.construct, x ∈ pZ.construct ∨
+      have hcov' : ∀ x ∈ S.toSet, x ∈ pZ.toSet ∨
           ∃ T ∈ L.flatMap (fun T => if PolyZonotope.innerGeneral pZ.indepFactors
             ⟨fun _ => neg one, fun _ => one⟩ (guess T.interval) T.interval inv iter then []
-            else T.splitLongestGenAll), x ∈ T.construct := by
+            else T.splitLongestGenAll), x ∈ T.toSet := by
         intro x hx
         rcases hcov x hx with h | ⟨T, hT, hxT⟩
         · exact Or.inl h

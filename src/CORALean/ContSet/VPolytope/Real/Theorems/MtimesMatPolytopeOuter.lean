@@ -40,8 +40,8 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.mtimesMatPolytope_outer (M : VPolytope (Mat ℝ m n)) (P : VPolytope (Vec ℝ n)) :
-    (⋃ A ∈ M.construct, (A *ᵥ ·) '' P.construct)
-      ⊆ (VPolytope.mtimesMatPolytope M P).construct := by
+    (⋃ A ∈ M.toSet, (A *ᵥ ·) '' P.toSet)
+      ⊆ (VPolytope.mtimesMatPolytope M P).toSet := by
   -- binding `h` first: against this goal's expected type, `isDefEq` never terminates
   have h := VPolytope.bilin_outer (Matrix.mulVecBilin ℝ ℝ) M P
   simp only [VPolytope.mtimesMatPolytope, ← Matrix.mulVecBilin_apply ℝ ℝ]

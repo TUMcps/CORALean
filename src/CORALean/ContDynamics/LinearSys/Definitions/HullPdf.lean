@@ -60,7 +60,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- `f̄_X(x, r)` for the initial density `N(μ₀, Σ₀)`, the supremum over admissible inputs. -/
 noncomputable def LinearSys.hullPdf (sys : LinearSys 𝕋 n) (C : Mat ℝ n m) (U : S n)
     (μ₀ : Vec ℝ n) (Sig₀ : Mat ℝ n n) (r : ℝ) (x : EuclideanSpace ℝ (Fin n)) : ℝ :=
-  sSup {f | ∃ u : ℝ → Vec ℝ n, (∀ s ∈ Set.Icc (0:ℝ) r, u s ∈ construct U) ∧
+  sSup {f | ∃ u : ℝ → Vec ℝ n, (∀ s ∈ Set.Icc (0:ℝ) r, u s ∈ toSet U) ∧
     AEStronglyMeasurable u (volume.restrict (Set.Icc 0 r)) ∧
     f = gaussPdf (sys.closedForm μ₀ u r) (exp (r • toRealMat sys.A) * Sig₀
       * exp (r • (toRealMat sys.A).transpose) + noiseCovariance (toRealMat sys.A) C r) x}

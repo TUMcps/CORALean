@@ -90,7 +90,7 @@ private theorem PolyZonotope.aux_relaxExp_nominal (pZ : PolyZonotope (Vec 𝕋 n
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p)
     (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) : -- --- CONCL ---
     nominalSet pZ ⊆ nominalSet (pZ.relaxExp part k₀)
-      + (PolyZonotope.generatorError (pZ.step_relaxGap part k₀)).construct := by -- --- PROOF ---
+      + (PolyZonotope.generatorError (pZ.step_relaxGap part k₀)).toSet := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, β, ha, hβ, hxi⟩ := PolyZonotope.mem_nominalSet_iff.mp hx
   have habs : |Real.PolyZonotope.monomial pZ.E a (part.right 0)
@@ -166,7 +166,7 @@ private theorem PolyZonotope.aux_relaxExp_nominal (pZ : PolyZonotope (Vec 𝕋 n
 theorem PolyZonotope.relaxExp_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) (k₀ : Fin pZ.p)
     (hsim : ∀ k, k ≠ k₀ → pZ.E k (part.right 0) = pZ.E k (part.right 1)) : -- --- CONCL ---
-    pZ.construct ⊆ (pZ.relaxExp part k₀).construct := by -- --- PROOF ---
+    pZ.toSet ⊆ (pZ.relaxExp part k₀).toSet := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', g, hg, hsum⟩ := PolyZonotope.aux_relaxExp_nominal pZ part k₀ hsim hz
   refine ⟨z', hz', e + g, Interval.plus_outer _ _ ⟨e, he, g, hg, rfl⟩, ?_⟩

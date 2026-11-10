@@ -101,7 +101,7 @@ theorem HPolytope.isIntersectingZonoBundleCora_counterexample : -- --- CONCL ---
     let P : HPolytope (Vec ℝ 2) := HPolytope.eqs !![1, 0] ![5]
     let Zbox : Zonotope (Vec ℝ 2) := ⟨2, 0, ![![1, 0], ![0, 1]]⟩
     let zB : ZonoBundle (Vec ℝ 2) := ⟨2, ![Zbox, Zbox]⟩
-    Disjoint P.construct zB.construct ∧
+    Disjoint P.toSet zB.toSet ∧
       ∀ linprog : (HPolytope.ZonoBundleVar P.m zB → ℝ) →
           Set (HPolytope.ZonoBundleVar P.m zB) → ℤ × ℝ,
         (∀ f S, S.Nonempty → (∀ z ∈ S, f z = 0) → 0 ≤ (linprog f S).1 ∧ (linprog f S).2 = 0) →
@@ -110,7 +110,7 @@ theorem HPolytope.isIntersectingZonoBundleCora_counterexample : -- --- CONCL ---
   refine ⟨Set.disjoint_left.mpr fun x hx hx₂ => ?_, fun linprog hlp => ?_⟩
   -- `x₀ = 5` on the line, `x₀ ≤ 1` in the box
   · have h0 := HPolytope.mem_eqs_iff.mp hx 0
-    have hz : x ∈ Zbox.construct := SetIntersection.mem_construct_ofFn.mp hx₂ 0
+    have hz : x ∈ Zbox.toSet := SetIntersection.mem_toSet_ofFn.mp hx₂ 0
     obtain ⟨β, hβ, hx'⟩ := hz
     have hb := abs_le.mp (hβ (0 : Fin 2))
     have hx0 := congrFun hx' 0

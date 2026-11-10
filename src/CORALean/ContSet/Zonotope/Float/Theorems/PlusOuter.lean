@@ -61,9 +61,9 @@ private theorem Zonotope.aux_sum_univ_plus {Z₁ Z₂ : Zonotope (Vec 𝕋 n)}
 /-- The concatenated generators account for everything but the center rounding. -/
 private theorem Zonotope.aux_plus_nominal (Z₁ : Zonotope (Vec 𝕋 n))
     (Z₂ : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    (nominal Z₁).construct + (nominal Z₂).construct ⊆
-      (nominal (Z₁.plus Z₂)).construct
-        + (Zonotope.centerResidual Z₁.c Z₂.c).construct := by -- --- PROOF ---
+    (nominal Z₁).toSet + (nominal Z₂).toSet ⊆
+      (nominal (Z₁.plus Z₂)).toSet
+        + (Zonotope.centerResidual Z₁.c Z₂.c).toSet := by -- --- PROOF ---
   rintro _ ⟨z₁, hz₁', z₂, hz₂', rfl⟩
   obtain ⟨β₁, hβ₁, hz₁⟩ := Zonotope.mem_nominalSet_iff.mp hz₁'
   obtain ⟨β₂, hβ₂, hz₂⟩ := Zonotope.mem_nominalSet_iff.mp hz₂'
@@ -84,8 +84,8 @@ private theorem Zonotope.aux_plus_nominal (Z₁ : Zonotope (Vec 𝕋 n))
 
 /-- The box absorbs the two incoming boxes and the center rounding. -/
 private theorem Zonotope.aux_plus_error (Z₁ : Zonotope (Vec 𝕋 n)) (Z₂ : Zonotope (Vec 𝕋 n)) :
-    Z₁.I_error.construct + Z₂.I_error.construct + (Zonotope.centerResidual Z₁.c Z₂.c).construct ⊆
-      (Z₁.plus Z₂).I_error.construct :=
+    Z₁.I_error.toSet + Z₂.I_error.toSet + (Zonotope.centerResidual Z₁.c Z₂.c).toSet ⊆
+      (Z₁.plus Z₂).I_error.toSet :=
   subset_trans (Set.add_subset_add_right (Interval.plus_outer Z₁.I_error Z₂.I_error))
     (Interval.plus_outer _ _)
 
@@ -93,7 +93,7 @@ private theorem Zonotope.aux_plus_error (Z₁ : Zonotope (Vec 𝕋 n)) (Z₂ : Z
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.plus_outer (Z₁ : Zonotope (Vec 𝕋 n)) (Z₂ : Zonotope (Vec 𝕋 n)) :
-    Z₁.construct + Z₂.construct ⊆ (Z₁.plus Z₂).construct :=
+    Z₁.toSet + Z₂.toSet ⊆ (Z₁.plus Z₂).toSet :=
   InflatedContSet.plus_subset (Zonotope.aux_plus_nominal Z₁ Z₂) (Zonotope.aux_plus_error Z₁ Z₂)
 
 end CORALean.Float

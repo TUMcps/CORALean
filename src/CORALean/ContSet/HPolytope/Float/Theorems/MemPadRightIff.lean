@@ -42,11 +42,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 theorem HPolytope.mem_padRight_iff {P : HPolytope 𝕋 (Vec 𝕋 n₂)}
     {x : Vec ℝ (n₁ + n₂)} : -- --- CONCL ---
-    x ∈ (HPolytope.padRight n₁ P).construct
-      ↔ blockRight n₁ n₂ x ∈ P.construct := by -- --- PROOF ---
+    x ∈ (HPolytope.padRight n₁ P).toSet
+      ↔ blockRight n₁ n₂ x ∈ P.toSet := by -- --- PROOF ---
   -- the box is the padded box
-  have hE : (HPolytope.padRight n₁ P).I_error.construct
-      = blockPadRight n₁ n₂ '' P.I_error.construct := by
+  have hE : (HPolytope.padRight n₁ P).I_error.toSet
+      = blockPadRight n₁ n₂ '' P.I_error.toSet := by
     ext y
     constructor
     -- a point of the padded box is the padded point of its own block
@@ -67,16 +67,16 @@ theorem HPolytope.mem_padRight_iff {P : HPolytope 𝕋 (Vec 𝕋 n₂)}
       refine Fin.addCases (fun i => ?_) (fun i => ?_) j
       · simp [HPolytope.padRight, blockPadRight, toReal_zero]
       · simpa [HPolytope.padRight, blockPadRight] using Interval.mem_vec_iff.mp he i
-  show x ∈ (HPolytope.padRight n₁ P).nominal.construct
-    + (HPolytope.padRight n₁ P).I_error.construct ↔ _
-  have hN : (HPolytope.padRight n₁ P).nominal.construct
-      = blockRight n₁ n₂ ⁻¹' P.nominal.construct := by
+  show x ∈ (HPolytope.padRight n₁ P).nominal.toSet
+    + (HPolytope.padRight n₁ P).I_error.toSet ↔ _
+  have hN : (HPolytope.padRight n₁ P).nominal.toSet
+      = blockRight n₁ n₂ ⁻¹' P.nominal.toSet := by
     ext y
     exact HPolytope.mem_padRight_nominal_iff
   -- the preimage plus the padded box is the preimage of the sum
   have key := HPolytope.preimage_inter_add_image (blockRight n₁ n₂).toAddMonoidHom
     (blockPadRight n₁ n₂).toAddMonoidHom (fun e => blockRight_append 0 e)
-    P.nominal.construct P.I_error.construct Set.univ (fun _ _ => by simp)
+    P.nominal.toSet P.I_error.toSet Set.univ (fun _ _ => by simp)
   simp only [Set.inter_univ] at key
   rw [hN, hE]
   have key' := congrArg (fun T : Set _ => x ∈ T) key

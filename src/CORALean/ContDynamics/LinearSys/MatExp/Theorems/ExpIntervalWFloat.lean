@@ -201,7 +201,7 @@ private theorem aux_leading_mem (A : Interval (Mat 𝕋 n n)) (t : 𝕋) {M : Ma
 
 
 /-- The directed sums of the corner hulls bracket the `k ≠ i, j` row-column sum. -/
-private theorem aux_rowColSum_mem (A : Interval (Mat 𝕋 n n)) {M : Mat ℝ n n} (hM : M ∈ A.construct)
+private theorem aux_rowColSum_mem (A : Interval (Mat 𝕋 n n)) {M : Mat ℝ n n} (hM : M ∈ A.toSet)
     (i j : Fin n) : -- --- CONCL ---
     toReal (sumDown fun k => if k = i ∨ k = j then (zero : 𝕋)
         else Interval.mulLo (A.inf i k) (A.sup i k) (A.inf k j) (A.sup k j))
@@ -231,8 +231,8 @@ private theorem aux_rowColSum_mem (A : Interval (Mat 𝕋 n n)) {M : Mat ℝ n n
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.expW_mem_expIntervalW (A : Interval (Mat 𝕋 n n)) (t : 𝕋)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) : -- --- CONCL ---
-    Real.MatExp.expW M (toReal t) ∈ (MatExp.expIntervalW A t).construct := by -- --- PROOF ---
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) : -- --- CONCL ---
+    Real.MatExp.expW M (toReal t) ∈ (MatExp.expIntervalW A t).toSet := by -- --- PROOF ---
   refine Interval.mem_mat_iff.mpr fun i j => ?_
   have hm := Interval.mem_mat_iff.mp hM
   -- the bracket of `½ t²`, and the bracketed `k ≠ i, j` row-column sum under it

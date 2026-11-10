@@ -50,7 +50,7 @@ variable {n : ℕ}
 theorem MatExp.expIntegral_sub_sum_mem_adaptiveRemainder (A : Mat ℝ n n) {Δt : ℝ}
     (hΔt : 0 ≤ Δt) (η : ℕ) : -- --- CONCL ---
     (MatExp.expIntegral A Δt - ∑ i ∈ Finset.range (η + 1), MatExp.particularCoeff A Δt i)
-      ∈ (MatExp.adaptiveRemainder A Δt η).construct := by -- --- PROOF ---
+      ∈ (MatExp.adaptiveRemainder A Δt η).toSet := by -- --- PROOF ---
   refine Interval.mem_mat_iff.mpr fun j k => ?_
   -- the entry bound of the tail, and `E ≤ |E|`
   have hb := abs_le.mp (MatExp.abs_particularTail_entry_le A hΔt η j k)

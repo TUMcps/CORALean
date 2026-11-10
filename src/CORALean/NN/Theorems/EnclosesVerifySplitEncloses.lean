@@ -50,9 +50,9 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
 theorem NeuralNetwork.Encloses.verifySplit_sound [Contains ContSet (S m)] [IsDisjoint ContSet (S m)]
     {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m} (hf : nn.Encloses f)
     (spec : Specification ContSet) (splitter : S n → S n × S n)
-    (hcov : ∀ Y : S n, construct Y ⊆ construct (splitter Y).1 ∪ construct (splitter Y).2)
+    (hcov : ∀ Y : S n, toSet Y ⊆ toSet (splitter Y).1 ∪ toSet (splitter Y).2)
     (d : ℕ) (X : S n) (hverify : nn.verifySplit spec splitter d X) :
-    spec.Holds (f '' construct X) :=
+    spec.Holds (f '' toSet X) :=
   hf.verifySplitWith_sound spec spec.check spec.check_sound splitter hcov d X hverify
 
 end CORALean

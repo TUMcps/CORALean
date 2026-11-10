@@ -59,23 +59,23 @@ private theorem Zonotope.aux_matMul_bounds (A : Mat 𝕋 p q) (B : Mat 𝕋 q r)
 
 theorem Zonotope.matMul_outer (M : Zonotope (Mat 𝕋 p q))
     (N : Zonotope (Mat 𝕋 q r)) : -- --- CONCL ---
-    (⋃ A ∈ M.construct, (A * ·) '' N.construct)
-      ⊆ (Zonotope.matMul M N).construct := by -- --- PROOF ---
+    (⋃ A ∈ M.toSet, (A * ·) '' N.toSet)
+      ⊆ (Zonotope.matMul M N).toSet := by -- --- PROOF ---
   intro y hy
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
   obtain ⟨_, ⟨a, ha, e, he, rfl⟩, _, ⟨b, hb, f, hf, rfl⟩, rfl⟩ := hy
   set Z := CORALean.Real.Zonotope.matMul M.nominal N.nominal
-  have hab : a * b ∈ Z.construct :=
+  have hab : a * b ∈ Z.toSet :=
     CORALean.Real.Zonotope.matMul_outer _ _ (Set.mem_biUnion ha ⟨b, hb, rfl⟩)
   -- the first nominal part, boxed: it is the nominal part of `M` with a zero box
   have ha' : a ∈ ({ M with I_error := Interval.point fun _ _ => zero } :
-      Zonotope (Mat 𝕋 p q)).matInterval.construct := by
+      Zonotope (Mat 𝕋 p q)).matInterval.toSet := by
     refine Zonotope.matInterval_contains _ ⟨a, ha, 0, ?_, add_zero a⟩
     refine Interval.mem_mat_iff.mpr fun i j => ?_
     show toReal (zero : 𝕋) ≤ 0 ∧ 0 ≤ toReal (zero : 𝕋)
     rw [toReal_zero]
     exact ⟨le_rfl, le_rfl⟩
-  have hB : b + f ∈ N.matInterval.construct :=
+  have hB : b + f ∈ N.matInterval.toSet :=
     Zonotope.matInterval_contains N ⟨b, hb, f, hf, rfl⟩
   -- each generator block of `bilin`, bracketed by the same directed products
   have hG : ∀ k i j, toReal (Fin.append (Fin.append (fun i => matMulDown (M.G i) N.c)
@@ -90,7 +90,7 @@ theorem Zonotope.matMul_outer (M : Zonotope (Mat 𝕋 p q))
         Zonotope.nominal, realImage_mat, Fin.append_left, Fin.append_right]
       <;> exact Zonotope.aux_matMul_bounds _ _ i j
   -- the nominal product rounded, the two error terms in the box
-  have hmem : a * b + (a * f + e * (b + f)) ∈ (Zonotope.matMul M N).construct :=
+  have hmem : a * b + (a * f + e * (b + f)) ∈ (Zonotope.matMul M N).toSet :=
     Zonotope.ofEntryBoundsMat_outer Z _ (fun i j => Zonotope.aux_matMul_bounds M.c N.c i j) hG
       ⟨a * b, hab, _, Interval.matPlus_outer _ _ (Interval.matMul_outer _ _ ha' hf)
         (Interval.matMul_outer _ _ he hB), rfl⟩

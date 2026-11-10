@@ -46,10 +46,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 last `r` in the new box. -/
 theorem PolyLevelSet.mem_padVars_iff (P : PolyLevelSet 𝕋 n) {r : ℕ} (D : Interval (Vec 𝕋 r))
     (x : Vec ℝ (n + r)) : -- --- CONCL ---
-    x ∈ (P.padVars D).construct
-      ↔ (fun k => x (Fin.castAdd r k)) ∈ P.construct
-        ∧ (fun k => x (Fin.natAdd n k)) ∈ D.construct := by -- --- PROOF ---
-  show (x ∈ (P.dom.append D).construct
+    x ∈ (P.padVars D).toSet
+      ↔ (fun k => x (Fin.castAdd r k)) ∈ P.toSet
+        ∧ (fun k => x (Fin.natAdd n k)) ∈ D.toSet := by -- --- PROOF ---
+  show (x ∈ (P.dom.append D).toSet
     ∧ ∀ i, (P.op i).IsMetWithin (P.nominalCore.padVars D.nominal |>.eval x i) _) ↔ _
   rw [Real.PolyLevelSet.eval_padVars, Interval.mem_append_iff]
   exact ⟨fun ⟨⟨h₁, h₂⟩, r₁⟩ => ⟨⟨h₁, r₁⟩, h₂⟩, fun ⟨⟨h₁, r₁⟩, h₂⟩ => ⟨⟨h₁, h₂⟩, r₁⟩⟩

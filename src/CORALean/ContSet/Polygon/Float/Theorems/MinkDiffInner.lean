@@ -44,10 +44,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.minkDiff_inner (P Q : Polygon 𝕋) : -- --- CONCL ---
-    ContSet.construct (Polygon.minkDiff P Q)
-      ⊆ minkowskiDiff (ContSet.construct P) (ContSet.construct Q) := by -- --- PROOF ---
+    ContSet.toSet (Polygon.minkDiff P Q)
+      ⊆ minkowskiDiff (ContSet.toSet P) (ContSet.toSet Q) := by -- --- PROOF ---
   intro x hx y hy
-  obtain ⟨R, hR, hxR⟩ := SetUnion.mem_construct.mp hx
+  obtain ⟨R, hR, hxR⟩ := SetUnion.mem_toSet.mp hx
   obtain ⟨p, hp, hpR⟩ := List.mem_filterMap.mp hR
   obtain ⟨H, hH, rfl⟩ := Option.map_eq_some_iff.mp hpR
   -- the description has no equality rows
@@ -57,7 +57,7 @@ theorem Polygon.minkDiff_inner (P Q : Polygon 𝕋) : -- --- CONCL ---
     cases hH
     rfl
   have hxy := HPolytope.minkDiffOf_inner H _ _ (fun i => absurd i.isLt (by omega)) hxR y hy
-  exact SetUnion.mem_construct.mpr ⟨p, hp, Polygon.innerHRep_inner _ hH hxy⟩
+  exact SetUnion.mem_toSet.mpr ⟨p, hp, Polygon.innerHRep_inner _ hH hxy⟩
 
 end CORALean.Float
 

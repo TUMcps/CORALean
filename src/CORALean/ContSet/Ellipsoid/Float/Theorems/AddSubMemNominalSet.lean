@@ -1,8 +1,8 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemToSetIff
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructSubsetOfLe
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetSubsetOfLe
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 
 @[expose] public section
@@ -14,7 +14,7 @@ What an enclosing float operation is sound by: its exact result is a real ellips
 stored `Q` either dominates `F`'s shape (`Q - F.Q` positive semi-definite, `Operations/Inflate`),
 or `F` is a point. In the first case `Q` is positive semi-definite, the nominal part is the
 ellipsoid of `Q`, and it contains `F`'s shape about the stored center
-(`construct_subset_of_le`); in the second only the center is asked for, which every nominal part
+(`toSet_subset_of_le`); in the second only the center is asked for, which every nominal part
 holds.
 
 ## Inputs
@@ -50,9 +50,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- `F` about the stored center lies in the nominal part when `Q` dominates it or it is a point. -/
 theorem Ellipsoid.add_sub_mem_nominalSet {E : Ellipsoid 𝕋 n} {F : Real.Ellipsoid n}
     (hF : F.Q = 0 ∨ (toRealMat E.Q - F.Q).PosSemidef) {x : Vec ℝ n}
-    (hx : x ∈ F.construct) : -- --- CONCL ---
+    (hx : x ∈ F.toSet) : -- --- CONCL ---
     toRealVec E.q + (x - F.q) ∈ nominalSet E := by -- --- PROOF ---
-  obtain ⟨u, hu, rfl⟩ := Real.Ellipsoid.mem_construct_iff.1 hx
+  obtain ⟨u, hu, rfl⟩ := Real.Ellipsoid.mem_toSet_iff.1 hx
   rw [add_sub_cancel_left]
   rcases hF with h0 | hdom
   · -- a point: only the center
@@ -63,11 +63,11 @@ theorem Ellipsoid.add_sub_mem_nominalSet {E : Ellipsoid 𝕋 n} {F : Real.Ellips
     have hpsd : (toRealMat E.Q).PosSemidef := by
       have := F.psd.add hdom
       rwa [add_sub_cancel] at this
-    have hsub := Real.Ellipsoid.construct_subset_of_le (E₁ := ⟨F.Q, toRealVec E.q, F.psd⟩)
+    have hsub := Real.Ellipsoid.toSet_subset_of_le (E₁ := ⟨F.Q, toRealVec E.q, F.psd⟩)
       (E₂ := ⟨toRealMat E.Q, toRealVec E.q, hpsd⟩) hdom rfl
-    show _ ∈ (nominal E).ellipsoid.construct
+    show _ ∈ (nominal E).ellipsoid.toSet
     rw [Ellipsoid.nominal_of_psd hpsd]
-    exact hsub (Real.Ellipsoid.mem_construct_iff.2 ⟨u, hu, rfl⟩)
+    exact hsub (Real.Ellipsoid.mem_toSet_iff.2 ⟨u, hu, rfl⟩)
 
 end CORALean.Float
 

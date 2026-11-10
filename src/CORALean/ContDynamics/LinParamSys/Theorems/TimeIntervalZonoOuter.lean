@@ -69,10 +69,10 @@ theorem LinParamSys.timeIntervalZono_outer (sys : LinParamSys 𝕄𝒵 n) {r : �
     (hεe : ‖(Zonotope.map (LinearMap.lsmul ℝ (Mat ℝ n n) r) sys.A).interval.absMax‖
       / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     (hεF : ‖(Interval.smul r sys.A.interval).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    (X₀ : S n) {A : Mat ℝ n n} (hA : A ∈ construct sys.A) {t : ℝ}
+    (X₀ : S n) {A : Mat ℝ n n} (hA : A ∈ toSet sys.A) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
-    (fun x₀ => exp (t • A) *ᵥ x₀) '' construct X₀
-      ⊆ construct (sys.timeIntervalZono r (m + 2) X₀) := by -- --- PROOF ---
+    (fun x₀ => exp (t • A) *ᵥ x₀) '' toSet X₀
+      ⊆ toSet (sys.timeIntervalZono r (m + 2) X₀) := by -- --- PROOF ---
   rintro y ⟨x₀, hx₀, rfl⟩
   -- the flow is the straight line plus what the curvature adds
   have hdecomp : exp (t • A) *ᵥ x₀
@@ -80,7 +80,7 @@ theorem LinParamSys.timeIntervalZono_outer (sys : LinParamSys 𝕄𝒵 n) {r : �
         + (exp (t • A) - 1 - (t / r) • (exp (r • A) - 1)) *ᵥ x₀ := by
     simp only [Matrix.sub_mulVec, smul_mulVec, Matrix.one_mulVec, sub_smul, smul_sub, one_smul]
     abel
-  have hrA : r • A ∈ (Zonotope.map (LinearMap.lsmul ℝ (Mat ℝ n n) r) sys.A).construct := by
+  have hrA : r • A ∈ (Zonotope.map (LinearMap.lsmul ℝ (Mat ℝ n n) r) sys.A).toSet := by
     rw [← Zonotope.map_exact]
     exact ⟨A, hA, by simp⟩
   show exp (t • A) *ᵥ x₀ ∈ _

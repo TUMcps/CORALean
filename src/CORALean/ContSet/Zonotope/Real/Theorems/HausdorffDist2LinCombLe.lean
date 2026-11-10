@@ -14,7 +14,7 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 
 Given `H = H(t_k)` and the propagated `H' = e^{AΔt_k}H + P^u(Δt_k)` (a matrix image of `H`
 shifted by `c_p`, exact by `Zonotope.mtimes`/`shift`), the exact linear combination is
-`S = comb(H,H') = Set.linComb H.construct H'.construct` — [1]'s `Def. 7`, the union of segments
+`S = comb(H,H') = Set.linComb H.toSet H'.toSet` — [1]'s `Def. 7`, the union of segments
 between two *convex* sets being their convex hull. `Zonotope.linComb_outer` already gives
 `S ⊆ Ŝ` for `Ŝ := H.linComb H'`; this file is the other direction. [1]'s bound is
 `√γ_h ‖G_h^{(-)}‖₂`, `G_h^{(-)} = (e^{AΔt_k} - I_n)G_h`, `‖·‖₂` the *matrix* norm (`genOpNorm₂`).
@@ -85,8 +85,8 @@ propagated `H(t_{k+1}) = e^{AΔt_k}H + c_p`, at `‖·‖₂`. -/
 theorem Zonotope.hausdorffDist₂_linComb_le (A : Mat ℝ n n) (Δtk : ℝ) (H : Zonotope (Vec ℝ n))
     (cp : Vec ℝ n) : -- --- CONCL ---
     hausdorffDist₂
-        (Set.linComb H.construct (Zonotope.mtimes (exp (Δtk • A)) H |>.shift (-cp)).construct)
-        (H.linComb (Zonotope.mtimes (exp (Δtk • A)) H |>.shift (-cp))).construct
+        (Set.linComb H.toSet (Zonotope.mtimes (exp (Δtk • A)) H |>.shift (-cp)).toSet)
+        (H.linComb (Zonotope.mtimes (exp (Δtk • A)) H |>.shift (-cp))).toSet
       ≤ Real.sqrt H.h *
         genOpNorm₂ (fun j => (exp (Δtk • A) - 1).mulVec (H.G j)) := by -- --- PROOF ---
   set M : Mat ℝ n n := exp (Δtk • A) with hM
@@ -128,11 +128,11 @@ theorem Zonotope.hausdorffDist₂_linComb_le (A : Mat ℝ n n) (Δtk : ℝ) (H :
   have hlam1 : lam ≤ 1 := by rw [hlam]; linarith [(abs_le.mp hβExtra1).2]
   set x1 : Vec ℝ n := H.c + ∑ j, βSum j • H.G j with hx1
   set x2 : Vec ℝ n := H'.c + ∑ j, βSum j • M.mulVec (H.G j) with hx2
-  have hx1mem : x1 ∈ H.construct := ⟨βSum, hβSum1, hx1⟩
-  have hx2mem : x2 ∈ H'.construct :=
+  have hx1mem : x1 ∈ H.toSet := ⟨βSum, hβSum1, hx1⟩
+  have hx2mem : x2 ∈ H'.toSet :=
     ⟨βSum, hβSum1, by rw [hx2]; exact congrArg _ (Finset.sum_congr rfl fun j _ => by
       rw [hH'G j])⟩
-  have hsmem : lam • x1 + (1 - lam) • x2 ∈ Set.linComb H.construct H'.construct :=
+  have hsmem : lam • x1 + (1 - lam) • x2 ∈ Set.linComb H.toSet H'.toSet :=
     ⟨x1, hx1mem, x2, hx2mem, lam, ⟨hlam0, hlam1⟩, rfl⟩
   refine ⟨lam • x1 + (1 - lam) • x2, hsmem, ?_⟩
   -- unwind `ŝ`'s own coordinates: `linComb`'s center and its three generator blocks

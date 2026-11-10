@@ -52,7 +52,7 @@ structure ProbZonotope (𝕋 : Type) (n : ℕ) where
 matrix in the covariance interval. -/
 def ProbZonotope.laws [SoundFloatArithmetic 𝕋] (P : ProbZonotope 𝕋 n) :
     Set (Measure (EuclideanSpace ℝ (Fin n))) :=
-  {m | ∃ μ ∈ P.Z.construct, ∃ S ∈ P.cov.construct,
+  {m | ∃ μ ∈ P.Z.toSet, ∃ S ∈ P.cov.toSet,
     S.PosSemidef ∧ m = multivariateGaussian (toLp 2 μ) S}
 
 end CORALean.Float

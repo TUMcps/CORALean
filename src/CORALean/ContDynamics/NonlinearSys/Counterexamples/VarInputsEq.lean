@@ -55,12 +55,12 @@ open Matrix Pointwise
 theorem varInputs_eq_counterexample : -- --- CONCL ---
     ∃ (B : Mat ℝ 1 1) (D : Fin 1 → Mat ℝ 1 1) (Rz RzΔ : PolyZonotope (Vec ℝ 1))
       (UΔ : PolyZonotope (Vec ℝ 1)),
-      {v : Vec ℝ 1 | ∃ z ∈ Rz.construct, ∃ zΔ ∈ RzΔ.construct, ∃ uΔ ∈ UΔ.construct,
+      {v : Vec ℝ 1 | ∃ z ∈ Rz.toSet, ∃ zΔ ∈ RzΔ.toSet, ∃ uΔ ∈ UΔ.toSet,
         v = fun i => (B *ᵥ uΔ) i
           + (2 : ℝ)⁻¹ * ∑ j, ∑ k, D i j k * (z j * zΔ k + zΔ j * z k + zΔ j * zΔ k)}
-        ≠ (varInputs B D Rz RzΔ UΔ).construct := by -- --- PROOF ---
+        ≠ (varInputs B D Rz RzΔ UΔ).toSet := by -- --- PROOF ---
   -- the interval `[-1, 1]` and the point `{0}`, as polynomial zonotopes
-  obtain ⟨box, hbox⟩ : ∃ box : PolyZonotope (Vec ℝ 1), ∀ x, x ∈ box.construct ↔ |x 0| ≤ 1 := by
+  obtain ⟨box, hbox⟩ : ∃ box : PolyZonotope (Vec ℝ 1), ∀ x, x ∈ box.toSet ↔ |x 0| ≤ 1 := by
     refine ⟨⟨0, 0, 1, 0, fun i => i.elim0, fun k => k.elim0, fun _ _ => 1⟩, fun x => ?_⟩
     constructor
     · rintro ⟨a, β, ha, hβ, rfl⟩
@@ -70,16 +70,16 @@ theorem varInputs_eq_counterexample : -- --- CONCL ---
       funext i
       fin_cases i
       simp
-  obtain ⟨U0, hU0⟩ : ∃ U0 : PolyZonotope (Vec ℝ 1), (0 : Vec ℝ 1) ∈ U0.construct :=
+  obtain ⟨U0, hU0⟩ : ∃ U0 : PolyZonotope (Vec ℝ 1), (0 : Vec ℝ 1) ∈ U0.toSet :=
     ⟨⟨0, 0, 0, 0, fun i => i.elim0, fun k => k.elim0, fun j => j.elim0⟩,
       fun k => k.elim0, fun j => j.elim0, fun k => k.elim0, fun j => j.elim0, by simp⟩
   refine ⟨0, fun _ => !![1], box, box, U0, fun heq => ?_⟩
   -- `-1` is in `varInputs`: the three pairings choose `(1, -1)`, `(-1, 1)` and `0`
-  have hmem : (fun _ => -1 : Vec ℝ 1) ∈ (varInputs 0 (fun _ => !![1]) box box U0).construct := by
+  have hmem : (fun _ => -1 : Vec ℝ 1) ∈ (varInputs 0 (fun _ => !![1]) box box U0).toSet := by
     -- the three points of the box the pairings choose
-    have h1 : (fun _ => 1 : Vec ℝ 1) ∈ box.construct := (hbox _).mpr (by simp)
-    have h2 : (fun _ => -1 : Vec ℝ 1) ∈ box.construct := (hbox _).mpr (by simp)
-    have h3 : (0 : Vec ℝ 1) ∈ box.construct := (hbox _).mpr (by simp)
+    have h1 : (fun _ => 1 : Vec ℝ 1) ∈ box.toSet := (hbox _).mpr (by simp)
+    have h2 : (fun _ => -1 : Vec ℝ 1) ∈ box.toSet := (hbox _).mpr (by simp)
+    have h3 : (0 : Vec ℝ 1) ∈ box.toSet := (hbox _).mpr (by simp)
     -- split `varInputs` into `B U∆` and the half sum, then each pairing on its own
     rw [varInputs, ← PolyZonotope.plus_exact]
     refine Set.mem_add.mpr ⟨0, ?_, fun _ => -1, ?_, by simp⟩

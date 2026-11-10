@@ -6,7 +6,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.AbsSubLeSubUp
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemAndRowsIff
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemCartProdIff
-public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemToSetIffOfEq
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.DependentExact
@@ -54,7 +54,7 @@ open Pointwise Matrix InflatedContSet
 /-- What the two error boxes let the two nominal points differ by, plus the centers' difference,
 lies in the stored agreement interval. -/
 private theorem ConPolyZono.aux_agree_mem (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) {e₁ e₂ : Vec ℝ n}
-    (h₁ : e₁ ∈ cPZ₁.I_error.construct) (h₂ : e₂ ∈ cPZ₂.I_error.construct)
+    (h₁ : e₁ ∈ cPZ₁.I_error.toSet) (h₂ : e₂ ∈ cPZ₂.I_error.toSet)
     (i : Fin n) : -- --- CONCL ---
     toReal ((ConPolyZono.intersectionAgree cPZ₁ cPZ₂).inf i)
         ≤ toReal (cPZ₂.c i) - toReal (cPZ₁.c i) + (e₂ i - e₁ i)
@@ -78,7 +78,7 @@ private theorem ConPolyZono.aux_agree_mem (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec
 private theorem ConPolyZono.aux_intersectionDep_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (hq₁ : cPZ₁.qI = 0)
     (hq₂ : cPZ₂.qI = 0) : -- --- CONCL ---
-    cPZ₁.construct ∩ cPZ₂.construct ⊆ (cPZ₁.intersectionDep cPZ₂).construct := by -- --- PROOF ---
+    cPZ₁.toSet ∩ cPZ₂.toSet ⊆ (cPZ₁.intersectionDep cPZ₂).toSet := by -- --- PROOF ---
   rintro x ⟨⟨y₁, hy₁, e₁, he₁, hx₁⟩, y₂, hy₂, e₂, he₂, hx₂⟩
   have hx₁' : y₁ + e₁ = x := hx₁
   have hx₂' : y₂ + e₂ = x := hx₂
@@ -97,7 +97,7 @@ private theorem ConPolyZono.aux_intersectionDep_outer (cPZ₁ cPZ₂ : ConPolyZo
     fun j => j.elim0, ?_, fun i => ?_⟩, e₁, he₁, hx₁⟩
   -- the constraints: each set's own rows, then the agreement rows
   · show Fin.append a₁ a₂
-      ∈ ((cPZ₁.cons.cartProd cPZ₂.cons).andRows (ConPolyZono.agreeCons cPZ₁ cPZ₂)).construct
+      ∈ ((cPZ₁.cons.cartProd cPZ₂.cons).andRows (ConPolyZono.agreeCons cPZ₁ cPZ₂)).toSet
     rw [PolyLevelSet.mem_andRows_iff, PolyLevelSet.mem_cartProd_iff, hA₁, hA₂]
     refine ⟨⟨hs₁, hs₂⟩, fun i => ?_⟩
     show |(toRealMat (ConPolyZono.agreeCons cPZ₁ cPZ₂).A *ᵥ Real.PolyZonotope.monomial
@@ -147,7 +147,7 @@ end
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.intersection_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    cPZ₁.construct ∩ cPZ₂.construct ⊆ (cPZ₁.intersection cPZ₂).construct := by
+    cPZ₁.toSet ∩ cPZ₂.toSet ⊆ (cPZ₁.intersection cPZ₂).toSet := by
   rw [cPZ₁.dependent_exact, cPZ₂.dependent_exact]
   exact ConPolyZono.aux_intersectionDep_outer cPZ₁.dependent cPZ₂.dependent rfl rfl
 

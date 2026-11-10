@@ -44,8 +44,8 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.not_subset_of_not_isBounded {S : Set α} (hS : ¬ Bornology.IsBounded S)
-    (P : VPolytope α) : ¬ S ⊆ P.construct :=
-  fun h => hS (P.isBounded_construct.subset h)
+    (P : VPolytope α) : ¬ S ⊆ P.toSet :=
+  fun h => hS (P.isBounded_toSet.subset h)
 
 end CORALean.Real
 

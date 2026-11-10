@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ToSetEqImage
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ContinuousAffine
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompactDomain
 
@@ -39,8 +39,8 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.isCompact_construct (cPZ : ConPolyZono α) : IsCompact cPZ.construct := by
-  rw [ConPolyZono.construct_eq_image]
+theorem ConPolyZono.isCompact_toSet (cPZ : ConPolyZono α) : IsCompact cPZ.toSet := by
+  rw [ConPolyZono.toSet_eq_image]
   exact cPZ.isCompact_domain.image cPZ.continuous_affine
 
 end CORALean.Real

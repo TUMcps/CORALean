@@ -92,7 +92,7 @@ theorem HPolytope.projection_inner_of_cert {H : Mat ℝ q n} {F : Mat ℝ q m} {
     HPolytope.ahPolytope xbar 1 (HPolytope.ineqs Hx 1) ⊆ {x | ∃ u, H *ᵥ x + F *ᵥ u ≤ g} ∧
       {x | ∃ u, H *ᵥ x + F *ᵥ u ≤ g}
         ⊆ HPolytope.ahPolytope xbar 1 (HPolytope.ineqs Hx 1)
-          + (HPolytope.ineqs HB (ε • hB)).construct := by -- --- PROOF ---
+          + (HPolytope.ineqs HB (ε • hB)).toSet := by -- --- PROOF ---
   -- a nonnegative matrix keeps an inequality between vectors
   have mono : ∀ {a b : ℕ} (M : Mat ℝ a b), (∀ i j, 0 ≤ M i j) → ∀ v w : Vec ℝ b, v ≤ w →
       M *ᵥ v ≤ M *ᵥ w := fun M hM v w hvw i => by

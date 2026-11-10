@@ -55,9 +55,9 @@ theorem Zonotope.tensorMultiplication_outer (Z : Zonotope (Vec 𝕋 n)) (M : Ten
     (hmap : ∀ p q, L.map p = L.map q →
       ({L.perm p 0, L.perm p 1, L.perm p 2} : Multiset (Fin Z.absorbRounding.h)) =
         {L.perm q 0, L.perm q 1, L.perm q 2})
-    {x : Vec ℝ n} (hx : x ∈ Z.construct) : -- --- CONCL ---
+    {x : Vec ℝ n} (hx : x ∈ Z.toSet) : -- --- CONCL ---
     Real.Zonotope.tensorEval (fun i a b c => toReal (M i a b c)) x
-      ∈ (Z.tensorMultiplication M L).construct := by -- --- PROOF ---
+      ∈ (Z.tensorMultiplication M L).toSet := by -- --- PROOF ---
   obtain ⟨γ, hγ, Δ, hΔ, heq⟩ := Zonotope.tensorMultiplication_coeff Z M L hc hperm hmap hx
   -- the nominal point at `γ`, and the shortfalls in the box
   refine ⟨fun i => ∑ m, toReal ((Z.tensorMultiplication M L).G m i) * γ m,

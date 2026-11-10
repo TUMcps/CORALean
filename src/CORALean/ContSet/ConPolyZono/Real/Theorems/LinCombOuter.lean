@@ -49,7 +49,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.linComb_outer (cPZ₁ cPZ₂ : ConPolyZono α) : -- --- CONCL ---
-    Set.linComb cPZ₁.construct cPZ₂.construct ⊆ (cPZ₁.linComb cPZ₂).construct := by -- --- PROOF ---
+    Set.linComb cPZ₁.toSet cPZ₂.toSet ⊆ (cPZ₁.linComb cPZ₂).toSet := by -- --- PROOF ---
   rintro x ⟨y₁, ⟨a₁, β₁, hβ₁, hs₁, rfl⟩, y₂, ⟨a₂, β₂, hβ₂, hs₂, rfl⟩,
     lam, ⟨hl0, hl1⟩, rfl⟩
   have hA₁ : (fun k => Fin.append (Fin.append a₁ a₂) (fun _ : Fin 1 => 2 * lam - 1)

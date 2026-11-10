@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 /-- The mirror statement for the right block. -/
 theorem HPolytope.mem_padRight_nominal_iff {P : HPolytope 𝕋 (Vec 𝕋 n₂)} {x : Vec ℝ (n₁ + n₂)} :
-    x ∈ (HPolytope.padRight n₁ P).nominal.construct ↔ blockRight n₁ n₂ x ∈ P.nominal.construct := by
+    x ∈ (HPolytope.padRight n₁ P).nominal.toSet ↔ blockRight n₁ n₂ x ∈ P.nominal.toSet := by
   rw [HPolytope.mem_nominal_iff, HPolytope.mem_nominal_iff]
   simp only [HPolytope.padRight, HPolytope.mulVec_padRight]
 

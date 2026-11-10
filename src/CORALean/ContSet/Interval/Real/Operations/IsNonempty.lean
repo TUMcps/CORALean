@@ -9,7 +9,7 @@ public import CORALean.ContSet.Interval.Real.Interval
 
 Bounds that do not cross, coordinate by coordinate: CORA's emptiness check,
 read the other way round. `Theorems/IsNonempty` gives the equivalence with
-`construct.Nonempty` and its negation, which is every use of this predicate.
+`toSet.Nonempty` and its negation, which is every use of this predicate.
 
 ## Inputs
 * `I` – interval

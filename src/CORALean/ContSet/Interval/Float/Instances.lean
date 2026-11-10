@@ -25,8 +25,8 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 # What `Interval` instantiates
 
 The same obligations the exact layer discharges, a float interval denoting a set of real points just
-as an exact one does. `ConvexSet` and `CompactSet` cost no float proof: `construct` is
-`nominal.construct` by definition. `Intersection` is exact here too. `reduce` gives up no order, as
+as an exact one does. `ConvexSet` and `CompactSet` cost no float proof: `toSet` is
+`nominal.toSet` by definition. `Intersection` is exact here too. `reduce` gives up no order, as
 over ℝ. No `OfPoint`: it would round a real point into `𝕋`; `OfScalarPoint` takes the point already
 in `𝕋`. Every field returns a `materialise`d interval: the bounds are function types, so a loop
 iterating operations would rebuild its whole history on every read. `materialise_eq` is the
@@ -62,14 +62,14 @@ scoped notation "ℐ𝒱[" t "]" => fun n => Interval (Vec t n)
 interval matrix is an instance too. The operation instances below are stated
 only at `Vec`, which is where an algorithm asks for them. -/
 instance {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [Entrywise β ι] :
-    ContSet (Interval α) β := ⟨Interval.construct⟩
+    ContSet (Interval α) β := ⟨Interval.toSet⟩
 
 instance {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [Entrywise β ι] :
-    ConvexSet (Interval α) β := ⟨fun I => I.nominal.convex_construct⟩
+    ConvexSet (Interval α) β := ⟨fun I => I.nominal.convex_toSet⟩
 
 /-- At `Vec` alone, as over ℝ: the norm compactness bounds is not read
 coordinatewise. -/
-instance : CompactSet (Interval (Vec 𝕋 n)) (Vec ℝ n) := ⟨Interval.isCompact_construct⟩
+instance : CompactSet (Interval (Vec 𝕋 n)) (Vec ℝ n) := ⟨Interval.isCompact_toSet⟩
 
 instance : Plus (Interval (Vec 𝕋 n)) (Vec ℝ n) where
   plus I₁ I₂ := (Interval.plus I₁ I₂).materialise
@@ -111,7 +111,7 @@ instance : Reindex ℐ𝒱[𝕋] where
 instance : Mtimes (Mat 𝕋) ℐ𝒱[𝕋] where
   mtimes M I := (Interval.mtimes M I).materialise
   mtimes_outer M I := by
-    simp only [ContSet.construct_mat, Set.biUnion_singleton, Interval.materialise_eq]
+    simp only [ContSet.toSet_mat, Set.biUnion_singleton, Interval.materialise_eq]
     exact Interval.mtimes_outer M I
 
 /-- The same operation at an interval matrix, which the float `expIntervalTaylor`

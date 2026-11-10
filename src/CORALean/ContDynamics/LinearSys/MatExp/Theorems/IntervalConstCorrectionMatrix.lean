@@ -71,9 +71,9 @@ interpolation error, at every time of the step, of every matrix the box holds. -
 theorem MatExp.expIntegralDiff_mem_intervalConstCorrectionMatrix (A : Interval (Mat ℝ n n))
     {r : ℝ} (hr : 0 < r) (η : ℕ)
     (hε : ‖(Interval.smul r A).absMax‖ / ((η : ℝ) + 2) < 1)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     MatExp.expIntegral M t - (t / r) • MatExp.expIntegral M r
-      ∈ (MatExp.intervalConstCorrectionMatrix A r η).construct := by -- --- PROOF ---
+      ∈ (MatExp.intervalConstCorrectionMatrix A r η).toSet := by -- --- PROOF ---
   have hnorm : ‖r • M‖ ≤ ‖(Interval.smul r A).absMax‖ :=
     Interval.norm_le_absMax (Interval.smul_outer r A hM)
   have hεM : ‖r • M‖ / ((η : ℝ) + 2) < 1 :=

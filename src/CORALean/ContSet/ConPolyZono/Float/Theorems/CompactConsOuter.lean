@@ -55,7 +55,7 @@ private theorem ConPolyZono.aux_compactCons_nominal (cPZ : ConPolyZono 𝕋 (Vec
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.compactCons_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    cPZ.construct ⊆ cPZ.compactCons.construct :=
+    cPZ.toSet ⊆ cPZ.compactCons.toSet :=
   InflatedContSet.mono_subset (ConPolyZono.aux_compactCons_nominal cPZ) (subset_refl _)
 
 end CORALean.Float

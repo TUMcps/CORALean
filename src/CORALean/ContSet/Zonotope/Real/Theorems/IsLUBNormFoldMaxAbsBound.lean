@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsBoundLeOfSubsetClosedBall
 public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetClosedBallOfAbsBoundLe
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import Mathlib.Data.Finset.Fold
 
 @[expose] public section
@@ -49,7 +49,7 @@ variable {n : ℕ}
 
 /-- `sup_{x∈Z} ‖x‖ = max(0, maxⱼ absBound j)`, as a least upper bound. -/
 theorem Zonotope.isLUB_norm_image_fold_max_absBound (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    IsLUB ((fun x => ‖x‖) '' Z.construct)
+    IsLUB ((fun x => ‖x‖) '' Z.toSet)
       (Finset.univ.fold max 0 Z.absBound) := by -- --- PROOF ---
   have h0 : 0 ≤ Finset.univ.fold max 0 Z.absBound := (Finset.le_fold_max _).mpr (Or.inl le_rfl)
   constructor
@@ -58,11 +58,11 @@ theorem Zonotope.isLUB_norm_image_fold_max_absBound (Z : Zonotope (Vec ℝ n)) :
       (fun j => (Finset.le_fold_max _).mpr (Or.inr ⟨j, Finset.mem_univ j, le_rfl⟩)) hx
     exact mem_closedBall_zero_iff.mp this
   · intro b hb
-    have hsub : Z.construct ⊆ Metric.closedBall (0 : Vec ℝ n) b := fun x hx =>
+    have hsub : Z.toSet ⊆ Metric.closedBall (0 : Vec ℝ n) b := fun x hx =>
       mem_closedBall_zero_iff.mpr (hb ⟨x, hx, rfl⟩)
     refine (Finset.fold_max_le _).mpr
       ⟨?_, fun j _ => Zonotope.absBound_le_of_subset_closedBall hsub j⟩
-    exact (norm_nonneg _).trans (hb ⟨Z.c, Zonotope.center_mem_construct Z, rfl⟩)
+    exact (norm_nonneg _).trans (hb ⟨Z.c, Zonotope.center_mem_toSet Z, rfl⟩)
 
 end CORALean.Real
 

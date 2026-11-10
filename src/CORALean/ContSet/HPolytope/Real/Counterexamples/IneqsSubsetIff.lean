@@ -52,7 +52,7 @@ open Matrix
 theorem HPolytope.ineqs_subset_iff_counterexample : -- --- CONCL ---
     ∃ (Hx : Mat ℝ 3 2) (hx : Vec ℝ 3) (Hy : Mat ℝ 4 2) (hy : Vec ℝ 4),
       (∀ v, Hx *ᵥ v = 0 → v = 0) ∧ (∀ v, Hy *ᵥ v = 0 → v = 0) ∧
-      (HPolytope.ineqs Hx hx).construct ⊆ (HPolytope.ineqs Hy hy).construct ∧
+      (HPolytope.ineqs Hx hx).toSet ⊆ (HPolytope.ineqs Hy hy).toSet ∧
       ¬ ∃ Λ : Mat ℝ 4 3, (∀ i j, 0 ≤ Λ i j) ∧ Λ * Hx = Hy ∧ Λ *ᵥ hx ≤ hy := by -- --- PROOF ---
   refine ⟨!![1, 0; -1, 0; 0, 1], ![-1, -1, 0], !![1, 0; -1, 0; 0, 1; 0, -1], ![1, 1, 1, 1],
     ?_, ?_, ?_, ?_⟩

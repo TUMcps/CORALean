@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.ellipsoid_contains (C : Capsule n) :
-    C.construct ⊆ C.ellipsoid.construct :=
+    C.toSet ⊆ C.ellipsoid.toSet :=
   subset_trans C.interval_contains (Interval.ellipsoid_contains _)
 
 end CORALean.Real

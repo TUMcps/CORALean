@@ -61,11 +61,11 @@ theorem STL.depReachAtFloat_outer (A : Mat 𝕋 n n) (Δt : 𝕋) {η : ℕ}
     (hε : toReal (MatExp.normUpperBound (Interval.smul Δt Δt (Interval.point A))) /
       ((η : ℝ) + 2) ≤ 1 / 2) {csR : STL.DepReachConsts n} {csF : STL.DepReachConstsFloat 𝕋 n}
     {X₀r : Real.Zonotope (Vec ℝ n)} {X₀f : Float.Zonotope (Vec 𝕋 n)}
-    (hX : X₀r.construct ⊆ X₀f.construct) (hcs : csF.Encloses csR) (i : ℕ) : -- --- CONCL ---
+    (hX : X₀r.toSet ⊆ X₀f.toSet) (hcs : csF.Encloses csR) (i : ℕ) : -- --- CONCL ---
     (STL.depReachAtFloat A Δt η csF X₀f i).Encloses
       (STL.depReachAt (toRealMat A) (toReal Δt) csR X₀r i)
       ((exp (toReal Δt • toRealMat A) *ᵥ ·)^[i] ''
-        {y | ∃ M ∈ csR.F.construct, ∃ x ∈ X₀r.construct, ∃ M' ∈ csR.G.construct,
+        {y | ∃ M ∈ csR.F.toSet, ∃ x ∈ X₀r.toSet, ∃ M' ∈ csR.G.toSet,
           y = M *ᵥ x + M' *ᵥ csR.ũ}) := by -- --- PROOF ---
   induction i with
   | zero =>

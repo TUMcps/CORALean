@@ -51,7 +51,7 @@ instance [Reduce S α] : Reduce (SetIntersection S) α where
   reduce := SetIntersection.reduce
   reduce_outer := SetIntersection.reduce_outer
 
-instance [ConvexSet S α] : ConvexSet (SetIntersection S) α := ⟨SetIntersection.convex_construct⟩
+instance [ConvexSet S α] : ConvexSet (SetIntersection S) α := ⟨SetIntersection.convex_toSet⟩
 
 /-- Exact: the two lists appended; the class keeps the outer half of `intersection_exact`. -/
 instance : Intersection (SetIntersection S) α where

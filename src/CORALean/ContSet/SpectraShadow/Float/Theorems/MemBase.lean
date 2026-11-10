@@ -42,14 +42,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem SpectraShadow.mem_base {S : SpectraShadow 𝕋 (Vec 𝕋 n)} {β : Vec ℝ S.m}
     (hP : (toRealMat S.A₀ + ∑ i, β i • toRealMat (S.A i)).PosSemidef) : -- --- CONCL ---
-    β ∈ S.base.construct := by -- --- PROOF ---
+    β ∈ S.base.toSet := by -- --- PROOF ---
   refine ⟨β, SpectraShadow.mem_nominalSet_iff.mpr ⟨β, hP, fun r => ?_⟩, 0, ?_, add_zero β⟩
   · -- the identity generators pick `β r`
     show β r = toReal (zero : 𝕋) + ∑ j, toReal (if r = j then (one : 𝕋) else zero) * β j
     have hunit : ∀ j, toReal (if r = j then (one : 𝕋) else zero) = if r = j then 1 else 0 :=
       fun j => by split_ifs <;> simp [toReal_one, toReal_zero]
     simp [hunit, toReal_zero]
-  · show (0 : Vec ℝ S.m) ∈ (Interval.origin S.m : Interval (Vec 𝕋 S.m)).construct
+  · show (0 : Vec ℝ S.m) ∈ (Interval.origin S.m : Interval (Vec 𝕋 S.m)).toSet
     rw [Interval.origin_exact]
     rfl
 

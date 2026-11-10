@@ -54,7 +54,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 theorem LinearSys.IsCanonicalTrajectory.discretize_step {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u)
-    (hΔt : 0 ≤ Δt) (hU : Bornology.IsBounded (construct U)) (k : ℕ)
+    (hΔt : 0 ≤ Δt) (hU : Bornology.IsBounded (toSet U)) (k : ℕ)
     (hT : Set.Icc 0 (((k : ℝ) + 1) * Δt) ⊆ T) : -- --- CONCL ---
     x (((k : ℝ) + 1) * Δt)
       = toRealMat (sys.discretize Δt).A *ᵥ x ((k : ℝ) * Δt)

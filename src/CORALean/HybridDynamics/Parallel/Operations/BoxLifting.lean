@@ -54,16 +54,16 @@ def ParallelHybridAutomaton.boxLifting :
   dist := Interval.stackProd
   mem_inv gs x hx := by
     -- the product is exactly the blocks' sets, and the blocks of a stack are what was stacked
-    show stack x ∈ (HPolytope.stackProd gs).construct
+    show stack x ∈ (HPolytope.stackProd gs).toSet
     rw [HPolytope.stackProd_exact]
     intro i
     rw [unstack_stack]
     exact hx i
   mem_guard i g x hx := by
     -- the lifted guard asks of a point only that its block `i` be in `g`
-    show stack x ∈ (HPolytope.comap (blockProj i) g).construct
+    show stack x ∈ (HPolytope.comap (blockProj i) g).toSet
     rw [HPolytope.comap_blockProj_exact]
-    show unstack (stack x) i ∈ g.construct
+    show unstack (stack x) i ∈ g.toSet
     rw [unstack_stack]
     exact hx
   mem_input b us g hg hz := by
@@ -87,7 +87,7 @@ def ParallelHybridAutomaton.boxLifting :
       exact ⟨le_rfl, le_rfl⟩
   mem_dist ws w hw := by
     -- as `mem_inv`, at the box of the stacked disturbances
-    show stack w ∈ (Interval.stackProd ws).construct
+    show stack w ∈ (Interval.stackProd ws).toSet
     rw [Interval.stackProd_exact]
     intro i
     rw [unstack_stack]

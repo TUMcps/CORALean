@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Capsule.Float.Capsule
 public import CORALean.ContSet.Capsule.Float.Operations.Reduce
 public import CORALean.ContSet.Capsule.Real.Instances
-public import CORALean.ContSet.Capsule.Real.Theorems.MemConstructIffNorm
+public import CORALean.ContSet.Capsule.Real.Theorems.MemToSetIffNorm
 public import CORALean.ContSet.Capsule.Float.Operations.Basic
 public import CORALean.ContSet.InflatedContSet.Theorems.Convex
 public import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
@@ -28,15 +28,15 @@ open CORALean FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- ================================  `Capsule.convex_construct`  ================================ --
+-- ==================================  `Capsule.convex_toSet`  ================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   18-October-2026
 -- Reviewed:      ---
 
 /-- A capsule plus a box: both convex, so the sum is. -/
-theorem Capsule.convex_construct (C : Capsule 𝕋 n) : Convex ℝ C.construct :=
-  InflatedContSet.convex_construct C
+theorem Capsule.convex_toSet (C : Capsule 𝕋 n) : Convex ℝ C.toSet :=
+  InflatedContSet.convex_toSet C
 
 
 -- ==============================  `Capsule.exists_split_of_mem`  =============================== --
@@ -46,21 +46,21 @@ theorem Capsule.convex_construct (C : Capsule 𝕋 n) : Convex ℝ C.construct :
 -- Reviewed:      ---
 
 /-- A point of an exact capsule is a point of its segment plus a vector no longer than `r`. -/
-theorem Capsule.exists_split_of_mem {K : Real.Capsule n} {y : Vec ℝ n} (hy : y ∈ K.construct) :
+theorem Capsule.exists_split_of_mem {K : Real.Capsule n} {y : Vec ℝ n} (hy : y ∈ K.toSet) :
     ∃ t ∈ Set.Icc (-1 : ℝ) 1, ∃ w : Vec ℝ n, ‖w‖₂ ≤ K.r ∧ y = K.c + t • K.g + w :=
-  let ⟨t, ht, hw⟩ := (Real.Capsule.mem_construct_iff_norm₂ K y).mp hy
+  let ⟨t, ht, hw⟩ := (Real.Capsule.mem_toSet_iff_norm₂ K y).mp hy
   ⟨t, ht, _, hw, by abel⟩
 
 
--- ==============================  `Capsule.isCompact_construct`  =============================== --
+-- ================================  `Capsule.isCompact_toSet`  ================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   18-October-2026
 -- Reviewed:      ---
 
 /-- A capsule plus a box: both compact, so the sum is. -/
-theorem Capsule.isCompact_construct (C : Capsule 𝕋 n) : IsCompact C.construct :=
-  InflatedContSet.isCompact_construct C
+theorem Capsule.isCompact_toSet (C : Capsule 𝕋 n) : IsCompact C.toSet :=
+  InflatedContSet.isCompact_toSet C
 
 
 -- ==================================  `Capsule.reduce_outer`  ================================== --
@@ -71,7 +71,7 @@ theorem Capsule.isCompact_construct (C : Capsule 𝕋 n) : IsCompact C.construct
 
 /-- `reduce` is the identity, so it encloses trivially. -/
 theorem Capsule.reduce_outer (C : Capsule 𝕋 n) (o : ℕ) :
-    C.construct ⊆ (C.reduce o).construct :=
+    C.toSet ⊆ (C.reduce o).toSet :=
   subset_rfl
 
 

@@ -43,7 +43,7 @@ def MBR.ZW : Zonotope (Vec ℝ 1) := ⟨1, ![0], fun _ => ![(0.5 : ℝ)]⟩
 
 /-- The rows of `MBR.box` alone bound it: they keep every point in `[-1, 1]`. -/
 theorem MBR.box_bounded : -- --- CONCL ---
-    Bornology.IsBounded MBR.box.dropEqs.construct := by -- --- PROOF ---
+    Bornology.IsBounded MBR.box.dropEqs.toSet := by -- --- PROOF ---
   refine (Metric.isBounded_Icc (fun _ => (-1 : ℝ)) (fun _ => 1)).subset fun x hx => ?_
   -- the two rows, read at their indices
   have h₁ : x 0 ≤ 1 := hx.1 (0 : Fin 2)
@@ -51,8 +51,8 @@ theorem MBR.box_bounded : -- --- CONCL ---
   exact ⟨fun i => by fin_cases i; show -1 ≤ x 0; linarith, fun i => by fin_cases i; exact h₁⟩
 
 -- the oracle `Alg. 3` asks for: every bounded polytope, every direction
-noncomputable example : ∀ (P : HPolytope (Vec ℝ 1)) (_ : Bornology.IsBounded P.construct)
-    (c : Vec ℝ 1 →ₗ[ℝ] ℝ), SupportBound P.construct c :=
+noncomputable example : ∀ (P : HPolytope (Vec ℝ 1)) (_ : Bornology.IsBounded P.toSet)
+    (c : Vec ℝ 1 →ₗ[ℝ] ℝ), SupportBound P.toSet c :=
   fun _ hP c => SupportBound.ofIsBounded hP c
 
 -- `Alg. 3` on `ẋ = 0` with target `[-1, 1]`, two steps over `[0, 1]`
@@ -61,9 +61,9 @@ noncomputable example : Set (Vec ℝ 1) :=
     MBR.box MBR.box_bounded MBR.ZW MBR.ZW (fun _ => MBR.ZW) 0 1 2 2
 
 -- line 11's conversion holds the difference, at the oracle above
-example : minkowskiDiff MBR.box.construct MBR.ZW.construct ⊆
+example : minkowskiDiff MBR.box.toSet MBR.ZW.toSet ⊆
     (LinearSys.maxBackReachCZ (fun _ hP c => SupportBound.ofIsBounded hP c) MBR.box
-      MBR.box_bounded MBR.ZW).construct :=
+      MBR.box_bounded MBR.ZW).toSet :=
   LinearSys.minkowskiDiff_subset_maxBackReachCZ _ _ _ MBR.box_bounded fun i => i.elim0
 
 end CORALean.Real

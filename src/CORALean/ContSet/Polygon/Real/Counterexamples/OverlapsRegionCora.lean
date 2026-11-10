@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Polygon.Real.Polygon
 public import CORALean.ContSet.Polygon.Real.Counterexamples.SampledHullCora
 public import CORALean.ContSet.Polygon.Real.Theorems.SampledHullMissesCircle
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemToSetIff
 
 @[expose] public section
 
@@ -61,13 +61,13 @@ theorem Polygon.isIntersectingEllipsoid_cora_counterexample (V : Set (Vec ℝ 2)
     (hc : ∀ p ∈ V, p 0 ^ 2 + p 1 ^ 2 = 1) : -- --- CONCL ---
     ∃ (z : Vec ℝ 2) (δ : ℝ), 0 < δ ∧
       ¬ Polygon.overlapsRegionCora (Metric.closedBall z δ) (Polygon.sampledHullCora V) ∧
-      (Metric.closedBall z δ ∩ (⟨1, 0, .one⟩ : Ellipsoid 2).construct).Nonempty
+      (Metric.closedBall z δ ∩ (⟨1, 0, .one⟩ : Ellipsoid 2).toSet).Nonempty
     := by -- --- PROOF ---
   obtain ⟨z, hz, hzn⟩ := Polygon.exists_circle_notMem_sampledHull V hV hc
   have hclosed : IsClosed (Polygon.sampledHullCora V) := (hV.isCompact_convexHull ℝ).isClosed
   obtain ⟨ε, hε, hball⟩ := Metric.isOpen_iff.mp hclosed.isOpen_compl z hzn
   refine ⟨z, ε / 2, by positivity, fun ⟨x, hxP, hxH⟩ => ?_,
-    ⟨z, Metric.mem_closedBall_self (by positivity), Ellipsoid.mem_construct_iff.2 ⟨z, ?_,
+    ⟨z, Metric.mem_closedBall_self (by positivity), Ellipsoid.mem_toSet_iff.2 ⟨z, ?_,
       by rw [show (⟨1, 0, .one⟩ : Ellipsoid 2).G = 1 from CFC.sqrt_one, Matrix.one_mulVec,
         zero_add]⟩⟩⟩
   -- the square is inside the ball `ε` about `z` that misses the closed hull

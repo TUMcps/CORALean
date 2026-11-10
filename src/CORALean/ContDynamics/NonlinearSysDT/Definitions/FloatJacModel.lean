@@ -46,13 +46,13 @@ user-supplied hypothesis, checked by no run. -/
 structure NonlinearSysDT.FloatJacModel.Encloses (fm : NonlinearSysDT.FloatJacModel 𝕋 n m r)
     (g : Vec ℝ n → Vec ℝ m → Vec ℝ r) : Prop where
   f_mem (X : Interval (Vec 𝕋 n)) (U : Interval (Vec 𝕋 m)) :
-    ∀ x ∈ construct X, ∀ u ∈ construct U, g x u ∈ construct (fm.f X U)
+    ∀ x ∈ toSet X, ∀ u ∈ toSet U, g x u ∈ toSet (fm.f X U)
   jacX_mem (X : Interval (Vec 𝕋 n)) (U : Interval (Vec 𝕋 m)) :
-    ∀ x ∈ construct X, ∀ u ∈ construct U,
-      jacobianMat (fun x' => g x' u) x ∈ construct (fm.jacX X U)
+    ∀ x ∈ toSet X, ∀ u ∈ toSet U,
+      jacobianMat (fun x' => g x' u) x ∈ toSet (fm.jacX X U)
   jacU_mem (X : Interval (Vec 𝕋 n)) (U : Interval (Vec 𝕋 m)) :
-    ∀ x ∈ construct X, ∀ u ∈ construct U,
-      jacobianMat (fun u' => g x u') u ∈ construct (fm.jacU X U)
+    ∀ x ∈ toSet X, ∀ u ∈ toSet U,
+      jacobianMat (fun u' => g x u') u ∈ toSet (fm.jacU X U)
 
 end CORALean
 

@@ -87,10 +87,10 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- [1, Alg. 1]: `R_k` encloses the reachable set at every `t ∈ [kr, (k+1)r]`, `k ≤ N`. -/
 theorem LinearSys.reachBox_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec ℝ n)) {r : ℝ}
     (hr : 0 < r) {m : ℕ} (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    (h0 : (0 : Vec ℝ n) ∈ U.construct)
+    (h0 : (0 : Vec ℝ n) ∈ U.toSet)
     {N k : ℕ} (hk : k ≤ N) {t : ℝ} (ht : t ∈ Set.Icc ((k : ℝ) * r) ((k + 1) * r)) : -- --- CONCL ---
     ∃ R, (sys.reachBox X₀ U r (m + 2) N)[k]? = some R
-      ∧ sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) X₀ U t ⊆ R.construct := by -- --- PROOF ---
+      ∧ sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) X₀ U t ⊆ R.toSet := by -- --- PROOF ---
   set A := toRealMat sys.A
   set E := exp (r • A)
   set H₀ := sys.timeInterval (S := 𝒵) r (m + 2) X₀
@@ -104,30 +104,30 @@ theorem LinearSys.reachBox_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Ve
   have hlist : sys.reachBox X₀ U r (m + 2) N
       = (List.range (N + 1)).map fun j => out (step^[j] s₀) :=
     congrArg Prod.snd (foldl_range_step_out step out s₀ N)
-  have hU : Bornology.IsBounded (construct (S := Zonotope (Vec ℝ n)) U) :=
-    CompactSet.isBounded_construct U
+  have hU : Bornology.IsBounded (toSet (S := Zonotope (Vec ℝ n)) U) :=
+    CompactSet.isBounded_toSet U
   have hkr : ∀ k : ℕ, (0:ℝ) ≤ k * r := fun k => mul_nonneg (Nat.cast_nonneg k) hr.le
   -- the listing's first two sets: `H^R_0` and `V₀` enclose the first interval
-  have hh : ∀ τ ∈ Set.Icc (0:ℝ) r, (fun x => exp (τ • A) *ᵥ x) '' X₀.construct ⊆ H₀.construct := by
+  have hh : ∀ τ ∈ Set.Icc (0:ℝ) r, (fun x => exp (τ • A) *ᵥ x) '' X₀.toSet ⊆ H₀.toSet := by
     intro τ hτ
     have h := sys.reachStepkWrappingFree_outer (S := 𝒵) hr hε X₀ (k := 0) (t := τ)
       (by simpa using hτ.1) (by simpa using hτ.2)
     refine h.trans ?_
-    show (Zonotope.mtimes (exp ((((0 : ℕ) : ℝ) * r) • A)) H₀).construct ⊆ H₀.construct
+    show (Zonotope.mtimes (exp ((((0 : ℕ) : ℝ) * r) • A)) H₀).toSet ⊆ H₀.toSet
     rw [← Zonotope.mtimes_exact]
     simp
-  have hi : ∀ τ ∈ Set.Icc (0:ℝ) r, sys.inputReach (S := 𝒵) U τ ⊆ V₀.construct := fun τ hτ =>
+  have hi : ∀ τ ∈ Set.Icc (0:ℝ) r, sys.inputReach (S := 𝒵) U τ ⊆ V₀.toSet := fun τ hτ =>
     (sys.inputReach_mono hU h0 hτ.1 hτ.2).trans
       (sys.inputReach_subset_inputSolution (S := 𝒵) hr (m + 2) (by exact_mod_cast hε)
-        (ConvexSet.convex_construct U) (CompactSet.isClosed_construct U) hU
-        (ConvexSet.convex_construct _) (CompactSet.isClosed_construct _)
-        (CompactSet.isBounded_construct _))
+        (ConvexSet.convex_toSet U) (CompactSet.isClosed_toSet U) hU
+        (ConvexSet.convex_toSet _) (CompactSet.isClosed_toSet _)
+        (CompactSet.isBounded_toSet _))
   -- the three invariants
   have hinv : ∀ k : ℕ, ∀ τ ∈ Set.Icc (0:ℝ) r,
-      (fun x => exp ((k * r + τ) • A) *ᵥ x) '' X₀.construct ⊆ (step^[k] s₀).1.construct
+      (fun x => exp ((k * r + τ) • A) *ᵥ x) '' X₀.toSet ⊆ (step^[k] s₀).1.toSet
       ∧ (fun y => exp ((k * r) • A) *ᵥ y) '' sys.inputReach (S := 𝒵) U τ
-          ⊆ (step^[k] s₀).2.1.construct
-      ∧ sys.inputReach (S := 𝒵) U (k * r + τ) ⊆ (step^[k] s₀).2.2.construct := by
+          ⊆ (step^[k] s₀).2.1.toSet
+      ∧ sys.inputReach (S := 𝒵) U (k * r + τ) ⊆ (step^[k] s₀).2.2.toSet := by
     intro k
     induction k with
     | zero =>
@@ -148,16 +148,16 @@ theorem LinearSys.reachBox_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Ve
           exp_add_smul_eq_mul]
       -- `V_{k+1}`: one more `e^{Ar}`
       have h2 : (fun y => exp ((((k + 1 : ℕ) : ℝ) * r) • A) *ᵥ y) '' sys.inputReach (S := 𝒵) U τ
-          ⊆ (step (step^[k] s₀)).2.1.construct := by
+          ⊆ (step (step^[k] s₀)).2.1.toSet := by
         rintro _ ⟨v, hv, rfl⟩
-        show _ ∈ ((step^[k] s₀).2.1.mtimes E).construct
+        show _ ∈ ((step^[k] s₀).2.1.mtimes E).toSet
         rw [← Zonotope.mtimes_exact]
         refine ⟨_, (ih τ hτ).2.1 ⟨v, hv, rfl⟩, ?_⟩
         simp only [hEk, Matrix.mulVec_mulVec]
       refine ⟨?_, h2, ?_⟩
       -- `H^R_{k+1}`: one more `e^{Ar}`
       · rintro _ ⟨x, hx, rfl⟩
-        show _ ∈ ((step^[k] s₀).1.mtimes E).construct
+        show _ ∈ ((step^[k] s₀).1.mtimes E).toSet
         rw [← Zonotope.mtimes_exact]
         refine ⟨_, (ih τ hτ).1 ⟨x, hx, rfl⟩, ?_⟩
         simp only [hEkτ, Matrix.mulVec_mulVec]
@@ -166,7 +166,7 @@ theorem LinearSys.reachBox_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Ve
         rw [show (((k + 1 : ℕ) : ℝ) * r + τ) = τ + ((k + 1 : ℕ) : ℝ) * r by ring, hsep]
         rintro _ ⟨_, hw, v, hv, rfl⟩
         show _ ∈ ((step^[k] s₀).2.2.plus
-          ((step^[k] s₀).2.1.mtimes E).interval.zonotope).construct
+          ((step^[k] s₀).2.1.mtimes E).interval.zonotope).toSet
         rw [← Zonotope.plus_exact]
         refine ⟨v, ?_, _, (Zonotope.interval_contains _).trans (Interval.zonotope_contains _)
           (h2 hw), add_comm _ _⟩
@@ -184,7 +184,7 @@ theorem LinearSys.reachBox_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Ve
     rintro _ ⟨_, ⟨x, hx, rfl⟩, v, hv, rfl⟩
     have hI := hinv k (t - k * r) hτ
     rw [show (k : ℝ) * r + (t - k * r) = t by ring] at hI
-    show _ ∈ ((step^[k] s₀).1.plus (step^[k] s₀).2.2).construct
+    show _ ∈ ((step^[k] s₀).1.plus (step^[k] s₀).2.2).toSet
     rw [← Zonotope.plus_exact]
     exact ⟨_, hI.1 ⟨x, hx, rfl⟩, v, hI.2.2 hv, rfl⟩
 

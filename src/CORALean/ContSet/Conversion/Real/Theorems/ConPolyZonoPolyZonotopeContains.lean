@@ -43,7 +43,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.polyZonotope_contains (cPZ : ConPolyZono α) :
-    cPZ.construct ⊆ cPZ.polyZonotope.construct := by
+    cPZ.toSet ⊆ cPZ.polyZonotope.toSet := by
   rintro _ ⟨a, b, hb, hs, rfl⟩
   exact ⟨a, b, (Interval.mem_unit_iff a).mp (cPZ.cons_dom ▸ hs.1), hb, rfl⟩
 

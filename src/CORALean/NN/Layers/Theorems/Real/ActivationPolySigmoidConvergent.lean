@@ -14,7 +14,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyQ
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyRealOfFn
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PlusExact
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemToSet
 public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.ConPolyZono_to_PolyZonotope
@@ -109,16 +109,16 @@ fit under. -/
 private theorem Layer.aux_activationPoly_subset_inflate {P : LayerRelaxation ℝ n m}
     (hPs : ∀ i, (P i).Encloses σ) (s : PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 ≤ ε)
     (hP : ∀ i, 2 * (P i).error (s.interval.inf i) (s.interval.sup i) ≤ ε) : -- --- CONCL ---
-    construct ((Layer.activationPoly P).enclose s)
-      ⊆ (fun x i => σ (x i)) '' construct s + Metric.closedBall 0 ε := by -- --- PROOF ---
+    toSet ((Layer.activationPoly P).enclose s)
+      ⊆ (fun x i => σ (x i)) '' toSet s + Metric.closedBall 0 ε := by -- --- PROOF ---
   set J : Float.Interval (Vec ℝ n) := ⟨s.interval.inf, s.interval.sup⟩
   -- the box is ordered, so `sound` at its left end says the error is nonnegative
   have herr : ∀ i, 0 ≤ (P i).error (s.interval.inf i) (s.interval.sup i) := fun i =>
     le_trans (abs_nonneg _)
       ((hPs i).sound (le_refl (s.interval.inf i)) (s.interval_inf_le_sup i))
   intro y hy
-  have hy2 : y ∈ (s.dependent.evalPoly (P.coeffList J)).construct
-      + (Interval.polyZonotope (P.box J).nominal).construct := by
+  have hy2 : y ∈ (s.dependent.evalPoly (P.coeffList J)).toSet
+      + (Interval.polyZonotope (P.box J).nominal).toSet := by
     rw [PolyZonotope.plus_exact]
     exact hy
   obtain ⟨u, hu, v, hv, rfl⟩ := hy2
@@ -129,9 +129,9 @@ private theorem Layer.aux_activationPoly_subset_inflate {P : LayerRelaxation ℝ
       (fun k => a' (Fin.cast (s.dependent.evalPoly_p (P.coeffList J)) k)) = a :=
     ⟨fun j => a (Fin.cast (s.dependent.evalPoly_p (P.coeffList J)).symm j),
       fun j => ha _, by funext k; simp⟩
-  have hxs : s.dependent.point a' ∈ s.construct := by
+  have hxs : s.dependent.point a' ∈ s.toSet := by
     rw [PolyZonotope.dependent_exact s]
-    exact s.dependent.point_mem_construct ha'bound
+    exact s.dependent.point_mem_toSet ha'bound
   have hxbox := PolyZonotope.interval_contains s hxs
   -- the polynomial the set evaluates to, one neuron's own fit per coordinate
   have hpval : (s.dependent.evalPoly (P.coeffList J)).point
@@ -182,7 +182,7 @@ private theorem Layer.aux_activationPoly_subset_inflate {P : LayerRelaxation ℝ
     exact hres i
   have hmem := Set.add_mem_add
     (show (fun i => σ (s.dependent.point a' i))
-      ∈ (fun x i => σ (x i)) '' construct s from ⟨s.dependent.point a', hxs, rfl⟩) hball
+      ∈ (fun x i => σ (x i)) '' toSet s from ⟨s.dependent.point a', hxs, rfl⟩) hball
   have heq : (fun i => σ (s.dependent.point a' i))
       + ((u + v) - fun i => σ (s.dependent.point a' i)) = u + v := by abel
   rwa [heq] at hmem

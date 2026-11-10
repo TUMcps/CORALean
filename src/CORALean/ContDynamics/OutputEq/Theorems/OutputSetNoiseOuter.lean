@@ -51,8 +51,8 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [OfScalarPoint �
 
 theorem OutputEq.outputSetNoise_outer (out : OutputEq 𝕋 n m r) (F : Mat 𝕋 r q)
     (R : S n) (U : S m) (V : S q) {x : Vec ℝ n} {u : Vec ℝ m} {v : Vec ℝ q}
-    (hx : x ∈ construct R) (hu : u ∈ construct U) (hv : v ∈ construct V) :
-    out.eval x u + toRealMat F *ᵥ v ∈ construct (out.outputSetNoise F R U V) :=
+    (hx : x ∈ toSet R) (hu : u ∈ toSet U) (hv : v ∈ toSet V) :
+    out.eval x u + toRealMat F *ᵥ v ∈ toSet (out.outputSetNoise F R U V) :=
   plus_outer _ _ (Set.add_mem_add (out.outputSet_outer R U hx hu)
     (mtimes_outer F V (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hv))))
 

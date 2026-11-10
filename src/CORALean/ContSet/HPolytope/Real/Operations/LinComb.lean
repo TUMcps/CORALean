@@ -18,8 +18,8 @@ upper bounds in place of the support function values the paper takes.
 
 ## Inputs
 * `Aq` – family indexed by `Fin q`
-* `u₁` – a support bound of `P₁.construct` along each row
-* `u₂` – a support bound of `P₂.construct` along each row
+* `u₁` – a support bound of `P₁.toSet` along each row
+* `u₂` – a support bound of `P₂.toSet` along each row
 
 ## Output
 * the polytope on the directions `Aq` bounded by the larger of the bounds of `u₁` and `u₂`
@@ -47,8 +47,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ} {P₁ P₂ : HP
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.linCombOf (Aq : Fin q → (α →ₗ[ℝ] ℝ))
-    (u₁ : ∀ i, SupportBound P₁.construct (Aq i))
-    (u₂ : ∀ i, SupportBound P₂.construct (Aq i)) : HPolytope α :=
+    (u₁ : ∀ i, SupportBound P₁.toSet (Aq i))
+    (u₂ : ∀ i, SupportBound P₂.toSet (Aq i)) : HPolytope α :=
   HPolytope.ofBounds Aq fun i => (u₁ i).setLinComb (u₂ i)
 
 end CORALean.Real

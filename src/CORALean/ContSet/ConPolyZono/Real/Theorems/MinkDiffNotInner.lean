@@ -1,9 +1,9 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffToSet
 public import CORALean.ContSet.Interval.Real.Operations.Point
 public import CORALean.ContSet.Interval.Real.Theorems.Basic
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEq
 
 @[expose] public section
 
@@ -44,8 +44,8 @@ open Matrix
 /-- The result need not lie in the difference. -/
 theorem ConPolyZono.minkDiff_not_inner : -- --- CONCL ---
     ∃ (cPZ : ConPolyZono (Vec ℝ 1)) (Z : Zonotope (Vec ℝ 1)),
-      ¬ (cPZ.minkDiff Z).construct ⊆
-        {x | ∀ z ∈ Z.construct, x + z ∈ cPZ.construct} := by -- --- PROOF ---
+      ¬ (cPZ.minkDiff Z).toSet ⊆
+        {x | ∀ z ∈ Z.toSet, x + z ∈ cPZ.toSet} := by -- --- PROOF ---
   -- `{α ∈ [-1, 1] | α² = 1}`, as the point `α`
   let cPZ : ConPolyZono (Vec ℝ 1) :=
     ⟨1, 1, 0, 0, fun _ => fun _ => 1, fun _ _ => 1, Fin.elim0, ⟨1, 1, fun _ _ => 1, fun _ _ => 2,
@@ -54,25 +54,25 @@ theorem ConPolyZono.minkDiff_not_inner : -- --- CONCL ---
   let Z : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ => fun _ => 1⟩
   refine ⟨cPZ, Z, fun h => ?_⟩
   -- every point of `P` is `±1`
-  have hP : ∀ x ∈ cPZ.construct, x 0 = 1 ∨ x 0 = -1 := by
+  have hP : ∀ x ∈ cPZ.toSet, x 0 = 1 ∨ x 0 = -1 := by
     rintro x ⟨a, β, hβ, hs, rfl⟩
-    have h1 := ((PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hs).2 0
+    have h1 := ((PolyLevelSet.mem_toSet_iff_of_eq cPZ.cons_eq).mp hs).2 0
     simp [PolyZonotope.monomial, cPZ, Matrix.mulVec, dotProduct] at h1
     rcases h1 with h3 | h3
     · left; simp [cPZ, PolyZonotope.monomial, h3]
     · right; simp [cPZ, PolyZonotope.monomial, h3]
   -- both `±1` are points of `P`
-  have hmem : ∀ v : ℝ, v ^ 2 = 1 → |v| ≤ 1 → (fun _ => v : Vec ℝ 1) ∈ cPZ.construct := by
+  have hmem : ∀ v : ℝ, v ^ 2 = 1 → |v| ≤ 1 → (fun _ => v : Vec ℝ 1) ∈ cPZ.toSet := by
     intro v hv hv1
     refine ⟨fun _ => v, Fin.elim0, fun j => j.elim0, ?_, ?_⟩
-    · refine (PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mpr
+    · refine (PolyLevelSet.mem_toSet_iff_of_eq cPZ.cons_eq).mpr
         ⟨(Interval.mem_unit_iff _).mpr fun _ => hv1, fun i => ?_⟩
       simp [PolyZonotope.monomial, cPZ, Matrix.mulVec, dotProduct, hv]
     · funext k
       simp [cPZ, PolyZonotope.monomial]
   -- `0` passes the corner test
-  have h0 : (fun _ => 0 : Vec ℝ 1) ∈ (cPZ.minkDiff Z).construct := by
-    rw [ConPolyZono.minkDiff_construct]
+  have h0 : (fun _ => 0 : Vec ℝ 1) ∈ (cPZ.minkDiff Z).toSet := by
+    rw [ConPolyZono.minkDiff_toSet]
     intro s
     simp only [Z, Fin.sum_univ_one, zero_add]
     cases hs : s 0

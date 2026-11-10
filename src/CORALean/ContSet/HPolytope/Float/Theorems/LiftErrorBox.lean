@@ -42,8 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n N : ℕ}
 
 theorem HPolytope.lift_errorBox (P : HPolytope 𝕋 (Vec 𝕋 n)) {dims : Fin n → Fin N}
     (hdims : Function.Injective dims) : -- --- CONCL ---
-    (P.lift_ dims).I_error.construct
-      = Function.ExtendByZero.hom ℝ dims '' P.I_error.construct := by -- --- PROOF ---
+    (P.lift_ dims).I_error.toSet
+      = Function.ExtendByZero.hom ℝ dims '' P.I_error.toSet := by -- --- PROOF ---
   -- a lifted bound at a selected coordinate is the bound there, and `0` elsewhere
   have hon : ∀ (v : Vec 𝕋 n) (k : Fin n), HPolytope.liftCols dims (fun _ : Fin 1 => v) 0 (dims k)
       = v k := by

@@ -223,9 +223,9 @@ private theorem NonlinearSys.aux_curvature_shearDrift {η : ℕ} (hη : 1 ≤ η
   -- `F = {0}`
   have hT : ∀ i j k, Real.MatExp.corrTerm !![0, 1; 0, 0] 1 (i + 2) j k = 0 := fun i j k => by
     simp [Real.MatExp.corrTerm, NonlinearSys.shear_pow_eq_zero (i := i + 2) (by omega)]
-  have hF : (STL.depCurvatureF !![0, 1; 0, 0] 1 η).construct = {0} := by
+  have hF : (STL.depCurvatureF !![0, 1; 0, 0] 1 η).toSet = {0} := by
     ext M
-    simp only [Real.Interval.construct, STL.depCurvatureF, hT,
+    simp only [Real.Interval.toSet, STL.depCurvatureF, hT,
       NonlinearSys.expRemainderMat_shear 1 hη, min_self, max_self, Finset.sum_const_zero,
       Matrix.zero_apply, sub_zero, add_zero, mem_setOf_eq, mem_singleton_iff, Entrywise.entry_mat]
     constructor
@@ -251,12 +251,12 @@ private theorem NonlinearSys.aux_curvature_shearDrift {η : ℕ} (hη : 1 ≤ η
     · intro i _ hi; rw [hterm, if_neg hi, hg]
     · intro h; exact absurd (Finset.mem_range.mpr hη) h
   -- `G w`: `G` is zero but for the `(1, 2)` entry `[-1/8, 0]`, so `N w = (N₁₂, 0)`
-  have hG : ⋃ N ∈ (STL.depCurvatureG !![0, 1; 0, 0] 1 η).construct,
+  have hG : ⋃ N ∈ (STL.depCurvatureG !![0, 1; 0, 0] 1 η).toSet,
       ({N *ᵥ (![1 / 2, 1] : Vec ℝ 2)} : Set (Vec ℝ 2)) = Icc ![-1 / 8, 0] ![0, 0] := by
     -- the matrices of `G`, entrywise
-    have hmem : ∀ N : Mat ℝ 2 2, N ∈ (STL.depCurvatureG !![0, 1; 0, 0] 1 η).construct ↔
+    have hmem : ∀ N : Mat ℝ 2 2, N ∈ (STL.depCurvatureG !![0, 1; 0, 0] 1 η).toSet ↔
         (-1 / 8 ≤ N 0 1 ∧ N 0 1 ≤ 0) ∧ N 0 0 = 0 ∧ N 1 0 = 0 ∧ N 1 1 = 0 := fun N => by
-      simp only [Real.Interval.construct, STL.depCurvatureG, hsum (fun x => min x 0) (min_self 0),
+      simp only [Real.Interval.toSet, STL.depCurvatureG, hsum (fun x => min x 0) (min_self 0),
         hsum (fun x => max x 0) (max_self 0), NonlinearSys.expRemainderMat_shear 1 hη,
         mem_setOf_eq, Entrywise.entry_mat, Matrix.zero_apply, mul_zero, sub_zero, add_zero]
       constructor

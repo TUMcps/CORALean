@@ -55,12 +55,12 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.representsaPolytopeCora_ne_construct : -- --- CONCL ---
+theorem Zonotope.representsaPolytopeCora_ne_toSet : -- --- CONCL ---
     let Z : Zonotope (Vec ℝ 2) := ⟨2, 0, ![![1, 0], ![0, 1]]⟩
-    Z.representsaPolytopeCora ≠ Z.construct := by -- --- PROOF ---
+    Z.representsaPolytopeCora ≠ Z.toSet := by -- --- PROOF ---
   intro Z h
   -- the center is a point of `Z` (all coefficients `0`)
-  have hc : Z.c ∈ Z.construct := ⟨0, fun j => by simp, by simp⟩
+  have hc : Z.c ∈ Z.toSet := ⟨0, fun j => by simp, by simp⟩
   rw [← h] at hc
   exact hc
 

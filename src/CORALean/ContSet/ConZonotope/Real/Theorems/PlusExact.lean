@@ -63,9 +63,9 @@ spelling of the count: at `Vec ℝ (cZ₁.h + cZ₂.h)` the module instance `HPo
 needs is not found, the two spellings being distinct terms. -/
 private theorem ConZonotope.aux_mem_plus_P_iff (cZ₁ cZ₂ : ConZonotope α)
     (β : Vec ℝ (cZ₁.plus cZ₂).h) :
-    β ∈ (cZ₁.plus cZ₂).P.construct ↔
-      blockLeft cZ₁.h cZ₂.h β ∈ cZ₁.P.construct
-        ∧ blockRight cZ₁.h cZ₂.h β ∈ cZ₂.P.construct :=
+    β ∈ (cZ₁.plus cZ₂).P.toSet ↔
+      blockLeft cZ₁.h cZ₂.h β ∈ cZ₁.P.toSet
+        ∧ blockRight cZ₁.h cZ₂.h β ∈ cZ₂.P.toSet :=
   HPolytope.mem_intersection_iff
 
 private theorem ConZonotope.aux_value_plus' (cZ₁ cZ₂ : ConZonotope α) (β : Fin (cZ₁.h + cZ₂.h) →
@@ -89,7 +89,7 @@ private theorem ConZonotope.aux_value_plus (cZ₁ cZ₂ : ConZonotope α)
 
 -- both inclusions come off `aux_value_plus`, the polytope splitting with the blocks
 theorem ConZonotope.plus_exact (cZ₁ cZ₂ : ConZonotope α) : -- --- CONCL ---
-    cZ₁.construct + cZ₂.construct = (cZ₁.plus cZ₂).construct := by -- --- PROOF ---
+    cZ₁.toSet + cZ₂.toSet = (cZ₁.plus cZ₂).toSet := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨_, ⟨β₁, hβ₁, hP₁, rfl⟩, _, ⟨β₂, hβ₂, hP₂, rfl⟩, rfl⟩
     refine ⟨Fin.append β₁ β₂, ?_, ?_, (ConZonotope.aux_value_plus cZ₁ cZ₂ β₁ β₂).symm⟩

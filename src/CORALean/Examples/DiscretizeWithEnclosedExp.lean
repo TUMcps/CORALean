@@ -57,7 +57,7 @@ noncomputable def Example.sysD : LinParamSysDT ℐ 1 := Example.sys.discretizeEn
 noncomputable def Example.A0 : Mat ℝ 1 1 := exp ((1:ℝ) • toRealMat Example.sys.A)
 
 /-- The exact matrix exponential lies in the interval matrix of the discretized system. -/
-theorem Example.A0_mem : Example.A0 ∈ construct Example.sysD.A :=
+theorem Example.A0_mem : Example.A0 ∈ toSet Example.sysD.A :=
   MatExp.exp_mem_expEnclosure _ 0 Example.hε
 
 /-- The initial state `1`. -/
@@ -80,14 +80,14 @@ theorem Example.traj : Example.sysD.IsCanonicalTrajectory (S := ℐ𝒱) Example
 state after `k` steps is in the computed set. -/
 example {o : ℕ} (ho : 0 < o) (k : ℕ) :
     Example.A0 ^ k *ᵥ Example.x0 ∈
-      construct (Example.sysD.reach (S := ℐ𝒱) ⟨Example.R0, Example.U, 0, k⟩ ⟨o, ho⟩) :=
+      toSet (Example.sysD.reach (S := ℐ𝒱) ⟨Example.R0, Example.U, 0, k⟩ ⟨o, ho⟩) :=
   Example.sysD.reach_outer (S := ℐ𝒱) ho Example.R0 Example.U Example.traj k
 
 /-- `holds_of_reach`, closing the chain at whatever specification the caller
 checks the computed reachable set against. -/
 example (spec : Specification (Set (Vec ℝ 1))) {o : ℕ} (ho : 0 < o) (k : ℕ)
     (h : spec.Holds
-      (construct (Example.sysD.reach (S := ℐ𝒱) ⟨Example.R0, Example.U, 0, k⟩ ⟨o, ho⟩))) :
+      (toSet (Example.sysD.reach (S := ℐ𝒱) ⟨Example.R0, Example.U, 0, k⟩ ⟨o, ho⟩))) :
     spec.Holds {Example.A0 ^ k *ᵥ Example.x0} :=
   Example.sysD.holds_of_reach (S := ℐ𝒱) ho Example.R0 Example.U spec Example.traj k h
 

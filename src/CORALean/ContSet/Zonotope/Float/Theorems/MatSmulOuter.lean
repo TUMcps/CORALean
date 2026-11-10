@@ -51,11 +51,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 theorem Zonotope.matSmul_outer {cLo cHi : 𝕋} {c : ℝ} (hcLo : toReal cLo ≤ c)
     (hcHi : c ≤ toReal cHi) (Z : Zonotope (Mat 𝕋 m n)) {A : Mat ℝ m n}
-    (hA : A ∈ Z.construct) : -- --- CONCL ---
-    c • A ∈ (Zonotope.matSmul cLo cHi Z).construct := by -- --- PROOF ---
+    (hA : A ∈ Z.toSet) : -- --- CONCL ---
+    c • A ∈ (Zonotope.matSmul cLo cHi Z).toSet := by -- --- PROOF ---
   obtain ⟨a, ha, e, he, rfl⟩ := hA
   set Zc := CORALean.Real.Zonotope.map (LinearMap.lsmul ℝ (Mat ℝ m n) c) Z.nominal
-  have hca : c • a ∈ Zc.construct := by
+  have hca : c • a ∈ Zc.toSet := by
     rw [← CORALean.Real.Zonotope.map_exact]
     exact ⟨a, ha, rfl⟩
   -- one entry, scaled by the scalar, between the two corner products

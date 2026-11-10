@@ -65,8 +65,8 @@ private theorem PolyZonotope.aux_mixedForm_eval (Q : Fin m → Mat 𝕋 n n)
 theorem PolyZonotope.quadMapMixed_outer (Q : Fin m → Mat 𝕋 n n)
     (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
     (fun x : Vec ℝ n × Vec ℝ n => Real.PolyZonotope.quadBilin (fun k => toRealMat (Q k)) x.1 x.2)
-        '' (pZ₁.construct ×ˢ pZ₂.construct)
-      ⊆ (PolyZonotope.quadMapMixed Q pZ₁ pZ₂).construct := by -- --- PROOF ---
+        '' (pZ₁.toSet ×ˢ pZ₂.toSet)
+      ⊆ (PolyZonotope.quadMapMixed Q pZ₁ pZ₂).toSet := by -- --- PROOF ---
   rintro _ ⟨⟨x, y⟩, ⟨hx, hy⟩, rfl⟩
   -- the pair, appended, is a nominal point of the product of the dependent forms
   have hz : (Fin.append x y : Vec ℝ (n + n)) ∈

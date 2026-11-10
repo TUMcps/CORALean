@@ -65,8 +65,8 @@ private theorem PolyZonotope.aux_sum_update (pZ : PolyZonotope (Vec 𝕋 n)) (j 
 
 theorem PolyZonotope.splitIndepGen_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (j : Fin pZ.q) : -- --- CONCL ---
-    pZ.construct ⊆
-      (pZ.splitIndepGen j).1.construct ∪ (pZ.splitIndepGen j).2.construct := by -- --- PROOF ---
+    pZ.toSet ⊆
+      (pZ.splitIndepGen j).1.toSet ∪ (pZ.splitIndepGen j).2.toSet := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨a, β, ha, hβ, hz⟩ := PolyZonotope.mem_nominalSet_iff.mp hz
   have hb := abs_le.mp (hβ j)

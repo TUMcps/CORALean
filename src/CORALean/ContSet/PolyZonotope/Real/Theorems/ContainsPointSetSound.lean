@@ -48,7 +48,7 @@ variable {n : ℕ}
 /-- Every point of the set is in some piece after any number of rounds. -/
 private theorem PolyZonotope.aux_splitMany_cover (pZ : PolyZonotope (Vec ℝ n))
     (k : ℕ) : -- --- CONCL ---
-    ∀ x ∈ pZ.construct, ∃ q ∈ pZ.splitMany k, x ∈ q.construct := by -- --- PROOF ---
+    ∀ x ∈ pZ.toSet, ∃ q ∈ pZ.splitMany k, x ∈ q.toSet := by -- --- PROOF ---
   induction k with
   | zero => exact fun x hx => ⟨pZ, List.mem_singleton_self _, hx⟩
   | succ k ih =>
@@ -63,7 +63,7 @@ private theorem PolyZonotope.aux_splitMany_cover (pZ : PolyZonotope (Vec ℝ n))
 
 theorem PolyZonotope.containsPointSet_sound (pZ : PolyZonotope (Vec ℝ n)) {N : ℕ}
     (points : Fin N → Vec ℝ n) (splits order : ℕ)
-    (h : ∀ i, points i ∈ pZ.construct) : -- --- CONCL ---
+    (h : ∀ i, points i ∈ pZ.toSet) : -- --- CONCL ---
     pZ.containsPointSet points splits order := by -- --- PROOF ---
   intro i
   -- the point is in some piece, whose enclosure the reduced zonotope's polytope contains

@@ -41,7 +41,7 @@ variable {n : ℕ}
 
 /-- The Lebesgue volume of the polytope. -/
 noncomputable def HPolytope.volume (P : HPolytope (Vec ℝ n)) : ENNReal :=
-  MeasureTheory.volume P.construct
+  MeasureTheory.volume P.toSet
 
 end CORALean.Real
 

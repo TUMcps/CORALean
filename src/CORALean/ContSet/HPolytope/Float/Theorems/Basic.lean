@@ -5,8 +5,8 @@ public import CORALean.ContSet.HPolytope.Float.HPolytope
 public import CORALean.ContSet.HPolytope.Float.Operations.EqScalar
 public import CORALean.ContSet.HPolytope.Float.Operations.EqVec
 public import CORALean.ContSet.HPolytope.Float.Operations.Materialise
-public import CORALean.ContSet.HPolytope.Float.Theorems.ConstructCongr
-public import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEqNominal
+public import CORALean.ContSet.HPolytope.Float.Theorems.ToSetCongr
+public import CORALean.ContSet.HPolytope.Float.Theorems.ToSetEqNominal
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIff
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
@@ -55,8 +55,8 @@ theorem HPolytope.isErrFree_of_origin {P : HPolytope 𝕋 (Vec 𝕋 n)}
 /-- A polytope with the origin box is read at its nominal part. -/
 theorem HPolytope.mem_nominal_of_origin {P : HPolytope 𝕋 (Vec 𝕋 n)}
     (h : P.I_error = Interval.origin n) {x : Vec ℝ n} :
-    x ∈ P.construct ↔ x ∈ P.nominal.construct :=
-  Set.ext_iff.mp (HPolytope.construct_eq_nominal fun _ => h ▸ ⟨toReal_zero, toReal_zero⟩) x
+    x ∈ P.toSet ↔ x ∈ P.nominal.toSet :=
+  Set.ext_iff.mp (HPolytope.toSet_eq_nominal fun _ => h ▸ ⟨toReal_zero, toReal_zero⟩) x
 
 
 -- ============================  `HPolytope.toReal_eq_of_eqScalar`  ============================= --

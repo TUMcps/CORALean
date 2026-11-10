@@ -43,8 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 theorem Zonotope.cubMap_outer (T : Fin m → Fin n → Mat 𝕋 n n)
     (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    Real.PolyZonotope.cubEval (fun i k => toRealMat (T i k)) '' Z.construct
-      ⊆ (Z.cubMap T).construct := by -- --- PROOF ---
+    Real.PolyZonotope.cubEval (fun i k => toRealMat (T i k)) '' Z.toSet
+      ⊆ (Z.cubMap T).toSet := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   obtain ⟨p, hp, hxp⟩ := Zonotope.mem_nominalSet_iff.mp (Zonotope.absorbRounding_nominal Z hx)
   obtain ⟨γ, hγ, -, e, he, heq⟩ := Zonotope.cubMapDep_coeff T Z.absorbRounding p hp

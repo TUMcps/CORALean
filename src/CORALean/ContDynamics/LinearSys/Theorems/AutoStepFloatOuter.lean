@@ -95,7 +95,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 @[reducible] private def aux_setMtimesTail : Mtimes (Mat ℝ) 𝒮 where
   mtimes M s := (M *ᵥ ·) '' s
   mtimes_outer M s := by
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact le_rfl
 
 end
@@ -113,18 +113,18 @@ attribute [local instance] aux_setPlusTail aux_setMtimesTail
 private theorem LinearSys.aux_inputTaylorSumTail_subset_float (sys : LinearSys 𝕋 n) {r : 𝕋}
     (hr : 0 ≤ toReal r) (U : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     ∀ i,
-    construct (sys.inputTaylorSumTail (S := 𝒮) (toReal r) U.construct i)
-      ⊆ (sys.inputTaylorSumTailFloat r U i).construct := by -- --- PROOF ---
+    toSet (sys.inputTaylorSumTail (S := 𝒮) (toReal r) U.toSet i)
+      ⊆ (sys.inputTaylorSumTailFloat r U i).toSet := by -- --- PROOF ---
   -- a matrix in a float box maps `U` into the float product
-  have hprod : ∀ {B : Interval (Mat 𝕋 n n)} {M : Mat ℝ n n}, M ∈ B.construct →
-      (M *ᵥ ·) '' U.construct
-        ⊆ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+  have hprod : ∀ {B : Interval (Mat 𝕋 n n)} {M : Mat ℝ n n}, M ∈ B.toSet →
+      (M *ᵥ ·) '' U.toSet
+        ⊆ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
           (S := 𝒵[𝕋]) B U) :=
-    fun {B} {_} hM => (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' U.construct) hM).trans
+    fun {B} {_} hM => (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' U.toSet) hM).trans
       (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋]) B U)
-  have hterm : ∀ i, (sys.inputTerm (toReal r) i *ᵥ ·) '' U.construct
-      ⊆ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+  have hterm : ∀ i, (sys.inputTerm (toReal r) i *ᵥ ·) '' U.toSet
+      ⊆ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋])
         (MatExp.intervalInputTerm (Interval.point sys.A) r i) U) :=
     fun i => hprod (MatExp.smul_pow_mem_intervalInputTerm _ hr (Interval.mem_point sys.A) i)
@@ -159,14 +159,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 @[reducible] private def aux_setMtimesSplit : Mtimes (Mat ℝ) 𝒮 where
   mtimes M s := (M *ᵥ ·) '' s
   mtimes_outer M s := by
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact le_rfl
 
 
 /-- An interval matrix's images of a plain set, closed and convexified. -/
 @[reducible] private noncomputable def aux_setMtimesIntervalSplit :
     Mtimes ℐ 𝒮 where
-  mtimes I s := closure (convexHull ℝ (⋃ A ∈ construct I, (A *ᵥ ·) '' s))
+  mtimes I s := closure (convexHull ℝ (⋃ A ∈ toSet I, (A *ᵥ ·) '' s))
   mtimes_outer _ _ := (subset_convexHull ℝ _).trans subset_closure
 
 end
@@ -203,10 +203,10 @@ private theorem LinearSys.aux_inputReach_subset_split_float (sys : LinearSys �
     (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     sys.inputReach (S := 𝒵[𝕋]) V (toReal Δt)
       ⊆ (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
-          (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) V).construct
+          (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) V).toSet
         + (sys.inputTaylorSumTailFloat Δt V η ⊞ Mtimes.mtimes (S := 𝒵[𝕋])
           (𝕄 := ℐ[𝕋]) (MatExp.intervalInputRemainder
-            (Interval.point sys.A) Δt η) V).construct := by -- --- PROOF ---
+            (Interval.point sys.A) Δt η) V).toSet := by -- --- PROOF ---
   have hε : ‖toReal Δt • Scalar.toRealMat sys.A‖ / ((η : ℝ) + 2) < 1 := by
     have hnorm := MatExp.norm_smul_le_normUpperBound (Interval.point sys.A) Δt
       (Interval.mem_point sys.A)
@@ -219,15 +219,15 @@ private theorem LinearSys.aux_inputReach_subset_split_float (sys : LinearSys �
   -- the exact theorem at plain sets, its remainder inside the float product
   have hrem := sys.inputRemainder_subset_float hΔt.le hη V
   have hexact := sys.inputReach_subset_inputSolution (S := 𝒮) hΔt η hε
-    (U := V.construct) (ConvexSet.convex_construct V) (CompactSet.isClosed_construct V)
-    (CompactSet.isBounded_construct V) (convex_convexHull ℝ _).closure isClosed_closure
-    ((CompactSet.isBounded_construct _).subset hrem)
+    (U := V.toSet) (ConvexSet.convex_toSet V) (CompactSet.isClosed_toSet V)
+    (CompactSet.isBounded_toSet V) (convex_convexHull ℝ _).closure isClosed_closure
+    ((CompactSet.isBounded_toSet _).subset hrem)
   -- order `0`'s matrix is in its float box, so its image is in the float product
-  have hterm0 : (sys.inputTerm (toReal Δt) 0 *ᵥ ·) '' V.construct
-      ⊆ construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+  have hterm0 : (sys.inputTerm (toReal Δt) 0 *ᵥ ·) '' V.toSet
+      ⊆ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋])
         (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) V) :=
-    (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' V.construct)
+    (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' V.toSet)
       (MatExp.smul_pow_mem_intervalInputTerm _ hΔt.le (Interval.mem_point sys.A) 0)).trans
       (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
         (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) V)
@@ -235,7 +235,7 @@ private theorem LinearSys.aux_inputReach_subset_split_float (sys : LinearSys �
   obtain ⟨m, rfl⟩ : ∃ m, η = m + 1 := ⟨η - 1, by have := hη.1; omega⟩
   refine hexact.trans ?_
   unfold LinearSys.inputSolution
-  show sys.inputTaylorSum (S := 𝒮) (toReal Δt) V.construct (m + 1) + _ ⊆ _
+  show sys.inputTaylorSum (S := 𝒮) (toReal Δt) V.toSet (m + 1) + _ ⊆ _
   rw [sys.aux_inputTaylorSum_eq_term_add_tail, add_assoc]
   exact Set.add_subset_add hterm0 ((Set.add_subset_add
     (sys.aux_inputTaylorSumTail_subset_float hΔt.le V (m + 1)) hrem).trans
@@ -254,9 +254,9 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
     ∀ s' R, (s', R) ∈ sys.autoStepFloat X₀ V tend εmax ζ ηmax fuel s →
       sys.IsAutoInvariantFloat X₀ V s' ∧ s.t < s'.t ∧
         ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.construct U x u →
-          U ⊆ V.construct → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
-            x t ∈ R.construct := by -- --- PROOF ---
+          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.toSet U x u →
+          U ⊆ V.toSet → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
+            x t ∈ R.toSet := by -- --- PROOF ---
   intro s' R (h : sys.autoStepFloat X₀ V tend εmax ζ ηmax fuel s = some (s', R))
   obtain ⟨h0, hlo, hhi, hH, hPu, hPU⟩ := hinv
   unfold LinearSys.autoStepFloat at h
@@ -287,17 +287,17 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
   have ht' : (((s.t + ToRat.toRat Δt : ℚ)) : ℝ) = toReal Δt + tk := by
     push_cast; rw [hΔq]; ring
   -- `[e^{At_k}] Z` and `[e^{At_{k+1}}] Z` hold `e^{At_k} z` and `e^{At_{k+1}} z`
-  have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct → exp (tk • A) *ᵥ z
-      ∈ ContSet.construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+  have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.toSet → exp (tk • A) *ᵥ z
+      ∈ ContSet.toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋]) eAtk Z) :=
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) eAtk Z
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
         (LinearSys.squaringsFloat_spec (le_max_right _ _) _ hsq) hlo hhi)
         (Set.mem_image_of_mem _ hz))
-  have hmt1 : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.construct
+  have hmt1 : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.toSet
       → exp ((toReal Δt + tk) • A) *ᵥ z
-        ∈ ContSet.construct (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        ∈ ContSet.toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
           (S := 𝒵[𝕋])
           E₁ Z) :=
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
@@ -307,10 +307,10 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
         ((addDown_le_add _ _).trans (by linarith)) (le_trans (by linarith) (add_le_addUp _ _)))
         (Set.mem_image_of_mem _ hz))
   -- `{ũ}` holds what it is built from
-  have hpt : ũ ∈ (Interval.point V.c).zonotope.construct :=
+  have hpt : ũ ∈ (Interval.point V.c).zonotope.toSet :=
     Interval.zonotope_contains _ (Interval.mem_point V.c)
   -- the constant `ũ` held over `[0, τ]` is an admissible input of any set holding `ũ`
-  have hconst : ∀ {W : Zonotope (Vec 𝕋 n)}, ũ ∈ W.construct → ∀ {τ : ℝ}, 0 ≤ τ →
+  have hconst : ∀ {W : Zonotope (Vec 𝕋 n)}, ũ ∈ W.toSet → ∀ {τ : ℝ}, 0 ≤ τ →
       Real.MatExp.expIntegral A τ *ᵥ ũ ∈ sys.inputReach (S := 𝒵[𝕋]) W τ :=
     fun hW _ hτ => ⟨fun _ => ũ, fun _ _ => hW, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A ũ hτ).symm⟩
@@ -321,17 +321,17 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
       y ∈ (s.PU0 ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
         (S := 𝒵[𝕋]) eAtk
           (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
-            (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) Ũ)).construct
+            (MatExp.intervalInputTerm (Interval.point sys.A) Δt 0) Ũ)).toSet
         + (s.PUinf ⊞ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
           (S := 𝒵[𝕋]) eAtk
           (sys.inputTaylorSumTailFloat Δt Ũ η ⊞ Mtimes.mtimes (S := 𝒵[𝕋])
             (𝕄 := ℐ[𝕋])
             (MatExp.intervalInputRemainder (Interval.point sys.A) Δt η) Ũ)).interval.zonotope
-          ).construct := by
+          ).toSet := by
     -- split `y` at `t_k` and send each part to its summand
     intro y hy
     obtain ⟨_, ⟨p, hp, rfl⟩, q, hq, rfl⟩ := sys.inputReach_separation_subset hΔr.le
-      htk0 (CompactSet.isBounded_construct Ũ) hy
+      htk0 (CompactSet.isBounded_toSet Ũ) hy
     obtain ⟨q0, hq0, qi, hqi, rfl⟩ := hPU q hq
     obtain ⟨p0, hp0, pi, hpi, rfl⟩ := hsplit hp
     refine ⟨q0 + exp (tk • A) *ᵥ p0, Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _
@@ -343,18 +343,18 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
   set PuI := ((s.Pu.zonotope ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eAtk
     (sys.inputSolutionFloat Δt η (Interval.point V.c).zonotope)).interval) with hPuI
   have hPu' : Real.MatExp.expIntegral A (toReal Δt + tk) *ᵥ ũ
-      ∈ PuI.construct := by
+      ∈ PuI.toSet := by
     rw [Real.MatExp.expIntegral_add_mulVec A ũ hΔr.le htk0, add_comm]
     exact Zonotope.interval_contains _ (Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _
       (Set.add_mem_add (Interval.zonotope_contains _ hPu) (hmt hPuΔ)))
   -- `H(t_{k+1})` holds the affine flow from `X₀`
-  have hH' : ∀ x₀ ∈ X₀.construct, exp ((toReal Δt + tk) • A) *ᵥ x₀
+  have hH' : ∀ x₀ ∈ X₀.toSet, exp ((toReal Δt + tk) • A) *ᵥ x₀
       + Real.MatExp.expIntegral A (toReal Δt + tk) *ᵥ ũ ∈
         (Mtimes.mtimes (S := 𝒵[𝕋])
         (𝕄 := ℐ[𝕋])
         E₁ X₀
         ⊞ PuI.zonotope
-        ).construct := fun x₀ hx₀ =>
+        ).toSet := fun x₀ hx₀ =>
     Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _
       (Set.add_mem_add (hmt1 hx₀) (Interval.zonotope_contains _ hPu'))
   -- the invariant at `t_{k+1}`, field by field, then the time and the window
@@ -385,7 +385,7 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
     have hd := traj.sub_mem_inputReach_recenter (S' := 𝒵[𝕋]) (V := V)
       hUV ⟨ht0, htT⟩
     have hd' := sys.inputReach_mono (S := 𝒵[𝕋])
-      (CompactSet.isBounded_construct Ũ)
+      (CompactSet.isBounded_toSet Ũ)
       (Recenter.zero_mem_recenter V) ht0 ht.2 hd
     obtain ⟨d0, hd0, di, hdi, hdeq⟩ := hPU' _ hd'
     -- the affine flow from `H(t_k)`: where its point `x_k` is one step on is in `H(t_{k+1})`
@@ -396,7 +396,7 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
           (𝕄 := ℐ[𝕋])
           E₁ X₀
           ⊞ PuI.zonotope
-          ).construct := by
+          ).toSet := by
       -- both the exponential and the integral split at `t_k`, so `x_k` one step on is `t_{k+1}`'s
       have hG := Real.MatExp.expIntegral_add_mulVec A ũ htk0 hΔr.le
       have hE : exp ((toReal Δt + tk) • A) = exp (toReal Δt • A) * exp (tk • A) := by
@@ -430,7 +430,7 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
           (sys.inputTaylorSumTailFloat Δt Ũ η ⊞ Mtimes.mtimes (S := 𝒵[𝕋])
             (𝕄 := ℐ[𝕋])
             (MatExp.intervalInputRemainder (Interval.point sys.A) Δt η) Ũ)).interval.zonotope)
-        ).construct := by
+        ).toSet := by
       rw [← hdeq]
       exact Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _
         (Set.add_mem_add (Reduce.reduce_outer (S := Zonotope (Vec 𝕋 n)) _ _ hd0) hdi)

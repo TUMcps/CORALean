@@ -73,7 +73,7 @@ theorem GNN.gcnUncertain_exact (W : Mat ℝ F₁ F₂) (P : PolyZonotope (Mat �
     (fun a : Fin (P.p + H.p) → ℝ =>
         P.point (a ∘ Fin.castAdd H.p) * H.point (a ∘ Fin.natAdd P.p) * W)
         '' {a | ∀ k, |a k| ≤ 1}
-      = (GNN.gcnUncertain W P H).construct := by -- --- PROOF ---
+      = (GNN.gcnUncertain W P H).toSet := by -- --- PROOF ---
   -- the layer is `gcnShared` at the padded pair, so its guarantee is that one read back
   rw [GNN.gcnUncertain, ← GNN.gcnShared_exact W (P.padBack H.p) (H.padFront P.p) rfl]
   exact Set.image_congr' fun a => (GNN.aux_gcnUncertain_apply W P H a).symm

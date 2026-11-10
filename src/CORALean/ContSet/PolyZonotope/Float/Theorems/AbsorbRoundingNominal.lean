@@ -63,7 +63,7 @@ private theorem PolyZonotope.aux_sum_univ_absorbRounding {pZ : PolyZonotope (Vec
 
 -- the error box is freed into `n` fresh factors, one per coordinate
 theorem PolyZonotope.absorbRounding_nominal (pZ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    pZ.construct ⊆ nominalSet pZ.absorbRounding := by -- --- PROOF ---
+    pZ.toSet ⊆ nominalSet pZ.absorbRounding := by -- --- PROOF ---
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨a, β, ha, hβ, hz⟩ := PolyZonotope.mem_nominalSet_iff.mp hz'
   have hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound pZ.I_error i) :=

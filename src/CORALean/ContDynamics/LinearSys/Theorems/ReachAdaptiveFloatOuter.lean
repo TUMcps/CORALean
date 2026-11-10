@@ -70,9 +70,9 @@ private theorem LinearSys.aux_adaptiveRunFloat_outer (sys : LinearSys 𝕋 n)
       ((tf : ℝ) ≤ s.t ∨ ∀ t ∈ Set.Icc ((t₀ : ℝ) + s.t) ((t₀ : ℝ) + tf),
           ∃ r ∈ steps, t ∈ Set.Icc (r.tStart : ℝ) r.tEnd) ∧
         ∀ r ∈ steps, ∀ {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (tf : ℝ)) X₀.construct U x u →
-          U ⊆ V.construct → ∀ t ∈ Set.Icc (r.tStart : ℝ) r.tEnd,
-            x (t - t₀) ∈ r.R.construct := by -- --- PROOF ---
+          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (tf : ℝ)) X₀.toSet U x u →
+          U ⊆ V.toSet → ∀ t ∈ Set.Icc (r.tStart : ℝ) r.tEnd,
+            x (t - t₀) ∈ r.R.toSet := by -- --- PROOF ---
   intro k
   induction k with
   | zero =>
@@ -133,11 +133,11 @@ theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n)
           t ∈ Set.Icc (steps[k].tStart : ℝ) steps[k].tEnd) ∧
         ∀ {x u : ℝ → Vec ℝ n},
           sys.IsCanonicalTrajectory (S := 𝒮)
-            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
+            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.toSet
             ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-              params.U.construct) x u →
+              params.U.toSet) x u →
           ∀ (k : ℕ) (hk : k < steps.length), ∀ t ∈ Set.Icc (steps[k].tStart : ℝ) steps[k].tEnd,
-            x (t - params.tStart) ∈ steps[k].R.construct := by -- --- PROOF ---
+            x (t - params.tStart) ∈ steps[k].R.toSet := by -- --- PROOF ---
   intro steps (h : sys.reachAdaptiveFloat params options = some steps)
   unfold LinearSys.reachAdaptiveFloat at h
   dsimp only at h
@@ -165,7 +165,7 @@ theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n)
       exact ⟨k, hk, hmem⟩
   · -- the run's inputs `B u + c` are in `B U ⊕ c`'s float enclosure
     have hUV : (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-        params.U.construct ⊆ ContSet.construct V :=
+        params.U.toSet ⊆ ContSet.toSet V :=
       sys.inputSetFloat_outer params.U
     rw [← htf'] at traj
     exact hsnd _ (List.getElem_mem hk) traj hUV t ht

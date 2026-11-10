@@ -331,7 +331,7 @@ overkill, such as the two halves of a split, it is read through `.fst` and `.snd
 |  |  |
 | --- | --- |
 | `x ∈ s` | membership in what a representation denotes |
-| `s₁ ⊞ s₂` | `plus`, and deliberately not `+`: it is only *outer*, so `construct (s₁ ⊞ s₂)` merely contains `construct s₁ + construct s₂` |
+| `s₁ ⊞ s₂` | `plus`, and deliberately not `+`: it is only *outer*, so `toSet (s₁ ⊞ s₂)` merely contains `toSet s₁ + toSet s₂` |
 | `𝒵`, `ℐ`, `𝕄𝒵`, `ℐ𝒱`, `𝒫𝒵`, `𝒵ℬ`, `𝒱𝒫`, … | the zonotope and interval-matrix families, for pinning `(S := 𝒵)` where the elaborator cannot read a family off one member |
 | `𝒵[𝕋]`, `ℐ[𝕋]`, … | the same families in the float layer, scoped in `CORALean.Float`; the scalar is an argument because a notation cannot capture a section variable such as `𝕋` |
 | `𝒮` | the family of sets of real vectors, `fun n => Set (Vec ℝ n)`, in `Global/Interfaces.lean`, the lowest file with ℝ in scope |
@@ -708,7 +708,7 @@ models and systems follow the same shape:
 
 | File | Holds |
 | --- | --- |
-| `<Name>.lean` | the structure it is named for, and what it denotes: `construct`, `toReal`, `IsTrajectory` — no theorem, and no storage helper (see "Main-type files") |
+| `<Name>.lean` | the structure it is named for, and what it denotes: `toSet`, `toReal`, `IsTrajectory` — no theorem, and no storage helper (see "Main-type files") |
 | `Operations/*.lean` | one operation each, as CORA gives it a file each |
 | `Theorems/*.lean` | one guarantee each, stated and proved together |
 | `Counterexamples/*.lean` | a refutation of a printed statement or of CORA's code, with the model of CORA's code it refutes (see "Counterexamples") |
@@ -799,11 +799,11 @@ The file that holds a `MAIN TYPE` banner at `<Name>/<Name>.lean` or
 `<Name>/<Layer>/<Name>.lean` is where a reader meets the type first, so it holds the type and
 what it denotes and nothing said or done about it.
 
-- Kept: the structure or class, its `nominal` view and `construct`, the `InflatedContSet`
+- Kept: the structure or class, its `nominal` view and `toSet`, the `InflatedContSet`
   instance that gives the float sets their meaning, and the other definitions the type is stated
   with (`Taylm.polyOf`, `Specification.Holds`).
 - Moved out: every `theorem` and `lemma` — the `nominal_h` fields that let a proof see through
-  an instance, `materialise_eq`, `mem_construct` — to `Theorems/`, and the storage helper
+  an instance, `materialise_eq`, `mem_toSet` — to `Theorems/`, and the storage helper
   `materialise`, which rebuilds a float set's function-typed fields as vectors and is the
   identity, to `Operations/`. Each goes where its size puts it: a section of `Basic.lean` when it
   is at most five code lines ("Small declarations"), a file of its own otherwise.
@@ -1212,7 +1212,7 @@ refactor that changes what a file's main declaration is cannot leave a stale
 label behind unnoticed; `check-conventions.sh` checks the label against the
 declaration, the same way it checks everything else here that the compiler
 cannot. A type file with several public declarations — the structure and what
-denotes it, `construct`, `toReal` — carries the marker before the first of
+denotes it, `toSet`, `toReal` — carries the marker before the first of
 them, the type itself, rather than the last. `Instances.lean` has no single
 main instance among its several anonymous ones, so it carries `INSTANCES`
 instead, with the same placement.
@@ -1361,7 +1361,7 @@ other way, which is `Source.contains_target`, or both hold and it is
 `Source.target_exact`. An `_of_` name says the hypothesis instead:
 `HPolytope.contains_of_pinned`.
 
-Not a relation of its own: the statement stays `X.construct ⊆ Y.construct`. A
+Not a relation of its own: the statement stays `X.toSet ⊆ Y.toSet`. A
 `contains` over `ContSet` would need both instances, and `Instances.lean`
 imports the operations, some of which are implemented by conversion —
 `VPolytope.intersectionH` is — so a conversion file cannot import it without a
@@ -1459,9 +1459,9 @@ does not: a result in `𝕋` where the exact one is a real number (`nominalSuppo
 (`HPolytope.levelSet`, which writes an equation as two inequalities), or the error box. The
 bare form is rejected by `scripts/conventions/check-float-wrappers.py`, and so is the exact operation applied
 to the arguments read as reals — `Real.HPolytope.rowLin (toRealMat M) i` — which is no more than the
-conversion under a name. The one bare wrapper that stays is recognized by its form: `X.construct`
-in the float main file `ContSet/X/Float/X.lean` of a set with no error box (`Interval.construct`),
-which the `ContSet` instance and every `I.construct` in a statement resolve through by dot
+conversion under a name. The one bare wrapper that stays is recognized by its form: `X.toSet`
+in the float main file `ContSet/X/Float/X.lean` of a set with no error box (`Interval.toSet`),
+which the `ContSet` instance and every `I.toSet` in a statement resolve through by dot
 notation; there is no list. A name for the conversion (`rowLin` was one) is not kept: its uses spell it out.
 
 **The float layer is part of the work, not a follow-up.** New work carries both
@@ -1487,7 +1487,7 @@ alone, with no list.
 Every float set records its rounding explicitly in an `I_error` box (`InflatedContSet`: the set
 denotes `nominal ⊕ I_error`); rounding is never folded silently into a parameter. Each float
 representation provides a sound `absorbRounding`, which moves `I_error` into the parameters where
-the representation can hold it, with `absorbRounding_outer : S.construct ⊆ S.absorbRounding.construct`.
+the representation can hold it, with `absorbRounding_outer : S.toSet ⊆ S.absorbRounding.toSet`.
 The parameters it moves the box into:
 
 - A zonotope: box generators.
@@ -1515,9 +1515,9 @@ accepts that line in place of the box, and refuses it on a type that has one.
 result's box holds only the rounding of the absorption step, often exactly zero, and a caller
 must not assume `I_error = 0` after absorbing. Where it is cheap, a lemma bounds the residual
 (`Zonotope.absorbError` is the midpoint-centred variant that leaves one). A theorem about the nominal
-part alone is `absorbRounding_nominal : S.construct ⊆ nominalSet S.absorbRounding`, which
+part alone is `absorbRounding_nominal : S.toSet ⊆ nominalSet S.absorbRounding`, which
 `absorbRounding_outer` follows from when the box left is the origin
-(`InflatedContSet.nominalSet_subset_construct`).
+(`InflatedContSet.nominalSet_subset_toSet`).
 
 A representation that cannot hold the box, or has none of its own, says so in its main-type
 docstring in one line `There is no \`I_error\` and no \`absorbRounding\`: <reason>`. The check
@@ -1601,9 +1601,9 @@ optimisation.
 
 **An oracle is asked about bounded sets.** An algorithm that takes its bounds from the caller
 (`ρ`, a linear program it does not solve itself) takes an oracle, and an oracle over a class with
-an unbounded member does not exist: `∀ P : HPolytope (Vec ℝ n), ∀ c, SupportBound P.construct c`
+an unbounded member does not exist: `∀ P : HPolytope (Vec ℝ n), ∀ c, SupportBound P.toSet c`
 must bound the description with no rows, all of `ℝⁿ`, and every theorem taking it is vacuously
-true (#270). Ask for the bound of a bounded set, `∀ P, Bornology.IsBounded P.construct → ∀ c, …`,
+true (#270). Ask for the bound of a bounded set, `∀ P, Bornology.IsBounded P.toSet → ∀ c, …`,
 and prove the boundedness where the algorithm calls it, or let the oracle answer in `Option` and
 fail soundly on `none`. `SupportBound.ofIsBounded` shows such an oracle exists, and a theorem
 over one gets an `example` that instantiates it. `scripts/conventions/check-unbounded-oracles.py`

@@ -46,9 +46,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {P 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.vPolytopeBox_contains (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
-    P.construct ⊆ (HPolytope.vPolytopeBox up lo).construct :=
+theorem HPolytope.vPolytopeBox_contains (up : ∀ j, FloatBound 𝕋 P.toSet (LinearMap.proj j))
+    (lo : ∀ j, FloatBound 𝕋 P.toSet (-LinearMap.proj j)) :
+    P.toSet ⊆ (HPolytope.vPolytopeBox up lo).toSet :=
   subset_trans (HPolytope.interval_contains up lo) (Interval.vPolytope_contains _)
 
 end CORALean.Float

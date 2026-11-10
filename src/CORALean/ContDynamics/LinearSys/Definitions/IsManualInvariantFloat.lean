@@ -57,11 +57,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 def LinearSys.IsManualInvariantFloat (sys : LinearSys 𝕋 n) (X₀ V : Float.Zonotope (Vec 𝕋 n))
     (s : LinearSys.ManualStateFloat 𝕋 n) : Prop :=
   0 ≤ s.t ∧ toReal s.tEnc.inf ≤ (s.t : ℝ) ∧ (s.t : ℝ) ≤ toReal s.tEnc.sup ∧
-    (∀ x ∈ X₀.construct, exp ((s.t : ℝ) • Scalar.toRealMat sys.A) *ᵥ x
-      + MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recenter.center V ∈ s.H.construct) ∧
-    MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recenter.center V ∈ s.Pu.construct ∧
+    (∀ x ∈ X₀.toSet, exp ((s.t : ℝ) • Scalar.toRealMat sys.A) *ᵥ x
+      + MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recenter.center V ∈ s.H.toSet) ∧
+    MatExp.expIntegral (Scalar.toRealMat sys.A) s.t *ᵥ Recenter.center V ∈ s.Pu.toSet ∧
     ∀ y ∈ sys.inputReach (S := 𝒵[𝕋]) (Recenter.recenter V) s.t, y ∈
-      s.PU.construct
+      s.PU.toSet
 
 end CORALean
 

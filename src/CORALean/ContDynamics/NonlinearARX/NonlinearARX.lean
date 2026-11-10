@@ -60,8 +60,8 @@ def NonlinearARX.pastIn (p : ℕ) (u : ℕ → Vec ℝ du) (k : ℕ) : Vec ℝ (
 step `p` on each output is `f` of the past outputs and inputs. -/
 structure NonlinearARX.IsTrajectory (sys : NonlinearARX dy du p) (Y₀ : S (p * dy)) (U : S du)
     (y : ℕ → Vec ℝ dy) (u : ℕ → Vec ℝ du) : Prop where
-  init : NonlinearARX.stack p y 0 ∈ construct Y₀
-  input (k : ℕ) : u k ∈ construct U
+  init : NonlinearARX.stack p y 0 ∈ toSet Y₀
+  input (k : ℕ) : u k ∈ toSet U
   step (k : ℕ) (hk : p ≤ k) :
     y k = sys.f (NonlinearARX.pastOut p y k) (NonlinearARX.pastIn p u k)
 

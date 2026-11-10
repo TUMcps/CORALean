@@ -176,7 +176,7 @@ theorem LinParamSys.mem_dependentLowOrder (Ac : Mat ℝ n n) (Ag : Fin k → Mat
     let u := Uc + ∑ i, p i • UG i
     c + r • (A *ᵥ c) + (r ^ 2 / 2) • (A *ᵥ (A *ᵥ c))
       + (r • u + (r ^ 2 / 2) • (A *ᵥ u) + (r ^ 3 / 6) • (A *ᵥ (A *ᵥ u)))
-      ∈ (LinParamSys.dependentLowOrder Ac Ag c Uc UG r).construct := by -- --- PROOF ---
+      ∈ (LinParamSys.dependentLowOrder Ac Ag c Uc UG r).toSet := by -- --- PROOF ---
   intro A u
   set G := ∑ i, p i • Ag i with hGdef
   set w := ∑ i, p i • UG i with hwdef

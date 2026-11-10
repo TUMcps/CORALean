@@ -121,7 +121,7 @@ end
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.reduceMethC_outer (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) : -- --- CONCL ---
-    Z.construct ⊆ (Z.reduceMethC o).construct := by -- --- PROOF ---
+    Z.toSet ⊆ (Z.reduceMethC o).toSet := by -- --- PROOF ---
   by_cases hlt : o * n < Z.h
   swap
   · simp only [Zonotope.reduceMethC, if_neg hlt]
@@ -170,7 +170,7 @@ theorem Zonotope.reduceMethC_outer (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) : -- --
   have hshort : (fun i => ∑ k, (toReal ρ * toReal (P i k)
         - toReal (mulDown ρ (P i k))) * β' k)
       ∈ (Zonotope.generatorError fun i k =>
-        subUp (mulUp ρ (P i k)) (mulDown ρ (P i k))).construct := by
+        subUp (mulUp ρ (P i k)) (mulDown ρ (P i k))).toSet := by
     refine Zonotope.mem_generatorError (fun i k => ?_) hβ'le
     have h1 := mulDown_le_mul ρ (P i k)
     have h2 := mul_le_mulUp ρ (P i k)

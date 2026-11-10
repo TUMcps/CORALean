@@ -46,9 +46,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 /-- The exact layer's `reindex` of the nominal capsule is the nominal capsule of the result, and
 the box is relabelled exactly, so the equality holds, as over ℝ: nothing is rounded. -/
 theorem Capsule.reindex_exact (e : Fin m ≃ Fin n) (C : Capsule 𝕋 n) :
-    (C.reindex e).construct = reindexLin e '' C.construct := by
-  show InflatedContSet.nominalSet (C.reindex e) + (C.I_error.reindex e).construct
-    = reindexLin e '' (InflatedContSet.nominalSet C + C.I_error.construct)
+    (C.reindex e).toSet = reindexLin e '' C.toSet := by
+  show InflatedContSet.nominalSet (C.reindex e) + (C.I_error.reindex e).toSet
+    = reindexLin e '' (InflatedContSet.nominalSet C + C.I_error.toSet)
   rw [InflatedContSet.image_add, Interval.reindex_exact e C.I_error]
   exact congrArg (· + _) (Real.Capsule.reindex_exact e C.nominal)
 

@@ -56,9 +56,9 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.expIntegral_mem_errorSolutionAdaptive (sys : LinearSys 𝕋 n) {Δt : ℝ}
-    (hΔt : 0 ≤ Δt) (η : ℕ) {Vdyn : S n} {v : Vec ℝ n} (hv : v ∈ construct Vdyn) : -- --- CONCL ---
+    (hΔt : 0 ≤ Δt) (η : ℕ) {Vdyn : S n} {v : Vec ℝ n} (hv : v ∈ toSet Vdyn) : -- --- CONCL ---
     MatExp.expIntegral (toRealMat sys.A) Δt *ᵥ v
-      ∈ construct (sys.errorSolutionAdaptive Δt η Vdyn none) := by -- --- PROOF ---
+      ∈ toSet (sys.errorSolutionAdaptive Δt η Vdyn none) := by -- --- PROOF ---
   set A := toRealMat sys.A
   -- the integrated exponential is its orders up to `η` plus the tail
   have hsplit : MatExp.expIntegral A Δt *ᵥ v
@@ -71,20 +71,20 @@ theorem LinearSys.expIntegral_mem_errorSolutionAdaptive (sys : LinearSys 𝕋 n)
   -- each exact order lands in its own term of the Taylor sum
   have hterm : ∀ i, i ≤ η →
       MatExp.particularCoeff A Δt i *ᵥ v
-        ∈ construct (Mtimes.mtimes (sys.inputTerm Δt i) Vdyn) := by
+        ∈ toSet (Mtimes.mtimes (sys.inputTerm Δt i) Vdyn) := by
     intro i _
     refine Mtimes.mtimes_outer _ _ ?_
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Set.mem_image_of_mem _ hv
   -- the tail is a member of the interval matrix
   have htail : (MatExp.expIntegral A Δt - ∑ i ∈ Finset.range (η + 1),
       MatExp.particularCoeff A Δt i) *ᵥ v
-        ∈ construct (Mtimes.mtimes (𝕄 := ℐ) (MatExp.adaptiveRemainder A Δt η) Vdyn) :=
+        ∈ toSet (Mtimes.mtimes (𝕄 := ℐ) (MatExp.adaptiveRemainder A Δt η) Vdyn) :=
     Mtimes.mtimes_outer _ _ (Set.mem_biUnion
       (MatExp.expIntegral_sub_sum_mem_adaptiveRemainder A hΔt η) (Set.mem_image_of_mem _ hv))
   -- `plus` absorbs one term at a time, as the operation builds the sum
   have hsum : ∀ m, m ≤ η → (∑ i ∈ Finset.range (m + 1), MatExp.particularCoeff A Δt i *ᵥ v)
-      ∈ construct (sys.inputTaylorSum Δt Vdyn m) := by
+      ∈ toSet (sys.inputTaylorSum Δt Vdyn m) := by
     intro m
     induction m with
     | zero => intro _; rw [Finset.sum_range_one]; exact hterm 0 (Nat.zero_le _)

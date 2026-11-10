@@ -55,7 +55,7 @@ private theorem StarSet.aux_row_rescale (s : StarSet ℋ𝒫 n) (a β : Fin s.m 
 
 theorem StarSet.conZonotope_exact (s : StarSet ℋ𝒫 n)
     (hlu : ∀ k, s.dom.inf k ≤ s.dom.sup k) : -- --- CONCL ---
-    s.conZonotope.construct = s.construct := by -- --- PROOF ---
+    s.conZonotope.toSet = s.toSet := by -- --- PROOF ---
   -- the middle and the radius of the box, and the rescaled factors
   set mid : Fin s.m → ℝ := fun k => (s.dom.inf k + s.dom.sup k) / 2 with hmid
   set rad : Fin s.m → ℝ := fun k => (s.dom.sup k - s.dom.inf k) / 2 with hrad
@@ -72,14 +72,14 @@ theorem StarSet.conZonotope_exact (s : StarSet ℋ𝒫 n)
         mul_comm (β k) (s.G i k * ((s.dom.sup k - s.dom.inf k) / 2))]
   -- the polytope on the coefficients is the predicate at the rescaled factors
   have hmem : ∀ β : Fin s.m → ℝ,
-      β ∈ s.conZonotope.P.construct ↔ (fun k => mid k + rad k * β k) ∈ s.pred.construct := by
+      β ∈ s.conZonotope.P.toSet ↔ (fun k => mid k + rad k * β k) ∈ s.pred.toSet := by
     intro β
     have hsc : (LinearMap.pi fun k => rad k • LinearMap.proj k : Vec ℝ s.m →ₗ[ℝ] Vec ℝ s.m) β
         = fun k => rad k * β k := by
       funext k
       simp
     show (LinearMap.pi fun k => rad k • LinearMap.proj k : Vec ℝ s.m →ₗ[ℝ] Vec ℝ s.m) β
-      ∈ (s.pred.translate (-mid)).construct ↔ _
+      ∈ (s.pred.translate (-mid)).toSet ↔ _
     -- the pulled-back point lies in the translate exactly when the rescaled one is in the predicate
     rw [hsc, ← HPolytope.translate_exact]
     constructor

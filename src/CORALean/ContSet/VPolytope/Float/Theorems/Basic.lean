@@ -26,17 +26,17 @@ section
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- =============================  `VPolytope.isCompact_construct`  ============================== --
+-- ===============================  `VPolytope.isCompact_toSet`  ================================ --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- What this denotes is a nominal set plus an error box, so `InflatedContSet.isCompact_construct`
+/-- What this denotes is a nominal set plus an error box, so `InflatedContSet.isCompact_toSet`
 carries compactness across: the nominal set is compact as over ℝ, the box by
 Heine–Borel. -/
-theorem VPolytope.isCompact_construct (P : VPolytope (Vec 𝕋 n)) : IsCompact P.construct :=
-  InflatedContSet.isCompact_construct P
+theorem VPolytope.isCompact_toSet (P : VPolytope (Vec 𝕋 n)) : IsCompact P.toSet :=
+  InflatedContSet.isCompact_toSet P
 
 end
 

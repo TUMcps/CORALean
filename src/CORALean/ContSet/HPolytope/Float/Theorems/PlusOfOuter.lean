@@ -17,8 +17,8 @@ rounding was paid inside that composition, so this proof never mentions it.
 * `Aq` – `q × n` matrix
 
 ## Hypotheses
-* `u₁` – a float bound of `P₁.construct` along each row
-* `u₂` – a float bound of `P₂.construct` along each row
+* `u₁` – a float bound of `P₁.toSet` along each row
+* `u₂` – a float bound of `P₂.toSet` along each row
 
 ## Conclusion
 * the float certified Minkowski sum encloses
@@ -43,9 +43,9 @@ variable {P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.plusOf_outer (Aq : Mat 𝕋 q n)
-    (u₁ : ∀ i, FloatBound 𝕋 P₁.construct (Real.HPolytope.rowLin (toRealMat Aq) i))
-    (u₂ : ∀ i, FloatBound 𝕋 P₂.construct (Real.HPolytope.rowLin (toRealMat Aq) i)) :
-    P₁.construct + P₂.construct ⊆ (HPolytope.plusOf Aq u₁ u₂).construct :=
+    (u₁ : ∀ i, FloatBound 𝕋 P₁.toSet (Real.HPolytope.rowLin (toRealMat Aq) i))
+    (u₂ : ∀ i, FloatBound 𝕋 P₂.toSet (Real.HPolytope.rowLin (toRealMat Aq) i)) :
+    P₁.toSet + P₂.toSet ⊆ (HPolytope.plusOf Aq u₁ u₂).toSet :=
   HPolytope.subset_ofBounds _ _
 
 end CORALean.Float

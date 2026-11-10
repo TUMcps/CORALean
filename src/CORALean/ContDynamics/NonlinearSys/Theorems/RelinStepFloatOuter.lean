@@ -49,9 +49,9 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepFloat_outer {fm : NonlinearSys
     ∀ Rτ Rt, (Rτ, Rt) ∈ fm.relinStepFloat U options R →
       0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
         sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
-          R.construct U.construct x u y →
-        (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
-          x (toReal options.Δt) ∈ Rt.construct := fun _ _ hstep =>
+          R.toSet U.toSet x u y →
+        (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.toSet) ∧
+          x (toReal options.Δt) ∈ Rt.toSet := fun _ _ hstep =>
   h.relinStepAtFloat_outer _ _ hstep
 
 end CORALean

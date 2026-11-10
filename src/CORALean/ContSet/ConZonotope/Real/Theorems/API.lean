@@ -1,17 +1,17 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.ConZonotope.Real.Theorems.IsequalToSet
 public import CORALean.ContSet.ConZonotope.Real.Theorems.AbsSmulCoeffLeOne
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstraintReduceOneMemIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstraintReduceOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstraintReduceSumSmulMulVec
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructFoldlIntersectionEq
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ToSetEqImage
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ToSetFoldlIntersectionEq
 public import CORALean.ContSet.ConZonotope.Real.Theorems.Convex
 public import CORALean.ContSet.ConZonotope.Real.Theorems.EliminateExact
 public import CORALean.ContSet.ConZonotope.Real.Theorems.EliminateOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.EncloseOuter
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsToSetEqIffHPolytope
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsFeasibleIffIsLeast
 public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsIsGreatestIneqs
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IneqsContainsIff
@@ -31,7 +31,7 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombInner
 public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.LinCombEqConvexHull
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
-public import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MemIffIsLeast
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MemLiftZeroIff
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MinkDiffVExact
@@ -62,10 +62,10 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.TightenERZeroFst
 public import CORALean.ContSet.ConZonotope.Real.Theorems.TightenEREmpty
 public import CORALean.ContSet.ConZonotope.Real.Theorems.TightenERRefine
 public import CORALean.ContSet.ConZonotope.Real.Theorems.TightenERNotSuperset
-public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveToSetEq
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveRowIndep
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveEqOfRZero
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqComapLift
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ToSetEqComapLift
 public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveHausdorffEq
 public import CORALean.ContSet.ConZonotope.Real.Theorems.HausdorffEstimateIsMinOn
 public import CORALean.ContSet.ConZonotope.Real.Theorems.HausdorffEstimateReducedIff
@@ -85,7 +85,7 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCenterMem
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCenterIffOfEqZero
 public import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.CubMapMixedOuter
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstrainConstructEqImage
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstrainToSetEqImage
 public import CORALean.ContSet.ConZonotope.Real.Theorems.FourierMotzkinBoundsInterEq
 public import CORALean.ContSet.ConZonotope.Real.Theorems.FourierMotzkinBoundsOuter
 public import CORALean.ContSet.ConZonotope.Real.Theorems.FourierMotzkinIterOuter
@@ -101,12 +101,12 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.MemOfMatIff
 `linComb` has both directions: `_outer` is what the interface asks for and holds always, `_inner`
 is what says the result is the convex hull itself and asks both sets to be nonempty. `enclose_outer`
 is the one direction `enclose` gets, asking the constraints to agree besides. The topological facts
-go through `ConstructEqImage` and so through the polytope, which is where they differ from a
+go through `ToSetEqImage` and so through the polytope, which is where they differ from a
 zonotope's. `OfPointMem` needs no theorem of `HPolytope`'s: an empty row index discharges the
 constraint the same way it discharges the generator sum. `IsAffineImageIff` is the representation
-itself characterized: exactly the bounded affine images of a polytope, `ConstructEqImage` and
+itself characterized: exactly the bounded affine images of a polytope, `ToSetEqImage` and
 `HPolytope`'s own conversion read as the two halves of one iff. `IntersectsHyperplaneIff` reads
-`convex_construct` as a hyperplane test. `ConstructFoldlIntersectionEq` reads `intersection_exact`
+`convex_toSet` as a hyperplane test. `ToSetFoldlIntersectionEq` reads `intersection_exact`
 along a fold: any finite conjunction of constrained-zonotope memberships is itself one.
 `MinkDiffVExact` is that fold applied to a zonotope translated by a polytope's vertices — Prop. 6,
 an equality rather than an enclosure.

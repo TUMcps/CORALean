@@ -6,7 +6,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.Plus
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
 public import Mathlib.Analysis.SpecialFunctions.Exp
 public import CORALean.ContDynamics.LinearSys.Theorems.IsCanonicalTrajectoryOfHasDerivWithinAt
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 public import Mathlib.Analysis.Calculus.Deriv.Prod
@@ -115,7 +115,7 @@ theorem Krylov.reachKrylovCora1D_constant_counterexample (Δt ε eps : ℝ) (o :
       ∃ x w : ℝ → Vec ℝ 1,
         (LinearSys.canonical (0 : Mat ℝ 1 1) : LinearSys ℝ 1).IsCanonicalTrajectory
           (S := 𝒮) (Set.Icc 0 Δt) {0} {fun _ => 1} x w ∧
-        x Δt ∉ R.construct := by -- --- PROOF ---
+        x Δt ∉ R.toSet := by -- --- PROOF ---
   -- Arnoldi on the zero matrix from `e₂`: `v⁽¹⁾ = e₂`, `h₁,₁ = h₂,₁ = 0`
   set K := Krylov.arnoldi (!![0, 1 * 0; 0, 0] : Mat ℝ 2 2) (Pi.single 1 1) 1 with hKdef
   have hK0 : K.1 0 = Pi.single 1 1 := by
@@ -147,8 +147,8 @@ theorem Krylov.reachKrylovCora1D_constant_counterexample (Δt ε eps : ℝ) (o :
       ← Zonotope.plus_exact] at hx
     obtain ⟨y, ⟨a, ha, b, hb, rfl⟩, p, hp, hxe⟩ := hx
     rw [Zonotope.mem_ofPoint_iff] at hp
-    obtain ⟨β, hβ, ha⟩ := Zonotope.mem_construct_iff.1 ha
-    obtain ⟨γ, hγ, hb⟩ := Zonotope.mem_construct_iff.1 hb
+    obtain ⟨β, hβ, ha⟩ := Zonotope.mem_toSet_iff.1 ha
+    obtain ⟨γ, hγ, hb⟩ := Zonotope.mem_toSet_iff.1 hb
     have h0 := congrFun hxe 0
     simp only [Pi.add_apply, ha 0, hb 0, hp, Fin.sum_univ_one] at h0
     simp at h0
@@ -157,7 +157,7 @@ theorem Krylov.reachKrylovCora1D_constant_counterexample (Δt ε eps : ℝ) (o :
     nlinarith
   -- otherwise the set is the point `0`
   · simp only [hp, if_false] at hx
-    rw [hred _ (by simp [Zonotope.plus, Zonotope.ofPoint]), Zonotope.mem_construct_iff] at hx
+    rw [hred _ (by simp [Zonotope.plus, Zonotope.ofPoint]), Zonotope.mem_toSet_iff] at hx
     obtain ⟨β, -, hx⟩ := hx
     have h0 := hx 0
     simp [Zonotope.plus, Zonotope.ofPoint] at h0

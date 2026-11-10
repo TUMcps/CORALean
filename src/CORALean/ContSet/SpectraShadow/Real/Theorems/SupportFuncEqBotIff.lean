@@ -39,7 +39,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 theorem SpectraShadow.supportFunc_eq_bot_iff (S : SpectraShadow α)
     (c : α →ₗ[ℝ] ℝ) : -- --- CONCL ---
-    S.supportFunc c = ⊥ ↔ S.construct = ∅ := by -- --- PROOF ---
+    S.supportFunc c = ⊥ ↔ S.toSet = ∅ := by -- --- PROOF ---
   constructor
   · -- a point would sit below `⊥`
     intro h

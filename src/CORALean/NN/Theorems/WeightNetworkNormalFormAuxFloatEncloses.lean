@@ -57,8 +57,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m d k : �
 matrices of the weight boxes and the image of the offset are in the rounded boxes. -/
 private theorem aux_pushLinear_encloses {acc : WeightAcc 𝕋 n d} {acc' : CORALean.WeightAcc ℝ n d}
     (h : acc.Encloses acc') {W₂ : Interval (Mat 𝕋 m d)} {W₂' : Mat ℝ m d}
-    (hW : W₂' ∈ W₂.construct) {b₂ : Interval (Vec 𝕋 m)} {b₂' : Vec ℝ m}
-    (hb : b₂' ∈ b₂.construct) : -- --- CONCL ---
+    (hW : W₂' ∈ W₂.toSet) {b₂ : Interval (Vec 𝕋 m)} {b₂' : Vec ℝ m}
+    (hb : b₂' ∈ b₂.toSet) : -- --- CONCL ---
     (acc.pushLinear W₂ b₂).Encloses (acc'.pushLinear W₂' b₂') := by -- --- PROOF ---
   cases acc <;> cases acc' <;> simp only [WeightAcc.Encloses] at h
   · exact ⟨hW, hb⟩
@@ -69,8 +69,8 @@ private theorem aux_pushLinear_encloses {acc : WeightAcc 𝕋 n d} {acc' : CORAL
 
 /-- Folding an elementwise affine layer into enclosing accumulators keeps them enclosing. -/
 private theorem aux_pushAffine_encloses {acc : WeightAcc 𝕋 n d} {acc' : CORALean.WeightAcc ℝ n d}
-    (h : acc.Encloses acc') {s : Interval (Vec 𝕋 d)} {s' : Vec ℝ d} (hs : s' ∈ s.construct)
-    {o : Interval (Vec 𝕋 d)} {o' : Vec ℝ d} (ho : o' ∈ o.construct) : -- --- CONCL ---
+    (h : acc.Encloses acc') {s : Interval (Vec 𝕋 d)} {s' : Vec ℝ d} (hs : s' ∈ s.toSet)
+    {o : Interval (Vec 𝕋 d)} {o' : Vec ℝ d} (ho : o' ∈ o.toSet) : -- --- CONCL ---
     (acc.pushAffine s o).Encloses (acc'.pushAffine s' o') := by -- --- PROOF ---
   -- the diagonal of the scale lies in the box of the stored diagonal blocks
   have hD := Interval.diagonal_mem s.inf s.sup s' hs

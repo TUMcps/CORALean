@@ -50,8 +50,8 @@ variable {ns n : ℕ} {d : Fin ns → ℕ}
 /-- The fold over any list of subsystems denotes the list's sum of sets. -/
 private theorem NonlinDASys.aux_composeSubsystems_foldr (Φ : ∀ i, Mat ℝ n (d i))
     (R : ∀ i, Zonotope (Vec ℝ (d i))) (l : List (Fin ns)) : -- --- CONCL ---
-    (l.foldr (fun i Z => (Zonotope.mtimes (Φ i) (R i)).plus Z) (Zonotope.ofPoint 0)).construct
-      = (l.map fun i => (Φ i *ᵥ ·) '' (R i).construct).sum := by -- --- PROOF ---
+    (l.foldr (fun i Z => (Zonotope.mtimes (Φ i) (R i)).plus Z) (Zonotope.ofPoint 0)).toSet
+      = (l.map fun i => (Φ i *ᵥ ·) '' (R i).toSet).sum := by -- --- PROOF ---
   induction l with
   | nil =>
       ext x
@@ -67,8 +67,8 @@ private theorem NonlinDASys.aux_composeSubsystems_foldr (Φ : ∀ i, Mat ℝ n (
 /-- [1, Eq. 15]: `Φ⁽¹⁾R⁽¹⁾ ⊕ ... ⊕ Φ⁽ⁿˢ⁾R⁽ⁿˢ⁾` is the sum of the mapped sets. -/
 theorem NonlinDASys.composeSubsystems_exact (Φ : ∀ i, Mat ℝ n (d i))
     (R : ∀ i, Zonotope (Vec ℝ (d i))) :
-    (NonlinDASys.composeSubsystems Φ R).construct
-      = ∑ i, (Φ i *ᵥ ·) '' (R i).construct := by
+    (NonlinDASys.composeSubsystems Φ R).toSet
+      = ∑ i, (Φ i *ᵥ ·) '' (R i).toSet := by
   rw [Fin.sum_univ_def]
   exact NonlinDASys.aux_composeSubsystems_foldr Φ R _
 

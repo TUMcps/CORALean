@@ -58,13 +58,13 @@ theorem NonlinDASys.abstractionErrorAdaptive_outer (CF_inv : Mat ℝ n p)
     (H : NonlinDASys.HessData n p q) {Hd : Fin n → Mat ℝ q q} {Ha : Fin p → Mat ℝ q q}
     (hHd : ∀ i j k, |Hd i j k - H.Hd_c i j k| ≤ H.Hd_Δ i j k)
     (hHa : ∀ i j k, |Ha i j k - H.Ha_c i j k| ≤ H.Ha_Δ i j k) {ν : Vec ℝ q}
-    (hν : ν ∈ H.dz.construct) : -- --- CONCL ---
+    (hν : ν ∈ H.dz.toSet) : -- --- CONCL ---
     (1 / 2 : ℝ) • (fun i => ν ⬝ᵥ (Hd i *ᵥ ν))
-        ∈ (NonlinDASys.abstractionErrorAdaptive CF_inv H).Z_error_x.construct ∧
+        ∈ (NonlinDASys.abstractionErrorAdaptive CF_inv H).Z_error_x.toSet ∧
       (1 / 2 : ℝ) • (fun j => ν ⬝ᵥ (Ha j *ᵥ ν))
-        ∈ (NonlinDASys.abstractionErrorAdaptive CF_inv H).Z_error_y.construct ∧
+        ∈ (NonlinDASys.abstractionErrorAdaptive CF_inv H).Z_error_y.toSet ∧
       (1 / 2 : ℝ) • ((fun i => ν ⬝ᵥ (Hd i *ᵥ ν)) - CF_inv *ᵥ (fun j => ν ⬝ᵥ (Ha j *ᵥ ν)))
-        ∈ (NonlinDASys.abstractionErrorAdaptive CF_inv H).Z_error.construct := by -- --- PROOF ---
+        ∈ (NonlinDASys.abstractionErrorAdaptive CF_inv H).Z_error.toSet := by -- --- PROOF ---
   refine ⟨?_, ?_, NonlinDASys.linError_outer H.Hd_c H.Hd_Δ H.Ha_c H.Ha_Δ CF_inv H.dz hHd hHa hν⟩
   · have := NonlinDASys.linError_outer H.Hd_c H.Hd_Δ H.Ha_c H.Ha_Δ (0 : Mat ℝ n p) H.dz hHd hHa hν
     simpa [NonlinDASys.abstractionErrorAdaptive, Matrix.zero_mulVec] using this

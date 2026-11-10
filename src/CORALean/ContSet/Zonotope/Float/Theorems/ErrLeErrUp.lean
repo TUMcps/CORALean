@@ -9,7 +9,7 @@ public import CORALean.Global.Err
 /-!
 # `errUp` bounds `err`
 
-Every set inside `Z`'s `construct` has its [1] eq. (11) `err` under `Z.errUp`: each point's
+Every set inside `Z`'s `toSet` has its [1] eq. (11) `err` under `Z.errUp`: each point's
 coordinate is under `absBoundError` (`abs_le_absBoundError`), `aux_err_le_norm₂_of_forall_abs_le`
 turns that into a bound on `err` by the Euclidean norm of the magnitudes, and `norm₂_le_normUp`
 bounds that norm from above: a Euclidean bound, which `Zonotope.errOp`, in the sup norm,
@@ -91,9 +91,9 @@ end
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `err S ≤ Z.errUp` for every `S` inside `Z`'s `construct`. -/
+/-- `err S ≤ Z.errUp` for every `S` inside `Z`'s `toSet`. -/
 theorem Zonotope.err_le_errUp (Z : Zonotope (Vec 𝕋 n)) {S : Set (Vec ℝ n)}
-    (hS : S ⊆ Zonotope.construct Z) : -- --- CONCL ---
+    (hS : S ⊆ Zonotope.toSet Z) : -- --- CONCL ---
     err S ≤ toReal Z.errUp := by -- --- PROOF ---
   have hnorm := norm₂_le_normUp (v := fun j => toReal (Z.absBoundError j))
     (m := fun j => Z.absBoundError j) 64 fun j => le_rfl

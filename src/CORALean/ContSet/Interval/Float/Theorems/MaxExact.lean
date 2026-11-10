@@ -42,12 +42,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Interval.max_exact {I₁ I₂ : Interval (Vec 𝕋 n)} (h₁ : I₁.nominal.IsNonempty)
     (h₂ : I₂.nominal.IsNonempty) : -- --- CONCL ---
-    (I₁.max I₂).construct = Set.image2 (fun x y : Vec ℝ n => fun i => Max.max (x i) (y i))
-      I₁.construct I₂.construct := by -- --- PROOF ---
+    (I₁.max I₂).toSet = Set.image2 (fun x y : Vec ℝ n => fun i => Max.max (x i) (y i))
+      I₁.toSet I₂.toSet := by -- --- PROOF ---
   have h : (I₁.max I₂).nominal = I₁.nominal.max I₂.nominal := by
     unfold Interval.nominal Interval.max Real.Interval.max
     congr 1 <;> funext i <;> exact toReal_maximum _ _
-  show (I₁.max I₂).nominal.construct = _
+  show (I₁.max I₂).nominal.toSet = _
   rw [h]
   exact Real.Interval.max_exact h₁ h₂
 

@@ -55,10 +55,10 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- Lines 6-13: the state after the first `k` iterations; `0` is line 2's
 pre-loop state, so the `k`-th iteration's set is `run (k+1)`'s. -/
 noncomputable def LinearSys.maxBackReachRun (sys : LinearSys 𝕋 n)
-    (ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.construct)
-      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
-    (P₁ P₂ : HPolytope (Vec ℝ n)) (hP₁ : Bornology.IsBounded P₁.dropEqs.construct)
-    (hP₂ : Bornology.IsBounded P₂.dropEqs.construct) (U W₀ : Zonotope (Vec ℝ n))
+    (ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.toSet)
+      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.toSet c)
+    (P₁ P₂ : HPolytope (Vec ℝ n)) (hP₁ : Bornology.IsBounded P₁.dropEqs.toSet)
+    (hP₂ : Bornology.IsBounded P₂.dropEqs.toSet) (U W₀ : Zonotope (Vec ℝ n))
     (Zw : ℝ → Zonotope (Vec ℝ n)) (t₀ Δt : ℝ) (η : ℕ) : ℕ → LinearSys.MaxBackReachState n
   | 0 => sys.maxBackReachInit U W₀ t₀ η
   | k + 1 => sys.maxBackReachStep ρ P₁ P₂ hP₁ hP₂ U W₀ Zw Δt η

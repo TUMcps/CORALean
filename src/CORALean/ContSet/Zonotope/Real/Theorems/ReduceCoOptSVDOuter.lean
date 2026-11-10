@@ -54,7 +54,7 @@ variable {n : ℕ}
 /-- [1, Alg. 4], CoOptSVD: `Z ⊆ reduceCoOptSVD Z opt` for every solver `opt`. -/
 theorem Zonotope.reduceCoOptSVD_outer (Z : Zonotope (Vec ℝ n))
     (opt : Mat ℝ n n × Vec ℝ n × Mat ℝ n n → Mat ℝ n n × Vec ℝ n × Mat ℝ n n) : -- --- CONCL ---
-    Z.construct ⊆ (Z.reduceCoOptSVD opt).construct := by -- --- PROOF ---
+    Z.toSet ⊆ (Z.reduceCoOptSVD opt).toSet := by -- --- PROOF ---
   unfold Zonotope.reduceCoOptSVD
   dsimp only
   split_ifs with h

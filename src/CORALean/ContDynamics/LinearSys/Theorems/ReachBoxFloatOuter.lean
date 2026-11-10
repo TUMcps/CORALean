@@ -82,12 +82,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- [1, Alg. 1] in floats: `R_k` encloses the reachable set at every `t ∈ [kr, (k+1)r]`,
 `k ≤ N`. -/
 theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec 𝕋 n)) {r : 𝕋}
-    {η N : ℕ} (hr : 0 < toReal r) (h0 : (0 : Vec ℝ n) ∈ U.construct) {k : ℕ} (hk : k ≤ N) {t : ℝ}
+    {η N : ℕ} (hr : 0 < toReal r) (h0 : (0 : Vec ℝ n) ∈ U.toSet) {k : ℕ} (hk : k ≤ N) {t : ℝ}
     (ht : t ∈ Set.Icc ((k : ℝ) * toReal r) ((k + 1) * toReal r)) : -- --- CONCL ---
     ∀ Rs ∈ sys.reachBoxFloat X₀ U r η N,
       ∃ R, Rs[k]? = some R ∧
         sys.reachSetExact (S := 𝒵[𝕋]) (Set.Icc 0 t) X₀ U t
-          ⊆ R.construct := by -- --- PROOF ---
+          ⊆ R.toSet := by -- --- PROOF ---
   intro Rs (h : sys.reachBoxFloat X₀ U r η N = some Rs)
   -- the order is the search's, and the list is the loop's
   simp only [LinearSys.reachBoxFloat, Option.bind_eq_bind, Option.bind_eq_some_iff,
@@ -120,35 +120,35 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
       = (step^[N] s₀, (List.range (N + 1)).map fun j => out (step^[j] s₀)) :=
     foldl_range_step_out step out s₀ N
   -- what the listing needs of the sets: bounded, a step is enclosed, a box encloses
-  have hU : Bornology.IsBounded (ContSet.construct U) := CompactSet.isBounded_construct U
+  have hU : Bornology.IsBounded (ContSet.toSet U) := CompactSet.isBounded_toSet U
   have hkr : ∀ k : ℕ, (0:ℝ) ≤ k * ρ := fun k => mul_nonneg (Nat.cast_nonneg k) hr.le
   -- `e^{Ar}` is in `[e^{Ar}]`, so one more step is enclosed
-  have hE : E ∈ eAr.construct := sys.exp_mem_expIntervalFloat hadm le_rfl le_rfl
-  have hstep : ∀ (Z : Zonotope (Vec 𝕋 n)) (y : Vec ℝ n), y ∈ Z.construct →
+  have hE : E ∈ eAr.toSet := sys.exp_mem_expIntervalFloat hadm le_rfl le_rfl
+  have hstep : ∀ (Z : Zonotope (Vec 𝕋 n)) (y : Vec ℝ n), y ∈ Z.toSet →
       E *ᵥ y ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) eAr Z).construct :=
+        (S := 𝒵[𝕋]) eAr Z).toSet :=
     fun Z y hy => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) eAr Z
       (Set.mem_biUnion hE (Set.mem_image_of_mem _ hy))
-  have hbox : ∀ Z : Zonotope (Vec 𝕋 n), Z.construct ⊆ Z.interval.zonotope.construct :=
+  have hbox : ∀ Z : Zonotope (Vec 𝕋 n), Z.toSet ⊆ Z.interval.zonotope.toSet :=
     fun Z => (Zonotope.interval_contains Z).trans (Interval.zonotope_contains _)
   -- the first window's `H^R_0` holds the flow of `X⁰` at every `τ ∈ [0, r]`
-  have hh : ∀ τ ∈ Set.Icc (0:ℝ) ρ, (fun x => exp (τ • A) *ᵥ x) '' X₀.construct
-      ⊆ H₀.construct := by
+  have hh : ∀ τ ∈ Set.Icc (0:ℝ) ρ, (fun x => exp (τ • A) *ᵥ x) '' X₀.toSet
+      ⊆ H₀.toSet := by
     rintro τ hτ _ ⟨x, hx, rfl⟩
     exact sys.timeIntervalFloat_outer hr hadm X₀ hx hτ.1 hτ.2
   -- and `V₀` the input's reach, once `inputReach U τ ⊆ inputReach U r`
   have hi : ∀ τ ∈ Set.Icc (0:ℝ) ρ, sys.inputReach (S := 𝒵[𝕋]) U τ ⊆
-    V₀.construct :=
+    V₀.toSet :=
     fun τ hτ => (sys.inputReach_mono hU h0 hτ.1 hτ.2).trans
       (sys.inputReach_subset_inputSolutionFloat hr hadm U)
   -- the three invariants, by induction on `k`
   have hinv : ∀ k : ℕ, ∀ τ ∈ Set.Icc (0:ℝ) ρ,
-      (fun x => exp ((k * ρ + τ) • A) *ᵥ x) '' X₀.construct ⊆ (step^[k] s₀).1.construct
+      (fun x => exp ((k * ρ + τ) • A) *ᵥ x) '' X₀.toSet ⊆ (step^[k] s₀).1.toSet
       ∧ (fun y => exp ((k * ρ) • A) *ᵥ y) '' sys.inputReach (S := 𝒵[𝕋]) U τ
-          ⊆ (step^[k] s₀).2.1.construct
+          ⊆ (step^[k] s₀).2.1.toSet
       ∧ sys.inputReach (S := 𝒵[𝕋]) U (k * ρ + τ) ⊆
-        (step^[k] s₀).2.2.construct := by
+        (step^[k] s₀).2.2.toSet := by
     intro k
     -- at `k = 0` the three are the first window's, `box(V₀)` holding `V₀`
     induction k with
@@ -169,7 +169,7 @@ theorem LinearSys.reachBoxFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotop
       -- `V_{k+1}`: one more `e^{Ar}`
       have h2 : (fun y => exp ((((k + 1 : ℕ) : ℝ) * ρ) • A) *ᵥ y) ''
           sys.inputReach (S := 𝒵[𝕋]) U τ ⊆
-            (step (step^[k] s₀)).2.1.construct := by
+            (step (step^[k] s₀)).2.1.toSet := by
         rintro _ ⟨v, hv, rfl⟩
         have := hstep _ _ ((ih τ hτ).2.1 ⟨v, hv, rfl⟩)
         simpa only [hEk, Matrix.mulVec_mulVec] using this

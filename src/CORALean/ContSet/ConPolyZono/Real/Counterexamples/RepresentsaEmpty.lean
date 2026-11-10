@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.ConPolyZono
 public import CORALean.ContSet.Interval.Real.Theorems.Basic
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEq
 public import CORALean.Global.StepOf
 
 @[expose] public section
@@ -16,7 +16,7 @@ generators are nonempty, before the constraints are looked at. A constrained pol
 is empty whenever its constraints have no solution in the box, whatever `GI` is.
 
 The example has one factor, no dependent generators, one independent generator `GI = 1` and the
-constraint `α₁ = 2`, which no `α₁ ∈ [-1, 1]` satisfies. `ConPolyZono.construct` is `∅`, and the
+constraint `α₁ = 2`, which no `α₁ ∈ [-1, 1]` satisfies. `ConPolyZono.toSet` is `∅`, and the
 printed check answers `false`.
 
 ## Inputs
@@ -64,7 +64,7 @@ def ConPolyZono.step_emptyWithGI : ConPolyZono ℝ :=
 
 /-- The set is empty although `GI` is nonempty, and CORA's printed check answers "not empty". -/
 theorem ConPolyZono.representsa_empty_counterexample : -- --- CONCL ---
-    0 < ConPolyZono.step_emptyWithGI.qI ∧ ConPolyZono.step_emptyWithGI.construct = ∅ ∧
+    0 < ConPolyZono.step_emptyWithGI.qI ∧ ConPolyZono.step_emptyWithGI.toSet = ∅ ∧
       ConPolyZono.step_isEmptySetPrinted ConPolyZono.step_emptyWithGI
         = some false := by -- --- PROOF ---
   refine ⟨Nat.one_pos, ?_,
@@ -73,7 +73,7 @@ theorem ConPolyZono.representsa_empty_counterexample : -- --- CONCL ---
   simp only [Set.mem_empty_iff_false, iff_false]
   rintro ⟨a, β, -, hs, -⟩
   have h4 :=
-    ((PolyLevelSet.mem_construct_iff_of_eq ConPolyZono.step_emptyWithGI.cons_eq).mp hs).2
+    ((PolyLevelSet.mem_toSet_iff_of_eq ConPolyZono.step_emptyWithGI.cons_eq).mp hs).2
       (0 : Fin 1)
   have h3 := (Interval.mem_unit_iff a).mp hs.1 (0 : Fin 1)
   simp [ConPolyZono.step_emptyWithGI, PolyZonotope.monomial, Matrix.mulVec, dotProduct] at h4 h3

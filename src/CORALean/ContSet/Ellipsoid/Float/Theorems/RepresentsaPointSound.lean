@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Ellipsoid.representsa_point_sound {E : Ellipsoid 𝕋 n}
     (h : E.representsa_point = true) : -- --- CONCL ---
-    ∃ v, E.construct = {v} := by -- --- PROOF ---
+    ∃ v, E.toSet = {v} := by -- --- PROOF ---
   simp only [Ellipsoid.representsa_point, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨hG, hE⟩ := h
@@ -58,7 +58,7 @@ theorem Ellipsoid.representsa_point_sound {E : Ellipsoid 𝕋 n}
   have hN : InflatedContSet.nominalSet E = {toRealVec E.q} := by
     rw [← E.nominal_q]
     exact (Real.Ellipsoid.representsa_point_iff (InflatedContSet.nominal E).ellipsoid).2 hN0
-  show InflatedContSet.nominalSet E + E.I_error.construct = _
+  show InflatedContSet.nominalSet E + E.I_error.toSet = _
   rw [hN, hv, Set.singleton_add_singleton]
 
 end CORALean.Float

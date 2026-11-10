@@ -47,10 +47,10 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : 
 theorem OnlineAnalyzerNode.apValue_spec (ap : AtomicProposition S d) (set : S d)
     (loc : ℕ) : -- --- CONCL ---
     (OnlineAnalyzerNode.apValue (𝕋 := 𝕋) ap set loc = some .tt →
-      ∀ x ∈ construct set, ap.Holds x loc) ∧
+      ∀ x ∈ toSet set, ap.Holds x loc) ∧
     (OnlineAnalyzerNode.apValue (𝕋 := 𝕋) ap set loc = some .ff →
-      ∀ x ∈ construct set, ¬ ap.Holds x loc) ∧
-    ((∃ x, x ∈ construct set) →
+      ∀ x ∈ toSet set, ¬ ap.Holds x loc) ∧
+    ((∃ x, x ∈ toSet set) →
       OnlineAnalyzerNode.apValue (𝕋 := 𝕋) ap set loc ≠ none) := by -- --- PROOF ---
   unfold OnlineAnalyzerNode.apValue
   refine ⟨fun h x hx => ?_, fun h x hx => ?_, fun ⟨x, hx⟩ h => ?_⟩

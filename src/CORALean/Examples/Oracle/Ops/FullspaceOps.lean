@@ -13,8 +13,8 @@ import CORALean.ContSet.Fullspace.Real.Operations.Not
 import CORALean.ContSet.Fullspace.Real.Operations.Project
 import CORALean.ContSet.Fullspace.Real.Operations.ProjectHighDim
 import CORALean.ContSet.Fullspace.Real.Operations.Volume
-import CORALean.ContSet.Fullspace.Real.Theorems.ConstructNeEmpty
-import CORALean.ContSet.Fullspace.Real.Theorems.ConstructNeSingleton
+import CORALean.ContSet.Fullspace.Real.Theorems.ToSetNeEmpty
+import CORALean.ContSet.Fullspace.Real.Theorems.ToSetNeSingleton
 import CORALean.ContSet.HPolytope.Float.Operations.Fullspace
 import CORALean.Global.Corners
 import CORALean.Examples.Oracle.Ops.EmptySetOps
@@ -182,7 +182,7 @@ def handleFullspaceOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option
       let ⟨N, d⟩ ← trivialDims req n
       let _ := Fullspace.projectHighDim_ (Fullspace.Inf n) N d
       pure [("F", printTrivialSet N)])
-  -- `representsa`: the full space is not empty (`construct_ne_empty`) and, for `n > 0`, no point
+  -- `representsa`: the full space is not empty (`toSet_ne_empty`) and, for `n > 0`, no point
   | "representsa" => some (do
       checkFields op req ["n", "type", "tol"]
       checkTol op req
@@ -190,10 +190,10 @@ def handleFullspaceOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option
       let F : Fullspace n := Fullspace.Inf n
       match ← strField req "type" with
       | "fullspace" => valueBool true
-      | "emptySet" => have _ := Fullspace.construct_ne_empty F; valueBool false
+      | "emptySet" => have _ := Fullspace.toSet_ne_empty F; valueBool false
       | "point" | "origin" =>
         if hn : 0 < n then
-          have _ := Fullspace.construct_ne_singleton hn F; valueBool false
+          have _ := Fullspace.toSet_ne_singleton hn F; valueBool false
         else throw "representsa: at n = 0 the full space is the single point, not covered"
       | t => throw s!"representsa: `type` must be emptySet, point, origin or fullspace, not `{t}`")
   -- `vertices`: column `l` has `inf` in row `j` where `signEquiv n l j`, else `-inf`; n in 1..20

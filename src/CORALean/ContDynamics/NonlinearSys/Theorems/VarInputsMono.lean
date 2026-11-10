@@ -67,16 +67,16 @@ variable {n m o : ℕ}
 
 /-- `quadMapMixed` is exact, so it grows with either of its two ranges. -/
 private theorem aux_quadMapMixed_mono (Q : Fin n → Mat ℝ o o) {A₁ A₂ B₁ B₂ : PolyZonotope (Vec ℝ o)}
-    (hA : A₁.construct ⊆ A₂.construct) (hB : B₁.construct ⊆ B₂.construct) :
-    (PolyZonotope.quadMapMixed Q A₁ B₁).construct
-      ⊆ (PolyZonotope.quadMapMixed Q A₂ B₂).construct := by
+    (hA : A₁.toSet ⊆ A₂.toSet) (hB : B₁.toSet ⊆ B₂.toSet) :
+    (PolyZonotope.quadMapMixed Q A₁ B₁).toSet
+      ⊆ (PolyZonotope.quadMapMixed Q A₂ B₂).toSet := by
   rw [← PolyZonotope.quadMapMixed_exact, ← PolyZonotope.quadMapMixed_exact]
   exact Set.image_mono (Set.prod_mono hA hB)
 
 /-- `quadMap` is exact, so it grows with the range it pairs with itself. -/
 private theorem aux_quadMap_mono (Q : Fin n → Mat ℝ o o) {A₁ A₂ : PolyZonotope (Vec ℝ o)}
-    (hA : A₁.construct ⊆ A₂.construct) :
-    (A₁.quadMap Q).construct ⊆ (A₂.quadMap Q).construct := by
+    (hA : A₁.toSet ⊆ A₂.toSet) :
+    (A₁.quadMap Q).toSet ⊆ (A₂.quadMap Q).toSet := by
   rw [← PolyZonotope.quadMap_exact, ← PolyZonotope.quadMap_exact]
   exact Set.image_mono hA
 
@@ -86,8 +86,8 @@ private theorem aux_quadMap_mono (Q : Fin n → Mat ℝ o o) {A₁ A₂ : PolyZo
 /-- Widening either range widens what `varInputs` admits. -/
 theorem varInputs_mono (B : Mat ℝ n m) (D : Fin n → Mat ℝ o o)
     {Rz₁ Rz₂ RzΔ₁ RzΔ₂ : PolyZonotope (Vec ℝ o)} {UΔ : PolyZonotope (Vec ℝ m)}
-    (hz : Rz₁.construct ⊆ Rz₂.construct) (hzΔ : RzΔ₁.construct ⊆ RzΔ₂.construct) :
-    (varInputs B D Rz₁ RzΔ₁ UΔ).construct ⊆ (varInputs B D Rz₂ RzΔ₂ UΔ).construct :=
+    (hz : Rz₁.toSet ⊆ Rz₂.toSet) (hzΔ : RzΔ₁.toSet ⊆ RzΔ₂.toSet) :
+    (varInputs B D Rz₁ RzΔ₁ UΔ).toSet ⊆ (varInputs B D Rz₂ RzΔ₂ UΔ).toSet :=
   PolyZonotope.plus_mono subset_rfl (PolyZonotope.map_mono _
     (PolyZonotope.plus_mono
       (PolyZonotope.plus_mono (aux_quadMapMixed_mono D hz hzΔ)

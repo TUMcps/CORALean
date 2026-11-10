@@ -63,11 +63,11 @@ set is not `{0}`, and answers `'emptySet'` with `true` as well. -/
 theorem Polygon.representsa_origin_cora_counterexample : -- --- CONCL ---
     Polygon.representsaOriginCora ⟨[]⟩ = true ∧
       Polygon.representsaEmptySet ⟨[]⟩ = true ∧
-      ContSet.construct (⟨[]⟩ : Polygon) = (∅ : Set (Vec ℝ 2)) ∧
-      ContSet.construct (⟨[]⟩ : Polygon) ≠ ({0} : Set (Vec ℝ 2)) := by -- --- PROOF ---
-  have hc : ContSet.construct (⟨[]⟩ : Polygon) = (∅ : Set (Vec ℝ 2)) := by
+      ContSet.toSet (⟨[]⟩ : Polygon) = (∅ : Set (Vec ℝ 2)) ∧
+      ContSet.toSet (⟨[]⟩ : Polygon) ≠ ({0} : Set (Vec ℝ 2)) := by -- --- PROOF ---
+  have hc : ContSet.toSet (⟨[]⟩ : Polygon) = (∅ : Set (Vec ℝ 2)) := by
     ext x
-    simp [SetUnion.mem_construct]
+    simp [SetUnion.mem_toSet]
   refine ⟨by simp [Polygon.representsaOriginCora, Polygon.vertices], by
     simp [Polygon.representsaEmptySet], hc, ?_⟩
   rw [hc]

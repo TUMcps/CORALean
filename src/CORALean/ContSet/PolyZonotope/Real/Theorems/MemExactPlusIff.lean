@@ -68,7 +68,7 @@ private theorem PolyZonotope.aux_sum_indep_exactPlus (pZ₁ pZ₂ : PolyZonotope
 `pZ₂` at one shared dependent factor vector `a` and independent factors of their own. -/
 theorem PolyZonotope.mem_exactPlus_iff (pZ₁ pZ₂ : PolyZonotope α) (hp : pZ₁.p = pZ₂.p)
     (x : α) : -- --- CONCL ---
-    x ∈ (pZ₁.exactPlus pZ₂ hp).construct ↔
+    x ∈ (pZ₁.exactPlus pZ₂ hp).toSet ↔
       ∃ a : Fin pZ₁.p → ℝ, ∃ β₁ : Fin pZ₁.q → ℝ, ∃ β₂ : Fin pZ₂.q → ℝ,
         (∀ k, |a k| ≤ 1) ∧ (∀ j, |β₁ j| ≤ 1) ∧ (∀ j, |β₂ j| ≤ 1) ∧
         x = (pZ₁.point a + ∑ j, β₁ j • pZ₁.GI j)

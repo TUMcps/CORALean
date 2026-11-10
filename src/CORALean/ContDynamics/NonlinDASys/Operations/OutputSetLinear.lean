@@ -59,7 +59,7 @@ noncomputable def NonlinDASys.outputSetLinear (sys : NonlinDASys n p m)
   let J_x := jacobianMat (fun x => sys.h x p_y p_u) p_x             -- ∂h/∂x at p
   let J_y := jacobianMat (fun y => sys.h p_x y p_u) p_y             -- ∂h/∂y at p
   let J_u := jacobianMat (fun u => sys.h p_x p_y u) p_u             -- ∂h/∂u at p
-  {z | ∃ x ∈ construct R, ∃ y ∈ construct R_y, ∃ u ∈ construct U,
+  {z | ∃ x ∈ toSet R, ∃ y ∈ toSet R_y, ∃ u ∈ toSet U,
     z = zerothorder + J_x *ᵥ (x - p_x) + J_y *ᵥ (y - p_y) + J_u *ᵥ (u - p_u)}
 
 end CORALean

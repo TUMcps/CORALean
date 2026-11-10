@@ -49,10 +49,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 theorem NeuralNetwork.holds_robustness {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
     (hf : nn.Encloses f) (X : S n) (l : Fin m)
-    (u : ∀ j, SupportBound (construct (nn.enclose X))
+    (u : ∀ j, SupportBound (toSet (nn.enclose X))
       (marginDir m j l))
     (h : ∀ j, j ≠ l → (u j).val < 0) :
-    (Specification.unsafeSet (misclassified m l)).Holds (f '' construct X) :=
+    (Specification.unsafeSet (misclassified m l)).Holds (f '' toSet X) :=
   hf.holds_of_enclose X _ (disjoint_misclassified_of_bounds l u h)
 
 end CORALean

@@ -69,9 +69,9 @@ instance [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] :
   I_error s := s.I_error
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
-abbrev StarSet.construct [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (s : StarSet 𝕋 n) :
+abbrev StarSet.toSet [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] (s : StarSet 𝕋 n) :
     Set (Vec ℝ n) :=
-  InflatedContSet.construct s
+  InflatedContSet.toSet s
 
 end CORALean.Float
 

@@ -74,10 +74,10 @@ variable {n p : ℕ}
 theorem LinearSysDT.observePropagation_outer (sys : LinearSysDT ℝ n)
     (gain : Zonotope (Vec ℝ n) → Mat ℝ n sys.q) (order : ℕ) (W R₀ : Zonotope (Vec ℝ n))
     (V : Zonotope (Vec ℝ sys.q)) (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q) (x w : ℕ → Vec ℝ n)
-    (v : ℕ → Vec ℝ sys.q) (h0 : x 0 ∈ R₀.construct) (hw : ∀ k, w k ∈ W.construct)
-    (hv : ∀ k, v k ∈ V.construct) (hstep : ∀ k, x (k + 1) = sys.A *ᵥ x k + sys.B *ᵥ u k + w k)
+    (v : ℕ → Vec ℝ sys.q) (h0 : x 0 ∈ R₀.toSet) (hw : ∀ k, w k ∈ W.toSet)
+    (hv : ∀ k, v k ∈ V.toSet) (hstep : ∀ k, x (k + 1) = sys.A *ᵥ x k + sys.B *ᵥ u k + w k)
     (hy : ∀ k, y k = sys.C *ᵥ x k + v k) (k : ℕ) : -- --- CONCL ---
-    x k ∈ (sys.observePropagation gain order W R₀ V u y k).construct := by -- --- PROOF ---
+    x k ∈ (sys.observePropagation gain order W R₀ V u y k).toSet := by -- --- PROOF ---
   induction k with
   | zero => exact h0
   | succ k ih =>
@@ -89,13 +89,13 @@ theorem LinearSysDT.observePropagation_outer (sys : LinearSysDT ℝ n)
       rw [hstep, hy, Matrix.sub_mulVec, ← Matrix.mulVec_mulVec, Matrix.mulVec_add,
         Matrix.neg_mulVec]
       abel
-    have h1 : (sys.A - L * sys.C) *ᵥ x k ∈ (Zonotope.mtimes (sys.A - L * sys.C) S).construct := by
+    have h1 : (sys.A - L * sys.C) *ᵥ x k ∈ (Zonotope.mtimes (sys.A - L * sys.C) S).toSet := by
       rw [← Zonotope.mtimes_exact]; exact ⟨x k, ih, rfl⟩
-    have h4 : (-L) *ᵥ v k ∈ (Zonotope.mtimes (-L) V).construct := by
+    have h4 : (-L) *ᵥ v k ∈ (Zonotope.mtimes (-L) V).toSet := by
       rw [← Zonotope.mtimes_exact]; exact ⟨v k, hv k, rfl⟩
     show x (k + 1) ∈ (Zonotope.reduce (((((Zonotope.mtimes (sys.A - L * sys.C) S).plus
       (Zonotope.ofPoint (sys.B *ᵥ u k))).plus (Zonotope.ofPoint (L *ᵥ y k))).plus
-      (Zonotope.mtimes (-L) V)).plus W) order).construct
+      (Zonotope.mtimes (-L) V)).plus W) order).toSet
     refine Zonotope.reduce_outer _ _ ?_
     rw [heq, ← Zonotope.plus_exact, ← Zonotope.plus_exact, ← Zonotope.plus_exact,
       ← Zonotope.plus_exact]

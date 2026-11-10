@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemAndRowsIff
 public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 public import Mathlib.Tactic.Abel
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemCartProdIff
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEq
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 public import Mathlib.Algebra.BigOperators.Fin
@@ -72,15 +72,15 @@ private theorem ConPolyZono.aux_value_intersectionDep (cPZ₁ cPZ₂ : ConPolyZo
 the two points agree coordinate by coordinate. -/
 private theorem ConPolyZono.aux_mem_cons_intersectionDep_iff (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n))
     (a : Fin (cPZ₁.p + cPZ₂.p) → ℝ) : -- --- CONCL ---
-    a ∈ (cPZ₁.intersectionDep cPZ₂).cons.construct ↔
-      ((fun k => a (Fin.castAdd cPZ₂.p k)) ∈ cPZ₁.cons.construct
-        ∧ (fun k => a (Fin.natAdd cPZ₁.p k)) ∈ cPZ₂.cons.construct)
+    a ∈ (cPZ₁.intersectionDep cPZ₂).cons.toSet ↔
+      ((fun k => a (Fin.castAdd cPZ₂.p k)) ∈ cPZ₁.cons.toSet
+        ∧ (fun k => a (Fin.natAdd cPZ₁.p k)) ∈ cPZ₂.cons.toSet)
       ∧ ∀ i, (∑ l, cPZ₁.G l i
               * PolyZonotope.monomial cPZ₁.E (fun k => a (Fin.castAdd cPZ₂.p k)) l)
             - ∑ l, cPZ₂.G l i
               * PolyZonotope.monomial cPZ₂.E (fun k => a (Fin.natAdd cPZ₁.p k)) l
           = cPZ₂.c i - cPZ₁.c i := by -- --- PROOF ---
-  show a ∈ ((cPZ₁.cons.cartProd cPZ₂.cons).andRows (ConPolyZono.agreeCons cPZ₁ cPZ₂)).construct
+  show a ∈ ((cPZ₁.cons.cartProd cPZ₂.cons).andRows (ConPolyZono.agreeCons cPZ₁ cPZ₂)).toSet
     ↔ _
   rw [PolyLevelSet.mem_andRows_iff, PolyLevelSet.mem_cartProd_iff]
   -- an agreement row reads each side's monomials off its own factors
@@ -98,7 +98,7 @@ private theorem ConPolyZono.aux_mem_cons_intersectionDep_iff (cPZ₁ cPZ₂ : Co
 
 theorem ConPolyZono.intersectionDep_exact (cPZ₁ cPZ₂ : ConPolyZono (Vec ℝ n))
     (hq₁ : cPZ₁.qI = 0) (hq₂ : cPZ₂.qI = 0) : -- --- CONCL ---
-    cPZ₁.construct ∩ cPZ₂.construct = (cPZ₁.intersectionDep cPZ₂).construct := by -- --- PROOF ---
+    cPZ₁.toSet ∩ cPZ₂.toSet = (cPZ₁.intersectionDep cPZ₂).toSet := by -- --- PROOF ---
   have hz₁ : ∀ b : Fin cPZ₁.qI → ℝ, ∑ j, b j • cPZ₁.GI j = 0 :=
     fun b => Finset.sum_eq_zero fun j _ => absurd j.isLt (by omega)
   have hz₂ : ∀ b : Fin cPZ₂.qI → ℝ, ∑ j, b j • cPZ₂.GI j = 0 :=

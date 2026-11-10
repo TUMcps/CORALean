@@ -43,7 +43,7 @@ open Matrix
 /-- Inner: every returned vertex lies in the zonotope. -/
 theorem Zonotope.underapproximate_mem {n k : ℕ} (Z : Zonotope (Vec ℝ n)) (S : Fin k → Vec ℝ n)
     (i : Fin k) (b : Bool) : -- --- CONCL ---
-    Z.underapproximate S i b ∈ Z.construct := by -- --- PROOF ---
+    Z.underapproximate S i b ∈ Z.toSet := by -- --- PROOF ---
   have hs : ∀ x : ℝ, |((SignType.sign x : SignType) : ℝ)| ≤ 1 := by
     intro x
     rcases lt_trichotomy x 0 with h | h | h

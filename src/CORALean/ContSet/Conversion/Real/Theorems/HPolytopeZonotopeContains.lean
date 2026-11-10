@@ -40,9 +40,9 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.zonotope_contains (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
-    P.construct ⊆ (HPolytope.zonotope up lo).construct :=
+theorem HPolytope.zonotope_contains (up : ∀ j, SupportBound P.toSet (LinearMap.proj j))
+    (lo : ∀ j, SupportBound P.toSet (-LinearMap.proj j)) :
+    P.toSet ⊆ (HPolytope.zonotope up lo).toSet :=
   subset_trans (HPolytope.interval_contains up lo) (Interval.zonotope_contains _)
 
 end CORALean.Real

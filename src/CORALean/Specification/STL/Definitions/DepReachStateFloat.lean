@@ -57,8 +57,8 @@ structure STL.DepReachStateFloat (𝕋 : Type) (n : ℕ) where
 /-- The float state holds the points of `H`, `P_c` and `D` of the real state and the set `E`. -/
 def STL.DepReachStateFloat.Encloses (sF : STL.DepReachStateFloat 𝕋 n) (sR : STL.DepReachState n)
     (E : Set (Vec ℝ n)) : Prop :=
-  sR.H.construct ⊆ sF.H.construct ∧ sR.Pc.construct ⊆ sF.Pc.construct ∧
-    sR.D.construct ⊆ sF.D.construct ∧ E ⊆ sF.C.construct
+  sR.H.toSet ⊆ sF.H.toSet ∧ sR.Pc.toSet ⊆ sF.Pc.toSet ∧
+    sR.D.toSet ⊆ sF.D.toSet ∧ E ⊆ sF.C.toSet
 
 end CORALean
 

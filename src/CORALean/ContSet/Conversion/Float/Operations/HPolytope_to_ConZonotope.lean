@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Point
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
@@ -78,8 +78,8 @@ def HPolytope.conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n)) (Z : Zonotope (Vec
 coordinate: the box they span as a zonotope, with the polytope's rows as the coefficient constraint.
 -/
 def HPolytope.conZonotope {P : HPolytope 𝕋 (Vec 𝕋 n)}
-    (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : ConZonotope 𝕋 (Vec 𝕋 n) :=
+    (up : ∀ j, FloatBound 𝕋 P.toSet (LinearMap.proj j))
+    (lo : ∀ j, FloatBound 𝕋 P.toSet (-LinearMap.proj j)) : ConZonotope 𝕋 (Vec 𝕋 n) :=
   P.conZonotopeOf (HPolytope.zonotope up lo)
 
 end CORALean.Float

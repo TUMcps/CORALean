@@ -53,7 +53,7 @@ private theorem Zonotope.aux_sum_univ_cartProd {Z₁ : Zonotope α} {Z₂ : Zono
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.cartProd_exact (Z₁ : Zonotope α) (Z₂ : Zonotope β) : -- --- CONCL ---
-    Z₁.construct ×ˢ Z₂.construct = (Z₁.cartProd Z₂).construct := by -- --- PROOF ---
+    Z₁.toSet ×ˢ Z₂.toSet = (Z₁.cartProd Z₂).toSet := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro ⟨x₁, x₂⟩ ⟨⟨β₁, hβ₁, rfl⟩, ⟨β₂, hβ₂, rfl⟩⟩
     refine ⟨Fin.append β₁ β₂, Fin.addCases (fun l => by simpa using hβ₁ l)

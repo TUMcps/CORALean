@@ -42,7 +42,7 @@ variable {n q₁ q₂ : ℕ}
 /-- The `k_of_empty` count of `intersection`'s result. -/
 theorem VPolytope.intersection_k_of_empty (P₁ P₂ : VPolytope (Vec ℝ n))
     (Aq₁ : Fin q₁ → (Vec ℝ n →ₗ[ℝ] ℝ)) (Aq₂ : Fin q₂ → (Vec ℝ n →ₗ[ℝ] ℝ))
-    (h : ¬(VPolytope.intersectionH P₁ P₂ Aq₁ Aq₂).construct.Nonempty) :
+    (h : ¬(VPolytope.intersectionH P₁ P₂ Aq₁ Aq₂).toSet.Nonempty) :
     (VPolytope.intersection P₁ P₂ Aq₁ Aq₂).k = 0 := by
   unfold VPolytope.intersection
   rw [dif_neg h]

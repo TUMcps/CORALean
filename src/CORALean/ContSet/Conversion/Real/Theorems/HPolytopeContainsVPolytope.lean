@@ -49,13 +49,13 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.contains_vPolytope (P : HPolytope (Vec ℝ n))
-    (hne : P.construct.Nonempty) : -- --- CONCL ---
-    (P.vPolytope hne).construct ⊆ P.construct := by -- --- PROOF ---
-  rw [VPolytope.construct_eq_convexHull]
-  refine convexHull_min ?_ P.convex_construct
+    (hne : P.toSet.Nonempty) : -- --- CONCL ---
+    (P.vPolytope hne).toSet ⊆ P.toSet := by -- --- PROOF ---
+  rw [VPolytope.toSet_eq_convexHull]
+  refine convexHull_min ?_ P.convex_toSet
   rintro _ ⟨l, rfl⟩
-  show (if P.basicPoint (signEquiv P.m l) ∈ P.construct then P.basicPoint (signEquiv P.m l)
-    else hne.choose) ∈ P.construct
+  show (if P.basicPoint (signEquiv P.m l) ∈ P.toSet then P.basicPoint (signEquiv P.m l)
+    else hne.choose) ∈ P.toSet
   split
   · assumption
   · exact hne.choose_spec

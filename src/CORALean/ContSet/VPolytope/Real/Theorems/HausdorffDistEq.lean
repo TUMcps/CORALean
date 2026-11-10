@@ -81,18 +81,18 @@ private theorem aux_foldl_max_le {α : Type} (d : α → ℝ) :
 
 /-- If every vertex of `P` is within `r` of `S`, every point of `P` is. -/
 private theorem aux_exists_near (P S : VPolytope (Vec ℝ n)) (hS : S.k ≠ 0) {r : ℝ}
-    (h : ∀ i, VPolytope.distPoint S.construct (P.V i) ≤ r) : -- --- CONCL ---
-    ∀ x ∈ P.construct, ∃ y ∈ S.construct, ‖x - y‖₂ ≤ r := by -- --- PROOF ---
+    (h : ∀ i, VPolytope.distPoint S.toSet (P.V i) ≤ r) : -- --- CONCL ---
+    ∀ x ∈ P.toSet, ∃ y ∈ S.toSet, ‖x - y‖₂ ≤ r := by -- --- PROOF ---
   intro x hx
-  have hSne : S.construct.Nonempty := ⟨S.V ⟨0, Nat.pos_of_ne_zero hS⟩, S.vertex_mem _⟩
-  have hSc := S.isCompact_construct
-  have hSE : IsCompact (toEuclidean '' S.construct) := hSc.image toEuclidean.continuous
-  have hSEc : Convex ℝ (toEuclidean '' S.construct) :=
-    S.convex_construct.linear_image toEuclidean.toLinearEquiv.toLinearMap
+  have hSne : S.toSet.Nonempty := ⟨S.V ⟨0, Nat.pos_of_ne_zero hS⟩, S.vertex_mem _⟩
+  have hSc := S.isCompact_toSet
+  have hSE : IsCompact (toEuclidean '' S.toSet) := hSc.image toEuclidean.continuous
+  have hSEc : Convex ℝ (toEuclidean '' S.toSet) :=
+    S.convex_toSet.linear_image toEuclidean.toLinearEquiv.toLinearMap
   -- the distance to `S` is convex, so a vertex is at least as far as `x`
   have hconv := (aux_infDist_convexOn hSEc hSE (hSne.image _)).comp_linearMap
     toEuclidean.toLinearEquiv.toLinearMap
-  rw [VPolytope.construct_eq_convexHull] at hx
+  rw [VPolytope.toSet_eq_convexHull] at hx
   obtain ⟨_, ⟨i, rfl⟩, hxi⟩ := hconv.exists_ge_of_mem_convexHull (Set.subset_univ _) hx
   have hi := h i
   rw [VPolytope.distPoint_eq hSc hSne] at hi
@@ -108,19 +108,19 @@ private theorem aux_exists_near (P S : VPolytope (Vec ℝ n)) (hS : S.k ≠ 0) {
 
 theorem VPolytope.hausdorffDist_eq (P S : VPolytope (Vec ℝ n)) (hP : P.k ≠ 0)
     (hS : S.k ≠ 0) : -- --- CONCL ---
-    VPolytope.hausdorffDist P S = hausdorffDist₂ P.construct S.construct := by -- --- PROOF ---
-  have hPne : P.construct.Nonempty := ⟨P.V ⟨0, Nat.pos_of_ne_zero hP⟩, P.vertex_mem _⟩
-  have hSne : S.construct.Nonempty := ⟨S.V ⟨0, Nat.pos_of_ne_zero hS⟩, S.vertex_mem _⟩
-  have hPc := P.isCompact_construct
-  have hSc := S.isCompact_construct
-  have hPE : IsCompact (toEuclidean '' P.construct) := hPc.image toEuclidean.continuous
-  have hSE : IsCompact (toEuclidean '' S.construct) := hSc.image toEuclidean.continuous
+    VPolytope.hausdorffDist P S = hausdorffDist₂ P.toSet S.toSet := by -- --- PROOF ---
+  have hPne : P.toSet.Nonempty := ⟨P.V ⟨0, Nat.pos_of_ne_zero hP⟩, P.vertex_mem _⟩
+  have hSne : S.toSet.Nonempty := ⟨S.V ⟨0, Nat.pos_of_ne_zero hS⟩, S.vertex_mem _⟩
+  have hPc := P.isCompact_toSet
+  have hSc := S.isCompact_toSet
+  have hPE : IsCompact (toEuclidean '' P.toSet) := hPc.image toEuclidean.continuous
+  have hSE : IsCompact (toEuclidean '' S.toSet) := hSc.image toEuclidean.continuous
   -- the two sets have finite Hausdorff distance
-  have hfin : Metric.hausdorffEDist (toEuclidean '' P.construct) (toEuclidean '' S.construct) ≠ ⊤ :=
+  have hfin : Metric.hausdorffEDist (toEuclidean '' P.toSet) (toEuclidean '' S.toSet) ≠ ⊤ :=
     Metric.hausdorffEDist_ne_top_of_nonempty_of_bounded (hPne.image _) (hSne.image _)
       hPE.isBounded hSE.isBounded
-  have hfin' : Metric.hausdorffEDist (toEuclidean '' S.construct)
-      (toEuclidean '' P.construct) ≠ ⊤ := by
+  have hfin' : Metric.hausdorffEDist (toEuclidean '' S.toSet)
+      (toEuclidean '' P.toSet) ≠ ⊤ := by
     rwa [Metric.hausdorffEDist_comm]
   unfold VPolytope.hausdorffDist hausdorffDist₂
   simp only
@@ -136,12 +136,12 @@ theorem VPolytope.hausdorffDist_eq (P S : VPolytope (Vec ℝ n)) (hP : P.k ≠ 0
         (Set.mem_image_of_mem _ (S.vertex_mem j)) hfin'
   · -- and the Hausdorff distance is at most the loop's value `r`
     set r := (List.finRange S.k).foldl
-      (fun val i => max val (VPolytope.distPoint P.construct (S.V i)))
+      (fun val i => max val (VPolytope.distPoint P.toSet (S.V i)))
       ((List.finRange P.k).foldl
-        (fun val i => max val (VPolytope.distPoint S.construct (P.V i))) 0)
+        (fun val i => max val (VPolytope.distPoint S.toSet (P.V i))) 0)
     obtain ⟨hr1, hr2⟩ := (aux_foldl_max_le _ _ _ r).mp le_rfl
     have hr1' := (aux_foldl_max_le _ _ _ _).mp hr1
-    refine hausdorffDist₂_le_of_mem_dist (S := P.construct) (T := S.construct) hr1'.1 ?_ ?_
+    refine hausdorffDist₂_le_of_mem_dist (S := P.toSet) (T := S.toSet) hr1'.1 ?_ ?_
     · exact fun x hx =>
         aux_exists_near P S hS (fun i => hr1'.2 i (List.mem_finRange i)) x hx
     · exact fun x hx =>

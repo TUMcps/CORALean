@@ -30,7 +30,7 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 
 `ContSet` directly, not through `InflatedContSet`: the members carry the boxes (`ZonoBundle.lean`
 says why no bundle-wide one stands in for them). Then, as over ℝ, each a general theorem of
-`SetIntersection` at the float members' own guarantees: `ConvexSet` (`convex_construct`), `Plus` and
+`SetIntersection` at the float members' own guarantees: `ConvexSet` (`convex_toSet`), `Plus` and
 `LinComb` (`pairwise_outer`), `Reduce` and `Mtimes` at a point and at an interval matrix
 (`memberwise_outer`), `Reindex` (`memberwise_image_exact`), and `Intersection`
 (`intersection_exact`). Not `OfPoint`: it asks for an arbitrary *real* point. Not `Mtimes` at a
@@ -62,12 +62,12 @@ scoped notation "𝒵ℬ[" t "]" => fun n => ZonoBundle (Vec t n)
 
 /-- One instance at every ambient type, as `Zonotope`'s `InflatedContSet` is. -/
 instance {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [Entrywise β ι] :
-    ContSet (ZonoBundle α) β := ⟨ZonoBundle.construct⟩
+    ContSet (ZonoBundle α) β := ⟨ZonoBundle.toSet⟩
 
 /-- An intersection of convex sets, each member's error box included in what
 that member denotes. -/
 instance {n : ℕ} : ConvexSet (ZonoBundle (Vec 𝕋 n)) (Vec ℝ n) :=
-  ⟨fun zB => SetIntersection.convex_construct zB.toSetIntersection⟩
+  ⟨fun zB => SetIntersection.convex_toSet zB.toSetIntersection⟩
 
 instance {n : ℕ} : Plus (ZonoBundle (Vec 𝕋 n)) (Vec ℝ n) where
   plus zB₁ zB₂ := (zB₁.plus zB₂).materialise
@@ -110,7 +110,7 @@ instance : Reindex 𝒵ℬ[𝕋] where
 instance : Mtimes (Mat 𝕋) 𝒵ℬ[𝕋] where
   mtimes M zB := (ZonoBundle.mtimes M zB).materialise
   mtimes_outer M zB := by
-    simp only [ContSet.construct_mat, Set.biUnion_singleton, ZonoBundle.materialise_eq]
+    simp only [ContSet.toSet_mat, Set.biUnion_singleton, ZonoBundle.materialise_eq]
     exact SetIntersection.memberwise_outer _ Set.monotone_image fun i =>
       ⟨i, Zonotope.mtimes_outer M (zB.Z i)⟩
 
@@ -119,7 +119,7 @@ instance : Mtimes ℐ[𝕋] 𝒵ℬ[𝕋] where
   mtimes IM zB := (ZonoBundle.mtimesIntervalMat IM zB).materialise
   mtimes_outer IM zB := by
     rw [ZonoBundle.materialise_eq]
-    exact SetIntersection.memberwise_outer (fun X => ⋃ A ∈ IM.construct, (A *ᵥ ·) '' X)
+    exact SetIntersection.memberwise_outer (fun X => ⋃ A ∈ IM.toSet, (A *ᵥ ·) '' X)
       (fun _ _ h => Set.biUnion_mono subset_rfl fun _ _ => Set.image_mono h) fun i =>
         ⟨i, Zonotope.mtimesIntervalMat_outer IM (zB.Z i)⟩
 

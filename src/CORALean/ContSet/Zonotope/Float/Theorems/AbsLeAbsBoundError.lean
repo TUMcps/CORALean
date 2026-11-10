@@ -6,7 +6,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 @[expose] public section
 
 /-!
-# A coordinate of `construct` never leaves `absBoundError`
+# A coordinate of `toSet` never leaves `absBoundError`
 
 `Real.Zonotope.abs_le_absBound` at the nominal part, `addUp`-rounded, plus
 whichever corner of the box is farther out — the two summed by `abs_add_le`.
@@ -53,7 +53,7 @@ private theorem Zonotope.aux_abs_nominal_le (Z : Zonotope (Vec 𝕋 n)) {x : Vec
 
 /-- A point of the box never leaves whichever corner is farther from the origin. -/
 private theorem Zonotope.aux_abs_error_le (Z : Zonotope (Vec 𝕋 n)) {x : Vec ℝ n}
-    (hx : x ∈ (I_error Z).construct) (j : Fin n) : -- --- CONCL ---
+    (hx : x ∈ (I_error Z).toSet) (j : Fin n) : -- --- CONCL ---
     |x j| ≤ toReal (maximum (absolute (Z.I_error.inf j)) (absolute (Z.I_error.sup j)))
       := by -- --- PROOF ---
   have h : toReal (Z.I_error.inf j) ≤ x j ∧ x j ≤ toReal (Z.I_error.sup j) := hx j
@@ -65,9 +65,9 @@ private theorem Zonotope.aux_abs_error_le (Z : Zonotope (Vec 𝕋 n)) {x : Vec �
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- A coordinate of `construct` never leaves `absBoundError`. -/
+/-- A coordinate of `toSet` never leaves `absBoundError`. -/
 theorem Zonotope.abs_le_absBoundError {Z : Zonotope (Vec 𝕋 n)} {x : Vec ℝ n}
-    (hx : x ∈ Zonotope.construct Z) (j : Fin n) : -- --- CONCL ---
+    (hx : x ∈ Zonotope.toSet Z) (j : Fin n) : -- --- CONCL ---
     |x j| ≤ toReal (Zonotope.absBoundError Z j) := by -- --- PROOF ---
   obtain ⟨xnom, hxnom, xerr, hxerr, rfl⟩ := hx
   calc |xnom j + xerr j|

@@ -67,8 +67,8 @@ protected abbrev PolyLevelSet.nominalCore [SoundFloatArithmetic 𝕋] (P : PolyL
   ⟨P.m, P.q, toRealMat P.A, P.R, toRealVec P.b, P.op, P.dom.nominal⟩
 
 /-- The points of the box meeting every row of `nominalCore` to within its slack. -/
-def PolyLevelSet.construct [SoundFloatArithmetic 𝕋] (P : PolyLevelSet 𝕋 n) : Set (Vec ℝ n) :=
-  {x | x ∈ P.dom.construct
+def PolyLevelSet.toSet [SoundFloatArithmetic 𝕋] (P : PolyLevelSet 𝕋 n) : Set (Vec ℝ n) :=
+  {x | x ∈ P.dom.toSet
     ∧ ∀ i, (P.op i).IsMetWithin (P.nominalCore.eval x i) |toReal (P.b_error i)|}
 
 end CORALean.Float

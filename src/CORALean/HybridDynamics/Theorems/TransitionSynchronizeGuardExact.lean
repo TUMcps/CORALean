@@ -69,8 +69,8 @@ private theorem aux_synchronizeGuard_fold_eq
     (h0 : HPolytope.eqScalar (FloatOps.zero : 𝕋) FloatOps.zero = true)
     (g : Fin q → HPolytope 𝕋 (Vec 𝕋 n)) (hg : ∀ i, (g i).isErrFree = true) (l : List (Fin q))
     (P : HPolytope 𝕋 (Vec 𝕋 n)) (hP : P.isErrFree = true) : -- --- CONCL ---
-    (l.foldl (fun guard i => HPolytope.intersection guard (g i)) P).construct =
-      P.construct ∩ ⋂ i ∈ l, (g i).construct := by -- --- PROOF ---
+    (l.foldl (fun guard i => HPolytope.intersection guard (g i)) P).toSet =
+      P.toSet ∩ ⋂ i ∈ l, (g i).toSet := by -- --- PROOF ---
   induction l generalizing P with
   | nil => simp
   | cons a l ih =>
@@ -93,7 +93,7 @@ private theorem aux_synchronizeGuard_fold_eq
 theorem Transition.synchronizeGuard_exact
     (h0 : HPolytope.eqScalar (FloatOps.zero : 𝕋) FloatOps.zero = true)
     (g : Fin q → HPolytope 𝕋 (Vec 𝕋 n)) (hg : ∀ i, (g i).isErrFree = true) : -- --- CONCL ---
-    (Transition.synchronizeGuard g).construct = ⋂ i, (g i).construct := by -- --- PROOF ---
+    (Transition.synchronizeGuard g).toSet = ⋂ i, (g i).toSet := by -- --- PROOF ---
   unfold Transition.synchronizeGuard
   rw [aux_synchronizeGuard_fold_eq h0 g hg _ _ (aux_isErrFree_of_origin h0 rfl
     (by simp [HPolytope.isZeroVec, HPolytope.fullspace])

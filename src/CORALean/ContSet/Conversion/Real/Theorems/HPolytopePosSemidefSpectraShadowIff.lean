@@ -65,7 +65,7 @@ private theorem HPolytope.aux_lmi_spectraShadow (P : HPolytope (Vec ℝ n))
 
 /-- The slacks are all nonnegative exactly on the polytope. -/
 private theorem HPolytope.aux_slack_iff (P : HPolytope (Vec ℝ n)) (β : Fin n → ℝ) : -- --- CONCL ---
-    (∀ j, 0 ≤ P.stackedBounds j - P.stackedRows j β) ↔ β ∈ P.construct := by -- --- PROOF ---
+    (∀ j, 0 ≤ P.stackedBounds j - P.stackedRows j β) ↔ β ∈ P.toSet := by -- --- PROOF ---
   simp only [HPolytope.stackedBounds, HPolytope.stackedRows, Fin.forall_fin_add, Fin.append_left,
     Fin.append_right, LinearMap.neg_apply, sub_nonneg]
   constructor
@@ -78,7 +78,7 @@ private theorem HPolytope.aux_slack_iff (P : HPolytope (Vec ℝ n)) (β : Fin n 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.posSemidef_spectraShadow_iff (P : HPolytope (Vec ℝ n)) (β : Fin n → ℝ) :
-    (P.spectraShadow.A₀ + ∑ i, β i • P.spectraShadow.A i).PosSemidef ↔ β ∈ P.construct := by
+    (P.spectraShadow.A₀ + ∑ i, β i • P.spectraShadow.A i).PosSemidef ↔ β ∈ P.toSet := by
   change (diagonal P.stackedBounds + ∑ i, β i • diagonal fun j =>
     -(P.stackedRows j (Pi.single i 1 : Fin n → ℝ)) : Mat ℝ (P.m + P.me + P.me) _).PosSemidef ↔ _
   rw [HPolytope.aux_lmi_spectraShadow, posSemidef_diagonal_iff]

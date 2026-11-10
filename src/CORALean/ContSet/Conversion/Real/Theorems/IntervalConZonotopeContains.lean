@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.conZonotope_contains (I : Interval (Vec ℝ n)) :
-    I.construct ⊆ I.conZonotope.construct :=
+    I.toSet ⊆ I.conZonotope.toSet :=
   subset_trans I.zonotope_contains (Zonotope.conZonotope_exact _).subset
 
 end CORALean.Real

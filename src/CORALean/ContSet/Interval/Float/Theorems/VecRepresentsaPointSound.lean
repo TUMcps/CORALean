@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 theorem Interval.vec_representsa_point_sound {I : Interval (Mat 𝕋 m n)}
     (h : I.vec.representsa_point = true) :
-    ∃ A, I.construct = {A} := by
+    ∃ A, I.toSet = {A} := by
   obtain ⟨v, hv⟩ := Interval.representsa_point_sound h
   refine ⟨matVecEquiv.symm v, ?_⟩
   rw [Interval.vec_exact, ← matVecEquiv.apply_symm_apply v, ← Set.image_singleton] at hv

@@ -52,7 +52,7 @@ variable {n : ℕ}
 
 theorem Zonotope.parallelotope_eq_abs_mulVec_le (Zm W : Mat ℝ n n) (hZW : Zm * W = 1)
     (c : Vec ℝ n) : -- --- CONCL ---
-    (⟨n, c, fun j i => W i j⟩ : Zonotope (Vec ℝ n)).construct
+    (⟨n, c, fun j i => W i j⟩ : Zonotope (Vec ℝ n)).toSet
       = {x | ∀ i, |(Zm *ᵥ (x - c)) i| ≤ 1} := by -- --- PROOF ---
   have hWZ : W * Zm = 1 := mul_eq_one_comm.mp hZW
   -- a point is `c + W β`

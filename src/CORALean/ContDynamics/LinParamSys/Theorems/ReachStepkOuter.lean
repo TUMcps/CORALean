@@ -62,10 +62,10 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [Mti
 window `τ_k`, is in `reachStepk`'s set for it. -/
 theorem LinParamSys.reachStepk_outer (sys : LinParamSys ℐ n) {Δt : ℝ} (hΔt : 0 < Δt) {m : ℕ}
     (hε : ‖(Interval.smul Δt sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n)
-    {A : Mat ℝ n n} (hA : A ∈ construct sys.A) {k : ℕ} {t : ℝ}
+    {A : Mat ℝ n n} (hA : A ∈ toSet sys.A) {k : ℕ} {t : ℝ}
     (hkt : (k : ℝ) * Δt ≤ t) (htk : t - k * Δt ≤ Δt) : -- --- CONCL ---
-    (fun x₀ => exp (t • A) *ᵥ x₀) '' construct X₀
-      ⊆ construct (sys.reachStepk Δt (m + 2) X₀ k) := by -- --- PROOF ---
+    (fun x₀ => exp (t • A) *ᵥ x₀) '' toSet X₀
+      ⊆ toSet (sys.reachStepk Δt (m + 2) X₀ k) := by -- --- PROOF ---
   rintro _ ⟨x₀, hx₀, rfl⟩
   -- `τ = t - t_k ∈ [0, Δt]`, so `H^R(τ_0)` holds `e^{Aτ} x₀`
   have hτ := sys.timeInterval_outer hΔt hε X₀ hA (sub_nonneg.mpr hkt) htk
@@ -80,7 +80,7 @@ theorem LinParamSys.reachStepk_outer (sys : LinParamSys ℐ n) {Δt : ℝ} (hΔt
     rw [Matrix.mulVec_mulVec]
     exact congrArg (· *ᵥ x₀) h
   -- window `k` is `e^{[A] t_k} H^R(τ_0)`, and `e^{A t_k}` is one of its matrices
-  show exp (t • A) *ᵥ x₀ ∈ construct (Mtimes.mtimes (𝕄 := ℐ) _ _)
+  show exp (t • A) *ᵥ x₀ ∈ toSet (Mtimes.mtimes (𝕄 := ℐ) _ _)
   rw [hexp]
   exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion
     (sys.exp_mem_expEnclosure _ (m + 2) hA) (Set.mem_image_of_mem _ hτ))

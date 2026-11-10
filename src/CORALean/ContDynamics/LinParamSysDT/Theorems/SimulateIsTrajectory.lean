@@ -7,8 +7,8 @@ public import CORALean.ContDynamics.LinParamSysDT.Operations.Simulate
 /-!
 # `simulate` samples a trajectory
 
-`simulate A x₀ u` satisfies `IsCanonicalTrajectory R₀ U` given `x₀ ∈ construct R₀`, `u`
-staying in `construct U`, and `A k ∈ construct sys.A` at every `k`: `init` and
+`simulate A x₀ u` satisfies `IsCanonicalTrajectory R₀ U` given `x₀ ∈ toSet R₀`, `u`
+staying in `toSet U`, and `A k ∈ toSet sys.A` at every `k`: `init` and
 `input` are the hypotheses handed in, `step` is `⟨A k, hA k, rfl⟩`, since
 `simulate`'s equation at `A k` is one witness of `IsCanonicalTrajectory.step`'s `∃ A`.
 
@@ -48,8 +48,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinParamSysDT.simulate_isTrajectory (sys : LinParamSysDT 𝕄 n) {A : ℕ → Mat ℝ n n}
-    (hA : ∀ k, A k ∈ construct sys.A) {R₀ U : S n} {x₀ : Vec ℝ n}
-    (hx₀ : x₀ ∈ construct R₀) {u : ℕ → Vec ℝ n} (hu : ∀ k, u k ∈ construct U) :
+    (hA : ∀ k, A k ∈ toSet sys.A) {R₀ U : S n} {x₀ : Vec ℝ n}
+    (hx₀ : x₀ ∈ toSet R₀) {u : ℕ → Vec ℝ n} (hu : ∀ k, u k ∈ toSet U) :
     sys.IsCanonicalTrajectory R₀ U (sys.simulate A x₀ u) u where
   init := hx₀
   input := hu

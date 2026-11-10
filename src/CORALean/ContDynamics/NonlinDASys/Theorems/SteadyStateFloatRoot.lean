@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.NonlinDASys.Operations.SteadyStateFloat
 public import CORALean.ContDynamics.NonlinDASys.Theorems.NewtonTestFloatSound
-public import CORALean.ContSet.Interval.Float.Theorems.AppendConstruct
+public import CORALean.ContSet.Interval.Float.Theorems.AppendToSet
 public import CORALean.ContSet.Interval.Float.Theorems.HorzcatExact
 public import CORALean.ContSet.Interval.Float.Theorems.VertcatExact
 
@@ -72,28 +72,28 @@ theorem NonlinDASys.FloatModel.Encloses.steadyStateFloat_root {fm : NonlinDASys.
     simp only [Bool.and_eq_true] at ht
     have := toReal_le_of_le ht.1
     rwa [toReal_zero] at this
-  have hu : toRealVec u₀ ∈ (Interval.point u₀).construct := Interval.mem_point u₀
+  have hu : toRealVec u₀ ∈ (Interval.point u₀).toSet := Interval.mem_point u₀
   -- the stacked map, and its two blocks
   set L : Vec ℝ (n + p) → Vec ℝ n := fun w i => w (Fin.castAdd p i) with hL
   set R : Vec ℝ (n + p) → Vec ℝ p := fun w j => w (Fin.natAdd n j) with hR
   set G : Vec ℝ (n + p) → Vec ℝ (n + p) := fun w =>
     Fin.append (sys.f (L w) (R w) (toRealVec u₀)) (sys.g (L w) (R w) (toRealVec u₀)) with hG
-  have hLmem : ∀ (Z : Interval (Vec 𝕋 (n + p))), ∀ w ∈ Z.construct,
+  have hLmem : ∀ (Z : Interval (Vec 𝕋 (n + p))), ∀ w ∈ Z.toSet,
       L w ∈ (⟨fun i => Z.inf (Fin.castAdd p i), fun i => Z.sup (Fin.castAdd p i)⟩ :
-        Interval (Vec 𝕋 n)).construct := fun _ _ hw i => hw (Fin.castAdd p i)
-  have hRmem : ∀ (Z : Interval (Vec 𝕋 (n + p))), ∀ w ∈ Z.construct,
+        Interval (Vec 𝕋 n)).toSet := fun _ _ hw i => hw (Fin.castAdd p i)
+  have hRmem : ∀ (Z : Interval (Vec 𝕋 (n + p))), ∀ w ∈ Z.toSet,
       R w ∈ (⟨fun j => Z.inf (Fin.natAdd n j), fun j => Z.sup (Fin.natAdd n j)⟩ :
-        Interval (Vec 𝕋 p)).construct := fun _ _ hw j => hw (Fin.natAdd n j)
+        Interval (Vec 𝕋 p)).toSet := fun _ _ hw j => hw (Fin.natAdd n j)
   -- `step_stackRes` encloses `G`, and `step_stackJac` its slopes
-  have hGmem : ∀ (Z : Interval (Vec 𝕋 (n + p))), ∀ w ∈ Z.construct,
-      G w ∈ (fm.step_stackRes (Interval.point u₀) Z).construct := by
+  have hGmem : ∀ (Z : Interval (Vec 𝕋 (n + p))), ∀ w ∈ Z.toSet,
+      G w ∈ (fm.step_stackRes (Interval.point u₀) Z).toSet := by
     intro Z w hw
     unfold NonlinDASys.FloatModel.step_stackRes
-    rw [Interval.append_construct]
+    rw [Interval.append_toSet]
     exact ⟨(_, _), ⟨hfm.f_mem _ _ _ _ (hLmem Z w hw) _ (hRmem Z w hw) _ hu,
       hfm.g_mem _ _ _ _ (hLmem Z w hw) _ (hRmem Z w hw) _ hu⟩, rfl⟩
-  have hJmem : ∀ (Z : Interval (Vec 𝕋 (n + p))), ∀ w ∈ Z.construct, ∀ w' ∈ Z.construct,
-      ∃ M ∈ (fm.step_stackJac (Interval.point u₀) Z).construct, G w - G w' = M *ᵥ (w - w') := by
+  have hJmem : ∀ (Z : Interval (Vec 𝕋 (n + p))), ∀ w ∈ Z.toSet, ∀ w' ∈ Z.toSet,
+      ∃ M ∈ (fm.step_stackJac (Interval.point u₀) Z).toSet, G w - G w' = M *ᵥ (w - w') := by
     intro Z w hw w' hw'
     obtain ⟨A, hA, C, hC, hf⟩ := hfm.slope_f _ _ _ _ (hLmem Z w hw) _ (hLmem Z w' hw') _
       (hRmem Z w hw) _ (hRmem Z w' hw') _ hu

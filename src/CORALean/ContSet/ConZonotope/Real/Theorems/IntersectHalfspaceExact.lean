@@ -11,7 +11,7 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 `[1, Thm. 1]`: given that `Z` actually meets the hyperplane `{x | h x = f}` — the paper's own
 hypothesis, carried by `Lemma 1`'s inequality there but stated directly here as the intersection
-itself — `Z.interHalfspace h f` denotes exactly `Z.construct ∩ {x | h x ≤ f}`.
+itself — `Z.interHalfspace h f` denotes exactly `Z.toSet ∩ {x | h x ≤ f}`.
 
 `aux_dm_nonneg` is the paper's own first step: the hypothesis, the definition of `dm`, and the
 triangle inequality over `Z`'s generators force `dm ≥ 0`. From there both inclusions are a single
@@ -79,7 +79,7 @@ private theorem Zonotope.aux_value_interHalfspace (Z : Zonotope (Vec ℝ n)) (ξ
 one, [1]'s `(6)`. -/
 private theorem Zonotope.aux_mem_interHalfspace_iff (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ)
     (f : ℝ) (x : Vec ℝ n) : -- --- CONCL ---
-    x ∈ (Z.interHalfspace h f).construct ↔
+    x ∈ (Z.interHalfspace h f).toSet ↔
       ∃ (ξ : Fin Z.h → ℝ) (t : ℝ), (∀ i, |ξ i| ≤ 1) ∧ |t| ≤ 1 ∧
         (∑ i, h (Z.G i) * ξ i) + (f - h Z.c + ∑ i, |h (Z.G i)|) / 2 * t
           = f - h Z.c - (f - h Z.c + ∑ i, |h (Z.G i)|) / 2 ∧
@@ -87,7 +87,7 @@ private theorem Zonotope.aux_mem_interHalfspace_iff (Z : Zonotope (Vec ℝ n)) (
   show x ∈ (ConZonotope.ofMat Z.c (Fin.append Z.G (fun _ : Fin 1 => (0 : Vec ℝ n)))
       (fun _ : Fin 1 => Fin.append (fun i => h (Z.G i))
         (fun _ : Fin 1 => (f - h Z.c + ∑ i, |h (Z.G i)|) / 2))
-      (fun _ : Fin 1 => f - h Z.c - (f - h Z.c + ∑ i, |h (Z.G i)|) / 2)).construct ↔ _
+      (fun _ : Fin 1 => f - h Z.c - (f - h Z.c + ∑ i, |h (Z.G i)|) / 2)).toSet ↔ _
   rw [ConZonotope.mem_ofMat_iff]
   constructor
   -- forward: `ξ`'s two halves, by `castAdd`/`natAdd`, are `Z`'s coefficients and the fresh one
@@ -123,7 +123,7 @@ private theorem Zonotope.aux_sum_ge_neg_sum_abs (Z : Zonotope (Vec ℝ n)) (h : 
 /-- The paper's own first step: `Z` meeting the hyperplane, with the triangle inequality over its
 generators, forces `dm ≥ 0`. -/
 private theorem Zonotope.aux_interHalfspace_dm_nonneg (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ)
-    (f : ℝ) (hZH : ∃ x ∈ Z.construct, h x = f) : -- --- CONCL ---
+    (f : ℝ) (hZH : ∃ x ∈ Z.toSet, h x = f) : -- --- CONCL ---
     0 ≤ f - h Z.c + ∑ i, |h (Z.G i)| := by -- --- PROOF ---
   obtain ⟨x, ⟨ξ, hξ, rfl⟩, hx⟩ := hZH
   rw [map_add, map_sum] at hx
@@ -140,8 +140,8 @@ private theorem Zonotope.aux_interHalfspace_dm_nonneg (Z : Zonotope (Vec ℝ n))
 /-- [1, Thm. 1]: `Z.interHalfspace h f` denotes exactly `Z ∩ {x | h x ≤ f}`, given that `Z` meets
 the hyperplane `{x | h x = f}`. -/
 theorem Zonotope.interHalfspace_exact (Z : Zonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ) (f : ℝ)
-    (hZH : ∃ x ∈ Z.construct, h x = f) : -- --- CONCL ---
-    (Z.interHalfspace h f).construct = Z.construct ∩ {x | h x ≤ f} := by -- --- PROOF ---
+    (hZH : ∃ x ∈ Z.toSet, h x = f) : -- --- CONCL ---
+    (Z.interHalfspace h f).toSet = Z.toSet ∩ {x | h x ≤ f} := by -- --- PROOF ---
   have hdm0 := Zonotope.aux_interHalfspace_dm_nonneg Z h f hZH
   apply Set.eq_of_subset_of_subset
   -- Zh ⊆ Z ∩ H₋: from `(6)` and `t ≥ -1`, `dm ≥ 0` bounds `h (c + Gξ)` above by `f`

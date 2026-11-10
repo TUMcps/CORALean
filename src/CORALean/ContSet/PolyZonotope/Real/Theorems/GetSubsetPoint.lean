@@ -13,7 +13,7 @@ public import Mathlib.Data.Nat.Choose.Sum
 The whole content of the construction, and an *equality*: the new factor vector `b` names the
 point the old one named at `αₖ = cen + rad·βₖ`, every other factor left alone. Nothing is
 over-approximated, because the binomial expansion of `(cen + rad·βₖ)^e` is a polynomial
-identity. Stated over `point` rather than `construct`, like `map_point` and `bilin_point`: the
+identity. Stated over `point` rather than `toSet`, like `map_point` and `bilin_point`: the
 independent block takes no part in a change of *dependent* variables.
 
 ## Inputs

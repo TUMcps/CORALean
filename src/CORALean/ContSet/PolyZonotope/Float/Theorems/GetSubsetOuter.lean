@@ -47,10 +47,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.getSubset_outer (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p)
     (cen rad : 𝕋) : -- --- CONCL ---
-    (Real.PolyZonotope.getSubset (nominal pZ) k (toReal cen) (toReal rad)).construct
-        + pZ.I_error.construct ⊆ (pZ.getSubset k cen rad).construct := by -- --- PROOF ---
+    (Real.PolyZonotope.getSubset (nominal pZ) k (toReal cen) (toReal rad)).toSet
+        + pZ.I_error.toSet ⊆ (pZ.getSubset k cen rad).toSet := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
-  obtain ⟨a, β, ha, hβ, hz⟩ := Real.PolyZonotope.mem_construct_iff.mp hz
+  obtain ⟨a, β, ha, hβ, hz⟩ := Real.PolyZonotope.mem_toSet_iff.mp hz
   -- the exact generators, the stored (rounded down) ones and the monomials, named once
   set G := Real.PolyZonotope.getSubsetG (nominal pZ) k (toReal cen) (toReal rad)
   set Gd : Fin n → Fin (pZ.h * (pZ.maxExp k + 1)) → 𝕋 := pZ.getSubsetGDown k cen rad
@@ -58,7 +58,7 @@ theorem PolyZonotope.getSubset_outer (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin p
   -- the rounding of the generators, scaled by the monomials, lies in the added box
   set err : Fin n → ℝ := fun i =>
     ∑ l : Fin (pZ.h * (pZ.maxExp k + 1)), (G l i - toReal (Gd i l)) * mon l with herr
-  have hbox : err ∈ (PolyZonotope.generatorError (pZ.getSubsetGDiff k cen rad)).construct :=
+  have hbox : err ∈ (PolyZonotope.generatorError (pZ.getSubsetGDiff k cen rad)).toSet :=
     PolyZonotope.mem_generatorError_monomial (PolyZonotope.getSubsetG_close pZ k cen rad) ha
   -- the float point at the same coefficients, plus what the rounding and the box add
   refine ⟨fun i => toReal ((pZ.getSubset k cen rad).c i)

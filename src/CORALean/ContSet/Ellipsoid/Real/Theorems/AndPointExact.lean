@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.AndPoint
 public import CORALean.ContSet.OptEmpty.Theorems.Basic
 
@@ -41,12 +41,12 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- The ellipsoid of zero shape denotes the single point. -/
-private theorem Ellipsoid.aux_construct_ofPoint (p : Vec ℝ n) : -- --- CONCL ---
-    (Ellipsoid.ofPoint p).construct = {p} := by -- --- PROOF ---
+private theorem Ellipsoid.aux_toSet_ofPoint (p : Vec ℝ n) : -- --- CONCL ---
+    (Ellipsoid.ofPoint p).toSet = {p} := by -- --- PROOF ---
   have hG : (Ellipsoid.ofPoint p).G = 0 := (Ellipsoid.G_eq_zero_iff _).2 rfl
   ext x
   constructor
-  · rw [Ellipsoid.construct_eq_sqrt]
+  · rw [Ellipsoid.toSet_eq_sqrt]
     rintro ⟨u, -, rfl⟩
     rw [hG, Matrix.zero_mulVec, add_zero]
     rfl
@@ -57,18 +57,18 @@ private theorem Ellipsoid.aux_construct_ofPoint (p : Vec ℝ n) : -- --- CONCL -
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.andPoint_exact (E : Ellipsoid n) (p : Vec ℝ n) : -- --- CONCL ---
-    ContSet.construct (E.andPoint p) = E.construct ∩ {p} := by -- --- PROOF ---
+    ContSet.toSet (E.andPoint p) = E.toSet ∩ {p} := by -- --- PROOF ---
   unfold Ellipsoid.andPoint
   split_ifs with h
-  · rw [OptEmpty.construct_of]
-    change (Ellipsoid.ofPoint p).construct = _
-    rw [Ellipsoid.aux_construct_ofPoint]
+  · rw [OptEmpty.toSet_of]
+    change (Ellipsoid.ofPoint p).toSet = _
+    rw [Ellipsoid.aux_toSet_ofPoint]
     ext x
     simp only [Set.mem_singleton_iff, Set.mem_inter_iff]
     constructor
     · rintro rfl; exact ⟨h, rfl⟩
     · exact fun hx => hx.2
-  · rw [OptEmpty.construct_empty]
+  · rw [OptEmpty.toSet_empty]
     ext x
     simp only [Set.mem_empty_iff_false, Set.mem_inter_iff, Set.mem_singleton_iff, false_iff,
       not_and]

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.VPolytope.Real.Operations.Mpower
 public import CORALean.ContSet.VPolytope.Real.Theorems.Basic
-public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructPoint
+public import CORALean.ContSet.VPolytope.Real.Theorems.ToSetPoint
 
 @[expose] public section
 
@@ -41,13 +41,13 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every power `M ^ k` of a member lies in the `k`-th matrix-polytope power. -/
-theorem VPolytope.mpower_outer (P : VPolytope (Mat ℝ n n)) {M : Mat ℝ n n} (hM : M ∈ P.construct)
+theorem VPolytope.mpower_outer (P : VPolytope (Mat ℝ n n)) {M : Mat ℝ n n} (hM : M ∈ P.toSet)
     (k : ℕ) : -- --- CONCL ---
-    M ^ k ∈ (VPolytope.mpower P k).construct := by -- --- PROOF ---
+    M ^ k ∈ (VPolytope.mpower P k).toSet := by -- --- PROOF ---
   rcases k with _ | k
   · rw [pow_zero]
-    show 1 ∈ (VPolytope.point (1 : Mat ℝ n n)).construct
-    rw [VPolytope.construct_point]
+    show 1 ∈ (VPolytope.point (1 : Mat ℝ n n)).toSet
+    rw [VPolytope.toSet_point]
     rfl
   · induction k with
     | zero => rw [zero_add, pow_one]; exact hM

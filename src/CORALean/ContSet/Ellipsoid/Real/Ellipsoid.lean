@@ -14,8 +14,8 @@ pseudo-inverse `Q⁺` is what a semi-definite `Q` needs and what CORA computes, 
 is invertible (`Theorems/IsPinvQpinv`). That `Q` is positive semi-definite is a field, as CORA's
 constructor refuses any other. The square root `G = Q^(1/2)` (`CFC.sqrt`, CORA's `sqrtm`;
 `Operations/Basic.lean`) is a derived helper: the set is `{q + G u | ‖u‖₂ ≤ 1}`
-(`Theorems/ConstructEqSqrt`), and any `F` with `F Fᵀ = Q` gives the same set
-(`Theorems/ConstructEqOfFactor`). `‖·‖₂` is `CORALean.norm₂`; `Vec ℝ n` carries the sup norm.
+(`Theorems/ToSetEqSqrt`), and any `F` with `F Fᵀ = Q` gives the same set
+(`Theorems/ToSetEqOfFactor`). `‖·‖₂` is `CORALean.norm₂`; `Vec ℝ n` carries the sup norm.
 
 ## References
 
@@ -59,7 +59,7 @@ noncomputable def Ellipsoid.Qpinv (E : Ellipsoid n) : Mat ℝ n n := cfc (fun x 
 
 /-- [1, Def. 4]: `{x | (x - q)ᵀ Q⁺ (x - q) ≤ 1}`, with `x - q` in the range of `Q`, which a
 degenerate `Q` confines it to. -/
-def Ellipsoid.construct (E : Ellipsoid n) : Set (Vec ℝ n) :=
+def Ellipsoid.toSet (E : Ellipsoid n) : Set (Vec ℝ n) :=
   {x | (x - E.q) ⬝ᵥ E.Qpinv *ᵥ (x - E.q) ≤ 1 ∧ ∃ w : Vec ℝ n, x - E.q = E.Q *ᵥ w}
 
 end CORALean.Real

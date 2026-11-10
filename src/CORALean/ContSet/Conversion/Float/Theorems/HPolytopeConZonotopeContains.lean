@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Point
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_ConZonotope
@@ -63,9 +63,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q h : ℕ}
 /-- The coefficients of a point of the polytope meet the carried rows, because the widening
 covers the carrying error, and so does the point, with its error-box point `0`. -/
 private theorem HPolytope.subset_conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n))
-    (Z : Zonotope (Vec 𝕋 n)) (hZ : P.construct ⊆ nominalSet Z)
-    (h0 : (0 : Vec ℝ n) ∈ Z.I_error.construct) : -- --- CONCL ---
-    P.construct ⊆ (P.conZonotopeOf Z).construct := by -- --- PROOF ---
+    (Z : Zonotope (Vec 𝕋 n)) (hZ : P.toSet ⊆ nominalSet Z)
+    (h0 : (0 : Vec ℝ n) ∈ Z.I_error.toSet) : -- --- CONCL ---
+    P.toSet ⊆ (P.conZonotopeOf Z).toSet := by -- --- PROOF ---
   intro x hx
   obtain ⟨β, hβ, hval⟩ := Zonotope.mem_nominalSet_iff.mp (hZ hx)
   -- carried inequalities hold at `β` wherever they held at `x`
@@ -87,7 +87,7 @@ private theorem HPolytope.subset_conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n))
   unfold HPolytope.conZonotopeOf
   split_ifs with hP
   -- error-free: the equalities carried too, between their two bounds, then anchored
-  · obtain ⟨hle, heq⟩ := (HPolytope.mem_construct_iff (HPolytope.errFree_of_isErrFree hP)).mp hx
+  · obtain ⟨hle, heq⟩ := (HPolytope.mem_toSet_iff (HPolytope.errFree_of_isErrFree hP)).mp hx
     refine ConZonotope.anchorSlab_outer _ _ _ _ (Set.add_mem_add
       (ConZonotope.mem_nominalSet_iff.mpr ⟨β, hβ, HPolytope.mem_stackRows_nominal_iff.mpr
         ⟨HPolytope.mem_nominal_iff.mpr
@@ -107,7 +107,7 @@ private theorem HPolytope.subset_conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n))
     rw [hsplit] at h
     constructor <;> linarith [herr.1, herr.2]
   -- with a box: the rows with the box folded in, which hold at `x`
-  · obtain ⟨hle, -⟩ := (HPolytope.mem_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mp
+  · obtain ⟨hle, -⟩ := (HPolytope.mem_toSet_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mp
       (HPolytope.absorbRounding_outer P hx)
     exact Set.add_mem_add (ConZonotope.mem_nominalSet_iff.mpr ⟨β, hβ,
       HPolytope.mem_nominal_iff.mpr
@@ -116,9 +116,9 @@ private theorem HPolytope.subset_conZonotopeOf (P : HPolytope 𝕋 (Vec 𝕋 n))
 
 /-- The constrained zonotope built from bounds on each coordinate contains the polytope. -/
 theorem HPolytope.conZonotope_contains {P : HPolytope 𝕋 (Vec 𝕋 n)}
-    (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) : -- --- CONCL ---
-    P.construct ⊆ (HPolytope.conZonotope up lo).construct := by -- --- PROOF ---
+    (up : ∀ j, FloatBound 𝕋 P.toSet (LinearMap.proj j))
+    (lo : ∀ j, FloatBound 𝕋 P.toSet (-LinearMap.proj j)) : -- --- CONCL ---
+    P.toSet ⊆ (HPolytope.conZonotope up lo).toSet := by -- --- PROOF ---
   refine HPolytope.subset_conZonotopeOf P _ (fun y hy =>
     Interval.subset_nominal_zonotope _ (HPolytope.interval_contains up lo hy)) fun i => ?_
   show toReal (zero : 𝕋) ≤ (0 : Vec ℝ n) i ∧ (0 : Vec ℝ n) i ≤ toReal (zero : 𝕋)

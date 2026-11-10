@@ -52,11 +52,11 @@ open Matrix
 
 theorem HPolytope.tight_redundant_counterexample : -- --- CONCL ---
     ∃ (A : Mat ℝ 6 2) (b : Vec ℝ 6) (j k : Fin 6) (ν : Vec ℝ 2), k ≠ j ∧
-      {x | ∀ i, i ≠ j → (A *ᵥ x) i ≤ b i} = (HPolytope.ineqs A b).construct ∧
+      {x | ∀ i, i ≠ j → (A *ᵥ x) i ≤ b i} = (HPolytope.ineqs A b).toSet ∧
       ν ∈ {x | ∀ i, i ≠ j → (A *ᵥ x) i ≤ b i} ∧
       (∀ x ∈ {x | ∀ i, i ≠ j → (A *ᵥ x) i ≤ b i}, (A *ᵥ x) j ≤ (A *ᵥ ν) j) ∧
       (A *ᵥ ν) k = b k ∧
-      {x | ∀ i, i ≠ k → (A *ᵥ x) i ≤ b i} = (HPolytope.ineqs A b).construct := by -- --- PROOF ---
+      {x | ∀ i, i ≠ k → (A *ᵥ x) i ≤ b i} = (HPolytope.ineqs A b).toSet := by -- --- PROOF ---
   let A : Mat ℝ 6 2 := !![1, 0; 0, 1; 1, 1; -1, 0; 0, -1; 1, 1]
   let b : Vec ℝ 6 := ![1, 1, 2, 0, 0, 3]
   -- the rows, read off
@@ -82,7 +82,7 @@ theorem HPolytope.tight_redundant_counterexample : -- --- CONCL ---
     rw [hA]
     fin_cases i <;> simp [b] <;> linarith
   have hdrop : ∀ k : Fin 6, k = 2 ∨ k = 5 →
-      {x | ∀ i, i ≠ k → (A *ᵥ x) i ≤ b i} = (HPolytope.ineqs A b).construct := by
+      {x | ∀ i, i ≠ k → (A *ᵥ x) i ≤ b i} = (HPolytope.ineqs A b).toSet := by
     intro k hk
     ext x
     rw [Set.mem_setOf_eq, HPolytope.mem_ineqs_iff]

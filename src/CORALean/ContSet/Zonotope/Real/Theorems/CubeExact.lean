@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.Cube
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import Mathlib.Analysis.Normed.Ring.Basic
 
 @[expose] public section
@@ -61,9 +61,9 @@ private theorem Zonotope.aux_cube_sum_apply {n : ℕ} (ρ : ℝ) (β : Fin (Zono
 
 /-- [1, Lemma 1]: `□(ρ)`, the sup-norm ball of radius `ρ ≥ 0`, is the zonotope `cube n ρ`. -/
 theorem Zonotope.cube_exact (n : ℕ) {ρ : ℝ} (hρ : 0 ≤ ρ) : -- --- CONCL ---
-    (Zonotope.cube n ρ).construct = Metric.closedBall (0 : Vec ℝ n) ρ := by -- --- PROOF ---
+    (Zonotope.cube n ρ).toSet = Metric.closedBall (0 : Vec ℝ n) ρ := by -- --- PROOF ---
   ext x
-  rw [Zonotope.mem_construct_iff, Metric.mem_closedBall, dist_zero_right,
+  rw [Zonotope.mem_toSet_iff, Metric.mem_closedBall, dist_zero_right,
     pi_norm_le_iff_of_nonneg hρ]
   have hc : ∀ i, (Zonotope.cube n ρ).c i = 0 := fun _ => rfl
   constructor

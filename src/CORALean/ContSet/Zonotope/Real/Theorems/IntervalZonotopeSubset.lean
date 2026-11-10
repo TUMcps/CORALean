@@ -39,7 +39,7 @@ variable {n : ℕ}
 
 theorem Interval.zonotope_subset_of_isNonempty {I : Interval (Vec ℝ n)}
     (hI : I.IsNonempty (ι := Fin n)) : -- --- CONCL ---
-    I.zonotope.construct ⊆ I.construct := by -- --- PROOF ---
+    I.zonotope.toSet ⊆ I.toSet := by -- --- PROOF ---
   rintro x ⟨β, hβ, rfl⟩
   intro i
   -- only the diagonal generator `i` contributes to coordinate `i`
@@ -60,7 +60,7 @@ theorem Interval.zonotope_subset_of_isNonempty {I : Interval (Vec ℝ n)}
     nlinarith [habs.1, hrad]
   have hhi : β i * ((I.sup i - I.inf i) / 2) ≤ (I.sup i - I.inf i) / 2 := by
     nlinarith [habs.2, hrad]
-  -- and the center plus that offset is exactly where `Interval.construct` asks it to be
+  -- and the center plus that offset is exactly where `Interval.toSet` asks it to be
   show I.inf i ≤ ((fun i => (I.inf i + I.sup i) / 2 : Vec ℝ n) + ∑ j : Fin n, β j •
       (fun i => if i = j then (I.sup i - I.inf i) / 2 else 0 : Vec ℝ n)) i ∧
     ((fun i => (I.inf i + I.sup i) / 2 : Vec ℝ n) + ∑ j : Fin n, β j •

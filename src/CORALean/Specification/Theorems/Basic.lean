@@ -32,7 +32,7 @@ variable {ContSet α : Type} [CORALean.ContSet ContSet α]
 
 /-- An invariant specification holds on `X` when `X` lies in the set. -/
 @[simp] theorem Specification.holds_invariant {s : ContSet} {X : Set α} :
-    (Specification.invariant s).Holds X ↔ X ⊆ construct s := Iff.rfl
+    (Specification.invariant s).Holds X ↔ X ⊆ toSet s := Iff.rfl
 
 
 -- ==============================  `Specification.holds_safeSet`  =============================== --
@@ -43,7 +43,7 @@ variable {ContSet α : Type} [CORALean.ContSet ContSet α]
 
 /-- A safe-set specification holds on `X` when `X` lies in the set. -/
 @[simp] theorem Specification.holds_safeSet {s : ContSet} {X : Set α} :
-    (Specification.safeSet s).Holds X ↔ X ⊆ construct s := Iff.rfl
+    (Specification.safeSet s).Holds X ↔ X ⊆ toSet s := Iff.rfl
 
 
 -- =============================  `Specification.holds_unsafeSet`  ============================== --
@@ -54,7 +54,7 @@ variable {ContSet α : Type} [CORALean.ContSet ContSet α]
 
 /-- An unsafe-set specification holds on `X` when `X` avoids the set. -/
 @[simp] theorem Specification.holds_unsafeSet {s : ContSet} {X : Set α} :
-    (Specification.unsafeSet s).Holds X ↔ Disjoint X (construct s) := Iff.rfl
+    (Specification.unsafeSet s).Holds X ↔ Disjoint X (toSet s) := Iff.rfl
 
 end
 

@@ -43,7 +43,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 /-- A point the box denotes is the center off by at most the radius, which is
 how every enclosure proof splits it. -/
-theorem Interval.abs_sub_center_le {I : Interval α} {x : α} (hx : x ∈ I.construct) (i : ι) :
+theorem Interval.abs_sub_center_le {I : Interval α} {x : α} (hx : x ∈ I.toSet) (i : ι) :
     |entry x i - entry I.center i| ≤ entry I.radius i := by
   have h := hx i
   rw [Interval.center, Interval.radius, entry_smul, entry_smul, entry_add, entry_sub, abs_le]

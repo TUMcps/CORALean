@@ -122,12 +122,12 @@ given a ball for the state reached at step `k`, one for `U`, and one for the
 box that step's own reduction pays. -/
 private theorem LinearSysDT.aux_reach_step_subset_closedBall (sys : LinearSysDT ℝ n) {o : ℕ}
     (ho : 0 < o) {R₀ U : Zonotope (Vec ℝ n)} {r rU rbox : ℝ} (k : ℕ)
-    (hR : (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct ⊆ Metric.closedBall (0 : Vec ℝ n) r)
-    (hU : U.construct ⊆ Metric.closedBall (0 : Vec ℝ n) rU)
+    (hR : (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).toSet ⊆ Metric.closedBall (0 : Vec ℝ n) r)
+    (hU : U.toSet ⊆ Metric.closedBall (0 : Vec ℝ n) rU)
     (hbox : (((Zonotope.mtimes sys.A
-        (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U).reduceBox o).construct
+        (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).plus U).reduceBox o).toSet
         ⊆ Metric.closedBall (0 : Vec ℝ n) rbox) :
-    (sys.reach (S := 𝒵) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩).construct
+    (sys.reach (S := 𝒵) ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩).toSet
       ⊆ Metric.closedBall (0 : Vec ℝ n) (‖sys.A‖ * r + rU + rbox) :=
   Zonotope.oneStep_subset_closedBall sys.A hR hU hbox
 
@@ -141,15 +141,15 @@ end
 input's — crude, from bounding a step's box by its own pre-reduction width. -/
 theorem LinearSysDT.reach_subset_closedBall (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
     {R₀ U : Zonotope (Vec ℝ n)} {r₀ rU : ℝ}
-    (hR₀ : R₀.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r₀) (hr₀ : 0 ≤ r₀)
-    (hU : U.construct ⊆ Metric.closedBall (0 : Vec ℝ n) rU) (hrU : 0 ≤ rU)
+    (hR₀ : R₀.toSet ⊆ Metric.closedBall (0 : Vec ℝ n) r₀) (hr₀ : 0 ≤ r₀)
+    (hU : U.toSet ⊆ Metric.closedBall (0 : Vec ℝ n) rU) (hrU : 0 ≤ rU)
     (k : ℕ) : -- --- CONCL ---
-    (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
+    (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).toSet
       ⊆ Metric.closedBall (0 : Vec ℝ n) ((2 * ‖sys.A‖) ^ k * r₀
         + 2 * rU * ∑ j ∈ Finset.range k, (2 * ‖sys.A‖) ^ j) := by -- --- PROOF ---
   induction k with
   | zero =>
-    show R₀.construct ⊆ Metric.closedBall (0 : Vec ℝ n) ((2 * ‖sys.A‖) ^ 0 * r₀
+    show R₀.toSet ⊆ Metric.closedBall (0 : Vec ℝ n) ((2 * ‖sys.A‖) ^ 0 * r₀
       + 2 * rU * ∑ j ∈ Finset.range 0, (2 * ‖sys.A‖) ^ j)
     simpa using hR₀
   | succ k ih =>
@@ -167,10 +167,10 @@ theorem LinearSysDT.reach_subset_closedBall (sys : LinearSysDT ℝ n) {o : ℕ} 
       linarith
     set W : Zonotope (Vec ℝ n) :=
       Zonotope.plus (Zonotope.mtimes sys.A (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)) U with hWdef
-    have hpre : W.construct ⊆ Metric.closedBall (0 : Vec ℝ n) (‖sys.A‖ * rk + rU) :=
+    have hpre : W.toSet ⊆ Metric.closedBall (0 : Vec ℝ n) (‖sys.A‖ * rk + rU) :=
       Zonotope.plus_subset_closedBall (Zonotope.mtimes_subset_closedBall sys.A ih) hU
     -- the box the reduction pays is dominated by `W`'s own reach, hence the same radius
-    have hbox : (W.reduceBox o).construct
+    have hbox : (W.reduceBox o).toSet
         ⊆ Metric.closedBall (0 : Vec ℝ n) (‖sys.A‖ * rk + rU) :=
       Zonotope.subset_closedBall_of_absBound_le hW fun j =>
         (Zonotope.aux_reduceBox_absBound_le _ o j).trans

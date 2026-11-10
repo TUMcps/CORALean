@@ -55,10 +55,10 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : �
 /-- `R` encloses the state at the moment of the jump, `Rg` its intersection with
 the guard; the reset image then lands in `step_jumpOfPoint Rg`. -/
 private theorem Transition.aux_jumpOfPoint_outer (e : Transition G L 𝕋 n) {R Rg : S n}
-    (hinter : construct R ∩ construct e.guard ⊆ construct Rg) {z : Vec ℝ n}
-    (hz : z ∈ construct R) (hguard : z ∈ construct e.guard) : -- --- CONCL ---
-    e.reset z ∈ construct (e.step_jumpOfPoint Rg) := by -- --- PROOF ---
-  show toRealMat e.W *ᵥ z + toRealVec e.w ∈ construct (e.step_jumpOfPoint Rg)
+    (hinter : toSet R ∩ toSet e.guard ⊆ toSet Rg) {z : Vec ℝ n}
+    (hz : z ∈ toSet R) (hguard : z ∈ toSet e.guard) : -- --- CONCL ---
+    e.reset z ∈ toSet (e.step_jumpOfPoint Rg) := by -- --- PROOF ---
+  show toRealMat e.W *ᵥ z + toRealVec e.w ∈ toSet (e.step_jumpOfPoint Rg)
   exact plus_outer _ _ (Set.add_mem_add
     (mtimes_outer e.W Rg
       (Set.mem_biUnion rfl (Set.mem_image_of_mem _ (hinter ⟨hz, hguard⟩))))
@@ -73,9 +73,9 @@ end
 lands in `jumpIntersectionOfPoint R`, the guard intersection computed rather than
 assumed. -/
 theorem Transition.jumpIntersectionOfPoint_outer [∀ n, Intersection (S n) (Vec ℝ n)]
-    (e : Transition S L 𝕋 n) {R : S n} {z : Vec ℝ n} (hz : z ∈ construct R)
-    (hguard : z ∈ construct e.guard) :
-    e.reset z ∈ construct (e.jumpIntersectionOfPoint R) :=
+    (e : Transition S L 𝕋 n) {R : S n} {z : Vec ℝ n} (hz : z ∈ toSet R)
+    (hguard : z ∈ toSet e.guard) :
+    e.reset z ∈ toSet (e.jumpIntersectionOfPoint R) :=
   e.aux_jumpOfPoint_outer (Intersection.intersection_outer R e.guard) hz hguard
 
 /-- Anonymous, its content being that it elaborates (#38): `Real.ConPolyZono` has no
@@ -83,8 +83,8 @@ theorem Transition.jumpIntersectionOfPoint_outer [∀ n, Intersection (S n) (Vec
 reset cuts a non-convex reachable set by its guard exactly. -/
 example (e : Transition 𝒞𝒫𝒵 L ℝ n)
     (R : Real.ConPolyZono (Vec ℝ n))
-    {z : Vec ℝ n} (hz : z ∈ construct R) (hguard : z ∈ construct e.guard) :
-    e.reset z ∈ construct (e.jumpIntersectionOfPoint R) :=
+    {z : Vec ℝ n} (hz : z ∈ toSet R) (hguard : z ∈ toSet e.guard) :
+    e.reset z ∈ toSet (e.jumpIntersectionOfPoint R) :=
   e.jumpIntersectionOfPoint_outer hz hguard
 
 end CORALean

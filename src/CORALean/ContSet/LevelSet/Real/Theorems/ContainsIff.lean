@@ -36,7 +36,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LevelSet.contains_iff (L : LevelSet n) (x : Vec ℝ n) : -- --- CONCL ---
-    L.contains x = true ↔ x ∈ L.construct := by -- --- PROOF ---
+    L.contains x = true ↔ x ∈ L.toSet := by -- --- PROOF ---
   have key : ∀ (c : CompOp) (v : ℝ), c.test v = true ↔ c.holds v := by
     intro c v
     cases c <;> simp [CompOp.test, CompOp.holds]

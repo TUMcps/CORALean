@@ -59,8 +59,8 @@ theorem LinearSysDT.faultObserve_counterexample : -- --- CONCL ---
     let x : Vec ℝ 1 := 0
     let f : Vec ℝ 1 := 1                                  -- the sensor fault
     let y := C *ᵥ x + E *ᵥ f                              -- Eq. 3b, no noise
-    x ∈ X.construct ∧ A *ᵥ x + B *ᵥ 0 ∉
-      (X.faultObserve A B C L Dx Hw Dy Hv 0 y).construct := by -- --- PROOF ---
+    x ∈ X.toSet ∧ A *ᵥ x + B *ᵥ 0 ∉
+      (X.faultObserve A B C L Dx Hw Dy Hv 0 y).toSet := by -- --- PROOF ---
   intro A B C L E Dx Hw Dy Hv X x f y
   refine ⟨⟨Fin.elim0, fun j => j.elim0, by simp [X, x]⟩, ?_⟩
   -- the zonotope has no generators and center `1`

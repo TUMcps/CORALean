@@ -74,10 +74,10 @@ def Capsule.step_unitSegment : Capsule 1 := ⟨fun _ => 0, fun _ => 0, 1⟩
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-private theorem Capsule.aux_zero_mem : (fun _ => (0 : ℝ)) ∈ Capsule.step_unitSegment.construct :=
+private theorem Capsule.aux_zero_mem : (fun _ => (0 : ℝ)) ∈ Capsule.step_unitSegment.toSet :=
   ⟨0, by norm_num, by simp [Capsule.step_unitSegment]⟩
 
-private theorem Capsule.aux_one_mem : (fun _ => (1 : ℝ)) ∈ Capsule.step_unitSegment.construct :=
+private theorem Capsule.aux_one_mem : (fun _ => (1 : ℝ)) ∈ Capsule.step_unitSegment.toSet :=
   ⟨0, by norm_num, by simp [Capsule.step_unitSegment]⟩
 
 
@@ -86,7 +86,7 @@ private theorem Capsule.aux_one_mem : (fun _ => (1 : ℝ)) ∈ Capsule.step_unit
 /-- The set is a segment of positive length, no hyperplane; CORA answers `true`. -/
 theorem Capsule.representsa_hyperplane_cora_counterexample : -- --- CONCL ---
     (¬ ∃ (f : (Fin 1 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ), f ≠ 0 ∧
-        Capsule.step_unitSegment.construct = {x | f x = c}) ∧
+        Capsule.step_unitSegment.toSet = {x | f x = c}) ∧
       Capsule.step_unitSegment.representsaHyperplaneCora = true := by -- --- PROOF ---
   refine ⟨CORALean.not_hyperplane_of_two_points_fin1 Capsule.aux_zero_mem
     Capsule.aux_one_mem ?_, by simp [Capsule.representsaHyperplaneCora]⟩

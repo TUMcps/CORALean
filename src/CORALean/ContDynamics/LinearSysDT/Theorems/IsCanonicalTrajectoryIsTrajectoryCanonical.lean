@@ -51,7 +51,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- The run itself, with zero disturbance and noise, which `W` and `V` have to admit. -/
 theorem LinearSysDT.IsCanonicalTrajectory.isTrajectory_canonical {sys : LinearSysDT 𝕋 n}
     {R₀ U : S n} {x u : ℕ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory R₀ U x u) {W V : S n}
-    (hW : (0 : Vec ℝ n) ∈ construct W) (hV : (0 : Vec ℝ n) ∈ construct V) :
+    (hW : (0 : Vec ℝ n) ∈ toSet W) (hV : (0 : Vec ℝ n) ∈ toSet V) :
     (LinearSysDT.canonical (toRealMat sys.A)).IsTrajectory R₀ U W V x u 0 0 x where
   init := traj.init
   input := traj.input

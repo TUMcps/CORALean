@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalOn
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Reduce
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
@@ -57,7 +57,7 @@ variable {n d r dI rI : ℕ}
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- `mem_construct_iff` at an evaluation: one coordinate of the defining
+/-- `mem_toSet_iff` at an evaluation: one coordinate of the defining
 equation, both generator blocks transposed. -/
 private theorem PolyZonotope.aux_mem_evalOn_iff {pZ : PolyZonotope (Vec ℝ n)}
     {B : Set (Fin pZ.p → ℝ)} {x : Vec ℝ n} : -- --- CONCL ---

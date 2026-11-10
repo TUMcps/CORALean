@@ -56,10 +56,10 @@ theorem PolyZonotope.dropIndepStretch_printed_counterexample : -- --- CONCL ---
       (∀ j k' l, (k' = k j ∨ l = partD.left j) →
         pZ.E k' l = if k' = k j ∧ l = partD.left j then 1 else 0) →
       IsUnit (pZ.dropIndepMat partD).det →
-      pZ.construct ⊆ { pZ.dropIndepStretch partD partI with
+      pZ.toSet ⊆ { pZ.dropIndepStretch partD partI with
         G := fun l => match partD.index.symm l with
           | ⟨true, j⟩ => (1 + ((pZ.dropIndepMat partD)⁻¹ *ᵥ pZ.GI (partI.right 0)) j) • pZ.G l
-          | ⟨false, _⟩ => pZ.G l }.construct := by -- --- PROOF ---
+          | ⟨false, _⟩ => pZ.G l }.toSet := by -- --- PROOF ---
   intro h
   have sub1 : ∀ x y : Fin (1 + 0), x = y := fun x y => Fin.ext (by omega)
   have sub2 : ∀ x y : Fin 1, x = y := fun x y => Subsingleton.elim x y
@@ -83,7 +83,7 @@ theorem PolyZonotope.dropIndepStretch_printed_counterexample : -- --- CONCL ---
       rw [if_pos ⟨sub2 _ _, sub1 _ _⟩])
     (by rw [hP]; simp)
     (show (fun _ => 2 : Vec ℝ 1) ∈ (⟨1, 1, 1, 0, fun _ _ => 1, fun _ _ => 1, fun _ _ => -1⟩ :
-        PolyZonotope (Vec ℝ 1)).construct from
+        PolyZonotope (Vec ℝ 1)).toSet from
       ⟨fun _ => 1, fun _ => -1, fun _ => by simp, fun _ => by simp, by
         funext i
         fin_cases i

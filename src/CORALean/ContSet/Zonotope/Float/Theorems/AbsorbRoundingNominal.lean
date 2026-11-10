@@ -57,7 +57,7 @@ private theorem Zonotope.aux_sum_univ_absorbRounding {Z : Zonotope (Vec 𝕋 n)}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.absorbRounding_nominal (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    Z.construct ⊆ nominalSet Z.absorbRounding := by -- --- PROOF ---
+    Z.toSet ⊆ nominalSet Z.absorbRounding := by -- --- PROOF ---
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hz'
   have hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound Z.I_error i) :=

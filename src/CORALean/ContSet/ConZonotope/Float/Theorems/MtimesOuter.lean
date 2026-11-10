@@ -74,7 +74,7 @@ private theorem ConZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n)
     (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     (toRealMat M *ᵥ ·) '' nominalSet cZ ⊆
       nominalSet (ConZonotope.mtimes M cZ)
-        + (Zonotope.mtimesResidual M cZ.zonotope).construct := by -- --- PROOF ---
+        + (Zonotope.mtimesResidual M cZ.zonotope).toSet := by -- --- PROOF ---
   rintro _ ⟨x, hx', rfl⟩
   -- the point's coefficients, which the image keeps
   obtain ⟨β, hβ, hP, hx⟩ := ConZonotope.mem_nominalSet_iff.mp hx'
@@ -122,8 +122,8 @@ private theorem ConZonotope.aux_mtimes_nominal (M : Mat 𝕋 m n)
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
 private theorem ConZonotope.aux_mtimes_error (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    (toRealMat M *ᵥ ·) '' (I_error cZ).construct + (Zonotope.mtimesResidual M cZ.zonotope).construct
-      ⊆ (I_error (ConZonotope.mtimes M cZ)).construct :=
+    (toRealMat M *ᵥ ·) '' (I_error cZ).toSet + (Zonotope.mtimesResidual M cZ.zonotope).toSet
+      ⊆ (I_error (ConZonotope.mtimes M cZ)).toSet :=
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M cZ.I_error))
     (Interval.plus_outer _ _)
 
@@ -131,7 +131,7 @@ private theorem ConZonotope.aux_mtimes_error (M : Mat 𝕋 m n) (cZ : ConZonotop
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.mtimes_outer (M : Mat 𝕋 m n) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    (toRealMat M *ᵥ ·) '' cZ.construct ⊆ (ConZonotope.mtimes M cZ).construct :=
+    (toRealMat M *ᵥ ·) '' cZ.toSet ⊆ (ConZonotope.mtimes M cZ).toSet :=
   map_subset (fun x y => Matrix.mulVec_add _ x y)
     (ConZonotope.aux_mtimes_nominal M cZ) (ConZonotope.aux_mtimes_error M cZ)
 

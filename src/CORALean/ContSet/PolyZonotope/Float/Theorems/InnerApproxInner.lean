@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem PolyZonotope.innerApprox_inner (pZ : PolyZonotope (Vec 𝕋 n)) (tol : 𝕋)
     (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter depth : ℕ) : -- --- CONCL ---
     ∀ Z ∈ PolyZonotope.innerApprox pZ tol inv iter depth,
-      Z.construct ⊆ pZ.construct := by -- --- PROOF ---
+      Z.toSet ⊆ pZ.toSet := by -- --- PROOF ---
   intro Z hZ z hz
   unfold PolyZonotope.innerApprox at hZ
   dsimp only at hZ
@@ -76,7 +76,7 @@ theorem PolyZonotope.innerApprox_inner (pZ : PolyZonotope (Vec 𝕋 n)) (tol : �
   obtain ⟨β, hβ, hz₀⟩ := Zonotope.mem_nominalSet_iff.mp hz₀
   -- the box part `c + r β` lies in `Y`
   set w : Vec ℝ n := fun i => toReal (c i) + toReal (r i) * β (Fin.castAdd pZ.q i)
-  have hw : w ∈ Y.construct := by
+  have hw : w ∈ Y.toSet := by
     intro i
     have hci := Interval.le_subset hc (Interval.mem_point c) i
     have hci1 : toReal (Y.inf i) ≤ toReal (c i) := hci.1

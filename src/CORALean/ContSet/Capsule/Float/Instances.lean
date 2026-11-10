@@ -37,9 +37,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ConvexSet (Capsule 𝕋 n) (Vec ℝ n) := ⟨Capsule.convex_construct⟩
+instance : ConvexSet (Capsule 𝕋 n) (Vec ℝ n) := ⟨Capsule.convex_toSet⟩
 
-instance : CompactSet (Capsule 𝕋 n) (Vec ℝ n) := ⟨Capsule.isCompact_construct⟩
+instance : CompactSet (Capsule 𝕋 n) (Vec ℝ n) := ⟨Capsule.isCompact_toSet⟩
 
 instance : Reduce (Capsule 𝕋 n) (Vec ℝ n) where
   reduce := Capsule.reduce
@@ -68,7 +68,7 @@ instance : IsDisjoint (Capsule 𝕋 n) (Capsule 𝕋 n) where
 instance : Mtimes (Mat 𝕋) (Capsule 𝕋) where
   mtimes M C := Capsule.mtimes 100 M C
   mtimes_outer M C := by
-    simp only [ContSet.construct_mat, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Set.biUnion_singleton]
     exact Capsule.mtimes_outer 100 M C
 
 end CORALean.Float

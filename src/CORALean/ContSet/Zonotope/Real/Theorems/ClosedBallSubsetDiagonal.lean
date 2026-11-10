@@ -46,7 +46,7 @@ variable {n : ℕ}
 `ε` times the unit vectors. -/
 theorem Zonotope.closedBall_subset_diagonal (ε : ℝ) : -- --- CONCL ---
     Metric.closedBall (0 : Vec ℝ n) ε
-      ⊆ (⟨n, 0, Matrix.diagonal fun _ => ε⟩ : Zonotope (Vec ℝ n)).construct := by -- --- PROOF ---
+      ⊆ (⟨n, 0, Matrix.diagonal fun _ => ε⟩ : Zonotope (Vec ℝ n)).toSet := by -- --- PROOF ---
   intro x hx
   rw [Metric.mem_closedBall, dist_zero_right] at hx
   have hε : 0 ≤ ε := (norm_nonneg x).trans hx

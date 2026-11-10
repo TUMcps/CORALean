@@ -61,16 +61,16 @@ variable {n : ℕ}
 /-- The unreduced accumulation of varying propagated zonotopes is compact and nonempty. -/
 private theorem aux_isCompact_sum_range_mulVec_var (W : ℕ → Zonotope (Vec ℝ n)) (Φ : ℕ → Mat ℝ n n)
     (k : ℕ) : -- --- CONCL ---
-    IsCompact (∑ j ∈ Finset.range k, (fun x => Φ j *ᵥ x) '' (W j).construct) ∧
-      (∑ j ∈ Finset.range k, (fun x => Φ j *ᵥ x) '' (W j).construct).Nonempty := by -- --- PROOF ---
+    IsCompact (∑ j ∈ Finset.range k, (fun x => Φ j *ᵥ x) '' (W j).toSet) ∧
+      (∑ j ∈ Finset.range k, (fun x => Φ j *ᵥ x) '' (W j).toSet).Nonempty := by -- --- PROOF ---
   induction k with
   | zero =>
     rw [Finset.sum_range_zero, ← Set.singleton_zero]
     exact ⟨isCompact_singleton, Set.singleton_nonempty 0⟩
   | succ k ih =>
     rw [Finset.sum_range_succ]
-    exact ⟨ih.1.add ((W k).isCompact_construct.image (mulVecL (Φ k)).continuous),
-      ih.2.add (Set.Nonempty.image _ ⟨(W k).c, Zonotope.center_mem_construct (W k)⟩)⟩
+    exact ⟨ih.1.add ((W k).isCompact_toSet.image (mulVecL (Φ k)).continuous),
+      ih.2.add (Set.Nonempty.image _ ⟨(W k).c, Zonotope.center_mem_toSet (W k)⟩)⟩
 
 /-- `d_H` ignores a summand both sides share: `hausdorffDist₂_add_le` at `d_H(X,X) = 0`. -/
 private theorem aux_hausdorffDist₂_add_right_var {S T X : Set (Vec ℝ n)} (hS : IsCompact S)
@@ -89,11 +89,11 @@ private theorem aux_hausdorffDist₂_add_right_var {S T X : Set (Vec ℝ n)} (hS
 `P̂^U(t_k)` is within the summed per-step reduction errors of the same accumulation with line 10's
 `reduce` omitted. -/
 theorem hausdorffDist₂_var_run_reduce_le (W : ℕ → Zonotope (Vec ℝ n)) (Φ : ℕ → Mat ℝ n n)
-    (ρ : ℕ → ℕ) (P : ℕ → Zonotope (Vec ℝ n)) (h0 : (P 0).construct = {0})
+    (ρ : ℕ → ℕ) (P : ℕ → Zonotope (Vec ℝ n)) (h0 : (P 0).toSet = {0})
     (hstep : ∀ j, P (j + 1) = Zonotope.reduce (Zonotope.plus (P j) (Zonotope.mtimes (Φ j) (W j)))
       (ρ j)) (k : ℕ) : -- --- CONCL ---
-    hausdorffDist₂ (∑ j ∈ Finset.range k, (fun x => Φ j *ᵥ x) '' (W j).construct)
-        (P k).construct
+    hausdorffDist₂ (∑ j ∈ Finset.range k, (fun x => Φ j *ᵥ x) '' (W j).toSet)
+        (P k).toSet
       ≤ ∑ j ∈ Finset.range k,
         (Zonotope.plus (P j) (Zonotope.mtimes (Φ j) (W j))).reduceBoxError
           (ρ j) := by -- --- PROOF ---
@@ -104,17 +104,17 @@ theorem hausdorffDist₂_var_run_reduce_le (W : ℕ → Zonotope (Vec ℝ n)) (�
     refine hausdorffDist₂_le_of_mem_dist (le_refl 0) (fun x hx => ?_) (fun x hx => ?_) <;>
       exact ⟨x, hx, by rw [sub_self, norm₂_zero]⟩
   | succ k ih =>
-    have hXc : IsCompact ((fun x => Φ k *ᵥ x) '' (W k).construct) :=
-      (Zonotope.isCompact_construct _).image (mulVecL _).continuous
-    have hXne : ((fun x => Φ k *ᵥ x) '' (W k).construct).Nonempty :=
-      Set.Nonempty.image _ ⟨_, Zonotope.center_mem_construct _⟩
+    have hXc : IsCompact ((fun x => Φ k *ᵥ x) '' (W k).toSet) :=
+      (Zonotope.isCompact_toSet _).image (mulVecL _).continuous
+    have hXne : ((fun x => Φ k *ᵥ x) '' (W k).toSet).Nonempty :=
+      Set.Nonempty.image _ ⟨_, Zonotope.center_mem_toSet _⟩
     rw [Finset.sum_range_succ, Finset.sum_range_succ, hstep k]
     refine (hausdorffDist₂_triangle ((hsum k).1.add hXc).isBounded ((hsum k).2.add hXne)
-      (Zonotope.isBounded_construct _) ⟨_, Zonotope.center_mem_construct _⟩).trans
+      (Zonotope.isBounded_toSet _) ⟨_, Zonotope.center_mem_toSet _⟩).trans
       (add_le_add ?_ (Zonotope.hausdorffDist₂_reduce_le _ (ρ k)))
     rw [← Zonotope.plus_exact, ← Zonotope.mtimes_exact]
     exact (aux_hausdorffDist₂_add_right_var (hsum k).1 (hsum k).2
-      (Zonotope.isCompact_construct _) ⟨_, Zonotope.center_mem_construct _⟩ hXc hXne).trans ih
+      (Zonotope.isCompact_toSet _) ⟨_, Zonotope.center_mem_toSet _⟩ hXc hXne).trans ih
 
 end CORALean
 

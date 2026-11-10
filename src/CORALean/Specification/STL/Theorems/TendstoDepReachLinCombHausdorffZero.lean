@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormExpSmulLe
 public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSetLinComb
 public import CORALean.ContSet.Zonotope.Real.Theorems.HausdorffDist2LinCombLe
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.Global.EuclideanNorm
 public import CORALean.Specification.STL.Operations.DepReachConstsOf
@@ -95,10 +95,10 @@ theorem STL.tendsto_depReach_linComb_hausdorff_zero (A : Mat ℝ n n) (B : Mat �
     (X₀ : Zonotope (Vec ℝ n)) (U : Zonotope (Vec ℝ m)) (κ : ℕ) (T : ℝ) : -- --- CONCL ---
     ∀ ε > 0, ∀ᶠ Δt in 𝓝[>] (0 : ℝ), ∀ i : ℕ, (i : ℝ) * Δt ≤ T →
       hausdorffDist₂
-        (convexHull ℝ ((STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i).H.construct
-          ∪ (STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ (i + 1)).H.construct))
+        (convexHull ℝ ((STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i).H.toSet
+          ∪ (STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ (i + 1)).H.toSet))
         ((STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ i).H.linComb
-          (STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ (i + 1)).H).construct
+          (STL.depReachAt A Δt (STL.depReachConsts A B U Δt κ) X₀ (i + 1)).H).toSet
         ≤ ε := by -- --- PROOF ---
   intro ε hε
   set M : ℝ := ∑ k, ‖X₀.G k‖ with hM
@@ -120,8 +120,8 @@ theorem STL.tendsto_depReach_linComb_hausdorff_zero (A : Mat ℝ n n) (B : Mat �
   have hnext : (STL.depReachAt A Δt cs X₀ (i + 1)).H
       = (Zonotope.mtimes (exp (Δt • A)) Hi).shift (-(MatExp.expIntegral A Δt).mulVec (B *ᵥ U.c)) :=
     aux_plus_ofPoint_eq_shift _ _
-  rw [hnext, convexHull_union_eq_setLinComb ⟨Hi.c, Zonotope.center_mem_construct Hi⟩
-    ⟨_, Zonotope.center_mem_construct _⟩ Hi.convex_construct (Zonotope.convex_construct _)]
+  rw [hnext, convexHull_union_eq_setLinComb ⟨Hi.c, Zonotope.center_mem_toSet Hi⟩
+    ⟨_, Zonotope.center_mem_toSet _⟩ Hi.convex_toSet (Zonotope.convex_toSet _)]
   refine (Zonotope.hausdorffDist₂_linComb_le A Δt Hi _).trans ?_
   -- the generators of `H(t_i)`
   have hcol : ∀ j : Fin Hi.h, ‖(exp (Δt • A) - 1) *ᵥ Hi.G j‖₂

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Theorems.CrossSupport
-public import CORALean.ContSet.Zonotope.Real.Theorems.CornerMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CornerMemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import Mathlib.Analysis.Convex.Segment
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
@@ -60,10 +60,10 @@ theorem Zonotope.edge_point_least (Z : Zonotope (Vec ℝ 2)) (σ : ℝ) (s : Fin
     (hC : ∀ c, s c = false → c ≠ a → 0 ≤ σ * (Z.G a 0 * Z.G c 1 - Z.G a 1 * Z.G c 0))
     (haX : 0 < σ * Z.G a 0) {z : Vec ℝ 2}
     (hz : z ∈ segment ℝ (Z.corner s) (Z.corner s + (2 : ℝ) • Z.G a)) : -- --- CONCL ---
-    z ∈ Z.construct ∧
-      ∀ y' : ℝ, (![z 0, y'] : Vec ℝ 2) ∈ Z.construct → z 1 ≤ y' := by -- --- PROOF ---
+    z ∈ Z.toSet ∧
+      ∀ y' : ℝ, (![z 0, y'] : Vec ℝ 2) ∈ Z.toSet → z 1 ≤ y' := by -- --- PROOF ---
   -- the far end of the edge is also a corner: `a` flipped to `+`
-  have hend : Z.corner s + (2 : ℝ) • Z.G a ∈ Z.construct := by
+  have hend : Z.corner s + (2 : ℝ) • Z.G a ∈ Z.toSet := by
     refine ⟨fun j => (if s j then (1 : ℝ) else -1) + (if j = a then 2 else 0), fun j => ?_, ?_⟩
     · show |(if s j = true then (1 : ℝ) else -1) + (if j = a then 2 else 0)| ≤ 1
       by_cases hj : j = a
@@ -72,7 +72,7 @@ theorem Zonotope.edge_point_least (Z : Zonotope (Vec ℝ 2)) (σ : ℝ) (s : Fin
     · simp only [Zonotope.corner, add_smul, Finset.sum_add_distrib, ite_smul, zero_smul,
         Finset.sum_ite_eq', Finset.mem_univ, if_true]
       module
-  refine ⟨Z.convex_construct.segment_subset (Z.corner_mem_construct s) hend hz, fun y' hy' => ?_⟩
+  refine ⟨Z.convex_toSet.segment_subset (Z.corner_mem_toSet s) hend hz, fun y' hy' => ?_⟩
   -- the point is `P + t (2 g_a)` on the edge
   rw [segment_eq_image'] at hz
   obtain ⟨t, -, hzt⟩ := hz

@@ -51,9 +51,9 @@ theorem LinearSysDT.observePropagation_state_offset_counterexample
     let x : ℕ → Vec ℝ 1 := fun k _ => k
     let R₀ : Zonotope (Vec ℝ 1) := Zonotope.ofPoint (x 0)
     let y : ℕ → Vec ℝ 1 := fun k => (1 : Mat ℝ 1 1) *ᵥ x k  -- `C = 1`, `v = 0`
-    x 0 ∈ R₀.construct ∧ x 1 = sys.A *ᵥ x 0 + sys.B *ᵥ 0 + sys.c ∧
+    x 0 ∈ R₀.toSet ∧ x 1 = sys.A *ᵥ x 0 + sys.B *ᵥ 0 + sys.c ∧
       x 1 ∉ (sys.observePropagation gain order (Zonotope.ofPoint 0) R₀ (Zonotope.ofPoint 0)
-        (fun _ => 0) y 1).construct := by -- --- PROOF ---
+        (fun _ => 0) y 1).toSet := by -- --- PROOF ---
   intro sys x R₀ y
   refine ⟨Zonotope.mem_ofPoint _, ?_, ?_⟩
   · funext i

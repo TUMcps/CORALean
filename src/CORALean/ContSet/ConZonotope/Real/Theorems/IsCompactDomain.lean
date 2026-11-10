@@ -12,7 +12,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
 
 Closed because it is a halfspace description, and bounded because every
 coefficient it admits lies in the unit cube, so it is a closed subset of a
-compact ball. Stated apart from `isCompact_construct` because the conversion to
+compact ball. Stated apart from `isCompact_toSet` because the conversion to
 a vertex description needs the domain compact and not the set.
 -/
 
@@ -32,9 +32,9 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [NormedAddCommGroup α] [NormedSpace ℝ α] in
-theorem ConZonotope.isCompact_domain (cZ : ConZonotope α) : IsCompact cZ.domain.construct := by
+theorem ConZonotope.isCompact_domain (cZ : ConZonotope α) : IsCompact cZ.domain.toSet := by
   refine IsCompact.of_isClosed_subset (isCompact_closedBall 0 1)
-    (HPolytope.isClosed_construct cZ.domain) fun β hβ => ?_
+    (HPolytope.isClosed_toSet cZ.domain) fun β hβ => ?_
   rw [Zonotope.closedBall_eq]
   exact (ConZonotope.mem_domain_iff.mp hβ).1
 

@@ -42,7 +42,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Fullspace.disjoint_iff {S : Type} [ContSet S (Vec ℝ n)] (F : Fullspace n) (s : S) :
-    Disjoint (ContSet.construct s) F.construct ↔ ContSet.construct s = ∅ :=
+    Disjoint (ContSet.toSet s) F.toSet ↔ ContSet.toSet s = ∅ :=
   Set.disjoint_univ
 
 end CORALean.Real

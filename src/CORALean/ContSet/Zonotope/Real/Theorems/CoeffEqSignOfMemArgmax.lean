@@ -16,7 +16,7 @@ has `u x = u c + ∑ⱼ |u gⱼ|`, the largest value any coefficients reach. So 
 `β` representing `x`, not only some, has `βⱼ u gⱼ = |u gⱼ|` for every `j`, which pins `βⱼ = sign(u
 gⱼ)` wherever `u gⱼ ≠ 0`. The same forcing argument as `face_centrally_symmetric`, read off as a
 statement about the coefficients behind [1, Sec. 3 (faces)]: it is what makes the face `c + ∑ sign(u
-gⱼ)gⱼ` plus the zonotope of the generators `u` annihilates (`construct_face`), and what makes a
+gⱼ)gⱼ` plus the zonotope of the generators `u` annihilates (`toSet_face`), and what makes a
 point's coefficients usable on every face through it at once (`exists_raise_degree`).
 
 ## Inputs
@@ -76,12 +76,12 @@ private theorem Zonotope.aux_term_le_cesm {b r : ℝ} (hb : |b| ≤ 1) : b * r �
 /-- Every coefficient vector of a point maximizing `u` over `Z` has `βⱼ = sign(u gⱼ)` wherever
 `u gⱼ ≠ 0`. -/
 theorem Zonotope.coeff_eq_sign_of_mem_argmax (Z : Zonotope α) (u : α →ₗ[ℝ] ℝ) {x : α}
-    (hx : x ∈ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, u y ≤ u x}) {β : Fin Z.h → ℝ}
+    (hx : x ∈ {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, u y ≤ u x}) {β : Fin Z.h → ℝ}
     (hβ : ∀ j, |β j| ≤ 1) (hxβ : x = Z.c + ∑ j, β j • Z.G j) (j : Fin Z.h)
     (hj : u (Z.G j) ≠ 0) : -- --- CONCL ---
     β j = Real.sign (u (Z.G j)) := by -- --- PROOF ---
   -- the farthest point, with the sign coefficients, bounds `u x` from below
-  have hmem : Z.c + ∑ i, Real.sign (u (Z.G i)) • Z.G i ∈ Z.construct := by
+  have hmem : Z.c + ∑ i, Real.sign (u (Z.G i)) • Z.G i ∈ Z.toSet := by
     refine ⟨fun i => Real.sign (u (Z.G i)), fun i => ?_, rfl⟩
     show |Real.sign (u (Z.G i))| ≤ 1
     rcases Real.sign_apply_eq (u (Z.G i)) with h | h | h <;> rw [h] <;> simp

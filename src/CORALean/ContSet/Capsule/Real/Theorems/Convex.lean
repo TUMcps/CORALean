@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
-public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqAdd
+public import CORALean.ContSet.Capsule.Real.Theorems.ToSetEqEmpty
+public import CORALean.ContSet.Capsule.Real.Theorems.ToSetEqAdd
 public import Mathlib.Analysis.Convex.Mul
 
 @[expose] public section
@@ -10,7 +10,7 @@ public import Mathlib.Analysis.Convex.Mul
 # A capsule is convex
 
 Avoids Minkowski's inequality entirely. At `C.r < 0` the set is `∅`. Otherwise
-`construct_eq_add` writes `C.construct` as the *sum* of two convex sets: the
+`toSet_eq_add` writes `C.toSet` as the *sum* of two convex sets: the
 segment `{c + t g | t ∈ [-1, 1]}`, an affine image of `Icc`, and the ball `{y |
 ∑ y i ^ 2 ≤ r ^ 2}`, whose defining function is a finite sum of even powers of
 linear functionals and so convex — no norm needed for either part.
@@ -55,10 +55,10 @@ private theorem aux_convexOn_sumSq : -- --- CONCL ---
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.convex_construct (C : Capsule n) : -- --- CONCL ---
-    Convex ℝ C.construct := by -- --- PROOF ---
+theorem Capsule.convex_toSet (C : Capsule n) : -- --- CONCL ---
+    Convex ℝ C.toSet := by -- --- PROOF ---
   rcases lt_or_ge C.r 0 with hr | hr
-  · rw [Capsule.construct_eq_empty hr]
+  · rw [Capsule.toSet_eq_empty hr]
     exact convex_empty
   · have hball : Convex ℝ {y : Vec ℝ n | ∑ i, y i ^ 2 ≤ C.r ^ 2} := by
       simpa [Set.sep_univ] using aux_convexOn_sumSq.convex_le (C.r ^ 2)
@@ -70,7 +70,7 @@ theorem Capsule.convex_construct (C : Capsule n) : -- --- CONCL ---
       rw [heq]
       exact ((convex_Icc (-1 : ℝ) 1).linear_image
         (LinearMap.toSpanSingleton ℝ (Vec ℝ n) C.g)).translate C.c
-    rw [Capsule.construct_eq_add hr]
+    rw [Capsule.toSet_eq_add hr]
     exact hseg.add hball
 
 end CORALean.Real

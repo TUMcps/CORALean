@@ -4,7 +4,7 @@ public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.Interval.Float.Instances
 public import CORALean.ContSet.Zonotope.Float.Operations.Materialise
 public import CORALean.ContSet.Zonotope.Float.Theorems.Basic
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Float.Theorems.IntersectStripOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsClosed
@@ -62,11 +62,11 @@ scoped notation "𝕄𝒵[" t "]" => fun m n => Zonotope (Mat t m n)
 
 /-- Not the nominal zonotope's own convexity read across: the set is that one
 plus the error box, and `Convex.add` is what carries the property over the sum. -/
-instance {n : ℕ} : ConvexSet (Zonotope (Vec 𝕋 n)) (Vec ℝ n) := ⟨Zonotope.convex_construct⟩
+instance {n : ℕ} : ConvexSet (Zonotope (Vec 𝕋 n)) (Vec ℝ n) := ⟨Zonotope.convex_toSet⟩
 
 /-- Compactness, not the closed-and-bounded pair, for the exact layer's reason;
 it survives the box because a sum of two compact sets is compact. -/
-instance {n : ℕ} : CompactSet (Zonotope (Vec 𝕋 n)) (Vec ℝ n) := ⟨Zonotope.isCompact_construct⟩
+instance {n : ℕ} : CompactSet (Zonotope (Vec 𝕋 n)) (Vec ℝ n) := ⟨Zonotope.isCompact_toSet⟩
 
 instance {n : ℕ} : Plus (Zonotope (Vec 𝕋 n)) (Vec ℝ n) where
   plus Z₁ Z₂ := (Z₁.plus Z₂).materialise
@@ -98,8 +98,8 @@ instance {n : ℕ} : Recenter (Zonotope (Vec 𝕋 n)) (Vec ℝ n) where
 instance : OfScalarPoint 𝕋 𝒵[𝕋] where
   ofVec v := Zonotope.point v
   mem_ofVec v := by
-    have h := Zonotope.construct_point v
-    show toRealVec v ∈ (Zonotope.point v).construct
+    have h := Zonotope.toSet_point v
+    show toRealVec v ∈ (Zonotope.point v).toSet
     rw [h]
     exact Set.mem_singleton _
 
@@ -134,7 +134,7 @@ instance : Reindex 𝒵[𝕋] where
 instance : Mtimes (Mat 𝕋) 𝒵[𝕋] where
   mtimes M Z := (Zonotope.mtimes M Z).materialise
   mtimes_outer M Z := by
-    simp only [ContSet.construct_mat, Set.biUnion_singleton, Zonotope.materialise_eq]
+    simp only [ContSet.toSet_mat, Set.biUnion_singleton, Zonotope.materialise_eq]
     exact Zonotope.mtimes_outer M Z
 
 /-- The rounded update, with `I - Λ C` an interval matrix; the guarantee reads the strips at the

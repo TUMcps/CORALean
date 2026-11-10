@@ -27,7 +27,7 @@ public import CORALean.ContSet.VPolytope.Real.Operations.Mpower
 
 The operations vertices are good at: Minkowski sum, linear image, convex hull.
 All exact, and all of them `Set.range V` under Mathlib's hull algebra once
-`construct_eq_convexHull` is in hand.
+`toSet_eq_convexHull` is in hand.
 
 `supportBound` is what the other representation needs a linear program for, and
 here it is a maximum over the vertex list — attained rather than approached, and

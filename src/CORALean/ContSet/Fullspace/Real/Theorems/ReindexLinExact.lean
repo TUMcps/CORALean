@@ -40,9 +40,9 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Fullspace.reindexLin_exact (e : Fin m ≃ Fin n) (F : Fullspace n) :
-    (Fullspace.mk : Fullspace m).construct = reindexLin e '' F.construct := by
+    (Fullspace.mk : Fullspace m).toSet = reindexLin e '' F.toSet := by
   ext y
-  simp only [Fullspace.construct, Set.image_univ, Set.mem_range, Set.mem_univ, true_iff]
+  simp only [Fullspace.toSet, Set.image_univ, Set.mem_range, Set.mem_univ, true_iff]
   exact ⟨fun j => y (e.symm j), funext fun i => by simp [reindexLin]⟩
 
 end CORALean.Real

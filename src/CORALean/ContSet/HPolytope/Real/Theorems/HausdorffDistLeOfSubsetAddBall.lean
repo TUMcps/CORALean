@@ -58,19 +58,19 @@ variable {n qB : ℕ}
 
 theorem HPolytope.hausdorffDist_le_of_subset_add_ball {S T : Set (Vec ℝ n)} {HB : Mat ℝ qB n}
     {hB : Vec ℝ qB} {D : ℝ} (hD : 0 ≤ D)
-    (hPB : ∀ x, x ∈ (HPolytope.ineqs HB hB).construct ↔ ‖x‖ ≤ 1)
-    (h₁ : S ⊆ T + (HPolytope.ineqs HB (D • hB)).construct)
-    (h₂ : T ⊆ S + (HPolytope.ineqs HB (D • hB)).construct) : -- --- CONCL ---
+    (hPB : ∀ x, x ∈ (HPolytope.ineqs HB hB).toSet ↔ ‖x‖ ≤ 1)
+    (h₁ : S ⊆ T + (HPolytope.ineqs HB (D • hB)).toSet)
+    (h₂ : T ⊆ S + (HPolytope.ineqs HB (D • hB)).toSet) : -- --- CONCL ---
     Metric.hausdorffDist S T ≤ D := by -- --- PROOF ---
   have hB0 : ∀ i, 0 ≤ hB i := fun i => by
     have := HPolytope.mem_ineqs_iff.mp ((hPB 0).mpr (by simp)) i
     simpa using this
   -- `{H_B x ≤ D h_B}` lies in the closed ball of radius `D`
-  have hball : ∀ x ∈ (HPolytope.ineqs HB (D • hB)).construct, ‖x‖ ≤ D := by
+  have hball : ∀ x ∈ (HPolytope.ineqs HB (D • hB)).toSet, ‖x‖ ≤ D := by
     intro x hx
     have hx' := HPolytope.mem_ineqs_iff.mp hx
     rcases hD.lt_or_eq with hpos | hzero
-    · have : D⁻¹ • x ∈ (HPolytope.ineqs HB hB).construct := by
+    · have : D⁻¹ • x ∈ (HPolytope.ineqs HB hB).toSet := by
         refine HPolytope.mem_ineqs_iff.mpr fun i => ?_
         rw [mulVec_smul, Pi.smul_apply, smul_eq_mul, inv_mul_le_iff₀ hpos]
         simpa using hx' i

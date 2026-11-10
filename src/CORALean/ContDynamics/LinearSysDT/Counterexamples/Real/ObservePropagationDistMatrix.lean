@@ -54,9 +54,9 @@ theorem LinearSysDT.observePropagation_dist_matrix_counterexample
     let x : ℕ → Vec ℝ 1 := fun k _ => 2 * k
     let R₀ : Zonotope (Vec ℝ 1) := Zonotope.ofPoint (x 0)
     let y : ℕ → Vec ℝ 1 := fun k => (1 : Mat ℝ 1 1) *ᵥ x k  -- `C = 1`, `v = 0`
-    x 0 ∈ R₀.construct ∧ w ∈ W.construct ∧ x 1 = sys.A *ᵥ x 0 + sys.B *ᵥ 0 + sys.E *ᵥ w ∧
+    x 0 ∈ R₀.toSet ∧ w ∈ W.toSet ∧ x 1 = sys.A *ᵥ x 0 + sys.B *ᵥ 0 + sys.E *ᵥ w ∧
       x 1 ∉ (sys.observePropagation gain order W R₀ (Zonotope.ofPoint 0)
-        (fun _ => 0) y 1).construct := by -- --- PROOF ---
+        (fun _ => 0) y 1).toSet := by -- --- PROOF ---
   intro sys W w x R₀ y
   refine ⟨Zonotope.mem_ofPoint _, ⟨fun _ => 1, fun _ => by norm_num, ?_⟩, ?_, ?_⟩
   · funext i

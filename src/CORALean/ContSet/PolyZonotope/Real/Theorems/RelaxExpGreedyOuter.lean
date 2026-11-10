@@ -56,13 +56,13 @@ theorem PolyZonotope.relaxExpGreedy_outer
     (sel : (pZ : PolyZonotope α) →
       Option ((d : ℕ) × (Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2))))
     (n : ℕ) (pZ : PolyZonotope α) : -- --- CONCL ---
-    pZ.construct ⊆ (PolyZonotope.relaxExpGreedy sel n pZ).construct := by -- --- PROOF ---
+    pZ.toSet ⊆ (PolyZonotope.relaxExpGreedy sel n pZ).toSet := by -- --- PROOF ---
   induction n generalizing pZ with
   | zero => exact subset_rfl
   | succ n ih =>
     -- the step the selection names, or none, in which case the loop is over
-    show pZ.construct ⊆ ((sel pZ).elim pZ
-      fun sp => PolyZonotope.relaxExpGreedy sel n (pZ.relaxExpMulti sp.2)).construct
+    show pZ.toSet ⊆ ((sel pZ).elim pZ
+      fun sp => PolyZonotope.relaxExpGreedy sel n (pZ.relaxExpMulti sp.2)).toSet
     cases sel pZ with
     | none => exact subset_rfl
     | some sp => exact subset_trans (pZ.relaxExpMulti_outer sp.2) (ih _)

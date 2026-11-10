@@ -82,18 +82,18 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 the time-interval AE backward reachable set. -/
 theorem LinearSys.minBackReachTimeInterval_outer (sys : LinearSys 𝕋 n) {T τ : Set ℝ}
     {U W Xend : S n}
-    {ρ : ∀ (cZ : ConZonotope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound cZ.construct c}
+    {ρ : ∀ (cZ : ConZonotope (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound cZ.toSet c}
     {CZ : ConZonotope (Vec ℝ n)} {W₀ U₀ : Zonotope (Vec ℝ n)} {Zw : ℝ → Zonotope (Vec ℝ n)}
     {N : Mat ℝ q n} {t₀ tend Δt : ℝ} {η ω : ℕ} (hΔt : Δt = (tend - t₀) / ω)
     -- `Û ⊂ U`: the center trajectory `u₀(·)` and the `q` others, all admissible
     {u₀ : ℝ → Vec ℝ n} {û : Fin q → ℝ → Vec ℝ n}
-    (hu₀ : ∀ s ∈ T, u₀ s ∈ construct U)
+    (hu₀ : ∀ s ∈ T, u₀ s ∈ toSet U)
     (hmu₀ : AEStronglyMeasurable u₀ (volume.restrict T))
-    (hû : ∀ i s, s ∈ T → û i s ∈ construct U)
+    (hû : ∀ i s, s ∈ T → û i s ∈ toSet U)
     (hmû : ∀ i, AEStronglyMeasurable (û i) (volume.restrict T))
     -- (44), (45): the `ω` steps enclose the center trajectory's own set
     (hcov : sys.timeIntervalBackReachSetOfInputExact T U W Xend τ u₀ ⊆
-      ⋃ k < ω, (sys.step_minBackReachRun CZ W₀ U₀ Zw t₀ Δt η k).R.construct)
+      ⋃ k < ω, (sys.step_minBackReachRun CZ W₀ U₀ Zw t₀ Δt η k).R.toSet)
     -- (46), (49): each `p_(j)` is a support value of some trajectory's own set
     (hp : ∀ j : Fin q, ∃ i : Fin q,
       ∀ x ∈ sys.timeIntervalBackReachSetOfInputExact T U W Xend τ (û i),
@@ -104,13 +104,13 @@ theorem LinearSys.minBackReachTimeInterval_outer (sys : LinearSys 𝕋 n) {T τ 
   subst hΔt
   intro x₀ hx₀
   -- (42), (55): `x₀` is in `R^∃(-τ;u*(·))` for every admissible `u*(·)`, so for `Û`'s
-  have key : ∀ u : ℝ → Vec ℝ n, (∀ s ∈ T, u s ∈ construct U) →
+  have key : ∀ u : ℝ → Vec ℝ n, (∀ s ∈ T, u s ∈ toSet U) →
       AEStronglyMeasurable u (volume.restrict T) →
       x₀ ∈ sys.timeIntervalBackReachSetOfInputExact T U W Xend τ u :=
     fun u hu hmu => hx₀ u hu hmu
   -- (57): every row of `⟨N,p⟩_H` bounds one of those sets, hence `x₀`
   have hP : x₀ ∈ (HPolytope.ineqs N
-      (sys.step_minBackReachP ρ CZ W₀ U₀ Zw N t₀ ((tend - t₀) / ω) η (ω - 1))).construct := by
+      (sys.step_minBackReachP ρ CZ W₀ U₀ Zw N t₀ ((tend - t₀) / ω) η (ω - 1))).toSet := by
     refine HPolytope.mem_ineqs_iff.mpr fun j => ?_
     obtain ⟨i, hi⟩ := hp j
     exact hi x₀ (key (û i) (hû i) (hmû i))

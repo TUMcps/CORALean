@@ -60,8 +60,8 @@ noncomputable def LinearSys.reachInner (sys : LinearSys 𝕋 n) (Δt : ℝ) (η 
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : Set (Vec ℝ n) :=
   minkowskiDiff
     ((sys.discretize Δt).reach (S := 𝒵) ⟨R₀, sys.inputSolution (S := 𝒵) Δt η U, 0, k⟩
-      ⟨o, ho⟩).construct
-    (sys.reachError Δt η o ho R₀ U k).construct
+      ⟨o, ho⟩).toSet
+    (sys.reachError Δt η o ho R₀ U k).toSet
 
 end CORALean
 

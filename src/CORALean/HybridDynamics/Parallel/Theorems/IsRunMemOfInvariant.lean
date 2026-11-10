@@ -55,8 +55,8 @@ theorem ParallelHybridAutomaton.IsRun.mem_of_isInvariant {P : ParallelHybridAuto
     (hfeed : P.IsFeedthroughFree) {lift : ParallelHybridAutomaton.Lifting S G n m}
     {R : (∀ i, L i) → S (∑ i, n i)} (hinv : (P.product lift).IsInvariant R)
     {ℓ ℓ' : ∀ i, L i} {x y : ∀ i, Vec ℝ (n i)} (run : P.IsRun ℓ x ℓ' y)
-    (hx : stack x ∈ construct (R ℓ)) :
-    stack y ∈ construct (R ℓ') :=
+    (hx : stack x ∈ toSet (R ℓ)) :
+    stack y ∈ toSet (R ℓ') :=
   (run.toProduct hfeed lift).mem_of_isInvariant hinv hx
 
 end CORALean

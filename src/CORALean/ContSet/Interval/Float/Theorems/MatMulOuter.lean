@@ -47,8 +47,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n p : ℕ}
 
 private theorem Interval.aux_matMul_outer_refines (A : Interval (Mat 𝕋 m n))
     (B : Interval (Mat 𝕋 n p)) : -- --- CONCL ---
-    (Real.Interval.matMul A.nominal B.nominal).construct
-      ⊆ (Interval.matMul A B).construct := by -- --- PROOF ---
+    (Real.Interval.matMul A.nominal B.nominal).toSet
+      ⊆ (Interval.matMul A B).toSet := by -- --- PROOF ---
   intro X hX
   have hX' := Real.Interval.mem_mat_iff.mp hX
   refine Real.Interval.mem_mat_iff.mpr fun i j => ?_
@@ -68,8 +68,8 @@ private theorem Interval.aux_matMul_outer_refines (A : Interval (Mat 𝕋 m n))
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.matMul_outer (A : Interval (Mat 𝕋 m n)) (B : Interval (Mat 𝕋 n p))
-    {M : Mat ℝ m n} (hM : M ∈ A.construct) {N : Mat ℝ n p} (hN : N ∈ B.construct) :
-    M * N ∈ (Interval.matMul A B).construct :=
+    {M : Mat ℝ m n} (hM : M ∈ A.toSet) {N : Mat ℝ n p} (hN : N ∈ B.toSet) :
+    M * N ∈ (Interval.matMul A B).toSet :=
   Interval.aux_matMul_outer_refines A B (Real.Interval.matMul_outer A.nominal B.nominal hM hN)
 
 end CORALean.Float

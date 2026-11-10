@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Interval.sub_mem_residual {lo hi stored : Vec 𝕋 n} {x : Vec ℝ n}
     (h : ∀ i, toReal (lo i) ≤ x i ∧ x i ≤ toReal (hi i)) :
-    (fun i => x i - toReal (stored i)) ∈ (Interval.residual lo hi stored).construct := fun i =>
+    (fun i => x i - toReal (stored i)) ∈ (Interval.residual lo hi stored).toSet := fun i =>
   ⟨le_trans (subDown_le_sub _ _) (sub_le_sub_right (h i).1 _),
    le_trans (sub_le_sub_right (h i).2 _) (sub_le_subUp _ _)⟩
 

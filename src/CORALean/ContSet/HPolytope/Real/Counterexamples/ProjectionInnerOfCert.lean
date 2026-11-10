@@ -56,7 +56,7 @@ theorem HPolytope.projection_inner_of_cert_counterexample : -- --- CONCL ---
     ∃ (H : Mat ℝ 2 1) (F : Mat ℝ 2 0) (g : Vec ℝ 2) (Hx : Mat ℝ 2 1) (xbar : Vec ℝ 1)
       (HB : Mat ℝ 2 1) (hB : Vec ℝ 2) (ε : ℝ) (Λ₀ Λ₁ Λ₂ : Mat ℝ 2 2) (Γ : Mat ℝ 0 1)
       (βu : Vec ℝ 0) (X₁ : Mat ℝ 1 1) (X₂ : Mat ℝ 1 0) (βx : Vec ℝ 1),
-      (∀ x, x ∈ (HPolytope.ineqs HB hB).construct ↔ ‖x‖ ≤ 1) ∧
+      (∀ x, x ∈ (HPolytope.ineqs HB hB).toSet ↔ ‖x‖ ≤ 1) ∧
       (∀ i j, 0 ≤ Λ₀ i j) ∧ (∀ i j, 0 ≤ Λ₁ i j) ∧ (∀ i j, 0 ≤ Λ₂ i j) ∧
       Λ₀ * Hx = H + F * Γ ∧ Λ₀ *ᵥ 1 ≤ g - H *ᵥ xbar + F *ᵥ βu ∧
       Λ₁ * H = Hx * X₁ ∧ Λ₁ * F = Hx * X₂ ∧ Λ₂ * H = HB - HB * X₁ ∧ Λ₂ * F = -(HB * X₂) ∧

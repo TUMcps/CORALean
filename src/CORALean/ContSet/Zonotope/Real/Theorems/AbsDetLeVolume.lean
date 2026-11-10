@@ -56,10 +56,10 @@ variable {n : ℕ}
 theorem Zonotope.abs_det_le_volume (Z : Zonotope (Vec ℝ n)) (J : Fin n → Fin Z.h)
     (hJ : Function.Injective J) : -- --- CONCL ---
     ENNReal.ofReal |(Matrix.of fun i k => Z.G (J k) i : Mat ℝ n n).det|
-      ≤ MeasureTheory.volume Z.construct := by -- --- PROOF ---
+      ≤ MeasureTheory.volume Z.toSet := by -- --- PROOF ---
   set Z' : Zonotope (Vec ℝ n) := ⟨n, Z.c, fun k => Z.G (J k)⟩ with hZ'
   -- the sub-zonotope on the chosen generators lies in `Z`
-  have hsub : Z'.construct ⊆ Z.construct := by
+  have hsub : Z'.toSet ⊆ Z.toSet := by
     rintro _ ⟨β, hβ, rfl⟩
     refine ⟨Function.extend J β 0, fun j => ?_, ?_⟩
     · by_cases hj : ∃ k, J k = j

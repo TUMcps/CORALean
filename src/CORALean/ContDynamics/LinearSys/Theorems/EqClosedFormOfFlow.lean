@@ -67,8 +67,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- `x`'s own flow equation minus `closedForm`'s: `d` solves the homogeneous
 integral equation, `A d`'s continuity making the subtraction legitimate. -/
 private theorem aux_diff_eq (sys : LinearSys 𝕋 n) {U : S n} {t : ℝ} (ht : 0 ≤ t)
-    (hU : Bornology.IsBounded (construct U)) {x u : ℝ → Vec ℝ n}
-    (hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s ∈ construct U)
+    (hU : Bornology.IsBounded (toSet U)) {x u : ℝ → Vec ℝ n}
+    (hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s ∈ toSet U)
     (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 t)))
     (hcont : ContinuousOn x (Set.Icc 0 t))
     (hflow : ∀ τ ∈ Set.Icc (0:ℝ) t, x τ = x 0 + ∫ ρ in (0:ℝ)..τ, (toRealMat sys.A *ᵥ x ρ + u ρ))
@@ -113,8 +113,8 @@ private theorem aux_diff_eq (sys : LinearSys 𝕋 n) {U : S n} {t : ℝ} (ht : 0
 measurable input, agrees with `closedForm` from its own start point everywhere
 on the window. -/
 theorem LinearSys.eq_closedForm_of_flow (sys : LinearSys 𝕋 n) {U : S n} {t : ℝ} (ht : 0 ≤ t)
-    (hU : Bornology.IsBounded (construct U)) {x u : ℝ → Vec ℝ n}
-    (hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s ∈ construct U)
+    (hU : Bornology.IsBounded (toSet U)) {x u : ℝ → Vec ℝ n}
+    (hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s ∈ toSet U)
     (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 t)))
     (hcont : ContinuousOn x (Set.Icc 0 t))
     (hflow : ∀ τ ∈ Set.Icc (0:ℝ) t, x τ = x 0 + ∫ ρ in (0:ℝ)..τ, (toRealMat sys.A *ᵥ x ρ + u ρ))

@@ -68,9 +68,9 @@ private theorem aux_norm_absMat (M : Mat ℝ n n) : ‖Real.MatExp.absMat M‖ =
 theorem MatExp.adaptiveRemainder_subset_intervalInputRemainder (A : Interval (Mat 𝕋 n n))
     {r : 𝕋} (hr : 0 ≤ toReal r) (η : ℕ)
     (hε : toReal (MatExp.normUpperBound (Interval.smul r r A)) / ((η : ℝ) + 2) ≤ 1 / 2)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) : -- --- CONCL ---
-    (Real.MatExp.adaptiveRemainder M (toReal r) η).construct
-      ⊆ (MatExp.intervalInputRemainder A r η).construct := by -- --- PROOF ---
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) : -- --- CONCL ---
+    (Real.MatExp.adaptiveRemainder M (toReal r) η).toSet
+      ⊆ (MatExp.intervalInputRemainder A r η).toSet := by -- --- PROOF ---
   set nrm := MatExp.normUpperBound (Interval.smul r r A) with hnrm
   set Eb := MatExp.expRemainderBound nrm η with hEb
   -- `‖r|M|‖ = ‖rM‖ ≤ nrm`, so the tail bound applies at `r|M|`

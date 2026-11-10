@@ -97,10 +97,10 @@ private theorem aux_reduceOnTheFlyFrom_outer :
     ∀ {n n₁ m : ℕ} (rest : ReducibleNetwork 𝕋 n₁ m) (H : S n) (L : ReducedLinear 𝕋 n n₁)
       (R : Relaxation 𝕋) (hτ : ∃ σ : ℝ → ℝ, R.Encloses σ) (B : MergeBuckets 𝕋)
       {σ : ℝ → ℝ} (_hR : R.Encloses σ) {c : Vec ℝ n₁}
-      (_hc : c - toRealVec L.b ∈ L.I'.construct) {h : Vec ℝ n₁ → Vec ℝ m}
+      (_hc : c - toRealVec L.b ∈ L.I'.toSet) {h : Vec ℝ n₁ → Vec ℝ m}
       (_hrest : rest.IsInstance h) {Φhat : ReducibleNetwork 𝕋 n m} {Y : S m},
       reduceOnTheFlyFrom le tol fuel ρ H L R hτ B rest = some (Φhat, Y) →
-      ∀ x ∈ construct H, h (fun i => σ ((toRealMat L.W *ᵥ x + c) i)) ∈ construct Y
+      ∀ x ∈ toSet H, h (fun i => σ ((toRealMat L.W *ᵥ x + c) i)) ∈ toSet Y
   | _, _, _, .nil, H, L, R, hτ, B, σ, hR, c, hc, _, hrest, Φhat, Y, hrun => by
       cases hrest with
       | nil hid =>
@@ -110,7 +110,7 @@ private theorem aux_reduceOnTheFlyFrom_outer :
         intro x hx
         rw [hid]
         exact (Layer.activation_encloses hR).enclose_outer _ _
-          (Layer.linearWithError_mem L.W (Interval.construct_subset_nonemptyHull _ hc) H hx)
+          (Layer.linearWithError_mem L.W (Interval.toSet_subset_nonemptyHull _ hc) H hx)
   | _, _, _, .cons L1 R1 hτ1 B1 rest1, H, L, R, hτ, B, σ, hR, c, hc, _, hrest, Φhat, Y, hrun => by
       cases hrest with
       | @cons _ _ _ _ c1 _ _ σ1 _ _ h1 _ hR1 hc1 hrest1 hf1 =>
@@ -130,12 +130,12 @@ private theorem aux_reduceOnTheFlyFrom_outer :
             intro x hx
             set v : Vec ℝ _ := fun i => σ ((toRealMat L.W *ᵥ x + c) i) with hv
             -- line 5's box holds the merged neurons' values, computed at the float boxes
-            have hvk : v ∈ construct I_k :=
+            have hvk : v ∈ toSet I_k :=
               (Layer.activation_encloses (S := ℐ𝒱[𝕋]) hR).enclose_outer _ _
                 (Layer.linearWithError_mem (S := ℐ𝒱[𝕋]) L.W
-                  (Interval.construct_subset_nonemptyHull _ hc) _ (interval_outer H hx))
+                  (Interval.toSet_subset_nonemptyHull _ hc) _ (interval_outer H hx))
             have hw : v ∘ part.right
-                ∈ (⟨I_k.inf ∘ part.right, I_k.sup ∘ part.right⟩ : Interval (Vec 𝕋 _)).construct :=
+                ∈ (⟨I_k.inf ∘ part.right, I_k.sup ∘ part.right⟩ : Interval (Vec 𝕋 _)).toSet :=
               fun i => hvk (part.right i)
             -- the survivors pass the trimmed layer `k-1`, then the activation
             have hrow : toRealMat (L.mergeRows part).W *ᵥ x + c ∘ part.left
@@ -143,15 +143,15 @@ private theorem aux_reduceOnTheFlyFrom_outer :
               funext i
               simp [Matrix.mulVec, dotProduct, toRealMat, ReducedLinear.mergeRows]
             have hcl : c ∘ part.left - toRealVec (L.mergeRows part).b
-                ∈ (L.mergeRows part).I'.construct := fun i => hc (part.left i)
+                ∈ (L.mergeRows part).I'.toSet := fun i => hc (part.left i)
             have hA1 := Layer.linearWithError_mem (S := S) (L.mergeRows part).W
-              (Interval.construct_subset_nonemptyHull _ hcl) H hx
+              (Interval.toSet_subset_nonemptyHull _ hcl) H hx
             rw [hrow] at hA1
             have hA2 := (Layer.activation_encloses (S := S) hR).enclose_outer _ _ hA1
             -- the bucket's own values freeze layer `k+1`'s bias inside `mergeCols`'s box
             set W1 := toRealMat L1.W
             have hc' : c1 + W1.submatrix id part.right *ᵥ (v ∘ part.right)
-                - toRealVec (L1.mergeCols part I_k).b ∈ (L1.mergeCols part I_k).I'.construct := by
+                - toRealVec (L1.mergeCols part I_k).b ∈ (L1.mergeCols part I_k).I'.toSet := by
               have hsplit : c1 + W1.submatrix id part.right *ᵥ (v ∘ part.right) - toRealVec L1.b
                   = (c1 - toRealVec L1.b) + W1.submatrix id part.right *ᵥ (v ∘ part.right) := by
                 abel
@@ -174,7 +174,7 @@ the reduced network's enclosure of `X`. -/
 theorem reduceOnTheFly_outer {n m : ℕ} {X : S n} {Φ : ReducibleNetwork 𝕋 n m}
     {f : Vec ℝ n → Vec ℝ m} (hΦ : Φ.IsInstance f) : -- --- CONCL ---
     ∀ Φhat Y, (Φhat, Y) ∈ reduceOnTheFly le tol fuel X ρ Φ →
-      f '' construct X ⊆ construct Y ∧ Y = Φhat.toNetwork.enclose X := by -- --- PROOF ---
+      f '' toSet X ⊆ toSet Y ∧ Y = Φhat.toNetwork.enclose X := by -- --- PROOF ---
   intro Φhat Y (hrun : reduceOnTheFly le tol fuel X ρ Φ = some (Φhat, Y))
   cases hΦ with
   | nil hid =>

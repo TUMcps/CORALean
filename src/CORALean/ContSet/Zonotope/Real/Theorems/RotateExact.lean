@@ -42,7 +42,7 @@ open Matrix
 
 /-- Exact: the image of `Z` under the rotation is what `rotate` denotes. -/
 theorem Zonotope.rotate_exact {n : ℕ} (Z : Zonotope (Vec ℝ n)) (i j : Fin n) (angle : ℝ) :
-    (rotMat n i j angle *ᵥ ·) '' Z.construct = (Z.rotate i j angle).construct :=
+    (rotMat n i j angle *ᵥ ·) '' Z.toSet = (Z.rotate i j angle).toSet :=
   Zonotope.mtimes_exact _ Z
 
 end CORALean.Real

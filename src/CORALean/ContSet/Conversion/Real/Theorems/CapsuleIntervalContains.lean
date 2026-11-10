@@ -51,7 +51,7 @@ private theorem aux_abs_le_sqrt_sumSq (y : Vec ℝ n) (i : Fin n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.interval_contains (C : Capsule n) : -- --- CONCL ---
-    C.construct ⊆ C.interval.construct := by -- --- PROOF ---
+    C.toSet ⊆ C.interval.toSet := by -- --- PROOF ---
   rintro x ⟨t, ht, hle⟩ i
   simp only [Capsule.interval]
   have hbound : |x i - (C.c i + t * C.g i)| ≤ C.r :=

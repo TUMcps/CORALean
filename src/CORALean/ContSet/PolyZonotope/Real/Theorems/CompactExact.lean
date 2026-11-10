@@ -47,7 +47,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- CORA's `compact`, and what an order bound rests on: the set is unchanged. -/
 theorem PolyZonotope.compact_exact (pZ : PolyZonotope α) :
-    pZ.construct = pZ.compact.construct :=
+    pZ.toSet = pZ.compact.toSet :=
   (PolyZonotope.compactGens_exact pZ).trans
     (PolyZonotope.compactFactors_exact pZ.compactGens)
 

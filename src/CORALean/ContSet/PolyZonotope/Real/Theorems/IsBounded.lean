@@ -37,10 +37,10 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.isBounded_construct (pZ : PolyZonotope α) :
-    Bornology.IsBounded pZ.construct := by
+theorem PolyZonotope.isBounded_toSet (pZ : PolyZonotope α) :
+    Bornology.IsBounded pZ.toSet := by
   rw [PolyZonotope.conPolyZono_exact]
-  exact pZ.conPolyZono.isCompact_construct.isBounded
+  exact pZ.conPolyZono.isCompact_toSet.isBounded
 
 end CORALean.Real
 

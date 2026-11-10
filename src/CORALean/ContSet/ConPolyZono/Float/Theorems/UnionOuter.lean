@@ -60,7 +60,7 @@ theorem ConPolyZono.union_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (hE₁ : Real.ConPolyZono.HasNoZeroCol cPZ₁.E) (hR₁ : Real.ConPolyZono.HasNoZeroCol cPZ₁.cons.R)
     (hE₂ : Real.ConPolyZono.HasNoZeroCol cPZ₂.E)
     (hR₂ : Real.ConPolyZono.HasNoZeroCol cPZ₂.cons.R) : -- --- CONCL ---
-    cPZ₁.construct ∪ cPZ₂.construct ⊆ (cPZ₁.union cPZ₂).construct := by -- --- PROOF ---
+    cPZ₁.toSet ∪ cPZ₂.toSet ⊆ (cPZ₁.union cPZ₂).toSet := by -- --- PROOF ---
   -- the relaxed exact union of the read-back operands holds both nominal sets
   have hex := Real.ConPolyZono.union_relax_subset cPZ₁.nominalCore cPZ₂.nominalCore
     (toRealVec cPZ₁.cons.b_error) (toRealVec cPZ₂.cons.b_error) hq₁ hq₂ hE₁ hR₁ hE₂ hR₂

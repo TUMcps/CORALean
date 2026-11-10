@@ -84,17 +84,17 @@ every direction, give a bound on the time-interval reachable set over one step
 noncomputable def LinearSys.timeIntervalBound (sys : LinearSys 𝕋 n) {T : Set ℝ} (R₀ U : S n)
     {r : ℝ} (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U))
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U))
     (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U))
     (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U))
     (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U))
-    (h0 : (0 : Vec ℝ n) ∈ construct U)
-    (b₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (construct R₀) d)
-    (bC : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (construct (Mtimes.mtimes (𝕄 := ℐ)
+    (h0 : (0 : Vec ℝ n) ∈ toSet U)
+    (b₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (toSet R₀) d)
+    (bC : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (toSet (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.correctionMatrix (toRealMat sys.A) r (m + 2)) R₀)) d)
     (bP : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ,
-      SupportBound (construct (sys.inputSolution r (m + 2) U)) d)
+      SupportBound (toSet (sys.inputSolution r (m + 2) U)) d)
     (c : Vec ℝ n →ₗ[ℝ] ℝ) :
     SupportBound (sys.timeIntervalReachSetExact T R₀ U r) c :=
   (((b₀ c).setLinComb (SupportBound.image (mulVecLin (exp (r • toRealMat sys.A)))

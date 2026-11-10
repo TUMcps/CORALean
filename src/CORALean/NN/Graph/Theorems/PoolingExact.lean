@@ -49,8 +49,8 @@ variable {N F : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem GNN.sumPool_exact (pZ : PolyZonotope (Mat ℝ N F)) : -- --- CONCL ---
-    (fun H j => (GNN.onesRow N * H) 0 j) '' pZ.construct
-      = (GNN.sumPool pZ).construct := by -- --- PROOF ---
+    (fun H j => (GNN.onesRow N * H) 0 j) '' pZ.toSet
+      = (GNN.sumPool pZ).toSet := by -- --- PROOF ---
   -- the paper's `1 H` read back as the linear map the propagation maps by
   have h : (fun (H : Mat ℝ N F) (j : Fin F) => (GNN.onesRow N * H) 0 j)
       = GNN.sumPoolLin N F :=

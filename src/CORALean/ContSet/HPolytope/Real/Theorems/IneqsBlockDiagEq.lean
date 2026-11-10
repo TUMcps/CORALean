@@ -54,10 +54,10 @@ variable {q₁ q₂ n₁ n₂ : ℕ}
 theorem HPolytope.ineqs_blockDiag_eq (A₁ : Mat ℝ q₁ n₁) (b₁ : Vec ℝ q₁) (A₂ : Mat ℝ q₂ n₂)
     (b₂ : Vec ℝ q₂) : -- --- CONCL ---
     (HPolytope.ineqs (Matrix.of fun r => Fin.addCases (fun r₁ => Fin.append (A₁ r₁) 0)
-        (fun r₂ => Fin.append 0 (A₂ r₂)) r) (Fin.append b₁ b₂)).construct =
+        (fun r₂ => Fin.append 0 (A₂ r₂)) r) (Fin.append b₁ b₂)).toSet =
       (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
-        ((HPolytope.ineqs A₁ b₁).construct ×ˢ
-          (HPolytope.ineqs A₂ b₂).construct) := by -- --- PROOF ---
+        ((HPolytope.ineqs A₁ b₁).toSet ×ˢ
+          (HPolytope.ineqs A₂ b₂).toSet) := by -- --- PROOF ---
   -- a block row sees only its own block of coordinates
   have hrow : ∀ (z : Vec ℝ (n₁ + n₂)) (r : Fin (q₁ + q₂)),
       ((Matrix.of fun r => Fin.addCases (fun r₁ => Fin.append (A₁ r₁) 0)

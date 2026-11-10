@@ -70,7 +70,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- `Zonotope.lowerDot` is attained from below. -/
 private theorem Zonotope.aux_lowerDot_le (Z : Zonotope (Vec 𝕋 n)) (a : Vec 𝕋 n)
     (hE : ∀ i, toReal (Z.I_error.inf i) ≤ toReal (Z.I_error.sup i)) : -- --- CONCL ---
-    ∃ x ∈ Z.construct, toReal (Z.lowerDot a) ≤ ∑ i, toReal (a i) * x i := by -- --- PROOF ---
+    ∃ x ∈ Z.toSet, toReal (Z.lowerDot a) ≤ ∑ i, toReal (a i) * x i := by -- --- PROOF ---
   -- the generator signs and the box corner the support formula names
   set s : Fin Z.h → ℝ := fun j => ∑ i, toReal (a i) * toReal (Z.G j i) with hs
   set β : Vec ℝ Z.h := fun j => if 0 ≤ s j then 1 else -1 with hβ
@@ -84,7 +84,7 @@ private theorem Zonotope.aux_lowerDot_le (Z : Zonotope (Vec 𝕋 n)) (a : Vec �
     by_cases h : 0 ≤ s j
     · simp [hβ, h, abs_of_nonneg h]
     · simp [hβ, h, abs_of_neg (not_le.mp h)]
-  have hemem : e ∈ Z.I_error.construct := fun i => by
+  have hemem : e ∈ Z.I_error.toSet := fun i => by
     show toReal (Z.I_error.inf i) ≤ e i ∧ e i ≤ toReal (Z.I_error.sup i)
     by_cases h : toReal (a i) * toReal (Z.I_error.inf i) ≤ toReal (a i) * toReal (Z.I_error.sup i)
     · rw [show e i = toReal (Z.I_error.inf i) from if_pos h]; exact ⟨le_rfl, hE i⟩
@@ -154,8 +154,8 @@ theorem LinearSys.minBackReachSupportFloat_ge (sys : LinearSys 𝕋 n)
     (hE : ∀ i, toReal ((sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k).ZU₀.I_error.inf i)
       ≤ toReal ((sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k).ZU₀.I_error.sup i))
     : -- --- CONCL ---
-    ∃ w ∈ (sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k).ZU₀.construct,
-      ∀ x ∈ (sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k).R.construct,
+    ∃ w ∈ (sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k).ZU₀.toSet,
+      ∀ x ∈ (sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k).R.toSet,
         (toRealMat N *ᵥ x) j + (toRealMat N *ᵥ w) j
           ≤ toReal (sys.minBackReachSupportFloat CZ W₀ U₀ Zw N t₀ Δt η ν k j) := by -- --- PROOF ---
   set s := sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k

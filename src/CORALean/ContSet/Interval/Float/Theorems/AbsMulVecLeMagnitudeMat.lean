@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.abs_mulVec_le_magnitudeMat {M : Interval (Mat 𝕋 m n)} {A : Mat ℝ m n}
-    (hA : A ∈ M.construct) {x : Vec ℝ n} {ξ : Vec 𝕋 n} (hx : ∀ k, |x k| ≤ toReal (ξ k))
+    (hA : A ∈ M.toSet) {x : Vec ℝ n} {ξ : Vec 𝕋 n} (hx : ∀ k, |x k| ≤ toReal (ξ k))
     (i : Fin m) :
     |((A *ᵥ x) i)| ≤ toReal (dotUp (M.magnitudeMat i) ξ) :=
   abs_mulVec_le_dotUp (fun i k => by

@@ -40,7 +40,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.zero_mem_recenter (I : Interval α) (hI : I.IsNonempty (ι := ι)) :
-    (0 : α) ∈ (I.recenter).construct := fun i => by
+    (0 : α) ∈ (I.recenter).toSet := fun i => by
   have h := I.mem_center hI i
   show entry (I.inf - I.center) i ≤ entry (0 : α) i ∧
     entry (0 : α) i ≤ entry (I.sup - I.center) i

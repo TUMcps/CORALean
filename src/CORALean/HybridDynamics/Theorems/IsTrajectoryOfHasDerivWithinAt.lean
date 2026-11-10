@@ -56,13 +56,13 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 and disturbance, is a stay. -/
 theorem Location.IsTrajectory.of_hasDerivWithinAt {ℓ : Location S G L 𝕋 n} {τ : ℝ}
     {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ ℓ.dynamics.m} {w : ℝ → Vec ℝ ℓ.dynamics.r} (nonneg : 0 ≤ τ)
-    (input : ∀ t ∈ Set.Icc 0 τ, u t ∈ construct ℓ.U)
-    (dist : ∀ t ∈ Set.Icc 0 τ, w t ∈ construct ℓ.W)
+    (input : ∀ t ∈ Set.Icc 0 τ, u t ∈ toSet ℓ.U)
+    (dist : ∀ t ∈ Set.Icc 0 τ, w t ∈ toSet ℓ.W)
     (hu : ContinuousOn u (Set.Icc 0 τ)) (hw : ContinuousOn w (Set.Icc 0 τ))
     (hd : ∀ t ∈ Set.Icc 0 τ, HasDerivWithinAt x (toRealMat ℓ.dynamics.A *ᵥ x t +
       toRealMat ℓ.dynamics.B *ᵥ u t + toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w t)
         (Set.Icc 0 τ) t)
-    (invariant : ∀ t ∈ Set.Icc 0 τ, x t ∈ construct ℓ.inv) : -- --- CONCL ---
+    (invariant : ∀ t ∈ Set.Icc 0 τ, x t ∈ toSet ℓ.inv) : -- --- CONCL ---
     ℓ.IsTrajectory τ x u w := by -- --- PROOF ---
   have hx : ContinuousOn x (Set.Icc 0 τ) := fun t ht => (hd t ht).continuousWithinAt
   -- the right-hand side along the stay is continuous, so measurable and integrable

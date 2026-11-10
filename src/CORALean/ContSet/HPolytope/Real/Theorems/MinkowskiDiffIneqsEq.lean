@@ -70,7 +70,7 @@ private theorem aux_coe_le_sub_iff (a b : ℝ) (ρ : EReal) : -- --- CONCL ---
 
 theorem HPolytope.minkowskiDiff_ineqs_eq (A : Mat ℝ q n) (b : Vec ℝ q)
     (S : Set (Vec ℝ n)) : -- --- CONCL ---
-    minkowskiDiff (HPolytope.ineqs A b).construct S =
+    minkowskiDiff (HPolytope.ineqs A b).toSet S =
       {x | ∀ j, (((A *ᵥ x) j : ℝ) : EReal) ≤
         (b j : EReal) - supportFunc S (HPolytope.rowLin A j)} := by -- --- PROOF ---
   ext x

@@ -74,8 +74,8 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 window: `plus` absorbs one propagated copy at a time, as the operation builds it. -/
 private theorem LinearSys.aux_propagate_subset_particularSolution (sys : LinearSys 𝕋 n) (Δt : ℝ)
     (η : ℕ) (U : S n) : ∀ k : ℕ,
-    sys.propagateInputSolution Δt (construct (sys.inputSolution Δt η U)) (k + 1)
-      ⊆ construct (sys.particularSolution Δt η U k)
+    sys.propagateInputSolution Δt (toSet (sys.inputSolution Δt η U)) (k + 1)
+      ⊆ toSet (sys.particularSolution Δt η U k)
   | 0 => by
     -- `{0} + e^{A·0} P^R(Δt)` is `P^R(Δt)` itself
     intro y hy
@@ -97,24 +97,24 @@ theorem LinearSys.inputReach_subset_particularSolution
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
     (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 < Δt) {η : ℕ}
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {U : S n}
-    (h0 : (0 : Vec ℝ n) ∈ construct U) (k : ℕ) {t : ℝ} (ht0 : 0 ≤ t)
+    (h0 : (0 : Vec ℝ n) ∈ toSet U) (k : ℕ) {t : ℝ} (ht0 : 0 ≤ t)
     (htk : t ≤ ((k + 1 : ℕ) : ℝ) * Δt) : -- --- CONCL ---
-    sys.inputReach U t ⊆ construct (sys.particularSolution Δt η U k) := by -- --- PROOF ---
-  have hbdd := CompactSet.isBounded_construct U
+    sys.inputReach U t ⊆ toSet (sys.particularSolution Δt η U k) := by -- --- PROOF ---
+  have hbdd := CompactSet.isBounded_toSet U
   -- [2, Prop. 2]: one step of the input, inside `inputSolution`
-  have hΔ : sys.inputReach U Δt ⊆ construct (sys.inputSolution Δt η U) :=
-    sys.inputReach_subset_inputSolution hΔt η hε (ConvexSet.convex_construct U)
-      (CompactSet.isClosed_construct U) hbdd (ConvexSet.convex_construct _)
-      (CompactSet.isClosed_construct _) (CompactSet.isBounded_construct _)
+  have hΔ : sys.inputReach U Δt ⊆ toSet (sys.inputSolution Δt η U) :=
+    sys.inputReach_subset_inputSolution hΔt η hε (ConvexSet.convex_toSet U)
+      (CompactSet.isClosed_toSet U) hbdd (ConvexSet.convex_toSet _)
+      (CompactSet.isClosed_toSet _) (CompactSet.isBounded_toSet _)
   calc sys.inputReach U t
       -- [1, Prop. 4]: `0 ∈ U`, so the window's right end bounds every earlier time
       ⊆ sys.inputReach U (((k + 1 : ℕ) : ℝ) * Δt) := sys.inputReach_mono hbdd h0 ht0 htk
     -- [1, Prop. 4]: exactly the one-step set, propagated `k + 1` times
     _ = sys.propagateInputSolution Δt (sys.inputReach U Δt) (k + 1) :=
       (sys.propagateInputSolution_inputReach hΔt.le hbdd ⟨0, h0⟩ (k + 1)).symm
-    _ ⊆ sys.propagateInputSolution Δt (construct (sys.inputSolution Δt η U)) (k + 1) :=
+    _ ⊆ sys.propagateInputSolution Δt (toSet (sys.inputSolution Δt η U)) (k + 1) :=
       sys.propagateInputSolution_mono Δt hΔ (k + 1)
-    _ ⊆ construct (sys.particularSolution Δt η U k) :=
+    _ ⊆ toSet (sys.particularSolution Δt η U k) :=
       sys.aux_propagate_subset_particularSolution Δt η U k
 
 end CORALean

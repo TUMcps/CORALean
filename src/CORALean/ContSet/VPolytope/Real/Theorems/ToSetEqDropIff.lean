@@ -1,0 +1,69 @@
+module
+
+public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
+public import CORALean.Global.DropIdx
+
+@[expose] public section
+
+/-!
+# A redundant point of a V-polytope
+
+[1, Eq. 2]: dropping the `j`-th point leaves the polytope unchanged exactly when that point lies
+in the polytope of the others.
+
+## Inputs
+* `P` – polytope
+* `j` – vertex index
+
+## Hypotheses
+* none
+
+## Conclusion
+* dropping vertex `j` keeps the set iff `P.V j` lies in the rest
+
+## References
+
+* [1] [M. Wetzlinger, V. Kotsev, A. Kulmburg and M. Althoff. "Implementation of Polyhedral
+      Operations in CORA 2024". Proceedings of the 11th Int. Workshop on Applied Verification for
+      Continuous and Hybrid Systems,
+      2024.](../../../../../../references/2024/wetzlinger-arch-polyhedral-operations.md)
+-/
+
+-- Authors:       Claude Opus 5.5
+-- Written:       03-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+variable {α : Type} [AddCommGroup α] [Module ℝ α]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem VPolytope.toSet_eq_drop_iff (P : VPolytope α) (j : Fin P.k) : -- --- CONCL ---
+    P.toSet = (⟨P.k - 1, fun i => P.V (dropIdx j i)⟩ : VPolytope α).toSet ↔
+      P.V j ∈ (⟨P.k - 1, fun i => P.V (dropIdx j i)⟩ : VPolytope α).toSet := by -- --- PROOF ---
+  constructor
+  · intro h
+    rw [← h]
+    exact P.vertex_mem j
+  · intro h
+    rw [VPolytope.toSet_eq_convexHull] at h
+    rw [VPolytope.toSet_eq_convexHull, VPolytope.toSet_eq_convexHull]
+    refine Set.Subset.antisymm (convexHull_min ?_ (convex_convexHull ℝ _))
+      (convexHull_mono ?_)
+    -- every point is either the dropped one or one of the others
+    · rintro _ ⟨l, rfl⟩
+      revert l
+      exact (forall_dropIdx_iff j).mpr ⟨h, fun i => subset_convexHull ℝ _ ⟨i, rfl⟩⟩
+    · rintro _ ⟨i, rfl⟩
+      exact ⟨dropIdx j i, rfl⟩
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

@@ -14,7 +14,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 A sign corner of the sheared zonotope is the shear of the same sign corner, and the shear and its
 inverse map a segment to the segment of the images. So `x` is on a walk edge of `Z.shear κ` exactly
-when the unsheared point `(x₀ + κ x₁, x₁)` is on one of `Z`. With `mem_shear_construct` it carries a
+when the unsheared point `(x₀ + κ x₁, x₁)` is on one of `Z`. With `mem_shear_toSet` it carries a
 vertical section theorem to every line `x - κ y = γ` ([1, Alg. 3]).
 
 ## Inputs

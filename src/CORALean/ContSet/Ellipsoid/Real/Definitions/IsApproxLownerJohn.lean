@@ -46,8 +46,8 @@ variable {n : ℕ}
 /-- [1, Def. 1.2]: `E(E/n², s) ⊆ C ⊆ E((1+ε)E, s)`. -/
 noncomputable def Ellipsoid.IsApproxLownerJohn (ε : ℝ) (C : Set (Vec ℝ n)) (E : Ellipsoid n) :
     Prop :=
-  (Ellipsoid.ofShape ((1 / (n : ℝ) ^ 2) • E.Q) E.q).construct ⊆ C
-    ∧ C ⊆ (Ellipsoid.ofShape ((1 + ε) • E.Q) E.q).construct
+  (Ellipsoid.ofShape ((1 / (n : ℝ) ^ 2) • E.Q) E.q).toSet ⊆ C
+    ∧ C ⊆ (Ellipsoid.ofShape ((1 + ε) • E.Q) E.q).toSet
 
 end CORALean.Real
 

@@ -121,8 +121,8 @@ private theorem NonlinearSys.aux_ball₂ (y : Vec ℝ n) (r : ℝ) : -- --- CONC
 /-- Two points `a`, `b` of a zonotope differ by `G β`, `‖β‖₂ ≤ 2√γ`, so
 `‖N (b - a)‖₂ ≤ 2 √γ ‖N G‖₂`. -/
 private theorem NonlinearSys.aux_norm₂_mulVec_sub_le (Z : Real.Zonotope (Vec ℝ n))
-    (N : Mat ℝ n n) {a b : Vec ℝ n} (ha : a ∈ Z.construct)
-    (hb : b ∈ Z.construct) : -- --- CONCL ---
+    (N : Mat ℝ n n) {a b : Vec ℝ n} (ha : a ∈ Z.toSet)
+    (hb : b ∈ Z.toSet) : -- --- CONCL ---
     ‖N *ᵥ (b - a)‖₂ ≤ 2 * (Real.sqrt Z.h * genOpNorm₂ fun j => N *ᵥ Z.G j) := by -- --- PROOF ---
   obtain ⟨α, hα, rfl⟩ := ha
   obtain ⟨β, hβ, rfl⟩ := hb
@@ -476,7 +476,7 @@ zonotope `⟨c₀, G⟩`, `conv(A₀ ∪ A₁) ⊖ B_µ + 2c ⊆ R(τ₀)`, give
 `E = C ⊕ R̂_err` of its chord. -/
 theorem NonlinearSys.minkowskiDiff_convexHull_ball_subset_reachSetExact (sys : NonlinearSys n m)
     {X₀ : Set (Vec ℝ n)} (hX₀ : Convex ℝ X₀) (Z : Real.Zonotope (Vec ℝ n))
-    (hXZ : X₀ ⊆ Z.construct) (U : Set (Vec ℝ m)) {Δt : ℝ} (hΔt : 0 < Δt) (M : Mat ℝ n n)
+    (hXZ : X₀ ⊆ Z.toSet) (U : Set (Vec ℝ m)) {Δt : ℝ} (hΔt : 0 < Δt) (M : Mat ℝ n n)
     (hM : IsUnit M.det) (v : Vec ℝ n) (C Rerr : Set (Vec ℝ n)) (hE : IsCompact (C + Rerr))
     (hEc : Convex ℝ (C + Rerr)) (hEne : (C + Rerr).Nonempty) {c : Vec ℝ n}
     (hEs : ∀ e ∈ C + Rerr, (2 : ℝ) • c - e ∈ C + Rerr) {u₀ : Vec ℝ m} (hu₀ : u₀ ∈ U)

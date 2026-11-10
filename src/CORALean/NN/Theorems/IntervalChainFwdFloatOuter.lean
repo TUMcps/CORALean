@@ -54,9 +54,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 theorem IntervalChain.fwd_outer {n k : ℕ} {c : IntervalChain 𝕋 n k}
     {r : Real.IntervalChain n k} (hc : c.Encloses r) : -- --- CONCL ---
     ∀ (P : Interval (Vec 𝕋 n) × Interval (Vec 𝕋 n)) (p : Vec ℝ n × Vec ℝ n),
-      p.1 ∈ P.1.construct → p.2 ∈ P.2.construct →
-      (r.fwd p).1 ∈ (c.fwd P).1.construct ∧
-        (r.fwd p).2 ∈ (c.fwd P).2.construct := by -- --- PROOF ---
+      p.1 ∈ P.1.toSet → p.2 ∈ P.2.toSet →
+      (r.fwd p).1 ∈ (c.fwd P).1.toSet ∧
+        (r.fwd p).2 ∈ (c.fwd P).2.toSet := by -- --- PROOF ---
   induction hc with
   | nil => intro P p h1 h2; exact ⟨h1, h2⟩
   | @linear n m k W b c r _ ih =>

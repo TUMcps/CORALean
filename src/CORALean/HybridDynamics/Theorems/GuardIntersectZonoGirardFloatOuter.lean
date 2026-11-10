@@ -60,11 +60,11 @@ theorem Location.guardIntersectZonoGirardFloat_outer (Bs : List (Mat 𝕋 n n))
     (R₀ : Zonotope (Vec 𝕋 n))
     (Rs : List (Zonotope (Vec 𝕋 n))) (nv : Vec 𝕋 n) (γ : 𝕋)
     (horth : ∀ B ∈ Bs, Scalar.toRealMat B * (Scalar.toRealMat B)ᵀ = 1)
-    {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ R₀ :: Rs) {x : Vec ℝ n} (hx : x ∈ R.construct)
+    {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ R₀ :: Rs) {x : Vec ℝ n} (hx : x ∈ R.toSet)
     (hg : x ⬝ᵥ toRealVec nv = toReal γ) : -- --- CONCL ---
-    x ∈ (Location.guardIntersectZonoGirardFloat Bs R₀ Rs nv γ).construct := by -- --- PROOF ---
+    x ∈ (Location.guardIntersectZonoGirardFloat Bs R₀ Rs nv γ).toSet := by -- --- PROOF ---
   have hfold : ∀ (Is : List (Interval (Vec 𝕋 n))) (J : Interval (Vec 𝕋 n)) (y : Vec ℝ n),
-      (y ∈ J.construct ∨ ∃ I ∈ Is, y ∈ I.construct) → y ∈ (Is.foldl Interval.or J).construct := by
+      (y ∈ J.toSet ∨ ∃ I ∈ Is, y ∈ I.toSet) → y ∈ (Is.foldl Interval.or J).toSet := by
     intro Is
     induction Is with
     | nil => exact fun J y h => h.resolve_right (by simp)
@@ -78,7 +78,7 @@ theorem Location.guardIntersectZonoGirardFloat_outer (Bs : List (Mat 𝕋 n n))
         · exact Or.inl (Interval.or_outer J I' (Or.inr hy))
         · exact Or.inr ⟨I', hI', hy⟩
   -- member `i` of the bundle, whose basis is orthogonal
-  refine SetIntersection.mem_construct_ofFn.mpr fun i => ?_
+  refine SetIntersection.mem_toSet_ofFn.mpr fun i => ?_
   have hB : Scalar.toRealMat Bs[i] * (Scalar.toRealMat Bs[i])ᵀ = 1 :=
     horth _ (List.getElem_mem i.isLt)
   unfold Location.guardIntersectZonoGirardFloat
@@ -95,8 +95,8 @@ theorem Location.guardIntersectZonoGirardFloat_outer (Bs : List (Mat 𝕋 n n))
     ⟨fun k => neg (Location.zonoGirardUpperFloat R' nv γ (-(Bᵀ k))),
       fun k => Location.zonoGirardUpperFloat R' nv γ (Bᵀ k)⟩ with hboxOf
   -- the state's coordinates lie in the cut of a set holding it
-  have hcut : ∀ R' : Zonotope (Vec 𝕋 n), x ∈ R'.construct →
-      Scalar.toRealMat Bᵀ *ᵥ x ∈ (boxOf R').construct :=
+  have hcut : ∀ R' : Zonotope (Vec 𝕋 n), x ∈ R'.toSet →
+      Scalar.toRealMat Bᵀ *ᵥ x ∈ (boxOf R').toSet :=
     fun R' hx' => by
     -- the coordinate `k` of `Bᵀ x` is `x·ℓ` for the column `ℓ` of `B`
     intro k

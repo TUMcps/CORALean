@@ -62,10 +62,10 @@ zonotope aligned with `Z` at `(c, α)`. -/
 theorem Zonotope.image_subset_aligned_of_minOut (Z : Zonotope (Vec ℝ n)) (E : Mat ℝ n p)
     (V : Fin M → Vec ℝ p) (θ : Fin Z.h → Fin M → ℝ) (a : Fin Z.h → ℝ) (c : Vec ℝ n)
     (hθ : ∀ i j, |θ i j| ≤ a i) (heq : ∀ j, c + ∑ i, θ i j • Z.G i = E *ᵥ V j) : -- --- CONCL ---
-    (E *ᵥ ·) '' convexHull ℝ (Set.range V) ⊆ (Z.aligned c a).construct := by -- --- PROOF ---
+    (E *ᵥ ·) '' convexHull ℝ (Set.range V) ⊆ (Z.aligned c a).toSet := by -- --- PROOF ---
   show (Matrix.mulVecLin E) '' convexHull ℝ (Set.range V) ⊆ _
   rw [LinearMap.image_convexHull]
-  refine convexHull_min ?_ (Zonotope.convex_construct _)
+  refine convexHull_min ?_ (Zonotope.convex_toSet _)
   rintro _ ⟨_, ⟨j, rfl⟩, rfl⟩
   -- the coefficient of `αᵢgᵢ` is `θᵢⱼ/αᵢ`, and `0` where `αᵢ = 0` forces `θᵢⱼ = 0`
   refine ⟨fun i => if a i = 0 then 0 else θ i j / a i, fun i => ?_, ?_⟩

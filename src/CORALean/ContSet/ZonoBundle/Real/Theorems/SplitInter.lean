@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ToSetEqIInter
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Split
 public import CORALean.ContSet.Zonotope.Real.Theorems.SplitIntersection
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IntersectionExact
@@ -54,13 +54,13 @@ variable {n : ℕ}
 /-- The halves of a split bundle meet in `Z_∩` cut with `Ψ`, its `j`-th generator set to `0`. -/
 theorem ZonoBundle.split_inter (Λ : Mat ℝ n n) (B : Interval (Vec ℝ n)) (j : Fin n)
     (zB : ZonoBundle (Vec ℝ n)) : -- --- CONCL ---
-    (zB.split Λ B j).fst.construct ∩ (zB.split Λ B j).snd.construct = zB.construct ∩
+    (zB.split Λ B j).fst.toSet ∩ (zB.split Λ B j).snd.toSet = zB.toSet ∩
       ({ZonoBundle.parallelotope Λ B with G := Function.update (ZonoBundle.parallelotope Λ B).G j 0}
-        : Zonotope (Vec ℝ n)).construct := by -- --- PROOF ---
-  have hconst : ∀ Z : Zonotope (Vec ℝ n), (ZonoBundle.mk 1 fun _ => Z).construct = Z.construct :=
+        : Zonotope (Vec ℝ n)).toSet := by -- --- PROOF ---
+  have hconst : ∀ Z : Zonotope (Vec ℝ n), (ZonoBundle.mk 1 fun _ => Z).toSet = Z.toSet :=
     fun Z => by
-      rw [ZonoBundle.construct_eq_iInter]
-      exact Set.iInter_const Z.construct
+      rw [ZonoBundle.toSet_eq_iInter]
+      exact Set.iInter_const Z.toSet
   simp only [ZonoBundle.split, ZonoBundle.intersection_exact, hconst]
   rw [← Set.inter_inter_distrib_left, Zonotope.split_intersection]
 

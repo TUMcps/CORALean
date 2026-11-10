@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 /-- `[p; 0]` lies in the extended polynomial zonotope. -/
 def ConPolyZono.containsPoint (cPZ : ConPolyZono (Vec ℝ n)) (p : Vec ℝ n) : Prop :=
-  (p, 0) ∈ cPZ.extPolyZonotope.construct
+  (p, 0) ∈ cPZ.extPolyZonotope.toSet
 
 
 end CORALean.Real

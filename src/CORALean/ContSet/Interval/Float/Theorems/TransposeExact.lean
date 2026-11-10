@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.transpose_exact (I : Interval (Mat 𝕋 m n)) :
-    I.transpose.construct = Matrix.transpose '' I.construct :=
+    I.transpose.toSet = Matrix.transpose '' I.toSet :=
   Real.Interval.transpose_exact I.nominal
 
 end CORALean.Float

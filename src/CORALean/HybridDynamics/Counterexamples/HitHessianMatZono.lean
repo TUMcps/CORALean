@@ -57,11 +57,11 @@ open Matrix
 `R(0)` and `Λ ≠ 0` there, yet `Q⁽¹⁾(x₀)` is outside the matrix zonotope for an `x₀ ∈ R(0)`. -/
 theorem GuardMap.hitHessianMatZono_counterexample : -- --- CONCL ---
     ∃ (A : Mat ℝ 2 2) (b nv : Vec ℝ 2) (d : ℝ) (R₀ : Real.Zonotope (Vec ℝ 2)) (ψc ψg : Vec ℝ 2),
-      (∀ x ∈ R₀.construct, nv ⬝ᵥ (A *ᵥ x + b) ≠ 0) ∧
-      (∀ x ∈ R₀.construct, ∀ l, |(-((nv ⬝ᵥ (A *ᵥ x + b)) • nv) - (d - nv ⬝ᵥ x) • (nv ᵥ* A)) l
+      (∀ x ∈ R₀.toSet, nv ⬝ᵥ (A *ᵥ x + b) ≠ 0) ∧
+      (∀ x ∈ R₀.toSet, ∀ l, |(-((nv ⬝ᵥ (A *ᵥ x + b)) • nv) - (d - nv ⬝ᵥ x) • (nv ᵥ* A)) l
           / (nv ⬝ᵥ (A *ᵥ x + b)) - ψc l| ≤ ψg l) ∧
-      ∃ x₀ ∈ R₀.construct, GuardMap.hitHessianNum A b nv d x₀ 0
-        ∉ (GuardMap.hitHessianMatZono A b nv d R₀ ψc ψg 0).construct := by -- --- PROOF ---
+      ∃ x₀ ∈ R₀.toSet, GuardMap.hitHessianNum A b nv d x₀ 0
+        ∉ (GuardMap.hitHessianMatZono A b nv d R₀ ψc ψg 0).toSet := by -- --- PROOF ---
   refine ⟨Matrix.of ![![0, 0], ![1, -1]], ![1, 0], ![0, 1], 1, ⟨1, ![2, 0], ![![1, 0]]⟩,
     ![-2/3, -1/3], ![1/3, 1/3], ?_, ?_, ?_⟩
   -- on `R(0)`, `x = (2 + β, 0)` and `Λ = 2 + β ∈ [1, 3]`

@@ -36,11 +36,11 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.representsa_origin_iff (E : Ellipsoid n) : -- --- CONCL ---
-    E.construct = {0} ↔ E.representsa_origin := by -- --- PROOF ---
+    E.toSet = {0} ↔ E.representsa_origin := by -- --- PROOF ---
   constructor
   · intro h
     have hc : E.q = 0 := by
-      have := Ellipsoid.center_mem_construct E
+      have := Ellipsoid.center_mem_toSet E
       rw [h] at this
       exact this
     refine ⟨hc, (Ellipsoid.representsa_point_iff E).mp ?_⟩

@@ -81,7 +81,7 @@ private theorem ConZonotope.aux_value_intersectStrip (cZ : ConZonotope (Vec ℝ 
   abel
 
 
-/-- `aux_value_intersectStrip` at the coefficient type `construct` uses. -/
+/-- `aux_value_intersectStrip` at the coefficient type `toSet` uses. -/
 private theorem ConZonotope.aux_value_intersectStrip' (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ s n)
     (φ y : Vec ℝ s) (Λ : Mat ℝ n s) (β : Vec ℝ (cZ.intersectStrip C φ y Λ).h) :
     (cZ.intersectStrip C φ y Λ).c
@@ -115,8 +115,8 @@ private theorem ConZonotope.aux_mulVec_value (cZ : ConZonotope (Vec ℝ n)) (C :
 private theorem ConZonotope.aux_mem_intersectStrip_P_iff (cZ : ConZonotope (Vec ℝ n))
     (C : Mat ℝ s n)
     (φ y : Vec ℝ s) (Λ : Mat ℝ n s) (β : Vec ℝ (cZ.intersectStrip C φ y Λ).h) : -- --- CONCL ---
-    β ∈ (cZ.intersectStrip C φ y Λ).P.construct ↔
-      blockLeft cZ.h s β ∈ cZ.P.construct
+    β ∈ (cZ.intersectStrip C φ y Λ).P.toSet ↔
+      blockLeft cZ.h s β ∈ cZ.P.toSet
         ∧ ∀ i, (y - C *ᵥ (cZ.c + ∑ j, β (Fin.castAdd s j) • cZ.G j)
                   + fun i => φ i * β (Fin.natAdd cZ.h i)) i = 0 := by -- --- PROOF ---
   constructor
@@ -143,8 +143,8 @@ private theorem ConZonotope.aux_mem_intersectStrip_P_iff (cZ : ConZonotope (Vec 
 
 theorem ConZonotope.intersectStrip_exact (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ s n)
     (φ y : Vec ℝ s) (Λ : Mat ℝ n s) (hφ : ∀ i, 0 ≤ φ i) : -- --- CONCL ---
-    (cZ.intersectStrip C φ y Λ).construct
-      = cZ.construct ∩ {x | ∀ i, |(C *ᵥ x) i - y i| ≤ φ i} := by -- --- PROOF ---
+    (cZ.intersectStrip C φ y Λ).toSet
+      = cZ.toSet ∩ {x | ∀ i, |(C *ᵥ x) i - y i| ≤ φ i} := by -- --- PROOF ---
   ext x
   constructor
   · -- the rows make the gain's argument vanish, so the point is the old one

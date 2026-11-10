@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Operations.Capsule_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidZonotopeContains
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetOfFactor
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 public import CORALean.Global.EuclideanNorm
 
@@ -14,7 +14,7 @@ public import CORALean.Global.EuclideanNorm
 CORA's conversion: the segment, exactly, plus the zonotope of the ball (`Ellipsoid.zonotope` of
 `ellipsoid(r² I)`), or the segment alone at `r = 0`. A point of the capsule is a point `c + t g` of
 the segment plus a vector of length at most `r`, which `r · (y / r)` writes as the image of the
-unit ball under `r I`, the ellipsoid's own set (`Ellipsoid.construct_ofFactor`).
+unit ball under `r I`, the ellipsoid's own set (`Ellipsoid.toSet_ofFactor`).
 
 ## Inputs
 * `C` – capsule
@@ -44,7 +44,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.zonotope_contains (C : Capsule n) : -- --- CONCL ---
-    C.construct ⊆ C.zonotope.construct := by -- --- PROOF ---
+    C.toSet ⊆ C.zonotope.toSet := by -- --- PROOF ---
   rintro x ⟨t, ht, hle⟩
   -- what the segment point `c + t g` leaves of `x`
   set y : Vec ℝ n := x - (C.c + t • C.g) with hy
@@ -52,7 +52,7 @@ theorem Capsule.zonotope_contains (C : Capsule n) : -- --- CONCL ---
     have h : ‖y‖₂ = Real.sqrt (∑ i, (x i - (C.c i + t * C.g i)) ^ 2) := by
       simp [CORALean.norm₂, hy]
     rwa [h]
-  have hseg : C.c + t • C.g ∈ (⟨1, C.c, fun _ => C.g⟩ : Zonotope (Vec ℝ n)).construct :=
+  have hseg : C.c + t • C.g ∈ (⟨1, C.c, fun _ => C.g⟩ : Zonotope (Vec ℝ n)).toSet :=
     ⟨fun _ => t, fun _ => abs_le.mpr ht, by simp⟩
   unfold Capsule.zonotope
   split_ifs with hr
@@ -74,7 +74,7 @@ theorem Capsule.zonotope_contains (C : Capsule n) : -- --- CONCL ---
     rw [← Zonotope.plus_exact]
     refine ⟨C.c + t • C.g, hseg, (C.r • (1 : Mat ℝ n n)) *ᵥ (C.r⁻¹ • y), ?_, ?_⟩
     · apply Ellipsoid.zonotope_contains
-      rw [Ellipsoid.construct_ofFactor]
+      rw [Ellipsoid.toSet_ofFactor]
       refine ⟨C.r⁻¹ • y, ?_, by simp⟩
       rw [norm₂_smul, abs_of_pos (inv_pos.mpr hr0)]
       calc C.r⁻¹ * ‖y‖₂ ≤ C.r⁻¹ * C.r := mul_le_mul_of_nonneg_left hy2 (inv_nonneg.mpr hr0.le)

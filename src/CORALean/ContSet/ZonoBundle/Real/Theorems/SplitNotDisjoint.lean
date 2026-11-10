@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitInter
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
@@ -49,12 +49,12 @@ open Matrix
 /-- Printed disjointness is false: some enclosed split has halves that meet. -/
 theorem ZonoBundle.split_not_disjoint : -- --- CONCL ---
     ∃ (B : Interval (Vec ℝ 1)) (zB : ZonoBundle (Vec ℝ 1)),
-    (fun x => (1 : Mat ℝ 1 1)⁻¹ *ᵥ x) '' zB.construct ⊆ B.construct ∧
-      ((zB.split 1 B 0).1.construct ∩ (zB.split 1 B 0).2.construct).Nonempty := by -- --- PROOF ---
+    (fun x => (1 : Mat ℝ 1 1)⁻¹ *ᵥ x) '' zB.toSet ⊆ B.toSet ∧
+      ((zB.split 1 B 0).1.toSet ∩ (zB.split 1 B 0).2.toSet).Nonempty := by -- --- PROOF ---
   -- the box `[-1, 1]` and the bundle holding one zonotope, the same segment
   refine ⟨⟨fun _ => -1, fun _ => 1⟩, ⟨1, fun _ => ⟨1, fun _ => 0, fun _ _ => 1⟩⟩, ?_, ?_⟩
   · rintro _ ⟨x, hx, rfl⟩
-    obtain ⟨β, hβ, rfl⟩ := SetIntersection.mem_construct_ofFn.1 hx (0 : Fin 1)
+    obtain ⟨β, hβ, rfl⟩ := SetIntersection.mem_toSet_ofFn.1 hx (0 : Fin 1)
     intro i
     have := abs_le.mp (hβ 0)
     have h1 : (1 : Mat ℝ 1 1)⁻¹ = 1 := by simp
@@ -64,7 +64,7 @@ theorem ZonoBundle.split_not_disjoint : -- --- CONCL ---
   · -- `0` is the center of both the bundle and the parallelotope, so it is in the shared cut
     rw [ZonoBundle.split_inter]
     refine ⟨(fun _ => 0 : Vec ℝ 1), ?_, ?_⟩
-    · exact SetIntersection.mem_construct_ofFn.2 fun i => ⟨fun _ => 0, fun _ => by simp, by simp⟩
+    · exact SetIntersection.mem_toSet_ofFn.2 fun i => ⟨fun _ => 0, fun _ => by simp, by simp⟩
     · refine ⟨fun _ => 0, fun _ => by simp, ?_⟩
       funext i
       simp [ZonoBundle.parallelotope, Zonotope.mtimes, Interval.zonotope]

@@ -6,8 +6,8 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.ExactPlus
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ExactPlus
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxVecIff
-public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
-public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEqUnit
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemToSetIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemToSetIffOfEqUnit
 
 @[expose] public section
 
@@ -52,9 +52,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 private theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (hp : cPZ₁.p = cPZ₂.p) : -- --- CONCL ---
     ((Real.ConPolyZono.exactPlus cPZ₁.nominalCore cPZ₂.nominalCore hp).relax
-        (toRealVec cPZ₁.cons.b_error)).construct
+        (toRealVec cPZ₁.cons.b_error)).toSet
       ⊆ nominalSet (cPZ₁.exactPlus cPZ₂ hp)
-        + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).construct := by -- --- PROOF ---
+        + (PolyZonotope.centerResidual cPZ₁.c cPZ₂.c).toSet := by -- --- PROOF ---
   intro y hy
   obtain ⟨a, β, ha, hβ, hs, hy⟩ := (Real.ConPolyZono.mem_relax_vec_iff _ _).mp hy
   -- the float point at the same factors and coefficients, off by the center's rounding
@@ -64,7 +64,7 @@ private theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono �
             + ∑ j, toReal ((cPZ₁.exactPlus cPZ₂ hp).GI j i) * β j,
           ConPolyZono.mem_nominalSet_iff.mpr
             ⟨a, β, ha, hβ,
-              (PolyLevelSet.mem_construct_iff_of_eq_unit cPZ₁.cons_eq cPZ₁.cons_dom).mpr ⟨ha, hs⟩,
+              (PolyLevelSet.mem_toSet_iff_of_eq_unit cPZ₁.cons_eq cPZ₁.cons_dom).mpr ⟨ha, hs⟩,
                 fun _ => rfl⟩,
           fun i => toReal (cPZ₁.c i) + toReal (cPZ₂.c i)
             - toReal ((cPZ₁.exactPlus cPZ₂ hp).c i),
@@ -104,8 +104,8 @@ private theorem ConPolyZono.aux_exactPlus_nominal (cPZ₁ cPZ₂ : ConPolyZono �
 theorem ConPolyZono.exactPlus_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (hp : cPZ₁.p = cPZ₂.p) : -- --- CONCL ---
     ((Real.ConPolyZono.exactPlus cPZ₁.nominalCore cPZ₂.nominalCore hp).relax
-        (toRealVec cPZ₁.cons.b_error)).construct + (cPZ₁.I_error.construct + cPZ₂.I_error.construct)
-      ⊆ (cPZ₁.exactPlus cPZ₂ hp).construct := by -- --- PROOF ---
+        (toRealVec cPZ₁.cons.b_error)).toSet + (cPZ₁.I_error.toSet + cPZ₂.I_error.toSet)
+      ⊆ (cPZ₁.exactPlus cPZ₂ hp).toSet := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨y', hy', r, hr, hyr⟩ := ConPolyZono.aux_exactPlus_nominal cPZ₁ cPZ₂ hp hy
   refine ⟨y', hy', e + r, Interval.plus_outer _ _ ⟨e, Interval.plus_outer _ _ he, r, hr, rfl⟩, ?_⟩

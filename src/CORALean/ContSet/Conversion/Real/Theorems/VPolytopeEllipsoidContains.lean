@@ -44,7 +44,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.ellipsoid_contains (P : VPolytope (Vec ℝ n)) :
-    P.construct ⊆ P.ellipsoid.construct :=
+    P.toSet ⊆ P.ellipsoid.toSet :=
   subset_trans P.zonotope_contains (Zonotope.ellipsoid_contains _)
 
 end CORALean.Real

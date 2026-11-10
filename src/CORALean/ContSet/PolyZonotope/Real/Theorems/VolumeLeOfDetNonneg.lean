@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.Volume
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AreaFormula
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.ConstructOfQZero
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.ToSetOfQZero
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.HasFDerivAtPoint
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.Basic
 
@@ -51,7 +51,7 @@ theorem PolyZonotope.volume_le_of_det_nonneg (pZ : PolyZonotope (Vec ℝ n)) (hq
     (hdet : ∀ a ∈ Set.Icc (fun _ : Fin pZ.p => (-1 : ℝ)) (fun _ => 1),
       0 ≤ (Matrix.of fun (i k : Fin n) => pZ.jacobianMat a i (Fin.cast h.symm k)
         : Mat ℝ n n).det) : -- --- CONCL ---
-    MeasureTheory.volume pZ.construct
+    MeasureTheory.volume pZ.toSet
       ≤ ENNReal.ofReal (pZ.step_jacobianDetIntegral h) := by -- --- PROOF ---
   -- destructure, so that `p = n` and `q = 0` can be substituted
   obtain ⟨p, hh, q, c, G, E, GI⟩ := pZ
@@ -59,7 +59,7 @@ theorem PolyZonotope.volume_le_of_det_nonneg (pZ : PolyZonotope (Vec ℝ n)) (hq
   change p = n at h
   subst hq
   subst h
-  rw [PolyZonotope.construct_of_q_zero _ rfl]
+  rw [PolyZonotope.toSet_of_q_zero _ rfl]
   simp only [Fin.cast_eq_self] at hdet
   exact (PolyZonotope.area_formula (PolyZonotope.point (PolyZonotope.mk p hh 0 c G E GI))
     (PolyZonotope.jacobianMat (PolyZonotope.mk p hh 0 c G E GI))

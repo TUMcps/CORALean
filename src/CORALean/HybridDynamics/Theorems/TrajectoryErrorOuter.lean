@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralSubSumM
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderMatMono
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpSubExpTaylorMemExpRemainderInterval
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpTaylorSmulMulVec
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
@@ -81,11 +81,11 @@ variable {n : ℕ}
 namespace Real
 /-- `[a, b] ⊗ Z` encloses every product. -/
 private theorem Zonotope.aux_scalarIntervalMul_outer (a b : ℝ) (Z : Zonotope (Vec ℝ n)) {s : ℝ}
-    (hs : s ∈ Set.Icc a b) {z : Vec ℝ n} (hz : z ∈ Z.construct) : -- --- CONCL ---
-    s • z ∈ (Zonotope.scalarIntervalMul a b Z).construct := by -- --- PROOF ---
+    (hs : s ∈ Set.Icc a b) {z : Vec ℝ n} (hz : z ∈ Z.toSet) : -- --- CONCL ---
+    s • z ∈ (Zonotope.scalarIntervalMul a b Z).toSet := by -- --- PROOF ---
   -- the center's part `c z`
   have hmid : ((a + b) / 2) • z
-      ∈ (Zonotope.mtimes (((a + b) / 2) • (1 : Mat ℝ n n)) Z).construct := by
+      ∈ (Zonotope.mtimes (((a + b) / 2) • (1 : Mat ℝ n n)) Z).toSet := by
     rw [← Zonotope.mtimes_exact]
     exact ⟨z, hz, by simp [Matrix.smul_mulVec]⟩
   -- the position of `s` in `[a, b]`, as `σ ∈ [-1, 1]`
@@ -103,7 +103,7 @@ private theorem Zonotope.aux_scalarIntervalMul_outer (a b : ℝ) (Z : Zonotope (
       · rw [div_mul_cancel₀ _ hg2.ne']; ring
   -- the radius' part `σ (g z)` lies in `[-1, 1] ⊗ (g Z)`
   have hrad : σ • (((b - a) / 2) • z)
-      ∈ (Zonotope.mtimes (((b - a) / 2) • (1 : Mat ℝ n n)) Z).unitIntervalMul.construct := by
+      ∈ (Zonotope.mtimes (((b - a) / 2) • (1 : Mat ℝ n n)) Z).unitIntervalMul.toSet := by
     refine Zonotope.unitIntervalMul_outer _ ⟨(σ, ((b - a) / 2) • z), ⟨hσ, ?_⟩, rfl⟩
     rw [← Zonotope.mtimes_exact]
     exact ⟨z, hz, by simp [Matrix.smul_mulVec]⟩
@@ -202,10 +202,10 @@ private theorem aux_trajectoryError_split (A : Mat ℝ n n) (u ξ x₀ : Vec ℝ
 
 theorem LinearSys.trajectoryError_outer (sys : LinearSys ℝ n) (f u : Vec ℝ n)
     (R₀ : Zonotope (Vec ℝ n)) {tmin tmax tc : ℝ} (hmin : 0 ≤ tmin) (η : ℕ) {t : ℝ}
-    (ht : t ∈ Set.Icc tmin tmax) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.construct) : -- --- CONCL ---
+    (ht : t ∈ Set.Icc tmin tmax) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.toSet) : -- --- CONCL ---
     exp (t • sys.A) *ᵥ x₀ + MatExp.expIntegral sys.A t *ᵥ u
         - GuardMap.sdcFlow sys.A (GuardMap.sdcInput sys.A u tc (η + 1) R₀.c) x₀ t
-      ∈ (sys.trajectoryError f f u R₀ tmin tmax tc (η + 1)).construct := by -- --- PROOF ---
+      ∈ (sys.trajectoryError f f u R₀ tmin tmax tc (η + 1)).toSet := by -- --- PROOF ---
   have ht0 : 0 ≤ t := le_trans hmin ht.1
   -- `E_err` as its four summands, the vector as its four parts
   simp only [LinearSys.trajectoryError, Nat.add_sub_cancel]
@@ -219,7 +219,7 @@ theorem LinearSys.trajectoryError_outer (sys : LinearSys ℝ n) (f u : Vec ℝ n
     ⟨pow_le_pow_left₀ hmin ht.1 k, pow_le_pow_left₀ ht0 ht.2 k⟩
   have hpow' : ∀ k : ℕ, t ^ k - tc ^ k ∈ Set.Icc (tmin ^ k - tc ^ k) (tmax ^ k - tc ^ k) :=
     fun k => ⟨sub_le_sub_right (hpow k).1 _, sub_le_sub_right (hpow k).2 _⟩
-  have hY : x₀ - R₀.c ∈ R₀.recenter.construct := Zonotope.sub_center_mem_recenter hx₀
+  have hY : x₀ - R₀.c ∈ R₀.recenter.toSet := Zonotope.sub_center_mem_recenter hx₀
   refine Set.add_mem_add (Set.add_mem_add (Set.add_mem_add ?_ ?_) ?_) ?_
   · -- the exact orders: `t` times the two sums, each a sum of members of its terms
     refine Zonotope.aux_scalarIntervalMul_outer _ _ _ ht ?_

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.ConZonotope
-public import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemToSet
 
 @[expose] public section
 
@@ -47,9 +47,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 theorem ConZonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {cZ : ConZonotope 𝕋 (Vec 𝕋 n)}
     {x : Vec ℝ n} :
     x ∈ InflatedContSet.nominalSet cZ ↔ ∃ β : Vec ℝ cZ.h, (∀ j, |β j| ≤ 1)
-      ∧ β ∈ cZ.P.nominal.construct
+      ∧ β ∈ cZ.P.nominal.toSet
       ∧ ∀ i, x i = toReal (cZ.c i) + ∑ j, toReal (cZ.G j i) * β j :=
-  Real.ConZonotope.mem_construct_iff
+  Real.ConZonotope.mem_toSet_iff
 
 end CORALean.Float
 

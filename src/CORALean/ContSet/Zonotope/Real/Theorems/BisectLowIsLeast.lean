@@ -7,7 +7,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.CrossNegOfHorizontal
 public import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottomAdd
 public import CORALean.ContSet.Zonotope.Real.Theorems.CornerBottomLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReachLe
-public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructPointUp
+public import CORALean.ContSet.Zonotope.Real.Theorems.ToSetPointUp
 public import CORALean.ContSet.Zonotope.Real.Theorems.PointUpHalfPlane
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
@@ -92,7 +92,7 @@ private theorem Zonotope.aux_bisect_final (Z : Zonotope (Vec ℝ 2))
     (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (γ : ℝ) {σ : ℝ}
     (hσ : σ = 1 ∨ σ = -1) (st : Vec ℝ 2 × Finset (Fin Z.h) × Vec ℝ 2)
     (hinv : Z.IsBisectInv γ σ st) (hcard : st.2.1.card ≤ 1) : -- --- CONCL ---
-    IsLeast {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct}
+    IsLeast {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.toSet}
       (sInf {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ st.1 (st.1 + st.2.2)}) := by -- --- PROOF ---
   classical
   obtain ⟨P, G, s⟩ := st
@@ -136,7 +136,7 @@ private theorem Zonotope.aux_bisect_final (Z : Zonotope (Vec ℝ 2))
         · exact hγ.symm
         · rfl
       rw [Set.mem_setOf_eq, this, hPc]
-      exact Z.corner_mem_construct _
+      exact Z.corner_mem_toSet _
     · rw [hPc]
       exact Z.corner_bottom_le (fun j => (hH j).1) hy
   · -- one generator left: its edge is where the line is
@@ -165,7 +165,7 @@ private theorem Zonotope.aux_bisect_final (Z : Zonotope (Vec ℝ 2))
       ext k; fin_cases k
       · exact hzx.symm
       · rfl
-    have hleast : IsLeast {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct} (z 1) :=
+    have hleast : IsLeast {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.toSet} (z 1) :=
       ⟨by rw [Set.mem_setOf_eq, hz']; exact hzZ,
         fun y hy => hzmin y (by rw [hzx]; exact hy)⟩
     have hY : IsLeast {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ segment ℝ (Z.corner fun j => decide (j ∈ B))
@@ -178,13 +178,13 @@ private theorem Zonotope.aux_bisect_final (Z : Zonotope (Vec ℝ 2))
 /-- The whole search, from the state `lines 1-14` leave to the one after `r` passes. -/
 private theorem Zonotope.aux_bisect_least (Z : Zonotope (Vec ℝ 2))
     (hH : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0)) (γ : ℝ)
-    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) (P : Vec ℝ 2) (hP : P = Z.c - ∑ i, Z.G i)
+    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.toSet) (P : Vec ℝ 2) (hP : P = Z.c - ∑ i, Z.G i)
     (right : Bool) (hright : right = decide (P 0 < γ)) (G : Finset (Fin Z.h))
     (hG : G = if right then Finset.univ.filter (fun i => 0 < Z.G i 0)
       else Finset.univ.filter (fun i => Z.G i 0 < 0)) (s : Vec ℝ 2)
     (hs : s = ∑ i ∈ G, (2 : ℝ) • Z.G i) (loop : Vec ℝ 2 × Finset (Fin Z.h) × Vec ℝ 2)
     (hloop : (Z.bisectStep γ right)^[Z.h] (P, G, s) = loop) : -- --- CONCL ---
-    IsLeast {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct}
+    IsLeast {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.toSet}
       (sInf {y : ℝ | (![γ, y] : Vec ℝ 2) ∈
         segment ℝ loop.1 (loop.1 + loop.2.2)}) := by -- --- PROOF ---
   classical
@@ -239,11 +239,11 @@ private theorem Zonotope.aux_bisect_least (Z : Zonotope (Vec ℝ 2))
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.bisectLow_isLeast (Z : Zonotope (Vec ℝ 2)) (γ : ℝ)
-    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) : -- --- CONCL ---
-    IsLeast {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct} (Z.bisectLow γ) := by -- --- PROOF ---
-  have hne' : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.pointUp.construct := by
-    rwa [Z.construct_pointUp]
-  rw [← Z.construct_pointUp]
+    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.toSet) : -- --- CONCL ---
+    IsLeast {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.toSet} (Z.bisectLow γ) := by -- --- PROOF ---
+  have hne' : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.pointUp.toSet := by
+    rwa [Z.toSet_pointUp]
+  rw [← Z.toSet_pointUp]
   exact Zonotope.aux_bisect_least Z.pointUp (Z.pointUp_half_plane) γ hne' _ rfl _ rfl _ rfl _ rfl
     _ rfl
 

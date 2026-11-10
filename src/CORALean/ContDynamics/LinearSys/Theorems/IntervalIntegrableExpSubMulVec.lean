@@ -87,8 +87,8 @@ private theorem aux_continuous_expSub (A : Mat ℝ n n) (c : ℝ) :
 /-- An admissible input has an integrable solution over its window: bounded by
 `U`, and measurable because the exponential factor is continuous. -/
 theorem intervalIntegrable_expSub_mulVec {A : Mat ℝ n n} {U : S n} {c τ : ℝ} (hτ : 0 ≤ τ)
-    (hbdd : Bornology.IsBounded (construct U)) {u : ℝ → Vec ℝ n}
-    (hu : ∀ s ∈ Set.Icc (0:ℝ) τ, u s ∈ construct U)
+    (hbdd : Bornology.IsBounded (toSet U)) {u : ℝ → Vec ℝ n}
+    (hu : ∀ s ∈ Set.Icc (0:ℝ) τ, u s ∈ toSet U)
     (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 τ))) : -- --- CONCL ---
     IntervalIntegrable (fun s => exp ((c - s) • A) *ᵥ u s) volume 0 τ := by -- --- PROOF ---
   obtain ⟨CU, hCU⟩ := hbdd.exists_norm_le

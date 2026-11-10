@@ -90,8 +90,8 @@ theorem ConZonotope.rescale_exact {q h : ℕ} (c : α) (G : Fin h → α) (A : M
     (b : Vec ℝ q) (ξL ξU : Vec ℝ h)
     (hB : ∀ ξ : Vec ℝ h, (∀ j, |ξ j| ≤ 1) → A *ᵥ ξ = b → ∀ j, ξL j ≤ ξ j ∧ ξ j ≤ ξU j)
     (hL : ∀ j, |ξL j| ≤ 1) (hU : ∀ j, |ξU j| ≤ 1) : -- --- CONCL ---
-    (ConZonotope.ofMat c G A b).construct
-      = (ConZonotope.rescale c G A b ξL ξU).construct := by -- --- PROOF ---
+    (ConZonotope.ofMat c G A b).toSet
+      = (ConZonotope.rescale c G A b ξL ξU).toSet := by -- --- PROOF ---
   ext x
   unfold ConZonotope.rescale
   simp only [ConZonotope.mem_ofMat_iff]

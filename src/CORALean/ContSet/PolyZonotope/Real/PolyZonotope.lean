@@ -63,7 +63,7 @@ def PolyZonotope.monomial {p h : ℕ} (E : Fin p → Fin h → ℕ) (a : Fin p �
 
 /-- The set a polynomial zonotope denotes: the center plus the monomial-weighted dependent
 generators and the independent generators, with every factor and coefficient in `[-1, 1]`. -/
-def PolyZonotope.construct (pZ : PolyZonotope α) : Set α :=
+def PolyZonotope.toSet (pZ : PolyZonotope α) : Set α :=
   {x | ∃ a : Fin pZ.p → ℝ, ∃ β : Fin pZ.q → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
         ∧ x = pZ.c + ∑ i, PolyZonotope.monomial pZ.E a i • pZ.G i + ∑ j, β j • pZ.GI j}
 

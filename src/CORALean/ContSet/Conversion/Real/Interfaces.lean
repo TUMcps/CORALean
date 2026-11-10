@@ -39,13 +39,13 @@ open ContSet
 `interval(S)`. -/
 class IntervalOuter (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] where
   interval {n : ℕ} : S n → Interval (Vec ℝ n)
-  interval_outer {n : ℕ} (s : S n) : construct s ⊆ construct (interval s)
+  interval_outer {n : ℕ} (s : S n) : toSet s ⊆ toSet (interval s)
 
 /-- A representation family that can hold a box: `ofInterval` gives a set containing the box. -/
 class OfInterval (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] where
   ofInterval {n : ℕ} : Interval (Vec ℝ n) → S n
   ofInterval_outer {n : ℕ} (I : Interval (Vec ℝ n)) :
-    construct I ⊆ construct (ofInterval I)
+    toSet I ⊆ toSet (ofInterval I)
 
 end CORALean.Real
 

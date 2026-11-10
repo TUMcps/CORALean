@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import Mathlib.Data.Matrix.Basic
 
 @[expose] public section
@@ -53,8 +53,8 @@ variable {n : ℕ}
 `Z` inside the parallelotope `(c | C)`. -/
 theorem Zonotope.subset_of_mul_eq_one_of_sum_abs_le (Z : Zonotope (Vec ℝ n)) {C M : Mat ℝ n n}
     (hCM : C * M = 1) (h : ∀ i, ∑ j, |(M *ᵥ Z.G j) i| ≤ 1) : -- --- CONCL ---
-    Z.construct
-      ⊆ (⟨n, Z.c, fun k i => C i k⟩ : Zonotope (Vec ℝ n)).construct := by -- --- PROOF ---
+    Z.toSet
+      ⊆ (⟨n, Z.c, fun k i => C i k⟩ : Zonotope (Vec ℝ n)).toSet := by -- --- PROOF ---
   rintro _ ⟨β, hβ, rfl⟩
   -- the coefficients in `C`'s columns: `M` applied to the generator part
   refine ⟨fun k => (M *ᵥ ∑ j, β j • Z.G j) k, fun k => ?_, ?_⟩

@@ -62,7 +62,7 @@ theorem NonlinearSys.FloatModel.adaptLinPassFloat_outer {fm : NonlinearSys.Float
     ∀ A Rt Rτ, (A, Rt, Rτ) ∈ fm.adaptLinPassFloat U options R →
       0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
         sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
-          R.construct U.construct x u y →
+          R.toSet U.toSet x u y →
         (∀ t ∈ Set.Icc 0 (toReal options.Δt),
           sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ
             (x t - toRealVec (fm.linPointFloat options.Δt R U).1) ∈
@@ -71,9 +71,9 @@ theorem NonlinearSys.FloatModel.adaptLinPassFloat_outer {fm : NonlinearSys.Float
               Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋])
                 (fm.linearizeFloat (fm.linPointFloat options.Δt R U).1
                   (fm.linPointFloat options.Δt R U).2).2
-                (Recenter.recenter U)).construct) →
-        (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
-          x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
+                (Recenter.recenter U)).toSet) →
+        (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.toSet) ∧
+          x (toReal options.Δt) ∈ Rt.toSet := by -- --- PROOF ---
   intro A Rt Rτ (hpass : fm.adaptLinPassFloat U options R = some (A, Rt, Rτ))
   unfold NonlinearSys.FloatModel.adaptLinPassFloat at hpass
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hpass
@@ -81,7 +81,7 @@ theorem NonlinearSys.FloatModel.adaptLinPassFloat_outer {fm : NonlinearSys.Float
   simp only [pure, Option.some.injEq, Prod.mk.injEq] at hpure
   obtain ⟨rfl, rfl, rfl⟩ := hpure
   obtain ⟨hΔt, hout⟩ := NonlinearSys.oneStepFloat_outer (sys := sys) _ _ hS
-  exact ⟨hΔt, fun traj => hout (U := U.construct) traj⟩
+  exact ⟨hΔt, fun traj => hout (U := U.toSet) traj⟩
 
 end CORALean
 

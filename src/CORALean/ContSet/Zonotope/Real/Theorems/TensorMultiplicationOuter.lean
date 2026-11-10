@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.TensorMultiplication
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import Mathlib.Algebra.BigOperators.Ring.Finset
 public import Mathlib.Algebra.BigOperators.Pi
 public import Mathlib.Algebra.BigOperators.Group.Finset.Sigma
@@ -90,8 +90,8 @@ theorem Zonotope.tensorMultiplication_outer (Z : Zonotope (Vec ℝ n)) (M : Tens
     (hmap : ∀ p q, L.map p = L.map q →
       ({L.perm p 0, L.perm p 1, L.perm p 2} : Multiset (Fin Z.h)) =
         {L.perm q 0, L.perm q 1, L.perm q 2})
-    {x : Vec ℝ n} (hx : x ∈ Z.construct) : -- --- CONCL ---
-    Zonotope.tensorEval M x ∈ (Z.tensorMultiplication M L).construct := by -- --- PROOF ---
+    {x : Vec ℝ n} (hx : x ∈ Z.toSet) : -- --- CONCL ---
+    Zonotope.tensorEval M x ∈ (Z.tensorMultiplication M L).toSet := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hx
   -- coordinates of `x`
   have hxa : ∀ a, (Z.c + ∑ j, β j • Z.G j) a = ∑ j, β j * Z.G j a := fun a => by

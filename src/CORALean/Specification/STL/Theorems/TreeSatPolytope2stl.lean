@@ -11,7 +11,7 @@ public import CORALean.Specification.STL.Theorems.TreeLinearMapApplyEqSum
 # polytope2stl describes the polytope
 
 With the equalities kept, `polytope2stl(obj,P)` is satisfied by a trace exactly when its initial
-state lies in the polytope `{x | A x <= b, Ae x = be}` (`Real.HPolytope.construct`). By CORA's
+state lies in the polytope `{x | A x <= b, Ae x = be}` (`Real.HPolytope.toSet`). By CORA's
 `in`, the same formula states membership in a polytope.
 
 ## Inputs
@@ -44,12 +44,12 @@ variable {n : ℕ}
 
 theorem STL.Tree.sat_polytope2stl (P : Real.HPolytope (Fin n → ℝ))
     (ξ : ℝ≥0 → Fin n → ℝ) : -- --- CONCL ---
-    (STL.Tree.polytope2stl P).Satisfies ξ ↔ ξ 0 ∈ P.construct := by -- --- PROOF ---
+    (STL.Tree.polytope2stl P).Satisfies ξ ↔ ξ 0 ∈ P.toSet := by -- --- PROOF ---
   rw [STL.Tree.polytope2stl, STL.Tree.sat_conjoin]
   simp only [List.forall_mem_append, List.forall_mem_map, List.forall_mem_flatMap,
     List.forall_mem_cons, List.mem_finRange, true_implies,
     STL.Tree.sat_halfspace2set, STL.Cmp.Relates, ← STL.Tree.linearMap_apply_eq_sum,
-    Real.HPolytope.construct, Set.mem_setOf_eq, forall_and, ge_iff_le, le_antisymm_iff]
+    Real.HPolytope.toSet, Set.mem_setOf_eq, forall_and, ge_iff_le, le_antisymm_iff]
   simp
 
 end CORALean

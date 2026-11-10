@@ -51,11 +51,11 @@ variable {p q : ℕ}
 /-- Every factor of the constrained hypercube lies in the bounds after `k` passes. -/
 theorem ConZonotope.fourierMotzkinIter_outer (C : Mat ℝ p q) (d : Vec ℝ p) (k : ℕ)
     (β : Vec ℝ q) (hβ : ∀ j, |β j| ≤ 1)
-    (hP : β ∈ (HPolytope.ineqs C d).construct) : -- --- CONCL ---
-    β ∈ (ConZonotope.fourierMotzkinIter C d k).construct := by -- --- PROOF ---
+    (hP : β ∈ (HPolytope.ineqs C d).toSet) : -- --- CONCL ---
+    β ∈ (ConZonotope.fourierMotzkinIter C d k).toSet := by -- --- PROOF ---
   -- the invariant: `β` stays in `⟨C, d⟩_H ∩ [β̲, β̄]` after every pass
-  suffices h : ∀ k, β ∈ (HPolytope.ineqs C d).construct ∩
-      ((ConZonotope.fourierMotzkinBounds C d)^[k] ⟨fun _ => -1, fun _ => 1⟩).construct from
+  suffices h : ∀ k, β ∈ (HPolytope.ineqs C d).toSet ∩
+      ((ConZonotope.fourierMotzkinBounds C d)^[k] ⟨fun _ => -1, fun _ => 1⟩).toSet from
     (h k).2
   intro k
   induction k with

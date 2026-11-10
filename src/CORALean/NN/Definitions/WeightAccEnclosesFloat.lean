@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- The real accumulator is the float one's kind, its weights in the float boxes. -/
 def WeightAcc.Encloses : ∀ {n d : ℕ}, WeightAcc 𝕋 n d → CORALean.WeightAcc ℝ n d → Prop
   | _, _, .id, .id => True
-  | _, _, .aff W b, .aff W' b' => W' ∈ W.construct ∧ b' ∈ b.construct
+  | _, _, .aff W b, .aff W' b' => W' ∈ W.toSet ∧ b' ∈ b.toSet
   | _, _, _, _ => False
 
 end CORALean.Float

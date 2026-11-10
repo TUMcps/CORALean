@@ -68,7 +68,7 @@ private theorem ConZonotope.aux_sum_univ_reduceKeepBy {cZ : ConZonotope (Vec ℝ
 
 theorem ConZonotope.reduceKeepBy_outer (cZ : ConZonotope (Vec ℝ n))
     (part : Split (Fin cZ.h) into (Fin q) ⊕ (Fin r)) : -- --- CONCL ---
-    cZ.construct ⊆ (cZ.reduceKeepBy part).construct := by -- --- PROOF ---
+    cZ.toSet ⊆ (cZ.reduceKeepBy part).toSet := by -- --- PROOF ---
   rintro x ⟨β, hβ, hP, rfl⟩
   have hbound : ∀ i, |∑ l, cZ.G (part.right l) i * β (part.right l)|
       ≤ ∑ l, |cZ.G (part.right l) i| := by
@@ -90,7 +90,7 @@ theorem ConZonotope.reduceKeepBy_outer (cZ : ConZonotope (Vec ℝ n))
     · simp only [Fin.append_right]
       exact Zonotope.abs_coefficient_le_one (hnonneg i) (hbound i)
   · -- the constraints see only the kept block, which `keepRows` admits
-    show _ ∈ (HPolytope.comap (blockLeft q n) (ConZonotope.keepRows cZ.P part)).construct
+    show _ ∈ (HPolytope.comap (blockLeft q n) (ConZonotope.keepRows cZ.P part)).toSet
     rw [HPolytope.comap_exact, Set.mem_preimage, blockLeft_append]
     exact ConZonotope.keepRows_mem cZ.P part hP fun l => hβ _
   · funext i

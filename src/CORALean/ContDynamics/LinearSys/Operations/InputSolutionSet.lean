@@ -54,9 +54,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- The orders up to `η` exactly, and the rest inside the interval matrix. -/
 noncomputable def LinearSys.inputSolutionSet (sys : LinearSys 𝕋 n) (U : S n) (Δt : ℝ) (η : ℕ) :
     Set (Vec ℝ n) :=
-  (∑ i ∈ Finset.range (η + 1), (fun s => sys.inputTerm Δt i *ᵥ s) '' construct U)
-    + ⋃ M ∈ (MatExp.inputRemainder (toRealMat sys.A) Δt η).construct,
-        (fun s => M *ᵥ s) '' construct U
+  (∑ i ∈ Finset.range (η + 1), (fun s => sys.inputTerm Δt i *ᵥ s) '' toSet U)
+    + ⋃ M ∈ (MatExp.inputRemainder (toRealMat sys.A) Δt η).toSet,
+        (fun s => M *ᵥ s) '' toSet U
 
 end CORALean
 

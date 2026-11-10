@@ -92,11 +92,11 @@ variable {n : ℕ}
 
 theorem STL.Tree.polytope2stlCora_counterexample :
     ∃ (P : Real.HPolytope (Fin 1 → ℝ)) (ξ : ℝ≥0 → Fin 1 → ℝ),
-      (STL.Tree.polytope2stlCora P).Satisfies ξ ∧ ξ 0 ∉ P.construct := by
+      (STL.Tree.polytope2stlCora P).Satisfies ξ ∧ ξ 0 ∉ P.toSet := by
   refine ⟨⟨1, fun _ => LinearMap.proj 0, fun _ => 5, 1, fun _ => LinearMap.proj 0, fun _ => 2⟩,
     fun _ _ => 0, ?_, ?_⟩
   · simp [STL.Tree.sat_polytope2stlCora]
-  · simp [Real.HPolytope.construct]
+  · simp [Real.HPolytope.toSet]
 
 end CORALean
 

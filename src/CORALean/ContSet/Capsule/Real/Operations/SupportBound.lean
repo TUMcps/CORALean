@@ -9,13 +9,13 @@ public import CORALean.Global.SupportFunction.SupportFunction
 /-!
 # A capsule answers a direction by its segment and its ball
 
-`Capsule.construct` is a segment thickened by a Euclidean ball, so a linear functional's value at
+`Capsule.toSet` is a segment thickened by a Euclidean ball, so a linear functional's value at
 any point splits the same way: the segment contributes at most `|f g|`, moving `t` to whichever
 endpoint favours `f`, and the ball at most `r * ‖f‖₂` by Cauchy–Schwarz
 (`dotProduct_le_norm₂_mul_norm₂`, as in `Ellipsoid.supportBound`).
 
 No `0 ≤ C.r` hypothesis: the membership witness already bounds the ball term by `C.r`, whatever its
-sign, so `C.r < 0` (denoting `∅`) needs no separate case; `construct_eq_add` needed it only to
+sign, so `C.r < 0` (denoting `∅`) needs no separate case; `toSet_eq_add` needed it only to
 square the bound.
 
 ## Inputs
@@ -44,7 +44,7 @@ variable {n : ℕ}
 /-- No `0 ≤ C.r`: the membership witness already bounds the ball term by
 `C.r`, whatever its sign, so `C.r < 0` (denoting `∅`) needs no separate case. -/
 noncomputable def Capsule.supportBound (C : Capsule n) (f : Vec ℝ n →ₗ[ℝ] ℝ) :
-    SupportBound C.construct f where
+    SupportBound C.toSet f where
   val := f C.c + |f C.g| + C.r * Real.sqrt (∑ i, f (Pi.single i 1) ^ 2)
   le := by
     intro x hx

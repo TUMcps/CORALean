@@ -60,12 +60,12 @@ variable {n : ℕ} {κ : Type}
 
 theorem Zonotope.cloud2zonotope_mem [Fintype κ] [Nonempty κ] (dir : (κ → Vec ℝ n) → Vec ℝ n)
     (ratio : ℝ) (s₁ : ℕ) (s₂ : ℝ) (X : κ → Vec ℝ n) (j : κ) : -- --- CONCL ---
-    X j ∈ (Zonotope.cloud2zonotope dir ratio s₁ s₂ X).construct := by -- --- PROOF ---
+    X j ∈ (Zonotope.cloud2zonotope dir ratio s₁ s₂ X).toSet := by -- --- PROOF ---
   -- one round: recenter by `mid`, compress along `g`, add the segment `⟨mid, g⟩`
   have step : ∀ (Z : Zonotope (Vec ℝ n)) (Y : κ → Vec ℝ n) (mid g : Vec ℝ n),
-      (∀ j, X j - Y j ∈ Z.construct) →
+      (∀ j, X j - Y j ∈ Z.toSet) →
       ∀ j, X j - Zonotope.cloud2zonotopeCompress (fun j => Y j - mid) g j ∈
-        (Z.plus ⟨1, mid, fun _ => g⟩).construct := by
+        (Z.plus ⟨1, mid, fun _ => g⟩).toSet := by
     intro Z Y mid g h j
     rw [← Zonotope.plus_exact]
     obtain ⟨t, ht, hY⟩ := Zonotope.cloud2zonotopeCompress_mem (fun j => Y j - mid) g j
@@ -75,9 +75,9 @@ theorem Zonotope.cloud2zonotope_mem [Fintype κ] [Nonempty κ] (dir : (κ → Ve
     abel_nf
   -- the loop keeps `X j - Y j ∈ Z`
   have key : ∀ (k iter : ℕ) (w : Vec ℝ n) (Z : Zonotope (Vec ℝ n)) (Y : κ → Vec ℝ n),
-      (∀ j, X j - Y j ∈ Z.construct) →
+      (∀ j, X j - Y j ∈ Z.toSet) →
       ∀ j, X j - (Zonotope.step_cloud2zonotopeLoop dir ratio s₂ k iter w Z Y).2 j ∈
-        (Zonotope.step_cloud2zonotopeLoop dir ratio s₂ k iter w Z Y).1.construct := by
+        (Zonotope.step_cloud2zonotopeLoop dir ratio s₂ k iter w Z Y).1.toSet := by
     intro k
     induction k with
     | zero => intro iter w Z Y h; simpa [Zonotope.step_cloud2zonotopeLoop] using h
@@ -88,7 +88,7 @@ theorem Zonotope.cloud2zonotope_mem [Fintype κ] [Nonempty κ] (dir : (κ → Ve
         | exact ih _ _ _ _ (step Z Y _ _ h)
         | exact step Z Y _ _ h
   -- start with the empty zonotope `⟨0, 0⟩`, then box the residual
-  have h0 : ∀ j, X j - X j ∈ (⟨0, 0, Fin.elim0⟩ : Zonotope (Vec ℝ n)).construct :=
+  have h0 : ∀ j, X j - X j ∈ (⟨0, 0, Fin.elim0⟩ : Zonotope (Vec ℝ n)).toSet :=
     fun j => ⟨Fin.elim0, fun i => i.elim0, by simp⟩
   set L := Zonotope.step_cloud2zonotopeLoop dir ratio s₂ s₁ 0 0 ⟨0, 0, Fin.elim0⟩ X with hL
   have hres := key s₁ 0 0 _ X h0 j

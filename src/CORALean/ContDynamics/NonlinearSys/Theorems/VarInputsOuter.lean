@@ -70,11 +70,11 @@ variable {n m o : ℕ}
 /-- Every value `[1, Eq. 7]` admits lies in `varInputs` at the same three sets. -/
 theorem varInputs_outer (B : Mat ℝ n m) (D : Fin n → Mat ℝ o o)
     {Rz RzΔ : PolyZonotope (Vec ℝ o)} {UΔ : PolyZonotope (Vec ℝ m)} {z zΔ : Vec ℝ o}
-    {uΔ : Vec ℝ m} (hz : z ∈ Rz.construct) (hzΔ : zΔ ∈ RzΔ.construct)
-    (huΔ : uΔ ∈ UΔ.construct) : -- --- CONCL ---
+    {uΔ : Vec ℝ m} (hz : z ∈ Rz.toSet) (hzΔ : zΔ ∈ RzΔ.toSet)
+    (huΔ : uΔ ∈ UΔ.toSet) : -- --- CONCL ---
     (fun i => (B *ᵥ uΔ) i
         + (2 : ℝ)⁻¹ * ∑ j, ∑ k, D i j k * (z j * zΔ k + zΔ j * z k + zΔ j * zΔ k))
-      ∈ (varInputs B D Rz RzΔ UΔ).construct := by -- --- PROOF ---
+      ∈ (varInputs B D Rz RzΔ UΔ).toSet := by -- --- PROOF ---
   -- the paper's double sum is the three pairings, distributed and split
   have hsum : ∀ i, ∑ j, ∑ k, D i j k * (z j * zΔ k + zΔ j * z k + zΔ j * zΔ k)
       = PolyZonotope.quadBilin D z zΔ i + PolyZonotope.quadBilin D zΔ z i

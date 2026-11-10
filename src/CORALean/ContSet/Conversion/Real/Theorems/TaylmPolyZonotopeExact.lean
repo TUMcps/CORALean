@@ -56,7 +56,7 @@ variable {n m : ℕ}
 
 theorem Taylm.polyZonotope_exact (T : Fin m → Taylm n)
     (hT : ∀ i, (T i).rem.inf ≤ (T i).rem.sup) : -- --- CONCL ---
-    (Taylm.polyZonotope T).construct = Taylm.construct T := by -- --- PROOF ---
+    (Taylm.polyZonotope T).toSet = Taylm.toSet T := by -- --- PROOF ---
   refine Set.Subset.antisymm ?_ (Taylm.polyZonotope_contains T)
   rintro x ⟨a, β, ha, hβ, rfl⟩
   refine ⟨a, ha, fun i => ?_⟩

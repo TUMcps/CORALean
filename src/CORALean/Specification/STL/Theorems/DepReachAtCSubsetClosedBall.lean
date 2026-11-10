@@ -61,11 +61,11 @@ variable {n : ℕ}
 
 theorem STL.depReachAt_C_subset_closedBall (A : Mat ℝ n n) {Δt : ℝ} (hΔt : 0 ≤ Δt)
     (cs : STL.DepReachConsts n) (X₀ : Zonotope (Vec ℝ n)) {ρ T : ℝ} (hρ : 0 ≤ ρ)
-    (h0 : (STL.depReachAt A Δt cs X₀ 0).C.construct ⊆ Metric.closedBall (0 : Vec ℝ n) ρ)
+    (h0 : (STL.depReachAt A Δt cs X₀ 0).C.toSet ⊆ Metric.closedBall (0 : Vec ℝ n) ρ)
     (i : ℕ) (hi : (i : ℝ) * Δt ≤ T) : -- --- CONCL ---
-    (STL.depReachAt A Δt cs X₀ i).C.construct
+    (STL.depReachAt A Δt cs X₀ i).C.toSet
       ⊆ Metric.closedBall (0 : Vec ℝ n) (Real.exp (T * ‖A‖) * ρ) := by -- --- PROOF ---
-  have hstep : ∀ i, (STL.depReachAt A Δt cs X₀ i).C.construct
+  have hstep : ∀ i, (STL.depReachAt A Δt cs X₀ i).C.toSet
       ⊆ Metric.closedBall (0 : Vec ℝ n) (‖exp (Δt • A)‖ ^ i * ρ) := by
     intro i
     induction i with

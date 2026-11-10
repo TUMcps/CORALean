@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q : ℕ} {
 rounds here. -/
 theorem HPolytope.subset_ofBounds (Aq : Mat 𝕋 q n) (u : ∀ i, FloatBound 𝕋 S
     (Real.HPolytope.rowLin (toRealMat Aq) i)) :
-    S ⊆ (HPolytope.ofBounds Aq u).construct :=
+    S ⊆ (HPolytope.ofBounds Aq u).toSet :=
   fun x hx => HPolytope.mem_ineqs_iff.mpr fun i => (u i).le x hx
 
 end CORALean.Float

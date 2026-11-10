@@ -51,25 +51,25 @@ theorem LinearSys.verifyHalfspacePrinted_stall_nonvacuous : -- --- CONCL ---
     let X₀ : Zonotope (Vec ℝ 1) := Zonotope.ofPoint (fun _ => 1)
     let U : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ => fun _ => 1⟩
     ∃ (ρ : Zonotope (Vec ℝ 1) → (Vec ℝ 1 →ₗ[ℝ] ℝ) → ℝ)
-      (_ : ∀ X : Zonotope (Vec ℝ 1), ∀ x ∈ construct X, ∀ d : Vec ℝ 1 →ₗ[ℝ] ℝ, d x ≤ ρ X d)
-      (ν₀ νU : (Vec ℝ 1 →ₗ[ℝ] ℝ) → Vec ℝ 1) (_ : ∀ d, ν₀ d ∈ construct X₀)
-      (_ : ∀ d, νU d ∈ construct U),
+      (_ : ∀ X : Zonotope (Vec ℝ 1), ∀ x ∈ toSet X, ∀ d : Vec ℝ 1 →ₗ[ℝ] ℝ, d x ≤ ρ X d)
+      (ν₀ νU : (Vec ℝ 1 →ₗ[ℝ] ℝ) → Vec ℝ 1) (_ : ∀ d, ν₀ d ∈ toSet X₀)
+      (_ : ∀ d, νU d ∈ toSet U),
       ∀ d : Vec ℝ 1 →ₗ[ℝ] ℝ, d 0 ≤ d (νU d) := by -- --- PROOF ---
   intro X₀ U
   -- the exact support function of a zonotope: bounded, so the supremum bounds every point
   have hbdd : ∀ (X : Zonotope (Vec ℝ 1)) (d : Vec ℝ 1 →ₗ[ℝ] ℝ),
-      BddAbove ((fun x => d x) '' construct X) := fun X d =>
+      BddAbove ((fun x => d x) '' toSet X) := fun X d =>
     ((LinearMap.toContinuousLinearMap d).lipschitz.isBounded_image
-      (CompactSet.isBounded_construct X)).bddAbove
+      (CompactSet.isBounded_toSet X)).bddAbove
   -- the end of `U` on the side of `d`
   let νU : (Vec ℝ 1 →ₗ[ℝ] ℝ) → Vec ℝ 1 := fun d =>
     if 0 ≤ d (fun _ => 1) then fun _ => 1 else fun _ => -1
-  have hνU : ∀ d, νU d ∈ construct U := by
+  have hνU : ∀ d, νU d ∈ toSet U := by
     intro d
     by_cases h : 0 ≤ d (fun _ => 1)
     · exact ⟨fun _ => 1, by simp, by funext i; simp [νU, h, U]⟩
     · exact ⟨fun _ => -1, by simp, by funext i; simp [νU, h, U]⟩
-  refine ⟨fun X d => sSup ((fun x => d x) '' construct X),
+  refine ⟨fun X d => sSup ((fun x => d x) '' toSet X),
     fun X x hx d => le_csSup (hbdd X d) ⟨x, hx, rfl⟩, fun _ => fun _ => 1, νU,
     fun _ => OfPoint.mem_ofPoint _, hνU, fun d => ?_⟩
   rw [map_zero]

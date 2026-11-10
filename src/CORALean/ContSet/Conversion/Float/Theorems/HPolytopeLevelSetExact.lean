@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 public import CORALean.ContSet.LevelSet.Real.Theorems.ForallAppendHolds
 public import CORALean.ContSet.Conversion.Float.Operations.HPolytope_to_LevelSet
 
@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.levelSet_exact (P : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    P.levelSet.construct = P.nominal.construct := by -- --- PROOF ---
+    P.levelSet.toSet = P.nominal.toSet := by -- --- PROOF ---
   ext x
   show (∀ i, Real.CompOp.holds (Fin.append (fun _ => .le) (Fin.append (fun _ => .le)
     fun _ => .le) i) (Fin.append (fun i => (toRealMat P.A *ᵥ x) i - toReal (P.b i)

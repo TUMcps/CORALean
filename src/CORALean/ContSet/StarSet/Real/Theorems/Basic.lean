@@ -27,7 +27,7 @@ variable {n : ℕ}
 -- Reviewed:      ---
 
 /-- A point is in its star set: no factors, no rows, and `c + G α` is `c`. -/
-theorem StarSet.mem_ofPoint (v : Vec ℝ n) : v ∈ (StarSet.ofPoint v).construct :=
+theorem StarSet.mem_ofPoint (v : Vec ℝ n) : v ∈ (StarSet.ofPoint v).toSet :=
   ⟨Fin.elim0, ⟨fun k => k.elim0, fun i => i.elim0, fun i => i.elim0⟩, fun i => by
     simp [StarSet.ofPoint]⟩
 

@@ -76,7 +76,7 @@ theorem NonlinDASys.reachAdaptive_outer (sys : NonlinDASys n p m)
     {z : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Tmax) R0 U x y u z)
     (hT : tFinal ≤ Tmax)
     (hcert : ∀ (st : NonlinDASys.AdaptState n p) (h : ℝ) (lastStep : Bool)
-      (pass : NonlinDASys.AdaptPass n p), 0 ≤ st.t → x st.t ∈ st.R.construct →
+      (pass : NonlinDASys.AdaptPass n p), 0 ≤ st.t → x st.t ∈ st.R.toSet →
       sys.linReachAdaptive T st.R U (k + 2) fuelErr fuelHalf st.adm_x st.adm_y h lastStep
         = some pass → 0 < pass.Δt → pass.Δt ≤ tFinal - st.t →
       (pass.linPoint (T.taylor st.R)).Certifies sys U pass.Δt k

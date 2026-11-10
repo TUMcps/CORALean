@@ -80,7 +80,7 @@ private theorem aux_row_iff {n : ℕ} (Zm Zs : Zonotope (Vec ℝ (n + 2))) (b : 
 size `n + 1`, at `Zonotope.minkDiffRowNormal` and `Zonotope.minkDiffRowOffset`. -/
 theorem Zonotope.minkowskiDiff_rows_eq {n : ℕ} (Zm Zs : Zonotope (Vec ℝ (n + 2)))
     (hspan : Submodule.span ℝ (Set.range Zm.G) = ⊤) : -- --- CONCL ---
-    minkowskiDiff Zm.construct Zs.construct
+    minkowskiDiff Zm.toSet Zs.toSet
       = {x | ∀ j : Bool × Finset (Fin Zm.h), j.2.card = n + 1 →
           dotProductEquiv ℝ _ (Zm.minkDiffRowNormal j) x ≤
             Zm.minkDiffRowOffset Zs j} := by -- --- PROOF ---

@@ -89,7 +89,7 @@ def E : Taylm D 2 := XY.exp 53
 /-! ## What the computed models guarantee -/
 
 /-- Every point of the box is a value of the two models (some `t ∈ [-1, 1]²` and remainders). -/
-theorem box_subset : box.construct ⊆ Taylm.construct (box.taylm 3) := Interval.taylm_contains box 3
+theorem box_subset : box.toSet ⊆ Taylm.toSet (box.taylm 3) := Interval.taylm_contains box 3
 
 /-- A converted box encloses its coordinate function: center plus generator times `t`. -/
 theorem taylm_encloses (i : Fin 2) : -- --- CONCL ---

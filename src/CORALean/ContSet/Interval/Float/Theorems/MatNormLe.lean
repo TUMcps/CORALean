@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.matNorm_le (steps : ℕ) (p : Real.Interval.NormType) (I : Interval (Mat 𝕋 m n))
-    {M : Mat ℝ m n} (hM : M ∈ I.construct) : -- --- CONCL ---
+    {M : Mat ℝ m n} (hM : M ∈ I.toSet) : -- --- CONCL ---
     p.eval M ≤ toReal (I.matNorm steps p) := by -- --- PROOF ---
   -- the center is bracketed, the member lies between the bounds
   have hc := Interval.mem_mat_iff.mp (Interval.center_mem_centerBoxMat I)

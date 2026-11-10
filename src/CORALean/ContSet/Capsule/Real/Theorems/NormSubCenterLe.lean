@@ -40,7 +40,7 @@ variable {n : ℕ}
 
 /-- Every point of the capsule is within `radius` of the center. -/
 theorem Capsule.norm₂_sub_center_le {C : Capsule n} {x : Vec ℝ n}
-    (hx : x ∈ C.construct) : -- --- CONCL ---
+    (hx : x ∈ C.toSet) : -- --- CONCL ---
     ‖x - C.c‖₂ ≤ C.radius := by -- --- PROOF ---
   obtain ⟨t, ht, hle⟩ := hx
   have hy : ‖x - (C.c + t • C.g)‖₂ ≤ C.r := hle

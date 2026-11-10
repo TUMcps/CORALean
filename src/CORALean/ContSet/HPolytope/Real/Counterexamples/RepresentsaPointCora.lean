@@ -61,7 +61,7 @@ open Classical in
 noncomputable def HPolytope.representsaPointCora (P : HPolytope (Fin n → ℝ))
     (rest : Bool × List (Fin n → ℝ)) : Bool :=
   -- [fulldim,subspace] = isFullDim(P)
-  let r : Bool × List (Fin n → ℝ) := if P.construct = ∅ then (false, []) else rest
+  let r : Bool × List (Fin n → ℝ) := if P.toSet = ∅ then (false, []) else rest
   !r.1 && r.2.isEmpty                  -- res = ~fulldim && isempty(subspace)
 
 end CORALean.Real
@@ -85,8 +85,8 @@ def HPolytope.step_emptyStrip : HPolytope (Fin 2 → ℝ) where
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-private theorem HPolytope.aux_emptyStrip_construct : -- --- CONCL ---
-    HPolytope.step_emptyStrip.construct = ∅ := by -- --- PROOF ---
+private theorem HPolytope.aux_emptyStrip_toSet : -- --- CONCL ---
+    HPolytope.step_emptyStrip.toSet = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   rintro ⟨h, -⟩
@@ -102,13 +102,13 @@ private theorem HPolytope.aux_emptyStrip_construct : -- --- CONCL ---
 rest of `isFullDim` would compute. -/
 theorem HPolytope.representsa_point_cora_counterexample
     (rest : Bool × List (Fin 2 → ℝ)) : -- --- CONCL ---
-    HPolytope.step_emptyStrip.construct = ∅ ∧
-      (¬ ∃ p : Fin 2 → ℝ, HPolytope.step_emptyStrip.construct = {p}) ∧
+    HPolytope.step_emptyStrip.toSet = ∅ ∧
+      (¬ ∃ p : Fin 2 → ℝ, HPolytope.step_emptyStrip.toSet = {p}) ∧
       HPolytope.step_emptyStrip.representsaPointCora rest = true := by -- --- PROOF ---
-  have hc := HPolytope.aux_emptyStrip_construct
+  have hc := HPolytope.aux_emptyStrip_toSet
   refine ⟨hc, ?_, ?_⟩
   · rintro ⟨p, hp⟩
-    have : p ∈ HPolytope.step_emptyStrip.construct := by rw [hp]; rfl
+    have : p ∈ HPolytope.step_emptyStrip.toSet := by rw [hp]; rfl
     rw [hc] at this
     exact this
   · simp [HPolytope.representsaPointCora, hc]

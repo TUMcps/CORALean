@@ -13,7 +13,7 @@ public import CORALean.ContSet.SpectraShadow.Real.Theorems.GenerateESumRepExact
 Exact, nothing rounds: the stored matrices of the float representation read, entry by entry, as
 the matrices the exact layer's `generateESumRep` builds from the nominal shadow, so the set of the
 representation is the set of the stored shadow's nominal part. The shadow's error box is not
-carried by the representation, so the statement is about `nominalSet`, not `construct`.
+carried by the representation, so the statement is about `nominalSet`, not `toSet`.
 
 ## Inputs
 * `S` – spectrahedral shadow
@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.generateESumRep_exact (S : SpectraShadow 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    S.generateESumRep.construct = InflatedContSet.nominalSet S := by -- --- PROOF ---
+    S.generateESumRep.toSet = InflatedContSet.nominalSet S := by -- --- PROOF ---
   have hd : ∀ v : Vec 𝕋 n, toRealMat (diagonalBlock v) = Matrix.diagonal (toRealVec v) :=
     fun v => by ext i l; exact toReal_diagonalBlock v i l
   have hsingle : ∀ i : Fin n, toRealVec (fun r => if r = i then (one : 𝕋) else zero)
@@ -61,7 +61,7 @@ theorem SpectraShadow.generateESumRep_exact (S : SpectraShadow 𝕋 (Vec 𝕋 n)
       SpectraShadow.toRealMat_blockDiag, SpectraShadow.toRealMat_const_zero, hd, toRealVec_neg,
       hsingle]
     rfl
-  unfold SpectraShadow.ESumRep.construct
+  unfold SpectraShadow.ESumRep.toSet
   rw [hrep]
   exact CORALean.Real.SpectraShadow.generateESumRep_exact _
 

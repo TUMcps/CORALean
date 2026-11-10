@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 public import CORALean.ContSet.Polygon.Float.Operations.InnerHRep
 public import CORALean.ContSet.Polygon.Float.Theorems.OrientBoundsLe
 public import Mathlib.Tactic.FieldSimp
@@ -139,7 +139,7 @@ private theorem Polygon.aux_fan {k : ℕ} (u : Fin k → Vec ℝ 2) (x : Vec ℝ
 
 theorem Polygon.innerHRep_inner {p : VPolytope (Vec 𝕋 2)} : -- --- CONCL ---
     ∀ H ∈ Polygon.innerHRep p,
-      H.construct ⊆ p.construct := by -- --- PROOF ---
+      H.toSet ⊆ p.toSet := by -- --- PROOF ---
   intro H (h : Polygon.innerHRep p = some H)
   simp only [Polygon.innerHRep] at h
   split_ifs at h with hc
@@ -148,7 +148,7 @@ theorem Polygon.innerHRep_inner {p : VPolytope (Vec 𝕋 2)} : -- --- CONCL ---
   simp only [List.all_eq_true, List.mem_finRange, forall_const, Bool.and_eq_true,
     Bool.or_eq_true, beq_iff_eq] at hex hfan horig
   intro x hx
-  obtain ⟨hle, -⟩ := (HPolytope.mem_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mp hx
+  obtain ⟨hle, -⟩ := (HPolytope.mem_toSet_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mp hx
   -- every stored edge difference is the real one
   have hd : ∀ i j, toReal (subDown (p.V (finRotate p.k i) j) (p.V i j))
       = toReal (p.V (finRotate p.k i) j) - toReal (p.V i j) := fun i j =>
@@ -173,7 +173,7 @@ theorem Polygon.innerHRep_inner {p : VPolytope (Vec 𝕋 2)} : -- --- CONCL ---
       (Polygon.orientBounds_le _ _ _).1
   obtain ⟨a, b, c, α, β, γ, hα, hβ, hγ, hsum, hxe⟩ :=
     Polygon.aux_fan (fun l => toRealVec (p.V l)) x hk hfan' hedge
-  have h0 : (0 : Vec ℝ 2) ∈ p.I_error.construct := fun i =>
+  have h0 : (0 : Vec ℝ 2) ∈ p.I_error.toSet := fun i =>
     ⟨(toReal_le_of_le (horig i).1).trans_eq toReal_zero,
       toReal_zero.symm.trans_le (toReal_le_of_le (horig i).2)⟩
   refine ⟨x, ?_, 0, h0, add_zero _⟩

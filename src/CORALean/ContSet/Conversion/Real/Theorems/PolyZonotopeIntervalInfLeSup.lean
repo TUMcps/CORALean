@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemToSet
 public import Mathlib.Order.BourbakiWitt
 public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Theorems.Basic
@@ -60,7 +60,7 @@ variable {n : ℕ}
 /-- The box is ordered, the set having a point for it to enclose. -/
 theorem PolyZonotope.interval_inf_le_sup (pZ : PolyZonotope (Vec ℝ n)) (i : Fin n) :
     pZ.interval.inf i ≤ pZ.interval.sup i := by
-  have hmem := pZ.interval_contains (pZ.point_mem_construct (a := fun _ => 0)
+  have hmem := pZ.interval_contains (pZ.point_mem_toSet (a := fun _ => 0)
     fun _ => by rw [abs_zero]; exact zero_le_one)
   exact le_trans (hmem i).1 (hmem i).2
 

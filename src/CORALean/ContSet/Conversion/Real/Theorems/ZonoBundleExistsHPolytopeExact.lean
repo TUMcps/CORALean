@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsToSetEqIffHPolytope
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleConZonotopeAllExact
 
 @[expose] public section
@@ -10,7 +10,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleConZonotopeAll
 
 A bundle of at least one zonotope is the constrained zonotope its members intersect to
 (`ZonoBundle.conZonotopeAll_exact`), and the constrained zonotopes are exactly the bounded halfspace
-descriptions (`ConZonotope.exists_construct_eq_iff_hPolytope`). An empty bundle denotes the whole
+descriptions (`ConZonotope.exists_toSet_eq_iff_hPolytope`). An empty bundle denotes the whole
 space, which is no polytope, hence the hypothesis.
 
 This is the equivalence of polytopes and zonotope bundles of
@@ -49,8 +49,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.exists_hPolytope_exact (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k) :
-    ∃ P : HPolytope (Vec ℝ n), P.construct = zB.construct := by
-  obtain ⟨P, hP, -⟩ := ConZonotope.exists_construct_eq_iff_hPolytope.mp
+    ∃ P : HPolytope (Vec ℝ n), P.toSet = zB.toSet := by
+  obtain ⟨P, hP, -⟩ := ConZonotope.exists_toSet_eq_iff_hPolytope.mp
     ⟨zB.conZonotopeAll hk, ZonoBundle.conZonotopeAll_exact zB hk⟩
   exact ⟨P, hP⟩
 

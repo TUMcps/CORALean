@@ -247,7 +247,7 @@ theorem Layer.Encloses.congr {L : Layer S n m} {f' : Vec ℝ n → Vec ℝ m} (h
 
 /-- The obligation as an inclusion, which is the form it composes in. -/
 theorem Layer.Encloses.image_subset {L : Layer S n m} (h : L.Encloses f) (s : S n) :
-    f '' construct s ⊆ construct (L.enclose s) := by
+    f '' toSet s ⊆ toSet (L.enclose s) := by
   rintro _ ⟨x, hx, rfl⟩
   exact h.enclose_outer s x hx
 
