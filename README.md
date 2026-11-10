@@ -94,7 +94,17 @@ When running the C code, one can use multiple backends to represent the floating
 | `Flint` | 4–64 | unbounded | outward | + `trustedFlint` |
 | `FixedPoint` | – | none, $f$ decimal digits | outward | Lean axioms |
 
-The default backend is `IEEE`, which is also used in the paper's experiments. Another backend is selected with `--type`:
+The default backend is `IEEE`, which is also used in the paper's experiments.
+
+### The trust base
+
+`Hardware` rests on the axiom `trustedHardware`, and that axiom is false. It states the ten obligations of `SoundFloatArithmetic` for every input, and no format with finitely many values meets them: `not_isTrustedHardware` proves this, so the axiom proves `False`, and a theorem at `Hardware` is no guarantee on its own. What a `Hardware` run rests on instead:
+
+1. Each obligation is true of IEEE 754 binary64 wherever its result is a number (the field docstrings in `IsTrustedHardware.lean` say where each one fails). Every rounded operation returns NaN outside the normal range, and NaN propagates through the rounded operations, `minimum` and `maximum`. `lake exe hardwarecheck` samples both, at the range edges included.
+2. The result holds no NaN. `checkNoNaN` (`Global/Float/NoNaN.lean`) tests this, and every `reach…Checked` entry point applies it.
+3. From 1 and 2 to "every operation of the run was a true instance" is an informal argument, not a theorem. It fails where a NaN is dropped rather than propagated, e.g. by a comparison (`≤` with a NaN is `false`) that picks a branch.
+
+This is intended: `trustedHardware` stands for the machine's IEEE 754 behaviour inside the normal range, stated unconditionally because `SoundFloatArithmetic` has no validity predicate. `Hardware` is the fast backend; for a guarantee that is a theorem, use `IEEE` or `Dyadic`. Another backend is selected with `--type`:
 
 ```
 lake exe bench <experiment> --type ieee|dyadic|hardware|nearest|fixed

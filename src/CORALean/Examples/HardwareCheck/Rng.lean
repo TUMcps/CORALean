@@ -11,7 +11,7 @@ about `2 ^ 53` apart, and products and quotients landing on either end of the ra
 
 -- Authors:       Claude Opus 5.5
 -- Written:       30-September-2026
--- Last update:   ---
+-- Last update:   10-November-2026
 -- Reviewed:      ---
 
 
@@ -68,11 +68,14 @@ def specials : Array UInt64 :=
 /-- Non-finite inputs. -/
 def nonFinite : Array UInt64 :=
   #[0x7FF0000000000000, 0xFFF0000000000000, 0x7FF8000000000000, 0xFFF8000000000000,
-    0x7FF0000000000001, 0x7FFFFFFFFFFFFFFF]
+    0x7FF0000000000001, 0x7FFFFFFFFFFFFFFF, 0xFFF0000000000001, 0xFFFFFFFFFFFFFFFF]
 
-/-- Finite values to pair them with. -/
+/-- Finite values to pair them with: both zeros, the ends of the subnormal and normal ranges, and
+`±1`, `±2`. -/
 def finiteProbe : Array UInt64 :=
-  #[0, 0x8000000000000000, 1, 0x3FF0000000000000, 0xBFF0000000000000, 0x7FEFFFFFFFFFFFFF]
+  #[0, 0x8000000000000000, 1, 0x8000000000000001, 0x000FFFFFFFFFFFFF, 0x0010000000000000,
+    0x8010000000000000, 0x3FF0000000000000, 0xBFF0000000000000, 0x4000000000000000,
+    0xC000000000000000, 0x7FEFFFFFFFFFFFFF, 0xFFEFFFFFFFFFFFFF]
 
 /-- One random pair, of the `k`-th kind. -/
 def pairOf (k : Nat) (g : Rng) : (UInt64 × UInt64) × Rng :=

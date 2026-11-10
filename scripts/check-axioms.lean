@@ -67,8 +67,8 @@ def unsoundAxiom : Name := `CORALean.Bench.nearestUnsound
 the same way -- see `Global/Float/Instances/Flint/Definitions/Axioms.lean`. -/
 def flintAxiom : Name := `CORALean.Float.Flint.trustedFlint
 
-/-- The whole of what CORALean assumes: the hardware, true; the baseline, false;
-the optional FLINT backend, true but opt-in. -/
+/-- The whole of what CORALean assumes: the hardware, false (`not_isTrustedHardware`); the
+baseline, false by design; the optional FLINT backend, true but opt-in. -/
 def allowedAxioms : Array Name :=
   #[`CORALean.Float.Binary64.trustedHardware, unsoundAxiom, flintAxiom]
 

@@ -15,10 +15,11 @@ public import CORALean.Global.Float.Instances.Binary64.Theorems.MulDownLeMul
 
 The rounded operations come from `Operations`, and so do `minimum`/`maximum`, core's `min`/`max`
 carrying a NaN through; `Neg.neg` and the decidable `≤` are the machine's own. Every obligation is
-either assumed in `Axioms` or proved from those assumptions in `Theorems`. Computable, like
-`Dyadic`'s and unlike ℝ's: `toReal` decodes bits, so an algorithm written against the operation
-classes runs at `Float` as it runs at `Dyadic`. What separates the two backends is the one
-assumption, not what can be evaluated.
+either assumed in `Axioms` or proved from those assumptions in `Theorems`; that assumption is
+false (`not_isTrustedHardware`), so this instance is read as README, "The trust base", says.
+Computable, like `Dyadic`'s and unlike ℝ's: `toReal` decodes bits, so an algorithm written against
+the operation classes runs at `Float` as it runs at `Dyadic`. What separates the two backends is the
+one assumption, not what can be evaluated.
 -/
 
 -- Authors:       Claude Opus 5

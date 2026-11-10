@@ -14,6 +14,7 @@ what trusting the hardware would mean and the single axiom that trusts it in
 `Definitions`, what follows from it in `Theorems`, and the `FloatOps` and
 `SoundFloatArithmetic` instances in `Instances`.
 
-`Definitions/Axioms.lean` holds the only assumption in the library, and the
-only reason to reach for this backend rather than `Dyadic` is speed.
+`Definitions/Axioms.lean` holds the backend's one assumption, which is false
+(`Theorems/NotIsTrustedHardware.lean`), and the only reason to reach for this
+backend rather than `Dyadic` or `IEEE` is speed.
 -/
