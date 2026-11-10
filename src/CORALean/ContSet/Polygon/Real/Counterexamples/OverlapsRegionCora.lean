@@ -19,7 +19,7 @@ approximation built from boundary samples (`@ellipsoid/polygon.m`). For the unit
 finite boundary sample `V`, a boundary point `z` of `E` lies outside the sampled polygon, hence so
 does a small square `P` about `z`: `P` meets `E` at `z`, yet `overlaps(P, polygon(E))` is false and
 CORA returns false. `contSet/isIntersecting.m` l. 38 reorders by precedence (polygon 15,
-ellipsoid 50) and calls the polygon method. Read from the source, not run.
+ellipsoid 50) and calls the polygon method. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 ## Inputs
 * `V` – set of points

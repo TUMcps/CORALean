@@ -21,13 +21,13 @@ The comment says "M full rank". For `M` of size `m x n` the rank equals `dim(SpS
 tall `M` with `m > n` of full column rank, whose image lies in an `n`-dimensional subspace of
 `R^m` and is not full-dimensional. The right test is `rank(M) == size(M,1)`. `isFullDim` returns
 the cached `fullDim.val` before anything else. The flag is `some b` when set and `none` when empty.
-Read from the source, not run.
+Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `M * SpS` for a tall `M` is flagged full-dimensional
 
 `SpS = spectraShadow.Inf(1)` (the real line, `fullDim.val = true` set by `Inf.m`) and
 `M = [1; 0]` (rank `1 = dim(SpS)`): `M * SpS` is the first axis of `R^2`, with empty interior,
-and `isFullDim(M * SpS)` returns `true`. Read from the source, not run.
+and `isFullDim(M * SpS)` returns `true`.
 
 ## Inputs
 * none

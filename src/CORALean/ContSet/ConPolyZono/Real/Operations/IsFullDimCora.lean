@@ -11,7 +11,8 @@ public import Mathlib.LinearAlgebra.Dimension.Finrank
 `@conPolyZono/isFullDim` answers `false` for the empty set and otherwise `rank([G GI]) == n`,
 the same test as for a polynomial zonotope, and with the same flaw: the rank of the generators
 says nothing about the constraints or the exponents (`isFullDim_cora_counterexample`). The rank
-of a matrix is the dimension of the span of its columns. Read from the source, not run.
+of a matrix is the dimension of the span of its columns. Run in MATLAB, see
+`experiments/cora-bugs/results.tsv`.
 
 ## Inputs
 * `cPZ` – constrained polynomial zonotope

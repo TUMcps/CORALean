@@ -17,7 +17,7 @@ flag first. `polytope([0 1])` has `bounded.val = true` from the constructor
 (`aux_computeHiddenProperties`), and `polytope(-1,0)` (`x ≥ 0`) is unbounded with the flag unset.
 Their product `[0,1] × [0,∞)` contains points of every height, yet `cartProd(P1,P2)` stores
 `bounded.val = true`, so `isBounded` answers `true`. The flags `emptySet`, `fullDim` are not
-modelled. Read from the source, not run.
+modelled. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 ## Inputs
 * none

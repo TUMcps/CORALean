@@ -12,7 +12,7 @@ public import Mathlib.Data.Fin.VecNotation
 column vector and `c` a column vector of the same length `n`, so `scale * c` is an `n x 1` times an
 `n x 1` matrix product, defined only for `n = 1` (`evaluatePolyZonotope` and the batch evaluation
 use the elementwise `scale(:) .* c`). The product of mismatched matrices is `none`, standing for
-MATLAB's error. Read from the source, not run.
+MATLAB's error. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 `nnElementwiseAffineLayer([2;3], [0;1])` is valid, yet `evaluate(conZonotope([0;0], eye(2)))` stops
 with the error, where `diag(scale) c + offset` is the answer.

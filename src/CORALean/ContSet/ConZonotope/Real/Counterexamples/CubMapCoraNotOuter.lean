@@ -19,7 +19,7 @@ its column of `A` stays zero, and `A β = b` is imposed on the others alone.
 For `z = x₁² · x₁` and `c = (1, 0)`, `G = I`, `A = [1 1]`, `b = 0` the image is
 `(1 + β₁)³ = [0, 8]`. CORA's polynomial zonotope keeps the linear monomial `β₁` alone, so
 `A = [1 0 0]`, and `β₁²` moves half into the center, `c = 5/2`: the set `[0, 5]` misses `z = 8` at
-`β₁ = 1` (read from the source, not run).
+`β₁ = 1` (run in MATLAB, see `experiments/cora-bugs/results.tsv`).
 
 ## Inputs
 * none

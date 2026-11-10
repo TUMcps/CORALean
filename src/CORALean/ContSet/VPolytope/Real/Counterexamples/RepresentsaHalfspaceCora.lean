@@ -16,17 +16,16 @@ vertex branch (l. 357-368) reads, for a one-dimensional polytope,
 signOfInfs = sign(V(isinf(V)));
 ```
 
-but the function never defines `V`: the vertex matrix is `P.V_.val`. MATLAB stops with
-`Unrecognized function or variable 'V'`. Only a one-dimensional polytope in vertex
-representation gets there (a higher dimension answers `false` first); a polytope that
-`isemptyobject` counts empty returns earlier. Read from the source, not run.
+but the function never defines `V`: the vertex matrix is `P.V_.val`. MATLAB stops with `Unrecognized
+function or variable 'V'`. Only a one-dimensional polytope in vertex representation gets there (a
+higher dimension answers `false` first); a polytope that `isemptyobject` counts empty returns
+earlier. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `polytope/representsa_(P, 'halfspace')` errors on a one-dimensional vertex polytope
 
 The polytope `polytope(0)` (a single vertex, in `ℝ¹`) reaches `aux_isHalfspace`'s vertex branch
 and its undefined `V`. The answer is `false`: a halfspace `{x | a x ≤ b}`, `a ≠ 0`, is
-unbounded and holds `(b - 1)/a` and `(b - 2)/a`, two points a single vertex cannot. Read from the
-source, not run.
+unbounded and holds `(b - 1)/a` and `(b - 2)/a`, two points a single vertex cannot.
 
 ## Inputs
 * none

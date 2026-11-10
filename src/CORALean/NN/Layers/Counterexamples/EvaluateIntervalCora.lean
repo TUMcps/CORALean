@@ -12,7 +12,7 @@ public import Mathlib.Tactic.NormNum
 The default `evaluateInterval` of `nnLayer.m` (l. 141-144), inherited by `nnSquareLayer`,
 `nnActLayerFromHandle` and `nnSoftmaxLayer`, evaluates the layer function at the two end points and
 returns the results as the new bounds. That is the image only for a function increasing on the box.
-Read from the source, not run.
+Run in MATLAB (partly confirmed), see `experiments/cora-bugs/results.tsv`.
 
 `evaluate(nnSquareLayer, interval(-1,2))` is `interval(1,4)`, while `x^2` takes the value `0` at `x
 = 0 ∈ [-1,2]`: the enclosure is not one. The same holds for `sin` on `interval(0,3)`.

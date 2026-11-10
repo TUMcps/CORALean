@@ -21,12 +21,11 @@ if isa(S,'polytope')
 The Minkowski sum `P ⊕ S = {p + s | p ∈ P, s ∈ S}` with an empty operand is empty, whatever the
 other operand is. For `P` the full space and `S` empty, the first test fires and the result is the
 full space. The sets are subsets of `R^n`, given by their points; `polytope.Inf(n)` is the full
-set. Read from the source, not run.
+set. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `polytope.Inf(2) + polytope.empty(2)` is the full space
 
-The sum with the empty set has no points, but CORA returns `polytope.Inf(2)`. Read from the
-source, not run.
+The sum with the empty set has no points, but CORA returns `polytope.Inf(2)`.
 
 ## Inputs
 * `n` – natural number

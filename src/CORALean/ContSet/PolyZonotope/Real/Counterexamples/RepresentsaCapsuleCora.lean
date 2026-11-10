@@ -21,7 +21,7 @@ res = n == 1 || isPoint && size(pZ.G,2) + size(pZ.GI) <= 1;
 right operand of `&&` is a `1 × 2` logical array. MATLAB's `&&` accepts only operands
 convertible to a logical scalar and raises an error once `isPoint` is true. The branch is
 reached for `n ≥ 2` and a point (`isPoint`: no generators after `compact_`), modelled as no
-stored generator, which is already compact. Read from the source, not run.
+stored generator, which is already compact. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `polyZonotope/representsa_(pZ, 'capsule')` errors on a point in dimension two or more
 

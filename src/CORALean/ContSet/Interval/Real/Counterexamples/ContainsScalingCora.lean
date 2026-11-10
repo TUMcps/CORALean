@@ -20,7 +20,7 @@ Not modelled: the `n × 2` shapes in higher dimension, `NaN` or `Inf` for a dege
 
 For `I = interval(1, 3)` and `S = 0`: `c = 2`, `scaling = abs(0)./abs([-1 1]) = [0 0]`, so
 `res = [1 1]` although `0 ∉ [1, 3]`. Reached by `[res,cert,scaling] = contains(I, 0)`
-(`contSet/contains.m` l. 87-91). Read from the source, not run.
+(`contSet/contains.m` l. 87-91). Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 ## Inputs
 * none

@@ -14,7 +14,7 @@ public import Mathlib.Tactic.NormNum
 `arrayfun(@(i) [interval(reshape(Hx.inf(1,:,:),[n+m,n]), ...), ...], 1:2, ...)` (l. 117-121). The
 lambda ignores `i` and reads output `1`, the first index of `Hx` and `Hu` being the output, so the
 loop `secondOrder(i) = 0.5 * dz' * H_ * dz` (l. 132-136) gives every output the bound of output 1.
-The `1:2` also fixes two outputs. Read from the source, not run.
+The `1:2` also fixes two outputs. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `nonlinearReset/evaluate` is unsound: every output gets output 1's second-order bound
 

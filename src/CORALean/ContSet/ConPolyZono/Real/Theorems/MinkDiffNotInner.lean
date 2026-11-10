@@ -13,7 +13,8 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 `P = {-1, 1}` in `ℝ¹` (one factor `α` with the constraint `α² = 1`, generator `1`, exponent `1`) and
 the zonotope `Z = [-1, 1]`. The test at the corners `x ± 1 ∈ P` passes for `x = 0`, so the result
 contains `0`; but `0 + ½ ∉ P`, so `0 + Z ⊄ P` and `0 ∉ P ⊖ Z`. CORA labels this
-computation `'exact'` and cites a theorem that assumes convexity. Read from the source, not run.
+computation `'exact'` and cites a theorem that assumes convexity. Run in MATLAB, see
+`experiments/cora-bugs/results.tsv`.
 
 ## Inputs
 * none

@@ -218,7 +218,7 @@
       "description": "point extended by ones, not zeros; wrong true",
       "kind": "unsound",
       "fix": "ContainsPoint.lean",
-      "matlab": "not reproduced"
+      "matlab": "confirmed"
     },
     "isFullDim": {
       "description": "rank test is necessary only; arc passes",
@@ -254,10 +254,10 @@
       "matlab": "confirmed"
     },
     "supportFunc_": {
-      "description": "all-zero A read as unconstrained; empty set gets finite value",
+      "description": "empty set $0\\xi=b$: unconstrained branch recurses, stack overflow",
       "kind": "other",
-      "cex": "SupportFuncUpperCora.lean",
-      "matlab": "not reproduced"
+      "cex": null,
+      "matlab": "confirmed"
     },
     "representsa_": {
       "description": "1-D test is n == 1; segment accepted as hyperplane",
@@ -443,10 +443,10 @@
       "matlab": "confirmed"
     },
     "isequal": {
-      "description": "idx for idx(i): repeated vertex start never tried",
+      "description": "NaN separator in vertex list: rank error, even isequal(P,P)",
       "kind": "other",
-      "cex": "IsequalCora.lean",
-      "matlab": "not reproduced"
+      "cex": null,
+      "matlab": "confirmed"
     },
     "minkDiff": {
       "description": "not inner for a nonconvex subtrahend",
@@ -490,7 +490,7 @@
     "compact_": {
       "description": "aligned zero rows empty; 1-D equality merge drops coefficient",
       "kind": "unsound",
-      "matlab": "not reproduced"
+      "matlab": "confirmed"
     },
     "convHull_": {
       "description": "empty operand returns the empty set, not the other operand",
@@ -522,10 +522,10 @@
       "matlab": "confirmed"
     },
     "mldivide": {
-      "description": "P2 overwritten by P1; difference of P1 with itself",
-      "kind": "unsound",
+      "description": "P2 overwritten by P1; returns the whole space",
+      "kind": "other",
       "fix": null,
-      "matlab": "not reproduced"
+      "matlab": "confirmed"
     },
     "plus": {
       "description": "full space plus empty set returns full space",
@@ -664,13 +664,13 @@
       "description": "maiga: signed u gives zero generator, 0/0 NaN",
       "kind": "other",
       "cex": "Cloud2zonotopeCoraZeroGenerator.lean",
-      "matlab": "not reproduced"
+      "matlab": "confirmed"
     },
     "filterOut": {
       "description": "calls nonexistent chebyball; deletes both of equal cells",
       "kind": "other",
       "cex": "FilterOutPair.lean",
-      "matlab": "not reproduced"
+      "matlab": "confirmed"
     },
     "intersectStrip": {
       "description": "'wang-FRad' applies dynamics twice; gain not optimal",
@@ -713,9 +713,9 @@
       "matlab": "confirmed"
     },
     "contains_": {
-      "description": "point container, set operand: output never assigned",
+      "description": "set operand: output unassigned; sampling:dual uses undefined Z2",
       "kind": "other",
-      "matlab": "not reproduced"
+      "matlab": "confirmed"
     },
     "split": {
       "description": "coordinate used as box generator index; bundle calls missing get",

@@ -14,13 +14,14 @@ public import Mathlib.Tactic.FinCases
 the states of the low-dimensional set": state `i` of the set becomes state `proj(i)`, which is
 how `@interval/lift_.m` (`lb(proj) = I.inf`) and `@polytope/lift_.m` (`A(:,dims) = P.A_.val`)
 read it. `project(S,dims)` has the inverse meaning, state `i` of the result is state `dims(i)` of
-`S`. The two agree only where `proj` is its own inverse. Read from the source, not run.
+`S`. The two agree only where `proj` is its own inverse. Run in MATLAB, see
+`experiments/cora-bugs/results.tsv`.
 
 # CORA's `lift` of a zonotope applies the inverse permutation
 
 `lift(zonotope([1;2;3]),3,[2 3 1])` moves state 1 to position 2, state 2 to position 3 and state 3
 to position 1, giving the point `(3;1;2)`; `project(Z,[2 3 1])` is `(2;3;1)`. The same call on
-`interval([1;2;3])` gives `(3;1;2)`, so the classes disagree. Read from the source, not run.
+`interval([1;2;3])` gives `(3;1;2)`, so the classes disagree.
 
 ## Inputs
 * none

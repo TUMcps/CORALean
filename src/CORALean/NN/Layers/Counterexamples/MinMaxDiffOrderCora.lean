@@ -15,7 +15,7 @@ public import Mathlib.Tactic.NormNum
 linear polynomial `[a, b]`: with `ddiff = df - a` it calls `fzero(ddiff, [l u])` when `ddiff(l) *
 ddiff(u) > 0`, and otherwise keeps `xs = [l,u]`. But `fzero` needs a sign change, `< 0`, and the
 slope of a chord of a convex `f` lies between `df(l)` and `df(u)`, so the interior extremum of `f -
-p` is missed. Read from the source, not run.
+p` is missed. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 For `exp` on `[-1, 1]` with chord slope `m = (e - 1/e)/2` the code evaluates `f - p` at the end
 points (`1.543`), while the minimum is `0.986`: the value `1` at `0` is below the lower bound.

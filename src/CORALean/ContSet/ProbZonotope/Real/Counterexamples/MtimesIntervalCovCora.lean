@@ -20,7 +20,7 @@ elseif isa(matrix,'interval')
 The constructor sets `gauss = true` and `cov = sigma(obj)`, and `probReduce` (called by `sigma`,
 `zonotope(probZ,m)`, `interval`) takes `newSigma = cov` when `gauss == 1` and ignores `g`. One
 dimension, the interval matrix a point `T` (`S = 0`): the state is `g`, `cov` and `gauss`, `sigma`
-reads `cov` or `g * g`. Read from the source, not run.
+reads `cov` or `g * g`. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `sigma(interval(2*eye(2)) * probZ)` is the unmapped covariance
 

@@ -14,8 +14,8 @@ usedVars2, subNames)`, and calls rows equal when `simplify` of the difference is
 `symNames(:,2)` meant to record which variable of the second level set stands for which of the first
 is written and never read, so nothing makes the renamings of different rows agree. For the level
 sets `x₁ ≤ 0` and `x₂ ≤ 0` over `[x₁; x₂]` both equations become the placeholder `xyz_1`, and CORA
-answers `true` (read from the source, not run). `LevelSet.step_rowMatchCora` is that per-row test;
-the theorem says it holds for the two rows while the level sets differ.
+answers `true` (run in MATLAB (`cora-bugs/results.tsv`)). `LevelSet.step_rowMatchCora` is that
+per-row test; the theorem says it holds for the two rows while the level sets differ.
 
 ## Inputs
 * none

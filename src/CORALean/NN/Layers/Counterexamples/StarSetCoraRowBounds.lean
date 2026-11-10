@@ -14,9 +14,9 @@ public import CORALean.NN.Layers.Operations.StarSetReluNeuron
 # The bounds of one neuron as CORA's code computes them
 
 `nnReLULayer/evaluateConZonotopeNeuron` computes `c_ = c(j) + 0.5 * G(j,:) * (u_ - l_)`, `G_ = 0.5 *
-G(j,:) * diag(u_-l_)`, `l = c_ - sum(abs(G_))`, `u = c_ + sum(abs(G_))`. The center of the factor
-box is `(l_ + u_)/2`, not `(u_ - l_)/2`: with `l_ = -1`, `u_ = 1`, as `conversionConZonoStarSet`
-returns, the interval is the true one shifted by `sum(G(j,:))`. Read from the source, not run.
+G(j,:) * diag(u_-l_)`, `l = c_ - sum(abs(G_))`, `u = c_ + sum(abs(G_))`. The factor box's center is
+`(l_ + u_)/2`, not `(u_ - l_)/2`: with `l_ = -1`, `u_ = 1`, as `conversionConZonoStarSet` gives, the
+interval is the true one shifted by `sum(G(j,:))`. Run in MATLAB, partly (`cora-bugs/results.tsv`).
 
 For the star set `(x₀, x₁) = (α, -α)`, `α ∈ [-1, 1]`, neuron `0` gets the bounds `[0, 2]` instead of
 `[-1, 1]`, so `0 ≤ l` and the step leaves the set as it is, although the point `α = -1` is not on

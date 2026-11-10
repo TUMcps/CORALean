@@ -21,7 +21,7 @@ end
 
 (l. 57-59) but never assigns the output `S_out` before that `return`, so MATLAB stops with
 `Output argument 'S_out' (and maybe others) not assigned during call`. The correct result, as
-the comment says, is `C`. Read from the source, not run.
+the comment says, is `C`. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 An empty capsule is modelled as `Capsule.empty`, radius `-1` (`isempty(S.r)` in CORA).
 
@@ -29,7 +29,7 @@ An empty capsule is modelled as `Capsule.empty`, radius `-1` (`isempty(S.r)` in 
 
 The branch for an empty `S` (l. 57-59 of `@capsule/convHull_.m`) executes `return` without having
 set `S_out`, so `convHull(C, capsule.empty(n))` raises MATLAB's "output argument not assigned"
-error, where the hull of a convex set with `∅` is the set itself. Read from the source, not run.
+error, where the hull of a convex set with `∅` is the set itself.
 
 ## Inputs
 * `C` – capsule

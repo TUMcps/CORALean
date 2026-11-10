@@ -8,7 +8,7 @@ contSet/capsule:lift_	confirmed	center(lift(zonotope([1;2;3]),3,[2 3 1])) = [2;3
 contSet/capsule:mtimes	confirmed	mtimes(0.5,capsule(0,0,1)) has radius 0.25 (true image radius 0.5)
 contSet/capsule:polytope	confirmed	polytope(capsule([0;0],[0;0],1),'outer').A is [NaN NaN;NaN NaN;NaN NaN;NaN NaN]
 contSet/capsule:representsa_	confirmed	representsa(capsule(0,0,1),'hyperplane') returns 1 for the interval [-1,1]
-contSet/conPolyZono:contains_	not reproduced	contains(conPolyZono(0,1,1,1,0,1),1,'approx') returns 0 (the point 1 is not accepted); 'approx' also returns 0 for the member 0, so the test cannot confirm the extension by ones; the source line S = [S; ones(m,size(S,2))] is as described
+contSet/conPolyZono:contains_	confirmed	contains(conPolyZono(0,[1 1],[1 0;0 1],1,-0.5,[0;1]),p,'approx'), a set equal to [-1.5,0.5] (interval), returns 1 for p=1 and p=0.2 (outside) and 0 for p=-1 and p=-0.5 (members); the first witness conPolyZono(0,1,1,1,0,1) returns 0 even for the member 0 ('approx' does not decide a curve), so it cannot show it
 contSet/conPolyZono:isFullDim	confirmed	isFullDim(conPolyZono([0;0],eye(2),[1 2])) (the arc (a,a^2)) returns 1
 contSet/conPolyZono:minkDiff	confirmed	minkDiff(conPolyZono(0,1,1,1,1,2),zonotope(0,1)) (P={-1,1}) is not empty (representsa 'emptySet' returns 0): its constraints are met at alpha=(-1,1), giving the point 0, though 0+[-1,1] is not inside P
 contSet/conPolyZono:representsa_	confirmed	representsa(conPolyZono(0,0,1,1,2,1,1),'emptySet') returns 0 for the set with the infeasible constraint alpha=2
@@ -17,7 +17,7 @@ contSet/conZonotope:cubMap	confirmed	cubMap(conZonotope([1;0],eye(2),[1 1],0),T)
 contSet/conZonotope:isFullDim	confirmed	isFullDim(conZonotope(0,[1 0],[1 1],2)) returns 1 for the single point {1}
 contSet/conZonotope:lift_	confirmed	center(lift(conZonotope([1;2;3]),3,[2 3 1])) = [2;3;1], while the interval gives [3;1;2]
 contSet/conZonotope:representsa_	confirmed	representsa(conZonotope(0,1),'hyperplane') returns 1 for the interval [-1,1]
-contSet/conZonotope:supportFunc_	not reproduced	supportFunc_(conZonotope(0,1,0,1),1,'upper') (A=0, b=1) does not return 1: it aborts with MATLAB:lang:StackOverflow (interval(dir'*cZ) recurses); with two generators (conZonotope(0,[1 1],[0 0],1)) the same; the public supportFunc returns -Inf
+contSet/conZonotope:supportFunc_	confirmed	supportFunc_(conZonotope(0,1,0,1),1,'upper') (A=0, b=1) aborts with MATLAB:lang:StackOverflow (aux_supportFunc_unconstrained l. 87, interval(dir'*cZ) recurses through conZonotope/interval); the public supportFunc, interval and contains abort too and representsa 'emptySet' returns 0; with b=0 supportFunc_ returns 1
 contSet/ellipsoid:contains_	confirmed	with sedumi (the default without MOSEK) priv_containsEllipsoid(E1,E2) returns res=false, rho=NaN (solver not found in this install); with SDPT3 substituted in the same SDP rho=0.25, so res=true for the disjoint segments E1=ellipsoid(diag([1,0])), E2=ellipsoid(diag([0.25,0]),[0;1])
 contSet/ellipsoid:convHull_	confirmed	convHull(ellipsoid(eye(2)),ellipsoid.empty(2)) errors: Output argument "S_out" (and possibly others) not assigned a value
 contSet/ellipsoid:enclose	confirmed	enclose(ellipsoid(0,0),0,ellipsoid(0,1)) does not contain 1 (result Q=0.001, q=1e-21); the documented hull does
@@ -48,7 +48,7 @@ contSet/polyZonotope:volume_	confirmed	volume(polyZonotope(0,-1,[],1)) returns -
 contSet/polygon:contains_	confirmed	contains(polygon(E),E) for E=ellipsoid(eye(2)) returns 0 at the default tolerance (areas differ by 2.5e-14) and 1 with tolerance 1e-6, though boundary points of E between two of the 1000 samples lie outside the polygon
 contSet/polygon:hausdorffDist	confirmed	hausdorffDist(polygon([0 1 1 0],[0 0 1 1]),[0.5;0.5]) returns 0 (the Hausdorff distance is 0.7071)
 contSet/polygon:isIntersecting_	confirmed	isIntersecting(square of half-width 1e-7 about a boundary point of E between two samples, E) returns 0, the point lies on E
-contSet/polygon:isequal	not reproduced	polygon([0 1 1 0 -1 -1],[0 1 -1 0 -1 1]) is built with a NaN separator (7 columns) and isequal against the restarted boundary errors (MATLAB:rank:matrixWithNaNInf); the false answer for equal polygons was not reproduced
+contSet/polygon:isequal	confirmed	isequal(P,P) errors (MATLAB:rank:matrixWithNaNInf, removeCollinearVertices2D l. 56) for P=polygon([0 1 1 0 -1 -1],[0 1 -1 0 -1 1]) (stored with a NaN separator) and for a square minus a square hole; the false answer of the idx loop was not reproduced (a vertex repeated within 1e-9 gives true; polygon(V) starts both lists at the same vertex)
 contSet/polygon:minkDiff	not run	the note gives no concrete input
 contSet/polygon:minus	confirmed	minus(polygon,polygon) errors: Unrecognized function or variable 'S'
 contSet/polygon:quadMap	not run	no Lean witness; the note gives no concrete input
@@ -56,13 +56,13 @@ contSet/polygon:randPoint_	confirmed	randPoint(polygon([0 1 1 0],[0 0 1 1]),'all
 contSet/polygon:removeCollinearPoints	confirmed	removeCollinearPoints of the U polygon polygon([0 3 3 2 2 1 1 0],[0 0 3 3 1 1 3 3]): area 7 before and after, contains((1.5,2)) is 0 before and 1 after
 contSet/polygon:representsa_	confirmed	representsa(polygon.empty(),'origin') returns 1
 contSet/polytope:cartProd_	confirmed	isBounded(cartProd(polytope([1;-1],[1;0]),polytope(-1,0))) returns 1 for [0,1] x [0,Inf)
-contSet/polytope:compact_	not reproduced	compact(polytope([],[],[2;2],[1;1])) returns Ae=2, be=1 (correct, not x=1); a zero equality row in 2-D ([0 0;1 0;0 1], [0;1;1]) and mixed with inequalities was compacted correctly, so neither the 1-D merge nor the aligned-row claim was reproduced
+contSet/polytope:compact_	confirmed	compact(polytope([],[],[0 0;1 0],[0;1]),'aligned') and 'Ae' return the empty set for the nonempty x1=1; vertices(polytope([],[],[2;2],[1;1])) returns 1 (the set is {1/2}), as do vertices and compact(...,'all') of polytope([],[],[2;-2],[1;-1]); compact(...,'all') of the duplicate pair [2;2],[1;1] returns Ae=2, be=1 (correct: priv_compact_alignedEq merges it first); offsets 1 and 0 (polytope([],[],[1;1],[1;0])): vertices errors Index exceeds array bounds
 contSet/polytope:convHull_	confirmed	convHull(P,S) with P=polytope([1;-1],[0;-1]) (empty) and S=[0,1] returns the empty set (representsa 'emptySet' = 1)
 contSet/polytope:isFullDim	confirmed	isFullDim(polytope([eye(2);-eye(2);0 0],[1;1;1;1;0])) returns 0 for the unit square with a zero row (the qr claim was not run)
 contSet/polytope:isIntersecting_	confirmed	isIntersecting(polytope([eye(2);-eye(2)],ones(4,1)),polytope([5 5;6 5;5 6]')) returns 1 for the disjoint box and triangle
 contSet/polytope:isequal	confirmed	isequal(polytope([1 0;1 0;-1 0;0 1;0 -1],[1;1;0;1;0]),polytope([-1 0;0 1;0 -1],[0;1;0])) returns 1 ([0,1]x[0,1] against [0,Inf)x[0,1]); the 1-D instance polytope([1;1;-1],[1;1;0]) against polytope(-1,0) returns 0
 contSet/polytope:minkDiff	confirmed	minkDiff(polytope([1;-1],[1;1]),polytope(1,0)) is not empty (representsa 'emptySet' = 0) and contains 0
-contSet/polytope:mldivide	not reproduced	mldivide(polytope([1;-1],[2;0]),polytope([1;-1],[3;-1])) returns a polytope without constraints (A=zeros(0,1), the whole line), not the empty P1\P1; vertices() errors on it. The result is wrong, but not empty as the note says
+contSet/polytope:mldivide	confirmed	mldivide(polytope([1;-1],[2;0]),polytope([1;-1],[3;-1])) returns a polytope without constraints (A=zeros(0,1)), the whole line, where the difference is [0,1); the same for a disjoint P2 and for two boxes in 2-D; vertices() errors on it. P_out starts as polytope(zeros(0,n),[]) and only a full-dimensional cell replaces it, and with P2 overwritten by P1 none is
 contSet/polytope:plus	confirmed	polytope.Inf(2)+polytope.empty(2) is the full space (representsa 'fullspace' = 1, 'emptySet' = 0)
 contSet/polytope:representsa_	confirmed	representsa(polytope([eye(2);-eye(2);1 1],[2;2;0;0;0]),'interval') returns 0 for the point {0}
 contSet/probZonotope:interval	confirmed	interval(probZonotope([0 1],0)) = [0,0] and sup = 0, the mean zonotope reaches 1
@@ -83,11 +83,11 @@ contSet/zonoBundle:reduceCombined	confirmed	reduceCombined(zonoBundle of two ran
 contSet/zonoBundle:representsa_	confirmed	representsa(zonoBundle({zonotope([0;0],eye(2)),zonotope([0;0],[1;1])}),'interval') returns 1 for the diagonal segment
 contSet/zonoBundle:shrink	confirmed	shrink(zonoBundle({..}),3) errors: Undefined function 'parallelotope' for input arguments of type 'polytope'
 contSet/zonoBundle:split	confirmed	split(zonoBundle,polytope([1 0],0)) errors: Unrecognized method, property, or field 'c' for class 'polytope'; with conHyperplane the output Zsplit is not assigned; the note's undefined-variable message was not seen, the call errors in both forms
-contSet/zonotope:contains_	not reproduced	contains(zonotope([0;0],eye(2)),ellipsoid(4*eye(2)),'sampling:dual') errors: Unrecognized function or variable 'Z2' (priv_zonotopeContainment_ellipsoidSamplingDual line 86); the under-estimated scaling was not reached
+contSet/zonotope:contains_	confirmed	contains(zonotope([0;0],2*eye(2)),ellipsoid(eye(2),[0;1.5]),'sampling:dual') errors: Unrecognized function or variable 'Z2' (priv_zonotopeContainment_ellipsoidSamplingDual line 86); the function called directly with Z2 replaced by Z returns res=1, scaling=0.9014 (true 1.25); contains(zonotope([0;0]),zonotope([0;0],[1;0])) errors: Output argument res not assigned
 contSet/zonotope:dominantDirections	confirmed	dominantDirections(zonotope([0;0],[1 2 3 4 5 6 7;0 0 0 0 0 0 0])) returns the singular S=[7 6;0 0], det 0
 contSet/zonotope:encloseMany	confirmed	encloseMany (called as a plain function, it is not dispatched for a cell) errors in reduce line 195: Wrong value for the second input argument ('parallelpiped' is not a method)
-contSet/zonotope:enclosePoints	not reproduced	zonotope.enclosePoints([1 -1;-1 1],'maiga') returns generators with entries of order 1e-16, G=[-1.1e-16 -5.6e-17 1 0;1.1e-16 5.6e-17 0 1], no 0/0 and no error: the first generator is 1e-16 (rounding in svd), not 0
-contSet/zonotope:filterOut	not reproduced	same input as the mldivide row: mldivide(polytope([1;-1],[2;0]),polytope([1;-1],[3;-1])) returns a polytope without constraints (the whole line), not the empty P1\P1
+contSet/zonotope:enclosePoints	confirmed	zonotope.enclosePoints([1;2],'maiga') (a single point, r=0, g=0) errors: Wrong value for the first input argument (NaN from u=g/norm(g)); [1 -1 0;-1 1 0] errors the same; the cloud [1 -1;-1 1] of the first reading returns generators of order 1e-16 (dot(u,r)=2.2e-16 from svd), no 0/0
+contSet/zonotope:filterOut	confirmed	filterOut({zonotope(0.5,0.5),zonotope(1.5,0.5)}) (a copy in em/, the method is not dispatched on a cell) errors: Undefined function 'chebyball' for input arguments of type 'polytope' (also for equal cells and one cell); the mldivide it feeds returns the whole line
 contSet/zonotope:intersectStrip	confirmed	intersectStrip(zonotope(0,1),1,1,0,struct('method','wang-FRad','A',2,'C',1,'E',0,'F',1)) has G=[0.2 0.8], i.e. gain lambda=0.8 (the paper's is 0.5)
 contSet/zonotope:isIntersecting_	confirmed	isIntersecting(zonotope([0;0],eye(2)),[0.5;0.5]) errors: Not enough input arguments (MATLAB:minrhs)
 contSet/zonotope:lift_	confirmed	center(lift(zonotope([1;2;3]),3,[2 3 1])) = [2;3;1], the interval lift gives [3;1;2]

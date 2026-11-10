@@ -15,18 +15,18 @@ B = poly2bernstein(pZ.G,pZ.E,dom);
 infi = cellfun(@(x) min(min(x)),B);
 ```
 
-`poly2bernstein` ends with `if h == 1, B = A{1}; else B = A; end` (`h = size(G,1)`, the
-dimension), so it returns a matrix for a one-dimensional polynomial zonotope, and `cellfun` raises
-"Input #2 expected to be a cell array". Reached by `interval(polyZonotope(0,1,[],2),'bernstein')`
-and any one-dimensional `pZ` with a dependent generator and a factor (the generatorless case is not
-modelled). Read from the source, not run. `none` is the MATLAB error; a normal return is `some ()`,
-its value not modelled.
+`poly2bernstein` ends with `if h == 1, B = A{1}; else B = A; end` (`h = size(G,1)`, the dimension),
+so it returns a matrix for a one-dimensional polynomial zonotope, and `cellfun` raises "Input #2
+expected to be a cell array". Reached by `interval(polyZonotope(0,1,[],2),'bernstein')` and any
+one-dimensional `pZ` with a dependent generator and a factor (the generatorless case is not
+modelled). Run in MATLAB, see `experiments/cora-bugs/results.tsv`. `none` is the MATLAB error; a
+normal return is `some ()`, its value not modelled.
 
 # CORA's `interval(pZ, 'bernstein')` errors for a one-dimensional polynomial zonotope
 
 `poly2bernstein` returns a matrix, not a cell, when the dimension is `1`, and
 `@polyZonotope/interval.m` l. 71 applies `cellfun` to it. The set has a bounding interval all
-the same. Read from the source, not run.
+the same.
 
 ## Inputs
 * `pZ` – one-dimensional polynomial zonotope

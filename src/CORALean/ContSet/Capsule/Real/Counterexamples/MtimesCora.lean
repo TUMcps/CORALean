@@ -21,8 +21,8 @@ radius `r` has radius `r σ_max`. So CORA's radius is too small exactly when `σ
 has `M Mᵀ = ¼ I`, so CORA answers `r/4` for a true `r/2`. `Capsule.mtimes` scales by the Frobenius
 bound of `σ_max` instead, and `Capsule.mtimes_outer` is the sound statement.
 
-Stated with the eigenvalue `lam` as a parameter, since only its value on this `M` matters. Not
-run in CORA; read from the source.
+Stated with the eigenvalue `lam` as a parameter, since only its value on this `M` matters. Run in
+MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 ## Inputs
 * none

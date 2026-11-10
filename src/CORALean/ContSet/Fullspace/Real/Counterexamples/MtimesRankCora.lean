@@ -17,8 +17,8 @@ numeric `M` it recognises only entirely zero rows (`zerorows = ~any(M,2)`, the b
 itself. So any `M` without a zero row gives the whole space, though `{M x}` is the whole space only
 for full row rank. `M = [1 1; 1 1]` is square with no zero row, so CORA returns `R^2`; the image is
 the line `{(t, t)}` and `(1, 0)` is not on it; likewise `[1; 1] * fullspace(1)`. `isFullDim`,
-`representsa(.., 'fullspace')` and `volume` then answer for the plane. Read from the source, not
-run.
+`representsa(.., 'fullspace')` and `volume` then answer for the plane. Run in MATLAB, see
+`experiments/cora-bugs/results.tsv`.
 
 ## Inputs
 * none

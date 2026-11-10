@@ -21,7 +21,7 @@ three arguments, so `@zonotope/reduce.m` (l. 98) leaves `filterLength = []` and 
   short generators (l. 48-49), then indexes the shortened `G` by `setdiff(1:nrOfGens, ind)`.
 
 Modelled: whether the call stops for a `needed` reduction (more than `d*order` generators) and a
-tiny generator being present. Read from the source, not run.
+tiny generator being present. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `reductionTechnique` accepts five techniques that `reduce` cannot run
 

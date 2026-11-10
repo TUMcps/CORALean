@@ -20,8 +20,8 @@ sides; a subtrahend bounded on one side keeps the single row `1` or `-1`, and MA
 its one offset over both rows of the minuend, whatever that row's direction.
 
 The compacted operands `P_`, `S_` are the arguments; the compaction is `priv_compact_1D`'s, not
-modelled. `representsa_` reads as exact. MATLAB's `-` broadcasts a one-row operand, subtracts
-equal lengths entrywise and errors otherwise (`none`). Read from the source, not run.
+modelled. `representsa_` reads as exact. MATLAB's `-` broadcasts a one-row operand, subtracts equal
+lengths entrywise and errors otherwise (`none`). Run in MATLAB (`cora-bugs/results.tsv`).
 
 # CORA's 1-D polytope `minkDiff` with a one-sided subtrahend is not inner
 

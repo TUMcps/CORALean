@@ -21,7 +21,7 @@ val = dir'*x;
 For an unbounded box `x` holds `±Inf`, and a zero entry of `dir` on such a coordinate gives
 `0*Inf = NaN` in IEEE arithmetic, which the sum carries. Two dimensions, `none` for `NaN`, `±Inf`
 as `EReal`; the `Inf - Inf` of a sum is not modelled, no entry of the example needs it. The
-`'lower'` and `'range'` types do the same. Read from the source, not run.
+`'lower'` and `'range'` types do the same. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `supportFunc` of a half-bounded box with a zero direction entry is `NaN`
 

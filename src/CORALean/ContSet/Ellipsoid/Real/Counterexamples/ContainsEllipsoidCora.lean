@@ -29,7 +29,7 @@ away when `E1` is degenerate.
 0)` the rank test passes, `pinv(H) = H` sends the offset `(0, 1)` to `theta = 0`, and the SDP has
 optimum `rho = 1/4`: CORA answers `true`. `pinv(H)` is any `Hp` meeting the four Penrose equations;
 the solver is any function within `3/4` of every feasible `rho`, and the second conjunct shows one
-exists. Read from the source, not run.
+exists. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 ## Inputs
 * none

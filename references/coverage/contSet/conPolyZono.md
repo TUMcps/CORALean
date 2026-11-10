@@ -62,14 +62,18 @@ the set as extra coordinates, `c = [c; -b]`, `G = blkdiag(G, A)`, `E = [E, EC]`,
 operand is extended by the box `±conTol` around `0`, but a numeric operand by `ones(m, size(S,2))`:
 `[p; 1]` lies in the extended polynomial zonotope iff `A μ(α) = b + 1`, a different constraint. For
 the factor `α ∈ [-1, 1]` with the constraint `α = 0` the set is `{0}`, and `[1; 1]` is reached at
-`α = 1`, so the test passes for `p = 1` (not reproduced, see Details).
+`α = 1`, so the test passes for `p = 1` in the model. In MATLAB the `'approx'` test proves a point
+only inside a full-dimensional extended set; here the extended set is a curve and `'approx'` answers
+`0` even for the member `0`, so this instance cannot show it. With a second factor, `x = α₁ + α₂`
+and the constraint `α₂ = -½` (the set `[-3/2, 1/2]`), the extended set is full-dimensional and CORA
+accepts `p = 1` and `p = 0.2` and rejects the members `-1` and `-½` (run in MATLAB, see Details).
 
 **`contains_` — the set operand and CORA's method.** The set operand extends by the box `±conTol`
 around `0` (sound) and is not modelled. CORA passes the extended set to `polyZonotope/contains_`
 with `'approx'` (an interval-Newton proof), whose own soundness is not formalized here, and the
 method `'exact'` throws.
 
-**`contains_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): **not reproduced**: contains(conPolyZono(0,1,1,1,0,1),1,'approx') returns 0 (the point 1 is not accepted), 'approx' also returns 0 for the member 0, so the test cannot confirm the extension by ones, the source line S = [S, ones(m,size(S,2))] is as described.
+**`contains_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): confirmed with an instance whose extended set is full-dimensional: cPZ = conPolyZono(0,`[1 1]`,`[1 0;0 1]`,1,-0.5,`[0;1]`) is the set `[-1.5,0.5]` (interval(cPZ)), and contains(cPZ,p,'approx') returns 1 for p = 1 and p = 0.2 (outside the set) and 0 for p = -1 and p = -0.5 (members). The first instance, contains(conPolyZono(0,1,1,1,0,1),1,'approx'), returns 0 for the point 1 and also for the member 0: the extended set is the curve `(α, α)`, which the interval-Newton proof of `polyZonotope/contains_` does not decide, so that instance neither confirms nor refutes the extension by ones; the source line S = [S; ones(m,size(S,2))] is as described. The Lean counterexample uses the first instance, where the set is exact and the membership test is the extended one.
 
 **`minkDiff` — cora-issue account.** CORA's `@conPolyZono/minkDiff.m` labels its zonotope-subtrahend
 computation `'exact'` (`(P + g) ∩ (P - g)` per generator, Thm. 1 of the cited paper, which is stated

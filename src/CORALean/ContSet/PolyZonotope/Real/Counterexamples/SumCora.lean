@@ -13,14 +13,13 @@ public import Mathlib.Tactic.FinCases
 `@polyZonotope/sum.m` accumulates the center in a loop over the list, and the body reads
 `c = c + pZlist{1}.c` where it means `pZlist{i}.c`: the first summand's center is added once
 per summand, and no other. Everything else is `sum`; only the center differs, and it is wrong
-as soon as the list has two entries that differ (`sum_cora_counterexample`). Read from the
-source, not run.
+as soon as the list has two entries that differ (`sum_cora_counterexample`). Run in MATLAB, see
+`experiments/cora-bugs/results.tsv`.
 
 # CORA's `polyZonotope/sum` has the wrong center
 
 For `pZ = {0}` and the list `{1}, {2}` (all three are points) the Minkowski sum is `{3}`, and
 `sum` returns it. CORA's loop adds `pZlist{1}.c` twice and returns `{0 + 1 + 1} = {2}`.
-Read from the source, not run.
 
 ## Inputs
 * none

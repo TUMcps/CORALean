@@ -11,7 +11,7 @@ public import CORALean.HybridDynamics.Definitions.NonlinearResetArg
 number; `pu` is `center(u)` for a set `u` and, after `elseif isnumeric(x)`, `u` for a numeric `x`.
 The test is on `x`, where `isnumeric(u)` is meant, so a set `x` with a numeric `u` (also the
 default `u = zeros(m, 1)`) leaves `pu` unassigned: MATLAB's `Output argument 'pu' ... not
-assigned`, here `none`. Read from the source, not run.
+assigned`, here `none`. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `nonlinearReset/evaluate` stops on a set state with a numeric input
 

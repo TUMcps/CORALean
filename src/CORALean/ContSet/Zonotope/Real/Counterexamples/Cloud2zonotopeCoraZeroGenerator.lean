@@ -8,14 +8,13 @@ public import CORALean.Global.EuclideanNorm
 /-!
 # `cloud2zonotope`'s step 8 can cut a zero generator from a cloud with extent
 
-[1, Alg. 3, step 8]: `g := ratio |u · rad| u`, with `rad` the cloud's interval radius, which the
-text calls "a fraction of (an approximation of) the largest projection of the points along `u`".
-But `u · rad` is signed in `u`: for the cloud `{(1, -1), (-1, 1)}` the first principal direction is
-`u = (1, -1) / √2`, which carries all of the cloud (`Σⱼ (u · xⱼ)² = Σⱼ ‖xⱼ‖² = 4`), yet
-`rad = (1, 1)` and `u · rad = 0`: `g = 0` whatever the ratio. Step 2 of `compress`, `u = g / ‖g‖`,
-is then `0 / 0`. CORA's `aux_cloud2zonotope` (`enclosePoints(points, 'maiga')`) does exactly this
-and divides `0 / 0` in MATLAB, so the points become `NaN`; Lean's `x / 0 = 0` makes
-`cloud2zonotopeCompress` the identity there. Only the vanishing of `g` is stated.
+[1, Alg. 3, step 8]: `g := ratio |u · rad| u`, with `rad` the cloud's interval radius. But `u · rad`
+is signed in `u`: for the cloud `{(1, -1), (-1, 1)}` the first principal direction is `u = (1, -1) /
+√2`, which carries all of the cloud, yet `rad = (1, 1)` and `u · rad = 0`: `g = 0` whatever the
+ratio, and step 2 of `compress`, `u = g / ‖g‖`, is `0 / 0` (CORA's `aux_cloud2zonotope`; Lean's `x /
+0 = 0` makes `compress` the identity). Only the vanishing of `g` is stated, in exact arithmetic:
+MATLAB's `svd` leaves `u · rad = 2.2e-16` for this cloud and no `NaN`, while a single point (`rad =
+0`) fails (`experiments/cora-bugs/results.tsv`).
 
 ## Inputs
 * none

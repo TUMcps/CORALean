@@ -16,7 +16,7 @@ programme in `(t₁, t₂)` over `[-1, 1]²` with `H = ½ M`, where the squared 
 `H = 2 M` in the solvers' `½ xᵀHx + fᵀx`. For `C₁ = capsule([0;0],[1;0],0.1)` and
 `C₂ = capsule([0.5;0],[0;1],0.1)` every minimiser has `t₁ = 1`, so `dist ≥ 0.5 > 0.2` and CORA
 answers `false`, though `(0.5, 0)` lies in both. The solver `quadprog H f lb ub` is any minimiser of
-the objective over the box (`CORAquadprog`). Read from the source, not run.
+the objective over the box (`CORAquadprog`). Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 `Capsule.isIntersecting_` is the sound test.
 
 ## Inputs

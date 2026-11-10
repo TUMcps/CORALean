@@ -13,8 +13,8 @@ matrix (`zonotope(matZ)` reshapes `C` and `G` to columns), back into a matrix wi
 square matrix, `cols = sqrt(length(vec))` (l. 36-37), and returns `reshape(vec, [], cols)`: for a
 length that is a perfect square `s²` an `s × s` matrix, and for any other length a non-integer
 size argument, which `reshape` rejects. So the vertices of an `n × m` matrix zonotope are `n × m`
-only if `n = m`. Modelled: the length of the vector and the shape of the result. Read from the
-source, not run.
+only if `n = m`. Modelled: the length of the vector and the shape of the result. Run in MATLAB, see
+`experiments/cora-bugs/results.tsv`.
 
 # CORA's `vertices(matZonotope)` is wrong for a non-square matrix zonotope
 

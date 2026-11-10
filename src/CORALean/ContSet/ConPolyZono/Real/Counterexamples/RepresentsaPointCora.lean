@@ -17,7 +17,7 @@ The branch `'point'` (l. 64-69, marked `% Todo: check constraints`) is
 * no generator but an infeasible constraint (`α₁ = 2`): the empty set, yet CORA answers `true`;
 * a generator pinned by the constraint (`α₁ = 0`): the point `{0}`, yet CORA answers `false`.
 
-Wrong answers, not unsound. Read from the source, not run.
+Wrong answers, not unsound. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 ## Inputs
 * none

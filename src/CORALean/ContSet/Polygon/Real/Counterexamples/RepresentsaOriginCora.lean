@@ -17,15 +17,15 @@ res = all(withinTol(vertices_(pgon),0,tol),"all");
 ```
 
 `all` over an empty array is `true`, so a polygon without vertices passes. Here every vertex of
-every piece is compared with the origin at tolerance `0`. Read from the source, not run.
+every piece is compared with the origin at tolerance `0`. Run in MATLAB (`cora-bugs/results.tsv`).
 
 # CORA's `polygon/representsa_(pgon, 'origin')` accepts the empty polygon
 
 `@polygon/representsa_.m` (l. 63) answers `'origin'` by `all(withinTol(vertices_(pgon),0,tol),
 "all")`. The empty polygon has no vertices and `all([])` is `true`, so CORA reports `res = true`
-(and `S = [0;0]`) for `polygon.empty()`, which denotes `∅`, not `{0}`. A wrong answer, not
-unsound. Read from the source, not run. The same file answers `'emptySet'` by
-`isempty(vertices_(pgon))`, so the empty polygon is reported both empty and the origin.
+(and `S = [0;0]`) for `polygon.empty()`, which denotes `∅`, not `{0}`. A wrong answer, not unsound.
+The same file answers `'emptySet'` by `isempty(vertices_(pgon))`, so the empty polygon is reported
+both empty and the origin.
 
 ## Inputs
 * none

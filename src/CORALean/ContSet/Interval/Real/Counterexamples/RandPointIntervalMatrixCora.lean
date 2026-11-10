@@ -17,7 +17,7 @@ c  = center(intMat.int);   lb = infimum(intMat.int);   r = rad(intMat);   % r = 
 ```
 
 One entry `[lo, hi]` with `r = (hi - lo)/2` and the random draw `u ∈ [0, 1)`, `s = ±1` the sign.
-Read from the source, not run.
+Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `randPoint` of an interval matrix covers half of each entry and never the vertices
 

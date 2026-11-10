@@ -21,8 +21,9 @@ that swaps a lone hyperplane hit for the next time-point set.
 
 The guard `{x | x = 0 ∧ x - 1 ≤ 0}` (a cell `{'==','<='}`) and the reach set `[0, 1]` share the
 point `0`, yet the `==` row has bounds `(0, 1)`, which `isIntersecting_` reads as `0 < 0`, so
-`potInt` does not list the pair `(0, 0)` and the jump through this guard is missed (read from the
-source, not run). The bounds are range bounds of the guard function over the set.
+`potInt` does not list the pair `(0, 0)` and the jump through this guard is missed (run in MATLAB,
+see `experiments/cora-bugs/results.tsv`). The bounds are range bounds of the guard function over the
+set.
 
 ## Inputs
 * none

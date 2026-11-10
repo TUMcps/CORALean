@@ -7,10 +7,10 @@ public import Mathlib.Data.List.Range
 /-!
 # `MatExp.expmIndMixedPolytopeCora`: `expmIndMixed` of a matrix polytope as CORA's code runs it
 
-`@matPolytope/simplePlus.m` (l. 31-33) reads the size of its first summand from a variable that
-does not exist (`size(Z1)` after `matV1 = summand1.V`). Its only caller,
-`@matPolytope/expmIndMixed.m` (l. 38-43), calls it for `i=1:intermediateOrder`, so the first
-iteration stops with `Unrecognized function or variable 'Z1'`. Read from the source, not run.
+`@matPolytope/simplePlus.m` (l. 31-33) reads the size of its first summand from a variable that does
+not exist (`size(Z1)` after `matV1 = summand1.V`). Its only caller, `@matPolytope/expmIndMixed.m`
+(l. 38-43), calls it for `i=1:intermediateOrder`, so the first iteration stops with `Unrecognized
+function or variable 'Z1'`. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `expmIndMixed(matPolytope, k, maxOrder)` crashes for every `k >= 1`
 

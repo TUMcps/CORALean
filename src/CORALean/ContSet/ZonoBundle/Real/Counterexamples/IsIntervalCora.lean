@@ -15,14 +15,13 @@ What `@zonoBundle/representsa_` computes for the type `'interval'`: `n == 1 || a
 tol)`, where `aux_isInterval` is `true` in dimension one and for an empty set, and otherwise loops
 `for i = 1:zB.parallelSets` over `representsa_(zB.Z{1}, 'interval', tol)`. The loop variable `i` is
 never used: it tests the first member `Z{1}` `parallelSets` times, so a bundle whose *first* member
-is a box passes whatever the others are. Read from the source, not run.
+is a box passes whatever the others are. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `zonoBundle/representsa_` calls a segment an interval
 
 The bundle of the box `[-1, 1]²` and the diagonal segment `{(t, t) : |t| ≤ 1}` denotes that segment,
 which is not an axis-aligned box. `aux_isInterval` tests `zB.Z{1}`, the box, in every pass of its
-loop, never `zB.Z{2}`, so `representsa_(zB, 'interval')` answers `true`. Read from the source,
-not run.
+loop, never `zB.Z{2}`, so `representsa_(zB, 'interval')` answers `true`.
 
 ## Inputs
 * none

@@ -11,7 +11,7 @@ public import CORALean.ContSet.ContSet.ContSet
 The header of `@capsule/enclose.m` documents `{a x₁ + (1 - a) x₂ | x₁ ∈ C, x₂ ∈ C2, a ∈ [0,1]}`
 with `C2 = M*C + Cplus`, but the code sets `C2 = M*Cplus` and adds nothing. For `C = {0}`,
 `M = 0` and `Cplus = {1}` the documented set contains `1` (at `a = 0`: `x₂ = M 0 + 1`), while the
-code returns `{0}`. Read from the source, not run.
+code returns `{0}`. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 ## Inputs
 * none

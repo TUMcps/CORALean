@@ -31,8 +31,8 @@ for i = 1:obj.max_order
 end
 ```
 
-with `aux_dasin(k) = (k-2)^2` for `k ≥ 3` and `1` below, from `T1 = asin(0) = 0`. Read from the
-source, not run.
+with `aux_dasin(k) = (k-2)^2` for `k ≥ 3` and `1` below, from `T1 = asin(0) = 0`. Run in MATLAB, see
+`experiments/cora-bugs/results.tsv`.
 
 # `Taylm.asinRemainderUpperCora`: the remainder of CORA's `asin(taylm)`
 
@@ -45,14 +45,14 @@ res.remainder = res.remainder + 1/factor * remPow .* asin(interval(0,1).*rem).^(
 with `factor = (k+1)!` and `remPow = interval(T^(k+1))`. The Lagrange remainder of `asin` needs its
 `(k+1)`-th derivative at an intermediate point; the code uses `asin(θ·rem)^(k+1)`, a power of the
 function. For `k + 1` even and `rem = [-r, r]` the interval power is `[0, (asin r)^(k+1)]` and
-`remPow = [0, r^(k+1)]`: the upper end is the definition below. Read from the source, not run.
+`remPow = [0, r^(k+1)]`: the upper end is the definition below.
 
 # CORA's `asin(taylm)` remainder is too small
 
 For `taylm(interval(-1, 1), 7)` the polynomial is `x + x³/6 + 3x⁵/40 + 5x⁷/112` and the remainder
 interval `[0, (π/2)⁸/8!] ≈ [0, 0.00092]` (the unit test `test_taylm_asin` asserts it). At
 `x = 1` the model is therefore `[1.2863, 1.2872]`, while `asin 1 = π/2 ≈ 1.5708`: the true error
-of the polynomial is `0.2845`. Read from the source, not run.
+of the polynomial is `0.2845`.
 
 ## Inputs
 * none

@@ -21,13 +21,13 @@ res.inf(ind1) = -Inf;  res.sup(ind1) = +Inf;
 ```
 
 The `sup == 0` branch is right for `c > 0` only. One dimension, `±Inf` as `EReal`. Not modelled:
-`inf = 0` (MATLAB's `c/0 = ±Inf`; in `ℝ` it is `0`). Read from the source, not run.
+`inf = 0` (MATLAB's `c/0 = ±Inf`; in `ℝ` it is `0`). Run in MATLAB (`cora-bugs/results.tsv`).
 
 # CORA's `c ./ I` drops half the range for `c < 0` and `sup(I) = 0`
 
-`-1 ./ interval(-2, 0)` is `[-Inf, 0.5]` in CORA (`@interval/rdivide.m` l. 86-88), while `-1/x`
-on `[-2, 0)` takes the values `[0.5, +Inf)`: at `x = -1/2` it is `2`. The public `./` dispatches
-there, a scalar passing `size(numerator) == 1`. Read from the source, not run.
+`-1 ./ interval(-2, 0)` is `[-Inf, 0.5]` in CORA (`@interval/rdivide.m` l. 86-88), while `-1/x` on
+`[-2, 0)` takes the values `[0.5, +Inf)`: at `x = -1/2` it is `2`. The public `./` dispatches there,
+a scalar passing `size(numerator) == 1`.
 
 ## Inputs
 * `c` – negative numerator

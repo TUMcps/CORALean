@@ -20,7 +20,8 @@ res = n == 1;
 ```
 
 so every one-dimensional set is answered `true`. In one dimension a hyperplane `{x | a x = b}`,
-`a ≠ 0`, is a single point; a set of positive length is not. Read from the source, not run.
+`a ≠ 0`, is a single point; a set of positive length is not. Run in MATLAB, see
+`experiments/cora-bugs/results.tsv`.
 
 # CORA's `conPolyZono/representsa_(cPZ, 'hyperplane')` accepts every one-dimensional set
 
@@ -28,7 +29,7 @@ The branch `'hyperplane'` (l. 82-85) is `res = n == 1`. The constrained polynomi
 `c = 0`, one factor, one dependent generator `G = (1)` with exponent `1` and no constraint is the
 interval `[-1, 1]` and one-dimensional, so CORA answers `true`, though in one dimension a
 hyperplane `{x | a x = b}`, `a ≠ 0`, is a single point and `[-1, 1]` holds `0` and `1`. A wrong
-answer, not unsound. Read from the source, not run.
+answer, not unsound.
 
 ## Inputs
 * none

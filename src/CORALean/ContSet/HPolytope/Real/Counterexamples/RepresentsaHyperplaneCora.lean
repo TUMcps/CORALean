@@ -18,9 +18,9 @@ if emptyObj; return; end
 
 and `@polytope/isemptyobject.m` (l. 36) calls an H-representation without inequality and without
 equality rows an "empty object" (it represents `ℝⁿ`). `@contSet/representsa_emptyObject.m` then
-treats every such object as the empty set: for `type = 'hyperplane'` it sets `res = true`
-(l. 68). Otherwise the branch `'hyperplane'` of `representsa_.m` (l. 259) reads
-`res = isempty(P.A_.val) && size(P.Ae_.val,1) == 1`. Read from the source, not run.
+treats every such object as the empty set: for `type = 'hyperplane'` it sets `res = true` (l. 68).
+Otherwise the branch `'hyperplane'` of `representsa_.m` (l. 259) reads `res = isempty(P.A_.val) &&
+size(P.Ae_.val,1) == 1`. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `polytope/representsa_(P, 'hyperplane')` accepts `ℝⁿ`
 
@@ -28,7 +28,7 @@ The unconstrained H-polytope (`polytope.Inf(n)`, no inequality and no equality r
 `ℝⁿ`. `isemptyobject` counts it as an empty object, and `representsa_emptyObject` answers
 `'hyperplane'` with `true` for every empty object (written for the empty set of a vertex
 representation), so `representsa(polytope.Inf(2),'hyperplane')` is `true`, though `ℝ²` is no
-hyperplane. A wrong answer, not unsound. Read from the source, not run.
+hyperplane. A wrong answer, not unsound.
 
 ## Inputs
 * none
