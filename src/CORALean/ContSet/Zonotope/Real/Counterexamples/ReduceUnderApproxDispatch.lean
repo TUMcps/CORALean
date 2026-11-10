@@ -14,7 +14,7 @@ In `@zonotope/reduceUnderApprox.m` (l. 76-113) the `end` at l. 101 closes the ch
 attach to the outer test `if n*order < nrOfGens` (reduction needed). Needed: only the inner chain
 runs, no case matches a legacy name, and the set is returned unreduced. Not needed: a legacy
 method runs on a zonotope within the order (it shrinks it needlessly or fails). Only the control
-flow is modelled (read from the source, not run).
+flow is modelled (run in MATLAB, see `experiments/cora-bugs/results.tsv`).
 
 ## Inputs
 * `m` – legacy method

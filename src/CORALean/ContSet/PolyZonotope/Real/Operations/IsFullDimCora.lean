@@ -8,10 +8,10 @@ public import Mathlib.LinearAlgebra.Dimension.Finrank
 /-!
 # `PolyZonotope.isFullDimCora`: CORA's test for full dimension
 
-`@polyZonotope/isFullDim` answers `rank([G GI]) == n`, after a check for the empty set that
-never fires here, a polynomial zonotope containing the point `α = 0`. The rank of a matrix is
-the dimension of the span of its columns, which is how it is written. The test is necessary
-and not sufficient: `isFullDim_cora_counterexample`. Read from the source, not run.
+`@polyZonotope/isFullDim` answers `rank([G GI]) == n`, after a check for the empty set that never
+fires here, a polynomial zonotope containing the point `α = 0`. The rank of a matrix is the
+dimension of the span of its columns, which is how it is written. The test is necessary and not
+sufficient: `isFullDim_cora_counterexample`. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 ## Inputs
 * `pZ` – polynomial zonotope

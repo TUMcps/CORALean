@@ -14,11 +14,11 @@ public import CORALean.Global.StepOf
 # `distancePolyPointCora`: CORA's `aux_distancePolyPoint` as printed
 
 CORA's `aux_distancePolyPoint(C,d,p)` (`specification/@specification/robustness.m`, l. 189-224)
-gives the distance of a point `p` outside the polytope `C x ≤ d`, "the norm 1 distance". It
-branches on the violated rows `ind = find(C*p - d > 0)`: one row, the Euclidean distance to that
-hyperplane; `n` rows, the Euclidean distance to the vertex `linsolve(C(ind,:),d(ind))`; otherwise
-the linear program `min ‖p - x‖₁ s.t. C x ≤ d`. `linsolve` is a solution of the square system when
-one exists, the program the infimum of `‖p - x‖₁`. Read from the source, not run.
+gives the distance of a point `p` outside the polytope `C x ≤ d`, "the norm 1 distance". It branches
+on the violated rows `ind = find(C*p - d > 0)`: one row, the Euclidean distance to that hyperplane;
+`n` rows, the Euclidean distance to the vertex `linsolve(C(ind,:),d(ind))`; otherwise the linear
+program `min ‖p - x‖₁ s.t. C x ≤ d`. `linsolve` is a solution of the square system when one exists,
+the program the infimum of `‖p - x‖₁`. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `aux_distancePolyPoint` mixes the Euclidean norm and the norm 1
 

@@ -14,15 +14,15 @@ public import CORALean.Global.StepOf
 `@polytope/representsa_.m` (`aux_isInterval`, l. 236-312), for a row `constraint` with offset
 `offsets(c)`: if exactly one entry `idx` is nonzero (`nnz(idx) == 1`) and it is positive,
 `ub(idx) = min([offsets(c) / constraint_norm, ub(idx)])`; otherwise `ub` is not changed (`Inf`).
-This is the value the row proposes for `ub(j)`, tolerance `0`. Read from the source, not run.
+This is the value the row proposes for `ub(j)`, tolerance `0`. Run in MATLAB, see
+`experiments/cora-bugs/results.tsv`.
 
 # `HPolytope.rowLowerCora`: the lower-bound update of `aux_isInterval`
 
 `@polytope/representsa_.m` (`aux_isInterval`, l. 236-312), for a row `constraint` with offset
 `offsets(c)`: if exactly one entry `idx` is nonzero (`nnz(idx) == 1`) and it is negative,
 `lb(idx) = max([-offsets(c) / constraint_norm, lb(idx)])`; otherwise `lb` is not changed
-(`-Inf`). This is the value the row proposes for `lb(j)`, tolerance `0`. Read from the source,
-not run.
+(`-Inf`). This is the value the row proposes for `lb(j)`, tolerance `0`.
 
 # `HPolytope.representsaIntervalZeroRowCora`: the box of `aux_isInterval` as CORA computes it
 
@@ -31,17 +31,16 @@ of `[A; Ae; -Ae]` with offsets `[b; be; -be]` from `lb = -Inf`, `ub = Inf` and s
 `if ~any(constraint) continue` (l. 259): also `0 x ≤ b` with `b < 0`, which is infeasible. A row
 with two or more nonzero entries is flagged for the redundancy walk (`checkRedundancy`; modelled
 in `HPolytope.representsaIntervalCora`, here the parameter `rest`). If none is flagged the
-function ends with `res = true`, `I = interval(lb,ub)` (l. 218, 242). Tolerance `0`. Read from the
-source, not run.
+function ends with `res = true`, `I = interval(lb,ub)` (l. 218, 242). Tolerance `0`.
 
 # CORA's `polytope/representsa_(P, 'interval')` converts an empty polytope to a nonempty box
 
 `aux_isInterval` skips every all-zero row (`if ~any(constraint) continue`, l. 259), including the
 infeasible `0 x ≤ b` with `b < 0`. For `P = {-1 ≤ x ≤ 1, -1 ≤ y ≤ 1, 0 ≤ -1}` in `ℝ²` (an
-H-representation, whose emptiness `representsa_emptyObject` does not see: it has rows), no row
-is flagged for the redundancy walk, and CORA returns `res = true` with `I = [-1,1]²`, though
-`P` is empty; the right interval is `interval.empty(2)`. (For `n = 1` the box is `(-Inf,Inf)`.)
-A wrong output of the conversion, not unsound. Read from the source, not run.
+H-representation, whose emptiness `representsa_emptyObject` does not see: it has rows), no row is
+flagged for the redundancy walk, and CORA returns `res = true` with `I = [-1,1]²`, though `P` is
+empty; the right interval is `interval.empty(2)`. (For `n = 1` the box is `(-Inf,Inf)`.) A wrong
+output of the conversion, not unsound.
 
 ## Inputs
 * `rest` – pair of extended-real bounds of the box CORA returns

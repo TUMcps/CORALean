@@ -12,7 +12,7 @@ public import Mathlib.Tactic.FinCases
 
 The rank test says full-dimensional for `x = (a, a²)`, `a ∈ [-1, 1]`: `G = I`, `E = [1 2]`, no
 independent generators. The generators span the plane, but the set is a parabola arc, which is
-closed and has no interior point. Read from the source, not run.
+closed and has no interior point. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 ## Inputs
 * none

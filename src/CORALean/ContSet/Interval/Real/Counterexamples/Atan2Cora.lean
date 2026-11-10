@@ -10,7 +10,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Atan2
 `@interval/atan2.m` returns the hull of `atan2` at the four corners only. For `y ∈ [-1, 1]` and
 `x = [-1, -1]` the corners give `[-3π/4, 3π/4]`, but `atan2(0, -1) = π`, which is not in it:
 `atan2` is not monotone on a box that crosses the negative real axis, and its extremum `π` is
-attained in the interior of the `y` range. Read from the source, not run.
+attained in the interior of the `y` range. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 ## Inputs
 * none

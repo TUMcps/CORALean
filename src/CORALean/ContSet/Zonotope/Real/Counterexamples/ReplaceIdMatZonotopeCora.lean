@@ -13,7 +13,7 @@ writes `mZ.id(ii_o)` (l. 52). `matZonotope.m` (l. 39-45) has the properties `C`,
 `generator` and no `id`, so reading it is an error. Every call stops: with one further argument at
 l. 38; with two, at l. 46 (or earlier, at the `throw` of l. 46-49, when the two id lists differ in
 length); with none, `id_part_old` is never assigned; with more, `narginchk(1,3)` rejects it.
-Read from the source, not run.
+Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `replaceId(matZonotope, ...)` throws for every call
 

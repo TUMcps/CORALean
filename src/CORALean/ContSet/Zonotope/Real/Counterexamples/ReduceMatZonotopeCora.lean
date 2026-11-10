@@ -15,8 +15,8 @@ arguments gets to l. 39, `matZ = matZonotope(Zred)`, where `Zred` is a `zonotope
 dispatches to the method `contSet/@zonotope/matZonotope.m`, which stacks the generators as
 `reshape(G,n,1,h)` and so returns a matrix zonotope of `n'` rows and one column, `n' = n·m`, not
 the `n × m` one that was reduced (`zonotope(matZ)` stacked the entries, and nothing unstacks them).
-Modelled: the number of arguments of the call, and the shape of the result. Read from the source,
-not run.
+Modelled: the number of arguments of the call, and the shape of the result. Run in MATLAB, see
+`experiments/cora-bugs/results.tsv`.
 
 # CORA's `reduce(matZonotope, ...)` throws, or changes the shape
 

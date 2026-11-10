@@ -21,8 +21,9 @@ the polyshapes denote.
 `@ellipsoid/polygon.m` builds from `N = 1000` boundary points, so it lies inside the ellipsoid.
 For `P = polygon(E)` and `E = ellipsoid(eye(2))`, `contains(P, E)` compares `area(P)` with
 `area(union(P, polygon(E)))`, equal, and returns true, though a boundary point of `E` between two
-samples is outside `P`. Holds for every finite sample `V` of boundary points. Read from the source,
-not run; the modelled and abstracted parts are in `Polygon.sampledHullCora`.
+samples is outside `P`. Holds for every finite sample `V` of boundary points. Run in MATLAB, see
+`experiments/cora-bugs/results.tsv`; the modelled and abstracted parts are in
+`Polygon.sampledHullCora`.
 
 ## Inputs
 * `V` – set of points

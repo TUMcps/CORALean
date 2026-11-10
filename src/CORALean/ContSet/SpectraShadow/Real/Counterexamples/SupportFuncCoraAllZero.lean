@@ -19,7 +19,8 @@ Formalized as the code computes it, to state the counterexample
 # `SpectraShadow.supportFuncCoraAllZero_ne_supportFunc`
 
 `supportFunc_` and `isBounded` on the point `{0}` (`A₀ = 1`, `A₁ = 0`, `G = 0`): CORA's
-`all_Ai_zero` branch returns `+Inf` while the support is `0`. Read from the source, not run.
+`all_Ai_zero` branch returns `+Inf` while the support is `0`. Run in MATLAB, see
+`experiments/cora-bugs/results.tsv`.
 
 ## Inputs
 * none

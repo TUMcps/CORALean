@@ -11,13 +11,13 @@ public import CORALean.Global.Tensor
 `aux_directionSplitBundle` of `@zonotope/split.m` (l. 176) computes
 `intervals1 = get(IH,'intervals')` on `IH = interval(rotMat*Z)`. `interval` has no `get` (the
 only `get.m` files in CORA are for `markovchain` and `simulation`), so every call raises an
-error. Read from the source, not run.
+error. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 `none` is the MATLAB error; the value of a call that does not error is not modelled.
 
 # CORA's `split(Z, dir, 'bundle')` always crashes
 
 `@zonotope/split.m` l. 176 calls the non-existent `get(IH,'intervals')`; the split of a zonotope
-in a direction exists. Read from the source, not run.
+in a direction exists.
 
 ## Inputs
 * `n` – dimension

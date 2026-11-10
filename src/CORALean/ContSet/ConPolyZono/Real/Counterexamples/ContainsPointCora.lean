@@ -10,15 +10,18 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
 # `ConPolyZono.containsPointCora`
 
 What CORA's source passes for a numeric operand: `S = [S; ones(m, size(S,2))]`, the extended point
-`[p; 1]`, where the construction needs `[p; 0]` (`ConPolyZono.containsPoint`). Read from the source,
-not run.
+`[p; 1]`, where the construction needs `[p; 0]` (`ConPolyZono.containsPoint`). Run in MATLAB R2024b
+with CORA v2026.1.0 (904a444), see `experiments/cora-bugs/results.tsv`, on another instance: CORA's
+`'approx'` point test decides a point only inside a full-dimensional extended set, and the extended
+set of the instance below is a curve, where MATLAB answers `0` even for the member `0`. The set `x =
+α₁ + α₂` with the constraint `α₂ = -1/2`, which is `[-3/2, 1/2]`, has a full-dimensional extended
+set: CORA accepts `p = 1` and rejects the members `-1` and `-1/2`.
 
 # CORA's `conPolyZono/contains_` extends a numeric operand by ones
 
 The constraint `α = 0` on the single factor of `{α : |α| ≤ 1}` leaves the set `{0}`. CORA's numeric
 branch tests `[p; 1]` in the extended polynomial zonotope, whose last coordinate is `α - 0`: the
-point `p = 1`, reached at `α = 1`, passes, though `1` is not in the set. Read from the source,
-not run.
+point `p = 1`, reached at `α = 1`, passes, though `1` is not in the set.
 
 ## Inputs
 * none

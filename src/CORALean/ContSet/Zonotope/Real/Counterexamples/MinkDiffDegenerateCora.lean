@@ -21,7 +21,7 @@ spanned by its first columns, and the projection forgets the component of the mi
 outside that range, which `pinv` cannot bring back: every result lies in the row space of
 `P_minuend`, a subspace through the origin, wherever the minuend lies. The recursive call and the
 SVD factor `U` are parameters the theorems constrain; for orthogonal `U`,
-`pinv(P_minuend) = P_minuendᵀ`. Read from the source, not run.
+`pinv(P_minuend) = P_minuendᵀ`. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `minkDiff` at a degenerate minuend misses the difference entirely
 

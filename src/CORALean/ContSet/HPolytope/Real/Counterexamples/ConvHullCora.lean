@@ -15,7 +15,7 @@ public import CORALean.Global.StepOf
 returns `polytope.empty(n)` when either operand represents the empty set (l. 64-67). Next the
 fullspace exits (l. 70-76), then the 1-D and vertex-based computations (l. 79-97), which are a
 parameter here (`rest`, not modelled). `representsa_(·, 'emptySet', eps)` reads as exact
-emptiness. Read from the source, not run.
+emptiness. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's polytope `convHull` with an empty operand returns the empty set
 

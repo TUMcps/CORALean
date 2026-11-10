@@ -21,7 +21,7 @@ For a cell `{S_ok, S_bad}` and a `func` that is `true` on `S_ok` only, `aux_chec
 specification satisfied (`res = true`), while a piece violates it. The documented meaning of
 `func` is that it holds of a set that satisfies the specification (`res - true/false whether
 set satisfies the specification`), and the safe-set and unsafe-set helpers require every
-piece. Read from the source, not run in MATLAB.
+piece. Run in MATLAB (partly confirmed), see `experiments/cora-bugs/results.tsv`.
 
 ## Inputs
 * `α` – type of the pieces

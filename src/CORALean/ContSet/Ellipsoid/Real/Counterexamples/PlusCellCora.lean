@@ -18,15 +18,15 @@ if iscell(S) && all(cellfun(@(S_i) isa(S_i,'ellipsoid') || isa(S_i,'interval') .
 ```
 
 The first `cellfun` is given the function and the option name, no cell array: MATLAB stops with
-`Input #2 expected to be a cell array, was char instead`. The earlier branches are all skipped for
-a cell, and `reorderNumeric`, `equalDimCheck` and `inputArgsCheck` accept it. `none` is the MATLAB
-error; the value of a call that does not error is not modelled. Read from the source, not run.
+`Input #2 expected to be a cell array, was char instead`. The earlier branches are all skipped for a
+cell, and `reorderNumeric`, `equalDimCheck` and `inputArgsCheck` accept it. `none` is the MATLAB
+error; a call that does not error is not modelled. Run in MATLAB (`cora-bugs/results.tsv`).
 
 # CORA's `plus(E, {S₁, …})` always crashes
 
 A sum of an ellipsoid with a cell array of ellipsoids, intervals or zonotopes is documented and
 is accepted by `inputArgsCheck`, but `@ellipsoid/plus.m` raises an error for every cell, also the
-empty one (the `cellfun` has no cell array argument). Read from the source, not run.
+empty one (the `cellfun` has no cell array argument).
 
 ## Inputs
 * `E` – ellipsoid

@@ -21,14 +21,14 @@ end
 (l. 56-58) and never assigns `S_out` before that `return`: MATLAB stops with `Output argument
 'S_out' (and maybe others) not assigned during call`. The result for two ellipsoids is
 `or(E,S,'outer')`, an SDP-solver result, taken here as a parameter `orOuter`. The model has no empty
-ellipsoid, so `ellipsoid.empty(n)` is `none` in the second operand. Read from the source, not run.
+ellipsoid, so `ellipsoid.empty(n)` is `none` in the second operand. Run in MATLAB, see
+`experiments/cora-bugs/results.tsv`.
 
 # CORA's `ellipsoid/convHull_` errors on an empty second operand
 
 The branch for an empty `S` (l. 56-58 of `@ellipsoid/convHull_.m`) executes `return` without
 having set `S_out`, so `convHull(E, ellipsoid.empty(n))` raises MATLAB's "output argument not
-assigned" error, where the hull of a convex set with `∅` is the set itself. Read from the
-source, not run.
+assigned" error, where the hull of a convex set with `∅` is the set itself.
 
 ## Inputs
 * `orOuter` – outer hull of two ellipsoids

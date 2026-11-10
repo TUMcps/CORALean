@@ -17,7 +17,8 @@ takes one point per *row*, and `vecVpot` has one vertex per *column* (every othe
 `V'`). So the points are the `n·m` entries, in dimension `h1·h2`; for `n·m <= h1·h2` `convhulln`
 throws and the `try` keeps all vertices, correctly. For `n·m > h1·h2` it succeeds, `K` holds indices
 of *entries*, and the result is not the polytope of the sum vertices. Modelled: `vecVpot` as its
-rows and `K` as a list of facets, `K(:)` read column by column. Read from the source, not run; Qhull
+rows and `K` as a list of facets, `K(:)` read column by column. Run in MATLAB, see
+`experiments/cora-bugs/results.tsv`; Qhull
 through scipy returns for the example below four matrices, none of them `A` or `B`.
 
 # CORA's `plus` of two matrix polytopes returns wrong vertices

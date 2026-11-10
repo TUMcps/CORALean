@@ -17,7 +17,7 @@ experiments/
                 MATLAB/CORA scripts (jsondecode). See "Config format" below.
   cora/         MATLAB scripts running the same experiments through CORA,
                 a separate documented step -- see "CORA" below.
-  cora-bugs/    R.m, runs/run01.m ... run15.m and results.tsv: the CORA bugs of the coverage
+  cora-bugs/    R.m, runs/run01.m ... run16.m and results.tsv: the CORA bugs of the coverage
                 notes run in MATLAB (README.md there); the output stands in each note's Details.
   nn/           naive_float32.py, the `nn-float32` cross-check; mnist/, the
                 `nn-mnist` ablation's converted networks, data and scripts,

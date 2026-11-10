@@ -12,10 +12,10 @@ public import Mathlib.Analysis.SpecialFunctions.Exp
 `[der1l,der1u] = layer.getDerBounds(l, u)`, while `nnExpLayer.getDerBounds` is declared with one
 output, `der1 = interval(exp(l), exp(u))`, so MATLAB stops with `Too many output arguments`.
 `nnExpLayer` sets no `monotonicity`, so the other branch is not taken. Reached by
-`nnExpLayer().evaluate(zonotope(0,1))`; `none` is the MATLAB error. Read from the source, not run.
+`nnExpLayer().evaluate(zonotope(0,1))`; `none` is the MATLAB error (run in MATLAB,
+`cora-bugs/results.tsv`).
 
-For `l < u` the derivative is enclosed by `[exp l, exp u]`, but the caller expects two return values
-and gets one: the exponential layer's error bound is never computed.
+The caller expects two return values and gets one: the layer's error bound is never computed.
 
 ## Inputs
 * `l` – lower end of the interval

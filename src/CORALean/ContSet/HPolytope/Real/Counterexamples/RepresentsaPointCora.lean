@@ -22,7 +22,7 @@ res = ~fulldim && isempty(subspace);
 `res = false; subspace = []`. A point has `fulldim = false` and `subspace = []` (the comment
 "if P is just a point, subspace=[]"), so the empty polytope passes as a point. The rest of the
 algorithm (a nonempty `P`) is not modelled and is taken as the given pair `rest`. Emptiness is
-the set-level test. Read from the source, not run.
+the set-level test. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `polytope/representsa_(P, 'point')` accepts an empty polytope
 

@@ -20,7 +20,7 @@ V = V(:,~any(isnan(V),2));
 than the matrix keeps only the first two columns it flags: for a polygon without NaN the mask is
 `[1;1]` and `V` keeps columns 1 and 2, for one with a NaN column (a hole) it is `[0;0]` and `V` is
 empty. `any(isnan(V),1)` was meant. `N = 'all'` returns `V`. A column is `none` when it holds NaN.
-Read from the source, not run.
+Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `randPoint` of the unit square with `'all'` and `'extreme'` returns two vertices
 

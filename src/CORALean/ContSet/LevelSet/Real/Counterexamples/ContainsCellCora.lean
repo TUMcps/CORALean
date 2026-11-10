@@ -26,12 +26,12 @@ that `LevelSet.containsCellCora_counterexample` can state that it is unsound.
 
 # CORA's `levelSet/contains_` accepts a box outside an equality constraint
 
-For `ls = levelSet([x - 2; x - 10], x, {'==','<='})`, the set `{2}`, and `S = interval(0, 1)`,
-the guard at l. 93 does not fire on the cell, the interval evaluation over `[0, 1]` is
-`[-2, -1]` and `[-10, -9]`, so `ub = (-1, -9)`, and the cell branch tests the `'=='` row by
-`ub(1) < 0` (l. 127), which holds: CORA answers `true`, yet `0 ∈ S` is not in `ls` (read from the
-source, not run). The bounds are the exact ranges, so any range bound tighter than CORA's would
-give the same verdict.
+For `ls = levelSet([x - 2; x - 10], x, {'==','<='})`, the set `{2}`, and `S = interval(0, 1)`, the
+guard at l. 93 does not fire on the cell, the interval evaluation over `[0, 1]` is `[-2, -1]` and
+`[-10, -9]`, so `ub = (-1, -9)`, and the cell branch tests the `'=='` row by `ub(1) < 0` (l. 127),
+which holds: CORA answers `true`, yet `0 ∈ S` is not in `ls` (run in MATLAB, see
+`experiments/cora-bugs/results.tsv`). The bounds are the exact ranges, so any range bound tighter
+than CORA's would give the same verdict.
 
 ## Inputs
 * none

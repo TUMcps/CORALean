@@ -8,19 +8,18 @@ public import CORALean.ContSet.ZonoBundle.Real.Operations.Isequal
 /-!
 # The quick check of CORA's `zonoBundle/isequal`, as coded
 
-`aux_isequal_zonoBundle` starts with `res = true;` and clears it only inside
-`if zB.parallelSets == S.parallelSets`, in the loop over the members. With different member counts
-the loop never runs, `res` stays `true`, and `if res return end` answers `true` without the
-containment test that follows. Read from the source, not run. With the same count and a member
-that differs the quick check clears `res` and falls through to the containment test, whose answer
-is not modelled; so the quick check returns `true` exactly when the counts differ or all members
-agree.
+`aux_isequal_zonoBundle` starts with `res = true;` and clears it only inside `if zB.parallelSets ==
+S.parallelSets`, in the loop over the members. With different member counts the loop never runs,
+`res` stays `true`, and `if res return end` answers `true` without the containment test that
+follows. Run in MATLAB, see `experiments/cora-bugs/results.tsv`. With the same count and a member
+that differs the quick check clears `res` and falls through to the containment test, whose answer is
+not modelled; so the quick check returns `true` exactly when the counts differ or all members agree.
 
 # CORA's `zonoBundle/isequal` quick check accepts bundles of different sets
 
 The bundle `{[-1, 1]}` of one member against `{[-1, 1], {2}}` of two: the first denotes
 `[-1, 1]`, the second `[-1, 1] ∩ {2} = ∅`, yet the member counts differ, so the quick check
-returns `true` (`ZonoBundle.isequalCora`). Read from the source, not run.
+returns `true` (`ZonoBundle.isequalCora`).
 
 ## Inputs
 * none

@@ -19,14 +19,15 @@ res = n == 1;
 ```
 
 so every one-dimensional set is answered `true`. In one dimension a hyperplane `{x | a x = b}`,
-`a ≠ 0`, is a single point; a set of positive length is not. Read from the source, not run.
+`a ≠ 0`, is a single point; a set of positive length is not. Run in MATLAB, see
+`experiments/cora-bugs/results.tsv`.
 
 # CORA's `conZonotope/representsa_(cZ, 'hyperplane')` accepts every one-dimensional set
 
 The branch `'hyperplane'` (l. 111-114) is `res = n == 1`. The constrained zonotope with `c = 0`, one
 generator `G = (1)` and no constraint is the interval `[-1, 1]` and one-dimensional, so CORA
 answers `true`, though in one dimension a hyperplane `{x | a x = b}`, `a ≠ 0`, is a single point
-and `[-1, 1]` holds `0` and `1`. A wrong answer, not unsound. Read from the source, not run.
+and `[-1, 1]` holds `0` and `1`. A wrong answer, not unsound.
 
 ## Inputs
 * none

@@ -19,7 +19,7 @@ LAST run (`i = 2`), sorted by length and merged by `alpha = 1 + sum |Tr \ T(:,1:
 the best run is the first, the generators that run 2 took into its basis and run 1 left over are
 in neither `Tr`, `alpha` nor `T`: they are lost, and the result does not contain `Z`. `valero` is a
 case of the public `reduce` (l. 160), not in the list of `reach`. Modelled for `n = 2`, center `0`,
-generators in `ℤ²`, the result in `ℚ²`. Read from the source, not run.
+generators in `ℤ²`, the result in `ℚ²`. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `reduce(Z,'valero',order)` loses a generator
 

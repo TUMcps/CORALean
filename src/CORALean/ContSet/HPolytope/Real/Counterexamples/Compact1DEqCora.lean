@@ -16,18 +16,15 @@ l. 69 then reads `be(1)` of `[]` and errors; it flags rows with offset `1` and d
 coefficients, or offset `0` and different coefficients, as empty (l. 50-65); otherwise it merges
 all rows into one with `Ae = 1; be = be(1) / Ae(1);` (l. 69). The second statement reads `Ae(1)`
 after the first has set `Ae = 1`, so the merged row is `x = be(1)`, the normalized offset, and not
-`x = be(1) / Ae(1)` for the row's own coefficient.
-
-The output is the triple `(empty, Ae, be)` of the source as a flag and an `HPolytope` of equality
-rows (`HPolytope.ofEqs1D`); `none` is the error. `IsWithinTol` reads as exact equality. Read from
-the source, not run.
+`x = be(1) / Ae(1)` for the row's own coefficient. The output is the triple `(empty, Ae, be)` as a
+flag and an `HPolytope` of equality rows (`HPolytope.ofEqs1D`); `none` is the error.
 
 # CORA's `priv_compact_1D` moves a repeated equality constraint
 
-The rows `2x = 1`, `2x = 1` describe `{½}`. `priv_compact_1D` normalizes both to `2x = 1` with
-offset `1`, finds them equal and merges them into `Ae = 1; be = be(1) / Ae(1)`, which after the
-first assignment is `1 / 1`: CORA returns `x = 1`, non-empty, and `½` is not in it
-(`HPolytope.compact1DEqCora`).
+The rows `2x = 1`, `2x = 1` describe `{½}`; both normalize to `2x = 1`, merge into `Ae = 1; be = 1 /
+1`, and CORA returns `x = 1`, not `{½}` (`HPolytope.compact1DEqCora`). In MATLAB, `vertices` passes
+raw rows here and returns `1`; `compact_(P, 'all')` merges aligned duplicates first and reaches it
+with `2x = 1`, `-2x = -1` (`experiments/cora-bugs/results.tsv`).
 
 ## Inputs
 * none

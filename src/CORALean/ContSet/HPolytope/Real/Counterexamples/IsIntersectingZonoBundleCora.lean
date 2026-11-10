@@ -27,13 +27,13 @@ relative branch divides by `min(|val|, 0) = 0`).
 # CORA's polytope/zonotope-bundle intersection test ignores equality constraints
 
 `aux_isIntersecting_P_zB` (`@polytope/isIntersecting_.m`, l. 371-438) reads only `P.A_.val` and
-`P.b_.val`. For the line `P = {x | x₁ = 5}` (an equality row, no inequality row) and the bundle
-of two copies of the box `[-1, 1]²`, the sets are disjoint, but the program has no `y`, no `H`
-and constrains only `x = cᵢ + Gᵢ aᵢ`, `aᵢ ∈ [-1, 1]`: it is feasible at `x = 0`, `a = 0`, with the
-zero objective. Every `CORAlinprog` that reports success with value `0` on a feasible program
-with zero objective makes `isIntersecting(P, zB)` (default `'exact'`) answer `true`. The
-shortcut of l. 93-98 (one equality row: range of the support function must contain `be`) would
-reject it, but is skipped for a `zonoBundle`. Read from the source, not run. A wrong `true`.
+`P.b_.val`. For the line `P = {x | x₁ = 5}` (an equality row, no inequality row) and the bundle of
+two copies of the box `[-1, 1]²`, the sets are disjoint, but the program has no `y`, no `H` and
+constrains only `x = cᵢ + Gᵢ aᵢ`, `aᵢ ∈ [-1, 1]`: it is feasible at `x = 0`, `a = 0`, with the zero
+objective. Every `CORAlinprog` that reports success with value `0` on a feasible program with zero
+objective makes `isIntersecting(P, zB)` (default `'exact'`) answer `true`. The shortcut of l. 93-98
+(one equality row: range of the support function must contain `be`) would reject it, but is skipped
+for a `zonoBundle`. Run in MATLAB, see `experiments/cora-bugs/results.tsv`. A wrong `true`.
 
 ## Inputs
 * none

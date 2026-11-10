@@ -14,12 +14,13 @@ public import CORALean.Global.StepOf
 `@zonotope/splitFirstGen.m` (l. 39-42) takes `index` as the argmax of `norm(G(:,j)'*G,1)` over the
 generators of the original zonotope and calls `split(Z{i}, index)`, which reads it as a generator
 of the bounding box (see `Zonotope.splitCora`). For the generators `(1,0), (0,1), (1,1)` it picks
-`3` and the box has two. Read from the source, not run; the empty generator list is not modelled.
+`3` and the box has two. Run in MATLAB, see `experiments/cora-bugs/results.tsv`; the empty
+generator list is not modelled.
 
 # CORA's `splitFirstGen` crashes on `zonotope([0;0],[1 0 1; 0 1 1])`
 
 The scores `‖g_jᵀ G‖₁` are `2, 2, 4`, so `index = 3` (l. 39-42 of `@zonotope/splitFirstGen.m`), and
-`split(Z, 3)` reads `G(:,3)` of a bounding box with two generators. Read from the source, not run.
+`split(Z, 3)` reads `G(:,3)` of a bounding box with two generators.
 
 ## Inputs
 * none

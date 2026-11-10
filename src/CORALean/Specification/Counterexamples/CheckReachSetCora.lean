@@ -14,7 +14,7 @@ a specification without time checks `timeInterval.set{j}`. A `reachSet` made by
 
 Modelled for one row and a specification without time: `timeInterval` is `none` for `[]` and
 `some sets` for a struct with its list of sets; `ok` is `check` on one set. The result is `none`
-for the MATLAB error. Read from the source, not run.
+for the MATLAB error. Run in MATLAB (partly confirmed), see `experiments/cora-bugs/results.tsv`.
 
 # CORA's `check` errors on the reach set of a discrete-time system
 

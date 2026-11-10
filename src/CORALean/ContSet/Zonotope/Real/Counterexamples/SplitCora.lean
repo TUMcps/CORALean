@@ -16,7 +16,7 @@ The radius of the bounding box of a zonotope at coordinate `i`, `∑ⱼ |G j i|`
 
 `@interval/zonotope.m` ends with `G = diag(r); Z = zonotope([c, G(:,r ~= 0)])`: the generators of
 zero radius are dropped, so the box has one generator per coordinate of non-zero radius, in
-order. Its center is the center of `Z`. Read from the source, not run.
+order. Its center is the center of `Z`. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 # `Zonotope.splitCora`: `split(Z, N)` as CORA's code runs
 
@@ -25,8 +25,7 @@ order. Its center is the center of `Z`. Read from the source, not run.
 built by `@interval/zonotope.m` as `zonotope([c, G(:,r ~= 0)])` (`Zonotope.boxCora`), which drops
 the coordinates of zero width, so `N`, a coordinate of `Z`, is a generator index of the box and
 `G(:,N)` is out of bounds once `N` exceeds the number of non-zero radii.
-`split(zonotope([0;0],[1;0]))` loops `N = 1, 2` and stops at `N = 2`. Read from the source, not
-run. `none` is the MATLAB error.
+`split(zonotope([0;0],[1;0]))` loops `N = 1, 2` and stops at `N = 2`. `none` is the MATLAB error.
 
 ## Inputs
 * `Z` – zonotope

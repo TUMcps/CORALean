@@ -24,8 +24,8 @@ res = n == 1 || isPoint || nnz(withinTol(rad(I),0,tol)) <= 1;
 ```
 
 `withinTol(rad(I),0,tol)` is `true` exactly for the dimensions of width **zero**, so the third
-disjunct counts the zero-width dimensions and tests them `<= 1`, where "at most one non-zero
-width" is `nnz(~withinTol(rad(I),0,tol)) <= 1`. Tolerance `0`. Read from the source, not run.
+disjunct counts the zero-width dimensions and tests them `<= 1`, where "at most one non-zero width"
+is `nnz(~withinTol(rad(I),0,tol)) <= 1`. Tolerance `0`. Run in MATLAB (`cora-bugs/results.tsv`).
 
 # `Interval.representsaEllipsoidCora`: the `'ellipsoid'` test as CORA's code computes it
 
@@ -41,7 +41,7 @@ For `I = [0,1]²` the radius is `(1/2, 1/2)`, no dimension has zero width, so
 `true`. The unit square is no capsule: a capsule `{x | dist(x, segment) ≤ r}` that lies in the
 square keeps the whole ball of radius `r` around each segment point in the square, so its segment
 stays at distance `≥ r` from the sides, and a corner at distance `≤ r` from such a point forces `r =
-0`; a segment holds no three corners of the square. Read from the source, not run.
+0`; a segment holds no three corners of the square.
 
 The unit square is no ellipsoid either: the second coordinate of `q + G u` over `‖u‖ ≤ 1` has
 minimum `q₁ - ‖Gᵀe₂‖`, attained at one point of the ball only (or the coordinate is constant),

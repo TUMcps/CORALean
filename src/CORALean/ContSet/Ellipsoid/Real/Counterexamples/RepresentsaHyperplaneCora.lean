@@ -20,15 +20,15 @@ res = n == 1;
 ```
 
 so every one-dimensional set is answered `true`. In one dimension a hyperplane `{x | a x = b}`,
-`a ≠ 0`, is a single point; a set of positive length is not. Read from the source, not run.
+`a ≠ 0`, is a single point; a set of positive length is not. Run in MATLAB, see
+`experiments/cora-bugs/results.tsv`.
 
 # CORA's `ellipsoid/representsa_(E, 'hyperplane')` accepts every one-dimensional ellipsoid
 
-The branch `'hyperplane'` (l. 143-146) is `res = n == 1`. The ellipsoid
-`[-1, 1] = {q + G u | |u| ≤ 1}`
-with `q = 0`, `Q = (1)` is one-dimensional, so CORA answers `true`, though in one dimension a
+The branch `'hyperplane'` (l. 143-146) is `res = n == 1`. The ellipsoid `[-1, 1] = {q + G u | |u| ≤
+1}` with `q = 0`, `Q = (1)` is one-dimensional, so CORA answers `true`, though in one dimension a
 hyperplane `{x | a x = b}`, `a ≠ 0`, is a single point and `[-1, 1]` holds `0` and `1`. A wrong
-answer, not unsound. Read from the source, not run.
+answer, not unsound.
 
 ## Inputs
 * none

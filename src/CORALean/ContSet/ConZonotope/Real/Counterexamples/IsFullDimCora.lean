@@ -25,7 +25,7 @@ an interior; see `isFullDim_cora_counterexample`.
 The rank test `rank(G null(A)) == n` ignores that `|ξ| ≤ 1` together with `A ξ = b` can pin the
 factors. With `c = 0`, `G = [1 0]`, `A = [1 1]`, `b = 2` in `ℝ¹` the only feasible factor vector is
 `ξ = (1, 1)`, so the set is the point `{1}`; but `null(A)` is spanned by `(1, -1)`, `G (1, -1) = 1`
-has rank `1 = n`, and CORA answers `true`. Read from the source, not run.
+has rank `1 = n`, and CORA answers `true`. Run in MATLAB, see `experiments/cora-bugs/results.tsv`.
 
 ## Inputs
 * none

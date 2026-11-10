@@ -13,10 +13,10 @@ CORA documents `convHull_(pZ)` as the convex hull of `pZ`, but with one argument
 returns `linComb(pZ, pZ)`, the union of the chords between two points of `pZ`
 (`PolyZonotope.linComb_exact_of_dependent`). The chords of a curve need not fill its hull in
 dimension three: for `γ(t) = (t, t², t⁴)`, `t ∈ [-1, 1]`, the point `(0, 2/3, 2/3)` is a convex
-combination of the midpoint `(0, 1, 1)` of the chord from `γ(-1)` to `γ(1)` and `γ(0) = 0`, but
-lies on no chord: `λ s²(1-s²) + (1-λ) t²(1-t²) = 0` forces each atom to be `-1`, `0` or `1`,
-and the moments `0` and `2/3` cannot both hold. So the chord set is not convex. (The moment curve
-`(t, t², t³)` is no example: its chords appear to fill the hull.) Read from the source, not run.
+combination of the midpoint `(0, 1, 1)` of the chord from `γ(-1)` to `γ(1)` and `γ(0) = 0`, but lies
+on no chord: `λ s²(1-s²) + (1-λ) t²(1-t²) = 0` forces each atom to be `-1`, `0` or `1`, and the
+moments `0` and `2/3` cannot both hold. So the chord set is not convex. (The moment curve `(t, t²,
+t³)` is no example: its chords seem to fill it.) Run in MATLAB, partly (`cora-bugs/results.tsv`).
 
 ## Inputs
 * none

@@ -18,8 +18,8 @@ now is that the polytope is empty") it returns `representsa_(P, 'emptySet')`.
 
 This models that walk for one non-axis-aligned row `(a, b)` over the box `[lb, ub]`, with the
 two support-function values in their closed form for a box. `True` stands for `res = true`
-(either `true` return, or the loop ending with every row redundant). Read from the source,
-not run.
+(either `true` return, or the loop ending with every row redundant). Run in MATLAB, see
+`experiments/cora-bugs/results.tsv`.
 
 # CORA's `polytope/representsa_(P, 'interval')` rejects the point `{0}`
 
@@ -27,7 +27,7 @@ not run.
 `[0, 0]²`. CORA builds `I = [0, 2]²` from the axis-aligned rows; the row `x + y ≤ 0` has upper
 support value `4 > 0` and lower value `0 ≤ 0`, so it "cuts through" and CORA returns
 `representsa_(P, 'emptySet')`, which is `false` since `P` is nonempty. A false negative, not
-unsound. Read from the source, not run.
+unsound.
 
 ## Inputs
 * none

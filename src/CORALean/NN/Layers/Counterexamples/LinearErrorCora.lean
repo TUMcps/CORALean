@@ -12,7 +12,7 @@ public import Mathlib.Tactic.Linarith
 merged neurons). `evaluateNumeric`, `evaluateInterval` and `evaluatePolyZonotope` include it; the
 remaining set evaluations leave it out: `evaluateTaylm` returns `obj.W * input + obj.b` and
 `evaluateConZonotope` only `c = obj.W * c + obj.b; G = obj.W * G`. So a reduced network evaluated on
-a `conZonotope` returns a set that omits the error. Read from the source, not run.
+a `conZonotope` returns a set that omits the error. Run in MATLAB (`cora-bugs/results.tsv`).
 
 `L = nnLinearLayer(1, 0); L.d = interval(-1,1)` maps `interval(0,0)` to `[-1,1]` but
 `conZonotope(0,0)` to the point `0`: the output `1` is missed.
