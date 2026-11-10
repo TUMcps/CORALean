@@ -656,6 +656,37 @@ def decl_index():
     return _INDEX
 
 
+def hypothesis_part(sig):
+    """The part of a declaration's signature before its top-level `:`, the binders: the
+    hypotheses, as against the conclusion."""
+    depth = 0
+    for i, ch in enumerate(sig):
+        if ch in "([{⟨":
+            depth += 1
+        elif ch in ")]}⟩":
+            depth -= 1
+        elif ch == ":" and depth == 0 and sig[i + 1:i + 2] != "=":
+            return sig[:i]
+    return sig
+
+
+def is_conditional(path, name, kind):
+    """Whether the theorem `name` of `path` is conditional: it takes, as a hypothesis, that a model
+    built by the caller `Encloses` the system (`fm.Encloses sys` for a `…Model`). Nothing in Lean
+    proves such a hypothesis for a model made at run time, so the guarantee is only as good as the
+    model; `scripts/check-axioms.lean` keeps the oracle's ops that build one to `nearest`. A theorem
+    that proves the `Encloses` of a model (the hypothesis in its conclusion) is not conditional."""
+    if kind not in ("theorem", "lemma"):
+        return False
+    path = Path(path).resolve()
+    for f, k, _, sig in decl_index().get(name, []):
+        if f == path:
+            hyp = hypothesis_part(sig)
+            if "Encloses" in hyp and "Model" in hyp:
+                return True
+    return False
+
+
 def float_twins(name):
     """The `…Float` twins of a definition: `nameFloat`, or `opFloat?` for `op?`. A twin of the
     same name in a `Float/` directory is not one: it may refine another ambient type (the
@@ -790,6 +821,22 @@ class CoraTable:
 
     def states(self):
         return [v[0] for v in self.rows.values()]
+
+    def conditional(self):
+        """The methods of `float` rows some linked float-layer theorem of which is conditional
+        (`is_conditional`): counted as `float`, and apart from the unconditional ones."""
+        out = set()
+        for method, (state, where, note) in self.rows.items():
+            if state != "float":
+                continue
+            for m in re.finditer(r"\[`([^`]+)`\]\(([^)]+)\)", where + " " + note):
+                name, link = m.group(1), m.group(2)
+                target = (self.path.parent / link).resolve()
+                if link.endswith(".lean") and target.exists() and is_float_path(target, name) \
+                        and any(n == name and is_conditional(target, name, k)
+                                for n, k, _ in lean_decls(target)):
+                    out.add(method)
+        return out
 
     def out_reasons(self):
         out = {k: 0 for k in CORA_OUT}
@@ -1012,16 +1059,16 @@ def coverage_tables(say):
 def counts_of(table):
     st = table.states()
     return {"methods": len(st), "proved": st.count("proved"), "float": st.count("float"),
-            "bound": st.count("bound"), "not_yet": st.count("—"), "out_of_scope": st.count("out-of-scope")}
+            "conditional": len(table.conditional()), "bound": st.count("bound"), "not_yet": st.count("—"), "out_of_scope": st.count("out-of-scope")}
 
 
 def counts_block(tables):
-    lines = ["| Class | Group | Methods | proved | float | bound | not yet | out of scope | CORA issues |",
-             "|---|---|---|---|---|---|---|---|---|"]
+    lines = ["| Class | Group | Methods | proved | float | of which conditional | bound | not yet | out of scope | CORA issues |",
+             "|---|---|---|---|---|---|---|---|---|---|"]
     for t in tables:
         c = counts_of(t)
         lines.append(f"| [{t.name}]({t.group}/{t.name}.md) | {t.group} | {c['methods']} | "
-                     f"{c['proved']} | {c['float']} | {c['bound']} | {c['not_yet']} | {c['out_of_scope']} | {t.issues} |")
+                     f"{c['proved']} | {c['float']} | {c['conditional']} | {c['bound']} | {c['not_yet']} | {c['out_of_scope']} | {t.issues} |")
     return "\n".join(lines) + "\n"
 
 
@@ -1143,19 +1190,20 @@ def theorem_categories(papers):
     """Every `theorem`/`lemma` under `src/CORALean`, `private` ones included (visibility is not
     meaning, #269), in exactly one of: a float
     refinement (a `Float/` path, or `Float` in the file or declaration name; wins over
-    everything), a proof helper (an `aux_*` or `step_*` name), a paper theorem (anything else in a file
+    everything; one that takes the hypothesis that a model `Encloses` the system is counted apart,
+    `float_conditional`, see `is_conditional`), a proof helper (an `aux_*` or `step_*` name), a paper theorem (anything else in a file
     some row links) or a lemma (the rest). `Examples/` is counted apart, not classified."""
     linked = linked_files(papers)
-    cat = {"paper": 0, "float": 0, "helper": 0, "lemma": 0}
+    cat = {"paper": 0, "float": 0, "float_conditional": 0, "helper": 0, "lemma": 0}
     examples = 0
     for path in sorted(SRC_LEAN.rglob("*.lean")):
         decls = [(n, k) for n, k, priv in lean_decls(path) if k in ("theorem", "lemma")]
         if "Examples" in path.relative_to(SRC_LEAN).parts:
             examples += len(decls)
             continue
-        for name, _ in decls:
+        for name, kind in decls:
             if is_float_path(path, name):
-                cat["float"] += 1
+                cat["float_conditional" if is_conditional(path, name, kind) else "float"] += 1
             elif any(seg.startswith(("aux_", "step_")) for seg in name.split(".")):
                 cat["helper"] += 1
             elif path.resolve() in linked:
@@ -1182,13 +1230,14 @@ def coverage_stats(papers, tables):
         c = counts_of(t)
         classes.append({
             "group": t.group, "class": t.name, **c,
+            "float_unconditional": c["float"] - c["conditional"],
             "needs_float": c["proved"],
             "out_of_scope_by_reason": t.out_reasons(),
             "cora_issues": t.issues,
             "findings": found.get(t.name, zero()),
         })
     def agg(entries):
-        keys = ("methods", "proved", "float", "bound", "not_yet", "out_of_scope", "needs_float", "cora_issues")
+        keys = ("methods", "proved", "float", "conditional", "float_unconditional", "bound", "not_yet", "out_of_scope", "needs_float", "cora_issues")
         out = {k: sum(e[k] for e in entries) for k in keys}
         out["out_of_scope_by_reason"] = {r: sum(e["out_of_scope_by_reason"][r] for e in entries)
                                          for r in CORA_OUT}

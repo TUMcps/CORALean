@@ -61,6 +61,7 @@ def nearestDtypeOps : DtypeOps NearestFloat where
     | .decNeg m d => throw (aux_decNegRefused field m d)
   roundToScalar := aux_nativeRoundTo
   showExact x := showExactDyadic (aux_dyadicOf x.val)
+  guaranteed := false
 
 /-- The dtypes of `oracle-unsound`: those of `oracle`, and `nearest`. -/
 def dtypes : DtypeSet where

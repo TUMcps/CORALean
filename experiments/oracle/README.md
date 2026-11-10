@@ -508,7 +508,10 @@ where the range is certified free of poles; a box of the run where it is not poi
 and the op answers with an error (a dtype without a NaN, `dyadic:p` or `fixedpoint:k`, refuses `tan` at once).
 The tree is evaluated over boxes by the interval natural extension and differentiated symbolically, which
 gives the `FloatHessModel` (`f`, `jacX`, `jacU`, `hess`); that this model encloses the field is by
-construction and not proved in Lean. An operand outside a function's domain (a divisor box holding 0,
+construction and not proved in Lean, which is the hypothesis of `linReachFloat_outer`. So both ops are served
+at `nearest` only (`oracle-unsound`), and the sound `oracle` refuses them at every dtype with an error
+(`DtypeOps.requireUnguaranteed`); `scripts/check-axioms.lean` fails when a handler that builds such a model
+does not call it. An operand outside a function's domain (a divisor box holding 0,
 `sqrt` of a negative box) is not refused but evaluated by CORALean's definition. The elementary functions are
 CORALean's interval definitions, tuned by `p`; their cost grows with `p` and the tree depth, and is high at the
 sound dtypes.

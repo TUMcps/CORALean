@@ -143,17 +143,22 @@ RESULT_CLASSES = [
 ]
 # the bar of (b) is every result in scope: the formalized ones by how they fared, then the rest
 RESULTS = RESULT_CLASSES + [seg("not_yet", "not yet", "white")]
+# a float row whose theorem assumes that a model encloses the system: a greyer blue
+CONDITIONAL_COLOUR = "CORAcolorReachSet!50!CORAcolorUnknown"
+CORA[CONDITIONAL_COLOUR] = mix("CORAcolorReachSet", "CORAcolorUnknown", 50)
 COVERAGE = [
-    seg("float", "proved, at float", "CORAcolorReachSet"),
+    seg("float_unconditional", "proved, at float", "CORAcolorReachSet"),
+    seg("conditional", "at float, given a model", CONDITIONAL_COLOUR),
     seg("proved", "proved, real only", PROVED_COLOUR),
     seg("bound", "looser bound only", "CORAcolorReachSet2"),
     seg("not_yet", "not yet", "white"),
 ]
 THEOREMS = [
-    ("paper", "paper theorems", *blue_to_purple(0, 4)),
-    ("lemma", "lemmas", *blue_to_purple(1, 4)),
-    ("float", "float refinements", *blue_to_purple(2, 4)),
-    ("helper", "proof helpers", *blue_to_purple(3, 4)),
+    ("paper", "paper theorems", *blue_to_purple(0, 5)),
+    ("lemma", "lemmas", *blue_to_purple(1, 5)),
+    ("float", "float refinements", *blue_to_purple(2, 5)),
+    ("float_conditional", "float refinements given a model", *blue_to_purple(3, 5)),
+    ("helper", "proof helpers", *blue_to_purple(4, 5)),
 ]
 OUT_LEGEND = "+n: out of scope, not in the bar"
 BAR = 6  # bar width in pt
@@ -633,7 +638,7 @@ def main():
     print(f"{t['formalized']}/{t['in_scope']} paper results formalized; " +
           ", ".join(f"{k} {v}" for k, v in t["by_class"].items()))
     c = data["cora_coverage"]["totals"]
-    print(f"{c['methods']} CORA methods: {c['float']} float, {c['proved']} proved (float backlog), "
+    print(f"{c['methods']} CORA methods: {c['float']} float ({c['conditional']} given a model), {c['proved']} proved (float backlog), "
           f"{c['bound']} bound, {c['not_yet']} not yet, {c['out_of_scope']} out of scope")
     th = data["cora_coverage"]["theorems"]
     print("theorems: " + ", ".join(f"{k} {v}" for k, v in th.items()))
