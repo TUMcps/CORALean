@@ -47,6 +47,8 @@ declares a sixth, `iter` (also `private/priv_select.m:47,54`). `iter` is first u
 that would split (read from the source, not run). An error is outside the model. The Lean
 `NonlinDASys.initReach` takes the split decision as an argument.
 
+**`initReach` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
+
 **`linReach` — cora-issue, the sign of the algebraic error.** CORA's
 `@nonlinDASys/private/priv_linError_mixed_noInt.m` adds the algebraic linearization error into the
 dynamics' as `error_mid = error_x_mid + CF_inv*error_y_mid` (and alike in `priv_linError.m`,
@@ -120,6 +122,8 @@ only draws a redundancy warning from `validateOptions` (read from the source, no
 [`NonlinDASys.linReachCompCora_misses_counterexample`](../../../src/CORALean/ContDynamics/NonlinDASys/Counterexamples/LinReachCompCora.lean),
 [`NonlinDASys.compositional_local_error_counterexample`](../../../src/CORALean/ContDynamics/NonlinDASys/Counterexamples/CompositionalLocalError.lean)).
 
+**`linReach` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
+
 **`linReach_adaptive` — formalized with the corrected sign.** Formalized with the corrected sign, as
 the fixed-step pass is: `abstractionErrorAdaptive` (`tensorOrder == 2`) returns
 `Z_error = Z_error_x - CF_inv Z_error_y` via `linError`, `abstractionErrorAdaptive_outer` holds
@@ -140,6 +144,8 @@ checks the error after the fact. Departures: linear part (`initReach_adaptive`) 
 (`errorSolution_adaptive`) are one `oneStep` at `U_lin ⊕ Verror` as in `linReach`. The tensor order
 is fixed at 2 (no `aux_*TensorOrder*`, `tensorOrder == 3` branch not formalized). The extra pass of
 `timeStepequalHorizon` is not modelled.
+
+**`linReach_adaptive` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
 
 **`outputSet` — float layer.** route a — float: `outputSetLinearFloat` is `outputSetLinear` at
 float, one `let` per `let`. `h(p)` is the box of an `OutputFloatModel` (interval extensions of `h`
@@ -165,6 +171,8 @@ a term in each of `R`, `R_y` and `U` and `outputSetLinear_outer`: for an affine 
 every `x ∈ R`, `y ∈ R_y`, `u ∈ U` lies in it (outer, over the product: `y` is determined by `x` and
 `u`, so the true set can be smaller).
 
+**`outputSet` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
+
 **`reach_adaptive` — the loop.** The `while` loop until `tFinal - t <= tol` (`1e-12`): each step
 starts from the time-point set of the last, at the finite horizon the controller gave capped by the
 time left (`lastStep` when it exceeds it), with the admissible errors of the pass just run. The
@@ -177,3 +185,6 @@ certificate is asked of whatever step the pass chose, and a step that is not pos
 **`reach_adaptive` — not modelled.** Not modelled: `consistentInitialState` for `Rstart_y` (the
 linearization's `y*` is `T.taylor`'s), the order reduction (`reduce`, which only enlarges),
 `aux_checkForAbortion`, the algebraic and time-point lists.
+
+
+**`reach_adaptive` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).

@@ -64,3 +64,6 @@ as the supplied `Encloses`, checked by no run). Not carried: the numeric-`p` bra
 `NonlinearSys.linearize` at the fixed `p` (`jacobian_freeParam`), the `'linRem'` option
 (`lin_error2dAB`), and CORA's packaging of the input set `zB (U + uTrans - p.u)` and the constant
 input `zf + Ucenter`.
+
+
+**`linearize` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).

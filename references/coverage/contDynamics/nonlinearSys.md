@@ -46,6 +46,8 @@ full-rank properties, including `Ā = X' X†` (`dmdCandidate_eq_mul_pinv`), are
 stays in the pass's input `f(z✱) ⊕ B(U - u✱)` in its two sets (the abstraction error is not part of
 the pass).
 
+**`linReach_adaptive` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
+
 **`reachInner` — cora-issue, `priv_reachInnerParallelotope`.** CORA's
 `@nonlinearSys/private/priv_reachInnerParallelotope.m` (`aux_innerApprox`) computes, for each output
 component `i` separately, Goubault and Putot's `Thm. 2` interval with each input `j` in turn as the
@@ -133,3 +135,6 @@ error), with a theorem for any list that contains `timeStepInner` (read from the
 **`reachInner` — cora-issue, `timeStepInner`, continued.**
 ([`NonlinearSys.validateOptionsCora`](../../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/ValidateOptionsTimeStepInnerCora.lean),
 [`NonlinearSys.validateOptionsCora_timeStepInner_crash`](../../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/ValidateOptionsTimeStepInnerCora.lean)).
+
+
+**`reachInner` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).

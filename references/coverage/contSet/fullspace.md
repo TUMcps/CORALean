@@ -55,4 +55,7 @@ returns the exact degenerate set, so the method is written as exact, not as an e
 `isFullDim`, `representsa(..,'fullspace')` and `volume` of the result then answer for the whole
 space. A wrong answer (a larger set, so sound for reachability). Modelled as
 `Fullspace.mtimesRankCora`. The theorem shows `(1,0)` in CORA's result and not in the image of
-`[1 1;1 1]` (read from the source, not run).
+`[1 1;1 1]` (run in MATLAB, see Details).
+
+
+**`mtimes` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): `[1 1;1 1]`*fullspace(2) is fullspace (dim 2, representsa 'fullspace' = 1), `[1;1]`*fullspace(1) is fullspace of dim 2 (confirmed).

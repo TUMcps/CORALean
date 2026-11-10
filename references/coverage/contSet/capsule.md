@@ -28,8 +28,8 @@ CORA methods of `contSet/@capsule/`, one row each, and where CORALean answers th
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
 | `isequal` | float | [`Capsule.isequal`](../../../src/CORALean/ContSet/Capsule/Real/Operations/Isequal.lean), [`Capsule.isequal_construct`](../../../src/CORALean/ContSet/Capsule/Real/Theorems/IsequalConstruct.lean) · float: [`Capsule.isequal`](../../../src/CORALean/ContSet/Capsule/Float/Operations/Isequal.lean), [`Capsule.isequal_sound`](../../../src/CORALean/ContSet/Capsule/Float/Theorems/IsequalSound.lean) | tolerance `0`: center, generator and radius equal; sound, not exact — equal fields denote the same set, but two capsules with a negative radius are both `∅` whatever their other fields (CORA compares the fields as well, its emptiness test not seeing a negative radius). CORA's `abs(.) < tol` is strict, so at tolerance `0` it is never true, and here the fields are simply equal. float: sound only: `le` both ways on each field and on the ends of the error boxes, `true` implies the same fields and so the same set, `false` refutes nothing |
 | `isnan` | out-of-scope | n/a — matlab-runtime |  |
-| `lift_` | float | [`Reindex`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean), [`Capsule.reindex`](../../../src/CORALean/ContSet/Capsule/Real/Operations/Reindex.lean), [`Capsule.reindex_exact`](../../../src/CORALean/ContSet/Capsule/Real/Theorems/ReindexExact.lean) · float: [`Capsule.reindex`](../../../src/CORALean/ContSet/Capsule/Float/Operations/Reindex.lean), [`Capsule.reindex_exact`](../../../src/CORALean/ContSet/Capsule/Float/Theorems/ReindexExact.lean), [`Reindex`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean) | CORA's `lift_` is `project` when `length(proj) == N` (a permutation of the coordinates) and throws `notDefined` otherwise, since new dimensions would be unbounded; `Reindex` is exactly the permutation case, an equality `reindexLin e '' construct s` (center and direction composed with `e`, radius unchanged). cora-issue — CORA's `@zonotope/lift_.m`, `@conZonotope/lift_.m`, `@zonoBundle/lift_.m`, `@capsule/lift_.m` and `@ellipsoid/lift_.m` are the same four lines: `if length(proj) == N, S = project(S,proj)`, else `CORA:notDefined`. Modelled once, for the zonotope, as `Zonotope.liftCora`; the theorem shows the point `(1,2,3)` and `proj = [2 3 1]` (read from the source, not run). ([`Zonotope.lift_cora_counterexample`](../../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/LiftCora.lean)). Details below. |
-| `mtimes` | float | [`Capsule.mtimes`](../../../src/CORALean/ContSet/Capsule/Real/Operations/Mtimes.lean), [`Capsule.mtimes_outer`](../../../src/CORALean/ContSet/Capsule/Real/Theorems/MtimesOuter.lean), [`Capsule.mtimes_cora_counterexample`](../../../src/CORALean/ContSet/Capsule/Real/Counterexamples/MtimesCora.lean), [`Mtimes`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean) · float: [`Capsule.mtimes`](../../../src/CORALean/ContSet/Capsule/Float/Operations/Mtimes.lean), [`Capsule.mtimes_outer`](../../../src/CORALean/ContSet/Capsule/Float/Theorems/MtimesOuter.lean), [`Mtimes`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean) | cora-issue — CORA's `@capsule/mtimes.m` sets the radius to `r · max(eig(M Mᵀ))`. The eigenvalues of `M Mᵀ` are the *squares* of the singular values, while the image of a ball of radius `r` has radius `r σ_max`, so CORA's radius is too small whenever `σ_max < 1`: `M = ½` in `ℝ¹` gives `r/4` for a true `r/2` (read from the source, not run). Formalized with the radius scaled by the Frobenius norm of `M`, an upper bound of `σ_max` that needs no eigenvalue computation; the outer theorem is for that, and a counterexample theorem shows CORA's value misses the image; outer: the radius is scaled by the Frobenius norm of `M`, an upper bound of `σ_max`. Details below. |
+| `lift_` | float | [`Reindex`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean), [`Capsule.reindex`](../../../src/CORALean/ContSet/Capsule/Real/Operations/Reindex.lean), [`Capsule.reindex_exact`](../../../src/CORALean/ContSet/Capsule/Real/Theorems/ReindexExact.lean) · float: [`Capsule.reindex`](../../../src/CORALean/ContSet/Capsule/Float/Operations/Reindex.lean), [`Capsule.reindex_exact`](../../../src/CORALean/ContSet/Capsule/Float/Theorems/ReindexExact.lean), [`Reindex`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean) | CORA's `lift_` is `project` when `length(proj) == N` (a permutation of the coordinates) and throws `notDefined` otherwise, since new dimensions would be unbounded; `Reindex` is exactly the permutation case, an equality `reindexLin e '' construct s` (center and direction composed with `e`, radius unchanged). cora-issue — CORA's `@zonotope/lift_.m`, `@conZonotope/lift_.m`, `@zonoBundle/lift_.m`, `@capsule/lift_.m` and `@ellipsoid/lift_.m` are the same four lines: `if length(proj) == N, S = project(S,proj)`, else `CORA:notDefined`. Modelled once, for the zonotope, as `Zonotope.liftCora`; the theorem shows the point `(1,2,3)` and `proj = [2 3 1]` (run in MATLAB, see Details). ([`Zonotope.lift_cora_counterexample`](../../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/LiftCora.lean)). Details below. |
+| `mtimes` | float | [`Capsule.mtimes`](../../../src/CORALean/ContSet/Capsule/Real/Operations/Mtimes.lean), [`Capsule.mtimes_outer`](../../../src/CORALean/ContSet/Capsule/Real/Theorems/MtimesOuter.lean), [`Capsule.mtimes_cora_counterexample`](../../../src/CORALean/ContSet/Capsule/Real/Counterexamples/MtimesCora.lean), [`Mtimes`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean) · float: [`Capsule.mtimes`](../../../src/CORALean/ContSet/Capsule/Float/Operations/Mtimes.lean), [`Capsule.mtimes_outer`](../../../src/CORALean/ContSet/Capsule/Float/Theorems/MtimesOuter.lean), [`Mtimes`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean) | cora-issue — CORA's `@capsule/mtimes.m` sets the radius to `r · max(eig(M Mᵀ))`. The eigenvalues of `M Mᵀ` are the *squares* of the singular values, while the image of a ball of radius `r` has radius `r σ_max`, so CORA's radius is too small whenever `σ_max < 1`: `M = ½` in `ℝ¹` gives `r/4` for a true `r/2` (run in MATLAB, see Details). Formalized with the radius scaled by the Frobenius norm of `M`, an upper bound of `σ_max` that needs no eigenvalue computation; the outer theorem is for that, and a counterexample theorem shows CORA's value misses the image; outer: the radius is scaled by the Frobenius norm of `M`, an upper bound of `σ_max`. Details below. |
 | `origin` | float | [`Capsule.ofPoint`](../../../src/CORALean/ContSet/Capsule/Real/Operations/OfPoint.lean), [`Capsule.mem_ofPoint_iff`](../../../src/CORALean/ContSet/Capsule/Real/Theorems/OfPointMemIff.lean) · float: [`Capsule.origin`](../../../src/CORALean/ContSet/Capsule/Float/Operations/Basic.lean), [`Capsule.origin_exact`](../../../src/CORALean/ContSet/Capsule/Float/Theorems/OriginExact.lean) | `origin` is `ofPoint 0`; `mem_ofPoint_iff` says it denotes exactly `{0}`. route a — float counterpart `origin n`, no argument, as the real `ofPoint` would round an arbitrary real point; denotes exactly `{0}` |
 | `plot3D` | out-of-scope | n/a — plotting/display |  |
 | `plus` | float | [`Capsule.plus`](../../../src/CORALean/ContSet/Capsule/Real/Operations/Plus.lean), [`Capsule.plus_outer`](../../../src/CORALean/ContSet/Capsule/Real/Theorems/PlusOuter.lean), [`Capsule.plusVec`](../../../src/CORALean/ContSet/Capsule/Real/Operations/PlusVec.lean), [`Capsule.plusVec_exact`](../../../src/CORALean/ContSet/Capsule/Real/Theorems/PlusVecExact.lean), [`Plus`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean) · float: [`Capsule.plus`](../../../src/CORALean/ContSet/Capsule/Float/Operations/Plus.lean), [`Capsule.plus_outer`](../../../src/CORALean/ContSet/Capsule/Float/Theorems/PlusOuter.lean), [`Plus`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean) | capsule plus capsule is outer: the longer generator is kept and the shorter one absorbed into the radius, `r₁ + r₂ + ‖shorter g‖₂`, as in CORA (`Plus` instance); capsule plus vector is exact (`plusVec_exact`, a translate). float: the center added downward and what that misses of the exact sum, with the two operands' error boxes, in the error box; the shorter generator's length added to the radius upward; the branch is chosen by `le` on the rounded-up squared lengths, either branch is sound (`Plus` instance, 100 Newton steps) |
@@ -59,14 +59,16 @@ an empty set by `if representsa_(S,'emptySet',eps) return; end` under the commen
 empty set is the other set", but `S_out` is not assigned before that `return`, so
 `convHull(C, capsule.empty(n))` stops with MATLAB's
 `Output argument 'S_out' ... not assigned during call`. The hull is `C`. Reached by any capsule `C`
-and an empty capsule of the same dimension (read from the source, not run). Modelled as
+and an empty capsule of the same dimension (run in MATLAB, see Details). Modelled as
 `Capsule.convHullCora`, `none` the error. The theorem shows `none` at `Capsule.empty n` while the
 hull of `C.construct ∪ ∅` is `C.construct`.
+
+**`convHull_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): convHull(capsule(`[1;0]`,`[1;0]`,0.5),capsule.empty(2)) errors: Output argument "S_out" (and possibly others) not assigned a value (confirmed).
 
 **`enclose` — cora-issue account.** CORA's `@capsule/enclose.m` documents the set
 `the hull of C and M C + Cplus (x₁ ∈ C, x₂ ∈ M C + Cplus)` but its code sets `C2 = M*Cplus` and
 returns `convHull(C, C2)`, never adding `Cplus` to `M C`: for `C = {0}`, `M = 0`, `Cplus = {1}` the
-documented set contains `1` and CORA's capsule is `{0}` (read from the source, not run).
+documented set contains `1` and CORA's capsule is `{0}` (run in MATLAB, see Details).
 `@ellipsoid/enclose.m` has the same pattern (documents `E2 = M*E + Eplus`, computes `E2 = M*Eplus`).
 Its row is formalized the same way ([`ellipsoid` `enclose`](ellipsoid.md)), while
 `@zonotope/enclose.m` and `@conZonotope/enclose.m` compute the documented `M*Z + Zplus`.
@@ -74,6 +76,8 @@ Its row is formalized the same way ([`ellipsoid` `enclose`](ellipsoid.md)), whil
 **`enclose` — float layer.** outer: `Capsule.enclose` is the float hull of `C` and the float
 `M Cplus` as the code computes it. The generic `ContSet.enclose` now applies at float too (`Plus`,
 `Mtimes`, `LinComb` instances).
+
+**`enclose` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): enclose(capsule(0,0,0),0,capsule(1,0,0)) does not contain 1 (contains returns 0), where the documented hull does (confirmed).
 
 **`isIntersecting_` — the axis distance.** The axis distance is the least `‖P₁ - P₂‖₂` over the two
 segments (`segDist`, attained: `Capsule.segDist_mem`), which CORA means to obtain from
@@ -93,10 +97,12 @@ negation, and an `IsDisjoint (Capsule 𝕋 n) (Capsule 𝕋 n)` instance carries
 `H` must be `2M`, not `½M`. With the quadratic term four times too small the minimiser is pushed to
 the box. For `C1 = capsule([0;0],[1;0],0.1)` and `C2 = capsule([0.5;0],[0;1],0.1)` CORA minimises
 `¼(x₁² + x₂²) - x₁` over `[-1, 1]²`, every minimiser has `x₁ = 1`, so `dist ≥ 0.5 > 0.2` and the
-verdict is `false`, though `(0.5, 0)` lies in both capsules (read from the source, not run).
+verdict is `false`, though `(0.5, 0)` lies in both capsules (run in MATLAB, see Details).
 Formalized as the code computes it (`Capsule.isIntersectingCora`, the solver any function returning
 a box minimiser, shown to exist), with a counterexample theorem. `Capsule.isIntersecting_` tests the
 true axis distance and is exact.
+
+**`isIntersecting_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): isIntersecting(capsule(`[0;0]`,`[1;0]`,0.1),capsule(`[0.5;0]`,`[0;1]`,0.1)) returns 0 although (0.5,0) lies in both (confirmed).
 
 **`lift_` — float layer.** center, direction and error box composed with `e`, the radius kept. route
 a.
@@ -109,10 +115,14 @@ agree only where `proj` is its own inverse. `lift(zonotope([1;2;3]),3,[2 3 1])` 
 `(2;3;1)`, where the lift moves the states to `(3;1;2)` and `lift(interval([1;2;3]),3,[2 3 1])`
 gives `(3;1;2)`. A silent wrong answer for every non-involutive permutation, in five classes.
 
+**`lift_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): center(lift(zonotope(`[1;2;3]`),3,[2 3 1])) = `[2;3;1]`, while center(lift(interval(`[1;2;3]`),3,[2 3 1])) = `[3;1;2]` (confirmed).
+
 **`mtimes` — float layer.** the center and generator rounded down, what they miss of the exact
 products in the error box (the generator's as a symmetric box), the operand's box mapped by
 `Interval.mtimes`, the radius scaled by a rounded-up Frobenius norm (`Mtimes (Mat 𝕋)` instance, 100
 Newton steps).
+
+**`mtimes` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): mtimes(0.5,capsule(0,0,1)) has radius 0.25 (true image radius 0.5) (confirmed).
 
 **`polytope` — the general branch.** Otherwise the rows `[B'; -B']`, each at the capsule's support
 value `⟨a, c⟩ + |⟨a, g⟩| + r ‖a‖₂` (`step_supportFunction`, `Capsule.hPolytopeOuter`; CORA's
@@ -125,7 +135,7 @@ value `⟨a, c⟩ + |⟨a, g⟩| + r ‖a‖₂` (`step_supportFunction`, `Capsu
 vertex form `Capsule.vPolytope` (the bounding box's corners) is no CORA method and is not linked.
 
 **`polytope` — cora-issue account.** at `g = 0`, `r > 0` (a ball) CORA's `gramSchmidt(C.g)` divides
-by `norm(0) = 0` and every row of `step_supportFunction` is `NaN` (read from the source, not run:
+by `norm(0) = 0` and every row of `step_supportFunction` is `NaN` (run in MATLAB, see Details):
 `polytope(capsule([0;0],[0;0],1),'outer')`). The Lean basis is the identity there, the box `c ± r`.
 
 **`polytope` — float layer.** route a — `n = 1` the box rounded outward. Otherwise the rows
@@ -133,6 +143,8 @@ by `norm(0) = 0` and every row of `step_supportFunction` is `NaN` (read from the
 lengths `normUp p`), each at `Capsule.boundDotUp`, the error box included, sound for whatever basis
 the floats give. The point and segment branches are these rows at `g = 0` or `r = 0`, whose
 equalities a rounded row holds as slabs.
+
+**`polytope` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): polytope(capsule(`[0;0]`,`[0;0]`,1),'outer').A is `[NaN NaN;NaN NaN;NaN NaN;NaN NaN]` (confirmed).
 
 **`representsa_` — float layer.** sound only, for `0 < n`: the types `point` and `origin` by `le`
 against `zero` both ways, the error box's ends included, `true` implies the capsule is `{c}` or
@@ -143,9 +155,11 @@ against `zero` both ways, the error box's ends included, `true` implies the caps
 hyperplane only in one dimension. In one dimension a hyperplane `{x | a x = b}`, `a ≠ 0`, is a
 single point, so every one-dimensional capsule of positive extent is wrongly accepted:
 `capsule(0,0,1)`, the interval `[-1,1]` gives `true`, the right answer is `false`. A wrong answer,
-not unsound (read from the source, not run; `@interval/representsa_.m`, l. 150, counts zero-width
+not unsound (run in MATLAB, see Details); `@interval/representsa_.m`, l. 150, counts zero-width
 dimensions and is right in 1-D). Formalized as the code computes it
 (`Capsule.representsaHyperplaneCora`) with a counterexample theorem.
+
+**`representsa_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): representsa(capsule(0,0,1),'hyperplane') returns 1 for the interval [-1,1] (confirmed).
 
 **`vertices_` — float layer.** outer, route a: points on the boundary, not vertices, and each as a
 box: the `1001` samples as boxes (`arcBox`, the interval operations on the angle
@@ -169,3 +183,7 @@ did.
 **`zonotope` — float layer.** the segment carries the capsule's error box, the ball is the box
 `[-r, r]ⁿ` of the ellipsoid through `Interval.zonotope`, `r` is zero where `le` finds it so both
 ways, and `Zonotope.plus_outer` joins the two.
+
+**`enclosePoints` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: no CORA claim refuted.
+
+**`isFullDim` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): isFullDim(capsule(0,1,0)) returns 0 for the segment [-1,1] in R^1 (confirmed).

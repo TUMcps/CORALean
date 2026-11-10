@@ -1,0 +1,175 @@
+# coverage row	status	observed (MATLAB R2024b, CORA v2026.1.0 (904a444))
+contSet/capsule:convHull_	confirmed	convHull(capsule([1;0],[1;0],0.5),capsule.empty(2)) errors: Output argument "S_out" (and possibly others) not assigned a value
+contSet/capsule:enclose	confirmed	enclose(capsule(0,0,0),0,capsule(1,0,0)) does not contain 1 (contains returns 0), where the documented hull does
+contSet/capsule:enclosePoints	not run	no CORA claim refuted
+contSet/capsule:isFullDim	confirmed	isFullDim(capsule(0,1,0)) returns 0 for the segment [-1,1] in R^1
+contSet/capsule:isIntersecting_	confirmed	isIntersecting(capsule([0;0],[1;0],0.1),capsule([0.5;0],[0;1],0.1)) returns 0 although (0.5,0) lies in both
+contSet/capsule:lift_	confirmed	center(lift(zonotope([1;2;3]),3,[2 3 1])) = [2;3;1], while center(lift(interval([1;2;3]),3,[2 3 1])) = [3;1;2]
+contSet/capsule:mtimes	confirmed	mtimes(0.5,capsule(0,0,1)) has radius 0.25 (true image radius 0.5)
+contSet/capsule:polytope	confirmed	polytope(capsule([0;0],[0;0],1),'outer').A is [NaN NaN;NaN NaN;NaN NaN;NaN NaN]
+contSet/capsule:representsa_	confirmed	representsa(capsule(0,0,1),'hyperplane') returns 1 for the interval [-1,1]
+contSet/conPolyZono:contains_	not reproduced	contains(conPolyZono(0,1,1,1,0,1),1,'approx') returns 0 (the point 1 is not accepted); 'approx' also returns 0 for the member 0, so the test cannot confirm the extension by ones; the source line S = [S; ones(m,size(S,2))] is as described
+contSet/conPolyZono:isFullDim	confirmed	isFullDim(conPolyZono([0;0],eye(2),[1 2])) (the arc (a,a^2)) returns 1
+contSet/conPolyZono:minkDiff	confirmed	minkDiff(conPolyZono(0,1,1,1,1,2),zonotope(0,1)) (P={-1,1}) is not empty (representsa 'emptySet' returns 0): its constraints are met at alpha=(-1,1), giving the point 0, though 0+[-1,1] is not inside P
+contSet/conPolyZono:representsa_	confirmed	representsa(conPolyZono(0,0,1,1,2,1,1),'emptySet') returns 0 for the set with the infeasible constraint alpha=2
+contSet/conZonotope:contains_	confirmed	contains(conZonotope(1,zeros(1,0)),zonotope(1,1)) errors: Output argument "res" (and possibly others) not assigned a value in conZonotope/contains_
+contSet/conZonotope:cubMap	confirmed	cubMap(conZonotope([1;0],eye(2),[1 1],0),T) with T{1,1}=[1 0;0 0], the others 0: result has c=[2.5;0], G=[1 3 1.5;0 0 0], A=[0 1 0], supportFunc in e1 = 5, where the image of x1 is [0,8]
+contSet/conZonotope:isFullDim	confirmed	isFullDim(conZonotope(0,[1 0],[1 1],2)) returns 1 for the single point {1}
+contSet/conZonotope:lift_	confirmed	center(lift(conZonotope([1;2;3]),3,[2 3 1])) = [2;3;1], while the interval gives [3;1;2]
+contSet/conZonotope:representsa_	confirmed	representsa(conZonotope(0,1),'hyperplane') returns 1 for the interval [-1,1]
+contSet/conZonotope:supportFunc_	not reproduced	supportFunc_(conZonotope(0,1,0,1),1,'upper') (A=0, b=1) does not return 1: it aborts with MATLAB:lang:StackOverflow (interval(dir'*cZ) recurses); with two generators (conZonotope(0,[1 1],[0 0],1)) the same; the public supportFunc returns -Inf
+contSet/ellipsoid:contains_	confirmed	with sedumi (the default without MOSEK) priv_containsEllipsoid(E1,E2) returns res=false, rho=NaN (solver not found in this install); with SDPT3 substituted in the same SDP rho=0.25, so res=true for the disjoint segments E1=ellipsoid(diag([1,0])), E2=ellipsoid(diag([0.25,0]),[0;1])
+contSet/ellipsoid:convHull_	confirmed	convHull(ellipsoid(eye(2)),ellipsoid.empty(2)) errors: Output argument "S_out" (and possibly others) not assigned a value
+contSet/ellipsoid:enclose	confirmed	enclose(ellipsoid(0,0),0,ellipsoid(0,1)) does not contain 1 (result Q=0.001, q=1e-21); the documented hull does
+contSet/ellipsoid:intersectStrip	confirmed	intersectStrip(ellipsoid(1,0),1,3,2,'Gollamudi1996') returns Q=0.9996, q=0.0002 and does not contain -1, which is in the intersection [-1,1]; the Liu2016 branch was not run
+contSet/ellipsoid:isBigger	confirmed	isBigger(ellipsoid(1),ellipsoid(4)) returns 1
+contSet/ellipsoid:lift_	confirmed	center(lift(ellipsoid(eye(3),[1;2;3]),3,[2 3 1])) = [2;3;1], the interval lift gives [3;1;2]
+contSet/ellipsoid:plus	confirmed	plus(ellipsoid(eye(2)),{E2,E3}) and plus(E,{}) error: Input #2 expected to be a cell array, was char instead
+contSet/ellipsoid:representsa_	confirmed	representsa(ellipsoid(1),'hyperplane') returns 1 for [-1,1]
+contSet/fullspace:mtimes	confirmed	[1 1;1 1]*fullspace(2) is fullspace (dim 2, representsa 'fullspace' = 1); [1;1]*fullspace(1) is fullspace of dim 2
+contSet/interval:atan2	confirmed	atan2(interval(-1,1),interval(-1,-1)) = [-2.35619, 2.35619], while atan2(0,-1) = 3.14159
+contSet/interval:contains_	confirmed	[res,cert,scaling]=contains(interval(1,3),0) gives res=[true true], scaling=[0 0]
+contSet/interval:rdivide	confirmed	-1./interval(-2,0) = [-Inf,0.5]; the values of -1/x on [-2,0) are [0.5,Inf)
+contSet/interval:representsa_	confirmed	representsa(interval([0;0],[1;1]),'capsule') = 1 and 'ellipsoid' = 1 for the unit square
+contSet/interval:supportFunc_	confirmed	supportFunc(interval([0;-Inf],[1;Inf]),[1;0],'upper') returns NaN
+contSet/levelSet:contains_	confirmed	contains(levelSet([x-2;x-10],x,{'==','<='}),interval(0,1)) returns 1
+contSet/levelSet:isIntersecting_	confirmed	isIntersecting(levelSet(x,x,{'=='}),interval(0,1),'approx') returns 0; with the string '==' it returns 1
+contSet/levelSet:isequal	confirmed	isequal(levelSet(x1,[x1;x2],'<='),levelSet(x2,[x1;x2],'<=')) returns 1
+contSet/polyZonotope:containsPointSet	not run	no concrete witness (the note itself gives none)
+contSet/polyZonotope:contains_	confirmed	contains(polyZonotope(0,[2 1],[],[0 1]),0,'approx') returns 1, the set is [1,3]
+contSet/polyZonotope:convHull_	partly confirmed	convHull(pZ) equals linComb(pZ,pZ) field by field (c, G, E, GI) for the curve (t,t^2,t^4); the non-convexity of the chord set was not tested numerically
+contSet/polyZonotope:interval	confirmed	interval(polyZonotope(1,1,[],1),'bernstein') errors: Input #2 expected to be a cell array, was double instead
+contSet/polyZonotope:isFullDim	confirmed	isFullDim(polyZonotope([0;0],eye(2),[],[1 2])) returns 1 for the parabola arc
+contSet/polyZonotope:isIntersecting_	confirmed	isIntersecting(polyZonotope([0;0],eye(2),[],[1 1;1 1]),interval([0;0],[1;1]),'approx') errors: Not enough input arguments (MATLAB:minrhs); at the default 'exact' it errors CORA:noExactAlg
+contSet/polyZonotope:isPolytope	partly confirmed	isPolytope(polyZonotope(0,1,[],2)) returns 0 for the interval [0,1]; the non-convex acceptance was not tested
+contSet/polyZonotope:representsa_	confirmed	representsa(polyZonotope([1;2]),'capsule') errors: Operands to the logical AND (&&) and OR (||) operators must be convertible to logical scalar values
+contSet/polyZonotope:sum	confirmed	sum(pZ,{polyZonotope(1),polyZonotope(2)}) with pZ centered at 0 has center 2 (true sum 3)
+contSet/polyZonotope:volume_	confirmed	volume(polyZonotope(0,-1,[],1)) returns -2 (the set is [-1,1])
+contSet/polygon:contains_	confirmed	contains(polygon(E),E) for E=ellipsoid(eye(2)) returns 0 at the default tolerance (areas differ by 2.5e-14) and 1 with tolerance 1e-6, though boundary points of E between two of the 1000 samples lie outside the polygon
+contSet/polygon:hausdorffDist	confirmed	hausdorffDist(polygon([0 1 1 0],[0 0 1 1]),[0.5;0.5]) returns 0 (the Hausdorff distance is 0.7071)
+contSet/polygon:isIntersecting_	confirmed	isIntersecting(square of half-width 1e-7 about a boundary point of E between two samples, E) returns 0, the point lies on E
+contSet/polygon:isequal	not reproduced	polygon([0 1 1 0 -1 -1],[0 1 -1 0 -1 1]) is built with a NaN separator (7 columns) and isequal against the restarted boundary errors (MATLAB:rank:matrixWithNaNInf); the false answer for equal polygons was not reproduced
+contSet/polygon:minkDiff	not run	the note gives no concrete input
+contSet/polygon:minus	confirmed	minus(polygon,polygon) errors: Unrecognized function or variable 'S'
+contSet/polygon:quadMap	not run	no Lean witness; the note gives no concrete input
+contSet/polygon:randPoint_	confirmed	randPoint(polygon([0 1 1 0],[0 0 1 1]),'all','extreme') returns two points, [0 0;0 1] (columns (0,0) and (0,1)), not the four vertices
+contSet/polygon:removeCollinearPoints	confirmed	removeCollinearPoints of the U polygon polygon([0 3 3 2 2 1 1 0],[0 0 3 3 1 1 3 3]): area 7 before and after, contains((1.5,2)) is 0 before and 1 after
+contSet/polygon:representsa_	confirmed	representsa(polygon.empty(),'origin') returns 1
+contSet/polytope:cartProd_	confirmed	isBounded(cartProd(polytope([1;-1],[1;0]),polytope(-1,0))) returns 1 for [0,1] x [0,Inf)
+contSet/polytope:compact_	not reproduced	compact(polytope([],[],[2;2],[1;1])) returns Ae=2, be=1 (correct, not x=1); a zero equality row in 2-D ([0 0;1 0;0 1], [0;1;1]) and mixed with inequalities was compacted correctly, so neither the 1-D merge nor the aligned-row claim was reproduced
+contSet/polytope:convHull_	confirmed	convHull(P,S) with P=polytope([1;-1],[0;-1]) (empty) and S=[0,1] returns the empty set (representsa 'emptySet' = 1)
+contSet/polytope:isFullDim	confirmed	isFullDim(polytope([eye(2);-eye(2);0 0],[1;1;1;1;0])) returns 0 for the unit square with a zero row (the qr claim was not run)
+contSet/polytope:isIntersecting_	confirmed	isIntersecting(polytope([eye(2);-eye(2)],ones(4,1)),polytope([5 5;6 5;5 6]')) returns 1 for the disjoint box and triangle
+contSet/polytope:isequal	confirmed	isequal(polytope([1 0;1 0;-1 0;0 1;0 -1],[1;1;0;1;0]),polytope([-1 0;0 1;0 -1],[0;1;0])) returns 1 ([0,1]x[0,1] against [0,Inf)x[0,1]); the 1-D instance polytope([1;1;-1],[1;1;0]) against polytope(-1,0) returns 0
+contSet/polytope:minkDiff	confirmed	minkDiff(polytope([1;-1],[1;1]),polytope(1,0)) is not empty (representsa 'emptySet' = 0) and contains 0
+contSet/polytope:mldivide	not reproduced	mldivide(polytope([1;-1],[2;0]),polytope([1;-1],[3;-1])) returns a polytope without constraints (A=zeros(0,1), the whole line), not the empty P1\P1; vertices() errors on it. The result is wrong, but not empty as the note says
+contSet/polytope:plus	confirmed	polytope.Inf(2)+polytope.empty(2) is the full space (representsa 'fullspace' = 1, 'emptySet' = 0)
+contSet/polytope:representsa_	confirmed	representsa(polytope([eye(2);-eye(2);1 1],[2;2;0;0;0]),'interval') returns 0 for the point {0}
+contSet/probZonotope:interval	confirmed	interval(probZonotope([0 1],0)) = [0,0] and sup = 0, the mean zonotope reaches 1
+contSet/probZonotope:mtimes	confirmed	interval(2*eye(2))*probZonotope([0;0],eye(2)) has cov = eye(2), g = 2*eye(2); sigma(result) = eye(2)
+contSet/probZonotope:pyramid	not run	no concrete input in the note (bound on a probability); not constructed
+contSet/probZonotope:reduce	confirmed	reduce(probZonotope([0 1;0 1],eye(2)),'althoff',1) errors CORA:wrongValue (second input argument)
+contSet/probZonotope:sup	confirmed	sup(probZonotope([0 1],0)) = 0, the means reach norm 1
+contSet/spectraShadow:contains_	partly confirmed	contains(spectraShadow([1 0],[0;0],[1;1]),[1;0]) returns 0 here: the default solver sedumi is not installed. The same program with SDPT3 reports diagnostics.problem=1 (infeasible), the case the code turns into t=0 and true; not confirmed through contains itself
+contSet/spectraShadow:isBounded	confirmed	isBounded(spectraShadow([1 0],0,0)) (the point {0}) returns 0
+contSet/spectraShadow:isFullDim	confirmed	isFullDim(spectraShadow([1 0],0,1e-9)) returns 0 for the thin segment
+contSet/spectraShadow:mtimes	confirmed	isFullDim([1;0]*spectraShadow.Inf(1)) returns 1
+contSet/spectraShadow:representsa_	confirmed	representsa(spectraShadow([1 0],[0;0],[1;1]),'fullspace') returns 1 for the line {(t,t)}
+contSet/spectraShadow:supportFunc_	confirmed	supportFunc(spectraShadow([1 0],0,0),1,'upper') returns Inf for the point {0}
+contSet/taylm:asin	confirmed	interval(asin(taylm(interval(-1,1),7))) = [-1.28631,1.28723], pi/2 = 1.5708
+contSet/zonoBundle:isequal	confirmed	isequal(zonoBundle({zonotope(0,1)}),zonoBundle({zonotope(0,1),zonotope(2,0)})) returns 1
+contSet/zonoBundle:lift_	confirmed	interval(lift(zonoBundle({zonotope([1;2;3])}),3,[2 3 1])) has lower bound [2;3;1], the interval lift gives [3;1;2]
+contSet/zonoBundle:reduceCombined	confirmed	reduceCombined(zonoBundle of two random 2-D zonotopes with 6 generators,"methC") errors: Index exceeds array bounds (priv_reduceMethC line 49); the undefined-vol error of the note was not reached
+contSet/zonoBundle:representsa_	confirmed	representsa(zonoBundle({zonotope([0;0],eye(2)),zonotope([0;0],[1;1])}),'interval') returns 1 for the diagonal segment
+contSet/zonoBundle:shrink	confirmed	shrink(zonoBundle({..}),3) errors: Undefined function 'parallelotope' for input arguments of type 'polytope'
+contSet/zonoBundle:split	confirmed	split(zonoBundle,polytope([1 0],0)) errors: Unrecognized method, property, or field 'c' for class 'polytope'; with conHyperplane the output Zsplit is not assigned; the note's undefined-variable message was not seen, the call errors in both forms
+contSet/zonotope:contains_	not reproduced	contains(zonotope([0;0],eye(2)),ellipsoid(4*eye(2)),'sampling:dual') errors: Unrecognized function or variable 'Z2' (priv_zonotopeContainment_ellipsoidSamplingDual line 86); the under-estimated scaling was not reached
+contSet/zonotope:dominantDirections	confirmed	dominantDirections(zonotope([0;0],[1 2 3 4 5 6 7;0 0 0 0 0 0 0])) returns the singular S=[7 6;0 0], det 0
+contSet/zonotope:encloseMany	confirmed	encloseMany (called as a plain function, it is not dispatched for a cell) errors in reduce line 195: Wrong value for the second input argument ('parallelpiped' is not a method)
+contSet/zonotope:enclosePoints	not reproduced	zonotope.enclosePoints([1 -1;-1 1],'maiga') returns generators with entries of order 1e-16, G=[-1.1e-16 -5.6e-17 1 0;1.1e-16 5.6e-17 0 1], no 0/0 and no error: the first generator is 1e-16 (rounding in svd), not 0
+contSet/zonotope:filterOut	not reproduced	same input as the mldivide row: mldivide(polytope([1;-1],[2;0]),polytope([1;-1],[3;-1])) returns a polytope without constraints (the whole line), not the empty P1\P1
+contSet/zonotope:intersectStrip	confirmed	intersectStrip(zonotope(0,1),1,1,0,struct('method','wang-FRad','A',2,'C',1,'E',0,'F',1)) has G=[0.2 0.8], i.e. gain lambda=0.8 (the paper's is 0.5)
+contSet/zonotope:isIntersecting_	confirmed	isIntersecting(zonotope([0;0],eye(2)),[0.5;0.5]) errors: Not enough input arguments (MATLAB:minrhs)
+contSet/zonotope:lift_	confirmed	center(lift(zonotope([1;2;3]),3,[2 3 1])) = [2;3;1], the interval lift gives [3;1;2]
+contSet/zonotope:minkDiff	confirmed	minkDiff(zonotope(0,1),zonotope(0,2)) (also 'approx') returns c=0, G=-1, not empty, though [-1,1] minus [-2,2] is empty
+contSet/zonotope:norm_	confirmed	norm(zonotope([2;-20],[1 1;0 1]),2,'exact') returns 21 (true maximum sqrt(445)=21.095)
+contSet/zonotope:reduce	confirmed	reduce(zonotope([0;0],[0 -1 3 1;-1 1 -2 0]),'valero',1.5) has G=[3 0 1;-2 -2 0]; supportFunc in (-1,1) is 9 for Z and 8 for the reduced set; reduce(...,'methB',1.5) errors: Index exceeds array bounds
+contSet/zonotope:reduceUnderApprox	confirmed	reduceUnderApprox(zonotope([0;0],[3 2 0;0 0 1]),'raghuraman',1) errors: Wrong value for the first input argument (numeric, nonnan), the NaN from 0/0
+contSet/zonotope:representsa_	confirmed	[res,S]=representsa(zonotope([0;0],eye(2)),'polytope') returns res=1 and S an empty polytope
+contSet/zonotope:split	confirmed	split(zonotope([0;0],[1;0]),2) and split(zonotope([0;0],[1;0])) error: Index in position 2 exceeds array bounds
+contSet/zonotope:splitFirstGen	confirmed	splitFirstGen(zonotope([0;0],[1 0 1;0 1 1])) errors: Brace indexing is not supported for variables of this type (splitFirstGen line 35); the split(Z,3) out-of-bounds of the note was not reached
+contSet/zonotope:tensorMultiplication	not run	tensorMultiplication needs an options.list struct (perm, comb) that was not constructed; not run
+contSet/zoo:rdivide	confirmed	zoo(interval(1,2),{'interval'}).*z and ./z error: Undefined function 'combineZooObjects' (aux_s_times_zz line 55, aux_s_rdivide_zz line 51)
+contSet/zoo:times	confirmed	same as the rdivide row: z.*z errors with the undefined combineZooObjects, z*z (mtimes) returns a zoo
+contDynamics/contDynamics:linReach	confirmed	reach(nonlinearSys(f,1,1),...) for f(x)=1-(1001/750)x+(1001/3000)x^4, R0={0}, timeStep=2, alg 'lin', tensorOrder=2 gives Rti=[-0.00201637,1.63664e-05], and ode45 gives x(1/4)=0.212604, outside it; tensorOrder 3 was not run
+contDynamics/contDynamics:linReachInner	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/contDynamics:observe	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/contDynamics:outputSet	confirmed	reach(nonlinearSys(@(x,u) 0*x(1)+0*u(1),@(x,u) x(1)+u(1)),...) with R0={0}, U={1} has output time-point set 1 = [0,0] and time-interval set 1 = [0,0], the output is 1
+contDynamics/linParamSys:initReach	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/linParamSys:initReach_inputDependence	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/linParamSys:simulate	confirmed	simulate(linParamSys(intervalMatrix(-1,0.1),1),params) with tStart=0, tFinal=1 and u=[1 1] returns last time 2
+contDynamics/linProbSys:initReach	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/linearSys:isCanonicalForm	confirmed	canonicalForm(linearSys(-1,1,[],2),...) returns a system with C=2 and isCanonicalForm = 0
+contDynamics/linearSys:reach	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/linearSys:verify	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/linearSysDT:executeObserver	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/linearSysDT:reach	confirmed	reach(linearSysDT({1,1,1},{0,1,1},[],{1,1,1},{0,0,0},1),...) with R0={0}, U={1}, tFinal=2 has time-point sets [0,0], [0,0], [0,0]; x(2)=1 under u=1 is missed
+contDynamics/nonlinDASys:initReach	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/nonlinDASys:linReach	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/nonlinDASys:linReach_adaptive	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/nonlinDASys:outputSet	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/nonlinDASys:reach_adaptive	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/nonlinParamSys:linearize	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/nonlinearARX:reach	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/nonlinearSys:linReach_adaptive	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/nonlinearSys:reachInner	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/nonlinearSysDT:executeObserver	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/nonlinearSysDT:reach	confirmed	reach(nonlinearSysDT(@(x,u) x(1)+1+0*u(1),1,1,1),params,options,unsafe set [-0.5,0.5]) with R0={0} returns res = 1
+hybridDynamics/hybridAutomaton:reach	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+hybridDynamics/location:checkFlow	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+hybridDynamics/location:guardIntersect_hyperplaneMap	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+hybridDynamics/location:guardIntersect_levelSet	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+hybridDynamics/location:guardIntersect_pancake	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+hybridDynamics/location:guardIntersect_zonoGirard	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+hybridDynamics/location:reach	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+hybridDynamics/nonlinearReset:evaluate	confirmed	evaluate(nonlinearReset(@(x,u) [x(1)+u(1); x(2)^2]),zonotope([0;1],eye(2)),zonotope(0)) has x2 range [-1,3]; x2=2 gives 4
+hybridDynamics/nonlinearReset:resolve	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+hybridDynamics/parallelHybridAutomaton:mergeFlows	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+hybridDynamics/parallelHybridAutomaton:reach	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+hybridDynamics/parallelHybridAutomaton:simulateRandom	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+hybridDynamics/transition:synchronize	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+nn/layers:computeApproxPoly	not run	not run (needs a neural network with a polyZonotope evaluation at the 'singh' setting)
+nn/layers:evaluateConZonotope	partly confirmed	neuralNetwork({nnReLULayer()}).evaluate(conZonotope([0;0],[1;-1])) has vertices (-1,0) and (1,0), so the image point (0,1) of alpha=-1 is missing; the result is not the unchanged line the note describes
+nn/layers:nnActLayerFromHandle	confirmed	nnHelper.minMaxDiffOrder(nnActLayerFromHandle(@(x) exp(x),'myexp',2),[m b],-1,1) with the chord of exp on [-1,1] returns [-2e-16,2e-16]; the true range of exp(x)-chord is [-0.5576,0]
+nn/layers:nnConv2DLayer	not run	no run: the batch evaluation with options.nn.interval_center was not constructed
+nn/layers:nnElementwiseAffineLayer	confirmed	neuralNetwork({nnElementwiseAffineLayer([2;3],[0;1])}).evaluate(conZonotope([0;0],eye(2))) errors: Incorrect dimensions for matrix multiplication (evaluateConZonotope line 146)
+nn/layers:nnExpLayer	confirmed	neuralNetwork({nnExpLayer()}).evaluate(zonotope(0,1)) errors: Too many output arguments (minMaxDiffOrder line 70)
+nn/layers:nnLayer	partly confirmed	nnSquareLayer cannot be instantiated in this CORA (abstract class); with nnActLayerFromHandle(@(x) sin(x)), evaluate(interval(0,3)) returns [0,0.14112], while sin takes the value 1 on [0,3]
+nn/layers:nnLinearLayer	confirmed	nnLinearLayer(1,0) with d=interval(-1,1): evaluate(interval(0,0)) = [-1,1], evaluate(conZonotope(0,0)) has interval hull [0,0]
+nn/layers:nnRootLayer	confirmed	nnRootLayer().df(4) = 1 (derivative of sqrt at 4 is 0.25)
+nn/layers:nnSoftPlusLayer	not run	no run: the batch error bound of nnSoftPlusLayer was not constructed
+nn/neuralNetwork:nonlinearSysDT	not run	no run: needs an elementwise affine network converted by nonlinearSysDT
+nn/neuralNetwork:reduceGNNForNode	not run	no run: needs a GNN with a graph
+specification/reachSetAnalyzer:analyze	not run	no run: the reachSetAnalyzer tree was not constructed
+specification/specification:check	partly confirmed	check(specification(@(S) ...,'custom'),{Sok,Sbad}) returns 1 where func(Sok)=1, func(Sbad)=0 and check(spec,Sbad) returns 0
+specification/specification:robustness	confirmed	robustness(specification(unit cube [0,1]^3,'safeSet'),[2;2;0.5]) = -2 and at [2;2;2] = -1.73205
+specification/stl:eliminateTrueFalse	partly confirmed	eliminateTrueFalse(until(x(1)<5,stl(true),interval(0,1))) returns true
+specification/stl:negationNormalForm	confirmed	negationNormalForm(~(x(1)<5)) returns x1 > 5
+specification/stl:polytope2stl	confirmed	polytope2stl(stl('x',1),polytope(1,5,1,2)) returns x1 <= 5 (the equality x=2 is ignored)
+specification/stl:robustness	not run	no run: the reach-set robustness of the globally formula was not constructed
+specification/stlInterval:minkDiff	confirmed	minkDiff(stlInterval(0,Inf),stlInterval(0,Inf)) has lower 0 and upper NaN
+specification/syntaxTree:power	not run	no run: the syntaxTree funHan was not constructed
+specification/syntaxTree:sinh	not run	no run: the syntaxTree funHan was not constructed
+specification/syntaxTree:tan	not run	no run: the syntaxTree funHan was not constructed
+others/intervalMatrix:expmDifferentAlgorithms	not run	not run: expmDifferentAlgorithms(intervalMatrix(-1,0),2,0) fails with 'Too many input arguments' in subsref when called from the harness (invocation problem, not the claimed behaviour)
+others/intervalMatrix:expmTaylorHornerScaling	not run	not run: same invocation problem as the expmDifferentAlgorithms row
+others/intervalMatrix:randPoint	confirmed	randPoint(intervalMatrix(0,1),1000): 'standard' samples lie in [-0.9995,-0.0005] (the lower half), 'extreme' returns only +-0.5
+others/markovchain:build_reach	not run	no run: the markov chain build_reach was not constructed
+others/matPolytope:expm	confirmed	matPolytope(cat(3,[0 1;1 0],[0 1;0 1]))+matPolytope(zeros(2,2)) has 4 vertices, the sum has 2
+others/matPolytope:expmInd	confirmed	same plus as the expm row: the sum has 4 vertices instead of 2 (expm itself not run)
+others/matPolytope:expmIndMixed	confirmed	expmIndMixed(matPolytope(V),1,3) errors: Unrecognized function or variable 'Z1' (simplePlus line 32)
+others/matPolytope:plus	confirmed	matPolytope(cat(3,[0 1;1 0],[0 1;0 1]))+matPolytope(zeros(2,2)) has 4 vertices, the sum has 2
+others/matPolytope:simplePlus	confirmed	expmIndMixed(matPolytope(V),1,3) errors in simplePlus line 32: Unrecognized function or variable 'Z1'
+others/matZonotope:reduce	confirmed	reduce(matZonotope,'girard',2) errors: Not enough input arguments (reduce line 36)
+others/matZonotope:replaceId	confirmed	replaceId(matZonotope(zeros(2,2),ones(2,2,3)),[1;2]) errors: Unrecognized method, property, or field 'id' for class 'matZonotope'
+others/matZonotope:vertices	confirmed	vertices(matZonotope(zeros(1,4),ones(1,4))) returns 2 by 2 matrices; vertices(matZonotope(zeros(2,3),ones(2,3))) errors in vec2mat: Size arguments must be real integers

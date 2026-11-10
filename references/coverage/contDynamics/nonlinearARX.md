@@ -40,3 +40,6 @@ point (CORA takes the center of a set). `compute_params = false` is not a separa
 it (`contains` of an empty set is `true`, `@contSet/contains.m` l. 105; an unsafe set is disjoint
 from it), so any error silently makes the specification hold for that step. The failing computation
 is abstracted as an arbitrary error (read from the source, not run). Formalized as `reachStepCora`.
+
+
+**`reach` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).

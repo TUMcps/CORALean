@@ -39,3 +39,6 @@ states the documented set).
 **`minkDiff` — the counterexample.** `STLInterval.minkDiffCora` is the code as printed, with `NaN`
 as a missing bound, and a counterexample theorem shows `t = 1` is in the documented set and not in
 the object.
+
+
+**`minkDiff` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): minkDiff(stlInterval(0,Inf),stlInterval(0,Inf)) has lower 0 and upper NaN (confirmed).

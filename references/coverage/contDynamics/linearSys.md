@@ -76,6 +76,8 @@ source, not run).
 coefficients, each entry compared with `0` or `1` by `le` in both directions. `true` implies the
 predicate at the real values the floats denote, `false` claims nothing.
 
+**`isCanonicalForm` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): canonicalForm(linearSys(-1,1,[],2),...) returns a system with C=2 and isCanonicalForm = 0 (confirmed).
+
 **`oneStep` — float layer.** route a — float: `oneStepFloat` mirrors `oneStep` `let` by `let` over
 float zonotopes: `[e^{AΔt}]` is `expIntervalFloat`, `PU` and `Pu` are `inputSolutionFloat` at `U`
 and at the point zonotope `{u}`, `[F]` and `[G]` are the float `intervalCorrectionMatrix` and
@@ -216,6 +218,8 @@ time-point set. `aux_maxTimeStep` (l. 1059-1076) keeps each step inside one piec
 ([`LinearSys.adaptiveVTransCora`](../../../src/CORALean/ContDynamics/LinearSys/Counterexamples/ReachAdaptiveOutputOffsetCora.lean),
 [`LinearSys.adaptiveVTransCora_counterexample`](../../../src/CORALean/ContDynamics/LinearSys/Counterexamples/ReachAdaptiveOutputOffsetCora.lean)).
 
+**`reach` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
+
 **`trajectoryError` — float layer.** route a: the same `let`s at float zonotopes, every rounded
 coefficient an interval (`Aⁱ` by `matPow`, `1/i!` by `invFactorialBounds`, the powers of
 `tmin`/`tmax` directed, those of `tc` by `Interval.powLo`/`powHi`, `f₁ − f₂` a box), interval
@@ -304,3 +308,6 @@ so the falsification test `d < 0` on the inner approximation (l. 217) never fire
 alone). Modelled as printed for one outer set, one unsafe set and no safe set in `ℝ¹`
 (`LinearSys.verifyRAOuterVerdictCora`). The refinement of `emax` and the inner approximation are not
 modelled, the loop ends whatever they give.
+
+
+**`verify` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).

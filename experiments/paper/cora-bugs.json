@@ -1,66 +1,77 @@
 {
-  "_comment": "One entry per coverage row of references/coverage/**/*.md whose note has a `cora-issue —` part, keyed by coverage file (group/class) and method as printed in the row (without backticks). `description`: at most ten words on what CORA gets wrong, from the row's `cora-issue —` text; LaTeX-escaped by the generator except inside $...$. `kind`: `unsound` when CORA's result can miss reachable states, is not the enclosure it claims to be, or is a wrong verdict a verification relies on; `other` for a bug that is too large, a wrong flag, a crash or error path, or a documented behaviour that is not the code's. Optional `cex` / `fix`: name of a Lean file (or its repository path) the row links, in its third column or its note, replacing the default pick. Read by scripts/paper/cora-bugs-table.py for experiments/paper/latex/appendix-cora-bugs.tex; scripts/formalization-stats.py --check fails on a missing or orphaned entry, and scripts/check-findings.py checks that the entry names a row that exists.",
+  "_comment": "One entry per coverage row of references/coverage/**/*.md whose note has a `cora-issue —` part, keyed by coverage file (group/class) and method as printed in the row (without backticks). `description`: at most ten words on what CORA gets wrong, from the row's `cora-issue —` text; LaTeX-escaped by the generator except inside $...$. `kind`: `unsound` when CORA's result can miss reachable states, is not the enclosure it claims to be, or is a wrong verdict a verification relies on; `other` for a bug that is too large, a wrong flag, a crash or error path, or a documented behaviour that is not the code's. Optional `cex` / `fix`: name of a Lean file (or its repository path) the row links, in its third column or its note, replacing the default pick. Read by scripts/paper/cora-bugs-table.py for experiments/paper/latex/appendix-cora-bugs.tex; scripts/formalization-stats.py --check fails on a missing or orphaned entry, and scripts/check-findings.py checks that the entry names a row that exists. `matlab`: the outcome of running the bug in MATLAB R2024b with CORA v2026.1.0 (904a444), one of `confirmed`, `partly confirmed`, `not reproduced`, `not run`; the observed output stands in the row's Details paragraph and in experiments/cora-bugs/results.tsv. It is not shown in the table.",
   "contDynamics/contDynamics": {
     "linReach": {
       "description": "Hessian region misses linearization point; tensor-3 remainder misindexed",
       "kind": "unsound",
-      "cex": "LinReachCora1D.lean"
+      "cex": "LinReachCora1D.lean",
+      "matlab": "confirmed"
     },
     "linReachInner": {
       "description": "inner approximation is not inside the reachable set",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     },
     "observe": {
       "description": "Hinf-G misses initial state; observers drop U, c, k, E",
       "kind": "unsound",
       "cex": "ObserveIntervalCora.lean",
-      "fix": "ObserveInterval.lean"
+      "fix": "ObserveInterval.lean",
+      "matlab": "not run"
     },
     "outputSet": {
       "description": "input-set center moved to uTrans is never added back",
       "kind": "unsound",
-      "cex": "OutputSetCora.lean"
+      "cex": "OutputSetCora.lean",
+      "matlab": "confirmed"
     }
   },
   "contDynamics/linParamSys": {
     "initReach_inputDependence": {
       "description": "second-order expansion drops terms; solution can escape the set",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     },
     "simulate": {
       "description": "time stamps exceed tFinal; segments span full horizon",
       "kind": "other",
       "cex": "SimulateEndTimeCora.lean",
-      "fix": null
+      "fix": null,
+      "matlab": "confirmed"
     },
     "initReach": {
       "description": "constant offset treated as time-varying input; intervals miss start",
       "kind": "unsound",
-      "cex": "InitReachConstantOffsetCora.lean"
+      "cex": "InitReachConstantOffsetCora.lean",
+      "matlab": "not run"
     }
   },
   "contDynamics/linProbSys": {
     "initReach": {
       "description": "wrong drift sign; covariance too small, carried by reach",
       "kind": "unsound",
-      "cex": "InitReachCovLt.lean"
+      "cex": "InitReachCovLt.lean",
+      "matlab": "not run"
     }
   },
   "contDynamics/linearSys": {
     "isCanonicalForm": {
       "description": "extra test C = I contradicts its own docstring",
       "kind": "other",
-      "cex": "CanonicalFormCNeOne.lean"
+      "cex": "CanonicalFormCNeOne.lean",
+      "matlab": "confirmed"
     },
     "reach": {
       "description": "Krylov drops c; fromStart, decomp, curvature, adaptive offsets wrong",
       "kind": "unsound",
-      "cex": "ReachKrylov.lean"
+      "cex": "ReachKrylov.lean",
+      "matlab": "not run"
     },
     "verify": {
       "description": "STL union keeps last set; RA accepts touching unsafe set",
       "kind": "unsound",
-      "cex": "VerifySTLKochdumperGloballyCora.lean"
+      "cex": "VerifySTLKochdumperGloballyCora.lean",
+      "matlab": "not run"
     }
   },
   "contDynamics/linearSysDT": {
@@ -68,811 +79,974 @@
       "description": "Hinf-G, ESO-A/B miss state; observers drop U, c, k, E",
       "kind": "unsound",
       "cex": "ObserveEsoA1D.lean",
-      "fix": "ObserveEsoA.lean"
+      "fix": "ObserveEsoA.lean",
+      "matlab": "not run"
     },
     "reach": {
       "description": "last output set unchecked; violation at tFinal missed",
       "kind": "unsound",
-      "cex": "IsReachSpecCora.lean"
+      "cex": "IsReachSpecCora.lean",
+      "matlab": "confirmed"
     }
   },
   "contDynamics/nonlinDASys": {
     "initReach": {
       "description": "inherits linReach's wrong sign; split path crashes (unset iter)",
       "kind": "unsound",
-      "cex": "LinReachCora.lean"
+      "cex": "LinReachCora.lean",
+      "matlab": "not run"
     },
     "linReach": {
       "description": "wrong algebraic-error sign; compositional local pinv(Fsub) drops coupling",
       "kind": "unsound",
-      "cex": "LinReachCora.lean"
+      "cex": "LinReachCora.lean",
+      "matlab": "not run"
     },
     "linReach_adaptive": {
       "description": "algebraic linearization error added, not subtracted",
       "kind": "unsound",
-      "cex": "LinErrorCora.lean"
+      "cex": "LinErrorCora.lean",
+      "matlab": "not run"
     },
     "outputSet": {
       "description": "output depending on algebraic variables gives a point",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     },
     "reach_adaptive": {
       "description": "inherits wrong sign of algebraic linearization error",
       "kind": "unsound",
-      "cex": "LinErrorCora.lean"
+      "cex": "LinErrorCora.lean",
+      "matlab": "not run"
     }
   },
   "contDynamics/nonlinParamSys": {
     "linearize": {
       "description": "affine-in-parameters assumed unchecked; reach misses states",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     }
   },
   "contDynamics/nonlinearARX": {
     "reach": {
       "description": "try/catch swallows errors; empty output passes any spec",
       "kind": "other",
-      "cex": "ReachStepCora.lean"
+      "cex": "ReachStepCora.lean",
+      "matlab": "not run"
     }
   },
   "contDynamics/nonlinearSys": {
     "linReach_adaptive": {
       "description": "Hessian read over a region missing the linearization point",
       "kind": "unsound",
-      "cex": "LinReachAdaptiveCora1D.lean"
+      "cex": "LinReachAdaptiveCora1D.lean",
+      "matlab": "not run"
     },
     "reachInner": {
       "description": "'minkdiff', 'scale' sets not inner; timeStepInner option crashes",
       "kind": "unsound",
-      "cex": "ReachInnerScalingCora1D.lean"
+      "cex": "ReachInnerScalingCora1D.lean",
+      "matlab": "not run"
     }
   },
   "contDynamics/nonlinearSysDT": {
     "executeObserver": {
       "description": "input set U accepted, never used in prediction",
       "kind": "unsound",
-      "cex": "ObservePropagationInputSet.lean"
+      "cex": "ObservePropagationInputSet.lean",
+      "matlab": "not run"
     },
     "reach": {
       "description": "initial set never checked against specification",
       "kind": "unsound",
-      "cex": "IsReachSpecCora.lean"
+      "cex": "IsReachSpecCora.lean",
+      "matlab": "confirmed"
     }
   },
   "contSet/capsule": {
     "convHull_": {
       "description": "empty second operand leaves the output unassigned",
       "kind": "other",
-      "cex": "ConvHullCora.lean"
+      "cex": "ConvHullCora.lean",
+      "matlab": "confirmed"
     },
     "enclose": {
       "description": "code omits Cplus; documented hull not enclosed",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     },
     "enclosePoints": {
       "description": "radius from projection onto axis; sound but wasteful",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "not run"
     },
     "isFullDim": {
       "description": "r > 0 rejects thin full-dimensional capsules",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "isIntersecting_": {
       "description": "QP Hessian four times too small; intersecting capsules called disjoint",
       "kind": "unsound",
-      "cex": "IsIntersectingCora.lean"
+      "cex": "IsIntersectingCora.lean",
+      "matlab": "confirmed"
     },
     "mtimes": {
       "description": "radius scaled by squared singular value; too small",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     },
     "representsa_": {
       "description": "1-D test is n == 1; segment accepted as hyperplane",
       "kind": "other",
-      "cex": "RepresentsaHyperplaneCora.lean"
+      "cex": "RepresentsaHyperplaneCora.lean",
+      "matlab": "confirmed"
     },
     "lift_": {
       "description": "project applies the inverse permutation of lift",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "polytope": {
       "description": "zero generator: gramSchmidt divides by zero, rows NaN",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     }
   },
   "contSet/conPolyZono": {
     "contains_": {
       "description": "point extended by ones, not zeros; wrong true",
       "kind": "unsound",
-      "fix": "ContainsPoint.lean"
+      "fix": "ContainsPoint.lean",
+      "matlab": "not reproduced"
     },
     "isFullDim": {
       "description": "rank test is necessary only; arc passes",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "minkDiff": {
       "description": "labelled exact, but not inner for nonconvex minuend",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     },
     "representsa_": {
       "description": "hyperplane: any 1-D set; point test ignores constraints",
       "kind": "other",
-      "cex": "RepresentsaPointCora.lean"
+      "cex": "RepresentsaPointCora.lean",
+      "matlab": "confirmed"
     }
   },
   "contSet/conZonotope": {
     "contains_": {
       "description": "point container, set operand: output never assigned",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "cubMap": {
       "description": "constraint columns lost; image [0,8] returned as [0,5]",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     },
     "isFullDim": {
       "description": "rank test ignores factor constraints pinning the set",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "supportFunc_": {
       "description": "all-zero A read as unconstrained; empty set gets finite value",
       "kind": "other",
-      "cex": "SupportFuncUpperCora.lean"
+      "cex": "SupportFuncUpperCora.lean",
+      "matlab": "not reproduced"
     },
     "representsa_": {
       "description": "1-D test is n == 1; segment accepted as hyperplane",
       "kind": "other",
-      "cex": "RepresentsaHyperplaneCora.lean"
+      "cex": "RepresentsaHyperplaneCora.lean",
+      "matlab": "confirmed"
     },
     "lift_": {
       "description": "project applies the inverse permutation of lift",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     }
   },
   "contSet/ellipsoid": {
     "contains_": {
       "description": "degenerate ellipsoid ignores center offset; disjoint sets reported contained",
       "kind": "unsound",
-      "cex": "ContainsEllipsoidCora.lean"
+      "cex": "ContainsEllipsoidCora.lean",
+      "matlab": "confirmed"
     },
     "convHull_": {
       "description": "empty second operand leaves the output unassigned",
       "kind": "other",
       "cex": "ConvHullCora.lean",
-      "fix": null
+      "fix": null,
+      "matlab": "confirmed"
     },
     "enclose": {
       "description": "code omits Eplus; documented hull not enclosed",
       "kind": "unsound",
-      "fix": "src/CORALean/ContSet/Ellipsoid/Real/Operations/Enclose.lean"
+      "fix": "src/CORALean/ContSet/Ellipsoid/Real/Operations/Enclose.lean",
+      "matlab": "confirmed"
     },
     "intersectStrip": {
       "description": "Gollamudi and Liu2016 updates mis-scale the shape; not enclosing",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     },
     "isBigger": {
       "description": "always true in dimension 1",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     },
     "representsa_": {
       "description": "1-D test is n == 1; segment accepted as hyperplane",
       "kind": "other",
-      "cex": "RepresentsaHyperplaneCora.lean"
+      "cex": "RepresentsaHyperplaneCora.lean",
+      "matlab": "confirmed"
     },
     "lift_": {
       "description": "project applies the inverse permutation of lift",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "plus": {
       "description": "cell array of summands: cellfun without cell, crash",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     }
   },
   "contSet/interval": {
     "atan2": {
       "description": "corner hull misses the branch cut",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     },
     "contains_": {
       "description": "scaling uses abs(S), not abs(S-c); point outside accepted",
       "kind": "unsound",
-      "cex": "ContainsScalingCora.lean"
+      "cex": "ContainsScalingCora.lean",
+      "matlab": "confirmed"
     },
     "rdivide": {
       "description": "negative numerator over interval ending at 0: half-line mirrored",
       "kind": "unsound",
-      "cex": "RdivideNumeratorCora.lean"
+      "cex": "RdivideNumeratorCora.lean",
+      "matlab": "confirmed"
     },
     "representsa_": {
       "description": "capsule/ellipsoid test counts zero widths; unit square accepted",
       "kind": "other",
-      "cex": "RepresentsaCapsuleCora.lean"
+      "cex": "RepresentsaCapsuleCora.lean",
+      "matlab": "confirmed"
     },
     "supportFunc_": {
       "description": "zero direction times infinite bound gives NaN",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     }
   },
   "contSet/levelSet": {
     "contains_": {
       "description": "== row tested as ub < 0; non-members reported contained",
       "kind": "unsound",
-      "cex": "ContainsCellCora.lean"
+      "cex": "ContainsCellCora.lean",
+      "matlab": "confirmed"
     },
     "isIntersecting_": {
       "description": "== read as <; touching sets disjoint; potInt misses jump",
       "kind": "unsound",
-      "fix": "IsIntersectingCell.lean"
+      "fix": "IsIntersectingCell.lean",
+      "matlab": "confirmed"
     },
     "isequal": {
       "description": "variable renamings never compared; distinct sets reported equal",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     }
   },
   "contSet/polyZonotope": {
     "contains_": {
       "description": "center accepted outside set; exact uses zonotope enclosure",
       "kind": "unsound",
-      "cex": "ContainsExactCora1D.lean"
+      "cex": "ContainsExactCora1D.lean",
+      "matlab": "confirmed"
     },
     "containsPointSet": {
       "description": "full zonotope appended to split enclosures, loosening the test",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "not run"
     },
     "convHull_": {
       "description": "chord set returned, not the convex hull",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "partly confirmed"
     },
     "isFullDim": {
       "description": "rank test is necessary only; arc passes",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "isIntersecting_": {
       "description": "interval operand: three arguments to a four-argument function",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "isPolytope": {
       "description": "wrong for exponents above one; accepts non-convex sets",
       "kind": "other",
-      "cex": "IsPolytopeCexNotPolytope.lean"
+      "cex": "IsPolytopeCexNotPolytope.lean",
+      "matlab": "partly confirmed"
     },
     "representsa_": {
       "description": "capsule test on a point errors: non-scalar &&",
       "kind": "other",
-      "cex": "RepresentsaCapsuleCora.lean"
+      "cex": "RepresentsaCapsuleCora.lean",
+      "matlab": "confirmed"
     },
     "sum": {
       "description": "adds first center in every pass; center wrong",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     },
     "volume_": {
       "description": "signed Jacobian determinant gives negative volume",
       "kind": "other",
-      "cex": "VolumeNegExample.lean"
+      "cex": "VolumeNegExample.lean",
+      "matlab": "confirmed"
     },
     "interval": {
       "description": "bernstein: cellfun on a matrix for one dimension",
       "kind": "other",
-      "cex": "IntervalBernsteinCora.lean"
+      "cex": "IntervalBernsteinCora.lean",
+      "matlab": "confirmed"
     }
   },
   "contSet/polygon": {
     "contains_": {
       "description": "ellipsoid replaced by inner polygon; containment wrongly accepted",
       "kind": "unsound",
-      "cex": "ContainsRegionCora.lean"
+      "cex": "ContainsRegionCora.lean",
+      "matlab": "confirmed"
     },
     "hausdorffDist": {
       "description": "one-directional distance; zero for square and its center",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "isIntersecting_": {
       "description": "ellipsoid replaced by inner polygon; intersection missed",
       "kind": "unsound",
-      "cex": "OverlapsRegionCora.lean"
+      "cex": "OverlapsRegionCora.lean",
+      "matlab": "confirmed"
     },
     "isequal": {
       "description": "idx for idx(i): repeated vertex start never tried",
       "kind": "other",
-      "cex": "IsequalCora.lean"
+      "cex": "IsequalCora.lean",
+      "matlab": "not reproduced"
     },
     "minkDiff": {
       "description": "not inner for a nonconvex subtrahend",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     },
     "minus": {
       "description": "polygon branch reads undefined variable S",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "quadMap": {
       "description": "pairs polygons index-wise instead of all pairs",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     },
     "randPoint_": {
       "description": "extreme points masked by row mask; two vertices only",
       "kind": "other",
-      "fix": null
+      "fix": null,
+      "matlab": "confirmed"
     },
     "removeCollinearPoints": {
       "description": "angle sort reorders boundary of non-star-shaped polygons",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     },
     "representsa_": {
       "description": "all over no vertices; empty polygon reported as origin",
       "kind": "other",
-      "cex": "RepresentsaOriginCora.lean"
+      "cex": "RepresentsaOriginCora.lean",
+      "matlab": "confirmed"
     }
   },
   "contSet/polytope": {
     "cartProd_": {
       "description": "product flagged bounded if either factor is bounded",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "compact_": {
       "description": "aligned zero rows empty; 1-D equality merge drops coefficient",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not reproduced"
     },
     "convHull_": {
       "description": "empty operand returns the empty set, not the other operand",
       "kind": "unsound",
-      "cex": "ConvHullCora.lean"
+      "cex": "ConvHullCora.lean",
+      "matlab": "confirmed"
     },
     "isFullDim": {
       "description": "zero row caps Chebyshev radius; qr misses affine hull",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "isIntersecting_": {
       "description": "H/V omits V*beta = x; zonoBundle drops equalities",
       "kind": "other",
       "cex": "IsIntersectingVPolyCora.lean",
-      "fix": "InterIneqsNonemptyIff.lean"
+      "fix": "InterIneqsNonemptyIff.lean",
+      "matlab": "confirmed"
     },
     "isequal": {
       "description": "repeated rows pass as redundant; unequal sets equal",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     },
     "minkDiff": {
       "description": "1-D: one-sided subtrahend offset subtracted from both rows",
       "kind": "unsound",
-      "cex": "MinkDiff1DCora.lean"
+      "cex": "MinkDiff1DCora.lean",
+      "matlab": "confirmed"
     },
     "mldivide": {
       "description": "P2 overwritten by P1; difference of P1 with itself",
       "kind": "unsound",
-      "fix": null
+      "fix": null,
+      "matlab": "not reproduced"
     },
     "plus": {
       "description": "full space plus empty set returns full space",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "representsa_": {
       "description": "empty as point, $\\mathbb{R}^n$ as hyperplane, zero rows, halfspace crash",
       "kind": "other",
-      "cex": "RepresentsaIntervalCora.lean"
+      "cex": "RepresentsaIntervalCora.lean",
+      "matlab": "confirmed"
     }
   },
   "contSet/probZonotope": {
     "interval": {
       "description": "ignores deterministic generators; mean outside the box",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     },
     "mtimes": {
       "description": "interval matrix leaves covariance unmapped",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "pyramid": {
       "description": "step function misses floor; no probability bound",
       "kind": "unsound",
-      "cex": "PyramidNotGeProb.lean"
+      "cex": "PyramidNotGeProb.lean",
+      "matlab": "not run"
     },
     "reduce": {
       "description": "documented 'althoff' option calls missing reduce method",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "sup": {
       "description": "ignores deterministic generators; below the mean's norm",
       "kind": "unsound",
-      "cex": "SupCora.lean"
+      "cex": "SupCora.lean",
+      "matlab": "confirmed"
     }
   },
   "contSet/spectraShadow": {
     "contains_": {
       "description": "infeasible solver answer taken as containment",
       "kind": "unsound",
-      "cex": "ContainsPointCora.lean"
+      "cex": "ContainsPointCora.lean",
+      "matlab": "partly confirmed"
     },
     "isBounded": {
       "description": "shortcut reports bounded point $\\{0\\}$ as unbounded",
       "kind": "other",
-      "cex": "PointExampleIsBounded.lean"
+      "cex": "PointExampleIsBounded.lean",
+      "matlab": "confirmed"
     },
     "isFullDim": {
       "description": "shortcut declares point shadow empty, not full-dimensional",
       "kind": "other",
-      "cex": "FullDimShortcutPointExample.lean"
+      "cex": "FullDimShortcutPointExample.lean",
+      "matlab": "confirmed"
     },
     "mtimes": {
       "description": "tall full-column-rank matrix keeps full-dimensional flag",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "representsa_": {
       "description": "'fullspace' true for any set with infinite axis supports",
       "kind": "other",
       "cex": "RepresentsaFullspaceCora.lean",
-      "fix": null
+      "fix": null,
+      "matlab": "confirmed"
     },
     "supportFunc_": {
       "description": "shortcut returns infinity where support is finite",
       "kind": "other",
-      "cex": "SupportFuncCoraAllZero.lean"
+      "cex": "SupportFuncCoraAllZero.lean",
+      "matlab": "confirmed"
     }
   },
   "contSet/taylm": {
     "asin": {
       "description": "remainder uses asin power, not derivative; far too small",
       "kind": "unsound",
-      "cex": "AsinRemainderUpperCora.lean"
+      "cex": "AsinRemainderUpperCora.lean",
+      "matlab": "confirmed"
     }
   },
   "contSet/zonoBundle": {
     "isequal": {
       "description": "different member counts return true before comparison",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     },
     "reduceCombined": {
       "description": "undefined variable; cannot run; result not a bundle",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "representsa_": {
       "description": "interval test inspects first member in every pass",
       "kind": "other",
-      "fix": "IsBoxOfForall.lean"
+      "fix": "IsBoxOfForall.lean",
+      "matlab": "confirmed"
     },
     "shrink": {
       "description": "calls nonexistent parallelotope on a polytope",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "split": {
       "description": "halfspace form reads undefined variable; always errors",
       "kind": "other",
-      "fix": null
+      "fix": null,
+      "matlab": "confirmed"
     },
     "lift_": {
       "description": "project applies the inverse permutation of lift",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     }
   },
   "contSet/zonotope": {
     "dominantDirections": {
       "description": "answer can be singular; no enclosing parallelotope",
       "kind": "other",
-      "cex": "DominantDirectionsDetEqZeroOfOrthogonal.lean"
+      "cex": "DominantDirectionsDetEqZeroOfOrthogonal.lean",
+      "matlab": "confirmed"
     },
     "encloseMany": {
       "description": "calls reduce method that does not exist",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "enclosePoints": {
       "description": "maiga: signed u gives zero generator, 0/0 NaN",
       "kind": "other",
-      "cex": "Cloud2zonotopeCoraZeroGenerator.lean"
+      "cex": "Cloud2zonotopeCoraZeroGenerator.lean",
+      "matlab": "not reproduced"
     },
     "filterOut": {
       "description": "calls nonexistent chebyball; deletes both of equal cells",
       "kind": "other",
-      "cex": "FilterOutPair.lean"
+      "cex": "FilterOutPair.lean",
+      "matlab": "not reproduced"
     },
     "intersectStrip": {
       "description": "'wang-FRad' applies dynamics twice; gain not optimal",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "minkDiff": {
       "description": "'approx' not inner; 'exact' oversize; scaling, degenerate lose offsets",
       "kind": "unsound",
-      "cex": "MinkDiffApproxNotInner.lean"
+      "cex": "MinkDiffApproxNotInner.lean",
+      "matlab": "confirmed"
     },
     "norm_": {
       "description": "'exact' omits center from program; norm under-estimated",
       "kind": "unsound",
-      "cex": "NormExactCora.lean"
+      "cex": "NormExactCora.lean",
+      "matlab": "confirmed"
     },
     "reduceUnderApprox": {
       "description": "raghuraman: 0/0 on orthogonal small generator; unsorted generators used",
       "kind": "other",
-      "cex": "RaghuramanAlphaMaxCora.lean"
+      "cex": "RaghuramanAlphaMaxCora.lean",
+      "matlab": "confirmed"
     },
     "representsa_": {
       "description": "'polytope' returns the empty set, not the zonotope",
       "kind": "other",
       "cex": "RepresentsaPolytopeCora.lean",
-      "fix": null
+      "fix": null,
+      "matlab": "confirmed"
     },
     "tensorMultiplication": {
       "description": "second-order branch errors for every input",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "not run"
     },
     "isIntersecting_": {
       "description": "point operand: six arguments to a seven-argument function",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "contains_": {
       "description": "point container, set operand: output never assigned",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "not reproduced"
     },
     "split": {
       "description": "coordinate used as box generator index; bundle calls missing get",
       "kind": "other",
-      "cex": "SplitCoraSegmentCrash.lean"
+      "cex": "SplitCoraSegmentCrash.lean",
+      "matlab": "confirmed"
     },
     "splitFirstGen": {
       "description": "generator index passed as coordinate of the box",
       "kind": "other",
-      "cex": "SplitFirstGenCora.lean"
+      "cex": "SplitFirstGenCora.lean",
+      "matlab": "confirmed"
     },
     "lift_": {
       "description": "project applies the inverse permutation of lift",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "reduce": {
       "description": "valero loses a generator; five accepted techniques crash",
       "kind": "unsound",
-      "cex": "ReduceValeroCora.lean"
+      "cex": "ReduceValeroCora.lean",
+      "matlab": "confirmed"
     }
   },
   "contSet/zoo": {
     "rdivide": {
       "description": "calls nonexistent combineZooObjects",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "times": {
       "description": "calls nonexistent combineZooObjects",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     }
   },
   "hybridDynamics/location": {
     "checkFlow": {
       "description": "vector offset in scalar flow test drops sets; jumps missed",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     },
     "guardIntersect_hyperplaneMap": {
       "description": "overwritten error summands; mapped set misses a guard hit",
       "kind": "unsound",
-      "cex": "GuardIntersectHyperplaneMapCoraErr.lean"
+      "cex": "GuardIntersectHyperplaneMapCoraErr.lean",
+      "matlab": "not run"
     },
     "guardIntersect_levelSet": {
       "description": "drops mixed second-order terms of the guard",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     },
     "guardIntersect_pancake": {
       "description": "input check uses || for &&; any polytope guard passes",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "not run"
     },
     "guardIntersect_zonoGirard": {
       "description": "coordinate pinned wrongly for non-unit normals",
       "cex": "GuardIntersectZonoGirardCora.lean",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     },
     "reach": {
       "description": "split location indexes whole result; jump time errors",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "not run"
     }
   },
   "hybridDynamics/nonlinearReset": {
     "resolve": {
       "description": "global inputs numbered by occurrence; reaches parallel automaton resets",
       "kind": "unsound",
-      "cex": "NonlinearResetSynchronizeResolveCORA.lean"
+      "cex": "NonlinearResetSynchronizeResolveCORA.lean",
+      "matlab": "not run"
     },
     "evaluate": {
       "description": "second-order bound reads output 1 for all; expansion point crash",
       "kind": "unsound",
-      "cex": "NonlinearResetSecondOrderBoundCora.lean"
+      "cex": "NonlinearResetSecondOrderBoundCora.lean",
+      "matlab": "confirmed"
     }
   },
   "hybridDynamics/transition": {
     "synchronize": {
       "description": "last transition's target to all components; wrong parallel reach jumps",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     }
   },
   "nn/layers": {
     "evaluateConZonotope": {
       "description": "ReLU star-set bounds shift the factor-box center",
       "kind": "unsound",
-      "fix": "ReluStarEncloses.lean"
+      "fix": "ReluStarEncloses.lean",
+      "matlab": "partly confirmed"
     },
     "computeApproxPoly": {
       "description": "DeepZ S-shape unsound at $x^3$; reaches network output",
       "kind": "unsound",
-      "fix": "DeepZSShapeEncloses.lean"
+      "fix": "DeepZSShapeEncloses.lean",
+      "matlab": "not run"
     },
     "nnActLayerFromHandle": {
       "description": "error bound skips interior extremum; radius too small",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     },
     "nnConv2DLayer": {
       "description": "batch repair of inverted center bounds collapses other intervals",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     },
     "nnElementwiseAffineLayer": {
       "description": "conZonotope evaluation multiplies by column scale; crash",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "nnExpLayer": {
       "description": "getDerBounds has one output; error bound crashes",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "nnLayer": {
       "description": "interval evaluation uses only end points; non-monotone layers unsound",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "partly confirmed"
     },
     "nnLinearLayer": {
       "description": "conZonotope and taylm evaluation drop the additive approximation error",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     },
     "nnRootLayer": {
       "description": "derivative of sqrt is sqrt(x)/2; singh band unsound",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     },
     "nnSoftPlusLayer": {
       "description": "clamped slope misses extremum; derivative cached at sharpness 2",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     }
   },
   "nn/neuralNetwork": {
     "nonlinearSysDT": {
       "description": "drops scale of elementwise affine layer",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "not run"
     },
     "reduceGNNForNode": {
       "description": "missing return at zero message-passing steps",
       "kind": "other",
-      "cex": null
+      "cex": null,
+      "matlab": "not run"
     }
   },
   "hybridDynamics/hybridAutomaton": {
     "reach": {
       "description": "input u assigned to last location only, as a cell",
       "kind": "other",
-      "cex": "UlocCora.lean"
+      "cex": "UlocCora.lean",
+      "matlab": "not run"
     }
   },
   "hybridDynamics/parallelHybridAutomaton": {
     "reach": {
       "description": "split location indexes whole result; constructor error",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "not run"
     },
     "simulateRandom": {
       "description": "one input segment too few; empty trajectories",
       "kind": "other",
       "cex": "SimulateRandomTimesCora.lean",
-      "fix": null
+      "fix": null,
+      "matlab": "not run"
     },
     "mergeFlows": {
       "description": "nonlinear merge drops global input behind a bound output",
       "kind": "other",
-      "cex": "MergeFlowsNonlinearCora.lean"
+      "cex": "MergeFlowsNonlinearCora.lean",
+      "matlab": "not run"
     }
   },
   "specification/reachSetAnalyzer": {
     "analyze": {
       "description": "second branch of a fork never analyzed, first repeated",
       "kind": "unsound",
-      "cex": "AnalyzeTreeCora.lean"
+      "cex": "AnalyzeTreeCora.lean",
+      "matlab": "not run"
     }
   },
   "specification/specification": {
     "check": {
       "description": "custom check on cell passes if any; reachSet check errors",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "partly confirmed"
     },
     "robustness": {
       "description": "distance outside mixes Euclidean and norm 1",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     }
   },
   "specification/stl": {
     "eliminateTrueFalse": {
       "description": "until with true right operand rewritten to true",
       "kind": "other",
-      "cex": "TreeEliminateTrueFalseCora.lean"
+      "cex": "TreeEliminateTrueFalseCora.lean",
+      "matlab": "partly confirmed"
     },
     "negationNormalForm": {
       "description": "negated comparison keeps strictness; boundary case changes",
       "kind": "other",
-      "cex": "TreeNegationNormalFormCora.lean"
+      "cex": "TreeNegationNormalFormCora.lean",
+      "matlab": "confirmed"
     },
     "polytope2stl": {
       "description": "equality constraints of the polytope dropped",
       "kind": "other",
-      "cex": "TreePolytope2stlCora.lean"
+      "cex": "TreePolytope2stlCora.lean",
+      "matlab": "confirmed"
     },
     "robustness": {
       "description": "reach-set window keeps the last set's robustness, not the minimum",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     }
   },
   "specification/stlInterval": {
     "minkDiff": {
       "description": "upper bound is NaN for two unbounded operands",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     }
   },
   "specification/syntaxTree": {
     "power": {
       "description": "negative odd exponent: result is the gap between solution rays",
       "fix": null,
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     },
     "sinh": {
       "description": "target cut to [-1,1] loses solutions of sinh",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     },
     "tan": {
       "description": "target cut to [-1,1] loses solutions of tan",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     }
   },
   "others/intervalMatrix": {
     "expmDifferentAlgorithms": {
       "description": "point-matrix remainder is a constant; series misses exp(A)",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     },
     "expmTaylorHornerScaling": {
       "description": "point-matrix remainder is a constant; series misses exp(A)",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "not run"
     },
     "randPoint": {
       "description": "half-width used as width; half range, no vertices",
       "kind": "other",
-      "fix": null
+      "fix": null,
+      "matlab": "confirmed"
     }
   },
   "others/matPolytope": {
     "expmIndMixed": {
       "description": "simplePlus reads undefined variable; always errors",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "simplePlus": {
       "description": "size of undefined variable Z1; crash",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "plus": {
       "description": "convhulln gets vertices as columns; wrong vertices kept",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     },
     "expm": {
       "description": "plus prunes matrix entries instead of vertices",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     },
     "expmInd": {
       "description": "plus prunes matrix entries instead of vertices",
-      "kind": "unsound"
+      "kind": "unsound",
+      "matlab": "confirmed"
     }
   },
   "contSet/fullspace": {
     "mtimes": {
       "description": "rank-deficient matrix maps to the whole space",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     }
   },
   "others/markovchain": {
     "build_reach": {
       "description": "zero-volume set adds a scalar to every transition entry",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "not run"
     }
   },
   "others/matZonotope": {
     "reduce": {
       "description": "three-argument call errors; result loses n x m shape",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "replaceId": {
       "description": "reads property id that matZonotope lacks; always errors",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "vertices": {
       "description": "one-argument vec2mat assumes square; wrong shape or error",
-      "kind": "other"
+      "kind": "other",
+      "matlab": "confirmed"
     }
   }
 }

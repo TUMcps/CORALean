@@ -30,7 +30,7 @@ CORA methods of `contSet/@zonotope/`, one row each, and where CORALean answers t
 | `ellipsoid` | bound | [`Zonotope.ellipsoid`](../../../src/CORALean/ContSet/Conversion/Real/Operations/Zonotope_to_Ellipsoid.lean), [`Zonotope.ellipsoid_contains`](../../../src/CORALean/ContSet/Conversion/Real/Theorems/ZonotopeEllipsoidContains.lean) · float: [`Zonotope.ellipsoid`](../../../src/CORALean/ContSet/Conversion/Float/Operations/Zonotope_to_Ellipsoid.lean), [`Zonotope.ellipsoid_contains`](../../../src/CORALean/ContSet/Conversion/Float/Theorems/ZonotopeEllipsoidContains.lean) | different algorithm: CORA's `ellipsoid(zonotope)` (default `'outer:norm_bnd'`; `n` generators give `n·G Gᵀ`) is a norm-based enclosure tighter than the Lean conversion, the `√h` ball over the generators (outer, no minimum-volume or norm bound). The pieces that exist, not linked because they are not CORA's method: `Zonotope.ellipsoid`, `Zonotope.ellipsoid_contains`; CORA's branches: a point gives `ellipsoid(0, c)`. A rank-deficient `G` is first reduced by a QR decomposition; `h = n` generators give `n · G Gᵀ` (`'outer'`, the Lean `Zonotope.ellipsoid` coincides there) or `G Gᵀ` (`'inner'`). Otherwise `'outer:exact'` (MVEE), `'outer:norm'`, `'outer:norm_bnd'` (default) and the inner modes; missing: the norm-based modes need the Euclidean zonotope norm or its convex upper bound (an SDP), and the MVEE/MVIE an SDP solver |
 | `empty` | float | [`OptEmpty`](../../../src/CORALean/ContSet/OptEmpty/OptEmpty.lean), [`OptEmpty.construct_empty`](../../../src/CORALean/ContSet/OptEmpty/Theorems/Basic.lean), [`ContSet`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean) | route b — a `zonotope` always holds its center, so the representation has no empty member (CORA's `zonotope(zeros(n,0))` is a point at the origin in this model), and the empty zonotope is the wrapper `OptEmpty`'s `empty`, the wrapper's own empty set (R-WE); `construct_empty` says it denotes `∅` |
 | `enclose` | float | [`Zonotope.linComb`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/LinComb.lean), [`Zonotope.linComb_outer`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/LinCombOuter.lean) · float: [`Zonotope.linComb`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/LinComb.lean), [`Zonotope.linComb_outer`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/LinCombOuter.lean) | `enclose` is the zonotope `linComb`: the paired-generator enclosure of `{λx₁+(1-λ)x₂}` |
-| `encloseMany` | float | [`Zonotope.encloseMany`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/EncloseMany.lean), [`Zonotope.encloseManyBasis`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/EncloseManyBasis.lean), [`Zonotope.encloseManyDropped`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/EncloseManyDropped.lean), [`Zonotope.encloseMany_outer`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/EncloseManyOuter.lean), [`Zonotope.encloseManyBasis_isUnit`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/EncloseManyBasisIsUnit.lean) · float: [`Zonotope.encloseMany`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/EncloseMany.lean), [`Zonotope.encloseManyBasis`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/EncloseManyBasis.lean), [`Zonotope.encloseManyBasisInv`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/EncloseManyBasisInv.lean), [`Zonotope.encloseManyDropped`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/EncloseManyDropped.lean), [`Zonotope.encloseManyBasisInv_mem`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/EncloseManyBasisInvMem.lean), [`Zonotope.encloseMany_outer`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/EncloseManyOuter.lean) | cora-issue — CORA's `@zonotope/encloseMany.m` reduces each cell by `reduce(Z{i},'parallelpiped')`, but `@zonotope/reduce.m` has no method of that name (the cases are `'girard'`, `'methC'`, ... and its `otherwise`, l. 194, throws `CORA:wrongValue`), so `encloseMany` errors on every input, and nothing in CORA calls it (read from the source, not run). Not statable as a Lean counterexample (an error). Formalized is the enclosure it was written for, outer: each cell is reduced by `reduceGirard 1` (a parallelotope, standing in for the missing method), rotated by `R = [newGen, axes without the most aligned one]` (invertible for a nonzero direction, `encloseManyBasis_isUnit`), boxed in that frame by the componentwise hull of the cells' interval enclosures, and rotated back; `encloseMany_outer`: every cell lies in the result. Details below. |
+| `encloseMany` | float | [`Zonotope.encloseMany`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/EncloseMany.lean), [`Zonotope.encloseManyBasis`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/EncloseManyBasis.lean), [`Zonotope.encloseManyDropped`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/EncloseManyDropped.lean), [`Zonotope.encloseMany_outer`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/EncloseManyOuter.lean), [`Zonotope.encloseManyBasis_isUnit`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/EncloseManyBasisIsUnit.lean) · float: [`Zonotope.encloseMany`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/EncloseMany.lean), [`Zonotope.encloseManyBasis`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/EncloseManyBasis.lean), [`Zonotope.encloseManyBasisInv`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/EncloseManyBasisInv.lean), [`Zonotope.encloseManyDropped`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/EncloseManyDropped.lean), [`Zonotope.encloseManyBasisInv_mem`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/EncloseManyBasisInvMem.lean), [`Zonotope.encloseMany_outer`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/EncloseManyOuter.lean) | cora-issue — CORA's `@zonotope/encloseMany.m` reduces each cell by `reduce(Z{i},'parallelpiped')`, but `@zonotope/reduce.m` has no method of that name (the cases are `'girard'`, `'methC'`, ... and its `otherwise`, l. 194, throws `CORA:wrongValue`), so `encloseMany` errors on every input, and nothing in CORA calls it (run in MATLAB, see Details). Not statable as a Lean counterexample (an error). Formalized is the enclosure it was written for, outer: each cell is reduced by `reduceGirard 1` (a parallelotope, standing in for the missing method), rotated by `R = [newGen, axes without the most aligned one]` (invertible for a nonzero direction, `encloseManyBasis_isUnit`), boxed in that frame by the componentwise hull of the cells' interval enclosures, and rotated back; `encloseMany_outer`: every cell lies in the result. Details below. |
 | `enclosePoints` | float | [`Zonotope.enclosePointsStursberg`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/EnclosePointsStursberg.lean), [`Zonotope.enclosePointsStursberg_mem`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/EnclosePointsStursbergMem.lean), [`Zonotope.enclosePointsMaiga`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/EnclosePointsMaiga.lean), [`Zonotope.enclosePointsMaiga_mem`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/EnclosePointsMaigaMem.lean), [`Zonotope.cloud2zonotope`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/Cloud2zonotope.lean), [`Zonotope.cloud2zonotope_mem`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/Cloud2zonotopeMem.lean) · float: [`Zonotope.enclosePointsStursberg`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/EnclosePointsStursberg.lean), [`Zonotope.enclosePointsStursberg_outer`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/EnclosePointsStursbergOuter.lean) | Real layer, both methods, outer: `'stursberg'` (`aux_enclosePointsStursberg`): every point lies in the zonotope, for every orthogonal `U` (`U * Uᵀ = 1`). cora-issue — CORA's `@zonotope/enclosePoints.m`, `aux_cloud2zonotope` (after Alg. 3 of [Maïga et al., TAC 2016](../../2016/maiga-tac-hybrid-reachability.md)), sets `g = ratio * abs(dot(u, r)) * u` with `u = U(:,1)` from `svd(X)` and `r = rad(I)` of the cloud's interval hull; Formalized: the vanishing of `g` on that cloud (`Zonotope.cloud2zonotopeCora_zeroGenerator`); in Lean `x/0 = 0` makes `compress` the identity there, so `Zonotope.cloud2zonotope` is total and still encloses. ([`Zonotope.cloud2zonotopeCora_zeroGenerator`](../../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/Cloud2zonotopeCoraZeroGenerator.lean)). Details below. |
 | `exactPlus` | float | [`Zonotope.exactPlus`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/ExactPlus.lean), [`Zonotope.exactPlus_construct`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/ExactPlusExact.lean) · float: [`Zonotope.exactPlus`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/ExactPlus.lean), [`Zonotope.step_exactPlusGap`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/ExactPlus.lean), [`Zonotope.exactPlus_outer`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/ExactPlusOuter.lean) | exact: the sums of a point of each operand whose coefficients agree on the first `min(h₁, h₂, k)` generators, a subset of `plus`; CORA's optional `k` is the third argument, `k = ∞` omitted; float: outer, not exact. route a: the shared columns are added pairwise and rounded down, the gap to the sum rounded up (`step_exactPlusGap`) goes into the error box through `generatorError` and the center's rounding through its residual; the statement is the exact `exactPlus` of the stored nominal parts plus the two boxes |
 | `filterOut` | float | [`Zonotope.filterOut`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/FilterOut.lean), [`Zonotope.filterOut_covered`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/FilterOutCovered.lean), [`Zonotope.filterOut_pair`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/FilterOutPair.lean) · float: [`Zonotope.filterOut`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/FilterOut.lean), [`Zonotope.filterOut_covered`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/FilterOutCovered.lean), [`Zonotope.filterOut_keeps`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/FilterOutKeeps.lean) | cora-issue — CORA's `@polytope/mldivide.m` line 26 reads `P2 = compact_(P1,'all',1e-9);` where it means `compact_(P2, ...)`, which overwrites `P2` with `P1`, so after the two early returns the difference is computed as `P1 \ P1`, which is empty. ([`HPolytope.mldivide_cora_counterexample`](../../../src/CORALean/ContSet/HPolytope/Real/Counterexamples/MldivideCora.lean)). Formalized is the intended criterion: the cells whose remainder after the union of all the others has nonempty interior (`Zonotope.filterOut`; the sort by volume only orders the output). Details below. |
@@ -46,7 +46,7 @@ CORA methods of `contSet/@zonotope/`, one row each, and where CORALean answers t
 | `isIntersecting_` | float | [`IsDisjoint`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean), [`isDisjointBoxBoxOuter`](../../../src/CORALean/Specification/Instances.lean), [`step_disjointBox_sound`](../../../src/CORALean/Specification/Instances.lean), [`IntervalOuter`](../../../src/CORALean/ContSet/Conversion/Float/Interfaces.lean), [`Zonotope.interval`](../../../src/CORALean/ContSet/Conversion/Float/Operations/Zonotope_to_Interval.lean) | route b — `IsDisjoint (Zonotope (Vec 𝕋 n)) (S n)` for every `S` with an `IntervalOuter` instance, the negation of `isIntersecting_`, generic over `𝕋`: CORA's `'approx'` branch, the two interval hulls tested for separation in one coordinate (`ltStrict`). One-directional: `true` proves no intersection (disjoint boxes, `isDisjoint_sound : isDisjoint t s = true → Disjoint (construct s) (construct t)`); `false` says nothing, overlapping boxes do not make the sets meet, so an "intersecting" answer is approx only. cora-issue — CORA's `@zonotope/isIntersecting_.m:56` answers a numeric `S` with `contains_(Z,S,type,tol,false,false)`, six arguments where `@zonotope/contains_.m:1` declares seven (`..., certToggle, scalingToggle`) and its siblings pass seven (`@polyZonotope/isIntersecting_.m:62`). An error is outside the model. Details below. |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
 | `isequal` | float | [`Zonotope.isequal`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/Isequal.lean), [`Zonotope.isequal_construct`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/IsequalConstruct.lean) · float: [`Zonotope.isequal`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/Isequal.lean), [`Zonotope.isequal_sound`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/IsequalSound.lean) | sound, not exact: tolerance `0` (CORA's default is `eps`) and a structural test, the same center and the same generators in the same order. CORA compares the centers within the tolerance and the `compact_(.,'all')`ed generators up to column order, so it also accepts reorderings and parallel generators merged (`[1, 1]` and `[2]` generate the same interval), which this test does not: equal fields denote equal sets, the converse fails; the float test is certified when `true` only, and compares the error box as well |
-| `lift_` | float | [`Reindex`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean), [`Zonotope.map_exact`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/MapExact.lean) · float: [`Zonotope.reindex`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/Reindex.lean), [`Zonotope.reindex_exact`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/ReindexExact.lean) | CORA's `lift_` is `project` when `length(proj) == N` (a permutation of the coordinates) and throws `notDefined` otherwise, since new dimensions would be unbounded; `Reindex` is exactly the permutation case, an equality `reindexLin e '' construct s`. cora-issue — CORA's `@zonotope/lift_.m`, `@conZonotope/lift_.m`, `@zonoBundle/lift_.m`, `@capsule/lift_.m` and `@ellipsoid/lift_.m` are the same four lines: `if length(proj) == N, S = project(S,proj)`, else `CORA:notDefined`. Modelled once, for the zonotope, as `Zonotope.liftCora`; the theorem shows the point `(1,2,3)` and `proj = [2 3 1]` (read from the source, not run). ([`Zonotope.lift_cora_counterexample`](../../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/LiftCora.lean)). Details below. |
+| `lift_` | float | [`Reindex`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean), [`Zonotope.map_exact`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/MapExact.lean) · float: [`Zonotope.reindex`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/Reindex.lean), [`Zonotope.reindex_exact`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/ReindexExact.lean) | CORA's `lift_` is `project` when `length(proj) == N` (a permutation of the coordinates) and throws `notDefined` otherwise, since new dimensions would be unbounded; `Reindex` is exactly the permutation case, an equality `reindexLin e '' construct s`. cora-issue — CORA's `@zonotope/lift_.m`, `@conZonotope/lift_.m`, `@zonoBundle/lift_.m`, `@capsule/lift_.m` and `@ellipsoid/lift_.m` are the same four lines: `if length(proj) == N, S = project(S,proj)`, else `CORA:notDefined`. Modelled once, for the zonotope, as `Zonotope.liftCora`; the theorem shows the point `(1,2,3)` and `proj = [2 3 1]` (run in MATLAB, see Details). ([`Zonotope.lift_cora_counterexample`](../../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/LiftCora.lean)). Details below. |
 | `matZonotope` | float | [`Zonotope.matZonotope`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/MatZonotope.lean), [`Zonotope.matZonotope_contains`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/MatZonotopeContains.lean) | float only, no real-layer matrix zonotope counterpart of the conversion: the center and each generator reshaped to an `n × 1` matrix, the error box moved as stored; every point of the zonotope, as a column, is in the matrix zonotope (outer, nothing is rounded) |
 | `minkDiff` | float | [`Zonotope.minkDiffRep`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/MinkDiffRep.lean), [`Zonotope.minkDiffAligned`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/MinkDiffAligned.lean), [`Zonotope.minkDiffStretch`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/MinkDiffStretch.lean), [`Zonotope.minkDiffApprox`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/MinkDiffApprox.lean), [`Zonotope.minkDiffRep_inner`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffRepInner.lean), [`Zonotope.minkDiffAligned_exact`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffAlignedExact.lean), [`Zonotope.minkDiffAligned_inner`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffAlignedInner.lean), [`Zonotope.minkDiffAligned_not_inner`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffAlignedNotInner.lean), [`Zonotope.minkDiffApprox_not_inner`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinkDiffApproxNotInner.lean) · float: [`Zonotope.minkDiffRep`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/MinkDiffRep.lean), [`Zonotope.minkDiffAligned`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/MinkDiffAligned.lean), [`Zonotope.minkDiffStretch`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/MinkDiffStretch.lean), [`Zonotope.minkDiffStretchInner`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/MinkDiffStretchInner.lean), [`Zonotope.minkDiffRep_inner`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/MinkDiffRepInner.lean), [`Zonotope.minkDiffAligned_inner`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/MinkDiffAlignedInner.lean), [`Zonotope.minkDiffStretchInner_inner`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/MinkDiffStretchInnerInner.lean), [`Zonotope.minkDiffStretch_outer`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/MinkDiffStretchOuter.lean) | cora-issue — CORA's default `'approx'` scales the minuend's generators by a pseudoinverse solution that nothing checks, and the halfspace argument behind it is sound only for the minuend's exact facet normals. Computed from a checked generator representation of the subtrahend's generators in the minuend's instead, which needs no halfspaces and no linear program. Formalized: CORA's computation at given normals (`Zonotope.minkDiffApprox`) and the counterexample, whose normals are proved to be that minuend's own normalised cross products; CORALean's difference is `minkDiffRep` ([`zonotope` `minkDiff`](zonotope.md)). Details below. |
 | `minnorm` | float | [`Zonotope.minnorm`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/Minnorm.lean), [`Zonotope.minnormOffset`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/MinnormOffset.lean), [`Zonotope.minnormPoint`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/MinnormPoint.lean), [`Zonotope.minnorm_ball_subset`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinnormBallSubset.lean), [`Zonotope.le_minnorm_of_ball_subset`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/LeMinnormOfBallSubset.lean), [`Zonotope.exists_minnormFacet`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/ExistsMinnormFacet.lean), [`Zonotope.minnormPoint_mem`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinnormPointMem.lean), [`Zonotope.minnormPoint_dist`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinnormPointDist.lean), [`Zonotope.minnormPoint_not_mem_step`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/MinnormPointNotMemStep.lean) · float: [`Zonotope.minnorm`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/Minnorm.lean), [`Zonotope.minnormOffset`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/MinnormOffset.lean), [`Zonotope.facetNormal`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/FacetNormal.lean), [`Zonotope.minnormOffset_ge`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/MinnormOffsetGe.lean), [`Zonotope.minnorm_ball`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/MinnormBall.lean), [`Zonotope.minnorm_le`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/MinnormLe.lean) | exact, for generators spanning `ℝ^(n+1)`: CORA's `val` is the least unit-row offset over the facet normals of `polytope(Z - c)` (the cross products of `n` generators, rows with `NaN`, i.e. dependent generators, removed). It is exactly the Euclidean inradius at the center: `minnorm_ball_subset` (the ball of radius `val` lies in `Z`) with `le_minnorm_of_ball_subset` (no larger ball does), resting on the exact facet description `Zonotope.hRep_eq`. The second output `x` is `minnormPoint` at a facet attaining the minimum (`exists_minnormFacet`): it lies in `Z` at distance `val` from the center and stepping further along the row leaves `Z`, so it is a boundary point. Details below. |
@@ -141,6 +141,8 @@ the `return` (zonotope l. 168, conZonotope l. 151) with `res` never assigned, so
 `contains(zonotope([0;0]), zonotope([0;0],[1;0]))` errors where `false` is the answer (read from the
 source, not run). An error is outside the model.
 
+**`contains_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): **not reproduced**: contains(zonotope(`[0;0]`,eye(2)),ellipsoid(4*eye(2)),'sampling:dual') errors: Unrecognized function or variable 'Z2' (priv_zonotopeContainment_ellipsoidSamplingDual line 86), the under-estimated scaling was not reached.
+
 **`cubMap` — float layer.** `Zonotope.cubMap` is `cubMapDep` of the operand with its box made into
 generators (`Zonotope.dependent`), outer. The coefficients are `cubFoldDown`/`cubFoldUp`, bracketing
 `cubFold` through the directed contraction `cubContractDown`/`cubContractUp` (`Σₖ uₖ vᵀ T{i,k} w`
@@ -150,7 +152,7 @@ that leaves charged to the box (`cubMapC_between`, `cubMapG_close`).
 **`dominantDirections` — cora-issue, consequence.** If the `n + 5` longest generators lie in a
 hyperplane, which a full-dimensional zonotope allows (in `ℝ²`: seven long generators along the first
 axis and one short one along the second), every candidate is singular and the returned `S` has rank
-below `n`, so no parallelotope is spanned and the enclosure fails (read from the source, not run).
+below `n`, so no parallelotope is spanned and the enclosure fails (run in MATLAB, see Details).
 
 **`dominantDirections` — the pipeline.** The whole pipeline: `nonzeroFilter`, the length filter
 (`n + 5` longest), the generator volume filter (`n + 3` subsets of largest `|det|`), and
@@ -170,6 +172,8 @@ stored entries are invertible (`dominantDirections_outer`, Prop. 8 for any inver
 `G` has no error term). Minimality over the shortlist (`dominantDirections_score_le`) and the
 singularity theorem are not carried over, and `none` also where no candidate remains.
 
+**`dominantDirections` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): dominantDirections(zonotope(`[0;0]`,`[1 2 3 4 5 6 7;0 0 0 0 0 0 0]`)) returns the singular S=`[7 6;0 0]`, det 0 (confirmed).
+
 **`encloseMany` — the dropped axis.** Among equally aligned axes any maximiser is dropped, CORA the
 last in its sort.
 
@@ -179,6 +183,8 @@ interval matrix (`encloseManyBasisInv_mem`: a matrix of the box inverts the rota
 floats read as) and the cells are mapped by `mtimesIntervalMat`. The unit vector is rounded, any
 rounding with a nonzero entry at the dropped axis giving an invertible `R`, and the result is `none`
 where `ltStrict` cannot show that entry nonzero (a zero direction).
+
+**`encloseMany` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): encloseMany (called as a plain function, it is not dispatched for a cell) errors in reduce line 195: Wrong value for the second input argument ('parallelpiped' is not a method) (confirmed).
 
 **`enclosePoints` — float layer.** route a — outer, method `'stursberg'` only at the float layer:
 for a float basis `U` with `U Uᵀ = 1` over the reals, every input point lies in the float result.
@@ -196,11 +202,13 @@ is `0`. At least one point. Noncomputable.
 **`enclosePoints` — cora-issue account.** `u` is signed, so `dot(u, r)` can vanish for a cloud with
 extent. For `points = [1 -1; -1 1]` the first singular vector is `u = (1,-1)/√2`, `r = (1,1)`,
 `g = 0` for every ratio, and `aux_compress` computes `u = g/norm(g) = 0/0 = NaN`, so every point
-becomes `NaN` and the zonotope constructor rejects the result (read from the source, not run). A
+becomes `NaN` and the zonotope constructor rejects the result (not reproduced, see Details). A
 single point (`r = 0`) does the same.
 
+**`enclosePoints` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): **not reproduced**: zonotope.enclosePoints(`[1 -1;-1 1]`,'maiga') returns generators with entries of order 1e-16, G=`[-1.1e-16 -5.6e-17 1 0;1.1e-16 5.6e-17 0 1]`, no 0/0 and no error: the first generator is 1e-16 (rounding in svd), not 0.
+
 **`filterOut` — cora-issue account.** For `P1 = [0, 2]` and `P2 = [1, 3]` the true difference
-contains `0` (read from the source, not run). Formalized as the set the code denotes
+contains `0` (not reproduced, see Details). Formalized as the set the code denotes
 (`HPolytope.mldivideCora`, the two early returns and then `P1 \ P1`), with a counterexample theorem.
 The difference algorithm itself is not formalized. CORA's `@zonotope/filterOut.m` calls
 `chebyball(Pint)`, which is no function of the toolbox (only a comment in `@probZonotope/pyramid.m`
@@ -209,7 +217,7 @@ names it), so it errors on every non-empty list. Its set differences `Pint\P{j}`
 criterion is wrong for its stated purpose, "deletes parallelotopes that are covered by other
 parallelotopes". A cell is deleted when it is covered by the union of *all* the others, the deleted
 ones included. So two equal cells delete each other and the kept list can be empty for a non-empty
-input (read from the source, not run). Formalized as the intended criterion (`Zonotope.filterOut`:
+input (not reproduced, see Details). Formalized as the intended criterion (`Zonotope.filterOut`:
 the remainder after all the other cells has nonempty interior), with the covering theorem a deletion
 does give (`filterOut_covered`) and the counterexample (`filterOut_pair`).
 
@@ -224,6 +232,8 @@ every cell whose remainder has nonempty interior is kept (`filterOut_keeps`, for
 error boxes included). A cell covered only by several cells together is kept, which the criterion
 deletes.
 
+**`filterOut` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): **not reproduced**: same input as the mldivide row: mldivide(polytope(`[1;-1]`,`[2;0]`),polytope(`[1;-1]`,`[3;-1]`)) returns a polytope without constraints (the whole line), not the empty P1\P1.
+
 **`intersectStrip` — the branch covered.** The numeric-`lambda` branch (`aux_zonotopeFromLambda`)
 only, `Λ` is an input: the methods that choose it (`'normGen'`, `'svd'`, `'radius'`,
 `'alamo-volume'`, `'alamo-FRad'`, `'wang-FRad'`, `'bravo'`) are not modelled.
@@ -232,11 +242,13 @@ only, `Λ` is an input: the methods that choose it (`'normGen'`, `'svd'`, `'radi
 `A X̂ ⊕ W`, whose `G Gᵀ` already is the paper's `R̄` (at `T = I`, `N = 0`), so `A` is applied and
 `Q_w` added twice. For the predicted zonotope `⟨0, [1]⟩`, `C = 1`, `φ = 1`, `A = 2`, no disturbance,
 CORA's gain is `4/5` against the paper's `1/2`, and the F-radius of the result is `√(17/25)` against
-`√(1/2)` (read from the source, not run). The enclosure is unaffected, every gain being sound. Only
+`√(1/2)` (run in MATLAB, see Details). The enclosure is unaffected, every gain being sound. Only
 the claimed optimality is lost.
 
 **`intersectStrip` — float layer.** The float version rounds `I - Λ C` into an interval matrix
 (`Interval.matMul`), so its extra generators and error box pay for rounding.
+
+**`intersectStrip` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): intersectStrip(zonotope(0,1),1,1,0,struct('method','wang-FRad','A',2,'C',1,'E',0,'F',1)) has G=[0.2 0.8], i.e. gain lambda=0.8 (the paper's is 0.5) (confirmed).
 
 **`isIntersecting_` — not covered.** CORA's default `'exact'` branch (constrained-zonotope
 intersection and an emptiness test) is not covered: this row is `'approx'` only. Not covered: a
@@ -245,8 +257,10 @@ point argument, `tol`.
 **`isIntersecting_` — cora-issue account.** `scalingToggle` is then undefined where `contains_` uses
 it, l. 176 (interval-shaped `Z`, rethrown at l. 187-192) and l. 215 (every other `Z` that is not a
 point), so MATLAB raises `Unrecognized function or variable 'scalingToggle'`:
-`isIntersecting(zonotope([0;0],eye(2)), [0;0])` errors (read from the source, not run). Only a point
+`isIntersecting(zonotope([0;0],eye(2)), [0;0])` errors (run in MATLAB, see Details). Only a point
 `Z` returns before l. 176.
+
+**`isIntersecting_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): isIntersecting(zonotope(`[0;0]`,eye(2)),`[0.5;0.5]`) errors: Not enough input arguments (MATLAB:minrhs) (confirmed).
 
 **`lift_` — cora-issue account.** `contSet/lift.m` documents `proj` as the states of the
 high-dimensional space that correspond to the states of the set, `state i -> state proj(i)`, which
@@ -255,6 +269,8 @@ read it. `project(S,dims)` takes state `dims(i)` for state `i`, the inverse perm
 agree only where `proj` is its own inverse. `lift(zonotope([1;2;3]),3,[2 3 1])` is the point
 `(2;3;1)`, where the lift moves the states to `(3;1;2)` and `lift(interval([1;2;3]),3,[2 3 1])`
 gives `(3;1;2)`. A silent wrong answer for every non-involutive permutation, in five classes.
+
+**`lift_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): center(lift(zonotope(`[1;2;3]`),3,[2 3 1])) = `[2;3;1]`, the interval lift gives `[3;1;2]` (confirmed).
 
 **`minkDiff` — cora-issue account, `'approx'`.** CORA's `@zonotope/minkDiff.m` defaults to
 `method = 'approx'` (l. 78) and switches to `'exact'` only at `n == 2` (l. 117). For a
@@ -267,7 +283,7 @@ a shifted halfspace. In `ℝ³`, `M = (0, [(0, 1, -1) (0, 1, 1) (2, 0, -1) (2, 0
 `S = (0, (0, 0, ½))` give `Δd = (4, 7/3, 7/3, 7/3, 7/3, 2)` and `α = (25/29, 25/29, 28/29, 28/29)`,
 all positive. The point `(56, 25, 53)/29` of the result plus `(0, 0, ½) ∈ S` has
 `x₁ + 2x₂ + 2x₃ = 241/29`, while `M` lies in `x₁ + 2x₂ + 2x₃ ≤ 8 = 232/29`, so the result is not
-inside `M ⊖ S`, which is nonempty (it holds `0`) (read from the source, not run).
+inside `M ⊖ S`, which is nonempty (it holds `0`) (run in MATLAB, see Details).
 
 **`minkDiff` — cora-issue account, `'approx'`, continued.** `@contDynamics/linReachInner.m` calls
 `minkDiff` with no method (ll. 137, 144-145) for its inner time-point set
@@ -304,7 +320,7 @@ from the source, not run). Formalized as the path as printed (`minkDiffOuterScal
 by its largest column norm and compares, so it accepts every positive scaling, including a
 subtrahend larger than the minuend, where the difference is empty. For `zonotope(0, eye(2))` minus
 `zonotope(0, 2*eye(2))` CORA returns the unit square, while `x + 2[-1,1]² ⊆ [-1,1]²` has no solution
-(read from the source, not run). Tolerances read as exact equality. Formalized as the aligned branch
+(run in MATLAB, see Details). Tolerances read as exact equality. Formalized as the aligned branch
 as printed (`minkDiffExact2dCora`, `IsAlignedCora`). The paper-side counterpart is
 `minkDiffAligned_not_inner`.
 ([`Zonotope.minkDiffExact2dCora_not_inner`](../../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/MinkDiffExact2dCora.lean)).
@@ -319,12 +335,14 @@ subspace through the origin, so the part of the minuend's center outside it is l
 the minuend the segment from `(-1, 1)` to `(1, 1)` and the subtrahend the segment from `(-½, 0)` to
 `(½, 0)`, every SVD gives `P_minuend = ±e₁ᵀ`, so the result lies on the line `x₂ = 0`, whatever the
 recursive call returns. The difference is the segment from `(-½, 1)` to `(½, 1)`: under every method
-the result is neither inside nor around it (read from the source, not run). Formalized as the branch
+the result is neither inside nor around it (run in MATLAB, see Details). Formalized as the branch
 past its guards (`Zonotope.minkDiffDegenerateCora`), with the SVD factor and the recursive call
 quantified.
 
 **`minkDiff` — cora-issue, degenerate minuends, continued.**
 ([`Zonotope.minkDiffDegenerateCora_counterexample`](../../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/MinkDiffDegenerateCora.lean)).
+
+**`minkDiff` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): minkDiff(zonotope(0,1),zonotope(0,2)) (also 'approx') returns c=0, G=-1, not empty, though [-1,1] minus [-2,2] is empty (confirmed).
 
 **`minnorm` — float layer.** an upper bound only (outer): the least rounded-up offset over the
 increasing `n`-subsets of generators, at the rounded cross products `facetNormal` (`detCandidate`).
@@ -346,6 +364,8 @@ center is left out of the program but put into the value, so the result is the n
 farthest from the center, not the largest norm. For `Z = zonotope([2;-20],[1 1;0 1])` the maximisers
 are `u = ±(1,1)`, giving `√377` or `√441`, while `(2,-21) ∈ Z` has norm `√445` (read from the
 source, not run; the unit tests use zero centers only).
+
+**`norm_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): norm(zonotope(`[2;-20]`,`[1 1;0 1]`),2,'exact') returns 21 (true maximum sqrt(445)=21.095) (confirmed).
 
 **`polytope` — facet rows.** Otherwise the normalized `ndimCross` of every combination of `n - 1`
 generators, the zero (`NaN`) normals dropped, rows `±C` at `±C c + Σ |C G|` (`n = 1` gives CORA's
@@ -374,7 +394,7 @@ integer inputs of size `2 x 4..6`).
 **`reduce` — cora-issue, `'valero'`, continued.** `'valero'` is a case of the public `reduce` (l.
 160), not a member of `getMembers('reductionTechnique')`, and in no test. Unsound. Formalized for
 `n = 2` in `ℤ²` (`Zonotope.valeroCora`, sorts as MATLAB's), with the witness: the point `(-5,4)` of
-`Z` is not in the result (read from the source, not run).
+`Z` is not in the result (run in MATLAB, see Details).
 
 **`reduce` — cora-issue, the other techniques.** `getMembers('reductionTechnique')` lists `methB`,
 `methD`, `methE`, `redistribute` and `cluster`, which `validateOptions` accepts
@@ -396,10 +416,12 @@ generators. The `case strcmp(method,'adaptive-penven')` (reduce.m l. 121) in a `
 matches and calls the non-existent `reduceAdaptive`. A MATLAB error, not a wrong value. Formalized
 as the dispatch for the five techniques (`Zonotope.reduceCrashCora`, the other techniques not
 claimed) and the index of `redistribute` for `G = [1 0 1 0; 0 1 1 0]`, `order = 1`
-(`Zonotope.redistributeIndexCrashCora`) (read from the source, not run).
+(`Zonotope.redistributeIndexCrashCora`) (run in MATLAB, see Details).
 ([`Zonotope.reduceCrashCora`](../../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/ReduceTechniqueCrashCora.lean),
 [`Zonotope.reduceCrashCora_crash`](../../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/ReduceTechniqueCrashCora.lean),
 [`Zonotope.redistributeIndexCrashCora_crash`](../../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/ReduceTechniqueCrashCora.lean)).
+
+**`reduce` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): reduce(zonotope(`[0;0]`,`[0 -1 3 1;-1 1 -2 0]`),'valero',1.5) has G=`[3 0 1;-2 -2 0]`, supportFunc in (-1,1) is 9 for Z and 8 for the reduced set, reduce(...,'methB',1.5) errors: Index exceeds array bounds (confirmed).
 
 **`reduceUnderApprox` — the methods.** `'sadraddini'` (Sadraddini-Tedrake CDC'19, `Cor. 6`): the
 solver's reduced generators are kept if they pass (43)'s containment row `X_red = X Γ₀`,
@@ -425,7 +447,7 @@ is returned for a valid zonotope. For `⟨0, [(3,0), (2,0), (0,1)]⟩`, `eta_new
 generator `(0,1)` gives `G_prod = 0` and `alpha_max = 0`. Also line 280 multiplies the UNSORTED
 `generators(Z)` by `T`, which is built from the generators sorted by length (lines 625-645). Every
 row of `T` has `‖·‖₁ ≤ 1`, so the result stays inside `Z` for any order, but it is not the paper's
-reduction (read from the source, not run). Formalized: `Zonotope.raghuramanGProdCora`,
+reduction (run in MATLAB, see Details). Formalized: `Zonotope.raghuramanGProdCora`,
 `Zonotope.raghuramanAlphaMaxCora` and the zero-division theorem. Only the `0/0` is stated.
 
 **`reduceUnderApprox` — cora-issue, the legacy methods.** CORA's `@zonotope/reduceUnderApprox.m` (l.
@@ -438,9 +460,11 @@ zonotope is returned (compacted) but unreduced. When none is needed the `elseif`
 legacy method runs its routine on a zonotope already within the order (it shrinks it needlessly, or
 fails in `ind(1:N)` with `N = floor(order*n-n)` beyond the generators) and every other method
 reaches `else return`. `'boxNLP'` is moreover missing from the `inputArgsCheck` list, so it is
-rejected before. Modelled as the control flow alone (read from the source, not run):
+rejected before. Modelled as the control flow alone (run in MATLAB, see Details):
 `cora_legacy_dispatch` against the intended nesting. The real method is not formalized for the
 legacy names, only `'sadraddini'` is.
+
+**`reduceUnderApprox` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): reduceUnderApprox(zonotope(`[0;0]`,`[3 2 0;0 0 1]`),'raghuraman',1) errors: Wrong value for the first input argument (numeric, nonnan), the NaN from 0/0 (confirmed).
 
 **`split` — cora-issue, the box.** CORA's `@zonotope/split.m` replaces `Z` by its bounding box
 `zonotope(interval(Z))` (l. 46, 56, 106) and then splits "generator `N`" of the box
@@ -452,8 +476,8 @@ likewise). `@zonotope/splitFirstGen.m` (l. 39-42) takes `index` as the argmax of
 over the generators of the original zonotope and calls `split(Z{i}, index)`, the same mix-up: for
 `zonotope([0;0],[1 0 1; 0 1 1])` it picks `3`, and the box has two generators. Where it does not
 crash it splits another coordinate than asked (`split(zonotope([0;0;0],[1 0;0 0;0 1]),2)` splits
-coordinate `3`). Every zonotope can be split. Read from the source, not run (read from the source,
-not run). Read from the source, not run. The theorems are `Zonotope.split_cora_segment_crash` and
+coordinate `3`). Every zonotope can be split. (run in MATLAB, see Details) (read from the source,
+not run). (run in MATLAB, see Details). The theorems are `Zonotope.split_cora_segment_crash` and
 `Zonotope.splitFirstGen_cora_crash`.
 
 **`split` — cora-issue, bundle split.** CORA's `@zonotope/split.m`, `aux_directionSplitBundle` (l.
@@ -461,15 +485,19 @@ not run). Read from the source, not run. The theorems are `Zonotope.split_cora_s
 interval `IH = interval(rotMat*Z)`. `interval` has no `get` (the only `get.m` files in CORA are
 `@markovchain/get.m` and `@simulation/get.m`), so every call stops with an error. And
 `interval(intervals1)` on the `n × 2` matrix would build a point interval matrix, not the box, had
-`get` existed. The split of a zonotope in a direction exists. Read from the source, not run (read
+`get` existed. The split of a zonotope in a direction exists. (run in MATLAB, see Details) (read
 from the source, not run). Modelled as `Zonotope.splitBundleCora`, `none` the error, for every
 zonotope and direction.
+
+**`split` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): split(zonotope(`[0;0]`,`[1;0]`),2) and split(zonotope(`[0;0]`,`[1;0]`)) error: Index in position 2 exceeds array bounds (confirmed).
 
 **`splitFirstGen` — cora-issue, the index.** `@zonotope/splitFirstGen.m` (l. 39-42) takes `index` as
 the argmax of `norm(G(:,j)'*G,1)` over the generators of the original zonotope and calls
 `split(Z{i}, index)`, the same mix-up: for `zonotope([0;0],[1 0 1; 0 1 1])` it picks `3`, and the
 box has two generators. Where it does not crash it splits another coordinate than asked
 (`split(zonotope([0;0;0],[1 0;0 0;0 1]),2)` splits coordinate `3`).
+
+**`splitFirstGen` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): splitFirstGen(zonotope(`[0;0]`,`[1 0 1;0 1 1]`)) errors: Brace indexing is not supported for variables of this type (splitFirstGen line 35), the split(Z,3) out-of-bounds of the note was not reached (confirmed).
 
 **`tensorMultiplication` — perm and map.** CORA's `options.list.perm` and `.map` are arguments
 (`Zonotope.TensorLists`; no CORA code builds them), and the theorem needs `perm` to list every
@@ -483,9 +511,13 @@ and `Z.c` read as `0`. Each `tildeH` is the directed cubic contraction
 the `sumDown`/`sumUp` of those mapped to it, stored rounded down with the gap charged to the box
 (`tensorH_bracket`).
 
+**`tensorMultiplication` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: tensorMultiplication needs an options.list struct (perm, comb) that was not constructed, not run.
+
 **`volumeRatio` — why not float.** Not `float`: a float counterpart needs a float volume of the
 projected polytope and of the projected zonotope, and neither exists (`volume_` is `proved` for
 zonotope and polytope with no float counterpart: CORA computes the polytope volume by vertex
 enumeration and `convhulln`, and `Zonotope.volume` equals the measure only with `n` generators or
 rank below `n`). A sound bound on the ratio would need an inner bound of the polytope's volume and
 an outer bound of the zonotope's, and the first has no algorithm.
+
+**`representsa_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): [res,S]=representsa(zonotope(`[0;0]`,eye(2)),'polytope') returns res=1 and S an empty polytope (confirmed).

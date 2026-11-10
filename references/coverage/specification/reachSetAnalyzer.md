@@ -36,3 +36,6 @@ satisfied while a later branch violates the formula (read from the source, not r
 (`ReachSetAnalyzer.analyzeTree`, with `analyzeTree_sound` and `analyzeTree_complete`: each result is
 a branch's and each branch has one). The recursion as printed is `ReachSetAnalyzer.analyzeTreeCora`,
 and `ReachSetAnalyzer.analyzeTreeCora_counterexample` computes both results on the fork.
+
+
+**`analyze` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: no run: the reachSetAnalyzer tree was not constructed.

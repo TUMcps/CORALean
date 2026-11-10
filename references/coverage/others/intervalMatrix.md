@@ -65,6 +65,8 @@ enclosure of `exp(A)` that excludes it.
 **`expmDifferentAlgorithms` — the model.** Modelled as `MatExp.taylorPointRemainderCora` for a
 `1 x 1` matrix. The theorem shows the point `13/18` above `exp(-1)` (read from the source, not run).
 
+**`expmDifferentAlgorithms` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: not run: expmDifferentAlgorithms(intervalMatrix(-1,0),2,0) fails with 'Too many input arguments' in subsref when called from the harness (invocation problem, not the claimed behaviour).
+
 **`randPoint` — the draws.** `intervalMatrix(0,1)` (the entry `[-1,1]`): `'standard'` gives values
 in `[-1,0)` and `'extreme'` gives `+-1/2`. Every sample is inside the box, so a containment test
 does not see it, but the sampling that falsification and the tests use covers half of each entry and
@@ -72,4 +74,8 @@ never a vertex. A wrong answer.
 
 **`randPoint` — the model.** Modelled as `Interval.randPointStandardIntervalMatrixCora` and
 `Interval.randPointExtremeIntervalMatrixCora`, one entry. The theorem shows no `'standard'` draw
-above the center and no `'extreme'` draw at an endpoint (read from the source, not run).
+above the center and no `'extreme'` draw at an endpoint (run in MATLAB, see Details).
+
+**`randPoint` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): randPoint(intervalMatrix(0,1),1000): 'standard' samples lie in [-0.9995,-0.0005] (the lower half), 'extreme' returns only +-0.5 (confirmed).
+
+**`expmTaylorHornerScaling` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: not run: same invocation problem as the expmDifferentAlgorithms row.

@@ -31,3 +31,8 @@ error, while `zoo * zoo` works.
 **`rdivide` — float layer.** outer, route a: `Taylm.rdivide` and `Interval.rdivide`, under the float
 certificates of each member (the Taylor model's margin `hm` of `Taylm.rdivide_outer`, the interval's
 strict sign test `hJ` of `Interval.rdivide_outer`).
+
+
+**`rdivide` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): zoo(interval(1,2),{'interval'}).*z and ./z error: Undefined function 'combineZooObjects' (aux_s_times_zz line 55, aux_s_rdivide_zz line 51) (confirmed).
+
+**`times` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): same as the rdivide row: z.*z errors with the undefined combineZooObjects, z*z (mtimes) returns a zoo (confirmed).

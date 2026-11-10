@@ -70,10 +70,12 @@ derivative at an intermediate point. The code uses the `(k+1)`-th power of `asin
 `asin(rem)^8 = [0,(π/2)⁸]`, and the remainder is `[0, (π/2)⁸/8!] ≈ [0, 0.00092]`, which the unit
 test also asserts. At `x = 1` the model is `[1.2863, 1.2872]`, while `asin 1 = π/2 ≈ 1.5708`: the
 true error of the polynomial is `0.2845`. Unsound. `acos(taylm)` is `pi/2 - asin(...)` and inherits
-it. Read from the source, not run (read from the source, not run). Modelled as `Taylm.asinPolyCora`
+it. (run in MATLAB, see Details) (run in MATLAB, see Details). Modelled as `Taylm.asinPolyCora`
 (the loop's polynomial) and `Taylm.asinRemainderUpperCora` (the upper end of the remainder for
 `[-r, r]`, `k + 1` even). The theorem proves `p(1) + R < asin 1` at `k = 7` from the bounds
 `3.14 < π < 3.15`.
+
+**`asin` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): interval(asin(taylm(interval(-1,1),7))) = [-1.28631,1.28723], pi/2 = 1.5708 (confirmed).
 
 **`optBernstein` — float layer.** outer, the same statement for a float model: the exact bound is
 the least and greatest Bernstein coefficient of the model the floats read as, and each coefficient

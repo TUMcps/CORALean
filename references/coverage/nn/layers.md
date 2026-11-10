@@ -8,7 +8,7 @@ CORA methods of `nn/layers/`, one row each, and where CORALean answers them. Con
 |---|---|---|---|
 | `backpropZonotopeBatch` | out-of-scope | n/a — solver-dependent | the activation layer's step of that training loop (slope held constant without `exact_backprop`; with it, a gradient of the slope and of the approximation-error generator choice, and a stored slope update `dm`); not a derivative of one function of the zonotope, and no guarantee about a set |
 | `computeApproxPoly` | float | [`sigmoidPolyRelaxation_encloses`](../../../src/CORALean/NN/Layers/Theorems/SigmoidPolyRelaxationEncloses.lean), [`sigmoidPolyRelaxation`](../../../src/CORALean/NN/Layers/Operations/SigmoidPolyRelaxation.lean), [`tanhPolyRelaxation_encloses`](../../../src/CORALean/NN/Layers/Theorems/TanhPolyRelaxationEncloses.lean), [`tanhPolyRelaxation`](../../../src/CORALean/NN/Layers/Operations/TanhPolyRelaxation.lean), [`PolyRelaxation.ofAffineConj_encloses`](../../../src/CORALean/NN/Layers/Theorems/PolyRelaxationOfAffineConjEncloses.lean) | route b — soundness stated for any `FloatOps 𝕋`, `sigmoidPolyRelaxation` computable: the fit `c` is data (any stored coefficients), the error a certified bound from the sigmoid enclosure, a stored derivative bracket and a checked grid, so the sigmoid lies within `error` of the stored polynomial at every real point of the box. cora-issue — CORA's `@nnActivationLayer/computeApproxPoly.m` takes, for `poly_method = 'singh'` and order 1, the DeepZ transformer of [Singh et al., NeurIPS 2018, Thm. 3.2](../../2018/singh-neurips-deepz.md) — `lambda = min(df(l), df(u))`, `mu1`, and the error `d = mu2` returned unchecked — for every layer with `monotonicity` set, which `nnActLayerFromHandle` lets a caller set for any monotone function ([`deepZSShape_cube_not_encloses`](../../../src/CORALean/NN/Layers/Theorems/Real/DeepZSShapeCubeNotEncloses.lean), [`NN.evaluateSinghCora_misses_counterexample`](../../../src/CORALean/NN/Layers/Counterexamples/Real/EvaluateSinghCora.lean)). Details below. |
-| `evaluateConZonotope` | float | [`Layer.reluStar_encloses`](../../../src/CORALean/NN/Layers/Theorems/ReluStarEncloses.lean), [`StarSet.reluNeuron_outer`](../../../src/CORALean/NN/Layers/Theorems/StarSetReluNeuronOuter.lean), [`StarSet.rowBounds_mem`](../../../src/CORALean/ContSet/StarSet/Real/Theorems/RowBoundsMem.lean), [`StarSet.coraRowBounds_unsound`](../../../src/CORALean/NN/Layers/Counterexamples/StarSetCoraRowBounds.lean), [`Layer.reluStar`](../../../src/CORALean/NN/Layers/Operations/ReluStar.lean) · float: [`Layer.reluStarFloat_encloses`](../../../src/CORALean/NN/Layers/Theorems/ReluStarFloatEncloses.lean), [`StarSet.reluNeuron_outer`](../../../src/CORALean/NN/Layers/Theorems/StarSetFloatReluNeuronOuter.lean), [`StarSet.rowBounds_mem`](../../../src/CORALean/ContSet/StarSet/Float/Theorems/RowBoundsMem.lean), [`StarSet.chordRow_holds`](../../../src/CORALean/NN/Layers/Theorems/StarSetFloatChordRowHolds.lean), [`Layer.reluStarFloat`](../../../src/CORALean/NN/Layers/Operations/ReluStarFloat.lean), [`StarSet`](../../../src/CORALean/ContSet/StarSet/Float/StarSet.lean) | route a. cora-issue — CORA's `@nnReLULayer/evaluateConZonotopeNeuron` (`nn/layers/nonlinear/nnReLULayer.m`) bounds the neuron over the factor box `[l_, u_]` with `c_ = c(j) + 0.5 * G(j,:) * (u_ - l_)`, `G_ = 0.5 * G(j,:) * diag(u_-l_)`, `l = c_ - sum(abs(G_))`, `u = c_ + sum(abs(G_))`; For `c = 0`, `G = [1; -1]`, `l_ = -1`, `u_ = 1` neuron 1 gets `[0, 2]` instead of `[-1, 1]`, `0 <= l` and the step leaves the set unchanged, although the point `α = -1`, `(0, 1)` after the ReLU at neuron 1, is not on the line `x₂ = -x₁` (read from the source, not run). Formalized with the center `(l_ + u_)/2` (`StarSet.rowBounds`, `StarSet.reluNeuron_outer`, `Layer.reluStar_encloses`); the code's bounds are `StarSet.coraRowBounds`. Details below. |
+| `evaluateConZonotope` | float | [`Layer.reluStar_encloses`](../../../src/CORALean/NN/Layers/Theorems/ReluStarEncloses.lean), [`StarSet.reluNeuron_outer`](../../../src/CORALean/NN/Layers/Theorems/StarSetReluNeuronOuter.lean), [`StarSet.rowBounds_mem`](../../../src/CORALean/ContSet/StarSet/Real/Theorems/RowBoundsMem.lean), [`StarSet.coraRowBounds_unsound`](../../../src/CORALean/NN/Layers/Counterexamples/StarSetCoraRowBounds.lean), [`Layer.reluStar`](../../../src/CORALean/NN/Layers/Operations/ReluStar.lean) · float: [`Layer.reluStarFloat_encloses`](../../../src/CORALean/NN/Layers/Theorems/ReluStarFloatEncloses.lean), [`StarSet.reluNeuron_outer`](../../../src/CORALean/NN/Layers/Theorems/StarSetFloatReluNeuronOuter.lean), [`StarSet.rowBounds_mem`](../../../src/CORALean/ContSet/StarSet/Float/Theorems/RowBoundsMem.lean), [`StarSet.chordRow_holds`](../../../src/CORALean/NN/Layers/Theorems/StarSetFloatChordRowHolds.lean), [`Layer.reluStarFloat`](../../../src/CORALean/NN/Layers/Operations/ReluStarFloat.lean), [`StarSet`](../../../src/CORALean/ContSet/StarSet/Float/StarSet.lean) | route a. cora-issue — CORA's `@nnReLULayer/evaluateConZonotopeNeuron` (`nn/layers/nonlinear/nnReLULayer.m`) bounds the neuron over the factor box `[l_, u_]` with `c_ = c(j) + 0.5 * G(j,:) * (u_ - l_)`, `G_ = 0.5 * G(j,:) * diag(u_-l_)`, `l = c_ - sum(abs(G_))`, `u = c_ + sum(abs(G_))`; For `c = 0`, `G = [1; -1]`, `l_ = -1`, `u_ = 1` neuron 1 gets `[0, 2]` instead of `[-1, 1]`, `0 <= l` and the step leaves the set unchanged, although the point `α = -1`, `(0, 1)` after the ReLU at neuron 1, is not on the line `x₂ = -x₁` (run in MATLAB, see Details). Formalized with the center `(l_ + u_)/2` (`StarSet.rowBounds`, `StarSet.reluNeuron_outer`, `Layer.reluStar_encloses`); the code's bounds are `StarSet.coraRowBounds`. Details below. |
 | `evaluatePolyZonotope` | float | [`Layer.activationPoly_encloses`](../../../src/CORALean/NN/Layers/Theorems/ActivationPolyEncloses.lean), [`Layer.sigmoidPoly_encloses`](../../../src/CORALean/NN/Layers/Theorems/Basic.lean), [`Layer.activationPoly`](../../../src/CORALean/NN/Layers/Operations/ActivationPoly.lean) | route b — soundness stated for any `FloatOps 𝕋`, the layer pinned to `Float.PolyZonotope` (the only representation closed under `evalPoly`); activation layers only |
 | `evaluatePolyZonotopeNeuron` | float | [`Layer.activationPoly_encloses`](../../../src/CORALean/NN/Layers/Theorems/ActivationPolyEncloses.lean), [`Layer.activationPoly`](../../../src/CORALean/NN/Layers/Operations/ActivationPoly.lean) | route b — soundness stated for any `FloatOps 𝕋`, the layer pinned to `Float.PolyZonotope`; one fit per neuron, the soundness of each being `PolyRelaxation.Encloses` |
 | `evaluateTaylm` | float | [`Layer.activationTaylm_encloses`](../../../src/CORALean/NN/Layers/Theorems/ActivationTaylmEncloses.lean), [`Layer.activationTaylm`](../../../src/CORALean/NN/Layers/Operations/ActivationTaylm.lean), [`TaylmArray`](../../../src/CORALean/NN/Layers/Definitions/TaylmArray.lean) | route b — soundness stated for any `FloatOps 𝕋`, the layer pinned to a column of float Taylor models over shared variables (`TaylmArray`). Per neuron `c₀ + [-d, d] + Σ_{k≥1} c_k · input^k` by `Taylm.pow` and exact scalings, the fit `(c, d)` on the range of the input model taken from the supplied `PolyRelaxation` (CORA's `computeApproxPoly` is not computed here, as for `evaluatePolyZonotope`); activation layers only; the other layers' `evaluateTaylm` (linear, reshape, ...) are not given |
@@ -76,6 +76,8 @@ for a derivative rising and then falling
 (CORA's default regression, noncomputable) and the error bound is sampled. Soundness holds for any
 coefficients and is proved at the sigmoid (tanh by conjugation), not for an arbitrary activation.
 
+**`computeApproxPoly` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: not run (needs a neural network with a polyZonotope evaluation at the 'singh' setting).
+
 **`evaluateConZonotope` — the star set.** Real-layer (ℝ) star set `(c, G, C, d, l, u)`, the ReLU
 layer only (the base class and the other activations throw), proved at the corrected center. The LP
 bounds (`bound_approx` false) are not computed.
@@ -94,6 +96,8 @@ and `u - l > 0` are each certified (else the new factor is only bounded).
 `l_ = -1`, `u_ = 1` (and for constrained zonotopes the bounds of the polytope), so the bounds are
 the true ones shifted by `sum(G(j,:))`.
 
+**`evaluateConZonotope` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): neuralNetwork({nnReLULayer()}).evaluate(conZonotope(`[0;0]`,`[1;-1]`)) has vertices (-1,0) and (1,0), so the image point (0,1) of alpha=-1 is missing, the result is not the unchanged line the note describes (partly confirmed).
+
 **`nnActLayerFromHandle` — the cause.** `fzero` needs a sign change (`< 0`). With `> 0` the call has
 no root to find (it throws, and the `catch` calls `keyboard`) and where the root exists the branch
 is skipped. The slope of a regression line or a chord of a convex `f` lies between `df(l)` and
@@ -110,7 +114,9 @@ the box is `[-0.2010, 0.4091]` and the radius needed `0.3050`.
 **`nnActLayerFromHandle` — the model.** Unsound: the enclosure of the activation, hence the
 polynomial zonotope that carries it, misses states. Modelled as `Layer.minMaxDiffOrderCora`, with
 `fzero`'s result as a parameter. The theorem shows `x = 0` below the lower bound for the chord of
-`exp`, whatever `fzero` returns (read from the source, not run).
+`exp`, whatever `fzero` returns (run in MATLAB, see Details).
+
+**`nnActLayerFromHandle` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): nnHelper.minMaxDiffOrder(nnActLayerFromHandle(@(x) exp(x),'myexp',2),[m b],-1,1) with the chord of exp on [-1,1] returns [-2e-16,2e-16], the true range of exp(x)-chord is [-0.5576,0] (confirmed).
 
 **`nnConv2DLayer` — the cause.** For an entry with `cl > cu` that is the swap, but for every other
 entry `cu` becomes `max(t,t) = t`, the old `cl`, so `[cl,cu]` collapses to the point `cl`.
@@ -126,6 +132,8 @@ becomes `[0,0]`, the second `[1,2]`. Unsound where the repair runs.
 **`nnConv2DLayer` — the model.** Modelled as `Layer.conv2DSanitiseCora`. The theorem shows the entry
 `[0,1]` ending below `1` (read from the source, not run).
 
+**`nnConv2DLayer` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: no run: the batch evaluation with options.nn.interval_center was not constructed.
+
 **`nnElementwiseAffineLayer` — the dimension mismatch.** `aux_getScaleAndOffset` returns `scale` as
 a column vector (`aux_getPaddedParameter`: `p(:)` for a vector with `numel(p) >= spacDim*out_c`,
 `inputSize` unset gives `1`). The constructor accepts column vectors
@@ -137,7 +145,9 @@ them. A crash for `evaluate(conZonotope([0;0],eye(2)))`. The `taylm` product is 
 (the matrix product of `taylm` was not read).
 
 **`nnElementwiseAffineLayer` — the model.** Modelled as `Layer.elementwiseAffineConZonotopeCora`,
-`none` the error. The theorem shows it for `scale = (2,3)` (read from the source, not run).
+`none` the error. The theorem shows it for `scale = (2,3)` (run in MATLAB, see Details).
+
+**`nnElementwiseAffineLayer` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): neuralNetwork({nnElementwiseAffineLayer(`[2;3]`,`[0;1]`)}).evaluate(conZonotope(`[0;0]`,eye(2))) errors: Incorrect dimensions for matrix multiplication (evaluateConZonotope line 146) (confirmed).
 
 **`nnExpLayer` — the arity.** `nnExpLayer` has no `monotonicity`, so the fast branch is skipped and
 the call stops with `Too many output arguments`: `nnExpLayer().evaluate(zonotope(0,1))`
@@ -146,7 +156,9 @@ The same for `taylm` and `conZonotope` inputs, and only `'singh'`, which compute
 it. There is no unit test for `nnExpLayer`.
 
 **`nnExpLayer` — the model.** Modelled as `Layer.expMinMaxDiffOrderCora`, `none` the error. The
-theorem shows it for every `l`, `u` (read from the source, not run).
+theorem shows it for every `l`, `u` (run in MATLAB, see Details).
+
+**`nnExpLayer` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): neuralNetwork({nnExpLayer()}).evaluate(zonotope(0,1)) errors: Too many output arguments (minMaxDiffOrder line 70) (confirmed).
 
 **`nnLayer` — the cause.** `nnActivationLayer.evaluateInterval` only updates the stored bounds
 before calling it, and `nnSquareLayer`, `nnActLayerFromHandle` and `nnSoftmaxLayer` define none (the
@@ -160,7 +172,9 @@ the image is `[0, 1]`. Where the end values are in decreasing order (`cos` on `i
 `interval` constructor stops with `Lower limit larger than upper limit` (with the checks enabled).
 
 **`nnLayer` — the model.** Unsound. Modelled as `Layer.evaluateIntervalCora`. The theorem is for
-`nnSquareLayer` on `[-1,2]` (read from the source, not run).
+`nnSquareLayer` on `[-1,2]` (run in MATLAB, see Details).
+
+**`nnLayer` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): nnSquareLayer cannot be instantiated in this CORA (abstract class), with nnActLayerFromHandle(@(x) sin(x)), evaluate(interval(0,3)) returns [0,0.14112], while sin takes the value 1 on [0,3] (partly confirmed).
 
 **`nnLinearLayer` — the cause.** `evaluateNumeric` samples it (l. 92-95), `evaluateInterval` adds it
 (`bounds + obj.d`, l. 111-113) and `evaluatePolyZonotope` adds `center(d)` to `c` and `diag(rad(d))`
@@ -177,7 +191,9 @@ a `conZonotope` or `taylm` returns a set without the error that the other evalua
 
 **`nnLinearLayer` — the model.** Modelled as `Layer.linearConZonotopeCenterCora` and
 `Layer.linearConZonotopeGeneratorCora`, one neuron. The theorem shows the output `1` outside CORA's
-set (read from the source, not run).
+set (run in MATLAB, see Details).
+
+**`nnLinearLayer` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): nnLinearLayer(1,0) with d=interval(-1,1): evaluate(interval(0,0)) = [-1,1], evaluate(conZonotope(0,0)) has interval hull [0,0] (confirmed).
 
 **`nnRootLayer` — the derivative.** It is stored as `obj.df` and used by `evaluateSensitivity`,
 `backpropNumeric`, `getDerBounds`, the Taylor coefficients and `computeApproxPoly`. With
@@ -191,6 +207,8 @@ set (read from the source, not run).
 **`nnRootLayer` — the model.** Modelled as `Layer.rootDfCora` and `Layer.singhOrder1Cora`. The
 theorem shows `df(4) = 1`, the derivative `1/4`, and the point `x = 4` outside the band (read from
 the source, not run).
+
+**`nnRootLayer` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): nnRootLayer().df(4) = 1 (derivative of sqrt at 4 is 0.25) (confirmed).
 
 **`nnSoftPlusLayer` — the clamp.** Since `max(m,1-tol) >= 1-tol > tol`, `m` is the constant `tol`
 for every neuron (the clamp to `[tol, 1-tol]` is `max(tol,min(m,1-tol))`), and the candidate
@@ -221,3 +239,6 @@ the derivative bounds an error.
 `Layer.softplusErrorLowerCora`. The theorem shows `x = 0` below `el` (read from the source, not
 run). Modelled as `Layer.softplusDfCora`, the cached derivative, with the library's `softplus`. The
 theorem is the value at `1` for sharpness `1` (read from the source, not run).
+
+
+**`nnSoftPlusLayer` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: no run: the batch error bound of nnSoftPlusLayer was not constructed.

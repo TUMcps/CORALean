@@ -7,7 +7,7 @@ CORA methods of `specification/@specification/` (a class of `specification/` or 
 | Method | State | In CORALean | Note |
 |---|---|---|---|
 | `add` | — | — |  |
-| `check` | float | [`Specification.check`](../../../src/CORALean/Specification/Operations/Check.lean), [`Specification.check_sound`](../../../src/CORALean/Specification/Theorems/CheckSound.lean) | route b — generic over the representation of the specification's set and of the checked set (the `Contains` and `IsDisjoint` instances), computable; a `true` implies the specification on the set (`check_sound`), `false` claims nothing; safe sets, unsafe sets and invariants, not `'logic'`. cora-issue — CORA's `specification/@specification/check.m`, `aux_checkCustom` (l. 319-333), runs through a cell `S` with `res = func(S{i}); if res, return` and so returns `true` as soon as any piece passes `func`; Formalized for one row and an untimed specification (`Specification.checkReachRowCora`, `none` the error; a row with time intervals is checked) (read from the source, not run) ([`Specification.checkCustomCora`](../../../src/CORALean/Specification/Counterexamples/CheckCustomCora.lean), [`Specification.checkCustomCora_any_counterexample`](../../../src/CORALean/Specification/Counterexamples/CheckCustomCora.lean), [`Specification.checkReachRowCora`](../../../src/CORALean/Specification/Counterexamples/CheckReachSetCora.lean), [`Specification.checkReachRowCora_crash`](../../../src/CORALean/Specification/Counterexamples/CheckReachSetCora.lean)). Details below. |
+| `check` | float | [`Specification.check`](../../../src/CORALean/Specification/Operations/Check.lean), [`Specification.check_sound`](../../../src/CORALean/Specification/Theorems/CheckSound.lean) | route b — generic over the representation of the specification's set and of the checked set (the `Contains` and `IsDisjoint` instances), computable; a `true` implies the specification on the set (`check_sound`), `false` claims nothing; safe sets, unsafe sets and invariants, not `'logic'`. cora-issue — CORA's `specification/@specification/check.m`, `aux_checkCustom` (l. 319-333), runs through a cell `S` with `res = func(S{i}); if res, return` and so returns `true` as soon as any piece passes `func`; Formalized for one row and an untimed specification (`Specification.checkReachRowCora`, `none` the error; a row with time intervals is checked) (run in MATLAB, see Details) ([`Specification.checkCustomCora`](../../../src/CORALean/Specification/Counterexamples/CheckCustomCora.lean), [`Specification.checkCustomCora_any_counterexample`](../../../src/CORALean/Specification/Counterexamples/CheckCustomCora.lean), [`Specification.checkReachRowCora`](../../../src/CORALean/Specification/Counterexamples/CheckReachSetCora.lean), [`Specification.checkReachRowCora_crash`](../../../src/CORALean/Specification/Counterexamples/CheckReachSetCora.lean)). Details below. |
 | `eq` | out-of-scope | n/a — matlab-runtime | compares MATLAB objects field by field |
 | `inverse` | — | — |  |
 | `isempty` | — | — |  |
@@ -28,7 +28,7 @@ returns `res` and reports a violation when `~res`, l. 259-266), and its siblings
 and `aux_checkUnsafeSet` (l. 278-317) exit on the first failing piece, so every piece must pass. A
 cell is what `reach` hands `check` when a step has parallel sets (`@contDynamics/reach.m` l. 152,
 197, `check(spec, Rnext.ti, ...)`; a split set is a cell), so a custom specification that one set
-violates is reported satisfied whenever another passes (read from the source, not run). The header
+violates is reported satisfied whenever another passes (run in MATLAB, see Details). The header
 says `res - true/false whether set satisfies the specification` and gives no other meaning to
 `func`. The coverage row is `specification/check` in `references/coverage/specification/`.
 
@@ -44,6 +44,8 @@ discrete-time `reach` evaluates `[].set` and stops with a MATLAB error for every
 without a time (with a time, `find(S,'time',..)` comes first and the loop is the same). The
 `timePoint` sets are there and not checked. A MATLAB error, not a wrong value.
 
+**`check` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): check(specification(@(S) ...,'custom'),{Sok,Sbad}) returns 1 where func(Sok)=1, func(Sbad)=0 and check(spec,Sbad) returns 0 (partly confirmed).
+
 **`robustness` — the other branches.** Exactly `n` rows give `sqrt(sum((v-p).^2))` for the vertex
 `v = linsolve(C(ind,:),d(ind))`, the Euclidean distance to `v`. Any other count solves the linear
 program `min ‖p-x‖₁ s.t. C x ≤ d`, the norm 1 distance.
@@ -54,9 +56,12 @@ monotone: for the unit cube `[0,1]³` as a safe set, `p = (2,2,½)` violates two
 whereas `p' = (2,2,2)`, further out, violates `n = 3` rows and gets `√3 < 2`. The point `(1,1,½)` of
 the cube is at Euclidean distance `√2 < 2` from `p`. Every branch returns a positive number for a
 point outside (`ind` nonempty, `v ≠ p`), and `robustness` negates it for a safe set, so the sign is
-right: a wrong answer, not unsound (read from the source, not run). The `n`-row vertex also need not
+right: a wrong answer, not unsound (run in MATLAB, see Details). The `n`-row vertex also need not
 lie in the set or be its nearest point.
 
 **`robustness` — the Lean model.** Formalized as the function as printed
 (`Specification.distancePolyPointCora`, `linsolve` as a solution of the square system and the
 program as the infimum of `‖p-x‖₁`) and the cube example.
+
+
+**`robustness` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): robustness(specification(unit cube [0,1]^3,'safeSet'),`[2;2;0.5]`) = -2 and at `[2;2;2]` = -1.73205 (confirmed).

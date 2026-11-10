@@ -33,3 +33,6 @@ entry `numLoc` set, to a cell of `numLoc` copies of `u`, so `reach` gives the ot
 `params.u = []` and the last a cell instead of `u`. A user input `u` is not applied as given (read
 from the source, not run). Formalized as the cell array entry by entry (`ulocCora`) beside the
 intended one (`uloc`).
+
+
+**`reach` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).

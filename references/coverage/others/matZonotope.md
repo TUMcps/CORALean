@@ -30,7 +30,7 @@ CORA methods of `matrixSet/@matZonotope/`, one row each, and where CORALean answ
 | `powers` | float | [`Zonotope.powers`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/Powers.lean), [`Zonotope.powers_outer`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/PowersOuter.lean) · float: [`Zonotope.powers`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/Powers.lean), [`Zonotope.powers_outer`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/PowersOuter.lean) | outer: the power at offset `k` from the initial power encloses `M₀ * M ^ k` for every `M` in the zonotope and `M₀` in the initial power; recursion on the right as CORA's, unlike `Zonotope.matPow`. The cell array is the function of the offset. Real layer only; float: the same recursion on the right with the rounded `Zonotope.matMul` |
 | `randPoint` | out-of-scope | n/a — random/sampling |  |
 | `reduce` | — | — | not formalized; cora-issue — CORA's `@matZonotope/reduce.m` has the signature `reduce(matZ,option,order,filterLength)` but documents the call `reduce(matZ,option,order)` (l. 4), and passes `filterLength` on unconditionally (l. 36), so the documented call stops with an unrecognized variable ([`Zonotope.reduceMat_cora_counterexample`](../../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/ReduceMatZonotopeCora.lean), [`Zonotope.reduceMat_cora_shape_ne`](../../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/ReduceMatZonotopeCora.lean)). Details below. |
-| `replaceId` | — | — | not formalized; cora-issue — CORA's `@matZonotope/replaceId.m` is `@polyZonotope/replaceId.m` with `pZ` renamed: it reads `mZ.id` (l. 38, 46) and writes `mZ.id(ii_o)` (l. 52), but `matZonotope.m` (l. 39-45) has the properties `C`, `G`, `gens` and `generator` and no `id`. Every call stops: with one further argument at l. 38, with two at l. 46 (or at the `throw` of l. 46-49 when the id lists differ in length), with none `id_part_old` is never assigned, and `narginchk(1,3)` rejects more. A crash. Modelled as `Zonotope.replaceIdMatCora`; the theorem shows `none` for every argument count (read from the source, not run). ([`Zonotope.replaceIdMat_cora_counterexample`](../../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/ReplaceIdMatZonotopeCora.lean)); |
+| `replaceId` | — | — | not formalized; cora-issue — CORA's `@matZonotope/replaceId.m` is `@polyZonotope/replaceId.m` with `pZ` renamed: it reads `mZ.id` (l. 38, 46) and writes `mZ.id(ii_o)` (l. 52), but `matZonotope.m` (l. 39-45) has the properties `C`, `G`, `gens` and `generator` and no `id`. Every call stops: with one further argument at l. 38, with two at l. 46 (or at the `throw` of l. 46-49 when the id lists differ in length), with none `id_part_old` is never assigned, and `narginchk(1,3)` rejects more. A crash. Modelled as `Zonotope.replaceIdMatCora`; the theorem shows `none` for every argument count (run in MATLAB, see Details). ([`Zonotope.replaceIdMat_cora_counterexample`](../../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/ReplaceIdMatZonotopeCora.lean)); |
 | `representsa` | float | [`Zonotope.vec`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/Basic.lean), [`Zonotope.vec_construct`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/Basic.lean), [`Zonotope.vec_representsa`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/VecRepresentsa.lean) · float: [`Zonotope.vec`](../../../src/CORALean/ContSet/Zonotope/Float/Operations/Vec.lean), [`Zonotope.vec_representsa_point_sound`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/VecRepresentsaPointSound.lean), [`Zonotope.vec_representsa_origin_sound`](../../../src/CORALean/ContSet/Zonotope/Float/Theorems/VecRepresentsaOriginSound.lean) | `representsa(zonotope(matZ), type)`: the stacking `zonotope(matZ)` preserves the set, and the two tests the zonotope class models (`point`, `origin`) are the same on the stacked generators as on the matrices; the other types are not modelled for the zonotope class either. Real layer only; float: the float tests of the zonotope class on `Zonotope.vec`; each is sound when `true` (a `false` claims nothing) |
 | `reshape` | out-of-scope | n/a — matlab-runtime |  |
 | `size` | out-of-scope | n/a — matlab-runtime |  |
@@ -49,11 +49,17 @@ that `zonotope(matZ)` flattened (nothing unstacks it). A crash, and a wrong shap
 
 **`reduce` — the model.** Modelled as `Zonotope.reduceMatCora`, the argument count and the shape of
 the result. The theorems show `none` for three arguments and a shape other than `n × m` for four
-whenever `m ≥ 2` (read from the source, not run).
+whenever `m ≥ 2` (run in MATLAB, see Details).
+
+**`reduce` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): reduce(matZonotope,'girard',2) errors: Not enough input arguments (reduce line 36) (confirmed).
 
 **`vertices` — the shape.** For `n·m` a perfect square but `n ≠ m` the vertices come back with the
 wrong shape (`1 × 4` as `2 × 2`), otherwise `reshape` rejects the non-integer `cols` (`2 × 3`). The
 formalization lists the matrices of the right shape.
 
 **`vertices` — the model.** Modelled as `Zonotope.vec2matCora`, the shape of the result. The theorem
-shows it is not `n × m` for `n ≠ m` (read from the source, not run).
+shows it is not `n × m` for `n ≠ m` (run in MATLAB, see Details).
+
+**`vertices` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): vertices(matZonotope(zeros(1,4),ones(1,4))) returns 2 by 2 matrices, vertices(matZonotope(zeros(2,3),ones(2,3))) errors in vec2mat: Size arguments must be real integers (confirmed).
+
+**`replaceId` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): replaceId(matZonotope(zeros(2,2),ones(2,2,3)),`[1;2]`) errors: Unrecognized method, property, or field 'id' for class 'matZonotope' (confirmed).

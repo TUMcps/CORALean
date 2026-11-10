@@ -196,15 +196,20 @@ before the loop (l. 75-76) and rebuilt only `if isfield(params,'uTransVec')`, af
 `B = {0, 1, 1}`, `C{i} = 1`, `D{i} = 0`, `dt = 1`, `R0 = {0}`, `tFinal = 2` and the input `1`
 (`U = {1}`, or a `uTransVec` of `1`s) the run is `0, 0, 1` and CORA's step-`2` set `{0}`. The last
 output set, `Rout{end}`, likewise reads `C{steps}` and `D{steps}` where `simulate` uses
-`C{steps+1}`, `D{steps+1}` (not formalized). Read from the source, not run.
+`C{steps+1}`, `D{steps+1}` (not formalized). (run in MATLAB, see Details).
 
 **`reach` — cora-issue, the last output set.** CORA's `@linearSysDT/reach.m` checks the
 specification on `Rout{i}`, the output set at the beginning of step `i`, inside `for i = 1:steps`
 (l. 85, check l. 129). The last output set `Rout{end}` (time `tFinal`) is computed after the loop
 (l. 152) and returned unchecked, and nothing else checks it, so a specification violated only at
 `tFinal` gives `res = true`: `x⁺ = x + 1` from `{0}` with `dt = tFinal = 1` against the unsafe set
-`[0.5, 1.5]` reaches the unsafe state `1` (read from the source, not run).
+`[0.5, 1.5]` reaches the unsafe state `1` (run in MATLAB, see Details).
+
+**`reach` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): reach(linearSysDT({1,1,1},{0,1,1},[],{1,1,1},{0,0,0},1),...) with R0={0}, U={1}, tFinal=2 has time-point sets [0,0], [0,0], [0,0], x(2)=1 under u=1 is missed (confirmed).
 
 **`executeObserver` — what the observers read.** Every observer reads `A`, `B`, `C` off the system,
 and the strip-based and ellipsoidal ones also `c`, as CORA's `post` adds it. The gain `L`
 (`options.L`, or the gain function) is an argument, as in CORA.
+
+
+**`executeObserver` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).

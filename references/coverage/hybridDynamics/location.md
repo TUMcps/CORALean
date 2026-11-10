@@ -63,6 +63,8 @@ the tree's `checkFlow` keeps it. Here the offset enters through the combined inp
 loosens the test), the orientation of the normal by the invariant (`aux_adaptGuard`) is the
 caller's, and the level-set guard and the `taylm` nonlinear flow are not modelled.
 
+**`checkFlow` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
+
 **`guardIntersect_hyperplaneMap` — the real statement, continued.** `aux_systemParams`'s `B U + c`
 is `inputSet`, which adds `E W` (`params.W`, zero by default in CORA). The `nonlinearSys` branch of
 `aux_systemParams`, reduction techniques other than `'girard'` and the guard's extra inequality
@@ -127,6 +129,8 @@ and `d/‖n‖` are boxes projected onto by `ContSet.projectOnHyperplaneInterval
 theorem, `none` also where a float test (`‖tmax A‖ ≤ (η + 2)/2`, `Λ²` and `‖n‖` certified positive)
 fails.
 
+**`guardIntersect_hyperplaneMap` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
+
 **`guardIntersect_levelSet` — steps 2-3 and the outer statement.** Steps 2-3 as CORA: the reach
 sets' boxes, each tightened by a contractor (`tightenDomain`; its `'linear'` one is
 `LevelSet.tightenDomainLinear`, and the identity covers CORA's `try` failing for a `<=` guard), and
@@ -149,6 +153,8 @@ the dropped second-order terms. With two remaining variables the loop is empty a
 term of a guard such as `x_3 + x_1 x_2 = 0` is lost (read from the source, not run). Not formalized:
 the Lean guard intersection (`LevelSet/Real/Operations/GuardIntersectSolvable.lean`) takes the
 Taylor data as hypotheses and does not reproduce this loop.
+
+**`guardIntersect_levelSet` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
 
 **`guardIntersect_pancake` — time scaling.** Time scaling of Kochdumper and Althoff, one `let` per
 step of the code: the scaled system `F = ((nᵀx − d)/p) f` (`aux_scaledSystem`; CORA writes it to a
@@ -190,6 +196,8 @@ error in the scaling or the system construction instead of the intended `CORA:sp
 in MATLAB, and no wrong set is shown: the consequence is read as an error path, not a wrong reach
 set.
 
+**`guardIntersect_pancake` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
+
 **`reach` — cora-issue account.** CORA's `@location/reach.m` loops `for i=1:size(R,1)` over the rows
 of the reach set (several when the sets are split: `reachSet.initReachSetExact` returns one row per
 parallel set, as `@hybridAutomaton/reach.m` l. 155-156 reads them) and uses `R(i)` throughout, but
@@ -199,6 +207,8 @@ computes the jump time
 guard hit `R.timeInterval` is a comma-separated list and the indexing `.time{..}` errors in MATLAB.
 With one row it is harmless. A split nonlinear location that meets a guard stops, so
 `hybridAutomaton/reach` does not return. A MATLAB error, not a wrong value.
+
+**`reach` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
 
 **`guardIntersect_zonoGirard` — cora-issue account.** CORA's
 `@location/guardIntersect_zonoGirard.m`, `aux_robustProjection`, handles a basis column parallel to
@@ -237,3 +247,6 @@ and bisection of the sorted generators (`aux_bound_intersect_2D`, [Girard and Le
 Guernic](../../2008/girard-hscc-zonotope-hyperplane.md) `Alg. 3` and `Alg. 4`, not formalized) but
 the Lagrangian dual of the same linear program, minimised over the generators' slopes, proved to
 bound the cut (and equal to it by linear-programming duality, not proved).
+
+
+**`guardIntersect_zonoGirard` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).

@@ -59,6 +59,8 @@ set `zonotope(probZ, m)`, with the probability `erf(m/√2)ⁿ` every law puts o
 `ProbZonotope.sup` is exactly the supremum of the sup-norm over it. CORA's single algorithm ignores
 the mean zonotope's generators.
 
+**`interval` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): interval(probZonotope([0 1],0)) = [0,0] and sup = 0, the mean zonotope reaches 1 (confirmed).
+
 **`mtimes` — float layer.** outer, route a: the float `ProbZonotope` stores the mean zonotope in
 floats and the covariance as an interval matrix (`ProbZonotope.laws`: the laws `N(μ, Σ)` with `μ` in
 the zonotope and a positive semidefinite `Σ` in the interval). Numeric branch only, the matrix `M` a
@@ -79,6 +81,8 @@ cached covariance). Modelled as `ProbZonotope.mtimesIntervalCovCora` in one dime
 `ProbZonotope.sigmaCovCora`. The theorem shows `sigma` staying `1` for `T = 2` (read from the
 source, not run).
 
+**`mtimes` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): interval(2*eye(2))*probZonotope(`[0;0]`,eye(2)) has cov = eye(2), g = 2*eye(2), sigma(result) = eye(2) (confirmed).
+
 **`pyramid` — cora-issue account.** CORA's `@probZonotope/pyramid.m` "encloses a probabilistic
 zonotope by a pyramid . And determines the probability of intersection with a polytope `P`" and
 returns `Σᵢ (maxVal(i+1) - maxVal(i)) · V(zonotope(probZ, mᵢ) ∩ P)` with `maxVal(i)` the density on
@@ -96,6 +100,8 @@ Lebesgue measures of an intersection with an arbitrary set `P`, and no float vol
 exists (the zonotope `volume` is `proved` only, exact in two cases), and the density steps `maxVal`
 are Gaussian density constants (`exp`, `det Σ`) of the covariance.
 
+**`pyramid` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: no concrete input in the note (bound on a probability), not constructed.
+
 **`zonotope` — float layer.** outer: not CORA's eigen generators but a diagonal-generator box: the
 mean zonotope plus the box `[-ρ, ρ]` with `ρᵢ = m √(n Σᵢᵢ)`, rounded up at the covariance interval's
 upper diagonal (`confidenceRadius`, a Newton square root `sqrtUp` of `n` times the diagonal). The
@@ -105,3 +111,7 @@ confidence set by up to `√n` and ignores the correlations. Every law of the fl
 zonotope puts at least `P[-m ≤ N(0, 1) ≤ m]ⁿ` on it, for `0 < m` up to the float `m`
 (`zonotope_prob`; the exact set for each mean and covariance of a law lies in it, `zonotope_outer`).
 `m` is a float and the radius needs no matrix square root, eigendecomposition or `erf`.
+
+**`reduce` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): reduce(probZonotope(`[0 1;0 1]`,eye(2)),'althoff',1) errors CORA:wrongValue (second input argument) (confirmed).
+
+**`sup` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): sup(probZonotope([0 1],0)) = 0, the means reach norm 1 (confirmed).
