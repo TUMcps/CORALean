@@ -27,8 +27,6 @@
 \addplot[draw=none, forget plot] coordinates {(0,0) (0,19)};
 \addlegendimage{fill=CORAcolorReachSet}
 \addlegendentry{proved, at float}
-\addlegendimage{fill=CORAcolorReachSet!50!CORAcolorUnknown}
-\addlegendentry{at float, given a model}
 \addlegendimage{fill=CORAcolorReachSet!50!CORAcolorReachSet2}
 \addlegendentry{proved, real only}
 \addlegendimage{fill=CORAcolorReachSet2}
