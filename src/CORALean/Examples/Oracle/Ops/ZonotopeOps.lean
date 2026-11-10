@@ -1,4 +1,5 @@
 import CORALean.ContSet.Zonotope.Float.Instances
+import CORALean.ContSet.Zonotope.Float.Operations.ReduceAdaptive
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceCombastel
 import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirard
 import CORALean.Examples.Oracle.Dtype
@@ -11,9 +12,8 @@ Every result's `E` comes from the library's own sound float operation, reached t
 (alias `plusInterval`) is the one exception with no class of its own: `Z ⊞ I` is
 `{Z with E := Z.E ⊞ I}`, `⊞` `Interval`'s own sound `Plus` instance; since
 `toSet Z = nominal Z + Z.E` and `Z.E ⊞ I ⊇ Z.E + I` (`Interval.plus_outer`),
-`toSet Z + I ⊆ toSet {Z with E := Z.E ⊞ I}`, an informal claim. `reduce` goes around the
-`Reduce` class, fixed to Girard's rule: a `method` choice calls
-`Zonotope.reduceGirard`/`.reduceCombastel` directly, each with its own `_outer` theorem.
+`toSet Z + I ⊆ toSet {Z with E := Z.E ⊞ I}`, an informal claim. `reduce` calls
+`Zonotope.reduceGirard`/`.reduceCombastel`/`.reduceAdaptive` directly, each with its `_outer`.
 
 ## Inputs
 * `dops` – dtype operations
@@ -74,15 +74,18 @@ def handleLinComb (dops : DtypeOps 𝕋) (req : Json) : Except String (List (Str
   let Z2 ← parseZonotopeFixed dops.readExact dz.n (← field req "Z2")
   pure [("Z", printZonotope dops.showExact (LinComb.linComb dz.Z Z2))]
 
-/-- Handles `reduce`: reduces `Z` to the given order by the Girard or the Combastel method. -/
+/-- Handles `reduce`: reduces `Z` to the given order by the Girard or the Combastel method, or by
+CORA's adaptive rule at `diagpercent`. -/
 def handleReduce (dops : DtypeOps 𝕋) (req : Json) : Except String (List (String × Json)) := do
   let dz ← parseZonotope dops.readExact (← field req "Z")
-  let order ← natField req "order"
   let method ← strField req "method"
   let Z' ← match method with
-    | "girard" => pure (Zonotope.reduceGirard dz.Z order)
-    | "combastel" => pure (Zonotope.reduceCombastel dz.Z order)
-    | m => throw s!"reduce: `method` must be `girard` or `combastel`, not `{m}`"
+    | "girard" => pure (Zonotope.reduceGirard dz.Z (← natField req "order"))
+    | "combastel" => pure (Zonotope.reduceCombastel dz.Z (← natField req "order"))
+    -- CORA's `reduce(Z,'adaptive',diagpercent)`, `p` the square root's precision
+    | "adaptive" => pure (Zonotope.reduceAdaptive dz.Z
+        (← dops.readExact "diagpercent" (← scalarField req "diagpercent")) (← natField req "p"))
+    | m => throw s!"reduce: `method` must be `girard`, `combastel` or `adaptive`, not `{m}`"
   pure [("Z", printZonotope dops.showExact Z')]
 
 end CORALean.Oracle

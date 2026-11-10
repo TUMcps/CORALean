@@ -7518,11 +7518,11 @@
         "methods": 18,
         "proved": 3,
         "float": 6,
-        "conditional": 5,
+        "conditional": 6,
         "bound": 0,
         "not_yet": 1,
         "out_of_scope": 8,
-        "float_unconditional": 1,
+        "float_unconditional": 0,
         "needs_float": 3,
         "out_of_scope_by_reason": {
           "plotting/display": 2,
@@ -8547,7 +8547,7 @@
           "matlab-runtime": 5,
           "deprecated": 0
         },
-        "cora_issues": 3,
+        "cora_issues": 4,
         "findings": {
           "correct": 0,
           "underspecified": 0,
@@ -8879,8 +8879,8 @@
         "methods": 159,
         "proved": 21,
         "float": 73,
-        "conditional": 20,
-        "float_unconditional": 53,
+        "conditional": 21,
+        "float_unconditional": 52,
         "bound": 1,
         "not_yet": 4,
         "out_of_scope": 60,
@@ -8993,7 +8993,7 @@
         "not_yet": 45,
         "out_of_scope": 97,
         "needs_float": 18,
-        "cora_issues": 12,
+        "cora_issues": 13,
         "out_of_scope_by_reason": {
           "plotting/display": 27,
           "random/sampling": 3,
@@ -9015,13 +9015,13 @@
       "methods": 1696,
       "proved": 75,
       "float": 960,
-      "conditional": 24,
-      "float_unconditional": 936,
+      "conditional": 25,
+      "float_unconditional": 935,
       "bound": 52,
       "not_yet": 82,
       "out_of_scope": 527,
       "needs_float": 75,
-      "cora_issues": 174,
+      "cora_issues": 175,
       "out_of_scope_by_reason": {
         "plotting/display": 129,
         "random/sampling": 51,
@@ -9063,11 +9063,11 @@
     },
     "theorems": {
       "paper": 1892,
-      "float": 2305,
-      "float_conditional": 39,
+      "float": 2324,
+      "float_conditional": 44,
       "helper": 2253,
       "lemma": 3359,
-      "total": 9848,
+      "total": 9872,
       "examples": 133
     }
   }

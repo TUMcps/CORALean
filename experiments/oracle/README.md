@@ -142,6 +142,8 @@ The earlier zonotope ops `mtimes`, `mtimesInterval`, `plus`, `plusBox`/`plusInte
 `reduce`, `interval` and `enclosure` keep their unprefixed names, request and response unchanged,
 and are also `zonotope.<name>`. A name only one class serves works without its prefix (`sin`).
 A trailing `_` is dropped (`contains_`). A name both classes serve is refused until prefixed.
+Zonotope `reduce` takes `method` `girard` or `combastel` with `order`, or `adaptive` with
+`diagpercent` and `p` (CORA's `reduce(Z,'adaptive',diagpercent)`, `Zonotope.reduceAdaptive`).
 
 Conventions common to all of them:
 
@@ -521,6 +523,21 @@ sound dtypes.
 |---|---|---|
 | `nonlinearSys.reach` | `n`, `m`, `f`, `p`, `X0`, `U` (zonotope of the inputs, optional), `tStart`, `tFinal`, `timeStep`, `taylorTerms`, `zonotopeOrder`, `alg` (`lin`, `poly`), `errorOrder` (`poly`) | `NonlinearSys.FloatHessModel.reachAlgFloat`; `timeInterval`, the windows `R(tau_k)` |
 | `nonlinearSys.linReach` | as `reach` with `R` in place of `X0`, `tStart`, `tFinal` | `FloatHessModel.linReachFloat`, one step: the region check, the linearization at the centre, the Hessian remainder over the region; `timeInterval`, `timePoint` |
+| `nonlinearSys.reachAdaptive` | `n`, `m`, `f`, `p`, `R0`, `U`, `maxSteps`, `sets`, and the options below | `FloatHessModel.reachAdaptiveFloat`, CORA's `lin-adaptive` repaired; `steps`, `tensorOrders`, `t`, the last `timePoint`, every `timeInterval` when `sets` is true |
+| `nonlinearSys.linReachAdaptive` | as `reachAdaptive` with the state `R`, `i`, `t`, `timeStep`, `finitehorizon`, `varphi`, `errAdmHorizon`, `errAdmDeltatopt`, `tensorOrder`, `orders` (`null` for `Inf`), `minorder`, `zeroWidthDim`, `kappaDeltat`, `kappaAbstrerr`, `steps` (latest first); absent fields as `linReachAdaptiveInit` sets them | `FloatHessModel.linReachAdaptiveFloat`, one step with its tuning; the state after it, sets unreduced |
+| `nonlinearSys.linReachAdaptivePass` | `n`, `m`, `f`, `p`, `U`, `R`, `timeStep`, `taylorTerms`, `zonotopeOrder`, `tensorOrder`, `errorAdm`, `redFactor`, `enlarge`, `fuel` | `FloatHessModel.linReachAdaptivePassFloat`, one pass of the error loop; `timeInterval`, `timePoint`, `A`, `xs`, `Rmax`, `trueError`, `abstrerr`, `Gzero` |
+| `nonlinearSys.abstrErrAdaptive` | `n`, `m`, `f`, `p`, `U`, `xs`, `Rmax`, `tensorOrder`, `redFactor` | `FloatHessModel.abstrErrAdaptiveFloat`, the Hessian over the box of `Rmax` joined with `xs`; `VerrorDyn`, `trueError` |
+| `nonlinearSys.ordersAdaptive` | `n`, `m`, `f`, `p`, `U`, `A`, `xs`, `zeroWidthDim`, `Gzero` | `NonlinearSys.adaptiveOrdersFloat`; `orders` |
+| `nonlinearSys.optimalDeltatAdaptive` | `p`, `decrFactor`, `redFactor`, `rR`, `rerr1`, `deltat`, `varphimin`, `zetaP` | `NonlinearSys.optimalDeltatAdaptiveFloat`; `value` |
+| `nonlinearSys.varphiTotalAdaptive` | `p`, `varphi`, `varphiLim`, `prev`, `curr`, `decrFactor` | `NonlinearSys.varphiTotalFloat`; `value` |
+| `nonlinearSys.varphiEstAdaptive` | `n`, `p`, `horizon`, `deltat`, `abstrerrH`, `abstrerr`, `decrFactor`, `mask`, `minorder`, `varphiTol`, `varphiStep`, `fuel` | `NonlinearSys.varphiEstFloat`; `value` |
+
+The adaptive options are `tStart`, `tFinal`, `taylorTerms`, `zonotopeOrder`, `redFactor`,
+`decrFactor`, `zetaphi` (three entries), `zetaK`, `initFactor`, `enlarge`, `horizonTol`, `zeroTol`,
+`varphiTol`, `varphiStep`, `endTol`, `abortRatio` and `fuel`; absent ones are CORA's defaults, its
+doubles read as exact dyadics. Their soundness theorems (`Encloses.reachAdaptiveFloat_outer`,
+`linReachAdaptiveFloat_outer`, `linReachAdaptivePassFloat_outer`) take, besides `Encloses`, the
+hypothesis `HasFixedPointConfinement`, CORA's own fixed-point argument, not proved in Lean.
 
 `specification.` (`Ops/SpecificationOps.lean`):
 
@@ -597,7 +614,7 @@ Rows of the further classes not served, by reason:
   every constructor, which CORALean states as a `Set`.
 * `linearSys`: `reachBackward`, `reachInner`, `verify` (`LinearSys.verifyFloat` takes the reachable-set
   function and the distance routines as arguments), `initReach_adaptive`, `trajectoryError` and
-  `linearSysDT`. `nonlinearSys`: the adaptive and inner algorithms, and tensor order 3.
+  `linearSysDT`. `nonlinearSys`: the inner algorithms, and tensor order 3 of `reach`.
 * Hybrid automata: `pca` and `flow` bases, `guardIntersect` (grouping the hits by guard), `hybridAutomaton.reach`.
   `linParamSys`: `initReach` and `post` of CORA (mapping matrices), a matrix-zonotope `A` after the first window. They take witnesses or tuning records, or return a real-valued
   field (`LinParamSysDT.c`).

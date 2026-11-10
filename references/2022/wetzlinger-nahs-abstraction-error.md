@@ -271,4 +271,5 @@ These name the paper as a whole. A locator would put each in a row above.
 * [`InterpGainFloat.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/InterpGainFloat.lean)
 * [`LinReachAdaptiveCora1D.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/LinReachAdaptiveCora1D.lean)
 * [`LinReachAdaptiveCora1D.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Counterexamples/LinReachAdaptiveCora1D.lean)
+* [`OptimalDeltatAdaptiveFloat.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Operations/OptimalDeltatAdaptiveFloat.lean)
 * [`OrderStepFloatOuter.lean`](../../src/CORALean/ContDynamics/NonlinearSys/Theorems/OrderStepFloatOuter.lean)

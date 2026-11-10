@@ -121,7 +121,7 @@ contDynamics/nonlinDASys:outputSet	not run	witness not constructed in this pass 
 contDynamics/nonlinDASys:reach_adaptive	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
 contDynamics/nonlinParamSys:linearize	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
 contDynamics/nonlinearARX:reach	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
-contDynamics/nonlinearSys:linReach_adaptive	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/nonlinearSys:linReach_adaptive	confirmed	reach(nonlinearSys(f,1,1),...) for f(x)=1-(59049/39400)x+(468559/236400)x^6-(40951/27580)x^7, R0={0}, tFinal=200, alg 'lin-adaptive' takes the first step on [0,2] with Rti=[-0.0029067,4.28235e-09], and ode45 gives x(1/4)=0.208511, outside it
 contDynamics/nonlinearSys:reachInner	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
 contDynamics/nonlinearSysDT:executeObserver	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
 contDynamics/nonlinearSysDT:reach	confirmed	reach(nonlinearSysDT(@(x,u) x(1)+1+0*u(1),1,1,1),params,options,unsafe set [-0.5,0.5]) with R0={0} returns res = 1
@@ -163,6 +163,7 @@ specification/syntaxTree:sinh	not run	no run: the syntaxTree funHan was not cons
 specification/syntaxTree:tan	not run	no run: the syntaxTree funHan was not constructed
 others/intervalMatrix:expmDifferentAlgorithms	not run	not run: expmDifferentAlgorithms(intervalMatrix(-1,0),2,0) fails with 'Too many input arguments' in subsref when called from the harness (invocation problem, not the claimed behaviour)
 others/intervalMatrix:expmTaylorHornerScaling	not run	not run: same invocation problem as the expmDifferentAlgorithms row
+others/intervalMatrix:plus	confirmed	for M = intervalMatrix(zeros(2),zeros(2)), the supremum of M+interval(-1,1), of M+ones(2)*interval(-1,1) and of M+interval(-Inf,Inf) is the zero matrix, while that of M+intervalMatrix(zeros(2),ones(2)) is ones(2)
 others/intervalMatrix:randPoint	confirmed	randPoint(intervalMatrix(0,1),1000): 'standard' samples lie in [-0.9995,-0.0005] (the lower half), 'extreme' returns only +-0.5
 others/markovchain:build_reach	not run	no run: the markov chain build_reach was not constructed
 others/matPolytope:expm	confirmed	matPolytope(cat(3,[0 1;1 0],[0 1;0 1]))+matPolytope(zeros(2,2)) has 4 vertices, the sum has 2

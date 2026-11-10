@@ -84,6 +84,10 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.ZonotopeRadiusAttained
 public import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptLinPassFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptStepFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.AdaptRunFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrAdaptiveFloatMem
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachAdaptivePassFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachAdaptiveFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachAdaptiveFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.CenterAbstrStepFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.CenterAbstrRunFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LagrangeRemainderFloatOuter
