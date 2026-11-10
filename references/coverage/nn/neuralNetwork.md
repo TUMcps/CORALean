@@ -132,6 +132,8 @@ recompute it). outer: for every real `P` in `P`, weights and features in their i
 contains a matrix whose rows naming `v` are row `v` of the whole-graph chain. The normalisation
 itself is not recomputed at float.
 
+**`reduceGNNForNode` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: no run: needs a GNN with a graph.
+
 **`verify` — the zonotack refinement.** `'zonotack'` with `falsification_method = 'zonotack'`
 (Koller et al. ICLR 2026, Alg. 1): `SetBasedNet.verify`, real layer only, on zonotopes: step 1 of
 `verify.m`, the `unknown` test, is `inter_ineqs_eq_empty_of_row` (Eq. 8). Step 2.1, the `'zonotack'`
@@ -147,3 +149,5 @@ it `refinement_max_iter` times with re-propagation, safe-set (`safeSet`) and uni
 the interval center of `options.nn.interval_center`, the ReLU tightening constraints, the input-side
 polytope `A_in`, `b_in`, batching, GPU and the timeout, and the `'fgsm'` and `'center'`
 falsifications.
+
+**`nonlinearSysDT` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: no run: needs an elementwise affine network converted by nonlinearSysDT.

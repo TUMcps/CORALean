@@ -73,6 +73,8 @@ input (read from the source, not run).
 as printed (`ParallelHybridAutomaton.feedInputCora`, the symbolic dependency test a parameter), with
 a counterexample theorem.
 
+**`mergeFlows` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
+
 **`mergeTransitionSets` — what the caller supplies.** The labels and their participants are data the
 caller supplies (`SyncLabels`), as CORA computes them in `priv_labelOccurrences`. The guard
 conjunction is `SyncLifting.guardAll`, supplied as `Lifting` is (`boxSyncLifting`). One transition
@@ -98,6 +100,8 @@ comma-separated list expands to six or more arguments and the constructor's
 the initial set (l. 61-73). The omitted `aux_outputSet` is harmless: the merged flow has the
 identity output. A MATLAB error, not a wrong value (read from the source, not run).
 
+**`reach` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
+
 **`mergeInvariants` — the guarantee.** Guarantee is the structure field `Lifting.mem_inv` (a point
 whose blocks lie in the component invariants lies in the lifted one), not a separate theorem.
 
@@ -113,3 +117,5 @@ guard region. With the documented test only the merged labels' guards are cut. F
 computes the condition (`invariantCutCora`) beside the documented one (`invariantCutDocumented`)
 with a counterexample theorem at an unlabeled polytope guard. `mergeInvariants` makes no cut, so the
 product's invariant is the uncut one and `IsRun.toProduct` holds for it.
+
+**`simulateRandom` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).

@@ -58,6 +58,8 @@ printed, for an integer exponent (`nthroot(0,exp) = Inf` for `exp < 0` is not mo
 counterexample theorem. The formalized `SyntaxTree.power` takes a natural exponent, where the branch
 is sound (`power_sound`).
 
+**`power` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: no run: the syntaxTree funHan was not constructed.
+
 **`sinh` — the cut target.** `sinh` takes every real value, and `aux_sinh_` then applies `asinh` to
 the cut target. `backpropagation` hands the node a target inside the node's own interval (every
 `funHan` returns `intPrev & ...`), so a target beyond `[-1,1]` is cut and the contraction loses the
@@ -70,6 +72,8 @@ run).
 is sound (`funHanSinh_sound`, `isSound_sinh`). `sinhCora` is the printed one and
 `sinhCora_counterexample` the lost zero.
 
+**`sinh` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: no run: the syntaxTree funHan was not constructed.
+
 **`tan` — the cut target.** `tan` takes every real value, so a target beyond `[-1,1]` is cut and the
 contraction loses the solutions with `tan x > 1`. For `tan(x1) - x2 = 0` over `[0,pi/3] x [0,2]`,
 the target of the `tan` node is `[0,sqrt 3]`, cut to `[0,1]`, and the periodic search returns
@@ -78,3 +82,6 @@ source, not run).
 
 **`tan` — the Lean nodes.** `tan` is the node with the line removed (`tan_sound`, `isSound_tan`).
 `tanCora` is the printed one and `tanCora_counterexample` the lost zero.
+
+
+**`tan` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: no run: the syntaxTree funHan was not constructed.

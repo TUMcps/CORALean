@@ -26,7 +26,7 @@ CORA methods of `contSet/@spectraShadow/`, one row each, and where CORALean answ
 | `isBounded` | float | [`SpectraShadow.isBounded`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/IsBounded.lean), [`SpectraShadow.isBounded_iff`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/IsBoundedIff.lean), [`SpectraShadow.pointExample_isBounded`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/PointExampleIsBounded.lean) · float: [`SpectraShadow.isBounded`](../../../src/CORALean/ContSet/SpectraShadow/Float/Operations/IsBounded.lean), [`SpectraShadow.isBounded_sound`](../../../src/CORALean/ContSet/SpectraShadow/Float/Theorems/IsBoundedSound.lean) | cora-issue — the loop over the axis supports `±eᵢ` is `isBounded` exactly (`isBounded_iff`: finite supports are boundedness of the set), but CORA's `all_Ai_zero` shortcut makes it `false` for the bounded point `{0}` (`A₀ = 1`, `A₁ = 0`, `G = 0`; `pointExample_isBounded`), see `supportFunc_`; the cached `bounded.val` and the `isemptyobject` shortcut are not modelled. float: route a, sufficient only — `true` when the `2n` axis dual certificates all check (the certified interval hull exists), which proves the set bounded; `false` says nothing Witness: [`SpectraShadow.pointExample_isBounded`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/PointExampleIsBounded.lean). |
 | `isFullDim` | float | [`SpectraShadow.isFullDim_iff_affineSpan`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/IsFullDimIffAffineSpan.lean), [`SpectraShadow.not_isFullDim_of_G_zero`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/NotIsFullDimOfGZero.lean), [`SpectraShadow.IsFullDimShortcutCora`](../../../src/CORALean/ContSet/SpectraShadow/Real/Counterexamples/IsFullDimShortcutCora.lean), [`SpectraShadow.fullDimShortcut_pointExample_counterexample`](../../../src/CORALean/ContSet/SpectraShadow/Real/Counterexamples/FullDimShortcutPointExample.lean), [`SpectraShadow.fullDimShortcut_thinLine_counterexample`](../../../src/CORALean/ContSet/SpectraShadow/Real/Counterexamples/FullDimShortcutThinLine.lean) · float: [`SpectraShadow.isFullDim`](../../../src/CORALean/ContSet/SpectraShadow/Float/Operations/IsFullDim.lean), [`SpectraShadow.isFullDim_sound`](../../../src/CORALean/ContSet/SpectraShadow/Float/Theorems/IsFullDimSound.lean) | cora-issue — CORA's `@spectraShadow/isFullDim.m` answers `false` and caches the shadow as empty whenever `norm(G, 'fro') < 1e-8`, although the shadow can be nonempty and full-dimensional; Formalized: full-dimensional is a nonempty interior, equivalently the affine hull is everything for a convex shadow. The shortcut as the model `SpectraShadow.IsFullDimShortcutCora`, with counterexample theorems for the point and for the thin line (each a nonempty shadow, the second with an interior, on which the shortcut fires). ([`ContSet.IsFullDim`](../../../src/CORALean/ContSet/ContSet/Definitions/IsFullDim.lean)); with `G = 0` the shadow has no interior; CORA's `norm(G, 'fro') < 1e-8` shortcut is not modelled. Details below. |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
-| `mtimes` | float | [`SpectraShadow.mtimes`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/Mtimes.lean), [`SpectraShadow.mtimes_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/MtimesExact.lean) · float: [`SpectraShadow.mtimes`](../../../src/CORALean/ContSet/SpectraShadow/Float/Operations/Mtimes.lean), [`SpectraShadow.mtimes_outer`](../../../src/CORALean/ContSet/SpectraShadow/Float/Theorems/MtimesOuter.lean) | exact at ℝ for a real matrix; float is outer. cora-issue — CORA's `@spectraShadow/mtimes.m` copies the `fullDim` flag to `M * SpS` under a rank test that is wrong for `m > n`, so the image is flagged full-dimensional without an interior; the theorem shows the flag `true` and the axis without interior point (read from the source, not run). ([`SpectraShadow.mtimesFullDim_cora_counterexample`](../../../src/CORALean/ContSet/SpectraShadow/Real/Counterexamples/MtimesFullDimCora.lean)). Details below. |
+| `mtimes` | float | [`SpectraShadow.mtimes`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/Mtimes.lean), [`SpectraShadow.mtimes_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/MtimesExact.lean) · float: [`SpectraShadow.mtimes`](../../../src/CORALean/ContSet/SpectraShadow/Float/Operations/Mtimes.lean), [`SpectraShadow.mtimes_outer`](../../../src/CORALean/ContSet/SpectraShadow/Float/Theorems/MtimesOuter.lean) | exact at ℝ for a real matrix; float is outer. cora-issue — CORA's `@spectraShadow/mtimes.m` copies the `fullDim` flag to `M * SpS` under a rank test that is wrong for `m > n`, so the image is flagged full-dimensional without an interior; the theorem shows the flag `true` and the axis without interior point (run in MATLAB, see Details). ([`SpectraShadow.mtimesFullDim_cora_counterexample`](../../../src/CORALean/ContSet/SpectraShadow/Real/Counterexamples/MtimesFullDimCora.lean)). Details below. |
 | `or` | float | [`SpectraShadow.or`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/Or.lean), [`SpectraShadow.or_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/OrExact.lean) · float: [`SpectraShadow.or`](../../../src/CORALean/ContSet/SpectraShadow/Float/Operations/Or.lean), [`SpectraShadow.or_outer`](../../../src/CORALean/ContSet/SpectraShadow/Float/Theorems/Basic.lean) | `convHull_`; exact over ℝ, outer at float |
 | `plot` | out-of-scope | n/a — plotting/display |  |
 | `plus` | float | [`SpectraShadow.plus`](../../../src/CORALean/ContSet/SpectraShadow/Real/Operations/Plus.lean), [`SpectraShadow.plus_exact`](../../../src/CORALean/ContSet/SpectraShadow/Real/Theorems/PlusExact.lean) · float: [`SpectraShadow.plus`](../../../src/CORALean/ContSet/SpectraShadow/Float/Operations/Plus.lean), [`SpectraShadow.plus_outer`](../../../src/CORALean/ContSet/SpectraShadow/Float/Theorems/PlusOuter.lean) |  |
@@ -47,14 +47,14 @@ CORA methods of `contSet/@spectraShadow/`, one row each, and where CORALean answ
 infeasible inherently. It can: the equality `G β + c == p` has no solution for a point `p` outside
 `c + range G`, and the slack in the inequality does not help. The point `(1, 0)` and the line
 `{(t, t)}` of the `'fullspace'` row: the program is infeasible and CORA answers `true` for a point
-not in the set (read from the source, not run). The bug propagates: `randPoint_` with
+not in the set (run in MATLAB, see Details). The bug propagates: `randPoint_` with
 `'uniform:ballWalk'` (`@spectraShadow/randPoint_.m:235`) rejects candidates `y` by
 `SpS0_trans.contains(y,'exact',1e-8)` and returns the accepted ones, so a false `true` returns a
 point outside the set. For a degenerate shadow the candidate direction is `X*direction`, with `X`
 the subspace of `SpS`, while the walk is on `diag(l.^(-1))*(SpS - c)`. For the line `{(t, 2t)}` the
 box half-widths are `l = (a, 2a)`, the walked set is the line `{(t, t)}` and `X` spans `(1, 2)`, so
 every candidate with a nonzero step leaves the line, the equality is infeasible, and `contains_`
-accepts it (read from the source, not run).
+accepts it (run in MATLAB, see Details).
 
 **`contains_` — float layer.** route a, numeric operand, sound only — the SDP solve is the caller's
 certificate `β`, checked: stored matrices symmetric, `A₀ + Σ βₗ Aₗ` diagonally dominant with every
@@ -62,13 +62,15 @@ entry bracketed by directed roundings (hence positive semidefinite, `posSemidef_
 and `p - c - G β` inside the error box. `true` proves membership, `false` refutes nothing (a
 semidefinite but not dominant combination).
 
+**`contains_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): contains(spectraShadow([1 0],`[0;0]`,`[1;1]`),`[1;0]`) returns 0 here: the default solver sedumi is not installed. The same program with SDPT3 reports diagnostics.problem=1 (infeasible), the case the code turns into t=0 and true, not confirmed through contains itself (partly confirmed).
+
 **`isFullDim` — cora-issue account.** CORA's `@spectraShadow/isFullDim.m` (l.63) answers `false` as
 soon as `norm(SpS.G, 'fro') < 1e-8` and writes `fullDim.val = false`, `bounded.val = true` and
 `emptySet.val = true` into the object's cache (a `handle`, so the write outlives the call). The test
 is on the generator matrix alone: a point shadow (`A₀ = 1`, `A₁ = 0`, `G = 0`) is nonempty, and
 `A₀ = 1`, `A₁ = 0`, `G = 10⁻⁹` in `ℝ¹` is all of `ℝ¹`, full-dimensional, yet both are cached as
 empty. `representsa_(SpS, 'emptySet')` returns the cache before computing anything, and `cartProd_`
-returns the empty shadow for an operand it holds as empty (read from the source, not run).
+returns the empty shadow for an operand it holds as empty (run in MATLAB, see Details).
 
 **`isFullDim` — float layer.** route a, a certificate in place of CORA's semidefinite programs
 (`priv_findFeasiblePointSpectrahedron`, `aux_maxNormPerpendicularSpectrahedron`). The solver result
@@ -78,6 +80,8 @@ implies a nonempty interior of the float shadow, error box included). The caller
 box `β ± δ`. The test checks every matrix of the combination over it diagonally dominant (hence
 positive semidefinite), the generators certified to reach a ball (so `β ↦ c + G β` is open), and the
 error box ordered. `false` says nothing.
+
+**`isFullDim` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): isFullDim(spectraShadow([1 0],0,1e-9)) returns 0 for the thin segment (confirmed).
 
 **`mtimes` — the float version.** A float `M * G` cannot be absorbed (a generator multiplies an
 unbounded `β`), so the float version never multiplies two stored matrices: the point `c + Gβ`
@@ -96,17 +100,21 @@ cached flag; the `bounded` line is right: the image of a bounded set under any `
 though CORA states it only under the same test). Modelled as `SpectraShadow.mtimesFullDimCora`, the
 flag from the rank test.
 
+**`mtimes` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): isFullDim(`[1;0]`*spectraShadow.Inf(1)) returns 1 (confirmed).
+
 **`representsa_` — cora-issue account.** CORA's `@spectraShadow/representsa_.m` answers
 `'fullspace'` by `representsa_(interval(SpS),'fullspace',tol)`, true for every shadow whose axis
 supports are infinite in both directions, but such a set need not be the whole space: the line
 `{(t, t)}` (`A₀ = I`, `A₂ = diag(1, 0)`, `G₁ = (1, 1)`, `G₂ = 0`) has an interval hull `ℝ²` and CORA
-answers `true` (read from the source, not run).
+answers `true` (run in MATLAB, see Details).
 
 **`representsa_` — float layer.** route a, sound only, types `emptySet`, `point` and `origin` — an
 infeasibility certificate `Y` (`⪰ 0` by dominance, `tr(Aᵢ Y) = 0` and `tr(A₀ Y) < 0` exactly in ℚ)
 proves `∅`. A certified interval hull with equal corners whose corner is a certified member
 (`containsPoint`) proves a singleton, at corner `0` the origin. `'fullspace'` (CORA's unboundedness
 test) has no float form, and `false` decides nothing.
+
+**`representsa_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): representsa(spectraShadow([1 0],`[0;0]`,`[1;1]`),'fullspace') returns 1 for the line {(t,t)} (confirmed).
 
 **`supportFunc_` — the certificate.** CORA solves the semidefinite program, here the certificate is
 data.
@@ -116,9 +124,13 @@ returns `-s * Inf` (`+Inf` for `'upper'`) as soon as every `Aᵢ` is zero and `e
 `G` is. With every `Aᵢ` zero the set is `c + range G`, so the support in a direction `d` with
 `dᵀG = 0` (in particular for `G = 0`) is the finite `dᵀc`. The point `{0}` given by `A₀ = 1`,
 `A₁ = 0`, `G = 0` has support `0` and CORA says `+Inf`, so its `isBounded` (a loop over the axis
-supports) is `false` for a bounded set (read from the source, not run).
+supports) is `false` for a bounded set (run in MATLAB, see Details).
 
 **`supportFunc_` — float layer.** route a, upper bound only, as over ℝ — the dual certificate `Y` is
 checked: symmetric and diagonally dominant (so `⪰ 0`) by `le`, and `tr(Aᵢ Y) = -aᵀ Gᵢ` decided
 exactly in ℚ (`ToRat`). The bound `aᵀ c + tr(A₀ Y)` plus the error box's largest `aᵀ e`, rounded up,
 holds for every point (weak duality). No equality claimed.
+
+**`supportFunc_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): supportFunc(spectraShadow([1 0],0,0),1,'upper') returns Inf for the point {0} (confirmed).
+
+**`isBounded` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): isBounded(spectraShadow([1 0],0,0)) (the point {0}) returns 0 (confirmed).

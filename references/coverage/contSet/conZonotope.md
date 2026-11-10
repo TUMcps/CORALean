@@ -33,7 +33,7 @@ CORA methods of `contSet/@conZonotope/`, one row each, and where CORALean answer
 | `isIntersecting_` | float | [`IsDisjoint`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean), [`isDisjointBoxBoxOuter`](../../../src/CORALean/Specification/Instances.lean), [`step_disjointBox_sound`](../../../src/CORALean/Specification/Instances.lean), [`IntervalOuter`](../../../src/CORALean/ContSet/Conversion/Float/Interfaces.lean), [`ConZonotope.interval`](../../../src/CORALean/ContSet/Conversion/Float/Operations/Basic.lean), [`ConZonotope.isDisjointLP`](../../../src/CORALean/ContSet/ConZonotope/Float/Operations/IsDisjointLP.lean), [`ConZonotope.isDisjointLP_sound`](../../../src/CORALean/ContSet/ConZonotope/Float/Theorems/IsDisjointLPSound.lean) | route b — `IsDisjoint (ConZonotope 𝕋 (Vec 𝕋 n)) (S n)` for every `S` with an `IntervalOuter` instance, the negation of `isIntersecting_`, generic over `𝕋`: CORA's `'approx'` branch, the two interval hulls tested for separation in one coordinate (`ltStrict`). One-directional: `true` proves no intersection (disjoint boxes, `isDisjoint_sound`); `false` says nothing, overlapping boxes do not make the sets meet, so an "intersecting" answer is approx only. CORA's default `'exact'` branch (`~representsa_(and_(cZ,S,'exact'),'emptySet')`, a linear program) only one-sidedly, for two constrained zonotopes: `ConZonotope.isDisjointLP` solves the stacked program at ℚ for a separating direction and checks it with two `ConZonotope.boundDot` bounds (`isDisjointLP_sound : isDisjointLP cZ₁ cZ₂ = true → Disjoint`); Not covered: a point argument, `tol`. Details below. |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
 | `isequal` | float | [`ConZonotope.isequal`](../../../src/CORALean/ContSet/ConZonotope/Real/Operations/Isequal.lean), [`ConZonotope.isequal_construct`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/IsequalConstruct.lean) · float: [`ConZonotope.isequal`](../../../src/CORALean/ContSet/ConZonotope/Float/Operations/Isequal.lean), [`ConZonotope.isequal_sound`](../../../src/CORALean/ContSet/ConZonotope/Float/Theorems/IsequalSound.lean), [`HPolytope.isequal`](../../../src/CORALean/ContSet/HPolytope/Float/Operations/Isequal.lean), [`HPolytope.isequal_nominal`](../../../src/CORALean/ContSet/HPolytope/Float/Theorems/IsequalNominal.lean) | sound, not exact: tolerance `0` (CORA's default is `1e-12`) and a structural test, the same center, the same generators in the same order and the same constraint polytope. CORA also compares `[G; A]` and `[A b]` up to column order, handles the empty and point cases and falls back to comparing vertices, none of which is modelled. Equal data denote the same set, the converse fails; an instance of `Isequal`; Prop-valued, not runnable. route a — the float test is certified when `true` only (each stored number by `le` in both directions) and also compares the error box and the constraint polytope entry by entry; `isequal_sound` says `true` implies equal denotations |
-| `lift_` | float | [`Reindex`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean), [`ConZonotope.map_exact`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/MapExact.lean) · float: [`ConZonotope.reindex`](../../../src/CORALean/ContSet/ConZonotope/Float/Operations/Reindex.lean), [`ConZonotope.reindex_exact`](../../../src/CORALean/ContSet/ConZonotope/Float/Theorems/ReindexExact.lean) | CORA's `lift_` is `project` when `length(proj) == N` (a permutation of the coordinates) and throws `notDefined` otherwise, since new dimensions would be unbounded; `Reindex` is exactly the permutation case, an equality `reindexLin e '' construct s`. cora-issue — CORA's `@zonotope/lift_.m`, `@conZonotope/lift_.m`, `@zonoBundle/lift_.m`, `@capsule/lift_.m` and `@ellipsoid/lift_.m` are the same four lines: `if length(proj) == N, S = project(S,proj)`, else `CORA:notDefined`. Modelled once, for the zonotope, as `Zonotope.liftCora`; the theorem shows the point `(1,2,3)` and `proj = [2 3 1]` (read from the source, not run). ([`Zonotope.lift_cora_counterexample`](../../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/LiftCora.lean)). Details below. |
+| `lift_` | float | [`Reindex`](../../../src/CORALean/ContSet/ContSet/Interfaces.lean), [`ConZonotope.map_exact`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/MapExact.lean) · float: [`ConZonotope.reindex`](../../../src/CORALean/ContSet/ConZonotope/Float/Operations/Reindex.lean), [`ConZonotope.reindex_exact`](../../../src/CORALean/ContSet/ConZonotope/Float/Theorems/ReindexExact.lean) | CORA's `lift_` is `project` when `length(proj) == N` (a permutation of the coordinates) and throws `notDefined` otherwise, since new dimensions would be unbounded; `Reindex` is exactly the permutation case, an equality `reindexLin e '' construct s`. cora-issue — CORA's `@zonotope/lift_.m`, `@conZonotope/lift_.m`, `@zonoBundle/lift_.m`, `@capsule/lift_.m` and `@ellipsoid/lift_.m` are the same four lines: `if length(proj) == N, S = project(S,proj)`, else `CORA:notDefined`. Modelled once, for the zonotope, as `Zonotope.liftCora`; the theorem shows the point `(1,2,3)` and `proj = [2 3 1]` (run in MATLAB, see Details). ([`Zonotope.lift_cora_counterexample`](../../../src/CORALean/ContSet/Zonotope/Real/Counterexamples/LiftCora.lean)). Details below. |
 | `minkDiff` | float | [`ConZonotope.minkDiffV`](../../../src/CORALean/ContSet/ConZonotope/Real/Operations/MinkDiffV.lean), [`ConZonotope.minkDiffV_exact`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/MinkDiffVExact.lean) · float: [`ConZonotope.minkDiffV`](../../../src/CORALean/ContSet/ConZonotope/Float/Operations/MinkDiffV.lean), [`ConZonotope.minkDiffV_outer`](../../../src/CORALean/ContSet/ConZonotope/Float/Theorems/MinkDiffVOuter.lean) | route a — outer only: `Z ⊖ ⟨v⟩_V ⊆` result; each translate the float `Zonotope.plus` with the point `-vᵢ`, each cut the float `intersection` |
 | `mtimes` | float | [`ConZonotope.map`](../../../src/CORALean/ContSet/ConZonotope/Real/Operations/Map.lean), [`ConZonotope.mtimes`](../../../src/CORALean/ContSet/ConZonotope/Real/Operations/Mtimes.lean), [`ConZonotope.mtimesIntervalMat`](../../../src/CORALean/ContSet/ConZonotope/Real/Operations/MtimesIntervalMat.lean), [`ConZonotope.map_exact`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/MapExact.lean), [`ConZonotope.mtimes_eq_map`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/Basic.lean), [`ConZonotope.mtimes_exact`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/Basic.lean), [`ConZonotope.mtimesIntervalMat_outer`](../../../src/CORALean/ContSet/ConZonotope/Real/Theorems/MtimesIntervalMatOuter.lean) · float: [`ConZonotope.mtimes`](../../../src/CORALean/ContSet/ConZonotope/Float/Operations/Mtimes.lean), [`ConZonotope.mtimes_outer`](../../../src/CORALean/ContSet/ConZonotope/Float/Theorems/MtimesOuter.lean) | float: `P` copied, center and generators rounded, the rounding paid into the error box as `Zonotope.mtimes` does; `mtimes` at an interval matrix is real only |
 | `or` | bound | [`ConZonotope.linComb`](../../../src/CORALean/ContSet/ConZonotope/Real/Operations/LinComb.lean), [`LinComb.union_subset_linComb`](../../../src/CORALean/ContSet/ContSet/Theorems/Basic.lean) · float: [`ConZonotope.linComb`](../../../src/CORALean/ContSet/ConZonotope/Float/Operations/LinComb.lean), [`ConZonotope.union_subset_linComb`](../../../src/CORALean/ContSet/ConZonotope/Float/Theorems/UnionSubsetLinComb.lean) | different algorithm: CORA's default `'linprog'` (or `'tedrake'`) computes a constrained zonotope enclosing the union by optimisation; the Lean `linComb` is a coarser outer enclosure of the union of two nonempty constrained zonotopes; the pieces that exist, not linked because they are not CORA's method: `ConZonotope.linComb`, `LinComb.union_subset_linComb` |
@@ -74,6 +74,8 @@ the `return` (zonotope l. 168, conZonotope l. 151) with `res` never assigned, so
 `contains(zonotope([0;0]), zonotope([0;0],[1;0]))` errors where `false` is the answer (read from the
 source, not run).
 
+**`contains_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): contains(conZonotope(1,zeros(1,0)),zonotope(1,1)) errors: Output argument "res" (and possibly others) not assigned a value in conZonotope/contains_ (confirmed).
+
 **`cubMap` — cora-issue account.** CORA's `@conZonotope/cubMap.m` (`aux_cubMapSingle`,
 `aux_cubMapMixed`) maps the generators through `polyZonotope/cubMap` and rebuilds the constraint
 matrix from the linear monomials, the columns of the exponent matrix with exponent sum `1`, writing
@@ -90,12 +92,14 @@ source, not run).
 generators of `dependent`, the operand's constraints written on the linear coordinates `(0, 0, j)`
 by `HPolytope.lift_`, outer.
 
+**`cubMap` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): cubMap(conZonotope(`[1;0]`,eye(2),[1 1],0),T) with T{1,1}=`[1 0;0 0]`, the others 0: result has c=`[2.5;0]`, G=`[1 3 1.5;0 0 0]`, A=[0 1 0], supportFunc in e1 = 5, where the image of x1 is [0,8] (confirmed).
+
 **`isFullDim` — cora-issue account.** CORA's `@conZonotope/isFullDim.m` returns
 `rank(G null(A)) == n` for a constrained zonotope with constraints, which is necessary but not
 sufficient for a nonempty interior: it never reads `b` or the unit box, and `|ξ| ≤ 1` together
 with `A ξ = b` can pin the factors. For `c = 0`, `G = [1 0]`, `A = [1 1]`, `b = 2` in `ℝ¹` the only
 feasible `ξ` is `(1, 1)`, so the set is the point `{1}`, yet `null(A)` is spanned by `(1, -1)`,
-`G (1, -1) = 1` has rank `1 = n`, and CORA answers `true` (read from the source, not run).
+`G (1, -1) = 1` has rank `1 = n`, and CORA answers `true` (run in MATLAB, see Details).
 
 **`isFullDim` — float layer.** route a, sound only, and a certificate of the real property
 `ContSet.IsFullDim`, not of CORA's rank test (necessary only, see above). It needs a coefficient
@@ -105,6 +109,8 @@ point `β₀` the caller proposes, strictly inside the unit box and every constr
 (`ConZonotope.aux_box_subset`). Equality rows are slabs `Ae β ∈ be`, so need `be.inf < be.sup`. The
 `FullDimTest` instance tries `β₀ = 0`. `true` proves an interior point (with the error box
 nonempty). `false` refutes nothing.
+
+**`isFullDim` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): isFullDim(conZonotope(0,[1 0],[1 1],2)) returns 1 for the single point {1} (confirmed).
 
 **`isIntersecting_` — what `true` and `false` say.**
 `isDisjoint_sound : isDisjoint t s = true → Disjoint (construct s) (construct t)` is the
@@ -119,6 +125,8 @@ read it. `project(S,dims)` takes state `dims(i)` for state `i`, the inverse perm
 agree only where `proj` is its own inverse. `lift(zonotope([1;2;3]),3,[2 3 1])` is the point
 `(2;3;1)`, where the lift moves the states to `(3;1;2)` and `lift(interval([1;2;3]),3,[2 3 1])`
 gives `(3;1;2)`. A silent wrong answer for every non-involutive permutation, in five classes.
+
+**`lift_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): center(lift(conZonotope(`[1;2;3]`),3,[2 3 1])) = `[2;3;1]`, while the interval gives `[3;1;2]` (confirmed).
 
 **`reduce` — the order.** CORA scales the requested order `o` to `max(1, (o n + mₑ)/(n + mₑ))` for
 the lifted zonotope in `ℝ^{n + mₑ}`, and Girard's rule there reduces above `(n + mₑ)` times that
@@ -147,9 +155,11 @@ empty. `false` refutes nothing (a nonempty set and an exhausted pivot budget ali
 be a hyperplane only in one dimension. In one dimension a hyperplane `{x | a x = b}`, `a ≠ 0`, is a
 single point, so every one-dimensional conZonotope of positive extent is wrongly accepted:
 `conZonotope(0,1)` with no constraint, the interval `[-1,1]` gives `true`, the right answer is
-`false`. A wrong answer, not unsound (read from the source, not run; `@interval/representsa_.m`, l.
+`false`. A wrong answer, not unsound (run in MATLAB, see Details); `@interval/representsa_.m`, l.
 150, counts zero-width dimensions and is right in 1-D). Formalized as the code computes it
 (`ConZonotope.representsaHyperplaneCora`) with a counterexample theorem.
+
+**`representsa_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): representsa(conZonotope(0,1),'hyperplane') returns 1 for the interval [-1,1] (confirmed).
 
 **`supportFunc_` — float layer.** route a — float: upper bound only, never the exact value: the
 exact simplex at ℚ on the floats' own values (`HPolytope.dualWeights`, via `ToRat`) proposes row
@@ -166,5 +176,8 @@ has no solution and the set is empty, whose support function is `-Inf`. CORA ret
 value (`1` for `c = 0`, `G = [1]`, `A = [0]`, `b = [1]`, `dir = 1`). The public `supportFunc`
 answers `-Inf` only when `supportFunc_` throws, which it does not here. A wrong answer, not unsound:
 the callers read (`interval.m` compacts zero rows first; `contains_.m`, l. 690) do not turn it into
-a false verdict (read from the source, not run). Formalized as the code computes it for `'upper'`
+a false verdict (not reproduced, see Details). Formalized as the code computes it for `'upper'`
 (`ConZonotope.supportFuncUpperCora`, the linear program a parameter) with a counterexample theorem.
+
+
+**`supportFunc_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): **not reproduced**: supportFunc_(conZonotope(0,1,0,1),1,'upper') (A=0, b=1) does not return 1: it aborts with MATLAB:lang:StackOverflow (interval(dir'*cZ) recurses), with two generators (conZonotope(0,[1 1],[0 0],1)) the same, the public supportFunc returns -Inf.

@@ -1,0 +1,16 @@
+here = fileparts(fileparts(mfilename('fullpath'))); addpath(here); addpath([here '/em']);
+R('ls isequal', 'syms x1 x2; a=levelSet(x1,[x1;x2],''<=''); b=levelSet(x2,[x1;x2],''<=''); out=num2str(isequal(a,b));');
+R('pZ contains', 'pZ=polyZonotope(0,[2 1],[],[0 1]); out=sprintf(''contains(pZ,0,approx)=%d (set is [1,3])'',contains(pZ,0,''approx''));');
+R('pZ convHull', 'pZ=polyZonotope([0;0;0],eye(3),[],[1 2 4]); a=convHull(pZ); b=linComb(pZ,pZ); out=sprintf(''equal c,G,E,GI: %d %d %d %d'',isequal(a.c,b.c),isequal(a.G,b.G),isequal(a.E,b.E),isequal(a.GI,b.GI));');
+R('pZ interval bern', 'out=char(string(interval(polyZonotope(1,1,[],1),''bernstein'')));');
+R('pZ isFullDim', 'out=num2str(isFullDim(polyZonotope([0;0],eye(2),[],[1 2])));');
+R('pZ isIntersecting', 'out=num2str(isIntersecting(polyZonotope([0;0],eye(2),[],[1 1;1 1]),interval([0;0],[1;1])));');
+R('pZ isPolytope', 'out=num2str(isPolytope(polyZonotope(0,1,[],2)));');
+R('pZ representsa', 'out=num2str(representsa(polyZonotope([1;2]),''capsule''));');
+R('pZ sum', 'r=sum(polyZonotope(0,zeros(1,0),[],zeros(0,0)),{polyZonotope(1),polyZonotope(2)}); out=mat2str(r.c);');
+R('pZ volume', 'out=num2str(volume(polyZonotope(0,-1,[],1)));');
+R('polygon contains', 'E=ellipsoid(eye(2)); P=polygon(E); out=num2str(contains(P,E));');
+R('polygon hausdorff', 'P=polygon([0 1 1 0],[0 0 1 1]); out=num2str(hausdorffDist(P,[0.5;0.5]));');
+R('polygon isIntersecting', 'E=ellipsoid(eye(2)); res=[]; for th=[pi/1000 0.00314 0.5*2*pi/1000 1.5*2*pi/1000], z=[cos(th);sin(th)]; r=1e-6; P=polygon(z(1)+[-r r r -r],z(2)+[-r -r r r]); res(end+1)=isIntersecting(P,E); end; out=mat2str(res);');
+R('polygon isequal', 'P1=polygon([0 1 1 0 -1 -1],[0 1 -1 0 -1 1]); P2=polygon([0 -1 -1 0 1 1],[0 -1 1 0 1 -1]); out=num2str(isequal(P1,P2));');
+R('polygon minus', 'out=class(minus(polygon([0 1 1 0],[0 0 1 1]),polygon([0 1 1 0],[0 0 1 1])));');

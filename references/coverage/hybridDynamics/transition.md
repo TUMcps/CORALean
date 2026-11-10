@@ -43,3 +43,6 @@ two components sharing one label with targets `2` and `3`, the merged transition
 `liftSyncTransition`) reaches `(2, 3)`, so `parallelHybridAutomaton/reach` continues from a wrong
 location (the single-component branch at line ~98 is not affected; `mergeTransitionSetsCoraTarget`
 models the labelled branch's target).
+
+
+**`synchronize` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).

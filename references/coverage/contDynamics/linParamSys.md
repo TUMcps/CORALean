@@ -40,6 +40,8 @@ correct. Unsound. Formalized for a certain `a` in `ℝ` (`LinParamSys.firstTimeI
 point `c*(e^{a r} - 1)/a` widened by `w`), with a counterexample theorem for `a = -1`, `c = 1`,
 every `w` below `1 - e^{-r}` (read from the source, not run).
 
+**`initReach` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
+
 **`initReach_inputDependence` — cora-issue account.** CORA's
 `@linParamSys/private/priv_dependentHomSol.m`, which `initReach_inputDependence` (and through it
 `@contDynamics/linReach.m` for a `nonlinParamSys` with interval parameters) uses, expands the
@@ -82,7 +84,11 @@ Differences: orders `3 … η` and `R_hom_state`'s exponential over the box `sys
 `intermediateTerms = 2`; above it CORA keeps matrix zonotopes, tighter). The further time-varying
 input `params.U` (`sys.RV`), `uTrans` and the final `reduce` are not modelled.
 
+**`initReach_inputDependence` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
+
 **`linParamSys` — the generic instance.** It is generic over the matrix-set representation `𝕄` (the
 float interval matrix instantiates it), `LinearSys.toLinParam` over `Scalar 𝕋`, both computable, and
 the theorem is stated for them: every `LinearSys` canonical trajectory is a constant-parameter
 canonical trajectory of its parametric image, `B` (as the point set) and `c` carried over.
+
+**`simulate` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): simulate(linParamSys(intervalMatrix(-1,0.1),1),params) with tStart=0, tFinal=1 and u=[1 1] returns last time 2 (confirmed).

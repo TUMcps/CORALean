@@ -62,21 +62,25 @@ the set as extra coordinates, `c = [c; -b]`, `G = blkdiag(G, A)`, `E = [E, EC]`,
 operand is extended by the box `±conTol` around `0`, but a numeric operand by `ones(m, size(S,2))`:
 `[p; 1]` lies in the extended polynomial zonotope iff `A μ(α) = b + 1`, a different constraint. For
 the factor `α ∈ [-1, 1]` with the constraint `α = 0` the set is `{0}`, and `[1; 1]` is reached at
-`α = 1`, so the test passes for `p = 1` (read from the source, not run).
+`α = 1`, so the test passes for `p = 1` (not reproduced, see Details).
 
 **`contains_` — the set operand and CORA's method.** The set operand extends by the box `±conTol`
 around `0` (sound) and is not modelled. CORA passes the extended set to `polyZonotope/contains_`
 with `'approx'` (an interval-Newton proof), whose own soundness is not formalized here, and the
 method `'exact'` throws.
 
+**`contains_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): **not reproduced**: contains(conPolyZono(0,1,1,1,0,1),1,'approx') returns 0 (the point 1 is not accepted), 'approx' also returns 0 for the member 0, so the test cannot confirm the extension by ones, the source line S = [S, ones(m,size(S,2))] is as described.
+
 **`minkDiff` — cora-issue account.** CORA's `@conPolyZono/minkDiff.m` labels its zonotope-subtrahend
 computation `'exact'` (`(P + g) ∩ (P - g)` per generator, Thm. 1 of the cited paper, which is stated
 for convex sets). But `x ± g ∈ P` does not give `x + [-g, g] ⊆ P` when `P` is nonconvex, so it is
 only an outer approximation there. For `P = {-1, 1}` (one factor with the constraint `α² = 1`) and
-`Z = [-1, 1]` the result contains `0` although `0 + ½ ∉ P` (read from the source, not run).
+`Z = [-1, 1]` the result contains `0` although `0 + ½ ∉ P` (run in MATLAB, see Details).
 Separately, its `'inner'` branch for a conZonotope, polytope or zonoBundle subtrahend calls
 `minkDiff(cPZ2, zonotope(cPZ2))`, taking the subtrahend as the minuend where every other branch uses
 `cPZ1`. That typo is not modelled.
+
+**`minkDiff` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): minkDiff(conPolyZono(0,1,1,1,1,2),zonotope(0,1)) (P={-1,1}) is not empty (representsa 'emptySet' returns 0): its constraints are met at alpha=(-1,1), giving the point 0, though 0+[-1,1] is not inside P (confirmed).
 
 **`representsa_` — cora-issue, `'emptySet'`.** CORA's `@conPolyZono/representsa_.m`,
 `aux_isEmptySet`, returns `false` (not empty) as soon as `GI` is nonempty, before it looks at the
@@ -93,7 +97,7 @@ bounded set can be a hyperplane only in one dimension. In one dimension a hyperp
 `{x | a x = b}`, `a ≠ 0`, is a single point, so every one-dimensional conPolyZono of positive
 extent is wrongly accepted: a one-factor `conPolyZono` with `c = 0`, `G = 1`, `E = 1`, no
 constraint, the interval `[-1,1]` gives `true`, the right answer is `false`. A wrong answer, not
-unsound (read from the source, not run; `@interval/representsa_.m`, l. 150, counts zero-width
+unsound (run in MATLAB, see Details); `@interval/representsa_.m`, l. 150, counts zero-width
 dimensions and is right in 1-D). Formalized as the code computes it
 (`ConPolyZono.representsaHyperplaneCora`) with a counterexample theorem.
 
@@ -102,11 +106,13 @@ dimensions and is right in 1-D). Formalized as the code computes it
 `S = cPZ.c`, without reading the constraints. A set with no generator and an infeasible constraint
 (one factor, `A = 1`, `b = 2`, `EC = 1`: `α₁ = 2` with `α₁ ∈ [-1,1]`) is empty but answered `true`.
 A set whose generator is pinned by its constraints (`G = 1`, `E = 1`, constraint `α₁ = 0`) is the
-point `{0}` but answered `false`. Wrong answers, not unsound (read from the source, not run). The
+point `{0}` but answered `false`. Wrong answers, not unsound (run in MATLAB, see Details). The
 existing `ConPolyZono.representsa_point` is the printed test. The counterexample theorem evaluates
 it on both sets.
 ([`ConPolyZono.representsa_hyperplane_cora_counterexample`](../../../src/CORALean/ContSet/ConPolyZono/Real/Counterexamples/RepresentsaHyperplaneCora.lean),
 [`ConPolyZono.representsa_point_cora_counterexample`](../../../src/CORALean/ContSet/ConPolyZono/Real/Counterexamples/RepresentsaPointCora.lean)).
+
+**`representsa_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): representsa(conPolyZono(0,0,1,1,2,1,1),'emptySet') returns 0 for the set with the infeasible constraint alpha=2 (confirmed).
 
 **`rescale` — float layer.** route a — float, outer, not exact: the contractor is a parameter on
 float boxes, each contracted interval mapped to a rounded midpoint and a radius rounded up from it
@@ -114,3 +120,5 @@ to both ends, then the float `getSubset` at each factor in turn. `rescale_outer`
 in the result for any contractor that keeps every factor vector of the cube satisfying the
 constraints (empty or not), proved through `getSubset_point_outer`, the one-step enclosure at a
 named factor vector.
+
+**`isFullDim` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): isFullDim(conPolyZono(`[0;0]`,eye(2),[1 2])) (the arc (a,a^2)) returns 1 (confirmed).

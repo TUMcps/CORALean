@@ -8,7 +8,7 @@ CORA methods of `hybridDynamics/@nonlinearReset/`, one row each, and where CORAL
 |---|---|---|---|
 | `derivatives` | out-of-scope | n/a — matlab-runtime |  |
 | `eq` | out-of-scope | n/a — matlab-runtime |  |
-| `evaluate` | float | [`NonlinearReset.evaluate`](../../../src/CORALean/HybridDynamics/Operations/NonlinearResetEvaluate.lean), [`NonlinearReset.evaluate_toNonlinearReset`](../../../src/CORALean/HybridDynamics/Theorems/Basic.lean) · float: [`NonlinearReset.FloatModel.evaluateFloat`](../../../src/CORALean/HybridDynamics/Operations/NonlinearResetEvaluateFloat.lean), [`NonlinearReset.evaluate_mem_evaluateFloat`](../../../src/CORALean/HybridDynamics/Theorems/NonlinearResetEvaluateMemEvaluateFloat.lean) | Real side: numeric arguments only, `x_ = f(x, u)`; the set-valued evaluation, a Taylor expansion with a remainder over `J`, `H`, `T`, is not given; the theorem is agreement with `Transition.reset` at a point. cora-issue — CORA's `@nonlinearReset/evaluate.m` bounds the second-order term of every output by the Hessian of output 1, and `aux_expansionPoint` tests `isnumeric(x)` where `isnumeric(u)` is meant, so it stops for a set `x` and a numeric `u`. Formalized as printed (`NonlinearReset.expansionPointCora`, `none` the error, arguments `NonlinearReset.Arg`), with a theorem for a set `x` and a numeric `u` (read from the source, not run) ([`NonlinearReset.secondOrderBoundCora`](../../../src/CORALean/HybridDynamics/Counterexamples/NonlinearResetSecondOrderBoundCora.lean), [`NonlinearReset.secondOrderBoundCora_counterexample`](../../../src/CORALean/HybridDynamics/Counterexamples/NonlinearResetSecondOrderBoundCora.lean), [`NonlinearReset.expansionPointCora_crash`](../../../src/CORALean/HybridDynamics/Counterexamples/NonlinearResetExpansionPointCora.lean)). Details below. |
+| `evaluate` | float | [`NonlinearReset.evaluate`](../../../src/CORALean/HybridDynamics/Operations/NonlinearResetEvaluate.lean), [`NonlinearReset.evaluate_toNonlinearReset`](../../../src/CORALean/HybridDynamics/Theorems/Basic.lean) · float: [`NonlinearReset.FloatModel.evaluateFloat`](../../../src/CORALean/HybridDynamics/Operations/NonlinearResetEvaluateFloat.lean), [`NonlinearReset.evaluate_mem_evaluateFloat`](../../../src/CORALean/HybridDynamics/Theorems/NonlinearResetEvaluateMemEvaluateFloat.lean) | Real side: numeric arguments only, `x_ = f(x, u)`; the set-valued evaluation, a Taylor expansion with a remainder over `J`, `H`, `T`, is not given; the theorem is agreement with `Transition.reset` at a point. cora-issue — CORA's `@nonlinearReset/evaluate.m` bounds the second-order term of every output by the Hessian of output 1, and `aux_expansionPoint` tests `isnumeric(x)` where `isnumeric(u)` is meant, so it stops for a set `x` and a numeric `u`. Formalized as printed (`NonlinearReset.expansionPointCora`, `none` the error, arguments `NonlinearReset.Arg`), with a theorem for a set `x` and a numeric `u` (run in MATLAB, see Details) ([`NonlinearReset.secondOrderBoundCora`](../../../src/CORALean/HybridDynamics/Counterexamples/NonlinearResetSecondOrderBoundCora.lean), [`NonlinearReset.secondOrderBoundCora_counterexample`](../../../src/CORALean/HybridDynamics/Counterexamples/NonlinearResetSecondOrderBoundCora.lean), [`NonlinearReset.expansionPointCora_crash`](../../../src/CORALean/HybridDynamics/Counterexamples/NonlinearResetExpansionPointCora.lean)). Details below. |
 | `isequal` | out-of-scope | n/a — matlab-runtime |  |
 | `lift` | float | [`NonlinearReset.lift`](../../../src/CORALean/HybridDynamics/Operations/NonlinearResetLift.lean), [`NonlinearReset.lift_evaluate_bind`](../../../src/CORALean/HybridDynamics/Theorems/NonlinearResetLiftBind.lean), [`NonlinearReset.lift_evaluate_of_not_mem`](../../../src/CORALean/HybridDynamics/Theorems/NonlinearResetLiftOfNotMem.lean) · float: [`NonlinearReset.FloatModel.lift`](../../../src/CORALean/HybridDynamics/Operations/NonlinearResetLiftFloat.lean), [`NonlinearReset.FloatModel.Encloses.lift`](../../../src/CORALean/HybridDynamics/Theorems/NonlinearResetFloatModelEnclosesLift.lean) | route a — float: `FloatModel.lift` places the old model's box at the bound coordinates (the last write wins) and the box of the coordinate or the origin elsewhere, which rounds nothing; `Encloses.lift` says it encloses the lifted reset for an injective `stateBind`. Real side: `R^n → R^n` only, as in CORA; exact: at the bound coordinates (`stateBind` injective) the lifted reset is the old one applied to the bound state and input, and elsewhere it is the identity if `id` holds and `0` otherwise |
 | `ne` | out-of-scope | n/a — matlab-runtime |  |
@@ -39,7 +39,7 @@ can miss reachable states.
 **`evaluate` — cora-issue, the Hessian bound, continued.** Formalized as the bound of output `i`
 over coordinates (`NonlinearReset.secondOrderBound`) and as printed
 (`NonlinearReset.secondOrderBoundCora`; the bound is generic over a field), with a counterexample
-theorem (read from the source, not run).
+theorem (run in MATLAB, see Details).
 
 **`evaluate` — cora-issue, the expansion point.** CORA's `@nonlinearReset/evaluate.m`,
 `aux_expansionPoint` (l. 82-95), assigns `pu` by
@@ -49,6 +49,8 @@ MATLAB stops with `Output argument 'pu' ... not assigned`. The default `u = zero
 numeric (l. 28), so `evaluate(reset, x)` with a set `x` stops every time. The case of two numeric
 arguments returns before (l. 33-36), and a numeric `x` with a set `u` is fine. A MATLAB error, not a
 wrong value.
+
+**`evaluate` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): evaluate(nonlinearReset(@(x,u) [x(1)+u(1), x(2)^2]),zonotope(`[0;1]`,eye(2)),zonotope(0)) has x2 range [-1,3], x2=2 gives 4 (confirmed).
 
 **`resolve` — cora-issue account.** CORA's `@nonlinearReset/resolve.m` ends with
 `f_sym = subs(f_sym, u_sym(idxGlobalInput), u_sym(1:numGlobalInputs))` and
@@ -76,3 +78,6 @@ and, for the same example with the resets lifted to the product, the first state
 global input's box or the bound component output's interval extension at the boxes of its states and
 globally bound inputs. `Encloses.resolve` says it encloses `resolve`, given enclosing extensions of
 the product reset and of the outputs.
+
+
+**`resolve` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).

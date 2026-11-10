@@ -31,7 +31,8 @@ the name) and must be one of them. A cell without a file is `---`. Links go to
 `\\coraleanrepo <path>`, a macro the table `\\providecommand`s as the repository's `main`.
 
 Problems reported: a `cora-issue` row without an entry, an entry that matches no such row, a
-`kind` that is neither `unsound` nor `other`, a description over ten words, a `cex`/`fix` that is
+`kind` that is neither `unsound` nor `other`, a `matlab` status (the outcome of the run in
+MATLAB, recorded in the row's note; not shown in the table) outside `MATLAB`, a description over ten words, a `cex`/`fix` that is
 not a linked file, a `fix` on a row whose state is `—`.
 """
 
@@ -51,6 +52,7 @@ def is_cex(p):
     return "Counterexamples" in p.parts or bool(CEX_NAME.search(p.stem))
 DECL_CEX = re.compile(r"counterexample", re.I)
 KINDS = ("unsound", "other")
+MATLAB = ("confirmed", "partly confirmed", "not reproduced", "not run")
 MAX_WORDS = 10
 
 
@@ -151,6 +153,8 @@ def table(cr):
         kind = entry.get("kind")
         if kind not in KINDS:
             problems.append(f"{where}: `kind` is `{kind}`, not one of {', '.join(KINDS)}")
+        if entry.get("matlab") not in MATLAB:
+            problems.append(f"{where}: `matlab` is `{entry.get('matlab')}`, not one of {', '.join(MATLAB)}")
         desc = entry.get("description", "")
         if len(re.sub(r"\$[^$]*\$", "X", desc).split()) > MAX_WORDS:
             problems.append(f"{where}: description is over {MAX_WORDS} words")

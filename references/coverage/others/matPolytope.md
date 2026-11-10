@@ -38,7 +38,9 @@ crash.
 
 **`expmIndMixed` — the model.** Modelled as `MatExp.simplePlusPolytopeCora` (the error) and
 `MatExp.expmIndMixedPolytopeCora`, the loop. The theorem shows `none` for every
-`intermediateOrder >= 1` (read from the source, not run).
+`intermediateOrder >= 1` (run in MATLAB, see Details).
+
+**`expmIndMixed` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): expmIndMixed(matPolytope(V),1,3) errors: Unrecognized function or variable 'Z1' (simplePlus line 32) (confirmed).
 
 **`plus` — the pruning.** CORA then prunes to the hull vertices with `convhulln` (and keeps all sums
 if that fails), which the formalization does not model (see below).
@@ -58,3 +60,11 @@ run).
 
 **`plus` — the model.** Modelled as `VPolytope.plusPruneCora`, lines 55-60 on the rows of `vecVpot`.
 The theorem covers all 384 orders and orientations of the four edges.
+
+**`plus` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): matPolytope(cat(3,`[0 1;1 0]`,`[0 1;0 1]`))+matPolytope(zeros(2,2)) has 4 vertices, the sum has 2 (confirmed).
+
+**`expm` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): matPolytope(cat(3,`[0 1;1 0]`,`[0 1;0 1]`))+matPolytope(zeros(2,2)) has 4 vertices, the sum has 2 (confirmed).
+
+**`expmInd` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): same plus as the expm row: the sum has 4 vertices instead of 2 (expm itself not run) (confirmed).
+
+**`simplePlus` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): expmIndMixed(matPolytope(V),1,3) errors in simplePlus line 32: Unrecognized function or variable 'Z1' (confirmed).

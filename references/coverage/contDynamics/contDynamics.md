@@ -93,6 +93,8 @@ interval kernels as arguments, a zero factor mapped to `[0, 0]`) is `0` in the f
 abstraction error only. The adaptive step model is 1D at `tensorOrder = 2`, so no step-level miss is
 stated.
 
+**`linReach` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): reach(nonlinearSys(f,1,1),...) for f(x)=1-(1001/750)x+(1001/3000)x^4, R0={0}, timeStep=2, alg 'lin', tensorOrder=2 gives Rti=[-0.00201637,1.63664e-05], and ode45 gives x(1/4)=0.212604, outside it, tensorOrder 3 was not run (confirmed).
+
 **`linReachInner` — CORALean's `linReachInner`.** CORALean's `NonlinearSys.linReachInner` is CORA's
 step over exact sets with the exact Minkowski difference and `Rti = Rinit ∪ Rtp` in place of (23),
 its `Rtp` and `Rti` proved inside the reachable set
@@ -134,6 +136,8 @@ can therefore leave the reachable set even when `Lemma 1`'s hypotheses hold. The
 of `@zonotope/minkDiff.m` is unsound, see the [`zonotope` `minkDiff`](../contSet/zonotope.md) row.
 CORALean's difference is `minkDiffRep` ([`zonotope` `minkDiff`](../contSet/zonotope.md)).
 
+**`linReachInner` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
+
 **`observe` — float layer.** the strip-based observer with intersection types 1 and 2 at every gain
 (`observeStripBased`, generic over the scalar and the set classes, at `Float.Zonotope`), the
 set-propagation observer (`observePropagationFloat`) and the interval observer
@@ -152,9 +156,14 @@ evaluated at inputs shifted by `-center(U)`. `@nonlinDASys/outputSet.m` (l. 47) 
 `params.uTrans`. For `ẋ = 0`, `y = x + u` (affine, so `out_isLinear`, at either
 `tensorOrderOutput`), `R0 = {0}`, `U = {1}`, the default `u = 0`, the output at time `0` is `1` and
 CORA's set is `{0}`. Formalized as the `out_isLinear` branch after `postProcessing`
-(`NonlinearSys.outputSetCora`), with the counterexample on a run. Read from the source, not run.
+(`NonlinearSys.outputSetCora`), with the counterexample on a run. (run in MATLAB, see Details).
+
+**`outputSet` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): reach(nonlinearSys(@(x,u) 0*x(1)+0*u(1),@(x,u) x(1)+u(1)),...) with R0={0}, U={1} has output time-point set 1 = [0,0] and time-interval set 1 = [0,0], the output is 1 (confirmed).
 
 **`observe` — the witness.** The counterexample theorems are in the [`linearSysDT`
 `executeObserver`](linearSysDT.md) row, for the interval observer
 [`LinearSysDT.observeInterval_cora_counterexample`](../../../src/CORALean/ContDynamics/LinearSysDT/Counterexamples/Real/ObserveIntervalCora.lean)
 among them.
+
+
+**`observe` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).

@@ -25,7 +25,7 @@ CORA methods of `contSet/@polygon/`, one row each, and where CORALean answers th
 | `isBounded` | float | [`Polygon.isBounded_construct`](../../../src/CORALean/ContSet/Polygon/Real/Theorems/Basic.lean), [`Polygon.isCompact_construct`](../../../src/CORALean/ContSet/Polygon/Real/Theorems/IsCompact.lean) · float: [`Polygon`](../../../src/CORALean/ContSet/Polygon/Float/Polygon.lean), [`Polygon.isCompact_construct`](../../../src/CORALean/ContSet/Polygon/Float/Theorems/IsCompact.lean) | route a — CORA returns `true`; a finite union of polytopes is compact, hence bounded; float boundedness is its compactness |
 | `isConvex` | float | [`Polygon.isConvex_iff`](../../../src/CORALean/ContSet/Polygon/Real/Theorems/IsConvexIff.lean), [`Polygon.isConvex`](../../../src/CORALean/ContSet/Polygon/Real/Operations/IsConvex.lean) · float: [`Polygon.isConvex`](../../../src/CORALean/ContSet/Polygon/Float/Operations/IsConvex.lean), [`Polygon.isConvex_sound`](../../../src/CORALean/ContSet/Polygon/Float/Theorems/IsConvexSound.lean) | region convexity, exactly: the hull of the pieces lies inside the region iff the region is convex (`Polygon.convHull_exact`); CORA compares boundary vertex counts (R-PG), not formalized; no decision procedure. float: route a, sufficient only — no piece, or one piece holding every piece (`Polygon.pieceSubset`, certified vertex triangles and boxes), so the region is that convex piece; `true` proves the region convex, `false` says nothing (a convex region split into pieces none of which holds the rest) |
 | `isFullDim` | float | [`Polygon.isFullDim_iff`](../../../src/CORALean/ContSet/Polygon/Real/Theorems/IsFullDimIff.lean), [`Polygon.isFullDim`](../../../src/CORALean/ContSet/Polygon/Real/Operations/IsFullDim.lean) · float: [`Polygon.isFullDim`](../../../src/CORALean/ContSet/Polygon/Float/Operations/IsFullDim.lean), [`Polygon.step_crossCertified`](../../../src/CORALean/ContSet/Polygon/Float/Operations/IsFullDim.lean), [`Polygon.isFullDim_sound`](../../../src/CORALean/ContSet/Polygon/Float/Theorems/IsFullDimSound.lean) | region level, exactly: the region has an interior point iff some piece's vertices affinely span the plane; CORA counts boundary vertices (`size(V,2) > 2`), a boundary representation (R-PG) not formalized. float: route a, sound only — some piece with a nonempty error box and three vertices whose cross product, six products bracketed by directed roundings, is certified nonzero by `ltStrict`; `true` proves an interior point of the region, `false` refutes nothing |
-| `isIntersecting_` | float | [`Polygon.isIntersecting_iff`](../../../src/CORALean/ContSet/Polygon/Real/Theorems/IsIntersectingIff.lean), [`Polygon.isIntersecting`](../../../src/CORALean/ContSet/Polygon/Real/Operations/IsIntersecting.lean) · float: [`Polygon.isDisjoint`](../../../src/CORALean/ContSet/Polygon/Float/Operations/IsDisjoint.lean), [`Polygon.isDisjoint_sound`](../../../src/CORALean/ContSet/Polygon/Float/Theorems/IsDisjointSound.lean) | two polygons only, region level, exactly: the regions meet iff some pair of pieces has a common convex combination of vertices (a linear feasibility spec, no decision procedure); a point or other set as second argument, `type` and CORA's tolerance are not covered. cora-issue — the same conversion `S = polygon(S)` (l. 49) makes `isIntersecting` false for a square that meets the ellipsoid only between two samples (read from the source, not run; same abstraction) ([`Polygon.isIntersectingEllipsoid_cora_counterexample`](../../../src/CORALean/ContSet/Polygon/Real/Counterexamples/OverlapsRegionCora.lean)). Details below. |
+| `isIntersecting_` | float | [`Polygon.isIntersecting_iff`](../../../src/CORALean/ContSet/Polygon/Real/Theorems/IsIntersectingIff.lean), [`Polygon.isIntersecting`](../../../src/CORALean/ContSet/Polygon/Real/Operations/IsIntersecting.lean) · float: [`Polygon.isDisjoint`](../../../src/CORALean/ContSet/Polygon/Float/Operations/IsDisjoint.lean), [`Polygon.isDisjoint_sound`](../../../src/CORALean/ContSet/Polygon/Float/Theorems/IsDisjointSound.lean) | two polygons only, region level, exactly: the regions meet iff some pair of pieces has a common convex combination of vertices (a linear feasibility spec, no decision procedure); a point or other set as second argument, `type` and CORA's tolerance are not covered. cora-issue — the same conversion `S = polygon(S)` (l. 49) makes `isIntersecting` false for a square that meets the ellipsoid only between two samples (run in MATLAB, see Details); same abstraction) ([`Polygon.isIntersectingEllipsoid_cora_counterexample`](../../../src/CORALean/ContSet/Polygon/Real/Counterexamples/OverlapsRegionCora.lean)). Details below. |
 | `isemptyobject` | out-of-scope | n/a — matlab-runtime |  |
 | `isequal` | float | [`Polygon.isequalPieces_sound`](../../../src/CORALean/ContSet/Polygon/Real/Theorems/IsequalPiecesSound.lean), [`Polygon.isequalPieces`](../../../src/CORALean/ContSet/Polygon/Real/Operations/IsequalPieces.lean) · float: [`Polygon.isequalPieces`](../../../src/CORALean/ContSet/Polygon/Float/Operations/IsequalPieces.lean), [`Polygon.isequalPieces_sound`](../../../src/CORALean/ContSet/Polygon/Float/Theorems/IsequalPiecesSound.lean), [`Polygon.pieceSubset`](../../../src/CORALean/ContSet/Polygon/Float/Operations/PieceSubset.lean), [`Polygon.pieceSubset_sound`](../../../src/CORALean/ContSet/Polygon/Float/Theorems/PieceSubsetSound.lean) | one-sided: every piece of each polygon lies inside one piece of the other implies equal regions; the converse is not claimed (a piece may be covered by several pieces); CORA's comparison of boundary vertex lists after `removeCollinearPoints` (R-PG) is not formalized. cora-issue — CORA's `@polygon/isequal.m` re-orders the second vertex list by `idx` instead of `idx(i)`, so only the first candidate start is tried and equal polygons with a repeated boundary vertex are reported different ([`Polygon.isequal_cora_counterexample`](../../../src/CORALean/ContSet/Polygon/Real/Counterexamples/IsequalCora.lean)). Details below. |
 | `lift_` | float | [`Polygon.project`](../../../src/CORALean/ContSet/Polygon/Real/Operations/Project.lean), [`Polygon.project_exact`](../../../src/CORALean/ContSet/Polygon/Real/Theorems/ProjectExact.lean) · float: [`Polygon.project`](../../../src/CORALean/ContSet/Polygon/Float/Operations/Basic.lean), [`Polygon.project_outer`](../../../src/CORALean/ContSet/Polygon/Float/Theorems/ProjectOuter.lean) | CORA reduces it to `project` when `length(proj) = N` and throws otherwise: the same declarations as `project`; exact at the real layer, outer at float |
@@ -41,7 +41,7 @@ CORA methods of `contSet/@polygon/`, one row each, and where CORALean answers th
 | `project` | float | [`Polygon.project`](../../../src/CORALean/ContSet/Polygon/Real/Operations/Project.lean), [`Polygon.project_exact`](../../../src/CORALean/ContSet/Polygon/Real/Theorems/ProjectExact.lean) · float: [`Polygon.project`](../../../src/CORALean/ContSet/Polygon/Float/Operations/Basic.lean), [`Polygon.project_outer`](../../../src/CORALean/ContSet/Polygon/Float/Theorems/ProjectOuter.lean) | two coordinates (`V(dims,:)`); the single-coordinate case, which CORA answers with the interval hull, is not given; exact at the real layer, outer at float |
 | `projectHighDim_` | float | [`Polygon.project`](../../../src/CORALean/ContSet/Polygon/Real/Operations/Project.lean), [`Polygon.project_exact`](../../../src/CORALean/ContSet/Polygon/Real/Theorems/ProjectExact.lean) · float: [`Polygon.project`](../../../src/CORALean/ContSet/Polygon/Float/Operations/Basic.lean), [`Polygon.project_outer`](../../../src/CORALean/ContSet/Polygon/Float/Theorems/ProjectOuter.lean) | CORA reduces it to `project` at `N = 2` (`dims` of length 2, polygons being two-dimensional): the same declarations; exact at the real layer, outer at float |
 | `quadMap` | float | [`Polygon.quadMap`](../../../src/CORALean/ContSet/Polygon/Real/Operations/QuadMap.lean), [`Polygon.quadMap_outer`](../../../src/CORALean/ContSet/Polygon/Real/Theorems/QuadMapOuter.lean), [`Polygon.quadMapMixed`](../../../src/CORALean/ContSet/Polygon/Real/Operations/QuadMapMixed.lean), [`Polygon.quadMapMixed_outer`](../../../src/CORALean/ContSet/Polygon/Real/Theorems/QuadMapMixedOuter.lean) · float: [`Polygon.quadMap`](../../../src/CORALean/ContSet/Polygon/Float/Operations/QuadMap.lean), [`Polygon.quadMap_outer`](../../../src/CORALean/ContSet/Polygon/Float/Theorems/QuadMapOuter.lean), [`Polygon.quadMapMixed`](../../../src/CORALean/ContSet/Polygon/Float/Operations/QuadMapMixed.lean), [`Polygon.quadMapMixed_outer`](../../../src/CORALean/ContSet/Polygon/Float/Theorems/QuadMapMixedOuter.lean) | outer, route a: the triangles of `Polygon.triangulation`, each as a polynomial zonotope through its box (`VPolytope.polyZonotope`), mapped by `PolyZonotope.quadMap` (`quadMapMixed`) and enclosed by `PolyZonotope.polygon` (parameters `splits`, `pick`), united; the result is a union of zonotope vertex polytopes, not CORA's `polyshape`. cora-issue — CORA's `@polygon/quadMap.m` builds the second polyshape of its two-polygon branch from `list2{i}` instead of `list2{j}`, so most pairs are never mapped; `Polygon.quadMapMixed` maps every pair of triangles; No Lean witness: the mispairing is read from the source and not stated as a theorem. Details below. |
-| `randPoint_` | out-of-scope | n/a — random/sampling | cora-issue — CORA's `@polygon/randPoint_.m`, `aux_randPointExtreme` (l. 77), removes the NaN columns of the vertex matrix by `V = V(:,~any(isnan(V),2))`. A wrong answer. Modelled as `Polygon.randPointExtremeAllCora` on a list of columns, `none` for a NaN column; the theorem shows the two vertices of the unit square and the empty result for a hole (read from the source, not run). ([`Polygon.randPointExtremeAll_cora_counterexample`](../../../src/CORALean/ContSet/Polygon/Real/Counterexamples/RandPointExtremeCora.lean)). Details below. |
+| `randPoint_` | out-of-scope | n/a — random/sampling | cora-issue — CORA's `@polygon/randPoint_.m`, `aux_randPointExtreme` (l. 77), removes the NaN columns of the vertex matrix by `V = V(:,~any(isnan(V),2))`. A wrong answer. Modelled as `Polygon.randPointExtremeAllCora` on a list of columns, `none` for a NaN column; the theorem shows the two vertices of the unit square and the empty result for a hole (run in MATLAB, see Details). ([`Polygon.randPointExtremeAll_cora_counterexample`](../../../src/CORALean/ContSet/Polygon/Real/Counterexamples/RandPointExtremeCora.lean)). Details below. |
 | `removeCollinearPoints` | — | — | cora-issue — CORA's `@polygon/removeCollinearPoints.m` hands `vertices_(pgon)` to `removeCollinearVertices2D`, which first sorts the vertices by `atan2` about their mean, an order that is the boundary only for a polygon star-shaped about the mean (a convex vertex set), and then drops the vertices whose two adjacent edge vectors are dependent. The row stays `—`. ([`Polygon.removeCollinearPoints_counterexample`](../../../src/CORALean/ContSet/Polygon/Real/Counterexamples/RemoveCollinearPoints.lean)); the operation is a boundary-representation one (R-PG), with no region statement to prove: at tolerance `0` it would leave the region unchanged. Details below. |
 | `representsa_` | float | [`Polygon.representsaEmptySet`](../../../src/CORALean/ContSet/Polygon/Real/Operations/RepresentsaEmptySet.lean), [`Polygon.representsaEmptySet_iff`](../../../src/CORALean/ContSet/Polygon/Real/Theorems/RepresentsaEmptySetIff.lean) · float: [`Polygon.representsaEmptySet`](../../../src/CORALean/ContSet/Polygon/Float/Operations/RepresentsaEmptySet.lean), [`Polygon.representsaEmptySet_sound`](../../../src/CORALean/ContSet/Polygon/Float/Theorems/RepresentsaEmptySetSound.lean) | type `'emptySet'` only: empty iff no piece has a vertex; the types `point`, `origin` and `fullspace` are not given, and there is no tolerance. float: sound only (`true` implies empty): a piece with vertices whose error box is empty is empty too and the test says `false`; cora-issue — CORA's `@polygon/representsa_.m` answers `'origin'` for the empty polygon, because `all` over an empty array is `true` ([`Polygon.representsa_origin_cora_counterexample`](../../../src/CORALean/ContSet/Polygon/Real/Counterexamples/RepresentsaOriginCora.lean)). Details below. |
 | `simplify` | out-of-scope | n/a — deprecated | the method itself emits `CORAwarning('CORA:deprecated')` (use `compact(polygon,'douglasPeucker',tol)`) |
@@ -71,6 +71,8 @@ point, which meets `E`. Proved in Lean for every finite set of boundary samples,
 abstracted as the convex hull of `V` and the area test as an absolute tolerance. CORA is not run.
 The rows stay as they are.
 
+**`contains_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): contains(polygon(E),E) for E=ellipsoid(eye(2)) returns 0 at the default tolerance (areas differ by 2.5e-14) and 1 with tolerance 1e-6, though boundary points of E between two of the 1000 samples lie outside the polygon (confirmed).
+
 **`hausdorffDist` — cora-issue account.** CORA's `@polygon/hausdorffDist.m` documents the Hausdorff
 distance between a polygon and a point or another polygon. Its numeric branch returns the largest
 distance from a point of `S` to the polygon (`0` if the polygon contains the point, else the
@@ -80,13 +82,17 @@ also takes `sup_{x∈pgon} d(x, S)`. The polygon–polygon branch, unlike the nu
 a vertex inside the other polygon counts its depth. For `[0,2]²` and the same square with the
 triangular notch `(0.8,2), (1.2,2), (1,1)` cut from its top edge, the notch apex is a vertex of the
 second polygon at distance `1` from the boundary of the first. CORA returns `1`, and the Hausdorff
-distance is `0.2/√1.04 ≈ 0.196` (read from the source, not run).
+distance is `0.2/√1.04 ≈ 0.196` (run in MATLAB, see Details).
+
+**`hausdorffDist` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): hausdorffDist(polygon([0 1 1 0],[0 0 1 1]),`[0.5;0.5]`) returns 0 (the Hausdorff distance is 0.7071) (confirmed).
 
 **`isIntersecting_` — float layer.** route a, the negation as a sound test — every pair of pieces
 separated along a vertex-difference normal of either piece (the separating-axis directions), the gap
 between the two `boundDot` bounds (vertices and error boxes) certified by `ltStrict`. `true` proves
 the regions disjoint (CORA's `false`), `false` says nothing. Also the float `IsDisjoint` instance
 (`Specification/Instances.lean`).
+
+**`isIntersecting_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): isIntersecting(square of half-width 1e-7 about a boundary point of E between two samples, E) returns 0, the point lies on E (confirmed).
 
 **`isequal` — cora-issue account.** CORA's `@polygon/isequal.m` (l. 56-71) finds every position
 `idx` in `V2` holding `V1(1,:)` and loops `for i = 1:length(idx)`, but re-orders `V2` by
@@ -104,6 +110,8 @@ counterexample theorem.
 **`isequal` — float layer.** route a, the same one-sided test computed: a piece lies in another when
 every stored vertex is in one of the other's vertex triangles (certified orientations) and its error
 box in the other's. `true` proves equal regions, `false` says nothing.
+
+**`isequal` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): **not reproduced**: polygon([0 1 1 0 -1 -1],[0 1 -1 0 -1 1]) is built with a NaN separator (7 columns) and isequal against the restarted boundary errors (MATLAB:rank:matrixWithNaNInf), the false answer for equal polygons was not reproduced.
 
 **`minkDiff` — cora-issue account.** In CORA's `@polygon/minkDiff.m` the Minkowski difference is
 computed by sweeping the mirrored subtrahend, centered at its centroid, along the boundary of the
@@ -128,6 +136,8 @@ support, rounded to shrink (`HPolytope.minkDiffOf`). A piece without such a desc
 dropped. The union of the halfspace pieces lies in `{x : x + B ⊆ A}` for any subtrahend, convex or
 not (`minkDiff_inner`). A translate straddling two pieces is not found.
 
+**`minkDiff` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: the note gives no concrete input.
+
 **`quadMap` — cora-issue account.** In CORA's `@polygon/quadMap.m` the two-polygon branch
 (`nargin == 3`) loops `for i` over `list1` and `for j` over `list2` but builds the second polyshape
 as `polytope(list2{i})`, not `list2{j}`: the pairs `(list1{i}, list2{i})` are mapped `length(list2)`
@@ -143,12 +153,16 @@ of the matrices the floats read as. The pieces are `PolyZonotope.polygon`'s, eac
 of the sorted generators of the polynomial zonotope's zonotope (`Zonotope.polygon`), `52` for the
 runnable example.
 
+**`quadMap` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: no Lean witness, the note gives no concrete input.
+
 **`randPoint_` — cora-issue account.** `any(isnan(V),2)` has one entry per row, so the mask has
 length 2 (`any(isnan(V),1)` was meant) and is used as a logical column index: for a polygon without
 NaN it is `[1;1]` and `V` keeps columns 1 and 2, for one with a NaN column (a hole) it is `[0;0]`
 and `V` is empty. `randPoint(polygon([0 1 1 0],[0 0 1 1]),'all','extreme')` returns `(0,0)` and
 `(1,0)` only. For a number `N` the later lines count `numV = 2` and `randi(numV-1)` always draws
 edge 1. The `'extreme'` points are no longer the vertices.
+
+**`randPoint_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): randPoint(polygon([0 1 1 0],[0 0 1 1]),'all','extreme') returns two points, `[0 0;0 1]` (columns (0,0) and (0,1)), not the four vertices (confirmed).
 
 **`removeCollinearPoints` — cora-issue, the example.** At the default tolerance `0` removing a
 collinear vertex of the boundary would not change the polygon, but the reordering does. Take the U
@@ -159,13 +173,17 @@ the bottom where the U had it at the top (same area `7`), so `(1.5, 2)` is in th
 the U (proved in Lean over `ℚ`, with the `atan2` sort as its sector-and-cross-product comparison and
 the region as the even-odd region of the vertex list; CORA is not run).
 
+**`removeCollinearPoints` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): removeCollinearPoints of the U polygon polygon([0 3 3 2 2 1 1 0],[0 0 3 3 1 1 3 3]): area 7 before and after, contains((1.5,2)) is 0 before and 1 after (confirmed).
+
 **`representsa_` — cora-issue account.** CORA's `@polygon/representsa_.m` (l. 63) answers `'origin'`
 by `all(withinTol(vertices_(pgon),0,tol),"all")` and returns `S = [0;0]`. The empty polygon has no
 vertices and `all` over an empty array is `true`, so `polygon.empty()` is reported as the origin
 (and, by the `'emptySet'` branch `isempty(vertices_(pgon))`, as empty too). It denotes `∅`, not
 `{0}`. Unlike the other classes, `@polygon/representsa_.m` never calls `representsa_emptyObject`. A
-wrong answer, not unsound (read from the source, not run). Formalized as the code computes it
+wrong answer, not unsound (run in MATLAB, see Details). Formalized as the code computes it
 (`Polygon.representsaOriginCora`) with a counterexample theorem.
+
+**`representsa_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): representsa(polygon.empty(),'origin') returns 1 (confirmed).
 
 **`subtract` — float layer.** route a — each piece of the minuend is taken through the subtrahend's
 pieces in turn (`Polygon.subtractPiece`): dropped when a piece certainly covers it
@@ -174,3 +192,5 @@ halfspace description (`Polygon.innerHRep`, the outside of each edge, by
 `Interval.contractHalfspace`) when that exists, kept whole otherwise. outer: `P₁ \ P₂` lies in it.
 The cut pieces are box hulls of the minuend's pieces, so unlike the real row the result is not shown
 to lie in `P₁`.
+
+**`minus` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): minus(polygon,polygon) errors: Unrecognized function or variable 'S' (confirmed).

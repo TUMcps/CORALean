@@ -1,0 +1,3 @@
+here = fileparts(fileparts(mfilename('fullpath'))); addpath(here); addpath([here '/em']);
+R('SpS prog sdpt3', 'beta=sdpvar(1,1,''full''); s=sdpvar(1,1,''full''); t=sdpvar(1,1,''full''); G=[1;1]; c=[0;0]; p=[1;0]; cons=[1+0*beta+s>=0, G*beta+c==p, s<=t, -s<=t]; d=optimize(cons,t,sdpsettings(''solver'',''sdpt3'',''verbose'',0)); out=sprintf(''problem=%d info=%s t=%g'',d.problem,d.info,value(t));');
+R('SpS prog default', 'beta=sdpvar(1,1,''full''); s=sdpvar(1,1,''full''); t=sdpvar(1,1,''full''); G=[1;1]; c=[0;0]; p=[1;0]; cons=[1+0*beta+s>=0, G*beta+c==p, s<=t, -s<=t]; d=optimize(cons,t,sdpsettings(''verbose'',0)); out=sprintf(''problem=%d info=%s t=%g'',d.problem,d.info,value(t));');

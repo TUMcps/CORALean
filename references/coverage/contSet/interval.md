@@ -121,9 +121,9 @@ CORA methods of `contSet/@interval/`, one row each, and where CORALean answers t
 
 **`atan2` — cora-issue account.** That is not an enclosure across the branch cut: for `y ∈ [-1, 1]`
 and `x = [-1, -1]` it returns `[-3π/4, 3π/4]`, but `atan2(0, -1) = π` is attained inside the box
-(read from the source, not run).
+(run in MATLAB, see Details).
 
-**`atan2` — the reach path.** Reach path (read from the source, not run): `@location/reach.m:55`
+**`atan2` — the reach path.** Reach path (run in MATLAB, see Details): `@location/reach.m:55`
 calls `potInt.m:74`, which calls `@levelSet/isIntersecting_.m`, whose `aux_isIntersecting_interval`
 (l. 87-90) evaluates `ls.funHan`, the `matlabFunction` of the user's equation, on `interval(S)`. A
 guard written with `atan2` thus reaches `@interval/atan2.m`, and a box crossing the cut can give a
@@ -138,6 +138,8 @@ bounded by `atanDown`/`atanUp` of a rounded quotient in the half-plane `ltStrict
 (`0 < x`, `0 < y`, `y < 0`) with `π/2` from `acosDown`/`acosUp` at `0`. For a coordinate with no
 certified half-plane (the branch cut is not excluded) the result is `[-π, π]`, so unlike CORA's
 corner hull it is an enclosure there too.
+
+**`atan2` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): atan2(interval(-1,1),interval(-1,-1)) = [-2.35619, 2.35619], while atan2(0,-1) = 3.14159 (confirmed).
 
 **`boundaryPoint` — float layer.** outer, route a: the box swept by the ratio's bounds
 (`dir * [ratio] + startPoint`, corner products and sum rounded outward), the ratio bounds the least
@@ -158,8 +160,10 @@ with `scaling = abs(S)./(abs([I.inf-c I.sup-c]))` and `res = scaling <= 1 + tol`
 meant, so `res` tests `S ∈ [-r, r]` for the radius `r`. For `I = interval(1,3)`, `S = 0`: `c = 2`,
 `scaling = [0 0]`, `res` true though `0 ∉ [1,3]`. The branch runs when the caller asks for the third
 output, `[res,cert,scaling] = contains(I,p)` (`contSet/contains.m` l. 87-91). Proved in Lean in one
-dimension (read from the source, not run). The `n × 2` shapes are not modelled. The row stays as it
+dimension (run in MATLAB, see Details). The `n × 2` shapes are not modelled. The row stays as it
 is.
+
+**`contains_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): [res,cert,scaling]=contains(interval(1,3),0) gives res=[true true], scaling=[0 0] (confirmed).
 
 **`rdivide` — cora-issue account.** CORA's `@interval/rdivide.m`, branch "a (matrix of) scalar(s) /
 an interval", answers a denominator with `sup == 0` by
@@ -171,10 +175,12 @@ and the whole of `[0.5, +Inf)`. The public `./` of a numeric left and an interva
 dispatches to this function, and a scalar numerator passes the `size(numerator) == 1` test
 (`isequal` of the sizes in the matrix branch). The interval/interval branch computes
 `1 ./ denominator` first and is not affected. Unsound: the interval misses states of any computation
-that divides a negative constant by an interval ending at `0`. Read from the source, not run (read
+that divides a negative constant by an interval ending at `0`. (run in MATLAB, see Details) (read
 from the source, not run). Modelled as `Interval.rdivideNumeratorCora` in one dimension with `EReal`
 bounds. The theorem shows the value at `lo/2` above the upper end for every `c < 0`, `lo < 0` (the
 witness is `c = -1`, `lo = -2`).
+
+**`rdivide` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): -1./interval(-2,0) = [-Inf,0.5], the values of -1/x on [-2,0) are [0.5,Inf) (confirmed).
 
 **`representsa_` — cora-issue account.** CORA's `@interval/representsa_.m` answers both types (l.
 70-75 and l. 92-99, comment "either 1D, a point, or at most one dimension has non-zero width") by
@@ -186,9 +192,11 @@ for the dimensions of width *zero*, so the last disjunct counts those and tests 
 segment point inside, forcing `r = 0`, and a segment holds no three corners; an ellipsoid's second
 coordinate is minimal at one point of its ball only, the square's at two corners). Conversely the
 segment `[0,1] × {0} × {0}` in `ℝ³`, a capsule, has two zero-width dimensions, `2 <= 1` fails, and
-CORA answers `false`. A wrong answer, not unsound (read from the source, not run). Formalized as the
+CORA answers `false`. A wrong answer, not unsound (run in MATLAB, see Details). Formalized as the
 code computes it (`Interval.representsaCapsuleCora`, `Interval.representsaEllipsoidCora`) with a
 counterexample theorem that also shows the square is no capsule and no ellipsoid.
+
+**`representsa_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): representsa(interval(`[0;0]`,`[1;1]`),'capsule') = 1 and 'ellipsoid' = 1 for the unit square (confirmed).
 
 **`supportFunc_` — cora-issue account.** CORA's `@interval/supportFunc_.m` (l. 49-66) takes the
 vertex `x = I.sup` (with `x(idx) = I.inf(idx)` where `sign(dir) == -1`) and returns `val = dir'*x`.
@@ -200,4 +208,7 @@ and a zero entry of `dir` on such a coordinate gives `0*Inf = NaN`, which the su
 does not enter. Every comparison with `NaN` is false, so a specification check on the support
 function of a half-bounded box (`x1 <= 1` as a box) silently fails. A wrong answer (`NaN`). Modelled
 as `Interval.supportFuncUpperCora` in two dimensions, `none` for `NaN`. The theorem shows `NaN`
-against the attained value `1` (read from the source, not run).
+against the attained value `1` (run in MATLAB, see Details).
+
+
+**`supportFunc_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): supportFunc(interval(`[0;-Inf]`,`[1;Inf]`),`[1;0]`,'upper') returns NaN (confirmed).

@@ -27,3 +27,6 @@ CORA methods of `discrDynamics/@markovchain/`, one row each, and where CORALean 
 and MATLAB expands the scalar `iP_tp = 1` over every entry: all `nrOfStates + 1` entries become
 `tranFrac{k}`, the column sums to `(nrOfStates + 1) tranFrac{k}` rather than `tranFrac{k}`, and
 `build_reach` stores it as column `iState + 1` of `T{iInput}`. `tp.OT` (l. 37) likewise.
+
+
+**`build_reach` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: no run: the markov chain build_reach was not constructed.

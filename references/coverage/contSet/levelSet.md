@@ -42,24 +42,26 @@ false as soon as one entry differs, then evaluates the function over `interval(S
 tests `<=` as `ub(i) < 0 | withinTol(ub(i),0)` and every other operator, `==` included, as
 `ub(i) < 0` (l. 124-128). For `==`, `ub < 0` proves the function nonzero on `S`, the opposite of
 containment: `levelSet([x-2; x-10], x, {'==','<='})`, the set `{2}`, is reported to contain
-`interval(0, 1)` (`ub = (-1, -9)`; read from the source, not run). The single-operator branch never
+`interval(0, 1)` (`ub = (-1, -9)`; (run in MATLAB, see Details). The single-operator branch never
 sees `==`. Formalized as the code computes it (`LevelSet.containsCellCora`, the interval evaluation
 an argument assumed a range bound), with a counterexample theorem. `LevelSet.contains` models the
 point branch only.
+
+**`contains_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): contains(levelSet(`[x-2;x-10]`,x,{'==','<='}),interval(0,1)) returns 1 (confirmed).
 
 **`isIntersecting_` — cora-issue account.** CORA's `@levelSet/isIntersecting_.m`,
 `aux_isIntersecting_interval`, handles a cell `compOp` by testing `<=` as
 `lb(i) < 0 | withinTol(lb(i),0,tol)` and every other operator, `==` included, as `lb(i) < 0`. A
 `==` row needs `lb ≤ 0 ≤ ub`, and at `lb = 0` the test fails although the function attains `0`. For
 `x = 0` against the box `[0, 1]` (the range of `x` there is `[0, 1]`, the point `0` is common) the
-verdict is `false`, which `isIntersecting` reads as disjoint (read from the source, not run). The
+verdict is `false`, which `isIntersecting` reads as disjoint (run in MATLAB, see Details). The
 single-operator branch tests `==` correctly. Formalized as the code computes it
 (`LevelSet.isIntersecting_cell`), with a counterexample theorem. The outer theorem is for the
 single-operator branch and for cells without `==`. The interval evaluation of the function is an
 argument assumed a range bound. The error propagates to `@location/potInt.m:74`, which skips a pair
 when `isIntersecting_` is `false`: the guard `x = 0 ∧ x - 1 ≤ 0` (a cell `{'==','<='}`) and the
 reach set `[0, 1]` share the point `0`, yet the pair is not listed and the jump is missed
-(`LevelSet.potIntCora_misses_counterexample`, read from the source, not run).
+(`LevelSet.potIntCora_misses_counterexample`, (run in MATLAB, see Details).
 
 **`isIntersecting_` — cora-issue account, continued.** The unsafe-set checks
 `@specification/check.m:292-294` and `atomicProposition.m:86` call the same test, but no witness is
@@ -70,6 +72,8 @@ float tolerance), each refuting comparison certified by `ltStrict` or `le`, so a
 reals is the real test failing at the bounds read as reals and proves the level set misses the float
 box. A `true` says nothing, and the bounds are still an argument assumed a range bound.
 
+**`isIntersecting_` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): isIntersecting(levelSet(x,x,{'=='}),interval(0,1),'approx') returns 0, with the string '==' it returns 1 (confirmed).
+
 **`isequal` — cora-issue account.** CORA's `@levelSet/isequal.m`, `aux_isequal_levelSet`, matches
 each row of the first level set to a row of the second by renaming the variables of each equation to
 placeholders (`subs(ls.eq(i), usedVars1, subNames)`, `subs(S.eq(j), usedVars2, subNames)`) and
@@ -77,5 +81,8 @@ testing the difference with `simplify`. The table `symNames(:,2)`, meant to reco
 the second level set stands for which of the first, is written (`symNames(idx,2) = usedVars2`) and
 never read, so nothing makes the renamings agree. The level sets `x₁ ≤ 0` and `x₂ ≤ 0` over
 `[x₁; x₂]` both become `xyz_1 ≤ 0` and are answered equal, but `(0, 1)` is in the first and not the
-second (read from the source, not run). The check `usedVarsTotal ~= length(aux_usedVariables(ls))`
+second (run in MATLAB, see Details). The check `usedVarsTotal ~= length(aux_usedVariables(ls))`
 compares the first level set with itself and never fires.
+
+
+**`isequal` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): isequal(levelSet(x1,`[x1;x2]`,'<='),levelSet(x2,`[x1;x2]`,'<=')) returns 1 (confirmed).

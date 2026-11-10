@@ -61,5 +61,7 @@ that a Gaussian of smaller covariance puts more mass on the symmetric convex con
 Anderson's inequality, absent from Mathlib. `options.Rhom` is passed on as a set, as `post` carries
 it, dropping the covariance `enclose` gives it (none for a deterministic `Rinit`).
 
+**`initReach` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
+
 **`linProbSys` — the theorem.** The theorem is that covariance over two steps,
 `Σ(s + t) = e^{As} Σ(t) e^{Aᵀs} + Σ(s)`, exact, entry by entry.

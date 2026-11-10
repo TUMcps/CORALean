@@ -105,7 +105,9 @@ operand fails, so the left operand is needed at every step from `t` up to and in
 `φ U[a,b] true` needs `φ` on `[0,t]` for some `t ≥ a`, not `true`. `false U[0,1] true` is false on
 every trace. (The sibling rewrite of `release(true, ψ)` to `true` is right under this reading.)
 Formalized keeping that node (`STL.Tree.eliminateTrueFalse`, `STL.Tree.sat_eliminateTrueFalse`). The
-printed version is `STL.Tree.eliminateTrueFalseCora` (read from the source, not run).
+printed version is `STL.Tree.eliminateTrueFalseCora` (run in MATLAB, see Details).
+
+**`eliminateTrueFalse` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): eliminateTrueFalse(until(x(1)<5,stl(true),interval(0,1))) returns true (partly confirmed).
 
 **`negationNormalForm` — what it does.** `aux_recursive(obj,neg)` pushes `~` to the comparisons.
 `sat_negationNormalForm` (under `Tree.Satisfies`, see `until`): with the negation of `<` read as `≥`
@@ -114,7 +116,9 @@ printed version is `STL.Tree.eliminateTrueFalseCora` (read from the source, not 
 **`negationNormalForm` — the equality case.** The result is not equivalent to the argument where the
 comparison is an equality: at `x = 0`, `~(x < 0)` holds and `x > 0` does not. Formalized with the
 negated comparison (`STL.Cmp.negate`) and `Satisfies` preserved (`STL.Tree.sat_negationNormalForm`).
-The printed version is `STL.Tree.negationNormalFormCora` (read from the source, not run).
+The printed version is `STL.Tree.negationNormalFormCora` (run in MATLAB, see Details).
+
+**`negationNormalForm` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): negationNormalForm(~(x(1)<5)) returns x1 > 5 (confirmed).
 
 **`polytope2stl` — the guarantee.** `sat_polytope2stl`: a trace satisfies the result iff its initial
 state lies in the polytope `{x | A x <= b, Ae x = be}` (`HPolytope.construct`, exact `↔`), the
@@ -126,7 +130,9 @@ outside the set: for `P = polytope(1,5,1,2)`, `{x | x <= 5, x = 2}`, `polytope2s
 `x(1) <= 5`, true at `x = 0`. A polytope given by one vertex has `A` empty and `Ae = eye(n)`,
 `be = V` (`constraints`, `nrVert == 1`): the loop never runs and `res = []`. Formalized with the
 equalities kept as a `<=` and a `>=` row (`STL.Tree.polytope2stl`, `STL.Tree.sat_polytope2stl`). The
-printed version is `STL.Tree.polytope2stlCora` (read from the source, not run in MATLAB).
+printed version is `STL.Tree.polytope2stlCora` (run in MATLAB, see Details) in MATLAB).
+
+**`polytope2stl` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): polytope2stl(stl('x',1),polytope(1,5,1,2)) returns x1 <= 5 (the equality x=2 is ignored) (confirmed).
 
 **`robustness` — the window example.** On the reach set of `ẋ = 2` from `[-1, -1/2]` on the
 non-uniform steps `0, 1, 2, 4` with `globally(x(1) > 0, interval(0,1.5))`, `t = linspace(0,1.5,2)`
@@ -137,3 +143,6 @@ is one window, its last set `[1, 7/2]` lies `1 + eps` from the unsafe `x ≤ -ep
 **`robustness` — the model.** Modelled as printed for that path
 (`STL.robustnessReachSetGloballyCora`: one branch, one state, the solvers' optima in closed form,
 the intersection tests as parameters). Not run in MATLAB.
+
+
+**`robustness` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: no run: the reach-set robustness of the globally formula was not constructed.

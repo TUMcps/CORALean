@@ -39,6 +39,8 @@ reduced.
 hypothesis, as for `NonlinearSysDT.reach_outer`, and the gain is a parameter (the five techniques
 are not computed).
 
+**`executeObserver` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
+
 **`identify` — not formalized.** No claim that the fit is least-squares for inconsistent data or
 that a small `err` means a good model. `'opt'` (`fmincon`) and `'nested'` are not formalized.
 `'sparse'` (SINDy) is not formalized as CORA runs it: `priv_identifySparse` calls MATLAB's `lasso`
@@ -57,6 +59,9 @@ full-rank properties, including `Ā = X' X†` (`dmdCandidate_eq_mul_pinv`), are
 `timePoint.set{1}` at l. 64 and checks the specification only on `timePoint.set{i+1}` inside
 `for i = 1:steps` (l. 87), so the initial set is never checked and nothing else checks `R0` (`reach`
 is the entry point). The system `x⁺ = x + 1` from `{0}` against the unsafe set `[-0.5, 0.5]` starts
-in an unsafe state and still gives `res = true` (read from the source, not run). On a violation l.
+in an unsafe state and still gives `res = true` (run in MATLAB, see Details). On a violation l.
 88 also indexes the struct `timePoint(1:i+1)`, which errors for `i ≥ 1`. Formalized in `ℝ¹` as the
 loop of the printed path with a counterexample theorem.
+
+
+**`reach` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): reach(nonlinearSysDT(@(x,u) x(1)+1+0*u(1),1,1,1),params,options,unsafe set [-0.5,0.5]) with R0={0} returns res = 1 (confirmed).
