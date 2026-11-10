@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Float.Operations.FourierMotzkinBounds
 public import CORALean.ContSet.Interval.Float.Theorems.ContractHalfspaceOuter
 public import CORALean.ContSet.Interval.Float.Theorems.IntersectionExact
+public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 @[expose] public section
 
@@ -57,16 +58,18 @@ theorem ConZonotope.fourierMotzkinBounds_outer (C : Mat 𝕋 p q) (d : Vec 𝕋 
     x ∈ (ConZonotope.fourierMotzkinBounds C d B).toSet := by -- --- PROOF ---
   -- the fold keeps `x` in the running box, each row's contraction containing it
   have key : ∀ (l : List (Fin p)) (J : Interval (Vec 𝕋 q)), x ∈ J.toSet →
-      x ∈ (l.foldl (fun J i => J.intersection (B.contractHalfspace (C i) (d i))) J).toSet := by
+      x ∈ (l.foldl (fun J i =>
+        (J.intersection (B.contractHalfspace (C i) (d i))).materialise) J).toSet := by
     intro l
     induction l with
     | nil => exact fun J hJ => hJ
     | cons i l ih =>
       intro J hJ
       refine ih _ ?_
-      rw [Interval.intersection_exact]
+      beta_reduce
+      rw [Interval.materialise_eq, Interval.intersection_exact]
       exact ⟨hJ, Interval.contractHalfspace_outer B (C i) (d i) hx (hC i)⟩
-  exact key _ B hx
+  exact key _ B.materialise (by rw [Interval.materialise_eq]; exact hx)
 
 end CORALean.Float
 

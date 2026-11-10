@@ -181,40 +181,58 @@ private def aux_guard (dops : DtypeOps 𝕋) (req : Json) (n : Nat) :
   if (fieldOpt g "G").isSome then pure (.inl (← parseConZonotopeFixed dops.readExact n g))
   else pure (.inr (← parseHPolytopeFixed dops.readExact n g))
 
-/-- The contraction passes `fmPasses` of the box of a cut, asked for with a polytope guard. -/
-private def aux_passes (req : Json) : Except String Nat := do
-  if (fieldOpt req "fmPasses").isSome then natField req "fmPasses"
-  else throw "a polytope guard needs `fmPasses`, the Fourier-Motzkin passes of the box of a cut"
+/-- The box of a cut, asked for with a polytope guard: `box` is `"fm"` (default, `fmPasses`
+Fourier-Motzkin passes), `"cert"` (the simplex's dual certificates, no `fmPasses`) or `"both"` (the
+intersection of the two, `fmPasses`). -/
+private def aux_boxMethod (req : Json) : Except String ConZonotope.BoxMethod := do
+  let passes := fieldOpt req "fmPasses"
+  let box ← match fieldOpt req "box" with
+    | none => pure "fm"
+    | some _ => strField req "box"
+  let k ← match passes with
+    | some _ => natField req "fmPasses"
+    | none => pure 0
+  match box, passes with
+  | "fm", some _ => pure (.fm k)
+  | "both", some _ => pure (.both k)
+  | "cert", none => pure .cert
+  | "fm", none | "both", none =>
+    throw "a polytope guard needs `fmPasses`, the Fourier-Motzkin passes of the box of a cut"
+  | "cert", some _ => throw "`box` \"cert\" takes no `fmPasses`"
+  | b, _ => throw s!"`box` is \"fm\", \"cert\" or \"both\", not \"{b}\""
 
 /-- `location.guardIntersect_nondetGuard`: `Location.guardIntersectNondetFloat` for a constrained
 zonotope guard, `Location.guardIntersectNondetHFloat` for a polytope guard (`fmPasses`). -/
 def handleGuardNondet (dops : DtypeOps 𝕋) (req : Json) : Resp := do
-  checkFields "guardIntersect_nondetGuard" req ["Bs", "R0", "R", "guard", "fmPasses"]
+  checkFields "guardIntersect_nondetGuard" req ["Bs", "R0", "R", "guard", "fmPasses", "box"]
   let ⟨n, Bs, R0, Rs⟩ ← aux_guardInput dops req
   match ← aux_guard dops req n with
   | .inl guard =>
-    if (fieldOpt req "fmPasses").isSome then throw "`fmPasses` is for a polytope guard"
+    if (fieldOpt req "fmPasses").isSome ∨ (fieldOpt req "box").isSome then
+      throw "`fmPasses` and `box` are for a polytope guard"
     pure [("zB", printZonoBundle dops.showExact
       (Location.guardIntersectNondetFloat Bs R0 Rs guard))]
   | .inr guard =>
     pure [("zB", printZonoBundle dops.showExact
-      (Location.guardIntersectNondetHFloat (← aux_passes req) Bs R0 Rs guard))]
+      (Location.guardIntersectNondetHFloat (← aux_boxMethod req) Bs R0 Rs guard))]
 
 /-- `location.guardIntersect_conZonotope`: `Location.guardIntersectPolytopeFloat` on the sets
 reduced to `guardOrder`, for a constrained zonotope guard, `Location.guardIntersectPolytopeHFloat`
 for a polytope guard (`fmPasses`). -/
 def handleGuardConZonotope (dops : DtypeOps 𝕋) (req : Json) : Resp := do
-  checkFields "guardIntersect_conZonotope" req ["Bs", "R0", "R", "guard", "guardOrder", "fmPasses"]
+  checkFields "guardIntersect_conZonotope" req
+    ["Bs", "R0", "R", "guard", "guardOrder", "fmPasses", "box"]
   let ⟨n, Bs, R0, Rs⟩ ← aux_guardInput dops req
   let order ← natField req "guardOrder"
   match ← aux_guard dops req n with
   | .inl guard =>
-    if (fieldOpt req "fmPasses").isSome then throw "`fmPasses` is for a polytope guard"
+    if (fieldOpt req "fmPasses").isSome ∨ (fieldOpt req "box").isSome then
+      throw "`fmPasses` and `box` are for a polytope guard"
     pure [("zB", printZonoBundle dops.showExact (Location.guardIntersectPolytopeFloat Bs
       (aux_reduce order R0) (Rs.map (aux_reduce order)) guard))]
   | .inr guard =>
     pure [("zB", printZonoBundle dops.showExact (Location.guardIntersectPolytopeHFloat
-      (← aux_passes req) Bs (aux_reduce order R0) (Rs.map (aux_reduce order)) guard))]
+      (← aux_boxMethod req) Bs (aux_reduce order R0) (Rs.map (aux_reduce order)) guard))]
 
 /-- `location.guardGroups`: `Location.guardGroups`, the hits grouped by guard and split at gaps. -/
 def handleLocationGuardGroups (_dops : DtypeOps 𝕋) (req : Json) : Resp := do

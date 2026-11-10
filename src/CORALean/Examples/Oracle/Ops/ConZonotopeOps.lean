@@ -23,6 +23,7 @@ import CORALean.ContSet.ConZonotope.Float.Operations.RepresentsaEmptySet
 import CORALean.ContSet.ConZonotope.Float.Operations.Split
 import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
 import CORALean.ContSet.Conversion.Float.Operations.Basic
+import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_IntervalCert
 import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_IntervalTight
 import CORALean.ContSet.ContSet.Operations.Enclose
 import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
@@ -36,9 +37,10 @@ Thin adapters over the float definitions `references/coverage/contSet/conZonotop
 Operands are `cZ`, `cZ2` (`{"c","G","P","E"}`, or `{"c","G","A","b","E"}` with `A ξ = b`; see
 `SetCodec.lean`); a set result is `cZ` (`cZ1`, `cZ2` for a split), a Boolean `value`, a bound
 `value`. Indices are 0-based; a field an op does not list is refused by name. `contains` (a point)
-and `isFullDim` take the certificate as the optional fields `H` (default
-`Zonotope.rightInvCandidate`) and `beta0` (default `0`), and answer `false` for an equality row
-`A ξ = b`. Not served: `minkDiff`, `rescale`, `polytope`, the constructor (README).
+and `isFullDim` take the certificate as the optional `H` (default `Zonotope.rightInvCandidate`) and
+`beta0` (default `0`), and answer `false` for an equality row `A ξ = b`. `intervalCert` takes the
+optional dual multipliers `y`, per coordinate and end (README). Not served: `minkDiff`, `rescale`,
+`polytope`, the constructor (README).
 
 ## Inputs
 * `dops` – dtype operations
@@ -245,12 +247,58 @@ def handleConZonoIntervalTight (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   pure [("I", printIntervalVec dops.showExact
     (ConZonotope.intervalTight (← natField req "k") d.cZ))]
 
+/-- The multipliers of one end in a request: `{"y": .., "zu": .., "zl": ..}`, three column vectors
+of lengths `m`, `me`, `me`; the simplex's proposal where the end is not given. -/
+private def aux_certEnd (dops : DtypeOps 𝕋) {n : Nat} (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
+    (dflt : ConZonotope.CertWeights cZ) (j : Option Json) :
+    Except String (ConZonotope.CertWeights cZ) := do
+  match j with
+  | none => pure dflt
+  | some j =>
+    checkFields "intervalCert multipliers" j ["y", "zu", "zl"]
+    pure (← parseVecFixed dops.readExact cZ.P.m (← field j "y"),
+      ← parseVecFixed dops.readExact cZ.P.me (← field j "zu"),
+      ← parseVecFixed dops.readExact cZ.P.me (← field j "zl"))
+
+/-- A multipliers triple, printed. -/
+private def aux_printCert (dops : DtypeOps 𝕋) {n : Nat} {cZ : ConZonotope 𝕋 (Vec 𝕋 n)}
+    (w : ConZonotope.CertWeights cZ) : Json :=
+  Json.mkObj [("y", printVec dops.showExact w.1), ("zu", printVec dops.showExact w.2.1),
+    ("zl", printVec dops.showExact w.2.2)]
+
+/-- `conZonotope.intervalCert`: `ConZonotope.intervalCertWith`, the box of `c + G beta + E` from the
+multipliers `y` (module docstring); `I`, and `weights`, the multipliers used. -/
+def handleConZonoIntervalCert (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "intervalCert" req ["cZ", "y"]
+  let d ← parseConZonotope dops.readExact (← field req "cZ")
+  -- one request entry per coordinate, empty where `y` is not given
+  let ys ← match fieldOpt req "y" with
+    | none => pure (Array.replicate d.n Json.null)
+    | some _ => do
+      let a ← arrField req "y"
+      if a.size ≠ d.n then throw s!"`y` has {a.size} entries, the set has {d.n} coordinates"
+      pure a
+  -- the multipliers of both ends of every coordinate: the request's, else the simplex's
+  let ws ← (List.finRange d.n).toArray.mapM fun i => do
+    let e := ys.getD i.val Json.null
+    checkFields "intervalCert" e ["up", "lo"]
+    pure (← aux_certEnd dops d.cZ (d.cZ.certUp i) (fieldOpt e "up"),
+      ← aux_certEnd dops d.cZ (d.cZ.certLo i) (fieldOpt e "lo"))
+  -- the box at those multipliers (zero weights stand in for an index that cannot occur)
+  let zeroW : ConZonotope.CertWeights d.cZ :=
+    (fun _ => FloatOps.zero, fun _ => FloatOps.zero, fun _ => FloatOps.zero)
+  let w := fun (i : Fin d.n) => ws.getD i.val (zeroW, zeroW)
+  pure [("I", printIntervalVec dops.showExact (d.cZ.intervalCertWith (fun i => (w i).1)
+      fun i => (w i).2)),
+    ("weights", Json.arr (ws.map fun (u, l) =>
+      Json.mkObj [("up", aux_printCert dops u), ("lo", aux_printCert dops l)]))]
+
 /-- Every op of this file, without the `conZonotope.` prefix. -/
 def conZonotopeOpNames : List String :=
   [ "and", "cartProd", "compact", "conIntersect", "contains", "convHull", "cubMap", "empty",
     "enclose", "fourierMotzkinBounds", "intersectStrip", "isBounded", "isFullDim", "isIntersecting",
     "isequal", "lift", "mtimes", "origin", "plus", "project", "quadMap", "reduce", "representsa",
-    "split", "supportFunc", "vertices", "zonotope", "interval", "intervalTight",
+    "split", "supportFunc", "vertices", "zonotope", "interval", "intervalCert", "intervalTight",
     "zonoBundle" ]
 
 /-- `op` of `conZonotope.`, run; `none` for a name this file does not serve. -/
@@ -318,6 +366,7 @@ def handleConZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opti
   -- the arms from `split` on
   | "split" => some (handleConZonoSplit dops req)
   | "intervalTight" => some (handleConZonoIntervalTight dops req)
+  | "intervalCert" => some (handleConZonoIntervalCert dops req)
   | "supportFunc" => some (handleConZonoSupportFunc dops req)
   | "vertices" => some (handleConZonoVertices dops req)
   -- the conversions: drop the constraints, the bounding box, a bundle of one

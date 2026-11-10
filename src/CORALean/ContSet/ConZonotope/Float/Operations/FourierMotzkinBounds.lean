@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Float.ConZonotope
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.ContractHalfspace
+public import CORALean.ContSet.Interval.Float.Operations.Materialise
 
 @[expose] public section
 
@@ -47,10 +48,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] {p q : ℕ}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- [1, Prop. 3]: the intersection of the row-wise contractions of the initial box `B`. -/
+/-- [1, Prop. 3]: the intersection of the row-wise contractions of the initial box `B`, the running
+box stored after each row so that no read replays the rows before it. -/
 def ConZonotope.fourierMotzkinBounds (C : Mat 𝕋 p q) (d : Vec 𝕋 p) (B : Interval (Vec 𝕋 q)) :
     Interval (Vec 𝕋 q) :=
-  (List.finRange p).foldl (fun J i => J.intersection (B.contractHalfspace (C i) (d i))) B
+  (List.finRange p).foldl
+    (fun J i => (J.intersection (B.contractHalfspace (C i) (d i))).materialise) B.materialise
 
 end CORALean.Float
 

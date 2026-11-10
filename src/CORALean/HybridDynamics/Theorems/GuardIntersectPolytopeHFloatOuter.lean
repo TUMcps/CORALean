@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectHPolytopeOuter
-public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeIntervalTightContains
+public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotope_to_IntervalBoxContains
 public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.HybridDynamics.Operations.GuardIntersectPolytopeHFloat
 public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
@@ -33,7 +33,7 @@ cut in each basis, so in every member of the bundle, so in the bundle. The bases
 `B Bᵀ = 1` over ℝ, so `B (Bᵀ x) = x` carries the state through the basis and back. Outer only.
 
 ## Inputs
-* `k` – contraction passes
+* `m` – method of the box of a cut
 * `Bs` – bases
 * `R₀` – initial set
 * `Rs` – reach sets
@@ -63,18 +63,19 @@ namespace CORALean
 
 open CORALean.Float Matrix
 
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A state in a reach set and in the guard lies in the bundle, for orthogonal bases. -/
-theorem Location.guardIntersectPolytopeHFloat_outer (k : ℕ) (Bs : List (Mat 𝕋 n n))
+theorem Location.guardIntersectPolytopeHFloat_outer (m : ConZonotope.BoxMethod)
+    (Bs : List (Mat 𝕋 n n))
     (R₀ : Zonotope (Vec 𝕋 n)) (Rs : List (Zonotope (Vec 𝕋 n))) (guard : HPolytope 𝕋 (Vec 𝕋 n))
     (horth : ∀ B ∈ Bs, Scalar.toRealMat B * (Scalar.toRealMat B)ᵀ = 1)
     {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ R₀ :: Rs) {x : Vec ℝ n} (hx : x ∈ R.toSet)
     (hg : x ∈ guard.toSet) : -- --- CONCL ---
-    x ∈ (Location.guardIntersectPolytopeHFloat k Bs R₀ Rs guard).toSet := by -- --- PROOF ---
+    x ∈ (Location.guardIntersectPolytopeHFloat m Bs R₀ Rs guard).toSet := by -- --- PROOF ---
   have hfold : ∀ (Is : List (Interval (Vec 𝕋 n))) (J : Interval (Vec 𝕋 n)) (y : Vec ℝ n),
       (y ∈ J.toSet ∨ ∃ I ∈ Is, y ∈ I.toSet) → y ∈ (Is.foldl Interval.or J).toSet := by
     intro Is
@@ -103,7 +104,7 @@ theorem Location.guardIntersectPolytopeHFloat_outer (k : ℕ) (Bs : List (Mat �
     rw [Matrix.mulVec_mulVec, hT, hB, Matrix.one_mulVec]
   -- the box of the cut of `R'` with the guard, in the basis
   set cutOf : Zonotope (Vec 𝕋 n) → Interval (Vec 𝕋 n) := fun R' =>
-    ConZonotope.intervalTight k
+    ConZonotope.box m
       (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ
         ((Zonotope.conZonotope R').intersectHPolytope guard)) with hcutOf
   -- the state in its cut, boxed in the basis
@@ -113,7 +114,7 @@ theorem Location.guardIntersectPolytopeHFloat_outer (k : ℕ) (Bs : List (Mat �
     simp only [hcutOf]
     have h5 := ConZonotope.intersectHPolytope_outer _ guard (Zonotope.conZonotope_contains _ hx') hg
     generalize (Zonotope.conZonotope R').intersectHPolytope guard = cZ at h5 ⊢
-    exact ConZonotope.intervalTight_contains k _
+    exact ConZonotope.box_contains m _
       (Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (ContSet := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ cZ
       (Set.mem_biUnion rfl (Set.mem_image_of_mem _ h5)))
   -- the state is in the box of the union of the cuts
