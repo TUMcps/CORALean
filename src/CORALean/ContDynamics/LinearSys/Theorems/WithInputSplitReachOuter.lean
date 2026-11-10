@@ -11,6 +11,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetParticula
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderAdmissible
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterAt
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointOneOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 public import CORALean.ContSet.SetUnion.Theorems.Basic
 
@@ -152,7 +153,7 @@ theorem LinearSys.WithInputSplit.reach_outer (sys : LinearSys.WithInputSplit �
     · -- `e^{A t_k}` of a point of `H^R(τ_0) ⊕ P̃^R(τ_0)`
       refine Mtimes.mtimes_outer _ _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _
         (Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_))))
-      · exact sys.sys.timeInterval_outer_at hΔt hε X₀ hτ0 htk
+      · exact sys.sys.timeInterval_outer_at hΔt hε X₀ _ (sys.sys.timePoint_one_outer Δt X₀) hτ0 htk
           (Set.mem_image_of_mem _ traj.init)
       · exact sys.sys.expIntegral_mem_constInputSolution hΔt (m + 2) hε uc hτ0 htk
     · -- one admissible `Ũ`-input's contribution by `t`, in `P^R_Ũ(t_{k+1})`

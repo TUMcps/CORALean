@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
+public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 public import CORALean.HybridDynamics.Definitions.Location
 
 @[expose] public section
@@ -49,7 +50,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 /-- The enclosure of a stay of length `r`, at Taylor order `η`. -/
 noncomputable def Location.timeInterval (ℓ : Location S G L 𝕋 n) (r : ℝ) (η : ℕ)
     (X₀ : S n) : S n :=
-  ℓ.dynamics.timeInterval r η X₀
+  ℓ.dynamics.timeInterval r η X₀ (ℓ.dynamics.timePoint r X₀ 1)
 
 end CORALean
 

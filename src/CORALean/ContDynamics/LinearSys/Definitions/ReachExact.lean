@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.LinearSys
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachExactAt
 public import Mathlib.Analysis.Normed.Algebra.Exponential
 
 @[expose] public section
@@ -8,8 +8,8 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 /-!
 # The exact set `Reach LinearSys` is asked to enclose
 
-Every image of a bare initial set under the homogeneous flow, at every time
-of `[0, tFinal]` — [1, Def. 1] at `U = 0`, the case `Reach.reachExact` has
+The union of `reachExactAt`, the image of a bare initial set under the homogeneous flow at one
+time, over every time of `[0, tFinal]` — [1, Def. 1] at `U = 0`, the case `Reach.reachExact` has
 room for. `reach_outer` and `reachWrappingFree_outer` put it inside `reach` and
 `reachWrappingFree`, one window at a time.
 
@@ -49,7 +49,7 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 `t ∈ [0, tFinal]`. -/
 noncomputable def LinearSys.reachExact (sys : LinearSys 𝕋 n) (tFinal : ℝ)
     (X₀ : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
-  {x | ∃ t ∈ Set.Icc 0 tFinal, ∃ x₀ ∈ X₀, x = exp (t • toRealMat sys.A) *ᵥ x₀}
+  ⋃ t ∈ Set.Icc 0 tFinal, sys.reachExactAt t X₀
 
 end CORALean
 

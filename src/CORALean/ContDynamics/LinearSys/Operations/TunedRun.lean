@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.TunedState
 public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStep
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolution
 public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
+public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
 public import CORALean.ContSet.Zonotope.Real.Operations.Reduce
 public import CORALean.Global.StepOf
@@ -86,7 +87,7 @@ noncomputable def LinearSys.step_tunedStep (sys : LinearSys 𝕋 n) (le : ℝ �
   -- 5. Alg. 2
   | some (Δt, η, εP) =>
     -- 6. HR([0,Δt_i])
-    let HR₀ := sys.timeInterval (S := 𝒵) Δt η X₀
+    let HR₀ := sys.timeInterval (S := 𝒵) Δt η X₀ (sys.timePoint (S := 𝒵) Δt X₀ 1)
     -- 6. PR([0,Δt_i])
     let PR₀ := sys.inputSolution (S := 𝒵) Δt η U
     -- 7. eq. (2)'s e^{A t_i}

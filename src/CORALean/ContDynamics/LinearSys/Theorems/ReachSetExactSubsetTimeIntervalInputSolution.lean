@@ -80,7 +80,8 @@ theorem LinearSys.reachSetExact_subset_timeInterval_inputSolution (sys : LinearS
     (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U))
     (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U))
     (h0 : (0 : Vec ℝ n) ∈ toSet U) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
-    sys.reachSetExact T R₀ U t ⊆ toSet (Plus.plus (sys.timeInterval r (m + 2) R₀)
+    sys.reachSetExact T R₀ U t
+      ⊆ toSet (Plus.plus (sys.timeInterval r (m + 2) R₀ (sys.timePoint r R₀ 1))
       (sys.inputSolution r (m + 2) U)) := by -- --- PROOF ---
   rintro _ ⟨x, u, traj, rfl⟩
   exact traj.timeInterval_outer_inputSolution hr hT hε ht0 htr hconv hclosed hbdd

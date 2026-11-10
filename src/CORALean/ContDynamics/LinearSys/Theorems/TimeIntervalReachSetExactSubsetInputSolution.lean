@@ -75,7 +75,7 @@ theorem LinearSys.timeIntervalReachSetExact_subset_inputSolution
     (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U))
     (h0 : (0 : Vec ℝ n) ∈ toSet U) : -- --- CONCL ---
     sys.timeIntervalReachSetExact T R₀ U r
-      ⊆ toSet (Plus.plus (sys.timeInterval r (m + 2) R₀)
+      ⊆ toSet (Plus.plus (sys.timeInterval r (m + 2) R₀ (sys.timePoint r R₀ 1))
         (sys.inputSolution r (m + 2) U)) := by -- --- PROOF ---
   rw [sys.timeIntervalReachSetExact_eq_iUnion]
   refine Set.iUnion₂_subset fun t ht => ?_

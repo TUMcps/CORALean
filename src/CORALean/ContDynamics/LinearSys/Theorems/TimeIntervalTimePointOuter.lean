@@ -1,6 +1,7 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Operations.ReachStepk
+public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
+public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterAt
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointOuter
 
@@ -11,9 +12,10 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimePointOuter
 
 At `t ∈ τ_k = [k Δt, (k + 1) Δt]`, `e^{At} = e^{A(t - kΔt)} e^{A k Δt}`: the
 inner point `e^{A k Δt} x₀` is in `timePoint Δt X₀ k` by `timePoint_outer`, and
-`timeInterval_outer_at` at `s = t - k Δt ∈ [0, Δt]`, run on that set, puts
-`e^{As} (e^{A k Δt} x₀) = e^{At} x₀` in `reachStepk Δt η X₀ k =
-timeInterval Δt η (timePoint Δt X₀ k)`. The statement is
+`timeInterval_outer_at` at `s = t - k Δt ∈ [0, Δt]`, run on that set and on
+`timePoint Δt X₀ (k + 1)`, which holds its image under `e^{AΔt}` by `mtimes_outer`, puts
+`e^{As} (e^{A k Δt} x₀) = e^{At} x₀` in `timeInterval Δt η (timePoint Δt X₀ k)
+(timePoint Δt X₀ (k + 1))`, the window `reach` keeps. The statement is
 `reachStepkWrappingFree_outer`'s, word for word.
 
 ## Inputs
@@ -60,19 +62,24 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Every image of the initial set under the flow, at every time of the window
-`τ_k`, is in `reachStepk`'s set for it. -/
-theorem LinearSys.reachStepk_outer (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 < Δt) {η : ℕ}
+`τ_k`, is in `timeInterval`'s set for the time points `k` and `k + 1`. -/
+theorem LinearSys.timeInterval_timePoint_outer (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 < Δt) {η : ℕ}
     (hη : 2 ≤ η) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (X₀ : S n) {k : ℕ} {t : ℝ}
     (hkt : (k : ℝ) * Δt ≤ t) (htk : t - k * Δt ≤ Δt) : -- --- CONCL ---
     (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' toSet X₀
-      ⊆ toSet (sys.reachStepk Δt η X₀ k) := by -- --- PROOF ---
+      ⊆ toSet (sys.timeInterval Δt η (sys.timePoint Δt X₀ k)
+        (sys.timePoint Δt X₀ (k + 1))) := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ : ∃ m, η = m + 2 := ⟨η - 2, by omega⟩
   rintro _ ⟨x₀, hx₀, rfl⟩
   -- `e^{A k Δt} x₀` is in `timePoint Δt X₀ k`
   have hpoint := sys.timePoint_outer Δt X₀ k (Set.mem_image_of_mem _ hx₀)
   -- `timeInterval_outer_at` at `s = t - k Δt ∈ [0, Δt]`, run on that set
+  have hnext : sys.reachExactAt Δt (toSet (sys.timePoint Δt X₀ k))
+      ⊆ toSet (sys.timePoint Δt X₀ (k + 1)) := fun _ ⟨y, hy, hyx⟩ =>
+    hyx ▸ Mtimes.mtimes_outer _ _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hy))
   have hstep := sys.timeInterval_outer_at hΔt hε (sys.timePoint Δt X₀ k)
-    (t := t - k * Δt) (by linarith) htk (Set.mem_image_of_mem _ hpoint)
+    (sys.timePoint Δt X₀ (k + 1)) hnext (t := t - k * Δt) (by linarith) htk
+    (Set.mem_image_of_mem _ hpoint)
   -- `e^{At} = e^{A(t - kΔt)} e^{A k Δt}`, both powers of the same matrix
   have hc : Commute ((t - (k : ℝ) * Δt) • toRealMat sys.A) (((k : ℝ) * Δt) • toRealMat sys.A) :=
     ((Commute.refl _).smul_left _).smul_right _
@@ -84,9 +91,7 @@ theorem LinearSys.reachStepk_outer (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 
     rw [← add_smul, hkey] at h
     rw [Matrix.mulVec_mulVec]
     exact congrArg (· *ᵥ x₀) h
-  -- `reachStepk Δt (m + 2) X₀ k` is `timeInterval Δt (m + 2) (timePoint Δt X₀ k)`
-  show exp (t • toRealMat sys.A) *ᵥ x₀
-    ∈ toSet (sys.timeInterval Δt (m + 2) (sys.timePoint Δt X₀ k))
+  show exp (t • toRealMat sys.A) *ᵥ x₀ ∈ _
   rw [hexp]
   exact hstep
 

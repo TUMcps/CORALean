@@ -83,7 +83,7 @@ theorem LinearSys.IsCanonicalTrajectory.timeInterval_outer_convexCompact
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) (h0 : (0 : Vec ℝ n) ∈ toSet U) :
     x t ∈ toSet (Plus.plus
-      (sys.timeInterval r (m + 2) R₀) (sys.inputSolution r (m + 2) U)) :=
+      (sys.timeInterval r (m + 2) R₀ (sys.timePoint r R₀ 1)) (sys.inputSolution r (m + 2) U)) :=
   traj.timeInterval_outer_inputSolution hr hT hε ht0 htr
     (ConvexSet.convex_toSet U) (CompactSet.isClosed_toSet U)
     (CompactSet.isBounded_toSet U)

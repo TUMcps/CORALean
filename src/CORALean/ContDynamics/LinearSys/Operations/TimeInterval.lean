@@ -11,16 +11,19 @@ public import Mathlib.Analysis.Normed.Algebra.Exponential
 # One step of the homogeneous flow, as a set
 
 CORA's `CH(X₀, e^{Ar}X₀) ⊕ F X₀`, over a whole step rather than at its ends: the segment from the
-set to its image, widened by what the curvature of the flow adds. `linComb` rather than a convex
-hull, so a non-convex representation keeps its shape. `exp` needs a norm on `Mat`, which is a
+set to its image, widened by what the curvature of the flow adds. Both ends are arguments, the set
+`Xₖ` and a set `Xₖ₁` holding its image `e^{AΔt}Xₖ`, so a caller that has the later time-point set
+already does not compute it a second time. `linComb` rather than a convex hull, so a non-convex
+representation keeps its shape. `exp` needs a norm on `Mat`, which is a
 choice rather than an instance, so every file reasoning about this definition must make the same
 one, the `l∞` operator norm, or the terms will not match.
 
 ## Inputs
 * `sys` – linear system
-* `r` – step length
+* `Δt` – step length
 * `η` – Taylor order
-* `X₀` – initial set
+* `Xₖ` – set at the start of the step
+* `Xₖ₁` – set at the end of the step
 
 ## Output
 * set over the whole step: hull of the set and its image widened by the curvature
@@ -50,12 +53,13 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- CORA's `CH(X₀, e^{Ar}X₀) ⊕ F X₀`, over a whole step rather than at its
-ends. -/
+/-- CORA's `CH(Xₖ, Xₖ₁) ⊕ F Xₖ`, over a whole step rather than at its ends, where `Xₖ₁` holds
+`e^{AΔt}Xₖ`. -/
 noncomputable def LinearSys.timeInterval
-    (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ) (X₀ : S n) : S n :=
-  LinComb.linComb X₀ (Mtimes.mtimes (exp (r • toRealMat sys.A)) X₀) ⊞
-    Mtimes.mtimes (𝕄 := ℐ) (MatExp.correctionMatrix (toRealMat sys.A) r η) X₀
+    (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (Xₖ Xₖ₁ : S n) : S n :=
+  let H := LinComb.linComb Xₖ Xₖ₁                                        -- hull of the two ends
+  let C := Mtimes.mtimes (𝕄 := ℐ) (MatExp.correctionMatrix (toRealMat sys.A) Δt η) Xₖ  -- F Xₖ
+  H ⊞ C                                                                    -- H ⊕ C
 
 end CORALean
 

@@ -57,7 +57,7 @@ own radius `ε` is already inside the states the flow visits over it. -/
 theorem LinearSys.exists_timeIntervalInner_inner (sys : LinearSys 𝕋 n)
     (X₀ : Zonotope (Vec ℝ n)) (η : ℕ) {ε : ℝ} (hε : 0 < ε) : -- --- CONCL ---
     ∃ r : ℝ, 0 < r ∧ sys.timeIntervalStepError r η X₀ < ε ∧
-      minkowskiDiff (sys.timeInterval (S := 𝒵) r η X₀).toSet
+      minkowskiDiff (sys.timeInterval (S := 𝒵) r η X₀ (sys.timePoint (S := 𝒵) r X₀ 1)).toSet
           (Metric.closedBall (0 : Vec ℝ n) ε)
         ⊆ ⋃ t ∈ Set.Icc (0:ℝ) r,
             (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' X₀.toSet := by -- --- PROOF ---

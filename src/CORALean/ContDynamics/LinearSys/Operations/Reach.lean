@@ -1,7 +1,8 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
-public import CORALean.ContDynamics.LinearSys.Operations.ReachStepk
+public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
+public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 public import CORALean.ContDynamics.Reach.Definitions.Params
 public import CORALean.ContSet.SetUnion.SetUnion
 
@@ -11,13 +12,13 @@ public import CORALean.ContSet.SetUnion.SetUnion
 # Reachability over `[tStart, tFinal]`, recursively, one window of width `Δt` at a time
 
 `X₀ = params.X₀`, `Δt = options.Δt`, `η = options.η`: the windows `τ_0, …, τ_{N-1}`, one
-`reachStepk` each, collected as a `SetUnion`: `N = ⌈(tFinal - tStart) / Δt⌉` of them, so the last
+`timeInterval` each, collected as a `SetUnion`: `N = ⌈(tFinal - tStart) / Δt⌉` of them, so the last
 may overshoot `tFinal`, which an outer enclosure may. The times are real, unlike `Reach.steps`'
 rational ones: the ceiling is part of what `reach_outer` says, a horizon that is no multiple of
 `Δt` is covered, where `Reach.steps` would refuse it, and `ℝ` has no `ToRat`. CORA's `standard`
-scheme, its default: [1, Alg. 1] at a point matrix, with no input and no order reduction;
-`reachStepk`'s recursion runs on the time-point sets `timePoint`. Unlike `reachWrappingFree`,
-`η` is taken as given and `N` is not raised to one.
+scheme, its default: [1, Alg. 1] at a point matrix, with no input and no order reduction; each
+time-point set `timePoint` is computed once and handed to `timeInterval` at both ends of its
+window. Unlike `reachWrappingFree`, `η` is taken as given and `N` is not raised to one.
 
 ## Inputs
 * `sys` – linear system
@@ -62,7 +63,8 @@ noncomputable def LinearSys.reach (sys : LinearSys 𝕋 n) (params : Reach.Param
   let Δt := options.Δt
   let η := options.η
   let N := ⌈(params.tFinal - params.tStart) / Δt⌉₊              -- windows τ_0, …, τ_{N-1}
-  ⟨(List.range N).map (sys.reachStepk Δt η X₀)⟩                -- ⋃_{k < N} R(τ_k)
+  let X := sys.timePoint Δt X₀                                  -- R(t_k), each once
+  ⟨(List.range N).map fun k => sys.timeInterval Δt η (X k) (X (k + 1))⟩  -- ⋃_{k < N} R(τ_k)
 
 end CORALean
 

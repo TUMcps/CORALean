@@ -1,20 +1,17 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachExact
-public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterAt
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterOfSubset
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointOneOuter
 
 @[expose] public section
 
 /-!
 # `timeInterval` encloses the exact reachable set of the step
 
-`timeInterval_outer_at`, quantified over the step's own time domain
-`[0, Δt]` in one statement, through `reachExact`, and at the Taylor order `η`
-itself rather than the `m + 2` it is admissible written as:
-`reachExact Δt (toSet X₀)` is exactly the union over `t ∈ [0, Δt]` of the
-image of `toSet X₀` under `exp (t • A)`, so unpacking one `t` and its
-bounds from membership, and `η`'s own `m + 2` witness from `2 ≤ η`, is all
-this adds.
+`timeInterval_outer_of_subset` with the end set the time-point set `timePoint Δt Xₖ 1`, which
+`timePoint_one_outer` shows holds the image of `Xₖ`: the statement a caller with no end set in
+hand wants, the same step `reach` takes between consecutive time points.
 -/
 
 -- Authors:       Claude Opus 5.5
@@ -43,15 +40,15 @@ variable [Mtimes ℐ S]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 omit [∀ n, Reduce (S n) (Vec ℝ n)] in
-/-- The exact reachable set of the step, `reachExact Δt`, is inside
-`timeInterval`'s, at the order `η` itself. -/
+/-- The exact reachable set of the step, `reachExact Δt`, is inside `timeInterval`'s, at the
+order `η` itself, where `Xₖ₁` is the time-point set `timePoint Δt Xₖ 1`. -/
 theorem LinearSys.timeInterval_outer (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 < Δt) {η : ℕ}
-    (hη : 2 ≤ η) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (X₀ : S n) :
-    sys.reachExact Δt (toSet X₀)
-      ⊆ toSet (sys.timeInterval Δt η X₀) := by
-  obtain ⟨m, rfl⟩ : ∃ m, η = m + 2 := ⟨η - 2, by omega⟩
-  rintro _ ⟨t, ⟨ht0, htr⟩, x₀, hx₀, rfl⟩
-  exact sys.timeInterval_outer_at hΔt hε X₀ ht0 htr (Set.mem_image_of_mem _ hx₀)
+    (hη : 2 ≤ η) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (Xₖ Xₖ₁ : S n)
+    (hX : Xₖ₁ = sys.timePoint Δt Xₖ 1) : -- --- CONCL ---
+    sys.reachExact Δt (toSet Xₖ)
+      ⊆ toSet (sys.timeInterval Δt η Xₖ Xₖ₁) := by -- --- PROOF ---
+  subst hX
+  exact sys.timeInterval_outer_of_subset hΔt hη hε Xₖ _ (sys.timePoint_one_outer Δt Xₖ)
 
 end CORALean
 
