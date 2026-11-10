@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.ConZonotope
+public import CORALean.ContSet.ConZonotope.Float.Definitions.API
 public import CORALean.ContSet.ConZonotope.Float.Operations.API
 public import CORALean.ContSet.ConZonotope.Float.Theorems.API
 public import CORALean.ContSet.ConZonotope.Float.Instances

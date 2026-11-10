@@ -14,6 +14,8 @@ public import CORALean.ContSet.Conversion.Float.Theorems.ConPolyZonoEllipsoidCon
 public import CORALean.ContSet.Conversion.Float.Theorems.ConPolyZonoPolyZonotopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeConPolyZonoContains
 public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeIntervalTightContains
+public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotope_to_IntervalCertContains
+public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotope_to_IntervalBoxContains
 public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeSpectraShadowContains
 public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeVPolytopeBoxContains
 public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeZonoBundleContains

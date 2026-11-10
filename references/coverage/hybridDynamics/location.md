@@ -40,9 +40,10 @@ inequality `aᵀGβ ≤ b - aᵀc` on the coefficients, widened by the carrying 
 where CORA adds a fresh factor whose range comes from a linear program; an equality row enters as
 its two halves. `Location.guardIntersectNondetHFloat` cuts the parallelotope with it,
 `Location.guardIntersectPolytopeHFloat` each reach set, and the cut is boxed per basis by
-`ConZonotope.intervalTight` with `k` Fourier-Motzkin passes, which keeps the constraints as CORA's
-`interval(B'*cZ)` does. Both are outer for bases with `B Bᵀ = 1`; the oracle takes `fmPasses` for
-`k`.
+`ConZonotope.box`, which keeps the constraints as CORA's `interval(B'*cZ)` does: `intervalTight`
+with `k` Fourier-Motzkin passes, `intervalCert` from dual certificates, or the intersection of the
+two (`ConZonotope.BoxMethod`). Both are outer for bases with `B Bᵀ = 1`; the oracle takes `fmPasses`
+for `k` and `box` (`"fm"`, `"cert"`, `"both"`) for the method.
 
 **`checkFlow` — what the theorem says.** The theorem is that a dropped set has no outward flow on
 its projection onto the hyperplane (`c·(A p + B u + c₀ + E w) ≤ 0` for the projection `p` of every
