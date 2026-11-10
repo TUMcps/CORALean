@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRep
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepSubsetConstInputAddError
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
@@ -66,23 +66,23 @@ theorem LinearSys.timePointStepInner_inner (sys : LinearSys 𝕋 n) {r : ℝ} (h
     (η : ℕ) (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (X₀ U : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     sys.timePointStepInner r η X₀ U
-      ⊆ (fun x₀ => exp (r • toRealMat sys.A) *ᵥ x₀) '' X₀.construct
+      ⊆ (fun x₀ => exp (r • toRealMat sys.A) *ᵥ x₀) '' X₀.toSet
         + sys.inputReach (S := 𝒵) U r := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
   set E := Metric.closedBall (0 : Vec ℝ n) (sys.timePointStepError r η U) with hE
   have hOuter := sys.timePointStep_subset_constInput_add_error hr η hε X₀ U
   -- the held-input set is a zonotope: two images under `mtimes`, and their sum
-  have hY : (fun x₀ => exp (r • A) *ᵥ x₀) '' X₀.construct
-        + (fun v => MatExp.expIntegral A r *ᵥ v) '' U.construct
+  have hY : (fun x₀ => exp (r • A) *ᵥ x₀) '' X₀.toSet
+        + (fun v => MatExp.expIntegral A r *ᵥ v) '' U.toSet
       = ((Zonotope.mtimes (exp (r • A)) X₀).plus
-          (Zonotope.mtimes (MatExp.expIntegral A r) U)).construct := by
+          (Zonotope.mtimes (MatExp.expIntegral A r) U)).toSet := by
     rw [Zonotope.mtimes_exact, Zonotope.mtimes_exact, Zonotope.plus_exact]
   -- the error ball holds a point because it encloses the step's own center
   have hEne : E.Nonempty := by
-    obtain ⟨_, _, e, he, _⟩ := hOuter (Zonotope.center_mem_construct _)
+    obtain ⟨_, _, e, he, _⟩ := hOuter (Zonotope.center_mem_toSet _)
     exact ⟨e, he⟩
   have hinner := minkowskiDiff_inner_of_outer hEne Metric.isBounded_closedBall
-    (hY ▸ Zonotope.convex_construct _) (hY ▸ (Zonotope.isCompact_construct _).isClosed) hOuter
+    (hY ▸ Zonotope.convex_toSet _) (hY ▸ (Zonotope.isCompact_toSet _).isClosed) hOuter
   -- and the held input is one admissible input among all of them
   intro y hy
   obtain ⟨a, ha, _, ⟨v, hv, rfl⟩, rfl⟩ := hinner hy

@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Def. 2]: the polytope `⟨C, d⟩_P` of the rows `cs = [(c₁, d₁), …]`, `C` having rows
-`cᵢ`, as the repository's H-polytope: `construct` is `{x | cᵢᵀx ≤ dᵢ for every row}`. -/
+`cᵢ`, as the repository's H-polytope: `toSet` is `{x | cᵢᵀx ≤ dᵢ for every row}`. -/
 def IdentHA.polytope (cs : List (Vec ℝ n × ℝ)) : Real.HPolytope (Vec ℝ n) where
   m := cs.length
   A := Real.HPolytope.rowLin (Matrix.of fun i => (cs.get i).1)

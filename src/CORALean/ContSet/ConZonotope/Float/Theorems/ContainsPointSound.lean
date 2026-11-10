@@ -63,7 +63,7 @@ private theorem ConZonotope.aux_center_between (cZ : ConZonotope 𝕋 (Vec 𝕋 
 
 theorem ConZonotope.containsPoint_sound {cZ : ConZonotope 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cZ.h n}
     {β₀ : Vec 𝕋 cZ.h} {p : Vec 𝕋 n} (h : cZ.containsPoint H β₀ p = true) : -- --- CONCL ---
-    toRealVec p ∈ cZ.construct := by -- --- PROOF ---
+    toRealVec p ∈ cZ.toSet := by -- --- PROOF ---
   simp only [ConZonotope.containsPoint, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨⟨hc, hd⟩, hE⟩ := h

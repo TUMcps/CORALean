@@ -44,8 +44,8 @@ variable {n : ℕ}
 
 /-- The `k`-th entry of `powers A P` contains `M₀ * M ^ k` for `M ∈ A` and `M₀ ∈ P`. -/
 theorem Interval.powers_outer (A P : Interval (Mat ℝ n n)) {M M₀ : Mat ℝ n n}
-    (hM : M ∈ A.construct) (hM₀ : M₀ ∈ P.construct) (k : ℕ) : -- --- CONCL ---
-    M₀ * M ^ k ∈ (Interval.powers A P k).construct := by -- --- PROOF ---
+    (hM : M ∈ A.toSet) (hM₀ : M₀ ∈ P.toSet) (k : ℕ) : -- --- CONCL ---
+    M₀ * M ^ k ∈ (Interval.powers A P k).toSet := by -- --- PROOF ---
   induction k with
   | zero => rw [pow_zero, mul_one]; exact hM₀
   | succ k ih =>

@@ -101,8 +101,8 @@ private theorem aux_summable_majorant {h a R : ℝ} (hh : 0 ≤ h) (ha : 0 ≤ a
     exact div_le_div_of_nonneg_left hnum hp hle
 
 /-- A zonotope reaches no further than its center plus all of its generators. -/
-private theorem aux_norm_le_of_mem_construct {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
-    (hx : x ∈ Z.construct) : -- --- CONCL ---
+private theorem aux_norm_le_of_mem_toSet {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
+    (hx : x ∈ Z.toSet) : -- --- CONCL ---
     ‖x‖ ≤ ‖Z.c‖ + ∑ j, ‖Z.G j‖ := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hx
   refine (norm_add_le _ _).trans (add_le_add le_rfl ?_)
@@ -117,7 +117,7 @@ private theorem aux_norm_le_of_mem_construct {Z : Zonotope (Vec ℝ n)} {x : Vec
 /-- `[1, (35)]`: a side of the box over `R^∞_abs(h)` is twice the series of the
 row norms of `Aᵖ(h)G(h)`. -/
 theorem boxDiameter_abstrSolInf (A : ℝ → Mat ℝ n n) (Ψ : ℝ → Set (Vec ℝ n)) {h : ℝ}
-    (hh : 0 ≤ h) {Z : Zonotope (Vec ℝ n)} (hΨ : Ψ h = Z.construct) (i : Fin n) : -- --- CONCL ---
+    (hh : 0 ≤ h) {Z : Zonotope (Vec ℝ n)} (hΨ : Ψ h = Z.toSet) (i : Fin n) : -- --- CONCL ---
     boxDiameter (abstrSolInf A Ψ h) i =
       2 * ∑' p : ℕ, h ^ (p + 1) / (Nat.factorial (p + 1) : ℝ)
         * ∑ j, |(A h ^ p *ᵥ Z.G j) i| := by -- --- PROOF ---
@@ -139,12 +139,12 @@ theorem boxDiameter_abstrSolInf (A : ℝ → Mat ℝ n n) (Ψ : ℝ → Set (Vec
     show -(L p Z.c) + ∑ j, |(-(L p)) (Z.G j)| = -ctr p + row p
     simp only [LinearMap.neg_apply, abs_neg]
     rfl
-  have hub : ∀ p, ∀ x ∈ Z.construct, (A h ^ p *ᵥ x) i ≤ ctr p + row p := by
+  have hub : ∀ p, ∀ x ∈ Z.toSet, (A h ^ p *ᵥ x) i ≤ ctr p + row p := by
     intro p x hx
     have hle := (Z.supportBound (L p)).le x hx
     rw [hsupp p] at hle
     exact hle
-  have hlb : ∀ p, ∀ x ∈ Z.construct, ctr p - row p ≤ (A h ^ p *ᵥ x) i := by
+  have hlb : ∀ p, ∀ x ∈ Z.toSet, ctr p - row p ≤ (A h ^ p *ᵥ x) i := by
     intro p x hx
     have hle := (Z.supportBound (-(L p))).le x hx
     rw [hsuppneg p] at hle
@@ -216,7 +216,7 @@ theorem boxDiameter_abstrSolInf (A : ℝ → Mat ℝ n n) (Ψ : ℝ → Set (Vec
             (hlb p (ψ p) (hΨ ▸ hψ p)) (hcoefnn p)) hssubS hsi.summable
       _ = x i := hsi.tsum_eq
   -- and one summand at a time the bound is met, so the whole series is met too
-  have hwit : ∀ (s : ℕ → ℝ), (∀ p, ∃ y ∈ Z.construct, (A h ^ p *ᵥ y) i = s p) →
+  have hwit : ∀ (s : ℕ → ℝ), (∀ p, ∃ y ∈ Z.toSet, (A h ^ p *ᵥ y) i = s p) →
       ∃ x ∈ abstrSolInf A Ψ h, x i = ∑' p, coef p * s p := by
     intro s hs
     choose y hy hyv using hs
@@ -225,7 +225,7 @@ theorem boxDiameter_abstrSolInf (A : ℝ → Mat ℝ n n) (Ψ : ℝ → Set (Vec
       rw [norm_smul, Real.norm_eq_abs, abs_of_nonneg (hcoefnn p)]
       refine mul_le_mul_of_nonneg_left ?_ (hcoefnn p)
       exact (aux_norm_pow_mulVec_le _ _ _).trans
-        (mul_le_mul_of_nonneg_left (aux_norm_le_of_mem_construct (hy p)) (by positivity))
+        (mul_le_mul_of_nonneg_left (aux_norm_le_of_mem_toSet (hy p)) (by positivity))
     refine ⟨∑' p, coef p • (A h ^ p *ᵥ y p), ⟨y, fun p => hΨ ▸ hy p, hsumvec.hasSum⟩, ?_⟩
     have hco : HasSum (fun p => coef p * (A h ^ p *ᵥ y p) i)
         ((∑' p, coef p • (A h ^ p *ᵥ y p)) i) := Pi.hasSum.mp hsumvec.hasSum i

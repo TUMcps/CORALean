@@ -63,8 +63,8 @@ private theorem Zonotope.aux_mulVec_bounds (A : Mat 𝕋 m n) (v : Vec 𝕋 n) (
 
 theorem Zonotope.mtimesMatZonotope_outer (M : Zonotope (Mat 𝕋 m n))
     (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    (⋃ A ∈ M.construct, (A *ᵥ ·) '' Z.construct)
-      ⊆ (Zonotope.mtimesMatZonotope M Z).construct := by -- --- PROOF ---
+    (⋃ A ∈ M.toSet, (A *ᵥ ·) '' Z.toSet)
+      ⊆ (Zonotope.mtimesMatZonotope M Z).toSet := by -- --- PROOF ---
   intro y hy
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
   obtain ⟨_, ⟨a, ha, e, he, rfl⟩, x, hx, rfl⟩ := hy
@@ -74,18 +74,18 @@ theorem Zonotope.mtimesMatZonotope_outer (M : Zonotope (Mat 𝕋 m n))
   set R := CORALean.Real.Zonotope.mtimesMatZonotope M.nominal Zn
   -- `h` first, with no expected type, as `Real.Zonotope.mtimesMatZonotope_outer` itself does
   have h := CORALean.Real.Zonotope.mtimesMatZonotope_outer M.nominal Zn
-  have haz : a *ᵥ z ∈ R.construct := h (Set.mem_biUnion ha ⟨z, hz, rfl⟩)
+  have haz : a *ᵥ z ∈ R.toSet := h (Set.mem_biUnion ha ⟨z, hz, rfl⟩)
   -- the matrix zonotope's nominal part, boxed: its nominal part with a zero box
   have ha' : a ∈ ({ M with I_error := Interval.point fun _ _ => zero } :
-      Zonotope (Mat 𝕋 m n)).matInterval.construct := by
+      Zonotope (Mat 𝕋 m n)).matInterval.toSet := by
     refine Zonotope.matInterval_contains _ ⟨a, ha, 0, ?_, add_zero a⟩
     refine Interval.mem_mat_iff.mpr fun i j => ?_
     show toReal (zero : 𝕋) ≤ 0 ∧ 0 ≤ toReal (zero : 𝕋)
     rw [toReal_zero]
     exact ⟨le_rfl, le_rfl⟩
-  have hx : z + f ∈ Z.interval.construct := Zonotope.interval_contains Z ⟨z, hz, f, hf, rfl⟩
+  have hx : z + f ∈ Z.interval.toSet := Zonotope.interval_contains Z ⟨z, hz, f, hf, rfl⟩
   have hE : a *ᵥ f + e *ᵥ (z + f) ∈ ((Interval.mtimesIntervalMat _ Z.I_error).plus
-      (Interval.mtimesIntervalMat M.I_error Z.interval)).construct :=
+      (Interval.mtimesIntervalMat M.I_error Z.interval)).toSet :=
     Interval.plus_outer _ _ ⟨_, Interval.mtimesIntervalMat_outer _ _
       (Set.mem_biUnion ha' ⟨f, hf, rfl⟩), _, Interval.mtimesIntervalMat_outer _ _
       (Set.mem_biUnion he ⟨z + f, hx, rfl⟩), rfl⟩
@@ -105,7 +105,7 @@ theorem Zonotope.mtimesMatZonotope_outer (M : Zonotope (Mat 𝕋 m n))
         Fin.append_right]
       <;> exact Zonotope.aux_mulVec_bounds _ _ i
   -- the nominal image rounded, the two error terms in the box
-  have hmem : a *ᵥ z + (a *ᵥ f + e *ᵥ (z + f)) ∈ (Zonotope.mtimesMatZonotope M Z).construct :=
+  have hmem : a *ᵥ z + (a *ᵥ f + e *ᵥ (z + f)) ∈ (Zonotope.mtimesMatZonotope M Z).toSet :=
     Zonotope.ofEntryBounds_outer R _ (fun i => Zonotope.aux_mulVec_bounds M.c Z.c i) hG
       ⟨a *ᵥ z, haz, _, hE, rfl⟩
   have heq : (a + e) *ᵥ (z + f) = a *ᵥ z + (a *ᵥ f + e *ᵥ (z + f)) := by

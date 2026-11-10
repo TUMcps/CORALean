@@ -38,8 +38,8 @@ variable {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.sum₂_exact {I : Interval (Mat ℝ m n)} (hI : I.IsNonempty) : -- --- CONCL ---
-    I.sum₂.construct =
-      (fun A : Mat ℝ m n => fun i => ∑ j, A i j) '' I.construct := by -- --- PROOF ---
+    I.sum₂.toSet =
+      (fun A : Mat ℝ m n => fun i => ∑ j, A i j) '' I.toSet := by -- --- PROOF ---
   have hT : I.transpose.IsNonempty := fun p => hI (p.2, p.1)
   -- the row sums of `I` are the column sums of the transposed box
   have h := Interval.sum₁_exact hT

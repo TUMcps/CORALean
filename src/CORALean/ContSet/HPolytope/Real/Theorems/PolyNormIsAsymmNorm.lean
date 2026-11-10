@@ -55,8 +55,8 @@ theorem HPolytope.polyNorm_isAsymmNorm {H : Mat ℝ s n} {h : Vec ℝ s} : -- --
     (∀ x y, HPolytope.polyNorm H h (x + y) ≤ HPolytope.polyNorm H h x + HPolytope.polyNorm H h y) ∧
       (∀ (a : ℝ) x, 0 < a → HPolytope.polyNorm H h (a • x) = a * HPolytope.polyNorm H h x) ∧
       ((∀ i, 0 < h i) →
-        (∀ x, HPolytope.polyNorm H h x ≤ 1 ↔ x ∈ (HPolytope.ineqs H h).construct) ∧
-        (Bornology.IsBounded (HPolytope.ineqs H h).construct →
+        (∀ x, HPolytope.polyNorm H h x ≤ 1 ↔ x ∈ (HPolytope.ineqs H h).toSet) ∧
+        (Bornology.IsBounded (HPolytope.ineqs H h).toSet →
           (∀ x, HPolytope.polyNorm H h x = HPolytope.polyNorm H h (-x)) →
           ∀ x, HPolytope.polyNorm H h x = 0 ↔ x = 0)) := by -- --- PROOF ---
   -- every ratio is below the fold, and the fold is nonnegative
@@ -81,7 +81,7 @@ theorem HPolytope.polyNorm_isAsymmNorm {H : Mat ℝ s n} {h : Vec ℝ s} : -- --
   -- `S(x) = S(-x) = 0` leaves `H x = 0`, and a bounded `P` has no such direction
   · constructor
     · intro hx
-      have hP : (HPolytope.ineqs H h).construct.Nonempty :=
+      have hP : (HPolytope.ineqs H h).toSet.Nonempty :=
         ⟨0, HPolytope.mem_ineqs_iff.mpr fun i => by simpa using (hpos i).le⟩
       refine HPolytope.eq_zero_of_mulVec_nonpos hP hb fun i => ?_
       have := hge x i

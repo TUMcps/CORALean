@@ -59,8 +59,8 @@ theorem NonlinDASys.FloatModel.Encloses.consistentInitialStateFloat_root
   dsimp only at hy
   split_ifs at hy with htest
   rw [Option.some.inj hy] at htest
-  have hx₀ : toRealVec x₀ ∈ (Interval.point x₀).construct := Interval.mem_point x₀
-  have hu₀ : toRealVec u₀ ∈ (Interval.point u₀).construct := Interval.mem_point u₀
+  have hx₀ : toRealVec x₀ ∈ (Interval.point x₀).toSet := Interval.mem_point x₀
+  have hu₀ : toRealVec u₀ ∈ (Interval.point u₀).toSet := Interval.mem_point u₀
   refine NonlinDASys.newtonTestFloat_sound (fun y => sys.g (toRealVec x₀) y (toRealVec u₀)) _ _
     (fun Y a ha => hfm.g_mem _ Y _ _ hx₀ a ha _ hu₀) (fun Y a ha a' ha' => ?_) y' tol htest
   -- at a fixed `x₀` the slope of `g` is its `F` block

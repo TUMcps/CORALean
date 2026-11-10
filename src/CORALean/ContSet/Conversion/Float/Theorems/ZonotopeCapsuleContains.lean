@@ -48,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.capsule_contains (k : ℕ) (Z : Zonotope (Vec 𝕋 n)) :
-    Z.construct ⊆ (Z.capsule k).construct :=
+    Z.toSet ⊆ (Z.capsule k).toSet :=
   subset_trans Z.interval_contains (Z.interval.capsule_contains k)
 
 end CORALean.Float

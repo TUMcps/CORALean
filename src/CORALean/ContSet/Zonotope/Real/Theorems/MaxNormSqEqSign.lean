@@ -101,9 +101,9 @@ theorem Zonotope.maxNormSq_eq_sign (Z : Zonotope (Vec ℝ n)) (lam : ℝ) : -- -
     rintro _ ⟨β, hβ, rfl⟩
     -- `∑ βⱼ gⱼ` lies in the hull of the sign combinations, where the convex `‖·‖₂²` peaks
     have hmem : ∑ j, β j • Z.G j ∈ convexHull ℝ (Set.range fun s => ∑ j, σ s j • Z.G j) := by
-      have hZ0 : ∑ j, β j • Z.G j ∈ (⟨Z.h, 0, Z.G⟩ : Zonotope (Vec ℝ n)).construct :=
+      have hZ0 : ∑ j, β j • Z.G j ∈ (⟨Z.h, 0, Z.G⟩ : Zonotope (Vec ℝ n)).toSet :=
         ⟨β, hβ, by rw [zero_add]⟩
-      rw [← Zonotope.vPolytope_exact, VPolytope.construct_eq_convexHull] at hZ0
+      rw [← Zonotope.vPolytope_exact, VPolytope.toSet_eq_convexHull] at hZ0
       refine convexHull_mono ?_ hZ0
       rintro _ ⟨l, rfl⟩
       exact ⟨signEquiv Z.h l, by simp [Zonotope.vPolytope, Zonotope.corner, hσ]⟩

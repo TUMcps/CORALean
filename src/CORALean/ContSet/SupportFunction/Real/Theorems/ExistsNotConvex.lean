@@ -8,7 +8,7 @@ public import Mathlib.Analysis.Convex.Basic
 /-!
 # A convex set that is no support function
 
-A support function denotes a closed set (`SupportFunction.isClosed_construct`), so the open
+A support function denotes a closed set (`SupportFunction.isClosed_toSet`), so the open
 interval `(0, 1)`, which is convex, is the set of none: it shares its support function with
 `[0, 1]`. What a support function represents is the closed convex sets, not all convex ones,
 where the introduction of [1] says "all convex sets".
@@ -44,13 +44,13 @@ namespace CORALean.Real
 
 theorem SupportFunction.exists_convex_not_supportFunction : -- --- CONCL ---
     ∃ S : Set (Vec ℝ 1),
-      Convex ℝ S ∧ ¬ ∃ F : SupportFunction (Vec ℝ 1), F.construct = S := by -- --- PROOF ---
+      Convex ℝ S ∧ ¬ ∃ F : SupportFunction (Vec ℝ 1), F.toSet = S := by -- --- PROOF ---
   refine ⟨(fun x : Vec ℝ 1 => x 0) ⁻¹' Set.Ioo 0 1, ?_, ?_⟩
   · exact (convex_Ioo (0 : ℝ) 1).linear_preimage
       (LinearMap.proj (R := ℝ) (φ := fun _ : Fin 1 => ℝ) 0)
   · rintro ⟨F, hF⟩
     -- the set is not closed: the point `0` is in its closure and not in it
-    have hcl := F.isClosed_construct
+    have hcl := F.isClosed_toSet
     rw [hF] at hcl
     have hseq : Filter.Tendsto (fun k : ℕ => (fun _ => 1 / ((k : ℝ) + 1) : Vec ℝ 1))
         Filter.atTop (nhds 0) :=

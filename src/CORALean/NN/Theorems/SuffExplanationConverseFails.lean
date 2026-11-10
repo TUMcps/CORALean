@@ -121,8 +121,8 @@ theorem suffExplanation_of_abstract_converse_fails : -- --- CONCL ---
     ∃ (nn nnAbs : NeuralNetwork ℐ𝒱 1 2) (f : Vec ℝ 1 → Vec ℝ 2)
       (x : Vec ℝ 1) (ε : ℝ) (E : Finset (Fin 1)) (l : Fin 2),
       nn.Encloses f
-      ∧ f '' construct (ofInterval (S := ℐ𝒱) (explainBox x ε E))
-        ⊆ construct (nnAbs.enclose
+      ∧ f '' toSet (ofInterval (S := ℐ𝒱) (explainBox x ε E))
+        ⊆ toSet (nnAbs.enclose
           (ofInterval (S := ℐ𝒱) (explainBox x ε E)))
       ∧ IsSuffExplanation f x ε E l
         ∧ ¬ nnAbs.IsSuffExplanationAbstract x ε E l := by -- --- PROOF ---
@@ -153,7 +153,7 @@ theorem suffExplanation_of_abstract_converse_fails : -- --- CONCL ---
       | 0 => Or.inl rfl
       | 1 => Or.inr rfl
     have hmem : (fun k => if k = 0 then (1 : ℝ) else 0) ∈
-        construct (aux_suffExplanationConverseFails_nnAbs.enclose X) := by
+        toSet (aux_suffExplanationConverseFails_nnAbs.enclose X) := by
       intro i
       -- the zero weights drop out, leaving the `±1` box around `nn`'s bias
       have hz := hzero i

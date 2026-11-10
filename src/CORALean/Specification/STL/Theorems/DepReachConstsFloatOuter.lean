@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdaptiveIntegralOuterRefines
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralSubSumMemAdaptiveRemainder
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
@@ -71,30 +71,30 @@ theorem STL.depReachConstsFloat_outer (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) {Δt
     (hr : 0 ≤ toReal Δt) (κ : ℕ)
     (hε : toReal (MatExp.normUpperBound (Interval.smul Δt Δt (Interval.point A))) /
       ((κ : ℝ) + 2) ≤ 1 / 2) {Ur : Real.Zonotope (Vec ℝ m)} {Uf : Float.Zonotope (Vec 𝕋 m)}
-    (hc : Ur.c = toRealVec Uf.c) (hU : Ur.construct ⊆ Uf.construct) : -- --- CONCL ---
+    (hc : Ur.c = toRealVec Uf.c) (hU : Ur.toSet ⊆ Uf.toSet) : -- --- CONCL ---
     (STL.depReachConstsFloat A B Uf Δt κ).Encloses
       (STL.depReachConsts (toRealMat A) (toRealMat B) Ur (toReal Δt) κ) := by -- --- PROOF ---
-  have hM : toRealMat A ∈ (Interval.point A).construct := Float.Interval.mem_point A
+  have hM : toRealMat A ∈ (Interval.point A).toSet := Float.Interval.mem_point A
   -- the centered input set `U ⊕ (-c_u)`, mapped by `B`, is held by the float one
   have hU₀ : (Real.Zonotope.mtimes (toRealMat B)
-      (Ur.plus (Real.Zonotope.ofPoint (-Ur.c)))).construct
-      ⊆ (Float.Zonotope.mtimes B (Uf.plus (Float.Zonotope.point (-Uf.c)))).construct := by
+      (Ur.plus (Real.Zonotope.ofPoint (-Ur.c)))).toSet
+      ⊆ (Float.Zonotope.mtimes B (Uf.plus (Float.Zonotope.point (-Uf.c)))).toSet := by
     rw [← Real.Zonotope.mtimes_exact, ← Real.Zonotope.plus_exact]
     rintro _ ⟨_, ⟨u, hu, v, hv, rfl⟩, rfl⟩
     rw [Real.Zonotope.mem_ofPoint_iff] at hv
     refine Float.Zonotope.mtimes_outer B _ ⟨u + v, Float.Zonotope.plus_outer _ _
       (Set.add_mem_add (hU hu) ?_), rfl⟩
-    rw [Float.Zonotope.construct_point, Set.mem_singleton_iff, hv, hc, toRealVec_neg]
+    rw [Float.Zonotope.toSet_point, Set.mem_singleton_iff, hv, hc, toRealVec_neg]
   unfold STL.DepReachConstsFloat.Encloses STL.depReachConsts STL.depReachConstsFloat
   dsimp only
   refine ⟨?_, hU₀, ?_, STL.depCurvatureFFloat_outer A hr κ hε,
     STL.depCurvatureGFloat_outer A hr κ hε, STL.depBloatingFloat_outer A hr κ hε hU₀⟩
   · -- `ũ = B c_u` is held by the float product with the point `c_u`
     refine Float.Zonotope.mtimes_outer B _ ⟨toRealVec Uf.c, ?_, by rw [hc]⟩
-    rw [Float.Zonotope.construct_point]; rfl
+    rw [Float.Zonotope.toSet_point]; rfl
   · -- the integral of the exponential is in the float integrated exponential
     have hint : Real.MatExp.expIntegral (toRealMat A) (toReal Δt) ∈
-        (Real.MatExp.adaptiveIntegral (toRealMat A) (toReal Δt) κ).construct := by
+        (Real.MatExp.adaptiveIntegral (toRealMat A) (toReal Δt) κ).toSet := by
       refine Real.Interval.mem_mat_iff.mpr fun j k => ?_
       have hmem := Real.Interval.mem_mat_iff.mp
         (Real.MatExp.expIntegral_sub_sum_mem_adaptiveRemainder (toRealMat A) hr κ) j k

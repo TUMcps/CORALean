@@ -47,8 +47,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m p : ℕ}
 
 theorem NonlinearReset.evaluate_mem_evaluateFloat (r : NonlinearReset n m p)
     {fm : NonlinearReset.FloatModel 𝕋 n m p} (h : fm.Encloses r) (X : Interval (Vec 𝕋 n))
-    (U : Interval (Vec 𝕋 m)) {x : Vec ℝ n} (hx : x ∈ construct X) {u : Vec ℝ m}
-    (hu : u ∈ construct U) : r.evaluate x u ∈ construct (fm.evaluateFloat X U) :=
+    (U : Interval (Vec 𝕋 m)) {x : Vec ℝ n} (hx : x ∈ toSet X) {u : Vec ℝ m}
+    (hu : u ∈ toSet U) : r.evaluate x u ∈ toSet (fm.evaluateFloat X U) :=
   h.f_mem X U x hx u hu
 
 end CORALean

@@ -82,13 +82,13 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 theorem LinParamSys.reachUnion_outer (sys : LinParamSys ℐ n)
     (params : Reach.InputParams (S n) (S sys.m) ℝ) {options : LinearSys.ReachStepOptions ℝ}
     (hΔt : 0 < options.Δt) : -- --- CONCL ---
-    sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀)
-      (construct params.U) ⊆ construct (sys.reachUnion params options) := by -- --- PROOF ---
+    sys.reachUnionExact (params.tFinal - params.tStart) (toSet params.X₀)
+      (toSet params.U) ⊆ toSet (sys.reachUnion params options) := by -- --- PROOF ---
   rintro _ ⟨A, B, x, uIn, trajB, t, ht, rfl⟩
   -- the combined input `B u + c` lies in `V = B U ⊕ c`, which makes the run canonical under `V`
   set V := sys.inputSet params.U with hV
   obtain ⟨u, traj⟩ : ∃ u : ℝ → Vec ℝ n, sys.IsCanonicalConstTrajectory (S := 𝒮)
-      (Set.Icc 0 (params.tFinal - params.tStart)) (construct params.X₀) (construct V) x u A :=
+      (Set.Icc 0 (params.tFinal - params.tStart)) (toSet params.X₀) (toSet V) x u A :=
     ⟨_, trajB.canonical fun s hs => sys.mem_inputSet trajB.paramB (trajB.input s hs)⟩
   obtain ⟨k, hk, hkt, htk⟩ := LinearSys.exists_reach_window hΔt ht
   have htk1 : t ≤ ((k + 1 : ℕ) : ℝ) * options.Δt := by push_cast; linarith
@@ -108,20 +108,20 @@ theorem LinParamSys.reachUnion_outer (sys : LinParamSys ℐ n)
   have trajL := traj.toLinearSys
   have hTt : Set.Icc (0:ℝ) t ⊆ Set.Icc 0 (params.tFinal - params.tStart) :=
     Set.Icc_subset_Icc_right ht.2
-  have hU : Bornology.IsBounded (construct (construct V)) :=
-    CompactSet.isBounded_construct V
+  have hU : Bornology.IsBounded (toSet (toSet V)) :=
+    CompactSet.isBounded_toSet V
   have hvoc := trajL.variation_of_constants hTt le_rfl ht.1 hU
   simp only [sub_zero, Scalar.toRealMat_real] at hvoc
   -- the input, split along `U ⊆ {ũ} ⊞ Ũ`
-  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - uc ∈ construct (Recenter.recenter V) :=
+  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - uc ∈ toSet (Recenter.recenter V) :=
     fun s hs => Recenter.sub_center_mem_recenter (traj.input s (hTt hs))
   have hmeas₀ : AEStronglyMeasurable (fun s => u s - uc) (volume.restrict (Set.Icc 0 t)) :=
     (trajL.aestronglyMeasurable_input hTt).sub aestronglyMeasurable_const
   have hint₁ := intervalIntegrable_expSub_mulVec (A := A) (c := t) ht.1
-    (CompactSet.isBounded_construct (OfPoint.ofPoint uc : S n))
+    (CompactSet.isBounded_toSet (OfPoint.ofPoint uc : S n))
     (fun _ _ => OfPoint.mem_ofPoint uc) aestronglyMeasurable_const
   have hint₀ := intervalIntegrable_expSub_mulVec (A := A) (c := t) ht.1
-    (CompactSet.isBounded_construct (Recenter.recenter V)) hmem₀ hmeas₀
+    (CompactSet.isBounded_toSet (Recenter.recenter V)) hmem₀ hmeas₀
   have hsum : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
       = (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ uc)
         + ∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ (u s - uc) := by
@@ -157,7 +157,7 @@ theorem LinParamSys.reachUnion_outer (sys : LinParamSys ℐ n)
     rw [hsum, hconst, hexp, Matrix.mulVec_add]
     abel
   -- window `k`, and `k < N`
-  refine SetUnion.mem_construct.mpr
+  refine SetUnion.mem_toSet.mpr
     ⟨sys.step_reachStepkInput options.Δt (m + 2) params.X₀ V k, ?_, ?_⟩
   · rw [← hm]
     exact List.mem_map.mpr ⟨k, List.mem_range.mpr hk, rfl⟩

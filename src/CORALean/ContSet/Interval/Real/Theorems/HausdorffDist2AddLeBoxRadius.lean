@@ -69,7 +69,7 @@ private theorem aux_boxRadius_norm₂_le_of_abs_le {x y : Vec ℝ n} (h : ∀ i,
 /-- Every member of a box is within its farthest corner's length of the
 origin. -/
 private theorem aux_boxRadius_norm₂_le_of_mem {B : Interval (Vec ℝ n)} {p : Vec ℝ n}
-    (hp : p ∈ B.construct) : ‖p‖₂ ≤ ‖fun i => max |B.inf i| |B.sup i|‖₂ := by
+    (hp : p ∈ B.toSet) : ‖p‖₂ ≤ ‖fun i => max |B.inf i| |B.sup i|‖₂ := by
   refine aux_boxRadius_norm₂_le_of_abs_le fun i => ?_
   have h := hp i
   rw [abs_of_nonneg (le_max_of_le_left (abs_nonneg (B.inf i)))]
@@ -82,7 +82,7 @@ private theorem aux_boxRadius_norm₂_le_of_mem {B : Interval (Vec ℝ n)} {p : 
 reaches from the origin, whenever `0 ∈ S+`. -/
 theorem hausdorffDist₂_add_le_box_radius {S SPlus : Set (Vec ℝ n)}
     (h0 : (0 : Vec ℝ n) ∈ SPlus) (B : Interval (Vec ℝ n))
-    (hB : SPlus ⊆ B.construct) : -- --- CONCL ---
+    (hB : SPlus ⊆ B.toSet) : -- --- CONCL ---
     hausdorffDist₂ S (S + SPlus) ≤ ‖fun i => max |B.inf i| |B.sup i|‖₂ := by -- --- PROOF ---
   refine hausdorffDist₂_le_of_mem_dist (norm₂_nonneg _) (fun x hx => ⟨x, ?_, ?_⟩) ?_
   · have := Set.add_mem_add hx h0

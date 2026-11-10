@@ -58,7 +58,7 @@ theorem EIM.norm_absMax_le : ‖EIM.A.absMax‖ ≤ (0.01:ℝ) := by
   rw [EIM.absMax_eq, Matrix.linfty_opNorm_diagonal]
   exact (pi_norm_le_iff_of_nonneg (by norm_num)).mpr fun _ => by rw [Real.norm_eq_abs]; norm_num
 
-/-- Checkable from `A` alone, before any member `M ∈ construct A` is in hand. -/
+/-- Checkable from `A` alone, before any member `M ∈ toSet A` is in hand. -/
 theorem EIM.hε : ‖EIM.A.absMax‖ / ((0:ℕ) + 2 : ℝ) < 1 := by
   have h := EIM.norm_absMax_le
   rw [Nat.cast_zero, zero_add]
@@ -66,11 +66,11 @@ theorem EIM.hε : ‖EIM.A.absMax‖ / ((0:ℕ) + 2 : ℝ) < 1 := by
 
 /-- The zero matrix is a member of `A`, and its exponential — the identity —
 lands inside the enclosure `expIntervalEnclosure A 0` computes for it. -/
-example : exp (0 : Mat ℝ 2 2) ∈ (MatExp.expIntervalEnclosure EIM.A 0).construct :=
+example : exp (0 : Mat ℝ 2 2) ∈ (MatExp.expIntervalEnclosure EIM.A 0).toSet :=
   MatExp.exp_mem_expIntervalEnclosure EIM.A 0
-    (show (0 : Mat ℝ 2 2) ∈ EIM.A.construct by
+    (show (0 : Mat ℝ 2 2) ∈ EIM.A.toSet by
       rintro ⟨i, j⟩
-      fin_cases i <;> fin_cases j <;> norm_num [Interval.construct, EIM.A])
+      fin_cases i <;> fin_cases j <;> norm_num [Interval.toSet, EIM.A])
     EIM.hε
 
 end CORALean.Real

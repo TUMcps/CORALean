@@ -52,8 +52,8 @@ namespace CORALean.Real
 /-- [1, Sec. 4.2]: `Z ⊂ Z̃` for the eliminated system, whenever `a_{rj} ≠ 0`. -/
 theorem ConZonotope.eliminate_outer {n q h : ℕ} (c : Vec ℝ n) (G : Fin h → Vec ℝ n)
     (A : Mat ℝ q h) (b : Vec ℝ q) (r : Fin q) (j : Fin h) (hAj : A r j ≠ 0) :
-    (ConZonotope.ofMat c G A b).construct
-      ⊆ (ConZonotope.eliminate c G A b r j).construct :=
+    (ConZonotope.ofMat c G A b).toSet
+      ⊆ (ConZonotope.eliminate c G A b r j).toSet :=
   (ConZonotope.partialSolve_eq_eliminate c G A b r j hAj) ▸
     ConZonotope.constraintReduce_outer c G A b _ _
 

@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 def Ellipsoid.boundDot (E : Ellipsoid 𝕋 n) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hc : ∀ x : Vec ℝ n, c x = ∑ i, toReal (a i) * x i) (s : 𝕋)
     (hs : toReal (E.quadUp a) ≤ toReal (mulDown s s)) :
-    FloatBound 𝕋 E.construct c :=
+    FloatBound 𝕋 E.toSet c :=
   -- `boundOfParts` spelt out: through it the noncomputable `nominal` would be called
   (E.nominalBoundDot a hc s hs).add (E.I_error.boundDot a hc)
 

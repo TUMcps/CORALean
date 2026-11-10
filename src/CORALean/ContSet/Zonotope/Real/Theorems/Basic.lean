@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.CompactZeros
 public import CORALean.ContSet.Zonotope.Real.Operations.MinnormOffset
 public import CORALean.ContSet.Zonotope.Real.Operations.NormUb
 public import CORALean.ContSet.Zonotope.Real.Operations.RotMat
-public import CORALean.ContSet.Zonotope.Real.Theorems.FilterGenConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.FilterGenToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.RankEqFinrankIff
@@ -74,11 +74,11 @@ theorem Zonotope.comb_apply (Z : Zonotope (Vec ℝ 2)) (β : Fin Z.h → ℝ) (k
 -- Last update:   ---
 -- Reviewed:      15-October-2026 (Tobias Ladner)
 
-/-- Exact: the dropped generators are zero, and `Zonotope.filterGen_construct` says dropping zero
+/-- Exact: the dropped generators are zero, and `Zonotope.filterGen_toSet` says dropping zero
 generators denotes the same set. -/
 theorem Zonotope.compactZeros_exact (Z : Zonotope α) :
-    Z.compactZeros.construct = Z.construct :=
-  Z.filterGen_construct _ fun j hj => by simpa using hj
+    Z.compactZeros.toSet = Z.toSet :=
+  Z.filterGen_toSet _ fun j hj => by simpa using hj
 
 
 -- =================================  `Zonotope.corner_apply`  ================================== --
@@ -126,7 +126,7 @@ theorem Zonotope.mtimes_eq_map (M : Mat ℝ m n) (Z : Zonotope (Vec ℝ n)) :
 /-- The box contains the zonotope (`interval_contains`) and `Interval.norm` bounds the box.
 An upper bound only, and not tight in general: a box is larger than its zonotope. -/
 theorem Zonotope.norm₂_le_normUb {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
-    (hx : x ∈ Z.construct) : ‖x‖₂ ≤ Z.normUb :=
+    (hx : x ∈ Z.toSet) : ‖x‖₂ ≤ Z.normUb :=
   Interval.norm_le (Z.interval_contains hx)
 
 
@@ -139,7 +139,7 @@ theorem Zonotope.norm₂_le_normUb {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
 /-- Reading the same coordinates of every member, no hypothesis on `dims`: a linear map is exact
 without injectivity, so nothing is added and nothing lost. -/
 theorem Zonotope.project_exact (Z : Zonotope (Vec ℝ n)) (dims : Fin m → Fin n) :
-    (fun x k => x (dims k)) '' Z.construct = (Z.project dims).construct :=
+    (fun x k => x (dims k)) '' Z.toSet = (Z.project dims).toSet :=
   Zonotope.map_exact (LinearMap.funLeft ℝ ℝ dims) Z
 
 
@@ -151,7 +151,7 @@ theorem Zonotope.project_exact (Z : Zonotope (Vec ℝ n)) (dims : Fin m → Fin 
 
 /-- `Zonotope.rank_eq_finrank_iff` at `Vec ℝ n`, whose dimension is `n`. -/
 theorem Zonotope.rank_eq_iff (Z : Zonotope (Vec ℝ n)) :
-    Z.rank = n ↔ (interior Z.construct).Nonempty := by
+    Z.rank = n ↔ (interior Z.toSet).Nonempty := by
   rw [← Zonotope.rank_eq_finrank_iff]
   simp
 
@@ -164,19 +164,19 @@ theorem Zonotope.rank_eq_iff (Z : Zonotope (Vec ℝ n)) :
 
 /-- Exact: the transposes of the members are the members of the transpose. -/
 theorem Zonotope.transpose_exact (Z : Zonotope (Mat ℝ m n)) :
-    Matrix.transpose '' Z.construct = Z.transpose.construct :=
+    Matrix.transpose '' Z.toSet = Z.transpose.toSet :=
   Zonotope.map_exact (Matrix.transposeLinearEquiv (Fin m) (Fin n) ℝ ℝ).toLinearMap Z
 
 
--- =================================  `Zonotope.vec_construct`  ================================= --
+-- ===================================  `Zonotope.vec_toSet`  =================================== --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- Exact: the vectorisation of the members are the members of `vec`. -/
-theorem Zonotope.vec_construct (Z : Zonotope (Mat ℝ m n)) :
-    matVecEquiv '' Z.construct = Z.vec.construct :=
+theorem Zonotope.vec_toSet (Z : Zonotope (Mat ℝ m n)) :
+    matVecEquiv '' Z.toSet = Z.vec.toSet :=
   Zonotope.map_exact matVecEquiv.toLinearMap Z
 
 
@@ -188,9 +188,9 @@ theorem Zonotope.vec_construct (Z : Zonotope (Mat ℝ m n)) :
 
 /-- The matrices lie in the zonotope iff their stackings lie in `zonotope(matZ)`. -/
 theorem Zonotope.matContains_iff {p : ℕ} (Z : Zonotope (Mat ℝ m n)) (S : Fin p → Mat ℝ m n) :
-    Z.ContainsMat S ↔ ∀ k, matVecEquiv (S k) ∈ Z.vec.construct :=
+    Z.ContainsMat S ↔ ∀ k, matVecEquiv (S k) ∈ Z.vec.toSet :=
   forall_congr' fun k => by
-    rw [← Zonotope.vec_construct]; exact matVecEquiv.injective.mem_set_image.symm
+    rw [← Zonotope.vec_toSet]; exact matVecEquiv.injective.mem_set_image.symm
 
 end
 
@@ -200,7 +200,7 @@ section
 variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 
--- ==============================  `Zonotope.isClosed_construct`  =============================== --
+-- ================================  `Zonotope.isClosed_toSet`  ================================= --
 -- Authors:       Claude Opus 5
 -- Written:       19-August-2026
 -- Last update:   04-September-2026
@@ -209,8 +209,8 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 /-- Read off compactness rather than proved directly, because an affine image of a
 merely closed set need not be closed. Closedness on its own is what the
 integrand of a set-valued integral is asked for. -/
-theorem Zonotope.isClosed_construct (Z : Zonotope α) : IsClosed Z.construct :=
-  Z.isCompact_construct.isClosed
+theorem Zonotope.isClosed_toSet (Z : Zonotope α) : IsClosed Z.toSet :=
+  Z.isCompact_toSet.isClosed
 
 end
 

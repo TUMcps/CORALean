@@ -9,7 +9,7 @@ public import Mathlib.Tactic.Abel
 /-!
 # `exactPlus` is the sum over shared coefficients
 
-`construct (exactPlus Z₁ Z₂ k)` is the set of sums `x₁ + x₂` of a point of `Z₁` (coefficients `β`)
+`toSet (exactPlus Z₁ Z₂ k)` is the set of sums `x₁ + x₂` of a point of `Z₁` (coefficients `β`)
 and a point of `Z₂` (coefficients `γ`) whose coefficients agree on the first `k` generators the
 two have in common. Equality, not enclosure: dropping the agreement is `plus`, of which this is a
 subset. The proof regroups the coefficients of the result, `[shared | rest of Z₁ | rest of Z₂]`,
@@ -101,8 +101,8 @@ private theorem Zonotope.aux_abs_append3 {a b c : ℕ} {A : Fin a → ℝ} {B : 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.exactPlus_construct (Z₁ Z₂ : Zonotope α) (k : ℕ) : -- --- CONCL ---
-    (Z₁.exactPlus Z₂ k).construct =
+theorem Zonotope.exactPlus_toSet (Z₁ Z₂ : Zonotope α) (k : ℕ) : -- --- CONCL ---
+    (Z₁.exactPlus Z₂ k).toSet =
       {x | ∃ (β : Fin Z₁.h → ℝ) (γ : Fin Z₂.h → ℝ), (∀ j, |β j| ≤ 1) ∧ (∀ j, |γ j| ≤ 1) ∧
         (∀ (j₁ : Fin Z₁.h) (j₂ : Fin Z₂.h), (j₁ : ℕ) = j₂ → (j₁ : ℕ) < k → β j₁ = γ j₂) ∧
         x = (Z₁.c + ∑ j, β j • Z₁.G j) + (Z₂.c + ∑ j, γ j • Z₂.G j)} := by -- --- PROOF ---

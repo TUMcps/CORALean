@@ -45,8 +45,8 @@ variable {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.convex_construct (Z : Zonotope α) : Convex ℝ Z.construct :=
-  Convex.add (nominal Z).convex_construct Z.I_error.nominal.convex_construct
+theorem Zonotope.convex_toSet (Z : Zonotope α) : Convex ℝ Z.toSet :=
+  Convex.add (nominal Z).convex_toSet Z.I_error.nominal.convex_toSet
 
 end CORALean.Float
 

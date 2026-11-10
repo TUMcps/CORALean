@@ -54,12 +54,12 @@ variable {n p : ℕ}
 /-- [1, Eq. 13], corrected: factor bounds of the constrained hypercube bound `Z|_{C≤d}`. -/
 theorem Zonotope.intervalOfFactorBounds_outer (Z : Zonotope (Vec ℝ n)) (C : Mat ℝ p Z.h)
     (d : Vec ℝ p) (B : Interval (Vec ℝ Z.h))
-    (hB : ∀ β : Vec ℝ Z.h, (∀ j, |β j| ≤ 1) → β ∈ (HPolytope.ineqs C d).construct →
-      β ∈ B.construct) : -- --- CONCL ---
-    (Z.constrain C d).construct ⊆ (Z.intervalOfFactorBounds B).construct := by -- --- PROOF ---
+    (hB : ∀ β : Vec ℝ Z.h, (∀ j, |β j| ≤ 1) → β ∈ (HPolytope.ineqs C d).toSet →
+      β ∈ B.toSet) : -- --- CONCL ---
+    (Z.constrain C d).toSet ⊆ (Z.intervalOfFactorBounds B).toSet := by -- --- PROOF ---
   intro x hx i
   obtain ⟨β, hβ, hP, rfl⟩ : ∃ β : Fin Z.h → ℝ, (∀ j, |β j| ≤ 1) ∧
-      β ∈ (HPolytope.ineqs C d).construct ∧ x = Z.c + ∑ j, β j • Z.G j := hx
+      β ∈ (HPolytope.ineqs C d).toSet ∧ x = Z.c + ∑ j, β j • Z.G j := hx
   have hβB : ∀ j, B.inf j ≤ β j ∧ β j ≤ B.sup j := hB β hβ hP
   change Z.c i + ∑ j, (Z.G j i + |Z.G j i|) / 2 * B.inf j +
       ∑ j, (Z.G j i - |Z.G j i|) / 2 * B.sup j ≤ (Z.c + ∑ j, β j • Z.G j) i ∧

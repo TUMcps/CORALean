@@ -131,7 +131,7 @@ private theorem PolyZonotope.aux_sum_univ_zonotopeEven {pZ : PolyZonotope α}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.zonotopeEven_contains (pZ : PolyZonotope α) : -- --- CONCL ---
-    pZ.construct ⊆ pZ.zonotopeEven.construct := by -- --- PROOF ---
+    pZ.toSet ⊆ pZ.zonotopeEven.toSet := by -- --- PROOF ---
   rintro _ ⟨a, b, ha, hb, rfl⟩
   refine ⟨Fin.append (fun i => PolyZonotope.aux_evenCoeff pZ.E a i) b, ?_, ?_⟩
   · refine Fin.addCases ?_ ?_

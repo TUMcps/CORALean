@@ -53,10 +53,10 @@ variable {n : ℕ}
 
 theorem Ellipsoid.dist_hyperplane_eq (E : Ellipsoid n) (v : Vec ℝ n) (c : ℝ)
     (hv : v ≠ 0) : -- --- CONCL ---
-    ((E.construct ∩ {x | v ⬝ᵥ x = c}).Nonempty ↔
+    ((E.toSet ∩ {x | v ⬝ᵥ x = c}).Nonempty ↔
         |c - v ⬝ᵥ E.q| - √(v ⬝ᵥ (E.Q *ᵥ v)) ≤ 0) ∧
     (0 < |c - v ⬝ᵥ E.q| - √(v ⬝ᵥ (E.Q *ᵥ v)) →
-      IsLeast {t | ∃ x ∈ E.construct, ∃ y : Vec ℝ n, v ⬝ᵥ y = c ∧ t = ‖x - y‖₂}
+      IsLeast {t | ∃ x ∈ E.toSet, ∃ y : Vec ℝ n, v ⬝ᵥ y = c ∧ t = ‖x - y‖₂}
         ((|c - v ⬝ᵥ E.q| - √(v ⬝ᵥ (E.Q *ᵥ v))) / ‖v‖₂)) := by -- --- PROOF ---
   obtain ⟨m, hm⟩ : ∃ m : ℝ, m = v ⬝ᵥ E.q := ⟨_, rfl⟩
   obtain ⟨σ, hσ⟩ : ∃ σ : ℝ, σ = √(v ⬝ᵥ (E.Q *ᵥ v)) := ⟨_, rfl⟩
@@ -70,7 +70,7 @@ theorem Ellipsoid.dist_hyperplane_eq (E : Ellipsoid n) (v : Vec ℝ n) (c : ℝ)
   rw [hsq, ← hσ, neg_dotProduct, ← hm] at hxmv hlb
   rw [← hσ, ← hm] at hxpv hub
   simp only [neg_dotProduct] at hxmv hxpv
-  have hrange : ∀ x ∈ E.construct, m - σ ≤ v ⬝ᵥ x ∧ v ⬝ᵥ x ≤ m + σ := fun x hx => by
+  have hrange : ∀ x ∈ E.toSet, m - σ ≤ v ⬝ᵥ x ∧ v ⬝ᵥ x ≤ m + σ := fun x hx => by
     have h1 := hub ⟨x, hx, rfl⟩
     have h2 := hlb ⟨x, hx, rfl⟩
     simp only [neg_dotProduct] at h1 h2
@@ -80,8 +80,8 @@ theorem Ellipsoid.dist_hyperplane_eq (E : Ellipsoid n) (v : Vec ℝ n) (c : ℝ)
     · exact absurd (dotProduct_self_eq_zero.mp (by rw [dotProduct_self, ← h]; ring)) hv
     · exact h
   -- a point `x₀` of `E` and its projection onto `H` are `|c - vᵀ x₀| / ‖v‖₂` apart
-  have hproj : ∀ x₀ ∈ E.construct, |c - v ⬝ᵥ x₀| / ‖v‖₂ ∈
-      {t | ∃ x ∈ E.construct, ∃ y : Vec ℝ n, v ⬝ᵥ y = c ∧ t = ‖x - y‖₂} := fun x₀ hx₀ => by
+  have hproj : ∀ x₀ ∈ E.toSet, |c - v ⬝ᵥ x₀| / ‖v‖₂ ∈
+      {t | ∃ x ∈ E.toSet, ∃ y : Vec ℝ n, v ⬝ᵥ y = c ∧ t = ‖x - y‖₂} := fun x₀ hx₀ => by
     refine ⟨x₀, hx₀, x₀ + ((c - v ⬝ᵥ x₀) / ‖v‖₂ ^ 2) • v, ?_, ?_⟩
     · rw [dotProduct_add, dotProduct_smul, smul_eq_mul, dotProduct_self]
       field_simp
@@ -108,7 +108,7 @@ theorem Ellipsoid.dist_hyperplane_eq (E : Ellipsoid n) (v : Vec ℝ n) (c : ℝ)
       have hθ0 : 0 ≤ θ := by rw [hθ]; exact div_nonneg (by linarith) (by linarith)
       have hθ1 : θ ≤ 1 := by rw [hθ, div_le_one (by linarith)]; linarith
       refine ⟨(1 - θ) • xm + θ • xp,
-        E.convex_construct hxm hxp (by linarith) hθ0 (by ring), ?_⟩
+        E.convex_toSet hxm hxp (by linarith) hθ0 (by ring), ?_⟩
       show v ⬝ᵥ ((1 - θ) • xm + θ • xp) = c
       rw [dotProduct_add, dotProduct_smul, dotProduct_smul, smul_eq_mul, smul_eq_mul]
       have hxm' : v ⬝ᵥ xm = m - σ := by linarith

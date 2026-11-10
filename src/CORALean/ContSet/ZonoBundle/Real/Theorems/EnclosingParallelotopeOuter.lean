@@ -48,7 +48,7 @@ variable {n : ℕ}
 
 theorem ZonoBundle.enclosingParallelotope_outer (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k)
     (Γ : Mat ℝ n n) : -- --- CONCL ---
-    zB.construct ⊆ (zB.enclosingParallelotope hk Γ).construct := by -- --- PROOF ---
+    zB.toSet ⊆ (zB.enclosingParallelotope hk Γ).toSet := by -- --- PROOF ---
   -- the directions actually used are invertible
   obtain ⟨Γ', hΓ', hdef⟩ : ∃ Γ' : Mat ℝ n n, IsUnit Γ'.det ∧
       zB.enclosingParallelotope hk Γ

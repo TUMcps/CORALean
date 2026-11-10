@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Every state of `Z` on the hyperplane is below `zonoGirardUpperFloat` along `ℓ`. -/
 theorem Location.zonoGirardUpperFloat_le (Z : Zonotope (Vec 𝕋 n)) (nv : Vec 𝕋 n) (γ : 𝕋)
-    (ℓ : Vec 𝕋 n) {x : Vec ℝ n} (hx : x ∈ Z.construct)
+    (ℓ : Vec 𝕋 n) {x : Vec ℝ n} (hx : x ∈ Z.toSet)
     (hg : x ⬝ᵥ toRealVec nv = toReal γ) : -- --- CONCL ---
     x ⬝ᵥ toRealVec ℓ ≤ toReal (Location.zonoGirardUpperFloat Z nv γ ℓ) := by -- --- PROOF ---
   unfold Location.zonoGirardUpperFloat

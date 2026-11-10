@@ -55,8 +55,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {S : ℕ → 
 private theorem aux_subset_foldr_join (D : CatDomain 𝕋 S) (hD : D.IsOuter)
     {n : ℕ} : -- --- CONCL ---
     ∀ {k : ℕ} (g : Fin k → S n) (b : S n) (i : Fin k),
-      construct (g i)
-        ⊆ construct (Fin.foldr k (fun i acc => D.join (g i) acc) b) := by -- --- PROOF ---
+      toSet (g i)
+        ⊆ toSet (Fin.foldr k (fun i acc => D.join (g i) acc) b) := by -- --- PROOF ---
   intro k
   induction k with
   | zero => intro _ _ i; exact i.elim0
@@ -72,7 +72,7 @@ private theorem aux_subset_foldr_join (D : CatDomain 𝕋 S) (hD : D.IsOuter)
 
 theorem Cat.transformer_outer (D : CatDomain 𝕋 S) (hD : D.IsOuter) {m n : ℕ} (f : Cat 𝕋 m n)
     (a : S m) : -- --- CONCL ---
-    f.image (construct a) ⊆ construct (f.transformer D a) := by -- --- PROOF ---
+    f.image (toSet a) ⊆ toSet (f.transformer D a) := by -- --- PROOF ---
   rintro y ⟨x, hx, hxy⟩
   induction hxy with
   | affine W b x => exact hD.aff_outer a W b ⟨x, hx, rfl⟩

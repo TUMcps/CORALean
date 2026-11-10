@@ -51,15 +51,15 @@ variable {n k p : ℕ}
 theorem SetBasedNet.encloseUnsafeInputs_sound {N : SetBasedNet n k} {Φ : Vec ℝ n → Vec ℝ k}
     (hN : N.IsRelaxationOf Φ) (X : Zonotope (Vec ℝ n)) (A : Mat ℝ p k)
     (b : Vec ℝ p) : -- --- CONCL ---
-    (Φ '' (N.encloseUnsafeInputs X A b).construct ∩ (HPolytope.ineqs A b).construct = ∅ ↔
-      Φ '' X.construct ∩ (HPolytope.ineqs A b).construct = ∅) ∧
-    ((∃ x ∈ (N.encloseUnsafeInputs X A b).construct, Φ x ∈ (HPolytope.ineqs A b).construct) ↔
-      ∃ x ∈ X.construct, Φ x ∈ (HPolytope.ineqs A b).construct) := by -- --- PROOF ---
+    (Φ '' (N.encloseUnsafeInputs X A b).toSet ∩ (HPolytope.ineqs A b).toSet = ∅ ↔
+      Φ '' X.toSet ∩ (HPolytope.ineqs A b).toSet = ∅) ∧
+    ((∃ x ∈ (N.encloseUnsafeInputs X A b).toSet, Φ x ∈ (HPolytope.ineqs A b).toSet) ↔
+      ∃ x ∈ X.toSet, Φ x ∈ (HPolytope.ineqs A b).toSet) := by -- --- PROOF ---
   obtain ⟨hunsafe, hsub⟩ := N.encloseUnsafeInputs_outer hN X A b
   -- every unsafe input of `X` is in `X|_{C≤d}`, and `X|_{C≤d} ⊆ X`
-  have hex : (∃ x ∈ (N.encloseUnsafeInputs X A b).construct,
-      Φ x ∈ (HPolytope.ineqs A b).construct) ↔
-      ∃ x ∈ X.construct, Φ x ∈ (HPolytope.ineqs A b).construct :=
+  have hex : (∃ x ∈ (N.encloseUnsafeInputs X A b).toSet,
+      Φ x ∈ (HPolytope.ineqs A b).toSet) ↔
+      ∃ x ∈ X.toSet, Φ x ∈ (HPolytope.ineqs A b).toSet :=
     ⟨fun ⟨x, hx, hU⟩ => ⟨x, hsub hx, hU⟩, fun ⟨x, hx, hU⟩ => ⟨x, hunsafe ⟨hx, hU⟩, hU⟩⟩
   refine ⟨?_, hex⟩
   simp only [Set.eq_empty_iff_forall_notMem, Set.mem_inter_iff, Set.mem_image]

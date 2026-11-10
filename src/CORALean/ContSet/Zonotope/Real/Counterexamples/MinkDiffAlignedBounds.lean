@@ -55,8 +55,8 @@ theorem Zonotope.minkDiffAligned_bounds_counterexample : -- --- CONCL ---
       (∀ (c' : Vec ℝ 1) (a' : Fin Z.h → ℝ), (∀ i, 0 ≤ a' i ∧ a' i ≤ 1) →
         (∀ l, (H *ᵥ c') l + ∑ i, |(H *ᵥ Z.G i) l| * a' i ≤ h l) →
         ∑ i, ‖Z.G i‖ * Real.log (a' i) ≤ ∑ i, ‖Z.G i‖ * Real.log (a i)) ∧
-      ¬ minkowskiDiff Z.construct ((E *ᵥ ·) '' {w | ∀ l, (H *ᵥ w) l ≤ h l})
-          ⊆ minkowskiDiff Z.construct (Z.aligned c a).construct := by -- --- PROOF ---
+      ¬ minkowskiDiff Z.toSet ((E *ᵥ ·) '' {w | ∀ l, (H *ᵥ w) l ≤ h l})
+          ⊆ minkowskiDiff Z.toSet (Z.aligned c a).toSet := by -- --- PROOF ---
   refine ⟨⟨1, 0, fun _ _ => 1⟩, !![1; -1], ![1, 1], !![1 / 2], 0, fun _ => 1,
     fun _ => ⟨zero_le_one, le_rfl⟩, ?_, ?_, ?_⟩
   · intro l
@@ -68,7 +68,7 @@ theorem Zonotope.minkDiffAligned_bounds_counterexample : -- --- CONCL ---
   · intro hsub
     -- `½ ∈ Z ⊖ EW`: the points of `EW` are at most `½` in every coordinate
     have hhalf : (fun _ => 1 / 2 : Vec ℝ 1) ∈ minkowskiDiff
-        (⟨1, 0, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1)).construct
+        (⟨1, 0, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1)).toSet
         ((!![1 / 2] *ᵥ ·) ''
           {w : Vec ℝ 1 | ∀ l, ((!![1; -1] : Mat ℝ 2 1) *ᵥ w) l ≤ ![1, 1] l}) := by
       rintro _ ⟨w, hw, rfl⟩
@@ -86,7 +86,7 @@ theorem Zonotope.minkDiffAligned_bounds_counterexample : -- --- CONCL ---
     have hgood := hsub hhalf
     -- but `½ + 1 ∉ Z`, while `1 ∈ Z̲`
     have hy : ((fun _ => 1 : Vec ℝ 1)) ∈ (Zonotope.aligned
-        (⟨1, 0, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1)) 0 (fun _ => (1 : ℝ))).construct := by
+        (⟨1, 0, fun _ _ => 1⟩ : Zonotope (Vec ℝ 1)) 0 (fun _ => (1 : ℝ))).toSet := by
       refine ⟨fun _ => 1, fun _ => by simp, ?_⟩
       funext i
       simp [Zonotope.aligned]

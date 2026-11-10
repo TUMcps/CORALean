@@ -46,7 +46,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.polyZonotope_contains (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    Z.construct ⊆ Z.polyZonotope.construct := by -- --- PROOF ---
+    Z.toSet ⊆ Z.polyZonotope.toSet := by -- --- PROOF ---
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨β, hβ, hx⟩ := Zonotope.mem_nominalSet_iff.mp hx
   -- identity exponents make every monomial a factor

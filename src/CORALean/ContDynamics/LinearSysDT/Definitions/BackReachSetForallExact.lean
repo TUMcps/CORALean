@@ -46,9 +46,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- Every state from which *every* admissible input signal reaches `T` in
 exactly `k` steps: one preimage and one Minkowski difference per step. -/
 def LinearSysDT.backReachSetForallExact (sys : LinearSysDT 𝕋 n) (T U : S n) : ℕ → Set (Vec ℝ n)
-  | 0 => construct T
+  | 0 => toSet T
   | k + 1 => mulVecLin (toRealMat sys.A) ⁻¹'
-      minkowskiDiff (sys.backReachSetForallExact T U k) (construct U)
+      minkowskiDiff (sys.backReachSetForallExact T U k) (toSet U)
 
 end CORALean
 

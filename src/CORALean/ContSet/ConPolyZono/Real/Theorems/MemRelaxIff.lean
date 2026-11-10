@@ -56,7 +56,7 @@ private theorem ConPolyZono.aux_monomial_relax (cPZ : ConPolyZono α) (s : Vec �
 /-- The relaxed set's points are the original's with every row met to within `|sᵢ|`. -/
 theorem ConPolyZono.mem_relax_iff [AddCommGroup α] [Module ℝ α] (cPZ : ConPolyZono α)
     (s : Vec ℝ cPZ.cons.m) {x : α} : -- --- CONCL ---
-    x ∈ (cPZ.relax s).construct ↔
+    x ∈ (cPZ.relax s).toSet ↔
       ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
         ∧ (∀ i, |(cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R a) i - cPZ.cons.b i| ≤ |s i|)
         ∧ x = cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i

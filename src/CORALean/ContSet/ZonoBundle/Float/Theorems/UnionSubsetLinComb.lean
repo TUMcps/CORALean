@@ -45,8 +45,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `or`: the union of two nonempty float zonotope bundles lies in their `linComb`. -/
 theorem ZonoBundle.union_subset_linComb (zB₁ zB₂ : ZonoBundle (Vec 𝕋 n))
-    (h₁ : zB₁.construct.Nonempty) (h₂ : zB₂.construct.Nonempty) :
-    zB₁.construct ∪ zB₂.construct ⊆ (zB₁.linComb zB₂).construct :=
+    (h₁ : zB₁.toSet.Nonempty) (h₂ : zB₂.toSet.Nonempty) :
+    zB₁.toSet ∪ zB₂.toSet ⊆ (zB₁.linComb zB₂).toSet :=
   (union_subset_setLinComb h₁ h₂).trans (SetIntersection.pairwise_outer Set.linComb
     (fun _ _ _ _ => setLinComb_mono) fun p =>
       ⟨(finProdFinEquiv.symm p).1, (finProdFinEquiv.symm p).2, Zonotope.linComb_outer _ _⟩)

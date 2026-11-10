@@ -49,8 +49,8 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.supportFunction_exact (P : VPolytope α) :
-    P.supportFunction.construct = P.construct :=
-  SupportFunction.ofSet_exact P.convex_construct P.isCompact_construct.isClosed
+    P.supportFunction.toSet = P.toSet :=
+  SupportFunction.ofSet_exact P.convex_toSet P.isCompact_toSet.isClosed
 
 end CORALean.Real
 

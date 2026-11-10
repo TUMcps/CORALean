@@ -4,7 +4,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.EdgeNotMemInterior
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.CornerSuccAdd
 public import CORALean.ContSet.Zonotope.Real.Theorems.CornerNotSuccSub
-public import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesSubsetConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesSubsetToSet
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 
 @[expose] public section
@@ -52,9 +52,9 @@ namespace CORALean.Real
 theorem Zonotope.walkEdges_subset_frontier (Z : Zonotope (Vec ℝ 2))
     (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0)
     (hne : ∀ j, Z.G j ≠ 0) : -- --- CONCL ---
-    Z.walkEdges ⊆ frontier Z.construct := by -- --- PROOF ---
+    Z.walkEdges ⊆ frontier Z.toSet := by -- --- PROOF ---
   intro x hx
-  refine ⟨subset_closure (Z.walkEdges_subset_construct hx), ?_⟩
+  refine ⟨subset_closure (Z.walkEdges_subset_toSet hx), ?_⟩
   obtain ⟨k, hk | hk⟩ := (Z.mem_walkEdges_iff x).mp hx
   · -- the first block: the walk up the chain, `σ = 1`
     rw [Z.corner_succ_add] at hk

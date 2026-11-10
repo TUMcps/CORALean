@@ -5,7 +5,7 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.CartProdExact
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
 public import CORALean.ContSet.HPolytope.Float.Theorems.CartProdExact
 public import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
-public import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
+public import CORALean.ContSet.InflatedContSet.Theorems.AppendToSet
 
 @[expose] public section
 
@@ -48,8 +48,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 theorem ConZonotope.cartProd_exact (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n₁))
     (cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n₂)) : -- --- CONCL ---
-    (cZ₁.cartProd cZ₂).construct = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
-      (cZ₁.construct ×ˢ cZ₂.construct) := by -- --- PROOF ---
+    (cZ₁.cartProd cZ₂).toSet = (fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2) ''
+      (cZ₁.toSet ×ˢ cZ₂.toSet) := by -- --- PROOF ---
   -- the zonotope parts, whose nominal center and generators the product shares
   set Z₁ : Zonotope (Vec 𝕋 n₁) := ⟨cZ₁.h, cZ₁.c, fun j i => cZ₁.G j i, cZ₁.I_error⟩
   set Z₂ : Zonotope (Vec 𝕋 n₂) := ⟨cZ₂.h, cZ₂.c, fun j i => cZ₂.G j i, cZ₂.I_error⟩
@@ -58,18 +58,18 @@ theorem ConZonotope.cartProd_exact (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n₁))
       (appendLinear n₁ n₂) ''
         (InflatedContSet.nominalSet cZ₁ ×ˢ InflatedContSet.nominalSet cZ₂) := by
     unfold InflatedContSet.nominalSet
-    show _ = _ '' (Real.ConZonotope.construct _ ×ˢ Real.ConZonotope.construct _)
+    show _ = _ '' (Real.ConZonotope.toSet _ ×ˢ Real.ConZonotope.toSet _)
     rw [Real.ConZonotope.cartProd_exact, Real.ConZonotope.map_exact]
     -- the coefficient polytope has the same points as the exact layer's product
     have hP' : ∀ γ : Vec ℝ (cZ₁.h + cZ₂.h),
-        γ ∈ (InflatedContSet.nominal (cZ₁.cartProd cZ₂)).P.construct ↔
+        γ ∈ (InflatedContSet.nominal (cZ₁.cartProd cZ₂)).P.toSet ↔
           γ ∈ (Real.ConZonotope.map (appendLinear n₁ n₂)
             ((InflatedContSet.nominal cZ₁).cartProd
-              (InflatedContSet.nominal cZ₂))).P.construct := by
+              (InflatedContSet.nominal cZ₂))).P.toSet := by
       intro γ
-      show γ ∈ (cZ₁.P.cartProd cZ₂.P).nominal.construct ↔ γ ∈ (Real.HPolytope.intersection
+      show γ ∈ (cZ₁.P.cartProd cZ₂.P).nominal.toSet ↔ γ ∈ (Real.HPolytope.intersection
         ((InflatedContSet.nominal cZ₁).P.comap (blockLeft cZ₁.h cZ₂.h))
-        ((InflatedContSet.nominal cZ₂).P.comap (blockRight cZ₁.h cZ₂.h))).construct
+        ((InflatedContSet.nominal cZ₂).P.comap (blockRight cZ₁.h cZ₂.h))).toSet
       rw [HPolytope.cartProd_nominal_exact, Real.HPolytope.mem_intersection_iff]
       exact Iff.rfl
     -- the center and the generators are the zonotope product's
@@ -89,7 +89,7 @@ theorem ConZonotope.cartProd_exact (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n₁))
   have hφ : ⇑(appendLinear n₁ n₂) = fun p : Vec ℝ n₁ × Vec ℝ n₂ => Fin.append p.1 p.2 :=
     funext appendLinear_apply
   rw [hφ] at hN
-  exact CORALean.Float.InflatedContSet.append_construct (s₁ := cZ₁) (s₂ := cZ₂) hN rfl
+  exact CORALean.Float.InflatedContSet.append_toSet (s₁ := cZ₁) (s₂ := cZ₂) hN rfl
 
 end CORALean.Float
 

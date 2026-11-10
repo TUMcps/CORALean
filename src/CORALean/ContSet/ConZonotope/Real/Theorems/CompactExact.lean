@@ -93,7 +93,7 @@ private theorem ConZonotope.aux_functional_embed {h : ℕ} (S : Finset (Fin h)) 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.compact_exact (cZ : ConZonotope α) : -- --- CONCL ---
-    cZ.compact.construct = cZ.construct := by -- --- PROOF ---
+    cZ.compact.toSet = cZ.toSet := by -- --- PROOF ---
   -- what a dropped generator is: zero, and read by no constraint
   have hdrop : ∀ j, j ∉ cZ.compactGens → cZ.G j = 0
       ∧ (∀ i, cZ.P.A i (Pi.single j (1 : ℝ) : Vec ℝ cZ.h) = 0)
@@ -103,9 +103,9 @@ theorem ConZonotope.compact_exact (cZ : ConZonotope α) : -- --- CONCL ---
       not_or, not_not] at hj
     exact ⟨hj.1, (HPolytope.colWeight_eq_zero_iff _ _).mp hj.2⟩
   -- the constraint of `compact` is `P` read at the embedded coefficients
-  have hP : ∀ β' : Vec ℝ cZ.compactGens.card, β' ∈ cZ.compact.P.construct ↔
-      ConZonotope.step_compactEmbed cZ.compactGens β' ∈ cZ.P.construct := fun β' => by
-    show _ ∈ cZ.P.dropTrivialEqs.construct ↔ _
+  have hP : ∀ β' : Vec ℝ cZ.compactGens.card, β' ∈ cZ.compact.P.toSet ↔
+      ConZonotope.step_compactEmbed cZ.compactGens β' ∈ cZ.P.toSet := fun β' => by
+    show _ ∈ cZ.P.dropTrivialEqs.toSet ↔ _
     rw [HPolytope.dropTrivialEqs_exact]
   ext x
   constructor

@@ -52,9 +52,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.parallelotope_contains (Λ H : Mat 𝕋 n n) (B : Interval (Vec 𝕋 n)) (m : 𝕋)
-    {x : Vec ℝ n} (hB : toRealMat H *ᵥ x ∈ B.construct)
+    {x : Vec ℝ n} (hB : toRealMat H *ᵥ x ∈ B.toSet)
     (hm : ∀ j, |x j| ≤ toReal m) : -- --- CONCL ---
-    x ∈ (ZonoBundle.parallelotope Λ H B m).construct := by -- --- PROOF ---
+    x ∈ (ZonoBundle.parallelotope Λ H B m).toSet := by -- --- PROOF ---
   -- the part along `Λ`, in the mapped box
   obtain ⟨z, hz, e, he, hze⟩ := Zonotope.mtimes_outer Λ B.zonotope
     ⟨_, Interval.zonotope_contains B hB, rfl⟩
@@ -65,7 +65,7 @@ theorem ZonoBundle.parallelotope_contains (Λ H : Mat 𝕋 n n) (B : Interval (V
     abel
   -- the residual, at most `q m` in every coordinate
   have hres : r ∈ (⟨fun _ => neg (mulUp (Zonotope.rightInvQ Λ H) m),
-      fun _ => mulUp (Zonotope.rightInvQ Λ H) m⟩ : Interval (Vec 𝕋 n)).construct := by
+      fun _ => mulUp (Zonotope.rightInvQ Λ H) m⟩ : Interval (Vec 𝕋 n)).toSet := by
     intro i
     have hm0 : 0 ≤ toReal m := le_trans (abs_nonneg _) (hm i)
     have hrow := Zonotope.rightInvQ_bound Λ H i

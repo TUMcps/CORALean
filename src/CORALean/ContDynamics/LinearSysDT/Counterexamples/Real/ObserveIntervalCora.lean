@@ -52,9 +52,9 @@ open CORALean.Real
 theorem LinearSysDT.observeInterval_cora_counterexample : -- --- CONCL ---
     let sys : LinearSysDT ℝ 1 := LinearSysDT.canonical 0
     let R₀ : Zonotope (Vec ℝ 1) := Zonotope.ofPoint (fun _ => 1)
-    (fun _ => 1 : Vec ℝ 1) ∈ R₀.construct ∧
+    (fun _ => 1 : Vec ℝ 1) ∈ R₀.toSet ∧
       (fun _ => 1 : Vec ℝ 1) ∉ (sys.observeInterval (0 : Mat ℝ 1 1) R₀ R₀
-        (Zonotope.ofPoint 0) (fun _ => 0) (fun _ => 0) 0).construct := by -- --- PROOF ---
+        (Zonotope.ofPoint 0) (fun _ => 0) (fun _ => 0) 0).toSet := by -- --- PROOF ---
   intro sys R₀
   refine ⟨Zonotope.mem_ofPoint _, fun h => ?_⟩
   -- the first box is `center + box(R0) = {2}`

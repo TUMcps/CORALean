@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Capsule.Float.Operations.ContainsPoint
-public import CORALean.ContSet.Capsule.Float.Theorems.MemConstructOfSplit
+public import CORALean.ContSet.Capsule.Float.Theorems.MemToSetOfSplit
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 @[expose] public section
@@ -63,7 +63,7 @@ private theorem Capsule.aux_clamp {a b u : ℝ} (hab : a ≤ b) : -- --- CONCL -
 
 theorem Capsule.containsPoint_sound {C : Capsule 𝕋 n} {p : Vec 𝕋 n}
     (h : C.containsPoint p = true) : -- --- CONCL ---
-    toRealVec p ∈ C.construct := by -- --- PROOF ---
+    toRealVec p ∈ C.toSet := by -- --- PROOF ---
   unfold Capsule.containsPoint at h
   simp only [Bool.and_eq_true, List.all_eq_true, List.mem_finRange, forall_const] at h
   obtain ⟨⟨hI, hr⟩, hsq⟩ := h
@@ -80,7 +80,7 @@ theorem Capsule.containsPoint_sound {C : Capsule 𝕋 n} {p : Vec 𝕋 n}
     max (toReal (C.I_error.inf j)) (min (toReal (C.I_error.sup j)) (-v j))
   have hab : ∀ j, toReal (C.I_error.inf j) ≤ toReal (C.I_error.sup j) :=
     fun j => toReal_le_of_le (hI j)
-  refine Capsule.mem_construct_of_split C ht1 (w := fun j => -v j - e j) ?_ ?_
+  refine Capsule.mem_toSet_of_split C ht1 (w := fun j => -v j - e j) ?_ ?_
   · -- each entry is below the magnitude the directed arithmetic bracketed
     refine le_trans (norm₂_le_of_sq_le (fun j => ?_) (toReal_le_of_le hsq)) ?_
     · have h1 := subDown_le_sub (addDown (C.c j) (mulDown t (C.g j))) (p j)

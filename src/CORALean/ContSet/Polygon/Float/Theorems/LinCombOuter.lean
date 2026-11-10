@@ -40,12 +40,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.linComb_outer (P Q : Polygon 𝕋) : -- --- CONCL ---
-    Set.linComb (ContSet.construct P) (ContSet.construct Q) ⊆
-      ContSet.construct (Polygon.linComb P Q) := by -- --- PROOF ---
+    Set.linComb (ContSet.toSet P) (ContSet.toSet Q) ⊆
+      ContSet.toSet (Polygon.linComb P Q) := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁, y₂, hy₂, lam, hlam, rfl⟩
-  obtain ⟨p, hp, hy₁⟩ := SetUnion.mem_construct.mp hy₁
-  obtain ⟨q, hq, hy₂⟩ := SetUnion.mem_construct.mp hy₂
-  refine SetUnion.mem_construct.mpr
+  obtain ⟨p, hp, hy₁⟩ := SetUnion.mem_toSet.mp hy₁
+  obtain ⟨q, hq, hy₂⟩ := SetUnion.mem_toSet.mp hy₂
+  refine SetUnion.mem_toSet.mpr
     ⟨_, List.mem_map.mpr ⟨(p, q), List.mem_product.mpr ⟨hp, hq⟩, rfl⟩, ?_⟩
   have := VPolytope.linComb_outer p q ⟨y₁, hy₁, y₂, hy₂, lam, hlam, rfl⟩
   rwa [← VPolytope.materialise_eq (VPolytope.linComb p q)] at this

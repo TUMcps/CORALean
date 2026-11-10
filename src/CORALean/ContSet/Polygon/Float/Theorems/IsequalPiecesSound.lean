@@ -43,17 +43,17 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- One direction: every piece of `P` inside some piece of `Q`. -/
 private theorem Polygon.aux_subset_of_all {P Q : Polygon 𝕋}
     (h : ∀ p ∈ P.sets, ∃ q ∈ Q.sets, Polygon.pieceSubset p q = true) :
-    ContSet.construct P ⊆ ContSet.construct Q := by
+    ContSet.toSet P ⊆ ContSet.toSet Q := by
   intro x hx
-  obtain ⟨p, hp, hxp⟩ := SetUnion.mem_construct.mp hx
+  obtain ⟨p, hp, hxp⟩ := SetUnion.mem_toSet.mp hx
   obtain ⟨q, hq, hpq⟩ := h p hp
-  exact SetUnion.mem_construct.mpr ⟨q, hq, Polygon.pieceSubset_sound hpq hxp⟩
+  exact SetUnion.mem_toSet.mpr ⟨q, hq, Polygon.pieceSubset_sound hpq hxp⟩
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.isequalPieces_sound {P Q : Polygon 𝕋} (h : Polygon.isequalPieces P Q = true) :
-    ContSet.construct P = ContSet.construct Q := by
+    ContSet.toSet P = ContSet.toSet Q := by
   simp only [Polygon.isequalPieces, Bool.and_eq_true, List.all_eq_true, List.any_eq_true] at h
   exact Set.Subset.antisymm (Polygon.aux_subset_of_all h.1) (Polygon.aux_subset_of_all h.2)
 

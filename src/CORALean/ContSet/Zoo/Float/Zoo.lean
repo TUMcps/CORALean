@@ -55,9 +55,9 @@ inductive Zoo.Member (𝕋 : Type) (n : ℕ) where
 /-- The functions on the box that a member encloses through its stored floats: for a Taylor
 model its `Encloses`, for an interval those whose value at every box point it holds. -/
 instance [SoundFloatArithmetic 𝕋] : ContSet (Zoo.Member 𝕋 n) (Vec ℝ n → ℝ) where
-  construct
+  toSet
     | .taylm T => {f | T.Encloses f}
-    | .ivl I => {f | ∀ t ∈ Real.Taylm.box n, (fun _ => f t : Vec ℝ 1) ∈ I.construct}
+    | .ivl I => {f | ∀ t ∈ Real.Taylm.box n, (fun _ => f t : Vec ℝ 1) ∈ I.toSet}
 
 /-- The members a zoo holds, as a `SetIntersection`: an absent member is left out, which reads
 it as every function. -/
@@ -66,7 +66,7 @@ def Zoo.members (Z : Zoo 𝕋 n) : SetIntersection (Zoo.Member 𝕋 n) :=
 
 /-- A zoo denotes the functions all its members enclose: CORA's intersection of enclosures. -/
 instance [SoundFloatArithmetic 𝕋] : ContSet (Zoo 𝕋 n) (Vec ℝ n → ℝ) :=
-  ⟨fun Z => ContSet.construct Z.members⟩
+  ⟨fun Z => ContSet.toSet Z.members⟩
 
 /-- Every member encloses `f` on the box. -/
 def Zoo.Encloses [SoundFloatArithmetic 𝕋] (Z : Zoo 𝕋 n) (f : Vec ℝ n → ℝ) : Prop := f ∈ Z

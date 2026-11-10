@@ -38,7 +38,7 @@ variable {n : ℕ}
 
 /-- A member whose coordinates are the support values, from above and from below. -/
 noncomputable def SpectraShadow.representsa_point (S : SpectraShadow (Vec ℝ n)) : Prop :=
-  ∃ p ∈ S.construct, ∀ i : Fin n,
+  ∃ p ∈ S.toSet, ∀ i : Fin n,
     S.supportFunc (LinearMap.proj i : Vec ℝ n →ₗ[ℝ] ℝ) = ((p i : ℝ) : EReal)
       ∧ S.supportFunc (-(LinearMap.proj i : Vec ℝ n →ₗ[ℝ] ℝ)) = ((-p i : ℝ) : EReal)
 

@@ -53,10 +53,10 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A plain matrix applied to a point of a set lands in the set's image. -/
-private theorem aux_mtimes_mem {M : Mat ℝ n n} {W : S n} {y : Vec ℝ n} (hy : y ∈ construct W) :
-    M *ᵥ y ∈ construct (Mtimes.mtimes M W) := by
+private theorem aux_mtimes_mem {M : Mat ℝ n n} {W : S n} {y : Vec ℝ n} (hy : y ∈ toSet W) :
+    M *ᵥ y ∈ toSet (Mtimes.mtimes M W) := by
   refine Mtimes.mtimes_outer _ _ ?_
-  simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+  simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
   exact Set.mem_image_of_mem _ hy
 
 omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
@@ -64,8 +64,8 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 /-- The same for any matrix an interval matrix denotes. -/
 private theorem aux_mtimesIM_mem [Mtimes ℐ S]
     {IM : Interval (Mat ℝ n n)} {W : S n}
-    {M : Mat ℝ n n} (hM : M ∈ IM.construct) {y : Vec ℝ n} (hy : y ∈ construct W) :
-    M *ᵥ y ∈ construct (Mtimes.mtimes (𝕄 := ℐ) IM W) := by
+    {M : Mat ℝ n n} (hM : M ∈ IM.toSet) {y : Vec ℝ n} (hy : y ∈ toSet W) :
+    M *ᵥ y ∈ toSet (Mtimes.mtimes (𝕄 := ℐ) IM W) := by
   refine Mtimes.mtimes_outer _ _ ?_
   exact Set.mem_biUnion hM (Set.mem_image_of_mem _ hy)
 
@@ -82,21 +82,21 @@ theorem LinearSys.IsCanonicalTrajectory.inputSolution_timeInterval_outer_split
     (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     -- the split, and the two sets the constant part is enclosed against
-    (hsplit : ∀ y ∈ construct U, y - c ∈ construct U₀)
-    (hcP : c ∈ construct P)
-    (hcS : ∀ lam ∈ Set.Icc (0:ℝ) 1, lam • c ∈ construct Sg)
-    (hbddP : Bornology.IsBounded (construct P))
+    (hsplit : ∀ y ∈ toSet U, y - c ∈ toSet U₀)
+    (hcP : c ∈ toSet P)
+    (hcS : ∀ lam ∈ Set.Icc (0:ℝ) 1, lam • c ∈ toSet Sg)
+    (hbddP : Bornology.IsBounded (toSet P))
     -- what Prop. 3.3 asks of the part holding the origin
-    (h0₀ : (0 : Vec ℝ n) ∈ construct U₀)
-    (hconv₀ : Convex ℝ (construct U₀)) (hclosed₀ : IsClosed (construct U₀))
-    (hbdd₀ : Bornology.IsBounded (construct U₀))
+    (h0₀ : (0 : Vec ℝ n) ∈ toSet U₀)
+    (hconv₀ : Convex ℝ (toSet U₀)) (hclosed₀ : IsClosed (toSet U₀))
+    (hbdd₀ : Bornology.IsBounded (toSet U₀))
     (hRconv₀ : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) r η U₀))
     (hRclosed₀ : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r η U₀))
     (hRbdd₀ : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r η U₀))
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     -- the propagated constant, its interpolation error, and the recentered set
     (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat sys.A) *ᵥ u s)
-      ∈ construct (Plus.plus
+      ∈ toSet (Plus.plus
           (Plus.plus
             (Mtimes.mtimes (𝕄 := Mat ℝ)
               (MatExp.expIntegral (toRealMat sys.A) r) Sg)
@@ -107,8 +107,8 @@ theorem LinearSys.IsCanonicalTrajectory.inputSolution_timeInterval_outer_split
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
   have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr
   -- the two admissible pieces
-  have hmemP : ∀ s ∈ Set.Icc (0:ℝ) t, (fun _ : ℝ => c) s ∈ construct P := fun _ _ => hcP
-  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, (fun σ => u σ - c) s ∈ construct U₀ :=
+  have hmemP : ∀ s ∈ Set.Icc (0:ℝ) t, (fun _ : ℝ => c) s ∈ toSet P := fun _ _ => hcP
+  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, (fun σ => u σ - c) s ∈ toSet U₀ :=
     fun s hs => hsplit _ (traj.input s (hTt hs))
   have hmeas₀ : AEStronglyMeasurable (fun σ => u σ - c)
       (volume.restrict (Set.Icc 0 t)) :=

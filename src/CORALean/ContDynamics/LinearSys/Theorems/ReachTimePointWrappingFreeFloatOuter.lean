@@ -55,9 +55,9 @@ theorem LinearSys.reachTimePointWrappingFreeFloat_outer (sys : LinearSys 𝕋 n)
     {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
     ∀ Rs ∈ sys.reachTimePointWrappingFreeFloat params options,
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-        Rs.length = N + 1 ∧ ∀ (k : ℕ) (hk : k < Rs.length), ∀ x₀ ∈ params.X₀.construct,
+        Rs.length = N + 1 ∧ ∀ (k : ℕ) (hk : k < Rs.length), ∀ x₀ ∈ params.X₀.toSet,
           exp (((k : ℝ) * toReal options.Δt) • Scalar.toRealMat sys.A) *ᵥ x₀
-            ∈ Rs[k].construct := by -- --- PROOF ---
+            ∈ Rs[k].toSet := by -- --- PROOF ---
   intro Rs (h : sys.reachTimePointWrappingFreeFloat params options = some Rs)
   obtain ⟨X₀, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options

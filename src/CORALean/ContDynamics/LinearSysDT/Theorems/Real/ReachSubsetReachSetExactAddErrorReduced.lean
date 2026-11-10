@@ -51,8 +51,8 @@ variable {n : ℕ}
 reduced error, the error being the side of the inclusion that may grow. -/
 theorem LinearSysDT.reach_subset_reachSetExact_add_errorReduced (sys : LinearSysDT ℝ n) {o : ℕ}
     (ho : 0 < o) (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
-    (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct ⊆
-      sys.reachSetExact (S := 𝒵) R₀ U k + (sys.reachErrorReduced ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct :=
+    (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).toSet ⊆
+      sys.reachSetExact (S := 𝒵) R₀ U k + (sys.reachErrorReduced ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).toSet :=
   subset_trans (sys.reach_subset_reachSetExact_add_error ho R₀ U k)
     (Set.add_subset_add_left (sys.reachErrorReduced_contains_reachError ho R₀ U k))
 

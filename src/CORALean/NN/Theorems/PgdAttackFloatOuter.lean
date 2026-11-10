@@ -62,24 +62,24 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 /-- A pass keeps the real point in the float box and the real step size in its box. -/
 private theorem aux_pgdStep_mem {c : IntervalChain 𝕋 n m} {r : Real.IntervalChain n m}
     (hc : c.Encloses r) (hs : r.IsSmooth) (t : Vec 𝕋 m) (L U : Interval (Vec 𝕋 n))
-    {l u : Vec ℝ n} (hL : l ∈ L.construct) (hU : u ∈ U.construct) (decay : 𝕋)
+    {l u : Vec ℝ n} (hL : l ∈ L.toSet) (hU : u ∈ U.toSet) (decay : 𝕋)
     (iter : List ℕ) (lossDerF : Interval (Vec 𝕋 m) → Interval (Vec 𝕋 m) → Interval (Vec 𝕋 m))
     {lossDer : Vec ℝ m → Vec ℝ m → Vec ℝ m}
-    (hl : ∀ (T Y : Interval (Vec 𝕋 m)) (t' y' : Vec ℝ m), t' ∈ T.construct → y' ∈ Y.construct →
-      lossDer t' y' ∈ (lossDerF T Y).construct) (q : ℕ) {z : Vec ℝ n} {s : ℝ}
-    {Z : Interval (Vec 𝕋 n)} {S : Interval 𝕋} (hz : z ∈ Z.construct)
+    (hl : ∀ (T Y : Interval (Vec 𝕋 m)) (t' y' : Vec ℝ m), t' ∈ T.toSet → y' ∈ Y.toSet →
+      lossDer t' y' ∈ (lossDerF T Y).toSet) (q : ℕ) {z : Vec ℝ n} {s : ℝ}
+    {Z : Interval (Vec 𝕋 n)} {S : Interval 𝕋} (hz : z ∈ Z.toSet)
     (hsS : toReal S.inf ≤ s ∧ s ≤ toReal S.sup) {rs : Vec ℝ n × ℝ}
     (hrs : rs = r.toChain.pgdStep (toRealVec t) l u (toReal decay) iter lossDer q (z, s))
     {fs : Interval (Vec 𝕋 n) × Interval 𝕋}
     (hfs : fs = c.step_pgdStep t L U decay iter lossDerF q (Z, S)) : -- --- CONCL ---
-    rs.1 ∈ fs.1.construct ∧ toReal fs.2.inf ≤ rs.2 ∧ rs.2 ≤ toReal fs.2.sup := by -- --- PROOF ---
+    rs.1 ∈ fs.1.toSet ∧ toReal fs.2.inf ≤ rs.2 ∧ rs.2 ≤ toReal fs.2.sup := by -- --- PROOF ---
   subst hrs hfs
   -- the clipped signed gradient step for any step size in a box `S'`
   have key : ∀ (s' : ℝ) (S' : Interval 𝕋), (toReal S'.inf ≤ s' ∧ s' ≤ toReal S'.sup) →
       (fun i => min (u i) (max (l i) (r.toChain.fgsmAttack z (toRealVec t) s' lossDer i))) ∈
         (⟨fun i => minimum (U.inf i) (maximum (L.inf i) ((c.fgsmAttack Z t S' lossDerF).inf i)),
           fun i => minimum (U.sup i) (maximum (L.sup i) ((c.fgsmAttack Z t S' lossDerF).sup i))⟩ :
-          Interval (Vec 𝕋 n)).construct := by
+          Interval (Vec 𝕋 n)).toSet := by
     intro s' S' hs' i
     -- the signed gradient step is in its box, and the bounds are
     have hf : toReal ((c.fgsmAttack Z t S' lossDerF).inf i) ≤
@@ -117,18 +117,18 @@ theorem IntervalChain.pgdAttack_outer {c : IntervalChain 𝕋 n m} {r : Real.Int
     (l u : Vec 𝕋 n) (stepsize stepsizeDecay : 𝕋) (stepsizeDecayIter : List ℕ)
     (lossDerF : Interval (Vec 𝕋 m) → Interval (Vec 𝕋 m) → Interval (Vec 𝕋 m))
     {lossDer : Vec ℝ m → Vec ℝ m → Vec ℝ m}
-    (hl : ∀ (T Y : Interval (Vec 𝕋 m)) (t' y' : Vec ℝ m), t' ∈ T.construct → y' ∈ Y.construct →
-      lossDer t' y' ∈ (lossDerF T Y).construct) : -- --- CONCL ---
+    (hl : ∀ (T Y : Interval (Vec 𝕋 m)) (t' y' : Vec ℝ m), t' ∈ T.toSet → y' ∈ Y.toSet →
+      lossDer t' y' ∈ (lossDerF T Y).toSet) : -- --- CONCL ---
     r.toChain.pgdAttack (toRealVec x) (toRealVec t) (toReal ε) Q (toRealVec l) (toRealVec u)
         (toReal stepsize) (toReal stepsizeDecay) stepsizeDecayIter lossDer
       ∈ (c.pgdAttack x t ε Q l u stepsize stepsizeDecay stepsizeDecayIter
-        lossDerF).construct := by -- --- PROOF ---
+        lossDerF).toSet := by -- --- PROOF ---
   -- the bounds `max(l, x - ε)` and `min(u, x + ε)` lie in their boxes, rounded outward
   set L : Interval (Vec 𝕋 n) :=
     ⟨fun i => maximum (l i) (subDown (x i) ε), fun i => maximum (l i) (subUp (x i) ε)⟩ with hLd
   set U : Interval (Vec 𝕋 n) :=
     ⟨fun i => minimum (u i) (addDown (x i) ε), fun i => minimum (u i) (addUp (x i) ε)⟩ with hUd
-  have hL : (fun i => max (toRealVec l i) (toRealVec x i - toReal ε)) ∈ L.construct :=
+  have hL : (fun i => max (toRealVec l i) (toRealVec x i - toReal ε)) ∈ L.toSet :=
     fun i => by
     -- the lower bound is rounded down, the upper bound up
     constructor
@@ -138,7 +138,7 @@ theorem IntervalChain.pgdAttack_outer {c : IntervalChain 𝕋 n m} {r : Real.Int
     · show _ ≤ toReal (maximum (l i) (subUp (x i) ε))
       rw [toReal_maximum]
       exact max_le_max le_rfl (sub_le_subUp _ _)
-  have hU : (fun i => min (toRealVec u i) (toRealVec x i + toReal ε)) ∈ U.construct :=
+  have hU : (fun i => min (toRealVec u i) (toRealVec x i + toReal ε)) ∈ U.toSet :=
     fun i => by
     -- likewise for `x + ε`
     constructor
@@ -158,7 +158,7 @@ theorem IntervalChain.pgdAttack_outer {c : IntervalChain 𝕋 n m} {r : Real.Int
   set F : ℕ → Interval (Vec 𝕋 n) × Interval 𝕋 :=
     c.step_pgdState x t L U stepsize stepsizeDecay stepsizeDecayIter lossDerF with hF
   -- every pass keeps the real state in the float one
-  have hQ : ∀ q : ℕ, (st q).1 ∈ (F q).1.construct ∧
+  have hQ : ∀ q : ℕ, (st q).1 ∈ (F q).1.toSet ∧
       toReal (F q).2.inf ≤ (st q).2 ∧ (st q).2 ≤ toReal (F q).2.sup := by
     intro q
     induction q with

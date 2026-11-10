@@ -51,9 +51,9 @@ def ZonoBundle.toSetIntersection {α : Type} (zB : ZonoBundle α) : SetIntersect
 
 /-- What the family denotes, at any ambient type: the `SetIntersection` of the members'
 own inflated sets, so the rounding each has paid for is already inside this. -/
-def ZonoBundle.construct {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β]
+def ZonoBundle.toSet {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β]
     [Entrywise β ι] (zB : ZonoBundle α) : Set β :=
-  ContSet.construct zB.toSetIntersection
+  ContSet.toSet zB.toSetIntersection
 
 end CORALean.Float
 

@@ -60,7 +60,7 @@ private theorem ConZonotope.aux_sum_univ_absorbRounding {cZ : ConZonotope 𝕋 (
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.absorbRounding_nominal (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    cZ.construct ⊆ nominalSet cZ.absorbRounding := by -- --- PROOF ---
+    cZ.toSet ⊆ nominalSet cZ.absorbRounding := by -- --- PROOF ---
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨β, hβ, hP, hz⟩ := ConZonotope.mem_nominalSet_iff.mp hz'
   have hbound : ∀ i, |e i| ≤ toReal (PolyZonotope.errorBound cZ.I_error i) :=

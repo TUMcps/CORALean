@@ -39,8 +39,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {p q r : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.matMulIntervalMat_outer (M : Zonotope (Mat 𝕋 p q)) (I : Interval (Mat 𝕋 q r)) :
-    (⋃ A ∈ M.construct, (A * ·) '' I.construct)
-      ⊆ (Zonotope.matMulIntervalMat M I).construct := by
+    (⋃ A ∈ M.toSet, (A * ·) '' I.toSet)
+      ⊆ (Zonotope.matMulIntervalMat M I).toSet := by
   refine subset_trans ?_ (Zonotope.matMul_outer M (Zonotope.ofIntervalMat I))
   refine Set.iUnion₂_mono fun A _ => ?_
   exact Set.image_mono (Zonotope.ofIntervalMat_outer I)

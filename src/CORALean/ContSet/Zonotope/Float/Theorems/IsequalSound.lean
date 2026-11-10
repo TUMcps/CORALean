@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Zonotope.isequal_sound {Z S : Zonotope (Vec 𝕋 n)}
     (h : Z.isequal S = true) : -- --- CONCL ---
-    Z.construct = S.construct := by -- --- PROOF ---
+    Z.toSet = S.toSet := by -- --- PROOF ---
   unfold Zonotope.isequal at h
   split at h
   · rename_i e
@@ -60,12 +60,12 @@ theorem Zonotope.isequal_sound {Z S : Zonotope (Vec 𝕋 n)}
     have hEi : toRealVec E₁.inf = toRealVec E₂.inf := funext fun i => eqr (h i).1.1.2
     have hEs : toRealVec E₁.sup = toRealVec E₂.sup := funext fun i => eqr (h i).1.2
     -- the error boxes read as the same real box
-    have hE : E₁.construct = E₂.construct := by
+    have hE : E₁.toSet = E₂.toSet := by
       have : E₁.nominal = E₂.nominal := by
         have e₁ : RealImage.realImage E₁.inf = RealImage.realImage E₂.inf := hEi
         have e₂ : RealImage.realImage E₁.sup = RealImage.realImage E₂.sup := hEs
         simp only [Interval.nominal, e₁, e₂]
-      unfold Interval.construct
+      unfold Interval.toSet
       rw [this]
     have hN : (nominal (⟨h₁, c₁, G₁, E₁⟩ : Zonotope (Vec 𝕋 n))) =
         nominal (⟨h₁, c₂, G₂, E₂⟩ : Zonotope (Vec 𝕋 n)) := by
@@ -73,8 +73,8 @@ theorem Zonotope.isequal_sound {Z S : Zonotope (Vec 𝕋 n)}
         ⟨h₁, toRealVec c₂, fun j i => toReal (G₂ j i)⟩
       rw [hc, hG]
     -- so the two sums of nominal set and error box are the same
-    change ContSet.construct (nominal (⟨h₁, c₁, G₁, E₁⟩ : Zonotope (Vec 𝕋 n))) + E₁.construct =
-      ContSet.construct (nominal (⟨h₁, c₂, G₂, E₂⟩ : Zonotope (Vec 𝕋 n))) + E₂.construct
+    change ContSet.toSet (nominal (⟨h₁, c₁, G₁, E₁⟩ : Zonotope (Vec 𝕋 n))) + E₁.toSet =
+      ContSet.toSet (nominal (⟨h₁, c₂, G₂, E₂⟩ : Zonotope (Vec 𝕋 n))) + E₂.toSet
     rw [hN, hE]
   · simp at h
 

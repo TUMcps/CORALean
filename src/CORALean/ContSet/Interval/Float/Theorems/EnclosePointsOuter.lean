@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.enclosePoints_outer {k : ℕ} (p : Fin k → Vec 𝕋 n) (l : Fin k) :
-    toRealVec (p l) ∈ (Interval.enclosePoints p).construct := fun i =>
+    toRealVec (p l) ∈ (Interval.enclosePoints p).toSet := fun i =>
   ⟨minimumOver_le (fun l => p l i) l, le_maximumOver (fun l => p l i) l⟩
 
 end CORALean.Float

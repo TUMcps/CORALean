@@ -54,7 +54,7 @@ open Matrix
 theorem ConZonotope.constraintReduce_one_mem_iff {n q h : ℕ} (c : Vec ℝ n)
     (G : Fin h → Vec ℝ n) (A : Mat ℝ q h) (b : Vec ℝ q) (ΛG : Mat ℝ n q)
     (x : Vec ℝ n) : -- --- CONCL ---
-    x ∈ (ConZonotope.constraintReduce c G A b ΛG 1).construct ↔
+    x ∈ (ConZonotope.constraintReduce c G A b ΛG 1).toSet ↔
       ∃ β : Fin h → ℝ, (∀ j, |β j| ≤ 1) ∧
         x = (c + ΛG *ᵥ b) + ∑ j, β j • (G j - ΛG *ᵥ fun k => A k j) := by -- --- PROOF ---
   unfold ConZonotope.constraintReduce

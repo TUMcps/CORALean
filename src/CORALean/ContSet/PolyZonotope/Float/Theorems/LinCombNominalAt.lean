@@ -130,7 +130,7 @@ private theorem PolyZonotope.aux_linCombGI_row (pZ₁ pZ₂ : PolyZonotope (Vec 
 /-- The two directed midpoints bracket the exact one, halving being exact. -/
 private theorem PolyZonotope.aux_midpoint_mem_residual (a b : Vec 𝕋 n) :
     (fun i => (toReal (a i) + toReal (b i)) / 2 - toReal (PolyZonotope.midpoint a b i))
-      ∈ (PolyZonotope.midpointResidual a b).construct :=
+      ∈ (PolyZonotope.midpointResidual a b).toSet :=
   Interval.sub_mem_residual fun i => by
     refine ⟨?_, ?_⟩
     · rw [toReal_half]
@@ -154,7 +154,7 @@ private theorem PolyZonotope.aux_halfDiff_mem_error (a b : Vec 𝕋 n) {lam : �
     (hl0 : 0 ≤ lam) (hl1 : lam ≤ 1) : -- --- CONCL ---
     (fun i => ((toReal (a i) - toReal (b i)) / 2 - toReal (PolyZonotope.halfDiff a b i))
         * (2 * lam - 1))
-      ∈ (PolyZonotope.halfDiffError a b).construct := by -- --- PROOF ---
+      ∈ (PolyZonotope.halfDiffError a b).toSet := by -- --- PROOF ---
   intro i
   have hdown : toReal (PolyZonotope.halfDiff a b i) = toReal (subDown (a i) (b i)) / 2 :=
     toReal_half _
@@ -220,10 +220,10 @@ theorem PolyZonotope.linComb_nominal_at (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)
                 * Real.PolyZonotope.monomial (pZ₁.linComb pZ₂).E
                     (Fin.append (Fin.append a₁ a₂) (fun _ : Fin 1 => 2 * lam - 1)) l)
             + ∑ j, toReal ((pZ₁.linComb pZ₂).GI j i) * β j} : Set (Vec ℝ n))
-        + ((PolyZonotope.midpointResidual pZ₁.c pZ₂.c).construct
-            + ((PolyZonotope.halfDiffError pZ₁.c pZ₂.c).construct
+        + ((PolyZonotope.midpointResidual pZ₁.c pZ₂.c).toSet
+            + ((PolyZonotope.halfDiffError pZ₁.c pZ₂.c).toSet
                 + (Zonotope.generatorError
-                    (PolyZonotope.linCombGIDiff pZ₁ pZ₂)).construct)) := by -- --- PROOF ---
+                    (PolyZonotope.linCombGIDiff pZ₁ pZ₂)).toSet)) := by -- --- PROOF ---
   have hcf : ∀ j : Fin (pZ₁.q + pZ₂.q),
       |Fin.append (Real.Zonotope.pairCoeffSum β₁ β₂ lam)
         (Real.Zonotope.pairCoeffDiff β₁ β₂ lam) j| ≤ 1 := by

@@ -59,24 +59,24 @@ theorem LinearSys.verifySearch_stall_exact_nonvacuous (η : ℕ) : -- --- CONCL 
     let L : Set (Vec ℝ 1) := {fun _ => c}
     let ℓ₁ : Vec ℝ 1 →ₗ[ℝ] ℝ := LinearMap.proj 0
     ∃ (ρ : Zonotope (Vec ℝ 1) → (Vec ℝ 1 →ₗ[ℝ] ℝ) → ℝ)
-      (_ : ∀ X : Zonotope (Vec ℝ 1), ∀ x ∈ construct X, ∀ d : Vec ℝ 1 →ₗ[ℝ] ℝ, d x ≤ ρ X d)
-      (ν₀ νU νL : (Vec ℝ 1 →ₗ[ℝ] ℝ) → Vec ℝ 1) (_ : ∀ d, ν₀ d ∈ construct X₀)
-      (_ : ∀ d, νU d ∈ construct U) (_ : ∀ d, νL d ∈ L)
+      (_ : ∀ X : Zonotope (Vec ℝ 1), ∀ x ∈ toSet X, ∀ d : Vec ℝ 1 →ₗ[ℝ] ℝ, d x ≤ ρ X d)
+      (ν₀ νU νL : (Vec ℝ 1 →ₗ[ℝ] ℝ) → Vec ℝ 1) (_ : ∀ d, ν₀ d ∈ toSet X₀)
+      (_ : ∀ d, νU d ∈ toSet U) (_ : ∀ d, νL d ∈ L)
       (ρL : (Vec ℝ 1 →ₗ[ℝ] ℝ) → ℝ) (_ : ∀ d, ∀ y ∈ L, d y ≤ ρL d)
       (νhat : ℝ → (Vec ℝ 1 →ₗ[ℝ] ℝ) → Vec ℝ 1),
       ℓ₁ (νhat 1 ℓ₁) = (sys.supportUpper (S := 𝒵) 1 η X₀ U ρ ℓ₁ 1).ρR := by -- --- PROOF ---
   intro sys X₀ U c L ℓ₁
   -- the exact support function of a zonotope: bounded, so the supremum bounds every point
   have hbdd : ∀ (X : Zonotope (Vec ℝ 1)) (d : Vec ℝ 1 →ₗ[ℝ] ℝ),
-      BddAbove ((fun x => d x) '' construct X) := fun X d =>
+      BddAbove ((fun x => d x) '' toSet X) := fun X d =>
     ((LinearMap.toContinuousLinearMap d).lipschitz.isBounded_image
-      (CompactSet.isBounded_construct X)).bddAbove
-  refine ⟨fun X d => sSup ((fun x => d x) '' construct X),
+      (CompactSet.isBounded_toSet X)).bddAbove
+  refine ⟨fun X d => sSup ((fun x => d x) '' toSet X),
     fun X x hx d => le_csSup (hbdd X d) ⟨x, hx, rfl⟩, fun _ => 0, fun _ => fun _ => 1,
     fun _ => fun _ => c, fun _ => OfPoint.mem_ofPoint (0 : Vec ℝ 1), fun _ => ?_, fun _ => rfl,
     fun d => d (fun _ => c), fun d y hy => by rw [Set.mem_singleton_iff.mp hy],
     fun _ _ => fun _ => (sys.supportUpper (S := 𝒵) 1 η X₀ U
-      (fun X d => sSup ((fun x => d x) '' construct X)) ℓ₁ 1).ρR, rfl⟩
+      (fun X d => sSup ((fun x => d x) '' toSet X)) ℓ₁ 1).ρR, rfl⟩
   exact ⟨fun _ => 1, by simp, by funext i; simp [U]⟩
 
 end CORALean

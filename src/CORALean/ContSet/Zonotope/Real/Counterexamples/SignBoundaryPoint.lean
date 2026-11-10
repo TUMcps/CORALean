@@ -52,9 +52,9 @@ open Matrix
 /-- [1, Eq. 9] as printed gives a vertex outside the unsafe set although `Y` meets it. -/
 theorem Zonotope.signBoundaryPoint_counterexample : -- --- CONCL ---
     ∃ (Y : Zonotope (Vec ℝ 1)) (A : Mat ℝ 1 1) (b : Vec ℝ 1),
-      (Y.construct ∩ (HPolytope.ineqs A b).construct).Nonempty ∧
+      (Y.toSet ∩ (HPolytope.ineqs A b).toSet).Nonempty ∧
       Y.c + ∑ j, (SignType.sign (A 0 ⬝ᵥ Y.G j) : ℝ) • Y.G j ∉
-        Y.construct ∩ (HPolytope.ineqs A b).construct := by -- --- PROOF ---
+        Y.toSet ∩ (HPolytope.ineqs A b).toSet := by -- --- PROOF ---
   refine ⟨⟨1, 0, fun _ _ => 1⟩, fun _ _ => 1, fun _ => 0, ⟨0, ⟨0, fun _ => by simp, ?_⟩,
     (HPolytope.mem_ineqs_iff).2 fun _ => by simp [mulVec]⟩, ?_⟩
   · funext

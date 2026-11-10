@@ -46,7 +46,7 @@ structure VPolytope (α : Type) where
   V : Fin k → α
 
 /-- The set a vertex description denotes: the convex combinations of its vertices. -/
-def VPolytope.construct (P : VPolytope α) : Set α :=
+def VPolytope.toSet (P : VPolytope α) : Set α :=
   {x | ∃ β : Fin P.k → ℝ, (∀ j, 0 ≤ β j) ∧ ∑ j, β j = 1 ∧ x = ∑ j, β j • P.V j}
 
 end CORALean.Real

@@ -139,8 +139,8 @@ def HPolytope.step_boxZeroRow : HPolytope (Fin 2 → ℝ) where
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-private theorem HPolytope.aux_boxZeroRow_construct : -- --- CONCL ---
-    HPolytope.step_boxZeroRow.construct = ∅ := by -- --- PROOF ---
+private theorem HPolytope.aux_boxZeroRow_toSet : -- --- CONCL ---
+    HPolytope.step_boxZeroRow.toSet = ∅ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_empty_iff_false, iff_false]
   rintro ⟨h, -⟩
@@ -192,10 +192,10 @@ the origin. -/
 theorem HPolytope.representsa_interval_zeroRow_cora_counterexample
     (rest : (Fin 2 → EReal) × (Fin 2 → EReal)) : -- --- CONCL ---
     let box := HPolytope.step_boxZeroRow.representsaIntervalZeroRowCora rest
-    HPolytope.step_boxZeroRow.construct = ∅ ∧ ∀ j, box.1 j ≤ 0 ∧ 0 ≤ box.2 j := by -- --- PROOF ---
+    HPolytope.step_boxZeroRow.toSet = ∅ ∧ ∀ j, box.1 j ≤ 0 ∧ 0 ≤ box.2 j := by -- --- PROOF ---
   intro box
   -- the polytope is empty; no row is flagged, so `(lb, ub)` is returned
-  refine ⟨HPolytope.aux_boxZeroRow_construct, ?_⟩
+  refine ⟨HPolytope.aux_boxZeroRow_toSet, ?_⟩
   have hA : ∀ i, ¬ ∃ a b, a ≠ b ∧ (HPolytope.step_boxZeroRow.A i) (Pi.single a 1) ≠ 0 ∧
       (HPolytope.step_boxZeroRow.A i) (Pi.single b 1) ≠ 0 := by
     -- each of the five rows has at most one nonzero coordinate

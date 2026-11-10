@@ -41,7 +41,7 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 
 /-- What `LinMtimes` asks of `mapOf`: a set holding one map is that map. -/
 theorem Zonotope.lmtimes_singleton_outer (f : α →ₗ[ℝ] β) (Z : Zonotope α) :
-    (⋃ g ∈ ({f} : Set (α →ₗ[ℝ] β)), g '' Z.construct) ⊆ (Zonotope.mapOf f Z).construct := by
+    (⋃ g ∈ ({f} : Set (α →ₗ[ℝ] β)), g '' Z.toSet) ⊆ (Zonotope.mapOf f Z).toSet := by
   refine Set.iUnion₂_subset fun g hg => ?_
   rw [Set.mem_singleton_iff] at hg
   rw [hg]

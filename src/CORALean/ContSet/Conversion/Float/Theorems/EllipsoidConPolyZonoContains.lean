@@ -1,14 +1,14 @@
 module
 
-public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConPolyZonoOfFactorConstruct
+public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidConPolyZonoOfFactorToSet
 public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.RelaxZero
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.AbsSubLeBoxRadius
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.IsOuterFactorSound
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.NominalCenterEq
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.NominalDominated
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructSubsetOfLe
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetSubsetOfLe
 public import CORALean.ContSet.InflatedContSet.Theorems.MonoSubset
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
@@ -21,7 +21,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.Ellipsoid_to_ConPolyZ
 
 The nominal part of the conversion is the exact layer's conversion of the stored factor `G`
 (`conPolyZonoOfFactor`), the set `{q + G u | ‖u‖₂ ≤ 1}`. A certified factor has `G Gᵀ ⪰ Q`, so
-that set contains the nominal ellipsoid (`construct_subset_of_le`) and the error box is carried
+that set contains the nominal ellipsoid (`toSet_subset_of_le`) and the error box is carried
 over; an uncertified one is zero, and the nominal ellipsoid's offset from its center lies in the
 box `q ± sqrt(diag(Q))` added to the error box (`abs_sub_le_boxRadius`). Outer either way.
 
@@ -85,21 +85,21 @@ private theorem Ellipsoid.aux_mem_nominalSet_conPolyZono (E : Ellipsoid 𝕋 n) 
     x ∈ nominalSet E.conPolyZono := by -- --- PROOF ---
   -- the rows record no slack, so the nominal set is the stored fields' own
   have hs : toRealVec E.conPolyZono.cons.b_error = 0 := funext fun _ => toReal_zero
-  show x ∈ (E.conPolyZono.nominalCore.relax (toRealVec E.conPolyZono.cons.b_error)).construct
-  rw [hs, Real.ConPolyZono.relax_zero_construct, Ellipsoid.aux_nominal_conPolyZono,
-    ← Real.Ellipsoid.conPolyZonoOfFactor_construct]
+  show x ∈ (E.conPolyZono.nominalCore.relax (toRealVec E.conPolyZono.cons.b_error)).toSet
+  rw [hs, Real.ConPolyZono.relax_zero_toSet, Ellipsoid.aux_nominal_conPolyZono,
+    ← Real.Ellipsoid.conPolyZonoOfFactor_toSet]
   exact hx
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.conPolyZono_contains (E : Ellipsoid 𝕋 n) : -- --- CONCL ---
-    E.construct ⊆ E.conPolyZono.construct := by -- --- PROOF ---
+    E.toSet ⊆ E.conPolyZono.toSet := by -- --- PROOF ---
   by_cases hok : Ellipsoid.isOuterFactor E.Q (Ellipsoid.outerFactor E.Q) = true
   · -- certified: `G Gᵀ ⪰ Q` dominates the nominal shape, and the error box is carried over
     refine mono_subset (fun x hx => ?_) (by
-      change E.I_error.construct ⊆ (if Ellipsoid.isOuterFactor E.Q (Ellipsoid.outerFactor E.Q)
-        then E.I_error else _ : Interval (Vec 𝕋 n)).construct
+      change E.I_error.toSet ⊆ (if Ellipsoid.isOuterFactor E.Q (Ellipsoid.outerFactor E.Q)
+        then E.I_error else _ : Interval (Vec 𝕋 n)).toSet
       rw [if_pos hok])
     set F : Mat ℝ n n := toRealMat (Ellipsoid.outerFactor E.Q) with hF
     have hle : (F * Fᵀ - (nominal E).ellipsoid.Q).PosSemidef := by
@@ -108,16 +108,16 @@ theorem Ellipsoid.conPolyZono_contains (E : Ellipsoid 𝕋 n) : -- --- CONCL ---
         simpa [conjTranspose_eq_transpose_of_trivial] using
           Matrix.posSemidef_self_mul_conjTranspose F
       · simpa [sub_add_sub_cancel] using (Ellipsoid.posSemidef_of_isOuterFactor hok).add h
-    have hx' := Real.Ellipsoid.construct_subset_of_le (E₂ := Real.Ellipsoid.ofFactor F
+    have hx' := Real.Ellipsoid.toSet_subset_of_le (E₂ := Real.Ellipsoid.ofFactor F
       (toRealVec E.q)) hle (Ellipsoid.nominal_q E) hx
-    rw [Real.Ellipsoid.construct_ofFactor] at hx'
+    rw [Real.Ellipsoid.toSet_ofFactor] at hx'
     refine Ellipsoid.aux_mem_nominalSet_conPolyZono E ?_
     rw [if_pos hok]
     exact hx'
   · -- uncertified: the center, and the offset in the box beside the error box
     rintro _ ⟨x, hx, e, he, rfl⟩
     have hbox : x - toRealVec E.q
-        ∈ (Interval.symmetric (Ellipsoid.boxRadius 64 E)).construct := by
+        ∈ (Interval.symmetric (Ellipsoid.boxRadius 64 E)).toSet := by
       rw [Interval.mem_vec_iff]
       intro i
       have h := Ellipsoid.abs_sub_le_boxRadius hx 64 i
@@ -128,7 +128,7 @@ theorem Ellipsoid.conPolyZono_contains (E : Ellipsoid 𝕋 n) : -- --- CONCL ---
         by rw [Matrix.mulVec_zero, add_zero]⟩
     refine ⟨toRealVec E.q, hc, e + (x - toRealVec E.q), ?_, by abel⟩
     change _ ∈ (if Ellipsoid.isOuterFactor E.Q (Ellipsoid.outerFactor E.Q)
-      then E.I_error else _ : Interval (Vec 𝕋 n)).construct
+      then E.I_error else _ : Interval (Vec 𝕋 n)).toSet
     rw [if_neg hok]
     exact Interval.plus_outer _ _ ⟨e, he, _, hbox, rfl⟩
 

@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Capsule.Real.Theorems.ConstructEqEmpty
+public import CORALean.ContSet.Capsule.Real.Theorems.ToSetEqEmpty
 public import Mathlib.Topology.Instances.Real.Lemmas
 public import Mathlib.Analysis.Normed.Field.Basic
 public import Mathlib.Analysis.Normed.Order.Lattice
@@ -16,7 +16,7 @@ a thin capsule to miss it: `n = 0`, or `n = 1` with `g ≠ 0`.
 
 CORA's `@capsule/isFullDim.m` answers `~isempty(C.r) && C.r > 0`, which misses exactly the thin
 cases `n = 1`, `r = 0`, `g ≠ 0` and `n = 0`, `r = 0`. For `r = 0` an interior point leaves `g`
-nonzero in one axis and zero in the rest, which allows one axis only. Stated at `construct`, which
+nonzero in one axis and zero in the rest, which allows one axis only. Stated at `toSet`, which
 `ContSet.IsFullDim` unfolds to.
 
 ## Inputs
@@ -43,10 +43,10 @@ variable {n : ℕ}
 
 
 /-- A thin capsule is its segment. -/
-private lemma Capsule.mem_construct_of_r_eq_zero {C : Capsule n} (hr : C.r = 0)
+private lemma Capsule.mem_toSet_of_r_eq_zero {C : Capsule n} (hr : C.r = 0)
     {x : Vec ℝ n} : -- --- CONCL ---
-    x ∈ C.construct ↔ ∃ t ∈ Set.Icc (-1 : ℝ) 1, ∀ i, x i = C.c i + t * C.g i := by -- --- PROOF ---
-  unfold Capsule.construct
+    x ∈ C.toSet ↔ ∃ t ∈ Set.Icc (-1 : ℝ) 1, ∀ i, x i = C.c i + t * C.g i := by -- --- PROOF ---
+  unfold Capsule.toSet
   simp only [Set.mem_setOf_eq, hr]
   refine exists_congr fun t => and_congr_right fun _ => ?_
   constructor
@@ -70,12 +70,12 @@ private lemma Capsule.mem_construct_of_r_eq_zero {C : Capsule n} (hr : C.r = 0)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.isFullDim_iff (C : Capsule n) : -- --- CONCL ---
-    (interior C.construct).Nonempty ↔
+    (interior C.toSet).Nonempty ↔
       0 < C.r ∨ (0 ≤ C.r ∧ (n = 0 ∨ (n = 1 ∧ C.g ≠ 0))) := by -- --- PROOF ---
   constructor
   · rintro ⟨x, hx⟩
     rcases lt_trichotomy C.r 0 with hr | hr | hr
-    · rw [Capsule.construct_eq_empty hr] at hx
+    · rw [Capsule.toSet_eq_empty hr] at hx
       simp at hx
     · right
       refine ⟨hr.ge, ?_⟩
@@ -87,7 +87,7 @@ theorem Capsule.isFullDim_iff (C : Capsule n) : -- --- CONCL ---
         intro i
         -- a ball about `x` lies in the capsule, so it holds `x` shifted along axis `i`
         obtain ⟨ε, hε, hball⟩ := Metric.mem_nhds_iff.mp (mem_interior_iff_mem_nhds.mp hx)
-        have hmem : x + Pi.single i (ε / 2) ∈ C.construct := by
+        have hmem : x + Pi.single i (ε / 2) ∈ C.toSet := by
           apply hball
           rw [Metric.mem_ball, dist_eq_norm, add_sub_cancel_left,
             pi_norm_lt_iff hε]
@@ -97,8 +97,8 @@ theorem Capsule.isFullDim_iff (C : Capsule n) : -- --- CONCL ---
             rw [abs_of_pos (half_pos hε)]; linarith
           · simp [hji, hε]
         -- both points are on the segment, so their difference is a multiple of `g`
-        obtain ⟨s, -, hs⟩ := (Capsule.mem_construct_of_r_eq_zero hr).mp (interior_subset hx)
-        obtain ⟨t, -, ht⟩ := (Capsule.mem_construct_of_r_eq_zero hr).mp hmem
+        obtain ⟨s, -, hs⟩ := (Capsule.mem_toSet_of_r_eq_zero hr).mp (interior_subset hx)
+        obtain ⟨t, -, ht⟩ := (Capsule.mem_toSet_of_r_eq_zero hr).mp hmem
         have hd : ∀ j, (Pi.single i (ε / 2) : Vec ℝ n) j = (t - s) * C.g j := by
           intro j
           have := ht j
@@ -145,7 +145,7 @@ theorem Capsule.isFullDim_iff (C : Capsule n) : -- --- CONCL ---
     · -- `n = 0`: the whole one-point space
       subst hn
       refine ⟨0, ?_⟩
-      have : C.construct = Set.univ := by
+      have : C.toSet = Set.univ := by
         ext x
         simp only [Set.mem_univ, iff_true]
         exact ⟨0, by simp, by simpa using hr⟩

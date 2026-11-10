@@ -9,7 +9,7 @@ public import CORALean.ContSet.ConPolyZono.Float.ConPolyZono
 
 `conPolyZono/representsa_` at `point`, as CORA tests it: no generator column of either block.
 The test reads two sizes and no stored number, so it is the same `Bool` as the exact layer's on
-the nominal set; what it guarantees at float is `construct_subset_of_representsa_point`.
+the nominal set; what it guarantees at float is `toSet_subset_of_representsa_point`.
 
 ## Inputs
 * `cPZ` – constrained polynomial zonotope

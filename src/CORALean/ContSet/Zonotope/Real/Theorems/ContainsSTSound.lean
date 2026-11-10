@@ -47,12 +47,12 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] [DecidableEq α]
 theorem Zonotope.containsST_sound
     (lp : (Zy Zx : Zonotope α) → Option (Mat ℝ Zy.h Zx.h × Vec ℝ Zy.h)) (Zy Zx : Zonotope α)
     (h : Zonotope.containsST lp Zy Zx = true) : -- --- CONCL ---
-    Zx.construct ⊆ Zy.construct := by -- --- PROOF ---
+    Zx.toSet ⊆ Zy.toSet := by -- --- PROOF ---
   unfold Zonotope.containsST at h
   split at h
   · exact absurd h Bool.false_ne_true
   · split_ifs at h with hc
-    exact Zonotope.construct_subset_of_cert Zx Zy _ _ hc.1 hc.2.1 hc.2.2
+    exact Zonotope.toSet_subset_of_cert Zx Zy _ _ hc.1 hc.2.1 hc.2.2
 
 end CORALean.Real
 

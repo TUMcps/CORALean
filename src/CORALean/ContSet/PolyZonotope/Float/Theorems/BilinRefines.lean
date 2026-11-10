@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinGClose
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemToSet
 
 @[expose] public section
 
@@ -49,18 +49,18 @@ from the exact ones inside the error box. -/
 theorem PolyZonotope.bilin_refines (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
     (hp : pZ₁.p = pZ₂.p) : -- --- CONCL ---
     (Real.PolyZonotope.bilin (Real.PolyZonotope.quadBilin fun k => toRealMat (Q k))
-        (nominal pZ₁) (nominal pZ₂) hp).construct
-      ⊆ (PolyZonotope.bilin Q pZ₁ pZ₂ hp).construct := by -- --- PROOF ---
+        (nominal pZ₁) (nominal pZ₂) hp).toSet
+      ⊆ (PolyZonotope.bilin Q pZ₁ pZ₂ hp).toSet := by -- --- PROOF ---
   intro x hx
   -- a point of the exact pairing: factors `a`, coefficients `b`
-  obtain ⟨a, b, ha, hb, hx⟩ := Real.PolyZonotope.mem_construct_iff.mp hx
+  obtain ⟨a, b, ha, hb, hx⟩ := Real.PolyZonotope.mem_toSet_iff.mp hx
   -- the stored generators' rounding against each monomial lies in the error box
   have hbox : (fun i => ∑ l,
         (Real.PolyZonotope.bilinG (Real.PolyZonotope.quadBilin fun k => toRealMat (Q k))
             (nominal pZ₁) (nominal pZ₂) l i
           - toReal (PolyZonotope.bilinGDown Q pZ₁ pZ₂ i l))
             * Real.PolyZonotope.monomial (PolyZonotope.bilinE pZ₁ pZ₂ hp) a l)
-      ∈ (PolyZonotope.generatorError (PolyZonotope.bilinGDiff Q pZ₁ pZ₂)).construct :=
+      ∈ (PolyZonotope.generatorError (PolyZonotope.bilinGDiff Q pZ₁ pZ₂)).toSet :=
     PolyZonotope.mem_generatorError_monomial (PolyZonotope.bilinG_close Q pZ₁ pZ₂) ha
   -- the nominal point of the float pairing at the same factors, then the box's share
   refine ⟨fun i => toReal ((PolyZonotope.bilin Q pZ₁ pZ₂ hp).c i)

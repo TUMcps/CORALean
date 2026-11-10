@@ -135,17 +135,17 @@ private theorem aux_hd_norm₂_sub_le (x y : Vec ℝ n) : ‖x - y‖₂ ≤ ‖
 /-- [1, Prop. 11]: `d_H(e^{At_k}P^U(Δt), e^{At_k}P̂^U(Δt)) ≤ Δε^U_k(Δt,η)` of eq. (25), for `U₀`
 convex, closed, bounded and containing `0`, with no hypothesis on eq. (20). -/
 theorem LinearSys.hausdorffDist₂_inputReach_le_of_convex (sys : LinearSys 𝕋 n) (tk : ℝ)
-    {U : S n} (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U)) (h0 : (0 : Vec ℝ n) ∈ construct U) {Δt : ℝ}
+    {U : S n} (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U)) (h0 : (0 : Vec ℝ n) ∈ toSet U) {Δt : ℝ}
     (hΔt : 0 < Δt) (η : ℕ) : -- --- CONCL ---
     hausdorffDist₂
         ((fun x => (exp (tk • toRealMat sys.A)).mulVec x) '' sys.inputReach U Δt)
         ((fun x => (exp (tk • toRealMat sys.A)).mulVec x)
-          '' MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η)
-      ≤ MatExp.particularSolutionError (toRealMat sys.A) tk (construct U) Δt
+          '' MatExp.particularSolutionOuter (toRealMat sys.A) (toSet U) 0 Δt η)
+      ≤ MatExp.particularSolutionError (toRealMat sys.A) tk (toSet U) Δt
         η := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
-  set U0 := construct U with hU0
+  set U0 := toSet U with hU0
   set M := exp (tk • A) with hM
   set Eset := MatExp.intervalMulVecSet (MatExp.expRemainderMat A Δt η) (Δt • U0) with hEset
   set O1 := MatExp.particularSolutionOuter A U0 1 Δt η with hO1

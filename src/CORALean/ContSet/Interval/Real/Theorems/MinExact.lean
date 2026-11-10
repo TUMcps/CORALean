@@ -58,9 +58,9 @@ private theorem aux_min_exists {a₁ b₁ a₂ b₂ z : ℝ} (h₁ : a₁ ≤ b�
 
 theorem Interval.min_exact {I₁ I₂ : Interval α} (h₁ : I₁.IsNonempty)
     (h₂ : I₂.IsNonempty) : -- --- CONCL ---
-    (I₁.min I₂).construct = Set.image2
+    (I₁.min I₂).toSet = Set.image2
       (fun x y : α => (ofEntry fun i => Min.min (entry x i) (entry y i) : α))
-      I₁.construct I₂.construct := by -- --- PROOF ---
+      I₁.toSet I₂.toSet := by -- --- PROOF ---
   ext z
   constructor
   · intro hz

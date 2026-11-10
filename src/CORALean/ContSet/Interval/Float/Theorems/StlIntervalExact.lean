@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.stlInterval_exact (I : Interval (Vec 𝕋 1)) : -- --- CONCL ---
-    I.stlInterval = (fun x : Vec ℝ 1 => x 0) '' I.construct := by -- --- PROOF ---
+    I.stlInterval = (fun x : Vec ℝ 1 => x 0) '' I.toSet := by -- --- PROOF ---
   ext t
   constructor
   · intro h

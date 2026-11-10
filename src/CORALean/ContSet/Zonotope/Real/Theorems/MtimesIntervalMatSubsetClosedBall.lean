@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import Mathlib.Algebra.BigOperators.Fin
 public import Mathlib.Analysis.Normed.Ring.Basic
 public import Mathlib.Tactic.Positivity
@@ -133,7 +133,7 @@ operand's `ℓ¹` reach. -/
 theorem Zonotope.mtimesIntervalMat_subset_closedBall {ρc ρr : ℝ} (IM : Interval (Mat ℝ m n))
     (Z : Zonotope (Vec ℝ n)) (hρc : 0 ≤ ρc) (hρr : 0 ≤ ρr)
     (hc : ∀ i j, |IM.center i j| ≤ ρc) (hr : ∀ i j, |IM.radius i j| ≤ ρr) : -- --- CONCL ---
-    (Zonotope.mtimesIntervalMat IM Z).construct
+    (Zonotope.mtimesIntervalMat IM Z).toSet
       ⊆ Metric.closedBall (0 : Vec ℝ m) ((ρc + ρr) * ∑ j, Z.absBound j) := by -- --- PROOF ---
   have habs : ∀ j, (0:ℝ) ≤ Z.absBound j := fun j => by
     rw [Zonotope.absBound]
@@ -141,7 +141,7 @@ theorem Zonotope.mtimesIntervalMat_subset_closedBall {ρc ρr : ℝ} (IM : Inter
   have hB : (0:ℝ) ≤ (ρc + ρr) * ∑ j, Z.absBound j :=
     mul_nonneg (by linarith) (Finset.sum_nonneg fun j _ => habs j)
   intro y hy
-  obtain ⟨β, hβ, hyeq⟩ := Zonotope.mem_construct_iff.mp hy
+  obtain ⟨β, hβ, hyeq⟩ := Zonotope.mem_toSet_iff.mp hy
   rw [Metric.mem_closedBall, dist_zero_right, pi_norm_le_iff_of_nonneg hB]
   intro i
   rw [Real.norm_eq_abs]

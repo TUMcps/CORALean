@@ -41,7 +41,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem EmptySet.supportFunc_eq (E : EmptySet n) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
-    E.supportFunc c = ⨆ x ∈ construct E, ((c x : ℝ) : EReal) := by
+    E.supportFunc c = ⨆ x ∈ toSet E, ((c x : ℝ) : EReal) := by
   change (⊥ : EReal) = ⨆ x ∈ (∅ : Set (Vec ℝ n)), ((c x : ℝ) : EReal)
   simp
 

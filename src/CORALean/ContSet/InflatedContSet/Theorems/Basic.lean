@@ -23,20 +23,20 @@ variable {𝕋 S N : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 variable [InflatedContSet S N (Vec 𝕋 n) (Vec ℝ n)]
 
 
--- ==================================  `isBounded_construct`  =================================== --
+-- ====================================  `isBounded_toSet`  ===================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
 /-- Compact, hence bounded: the nominal part's compactness and the box's are carried
-across the sum by `isCompact_construct`. -/
-theorem isBounded_construct [CompactSet N (Vec ℝ n)] (s : S) :
-    Bornology.IsBounded (construct s) :=
-  (isCompact_construct s).isBounded
+across the sum by `isCompact_toSet`. -/
+theorem isBounded_toSet [CompactSet N (Vec ℝ n)] (s : S) :
+    Bornology.IsBounded (toSet s) :=
+  (isCompact_toSet s).isBounded
 
 
--- ==============================  `nominalSet_subset_construct`  =============================== --
+-- ================================  `nominalSet_subset_toSet`  ================================= --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       15-October-2026
 -- Last update:   ---
@@ -44,8 +44,8 @@ theorem isBounded_construct [CompactSet N (Vec ℝ n)] (s : S) :
 
 /-- A box that holds the origin leaves the nominal set inside the whole: what an operation that
 has moved its box into its parameters (`absorbRounding`) leaves behind. -/
-theorem nominalSet_subset_construct {s : S} (h : (0 : Vec ℝ n) ∈ (I_error s).construct) :
-    nominalSet s ⊆ construct s := fun x hx => ⟨x, hx, 0, h, add_zero x⟩
+theorem nominalSet_subset_toSet {s : S} (h : (0 : Vec ℝ n) ∈ (I_error s).toSet) :
+    nominalSet s ⊆ toSet s := fun x hx => ⟨x, hx, 0, h, add_zero x⟩
 
 end CORALean.Float.InflatedContSet
 

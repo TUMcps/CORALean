@@ -3,19 +3,19 @@ module
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 public import Mathlib.Analysis.Convex.Caratheodory
 public import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleToSet
 
 @[expose] public section
 
 /-!
 # `convHullSingle` is the convex hull of one set
 
-`convHullSingle_construct` says the closed form denotes the weighted sums of `a` of the set's
+`convHullSingle_toSet` says the closed form denotes the weighted sums of `a` of the set's
 points; Carathéodory says those are the convex hull once `a` passes the dimension. [1] builds that
 bound into its definition of the hull, taking `a = n + 1` points of a set in `ℝⁿ`, which is where
 the count of copies in [1, Prop. 9] comes from.
 
-Nothing here needs the set to be non-empty. `qI = 0` is carried from `convHullSingle_construct`.
+Nothing here needs the set to be non-empty. `qI = 0` is carried from `convHullSingle_toSet`.
 
 ## Inputs
 * `a` – number of weights
@@ -105,8 +105,8 @@ end
 /-- With one copy more than the dimension, the closed form is the convex hull. -/
 theorem ConPolyZono.convHullSingle_exact [FiniteDimensional ℝ α] (a : ℕ) (cPZ : ConPolyZono α)
     (hq : cPZ.qI = 0) (ha : Module.finrank ℝ α + 1 ≤ a) :
-    (cPZ.convHullSingle a).construct = convexHull ℝ cPZ.construct := by
-  rw [ConPolyZono.convHullSingle_construct a cPZ hq, aux_convexHull_eq_fin ha]
+    (cPZ.convHullSingle a).toSet = convexHull ℝ cPZ.toSet := by
+  rw [ConPolyZono.convHullSingle_toSet a cPZ hq, aux_convexHull_eq_fin ha]
 
 end CORALean.Real
 

@@ -52,7 +52,7 @@ namespace CORALean.Real
 noncomputable def PolyZonotope.containsExactCora1D (pZ : PolyZonotope (Vec ℝ 1))
     (p : Vec ℝ 1) : Prop :=
   let Z := pZ.zonotopeEven        -- 184. [isZonotope, Z] = representsa_(pZ,'zonotope',1e-12)
-  p ∈ Z.construct                 -- 186. contains_(Z,S,method,tol,0,false,false)
+  p ∈ Z.toSet                 -- 186. contains_(Z,S,method,tol,0,false,false)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -60,7 +60,7 @@ noncomputable def PolyZonotope.containsExactCora1D (pZ : PolyZonotope (Vec ℝ 1
 theorem PolyZonotope.containsExactCora1D_counterexample : -- --- CONCL ---
     let PZ : PolyZonotope (Vec ℝ 1) := ⟨1, 2, 0, 0, ![![1], ![1]], ![![1, 2]], Fin.elim0⟩
     PolyZonotope.containsExactCora1D PZ ![-1 / 2] ∧
-      (![-1 / 2] : Vec ℝ 1) ∉ PZ.construct := by -- --- PROOF ---
+      (![-1 / 2] : Vec ℝ 1) ∉ PZ.toSet := by -- --- PROOF ---
   intro PZ
   constructor
   · -- the enclosure is `1/2 + β₀ + β₁/2`: take `β = (-1, 0)`

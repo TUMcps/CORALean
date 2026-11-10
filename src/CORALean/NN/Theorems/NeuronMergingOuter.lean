@@ -86,11 +86,11 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
     (part : Split (Fin n) into (Fin d) ⊕ (Fin r))
     (W0 : Mat 𝕋 n n0) (b0 : Vec 𝕋 n) {σ : ℝ → ℝ} (R : Relaxation 𝕋) (hR : R.Encloses σ)
     (W1 : Mat 𝕋 n2 n) (b1 : Vec 𝕋 n2) (Y : Interval (Vec 𝕋 n)) (X : S n0)
-    (hY : ∀ x ∈ construct X,
-      (fun i => σ ((toRealMat W0 *ᵥ x + toRealVec b0) i)) ∈ Y.construct) : -- --- CONCL ---
+    (hY : ∀ x ∈ toSet X,
+      (fun i => σ ((toRealMat W0 *ᵥ x + toRealVec b0) i)) ∈ Y.toSet) : -- --- CONCL ---
     (fun x => toRealMat W1 *ᵥ (fun i => σ ((toRealMat W0 *ᵥ x + toRealVec b0) i))
-        + toRealVec b1) '' construct X
-      ⊆ construct
+        + toRealVec b1) '' toSet X
+      ⊆ toSet
         ((NeuralNetwork.layer (LinearLayer.mk (W0.submatrix part.left id) (b0 ∘ part.left))
             (NeuralNetwork.layer (ActivationLayer.of hR)
               (NeuralNetwork.ofLayer (LinearWithErrorLayer.mk (W1.submatrix id part.left) b1
@@ -110,17 +110,17 @@ theorem neuronMerging_sandwich_outer {n0 n n2 d r : ℕ}
   have hA2 := (Layer.activation_encloses (S := S) hR).enclose_outer _ _ hA1
   -- the bucket's exact output lies in `Y`, hence in `Y` restricted to the bucket
   have hB : hk ∘ part.right
-      ∈ (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Interval (Vec 𝕋 r)).construct :=
+      ∈ (⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩ : Interval (Vec 𝕋 r)).toSet :=
     fun i => hY x hx (part.right i)
   -- the bucket's contribution, which is what the error box of layer `k+1` holds
   set W1' := toRealMat W1
   have hc : toRealVec b1 + W1'.submatrix id part.right *ᵥ (hk ∘ part.right) - toRealVec b1
       ∈ (Interval.mtimes (W1.submatrix id part.right)
-          ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩).construct := by
+          ⟨Y.inf ∘ part.right, Y.sup ∘ part.right⟩).toSet := by
     rw [add_sub_cancel_left]
     exact Interval.mtimes_outer (W1.submatrix id part.right) _ ⟨_, hB, rfl⟩
   have hA3 := Layer.linearWithError_mem (S := S) (W1.submatrix id part.left)
-    (Interval.construct_subset_nonemptyHull _ hc) _ hA2
+    (Interval.toSet_subset_nonemptyHull _ hc) _ hA2
   -- layer `k+1`'s dot product splits along the survivors and the bucket
   have hval : W1' *ᵥ hk + toRealVec b1 = W1'.submatrix id part.left *ᵥ (hk ∘ part.left)
       + (toRealVec b1 + W1'.submatrix id part.right *ᵥ (hk ∘ part.right)) := by

@@ -73,16 +73,16 @@ theorem STL.depReachFloat_interval_outer (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) {
     (hε' : toReal (MatExp.normUpperBound (Interval.smul Δt Δt (Interval.point A))) /
       ((η : ℝ) + 2) ≤ 1 / 2) {X₀r : Real.Zonotope (Vec ℝ n)} {X₀f : Float.Zonotope (Vec 𝕋 n)}
     {Ur : Real.Zonotope (Vec ℝ m)} {Uf : Float.Zonotope (Vec 𝕋 m)} (hc : Ur.c = toRealVec Uf.c)
-    (hU : Ur.construct ⊆ Uf.construct) (hX : X₀r.construct ⊆ X₀f.construct)
+    (hU : Ur.toSet ⊆ Uf.toSet) (hX : X₀r.toSet ⊆ X₀f.toSet)
     (i : ℕ) : -- --- CONCL ---
     let csR := STL.depReachConsts (toRealMat A) (toRealMat B) Ur (toReal Δt) κ
     let sR := STL.depReachAt (toRealMat A) (toReal Δt) csR X₀r i
     let sR' := STL.depReachAt (toRealMat A) (toReal Δt) csR X₀r (i + 1)
-    (convexHull ℝ (sR.H.construct ∪ sR'.H.construct) + (sR'.Pc.construct + sR'.D.construct)) +
+    (convexHull ℝ (sR.H.toSet ∪ sR'.H.toSet) + (sR'.Pc.toSet + sR'.D.toSet)) +
       (exp (toReal Δt • toRealMat A) *ᵥ ·)^[i] ''
-        {y | ∃ M ∈ csR.F.construct, ∃ x ∈ X₀r.construct, ∃ M' ∈ csR.G.construct,
+        {y | ∃ M ∈ csR.F.toSet, ∃ x ∈ X₀r.toSet, ∃ M' ∈ csR.G.toSet,
           y = M *ᵥ x + M' *ᵥ csR.ũ} ⊆
-      (STL.depReachFloat A B X₀f Uf Δt κ η i).2.construct := by -- --- PROOF ---
+      (STL.depReachFloat A B X₀f Uf Δt κ η i).2.toSet := by -- --- PROOF ---
   intro csR sR sR'
   have hcs := STL.depReachConstsFloat_outer A B hr κ hε hc hU
   exact STL.depReachIntervalFloat_outer (STL.depReachAtFloat_outer A Δt hε' hX hcs i)

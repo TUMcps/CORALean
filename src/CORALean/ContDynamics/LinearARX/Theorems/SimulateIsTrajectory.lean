@@ -46,8 +46,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearARX.simulate_isTrajectory (sys : LinearARX 𝕋 dy du p) {Y₀ : S (p * dy)} {U : S du}
-    {y₀ : Vec ℝ (p * dy)} (hy₀ : y₀ ∈ construct Y₀) {u : ℕ → Vec ℝ du}
-    (hu : ∀ k, u k ∈ construct U) : sys.IsTrajectory Y₀ U (sys.simulate y₀ u) u where
+    {y₀ : Vec ℝ (p * dy)} (hy₀ : y₀ ∈ toSet Y₀) {u : ℕ → Vec ℝ du}
+    (hu : ∀ k, u k ∈ toSet U) : sys.IsTrajectory Y₀ U (sys.simulate y₀ u) u where
   init := by
     rw [LinearARX.stack_simulate_zero]
     exact hy₀

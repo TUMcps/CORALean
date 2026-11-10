@@ -56,7 +56,7 @@ theorem GNN.gcnSteps_exact {N F : ℕ} (P : PolyZonotope (Mat ℝ N N)) (L : ℕ
     (fun a : Fin P.p → ℝ =>
         GNN.evalSteps (P.point a) (L + 1) W (H.point fun k => a (Fin.cast hp.symm k)))
         '' {a | ∀ k, |a k| ≤ 1}
-      = (GNN.gcnSteps P (L + 1) W H hp).construct := by -- --- PROOF ---
+      = (GNN.gcnSteps P (L + 1) W H hp).toSet := by -- --- PROOF ---
   induction L generalizing H hp with
   | zero =>
       -- a single step is `gcnShared`, and `evalSteps` at one step is its product

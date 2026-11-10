@@ -44,7 +44,7 @@ variable {n p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.extremePoints_subset_signedSums (R : Fin p → Vec ℝ n) :
-    Set.extremePoints ℝ (⟨p, 0, R⟩ : Zonotope (Vec ℝ n)).construct ⊆ Zonotope.signedSums R := by
+    Set.extremePoints ℝ (⟨p, 0, R⟩ : Zonotope (Vec ℝ n)).toSet ⊆ Zonotope.signedSums R := by
   rw [← Zonotope.convexHull_signedSums]
   exact extremePoints_convexHull_subset
 

@@ -4,7 +4,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.DetNeZeroOfSupersetParall
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormSqAddTraceLeOfSupersetParallelotope
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.VolumeEq
 public import CORALean.Global.DetLeTraceDivPow
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetOfFactor
 
 @[expose] public section
 
@@ -17,7 +17,7 @@ and no ellipsoid `E(E, e)`, `E ≻ 0`, enclosing it has less volume; those have 
 `F`. For an enclosing `E(F, q)`, `F` is invertible (`det_ne_zero_of_superset_parallelotope`) and
 `tr(MMᵀ) ≤ 1` for `M = F⁻¹G` (`normSq_add_trace_le_of_superset_parallelotope`), so AM-GM on the
 eigenvalues (`det_le_trace_div_pow`) gives `|det F| ≥ nⁿᐟ²|det G|`, the volume of `E(nGGᵀ, z̄)`.
-That no other attains it is `construct_eq_of_volume_le_superset_parallelotope`.
+That no other attains it is `toSet_eq_of_volume_le_superset_parallelotope`.
 
 ## Inputs
 * `G` – generator matrix of the parallelotope
@@ -56,7 +56,7 @@ variable {n : ℕ}
 /-- An ellipsoid with a square generator `F` around the parallelotope has `nⁿ det(G)² ≤ det(F)²`. -/
 private theorem aux_parallelotope_det_sq_le {G F : Mat ℝ n n} (hG : IsUnit G.det) {z q : Vec ℝ n}
     (hsub : {x | ∃ β : Vec ℝ n, (∀ j, |β j| ≤ 1) ∧ x = z + G *ᵥ β} ⊆
-      (Ellipsoid.ofFactor F q).construct) : -- --- CONCL ---
+      (Ellipsoid.ofFactor F q).toSet) : -- --- CONCL ---
     (n : ℝ) ^ n * G.det ^ 2 ≤ F.det ^ 2 := by -- --- PROOF ---
   rcases Nat.eq_zero_or_pos n with rfl | hn
   · simp
@@ -99,13 +99,13 @@ theorem Ellipsoid.isLeast_volume_superset_parallelotope (G : Mat ℝ n n) (hG : 
     (z : Vec ℝ n) : -- --- CONCL ---
     IsLeast {v | ∃ (q : Vec ℝ n) (F : Mat ℝ n n),
         {x | ∃ β : Vec ℝ n, (∀ j, |β j| ≤ 1) ∧ x = z + G *ᵥ β} ⊆
-          (Ellipsoid.ofFactor F q).construct ∧
-        v = MeasureTheory.volume (Ellipsoid.ofFactor F q).construct}
+          (Ellipsoid.ofFactor F q).toSet ∧
+        v = MeasureTheory.volume (Ellipsoid.ofFactor F q).toSet}
       (MeasureTheory.volume
-        (Ellipsoid.ofFactor (Real.sqrt n • G) z).construct) := by -- --- PROOF ---
+        (Ellipsoid.ofFactor (Real.sqrt n • G) z).toSet) := by -- --- PROOF ---
   refine ⟨⟨z, Real.sqrt n • G, ?_, rfl⟩, ?_⟩
   -- the enclosure: `u = β/√n`, `‖β‖₂ ≤ √n`
-  · rw [Ellipsoid.construct_ofFactor]
+  · rw [Ellipsoid.toSet_ofFactor]
     rintro _ ⟨β, hβ, rfl⟩
     rcases Nat.eq_zero_or_pos n with rfl | hn
     · exact ⟨0, by simp [norm₂], by funext i; exact i.elim0⟩

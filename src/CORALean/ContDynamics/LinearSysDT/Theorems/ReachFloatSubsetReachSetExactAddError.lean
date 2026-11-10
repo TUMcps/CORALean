@@ -18,7 +18,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 The float counterpart of `reach_subset_reachSetExact_add_error`. The induction is the same shape,
 run against three growth bounds instead of one: `mtimes_subset_add_box`, `plus_subset_add_box` and
 `reduce_subset_add_box` each peel a box off a float operation, in the order `reach`'s own step
-applies them, and what is left is the previous step's construct carried through `A`, plus `U`'s —
+applies them, and what is left is the previous step's `toSet` carried through `A`, plus `U`'s —
 which the induction hypothesis and `reachSetExact`'s own recursion close.
 `reachFloat_zero_mem_error` supplies what `mtimes_subset_add_box` and `plus_subset_add_box` ask
 beyond `reduce_subset_add_box`: that the operands' error boxes bracket `0`. At `k = 0` the run is
@@ -59,16 +59,16 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-/-- A float box's own `construct` sits inside its nominal reading as a
+/-- A float box's own `toSet` sits inside its nominal reading as a
 zonotope, by `Interval.zonotope_contains`. What `plusBox` and `mtimesBox`
 need to feed `reachErrorFloat`'s real accumulator. -/
-private theorem aux_interval_construct_subset_nominal_zonotope {n : ℕ} (I : Interval (Vec 𝕋 n)) :
-    I.construct ⊆ I.nominal.zonotope.construct :=
+private theorem aux_interval_toSet_subset_nominal_zonotope {n : ℕ} (I : Interval (Vec 𝕋 n)) :
+    I.toSet ⊆ I.nominal.zonotope.toSet :=
   Real.Interval.zonotope_contains I.nominal
 
-/-- `y` in the degenerate `0` box's construct is `0`. -/
+/-- `y` in the degenerate `0` box's `toSet` is `0`. -/
 private theorem aux_mem_zeroInterval_eq_zero {n : ℕ} {y : Vec ℝ n}
-    (hy : y ∈ (⟨fun _ => (zero : 𝕋), fun _ => (zero : 𝕋)⟩ : Interval (Vec 𝕋 n)).construct)
+    (hy : y ∈ (⟨fun _ => (zero : 𝕋), fun _ => (zero : 𝕋)⟩ : Interval (Vec 𝕋 n)).toSet)
     : -- --- CONCL ---
     y = 0 := by -- --- PROOF ---
   funext i
@@ -78,11 +78,11 @@ private theorem aux_mem_zeroInterval_eq_zero {n : ℕ} {y : Vec ℝ n}
   exact le_antisymm h2 h1
 
 /-- `reduceGirardBox`'s own error box is the degenerate `0` one in either
-branch, so what its `construct` adds beyond its nominal reading is `0`. -/
-private theorem aux_reduceGirardBox_construct_subset_nominal (Z : Zonotope (Vec 𝕋 n))
+branch, so what its `toSet` adds beyond its nominal reading is `0`. -/
+private theorem aux_reduceGirardBox_toSet_subset_nominal (Z : Zonotope (Vec 𝕋 n))
     (o : ℕ) : -- --- CONCL ---
-    (Zonotope.reduceGirardBox Z o).construct
-      ⊆ (nominal (Zonotope.reduceGirardBox Z o)).construct := by -- --- PROOF ---
+    (Zonotope.reduceGirardBox Z o).toSet
+      ⊆ (nominal (Zonotope.reduceGirardBox Z o)).toSet := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁, y₂, hy₂, rfl⟩
   have hy₂0 : y₂ = 0 := by
     unfold Zonotope.reduceGirardBox at hy₂
@@ -90,7 +90,7 @@ private theorem aux_reduceGirardBox_construct_subset_nominal (Z : Zonotope (Vec 
     · exact aux_mem_zeroInterval_eq_zero hy₂
     · exact aux_mem_zeroInterval_eq_zero hy₂
   subst hy₂0
-  show y₁ + (0 : Vec ℝ n) ∈ (nominal (Zonotope.reduceGirardBox Z o)).construct
+  show y₁ + (0 : Vec ℝ n) ∈ (nominal (Zonotope.reduceGirardBox Z o)).toSet
   rw [add_zero]
   exact hy₁
 
@@ -101,11 +101,11 @@ private theorem aux_reduceGirardBox_construct_subset_nominal (Z : Zonotope (Vec 
 the nominal parts of `R₀` and `U` — widened by the error that run accumulated,
 provided both `R₀` and `U` bracket `0` in their own error boxes. -/
 theorem LinearSysDT.reach_float_subset_reachSetExact_add_error (sys : LinearSysDT 𝕋 n) {o : ℕ}
-    (ho : 0 < o) {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.I_error.construct)
-    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ) : -- --- CONCL ---
-    (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct ⊆
+    (ho : 0 < o) {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.I_error.toSet)
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.toSet) (k : ℕ) : -- --- CONCL ---
+    (sys.reach (S := 𝒵[𝕋]) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).toSet ⊆
       sys.reachSetExact (S := 𝒵) (nominal R₀) (nominal U) k
-        + (sys.reachErrorFloat ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct := by -- --- PROOF ---
+        + (sys.reachErrorFloat ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).toSet := by -- --- PROOF ---
   induction k with
   | zero =>
     intro x hx
@@ -123,9 +123,9 @@ theorem LinearSysDT.reach_float_subset_reachSetExact_add_error (sys : LinearSysD
       simp only [Mtimes.mtimes, Plus.plus, Reduce.reduce, Zonotope.materialise_eq,
         Zonotope.reduce, hMdef, hWdef]
     -- what `plus_subset_add_box` and `mtimes_subset_add_box` ask beyond `reduce_subset_add_box`
-    have hRk0 : (0 : Vec ℝ n) ∈ Rk.I_error.construct :=
+    have hRk0 : (0 : Vec ℝ n) ∈ Rk.I_error.toSet :=
       sys.reachFloat_zero_mem_error ho hR₀ hU k
-    have hM0 : (0 : Vec ℝ n) ∈ M.I_error.construct := Zonotope.zero_mem_mtimes_error hRk0
+    have hM0 : (0 : Vec ℝ n) ∈ M.I_error.toSet := Zonotope.zero_mem_mtimes_error hRk0
     intro x hx
     rw [hstep] at hx
     -- peel the three boxes off, in the order `reach`'s step applies the operations
@@ -141,7 +141,7 @@ theorem LinearSysDT.reach_float_subset_reachSetExact_add_error (sys : LinearSysD
     obtain ⟨nu, hnu, eu, heu, rfl⟩ := hu
     -- `mtimes` is exact at `Real`, so the carried error rides through `A` for free
     have hemem : toRealMat sys.A *ᵥ e ∈ (Real.Zonotope.mtimes (toRealMat sys.A)
-        (sys.reachErrorFloat ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).construct :=
+        (sys.reachErrorFloat ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)).toSet :=
       (Real.Zonotope.mtimes_exact (toRealMat sys.A) (sys.reachErrorFloat ⟨R₀, U, 0, k⟩ ⟨o, ho⟩)) ▸
         ⟨e, he, rfl⟩
     -- the exact part reassembles into `reachSetExact`'s own step
@@ -150,14 +150,14 @@ theorem LinearSysDT.reach_float_subset_reachSetExact_add_error (sys : LinearSysD
       ⟨_, ⟨s, hs, rfl⟩, nu, hnu, rfl⟩
     -- `plus` is exact at `Real`, so membership in a sum of constructs lifts to `.plus`
     have plusMem : ∀ (A B : Real.Zonotope (Vec ℝ n)) {a b : Vec ℝ n},
-        a ∈ A.construct → b ∈ B.construct → a + b ∈ (A.plus B).construct :=
+        a ∈ A.toSet → b ∈ B.toSet → a + b ∈ (A.plus B).toSet :=
       fun A B _ _ ha hb => (Real.Zonotope.plus_exact A B) ▸ Set.add_mem_add ha hb
     -- the four boxes and the carried error, each read into a real zonotope, assemble
     have hEmem : toRealMat sys.A *ᵥ e + (g₃ + (g₂ + (g₁ + eu)))
-        ∈ (sys.reachErrorFloat ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩).construct :=
-      plusMem _ _ hemem (plusMem _ _ (aux_interval_construct_subset_nominal_zonotope _ hg₃)
-        (plusMem _ _ (aux_interval_construct_subset_nominal_zonotope _ hg₂)
-          (plusMem _ _ (aux_reduceGirardBox_construct_subset_nominal W o hg₁)
+        ∈ (sys.reachErrorFloat ⟨R₀, U, 0, k + 1⟩ ⟨o, ho⟩).toSet :=
+      plusMem _ _ hemem (plusMem _ _ (aux_interval_toSet_subset_nominal_zonotope _ hg₃)
+        (plusMem _ _ (aux_interval_toSet_subset_nominal_zonotope _ hg₂)
+          (plusMem _ _ (aux_reduceGirardBox_toSet_subset_nominal W o hg₁)
             (Real.Interval.zonotope_contains _ heu))))
     refine ⟨_, hA, toRealMat sys.A *ᵥ e + (g₃ + (g₂ + (g₁ + eu))), hEmem, ?_⟩
     -- what remains is bookkeeping: `A` distributes and the terms regroup

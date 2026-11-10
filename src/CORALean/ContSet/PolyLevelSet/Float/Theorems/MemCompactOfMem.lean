@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.CompactEqSpec
-public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemToSetIffOfEq
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberDownLe
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.LeFiberUp
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SumToRealMerge
@@ -73,8 +73,8 @@ private theorem PolyLevelSet.aux_compactGap (P : PolyLevelSet 𝕋 n) (i : Fin P
 /-- The widened slack admits every point of the unit box the old one did: the row moved by at
 most one `radius` of its gaps, and the slack grew by exactly that. -/
 theorem PolyLevelSet.mem_compact_of_mem (P : PolyLevelSet 𝕋 n) (hP : ∀ i, P.op i = .eq)
-    {a : Fin n → ℝ} (ha : ∀ k, |a k| ≤ 1) (hsat : a ∈ P.construct) : -- --- CONCL ---
-    a ∈ P.compact.construct := by -- --- PROOF ---
+    {a : Fin n → ℝ} (ha : ∀ k, |a k| ≤ 1) (hsat : a ∈ P.toSet) : -- --- CONCL ---
+    a ∈ P.compact.toSet := by -- --- PROOF ---
   rw [PolyLevelSet.compact_eq_spec]
   -- the kept exponents, the monomials on them, and the exact fibre sums
   set Rk : Fin n → Fin (PolyZonotope.repKeep P.R).card → ℕ :=
@@ -83,8 +83,8 @@ theorem PolyLevelSet.mem_compact_of_mem (P : PolyLevelSet 𝕋 n) (hP : ∀ i, P
   set fib : Fin P.m → Fin (PolyZonotope.repKeep P.R).card → ℝ := fun i j =>
     Real.PolyZonotope.fiberSum (Real.PolyZonotope.rep P.R) (fun r => toReal (P.A i r))
       (PolyZonotope.keepIdx P.R j) with hfib
-  rw [PolyLevelSet.mem_construct_iff_of_eq hP] at hsat
-  refine (PolyLevelSet.mem_construct_iff_of_eq (P := P.compactSpec) hP).mpr ⟨hsat.1, fun i => ?_⟩
+  rw [PolyLevelSet.mem_toSet_iff_of_eq hP] at hsat
+  refine (PolyLevelSet.mem_toSet_iff_of_eq (P := P.compactSpec) hP).mpr ⟨hsat.1, fun i => ?_⟩
   -- the row at `a`, within its slack of `b`
   set row := ∑ l, toReal (P.A i l) * Real.PolyZonotope.monomial P.R a l with hrow
   have hb : |row - toReal (P.b i)| ≤ |toReal (P.b_error i)| := hsat.2 i

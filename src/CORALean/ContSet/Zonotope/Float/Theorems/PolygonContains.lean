@@ -9,7 +9,7 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.PerturbSubset
 public import CORALean.ContSet.Zonotope.Float.Operations.Polygon
 public import CORALean.ContSet.Zonotope.Float.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructSubsetWalk
+public import CORALean.ContSet.Zonotope.Real.Theorems.ToSetSubsetWalk
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_VPolytope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_VPolytope
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
@@ -31,7 +31,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeVPolytopeContain
 Three steps. The flipped and sorted generators describe the same nominal zonotope (flipping a
 generator and reordering the sum change nothing), so the zonotope lies in the sorted one. If the
 checks pass, the sorted nominal zonotope lies in the hull of its exact walk corners
-(`Zonotope.construct_subset_walk`, the checks being its hypotheses read off the roundings), and
+(`Zonotope.toSet_subset_walk`, the checks being its hypotheses read off the roundings), and
 each exact corner lies between its two stored roundings, so in the stored vertex plus the
 column-gap box (`VPolytope.mem_columnGap`); the zonotope's own box is added. If a check fails the
 result is the box's corners, which enclose by `Zonotope.interval_contains`.
@@ -63,7 +63,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.polygon_contains (Z : Zonotope (Vec 𝕋 2)) : -- --- CONCL ---
-    Z.construct ⊆ Z.polygon.construct := by -- --- PROOF ---
+    Z.toSet ⊆ Z.polygon.toSet := by -- --- PROOF ---
   unfold Zonotope.polygon
   extract_lets Zm hat cross order Zs halfPlane sorted lo hi
   by_cases hc : (halfPlane && sorted) = true
@@ -114,11 +114,11 @@ theorem Zonotope.polygon_contains (Z : Zonotope (Vec 𝕋 2)) : -- --- CONCL ---
   have habs : ∀ j (b : ℝ), |b| ≤ 1 → |sgn j * b| ≤ 1 := fun j b hb => by
     rcases hsgn j with h | h <;> rw [h] <;> simpa using hb
   -- the zonotope lies in the sorted one
-  have hS : Z.construct ⊆ Zs.construct := by
+  have hS : Z.toSet ⊆ Zs.toSet := by
     rintro _ ⟨y, hy, e, he, rfl⟩
     refine ⟨y, ?_, e, ?_, rfl⟩
     swap
-    · show e ∈ Zs.I_error.construct
+    · show e ∈ Zs.I_error.toSet
       rw [hEs]; exact he
     obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hy
     -- the coefficients follow the generators to their new places and signs
@@ -164,8 +164,8 @@ theorem Zonotope.polygon_contains (Z : Zonotope (Vec 𝕋 2)) : -- --- CONCL ---
       have a5 : toReal (cross (Zs.G i) (Zs.G j)) ≤ _ := a1
       linarith
   -- the nominal sorted zonotope lies in the hull of its exact walk
-  have hreal := Real.Zonotope.construct_subset_walk (InflatedContSet.nominal Zs) hH1 hH2
-  rw [← Real.VPolytope.construct_eq_convexHull
+  have hreal := Real.Zonotope.toSet_subset_walk (InflatedContSet.nominal Zs) hH1 hH2
+  rw [← Real.VPolytope.toSet_eq_convexHull
     (Real.VPolytope.mk _ (InflatedContSet.nominal Zs).walk)] at hreal
   -- an exact corner lies between the two roundings of its signed sum
   have hcorner : ∀ (σ : Fin Zs.h → Bool) (i : Fin 2), toReal (Zs.cornerLo
@@ -220,16 +220,16 @@ theorem Zonotope.polygon_contains (Z : Zonotope (Vec 𝕋 2)) : -- --- CONCL ---
         le_of_eq_of_le (congrArg (fun v : Vec ℝ 2 => v i) (hw2 k))
           (le_of_le_of_eq h.2 (congrArg (fun v : Vec 𝕋 2 => toReal (v i)) (hh2 k)).symm)⟩
   -- so the exact walk's hull is in the stored vertices plus the column gap
-  have hstep : (Real.VPolytope.mk _ (InflatedContSet.nominal Zs).walk).construct
-      ⊆ (Real.VPolytope.mk _ fun m i => toReal (lo m i)).construct
-        + (VPolytope.columnGap lo hi).construct :=
-    Real.VPolytope.construct_subset_add _ _ (Real.Interval.convex_construct _) fun m =>
+  have hstep : (Real.VPolytope.mk _ (InflatedContSet.nominal Zs).walk).toSet
+      ⊆ (Real.VPolytope.mk _ fun m i => toReal (lo m i)).toSet
+        + (VPolytope.columnGap lo hi).toSet :=
+    Real.VPolytope.toSet_subset_add _ _ (Real.Interval.convex_toSet _) fun m =>
       VPolytope.mem_columnGap (p := (InflatedContSet.nominal Zs).walk m) (l := m) (hbnd m)
   -- add the zonotope's own box
   intro x hx
   obtain ⟨p, hp, e, he, rfl⟩ := hS hx
-  have he' : e ∈ Z.I_error.construct := by
-    have h : e ∈ Zs.I_error.construct := he
+  have he' : e ∈ Z.I_error.toSet := by
+    have h : e ∈ Zs.I_error.toSet := he
     rw [hEs] at h; exact h
   obtain ⟨v, hv, g, hg, hvg⟩ := hstep (hreal hp)
   refine ⟨v, hv, g + e, ?_, ?_⟩

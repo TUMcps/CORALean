@@ -37,7 +37,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Fullspace.isFullDimTest_iff (F : Fullspace n) :
-    F.isFullDimTest = true ↔ (interior F.construct).Nonempty := by
+    F.isFullDimTest = true ↔ (interior F.toSet).Nonempty := by
   rw [Fullspace.isFullDimTest]
   simp [Fullspace.isFullDim F]
 

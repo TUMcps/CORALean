@@ -44,8 +44,8 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 theorem Layer.reluStarFloat_encloses (n : ℕ) : -- --- CONCL ---
     (Layer.reluStarFloat 𝕋 n).Encloses fun x i => Real.relu (x i) := by -- --- PROOF ---
   -- the ReLU at the neurons of a list, applied one neuron at a time
-  have key : ∀ (L : List (Fin n)) (t : Float.StarSet 𝕋 n) (x : Vec ℝ n), x ∈ construct t →
-      (fun i => if i ∈ L then Real.relu (x i) else x i : Vec ℝ n) ∈ construct
+  have key : ∀ (L : List (Fin n)) (t : Float.StarSet 𝕋 n) (x : Vec ℝ n), x ∈ toSet t →
+      (fun i => if i ∈ L then Real.relu (x i) else x i : Vec ℝ n) ∈ toSet
         (L.foldl (fun t j => t.reluNeuron j (t.rowBounds j)) t) := by
     intro L
     induction L with
@@ -56,7 +56,7 @@ theorem Layer.reluStarFloat_encloses (n : ℕ) : -- --- CONCL ---
       have h1 := Float.StarSet.reluNeuron_outer t j (t.rowBounds j)
         (fun y hy => Float.StarSet.rowBounds_mem t j hy) ⟨x, hx, rfl⟩
       have h2 := ih _ _ h1
-      refine (congrArg (· ∈ construct _) ?_).mp h2
+      refine (congrArg (· ∈ toSet _) ?_).mp h2
       funext i
       by_cases hij : i = j
       · subst hij; simp [Real.relu]

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.BoundIntersect2DBisect
 public import CORALean.ContSet.Zonotope.Real.Theorems.BisectLowIsLeast
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemMirrorYConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemMirrorYToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.SectionConvex
 
 @[expose] public section
@@ -46,31 +46,31 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.boundIntersect2DBisect_spec (Z : Zonotope (Vec ℝ 2)) (γ : ℝ)
-    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) : -- --- CONCL ---
-    {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct} =
+    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.toSet) : -- --- CONCL ---
+    {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.toSet} =
       Set.Icc (Z.boundIntersect2DBisect γ).inf
         (Z.boundIntersect2DBisect γ).sup := by -- --- PROOF ---
   -- the lowest point of the section of `Z`, and of its mirror image
   have hm := Z.bisectLow_isLeast γ hne
-  have hne' : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.mirrorY.construct := by
+  have hne' : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.mirrorY.toSet := by
     obtain ⟨y, hy⟩ := hne
-    refine ⟨-y, (Z.mem_mirrorY_construct _).mpr ?_⟩
+    refine ⟨-y, (Z.mem_mirrorY_toSet _).mpr ?_⟩
     simpa using hy
   have hM := Z.mirrorY.bisectLow_isLeast γ hne'
-  have hmem : ∀ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ Z.mirrorY.construct ↔
-      (![γ, -y] : Vec ℝ 2) ∈ Z.construct := fun y => by
-    rw [Z.mem_mirrorY_construct]
+  have hmem : ∀ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ Z.mirrorY.toSet ↔
+      (![γ, -y] : Vec ℝ 2) ∈ Z.toSet := fun y => by
+    rw [Z.mem_mirrorY_toSet]
     simp
-  have hmem' : ∀ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ Z.construct ↔
-      (![γ, -y] : Vec ℝ 2) ∈ Z.mirrorY.construct := fun y => by
+  have hmem' : ∀ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ Z.toSet ↔
+      (![γ, -y] : Vec ℝ 2) ∈ Z.mirrorY.toSet := fun y => by
     rw [hmem, neg_neg]
   -- the highest point of the section of `Z` is the negative of that
-  have hgreat : IsGreatest {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct}
+  have hgreat : IsGreatest {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.toSet}
       (-Z.mirrorY.bisectLow γ) := by
     refine ⟨?_, fun y hy => ?_⟩
     · rw [Set.mem_setOf_eq, hmem']
       simpa using hM.1
-    · have := hM.2 (show -y ∈ {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.mirrorY.construct} from
+    · have := hM.2 (show -y ∈ {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.mirrorY.toSet} from
         (hmem' y).mp hy)
       linarith
   refine Set.Subset.antisymm (fun y hy => ⟨hm.2 hy, hgreat.2 hy⟩) ?_

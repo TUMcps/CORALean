@@ -46,8 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `or`: the union of two nonempty float constrained zonotopes lies in their `linComb`. -/
 theorem ConZonotope.union_subset_linComb (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n))
-    (h₁ : cZ₁.construct.Nonempty) (h₂ : cZ₂.construct.Nonempty) :
-    cZ₁.construct ∪ cZ₂.construct ⊆ (cZ₁.linComb cZ₂).construct :=
+    (h₁ : cZ₁.toSet.Nonempty) (h₂ : cZ₂.toSet.Nonempty) :
+    cZ₁.toSet ∪ cZ₂.toSet ⊆ (cZ₁.linComb cZ₂).toSet :=
   (union_subset_setLinComb h₁ h₂).trans (ConZonotope.linComb_outer cZ₁ cZ₂)
 
 end CORALean.Float

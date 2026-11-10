@@ -50,7 +50,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.isFullDim_cora_counterexample : -- --- CONCL ---
-    ∃ (A : Mat ℝ 5 2) (b : Vec ℝ 5), (interior (HPolytope.ineqs A b).construct).Nonempty ∧
+    ∃ (A : Mat ℝ 5 2) (b : Vec ℝ 5), (interior (HPolytope.ineqs A b).toSet).Nonempty ∧
       ∀ (x : Vec ℝ 2) (r : ℝ), (∀ j, (A *ᵥ x) j + r ≤ b j) → r ≤ 0 := by -- --- PROOF ---
   let A : Mat ℝ 5 2 := !![0, 0; 1, 0; -1, 0; 0, 1; 0, -1]
   have hA : ∀ x : Vec ℝ 2, A *ᵥ x = ![0, x 0, -x 0, x 1, -x 1] := fun x => by

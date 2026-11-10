@@ -47,17 +47,17 @@ point of the boxes. A user-supplied hypothesis, checked by no run. -/
 structure NonlinDASys.OutputFloatModel.Encloses (sys : NonlinDASys n p m)
     (om : NonlinDASys.OutputFloatModel 𝕋 n p m sys.q) : Prop where
   h_mem (X : Interval (Vec 𝕋 n)) (Y : Interval (Vec 𝕋 p)) (U : Interval (Vec 𝕋 m)) :
-    ∀ x ∈ X.construct, ∀ y ∈ Y.construct, ∀ u ∈ U.construct,
-      sys.h x y u ∈ (om.h X Y U).construct
+    ∀ x ∈ X.toSet, ∀ y ∈ Y.toSet, ∀ u ∈ U.toSet,
+      sys.h x y u ∈ (om.h X Y U).toSet
   jacX_mem (X : Interval (Vec 𝕋 n)) (Y : Interval (Vec 𝕋 p)) (U : Interval (Vec 𝕋 m)) :
-    ∀ x ∈ X.construct, ∀ y ∈ Y.construct, ∀ u ∈ U.construct,
-      jacobianMat (fun x' => sys.h x' y u) x ∈ (om.jacX X Y U).construct
+    ∀ x ∈ X.toSet, ∀ y ∈ Y.toSet, ∀ u ∈ U.toSet,
+      jacobianMat (fun x' => sys.h x' y u) x ∈ (om.jacX X Y U).toSet
   jacY_mem (X : Interval (Vec 𝕋 n)) (Y : Interval (Vec 𝕋 p)) (U : Interval (Vec 𝕋 m)) :
-    ∀ x ∈ X.construct, ∀ y ∈ Y.construct, ∀ u ∈ U.construct,
-      jacobianMat (fun y' => sys.h x y' u) y ∈ (om.jacY X Y U).construct
+    ∀ x ∈ X.toSet, ∀ y ∈ Y.toSet, ∀ u ∈ U.toSet,
+      jacobianMat (fun y' => sys.h x y' u) y ∈ (om.jacY X Y U).toSet
   jacU_mem (X : Interval (Vec 𝕋 n)) (Y : Interval (Vec 𝕋 p)) (U : Interval (Vec 𝕋 m)) :
-    ∀ x ∈ X.construct, ∀ y ∈ Y.construct, ∀ u ∈ U.construct,
-      jacobianMat (fun u' => sys.h x y u') u ∈ (om.jacU X Y U).construct
+    ∀ x ∈ X.toSet, ∀ y ∈ Y.toSet, ∀ u ∈ U.toSet,
+      jacobianMat (fun u' => sys.h x y u') u ∈ (om.jacU X Y U).toSet
 
 end CORALean
 

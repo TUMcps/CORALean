@@ -41,8 +41,8 @@ variable {n m : ℕ}
 
 theorem Capsule.project_exact (C : Capsule n) {dims : Fin m → Fin n}
     (hd : Function.Injective dims) : -- --- CONCL ---
-    (C.project dims).construct =
-      (fun x : Vec ℝ n => fun i => x (dims i)) '' C.construct := by -- --- PROOF ---
+    (C.project dims).toSet =
+      (fun x : Vec ℝ n => fun i => x (dims i)) '' C.toSet := by -- --- PROOF ---
   ext y
   constructor
   · rintro ⟨t, ht, hy⟩

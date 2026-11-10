@@ -65,7 +65,7 @@ private theorem Zonotope.aux_abs_le_nominal {Z : Zonotope (Vec 𝕋 n)} {z : Vec
 /-- What the residual does to the nominal part stays within the new generators' radius. -/
 theorem Zonotope.abs_residual_le (IM : Interval (Mat 𝕋 m n)) {Z : Zonotope (Vec 𝕋 n)}
     {R : Mat ℝ m n}
-    (hR : R ∈ (Interval.matResidual IM.inf IM.sup (Interval.centerMat IM)).construct)
+    (hR : R ∈ (Interval.matResidual IM.inf IM.sup (Interval.centerMat IM)).toSet)
     {z : Vec ℝ n} (hz : z ∈ nominalSet Z) (i : Fin m) : -- --- CONCL ---
     |(R *ᵥ z) i| ≤ toReal (sumUp fun j =>
       mulUp (maximum (absolute ((Interval.matResidual IM.inf IM.sup

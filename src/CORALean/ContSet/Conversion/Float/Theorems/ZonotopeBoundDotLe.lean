@@ -53,7 +53,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q : ℕ}
 
 theorem Zonotope.boundDot_le (Z : Zonotope (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) :
-    ∀ x ∈ Z.construct, c x ≤ toReal (Z.boundDot a hc).val :=
+    ∀ x ∈ Z.toSet, c x ≤ toReal (Z.boundDot a hc).val :=
   (Z.boundDot a hc).le
 
 end CORALean.Float

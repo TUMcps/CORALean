@@ -42,7 +42,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 theorem Layer.lipConstrScaleFloat_mem (W : Mat 𝕋 m n) (lam : 𝕋)
     (hl : 0 < toReal lam) : -- --- CONCL ---
     Layer.lipConstrScale (toRealMat W) (toReal lam)
-      ∈ (Layer.lipConstrScaleFloat W lam).construct := by -- --- PROOF ---
+      ∈ (Layer.lipConstrScaleFloat W lam).toSet := by -- --- PROOF ---
   intro i
   -- the row sum is bracketed by the two rounded sums
   set s : ℝ := ∑ j, |toReal (W i j)| with hs

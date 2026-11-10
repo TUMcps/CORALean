@@ -1,11 +1,11 @@
 module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Domain
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUnit
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEqUnit
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ContinuousMonomial
 public import CORALean.ContSet.Zonotope.Real.Theorems.ClosedBallEq
 public import Mathlib.Analysis.Normed.Order.Lattice
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEq
 
 @[expose] public section
 
@@ -18,7 +18,7 @@ product of two closed balls in finite-dimensional spaces.
 Closed is where the constraints are paid for. A constraint row is `A μ(α)`, a polynomial in the
 factors and hence continuous, so each family of conditions cuts out a closed set and the domain is
 their intersection; `ConZonotope` gets this from a halfspace description instead. Stated apart
-from `isCompact_construct` because it is about the coefficient space.
+from `isCompact_toSet` because it is about the coefficient space.
 
 ## Inputs
 * `cPZ` – constrained polynomial zonotope
@@ -70,7 +70,7 @@ private theorem ConPolyZono.aux_isClosed_domain (cPZ : ConPolyZono α) : -- --- 
                 (cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R ab.1) i = cPZ.cons.b i}) := by
     ext ab
     simp only [ConPolyZono.domain,
-      PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom,
+      PolyLevelSet.mem_toSet_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom,
       Set.mem_setOf_eq, Set.mem_inter_iff, Set.mem_iInter]
   rw [hdom]
   refine IsClosed.inter (isClosed_iInter fun j => ?_)
@@ -94,7 +94,7 @@ theorem ConPolyZono.isCompact_domain (cPZ : ConPolyZono α) : -- --- CONCL ---
   -- both cubes are the unit ball of the supremum norm, which is where the bound comes from
   refine Set.mem_prod.mpr ⟨?_, ?_⟩
   · rw [Zonotope.closedBall_eq]
-    exact ((PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).mp hab.2).1
+    exact ((PolyLevelSet.mem_toSet_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).mp hab.2).1
   · rw [Zonotope.closedBall_eq]
     exact hab.1
 

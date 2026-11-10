@@ -54,7 +54,7 @@ theorem Interval.face_inter_hyperplane_nonempty {b : Vec ℝ n} (hb0 : ∀ i, 0 
     let w := (⟨0, b⟩ : Interval (Vec ℝ n)).corner fun i => if (i : ℕ) < j then p i else false
     let F : Interval (Vec ℝ n) := ⟨w, fun i => if (i : ℕ) < j then w i else b i⟩
     ∑ i, w i < α → α ≤ ∑ i, F.sup i →
-      (F.construct ∩ Interval.hyperplane 1 α).Nonempty := by -- --- PROOF ---
+      (F.toSet ∩ Interval.hyperplane 1 α).Nonempty := by -- --- PROOF ---
   intro w F hlo hhi
   have hwF : ∀ i, w i ≤ F.sup i := fun i => by
     simp only [F]

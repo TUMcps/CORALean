@@ -70,10 +70,10 @@ private theorem aux_mem_translates (A : Set α) (v x : α) : -- --- CONCL ---
 
 /-- The zero-centered zonotope on `n + 1` generators splits its head off: the
 segment generator `0` spans, plus the zonotope on the remaining generators. -/
-private theorem aux_construct_succ (n : ℕ) (g : Fin (n + 1) → α) : -- --- CONCL ---
-    (⟨n + 1, (0 : α), g⟩ : Zonotope α).construct
+private theorem aux_toSet_succ (n : ℕ) (g : Fin (n + 1) → α) : -- --- CONCL ---
+    (⟨n + 1, (0 : α), g⟩ : Zonotope α).toSet
       = {y : α | ∃ t : ℝ, |t| ≤ 1 ∧ y = t • g 0}
-          + (⟨n, (0 : α), fun i => g i.succ⟩ : Zonotope α).construct := by -- --- PROOF ---
+          + (⟨n, (0 : α), fun i => g i.succ⟩ : Zonotope α).toSet := by -- --- PROOF ---
   ext y
   constructor
   · rintro ⟨β, hβ, rfl⟩
@@ -120,12 +120,12 @@ span, at every convex starting set — the induction the recursion needs. -/
 private theorem aux_fold_eq_minkDiff (n : ℕ) : -- --- CONCL ---
     ∀ (g : Fin n → α) (A : Set α), Convex ℝ A →
       Fin.foldl n (fun A i => (A + {g i}) ∩ (A - {g i})) A
-        = minkowskiDiff A (⟨n, (0 : α), g⟩ : Zonotope α).construct := by -- --- PROOF ---
+        = minkowskiDiff A (⟨n, (0 : α), g⟩ : Zonotope α).toSet := by -- --- PROOF ---
   induction n with
   | zero =>
     intro g A _
     -- no generators: the zonotope is `{0}` and subtracting it changes nothing
-    have hc : (⟨0, (0 : α), g⟩ : Zonotope α).construct = ({(0 : α)} : Set α) := by
+    have hc : (⟨0, (0 : α), g⟩ : Zonotope α).toSet = ({(0 : α)} : Set α) := by
       ext y
       constructor
       · rintro ⟨β, -, hy⟩
@@ -147,7 +147,7 @@ private theorem aux_fold_eq_minkDiff (n : ℕ) : -- --- CONCL ---
     have hAconv : Convex ℝ ((A + {g 0}) ∩ (A - {g 0})) :=
       (hA.add (convex_singleton (g 0))).inter (hA.sub (convex_singleton (g 0)))
     simp only [Fin.foldl_succ]
-    rw [ih (fun i => g i.succ) ((A + {g 0}) ∩ (A - {g 0})) hAconv, aux_construct_succ n g,
+    rw [ih (fun i => g i.succ) ((A + {g 0}) ∩ (A - {g 0})) hAconv, aux_toSet_succ n g,
       minkowskiDiff_add_assoc, aux_minkowskiDiff_seg A hA (g 0)]
 
 
@@ -156,10 +156,10 @@ private theorem aux_fold_eq_minkDiff (n : ℕ) : -- --- CONCL ---
 /-- [1, Thm. 1]: the generator recursion computes the Minkowski difference
 exactly, not merely an enclosure of it. -/
 theorem Zonotope.minkDiffGenRec_exact (Zm Zs : Zonotope α) : -- --- CONCL ---
-    Zm.minkDiffGenRec Zs = minkowskiDiff Zm.construct Zs.construct := by -- --- PROOF ---
-  have hA : Convex ℝ (Zm.construct - {Zs.c}) := Zm.convex_construct.sub (convex_singleton Zs.c)
+    Zm.minkDiffGenRec Zs = minkowskiDiff Zm.toSet Zs.toSet := by -- --- PROOF ---
+  have hA : Convex ℝ (Zm.toSet - {Zs.c}) := Zm.convex_toSet.sub (convex_singleton Zs.c)
   -- the subtrahend is its center plus the zonotope its generators span
-  have hcenter : Zs.construct = {Zs.c} + (⟨Zs.h, (0 : α), Zs.G⟩ : Zonotope α).construct := by
+  have hcenter : Zs.toSet = {Zs.c} + (⟨Zs.h, (0 : α), Zs.G⟩ : Zonotope α).toSet := by
     ext y
     constructor
     · rintro ⟨β, hβ, rfl⟩
@@ -167,7 +167,7 @@ theorem Zonotope.minkDiffGenRec_exact (Zm Zs : Zonotope α) : -- --- CONCL ---
     · rintro ⟨_, rfl, _, ⟨β, hβ, rfl⟩, rfl⟩
       exact ⟨β, hβ, by rw [zero_add]⟩
   -- and subtracting a center is the `Z_int⁽¹⁾` the recursion starts from
-  have hsingle : minkowskiDiff Zm.construct ({Zs.c} : Set α) = Zm.construct - {Zs.c} := by
+  have hsingle : minkowskiDiff Zm.toSet ({Zs.c} : Set α) = Zm.toSet - {Zs.c} := by
     ext x
     constructor
     · intro hx

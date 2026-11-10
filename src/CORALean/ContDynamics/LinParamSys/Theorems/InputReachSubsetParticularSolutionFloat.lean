@@ -73,10 +73,10 @@ by window. -/
 private theorem LinParamSys.aux_propagate_subset_particularSolutionFloat
     (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋} {η ρ : ℕ}
     (h2 : 2 ≤ η) (U : Zonotope (Vec 𝕋 n)) {A : Mat ℝ n n}
-    (hA : A ∈ sys.A.construct) :
+    (hA : A ∈ sys.A.toSet) :
     ∀ (k : ℕ) {P : Zonotope (Vec 𝕋 n)}, sys.particularSolutionFloat Δt η ρ U k = some P →
     (LinearSys.canonical A : LinearSys ℝ n).propagateInputSolution (toReal Δt)
-        (sys.inputSolutionFloat Δt η U).construct (k + 1) ⊆ P.construct
+        (sys.inputSolutionFloat Δt η U).toSet (k + 1) ⊆ P.toSet
   | 0, P, h => by
     -- `{0} + e^{A·0} P^R(Δt)` is `P^R(Δt)` itself
     simp only [LinParamSys.particularSolutionFloat, Option.some.injEq] at h
@@ -101,17 +101,17 @@ private theorem LinParamSys.aux_propagate_subset_particularSolutionFloat
 any `t ≤ t_{k+1}` lies in `P^R(t_{k+1})` as `particularSolutionFloat` computes it. -/
 theorem LinParamSys.inputReach_subset_particularSolutionFloat (sys : LinParamSys ℐ[𝕋] n) {Δt : 𝕋}
     {η ρ : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {A : Mat ℝ n n}
-    (hA : A ∈ sys.A.construct) {U : Zonotope (Vec 𝕋 n)} (h0 : (0 : Vec ℝ n) ∈ U.construct) {k : ℕ}
+    (hA : A ∈ sys.A.toSet) {U : Zonotope (Vec 𝕋 n)} (h0 : (0 : Vec ℝ n) ∈ U.toSet) {k : ℕ}
     {t : ℝ} (ht0 : 0 ≤ t) (htk : t ≤ ((k + 1 : ℕ) : ℝ) * toReal Δt) : -- --- CONCL ---
     ∀ P ∈ sys.particularSolutionFloat Δt η ρ U k,
       (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒵[𝕋]) U t
-        ⊆ P.construct := by -- --- PROOF ---
+        ⊆ P.toSet := by -- --- PROOF ---
   intro P (hP : sys.particularSolutionFloat Δt η ρ U k = some P)
   set L : LinearSys ℝ n := LinearSys.canonical A
-  have hbdd := CompactSet.isBounded_construct U
+  have hbdd := CompactSet.isBounded_toSet U
   -- [1, Thm. 1]: one step of the input under `A`, inside `inputSolutionFloat`
   have hΔ : L.inputReach (S := 𝒵[𝕋]) U (toReal Δt)
-      ⊆ (sys.inputSolutionFloat Δt η U).construct :=
+      ⊆ (sys.inputSolutionFloat Δt η U).toSet :=
     sys.inputReach_subset_inputSolutionFloat hΔt hη hA U
   calc L.inputReach (S := 𝒵[𝕋]) U t
       -- [1, Sec. 3.3]: `0 ∈ U`, so the window's right end bounds every earlier time
@@ -121,9 +121,9 @@ theorem LinParamSys.inputReach_subset_particularSolutionFloat (sys : LinParamSys
     _ = L.propagateInputSolution (toReal Δt)
       (L.inputReach (S := 𝒵[𝕋]) U (toReal Δt)) (k + 1) :=
       (L.propagateInputSolution_inputReach hΔt.le hbdd ⟨0, h0⟩ (k + 1)).symm
-    _ ⊆ L.propagateInputSolution (toReal Δt) (sys.inputSolutionFloat Δt η U).construct (k + 1) :=
+    _ ⊆ L.propagateInputSolution (toReal Δt) (sys.inputSolutionFloat Δt η U).toSet (k + 1) :=
       L.propagateInputSolution_mono (toReal Δt) hΔ (k + 1)
-    _ ⊆ P.construct := sys.aux_propagate_subset_particularSolutionFloat hη.1 U hA k hP
+    _ ⊆ P.toSet := sys.aux_propagate_subset_particularSolutionFloat hη.1 U hA k hP
 
 end CORALean
 

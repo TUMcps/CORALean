@@ -56,10 +56,10 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 there is some admissible disturbance whose run passes through it. -/
 def LinearSys.timeIntervalBackReachSetForallExistsExact (sys : LinearSys 𝕋 n) (T : Set ℝ)
     (U W Xend : S n) (τ : Set ℝ) : Set (Vec ℝ n) :=
-  {x₀ | ∀ u : ℝ → Vec ℝ n, (∀ s ∈ T, u s ∈ construct U) →
+  {x₀ | ∀ u : ℝ → Vec ℝ n, (∀ s ∈ T, u s ∈ toSet U) →
       AEStronglyMeasurable u (volume.restrict T) →
       ∃ w x : ℝ → Vec ℝ n, sys.IsPerturbedTrajectory T U W x u w ∧
-        x 0 = x₀ ∧ ∃ t ∈ τ, x t ∈ construct Xend}
+        x 0 = x₀ ∧ ∃ t ∈ τ, x t ∈ toSet Xend}
 
 end CORALean
 

@@ -1,13 +1,13 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffToSet
 
 @[expose] public section
 
 /-!
 # `ConPolyZono.minkDiff` contains the Minkowski difference
 
-If `x + Z ⊆ P` then `x` passes the test at every corner of `Z`, which is what `minkDiff_construct`
+If `x + Z ⊆ P` then `x` passes the test at every corner of `Z`, which is what `minkDiff_toSet`
 says the result is. So the result is an enclosure of `P ⊖ Z` for every minuend, convex or not;
 it is the whole difference when the minuend is convex (`minkDiff_inner_of_convex`).
 
@@ -40,10 +40,10 @@ variable {n : ℕ}
 /-- Outer: `P ⊖ Z ⊆ minkDiff P Z`. -/
 theorem ConPolyZono.minkDiff_outer (cPZ₁ : ConPolyZono (Vec ℝ n))
     (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    {x | ∀ z ∈ Z.construct, x + z ∈ cPZ₁.construct} ⊆
-      (cPZ₁.minkDiff Z).construct := by -- --- PROOF ---
+    {x | ∀ z ∈ Z.toSet, x + z ∈ cPZ₁.toSet} ⊆
+      (cPZ₁.minkDiff Z).toSet := by -- --- PROOF ---
   intro x hx
-  rw [ConPolyZono.minkDiff_construct]
+  rw [ConPolyZono.minkDiff_toSet]
   intro s
   -- the corner `c + Σ ±gⱼ` is the point of `Z` at the coefficients `±1`
   refine hx _ ⟨fun j => if s j then 1 else -1, fun j => ?_, ?_⟩

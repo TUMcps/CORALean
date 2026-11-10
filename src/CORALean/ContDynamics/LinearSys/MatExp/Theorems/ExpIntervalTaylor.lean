@@ -43,19 +43,19 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.expTaylor_mem_expIntervalTaylor (A : Interval (Mat ℝ n n))
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) (η : ℕ) : -- --- CONCL ---
-    MatExp.expTaylor M η ∈ (MatExp.expIntervalTaylor A η).construct := by -- --- PROOF ---
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) (η : ℕ) : -- --- CONCL ---
+    MatExp.expTaylor M η ∈ (MatExp.expIntervalTaylor A η).toSet := by -- --- PROOF ---
   induction η with
   | zero =>
     show (∑ i ∈ Finset.range 1, ((Nat.factorial i : ℝ)⁻¹) • M ^ i)
-        ∈ (Interval.smul ((Nat.factorial 0 : ℝ)⁻¹) (Interval.matPow A 0)).construct
+        ∈ (Interval.smul ((Nat.factorial 0 : ℝ)⁻¹) (Interval.matPow A 0)).toSet
     rw [Finset.sum_range_one]
     exact Interval.smul_outer _ _ (Interval.matPow_outer A hM 0)
   | succ k ih =>
     show (∑ i ∈ Finset.range (k + 1 + 1), ((Nat.factorial i : ℝ)⁻¹) • M ^ i)
         ∈ (Interval.plus
              (Interval.smul ((Nat.factorial (k + 1) : ℝ)⁻¹) (Interval.matPow A (k + 1)))
-             (MatExp.expIntervalTaylor A k)).construct
+             (MatExp.expIntervalTaylor A k)).toSet
     rw [Finset.sum_range_succ, add_comm (∑ i ∈ Finset.range (k + 1),
       ((Nat.factorial i : ℝ)⁻¹) • M ^ i) (((Nat.factorial (k + 1) : ℝ)⁻¹) • M ^ (k + 1))]
     exact Interval.plus_outer _ _

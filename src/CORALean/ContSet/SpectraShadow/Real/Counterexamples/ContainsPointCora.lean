@@ -61,7 +61,7 @@ open Matrix
 
 theorem SpectraShadow.containsPointCora_line (tol : ℝ) :
     SpectraShadow.lineExample.containsPointCora (Pi.single 0 1) tol
-      ∧ (Pi.single 0 1 : Vec ℝ 2) ∉ SpectraShadow.lineExample.construct := by
+      ∧ (Pi.single 0 1 : Vec ℝ 2) ∉ SpectraShadow.lineExample.toSet := by
   refine ⟨Or.inl SpectraShadow.lineExample_not_mem, ?_⟩
   rintro ⟨β, -, hx⟩
   exact SpectraShadow.lineExample_not_mem ⟨β, hx.symm⟩

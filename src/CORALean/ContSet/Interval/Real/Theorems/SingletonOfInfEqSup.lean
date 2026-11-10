@@ -36,9 +36,9 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.construct_eq_singleton_of_inf_eq_sup {I : Interval α}
+theorem Interval.toSet_eq_singleton_of_inf_eq_sup {I : Interval α}
     (h : I.inf = I.sup) : -- --- CONCL ---
-    I.construct = {I.inf} := by -- --- PROOF ---
+    I.toSet = {I.inf} := by -- --- PROOF ---
   ext x
   constructor
   · intro hx

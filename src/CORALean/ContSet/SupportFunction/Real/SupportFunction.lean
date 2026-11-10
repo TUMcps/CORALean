@@ -42,7 +42,7 @@ structure SupportFunction (α : Type) [AddCommGroup α] [Module ℝ α] where
   h : (α →ₗ[ℝ] ℝ) → EReal
 
 /-- The points the support function allows under every functional. -/
-def SupportFunction.construct (S : SupportFunction α) : Set α :=
+def SupportFunction.toSet (S : SupportFunction α) : Set α :=
   {x | ∀ ℓ : α →ₗ[ℝ] ℝ, (ℓ x : EReal) ≤ S.h ℓ}
 
 end CORALean.Real

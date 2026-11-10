@@ -70,7 +70,7 @@ private theorem aux_errorBoxFloat_nominal (ε : 𝕋) : -- --- CONCL ---
 
 /-- A box of non-negative radius lies in the closed ball of that radius. -/
 private theorem aux_diagonal_subset_closedBall {ε : ℝ} (hε : 0 ≤ ε) : -- --- CONCL ---
-    (⟨n, 0, Matrix.diagonal fun _ => ε⟩ : Real.Zonotope (Vec ℝ n)).construct
+    (⟨n, 0, Matrix.diagonal fun _ => ε⟩ : Real.Zonotope (Vec ℝ n)).toSet
       ⊆ Metric.closedBall (0 : Vec ℝ n) ε := by -- --- PROOF ---
   rintro _ ⟨β, hβ, rfl⟩
   rw [mem_closedBall_zero_iff, pi_norm_le_iff_of_nonneg hε]
@@ -90,11 +90,11 @@ private theorem aux_diagonal_subset_closedBall {ε : ℝ} (hε : 0 ≤ ε) : -- 
 private theorem aux_closedBall_subset_float (sys : LinearSys 𝕋 n) (r : 𝕋) (η : ℕ)
     (U : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     Metric.closedBall (0 : Vec ℝ n) (toReal (sys.timePointStepErrorFloat r η U))
-      ⊆ ContSet.construct (sys.timePointStepErrorBoxFloat r η U) := by -- --- PROOF ---
+      ⊆ ContSet.toSet (sys.timePointStepErrorBoxFloat r η U) := by -- --- PROOF ---
   intro x hx
   refine ⟨x, ?_, 0, ?_, add_zero x⟩
   · -- the nominal part is the diagonal zonotope of the float radius
-    show x ∈ ContSet.construct (nominal (⟨n, fun _ => zero,
+    show x ∈ ContSet.toSet (nominal (⟨n, fun _ => zero,
       diagonalBlock fun _ => sys.timePointStepErrorFloat r η U, Interval.point fun _ => zero⟩ :
         Zonotope (Vec 𝕋 n)))
     rw [aux_errorBoxFloat_nominal]
@@ -111,10 +111,10 @@ private theorem aux_closedBall_subset_float (sys : LinearSys 𝕋 n) (r : 𝕋) 
 theorem LinearSys.timePointStepErrorBox_subset_float (sys : LinearSys 𝕋 n) {r : 𝕋}
     (hr : 0 ≤ toReal r) {η : ℕ} (hη : sys.IsOrderAdmissibleFloat r r η)
     (U : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    (sys.timePointStepErrorBox (toReal r) η (nominal U)).construct ⊆
-      ContSet.construct (sys.timePointStepErrorBoxFloat r η U) := by -- --- PROOF ---
+    (sys.timePointStepErrorBox (toReal r) η (nominal U)).toSet ⊆
+      ContSet.toSet (sys.timePointStepErrorBoxFloat r η U) := by -- --- PROOF ---
   -- the exact radius is non-negative, so its box is its ball, which the float radius covers
-  have hA : toRealMat sys.A ∈ (Interval.point sys.A).construct := Interval.mem_point sys.A
+  have hA : toRealMat sys.A ∈ (Interval.point sys.A).toSet := Interval.mem_point sys.A
   have hε' : ‖toReal r • toRealMat sys.A‖ / ((η : ℝ) + 2) ≤ 1 / 2 :=
     le_trans (by gcongr; exact MatExp.norm_smul_le_normUpperBound _ r hA) hη.2
   have h0 := sys.timePointStepError_nonneg hr η (nominal U) hε'

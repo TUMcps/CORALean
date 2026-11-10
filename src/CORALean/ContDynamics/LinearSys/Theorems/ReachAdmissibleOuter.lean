@@ -56,8 +56,8 @@ is in one of `reachAdmissible`'s windows, at any order `η`. -/
 theorem LinearSys.reachAdmissible_outer (sys : LinearSys 𝕋 n)
     {params : Reach.Params (S n) ℝ} {options : LinearSys.ReachStepOptions ℝ}
     (htFinal : 0 < params.tFinal - params.tStart) (hΔt : 0 < options.Δt) : -- --- CONCL ---
-    sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
-      ⊆ construct (sys.reachAdmissible params options) := by -- --- PROOF ---
+    sys.reachExact (params.tFinal - params.tStart) (toSet params.X₀)
+      ⊆ toSet (sys.reachAdmissible params options) := by -- --- PROOF ---
   unfold LinearSys.reachAdmissible
   -- `reachOrder_admissible` gives `hε` at the order `reachAdmissible` runs at directly
   have hη : 2 ≤ max options.η (sys.reachOrder options.Δt + 2) :=

@@ -36,7 +36,7 @@ namespace CORALean.Real
 
 theorem ProbZonotope.intervalCora_not_mem : -- --- CONCL ---
     ∃ (P : ProbZonotope 1) (μ : Vec ℝ 1),
-      μ ∈ P.Z.construct ∧ μ ∉ P.intervalCora.construct := by -- --- PROOF ---
+      μ ∈ P.Z.toSet ∧ μ ∉ P.intervalCora.toSet := by -- --- PROOF ---
   -- the mean `1` is the generator
   refine ⟨ProbZonotope.unitMean, fun _ => 1,
     ⟨fun _ => 1, fun _ => by simp, by funext i; simp [ProbZonotope.unitMean]⟩, ?_⟩

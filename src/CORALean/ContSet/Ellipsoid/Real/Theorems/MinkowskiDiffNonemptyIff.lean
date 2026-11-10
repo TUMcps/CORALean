@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Convex
 public import CORALean.ContSet.ContSet.ContSet
 
@@ -48,13 +48,13 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.minkowskiDiff_nonempty_iff (E₁ E₂ : Ellipsoid n) : -- --- CONCL ---
-    (minkowskiDiff E₁.construct E₂.construct).Nonempty ↔
-      (⟨E₂.Q, 0, E₂.psd⟩ : Ellipsoid n).construct ⊆
-        (⟨E₁.Q, 0, E₁.psd⟩ : Ellipsoid n).construct := by -- --- PROOF ---
+    (minkowskiDiff E₁.toSet E₂.toSet).Nonempty ↔
+      (⟨E₂.Q, 0, E₂.psd⟩ : Ellipsoid n).toSet ⊆
+        (⟨E₁.Q, 0, E₁.psd⟩ : Ellipsoid n).toSet := by -- --- PROOF ---
   -- the centered ellipsoid has the same generator
-  have hc : ∀ E : Ellipsoid n, (⟨E.Q, 0, E.psd⟩ : Ellipsoid n).construct
-      = {x | ∃ u : Vec ℝ n, ‖u‖₂ ≤ 1 ∧ x = 0 + E.G *ᵥ u} := fun E => Ellipsoid.construct_eq_sqrt _
-  rw [hc, hc, E₁.construct_eq_sqrt, E₂.construct_eq_sqrt]
+  have hc : ∀ E : Ellipsoid n, (⟨E.Q, 0, E.psd⟩ : Ellipsoid n).toSet
+      = {x | ∃ u : Vec ℝ n, ‖u‖₂ ≤ 1 ∧ x = 0 + E.G *ᵥ u} := fun E => Ellipsoid.toSet_eq_sqrt _
+  rw [hc, hc, E₁.toSet_eq_sqrt, E₂.toSet_eq_sqrt]
   constructor
   · rintro ⟨x, hx⟩ _ ⟨u, hu, rfl⟩
     -- `c ± G₂ u` both lie in the centered first ellipsoid, `c = x + q₂ - q₁`
@@ -74,7 +74,7 @@ theorem Ellipsoid.minkowskiDiff_nonempty_iff (E₁ E₂ : Ellipsoid n) : -- --- 
         rw [this, Matrix.mulVec_neg]
         abel⟩
     rw [← hc E₁] at hp hm'
-    have hmid := (Ellipsoid.convex_construct ⟨E₁.Q, 0, E₁.psd⟩) hp hm'
+    have hmid := (Ellipsoid.convex_toSet ⟨E₁.Q, 0, E₁.psd⟩) hp hm'
       (by norm_num : (0 : ℝ) ≤ 1 / 2) (by norm_num : (0 : ℝ) ≤ 1 / 2) (by norm_num)
     -- the midpoint of `c + G₂ u` and `-c + G₂ u` is `G₂ u`
     rw [hc] at hmid

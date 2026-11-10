@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.vPolytopeBox_contains (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    cZ.construct ⊆ cZ.vPolytopeBox.construct :=
+    cZ.toSet ⊆ cZ.vPolytopeBox.toSet :=
   subset_trans cZ.interval_contains (Interval.vPolytope_contains _)
 
 end CORALean.Float

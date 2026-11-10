@@ -97,7 +97,7 @@ private theorem aux_scale_iff {a : ℝ} (ha : 0 < a) (v x : Vec ℝ (m + 1)) {h 
 /-- CORA's `polytope(Z)` rows describe the zonotope exactly when its generators span. -/
 theorem Zonotope.hPolytopeFacets_exact (Z : Zonotope (Vec ℝ (m + 1)))
     (hspan : Submodule.span ℝ (Set.range Z.G) = ⊤) : -- --- CONCL ---
-    Z.hPolytopeFacets.construct = Z.construct := by -- --- PROOF ---
+    Z.hPolytopeFacets.toSet = Z.toSet := by -- --- PROOF ---
   -- spanning generators are not all zero
   have hG : ¬∀ j, Z.G j = 0 := by
     intro h

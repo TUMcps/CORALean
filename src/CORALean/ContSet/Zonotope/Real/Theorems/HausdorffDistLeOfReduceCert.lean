@@ -64,10 +64,10 @@ theorem Zonotope.hausdorffDist_le_of_reduce_cert (Z Zr : Zonotope (Vec ℝ n)) (
     (h₀ : ∀ j, Z.G j = ∑ k, Γ₀ k j • Zr.G k) (h₁ : ∀ k, Zr.G k = ∑ j, Γ₁ j k • Z.G j + Δ k)
     (hn₀ : ∀ k, ∑ j, |Γ₀ k j| ≤ 1) (hn₁ : ∀ j, ∑ k, |Γ₁ j k| ≤ 1)
     (hΔ : ∀ i, ∑ k, |Δ k i| ≤ δ) : -- --- CONCL ---
-    Z.construct ⊆ Zr.construct ∧
-      Metric.hausdorffDist Z.construct Zr.construct ≤ δ := by -- --- PROOF ---
-  have hsub : Z.construct ⊆ Zr.construct :=
-    Zonotope.construct_subset_of_cert Z Zr Γ₀ 0 h₀ (by simp [hc]) (by simpa using hn₀)
+    Z.toSet ⊆ Zr.toSet ∧
+      Metric.hausdorffDist Z.toSet Zr.toSet ≤ δ := by -- --- PROOF ---
+  have hsub : Z.toSet ⊆ Zr.toSet :=
+    Zonotope.toSet_subset_of_cert Z Zr Γ₀ 0 h₀ (by simp [hc]) (by simpa using hn₀)
   refine ⟨hsub, Metric.hausdorffDist_le_of_mem_dist hδ (fun x hx => ⟨x, hsub hx, by simpa⟩) ?_⟩
   -- `x̄ + X_red α` is within `‖Δ α‖∞` of `x̄ + X (Γ₁ α)`
   rintro _ ⟨a, ha, rfl⟩

@@ -62,10 +62,10 @@ theorem LinearSys.reach_subset_discretize_reachSetExact_add_error (sys : LinearS
     {Δt : ℝ} (hΔt : 0 < Δt) (η : ℕ) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     {o : ℕ} (ho : 0 < o) (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : -- --- CONCL ---
     ((sys.discretize Δt).reach (S := 𝒵) ⟨R₀, sys.inputSolution (S := 𝒵) Δt η U, 0, k⟩
-        ⟨o, ho⟩).construct
+        ⟨o, ho⟩).toSet
       ⊆ (sys.discretize Δt).reachSetExact (S := 𝒵) R₀
           (Zonotope.mtimes (MatExp.expIntegral (toRealMat sys.A) Δt) U) k
-        + (sys.reachError Δt η o ho R₀ U k).construct := by -- --- PROOF ---
+        + (sys.reachError Δt η o ho R₀ U k).toSet := by -- --- PROOF ---
   intro x hx
   -- the reductions come off first, then the input enclosures' excess
   obtain ⟨y, hy, e₁, he₁, rfl⟩ :=

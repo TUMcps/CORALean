@@ -77,7 +77,7 @@ theorem STL.depReachPoint_dependency (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ :
         (fun j => B *ᵥ (U.c + ∑ l : Fin U.h, α (X₀.h + j * U.h + l) • U.G l))) (i * Δt)
     ξ = μ + R.c ∧ ∀ β : Fin R.h → ℝ, (∀ k, |β k| ≤ 1) →
       μ + (R.c + ∑ k : Fin R.h, (if (k : ℕ) < X₀.h + i * U.h then 0 else β k) • R.G k)
-        ∈ R.construct := by -- --- PROOF ---
+        ∈ R.toSet := by -- --- PROOF ---
   -- name the three objects and their definitions, then hold the state at `t_i` abstract
   intro R μ ξ
   -- the constants of the dependency-preserving reachability, named once
@@ -108,7 +108,7 @@ theorem STL.depReachPoint_dependency (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ :
     rw [hξd]
     -- `heldSim` is the solution at `t_i`, for the inputs `B u` in `B U`
     refine (LinearSys.canonical A).closedForm_heldInput (S := 𝒵)
-      (U := Zonotope.mtimes B U) (Zonotope.isBounded_construct _) hΔt _ ?_ i
+      (U := Zonotope.mtimes B U) (Zonotope.isBounded_toSet _) hΔt _ ?_ i
     intro j
     refine ⟨fun l => α (X₀.h + j * U.h + l), fun l => hα _, ?_⟩
     simp only [Zonotope.mtimes, Matrix.mulVec_add, Matrix.mulVec_sum, Matrix.mulVec_smul]

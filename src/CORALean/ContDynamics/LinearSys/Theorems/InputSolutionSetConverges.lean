@@ -70,9 +70,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 solution over `t = ωΔt` is `O(Δt)`, hence `0` in the limit. -/
 theorem LinearSys.hausdorffDist₂_inputSolutionSet_le (sys : LinearSys 𝕋 n) {U : S n}
     {Δt ρ : ℝ} (hΔt : 0 < Δt) (hAΔ : Δt * ‖toRealMat sys.A‖ ≤ 1)
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U)) (hne : (construct U).Nonempty)
-    (hρ : ∀ v ∈ construct U, ‖v‖ ≤ ρ) (η : ℕ) (ω : ℕ) : -- --- CONCL ---
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U)) (hne : (toSet U).Nonempty)
+    (hρ : ∀ v ∈ toSet U, ‖v‖ ≤ ρ) (η : ℕ) (ω : ℕ) : -- --- CONCL ---
     hausdorffDist₂ (sys.propagateInputSolution Δt (sys.inputSolutionSet U Δt η) ω)
         (sys.inputReach U ((ω : ℝ) * Δt))
       ≤ Real.sqrt n * (ρ * ‖toRealMat sys.A‖

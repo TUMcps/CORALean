@@ -9,13 +9,13 @@ public import Mathlib.Analysis.Convex.Combination
 /-!
 # A convex minuend needs only the vertices of the subtrahend
 
-For a convex `S` and `P = ⟨V⟩_V`, `minkowskiDiff S P.construct = ⋂ i, {x | x + V i ∈ S}`: a point
-`x + p` for `p ∈ P.construct` is a convex combination of the points `x + V i`, so if each of those
+For a convex `S` and `P = ⟨V⟩_V`, `minkowskiDiff S P.toSet = ⋂ i, {x | x + V i ∈ S}`: a point
+`x + p` for `p ∈ P.toSet` is a convex combination of the points `x + V i`, so if each of those
 already lies in `S`, convexity puts the whole combination there too — checking every `p ∈ P`
 collapses to checking every vertex.
 
 The step [1, Prop. 6]'s proof takes at `Z ⊖ P = ⋂ᵢ (Z − vᵢ)`, stated for any convex set rather than
-only a zonotope, and needless of `P.k > 0`: at `P.k = 0`, `P.construct` and the intersection are
+only a zonotope, and needless of `P.k > 0`: at `P.k = 0`, `P.toSet` and the intersection are
 both `Set.univ` (a subtrahend `∅` moves nothing, and no side of `⋂ i : Fin 0, ·` names a condition).
 
 ## Inputs
@@ -54,7 +54,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- [1, Prop. 6]'s `Z ⊖ P = ⋂ᵢ (Z − vᵢ)`, for any convex minuend. -/
 theorem VPolytope.minkowskiDiff_eq_iInter {S : Set α} (hS : Convex ℝ S)
     (P : VPolytope α) : -- --- CONCL ---
-    minkowskiDiff S P.construct = ⋂ i, {y | y + P.V i ∈ S} := by -- --- PROOF ---
+    minkowskiDiff S P.toSet = ⋂ i, {y | y + P.V i ∈ S} := by -- --- PROOF ---
   ext x
   simp only [minkowskiDiff, Set.mem_setOf_eq, Set.mem_iInter]
   constructor

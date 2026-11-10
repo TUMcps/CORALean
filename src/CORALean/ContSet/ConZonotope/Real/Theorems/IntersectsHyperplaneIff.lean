@@ -13,7 +13,7 @@ hypotheses, exactly as the paper takes their existence for granted by writing
 `min`/`max`, rather than re-derived from compactness.
 
 Forward is `IsLeast`/`IsGreatest`'s own bound halves. Back is the paper's own
-argument: a point at each extreme, and `convex_construct` puts the segment
+argument: a point at each extreme, and `convex_toSet` puts the segment
 between them inside `Zc`, at the one weight `h` reads off as `f`.
 
 ## Inputs
@@ -53,9 +53,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.mem_hyperplane_inter_iff (cZ : ConZonotope (Vec ℝ n)) (h : Vec ℝ n →ₗ[ℝ] ℝ)
-    (f fmin fmax : ℝ) (hmin : IsLeast (h '' cZ.construct) fmin)
-    (hmax : IsGreatest (h '' cZ.construct) fmax) : -- --- CONCL ---
-    (∃ x ∈ cZ.construct, h x = f) ↔ fmin ≤ f ∧ f ≤ fmax := by -- --- PROOF ---
+    (f fmin fmax : ℝ) (hmin : IsLeast (h '' cZ.toSet) fmin)
+    (hmax : IsGreatest (h '' cZ.toSet) fmax) : -- --- CONCL ---
+    (∃ x ∈ cZ.toSet, h x = f) ↔ fmin ≤ f ∧ f ≤ fmax := by -- --- PROOF ---
   constructor
   · rintro ⟨x, hx, rfl⟩
     exact ⟨hmin.2 ⟨x, hx, rfl⟩, hmax.2 ⟨x, hx, rfl⟩⟩
@@ -68,7 +68,7 @@ theorem ConZonotope.mem_hyperplane_inter_iff (cZ : ConZonotope (Vec ℝ n)) (h :
     · have hd : fmax - fmin ≠ 0 := (by linarith : (0:ℝ) < fmax - fmin).ne'
       set lam : ℝ := (fmax - f) / (fmax - fmin) with hlamdef
       refine ⟨lam • xmin + (1 - lam) • xmax, ?_, ?_⟩
-      · refine ConZonotope.convex_construct cZ hxmin hxmax ?_ ?_ (by ring)
+      · refine ConZonotope.convex_toSet cZ hxmin hxmax ?_ ?_ (by ring)
         · rw [hlamdef]; exact div_nonneg (by linarith) (by linarith)
         · rw [hlamdef, sub_nonneg, div_le_one (by linarith)]; linarith
       · rw [map_add, map_smul, map_smul, hfmin, hfmax, smul_eq_mul, smul_eq_mul, hlamdef]

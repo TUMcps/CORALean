@@ -42,9 +42,9 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- `minus` is `plus` of the negation, bound for bound
 theorem Interval.minus_outer (I₁ I₂ : Interval α) : -- --- CONCL ---
-    I₁.construct - I₂.construct ⊆ (I₁.minus I₂).construct := by -- --- PROOF ---
+    I₁.toSet - I₂.toSet ⊆ (I₁.minus I₂).toSet := by -- --- PROOF ---
   rintro _ ⟨a, ha, b, hb, rfl⟩
-  have hb' : -b ∈ I₂.uminus.construct := Interval.uminus_exact I₂ ▸ Set.neg_mem_neg.2 hb
+  have hb' : -b ∈ I₂.uminus.toSet := Interval.uminus_exact I₂ ▸ Set.neg_mem_neg.2 hb
   show a - b ∈ _
   rw [Interval.minus_eq_plus_uminus, sub_eq_add_neg]
   exact Interval.plus_outer I₁ I₂.uminus ⟨a, ha, -b, hb', rfl⟩

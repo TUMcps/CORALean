@@ -43,7 +43,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def ZonoBundle.box (zB : ZonoBundle α) : Set α :=
-  ⋂ I : {I : Interval α // zB.construct ⊆ I.construct}, I.1.construct
+  ⋂ I : {I : Interval α // zB.toSet ⊆ I.toSet}, I.1.toSet
 
 end CORALean.Real
 

@@ -105,7 +105,7 @@ private theorem aux_offDiag_witness (A : Interval (Mat ℝ n n)) (hA : ∀ p q, 
     (hu : A.inf i i ≤ u ∧ u ≤ A.sup i i) (hv : A.inf j j ≤ v ∧ v ≤ A.sup j j)
     {d e : Fin n → ℝ} (hd : ∀ k, A.inf i k ≤ d k ∧ d k ≤ A.sup i k)
     (he : ∀ k, A.inf k j ≤ e k ∧ e k ≤ A.sup k j) : -- --- CONCL ---
-    ∃ M ∈ A.construct, (M * M) i j
+    ∃ M ∈ A.toSet, (M * M) i j
       = y * (u + v) + ∑ k ∈ Finset.univ \ {i, j}, d k * e k := by -- --- PROOF ---
   classical
   set M : Mat ℝ n n := Matrix.of fun p q =>
@@ -154,7 +154,7 @@ private theorem aux_diag_witness (A : Interval (Mat ℝ n n)) (hA : ∀ p q, A.i
     {i : Fin n} {a : ℝ} (ha : A.inf i i ≤ a ∧ a ≤ A.sup i i)
     {d e : Fin n → ℝ} (hd : ∀ k, A.inf i k ≤ d k ∧ d k ≤ A.sup i k)
     (he : ∀ k, A.inf k i ≤ e k ∧ e k ≤ A.sup k i) : -- --- CONCL ---
-    ∃ M ∈ A.construct, (M * M) i i
+    ∃ M ∈ A.toSet, (M * M) i i
       = a ^ 2 + ∑ k ∈ Finset.univ.erase i, d k * e k := by -- --- PROOF ---
   classical
   set M : Mat ℝ n n := Matrix.of fun p q =>
@@ -189,11 +189,11 @@ private theorem aux_diag_witness (A : Interval (Mat ℝ n n)) (hA : ∀ p q, A.i
 form a connected set. -/
 theorem Interval.exactSquare_entry_exact (A : Interval (Mat ℝ n n))
     (hA : ∀ p q, A.inf p q ≤ A.sup p q) (i j : Fin n) : -- --- CONCL ---
-    (fun M : Mat ℝ n n => (M * M) i j) '' A.construct
+    (fun M : Mat ℝ n n => (M * M) i j) '' A.toSet
       = Set.Icc (A.exactSquare.inf i j) (A.exactSquare.sup i j) := by -- --- PROOF ---
   classical
   -- the least value is a value of the entry on the box
-  have hlo : ∃ M ∈ A.construct, (M * M) i j = A.exactSquare.inf i j := by
+  have hlo : ∃ M ∈ A.toSet, (M * M) i j = A.exactSquare.inf i j := by
     by_cases hij : i = j
     · subst hij
       obtain ⟨a, ha1, ha2, ha⟩ := aux_sq_lo (hA i i)
@@ -224,7 +224,7 @@ theorem Interval.exactSquare_entry_exact (A : Interval (Mat ℝ n n))
       simp only [Interval.exactSquare, hij, if_false]
       exact congrArg _ (Finset.sum_congr rfl fun k _ => hde k)
   -- the greatest value is a value of the entry on the box
-  have hhi : ∃ M ∈ A.construct, (M * M) i j = A.exactSquare.sup i j := by
+  have hhi : ∃ M ∈ A.toSet, (M * M) i j = A.exactSquare.sup i j := by
     by_cases hij : i = j
     · subst hij
       obtain ⟨a, ha1, ha2, ha⟩ := aux_sq_hi (hA i i)
@@ -257,8 +257,8 @@ theorem Interval.exactSquare_entry_exact (A : Interval (Mat ℝ n n))
   have hcont : Continuous fun M : Mat ℝ n n => (M * M) i j := by
     simp only [Matrix.mul_apply]
     fun_prop
-  have hconn : IsPreconnected ((fun M : Mat ℝ n n => (M * M) i j) '' A.construct) :=
-    (Convex.isPreconnected (Interval.convex_construct A)).image _ hcont.continuousOn
+  have hconn : IsPreconnected ((fun M : Mat ℝ n n => (M * M) i j) '' A.toSet) :=
+    (Convex.isPreconnected (Interval.convex_toSet A)).image _ hcont.continuousOn
   refine Set.Subset.antisymm ?_ ?_
   · rintro _ ⟨M, hM, rfl⟩
     exact Interval.mem_mat_iff.mp (Interval.exactSquare_outer A hM) i j

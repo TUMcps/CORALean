@@ -4,7 +4,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapIntEq
 public import CORALean.ContSet.Zonotope.Real.Theorems.QuadMapOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 
 @[expose] public section
@@ -80,14 +80,14 @@ private theorem Zonotope.aux_quadMapInt_abs_quad_le {E S : Mat ℝ n n} {x a : V
 `quadint(H, Z)`. -/
 theorem Zonotope.quadMapInt_outer (Hc HΔ : Fin m → Mat ℝ n n) (Z : Zonotope (Vec ℝ n))
     {H : Fin m → Mat ℝ n n} (hH : ∀ i j k, |H i j k - Hc i j k| ≤ HΔ i j k)
-    {z : Vec ℝ n} (hz : z ∈ Z.construct) : -- --- CONCL ---
-    (fun i => z ⬝ᵥ (H i *ᵥ z)) ∈ (Z.quadMapInt Hc HΔ).construct := by -- --- PROOF ---
+    {z : Vec ℝ n} (hz : z ∈ Z.toSet) : -- --- CONCL ---
+    (fun i => z ⬝ᵥ (H i *ᵥ z)) ∈ (Z.quadMapInt Hc HΔ).toSet := by -- --- PROOF ---
   rw [Zonotope.quadMapInt_eq, ← Zonotope.plus_exact]
   -- the midpoint part, in `quad(Hc, Z)` by [1, Lemma 1]
   refine ⟨fun i => z ⬝ᵥ (Hc i *ᵥ z), Zonotope.quadMap_outer Hc Z ⟨z, hz, rfl⟩,
     fun i => z ⬝ᵥ ((H i - Hc i) *ᵥ z), Interval.zonotope_contains _ ?_, ?_⟩
   -- the rest, at most `|Z|ᵀHΔ⁽ⁱ⁾|Z|` in absolute value
-  · obtain ⟨β, hβ, hzβ⟩ := Zonotope.mem_construct_iff.mp hz
+  · obtain ⟨β, hβ, hzβ⟩ := Zonotope.mem_toSet_iff.mp hz
     intro i
     have hb := Zonotope.aux_quadMapInt_abs_quad_le (E := H i - Hc i) (S := HΔ i)
       (fun j k => by simpa using hH i j k) (Zonotope.abs_le_absBound hβ hzβ)

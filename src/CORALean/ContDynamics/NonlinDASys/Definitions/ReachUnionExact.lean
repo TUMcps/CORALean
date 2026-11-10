@@ -45,14 +45,14 @@ in `ode.U`, is at within that horizon. -/
 def NonlinDASys.WithSteps.reachUnionExact (sys : NonlinDASys.WithSteps S Rg m p n)
     (tFinal : ℝ) (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
   ⋃ t ∈ Set.Icc 0 tFinal, {z | ∃ (x : ℝ → Vec ℝ n) (y : ℝ → Vec ℝ p) (u : ℝ → Vec ℝ m),
-    sys.sys.IsTrajectory (S := 𝒮) (Set.Icc 0 tFinal) X (construct sys.ode.U)
+    sys.sys.IsTrajectory (S := 𝒮) (Set.Icc 0 tFinal) X (toSet sys.ode.U)
       x y u (fun t => sys.sys.h (x t) (y t) (u t)) ∧ x t = z}
 
 /-- The algebraic variable of such a trajectory, at some time of the horizon. -/
 def NonlinDASys.WithSteps.reachYUnionExact (sys : NonlinDASys.WithSteps S Rg m p n)
     (tFinal : ℝ) (X : Set (Vec ℝ n)) : Set (Vec ℝ p) :=
   ⋃ t ∈ Set.Icc 0 tFinal, {z | ∃ (x : ℝ → Vec ℝ n) (y : ℝ → Vec ℝ p) (u : ℝ → Vec ℝ m),
-    sys.sys.IsTrajectory (S := 𝒮) (Set.Icc 0 tFinal) X (construct sys.ode.U)
+    sys.sys.IsTrajectory (S := 𝒮) (Set.Icc 0 tFinal) X (toSet sys.ode.U)
       x y u (fun t => sys.sys.h (x t) (y t) (u t)) ∧ y t = z}
 
 end CORALean

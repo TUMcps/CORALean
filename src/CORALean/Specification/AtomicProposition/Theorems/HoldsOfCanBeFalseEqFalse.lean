@@ -43,7 +43,7 @@ variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem AtomicProposition.holds_of_canBeFalse_eq_false (ap : AtomicProposition S n) (s : S n)
-    (loc : ℕ) (h : ap.canBeFalse (𝕋 := 𝕋) s loc = false) {x : Vec ℝ n} (hx : x ∈ construct s) :
+    (loc : ℕ) (h : ap.canBeFalse (𝕋 := 𝕋) s loc = false) {x : Vec ℝ n} (hx : x ∈ toSet s) :
     ap.Holds x loc :=
   not_not.mp fun hh => by simp [AtomicProposition.canBeFalse_sound (𝕋 := 𝕋) ap s loc hx hh] at h
 

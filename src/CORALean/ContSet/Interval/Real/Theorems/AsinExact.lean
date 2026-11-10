@@ -48,7 +48,7 @@ variable {n : ℕ}
 
 theorem Interval.asin_exact (I : Interval (Vec ℝ n))
     (hI : ∀ i, (-1 ≤ I.inf i ∧ I.inf i ≤ 1) ∧ (-1 ≤ I.sup i ∧ I.sup i ≤ 1)) :
-    I.asin.construct = (fun x i => Real.arcsin (x i)) '' I.construct := by
+    I.asin.toSet = (fun x i => Real.arcsin (x i)) '' I.toSet := by
   exact Interval.monotoneImage_exact Real.arcsin (Set.Icc (-1) 1) Set.ordConnected_Icc
     (Real.strictMonoOn_arcsin) (Real.continuous_arcsin.continuousOn) I (hI)
 

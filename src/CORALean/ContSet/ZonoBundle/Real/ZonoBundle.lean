@@ -12,7 +12,7 @@ CORA's `zonoBundle` [1, Def. 4]: a finite family of zonotopes, denoting their *i
 two zonotopes generally do not form a zonotope; a bundle keeps it exact instead of enclosing it.
 `k = 0` denotes the empty intersection, `univ`, the whole space and not `∅` (unlike `VPolytope`'s
 zero vertices), which is why `CompactSet` cannot be an unconditional instance. A bundle is the
-general `SetIntersection` of its members (`toSetIntersection`, in CORA's order), and `construct` is
+general `SetIntersection` of its members (`toSetIntersection`, in CORA's order), and `toSet` is
 that intersection by definition, so what holds of every intersection is proved once there. The
 fields stay CORA's, `parallelSets` as `k` and the cell array `Z` as `Fin k → _`. Over any real
 module, as `Zonotope` is.
@@ -50,7 +50,7 @@ def ZonoBundle.toSetIntersection (zB : ZonoBundle α) : SetIntersection (Zonotop
   ⟨List.ofFn zB.Z⟩
 
 /-- What a bundle denotes: the intersection `SetIntersection` denotes, of its members. -/
-def ZonoBundle.construct (zB : ZonoBundle α) : Set α := ContSet.construct zB.toSetIntersection
+def ZonoBundle.toSet (zB : ZonoBundle α) : Set α := ContSet.toSet zB.toSetIntersection
 
 end CORALean.Real
 

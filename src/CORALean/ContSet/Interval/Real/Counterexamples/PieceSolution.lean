@@ -49,7 +49,7 @@ theorem Interval.piece_solution_counterexample : -- --- CONCL ---
     let b : Vec ℝ 2 := fun _ => 1
     ∑ x, (⟨0, b⟩ : Interval (Vec ℝ 2)).corner (fun i => decide ((i : ℕ) < 1)) x ≤ 3 / 2 ∧
       3 / 2 < ∑ x, (⟨0, b⟩ : Interval (Vec ℝ 2)).corner (fun i => decide ((i : ℕ) < 2)) x ∧
-      (⟨0, ![0, 1]⟩ : Interval (Vec ℝ 2)).construct ∩
+      (⟨0, ![0, 1]⟩ : Interval (Vec ℝ 2)).toSet ∩
         Interval.hyperplane 1 (3 / 2) = ∅ := by -- --- PROOF ---
   intro b
   refine ⟨?_, ?_, ?_⟩

@@ -42,7 +42,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.zonotope_contains (cZ : ConZonotope α) :
-    cZ.construct ⊆ cZ.zonotope.construct := by
+    cZ.toSet ⊆ cZ.zonotope.toSet := by
   rintro _ ⟨β, hβ, -, rfl⟩
   exact ⟨β, hβ, rfl⟩
 

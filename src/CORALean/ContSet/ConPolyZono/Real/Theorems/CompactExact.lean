@@ -43,7 +43,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- CORA's `compact`, and what an order bound would rest on: the set is
 unchanged by any of the three stages. -/
 theorem ConPolyZono.compact_exact (cPZ : ConPolyZono α) :
-    cPZ.construct = cPZ.compact.construct :=
+    cPZ.toSet = cPZ.compact.toSet :=
   (ConPolyZono.compactGens_exact cPZ).trans
     ((ConPolyZono.compactCons_exact cPZ.compactGens).trans
       (ConPolyZono.compactFactors_exact cPZ.compactGens.compactCons))

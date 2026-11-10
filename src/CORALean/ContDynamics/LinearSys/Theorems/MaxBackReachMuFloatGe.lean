@@ -111,7 +111,7 @@ theorem LinearSys.maxBackReachMu_le_muFloat (sys : LinearSys 𝕋 n) {Δt : 𝕋
   set EI := Interval.matPlus (sys.expIntervalFloat Δt Δt η)
     (Interval.point (negIdentityMat 𝕋 n)) with hEI
   -- `e^{AΔt} - I` lies in `[e^{AΔt}] - I`
-  have hneg : (-1 : Mat ℝ n n) ∈ (Interval.point (negIdentityMat 𝕋 n)).construct := by
+  have hneg : (-1 : Mat ℝ n n) ∈ (Interval.point (negIdentityMat 𝕋 n)).toSet := by
     have h := Interval.mem_point (α := Mat 𝕋 n n) (negIdentityMat 𝕋 n)
     have he : (RealImage.realImage (α := Mat 𝕋 n n) (negIdentityMat 𝕋 n) : Mat ℝ n n) = -1 := by
       funext i j
@@ -121,7 +121,7 @@ theorem LinearSys.maxBackReachMu_le_muFloat (sys : LinearSys 𝕋 n) {Δt : 𝕋
       · rw [if_pos hij, toReal_neg, toReal_one, hij]; simp
       · rw [if_neg hij, toReal_zero]; simp [Matrix.one_apply_ne hij]
     rwa [he] at h
-  have hM : exp (toReal Δt • Scalar.toRealMat sys.A) - 1 ∈ EI.construct := by
+  have hM : exp (toReal Δt • Scalar.toRealMat sys.A) - 1 ∈ EI.toSet := by
     have := Interval.matPlus_outer _ _ (sys.exp_mem_expIntervalFloat hη le_rfl le_rfl) hneg
     rwa [← sub_eq_add_neg] at this
   -- the entrywise magnitude bounds, of `e^{AΔt} - I`, of `G`, and of their product

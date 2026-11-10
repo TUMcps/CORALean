@@ -76,10 +76,10 @@ variable {n : ℕ}
 /-- With `S = capsule.empty n` CORA's `convHull_` returns no value, while the hull is `C`. -/
 theorem Capsule.convHull_empty_cora_crash (C : Capsule n) :
     C.convHullCora (Capsule.empty n) = none ∧
-      convexHull ℝ (C.construct ∪ (Capsule.empty n).construct) = C.construct := by
+      convexHull ℝ (C.toSet ∪ (Capsule.empty n).toSet) = C.toSet := by
   refine ⟨by simp [Capsule.convHullCora, Capsule.empty], ?_⟩
   rw [Capsule.empty_exact, Set.union_empty]
-  exact (Capsule.convex_construct C).convexHull_eq
+  exact (Capsule.convex_toSet C).convexHull_eq
 
 end CORALean.Real
 

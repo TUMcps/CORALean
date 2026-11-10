@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 theorem Zonotope.filterOut_covered (Zs : Fin m → Zonotope (Vec 𝕋 n)) (ind : Fin m)
     (hout : ind ∉ Zonotope.filterOut Zs) : -- --- CONCL ---
-    ∃ j, j ≠ ind ∧ (Zs ind).construct ⊆ (Zs j).construct := by -- --- PROOF ---
+    ∃ j, j ≠ ind ∧ (Zs ind).toSet ⊆ (Zs j).toSet := by -- --- PROOF ---
   -- unfold the filter: some other cell passes the containment certificate
   simp only [Zonotope.filterOut, Finset.mem_filter, Finset.mem_univ, true_and,
     List.all_eq_true, List.mem_finRange, forall_const, Bool.or_eq_true, decide_eq_true_eq,

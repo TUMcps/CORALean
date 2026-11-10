@@ -46,10 +46,10 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.hull_outer (zB : ZonoBundle α) (L : α →ₗ[ℝ] α) :
-    convexHull ℝ (zB.construct ∪ L '' zB.construct) ⊆
-      ⋂ i, convexHull ℝ ((zB.Z i).construct ∪ L '' (zB.Z i).construct) := by
+    convexHull ℝ (zB.toSet ∪ L '' zB.toSet) ⊆
+      ⋂ i, convexHull ℝ ((zB.Z i).toSet ∪ L '' (zB.Z i).toSet) := by
   refine Set.subset_iInter fun i => convexHull_mono ?_
-  have h : zB.construct ⊆ (zB.Z i).construct := SetIntersection.construct_subset_ofFn _ i
+  have h : zB.toSet ⊆ (zB.Z i).toSet := SetIntersection.toSet_subset_ofFn _ i
   exact Set.union_subset_union h (Set.image_mono h)
 
 end CORALean.Real

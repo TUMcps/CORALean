@@ -71,7 +71,7 @@ theorem GNN.evalSteps_mem_gcnSteps (R : Relaxation ℝ) (hR : R.Encloses invSqrt
     (H : PolyZonotope (Mat ℝ N F)) (aH : Fin H.p → ℝ) (haH : ∀ k, |aH k| ≤ 1) : -- --- CONCL ---
     GNN.evalSteps (GNN.messagePassing (GNN.adjAt A U lam)) (L + 1) W (H.point aH)
       ∈ (GNN.gcnSteps ((GNN.messagePassingEnclosure R A U).padBack H.p) (L + 1) W
-          (H.padFront (GNN.messagePassingEnclosure R A U).p) rfl).construct := by -- --- PROOF ---
+          (H.padFront (GNN.messagePassingEnclosure R A U).p) rfl).toSet := by -- --- PROOF ---
   -- the enclosure keeps nothing independent, so a member of it is a point of it
   obtain ⟨aP, haP, hP⟩ := PolyZonotope.exists_point_of_q_zero (GNN.messagePassingEnclosure R A U)
     rfl (GNN.messagePassing_mem_enclosure R hR A U hA lam hlam)

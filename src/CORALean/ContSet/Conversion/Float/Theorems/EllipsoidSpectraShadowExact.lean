@@ -76,14 +76,14 @@ private theorem Ellipsoid.aux_point_spectraShadow (E : Ellipsoid 𝕋 n) (β : V
 
 theorem Ellipsoid.spectraShadow_exact (E : Ellipsoid 𝕋 n)
     (hQ : (toRealMat E.Q).PosSemidef) : -- --- CONCL ---
-    E.construct = E.spectraShadow.construct := by -- --- PROOF ---
+    E.toSet = E.spectraShadow.toSet := by -- --- PROOF ---
   -- the box is carried over, so only the nominal parts are compared
-  show nominalSet E + (InflatedContSet.I_error E).construct = nominalSet E.spectraShadow +
-    (InflatedContSet.I_error E.spectraShadow).construct
+  show nominalSet E + (InflatedContSet.I_error E).toSet = nominalSet E.spectraShadow +
+    (InflatedContSet.I_error E.spectraShadow).toSet
   congr 1
   ext x
   rw [SpectraShadow.mem_nominalSet_iff]
-  change x ∈ (nominal E).ellipsoid.construct ↔ _
+  change x ∈ (nominal E).ellipsoid.toSet ↔ _
   rw [Ellipsoid.nominal_of_psd hQ]
   constructor
   · intro hx

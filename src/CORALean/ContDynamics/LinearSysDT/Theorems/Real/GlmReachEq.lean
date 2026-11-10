@@ -72,15 +72,15 @@ private theorem LinearSysDT.aux_glmReach_inv (sys : LinearSysDT 𝕋 n) (Ω₀ U
     let f := fun (s : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n)) =>
       (s.1.mtimes (toRealMat sys.A), s.2.1.plus s.2.2, s.2.2.mtimes (toRealMat sys.A))
     let s := f^[k] (Ω₀, Zonotope.ofPoint 0, U)
-    s.1.construct + s.2.1.construct = sys.reachSetExact (S := 𝒵) Ω₀ U k ∧
-      s.2.1.construct + s.2.2.construct
-        = mulVecLin (toRealMat sys.A) '' s.2.1.construct + U.construct := by -- --- PROOF ---
+    s.1.toSet + s.2.1.toSet = sys.reachSetExact (S := 𝒵) Ω₀ U k ∧
+      s.2.1.toSet + s.2.2.toSet
+        = mulVecLin (toRealMat sys.A) '' s.2.1.toSet + U.toSet := by -- --- PROOF ---
   intro f s
   set L := mulVecLin (toRealMat sys.A)
   -- a zonotope's image under `Φ` is its `mtimes`
-  have hmt : ∀ Z : Zonotope (Vec ℝ n), (Z.mtimes (toRealMat sys.A)).construct = L '' Z.construct :=
+  have hmt : ∀ Z : Zonotope (Vec ℝ n), (Z.mtimes (toRealMat sys.A)).toSet = L '' Z.toSet :=
     fun Z => (Zonotope.mtimes_exact _ Z).symm
-  have h0 : (Zonotope.ofPoint (0 : Vec ℝ n)).construct = {0} :=
+  have h0 : (Zonotope.ofPoint (0 : Vec ℝ n)).toSet = {0} :=
     Set.ext fun x => Zonotope.mem_ofPoint_iff 0 x
   induction k with
   | zero =>
@@ -95,7 +95,7 @@ private theorem LinearSysDT.aux_glmReach_inv (sys : LinearSysDT 𝕋 n) (Ω₀ U
     set t := f^[k] (Ω₀, Zonotope.ofPoint 0, U)
     constructor
     · -- `ΦXᵢ ⊕ (Sᵢ ⊕ Vᵢ) = ΦXᵢ ⊕ ΦSᵢ ⊕ U = Φ(Xᵢ ⊕ Sᵢ) ⊕ U`
-      show _ = L '' sys.reachSetExact (S := 𝒵) Ω₀ U k + ContSet.construct U
+      show _ = L '' sys.reachSetExact (S := 𝒵) Ω₀ U k + ContSet.toSet U
       rw [ih₂, ← ih₁, Set.image_add, add_assoc]
       rfl
     · -- `(Sᵢ ⊕ Vᵢ) ⊕ ΦVᵢ = ΦSᵢ ⊕ U ⊕ ΦVᵢ = Φ(Sᵢ ⊕ Vᵢ) ⊕ U`
@@ -107,7 +107,7 @@ private theorem LinearSysDT.aux_glmReach_inv (sys : LinearSysDT 𝕋 n) (Ω₀ U
 /-- [1, Alg. 1]: the sets returned are `Ω₁, …, Ω_N` of `Ω_{i+1} = ΦΩᵢ ⊕ U`. -/
 theorem LinearSysDT.glmReach_eq (sys : LinearSysDT 𝕋 n) (Ω₀ U : Zonotope (Vec ℝ n))
     (N : ℕ) : -- --- CONCL ---
-    (sys.glmReach Ω₀ U N).map Zonotope.construct
+    (sys.glmReach Ω₀ U N).map Zonotope.toSet
       = (List.range N).map fun i => sys.reachSetExact (S := 𝒵) Ω₀ U (i + 1) := by -- --- PROOF ---
   -- unroll the loop, then read each set off the invariant
   have h := LinearSysDT.aux_glmReach_foldl

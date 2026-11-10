@@ -56,7 +56,7 @@ variable {n : ℕ}
 /-- [1, Sec. 3]: `Z ∩ {x | x·n = γ} ≠ ∅` iff `γ` is within `∑ |gᵢ·n|` of `c·n`. -/
 theorem Zonotope.inter_hyperplane_iff (Z : Zonotope (Vec ℝ n)) (nv : Vec ℝ n)
     (γ : ℝ) : -- --- CONCL ---
-    (∃ x ∈ Z.construct, x ⬝ᵥ nv = γ) ↔
+    (∃ x ∈ Z.toSet, x ⬝ᵥ nv = γ) ↔
       Z.c ⬝ᵥ nv - ∑ i, |Z.G i ⬝ᵥ nv| ≤ γ ∧ γ ≤ Z.c ⬝ᵥ nv + ∑ i, |Z.G i ⬝ᵥ nv| := by -- --- PROOF ---
   constructor
   · rintro ⟨x, ⟨β, hβ, rfl⟩, rfl⟩

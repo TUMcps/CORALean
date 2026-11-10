@@ -74,13 +74,13 @@ private theorem PolyLevelSet.aux_eval_relax (P : PolyLevelSet n) (s : Vec ℝ P.
 `(A μ_R(x) - b)ᵢ + sᵢ yᵢ ⋈ᵢ 0`. -/
 theorem PolyLevelSet.mem_relax_iff (P : PolyLevelSet n) (s : Vec ℝ P.m)
     (D : Interval (Vec ℝ P.m)) (x : Vec ℝ (n + P.m)) : -- --- CONCL ---
-    x ∈ (P.relax s D).construct
-      ↔ ((fun k => x (Fin.castAdd P.m k)) ∈ P.dom.construct
-        ∧ (fun i => x (Fin.natAdd n i)) ∈ D.construct)
+    x ∈ (P.relax s D).toSet
+      ↔ ((fun k => x (Fin.castAdd P.m k)) ∈ P.dom.toSet
+        ∧ (fun i => x (Fin.natAdd n i)) ∈ D.toSet)
         ∧ ∀ i, (P.op i).holds
           (P.eval (fun k => x (Fin.castAdd P.m k)) i
             + s i * x (Fin.natAdd n i)) := by -- --- PROOF ---
-  show (x ∈ (P.dom.append D).construct ∧ ∀ i, (P.op i).holds ((P.relax s D).eval x i)) ↔ _
+  show (x ∈ (P.dom.append D).toSet ∧ ∀ i, (P.op i).holds ((P.relax s D).eval x i)) ↔ _
   rw [Interval.mem_append_iff]
   refine and_congr Iff.rfl (forall_congr' fun i => ?_)
   rw [PolyLevelSet.aux_eval_relax]

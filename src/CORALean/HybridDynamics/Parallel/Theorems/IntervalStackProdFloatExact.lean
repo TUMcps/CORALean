@@ -39,11 +39,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {k : ℕ} {n 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.stackProd_exact (bs : ∀ i, Interval (Vec 𝕋 (n i))) : -- --- CONCL ---
-    (Interval.stackProd bs).construct =
-      {z | ∀ i, unstack z i ∈ (bs i).construct} := by -- --- PROOF ---
+    (Interval.stackProd bs).toSet =
+      {z | ∀ i, unstack z i ∈ (bs i).toSet} := by -- --- PROOF ---
   have h : (Interval.stackProd bs).nominal =
       Real.Interval.stackProd (fun i => (bs i).nominal) := rfl
-  show (Interval.stackProd bs).nominal.construct = _
+  show (Interval.stackProd bs).nominal.toSet = _
   rw [h]
   exact Real.Interval.stackProd_exact (fun i => (bs i).nominal)
 

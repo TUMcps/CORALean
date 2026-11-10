@@ -36,7 +36,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.mem_ofPoint (v : α) : v ∈ (ConZonotope.ofPoint v).construct := by
+theorem ConZonotope.mem_ofPoint (v : α) : v ∈ (ConZonotope.ofPoint v).toSet := by
   refine ⟨Fin.elim0, fun j => j.elim0, ⟨fun i => i.elim0, fun i => i.elim0⟩, ?_⟩
   show v = v + ∑ j : Fin 0, Fin.elim0 j • Fin.elim0 j
   rw [Finset.univ_eq_empty, Finset.sum_empty, add_zero]

@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalZonotopeContains
 public import CORALean.ContSet.Zonotope.Real.Operations.Mspb
 public import CORALean.ContSet.Zonotope.Real.Theorems.Cloud2zonotopeMem
-public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructSubsetOfSignedSums
+public import CORALean.ContSet.Zonotope.Real.Theorems.ToSetSubsetOfSignedSums
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.MapExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
@@ -109,16 +109,16 @@ private theorem Zonotope.aux_corner_plus_map (A : Mat ℝ n n) (R V : Interval (
 theorem Zonotope.mspb_outer [NeZero m]
     (dir : (Fin m × (Fin n → Bool) × (Fin n → Bool) → Vec ℝ n) → Vec ℝ n)
     (L : Fin m → Mat ℝ n n × Interval (Vec ℝ n) × Interval (Vec ℝ n)) (l : Fin m)
-    {r v : Vec ℝ n} (hr : r ∈ (L l).2.1.construct) (hv : v ∈ (L l).2.2.construct) : -- --- CONCL ---
-    (L l).1 *ᵥ r + v ∈ (Zonotope.mspb dir L).construct := by -- --- PROOF ---
+    {r v : Vec ℝ n} (hr : r ∈ (L l).2.1.toSet) (hv : v ∈ (L l).2.2.toSet) : -- --- CONCL ---
+    (L l).1 *ᵥ r + v ∈ (Zonotope.mspb dir L).toSet := by -- --- PROOF ---
   -- the points enclosed, and that every candidate kept along the way encloses them
   set XP : Fin m × (Fin n → Bool) × (Fin n → Bool) → Vec ℝ n := fun (l, b, b') =>
     (L l).1 *ᵥ (fun i => if b i then (L l).2.1.sup i else (L l).2.1.inf i) +
       fun i => if b' i then (L l).2.2.sup i else (L l).2.2.inf i with hXP
-  have fold : ∀ (is : List ℕ) (M₀ : Zonotope (Vec ℝ n)), (∀ idx, XP idx ∈ M₀.construct) →
+  have fold : ∀ (is : List ℕ) (M₀ : Zonotope (Vec ℝ n)), (∀ idx, XP idx ∈ M₀.toSet) →
       ∀ idx, XP idx ∈ (is.foldl (fun M (k : ℕ) =>
         if (Zonotope.cloud2zonotope dir ((k : ℝ) / 10) n 0 XP).volume < M.volume then
-          Zonotope.cloud2zonotope dir ((k : ℝ) / 10) n 0 XP else M) M₀).construct := by
+          Zonotope.cloud2zonotope dir ((k : ℝ) / 10) n 0 XP else M) M₀).toSet := by
     intro is
     induction is with
     | nil => intro M₀ h; exact h
@@ -129,22 +129,22 @@ theorem Zonotope.mspb_outer [NeZero m]
       · exact ih _ (fun idx => Zonotope.cloud2zonotope_mem dir _ n 0 XP idx)
       · exact ih _ h
   -- the result holds every point of `P`: it is one of the candidates
-  have hall : ∀ idx, XP idx ∈ (Zonotope.mspb dir L).construct :=
+  have hall : ∀ idx, XP idx ∈ (Zonotope.mspb dir L).toSet :=
     fold _ _ (fun idx => Zonotope.cloud2zonotope_mem dir 0 n 0 XP idx)
   -- the zonotope of each solution domain has the points of `P` as its corners
   have hcorner : ∀ (l : Fin m) σ, ((((L l).2.1.zonotope.map (Matrix.mulVecLin (L l).1)).plus
-      (L l).2.2.zonotope)).corner σ ∈ (Zonotope.mspb dir L).construct := fun l σ => by
+      (L l).2.2.zonotope)).corner σ ∈ (Zonotope.mspb dir L).toSet := fun l σ => by
     rw [Zonotope.aux_corner_plus_map]
     exact hall (l, fun i => σ (Fin.castAdd n i), fun i => σ (Fin.natAdd n i))
   -- and, being convex, the zonotopes (Thm. 4); then the domain `A [r] + [v]` is one of them
-  have hsub := Zonotope.iUnion_construct_subset_of_signedSums_subset
+  have hsub := Zonotope.iUnion_toSet_subset_of_signedSums_subset
     (fun l => ((L l).2.1.zonotope.map (Matrix.mulVecLin (L l).1)).plus (L l).2.2.zonotope)
-    (Zonotope.convex_construct (Zonotope.mspb dir L)) (by
+    (Zonotope.convex_toSet (Zonotope.mspb dir L)) (by
       rintro x hx
       obtain ⟨l, y, ⟨σ, rfl⟩, rfl⟩ := Set.mem_iUnion.mp hx
       exact hcorner l σ)
   refine hsub (Set.mem_iUnion.mpr ⟨l, ?_⟩)
-  show _ ∈ (((L l).2.1.zonotope.map (Matrix.mulVecLin (L l).1)).plus (L l).2.2.zonotope).construct
+  show _ ∈ (((L l).2.1.zonotope.map (Matrix.mulVecLin (L l).1)).plus (L l).2.2.zonotope).toSet
   rw [← Zonotope.plus_exact]
   exact ⟨(L l).1 *ᵥ r,
     (Zonotope.map_exact (Matrix.mulVecLin (L l).1) _) ▸

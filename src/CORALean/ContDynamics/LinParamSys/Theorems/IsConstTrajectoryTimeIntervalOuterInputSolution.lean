@@ -80,13 +80,13 @@ theorem LinParamSys.IsCanonicalConstTrajectory.timeInterval_outer_inputSolution
     (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r)
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U))
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U))
     (hRconv : Convex ℝ (MatExp.intervalInputRemainderSet sys.A r (m + 2) U))
     (hRclosed : IsClosed (MatExp.intervalInputRemainderSet sys.A r (m + 2) U))
     (hRbdd : Bornology.IsBounded (MatExp.intervalInputRemainderSet sys.A r (m + 2) U))
-    (h0 : (0 : Vec ℝ n) ∈ construct U) :
-    x t ∈ construct (Plus.plus (sys.timeInterval r (m + 2) R₀)
+    (h0 : (0 : Vec ℝ n) ∈ toSet U) :
+    x t ∈ toSet (Plus.plus (sys.timeInterval r (m + 2) R₀)
       (sys.inputSolution r (m + 2) U)) :=
   traj.timeInterval_outer hr hT hε ht0 htr hbdd
     (traj.inputSolution_timeInterval_outer hr hT (m + 2) hε hconv hclosed hbdd

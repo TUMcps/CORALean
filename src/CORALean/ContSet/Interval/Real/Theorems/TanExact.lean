@@ -43,7 +43,7 @@ variable {n : ℕ}
 theorem Interval.tan_exact (I : Interval (Vec ℝ n))
     (hI : ∀ i, (-(Real.pi / 2) < I.inf i ∧ I.inf i < Real.pi / 2) ∧
       (-(Real.pi / 2) < I.sup i ∧ I.sup i < Real.pi / 2)) :
-    I.tan.construct = (fun x i => Real.tan (x i)) '' I.construct := by
+    I.tan.toSet = (fun x i => Real.tan (x i)) '' I.toSet := by
   exact Interval.monotoneImage_exact Real.tan (Set.Ioo (-(Real.pi / 2)) (Real.pi / 2))
     Set.ordConnected_Ioo Real.strictMonoOn_tan Real.continuousOn_tan_Ioo I hI
 

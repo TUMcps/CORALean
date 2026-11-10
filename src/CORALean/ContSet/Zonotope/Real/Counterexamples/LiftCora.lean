@@ -62,14 +62,14 @@ namespace CORALean.Real
 the lift `(3,1,2)`, in which state `i` of the set is state `proj i` of the result. -/
 theorem Zonotope.lift_cora_counterexample : -- --- CONCL ---
     ∃ (Z : Zonotope (Vec ℝ 3)) (proj : Fin 3 → Fin 3), Function.Bijective proj ∧
-      (Z.liftCora proj).construct ≠
-        {x : Vec ℝ 3 | ∃ y ∈ Z.construct, ∀ i, x (proj i) = y i} := by -- --- PROOF ---
+      (Z.liftCora proj).toSet ≠
+        {x : Vec ℝ 3 | ∃ y ∈ Z.toSet, ∀ i, x (proj i) = y i} := by -- --- PROOF ---
   let proj : Fin 3 → Fin 3 := ![1, 2, 0]
   let c : Vec ℝ 3 := fun i => (i.val : ℝ) + 1
   let Z : Zonotope (Vec ℝ 3) := ⟨0, c, Fin.elim0⟩
   refine ⟨Z, proj, by decide, fun h => ?_⟩
   let x : Vec ℝ 3 := ![3, 1, 2]
-  have hx : x ∈ {x : Vec ℝ 3 | ∃ y ∈ Z.construct, ∀ i, x (proj i) = y i} := by
+  have hx : x ∈ {x : Vec ℝ 3 | ∃ y ∈ Z.toSet, ∀ i, x (proj i) = y i} := by
     refine ⟨c, ⟨Fin.elim0, fun j => j.elim0, by simp [Z]⟩, fun i => ?_⟩
     fin_cases i <;> simp [x, proj, c]
     all_goals norm_num

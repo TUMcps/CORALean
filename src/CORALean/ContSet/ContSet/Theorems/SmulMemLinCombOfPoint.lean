@@ -45,7 +45,7 @@ variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α]
 alone: witness `1 - lam` in `Set.linComb`, then `linComb_outer`. -/
 theorem smul_mem_linComb_ofPoint [LinComb S α] [OfPoint S α] (v : α)
     {lam : ℝ} (hlam : lam ∈ Set.Icc (0:ℝ) 1) :
-    lam • v ∈ construct (LinComb.linComb (S := S)
+    lam • v ∈ toSet (LinComb.linComb (S := S)
       (OfPoint.ofPoint (0 : α)) (OfPoint.ofPoint v)) := by
   refine LinComb.linComb_outer _ _ ⟨0, OfPoint.mem_ofPoint 0, v, OfPoint.mem_ofPoint v,
     1 - lam, ⟨by linarith [hlam.2], by linarith [hlam.1]⟩, ?_⟩

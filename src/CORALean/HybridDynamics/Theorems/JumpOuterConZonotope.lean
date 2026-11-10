@@ -49,9 +49,9 @@ variable {L : Type} {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) 𝒞] {n : �
 
 /-- The guard intersection computed rather than assumed. -/
 theorem Transition.jump_outer_conZonotope (e : Transition 𝒞 L 𝕋 n)
-    {R : Real.ConZonotope (Vec ℝ n)} {z : Vec ℝ n} (hz : z ∈ construct R)
-    (hguard : z ∈ construct e.guard) :
-    e.reset z ∈ construct (e.jump (S := 𝒞) (R.intersection e.guard)) :=
+    {R : Real.ConZonotope (Vec ℝ n)} {z : Vec ℝ n} (hz : z ∈ toSet R)
+    (hguard : z ∈ toSet e.guard) :
+    e.reset z ∈ toSet (e.jump (S := 𝒞) (R.intersection e.guard)) :=
   e.jump_outer (Real.ConZonotope.intersection_exact R e.guard).subset hz hguard
 
 end CORALean

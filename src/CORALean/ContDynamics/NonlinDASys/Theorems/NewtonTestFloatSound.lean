@@ -56,9 +56,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {k : ℕ}
 /-- A passed test proves exactly one zero of `g` within `r` of `c`. -/
 theorem NonlinDASys.newtonTestFloat_sound (g : Vec ℝ k → Vec ℝ k)
     (G : Interval (Vec 𝕋 k) → Interval (Vec 𝕋 k)) (J : Interval (Vec 𝕋 k) → Interval (Mat 𝕋 k k))
-    (hG : ∀ X : Interval (Vec 𝕋 k), ∀ a ∈ X.construct, g a ∈ (G X).construct)
-    (hJ : ∀ X : Interval (Vec 𝕋 k), ∀ a ∈ X.construct, ∀ a' ∈ X.construct,
-      ∃ M ∈ (J X).construct, g a - g a' = M *ᵥ (a - a'))
+    (hG : ∀ X : Interval (Vec 𝕋 k), ∀ a ∈ X.toSet, g a ∈ (G X).toSet)
+    (hJ : ∀ X : Interval (Vec 𝕋 k), ∀ a ∈ X.toSet, ∀ a' ∈ X.toSet,
+      ∃ M ∈ (J X).toSet, g a - g a' = M *ᵥ (a - a'))
     (c : Vec 𝕋 k) (r : 𝕋) (h : NonlinDASys.newtonTestFloat G J c r = true) : -- --- CONCL ---
     ∃! z, z ∈ Metric.closedBall (toRealVec c) (toReal r) ∧ g z = 0 := by -- --- PROOF ---
   unfold NonlinDASys.newtonTestFloat at h
@@ -75,7 +75,7 @@ theorem NonlinDASys.newtonTestFloat_sound (g : Vec ℝ k → Vec ℝ k)
   set q : Vec 𝕋 k :=
     fun i => sumUp fun j => (Interval.matResidual E.inf E.sup I).magnitudeMat i j with hq
   -- the ball lies in the rounded box
-  have hball : ∀ a ∈ Metric.closedBall (toRealVec c) (toReal r), a ∈ B.construct := by
+  have hball : ∀ a ∈ Metric.closedBall (toRealVec c) (toReal r), a ∈ B.toSet := by
     intro a ha i
     have hai : |a i - toRealVec c i| ≤ toReal r := by
       rw [Metric.mem_closedBall, dist_eq_norm] at ha
@@ -91,10 +91,10 @@ theorem NonlinDASys.newtonTestFloat_sound (g : Vec ℝ k → Vec ℝ k)
     · show a i ≤ toReal (addUp (c i) r)
       unfold toRealVec at hai; linarith
   -- each slope's rows of `|1 - R J|` are below `q`
-  have hrow : ∀ M ∈ (J B).construct, ∀ i,
+  have hrow : ∀ M ∈ (J B).toSet, ∀ i,
       ∑ j, |(1 - toRealMat R * M) i j| ≤ toRealVec q i := by
     intro M hM i
-    have hE : toRealMat R * M ∈ E.construct :=
+    have hE : toRealMat R * M ∈ E.toSet :=
       Interval.matMul_outer _ _ (Interval.mem_point R) hM
     have hres := Interval.sub_mem_matResidual (stored := I) (Interval.mem_mat_iff.mp hE)
     refine le_trans (Finset.sum_le_sum fun j _ => ?_) (sum_le_sumUp _)

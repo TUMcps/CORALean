@@ -67,13 +67,13 @@ zonotope, `e^{Ar} X₀ ⊕ (∫₀^r e^{As} ds) U`, widened by `timePointStepInn
 `r > 0` and an admissible order. -/
 theorem LinearSys.timePointStepInputFloat_subset_add_innerErrorFloat (sys : LinearSys 𝕋 n)
     {r : 𝕋} (hr : 0 < toReal r) {η : ℕ} (hη : sys.IsOrderAdmissibleFloat r r η)
-    {X₀ U : Zonotope (Vec 𝕋 n)} (hX₀ : (0 : Vec ℝ n) ∈ X₀.I_error.construct)
-    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) : -- --- CONCL ---
-    (sys.timePointStepInputFloat r η X₀ U).construct
+    {X₀ U : Zonotope (Vec 𝕋 n)} (hX₀ : (0 : Vec ℝ n) ∈ X₀.I_error.toSet)
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.toSet) : -- --- CONCL ---
+    (sys.timePointStepInputFloat r η X₀ U).toSet
       ⊆ (sys.discretize (toReal r)).reachSetExact (S := 𝒵) (nominal X₀)
           (Real.Zonotope.mtimes (Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal r))
             (nominal U)) 1
-        + (sys.timePointStepInnerErrorFloat r η X₀ U).construct := by -- --- PROOF ---
+        + (sys.timePointStepInnerErrorFloat r η X₀ U).toSet := by -- --- PROOF ---
   set eA := sys.expIntervalFloat r r η
   have he := sys.exp_mem_expIntervalFloat hη (t := toReal r) le_rfl le_rfl
   intro x hx
@@ -83,13 +83,13 @@ theorem LinearSys.timePointStepInputFloat_subset_add_innerErrorFloat (sys : Line
   obtain ⟨a, ha, e₀, he₀, rfl⟩ := hy
   have he₀' : exp (toReal r • Scalar.toRealMat sys.A) *ᵥ e₀ ∈
     (Mtimes.mtimes (S := 𝒵[𝕋])
-      (𝕄 := ℐ[𝕋]) eA X₀.I_error.zonotope).construct :=
+      (𝕄 := ℐ[𝕋]) eA X₀.I_error.zonotope).toSet :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) eA _
       (Set.mem_biUnion he ⟨e₀, Interval.zonotope_contains _ he₀, rfl⟩)
   have hB : exp (toReal r • Scalar.toRealMat sys.A) *ᵥ e₀ + b + t
-      ∈ (sys.timePointStepInnerErrorFloat r η X₀ U).construct := by
-    show _ ∈ ContSet.construct
+      ∈ (sys.timePointStepInnerErrorFloat r η X₀ U).toSet := by
+    show _ ∈ ContSet.toSet
       ((Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eA
       X₀.I_error.zonotope ⊞ sys.timePointStepExcessFloat r η X₀ U) ⊞ sys.timePointStepErrorBoxFloat
           r η U)

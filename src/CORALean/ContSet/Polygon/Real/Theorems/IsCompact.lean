@@ -33,10 +33,10 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.isCompact_construct (P : Polygon) :
-    IsCompact (ContSet.construct P) := by
-  show IsCompact (⋃ s ∈ P.sets, ContSet.construct s)
-  exact (List.finite_toSet P.sets).isCompact_biUnion fun p _ => VPolytope.isCompact_construct p
+theorem Polygon.isCompact_toSet (P : Polygon) :
+    IsCompact (ContSet.toSet P) := by
+  show IsCompact (⋃ s ∈ P.sets, ContSet.toSet s)
+  exact (List.finite_toSet P.sets).isCompact_biUnion fun p _ => VPolytope.isCompact_toSet p
 
 end CORALean.Real
 

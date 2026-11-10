@@ -10,7 +10,7 @@ public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
 The `2 (h + 1)` corners of a zonotope along a generator order, CORA's walk of `zonotope/polygon`
 in two dimensions: `c - Σ g + 2 Σ_{j<k} g` for `k = 0 … h` and the same mirrored through the
 center. For generators in one half-plane, sorted by angle, these are the vertices of the
-zonotope (`Zonotope.construct_subset_walk`); for any order they are corners.
+zonotope (`Zonotope.toSet_subset_walk`); for any order they are corners.
 
 ## Inputs
 * `Z` – zonotope

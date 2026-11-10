@@ -96,7 +96,7 @@ theorem LinProbSys.IsTrajectory.initReach_tp_prob (sys : LinProbSys n m) (Veig :
     (hT : Set.Icc 0 r ⊆ T) : -- --- CONCL ---
     (gaussianReal 0 1 (Set.Icc (-gamma) gamma)) ^ n
       ≤ P {ω | x r ω ∈ (sys.initReach Veig lambda Rinit gammaInit U uTrans r η gamma
-          originContained).1.Z.construct} := by -- --- PROOF ---
+          originContained).1.Z.toSet} := by -- --- PROOF ---
   set A := sys.A with hAdef
   set v := sys.B *ᵥ uTrans with hv
   set Rtrans := (A⁻¹ * (exp (r • A) - 1)) *ᵥ v with hRtrans
@@ -107,17 +107,17 @@ theorem LinProbSys.IsTrajectory.initReach_tp_prob (sys : LinProbSys n m) (Veig :
     ((inputSolV.plus (Zonotope.ofPoint Rtrans)).plus (Zonotope.ofPoint 0)) with hZm
   -- the mean of the run is one of them
   have hmean : exp (r • A) *ᵥ x₀ + ∫ s in (0:ℝ)..r, exp ((r - s) • A) *ᵥ (sys.B *ᵥ u s)
-      ∈ Zm.construct := by
+      ∈ Zm.toSet := by
     obtain ⟨w, hw, heq⟩ := traj.mean_eq_add_inputReach hr.le hT
     rw [heq]
-    have h1 : exp (r • A) *ᵥ x₀ ∈ (Zonotope.mtimes (exp (r • A)) Rinit.Z).construct := by
+    have h1 : exp (r • A) *ᵥ x₀ ∈ (Zonotope.mtimes (exp (r • A)) Rinit.Z).toSet := by
       rw [← Zonotope.mtimes_exact]
       exact Set.mem_image_of_mem _ traj.init
-    have hw' : w ∈ inputSolV.construct :=
+    have hw' : w ∈ inputSolV.toSet :=
       LinearSys.inputReach_subset_inputSolution (S := 𝒵) (LinearSys.canonical A) hr η
-      hε (Zonotope.convex_construct _) (Zonotope.isClosed_construct _)
-      (Zonotope.isCompact_construct _).isBounded (Zonotope.convex_construct _)
-      (Zonotope.isClosed_construct _) (Zonotope.isCompact_construct _).isBounded hw
+      hε (Zonotope.convex_toSet _) (Zonotope.isClosed_toSet _)
+      (Zonotope.isCompact_toSet _).isBounded (Zonotope.convex_toSet _)
+      (Zonotope.isClosed_toSet _) (Zonotope.isCompact_toSet _).isBounded hw
     -- `w + Rtrans + 0` in `Rinput`, `eAt x₀` beside it
     have h5 := Set.add_mem_add (Set.add_mem_add hw' (Zonotope.mem_ofPoint Rtrans))
       (Zonotope.mem_ofPoint (0 : Vec ℝ n))
@@ -132,9 +132,9 @@ theorem LinProbSys.IsTrajectory.initReach_tp_prob (sys : LinProbSys n m) (Veig :
     rw [hsum]
     exact hall
   -- the confidence set of `(Zm, Σ_s(r))` is the time-point set
-  have hsub : ((⟨Zm, noiseCovariance A sys.C r⟩ : ProbZonotope n).zonotope gamma).construct
+  have hsub : ((⟨Zm, noiseCovariance A sys.C r⟩ : ProbZonotope n).zonotope gamma).toSet
       ⊆ (sys.initReach Veig lambda Rinit gammaInit U uTrans r η gamma
-          originContained).1.Z.construct := by
+          originContained).1.Z.toSet := by
     have hcov : (0 : Mat ℝ n n) + LinProbSys.inputCov Veig lambda sys.C r
         = noiseCovariance A sys.C r := by
       rw [zero_add, LinProbSys.inputCov_eq_noiseCovariance A Veig lambda hV hAV]

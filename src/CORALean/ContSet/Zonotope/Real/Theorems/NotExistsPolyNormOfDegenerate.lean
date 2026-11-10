@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import Mathlib.Topology.Instances.Matrix
@@ -55,13 +55,13 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.not_exists_polyNorm_of_degenerate (Z : Zonotope (Vec ℝ n)) (hc : Z.c = 0)
-    (hdeg : interior Z.construct = ∅) : -- --- CONCL ---
+    (hdeg : interior Z.toSet = ∅) : -- --- CONCL ---
     ¬ ∃ (s : ℕ) (H : Mat ℝ s n) (h : Vec ℝ s), (∀ i, h i ≠ 0) ∧
-      (HPolytope.ineqs H h).construct = Z.construct := by -- --- PROOF ---
+      (HPolytope.ineqs H h).toSet = Z.toSet := by -- --- PROOF ---
   rintro ⟨s, H, h, hne, hrep⟩
   -- `0 ∈ Z` makes every right-hand side positive
-  have h0 : (0 : Vec ℝ n) ∈ (HPolytope.ineqs H h).construct := by
-    rw [hrep, ← hc]; exact Z.center_mem_construct
+  have h0 : (0 : Vec ℝ n) ∈ (HPolytope.ineqs H h).toSet := by
+    rw [hrep, ← hc]; exact Z.center_mem_toSet
   have hpos : ∀ i, 0 < h i := fun i => by
     have := HPolytope.mem_ineqs_iff.mp h0 i
     simp only [mulVec_zero, Pi.zero_apply] at this
@@ -72,7 +72,7 @@ theorem Zonotope.not_exists_polyNorm_of_degenerate (Z : Zonotope (Vec ℝ n)) (h
     exact isOpen_iInter_of_finite fun i => isOpen_lt
       ((continuous_apply i).comp (Continuous.matrix_mulVec continuous_const continuous_id))
       continuous_const
-  have hsub : {x : Vec ℝ n | ∀ i, (H *ᵥ x) i < h i} ⊆ Z.construct := fun x hx => by
+  have hsub : {x : Vec ℝ n | ∀ i, (H *ᵥ x) i < h i} ⊆ Z.toSet := fun x hx => by
     rw [← hrep]; exact HPolytope.mem_ineqs_iff.mpr fun i => (hx i).le
   have := interior_maximal hsub hopen (show (0 : Vec ℝ n) ∈ _ from fun i => by simpa using hpos i)
   rw [hdeg] at this

@@ -41,10 +41,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `absorbRounding` contains the set. -/
 theorem SpectraShadow.absorbRounding_outer (S : SpectraShadow 𝕋 (Vec 𝕋 n)) :
-    S.construct ⊆ S.absorbRounding.construct :=
-  (S.absorbRounding_nominal).trans (nominalSet_subset_construct
+    S.toSet ⊆ S.absorbRounding.toSet :=
+  (S.absorbRounding_nominal).trans (nominalSet_subset_toSet
     (by
-      show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).construct
+      show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).toSet
       rw [Interval.origin_exact]
       exact Set.mem_singleton _))
 

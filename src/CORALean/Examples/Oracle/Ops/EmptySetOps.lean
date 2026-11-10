@@ -15,8 +15,8 @@ import CORALean.ContSet.HPolytope.Float.Operations.EmptySet
 import CORALean.ContSet.Interval.Float.Operations.Basic
 import CORALean.ContSet.EmptySet.Real.Operations.SupportFunc
 import CORALean.ContSet.EmptySet.Real.Operations.Vertices
-import CORALean.ContSet.EmptySet.Real.Theorems.ConstructNeSingleton
-import CORALean.ContSet.EmptySet.Real.Theorems.ConstructNeUniv
+import CORALean.ContSet.EmptySet.Real.Theorems.ToSetNeSingleton
+import CORALean.ContSet.EmptySet.Real.Theorems.ToSetNeUniv
 import CORALean.Examples.Oracle.Ops.IntervalOps
 import CORALean.Examples.Oracle.Ops.SetCodec
 
@@ -181,9 +181,9 @@ def handleEmptySetOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option 
       let E : EmptySet n := EmptySet.empty n
       match ← strField req "type" with
       | "emptySet" => valueBool true
-      | "point" => have _ := EmptySet.construct_ne_singleton E; valueBool false
-      | "origin" => have _ := EmptySet.construct_ne_singleton E; valueBool false
-      | "fullspace" => have _ := EmptySet.construct_ne_univ E; valueBool false
+      | "point" => have _ := EmptySet.toSet_ne_singleton E; valueBool false
+      | "origin" => have _ := EmptySet.toSet_ne_singleton E; valueBool false
+      | "fullspace" => have _ := EmptySet.toSet_ne_univ E; valueBool false
       | t => throw s!"representsa: `type` must be emptySet, point, origin or fullspace, not `{t}`")
   | "radius" => some (do
       checkFields op req ["n"]

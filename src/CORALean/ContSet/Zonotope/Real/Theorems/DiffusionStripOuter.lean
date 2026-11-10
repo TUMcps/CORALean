@@ -71,9 +71,9 @@ variable {n nq : ℕ}
 
 /-- The time update of the diffusion observers encloses the next state. -/
 private theorem Zonotope.aux_diffusionTimeUpdate_outer (F : Mat ℝ n n) (Q : Mat ℝ n nq)
-    (Zt : Zonotope (Vec ℝ n)) (x : Vec ℝ n) (hx : x ∈ Zt.construct) (β : Vec ℝ nq)
+    (Zt : Zonotope (Vec ℝ n)) (x : Vec ℝ n) (hx : x ∈ Zt.toSet) (β : Vec ℝ nq)
     (hβ : ∀ j, |β j| ≤ 1) : -- --- CONCL ---
-    F *ᵥ x + Q *ᵥ β ∈ (Zonotope.diffusionTimeUpdate F Q Zt).construct := by -- --- PROOF ---
+    F *ᵥ x + Q *ᵥ β ∈ (Zonotope.diffusionTimeUpdate F Q Zt).toSet := by -- --- PROOF ---
   obtain ⟨α, hα, rfl⟩ := hx
   have hcol : ∀ {k : ℕ} (M : Mat ℝ n k) (v : Vec ℝ k), ∑ j, v j • (fun i => M i j) = M *ᵥ v :=
     fun M v => by ext i; simp [Matrix.mulVec, dotProduct, mul_comm]
@@ -97,12 +97,12 @@ private theorem Zonotope.aux_diffusionStripStep_outer [∀ i, NeZero (m i)] (F :
     (Q : Mat ℝ n nq)
     (Γ : ∀ i, Mat ℝ (p i) n) (r yb : ∀ i, Vec ℝ (p i)) (nb : ∀ i, Fin (m i) → Fin N) (o : ℕ)
     (Zh : Fin N → Zonotope (Vec ℝ n)) (x : Vec ℝ n) (β : Vec ℝ nq) (hβ : ∀ j, |β j| ≤ 1)
-    (hx : ∀ i, x ∈ (Zh i).construct) (hy : ∀ i j, |(Γ i *ᵥ x - yb i) j| ≤ r i j)
+    (hx : ∀ i, x ∈ (Zh i).toSet) (hy : ∀ i j, |(Γ i *ᵥ x - yb i) j| ≤ r i j)
     (hα : ∀ i a, 0 < ∑ s, ∑ l,
       ((Zonotope.diffusionStripMeasurement Γ r yb Zh (nb i a)).G l s) ^ 2) (i : Fin N)
     : -- --- CONCL ---
     F *ᵥ x + Q *ᵥ β ∈
-      (Zonotope.diffusionStripStep F Q Γ r yb nb o Zh i).construct := by -- --- PROOF ---
+      (Zonotope.diffusionStripStep F Q Γ r yb nb o Zh i).toSet := by -- --- PROOF ---
   unfold Zonotope.diffusionStripStep
   refine Zonotope.aux_diffusionTimeUpdate_outer F Q _ x ?_ β hβ
   refine Zonotope.diffusionUpdate_outer o _ (hα i) (Set.mem_iInter.mpr fun a => ?_)
@@ -116,13 +116,13 @@ private theorem Zonotope.aux_diffusionStripStep_outer [∀ i, NeZero (m i)] (F :
 theorem Zonotope.diffusionStrip_outer [∀ i, NeZero (m i)] (F : Mat ℝ n n) (Q : ℕ → Mat ℝ n nq)
     (Γ : ∀ i, Mat ℝ (p i) n) (r yb : ℕ → ∀ i, Vec ℝ (p i)) (nb : ∀ i, Fin (m i) → Fin N) (o : ℕ)
     (Z₀ : Zonotope (Vec ℝ n)) (x : ℕ → Vec ℝ n) (β : ℕ → Vec ℝ nq)
-    (hβ : ∀ k j, |β k j| ≤ 1) (h0 : x 0 ∈ Z₀.construct)
+    (hβ : ∀ k j, |β k j| ≤ 1) (h0 : x 0 ∈ Z₀.toSet)
     (hxs : ∀ k, x (k + 1) = F *ᵥ x k + Q k *ᵥ β k)
     (hy : ∀ k i j, |(Γ i *ᵥ x k - yb k i) j| ≤ r k i j)
     (hα : ∀ k i a, 0 < ∑ s, ∑ l, ((Zonotope.diffusionStripMeasurement Γ (r k) (yb k)
       (Zonotope.diffusionStrip F Q Γ r yb nb o Z₀ k) (nb i a)).G l s) ^ 2) (k : ℕ) (i : Fin N)
     : -- --- CONCL ---
-    x k ∈ (Zonotope.diffusionStrip F Q Γ r yb nb o Z₀ k i).construct := by -- --- PROOF ---
+    x k ∈ (Zonotope.diffusionStrip F Q Γ r yb nb o Z₀ k i).toSet := by -- --- PROOF ---
   induction k generalizing i with
   | zero => exact h0
   | succ k ih =>

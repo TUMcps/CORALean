@@ -49,10 +49,10 @@ variable {n : ℕ}
 
 theorem Zonotope.zonotopeNorm_ball_eq (Z : Zonotope (Vec ℝ n))
     (hG : Function.Surjective Z.genMap) : -- --- CONCL ---
-    {x | Z.zonotopeNorm (x - Z.c) ≤ 1} = Z.construct ∧
-      {x | Z.zonotopeNorm (x - Z.c) = 1} = frontier Z.construct := by -- --- PROOF ---
+    {x | Z.zonotopeNorm (x - Z.c) ≤ 1} = Z.toSet ∧
+      {x | Z.zonotopeNorm (x - Z.c) = 1} = frontier Z.toSet := by -- --- PROOF ---
   -- `x ∈ Z` iff some `γ` with `‖γ‖∞ ≤ 1` reaches `x - c`
-  have hball : {x | Z.zonotopeNorm (x - Z.c) ≤ 1} = Z.construct := by
+  have hball : {x | Z.zonotopeNorm (x - Z.c) ≤ 1} = Z.toSet := by
     ext x
     simp only [Set.mem_setOf_eq, Zonotope.zonotopeNorm, coeffNorm_le_iff _ (hG (x - Z.c))]
     constructor
@@ -68,7 +68,7 @@ theorem Zonotope.zonotopeNorm_ball_eq (Z : Zonotope (Vec ℝ n))
   have hcont : Continuous fun x => Z.zonotopeNorm (x - Z.c) :=
     hK.continuous.comp (continuous_id.sub continuous_const)
   -- the interior is `{ν < 1}`
-  have hint : interior Z.construct = {x | Z.zonotopeNorm (x - Z.c) < 1} := by
+  have hint : interior Z.toSet = {x | Z.zonotopeNorm (x - Z.c) < 1} := by
     apply Set.Subset.antisymm
     · intro x hx
       have hle : Z.zonotopeNorm (x - Z.c) ≤ 1 := by
@@ -83,7 +83,7 @@ theorem Zonotope.zonotopeNorm_ball_eq (Z : Zonotope (Vec ℝ n))
       -- `y = x + δ (x - c)` is close to `x` and has `ν(y - c) = 1 + δ`
       set δ := ε / (2 * ‖x - Z.c‖) with hδ
       have hδ0 : 0 < δ := by positivity
-      have hy : x + δ • (x - Z.c) ∈ Z.construct := by
+      have hy : x + δ • (x - Z.c) ∈ Z.toSet := by
         refine interior_subset (hεx ?_)
         rw [Metric.mem_ball, dist_eq_norm, add_sub_cancel_left, norm_smul, Real.norm_eq_abs,
           abs_of_pos hδ0, hδ]
@@ -104,7 +104,7 @@ theorem Zonotope.zonotopeNorm_ball_eq (Z : Zonotope (Vec ℝ n))
       intro x hx
       rw [← hball]
       exact le_of_lt (Set.mem_setOf_eq ▸ hx)
-  have hclosed : IsClosed Z.construct := by
+  have hclosed : IsClosed Z.toSet := by
     rw [← hball]; exact isClosed_le hcont continuous_const
   rw [hclosed.frontier_eq, hint, ← hball]
   ext x

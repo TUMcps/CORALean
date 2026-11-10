@@ -71,8 +71,8 @@ theorem LinParamSys.IsCanonicalConstTrajectory.discretizeEnclosureFloat
     {sys : LinParamSys ℐ[𝕋] n} {T : Set ℝ}
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n} {Δt : 𝕋} {η : ℕ}
     (traj : sys.IsCanonicalConstTrajectory T R₀ U x u A) (hΔt : 0 ≤ toReal Δt) (hT : Set.Ici 0 ⊆ T)
-    (hU : Bornology.IsBounded (construct U))
-    (hUd : ∀ k : ℕ, (LinearSys.canonical A : LinearSys ℝ n).stepInput u (toReal Δt) k ∈ construct
+    (hU : Bornology.IsBounded (toSet U))
+    (hUd : ∀ k : ℕ, (LinearSys.canonical A : LinearSys ℝ n).stepInput u (toReal Δt) k ∈ toSet
         Ud)
     (hη : sys.IsOrderAdmissibleFloat Δt Δt η) :
     (sys.discretizeEnclosureFloat Δt η).IsCanonicalTrajectory R₀ Ud

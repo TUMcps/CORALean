@@ -35,7 +35,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- `conZonotope/representsa_` at `origin`. -/
 def ConZonotope.representsa_origin (cZ : ConZonotope α) : Prop :=
-  ∃ β₀ ∈ cZ.domain.construct, cZ.c + ∑ j, β₀ j • cZ.G j = 0 ∧ ∀ β ∈ cZ.domain.construct,
+  ∃ β₀ ∈ cZ.domain.toSet, cZ.c + ∑ j, β₀ j • cZ.G j = 0 ∧ ∀ β ∈ cZ.domain.toSet,
     ∑ j, β j • cZ.G j = ∑ j, β₀ j • cZ.G j
 
 end CORALean.Real

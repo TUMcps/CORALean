@@ -62,9 +62,9 @@ variable {n : ℕ}
 
 /-- A mean plus the covariance's square root applied to a cube lies in the confidence set. -/
 private theorem ProbZonotope.aux_add_sqrt_mulVec_mem_zonotope (P : ProbZonotope n) {μ : Vec ℝ n}
-    (hμ : μ ∈ P.Z.construct) {m : ℝ} (hm : 0 < m) {β : Vec ℝ n}
+    (hμ : μ ∈ P.Z.toSet) {m : ℝ} (hm : 0 < m) {β : Vec ℝ n}
     (hβ : ∀ j, |β j| ≤ m) : -- --- CONCL ---
-    μ + CFC.sqrt P.cov *ᵥ β ∈ (P.zonotope m).construct := by -- --- PROOF ---
+    μ + CFC.sqrt P.cov *ᵥ β ∈ (P.zonotope m).toSet := by -- --- PROOF ---
   rw [ProbZonotope.zonotope, ← Zonotope.plus_exact]
   refine Set.add_mem_add hμ ⟨fun j => β j / m, fun j => ?_, ?_⟩
   · rw [abs_div, abs_of_pos hm, div_le_one hm]
@@ -79,9 +79,9 @@ private theorem ProbZonotope.aux_add_sqrt_mulVec_mem_zonotope (P : ProbZonotope 
 
 /-- The open `m`-sigma ellipsoid around a mean lies in the confidence set. -/
 private theorem ProbZonotope.aux_mem_zonotope_of_quad_lt (P : ProbZonotope n) (hP : P.cov.PosDef)
-    {μ : Vec ℝ n} (hμ : μ ∈ P.Z.construct) {m : ℝ} (hm : 0 ≤ m) {y : Vec ℝ n}
+    {μ : Vec ℝ n} (hμ : μ ∈ P.Z.toSet) {m : ℝ} (hm : 0 ≤ m) {y : Vec ℝ n}
     (hy : (y - μ) ⬝ᵥ P.cov⁻¹ *ᵥ (y - μ) < m ^ 2) : -- --- CONCL ---
-    y ∈ (P.zonotope m).construct := by -- --- PROOF ---
+    y ∈ (P.zonotope m).toSet := by -- --- PROOF ---
   -- the symmetric square root `B` of the covariance, invertible
   set B := CFC.sqrt P.cov with hBdef
   have hBB : B * B = P.cov := CFC.sqrt_mul_sqrt_self P.cov hP.posSemidef.nonneg
@@ -181,12 +181,12 @@ end
 
 
 private theorem aux_measurableSet_image_zonotope (P : ProbZonotope n) (m : ℝ) :
-    MeasurableSet (toLp 2 '' (P.zonotope m).construct : Set (EuclideanSpace ℝ (Fin n))) :=
-  (((P.zonotope m).isCompact_construct.image (PiLp.continuous_toLp 2 _)).isClosed).measurableSet
+    MeasurableSet (toLp 2 '' (P.zonotope m).toSet : Set (EuclideanSpace ℝ (Fin n))) :=
+  (((P.zonotope m).isCompact_toSet.image (PiLp.continuous_toLp 2 _)).isClosed).measurableSet
 
 private theorem aux_volume_image_zonotope_lt_top (P : ProbZonotope n) (m : ℝ) :
-    volume (toLp 2 '' (P.zonotope m).construct : Set (EuclideanSpace ℝ (Fin n))) < ⊤ :=
-  ((P.zonotope m).isCompact_construct.image (PiLp.continuous_toLp 2 _)).measure_lt_top
+    volume (toLp 2 '' (P.zonotope m).toSet : Set (EuclideanSpace ℝ (Fin n))) < ⊤ :=
+  ((P.zonotope m).isCompact_toSet.image (PiLp.continuous_toLp 2 _)).measure_lt_top
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -216,7 +216,7 @@ theorem ProbZonotope.pyramid_outer (P : ProbZonotope n) (hP : P.cov.PosDef) {k :
   -- the layers
   set L := P.pyramidLevels mArray with hL
   set Z : Fin k → Set (EuclideanSpace ℝ (Fin n)) :=
-    fun i => toLp 2 '' (P.zonotope (mArray i)).construct with hZ
+    fun i => toLp 2 '' (P.zonotope (mArray i)).toSet with hZ
   have hLc : ∀ i : Fin k, L i.castSucc = P.max (mArray i) := fun i => by
     simp [hL, ProbZonotope.pyramidLevels]
   have hLl : L (Fin.last k) = P.max 0 := by simp [hL, ProbZonotope.pyramidLevels]

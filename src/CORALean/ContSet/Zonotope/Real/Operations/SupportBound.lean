@@ -40,7 +40,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- No linear program: each generator's coefficient reaches at most
 `|c (Z.G j)|`, independently of the others, so the sum bounds the whole. -/
 def Zonotope.supportBound (Z : Zonotope α) (c : α →ₗ[ℝ] ℝ) :
-    SupportBound Z.construct c where
+    SupportBound Z.toSet c where
   val := c Z.c + ∑ j, |c (Z.G j)|
   le := by
     rintro _ ⟨β, hβ, rfl⟩

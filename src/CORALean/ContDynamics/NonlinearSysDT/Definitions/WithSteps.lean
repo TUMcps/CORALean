@@ -40,7 +40,7 @@ structure NonlinearSysDT.WithSteps (S Rg : ℕ → Type) [∀ n, ContSet (S n) (
   U : S m
   steps : ℕ → sys.LinStep 𝕋 U
   region : ℕ → Rg n
-  region_subset (i : ℕ) : construct (region i) ⊆ (steps i).R
+  region_subset (i : ℕ) : toSet (region i) ⊆ (steps i).R
 
 end CORALean
 

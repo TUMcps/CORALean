@@ -47,9 +47,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.intersects_of_intersects (zB : ZonoBundle α) (S : Set α)
-    (h : (zB.construct ∩ S).Nonempty) (i : Fin zB.k) :
-    ((zB.Z i).construct ∩ S).Nonempty :=
-  h.mono (Set.inter_subset_inter_left _ (SetIntersection.construct_subset_ofFn _ i))
+    (h : (zB.toSet ∩ S).Nonempty) (i : Fin zB.k) :
+    ((zB.Z i).toSet ∩ S).Nonempty :=
+  h.mono (Set.inter_subset_inter_left _ (SetIntersection.toSet_subset_ofFn _ i))
 
 
 end CORALean.Real

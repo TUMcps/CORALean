@@ -49,7 +49,7 @@ theorem GridPartition.exactIntersectingCells_support (P : GridPartition n) (X : 
     (h : (P.exactIntersectingCells X).iProp.getD s 0 ≠ 0) : -- --- CONCL ---
     s ∈ P.intersectingCellsOf X
       := by -- --- PROOF ---
-  by_cases hpos : 0 < GridPartition.volumeOf (construct X)
+  by_cases hpos : 0 < GridPartition.volumeOf (toSet X)
   · have hex := (GridPartition.exactIntersectingCells_exact P X hn hpos).2
     rw [hex] at h
     obtain ⟨t, rfl⟩ : ∃ t, s = t + 1 := ⟨s - 1, by omega⟩
@@ -58,9 +58,9 @@ theorem GridPartition.exactIntersectingCells_support (P : GridPartition n) (X : 
     simp only [List.getD_eq_getElem?_getD, List.getElem?_map, List.getElem?_range', ht,
       Option.map_some, Option.getD_some, one_mul] at h
     -- the entry is a volume share, so the volume is nonzero
-    have hv : P.cellVolume (construct X) (1 + t) ≠ 0 := by
+    have hv : P.cellVolume (toSet X) (1 + t) ≠ 0 := by
       intro h0; apply h; rw [h0, zero_div]
-    have hvpos : 0 < P.cellVolume (construct X) (1 + t) :=
+    have hvpos : 0 < P.cellVolume (toSet X) (1 + t) :=
       lt_of_le_of_ne ENNReal.toReal_nonneg (Ne.symm hv)
     have := GridPartition.mem_intersectingCells_of_cellVolume_pos P _ hn
       (Real.IntervalOuter.interval_outer X) (c := 1 + t) (by omega) (by omega) hvpos

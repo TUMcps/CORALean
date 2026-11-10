@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 /-- `and_(E, p)` for a point `p`: the point as an ellipsoid if `E` contains it, else `∅`. -/
 noncomputable def Ellipsoid.andPoint (E : Ellipsoid n) (p : Vec ℝ n) : OptEmpty (Ellipsoid n) :=
-  if p ∈ E.construct then .of (Ellipsoid.ofPoint p) else .empty
+  if p ∈ E.toSet then .of (Ellipsoid.ofPoint p) else .empty
 
 end CORALean.Real
 

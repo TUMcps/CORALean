@@ -79,19 +79,19 @@ theorem LinParamSys.dependentHomSol_outer (sys : LinParamSys 𝕄𝒵 n) {r : �
     {m : ℕ} (hε : ‖(Interval.smul r sys.A.interval).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     (Rinit : Zonotope (Vec ℝ n)) (Uc : Vec ℝ n) (UG : Fin sys.A.h → Vec ℝ n)
     {p : Fin sys.A.h → ℝ} (hp : ∀ i, |p i| ≤ 1) {x₀ : Vec ℝ n}
-    (hx₀ : x₀ ∈ construct Rinit) : -- --- CONCL ---
+    (hx₀ : x₀ ∈ toSet Rinit) : -- --- CONCL ---
     let A := sys.A.c + ∑ i, p i • sys.A.G i
     let u := Uc + ∑ i, p i • UG i
     exp (r • A) *ᵥ x₀ + ∫ s in (0:ℝ)..r, exp ((r - s) • A) *ᵥ u
-      ∈ construct (sys.dependentHomSol r (m + 2) Rinit Uc UG) := by -- --- PROOF ---
+      ∈ toSet (sys.dependentHomSol r (m + 2) Rinit Uc UG) := by -- --- PROOF ---
   intro A u
   set η := m + 2 with hη
   set c := Rinit.c with hc
   set Ar := Interval.smul r sys.A.interval with hAr
   -- the member, in the matrix zonotope and in its box
-  have hAZ : A ∈ construct sys.A := ⟨p, hp, rfl⟩
-  have hAbox : A ∈ sys.A.interval.construct := Zonotope.interval_contains _ hAZ
-  have hrA : r • A ∈ Ar.construct := Interval.smul_outer r _ hAbox
+  have hAZ : A ∈ toSet sys.A := ⟨p, hp, rfl⟩
+  have hAbox : A ∈ sys.A.interval.toSet := Zonotope.interval_contains _ hAZ
+  have hrA : r • A ∈ Ar.toSet := Interval.smul_outer r _ hAbox
   have hεA : ‖r • A‖ / ((η : ℝ) + 2) < 1 :=
     lt_of_le_of_lt (by gcongr; exact Interval.norm_le_absMax hrA) hε
   rw [MatExp.expIntegral_constInput A u hr.le]
@@ -164,7 +164,7 @@ theorem LinParamSys.dependentHomSol_outer (sys : LinParamSys 𝕄𝒵 n) {r : �
     exact ⟨by linarith [h1.1, h2.1], by linarith [h1.2, h2.2]⟩
   · -- `R_rem_input`: the input's orders `3 … η`, and `E r` past them
     have hTum := MatExp.inputTail_mem_inputIntervalTaylorTail Ar r hrA η
-    have hRum : Ru ∈ (MatExp.inputRemainder A r η).construct := by
+    have hRum : Ru ∈ (MatExp.inputRemainder A r η).toSet := by
       have hle := MatExp.norm_expIntegral_sub_taylor_le A hr.le η hεA
       refine Interval.mem_mat_iff.mpr fun i j => ?_
       have h := abs_le.mp ((abs_entry_le_norm Ru i j).trans hle)

@@ -30,12 +30,12 @@ public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitNotDisjoint
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitPcaUnion
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitUnion
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.SplitUnionEnclosingBox
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ReplaceConstruct
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ReplaceToSet
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.CartProdExact
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.EnlargeOuter
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEnlarge
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ToSetEnlarge
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ToSetEqIInter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsequalToSet
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsFullDimAllMembers
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.IsCenterMem
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.ContainsAllIff
@@ -45,7 +45,7 @@ public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConvHullExact
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.RepresentsaEmptySetIff
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.RepresentsaOriginIff
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.ExistsHPolytope
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructNeUniv
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ToSetNeUniv
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.VolumeEqHPolytope
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.VolumeLeMember
 public import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightPointsMem
@@ -57,8 +57,8 @@ public import CORALean.ContSet.ZonoBundle.Real.Theorems.EncloseTightVerticesNone
 
 What CORA's algorithms on a bundle give beyond an intersection. A bundle is `SetIntersection`
 at its members, so the facts of every intersection are that class's, read at the members' own
-guarantees in `Instances`: convexity (`convex_construct`), compactness given a member
-(`isCompact_construct`, never a `CompactSet` instance, `k = 0` being `univ`), and the enclosures
+guarantees in `Instances`: convexity (`convex_toSet`), compactness given a member
+(`isCompact_toSet`, never a `CompactSet` instance, `k = 0` being `univ`), and the enclosures
 of `plus`, `linComb`, `mtimes`, `mtimesMatZonotope`, `project`, `quadMap` and `reduce`
 (`memberwise_outer`, `pairwise_outer`) and the exact `map` at a bijection
 (`memberwise_image_exact`). Here: `intersection` exactly, through the general one;

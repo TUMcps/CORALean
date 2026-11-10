@@ -49,10 +49,10 @@ variable {q n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.construct_subset_ineqs_iff (P : VPolytope (Vec ℝ n)) (A : Mat ℝ q n)
+theorem VPolytope.toSet_subset_ineqs_iff (P : VPolytope (Vec ℝ n)) (A : Mat ℝ q n)
     (b : Vec ℝ q) :
-    P.construct ⊆ (HPolytope.ineqs A b).construct ↔ ∀ l, A *ᵥ P.V l ≤ b := by
-  rw [P.construct_eq_convexHull, (HPolytope.ineqs A b).convex_construct.convexHull_subset_iff,
+    P.toSet ⊆ (HPolytope.ineqs A b).toSet ↔ ∀ l, A *ᵥ P.V l ≤ b := by
+  rw [P.toSet_eq_convexHull, (HPolytope.ineqs A b).convex_toSet.convexHull_subset_iff,
     Set.range_subset_iff]
   exact forall_congr' fun l => HPolytope.mem_ineqs_iff
 

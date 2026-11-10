@@ -85,8 +85,8 @@ theorem innerScaling_counterexample : -- --- CONCL ---
     let R : Set ℝ := {y | ∃ x ∈ runs, x 0 ∈ X₀ ∧ x 1 = y}
     let lo := (pZ.innerScaling B contract).1
     let hi := (pZ.innerScaling B contract).2
-    (∀ m c, IsBoundsContractor c (contract m c)) ∧ R = X₀ ∧ R ⊆ pZ.construct ∧
-      B.map (fun PZk => PZk.construct) = [pZ.subsetAt {a | (∀ k, |a k| ≤ 1) ∧ a 0 = 1},
+    (∀ m c, IsBoundsContractor c (contract m c)) ∧ R = X₀ ∧ R ⊆ pZ.toSet ∧
+      B.map (fun PZk => PZk.toSet) = [pZ.subsetAt {a | (∀ k, |a k| ≤ 1) ∧ a 0 = 1},
         pZ.subsetAt {a | (∀ k, |a k| ≤ 1) ∧ a 0 = -1}] ∧
       frontier R ⊆ ⋃ PZk ∈ B, PZk.subsetAt {b | ∀ j, |b j| ≤ 1} ∧
       (∀ y ∈ runs, y 0 = pZ.point (fun i => (lo i + hi i) / 2) → y 1 ∈ X₀) ∧

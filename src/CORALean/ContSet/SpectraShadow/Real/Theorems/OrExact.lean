@@ -36,7 +36,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.or_exact (S₁ S₂ : SpectraShadow (Vec ℝ n)) :
-    (S₁.or S₂).construct = convexHull ℝ (S₁.construct ∪ S₂.construct) :=
+    (S₁.or S₂).toSet = convexHull ℝ (S₁.toSet ∪ S₂.toSet) :=
   S₁.convHull_exact S₂
 
 end CORALean.Real

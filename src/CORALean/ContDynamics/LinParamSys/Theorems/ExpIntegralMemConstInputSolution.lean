@@ -78,10 +78,10 @@ variable [∀ n, CompactSet (S n) (Vec ℝ n)] [Mtimes ℐ S]
 theorem LinParamSys.expIntegral_mem_constInputSolution (sys : LinParamSys ℐ n)
     {r : ℝ} (hr : 0 < r) (η : ℕ)
     (hε : ‖(Interval.smul r sys.A).absMax‖ / ((η : ℝ) + 2) < 1)
-    {A : Mat ℝ n n} (hA : A ∈ construct sys.A) (uc : Vec ℝ n) {t : ℝ}
+    {A : Mat ℝ n n} (hA : A ∈ toSet sys.A) (uc : Vec ℝ n) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     MatExp.expIntegral A t *ᵥ uc
-      ∈ construct (sys.constInputSolution (S := S) r η uc) := by -- --- PROOF ---
+      ∈ toSet (sys.constInputSolution (S := S) r η uc) := by -- --- PROOF ---
   set seg : S n := LinComb.linComb (OfPoint.ofPoint (0 : Vec ℝ n)) (OfPoint.ofPoint uc) with hseg
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
   have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr
@@ -94,10 +94,10 @@ theorem LinParamSys.expIntegral_mem_constInputSolution (sys : LinParamSys ℐ n)
   rw [hdecomp]
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
   · -- `C(r)` applied to the segment is a constant input's own `inputSolution`
-    have hline := sys.inputSolution_outer hr η hε hA (ConvexSet.convex_construct seg)
-      (CompactSet.isClosed_construct seg) (CompactSet.isBounded_construct seg)
-      (ConvexSet.convex_construct _) (CompactSet.isClosed_construct _)
-      (CompactSet.isBounded_construct _) (u := fun _ : ℝ => (t / r) • uc)
+    have hline := sys.inputSolution_outer hr η hε hA (ConvexSet.convex_toSet seg)
+      (CompactSet.isClosed_toSet seg) (CompactSet.isBounded_toSet seg)
+      (ConvexSet.convex_toSet _) (CompactSet.isClosed_toSet _)
+      (CompactSet.isBounded_toSet _) (u := fun _ : ℝ => (t / r) • uc)
       (fun _ _ => smul_mem_linComb_ofPoint uc ⟨hs0, hs1⟩) aestronglyMeasurable_const
     rwa [Real.MatExp.expIntegral_constInput A ((t / r) • uc) hr.le] at hline
   · -- the error: a member of `F̃`, at `ũ`

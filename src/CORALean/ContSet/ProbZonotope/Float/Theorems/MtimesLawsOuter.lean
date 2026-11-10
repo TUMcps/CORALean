@@ -49,8 +49,8 @@ theorem ProbZonotope.mtimes_laws_outer {m : ℕ} (M : Mat 𝕋 m n)
       ⊆ (P.mtimes M).laws := by -- --- PROOF ---
   rintro _ ⟨_, ⟨a, ha, S, hS, hp, rfl⟩, rfl⟩
   -- `M` and `Mᵀ` lie in their point intervals
-  have hM : toRealMat M ∈ (Interval.point M).construct := fun q => ⟨le_rfl, le_rfl⟩
-  have hMt : (toRealMat M)ᵀ ∈ (Interval.point M.transpose).construct := fun q => ⟨le_rfl, le_rfl⟩
+  have hM : toRealMat M ∈ (Interval.point M).toSet := fun q => ⟨le_rfl, le_rfl⟩
+  have hMt : (toRealMat M)ᵀ ∈ (Interval.point M.transpose).toSet := fun q => ⟨le_rfl, le_rfl⟩
   refine ⟨toRealMat M *ᵥ a, Zonotope.mtimes_outer M P.Z ⟨a, ha, rfl⟩,
     toRealMat M * S * (toRealMat M)ᵀ,
     Interval.matMul_outer _ _ (Interval.matMul_outer _ _ hM hS) hMt, ?_, ?_⟩

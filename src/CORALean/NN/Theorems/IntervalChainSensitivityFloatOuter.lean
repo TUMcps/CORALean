@@ -58,8 +58,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 theorem IntervalChain.sensitivity_outer {n k : ℕ} {c : IntervalChain 𝕋 n k}
     {r : Real.IntervalChain n k} (hc : c.Encloses r) (hs : r.IsSmooth) : -- --- CONCL ---
-    ∀ (X : Interval (Vec 𝕋 n)) (x : Vec ℝ n), x ∈ X.construct →
-      r.toChain.sensitivity x ∈ (c.sensitivity X).construct := by -- --- PROOF ---
+    ∀ (X : Interval (Vec 𝕋 n)) (x : Vec ℝ n), x ∈ X.toSet →
+      r.toChain.sensitivity x ∈ (c.sensitivity X).toSet := by -- --- PROOF ---
   induction hc with
   | @nil n₀ =>
     -- the identity is the point matrix of the stored diagonal of ones
@@ -72,14 +72,14 @@ theorem IntervalChain.sensitivity_outer {n k : ℕ} {c : IntervalChain 𝕋 n k}
       rw [hI₁]
       rw [toReal_diagonalBlock, Matrix.one_apply]
       simp [Matrix.diagonal_apply, toRealVec, toReal_one]
-    show (1 : Mat ℝ n₀ n₀) ∈ (Interval.point I₁).construct
+    show (1 : Mat ℝ n₀ n₀) ∈ (Interval.point I₁).toSet
     rw [← e]
     exact h
   | @linear n m k W b c r _ ih =>
     -- the next layer's input lies in the box `W X + b`, its Jacobian is `W`
     intro X x hx
     have hmem : toRealMat W *ᵥ x + toRealVec b ∈
-        (Interval.plus (Interval.mtimes W X) ⟨b, b⟩).construct :=
+        (Interval.plus (Interval.mtimes W X) ⟨b, b⟩).toSet :=
       Interval.plus_outer _ _ (Set.add_mem_add (Interval.mtimes_mem W _ rfl X hx)
         (Interval.mem_point b))
     have h := ih hs _ _ hmem

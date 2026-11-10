@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemToSetIff
 public import CORALean.ContSet.Ellipsoid.Float.Operations.IntersectStripGollamudi
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.ExistsBallOfStrip
@@ -9,7 +9,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.InflateSubPosSemidef
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.IsPsdSound
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.QuadLeQuadUp
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.QuadDownLeQuad
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetOfFactor
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Interval.Float.Theorems.LeMulHi
 public import CORALean.ContSet.Interval.Float.Theorems.MulLoLe
@@ -308,8 +308,8 @@ private theorem Ellipsoid.aux_strip_shape {G Q : Mat ℝ n n} (hG : Gᵀ = G) (h
 
 theorem Ellipsoid.intersectStripGollamudi_outer (steps : ℕ) (E : Ellipsoid 𝕋 n) (c : Vec 𝕋 n)
     (φ y lam : 𝕋) : -- --- CONCL ---
-    E.construct ∩ {x | |∑ i, toReal (c i) * x i - toReal y| ≤ toReal φ}
-      ⊆ (Ellipsoid.intersectStripGollamudi steps E c φ y lam).construct := by -- --- PROOF ---
+    E.toSet ∩ {x | |∑ i, toReal (c i) * x i - toReal y| ≤ toReal φ}
+      ⊆ (Ellipsoid.intersectStripGollamudi steps E c φ y lam).toSet := by -- --- PROOF ---
   rintro x ⟨hxE, hxS⟩
   unfold Ellipsoid.intersectStripGollamudi
   extract_lets wLoV wHiV wLo wHi δ eδ mag φ' νLo νHi om omHi sLo sHi corr S α g β γLo aLo aHi
@@ -335,10 +335,10 @@ theorem Ellipsoid.intersectStripGollamudi_outer (steps : ℕ) (E : Ellipsoid �
     have h := Er.G_mul_transpose
     rwa [Er.G_transpose] at h
   obtain ⟨xn, hxn, e, he, rfl⟩ := hxE
-  have hxn' : xn ∈ Er.construct := by
-    have h : xn ∈ (nominal E).ellipsoid.construct := hxn
+  have hxn' : xn ∈ Er.toSet := by
+    have h : xn ∈ (nominal E).ellipsoid.toSet := hxn
     rwa [Ellipsoid.nominal_of_psd hQ] at h
-  obtain ⟨u, hu, rfl⟩ := Real.Ellipsoid.mem_construct_iff.1 hxn'
+  obtain ⟨u, hu, rfl⟩ := Real.Ellipsoid.mem_toSet_iff.1 hxn'
   have he' : ∀ i, toReal (E.I_error.inf i) ≤ e i ∧ e i ≤ toReal (E.I_error.sup i) := fun i => he i
   have hxS' : |∑ i, toReal (c i) * (toReal (E.q i) + (G *ᵥ u) i + e i) - toReal y|
       ≤ toReal φ := hxS
@@ -385,8 +385,8 @@ theorem Ellipsoid.intersectStripGollamudi_outer (steps : ℕ) (E : Ellipsoid �
   -- the new nominal point `G N w`, in the ellipsoid of `G N (G N)ᵀ`
   set N : Mat ℝ n n := toReal α • 1 + toReal β • vecMulVec v v with hN
   set F := Real.Ellipsoid.ofFactor (G * N) 0 with hF
-  have hyF : (G * N) *ᵥ w ∈ F.construct := by
-    rw [hF, Real.Ellipsoid.construct_ofFactor]
+  have hyF : (G * N) *ᵥ w ∈ F.toSet := by
+    rw [hF, Real.Ellipsoid.toSet_ofFactor]
     exact ⟨w, hw, by rw [zero_add]⟩
   -- the interval matrix holds `F.Q`, entry by entry
   have hμ : toReal μLo ≤ toReal α * toReal β + toReal α * toReal β + toReal β * toReal β * ν
@@ -430,7 +430,7 @@ theorem Ellipsoid.intersectStripGollamudi_outer (steps : ℕ) (E : Ellipsoid �
     (Or.inr hdom) hyF
   -- the center's rounding, which the residual box holds
   have hr : (fun i => toReal (E.q i) + κ * W i - toReal (qLo i))
-      ∈ (Interval.residual qLo qHi qLo).construct := by
+      ∈ (Interval.residual qLo qHi qLo).toSet := by
     refine Interval.sub_mem_residual (x := fun i => toReal (E.q i) + κ * W i) fun i => ?_
     have hm := Ellipsoid.aux_mul_mem_corners hκ₁.1 hκ₁.2 (hW₁ i).1 (hW₁ i).2
     have a1 := addDown_le_add (E.q i) (Interval.mulLo κLo κHi (wLo i) (wHi i))

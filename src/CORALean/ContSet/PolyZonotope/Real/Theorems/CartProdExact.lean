@@ -71,7 +71,7 @@ private theorem PolyZonotope.aux_sum_univ_cartProd_q {pZ₁ : PolyZonotope α} {
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.cartProd_exact (pZ₁ : PolyZonotope α) (pZ₂ : PolyZonotope β) : -- --- CONCL ---
-    pZ₁.construct ×ˢ pZ₂.construct = (pZ₁.cartProd pZ₂).construct := by -- --- PROOF ---
+    pZ₁.toSet ×ˢ pZ₂.toSet = (pZ₁.cartProd pZ₂).toSet := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro ⟨x₁, x₂⟩ ⟨⟨a₁, β₁, ha₁, hβ₁, hx₁⟩, ⟨a₂, β₂, ha₂, hβ₂, hx₂⟩⟩
     refine ⟨Fin.append a₁ a₂, Fin.append β₁ β₂,

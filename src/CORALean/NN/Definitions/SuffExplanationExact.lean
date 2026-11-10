@@ -17,7 +17,7 @@ refined network's output. Weaker than `IsSuffExplanationAbstract` by
 `image_subset`, and it is the conclusion `Specification.holds_of_outer` hands
 back from a containment whose left side is an exact image — the shape
 `reducesAt_outer` and `neuronMerging_network_outer` prove. Stronger than
-`IsSuffExplanation`, which ranges over `construct (explainBox …)` and not over
+`IsSuffExplanation`, which ranges over `toSet (explainBox …)` and not over
 its `ofInterval` image; `suffExplanation_of_exact` is that step.
 
 ## Inputs
@@ -61,7 +61,7 @@ image of `explainBox`: no point of it lets a rival tie or beat `l`. -/
 def IsSuffExplanationExact (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S]
     (f : Vec ℝ n → Vec ℝ m) (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m) : Prop :=
   (Specification.unsafeSet (misclassified m l)).Holds
-    (f '' construct (ofInterval (explainBox x ε E) : S n))
+    (f '' toSet (ofInterval (explainBox x ε E) : S n))
 
 end CORALean
 

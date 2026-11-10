@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.AbsBound
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import Mathlib.Analysis.Normed.Ring.Lemmas
 public import Mathlib.Tactic.Positivity
 
@@ -66,7 +66,7 @@ private theorem aux_abs_sign (x : ℝ) : |if 0 ≤ x then (1 : ℝ) else -1| = 1
 at most `r`: the point that puts the center's own sign on every generator at
 that coordinate attains `|x j| = absBound j` exactly, and the ball bounds it. -/
 theorem Zonotope.absBound_le_of_subset_closedBall {Z : Zonotope (Vec ℝ n)} {r : ℝ}
-    (h : Z.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r) (j : Fin n) : -- --- CONCL ---
+    (h : Z.toSet ⊆ Metric.closedBall (0 : Vec ℝ n) r) (j : Fin n) : -- --- CONCL ---
     Z.absBound j ≤ r := by -- --- PROOF ---
   -- `t` and `β` put the center's own sign on every generator, `x` the point that names
   set t : ℝ := if 0 ≤ Z.c j then (1 : ℝ) else -1 with ht
@@ -74,7 +74,7 @@ theorem Zonotope.absBound_le_of_subset_closedBall {Z : Zonotope (Vec ℝ n)} {r 
   have hβ : ∀ l, |β l| ≤ 1 := fun l => by
     rw [hβdef, abs_mul, ht, aux_abs_sign, aux_abs_sign]; norm_num
   set x : Vec ℝ n := fun i => Z.c i + ∑ l, Z.G l i * β l with hxdef
-  have hx : x ∈ Z.construct := Zonotope.mem_construct_iff.mpr ⟨β, hβ, fun i => rfl⟩
+  have hx : x ∈ Z.toSet := Zonotope.mem_toSet_iff.mpr ⟨β, hβ, fun i => rfl⟩
   have hxjeq : x j = Z.c j + ∑ l, Z.G l j * β l := rfl
   have htc : t * Z.c j = |Z.c j| := by rw [mul_comm, ht, aux_mul_sign_eq_abs]
   have hsum : t * ∑ l, Z.G l j * β l = ∑ l, |Z.G l j| := by

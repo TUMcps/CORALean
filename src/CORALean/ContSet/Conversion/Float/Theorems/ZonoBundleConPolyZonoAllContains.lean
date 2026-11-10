@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The float bundle lies in CORA's `conPolyZono(conZonotope(zB))`. -/
 theorem ZonoBundle.conPolyZonoAll_contains (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k) :
-    zB.construct ⊆ (zB.conPolyZonoAll hk).construct :=
+    zB.toSet ⊆ (zB.conPolyZonoAll hk).toSet :=
   subset_trans (zB.conZonotopeAll_contains hk) (ConZonotope.conPolyZono_contains _)
 
 end CORALean.Float

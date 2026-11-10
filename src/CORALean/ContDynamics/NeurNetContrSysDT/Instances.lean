@@ -41,7 +41,7 @@ instance NeurNetContrSysDT.reachInstance :
     Reach (NeurNetContrSysDT.Linear 𝕋 S) (fun n _ => Reach.Params (S n) ℕ)
       NeurNetContrSysDT.ReachOptions S where
   reachExact sys params := sys.sys.reachUnionExact (params.tFinal - params.tStart)
-    (construct sys.U) (construct params.X₀)
+    (toSet sys.U) (toSet params.X₀)
   reach sys params options := some (sys.sys.reachUnion sys.U params options)
   reach_outer sys params options _ h := by
     -- the one set returned is `reachUnion`'s

@@ -41,7 +41,7 @@ inductive HybridAutomaton.IsRunUntil {S G : ℕ → Type} [∀ n, ContSet (S n) 
       (hτ : τ ≤ T) : HA.IsRunUntil T 0 ℓ (x 0) ℓ (x τ)
   | jump {T : ℝ} {k : ℕ} {ℓ ℓ' : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} {y : Vec ℝ n}
       {e : Transition G L 𝕋 n} (h : (HA.loc ℓ).IsTrajectory τ x u w) (hτ : τ ≤ T)
-      (hmem : e ∈ (HA.loc ℓ).trans) (hguard : x τ ∈ construct e.guard)
+      (hmem : e ∈ (HA.loc ℓ).trans) (hguard : x τ ∈ toSet e.guard)
       (rest : HA.IsRunUntil (T - τ) k e.target (e.reset (x τ)) ℓ' y) :
       HA.IsRunUntil T (k + 1) ℓ (x 0) ℓ' y
 

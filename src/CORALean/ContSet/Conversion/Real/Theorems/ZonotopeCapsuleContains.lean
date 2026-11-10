@@ -42,7 +42,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.capsule_contains (Z : Zonotope (Vec ℝ n)) :
-    Z.construct ⊆ Z.capsule.construct :=
+    Z.toSet ⊆ Z.capsule.toSet :=
   subset_trans Z.interval_contains Z.interval.capsule_contains
 
 end CORALean.Real

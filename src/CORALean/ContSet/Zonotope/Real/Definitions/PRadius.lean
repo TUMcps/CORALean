@@ -55,7 +55,7 @@ variable {n : ℕ}
 
 /-- `max_{z ∈ Z} (z - p)ᵀ P (z - p)`. -/
 noncomputable def Zonotope.pRadius (P : Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) : ℝ :=
-  sSup ((fun z => (z - Z.c) ⬝ᵥ (P *ᵥ (z - Z.c))) '' Z.construct)
+  sSup ((fun z => (z - Z.c) ⬝ᵥ (P *ᵥ (z - Z.c))) '' Z.toSet)
 
 end CORALean.Real
 

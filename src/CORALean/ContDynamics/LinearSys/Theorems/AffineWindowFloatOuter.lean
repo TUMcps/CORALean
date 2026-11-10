@@ -59,13 +59,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem LinearSys.affineWindowFloat_outer (sys : LinearSys 𝕋 n) {H Hnext : Zonotope (Vec 𝕋 n)}
     {ũ : Vec 𝕋 n} {Δt : 𝕋} {η : ℕ} (hΔt : 0 < toReal Δt)
-    (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {h : Vec ℝ n} (hh : h ∈ H.construct)
+    (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {h : Vec ℝ n} (hh : h ∈ H.toSet)
     (hnext : exp (toReal Δt • Scalar.toRealMat sys.A) *ᵥ h
       + Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt) *ᵥ toRealVec ũ
-        ∈ Hnext.construct) {τ : ℝ} (hτ0 : 0 ≤ τ) (hτ : τ ≤ toReal Δt) : -- --- CONCL ---
+        ∈ Hnext.toSet) {τ : ℝ} (hτ0 : 0 ≤ τ) (hτ : τ ≤ toReal Δt) : -- --- CONCL ---
     exp (τ • Scalar.toRealMat sys.A) *ᵥ h
         + Real.MatExp.expIntegral (Scalar.toRealMat sys.A) τ *ᵥ toRealVec ũ
-      ∈ (sys.affineWindowFloat H Hnext ũ Δt η).construct := by -- --- PROOF ---
+      ∈ (sys.affineWindowFloat H Hnext ũ Δt η).toSet := by -- --- PROOF ---
   set A := Scalar.toRealMat sys.A with hA
   set lam := τ / toReal Δt with hlam
   have hl0 : 0 ≤ lam := div_nonneg hτ0 hΔt.le
@@ -75,7 +75,7 @@ theorem LinearSys.affineWindowFloat_outer (sys : LinearSys 𝕋 n) {H Hnext : Zo
   -- the straight-line point is in the comb, the curvature deviation in `C`
   have hcomb : (1 - lam) • h + lam • (exp (toReal Δt • A) *ᵥ h
       + Real.MatExp.expIntegral A (toReal Δt) *ᵥ toRealVec ũ)
-      ∈ (LinComb.linComb H Hnext).construct :=
+      ∈ (LinComb.linComb H Hnext).toSet :=
     LinComb.linComb_outer H Hnext
       ⟨h, hh, _, hnext, 1 - lam, ⟨by linarith, by linarith⟩, by rw [sub_sub_cancel]⟩
   -- and the two add up to the flow at `τ`

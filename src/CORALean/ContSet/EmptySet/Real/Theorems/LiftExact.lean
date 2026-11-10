@@ -41,8 +41,8 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem EmptySet.lift_exact (E : EmptySet n) (N : ℕ) (dims : Fin n → Fin N) :
-    construct (E.lift_ N dims) =
-      {y : Vec ℝ N | (fun i => y (dims i) : Vec ℝ n) ∈ construct E} := by
+    toSet (E.lift_ N dims) =
+      {y : Vec ℝ N | (fun i => y (dims i) : Vec ℝ n) ∈ toSet E} := by
   ext y
   exact ⟨fun h => h.elim, fun h => h.elim⟩
 

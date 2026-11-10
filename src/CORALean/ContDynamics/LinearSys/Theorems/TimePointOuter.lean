@@ -61,8 +61,8 @@ variable [Mtimes (Mat ℝ) S]
 is in `timePoint`'s set for it. -/
 theorem LinearSys.timePoint_outer (sys : LinearSys 𝕋 n) (Δt : ℝ) (X₀ : S n)
     (k : ℕ) : -- --- CONCL ---
-    (fun x₀ => exp (((k : ℝ) * Δt) • toRealMat sys.A) *ᵥ x₀) '' construct X₀
-      ⊆ construct (sys.timePoint Δt X₀ k) := by -- --- PROOF ---
+    (fun x₀ => exp (((k : ℝ) * Δt) • toRealMat sys.A) *ᵥ x₀) '' toSet X₀
+      ⊆ toSet (sys.timePoint Δt X₀ k) := by -- --- PROOF ---
   induction k with
   | zero =>
     -- `e^{A · 0} = I`, so the image at point `0` is `X₀` itself
@@ -82,7 +82,7 @@ theorem LinearSys.timePoint_outer (sys : LinearSys 𝕋 n) (Δt : ℝ) (X₀ : S
       rw [hkey, Matrix.mulVec_mulVec]
       exact congrArg (· *ᵥ x₀) h
     show exp ((((k + 1 : ℕ) : ℝ) * Δt) • toRealMat sys.A) *ᵥ x₀
-      ∈ construct (Mtimes.mtimes _ _)
+      ∈ toSet (Mtimes.mtimes _ _)
     rw [hexp]
     exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ (ih
       (Set.mem_image_of_mem _ hx₀))))

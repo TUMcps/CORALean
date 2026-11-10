@@ -101,7 +101,7 @@ private theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) 
   have hineq : ∀ {q : ℕ} (A : Mat 𝕋 q (s.m + 1)) (bv : Vec 𝕋 q),
       (∀ i, ∑ k, toReal (A i k) * Fin.snoc (α := fun _ => ℝ) α β k ≤ toReal (bv i)) →
       (Fin.snoc (α := fun _ => ℝ) α β : Vec ℝ (s.m + 1))
-        ∈ (HPolytope.ineqs A bv).nominal.construct := by
+        ∈ (HPolytope.ineqs A bv).nominal.toSet := by
     intro q A bv h
     refine HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun i => i.elim0⟩
     show ∑ k, toReal (A i k) * _ ≤ toReal (bv i) + |toReal (zero : 𝕋)|
@@ -113,7 +113,7 @@ private theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) 
   -- the old rows on the old factors, then `-β ≤ 0` and `c_j + G_j α - β ≤ 0`
   have hbase := HPolytope.mem_stackRows_nominal_iff.mpr
     ⟨(HPolytope.mem_lift_nominal_iff s.pred (Fin.castSucc_injective s.m)).mpr
-      ((congrArg (· ∈ s.pred.nominal.construct) hA).mpr hP),
+      ((congrArg (· ∈ s.pred.nominal.toSet) hA).mpr hP),
       hineq ![Fin.snoc (α := fun _ => 𝕋) (fun _ => zero) (neg one),
           Fin.snoc (α := fun _ => 𝕋) (s.G j) (neg one)] ![zero, neg (s.c j)] fun r => by
         fin_cases r
@@ -132,13 +132,13 @@ private theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) 
   · -- the old factors in the old box, the new one in `[0, max(u, 0)]`
     have hA' : (fun k => (Fin.snoc (α := fun _ => ℝ) α β : Vec ℝ (s.m + 1)) (Fin.castAdd 1 k))
         = α := hA
-    exact (congrArg (· ∈ s.dom.construct) hA').mpr hα
+    exact (congrArg (· ∈ s.dom.toSet) hA').mpr hα
   · show toReal (zero : 𝕋) ≤ Fin.snoc (α := fun _ => ℝ) α β (Fin.natAdd s.m k)
       ∧ Fin.snoc (α := fun _ => ℝ) α β (Fin.natAdd s.m k) ≤ toReal (maximum b.sup zero)
     rw [hlast k, Fin.snoc_last, toReal_zero, toReal_maximum, toReal_zero]
     exact ⟨hβ0, max_le_max hbx.2 le_rfl⟩
   · -- and the chord, where the guard certifies it
-    show _ ∈ (if StarSet.chordGuard b then _ else _ : HPolytope 𝕋 _).nominal.construct
+    show _ ∈ (if StarSet.chordGuard b then _ else _ : HPolytope 𝕋 _).nominal.toSet
     split_ifs with hg
     · refine HPolytope.mem_stackRows_nominal_iff.mpr ⟨hbase, hineq (q := 1) _ _ fun r => ?_⟩
       fin_cases r
@@ -157,8 +157,8 @@ private theorem StarSet.aux_reluNeuron_nominal (s : StarSet 𝕋 n) (j : Fin n) 
 
 theorem StarSet.reluNeuron_outer (s : StarSet 𝕋 n) (j : Fin n) (b : Interval 𝕋)
     (hb : ∀ x ∈ nominalSet s, toReal b.inf ≤ x j ∧ x j ≤ toReal b.sup) : -- --- CONCL ---
-    (fun (x : Vec ℝ n) => (Function.update x j (Real.relu (x j)) : Vec ℝ n)) '' s.construct
-      ⊆ (s.reluNeuron j b).construct := by -- --- PROOF ---
+    (fun (x : Vec ℝ n) => (Function.update x j (Real.relu (x j)) : Vec ℝ n)) '' s.toSet
+      ⊆ (s.reluNeuron j b).toSet := by -- --- PROOF ---
   rintro _ ⟨_, ⟨x, hx, e, he, rfl⟩, rfl⟩
   -- the nominal point moves as the step says; the error at `j` changes by at most its size
   have hnom := StarSet.aux_reluNeuron_nominal s j b hb x hx

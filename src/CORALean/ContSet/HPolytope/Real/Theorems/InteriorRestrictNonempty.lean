@@ -55,13 +55,13 @@ variable {q n r : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.interior_restrict_nonempty (A : Mat ℝ q n) (b : Vec ℝ q) (B : Mat ℝ n r)
-    (c : Vec ℝ n) (hc : c ∈ (HPolytope.ineqs A b).construct)
+    (c : Vec ℝ n) (hc : c ∈ (HPolytope.ineqs A b).toSet)
     (hB : Function.Injective (Matrix.mulVecLin B))
-    (hspan : LinearMap.range (Matrix.mulVecLin B) = vectorSpan ℝ (HPolytope.ineqs A b).construct)
+    (hspan : LinearMap.range (Matrix.mulVecLin B) = vectorSpan ℝ (HPolytope.ineqs A b).toSet)
     : -- --- CONCL ---
-    (interior (HPolytope.ineqs (A * B) (b - A *ᵥ c)).construct).Nonempty := by -- --- PROOF ---
-  set P := (HPolytope.ineqs A b).construct
-  set P' := (HPolytope.ineqs (A * B) (b - A *ᵥ c)).construct
+    (interior (HPolytope.ineqs (A * B) (b - A *ᵥ c)).toSet).Nonempty := by -- --- PROOF ---
+  set P := (HPolytope.ineqs A b).toSet
+  set P' := (HPolytope.ineqs (A * B) (b - A *ᵥ c)).toSet
   -- `P ⊆ c + range B`, so `P = B P' + c`
   have hP : ∀ x ∈ P, ∃ y, x - c = B *ᵥ y := fun x hx => by
     have hmem : x -ᵥ c ∈ vectorSpan ℝ P := vsub_mem_vectorSpan ℝ hx hc
@@ -97,7 +97,7 @@ theorem HPolytope.interior_restrict_nonempty (A : Mat ℝ q n) (b : Vec ℝ q) (
     have := HPolytope.mem_ineqs_iff.mp hc i
     simp only [Matrix.mulVec_zero, Pi.zero_apply, Pi.sub_apply]
     linarith⟩
-  rw [(HPolytope.ineqs (A * B) (b - A *ᵥ c)).convex_construct
+  rw [(HPolytope.ineqs (A * B) (b - A *ᵥ c)).convex_toSet
       |>.interior_nonempty_iff_affineSpan_eq_top,
     AffineSubspace.affineSpan_eq_top_iff_vectorSpan_eq_top_of_nonempty ℝ _ _ hne]
   exact htop

@@ -53,9 +53,9 @@ theorem ParallelHybridAutomaton.reachSetExact_subset_isInvariant
     {P : ParallelHybridAutomaton S G k L ℝ n m} (hfeed : P.IsFeedthroughFree)
     {lift : ParallelHybridAutomaton.Lifting S G n m} {R₀ : ∀ i, S (n i)}
     {ℓ₀ : ∀ i, L i} {R : (∀ i, L i) → S (∑ i, n i)} (hinv : (P.product lift).IsInvariant R)
-    (hR₀ : ∀ x : ∀ i, Vec ℝ (n i), (∀ i, x i ∈ construct (R₀ i)) →
-      stack x ∈ construct (R ℓ₀)) (ℓ : ∀ i, L i) : -- --- CONCL ---
-    stack '' P.reachSetExact R₀ ℓ₀ ℓ ⊆ construct (R ℓ) := by -- --- PROOF ---
+    (hR₀ : ∀ x : ∀ i, Vec ℝ (n i), (∀ i, x i ∈ toSet (R₀ i)) →
+      stack x ∈ toSet (R ℓ₀)) (ℓ : ∀ i, L i) : -- --- CONCL ---
+    stack '' P.reachSetExact R₀ ℓ₀ ℓ ⊆ toSet (R ℓ) := by -- --- PROOF ---
   rintro _ ⟨y, ⟨x, hx, run⟩, rfl⟩
   exact run.mem_of_isInvariant hfeed hinv (hR₀ x hx)
 

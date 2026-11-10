@@ -12,7 +12,7 @@ have `βⱼ = sign(u gⱼ)` wherever `u gⱼ ≠ 0`. Forward is `coeff_eq_sign_o
 for every coefficient vector; back, such coefficients make every term `βⱼ u gⱼ` equal to `|u gⱼ|`,
 the most a term can be. The exposed face in direction `u` is therefore read off the generators alone
 [1, Sec. 3 (faces)], `u gⱼ = 0` leaving `gⱼ` free and the others pinned to a sign
-(`construct_face`).
+(`toSet_face`).
 
 ## Inputs
 * `Z` – zonotope
@@ -59,7 +59,7 @@ private theorem Zonotope.aux_sign_mul_self_mai (r : ℝ) : Real.sign r * r = |r|
 /-- `x` maximizes `u` over `Z` iff some coefficients of it are `sign(u gⱼ)` wherever
 `u gⱼ ≠ 0`. -/
 theorem Zonotope.mem_argmax_iff (Z : Zonotope α) (u : α →ₗ[ℝ] ℝ) (x : α) : -- --- CONCL ---
-    x ∈ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, u y ≤ u x} ↔
+    x ∈ {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, u y ≤ u x} ↔
       ∃ β : Fin Z.h → ℝ, (∀ j, |β j| ≤ 1) ∧
         (∀ j, u (Z.G j) ≠ 0 → β j = Real.sign (u (Z.G j))) ∧
         x = Z.c + ∑ j, β j • Z.G j := by -- --- PROOF ---

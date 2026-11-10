@@ -14,7 +14,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.IntervalInputRe
 
 `IsCanonicalTrajectory.timeInterval_outer` with `Vd` named: `sys.inputSolution` at the enlarged set
 `V`, extended across the step by the frozen matrix's own `inputReach_mono`, as at `'constParam'`. So
-`'varParam'` is enclosed by `'constParam'` at any frozen `Â ∈ construct sys.A`, over an input set
+`'varParam'` is enclosed by `'constParam'` at any frozen `Â ∈ toSet sys.A`, over an input set
 that has absorbed the parameter drift. `V` is the whole price of the time-varying reading, a set
 the caller supplies; `IsCanonicalTrajectory.norm_drift_le` makes it constructible: any `V`
 containing a ball of the radius it names will do. `0 ∈ V` buys one enclosure for the whole step
@@ -85,16 +85,16 @@ theorem LinParamSys.IsCanonicalTrajectory.timeInterval_outer_inputSolution {sys 
     {T : Set ℝ} {R₀ U V : S n} {x u : ℝ → Vec ℝ n} {A : ℝ → Mat ℝ n n} {r : ℝ}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    {Â : Mat ℝ n n} (hÂ : Â ∈ construct sys.A)
-    (hV : ∀ s ∈ T, (A s - Â) *ᵥ x s + u s ∈ construct V)
+    {Â : Mat ℝ n n} (hÂ : Â ∈ toSet sys.A)
+    (hV : ∀ s ∈ T, (A s - Â) *ᵥ x s + u s ∈ toSet V)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r)
-    (hconv : Convex ℝ (construct V)) (hclosed : IsClosed (construct V))
-    (hbdd : Bornology.IsBounded (construct V))
+    (hconv : Convex ℝ (toSet V)) (hclosed : IsClosed (toSet V))
+    (hbdd : Bornology.IsBounded (toSet V))
     (hRconv : Convex ℝ (MatExp.intervalInputRemainderSet sys.A r (m + 2) V))
     (hRclosed : IsClosed (MatExp.intervalInputRemainderSet sys.A r (m + 2) V))
     (hRbdd : Bornology.IsBounded (MatExp.intervalInputRemainderSet sys.A r (m + 2) V))
-    (h0 : (0 : Vec ℝ n) ∈ construct V) : -- --- CONCL ---
-    x t ∈ construct (Plus.plus (sys.timeInterval r (m + 2) R₀)
+    (h0 : (0 : Vec ℝ n) ∈ toSet V) : -- --- CONCL ---
+    x t ∈ toSet (Plus.plus (sys.timeInterval r (m + 2) R₀)
       (sys.inputSolution r (m + 2) V)) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   -- the frozen matrix names the point system where `inputReach` lives

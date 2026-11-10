@@ -40,7 +40,7 @@ class Enclose (L : ℕ → ℕ → Type u) (S : ℕ → Type) [∀ n, ContSet (S
   eval {n m : ℕ} : L n m → Erased (Vec ℝ n → Vec ℝ m)
   enclose {n m : ℕ} : L n m → S n → S m
   enclose_outer {n m : ℕ} (l : L n m) (s : S n) :
-    (eval l).out '' construct s ⊆ construct (enclose l s)
+    (eval l).out '' toSet s ⊆ toSet (enclose l s)
 
 end CORALean
 

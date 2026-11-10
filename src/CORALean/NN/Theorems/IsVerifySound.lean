@@ -79,7 +79,7 @@ private theorem aux_iter_subset_unit {r q : ℕ} (C : Mat ℝ r q) (d : Vec ℝ 
 private theorem aux_mem_rescale (X : Zonotope (Vec ℝ n)) (lo hi β : Fin X.h → ℝ)
     (hβ : ∀ j, lo j ≤ β j ∧ β j ≤ hi j) : -- --- CONCL ---
     X.c + ∑ j, β j • X.G j ∈ (⟨X.h, X.c + ∑ j, ((lo j + hi j) / 2) • X.G j,
-      fun j => ((hi j - lo j) / 2) • X.G j⟩ : Zonotope (Vec ℝ n)).construct := by -- --- PROOF ---
+      fun j => ((hi j - lo j) / 2) • X.G j⟩ : Zonotope (Vec ℝ n)).toSet := by -- --- PROOF ---
   -- `β = β_c + β_r t` with `t ∈ [-1, 1]`
   refine ⟨fun j => if hi j - lo j = 0 then 0 else (β j - (lo j + hi j) / 2) / ((hi j - lo j) / 2),
     fun j => ?_, ?_⟩
@@ -121,7 +121,7 @@ private theorem aux_abs_zonotackFactors_le {k : ℕ} (Y : Zonotope (Vec ℝ k)) 
 private theorem aux_piece_subset (X : Zonotope (Vec ℝ n)) (Cd : Mat ℝ p X.h × Vec ℝ p)
     (s : Σ r : ℕ, Mat ℝ r X.h × Vec ℝ r) (iterFM : ℕ) (P : Zonotope (Vec ℝ n))
     (hP : step_piece X Cd s iterFM = some P) : -- --- CONCL ---
-    P.construct ⊆ X.construct := by -- --- PROOF ---
+    P.toSet ⊆ X.toSet := by -- --- PROOF ---
   simp only [step_piece] at hP
   split_ifs at hP with hempty
   cases hP
@@ -156,9 +156,9 @@ theorem SetBasedNet.verify_sound {N : SetBasedNet n k} {Φ : Vec ℝ n → Vec �
       ∃ s ∈ split X, ∀ i, (s.2.1 *ᵥ β) i ≤ s.2.2 i)
     (fuel : ℕ) (Q : List (Zonotope (Vec ℝ n))) : -- --- CONCL ---
     (N.verify Φ A b split iterFM fuel Q = .verified →
-        ∀ X ∈ Q, ∀ x ∈ X.construct, Φ x ∉ (HPolytope.ineqs A b).construct) ∧
+        ∀ X ∈ Q, ∀ x ∈ X.toSet, Φ x ∉ (HPolytope.ineqs A b).toSet) ∧
       ∀ x, N.verify Φ A b split iterFM fuel Q = .falsified x →
-        (∃ X ∈ Q, x ∈ X.construct) ∧ Φ x ∈ (HPolytope.ineqs A b).construct := by -- --- PROOF ---
+        (∃ X ∈ Q, x ∈ X.toSet) ∧ Φ x ∈ (HPolytope.ineqs A b).toSet := by -- --- PROOF ---
   induction fuel generalizing Q with
   | zero =>
     cases Q with
@@ -214,14 +214,14 @@ theorem SetBasedNet.verify_sound {N : SetBasedNet n k} {Φ : Vec ℝ n → Vec �
             · -- an unsafe `x ∈ X_i` is in `X_i|_{C≤d}` (Prop. 2), in a piece, in its box (Prop. 3)
               obtain ⟨β, hβ, hP, rfl⟩ : ∃ β : Fin X.h → ℝ, (∀ j, |β j| ≤ 1) ∧
                   β ∈ (HPolytope.ineqs (N.unsafeInputConstraints X A b).1
-                    (N.unsafeInputConstraints X A b).2).construct ∧
+                    (N.unsafeInputConstraints X A b).2).toSet ∧
                   x = X.c + ∑ j, β j • X.G j :=
                 (N.encloseUnsafeInputs_outer hN X A b).1 ⟨hx, hU⟩
               obtain ⟨s, hs, hsβ⟩ := hsplit X β hβ
               -- the refinement and the split constraints hold together at `β`
               set Call := Fin.append (N.unsafeInputConstraints X A b).1 s.2.1 with hCall
               set dall := Fin.append (N.unsafeInputConstraints X A b).2 s.2.2 with hdall
-              have hall : β ∈ (HPolytope.ineqs Call dall).construct := by
+              have hall : β ∈ (HPolytope.ineqs Call dall).toSet := by
                 refine (HPolytope.mem_ineqs_iff).2 fun i => ?_
                 refine Fin.addCases (fun i => ?_) (fun i => ?_) i
                 · simpa [hCall, hdall, mulVec, Fin.append_left] using

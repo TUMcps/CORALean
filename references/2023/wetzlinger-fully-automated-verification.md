@@ -68,10 +68,10 @@ program's feasible set, the way
 already states Raghuraman–Koeln's `Lemma 2`: the paper writes `max`/`min` and presupposes an
 optimum rather than producing one. No solver is invented and none is needed — the content of both
 propositions is the equivalence, not the algorithm. Eq. (45)'s feasible region `α∈[−1,1]`, `Aα=b`
-read through `x = c+Gα` *is* `ConZonotope.construct`, so both objectives are taken over the set
+read through `x = c+Gα` *is* `ConZonotope.toSet`, so both objectives are taken over the set
 directly and neither theorem needs a coefficient-space restatement of the program. `Prop. 7`'s
 `max` is then earned rather than assumed: `exists_isGreatest_ineqs` produces each `ν_i` from
-`isCompact_construct` whenever CZ is nonempty. Both rows are about `⟨C,d⟩_H`, inequalities only, as
+`isCompact_toSet` whenever CZ is nonempty. Both rows are about `⟨C,d⟩_H`, inequalities only, as
 `Def. 3` has it; CORALean's `HPolytope` also admits equality rows, which a family of maxima cannot
 test, one bounded direction saying nothing about the opposite one.
 

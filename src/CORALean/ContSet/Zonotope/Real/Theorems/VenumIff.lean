@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.Venum
-public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
+public import CORALean.ContSet.Zonotope.Real.Theorems.ToSetEqConvexHullCorner
 public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetIffZonotopeNormLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
@@ -49,19 +49,19 @@ variable {n : ℕ}
 
 theorem Zonotope.venum_iff (Z₁ Z₂ : Zonotope (Vec ℝ n))
     (hG : Function.Surjective Z₂.genMap) : -- --- CONCL ---
-    Z₁.venum Z₂ = true ↔ Z₁.construct ⊆ Z₂.construct := by -- --- PROOF ---
+    Z₁.venum Z₂ = true ↔ Z₁.toSet ⊆ Z₂.toSet := by -- --- PROOF ---
   have hball := (Z₂.zonotopeNorm_ball_eq hG).1
   -- the test is that every corner lies in `Z₂`
-  have htest : Z₁.venum Z₂ = true ↔ ∀ σ, Z₁.corner σ ∈ Z₂.construct := by
+  have htest : Z₁.venum Z₂ = true ↔ ∀ σ, Z₁.corner σ ∈ Z₂.toSet := by
     simp only [Zonotope.venum, Finset.mem_image, Finset.mem_univ, true_and, gt_iff_lt, not_lt,
       forall_exists_index, forall_apply_eq_imp_iff, ite_eq_left_iff, Bool.false_eq_true,
       imp_false, not_not]
     rw [← hball]
     rfl
-  rw [htest, Z₁.construct_eq_convexHull_corner]
+  rw [htest, Z₁.toSet_eq_convexHull_corner]
   constructor
   · intro h
-    exact convexHull_min (by rintro _ ⟨σ, rfl⟩; exact h σ) Z₂.convex_construct
+    exact convexHull_min (by rintro _ ⟨σ, rfl⟩; exact h σ) Z₂.convex_toSet
   · intro h σ
     exact h (subset_convexHull ℝ _ ⟨σ, rfl⟩)
 

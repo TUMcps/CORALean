@@ -66,12 +66,12 @@ after `k` steps under the sampled inputs `Ud`. -/
 theorem LinearSys.IsCanonicalTrajectory.discretizeMatZonotopeFloat_mem_reach {sys : LinearSys 𝕋 n}
     {T : Set ℝ} {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {Δt : 𝕋} {η : ℕ}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ toReal Δt) (hT : Set.Ici 0 ⊆ T)
-    (hU : Bornology.IsBounded (construct U))
-    (hUd : ∀ k : ℕ, sys.stepInput u (toReal Δt) k ∈ construct Ud)
+    (hU : Bornology.IsBounded (toSet U))
+    (hUd : ∀ k : ℕ, sys.stepInput u (toReal Δt) k ∈ toSet Ud)
     (hε : toReal (MatExp.normUpperBound
       (Zonotope.matSmul Δt Δt (Zonotope.pointMat sys.A)).matInterval) / ((η : ℝ) + 2) ≤ 1 / 2)
     {o : ℕ} (ho : 0 < o) (k : ℕ) :
-    x (k * toReal Δt) ∈ construct ((sys.discretizeMatZonotopeFloat Δt η).reach ⟨R₀, Ud, 0, k⟩
+    x (k * toReal Δt) ∈ toSet ((sys.discretizeMatZonotopeFloat Δt η).reach ⟨R₀, Ud, 0, k⟩
       ⟨o, ho⟩) :=
   (sys.discretizeMatZonotopeFloat Δt η).reach_outer ho R₀ Ud
     (traj.discretizeMatZonotopeFloat hΔt hT hU hUd hε) k

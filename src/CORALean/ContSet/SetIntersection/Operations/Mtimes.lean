@@ -39,7 +39,7 @@ variable {𝕄 : ℕ → ℕ → Type} {S : ℕ → Type}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `M` applied to every branch. At `sets = []` the branch list stays empty,
-so `construct` stays `univ` on both sides of the guarantee. -/
+so `toSet` stays `univ` on both sides of the guarantee. -/
 def SetIntersection.mtimes {m n : ℕ} (M : 𝕄 m n) (I : SetIntersection (S n)) :
     SetIntersection (S m) :=
   ⟨I.sets.map (Mtimes.mtimes M)⟩

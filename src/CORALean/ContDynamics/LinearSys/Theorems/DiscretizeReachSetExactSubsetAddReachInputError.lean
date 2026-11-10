@@ -63,7 +63,7 @@ theorem LinearSys.discretize_reachSetExact_subset_add_reachInputError (sys : Lin
     (sys.discretize Δt).reachSetExact (S := 𝒵) R₀ (sys.inputSolution (S := 𝒵) Δt η U) k
       ⊆ (sys.discretize Δt).reachSetExact (S := 𝒵) R₀
           (Zonotope.mtimes (MatExp.expIntegral (toRealMat sys.A) Δt) U) k
-        + (sys.reachInputError Δt η U k).construct := by -- --- PROOF ---
+        + (sys.reachInputError Δt η U k).toSet := by -- --- PROOF ---
   induction k with
   | zero =>
     -- nothing is owed yet, and every point of `R₀` is itself plus the origin
@@ -78,7 +78,7 @@ theorem LinearSys.discretize_reachSetExact_subset_add_reachInputError (sys : Lin
     refine ⟨toRealMat (sys.discretize Δt).A *ᵥ a + q, ⟨_, ⟨a, ha, rfl⟩, q, hq, rfl⟩,
       (sys.discretize Δt).A *ᵥ e + b, ?_, ?_⟩
     · show _ ∈ ((Zonotope.mtimes (sys.discretize Δt).A (sys.reachInputError Δt η U k)).plus
-        (sys.timePointStepErrorBox Δt η U)).construct
+        (sys.timePointStepErrorBox Δt η U)).toSet
       rw [← Zonotope.plus_exact, ← Zonotope.mtimes_exact]
       exact Set.add_mem_add ⟨e, he, rfl⟩ hb
     · show toRealMat (sys.discretize Δt).A *ᵥ a + q + ((sys.discretize Δt).A *ᵥ e + b)

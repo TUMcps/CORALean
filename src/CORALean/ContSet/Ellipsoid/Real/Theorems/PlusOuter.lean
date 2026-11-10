@@ -1,8 +1,8 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Plus
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqOfFactor
 
 @[expose] public section
 
@@ -10,7 +10,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfFactor
 # `Ellipsoid.plus` encloses the Minkowski sum
 
 The shape `s₁² Q₁ + s₂² Q₂` is `H Hᵀ` for `H = [s₁ G₁ | s₂ G₂]`, so the enclosure is the image of
-the unit ball of `ℝ²ⁿ` under `H` (`construct_eq_of_factor`). Given `u₁` and `u₂` in their unit
+the unit ball of `ℝ²ⁿ` under `H` (`toSet_eq_of_factor`). Given `u₁` and `u₂` in their unit
 balls, the point of that ball reproducing `G₁u₁ + G₂u₂` is `(u₁/s₁, u₂/s₂)`, of squared length at
 most `1/s₁² + 1/s₂²`, exactly the hypothesis. Soundness holds at every admissible pair and which one
 a caller picks is a precision choice (Kurzhanski and Varaiya's `l` meets the bound with equality,
@@ -89,12 +89,12 @@ private theorem aux_value_plus {s₁ s₂ : ℝ} (hne₁ : s₁ ≠ 0) (hne₂ :
 -- the enclosure holds at every admissible pair, the inequality being all that is used
 theorem Ellipsoid.plus_outer (s₁ s₂ : ℝ) (E₁ E₂ : Ellipsoid n) (hne₁ : s₁ ≠ 0)
     (hne₂ : s₂ ≠ 0) (hs : 1 / s₁ ^ 2 + 1 / s₂ ^ 2 ≤ 1) : -- --- CONCL ---
-    E₁.construct + E₂.construct ⊆ (Ellipsoid.plus s₁ s₂ E₁ E₂).construct := by -- --- PROOF ---
-  rw [E₁.construct_eq_sqrt, E₂.construct_eq_sqrt]
+    E₁.toSet + E₂.toSet ⊆ (Ellipsoid.plus s₁ s₂ E₁ E₂).toSet := by -- --- PROOF ---
+  rw [E₁.toSet_eq_sqrt, E₂.toSet_eq_sqrt]
   have hsq₁ : (0:ℝ) < s₁ ^ 2 := lt_of_le_of_ne (sq_nonneg _) (Ne.symm (pow_ne_zero 2 hne₁))
   have hsq₂ : (0:ℝ) < s₂ ^ 2 := lt_of_le_of_ne (sq_nonneg _) (Ne.symm (pow_ne_zero 2 hne₂))
   -- each summand's ball point squared-sums to at most one
-  rw [(Ellipsoid.plus s₁ s₂ E₁ E₂).construct_eq_of_factor _ (aux_H_mul_transpose s₁ s₂ E₁ E₂)]
+  rw [(Ellipsoid.plus s₁ s₂ E₁ E₂).toSet_eq_of_factor _ (aux_H_mul_transpose s₁ s₂ E₁ E₂)]
   rintro _ ⟨_, ⟨u₁, hu₁, rfl⟩, _, ⟨u₂, hu₂, rfl⟩, rfl⟩
   have hn₁ : ∑ j, u₁ j ^ 2 ≤ 1 := by
     rw [← norm₂_sq, pow_two]

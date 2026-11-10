@@ -45,7 +45,7 @@ variable {n N : ℕ}
 
 noncomputable def SpectraShadow.polytopeOuter (S : SpectraShadow (Vec ℝ n)) (c : Vec ℝ n)
     (dirs : Fin N → (Vec ℝ n →ₗ[ℝ] ℝ)) : HPolytope (Vec ℝ n) :=
-  if S.construct = ∅ then HPolytope.emptySet (Vec ℝ n) else
+  if S.toSet = ∅ then HPolytope.emptySet (Vec ℝ n) else
   let SpS : SpectraShadow (Vec ℝ n) := S.translate (-c)
   let val : Fin N → EReal := fun i => SpS.supportFunc (dirs i)
   let finite : List (Fin N) := (List.finRange N).filter fun i => val i ≠ ⊤ ∧ val i ≠ ⊥

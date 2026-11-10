@@ -28,7 +28,7 @@ variable {n : ℕ}
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (PolyLevelSet n) (Vec ℝ n) := ⟨PolyLevelSet.construct⟩
+instance : ContSet (PolyLevelSet n) (Vec ℝ n) := ⟨PolyLevelSet.toSet⟩
 
 instance : Intersection (PolyLevelSet n) (Vec ℝ n) where
   intersection := PolyLevelSet.and_

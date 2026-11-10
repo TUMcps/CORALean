@@ -64,7 +64,7 @@ than a Taylor remainder. -/
 theorem Example.quadraticCert (p q r : ℝ) (U : Interval (Vec ℝ 1)) :
     IsAbstractionError (S := ℐ𝒱) Example.quadraticStep.f
       (Example.quadraticA p) Example.quadraticB ![p] ![q] (Example.quadraticRegion p r)
-      (construct U) (Example.quadraticL r) where
+      (toSet U) (Example.quadraticL r) where
   encloses x hx u _ := by
     intro i
     -- `n = 1`, so the only coordinate is `0`
@@ -109,7 +109,7 @@ example (p q r : ℝ) (U R₀ : Interval (Vec ℝ 1)) {o : ℕ} (ho : 0 < o) {x 
     {y : ℕ → Vec ℝ Example.quadraticStep.q}
     (traj : Example.quadraticStep.IsTrajectory (S := ℐ𝒱) R₀ U x u y)
     (hR : ∀ k, x k ∈ Example.quadraticRegion p r) (k : ℕ) :
-    x k ∈ construct (Example.quadraticStep.reach (S := ℐ𝒱)
+    x k ∈ toSet (Example.quadraticStep.reach (S := ℐ𝒱)
       ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ (fun _ => Example.quadraticLinStep p q r U)) :=
   Example.quadraticStep.reach_outer ho (fun _ => Example.quadraticLinStep p q r U) R₀ traj hR k
 
@@ -119,7 +119,7 @@ example (p q r : ℝ) (U R₀ : Interval (Vec ℝ 1)) {o : ℕ} (ho : 0 < o) (K 
     {y : ℕ → Vec ℝ Example.quadraticStep.q} (traj : Example.quadraticStep.IsTrajectoryOn (S := ℐ𝒱)
       R₀ U K x u y)
     (hR : ∀ k < K, x k ∈ Example.quadraticRegion p r) (k : ℕ) (hk : k ≤ K) :
-    x k ∈ construct (Example.quadraticStep.reach (S := ℐ𝒱)
+    x k ∈ toSet (Example.quadraticStep.reach (S := ℐ𝒱)
       ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ (fun _ => Example.quadraticLinStep p q r U)) :=
   Example.quadraticStep.reach_outer_on ho (fun _ => Example.quadraticLinStep p q r U) R₀ traj hR k
     hk

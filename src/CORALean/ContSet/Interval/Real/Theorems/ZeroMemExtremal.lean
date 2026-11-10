@@ -48,7 +48,7 @@ variable {m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.zero_mem_extremal {C : Interval (Vec ℝ m)} {h : Vec ℝ m} {c : Vec ℝ m}
-    (hc : c ∈ C.construct) (h0 : ∑ i, c i * h i = 0) :
+    (hc : c ∈ C.toSet) (h0 : ∑ i, c i * h i = 0) :
     C.extremalLo h ≤ 0 ∧ 0 ≤ C.extremalHi h := by
   -- `C` holds `c`, so it is nonempty, and the two extremal values bracket `Σᵢ cᵢ hᵢ = 0`
   have hC : C.IsNonempty := fun i => le_trans (hc i).1 (hc i).2

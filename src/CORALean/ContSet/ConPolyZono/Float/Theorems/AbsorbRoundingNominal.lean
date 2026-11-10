@@ -6,7 +6,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.MonomialPadE
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Relax
 public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.ExistsRelaxIff
-public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemToSetIffOfEq
 public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemRelaxIff
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemRelaxIff
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsLeErrorBound
@@ -55,7 +55,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Every point of the set, box included, is a nominal point of `absorbRounding`. -/
 theorem ConPolyZono.absorbRounding_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    cPZ.construct ⊆ nominalSet cPZ.absorbRounding := by -- --- PROOF ---
+    cPZ.toSet ⊆ nominalSet cPZ.absorbRounding := by -- --- PROOF ---
   -- a point is a nominal point plus an error within the box
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨a, β, ha, hβ, hs, hz⟩ := ConPolyZono.mem_nominalSet_iff.mp hz'
@@ -65,7 +65,7 @@ theorem ConPolyZono.absorbRounding_nominal (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
   -- each row's slack as a factor of its own, in `[-1, 1]`: the exact rows, relaxed, then hold
   obtain ⟨γ, hrel⟩ := (Real.PolyLevelSet.exists_relax_iff (P := cPZ.cons.nominalCore)
     cPZ.cons_eq (toRealVec cPZ.cons.b_error) a).mpr
-      ((PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hs)
+      ((PolyLevelSet.mem_toSet_iff_of_eq cPZ.cons_eq).mp hs)
   have hγ : ∀ i, |γ i| ≤ 1 := fun i => by
     have h := (Real.Interval.mem_unit_iff _).mp
       ((Real.PolyLevelSet.mem_relax_iff _ _ _ _).mp hrel).1.2 i

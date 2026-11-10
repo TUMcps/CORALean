@@ -54,8 +54,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 /-- A point of `Z`, nominal part and error box together, reaches no further than
 `|c| + Σ|G| + |E|`, rounded up. -/
-private theorem Zonotope.aux_abs_le_construct {Z : Zonotope (Vec 𝕋 n)} {z e : Vec ℝ n}
-    (hz : z ∈ nominalSet Z) (he : e ∈ Z.I_error.construct) (j : Fin n) : -- --- CONCL ---
+private theorem Zonotope.aux_abs_le_toSet {Z : Zonotope (Vec 𝕋 n)} {z e : Vec ℝ n}
+    (hz : z ∈ nominalSet Z) (he : e ∈ Z.I_error.toSet) (j : Fin n) : -- --- CONCL ---
     |z j| ≤ toReal (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j)) ∧
       |z j + e j| ≤ toReal (addUp (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j))
         (maximum (absolute (Z.I_error.inf j)) (absolute (Z.I_error.sup j)))) := by -- --- PROOF ---
@@ -91,14 +91,14 @@ private theorem Zonotope.aux_abs_mulVec_le {R : Mat ℝ m n} {x : Vec ℝ n} {r 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `mtimesIntervalMat` reaches no further than the image of `Z.construct` under any `A` in
+/-- `mtimesIntervalMat` reaches no further than the image of `Z.toSet` under any `A` in
 the box, widened by `mtimesIntervalMatBox`, provided `Z` brackets `0` in its own box. -/
 theorem Zonotope.mtimesIntervalMat_subset_add_box (IM : Interval (Mat 𝕋 m n))
-    (Z : Zonotope (Vec 𝕋 n)) (h : (0 : Vec ℝ n) ∈ Z.I_error.construct) {A : Mat ℝ m n}
-    (hA : A ∈ IM.construct) : -- --- CONCL ---
-    (Zonotope.mtimesIntervalMat IM Z).construct ⊆
-      (A *ᵥ ·) '' Z.construct
-        + (Zonotope.mtimesIntervalMatBox IM Z).construct := by -- --- PROOF ---
+    (Z : Zonotope (Vec 𝕋 n)) (h : (0 : Vec ℝ n) ∈ Z.I_error.toSet) {A : Mat ℝ m n}
+    (hA : A ∈ IM.toSet) : -- --- CONCL ---
+    (Zonotope.mtimesIntervalMat IM Z).toSet ⊆
+      (A *ᵥ ·) '' Z.toSet
+        + (Zonotope.mtimesIntervalMatBox IM Z).toSet := by -- --- PROOF ---
   rintro _ ⟨y, hy, e', he', rfl⟩
   set C := Interval.centerMat IM with hC
   set Rs := Interval.matResidual IM.inf IM.sup C with hRs
@@ -112,7 +112,7 @@ theorem Zonotope.mtimesIntervalMat_subset_add_box (IM : Interval (Mat 𝕋 m n))
   set b : Vec 𝕋 m := fun i => sumUp fun j => mulUp (r i j) (ν j) with hbdef
   set a : Vec 𝕋 m := fun i => sumUp fun j => mulUp (r i j) (ξ j) with hadef
   -- `A` is within `matResidual` of the center matrix, entry by entry
-  have hR : R ∈ Rs.construct := Interval.sub_mem_matResidual fun i j => hA (i, j)
+  have hR : R ∈ Rs.toSet := Interval.sub_mem_matResidual fun i j => hA (i, j)
   have hr : ∀ i j, |R i j| ≤ toReal (r i j) := fun i j => by
     have hRij := hR (i, j)
     simp only [Entrywise.entry_mat] at hRij
@@ -134,8 +134,8 @@ theorem Zonotope.mtimesIntervalMat_subset_add_box (IM : Interval (Mat 𝕋 m n))
     rw [hdiag, ← add_assoc]
     rfl
   -- `t` is a point of `mid(M) Z`, whose error box holds `0`
-  have ht : t ∈ (Zonotope.mtimes C Z).construct := by
-    have hh : t + (0 : Vec ℝ m) ∈ (Zonotope.mtimes C Z).construct :=
+  have ht : t ∈ (Zonotope.mtimes C Z).toSet := by
+    have hh : t + (0 : Vec ℝ m) ∈ (Zonotope.mtimes C Z).toSet :=
       Set.add_mem_add (Zonotope.mem_nominalSet_iff.mpr
         ⟨fun l => β (Fin.castAdd m l), fun l => hβ _, fun _ => rfl⟩)
         (Zonotope.zero_mem_mtimes_error h)
@@ -145,13 +145,13 @@ theorem Zonotope.mtimesIntervalMat_subset_add_box (IM : Interval (Mat 𝕋 m n))
   obtain ⟨z, hz, e, he, hxze⟩ := hx
   have hxb : ∀ j, |x j| ≤ toReal (ξ j) := fun j => by
     rw [← hxze]
-    exact (Zonotope.aux_abs_le_construct hz he j).2
+    exact (Zonotope.aux_abs_le_toSet hz he j).2
   -- `b ≥ 0`, through the residual on the nominal point `z`
   have hb0 : ∀ i, 0 ≤ toReal (b i) := fun i =>
     le_trans (abs_nonneg _) (Zonotope.aux_abs_mulVec_le hr
-      (fun j => (Zonotope.aux_abs_le_construct hz he j).1) i)
+      (fun j => (Zonotope.aux_abs_le_toSet hz he j).1) i)
   -- `-(A - mid(M)) x + d` lies in the symmetric box
-  have hsym : -(R *ᵥ x) + d ∈ (Interval.symmetric fun i => addUp (a i) (b i)).construct := by
+  have hsym : -(R *ᵥ x) + d ∈ (Interval.symmetric fun i => addUp (a i) (b i)).toSet := by
     intro i
     have hRx := Zonotope.aux_abs_mulVec_le hr hxb i
     have hd : |d i| ≤ toReal (b i) := by

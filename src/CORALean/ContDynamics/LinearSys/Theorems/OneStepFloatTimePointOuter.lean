@@ -6,7 +6,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachShift
 public import CORALean.ContSet.ContSet.Theorems.Basic
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 
 @[expose] public section
 
@@ -74,24 +74,24 @@ theorem LinearSys.IsCanonicalTrajectory.oneStepFloat_timePoint_outer {sys : Line
     {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {X U : Zonotope (Vec 𝕋
         n)}
     {W : Set (Vec ℝ n)} {x w : ℝ → Vec ℝ n} {u : Vec 𝕋 n}
-    (traj : sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) X.construct
+    (traj : sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) X.toSet
       W x w)
-    (hWU : ∀ v ∈ W, v - toRealVec u ∈ U.construct) (hW : Bornology.IsBounded W) : -- --- CONCL ---
-    x (toReal Δt) ∈ (sys.oneStepFloat X U u Δt η).Rtp.construct := by -- --- PROOF ---
+    (hWU : ∀ v ∈ W, v - toRealVec u ∈ U.toSet) (hW : Bornology.IsBounded W) : -- --- CONCL ---
+    x (toReal Δt) ∈ (sys.oneStepFloat X U u Δt η).Rtp.toSet := by -- --- PROOF ---
   set A := Scalar.toRealMat sys.A with hA
   set r := toReal Δt with hr
   -- the `U`-input's share, in `PU`
-  have hp := traj.sub_mem_inputReach_shift (S := 𝒮) (U := U.construct)
-    (toRealVec u) hWU hW (CompactSet.isBounded_construct U) ⟨hΔt.le, le_rfl⟩
+  have hp := traj.sub_mem_inputReach_shift (S := 𝒮) (U := U.toSet)
+    (toRealVec u) hWU hW (CompactSet.isBounded_toSet U) ⟨hΔt.le, le_rfl⟩
   have hPU := sys.inputReach_subset_inputSolutionFloat hΔt hη U hp
   -- the constant's share, in `Pu`
-  have hpt : toRealVec u ∈ (Zonotope.point u).construct := by
-    rw [Zonotope.construct_point]; exact rfl
+  have hpt : toRealVec u ∈ (Zonotope.point u).toSet := by
+    rw [Zonotope.toSet_point]; exact rfl
   have hPu := sys.inputReach_subset_inputSolutionFloat hΔt hη (Zonotope.point u)
     ⟨fun _ => toRealVec u, fun _ _ => hpt, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A (toRealVec u) hΔt.le).symm⟩
   -- the free motion, in `[e^{AΔt}] X`
-  have hex : exp (r • A) *ᵥ x 0 ∈ construct (Mtimes.mtimes (S := 𝒵[𝕋])
+  have hex : exp (r • A) *ᵥ x 0 ∈ toSet (Mtimes.mtimes (S := 𝒵[𝕋])
       (𝕄 := ℐ[𝕋]) (sys.expIntervalFloat Δt Δt η) X) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) _ X

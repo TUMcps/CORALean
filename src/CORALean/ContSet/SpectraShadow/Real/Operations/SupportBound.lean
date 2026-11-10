@@ -50,7 +50,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The bound `c(c₀) + tr(A₀ Y)` that a dual certificate `Y` proves. -/
 def SpectraShadow.supportBound (S : SpectraShadow α) (c : α →ₗ[ℝ] ℝ) (Y : Mat ℝ S.k S.k)
     (hY : Y.PosSemidef) (hc : ∀ i, (S.A i * Y).trace = - c (S.G i)) :
-    SupportBound S.construct c where
+    SupportBound S.toSet c where
   val := c S.c + (S.A₀ * Y).trace
   le := by
     rintro _ ⟨β, hβ, rfl⟩

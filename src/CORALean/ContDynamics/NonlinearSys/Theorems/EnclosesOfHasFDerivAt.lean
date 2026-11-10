@@ -47,9 +47,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 /-- A box holds the segment between two of its points. -/
 private theorem aux_segment_mem {k : ℕ} {I : Interval (Vec 𝕋 k)} {y y' : Vec ℝ k}
-    (hy : y ∈ I.construct) (hy' : y' ∈ I.construct) {s : ℝ}
+    (hy : y ∈ I.toSet) (hy' : y' ∈ I.toSet) {s : ℝ}
     (hs : s ∈ Set.Icc (0 : ℝ) 1) : -- --- CONCL ---
-    y' + s • (y - y') ∈ I.construct := by -- --- PROOF ---
+    y' + s • (y - y') ∈ I.toSet := by -- --- PROOF ---
   intro i
   have h1 : toReal (I.inf i) ≤ (y i : ℝ) := (hy i).1
   have h2 : (y i : ℝ) ≤ toReal (I.sup i) := (hy i).2
@@ -68,10 +68,10 @@ private theorem aux_segment_mem {k : ℕ} {I : Interval (Vec 𝕋 k)} {y y' : Ve
 theorem NonlinearSys.FloatModel.Encloses.of_hasFDerivAt
     {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m}
     (hf : ∀ (X : Interval (Vec 𝕋 n)) (U : Interval (Vec 𝕋 m)),
-      ∀ x ∈ X.construct, ∀ u ∈ U.construct, sys.f x u ∈ (fm.f X U).construct)
+      ∀ x ∈ X.toSet, ∀ u ∈ U.toSet, sys.f x u ∈ (fm.f X U).toSet)
     (hJ : ∀ (X : Interval (Vec 𝕋 n)) (U : Interval (Vec 𝕋 m)),
-      ∀ x ∈ X.construct, ∀ u ∈ U.construct,
-        ∃ Jx ∈ (fm.jacX X U).construct, ∃ Ju ∈ (fm.jacU X U).construct,
+      ∀ x ∈ X.toSet, ∀ u ∈ U.toSet,
+        ∃ Jx ∈ (fm.jacX X U).toSet, ∃ Ju ∈ (fm.jacU X U).toSet,
           ∃ D : (Vec ℝ n × Vec ℝ m) →L[ℝ] Vec ℝ n,
             HasFDerivAt (fun p : Vec ℝ n × Vec ℝ m => sys.f p.1 p.2) D (x, u) ∧
             ∀ v w, D (v, w) = Jx *ᵥ v + Ju *ᵥ w) : -- --- CONCL ---
@@ -81,7 +81,7 @@ theorem NonlinearSys.FloatModel.Encloses.of_hasFDerivAt
   set du := u - u'
   -- a derivative at every point of the segment, chosen once
   have hJs : ∀ s ∈ Set.Icc (0 : ℝ) 1,
-      ∃ Jx ∈ (fm.jacX X U).construct, ∃ Ju ∈ (fm.jacU X U).construct,
+      ∃ Jx ∈ (fm.jacX X U).toSet, ∃ Ju ∈ (fm.jacU X U).toSet,
         ∃ D : (Vec ℝ n × Vec ℝ m) →L[ℝ] Vec ℝ n,
           HasFDerivAt (fun p : Vec ℝ n × Vec ℝ m => sys.f p.1 p.2) D (x' + s • dx, u' + s • du) ∧
           ∀ v w, D (v, w) = Jx *ᵥ v + Ju *ᵥ w := fun s hs =>

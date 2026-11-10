@@ -70,22 +70,22 @@ theorem NeurNetContrSysDT.reach_outer (sys : NeurNetContrSysDT (LinearSysDT 𝕋
     (R₀ : S n) {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Encloses π)
     {W : Set (Vec ℝ sys.plant.r)}
     (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt}
-    {w : ℕ → Vec ℝ sys.plant.r} (traj : sys.IsTrajectory π R₀ (construct U_ext) W x v w)
+    {w : ℕ → Vec ℝ sys.plant.r} (traj : sys.IsTrajectory π R₀ (toSet U_ext) W x v w)
     (k : ℕ) : -- --- CONCL ---
-    x k ∈ construct (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
+    x k ∈ toSet (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   obtain ⟨hinit, hv, hstep⟩ := traj.linear hW
   induction k with
   | zero => exact hinit
   | succ k ih =>
     set R := sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩
-    show x (k + 1) ∈ construct (sys.plant.reach
+    show x (k + 1) ∈ toSet (sys.plant.reach
       ⟨R, plus (plus (mtimes (leftCols sys.hm sys.plant.B) (sys.contr.enclose R))
         (mtimes (rightCols sys.hm sys.plant.B) U_ext)) (OfScalarPoint.ofVec sys.plant.c), 0, 1⟩
         ⟨o, ho⟩)
     -- the input `B_nn π(x) + B_ext v + c` is in `B_nn N(R) ⊕ B_ext U_ext ⊕ c`
     have hu : toRealMat (leftCols sys.hm sys.plant.B) *ᵥ π (x k) +
         toRealMat (rightCols sys.hm sys.plant.B) *ᵥ v k + toRealVec sys.plant.c ∈
-        construct (plus (plus (mtimes (leftCols sys.hm sys.plant.B) (sys.contr.enclose R))
+        toSet (plus (plus (mtimes (leftCols sys.hm sys.plant.B) (sys.contr.enclose R))
           (mtimes (rightCols sys.hm sys.plant.B) U_ext))
           (OfScalarPoint.ofVec (S := S) sys.plant.c)) :=
       plus_outer _ _ ⟨_, plus_outer _ _ ⟨_, mtimes_outer _ _ (Set.mem_biUnion

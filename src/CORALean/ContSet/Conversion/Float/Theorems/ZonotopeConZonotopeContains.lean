@@ -50,7 +50,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.conZonotope_contains (Z : Zonotope (Vec 𝕋 n)) :
-    Z.construct ⊆ Z.conZonotope.construct := by
+    Z.toSet ⊆ Z.conZonotope.toSet := by
   refine mono_subset (fun x hx => ?_) subset_rfl
   obtain ⟨β, hβ, hx⟩ := Zonotope.mem_nominalSet_iff.mp hx
   exact ConZonotope.mem_nominalSet_iff.mpr

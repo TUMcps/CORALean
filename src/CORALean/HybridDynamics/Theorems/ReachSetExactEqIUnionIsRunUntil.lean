@@ -48,7 +48,7 @@ theorem HybridAutomaton.reachSetExact_eq_iUnion_isRunUntil (HA : HybridAutomaton
     (R₀ : S n) (ℓ₀ ℓ : L) : -- --- CONCL ---
     HA.reachSetExact R₀ ℓ₀ ℓ
       = ⋃ (T : ℝ) (k : ℕ),
-        {y | ∃ x ∈ construct R₀, HA.IsRunUntil T k ℓ₀ x ℓ y} := by -- --- PROOF ---
+        {y | ∃ x ∈ toSet R₀, HA.IsRunUntil T k ℓ₀ x ℓ y} := by -- --- PROOF ---
   ext y
   simp only [HybridAutomaton.reachSetExact, Set.mem_setOf_eq, Set.mem_iUnion,
     HybridAutomaton.isRun_iff_exists_isRunUntil]

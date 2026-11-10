@@ -86,31 +86,31 @@ theorem LinearSys.minBackReachTimeIntervalFloat_outer (sys : LinearSys 𝕋 n) {
     {N : Mat 𝕋 q n} {t₀ Δt : 𝕋} {η ν ω : ℕ}
     -- `Û ⊂ U`: the center trajectory `u₀(·)` and the `q` others, all admissible
     {u₀ : ℝ → Vec ℝ n} {û : Fin q → ℝ → Vec ℝ n}
-    (hu₀ : ∀ s ∈ T, u₀ s ∈ construct U)
+    (hu₀ : ∀ s ∈ T, u₀ s ∈ toSet U)
     (hmu₀ : AEStronglyMeasurable u₀ (volume.restrict T))
-    (hû : ∀ i s, s ∈ T → û i s ∈ construct U)
+    (hû : ∀ i s, s ∈ T → û i s ∈ toSet U)
     (hmû : ∀ i, AEStronglyMeasurable (û i) (volume.restrict T))
     -- (44), (45): the `ω` steps enclose the center trajectory's own set
     (hcov : sys.timeIntervalBackReachSetOfInputExact T U W Xend τ u₀ ⊆
-      ⋃ k < ω, (sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k).R.construct)
+      ⋃ k < ω, (sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k).R.toSet)
     -- (46), (49): each `p_(j)` is a support value of some trajectory's own set
     (hp : ∀ j : Fin q, ∃ i : Fin q,
       ∀ x ∈ sys.timeIntervalBackReachSetOfInputExact T U W Xend τ (û i),
         (toRealMat N *ᵥ x) j ≤ toReal (sys.minBackReachPFloat CZ W₀ U₀ Zw N t₀ Δt η ν (ω - 1) j))
     : -- --- CONCL ---
     sys.timeIntervalBackReachSetForallExistsExact T U W Xend τ ⊆
-      ⋃ k < ω, ((sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k).R.construct ∩
+      ⋃ k < ω, ((sys.minBackReachRunFloat CZ W₀ U₀ Zw t₀ Δt η ν k).R.toSet ∩
         (HPolytope.ineqs N
-        (sys.minBackReachPFloat CZ W₀ U₀ Zw N t₀ Δt η ν (ω - 1))).construct) := by -- --- PROOF ---
+        (sys.minBackReachPFloat CZ W₀ U₀ Zw N t₀ Δt η ν (ω - 1))).toSet) := by -- --- PROOF ---
   intro x₀ hx₀
   -- (42), (55): `x₀` is in `R^∃(-τ;u*(·))` for every admissible `u*(·)`, so for `Û`'s
-  have key : ∀ u : ℝ → Vec ℝ n, (∀ s ∈ T, u s ∈ construct U) →
+  have key : ∀ u : ℝ → Vec ℝ n, (∀ s ∈ T, u s ∈ toSet U) →
       AEStronglyMeasurable u (volume.restrict T) →
       x₀ ∈ sys.timeIntervalBackReachSetOfInputExact T U W Xend τ u :=
     fun u hu hmu => hx₀ u hu hmu
   -- (57): every row of `⟨N,p⟩_H` bounds one of those sets, hence `x₀`
   have hP : x₀ ∈ (HPolytope.ineqs N
-      (sys.minBackReachPFloat CZ W₀ U₀ Zw N t₀ Δt η ν (ω - 1))).construct := by
+      (sys.minBackReachPFloat CZ W₀ U₀ Zw N t₀ Δt η ν (ω - 1))).toSet := by
     refine HPolytope.mem_ineqs_iff.mpr fun j => ?_
     obtain ⟨i, hi⟩ := hp j
     exact hi x₀ (key (û i) (hû i) (hmû i))

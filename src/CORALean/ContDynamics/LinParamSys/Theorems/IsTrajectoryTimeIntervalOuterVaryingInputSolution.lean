@@ -80,16 +80,16 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] in
 /-- `t^{k+1}/(k+1)!` times the hull of order `k` lies in `inputTerm r k` applied
 to `U`, at `t ≤ r`, when that image is closed and convex and `0 ∈ U`. -/
 private theorem aux_hull_subset_inputTerm (sys : LinParamSys ℐ n) {U : S n} {M₀ : Mat ℝ n n}
-    (hM₀ : M₀ ∈ construct sys.A) (h0 : (0 : Vec ℝ n) ∈ construct U) {r t : ℝ} (hr : 0 < r)
+    (hM₀ : M₀ ∈ toSet sys.A) (h0 : (0 : Vec ℝ n) ∈ toSet U) {r t : ℝ} (hr : 0 < r)
     (ht0 : 0 ≤ t) (htr : t ≤ r) (k : ℕ)
-    (hconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U)))
-    (hclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U)))
+    (hconv : Convex ℝ (toSet (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U)))
+    (hclosed : IsClosed (toSet (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U)))
     {y : Vec ℝ n} (hy : y ∈ (t ^ (k + 1) / (Nat.factorial (k + 1) : ℝ)) • closure (convexHull ℝ
-      {z | ∃ N ∈ (Interval.matPow sys.A k).construct, ∃ v ∈ construct U, z = N *ᵥ v}))
+      {z | ∃ N ∈ (Interval.matPow sys.A k).toSet, ∃ v ∈ toSet U, z = N *ᵥ v}))
     : -- --- CONCL ---
-    y ∈ construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U) := by -- --- PROOF ---
+    y ∈ toSet (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U) := by -- --- PROOF ---
   set K := closure (convexHull ℝ
-    {z | ∃ N ∈ (Interval.matPow sys.A k).construct, ∃ v ∈ construct U, z = N *ᵥ v}) with hK
+    {z | ∃ N ∈ (Interval.matPow sys.A k).toSet, ∃ v ∈ toSet U, z = N *ᵥ v}) with hK
   set cr := r ^ (k + 1) / (Nat.factorial (k + 1) : ℝ) with hcr
   set ct := t ^ (k + 1) / (Nat.factorial (k + 1) : ℝ) with hct
   have hcr0 : 0 < cr := by positivity
@@ -99,13 +99,13 @@ private theorem aux_hull_subset_inputTerm (sys : LinParamSys ℐ n) {U : S n} {M
   have hK0 : (0 : Vec ℝ n) ∈ K := subset_closure (subset_convexHull ℝ _
     ⟨M₀ ^ k, Interval.matPow_outer sys.A hM₀ k, 0, h0, by simp⟩)
   -- and `cr` times the hull is inside the image, a closed convex set holding `cr` times its points
-  have hKT : ∀ z ∈ K, cr • z ∈ construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U) := by
+  have hKT : ∀ z ∈ K, cr • z ∈ toSet (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U) := by
     have hpre : K ⊆ (fun z => cr • z) ⁻¹'
-        construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U) := by
+        toSet (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U) := by
       refine closure_minimal (convexHull_min ?_ (hconv.linear_preimage (cr • LinearMap.id)))
         (hclosed.preimage (continuous_const_smul cr))
       rintro _ ⟨N, hN, v, hv, rfl⟩
-      show cr • (N *ᵥ v) ∈ construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U)
+      show cr • (N *ᵥ v) ∈ toSet (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U)
       rw [← Matrix.smul_mulVec]
       exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion
         (Interval.smul_outer cr _ hN) (Set.mem_image_of_mem _ hv))
@@ -128,18 +128,18 @@ theorem LinParamSys.IsCanonicalTrajectory.timeInterval_outer_varying_inputSoluti
     {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r)
-    (hclosed : IsClosed (construct U)) (hbdd : Bornology.IsBounded (construct U))
-    (h0 : (0 : Vec ℝ n) ∈ construct U)
+    (hclosed : IsClosed (toSet U)) (hbdd : Bornology.IsBounded (toSet U))
+    (h0 : (0 : Vec ℝ n) ∈ toSet U)
     (hTconv : ∀ k ≤ m + 2,
-      Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U)))
+      Convex ℝ (toSet (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U)))
     (hTclosed : ∀ k ≤ m + 2,
-      IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U))) : -- --- CONCL ---
-    x t ∈ construct (Plus.plus (sys.timeInterval r (m + 2) R₀)
+      IsClosed (toSet (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U))) : -- --- CONCL ---
+    x t ∈ toSet (Plus.plus (sys.timeInterval r (m + 2) R₀)
       (sys.inputSolution r (m + 2) U)) := by -- --- PROOF ---
   set η := m + 2 with hη
   obtain ⟨Â, hÂi, hÂB, hx⟩ := traj.exists_integral_eq_of_measurable hr.le hT
   have hxc : ContinuousOn x (Set.Icc 0 r) := traj.cont.mono hT
-  have huU : ∀ s ∈ Set.Icc 0 r, u s ∈ construct U := fun s hs => traj.input s (hT hs)
+  have huU : ∀ s ∈ Set.Icc 0 r, u s ∈ toSet U := fun s hs => traj.input s (hT hs)
   -- the input cut off outside the step, integrable over every window
   obtain ⟨C, hC⟩ := hbdd.exists_norm_le
   set ũ : ℝ → Vec ℝ n := (Set.Icc 0 r).indicator u with hũ
@@ -162,7 +162,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeInterval_outer_varying_inputSoluti
     rw [Set.uIcc_of_le hs.1] at hσ
     simp only [hũr σ ⟨hσ.1, hσ.2.trans (hs.2.trans htr)⟩]
   -- a longest point of the input set bounds every input
-  have hcpt : IsCompact (construct U) := Metric.isCompact_of_isClosed_isBounded hclosed hbdd
+  have hcpt : IsCompact (toSet U) := Metric.isCompact_of_isClosed_isBounded hclosed hbdd
   obtain ⟨v₀, hv₀, hmax⟩ := hcpt.exists_isMaxOn ⟨0, h0⟩ continuous_norm.continuousOn
   have hν : ∀ s ∈ Set.Icc 0 t, ‖ũ s‖ ≤ ‖v₀‖ := fun s hs => by
     rw [hũr s ⟨hs.1, hs.2.trans htr⟩]
@@ -193,14 +193,14 @@ theorem LinParamSys.IsCanonicalTrajectory.timeInterval_outer_varying_inputSoluti
   -- the input half: each kept order in its term, the remainder in the remainder's product
   refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
   · have hterm : ∀ k ≤ η, MatExp.peanoBakerInputTerm Â ũ k t
-        ∈ construct (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U) := fun k hk =>
+        ∈ toSet (Mtimes.mtimes (𝕄 := ℐ) (sys.inputTerm r k) U) := fun k hk =>
       aux_hull_subset_inputTerm sys (hÂB 0) h0 hr ht0 htr k (hTconv k hk) (hTclosed k hk)
         (MatExp.peanoBakerInputTerm_mem hÂi hÂB hũi ht0
           (fun s hs => by rw [hũr s ⟨hs.1, hs.2.trans htr⟩]; exact huU s ⟨hs.1, hs.2.trans htr⟩)
           k t ⟨ht0, le_rfl⟩)
     -- summed order by order, as `inputTaylorSum` recurses
     have hsum : ∀ j ≤ η, ∑ k ∈ Finset.range (j + 1), MatExp.peanoBakerInputTerm Â ũ k t
-        ∈ construct (sys.inputTaylorSum r U j) := by
+        ∈ toSet (sys.inputTaylorSum r U j) := by
       intro j hj
       induction j with
       | zero => rw [Finset.sum_range_one]; exact hterm 0 (Nat.zero_le _)
@@ -224,7 +224,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeInterval_outer_varying_inputSoluti
                 (mul_nonneg hr.le (norm_nonneg _))
           _ = _ := by ring)
     obtain ⟨E, hE, hEv⟩ := exists_mulVec_eq_of_norm_le (mul_nonneg hr.le hR0) hρ
-    have hEm : E ∈ (MatExp.intervalInputRemainder sys.A r η).construct :=
+    have hEm : E ∈ (MatExp.intervalInputRemainder sys.A r η).toSet :=
       Interval.mem_mat_iff.mpr fun i j => abs_le.mp (hE i j)
     rw [← hEv]
     exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion hEm (Set.mem_image_of_mem _ hv₀))

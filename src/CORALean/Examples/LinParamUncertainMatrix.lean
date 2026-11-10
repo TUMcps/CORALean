@@ -7,7 +7,7 @@ import CORALean.ContSet.Zonotope.Real.Instances
 # The same `reach`, two different matrix uncertainties
 
 `LinParamSysDT.reach` asks for `Mtimes 𝕄 S` and nothing about what `𝕄` is: its guarantee was
-written `⋃ A ∈ construct M, …` from the start, so a set of matrices needs no interface of its own,
+written `⋃ A ∈ toSet M, …` from the start, so a set of matrices needs no interface of its own,
 only an `Mtimes` instance. This file runs the one algorithm at two: an interval matrix `𝕄 := ℐ` and
 a matrix zonotope `𝕄 := 𝕄𝒵`, both bounding the same nominal system matrix, the contraction
 `0.9 · I`, at `S := 𝒵`. A concrete trajectory, the system matrix pinned to the nominal `0.9 · I` at
@@ -46,12 +46,12 @@ def Example.sysZ : LinParamSysDT 𝕄𝒵 2 :=
 
 /-- The nominal matrix `0.9 · I` sits in both: entrywise within the interval's bounds, and at
 the matrix zonotope's own center. -/
-theorem Example.nominal_mem_sysI : (0.9 : ℝ) • (1 : Mat ℝ 2 2) ∈ construct Example.sysI.A := by
+theorem Example.nominal_mem_sysI : (0.9 : ℝ) • (1 : Mat ℝ 2 2) ∈ toSet Example.sysI.A := by
   rintro ⟨i, j⟩
   fin_cases i <;> fin_cases j <;>
     norm_num [Entrywise.entry_mat, Matrix.one_apply, Example.sysI, LinParamSysDT.canonical]
 
-theorem Example.nominal_mem_sysZ : (0.9 : ℝ) • (1 : Mat ℝ 2 2) ∈ construct Example.sysZ.A :=
+theorem Example.nominal_mem_sysZ : (0.9 : ℝ) • (1 : Mat ℝ 2 2) ∈ toSet Example.sysZ.A :=
   ⟨fun _ => 0, fun _ => by norm_num, by simp [Example.sysZ, LinParamSysDT.canonical]⟩
 
 
@@ -97,14 +97,14 @@ theorem Example.trajZ : Example.sysZ.IsCanonicalTrajectory (S := 𝒵) Example.l
 steps is in the computed set. -/
 example {o : ℕ} (ho : 0 < o) (k : ℕ) :
     Example.lpX k ∈
-      construct (Example.sysI.reach (S := 𝒵) ⟨Example.lpR0, Example.lpU, 0, k⟩ ⟨o, ho⟩) :=
+      toSet (Example.sysI.reach (S := 𝒵) ⟨Example.lpR0, Example.lpU, 0, k⟩ ⟨o, ho⟩) :=
   Example.sysI.reach_outer (S := 𝒵) ho Example.lpR0 Example.lpU Example.trajI k
 
 /-- `reach_outer`, unchanged, at the matrix zonotope — the strictly tighter
 model, since it keeps the correlation an interval matrix throws away. -/
 example {o : ℕ} (ho : 0 < o) (k : ℕ) :
     Example.lpX k ∈
-      construct (Example.sysZ.reach (S := 𝒵) ⟨Example.lpR0, Example.lpU, 0, k⟩ ⟨o, ho⟩) :=
+      toSet (Example.sysZ.reach (S := 𝒵) ⟨Example.lpR0, Example.lpU, 0, k⟩ ⟨o, ho⟩) :=
   Example.sysZ.reach_outer (S := 𝒵) ho Example.lpR0 Example.lpU Example.trajZ k
 
 end CORALean.Real

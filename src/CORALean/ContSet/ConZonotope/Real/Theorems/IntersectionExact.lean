@@ -54,9 +54,9 @@ variable {n : ℕ}
 /-- The agreement rows are all that `intersection` adds over `plus`. -/
 private theorem ConZonotope.aux_mem_intersection_P_iff (cZ₁ cZ₂ : ConZonotope (Vec ℝ n))
     (β : Vec ℝ (cZ₁.intersection cZ₂).h) : -- --- CONCL ---
-    β ∈ (cZ₁.intersection cZ₂).P.construct ↔
-      (blockLeft cZ₁.h cZ₂.h β ∈ cZ₁.P.construct
-        ∧ blockRight cZ₁.h cZ₂.h β ∈ cZ₂.P.construct)
+    β ∈ (cZ₁.intersection cZ₂).P.toSet ↔
+      (blockLeft cZ₁.h cZ₂.h β ∈ cZ₁.P.toSet
+        ∧ blockRight cZ₁.h cZ₂.h β ∈ cZ₂.P.toSet)
       ∧ ∀ i, (ConZonotope.step_agreeMat cZ₁ cZ₂ *ᵥ β) i = cZ₂.c i - cZ₁.c i := by -- --- PROOF ---
   -- via `mp`/`mpr`, not rewrites: writing the polytopes out needs an instance at an unreduced count
   constructor
@@ -91,7 +91,7 @@ private theorem ConZonotope.aux_value_intersection (cZ₁ cZ₂ : ConZonotope (V
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.intersection_exact (cZ₁ cZ₂ : ConZonotope (Vec ℝ n)) : -- --- CONCL ---
-    cZ₁.construct ∩ cZ₂.construct = (cZ₁.intersection cZ₂).construct := by -- --- PROOF ---
+    cZ₁.toSet ∩ cZ₂.toSet = (cZ₁.intersection cZ₂).toSet := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro x ⟨⟨β₁, hβ₁, hP₁, hx₁⟩, β₂, hβ₂, hP₂, hx₂⟩
     refine ⟨Fin.append β₁ β₂, ?_, ?_, ?_⟩

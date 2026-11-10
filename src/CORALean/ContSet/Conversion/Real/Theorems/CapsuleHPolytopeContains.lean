@@ -38,7 +38,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.hPolytope_contains (C : Capsule n) : -- --- CONCL ---
-    C.construct ⊆ C.hPolytope.construct := by -- --- PROOF ---
+    C.toSet ⊆ C.hPolytope.toSet := by -- --- PROOF ---
   cases n with
   | zero => exact (C.hPolytope_exact (Or.inl (Nat.zero_le 1))).symm.subset
   | succ m =>

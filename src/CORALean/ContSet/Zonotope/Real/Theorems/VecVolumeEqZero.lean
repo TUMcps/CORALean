@@ -43,8 +43,8 @@ variable {m n : ℕ}
 /-- A rank-deficient matrix zonotope: the volume of the stacked members is
 `volume(zonotope(matZ))`. -/
 theorem Zonotope.vec_volume_eq_of_rank_lt (Z : Zonotope (Mat ℝ m n)) (hr : Z.vec.rank < n * m) :
-    MeasureTheory.volume (matVecEquiv '' Z.construct) = Z.vec.volume := by
-  rw [Zonotope.vec_construct]
+    MeasureTheory.volume (matVecEquiv '' Z.toSet) = Z.vec.volume := by
+  rw [Zonotope.vec_toSet]
   exact Zonotope.volume_eq_of_rank_lt Z.vec hr
 
 end CORALean.Real

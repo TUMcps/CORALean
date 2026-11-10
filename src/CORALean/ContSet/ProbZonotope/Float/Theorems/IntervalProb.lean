@@ -64,7 +64,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem ProbZonotope.interval_prob (p : ℕ) (P : ProbZonotope 𝕋 n) (M : 𝕋) {m : ℝ} (hm : 0 < m)
     (hmM : m ≤ toReal M) {ν : Measure (EuclideanSpace ℝ (Fin n))} (hν : ν ∈ P.laws) :
     (gaussianReal 0 1 (Set.Icc (-m) m)) ^ n
-      ≤ ν (toLp 2 '' (P.interval p M).construct) :=
+      ≤ ν (toLp 2 '' (P.interval p M).toSet) :=
   (ProbZonotope.zonotope_prob p P M hm hmM hν).trans
     (measure_mono (Set.image_mono (P.zonotope p M).interval_contains))
 

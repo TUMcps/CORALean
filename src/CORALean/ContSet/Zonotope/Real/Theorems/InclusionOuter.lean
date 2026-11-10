@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.Inclusion
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Zonotope.Real.Definitions.Coefficient
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
@@ -56,8 +56,8 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.inclusion_outer (p : Vec ℝ n) (IM : Interval (Mat ℝ n m)) : -- --- CONCL ---
-    (⋃ M ∈ IM.construct, {x | ∃ b : Vec ℝ m, (∀ j, |b j| ≤ 1) ∧ x = p + M *ᵥ b})
-      ⊆ (Zonotope.inclusion p IM).construct := by -- --- PROOF ---
+    (⋃ M ∈ IM.toSet, {x | ∃ b : Vec ℝ m, (∀ j, |b j| ≤ 1) ∧ x = p + M *ᵥ b})
+      ⊆ (Zonotope.inclusion p IM).toSet := by -- --- PROOF ---
   rintro x hx
   simp only [Set.mem_iUnion, Set.mem_setOf_eq, exists_prop] at hx
   obtain ⟨M, hM, b, hb, rfl⟩ := hx
@@ -75,7 +75,7 @@ theorem Zonotope.inclusion_outer (p : Vec ℝ n) (IM : Interval (Mat ℝ n m)) :
       _ = ∑ j, IM.radius i j := by simp
   have hrsnn : ∀ i, 0 ≤ ∑ j, IM.radius i j := fun i => (abs_nonneg _).trans (herrb i)
   -- the witness: `b` on the center's columns, the scaled spread on the axis generators
-  refine Zonotope.mem_construct_iff.mpr
+  refine Zonotope.mem_toSet_iff.mpr
     ⟨Fin.append b (fun i => Zonotope.coefficient (∑ j, IM.radius i j) (err i)), ?_, fun i => ?_⟩
   · refine Fin.addCases (fun l => ?_) (fun i => ?_)
     · simpa using hb l

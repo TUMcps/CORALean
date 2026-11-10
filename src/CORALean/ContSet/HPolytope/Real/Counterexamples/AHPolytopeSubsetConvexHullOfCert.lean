@@ -55,23 +55,23 @@ theorem HPolytope.ahPolytope_subset_convexHull_of_cert_counterexample : -- --- C
     ∃ (Hy : Fin 2 → Mat ℝ 4 2) (hy : Fin 2 → Vec ℝ 4) (Hx : Mat ℝ 4 2) (hx : Vec ℝ 4)
       (Λ : Fin 2 → Mat ℝ 4 4) (lam : Fin 2 → ℝ) (β : Fin 2 → Vec ℝ 2) (Γ : Fin 2 → Mat ℝ 2 2),
       (∀ i v, Hy i *ᵥ v = 0 → v = 0) ∧
-      (∀ i, Bornology.IsBounded (HPolytope.ineqs (Hy i) (hy i)).construct) ∧
+      (∀ i, Bornology.IsBounded (HPolytope.ineqs (Hy i) (hy i)).toSet) ∧
       (∀ i j k, 0 ≤ Λ i j k) ∧ (∀ i, 0 ≤ lam i) ∧ (∀ i, Λ i * Hx = Hy i * Γ i) ∧
       (∀ i, Λ i *ᵥ hx ≤ lam i • hy i + Hy i *ᵥ β i) ∧ ∑ i, lam i = 1 ∧ ∑ i, -β i = 0 ∧
       ∑ i, Γ i = 1 ∧
       ¬ HPolytope.ahPolytope 0 1 (HPolytope.ineqs Hx hx)
-        ⊆ convexHull ℝ (⋃ i, (HPolytope.ineqs (Hy i) (hy i)).construct) := by -- --- PROOF ---
+        ⊆ convexHull ℝ (⋃ i, (HPolytope.ineqs (Hy i) (hy i)).toSet) := by -- --- PROOF ---
   let H₁ : Mat ℝ 4 2 := !![1, 0; -1, 0; 0, 1; 0, -1]
   let H₂ : Mat ℝ 4 2 := !![1, 0; -1, 0; 0, 1; 0, 1]
   let S : Mat ℝ 4 4 := !![1, 0, 0, 0; 0, 1, 0, 0; 0, 0, 1, 0; 0, 0, 1, 0]
   -- `P₁ = {0}` and `P₂ = ∅`
-  have hP₁ : (HPolytope.ineqs H₁ ![0, 0, 0, 0]).construct ⊆ {0} := by
+  have hP₁ : (HPolytope.ineqs H₁ ![0, 0, 0, 0]).toSet ⊆ {0} := by
     intro x hx
     rw [HPolytope.mem_ineqs_iff] at hx
     have h0 := hx 0; have h1 := hx 1; have h2 := hx 2; have h3 := hx 3
     simp [H₁, mulVec, dotProduct, Fin.sum_univ_two] at h0 h1 h2 h3
     funext i; fin_cases i <;> simp <;> linarith
-  have hP₂ : (HPolytope.ineqs H₂ ![-1, -1, 0, 0]).construct = ∅ := by
+  have hP₂ : (HPolytope.ineqs H₂ ![-1, -1, 0, 0]).toSet = ∅ := by
     ext x
     simp only [Set.mem_empty_iff_false, iff_false]
     intro hx
@@ -113,7 +113,7 @@ theorem HPolytope.ahPolytope_subset_convexHull_of_cert_counterexample : -- --- C
       refine ⟨![0, -1], HPolytope.mem_ineqs_iff.mpr fun i => ?_, by simp⟩
       fin_cases i <;> simp [H₁, mulVec, dotProduct, Fin.sum_univ_two]
     have hU : (⋃ i, (HPolytope.ineqs (![H₁, H₂] i)
-        (![![0, 0, 0, 0], ![-1, -1, 0, 0]] i)).construct) ⊆ {0} := by
+        (![![0, 0, 0, 0], ![-1, -1, 0, 0]] i)).toSet) ⊆ {0} := by
       refine Set.iUnion_subset fun i => ?_
       fin_cases i
       · exact hP₁

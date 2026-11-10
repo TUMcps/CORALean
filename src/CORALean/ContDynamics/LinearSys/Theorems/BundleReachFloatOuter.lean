@@ -88,29 +88,29 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem LinearSys.bundleReachFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
     (Rh₀ : ZonoBundle (Vec 𝕋 n)) (Ri₀ : Zonotope (Vec 𝕋 n)) {r : 𝕋} (hr : 0 ≤ toReal r) {η : ℕ}
     (hη : sys.IsOrderAdmissibleFloat r r η)
-    (hU : Bornology.IsBounded (construct U))
+    (hU : Bornology.IsBounded (toSet U))
     (hh : ∀ τ ∈ Set.Icc (0:ℝ) (toReal r),
-      (fun x => exp (τ • Scalar.toRealMat sys.A) *ᵥ x) '' construct X₀ ⊆ Rh₀.construct)
-    (hi : ∀ τ ∈ Set.Icc (0:ℝ) (toReal r), sys.inputReach U τ ⊆ Ri₀.construct)
+      (fun x => exp (τ • Scalar.toRealMat sys.A) *ᵥ x) '' toSet X₀ ⊆ Rh₀.toSet)
+    (hi : ∀ τ ∈ Set.Icc (0:ℝ) (toReal r), sys.inputReach U τ ⊆ Ri₀.toSet)
     {N k : ℕ} (hk : k ≤ N) {t : ℝ}
     (ht : t ∈ Set.Icc ((k : ℝ) * toReal r) ((k + 1) * toReal r)) : -- --- CONCL ---
     ∃ R, (sys.bundleReachFloat Rh₀ Ri₀ r η N)[k]? = some R
-      ∧ sys.reachSetExact (Set.Icc 0 t) X₀ U t ⊆ R.construct := by -- --- PROOF ---
+      ∧ sys.reachSetExact (Set.Icc 0 t) X₀ U t ⊆ R.toSet := by -- --- PROOF ---
   -- the matrix, the step and the enclosure `[e^{Ar}]` the loop multiplies by
   set A := Scalar.toRealMat sys.A
   set r' := toReal r
   set E := exp (r' • A)
   set EI := sys.expIntervalFloat r r η
-  have hE : E ∈ EI.construct := sys.exp_mem_expIntervalFloat hη le_rfl le_rfl
-  have hmulZ : ∀ (Z : Zonotope (Vec 𝕋 n)) (v : Vec ℝ n), v ∈ Z.construct →
+  have hE : E ∈ EI.toSet := sys.exp_mem_expIntervalFloat hη le_rfl le_rfl
+  have hmulZ : ∀ (Z : Zonotope (Vec 𝕋 n)) (v : Vec ℝ n), v ∈ Z.toSet →
       E *ᵥ v ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) EI Z).construct :=
+        (S := 𝒵[𝕋]) EI Z).toSet :=
     fun Z v hv => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
       (S := 𝒵[𝕋]) EI Z
       (Set.mem_biUnion hE (Set.mem_image_of_mem _ hv))
-  have hmulB : ∀ (B : ZonoBundle (Vec 𝕋 n)) (v : Vec ℝ n), v ∈ B.construct →
+  have hmulB : ∀ (B : ZonoBundle (Vec 𝕋 n)) (v : Vec ℝ n), v ∈ B.toSet →
       E *ᵥ v ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵ℬ[𝕋]) EI B).construct :=
+        (S := 𝒵ℬ[𝕋]) EI B).toSet :=
     fun B v hv => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
       (S := 𝒵ℬ[𝕋]) EI B
       (Set.mem_biUnion hE (Set.mem_image_of_mem _ hv))
@@ -134,9 +134,9 @@ theorem LinearSys.bundleReachFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
   have hkr : ∀ k : ℕ, (0:ℝ) ≤ k * r' := fun k => mul_nonneg (Nat.cast_nonneg k) hr
   -- the three invariants
   have hinv : ∀ k : ℕ, ∀ τ ∈ Set.Icc (0:ℝ) r',
-      (fun x => exp ((k * r' + τ) • A) *ᵥ x) '' construct X₀ ⊆ (step^[k] s₀).1.construct
-      ∧ (fun y => exp ((k * r') • A) *ᵥ y) '' sys.inputReach U τ ⊆ (step^[k] s₀).2.1.construct
-      ∧ sys.inputReach U (k * r' + τ) ⊆ (step^[k] s₀).2.2.construct := by
+      (fun x => exp ((k * r' + τ) • A) *ᵥ x) '' toSet X₀ ⊆ (step^[k] s₀).1.toSet
+      ∧ (fun y => exp ((k * r') • A) *ᵥ y) '' sys.inputReach U τ ⊆ (step^[k] s₀).2.1.toSet
+      ∧ sys.inputReach U (k * r' + τ) ⊆ (step^[k] s₀).2.2.toSet := by
     intro k
     induction k with
     | zero =>
@@ -157,7 +157,7 @@ theorem LinearSys.bundleReachFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
         rw [show ((k + 1 : ℕ) : ℝ) * r' + τ = r' + (k * r' + τ) by push_cast; ring,
           exp_add_smul_eq_mul]
       have h2 : (fun y => exp ((((k + 1 : ℕ) : ℝ) * r') • A) *ᵥ y) '' sys.inputReach U τ
-          ⊆ (step (step^[k] s₀)).2.1.construct := by
+          ⊆ (step (step^[k] s₀)).2.1.toSet := by
         rintro _ ⟨v, hv, rfl⟩
         have := hmulZ _ _ ((ih τ hτ).2.1 ⟨v, hv, rfl⟩)
         simpa only [hEk, Matrix.mulVec_mulVec] using this
@@ -174,7 +174,7 @@ theorem LinearSys.bundleReachFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
         rw [show ((k : ℝ) * r' + r') = ((k + 1 : ℕ) : ℝ) * r' by push_cast; ring] at hP
         have hb : _ ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
           (S := 𝒵[𝕋]) EI
-            (step^[k] s₀).2.1).interval.zonotope.construct :=
+            (step^[k] s₀).2.1).interval.zonotope.toSet :=
           (Zonotope.interval_contains _).trans (Interval.zonotope_contains _) (h2 hw)
         exact Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ ⟨v, hP hv, _, hb, add_comm _ _⟩
   -- the window `t ∈ [kr, (k+1)r]` is `τ = t - kr ∈ [0, r]`
@@ -187,7 +187,7 @@ theorem LinearSys.bundleReachFloat_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
     rintro _ ⟨_, ⟨x, hx, rfl⟩, v, hv, rfl⟩
     have hI := hinv k (t - k * r') hτ
     rw [show (k : ℝ) * r' + (t - k * r') = t by ring] at hI
-    have hv' : v ∈ (step^[k] s₀).2.2.zonoBundle.construct := by
+    have hv' : v ∈ (step^[k] s₀).2.2.zonoBundle.toSet := by
       rw [← Zonotope.zonoBundle_exact]
       exact hI.2.2 hv
     exact Plus.plus_outer (S := ZonoBundle (Vec 𝕋 n)) _ _

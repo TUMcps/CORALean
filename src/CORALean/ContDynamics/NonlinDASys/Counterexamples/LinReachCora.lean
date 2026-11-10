@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.NonlinDASys.Theorems.LinErrorOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.PlusExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMemIff
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
@@ -110,22 +110,22 @@ variable {n : ℕ}
 
 /-- A point of `Z₁ ⊕ Z₂` is a sum of points of each. -/
 private theorem NonlinDASys.aux_linReachCora_mem_plus {Z₁ Z₂ : Zonotope (Vec ℝ n)} {v : Vec ℝ n}
-    (hv : v ∈ (Z₁.plus Z₂).construct) :
-    ∃ a ∈ Z₁.construct, ∃ b ∈ Z₂.construct, v = a + b := by
+    (hv : v ∈ (Z₁.plus Z₂).toSet) :
+    ∃ a ∈ Z₁.toSet, ∃ b ∈ Z₂.toSet, v = a + b := by
   obtain ⟨a, ha, b, hb, rfl⟩ := (Zonotope.plus_exact _ _).symm.subset hv
   exact ⟨a, ha, b, hb, rfl⟩
 
 /-- A point of `M Z` is `M` times a point of `Z`. -/
 private theorem NonlinDASys.aux_linReachCora_mem_mtimes {m : ℕ} {M : Mat ℝ m n}
-    {Z : Zonotope (Vec ℝ n)} {v : Vec ℝ m} (hv : v ∈ (Zonotope.mtimes M Z).construct) :
-    ∃ w ∈ Z.construct, v = M *ᵥ w := by
+    {Z : Zonotope (Vec ℝ n)} {v : Vec ℝ m} (hv : v ∈ (Zonotope.mtimes M Z).toSet) :
+    ∃ w ∈ Z.toSet, v = M *ᵥ w := by
   obtain ⟨w, hw, rfl⟩ := (Zonotope.mtimes_exact _ _).symm.subset hv
   exact ⟨w, hw, rfl⟩
 
 /-- At `A = 0` the remainder of an input solution, `E(r)·r U`, is `{0}`. -/
 private theorem NonlinDASys.aux_linReachCora_remainder_eq_zero {A : Mat ℝ n n} (hA : A = 0) (r : ℝ)
     (η : ℕ) (Z : Zonotope (Vec ℝ n)) {v : Vec ℝ n}
-    (hv : v ∈ (Zonotope.mtimesIntervalMat (MatExp.inputRemainder A r η) Z).construct)
+    (hv : v ∈ (Zonotope.mtimesIntervalMat (MatExp.inputRemainder A r η) Z).toSet)
     : -- --- CONCL ---
     v = 0 := by -- --- PROOF ---
   subst hA
@@ -137,7 +137,7 @@ private theorem NonlinDASys.aux_linReachCora_remainder_eq_zero {A : Mat ℝ n n}
   have hsup : (MatExp.inputRemainder (0 : Mat ℝ n n) r η).sup = 0 := by
     funext j k
     simp [MatExp.inputRemainder, hE]
-  obtain ⟨β, -, hβ⟩ := Zonotope.mem_construct_iff.mp hv
+  obtain ⟨β, -, hβ⟩ := Zonotope.mem_toSet_iff.mp hv
   funext i
   rw [hβ i]
   simp only [Zonotope.mtimesIntervalMat, Interval.center, Zonotope.radiusReach, Interval.radius,
@@ -149,11 +149,11 @@ private theorem NonlinDASys.aux_linReachCora_remainder_eq_zero {A : Mat ℝ n n}
 /-- At `A = 0` an input solution is the step times the input set. -/
 private theorem NonlinDASys.aux_linReachCora_inputSolution {sys : LinearSys ℝ n} (hA : sys.A = 0)
     (r : ℝ) (η : ℕ) (Z : Zonotope (Vec ℝ n)) {v : Vec ℝ n}
-    (hv : v ∈ (sys.inputSolution (S := 𝒵) r η Z).construct) : -- --- CONCL ---
-    ∃ w ∈ Z.construct, v = r • w := by -- --- PROOF ---
+    (hv : v ∈ (sys.inputSolution (S := 𝒵) r η Z).toSet) : -- --- CONCL ---
+    ∃ w ∈ Z.toSet, v = r • w := by -- --- PROOF ---
   -- the Taylor orders past `0` vanish
-  have hsum : ∀ (i : ℕ) (a : Vec ℝ n), a ∈ (sys.inputTaylorSum (S := 𝒵) r Z i).construct →
-      ∃ w ∈ Z.construct, a = r • w := by
+  have hsum : ∀ (i : ℕ) (a : Vec ℝ n), a ∈ (sys.inputTaylorSum (S := 𝒵) r Z i).toSet →
+      ∃ w ∈ Z.toSet, a = r • w := by
     intro i
     induction i with
     | zero =>
@@ -173,7 +173,7 @@ private theorem NonlinDASys.aux_linReachCora_inputSolution {sys : LinearSys ℝ 
 /-- CORA's error set over `[-1, 1]` for `ẋ = y`, `0 = y - u²` lies in `v ≤ 0`. -/
 private theorem NonlinDASys.aux_linReachCora_error_nonpos {w : Vec ℝ 1}
     (hw : w ∈ (NonlinDASys.linErrorCora (p := 1) (q := 1) 0 0 (fun _ => !![-2]) 0 1
-      ⟨1, 0, fun _ => ![1]⟩).construct) : -- --- CONCL ---
+      ⟨1, 0, fun _ => ![1]⟩).toSet) : -- --- CONCL ---
     w 0 ≤ 0 := by -- --- PROOF ---
   obtain ⟨β, hβ, hx⟩ := hw
   change _ = _ + ∑ j : Fin 5, β j • _ at hx
@@ -206,10 +206,10 @@ theorem NonlinDASys.linReachCora_misses_counterexample {Δt : ℝ} (hΔt : 0 < �
     let x : ℝ → Vec ℝ 1 := fun t _ => t
     sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x (fun _ _ => 1) (fun _ _ => 1) x ∧
       x Δt ∉ (NonlinDASys.linReachCora (sys.f 0 0 0) (sys.g 0 0 0) 0 0 1 0 0 1 0 0 Rinit U
-        0 0 (fun _ => !![-2]) 0 U Δt η).1.construct ∧
+        0 0 (fun _ => !![-2]) 0 U Δt η).1.toSet ∧
       x Δt ∈ (NonlinDASys.linReach (sys.f 0 0 0) (sys.g 0 0 0) 0 0 1 0 0 1 0 0 0 Rinit U
         (NonlinDASys.linError (p := 1) 0 0 (fun _ => !![-2]) 0 1 U)
-        ⟨1, fun _ => -1 / 2, fun _ _ => 1 / 2⟩ Δt (η + 2)).1.construct := by -- --- PROOF ---
+        ⟨1, fun _ => -1 / 2, fun _ _ => 1 / 2⟩ Δt (η + 2)).1.toSet := by -- --- PROOF ---
   intro sys Rinit U x
   -- the run: `y = u² = 1`, `ẋ = 1`
   have traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 Δt) Rinit U x (fun _ _ => 1) (fun _ _ => 1)
@@ -250,7 +250,7 @@ theorem NonlinDASys.linReachCora_misses_counterexample {Δt : ℝ} (hΔt : 0 < �
     nlinarith
   · -- [1, Cor. 1]'s set holds the error `u²`, and `linReach_outer` the run
     have hlin : ∀ ν : Vec ℝ 1, |ν 0| ≤ 1 → (fun _ => ν 0 ^ 2 : Vec ℝ 1)
-        ∈ (NonlinDASys.linError 0 0 (fun _ : Fin 1 => !![-2]) 0 (1 : Mat ℝ 1 1) U).construct := by
+        ∈ (NonlinDASys.linError 0 0 (fun _ : Fin 1 => !![-2]) 0 (1 : Mat ℝ 1 1) U).toSet := by
       intro ν hν
       have h := NonlinDASys.linError_outer 0 0 (fun _ : Fin 1 => !![-2]) 0 (1 : Mat ℝ 1 1) U
         (Hd := 0) (Ha := fun _ => !![-2]) (by simp) (by simp)

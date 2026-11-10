@@ -44,7 +44,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [OfScalarPoint 𝕋 S] [ScalarCenter �
 theorem ContSet.enlargeScalar_outer (s : S n) (f : Vec 𝕋 n) : -- --- CONCL ---
     (fun x : Vec ℝ n => toRealVec (ScalarCenter.centerVec (𝕋 := 𝕋) s) +
         fun i => toReal (f i) * (x i - toRealVec (ScalarCenter.centerVec (𝕋 := 𝕋) s) i)) ''
-      construct s ⊆ construct (ContSet.enlargeScalar s f) := by -- --- PROOF ---
+      toSet s ⊆ toSet (ContSet.enlargeScalar s f) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   have h1 := ContSet.minusScalar_outer s (ScalarCenter.centerVec (𝕋 := 𝕋) s) ⟨x, hx, rfl⟩
   have h2 := ContSet.times_outer f (ContSet.minusScalar s (ScalarCenter.centerVec (𝕋 := 𝕋) s))

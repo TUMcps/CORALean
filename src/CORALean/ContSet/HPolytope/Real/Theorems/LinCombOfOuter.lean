@@ -19,8 +19,8 @@ The enclosure claimed by [1, Eq. 31].
 * `P₁` – H-polytope
 * `P₂` – H-polytope
 * `Aq` – family indexed by `Fin q`
-* `u₁` – a support bound of `P₁.construct` along each row
-* `u₂` – a support bound of `P₂.construct` along each row
+* `u₁` – a support bound of `P₁.toSet` along each row
+* `u₂` – a support bound of `P₂.toSet` along each row
 
 ## Hypotheses
 * none
@@ -52,9 +52,9 @@ variable {q : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.linCombOf_outer {P₁ P₂ : HPolytope α} (Aq : Fin q → (α →ₗ[ℝ] ℝ))
-    (u₁ : ∀ i, SupportBound P₁.construct (Aq i))
-    (u₂ : ∀ i, SupportBound P₂.construct (Aq i)) :
-    Set.linComb P₁.construct P₂.construct ⊆ (HPolytope.linCombOf Aq u₁ u₂).construct :=
+    (u₁ : ∀ i, SupportBound P₁.toSet (Aq i))
+    (u₂ : ∀ i, SupportBound P₂.toSet (Aq i)) :
+    Set.linComb P₁.toSet P₂.toSet ⊆ (HPolytope.linCombOf Aq u₁ u₂).toSet :=
   HPolytope.subset_ofBounds _ _
 
 end CORALean.Real

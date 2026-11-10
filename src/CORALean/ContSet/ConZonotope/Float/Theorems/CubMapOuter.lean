@@ -46,8 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 theorem ConZonotope.cubMap_outer (T : Fin m → Fin n → Mat 𝕋 n n)
     (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    Real.PolyZonotope.cubEval (fun i k => toRealMat (T i k)) '' cZ.construct
-      ⊆ (cZ.cubMap T).construct := by -- --- PROOF ---
+    Real.PolyZonotope.cubEval (fun i k => toRealMat (T i k)) '' cZ.toSet
+      ⊆ (cZ.cubMap T).toSet := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   obtain ⟨β, hβ, hP, hxβ⟩ :=
     ConZonotope.mem_nominalSet_iff.mp (ConZonotope.absorbRounding_nominal cZ hx)
@@ -61,11 +61,11 @@ theorem ConZonotope.cubMap_outer (T : Fin m → Fin n → Mat 𝕋 n n)
   have hdims : Function.Injective fun j : Fin cZ.absorbRounding.h =>
       cI.symm ((0, 0), j.succ) :=
     fun a b hab => Fin.succ_injective _ (by simpa using hab)
-  have hP' : γ ∈ ((cZ.cubMap T).P).nominal.construct := by
+  have hP' : γ ∈ ((cZ.cubMap T).P).nominal.toSet := by
     show γ ∈ (cZ.absorbRounding.P.lift_ fun j : Fin cZ.absorbRounding.h =>
-      cI.symm ((0, 0), j.succ)).nominal.construct
+      cI.symm ((0, 0), j.succ)).nominal.toSet
     refine (HPolytope.mem_lift_nominal_iff cZ.absorbRounding.P hdims).mpr ?_
-    show (fun j => γ _) ∈ cZ.absorbRounding.P.nominal.construct
+    show (fun j => γ _) ∈ cZ.absorbRounding.P.nominal.toSet
     have : (fun j : Fin cZ.absorbRounding.h => γ (cI.symm
         ((0, 0), j.succ))) = β := funext hlin
     rw [this]

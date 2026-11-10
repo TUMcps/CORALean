@@ -7,8 +7,8 @@ public import CORALean.ContDynamics.LinearSysDT.Operations.Simulate
 /-!
 # `simulate` samples a trajectory
 
-`simulate x₀ u` satisfies `IsCanonicalTrajectory R₀ U` whenever `x₀ ∈ construct R₀` and
-`u` stays in `construct U` at every step: `init` and `input` are the
+`simulate x₀ u` satisfies `IsCanonicalTrajectory R₀ U` whenever `x₀ ∈ toSet R₀` and
+`u` stays in `toSet U` at every step: `init` and `input` are the
 hypotheses handed in, `step` is `rfl`, since `simulate` is `IsCanonicalTrajectory.step`'s
 equation read as a recursive definition rather than as a predicate.
 
@@ -46,8 +46,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.simulate_isTrajectory (sys : LinearSysDT 𝕋 n) {R₀ U : S n}
-    {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) {u : ℕ → Vec ℝ n}
-    (hu : ∀ k, u k ∈ construct U) :
+    {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ toSet R₀) {u : ℕ → Vec ℝ n}
+    (hu : ∀ k, u k ∈ toSet U) :
     sys.IsCanonicalTrajectory R₀ U (sys.simulate x₀ u) u where
   init := hx₀
   input := hu

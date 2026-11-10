@@ -4,7 +4,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ExistsEdgeLeastSection
 public import CORALean.ContSet.Zonotope.Real.Theorems.SectionConvex
 public import CORALean.ContSet.Zonotope.Real.Theorems.MemWalkEdgesIff
 public import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesCentralSymm
-public import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesSubsetConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.WalkEdgesSubsetToSet
 public import CORALean.ContSet.Zonotope.Real.Zonotope
 public import Mathlib.Tactic.Module
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
@@ -58,9 +58,9 @@ section
 variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- A zonotope is centrally symmetric. -/
-private theorem Zonotope.aux_central_symm_mem_construct (Z : Zonotope α) {x : α}
-    (hx : x ∈ Z.construct) :
-    (2 : ℝ) • Z.c - x ∈ Z.construct := by
+private theorem Zonotope.aux_central_symm_mem_toSet (Z : Zonotope α) {x : α}
+    (hx : x ∈ Z.toSet) :
+    (2 : ℝ) • Z.c - x ∈ Z.toSet := by
   obtain ⟨β, hβ, rfl⟩ := hx
   refine ⟨fun j => -β j, fun j => by simpa using hβ j, ?_⟩
   simp only [neg_smul, Finset.sum_neg_distrib]
@@ -73,9 +73,9 @@ end
 private theorem Zonotope.aux_section_low (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     (h1 : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0))
     (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0) (γ : ℝ)
-    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) : -- --- CONCL ---
-    ∃ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ Z.walkEdges ∧ (![γ, y] : Vec ℝ 2) ∈ Z.construct ∧
-      ∀ y', (![γ, y'] : Vec ℝ 2) ∈ Z.construct → y ≤ y' := by -- --- PROOF ---
+    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.toSet) : -- --- CONCL ---
+    ∃ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ Z.walkEdges ∧ (![γ, y] : Vec ℝ 2) ∈ Z.toSet ∧
+      ∀ y', (![γ, y'] : Vec ℝ 2) ∈ Z.toSet → y ≤ y' := by -- --- PROOF ---
   by_cases hlt : Z.corner (fun _ => false) 0 < γ
   · -- to the right of the lowest corner: the first block, in increasing angle
     obtain ⟨a, y, hseg, hy, hmin⟩ := Z.exists_edge_least_section hh h1 (σ := 1) (Or.inl rfl)
@@ -116,14 +116,14 @@ private theorem Zonotope.aux_section_low (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.
 theorem Zonotope.section_eq_Icc_walkEdges (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     (h1 : ∀ j, 0 ≤ Z.G j 1 ∧ (0 < Z.G j 1 ∨ 0 ≤ Z.G j 0))
     (h2 : ∀ i j : Fin Z.h, i < j → 0 ≤ Z.G i 0 * Z.G j 1 - Z.G i 1 * Z.G j 0) (γ : ℝ)
-    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct) : -- --- CONCL ---
+    (hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.toSet) : -- --- CONCL ---
     ∃ yl yh : ℝ, (![γ, yl] : Vec ℝ 2) ∈ Z.walkEdges ∧ (![γ, yh] : Vec ℝ 2) ∈ Z.walkEdges ∧
-      {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct} = Set.Icc yl yh := by -- --- PROOF ---
+      {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.toSet} = Set.Icc yl yh := by -- --- PROOF ---
   obtain ⟨yl, hyl, hylZ, hlow⟩ := Z.aux_section_low hh h1 h2 γ hne
   -- the section at the reflected abscissa, through the center
-  have hrefl : ∀ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ Z.construct →
-      (![2 * Z.c 0 - γ, 2 * Z.c 1 - y] : Vec ℝ 2) ∈ Z.construct := fun y hy => by
-    have := Z.aux_central_symm_mem_construct hy
+  have hrefl : ∀ y : ℝ, (![γ, y] : Vec ℝ 2) ∈ Z.toSet →
+      (![2 * Z.c 0 - γ, 2 * Z.c 1 - y] : Vec ℝ 2) ∈ Z.toSet := fun y hy => by
+    have := Z.aux_central_symm_mem_toSet hy
     convert this using 1
     ext k; fin_cases k <;> simp
   obtain ⟨y₀, hy₀⟩ := hne
@@ -136,7 +136,7 @@ theorem Zonotope.section_eq_Icc_walkEdges (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z
   · have := hlow' _ (hrefl y hy)
     linarith
   · exact (Z.section_convex γ).ordConnected.out
-      (show yl ∈ _ from hylZ) (show 2 * Z.c 1 - yl' ∈ _ from Z.walkEdges_subset_construct hyh)
+      (show yl ∈ _ from hylZ) (show 2 * Z.c 1 - yl' ∈ _ from Z.walkEdges_subset_toSet hyh)
 
 end CORALean.Real
 

@@ -58,7 +58,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Taylm.rangeBound_mem {m : ℕ} {p q s N : ℕ} {e : Real.Taylm.CodeList 𝕋 m}
-    {D : Interval (Vec 𝕋 m)} {x : Vec ℝ m} (hx : x ∈ D.construct) : -- --- CONCL ---
+    {D : Interval (Vec 𝕋 m)} {x : Vec ℝ m} (hx : x ∈ D.toSet) : -- --- CONCL ---
     ∀ b ∈ Taylm.rangeBound p q s e D N,
       toReal b.inf ≤ (e.map toReal).eval x ∧
         (e.map toReal).eval x ≤ toReal b.sup := by -- --- PROOF ---

@@ -11,7 +11,7 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 
 [1, Prop. 8]: `⟨C,d⟩_H` and `CZ` intersect if `ν ≤ 0`, `ν` the optimum of
 `min δ` over `C(i,·)x − d(i) ≤ δ`, `x = c + Gα`, `Aα = b`, `α ∈ [−1,1]`. The constraints on
-`(x, α)` are `ConZonotope.construct`, so the program's feasible objective values are the `δ` some
+`(x, α)` are `ConZonotope.toSet`, so the program's feasible objective values are the `δ` some
 point of `CZ` keeps every halfspace slack under, and that is the set `ν` is least in.
 
 `ν` is a hypothesis (`IsLeast`), as the paper's own `min` presupposes an optimum; with `CZ` empty
@@ -58,8 +58,8 @@ variable {q n : ℕ}
 /-- [1, Prop. 8]: the intersection check, `ν` the optimum of the paper's linear program. -/
 theorem ConZonotope.inter_ineqs_nonempty_iff (cZ : ConZonotope (Vec ℝ n)) (C : Mat ℝ q n)
     (d : Vec ℝ q) (ν : ℝ)
-    (hν : IsLeast {δ : ℝ | ∃ x ∈ cZ.construct, ∀ i, (C *ᵥ x) i - d i ≤ δ} ν) : -- --- CONCL ---
-    (cZ.construct ∩ (HPolytope.ineqs C d).construct).Nonempty ↔ ν ≤ 0 := by -- --- PROOF ---
+    (hν : IsLeast {δ : ℝ | ∃ x ∈ cZ.toSet, ∀ i, (C *ᵥ x) i - d i ≤ δ} ν) : -- --- CONCL ---
+    (cZ.toSet ∩ (HPolytope.ineqs C d).toSet).Nonempty ↔ ν ≤ 0 := by -- --- PROOF ---
   constructor
   -- a shared point makes `δ = 0` feasible, so the least feasible `δ` is no larger
   · rintro ⟨x, hxZ, hxP⟩

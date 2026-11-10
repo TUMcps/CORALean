@@ -47,12 +47,12 @@ def ParallelHybridAutomaton.IsFlowLawConverse (P : ParallelHybridAutomaton S G k
     (F : (∀ i, L i) → LinearSys 𝕋 (∑ i, n i)) (U : ∀ ℓ, S (F ℓ).m) (W : ∀ ℓ, S (F ℓ).r) :
     Prop :=
   ∀ (ℓ : ∀ i, L i) (x : ∀ i, Vec ℝ (n i)) (g' : Vec ℝ (F ℓ).m) (w' : Vec ℝ (F ℓ).r),
-    g' ∈ construct (U ℓ) → w' ∈ construct (W ℓ) →
+    g' ∈ toSet (U ℓ) → w' ∈ toSet (W ℓ) →
     ∃ (u : ∀ i, Vec ℝ (P.sys ℓ i).m) (w : ∀ i, Vec ℝ (P.sys ℓ i).r) (g : Vec ℝ m),
       (∀ i j, u i j = P.boundInput ℓ x u g i j) ∧
-      (∀ i, ∃ v ∈ construct ((P.comp i).loc (ℓ i)).U, ∀ j a, P.bindsAt ℓ i j = .global a →
+      (∀ i, ∃ v ∈ toSet ((P.comp i).loc (ℓ i)).U, ∀ j a, P.bindsAt ℓ i j = .global a →
         v j = g a) ∧
-      (∀ i, w i ∈ construct ((P.comp i).loc (ℓ i)).W) ∧
+      (∀ i, w i ∈ toSet ((P.comp i).loc (ℓ i)).W) ∧
       ∀ i a, (toRealMat (F ℓ).A *ᵥ stack x + toRealMat (F ℓ).B *ᵥ g' + toRealVec (F ℓ).c +
         toRealMat (F ℓ).E *ᵥ w') (finSigmaFinEquiv ⟨i, a⟩) =
         (toRealMat (P.sys ℓ i).A *ᵥ x i + toRealMat (P.sys ℓ i).B *ᵥ u i +

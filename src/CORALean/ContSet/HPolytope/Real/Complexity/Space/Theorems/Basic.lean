@@ -62,7 +62,7 @@ variable {q : ℕ} {P : HPolytope α}
 
 /-- The `me` count of `mtimesOf`'s result. -/
 theorem HPolytope.mtimesOf_me (M : α →ₗ[ℝ] β) (Aq : Fin q → (β →ₗ[ℝ] ℝ))
-    (u : ∀ i, SupportBound P.construct ((Aq i).comp M)) :
+    (u : ∀ i, SupportBound P.toSet ((Aq i).comp M)) :
     (HPolytope.mtimesOf M Aq u).me = 0 := rfl
 
 end

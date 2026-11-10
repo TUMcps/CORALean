@@ -74,7 +74,7 @@ private theorem aux_reduceOnTheFlyFrom_reducesAt :
     ∀ {n n₁ m : ℕ} (rest : ReducibleNetwork ℝ n₁ m) (H : S n) (L : ReducedLinear ℝ n n₁)
       (R : Relaxation ℝ) (hτ : ∃ σ : ℝ → ℝ, R.Encloses σ) {σ : ℝ → ℝ} (_hR : R.Encloses σ)
       (B : MergeBuckets ℝ)
-      {c : Vec ℝ n₁} (_hc : c - L.b ∈ L.I'.construct) {nn : NeuralNetwork S n₁ m}
+      {c : Vec ℝ n₁} (_hc : c - L.b ∈ L.I'.toSet) {nn : NeuralNetwork S n₁ m}
       {h : Vec ℝ n₁ → Vec ℝ m} (_hrest : rest.IsInstanceNetwork nn h)
       {Φhat : ReducibleNetwork ℝ n m} {Y : S m},
       reduceOnTheFlyFrom le tol fuel ρ H L R hτ B rest = some (Φhat, Y) →
@@ -107,17 +107,17 @@ private theorem aux_reduceOnTheFlyFrom_reducesAt :
               ((L.toLayer (S := ℐ𝒱[ℝ])).enclose
                 (Float.IntervalOuter.interval H))
             -- line 5's box bounds the exact layer `k` at every point that reaches it
-            have hY : ∀ x ∈ construct H, (fun i => σ ((L.W *ᵥ x + c) i)) ∈ construct I_k :=
+            have hY : ∀ x ∈ toSet H, (fun i => σ ((L.W *ᵥ x + c) i)) ∈ toSet I_k :=
               fun x hx =>
                 (Layer.activation_encloses (S := ℐ𝒱[ℝ]) hR).enclose_outer
                 _ _ (Layer.linearWithError_mem (S := ℐ𝒱[ℝ]) L.W
-                  (Float.Interval.construct_subset_nonemptyHull _ hc) _
+                  (Float.Interval.toSet_subset_nonemptyHull _ hc) _
                   (Float.IntervalOuter.interval_outer H hx))
             refine .freeze H part L.W c L.b L.I' hc R hR L1.W c1 I_k hY
               (h := fun y => h1 (fun i => σ1 (y i))) (fun x => hf1 _) fun w hw => ?_
             -- the frozen bias lies in the box `mergeCols` gives layer `k+1`
             have hc' : c1 + L1.W.submatrix id part.right *ᵥ w - (L1.mergeCols part I_k).b
-                ∈ (L1.mergeCols part I_k).I'.construct := by
+                ∈ (L1.mergeCols part I_k).I'.toSet := by
               have hsplit : c1 + L1.W.submatrix id part.right *ᵥ w - L1.b
                   = (c1 - L1.b) + L1.W.submatrix id part.right *ᵥ w := by abel
               show c1 + L1.W.submatrix id part.right *ᵥ w - L1.b ∈ _

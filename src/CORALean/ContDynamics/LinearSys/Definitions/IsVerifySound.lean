@@ -49,16 +49,16 @@ structure LinearSys.IsVerifySound (Reach : Set (Vec ℝ n)) (reachFn : ℝ → Z
     (distG distF : ConZonotope (Vec ℝ n) → HPolytope (Vec ℝ n) → ℝ)
     (le : ℝ → ℝ → Bool) : Prop where
   le_iff (a b : ℝ) : le a b = true ↔ a ≤ b
-  outer (ε : ℝ) : Reach ⊆ (reachFn ε).construct
-  inner (R : Zonotope (Vec ℝ n)) (ε : ℝ) : (innerApprox R ε).construct ⊆ Reach
+  outer (ε : ℝ) : Reach ⊆ (reachFn ε).toSet
+  inner (R : Zonotope (Vec ℝ n)) (ε : ℝ) : (innerApprox R ε).toSet ⊆ Reach
   distG_nonpos (C : ConZonotope (Vec ℝ n)) (P : HPolytope (Vec ℝ n)) :
-    distG C P ≤ 0 → C.construct ⊆ P.construct
+    distG C P ≤ 0 → C.toSet ⊆ P.toSet
   distG_pos (C : ConZonotope (Vec ℝ n)) (P : HPolytope (Vec ℝ n)) :
-    0 < distG C P → ¬ C.construct ⊆ P.construct
+    0 < distG C P → ¬ C.toSet ⊆ P.toSet
   distF_pos (C : ConZonotope (Vec ℝ n)) (P : HPolytope (Vec ℝ n)) :
-    0 < distF C P → Disjoint C.construct P.construct
+    0 < distF C P → Disjoint C.toSet P.toSet
   distF_nonpos (C : ConZonotope (Vec ℝ n)) (P : HPolytope (Vec ℝ n)) :
-    distF C P ≤ 0 → ¬ Disjoint C.construct P.construct
+    distF C P ≤ 0 → ¬ Disjoint C.toSet P.toSet
 
 end CORALean
 

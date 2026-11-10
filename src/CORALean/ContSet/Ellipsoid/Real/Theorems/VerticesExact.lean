@@ -39,7 +39,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.vertices_exact (E : Ellipsoid 1) : -- --- CONCL ---
-    convexHull ℝ {x | x ∈ E.vertices} = E.construct := by -- --- PROOF ---
+    convexHull ℝ {x | x ∈ E.vertices} = E.toSet := by -- --- PROOF ---
   obtain ⟨xh, hxh, hxh0⟩ := E.supportBound_attained (LinearMap.proj 0)
   obtain ⟨xl, hxl, hxl0⟩ := E.supportBound_attained (-LinearMap.proj 0)
   set hi := (E.supportBound (LinearMap.proj 0)).val with hhi
@@ -48,7 +48,7 @@ theorem Ellipsoid.vertices_exact (E : Ellipsoid 1) : -- --- CONCL ---
   have hvx : E.vertices =
       if lo = hi then [fun _ => lo] else [fun _ => lo, fun _ => hi] := rfl
   -- every point lies between the two support values
-  have hb : ∀ x ∈ E.construct, lo ≤ x 0 ∧ x 0 ≤ hi := by
+  have hb : ∀ x ∈ E.toSet, lo ≤ x 0 ∧ x 0 ≤ hi := by
     intro x hx
     have h1 := (E.supportBound (LinearMap.proj 0)).le x hx
     have h2 := (E.supportBound (-LinearMap.proj 0)).le x hx
@@ -60,7 +60,7 @@ theorem Ellipsoid.vertices_exact (E : Ellipsoid 1) : -- --- CONCL ---
   have hxl' : xl = fun _ => lo := by rw [e1 xl]; funext i; rw [hlo]; linarith
   -- the hull of the vertices is in the convex set
   apply Set.Subset.antisymm
-  · refine convexHull_min ?_ E.convex_construct
+  · refine convexHull_min ?_ E.convex_toSet
     intro v hv
     rw [Set.mem_setOf_eq, hvx] at hv
     split_ifs at hv with h

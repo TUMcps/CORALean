@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Capsule.Float.Operations.Mtimes
-public import CORALean.ContSet.Capsule.Float.Theorems.MemConstructOfSplit
+public import CORALean.ContSet.Capsule.Float.Theorems.MemToSetOfSplit
 public import CORALean.ContSet.Capsule.Real.Theorems.MtimesOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
@@ -68,7 +68,7 @@ private theorem aux_frobenius_le (k : ℕ) (M : Mat 𝕋 m n) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.mtimes_outer (k : ℕ) (M : Mat 𝕋 m n) (C : Capsule 𝕋 n) : -- --- CONCL ---
-    (toRealMat M *ᵥ ·) '' C.construct ⊆ (C.mtimes k M).construct := by -- --- PROOF ---
+    (toRealMat M *ᵥ ·) '' C.toSet ⊆ (C.mtimes k M).toSet := by -- --- PROOF ---
   rintro _ ⟨_, ⟨y, hy, e, he, rfl⟩, rfl⟩
   -- the exact layer's enclosure, and a point of a capsule has a nonnegative radius
   have hK := CORALean.Real.Capsule.mtimes_outer (toRealMat M) C.nominal ⟨y, hy, rfl⟩
@@ -76,7 +76,7 @@ theorem Capsule.mtimes_outer (k : ℕ) (M : Mat 𝕋 m n) (C : Capsule 𝕋 n) :
     obtain ⟨t, _, hle⟩ := hy
     exact le_trans (Real.sqrt_nonneg _) hle
   obtain ⟨t, ht, w, hw, hMy⟩ := Capsule.exists_split_of_mem hK
-  refine Capsule.mem_construct_of_split _ ht (w := w) ?_ ?_
+  refine Capsule.mem_toSet_of_split _ ht (w := w) ?_ ?_
   · -- the radius times the exact Frobenius norm, under its rounded-up product
     have h₃ : toReal C.r * Real.sqrt (∑ i, ∑ j, toReal (M i j) ^ 2) ≤
         toReal (mulUp C.r (sqrtUp k (sumUp fun i => sqSumUp fun j => absolute (M i j)))) :=
@@ -100,7 +100,7 @@ theorem Capsule.mtimes_outer (k : ℕ) (M : Mat 𝕋 m n) (C : Capsule 𝕋 n) :
       rfl⟩
     show _ ∈ (((Interval.mtimes M C.I_error).plus (Interval.residual (mulVecDown M C.c)
       (fun i => dotUp (M i) C.c) (mulVecDown M C.c))).plus
-        (Interval.symmetric fun i => subUp (dotUp (M i) C.g) (mulVecDown M C.g i))).construct
+        (Interval.symmetric fun i => subUp (dotUp (M i) C.g) (mulVecDown M C.g i))).toSet
     convert hsum using 1
     show toRealMat M *ᵥ (y + e) - (toRealVec (mulVecDown M C.c) + t • toRealVec (mulVecDown M C.g)
       + w) = _

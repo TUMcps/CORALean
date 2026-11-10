@@ -34,8 +34,8 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.abs_not_mem : -- --- CONCL ---
-    ∃ (P : ProbZonotope 2) (μ : Vec ℝ 2), μ ∈ P.Z.construct ∧
-      (fun i => |μ i|) ∉ P.abs.Z.construct := by -- --- PROOF ---
+    ∃ (P : ProbZonotope 2) (μ : Vec ℝ 2), μ ∈ P.Z.toSet ∧
+      (fun i => |μ i|) ∉ P.abs.Z.toSet := by -- --- PROOF ---
   -- the means `g₁ + g₂ = (2, 0)` of the zonotope `⟨0, (1, 1), (1, -1)⟩`
   refine ⟨⟨⟨2, 0, ![![1, 1], ![1, -1]]⟩, 0⟩, ![2, 0], ⟨![1, 1], ?_, ?_⟩, ?_⟩
   · intro j; fin_cases j <;> simp

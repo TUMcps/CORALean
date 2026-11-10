@@ -71,9 +71,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- [1, Prop. 1], inner half: the Hausdorff distance to the exact particular
 solution over `t = ωΔt` is `O(Δt)`, hence `0` in the limit. -/
 theorem LinearSys.hausdorffDist₂_inputSolutionInner_le (sys : LinearSys 𝕋 n) {U : S n}
-    {Δt ρ : ℝ} (hΔt : 0 < Δt) (hconv : Convex ℝ (construct U))
-    (hclosed : IsClosed (construct U)) (hbdd : Bornology.IsBounded (construct U))
-    (hne : (construct U).Nonempty) (hρ : ∀ v ∈ construct U, ‖v‖ ≤ ρ) (ω : ℕ) : -- --- CONCL ---
+    {Δt ρ : ℝ} (hΔt : 0 < Δt) (hconv : Convex ℝ (toSet U))
+    (hclosed : IsClosed (toSet U)) (hbdd : Bornology.IsBounded (toSet U))
+    (hne : (toSet U).Nonempty) (hρ : ∀ v ∈ toSet U, ‖v‖ ≤ ρ) (ω : ℕ) : -- --- CONCL ---
     hausdorffDist₂ (sys.propagateInputSolution Δt (sys.inputSolutionInner U Δt) ω)
         (sys.inputReach U ((ω : ℝ) * Δt))
       ≤ Real.sqrt n * (2 * ρ * ‖toRealMat sys.A‖

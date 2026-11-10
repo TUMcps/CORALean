@@ -53,7 +53,7 @@ variable {q n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.ineqs_eq_empty_iff (A : Mat ℝ q n) (b : Vec ℝ q) : -- --- CONCL ---
-    (HPolytope.ineqs A b).construct = ∅ ↔
+    (HPolytope.ineqs A b).toSet = ∅ ↔
       ∃ y : Vec ℝ q, 0 ≤ y ∧ Aᵀ *ᵥ y = 0 ∧ b ⬝ᵥ y < 0 := by -- --- PROOF ---
   constructor
   · intro hE
@@ -69,7 +69,7 @@ theorem HPolytope.ineqs_eq_empty_iff (A : Mat ℝ q n) (b : Vec ℝ q) : -- --- 
       rintro ⟨x, t⟩ hz
       by_contra ht
       replace ht : 0 < t := not_le.mp ht
-      have hmem : t⁻¹ • x ∈ (HPolytope.ineqs A b).construct := by
+      have hmem : t⁻¹ • x ∈ (HPolytope.ineqs A b).toSet := by
         rw [HPolytope.mem_ineqs_iff]
         intro i
         have hi := hz (some i)

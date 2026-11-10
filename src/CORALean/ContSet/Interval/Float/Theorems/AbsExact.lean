@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.abs_exact (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
-    (I.abs).construct = (fun x i => |x i|) '' I.construct := by -- --- PROOF ---
+    (I.abs).toSet = (fun x i => |x i|) '' I.toSet := by -- --- PROOF ---
   have h : I.abs.nominal = I.nominal.abs := by
     unfold Interval.nominal Interval.abs Real.Interval.abs
     congr 1
@@ -50,7 +50,7 @@ theorem Interval.abs_exact (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
       show toReal (maximum (neg (I.inf i)) (I.sup i)) = _
       simp only [toReal_maximum, toReal_neg]
       rfl
-  show I.abs.nominal.construct = _
+  show I.abs.nominal.toSet = _
   rw [h]
   exact Real.Interval.abs_exact I.nominal
 

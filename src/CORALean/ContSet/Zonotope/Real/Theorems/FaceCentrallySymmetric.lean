@@ -54,9 +54,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The face a bounding direction cuts out of a zonotope is symmetric about a
 point of its own. -/
 theorem Zonotope.face_centrally_symmetric (Z : Zonotope α) (u : α →ₗ[ℝ] ℝ) (t : ℝ)
-    (ht : ∀ x ∈ Z.construct, u x ≤ t) : -- --- CONCL ---
-    ∃ m : α, ∀ x ∈ Z.construct, u x = t →
-      (2 : ℝ) • m - x ∈ Z.construct ∧ u ((2 : ℝ) • m - x) = t := by -- --- PROOF ---
+    (ht : ∀ x ∈ Z.toSet, u x ≤ t) : -- --- CONCL ---
+    ∃ m : α, ∀ x ∈ Z.toSet, u x = t →
+      (2 : ℝ) • m - x ∈ Z.toSet ∧ u ((2 : ℝ) • m - x) = t := by -- --- PROOF ---
   classical
   set σ : Fin Z.h → ℝ :=
     fun υ => if 0 < u (Z.G υ) then 1 else if u (Z.G υ) < 0 then -1 else 0 with hσdef
@@ -71,7 +71,7 @@ theorem Zonotope.face_centrally_symmetric (Z : Zonotope α) (u : α →ₗ[ℝ] 
   obtain ⟨β, hβ, rfl⟩ := hx
   -- the zonotope's own farthest point in the direction `u`, which `t` bounds
   have hfar : u Z.c + ∑ υ, |u (Z.G υ)| ≤ t := by
-    have hmem : Z.c + ∑ υ, σ υ • Z.G υ ∈ Z.construct := by
+    have hmem : Z.c + ∑ υ, σ υ • Z.G υ ∈ Z.toSet := by
       refine ⟨σ, fun υ => ?_, rfl⟩
       rcases lt_trichotomy (u (Z.G υ)) 0 with h | h | h
       · rw [hσdef]; simp [asymm h, h]

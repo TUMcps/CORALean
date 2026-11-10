@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ToSetEqIInter
 public import CORALean.ContSet.ZonoBundle.Real.Operations.Split
 public import CORALean.ContSet.Zonotope.Real.Theorems.SplitUnion
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
@@ -59,16 +59,16 @@ variable {n : ℕ}
 /-- The halves of the split cover the bundle, exactly, whenever `B` encloses `Λ⁻¹ Z_∩`. -/
 theorem ZonoBundle.split_union (Λ : Mat ℝ n n) (hΛ : IsUnit Λ.det) (B : Interval (Vec ℝ n))
     (j : Fin n) (zB : ZonoBundle (Vec ℝ n))
-    (hB : (fun x => Λ⁻¹ *ᵥ x) '' zB.construct ⊆ B.construct) : -- --- CONCL ---
-    (zB.split Λ B j).fst.construct ∪ (zB.split Λ B j).snd.construct
-      = zB.construct := by -- --- PROOF ---
+    (hB : (fun x => Λ⁻¹ *ᵥ x) '' zB.toSet ⊆ B.toSet) : -- --- CONCL ---
+    (zB.split Λ B j).fst.toSet ∪ (zB.split Λ B j).snd.toSet
+      = zB.toSet := by -- --- PROOF ---
   -- a one-member bundle denotes its member
-  have hconst : ∀ Z : Zonotope (Vec ℝ n), (ZonoBundle.mk 1 fun _ => Z).construct = Z.construct :=
+  have hconst : ∀ Z : Zonotope (Vec ℝ n), (ZonoBundle.mk 1 fun _ => Z).toSet = Z.toSet :=
     fun Z => by
-      rw [ZonoBundle.construct_eq_iInter]
-      exact Set.iInter_const Z.construct
+      rw [ZonoBundle.toSet_eq_iInter]
+      exact Set.iInter_const Z.toSet
   -- the bundle lies in `Ψ`: `Λ⁻¹ x` is in the box, so in its zonotope, and `Λ` maps it back
-  have hsub : zB.construct ⊆ (ZonoBundle.parallelotope Λ B).construct := by
+  have hsub : zB.toSet ⊆ (ZonoBundle.parallelotope Λ B).toSet := by
     intro x hx
     rw [ZonoBundle.parallelotope, ← Zonotope.mtimes_exact]
     refine ⟨Λ⁻¹ *ᵥ x, Interval.zonotope_contains B (hB ⟨x, hx, rfl⟩), ?_⟩

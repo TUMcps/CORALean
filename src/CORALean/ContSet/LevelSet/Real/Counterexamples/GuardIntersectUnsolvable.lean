@@ -56,14 +56,14 @@ theorem guardIntersectUnsolvable_printed_counterexample : -- --- CONCL ---
     let pk : Vec ℝ 2 → ℝ := fun x => x 0 ^ 2
     let Dp : Vec ℝ 2 → ℝ := fun _ => 0
     -- the expansion encloses `g` with the remainder `[0, 0]`
-    (∀ x ∈ I.construct, g x - (0 + ∑ i, a i * (x i - c i) + v x) ∈ Set.Icc 0 0) ∧
+    (∀ x ∈ I.toSet, g x - (0 + ∑ i, a i * (x i - c i) + v x) ∈ Set.Icc 0 0) ∧
     -- eq. (11) as printed, `+ v(x)`, split into `p_k + D_p`
     (∀ x, (-0 + ∑ i, a i * c i - ∑ i ∈ Finset.univ.erase 1, a i * x i + v x) / a 1
       = pk x + Dp x) ∧
     -- eq. (12)
-    (∀ x ∈ I.construct, ∀ r ∈ Set.Icc (0 : ℝ) 0, 0 ≤ Dp x - r / a 1 ∧ Dp x - r / a 1 ≤ 0) ∧
-    ¬ I.construct ∩ {x | g x = 0} ⊆
-      (guardIntersectUnsolvable I 1 pk 0 0).construct := by -- --- PROOF ---
+    (∀ x ∈ I.toSet, ∀ r ∈ Set.Icc (0 : ℝ) 0, 0 ≤ Dp x - r / a 1 ∧ Dp x - r / a 1 ≤ 0) ∧
+    ¬ I.toSet ∩ {x | g x = 0} ⊆
+      (guardIntersectUnsolvable I 1 pk 0 0).toSet := by -- --- PROOF ---
   intro I g a c v pk Dp
   refine ⟨fun x _ => ?_, fun x => ?_, fun x _ r hr => ?_, fun hsub => ?_⟩
   · simp [g, a, c, v, Fin.sum_univ_two]
@@ -71,7 +71,7 @@ theorem guardIntersectUnsolvable_printed_counterexample : -- --- CONCL ---
   · have hr0 : r = 0 := le_antisymm hr.2 hr.1
     simp [Dp, hr0]
   · -- `(1, -1)` is on the guard, in the box, and off the parabola `x₂ = x₁²`
-    have hy : (![1, -1] : Vec ℝ 2) ∈ I.construct ∩ {x | g x = 0} := by
+    have hy : (![1, -1] : Vec ℝ 2) ∈ I.toSet ∩ {x | g x = 0} := by
       refine ⟨fun i => ?_, ?_⟩
       · show (![-1, -2] : Vec ℝ 2) i ≤ (![1, -1] : Vec ℝ 2) i ∧
           (![1, -1] : Vec ℝ 2) i ≤ (![1, 2] : Vec ℝ 2) i

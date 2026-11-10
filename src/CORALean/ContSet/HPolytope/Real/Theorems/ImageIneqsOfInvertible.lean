@@ -50,8 +50,8 @@ variable {q n : ℕ}
 
 theorem HPolytope.image_ineqs_of_invertible (A : Mat ℝ q n) (b : Vec ℝ q) (M : Mat ℝ n n)
     (hM : IsUnit M.det) : -- --- CONCL ---
-    (M *ᵥ ·) '' (HPolytope.ineqs A b).construct = (HPolytope.ineqs (A * M⁻¹)
-    b).construct := by -- --- PROOF ---
+    (M *ᵥ ·) '' (HPolytope.ineqs A b).toSet = (HPolytope.ineqs (A * M⁻¹)
+    b).toSet := by -- --- PROOF ---
   ext y
   constructor
   · rintro ⟨x, hx, rfl⟩

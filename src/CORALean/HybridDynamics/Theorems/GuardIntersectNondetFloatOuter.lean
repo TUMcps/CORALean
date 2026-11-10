@@ -70,12 +70,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem Location.guardIntersectNondetFloat_outer (Bs : List (Mat 𝕋 n n)) (R₀ : Zonotope (Vec 𝕋 n))
     (Rs : List (Zonotope (Vec 𝕋 n))) (guard : ConZonotope 𝕋 (Vec 𝕋 n))
     (horth : ∀ B ∈ Bs, Scalar.toRealMat B * (Scalar.toRealMat B)ᵀ = 1)
-    {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ R₀ :: Rs) {x : Vec ℝ n} (hx : x ∈ R.construct)
-    (hg : x ∈ guard.construct) : -- --- CONCL ---
-    x ∈ (Location.guardIntersectNondetFloat Bs R₀ Rs guard).construct := by -- --- PROOF ---
+    {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ R₀ :: Rs) {x : Vec ℝ n} (hx : x ∈ R.toSet)
+    (hg : x ∈ guard.toSet) : -- --- CONCL ---
+    x ∈ (Location.guardIntersectNondetFloat Bs R₀ Rs guard).toSet := by -- --- PROOF ---
   -- a point of the start or of any box folded in is a point of the hull
   have hfold : ∀ (Is : List (Interval (Vec 𝕋 n))) (J : Interval (Vec 𝕋 n)) (y : Vec ℝ n),
-      (y ∈ J.construct ∨ ∃ I ∈ Is, y ∈ I.construct) → y ∈ (Is.foldl Interval.or J).construct := by
+      (y ∈ J.toSet ∨ ∃ I ∈ Is, y ∈ I.toSet) → y ∈ (Is.foldl Interval.or J).toSet := by
     intro Is
     induction Is with
     | nil => exact fun J y h => h.resolve_right (by simp)
@@ -88,7 +88,7 @@ theorem Location.guardIntersectNondetFloat_outer (Bs : List (Mat 𝕋 n n)) (R�
       · rcases List.mem_cons.mp hI' with rfl | hI'
         · exact Or.inl (Interval.or_outer J I' (Or.inr hy))
         · exact Or.inr ⟨I', hI', hy⟩
-  refine SetIntersection.mem_construct_ofFn.mpr fun i => ?_
+  refine SetIntersection.mem_toSet_ofFn.mpr fun i => ?_
   have hB := horth Bs[i] (List.getElem_mem i.isLt)
   unfold Location.guardIntersectNondetFloat
   dsimp only
@@ -101,7 +101,7 @@ theorem Location.guardIntersectNondetFloat_outer (Bs : List (Mat 𝕋 n n)) (R�
     rw [Matrix.mulVec_mulVec, hT, hB, Matrix.one_mulVec]
   -- the state boxed in the basis
   have h1 : Scalar.toRealMat Bᵀ *ᵥ x ∈
-    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) Bᵀ R).construct :=
+    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) Bᵀ R).toSet :=
     Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) Bᵀ R
       (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx))
   have h2 := hfold (Rs.map
@@ -126,7 +126,7 @@ theorem Location.guardIntersectNondetFloat_outer (Bs : List (Mat 𝕋 n n)) (R�
     box.zonotope)) guard = cZ at h5 ⊢
   -- boxed again in the basis
   have h6 : Scalar.toRealMat Bᵀ *ᵥ x ∈
-    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ cZ).construct :=
+    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ cZ).toSet :=
     Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ cZ
       (Set.mem_biUnion rfl (Set.mem_image_of_mem _ h5))
   have h7 := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B

@@ -41,8 +41,8 @@ variable {n : ℕ}
 
 /-- The intersection of the members' boxes contains the support-function box. -/
 theorem ZonoBundle.intervalAll_contains_intervalSupportFunc (zB : ZonoBundle (Vec ℝ n))
-    (hk : 0 < zB.k) (hne : zB.construct.Nonempty) :
-    zB.intervalSupportFunc.construct ⊆ (zB.intervalAll hk).construct := by
+    (hk : 0 < zB.k) (hne : zB.toSet.Nonempty) :
+    zB.intervalSupportFunc.toSet ⊆ (zB.intervalAll hk).toSet := by
   rw [zB.intervalSupportFunc_exact hk hne]
   exact Set.iInter_subset_of_subset ⟨_, zB.intervalAll_contains hk⟩ subset_rfl
 

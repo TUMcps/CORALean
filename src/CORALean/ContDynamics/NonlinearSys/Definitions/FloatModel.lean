@@ -54,10 +54,10 @@ points of the box. A user-supplied hypothesis, checked by no run: trusted unless
 structure NonlinearSys.FloatModel.Encloses (fm : NonlinearSys.FloatModel 𝕋 n m)
     (sys : NonlinearSys n m) : Prop where
   f_mem (X : Interval (Vec 𝕋 n)) (U : Interval (Vec 𝕋 m)) :
-    ∀ x ∈ X.construct, ∀ u ∈ U.construct, sys.f x u ∈ (fm.f X U).construct
+    ∀ x ∈ X.toSet, ∀ u ∈ U.toSet, sys.f x u ∈ (fm.f X U).toSet
   slope_mem (X : Interval (Vec 𝕋 n)) (U : Interval (Vec 𝕋 m)) :
-    ∀ x ∈ X.construct, ∀ x' ∈ X.construct, ∀ u ∈ U.construct, ∀ u' ∈ U.construct,
-      ∃ Jx ∈ (fm.jacX X U).construct, ∃ Ju ∈ (fm.jacU X U).construct,
+    ∀ x ∈ X.toSet, ∀ x' ∈ X.toSet, ∀ u ∈ U.toSet, ∀ u' ∈ U.toSet,
+      ∃ Jx ∈ (fm.jacX X U).toSet, ∃ Ju ∈ (fm.jacU X U).toSet,
         sys.f x u - sys.f x' u' = Jx *ᵥ (x - x') + Ju *ᵥ (u - u')
 
 end CORALean

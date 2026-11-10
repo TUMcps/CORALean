@@ -56,8 +56,8 @@ absolute value. -/
 theorem Zonotope.reduceSigned_inner {nr : ℕ} (Z : Zonotope α) (T : Fin Z.h → Fin nr → ℝ)
     (_hT1 : ∀ i j, T i j = -1 ∨ T i j = 0 ∨ T i j = 1)
     (hT2 : ∀ i, ∑ j, |T i j| = 1) : -- --- CONCL ---
-    (⟨nr, Z.c, fun j => ∑ i, T i j • Z.G i⟩ : Zonotope α).construct
-      ⊆ Z.construct := by -- --- PROOF ---
+    (⟨nr, Z.c, fun j => ∑ i, T i j • Z.G i⟩ : Zonotope α).toSet
+      ⊆ Z.toSet := by -- --- PROOF ---
   rintro x ⟨β, hβ, rfl⟩
   refine ⟨fun i => ∑ j, T i j * β j, fun i => ?_, ?_⟩
   · calc |∑ j, T i j * β j| ≤ ∑ j, |T i j * β j| := Finset.abs_sum_le_sum_abs _ _

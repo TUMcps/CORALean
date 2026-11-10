@@ -49,7 +49,7 @@ variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes
 /-- The set of `inputRemainder` times the input set `U`. -/
 noncomputable abbrev MatExp.inputRemainderSet (A : Mat ℝ n n) (r : ℝ) (η : ℕ) (U : S n) :
     Set (Vec ℝ n) :=
-  construct (Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder A r η) U)
+  toSet (Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder A r η) U)
 
 end CORALean
 

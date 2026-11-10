@@ -33,7 +33,7 @@ variable {n : ℕ}
 open scoped Classical in
 /-- `outerApprox` encloses the original, whatever `tol` and `id` are. -/
 theorem PolyZonotope.outerApprox_outer (pZ : PolyZonotope (Vec ℝ n)) (tol : ℝ)
-    (S : Finset (Fin pZ.p)) : pZ.construct ⊆ (pZ.outerApprox tol S).construct :=
+    (S : Finset (Fin pZ.p)) : pZ.toSet ⊆ (pZ.outerApprox tol S).toSet :=
   PolyZonotope.boxOut_outer pZ _ _
 
 end CORALean.Real

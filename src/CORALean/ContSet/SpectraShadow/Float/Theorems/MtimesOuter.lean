@@ -137,7 +137,7 @@ private theorem SpectraShadow.aux_mtimes_lmi (M : Mat 𝕋 m n) (S : SpectraShad
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.mtimes_outer (M : Mat 𝕋 m n) (S : SpectraShadow 𝕋 (Vec 𝕋 n)) :
-    (toRealMat M *ᵥ ·) '' S.construct ⊆ (S.mtimes M).construct :=
+    (toRealMat M *ᵥ ·) '' S.toSet ⊆ (S.mtimes M).toSet :=
   image_subset (fun x y => Matrix.mulVec_add _ x y)
     (by
       rintro _ ⟨x, hx, rfl⟩

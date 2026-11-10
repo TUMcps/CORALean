@@ -46,7 +46,7 @@ variable {n : ℕ}
 /-- Each upper face is touched, so no smaller box encloses the ellipsoid. The
 lower faces are the same statement against `-eⱼ`. -/
 theorem Ellipsoid.interval_attained (E : Ellipsoid n) (j : Fin n) :
-    ∃ x ∈ E.construct, x j = E.interval.sup j := by
+    ∃ x ∈ E.toSet, x j = E.interval.sup j := by
   obtain ⟨x, hx, hcx⟩ := E.supportBound_attained (LinearMap.proj j)
   exact ⟨x, hx, hcx⟩
 

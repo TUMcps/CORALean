@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 theorem Zonotope.vec_representsa_point_sound {Z : Zonotope (Mat 𝕋 m n)}
     (h : Z.vec.representsa_point = true) :
-    ∃ A, Z.construct = {A} := by
+    ∃ A, Z.toSet = {A} := by
   obtain ⟨v, hv⟩ := Zonotope.representsa_point_sound h
   refine ⟨matVecEquiv.symm v, ?_⟩
   rw [Zonotope.vec_exact, ← matVecEquiv.apply_symm_apply v, ← Set.image_singleton] at hv

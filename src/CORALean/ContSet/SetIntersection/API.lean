@@ -8,7 +8,7 @@ public import CORALean.ContSet.SetIntersection.Instances
 /-!
 # The intersection of a list of representations, collected
 
-`SetIntersection S` denotes `⋂ s ∈ sets, construct s` at whatever `S`
+`SetIntersection S` denotes `⋂ s ∈ sets, toSet s` at whatever `S`
 denotes, `univ` at the empty list — the same idea `ZonoBundle` fixes at one
 member type and one arity, generalized to any `S` and any list length.
 `Operations/` maps a member's own `Mtimes`, `Plus` or `Reduce` over the

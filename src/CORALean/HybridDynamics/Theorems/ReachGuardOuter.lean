@@ -104,18 +104,18 @@ theorem Location.IsTrajectory.reachGuard_outer [∀ n, Intersection (G n) (Vec �
     {ℓ : Location S G L 𝕋 n} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.IsTrajectory τ x u w)
     (e : Transition G L 𝕋 n) {r : ℝ} (hr : 0 < r) (N : ℕ) {reach : ℕ → S n}
     (hreach : ∀ (k : ℕ) (t : ℝ), t ∈ Set.Icc (k * r) ((k + 1) * r) → t ∈ Set.Icc 0 τ →
-      x t ∈ construct (reach k))
-    {halfspaceConv : S n → G n} (hH : ∀ R, construct R ⊆ construct (halfspaceConv R))
-    {isEmpty : G n → Bool} (hE : ∀ P, isEmpty P = true → construct P = ∅)
+      x t ∈ toSet (reach k))
+    {halfspaceConv : S n → G n} (hH : ∀ R, toSet R ⊆ toSet (halfspaceConv R))
+    {isEmpty : G n → Bool} (hE : ∀ P, isEmpty P = true → toSet P = ∅)
     {intersectionTimes : List (G n) → G n → ℕ × ℕ}
     (hT : ∀ (Ps : List (G n)) (g : G n) (i : ℕ) (hi : i < Ps.length),
-      (construct Ps[i] ∩ construct g).Nonempty →
+      (toSet Ps[i] ∩ toSet g).Nonempty →
         (intersectionTimes Ps g).1 ≤ i ∧ i ≤ (intersectionTimes Ps g).2)
     {generatorConv : List (G n) → S n}
-    (hG : ∀ Ps, ∀ P ∈ Ps, construct P ⊆ construct (generatorConv Ps)) : -- --- CONCL ---
+    (hG : ∀ Ps, ∀ P ∈ Ps, toSet P ⊆ toSet (generatorConv Ps)) : -- --- CONCL ---
     let out := ℓ.reachGuard e reach halfspaceConv isEmpty intersectionTimes generatorConv N
-    (∀ t ∈ Set.Icc 0 τ, t < out.1.length * r → (∃ P ∈ out.1, x t ∈ construct P) ∧
-      (x t ∈ construct e.guard → x t ∈ construct out.2)) ∧
+    (∀ t ∈ Set.Icc 0 τ, t < out.1.length * r → (∃ P ∈ out.1, x t ∈ toSet P) ∧
+      (x t ∈ toSet e.guard → x t ∈ toSet out.2)) ∧
     (out.1.length + 1 < N → τ < out.1.length * r) := by -- --- PROOF ---
   intro out
   set RH : ℕ → G n := fun k => Intersection.intersection (halfspaceConv (reach (k - 1))) ℓ.inv
@@ -124,7 +124,7 @@ theorem Location.IsTrajectory.reachGuard_outer [∀ n, Intersection (G n) (Vec �
   have hlen : out.1.length = K - 1 := by simp [out, Location.reachGuard, RH, K]
   -- every stay state at `t ∈ [(i-1)r, ir]` is in the piece `R^H([(i-1)r, ir])`
   have hmem : ∀ (i : ℕ) (t : ℝ), t ∈ Set.Icc (i * r) ((i + 1) * r) → t ∈ Set.Icc 0 τ →
-      x t ∈ construct (RH (i + 1)) := by
+      x t ∈ toSet (RH (i + 1)) := by
     intro i t hi ht
     refine Intersection.intersection_outer _ _ ⟨hH _ ?_, traj.invariant t ht⟩
     simpa using hreach i t hi ht

@@ -77,7 +77,7 @@ structure NeurNetContrSys.IsTrajectory (sys : NeurNetContrSys P S n)
     (U_ext : Set (Vec ℝ sys.nExt)) (W : Set (Vec ℝ (nrOfDisturbances sys.plant)))
     (x : ℝ → Vec ℝ n) (v : ℝ → Vec ℝ sys.nExt)
     (w : ℝ → Vec ℝ (nrOfDisturbances sys.plant)) : Prop where
-  init : x 0 ∈ construct R₀
+  init : x 0 ∈ toSet R₀
   flow (i : ℕ) (hi : i < H) :
     ContDynamics.IsTrajectory sys.plant (Set.Icc 0 sys.dt) Set.univ
       (sys.inputSet {π (x ((i : ℝ) * sys.dt))} U_ext) W

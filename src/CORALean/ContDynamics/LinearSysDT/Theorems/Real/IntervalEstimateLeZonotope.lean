@@ -64,9 +64,9 @@ variable {n nu ny nw nv : ℕ}
 theorem LinearSysDT.intervalEstimate_le_zonotope (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q)
     (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ sys.r)) (V : Zonotope (Vec ℝ sys.s))
     (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q) (Z : ℕ → Zonotope (Vec ℝ n))
-    (hZ0 : X₀.construct ⊆ (Z 0).construct)
-    (hZ : ∀ k, ((sys.A - L * sys.C) *ᵥ ·) '' (Z k).construct + {sys.B *ᵥ u k + L *ᵥ y k} +
-      (sys.E *ᵥ ·) '' W.construct + ((-(L * sys.F)) *ᵥ ·) '' V.construct ⊆ (Z (k + 1)).construct)
+    (hZ0 : X₀.toSet ⊆ (Z 0).toSet)
+    (hZ : ∀ k, ((sys.A - L * sys.C) *ᵥ ·) '' (Z k).toSet + {sys.B *ᵥ u k + L *ᵥ y k} +
+      (sys.E *ᵥ ·) '' W.toSet + ((-(L * sys.F)) *ᵥ ·) '' V.toSet ⊆ (Z (k + 1)).toSet)
     (k : ℕ) (i : Fin n) : -- --- CONCL ---
     (Z k).interval.inf i ≤ (LinearSysDT.intervalEstimate sys L X₀ W V u y k).inf i ∧
       (LinearSysDT.intervalEstimate sys L X₀ W V u y k).sup i ≤
@@ -74,7 +74,7 @@ theorem LinearSysDT.intervalEstimate_le_zonotope (sys : LinearSysDT ℝ n) (L : 
   set S := LinearSysDT.intervalEstimateState sys L X₀ W V u y
   -- its Eq. 52: the estimate plus any reachable error lies in the zonotope
   have hin : ∀ k, ∀ e ∈ LinearSysDT.reachErrorSet sys L X₀ W V k,
-      (S k).x + e ∈ (Z k).construct := by
+      (S k).x + e ∈ (Z k).toSet := by
     intro k
     induction k with
     | zero =>

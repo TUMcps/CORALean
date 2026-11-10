@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Capsule.Float.Operations.ConvHull
-public import CORALean.ContSet.Capsule.Float.Theorems.MemConstructOfSplit
+public import CORALean.ContSet.Capsule.Float.Theorems.MemToSetOfSplit
 public import CORALean.ContSet.Capsule.Float.Theorems.RadiusLe
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Capsule.Float.Theorems.SmulMemSymmetric
@@ -61,12 +61,12 @@ private theorem Capsule.aux_half_gap_le {x : ℝ} {u d : 𝕋} (hd : toReal d �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.convHull_outer (k : ℕ) (C S : Capsule 𝕋 n) : -- --- CONCL ---
-    Set.linComb C.construct S.construct ⊆ (C.convHull k S).construct := by -- --- PROOF ---
+    Set.linComb C.toSet S.toSet ⊆ (C.convHull k S).toSet := by -- --- PROOF ---
   rintro _ ⟨x, hx, y, hy, l, ⟨hl0, hl1⟩, rfl⟩
   have h₁ := Capsule.radius_le k C hx
   have h₂ := Capsule.radius_le k S hy
   have ht : 2 * l - 1 ∈ Set.Icc (-1 : ℝ) 1 := Set.mem_Icc.mpr ⟨by linarith, by linarith⟩
-  refine Capsule.mem_construct_of_split _ ht
+  refine Capsule.mem_toSet_of_split _ ht
     (w := l • (x - toRealVec C.c) + (1 - l) • (y - toRealVec S.c)) ?_ ?_
   · -- the two offsets, each within the larger radius
     show _ ≤ toReal (maximum (C.radius k) (S.radius k))
@@ -89,7 +89,7 @@ theorem Capsule.convHull_outer (k : ℕ) (C S : Capsule 𝕋 n) : -- --- CONCL -
     show _ ∈ ((Interval.symmetric fun i =>
         half (subUp (addUp (C.c i) (S.c i)) (addDown (C.c i) (S.c i)))).plus
       (Interval.symmetric fun i =>
-        half (subUp (subUp (C.c i) (S.c i)) (subDown (C.c i) (S.c i))))).construct
+        half (subUp (subUp (C.c i) (S.c i)) (subDown (C.c i) (S.c i))))).toSet
     convert Interval.plus_outer _ _ ⟨_, hc, _, hg, rfl⟩ using 1
     funext i
     simp only [Capsule.convHull, Pi.add_apply, Pi.sub_apply, Pi.smul_apply, smul_eq_mul,

@@ -35,7 +35,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `conZonotope/representsa_` at `emptySet`: the coefficient polytope has no point. -/
-def ConZonotope.representsa_emptySet (cZ : ConZonotope α) : Prop := cZ.domain.construct = ∅
+def ConZonotope.representsa_emptySet (cZ : ConZonotope α) : Prop := cZ.domain.toSet = ∅
 
 end CORALean.Real
 

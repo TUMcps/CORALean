@@ -44,8 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.powers_outer (Z P : Zonotope (Mat 𝕋 n n)) {M M₀ : Mat ℝ n n}
-    (hM : M ∈ Z.construct) (hM₀ : M₀ ∈ P.construct) (k : ℕ) : -- --- CONCL ---
-    M₀ * M ^ k ∈ (Zonotope.powers Z P k).construct := by -- --- PROOF ---
+    (hM : M ∈ Z.toSet) (hM₀ : M₀ ∈ P.toSet) (k : ℕ) : -- --- CONCL ---
+    M₀ * M ^ k ∈ (Zonotope.powers Z P k).toSet := by -- --- PROOF ---
   induction k with
   | zero => rw [pow_zero, mul_one]; exact hM₀
   | succ k ih =>

@@ -48,16 +48,16 @@ states of the box at a common input. A user-supplied hypothesis, checked by no r
 structure NonlinDASys.FloatModel.Encloses (fm : NonlinDASys.FloatModel 𝕋 n p m)
     (sys : NonlinDASys n p m) : Prop where
   f_mem (X : Interval (Vec 𝕋 n)) (Y : Interval (Vec 𝕋 p)) (U : Interval (Vec 𝕋 m)) :
-    ∀ x ∈ X.construct, ∀ y ∈ Y.construct, ∀ u ∈ U.construct, sys.f x y u ∈ (fm.f X Y U).construct
+    ∀ x ∈ X.toSet, ∀ y ∈ Y.toSet, ∀ u ∈ U.toSet, sys.f x y u ∈ (fm.f X Y U).toSet
   g_mem (X : Interval (Vec 𝕋 n)) (Y : Interval (Vec 𝕋 p)) (U : Interval (Vec 𝕋 m)) :
-    ∀ x ∈ X.construct, ∀ y ∈ Y.construct, ∀ u ∈ U.construct, sys.g x y u ∈ (fm.g X Y U).construct
+    ∀ x ∈ X.toSet, ∀ y ∈ Y.toSet, ∀ u ∈ U.toSet, sys.g x y u ∈ (fm.g X Y U).toSet
   slope_f (X : Interval (Vec 𝕋 n)) (Y : Interval (Vec 𝕋 p)) (U : Interval (Vec 𝕋 m)) :
-    ∀ x ∈ X.construct, ∀ x' ∈ X.construct, ∀ y ∈ Y.construct, ∀ y' ∈ Y.construct,
-      ∀ u ∈ U.construct, ∃ A ∈ (fm.jacA X Y U).construct, ∃ C ∈ (fm.jacC X Y U).construct,
+    ∀ x ∈ X.toSet, ∀ x' ∈ X.toSet, ∀ y ∈ Y.toSet, ∀ y' ∈ Y.toSet,
+      ∀ u ∈ U.toSet, ∃ A ∈ (fm.jacA X Y U).toSet, ∃ C ∈ (fm.jacC X Y U).toSet,
         sys.f x y u - sys.f x' y' u = A *ᵥ (x - x') + C *ᵥ (y - y')
   slope_g (X : Interval (Vec 𝕋 n)) (Y : Interval (Vec 𝕋 p)) (U : Interval (Vec 𝕋 m)) :
-    ∀ x ∈ X.construct, ∀ x' ∈ X.construct, ∀ y ∈ Y.construct, ∀ y' ∈ Y.construct,
-      ∀ u ∈ U.construct, ∃ D ∈ (fm.jacD X Y U).construct, ∃ F ∈ (fm.jacF X Y U).construct,
+    ∀ x ∈ X.toSet, ∀ x' ∈ X.toSet, ∀ y ∈ Y.toSet, ∀ y' ∈ Y.toSet,
+      ∀ u ∈ U.toSet, ∃ D ∈ (fm.jacD X Y U).toSet, ∃ F ∈ (fm.jacF X Y U).toSet,
         sys.g x y u - sys.g x' y' u = D *ᵥ (x - x') + F *ᵥ (y - y')
 
 end CORALean

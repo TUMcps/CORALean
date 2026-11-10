@@ -41,10 +41,10 @@ variable {n : ℕ}
 
 theorem EmptySet.convHull_exact {S : Type} [ContSet S (Vec ℝ n)] [ConvexSet S (Vec ℝ n)]
     (E : EmptySet n) (s : S) :
-    convexHull ℝ (E.construct ∪ ContSet.construct s) = ContSet.construct (E.convHull s) := by
-  change convexHull ℝ ((∅ : Set (Vec ℝ n)) ∪ ContSet.construct s) = ContSet.construct s
+    convexHull ℝ (E.toSet ∪ ContSet.toSet s) = ContSet.toSet (E.convHull s) := by
+  change convexHull ℝ ((∅ : Set (Vec ℝ n)) ∪ ContSet.toSet s) = ContSet.toSet s
   rw [Set.empty_union]
-  exact (ConvexSet.convex_construct s).convexHull_eq
+  exact (ConvexSet.convex_toSet s).convexHull_eq
 
 end CORALean.Real
 

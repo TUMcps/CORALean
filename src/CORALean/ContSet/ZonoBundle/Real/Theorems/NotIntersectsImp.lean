@@ -47,8 +47,8 @@ namespace CORALean.Real
 /-- The printed converse is false: the members meet `S` one by one, the bundle does not. -/
 theorem ZonoBundle.not_intersects_imp : -- --- CONCL ---
     ∃ (zB : ZonoBundle ℝ) (S : Set ℝ),
-      (∀ i, ((zB.Z i).construct ∩ S).Nonempty) ∧
-        ¬ (zB.construct ∩ S).Nonempty := by -- --- PROOF ---
+      (∀ i, ((zB.Z i).toSet ∩ S).Nonempty) ∧
+        ¬ (zB.toSet ∩ S).Nonempty := by -- --- PROOF ---
   let Z₁ : Zonotope ℝ := ⟨1, 1 / 2, fun _ => 1 / 2⟩
   let Z₂ : Zonotope ℝ := ⟨1, 5 / 2, fun _ => 1 / 2⟩
   refine ⟨⟨2, ![Z₁, Z₂]⟩, Set.Icc 0 3, ?_, ?_⟩
@@ -57,8 +57,8 @@ theorem ZonoBundle.not_intersects_imp : -- --- CONCL ---
     · refine ⟨1 / 2, ⟨fun _ => 0, fun _ => by simp, by simp [Z₁]⟩, by norm_num, by norm_num⟩
     · refine ⟨5 / 2, ⟨fun _ => 0, fun _ => by simp, by simp [Z₂]⟩, by norm_num, by norm_num⟩
   · rintro ⟨x, hx, -⟩
-    have h1 := SetIntersection.mem_construct_ofFn.mp hx 0
-    have h2 := SetIntersection.mem_construct_ofFn.mp hx 1
+    have h1 := SetIntersection.mem_toSet_ofFn.mp hx 0
+    have h2 := SetIntersection.mem_toSet_ofFn.mp hx 1
     obtain ⟨β, hβ, e1⟩ := h1
     obtain ⟨γ, hγ, e2⟩ := h2
     have a := abs_le.mp (hβ ⟨0, Nat.one_pos⟩)

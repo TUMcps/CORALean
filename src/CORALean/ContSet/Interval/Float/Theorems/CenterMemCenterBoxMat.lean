@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.center_mem_centerBoxMat (I : Interval (Mat 𝕋 m n)) : -- --- CONCL ---
-    I.nominal.center ∈ I.centerBoxMat.construct := by -- --- PROOF ---
+    I.nominal.center ∈ I.centerBoxMat.toSet := by -- --- PROOF ---
   intro q
   obtain ⟨i, j⟩ := q
   have h : I.nominal.center i j = (toReal (I.inf i j) + toReal (I.sup i j)) / 2 := by

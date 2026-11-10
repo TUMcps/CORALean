@@ -72,7 +72,7 @@ def compressionPreprocessing (le : 𝕋 → 𝕋 → Bool) (tol : 𝕋) (fuel : 
     {n n₁ m : ℕ} (I_X : Interval (Vec 𝕋 n)) (L_1 : ReducedLinear 𝕋 n n₁) (L_2 : Relaxation 𝕋)
     (hσ_2 : ∃ σ : ℝ → ℝ, L_2.Encloses σ)
     (B_2 : MergeBuckets 𝕋) (rest : ReducibleNetwork 𝕋 n₁ m) (ρ : 𝕋) : Option (S m) :=
-  -- 1. `L_{-2}`, the identity, of `L_{-2}, L_{-1}, L_0 ← construct Φ_pre` (Cor. 1)
+  -- 1. `L_{-2}`, the identity, of `L_{-2}, L_{-1}, L_0 ← toSet Φ_pre` (Cor. 1)
   let L_m2 := ReducedLinear.identity (𝕋 := 𝕋) n
   -- 1. `L_{-1}`, the ReLU; `L_0`, the identity, is composed into `L_1`
   let L_m1 := R_relu

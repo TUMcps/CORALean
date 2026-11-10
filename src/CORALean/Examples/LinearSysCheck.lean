@@ -5,7 +5,7 @@ import CORALean.ContSet.Conversion.Float.Instances
 import CORALean.ContSet.Conversion.Real.Instances
 import CORALean.ContSet.SetUnion.Instances
 import CORALean.ContSet.Zonotope.Real.Instances
-import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 import CORALean.Global.Float.Instances.Real.Instances
 import CORALean.Specification.Instances
 import CORALean.ContDynamics.LinearSys.Operations.Canonical
@@ -41,7 +41,7 @@ example :
         ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩ ⟨1 / 10, 4⟩) →
     ((Specification.safeSet (⟨![-1 / 2, -1 / 2], ![5 / 2, 5 / 2]⟩ : Float.Interval (Vec ℝ 2))).Holds
       ((LinearSys.canonical !![-1, 1; 0, -2] : LinearSys ℝ 2).reachExact (1 - 0)
-        (construct (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))))) :=
+        (toSet (⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2))))) :=
   LinearSys.holds_of_check_wrappingFree (S := 𝒵) _ _ (by norm_num) _
 
 /-- The same through `Reach.check`, CORA's `reach(sys, params, options)` and then `check`. -/

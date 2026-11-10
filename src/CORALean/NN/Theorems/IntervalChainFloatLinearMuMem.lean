@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 /-- A float vector read as reals is in its point box. -/
 private theorem aux_mem_point {m : ℕ} (b : Vec 𝕋 m) :
-    toRealVec b ∈ (⟨b, b⟩ : Interval (Vec 𝕋 m)).construct :=
+    toRealVec b ∈ (⟨b, b⟩ : Interval (Vec 𝕋 m)).toSet :=
   fun _ => ⟨le_rfl, le_rfl⟩
 
 
@@ -55,10 +55,10 @@ private theorem aux_mem_point {m : ℕ} (b : Vec 𝕋 m) :
 
 theorem IntervalChain.linear_mu_mem {n m : ℕ} (W : Mat 𝕋 m n) (b : Vec 𝕋 m)
     {P : Interval (Vec 𝕋 n) × Interval (Vec 𝕋 n)} {p : Vec ℝ n × Vec ℝ n}
-    (h1 : p.1 ∈ P.1.construct) (h2 : p.2 ∈ P.2.construct) :
+    (h1 : p.1 ∈ P.1.toSet) (h2 : p.2 ∈ P.2.toSet) :
     toRealMat W *ᵥ ((1 / 2 : ℝ) • (p.1 + p.2)) + toRealVec b
       ∈ (Interval.plus (Interval.mtimes W (Interval.halve (Interval.plus P.1 P.2)))
-          ⟨b, b⟩).construct :=
+          ⟨b, b⟩).toSet :=
   Interval.plus_outer _ _ (Set.add_mem_add
     (Interval.mtimes_mem W _ rfl _ (Interval.halve_plus_mem h1 h2)) (aux_mem_point b))
 

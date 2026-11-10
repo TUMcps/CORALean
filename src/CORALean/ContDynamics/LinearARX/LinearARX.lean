@@ -55,8 +55,8 @@ def LinearARX.stack (p : ℕ) (y : ℕ → Vec ℝ dy) (k : ℕ) : Vec ℝ (p * 
 step `p` on each output follows the ARX equation. -/
 structure LinearARX.IsTrajectory (sys : LinearARX 𝕋 dy du p) (Y₀ : S (p * dy)) (U : S du)
     (y : ℕ → Vec ℝ dy) (u : ℕ → Vec ℝ du) : Prop where
-  init : LinearARX.stack p y 0 ∈ construct Y₀
-  input (k : ℕ) : u k ∈ construct U
+  init : LinearARX.stack p y 0 ∈ toSet Y₀
+  input (k : ℕ) : u k ∈ toSet U
   step (k : ℕ) (hk : p ≤ k) :
     y k = ∑ i : Fin p, toRealMat (sys.Abar i) *ᵥ y (k - (i + 1))
       + ∑ j : Fin (p + 1), toRealMat (sys.Bbar j) *ᵥ u (k - j)

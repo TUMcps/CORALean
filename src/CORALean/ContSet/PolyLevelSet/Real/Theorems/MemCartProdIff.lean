@@ -43,10 +43,10 @@ variable {n₁ n₂ : ℕ}
 variables. -/
 theorem PolyLevelSet.mem_cartProd_iff (P₁ : PolyLevelSet n₁) (P₂ : PolyLevelSet n₂)
     (x : Vec ℝ (n₁ + n₂)) : -- --- CONCL ---
-    x ∈ (P₁.cartProd P₂).construct
-      ↔ (fun k => x (Fin.castAdd n₂ k)) ∈ P₁.construct
-        ∧ (fun k => x (Fin.natAdd n₁ k)) ∈ P₂.construct := by -- --- PROOF ---
-  show (x ∈ (P₁.dom.append P₂.dom).construct
+    x ∈ (P₁.cartProd P₂).toSet
+      ↔ (fun k => x (Fin.castAdd n₂ k)) ∈ P₁.toSet
+        ∧ (fun k => x (Fin.natAdd n₁ k)) ∈ P₂.toSet := by -- --- PROOF ---
+  show (x ∈ (P₁.dom.append P₂.dom).toSet
     ∧ ∀ i, ((P₁.cartProd P₂).op i).holds ((P₁.cartProd P₂).eval x i)) ↔ _
   rw [PolyLevelSet.eval_cartProd, Interval.mem_append_iff]
   show (_ ∧ ∀ i, (Fin.append P₁.op P₂.op i).holds _) ↔ _

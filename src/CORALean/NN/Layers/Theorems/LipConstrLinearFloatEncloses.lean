@@ -61,7 +61,7 @@ theorem Layer.lipConstrLinearFloat_encloses (W : Mat 𝕋 m n) (b : Vec 𝕋 m) 
           ((Layer.lipConstrScaleFloat W lam).sup i) (W i j) (W i j),
         fun i j => Interval.mulHi ((Layer.lipConstrScaleFloat W lam).inf i)
           ((Layer.lipConstrScaleFloat W lam).sup i) (W i j) (W i j)⟩ :
-        Interval (Mat 𝕋 m n)).construct := by
+        Interval (Mat 𝕋 m n)).toSet := by
     refine Interval.mem_mat_iff.2 fun i j => ?_
     have := Interval.mul_between_corners (hN i).1 (hN i).2
       (le_refl (toReal (W i j))) (le_refl (toReal (W i j)))
@@ -75,7 +75,7 @@ theorem Layer.lipConstrLinearFloat_encloses (W : Mat 𝕋 m n) (b : Vec 𝕋 m) 
           ((Layer.lipConstrScaleFloat W lam).sup i) (b i) (b i),
         fun i => Interval.mulHi ((Layer.lipConstrScaleFloat W lam).inf i)
           ((Layer.lipConstrScaleFloat W lam).sup i) (b i) (b i)⟩ :
-        Interval (Vec 𝕋 m)).construct := fun i =>
+        Interval (Vec 𝕋 m)).toSet := fun i =>
     Interval.mul_between_corners (hN i).1 (hN i).2 (le_refl (toReal (b i))) (le_refl (toReal (b i)))
   -- the layer's map is `(N W) x + N b`
   have key : (fun i => N i * (toRealMat W *ᵥ x + toRealVec b) i)
@@ -83,7 +83,7 @@ theorem Layer.lipConstrLinearFloat_encloses (W : Mat 𝕋 m n) (b : Vec 𝕋 m) 
     funext i
     simp only [← Matrix.mulVec_mulVec, Matrix.mulVec_diagonal, Pi.add_apply, mul_add]
   -- so both parts are enclosed by `mtimes_outer` and `plus_outer`
-  show (fun i => N i * (toRealMat W *ᵥ x + toRealVec b) i) ∈ construct
+  show (fun i => N i * (toRealMat W *ᵥ x + toRealVec b) i) ∈ toSet
     (plus (mtimes (𝕄 := ℐ[𝕋]) _ s) (ofInterval _))
   rw [key]
   exact plus_outer _ _ (Set.add_mem_add

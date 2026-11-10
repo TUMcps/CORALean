@@ -7,8 +7,8 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.CornerEqBottomAdd
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumFlipCompl
 public import CORALean.ContSet.Zonotope.Real.Theorems.CornerSuccAdd
 public import CORALean.ContSet.Zonotope.Real.Theorems.CornerNotSuccSub
-public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructPointUp
-public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructCompPerm
+public import CORALean.ContSet.Zonotope.Real.Theorems.ToSetPointUp
+public import CORALean.ContSet.Zonotope.Real.Theorems.ToSetCompPerm
 public import CORALean.ContSet.Zonotope.Real.Theorems.CrossNonnegOfArgLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.PointUpHalfPlane
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
@@ -91,7 +91,7 @@ private theorem Zonotope.aux_scan_sorted (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.
       Zonotope.scanEdge γ s.1 (s.1 + (2 : ℝ) • Z.G j) s.2)) (P₀, (⟨⊤, ⊥⟩ : Interval EReal)) = up)
     (hdown : Fin.foldl Z.h (fun s j => (s.1 - (2 : ℝ) • Z.G j,
       Zonotope.scanEdge γ s.1 (s.1 - (2 : ℝ) • Z.G j) s.2)) up = down) : -- --- CONCL ---
-    {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct}
+    {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.toSet}
       = {y : ℝ | down.2.inf ≤ y ∧ (y : EReal) ≤ down.2.sup} := by -- --- PROOF ---
   obtain ⟨u1, u2, u3, uA, uB, uC⟩ := Zonotope.scan_fold γ (fun j => (2 : ℝ) • Z.G j)
     (fun P j => P + (2 : ℝ) • Z.G j) (fun _ _ => rfl) P₀ ⟨⊤, ⊥⟩ up hup
@@ -143,10 +143,10 @@ private theorem Zonotope.aux_scan_sorted (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.
   -- the section is an interval between two such points, or empty
   ext y
   simp only [Set.mem_setOf_eq]
-  by_cases hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.construct
+  by_cases hne : ∃ y, (![γ, y] : Vec ℝ 2) ∈ Z.toSet
   -- a nonempty section, `[yl; yh]` by the section theorem
   · obtain ⟨yl, yh, hyl, hyh, hS⟩ := Z.section_eq_Icc_walkEdges hh h1 h2 γ hne
-    have hy : ∀ y' : ℝ, (![γ, y'] : Vec ℝ 2) ∈ Z.construct ↔ yl ≤ y' ∧ y' ≤ yh := fun y' => by
+    have hy : ∀ y' : ℝ, (![γ, y'] : Vec ℝ 2) ∈ Z.toSet ↔ yl ≤ y' ∧ y' ≤ yh := fun y' => by
       rw [← Set.mem_Icc, ← hS]; rfl
     rw [hy y]
     constructor
@@ -164,8 +164,8 @@ private theorem Zonotope.aux_scan_sorted (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.
         rcases hattain.2 with h | h
         · rw [h] at b; exact absurd b (by simp)
         · exact h
-      have h3 : (![γ, ym] : Vec ℝ 2) ∈ Z.construct := Z.walkEdges_subset_construct hym
-      have h4 : (![γ, yM] : Vec ℝ 2) ∈ Z.construct := Z.walkEdges_subset_construct hyM
+      have h3 : (![γ, ym] : Vec ℝ 2) ∈ Z.toSet := Z.walkEdges_subset_toSet hym
+      have h4 : (![γ, yM] : Vec ℝ 2) ∈ Z.toSet := Z.walkEdges_subset_toSet hyM
       rw [hy] at h3 h4
       rw [hm] at a
       rw [hM] at b
@@ -174,14 +174,14 @@ private theorem Zonotope.aux_scan_sorted (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.
     refine ⟨fun h => absurd ⟨y, h⟩ hne, fun ⟨a, b⟩ => ?_⟩
     rcases hattain.1 with h | ⟨ym, hym, hm⟩
     · rw [h] at a; exact absurd a (by simp)
-    · exact absurd ⟨ym, Z.walkEdges_subset_construct hym⟩ hne
+    · exact absurd ⟨ym, Z.walkEdges_subset_toSet hym⟩ hne
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.boundIntersect2DScan_spec (Z : Zonotope (Vec ℝ 2)) (hh : 0 < Z.h)
     (γ : ℝ) : -- --- CONCL ---
-    {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.construct} =
+    {y : ℝ | (![γ, y] : Vec ℝ 2) ∈ Z.toSet} =
       {y : ℝ | (Z.boundIntersect2DScan γ).inf ≤ y ∧
         (y : EReal) ≤ (Z.boundIntersect2DScan γ).sup} := by -- --- PROOF ---
   -- the zonogon with the generators turned upward, then sorted by angle
@@ -194,7 +194,7 @@ theorem Zonotope.boundIntersect2DScan_spec (Z : Zonotope (Vec ℝ 2)) (hh : 0 < 
       (Tuple.monotone_sort (fun i => Complex.arg (⟨Z.pointUp.G i 0, Z.pointUp.G i 1⟩ : ℂ))
         hij.le)
   -- the scan of the sorted zonogon, whose last point is the sum of the sorted generators
-  rw [← Z.construct_pointUp, ← Z.pointUp.construct_comp_perm π]
+  rw [← Z.toSet_pointUp, ← Z.pointUp.toSet_comp_perm π]
   refine Zonotope.aux_scan_sorted Zs hh h1 h2 γ _ ?_ _ _ rfl rfl
   show _ = Z.pointUp.c - ∑ j, Z.pointUp.G (π j)
   rw [Equiv.sum_comp π Z.pointUp.G]

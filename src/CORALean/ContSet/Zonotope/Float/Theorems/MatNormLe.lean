@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.matNorm_le (steps : ℕ) (p : Real.Interval.NormType) (Z : Zonotope (Mat 𝕋 m n))
-    {M : Mat ℝ m n} (hM : M ∈ Z.construct) :
+    {M : Mat ℝ m n} (hM : M ∈ Z.toSet) :
     p.eval M ≤ toReal (Z.matNorm steps p) :=
   Interval.matNorm_le steps p Z.matInterval (Zonotope.matInterval_contains Z hM)
 

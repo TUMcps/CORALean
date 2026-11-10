@@ -63,13 +63,13 @@ time of the step, the interpolation from its start to a member of the step's
 exponential enclosure, plus a member of the correction matrix applied to its start. -/
 theorem MatExp.exists_mem_intervalCorrectionMatrix_of_integral {B : Interval (Mat ℝ n n)}
     {A : ℝ → Mat ℝ n n} (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
-    (hAB : ∀ s, A s ∈ B.construct) {x : ℝ → Vec ℝ n} {r : ℝ} (hr : 0 < r)
+    (hAB : ∀ s, A s ∈ B.toSet) {x : ℝ → Vec ℝ n} {r : ℝ} (hr : 0 < r)
     (hxc : ContinuousOn x (Set.Icc 0 r))
     (hx : ∀ s ∈ Set.Icc 0 r, x s = x 0 + ∫ σ in (0:ℝ)..s, A σ *ᵥ x σ) {m : ℕ}
     (hε : ‖(Interval.smul r B).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
-    ∃ Φ ∈ (MatExp.expIntervalEnclosure (Interval.smul r B) (m + 2)).construct,
-      ∃ F ∈ (MatExp.intervalCorrectionMatrix B r (m + 2)).construct,
+    ∃ Φ ∈ (MatExp.expIntervalEnclosure (Interval.smul r B) (m + 2)).toSet,
+      ∃ F ∈ (MatExp.intervalCorrectionMatrix B r (m + 2)).toSet,
         x t = ((1 - t / r) • x 0 + (t / r) • (Φ *ᵥ x 0)) + F *ᵥ x 0 := by -- --- PROOF ---
   have habs : ‖(Interval.smul t B).absMax‖ ≤ ‖(Interval.smul r B).absMax‖ := by
     rw [Interval.absMax_smul B ht0, Interval.absMax_smul B hr.le, norm_smul, norm_smul,

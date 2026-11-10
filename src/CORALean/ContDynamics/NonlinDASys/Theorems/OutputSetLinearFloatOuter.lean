@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContDynamics.NonlinDASys.Operations.OutputSetLinearFloat
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.Global.JacobianMatAffine
 
@@ -69,18 +69,18 @@ theorem NonlinDASys.OutputFloatModel.outputSetLinearFloat_outer (sys : NonlinDAS
     (hh : ∀ x y u, sys.h x y u = c + M_x *ᵥ x + M_y *ᵥ y + M_u *ᵥ u)
     (p_x : Vec 𝕋 n) (p_y : Vec 𝕋 p) (p_u : Vec 𝕋 m) (R : Zonotope (Vec 𝕋 n))
     (R_y : Zonotope (Vec 𝕋 p)) (U : Zonotope (Vec 𝕋 m))
-    {x : Vec ℝ n} {y : Vec ℝ p} {u : Vec ℝ m} (hx : x ∈ R.construct) (hy : y ∈ R_y.construct)
-    (hu : u ∈ U.construct) : -- --- CONCL ---
-    sys.h x y u ∈ (om.outputSetLinearFloat p_x p_y p_u R R_y U).construct := by -- --- PROOF ---
+    {x : Vec ℝ n} {y : Vec ℝ p} {u : Vec ℝ m} (hx : x ∈ R.toSet) (hy : y ∈ R_y.toSet)
+    (hu : u ∈ U.toSet) : -- --- CONCL ---
+    sys.h x y u ∈ (om.outputSetLinearFloat p_x p_y p_u R R_y U).toSet := by -- --- PROOF ---
   -- the real centers, their point boxes, and each shifted set holding its deviation
   set px := toRealVec p_x with hpx
   set py := toRealVec p_y with hpy
   set pu := toRealVec p_u with hpu
-  have hsh : ∀ {k : ℕ} {Z : Zonotope (Vec 𝕋 k)} {z : Vec ℝ k} (v : Vec 𝕋 k), z ∈ Z.construct →
-      z - toRealVec v ∈ (Z ⊞ Zonotope.point (-v)).construct := fun v hz => by
+  have hsh : ∀ {k : ℕ} {Z : Zonotope (Vec 𝕋 k)} {z : Vec ℝ k} (v : Vec 𝕋 k), z ∈ Z.toSet →
+      z - toRealVec v ∈ (Z ⊞ Zonotope.point (-v)).toSet := fun v hz => by
     have h := Plus.plus_outer (S := Zonotope (Vec 𝕋 _)) _ _ (Set.add_mem_add hz
-      (show toRealVec (-v) ∈ (Zonotope.point (-v)).construct by
-        rw [Zonotope.construct_point]; exact rfl))
+      (show toRealVec (-v) ∈ (Zonotope.point (-v)).toSet by
+        rw [Zonotope.toSet_point]; exact rfl))
     rwa [toRealVec_neg, ← sub_eq_add_neg] at h
   have hPx := Interval.mem_point p_x
   have hPy := Interval.mem_point p_y

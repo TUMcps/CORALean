@@ -55,9 +55,9 @@ variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [Real.OfInterval S] {
 /-- `R` encloses the state at the moment of the jump; the reset image then lands
 in `jumpIntersection R`, the guard intersection computed rather than assumed. -/
 theorem Transition.jumpIntersection_outer [∀ n, Intersection (S n) (Vec ℝ n)]
-    (e : Transition S L 𝕋 n) {R : S n} {z : Vec ℝ n} (hz : z ∈ construct R)
-    (hguard : z ∈ construct e.guard) :
-    e.reset z ∈ construct (e.jumpIntersection R) :=
+    (e : Transition S L 𝕋 n) {R : S n} {z : Vec ℝ n} (hz : z ∈ toSet R)
+    (hguard : z ∈ toSet e.guard) :
+    e.reset z ∈ toSet (e.jumpIntersection R) :=
   e.jump_outer (Intersection.intersection_outer R e.guard) hz hguard
 
 end CORALean

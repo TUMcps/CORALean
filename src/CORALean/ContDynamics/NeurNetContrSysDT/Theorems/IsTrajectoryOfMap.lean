@@ -54,7 +54,7 @@ under the zero disturbance. -/
 theorem NeurNetContrSysDT.isTrajectory_of_map {sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n}
     {π : Vec ℝ n → Vec ℝ sys.m} {R₀ : S n} {U_ext : Set (Vec ℝ sys.nExt)}
     {W : Set (Vec ℝ sys.plant.r)} (hW : 0 ∈ W) {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt}
-    (h0 : x 0 ∈ construct R₀) (hv : ∀ k, v k ∈ U_ext)
+    (h0 : x 0 ∈ toSet R₀) (hv : ∀ k, v k ∈ U_ext)
     (hstep : ∀ k, x (k + 1) = sys.map π (x k) (v k)) : -- --- CONCL ---
     sys.IsTrajectory π R₀ U_ext W x v 0 := by -- --- PROOF ---
   exact (⟨0, fun k => toRealMat sys.plant.C *ᵥ x k +
@@ -69,7 +69,7 @@ theorem NeurNetContrSysDT.isTrajectory_of_map {sys : NeurNetContrSysDT (LinearSy
         rw [hstep k]
         simp [NeurNetContrSysDT.map]
       output := fun _ => rfl }⟩ : ∃ vn yn, LinearSysDT.IsTrajectory (S := 𝒮)
-        sys.plant (construct R₀) (sys.inputSet Set.univ U_ext) W Set.univ x
+        sys.plant (toSet R₀) (sys.inputSet Set.univ U_ext) W Set.univ x
         (fun k => sys.input (π (x k)) (v k)) 0 vn yn)
 
 end CORALean

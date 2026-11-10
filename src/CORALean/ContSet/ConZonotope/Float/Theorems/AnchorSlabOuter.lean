@@ -53,8 +53,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q : ℕ}
 
 theorem ConZonotope.anchorSlab_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (A : Mat 𝕋 q cZ.h)
     (lo hi : Vec 𝕋 q) : -- --- CONCL ---
-    ({ cZ with P := cZ.P.stackRows (HPolytope.slab A lo hi) } : ConZonotope 𝕋 (Vec 𝕋 n)).construct
-      ⊆ (cZ.anchorSlab A lo hi).construct := by -- --- PROOF ---
+    ({ cZ with P := cZ.P.stackRows (HPolytope.slab A lo hi) } : ConZonotope 𝕋 (Vec 𝕋 n)).toSet
+      ⊆ (cZ.anchorSlab A lo hi).toSet := by -- --- PROOF ---
   rintro _ ⟨y, hy', e, he, rfl⟩
   obtain ⟨β, hβ, hPs, hy⟩ := ConZonotope.mem_nominalSet_iff.mp hy'
   obtain ⟨hP, hsl⟩ := HPolytope.mem_stackRows_nominal_iff.mp hPs

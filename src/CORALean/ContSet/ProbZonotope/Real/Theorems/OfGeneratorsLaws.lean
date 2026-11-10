@@ -43,7 +43,7 @@ variable {n q : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.ofGenerators_laws (Z : Zonotope (Vec ℝ n)) (g : Mat ℝ n q) :
-    (ProbZonotope.ofGenerators Z g).laws = {m | ∃ μ ∈ Z.construct, m = gZonotopeLaw μ g} := by
+    (ProbZonotope.ofGenerators Z g).laws = {m | ∃ μ ∈ Z.toSet, m = gZonotopeLaw μ g} := by
   ext m
   simp only [ProbZonotope.laws, ProbZonotope.ofGenerators, Set.mem_setOf_eq, gZonotopeLaw_eq]
 

@@ -54,7 +54,7 @@ private theorem VPolytope.aux_mem_matColumnGap {k : ℕ} {lo hi : Fin k → Mat 
     {A : Mat ℝ p r} {l : Fin k}
     (h : ∀ i j, toReal (lo l i j) ≤ A i j ∧ A i j ≤ toReal (hi l i j)) : -- --- CONCL ---
     (fun i j => A i j - toReal (lo l i j)) ∈
-      (VPolytope.step_matColumnGap lo hi).construct := by -- --- PROOF ---
+      (VPolytope.step_matColumnGap lo hi).toSet := by -- --- PROOF ---
   -- the residual is nonnegative, and below the gap of its own vertex, hence of the widest
   refine Interval.mem_mat_iff.mpr fun i j => ⟨?_, ?_⟩
   · show toReal (zero : 𝕋) ≤ A i j - toReal (lo l i j)
@@ -71,20 +71,20 @@ private theorem VPolytope.aux_mem_matColumnGap {k : ℕ} {lo hi : Fin k → Mat 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.matMul_outer (P : VPolytope (Mat 𝕋 p q)) (Q : VPolytope (Mat 𝕋 q r))
-    {A : Mat ℝ p q} {B : Mat ℝ q r} (hA : A ∈ InflatedContSet.construct P)
-    (hB : B ∈ InflatedContSet.construct Q) : -- --- CONCL ---
-    A * B ∈ InflatedContSet.construct (P.matMul Q) := by -- --- PROOF ---
+    {A : Mat ℝ p q} {B : Mat ℝ q r} (hA : A ∈ InflatedContSet.toSet P)
+    (hB : B ∈ InflatedContSet.toSet Q) : -- --- CONCL ---
+    A * B ∈ InflatedContSet.toSet (P.matMul Q) := by -- --- PROOF ---
   obtain ⟨a, ha, e, he, rfl⟩ := hA
   obtain ⟨b, hb, f, hf, rfl⟩ := hB
   -- the nominal product is in the hull of the exact vertex products
   have hab := Real.VPolytope.matMul_outer P.nominal Q.nominal ha hb
   -- which sit within the gap box of the stored, rounded-down ones
-  have hgap : (Real.VPolytope.matMul P.nominal Q.nominal).construct ⊆
+  have hgap : (Real.VPolytope.matMul P.nominal Q.nominal).toSet ⊆
       InflatedContSet.nominalSet (P.matMul Q) + (VPolytope.step_matColumnGap
         (fun l => matMulDown (P.V (finProdFinEquiv.symm l).1) (Q.V (finProdFinEquiv.symm l).2))
         (fun l => matMulUp (P.V (finProdFinEquiv.symm l).1) (Q.V (finProdFinEquiv.symm l).2))
-          ).construct := by
-    refine Real.VPolytope.construct_subset_add _ _ (Real.Interval.convex_construct _) fun l => ?_
+          ).toSet := by
+    refine Real.VPolytope.toSet_subset_add _ _ (Real.Interval.convex_toSet _) fun l => ?_
     refine VPolytope.aux_mem_matColumnGap fun i j => ?_
     -- one exact product of stored matrices, between its two directed roundings
     have key : ∀ (X : Mat 𝕋 p q) (Y : Mat 𝕋 q r),
@@ -97,15 +97,15 @@ theorem VPolytope.matMul_outer (P : VPolytope (Mat 𝕋 p q)) (Q : VPolytope (Ma
   obtain ⟨m, hm, g, hg, hmg⟩ := hgap hab
   -- the cross terms: `a` is in the box of the nominal vertices, `b + f` in that of `Q`
   have hzero : (0 : Mat ℝ p q) ∈
-      (Interval.point (α := Mat 𝕋 p q) fun _ _ => (zero : 𝕋)).construct :=
+      (Interval.point (α := Mat 𝕋 p q) fun _ _ => (zero : 𝕋)).toSet :=
     Interval.mem_mat_iff.mpr fun i j => by
       show toReal (zero : 𝕋) ≤ 0 ∧ 0 ≤ toReal (zero : 𝕋)
       rw [toReal_zero]
       exact ⟨le_rfl, le_rfl⟩
   have ha' : a ∈ ({ P with I_error := Interval.point fun _ _ => zero } :
-      VPolytope (Mat 𝕋 p q)).intervalMatrix.construct :=
+      VPolytope (Mat 𝕋 p q)).intervalMatrix.toSet :=
     VPolytope.intervalMatrix_contains _ ⟨a, ha, 0, hzero, add_zero a⟩
-  have hb' : b + f ∈ Q.intervalMatrix.construct :=
+  have hb' : b + f ∈ Q.intervalMatrix.toSet :=
     VPolytope.intervalMatrix_contains Q ⟨b, hb, f, hf, rfl⟩
   have hE := Interval.matPlus_outer _ _ (Interval.matMul_outer _ _ ha' hf)
     (Interval.matMul_outer _ _ he hb')

@@ -84,7 +84,7 @@ neither, so they constrain the image as they did the argument.
 
 `PadE` and `AppendE` are the two ways a constraint block is reshaped — widened by factors
 it does not read, and set beside another over the same factors — and `Domain` is the pair
-`construct` splits into. `relax` loosens every row by a slack factor: a float set's `b_error`.
+`toSet` splits into. `relax` loosens every row by a slack factor: a float set's `b_error`.
 
 `reduce` ranks both blocks as one and boxes what it drops; `getSubset` reweights one
 factor at both, and `reduceCon` spends generators to buy a constraint back. The two

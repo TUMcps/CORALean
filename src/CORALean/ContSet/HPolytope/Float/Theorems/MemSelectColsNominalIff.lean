@@ -48,8 +48,8 @@ theorem HPolytope.mem_selectCols_nominal_iff (P : HPolytope 𝕋 (Vec 𝕋 n)) (
     (hA : ∀ i, (toRealMat P.A *ᵥ x) i = ∑ l, toReal (P.A i (sel l)) * x (sel l))
     (hE : ∀ i, (toRealMat P.Ae *ᵥ x) i =
       ∑ l, toReal (P.Ae i (sel l)) * x (sel l)) : -- --- CONCL ---
-    (fun l => x (sel l)) ∈ (P.selectCols sel).nominal.construct
-      ↔ x ∈ P.nominal.construct := by -- --- PROOF ---
+    (fun l => x (sel l)) ∈ (P.selectCols sel).nominal.toSet
+      ↔ x ∈ P.nominal.toSet := by -- --- PROOF ---
   rw [HPolytope.mem_nominal_iff, HPolytope.mem_nominal_iff]
   -- the selected rows at the selected coordinates are the full rows at the point
   have hA' : ∀ i, (toRealMat (P.selectCols sel).A *ᵥ fun l => x (sel l)) i

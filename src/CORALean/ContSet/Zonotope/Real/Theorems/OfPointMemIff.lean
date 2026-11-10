@@ -9,7 +9,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.OfPointMem
 # A generator-free zonotope contains nothing else
 
 The converse to `mem_ofPoint`: no generator leaves no coefficient to spend, so
-`ofPoint v` denotes `v` and nothing besides — read off `construct` directly, the
+`ofPoint v` denotes `v` and nothing besides — read off `toSet` directly, the
 same unfolding `mem_ofPoint` needs a `show` for.
 
 ## Inputs
@@ -39,7 +39,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.mem_ofPoint_iff (v x : α) : -- --- CONCL ---
-    x ∈ (Zonotope.ofPoint v).construct ↔ x = v := by -- --- PROOF ---
+    x ∈ (Zonotope.ofPoint v).toSet ↔ x = v := by -- --- PROOF ---
   constructor
   · rintro ⟨β, -, hxeq⟩
     simpa only [Zonotope.ofPoint, Finset.univ_eq_empty, Finset.sum_empty, add_zero] using hxeq

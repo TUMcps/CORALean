@@ -42,12 +42,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 theorem Polygon.isDisjoint_sound {P Q : Polygon 𝕋}
     (h : Polygon.isDisjoint P Q = true) : -- --- CONCL ---
-    Disjoint (ContSet.construct P) (ContSet.construct Q) := by -- --- PROOF ---
+    Disjoint (ContSet.toSet P) (ContSet.toSet Q) := by -- --- PROOF ---
   simp only [Polygon.isDisjoint, List.all_eq_true, List.any_eq_true] at h
   rw [Set.disjoint_left]
   intro x hP hQ
-  obtain ⟨p, hp, hxp⟩ := SetUnion.mem_construct.mp hP
-  obtain ⟨q, hq, hxq⟩ := SetUnion.mem_construct.mp hQ
+  obtain ⟨p, hp, hxp⟩ := SetUnion.mem_toSet.mp hP
+  obtain ⟨q, hq, hxq⟩ := SetUnion.mem_toSet.mp hQ
   obtain ⟨d, -, hd⟩ := h p hp q hq
   -- the two bounds along `d` and `-d`, at the common point
   have h₁ := (p.boundDot (c := Real.HPolytope.rowLin (toRealMat (fun _ : Fin 1 => d)) 0) d fun _ =>

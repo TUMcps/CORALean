@@ -68,7 +68,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Inf
 public import CORALean.ContSet.Interval.Real.Operations.Lift
 public import CORALean.ContSet.Interval.Real.Operations.Dirac
 public import CORALean.ContSet.Interval.Real.Operations.StlInterval
-public import CORALean.ContSet.Interval.Real.Operations.EBoxConstruct
+public import CORALean.ContSet.Interval.Real.Operations.EBoxToSet
 public import CORALean.ContSet.Interval.Real.Operations.SinByRegions
 public import CORALean.ContSet.Interval.Real.Operations.CosByRegions
 public import CORALean.ContSet.Interval.Real.Operations.TanByRegions

@@ -38,11 +38,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.origin_exact (n : ℕ) : -- --- CONCL ---
-    (Interval.origin n : Interval (Vec 𝕋 n)).construct = {0} := by -- --- PROOF ---
+    (Interval.origin n : Interval (Vec 𝕋 n)).toSet = {0} := by -- --- PROOF ---
   have h : (Interval.origin n : Interval (Vec 𝕋 n)).nominal = Real.Interval.origin n := by
     unfold Interval.nominal Interval.origin Real.Interval.origin Real.Interval.point
     congr 1 <;> funext i <;> exact toReal_zero
-  show (Interval.origin n : Interval (Vec 𝕋 n)).nominal.construct = {0}
+  show (Interval.origin n : Interval (Vec 𝕋 n)).nominal.toSet = {0}
   rw [h]
   exact Real.Interval.origin_exact n
 

@@ -80,7 +80,7 @@ theorem LinearSysDT.reachErrorSet_succ_subset (sys : LinearSysDT ℝ n) (L : Mat
     (V : Zonotope (Vec ℝ sys.s)) (k : ℕ) : -- --- CONCL ---
     LinearSysDT.reachErrorSet sys L X₀ W V (k + 1) ⊆
       ((sys.A - L * sys.C) *ᵥ ·) '' LinearSysDT.reachErrorSet sys L X₀ W V k +
-        (sys.E *ᵥ ·) '' W.construct + ((-(L * sys.F)) *ᵥ ·) '' V.construct := by -- --- PROOF ---
+        (sys.E *ᵥ ·) '' W.toSet + ((-(L * sys.F)) *ᵥ ·) '' V.toSet := by -- --- PROOF ---
   rintro _ ⟨_, ⟨_, ⟨a, ha, rfl⟩, b, hb, rfl⟩, c, hc, rfl⟩
   obtain ⟨g, hg, rfl⟩ := (Set.mem_finsetSum _ _ _).mp hb
   obtain ⟨f, hf, rfl⟩ := (Set.mem_finsetSum _ _ _).mp hc

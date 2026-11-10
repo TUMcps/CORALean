@@ -54,7 +54,7 @@ variable {n m : ℕ}
 /-- [1, Sec. 3]: all traces of `ẋ = Ax + Bu` from `X₀` with inputs in `U` satisfy `φ`. -/
 def STL.IsVerificationProblem (A : Mat ℝ n n) (B : Mat ℝ n m) (X₀ : Zonotope (Vec ℝ n))
     (U : Zonotope (Vec ℝ m)) (φ : STL.Formula (Vec ℝ n)) : Prop :=
-  φ.HoldsOn {ξ | ∃ x₀ ∈ X₀.construct, ∃ u : ℝ → Vec ℝ m, (∀ t, 0 ≤ t → u t ∈ U.construct) ∧
+  φ.HoldsOn {ξ | ∃ x₀ ∈ X₀.toSet, ∃ u : ℝ → Vec ℝ m, (∀ t, 0 ≤ t → u t ∈ U.toSet) ∧
     AEStronglyMeasurable u (volume.restrict (Set.Ici 0)) ∧
     ξ = fun t : ℝ≥0 => (LinearSys.canonical A).closedForm x₀ (fun s => B *ᵥ u s) t}
 

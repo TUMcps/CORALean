@@ -39,9 +39,9 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem PolyZonotope.isCompact_construct (pZ : PolyZonotope α) : IsCompact pZ.construct := by
+theorem PolyZonotope.isCompact_toSet (pZ : PolyZonotope α) : IsCompact pZ.toSet := by
   rw [PolyZonotope.conPolyZono_exact]
-  exact pZ.conPolyZono.isCompact_construct
+  exact pZ.conPolyZono.isCompact_toSet
 
 end CORALean.Real
 

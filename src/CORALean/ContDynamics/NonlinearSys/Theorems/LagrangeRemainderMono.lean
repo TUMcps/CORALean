@@ -72,7 +72,7 @@ private theorem aux_coord_eq (Z : Zonotope (Vec ℝ d)) (β : Fin Z.h → ℝ) (
 
 /-- `γ` grows with the set and not with the representation: the point attaining it on the
 left is a point of the right. -/
-private theorem aux_radius_le {Z₁ Z₂ : Zonotope (Vec ℝ d)} (hZ : Z₁.construct ⊆ Z₂.construct)
+private theorem aux_radius_le {Z₁ Z₂ : Zonotope (Vec ℝ d)} (hZ : Z₁.toSet ⊆ Z₂.toSet)
     (zs : Vec ℝ d) (j : Fin d) : -- --- CONCL ---
     |Z₁.c j - zs j| + ∑ k, |Z₁.G k j|
       ≤ |Z₂.c j - zs j| + ∑ k, |Z₂.G k j| := by -- --- PROOF ---
@@ -107,10 +107,10 @@ private theorem aux_quad_le {M : Mat ℝ d d} (hM : ∀ k l, 0 ≤ M k l) {γ₁
 /-- A larger region gives a larger remainder box, once `E` is read as the
 entrywise bound it is. -/
 theorem lagrangeRemainder_mono {E : Fin n → Fin d → Mat ℝ d d} (hE : ∀ i j k l, 0 ≤ E i j k l)
-    {Z₁ Z₂ : Zonotope (Vec ℝ d)} (hZ : Z₁.construct ⊆ Z₂.construct)
+    {Z₁ Z₂ : Zonotope (Vec ℝ d)} (hZ : Z₁.toSet ⊆ Z₂.toSet)
     (zs : Vec ℝ d) : -- --- CONCL ---
-    (lagrangeRemainder E Z₁ zs).polyZonotope.construct
-      ⊆ (lagrangeRemainder E Z₂ zs).polyZonotope.construct := by -- --- PROOF ---
+    (lagrangeRemainder E Z₁ zs).polyZonotope.toSet
+      ⊆ (lagrangeRemainder E Z₂ zs).polyZonotope.toSet := by -- --- PROOF ---
   set γ₁ : Vec ℝ d := fun j => |Z₁.c j - zs j| + ∑ k, |Z₁.G k j| with hγ₁
   set γ₂ : Vec ℝ d := fun j => |Z₂.c j - zs j| + ∑ k, |Z₂.G k j| with hγ₂
   have h0 : ∀ j, 0 ≤ γ₁ j := fun j => by

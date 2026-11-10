@@ -70,7 +70,7 @@ variable {n : ℕ}
 /-- `1/k!` times a member of the `k`-th power of `r • B`, weighted by
 `κ ∈ [corrCoeff k, 0]`, lies between the order's correction term and zero. -/
 private theorem aux_corr_entry {B : Interval (Mat ℝ n n)} {r κ : ℝ} {k : ℕ} {N : Mat ℝ n n}
-    (hr : 0 ≤ r) (hN : N ∈ (Interval.matPow (Interval.smul r B) k).construct)
+    (hr : 0 ≤ r) (hN : N ∈ (Interval.matPow (Interval.smul r B) k).toSet)
     (hκ1 : MatExp.corrCoeff k ≤ κ) (hκ2 : κ ≤ 0) (i j : Fin n) : -- --- CONCL ---
     min ((MatExp.intervalCorrTerm B r k).inf i j) 0
         ≤ κ * ((Nat.factorial k : ℝ)⁻¹ * N i j) ∧
@@ -99,13 +99,13 @@ private theorem aux_corr_entry {B : Interval (Mat ℝ n n)} {r κ : ℝ} {k : �
 step's exponential enclosure, plus a member of the correction matrix applied to `x₀`. -/
 theorem MatExp.exists_mem_intervalCorrectionMatrix_of_remainder {B : Interval (Mat ℝ n n)}
     {A : ℝ → Mat ℝ n n} (hA : ∀ i j a b, IntervalIntegrable (fun s => A s i j) volume a b)
-    (hAB : ∀ s, A s ∈ B.construct) {r : ℝ} (hr : 0 < r) {m : ℕ}
+    (hAB : ∀ s, A s ∈ B.toSet) {r : ℝ} (hr : 0 < r) {m : ℕ}
     (hε : ‖(Interval.smul r B).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) (x₀ ρ : Vec ℝ n)
     (hρ : ‖ρ‖ ≤ ‖x₀‖ * MatExp.expRemainderBound (Interval.smul t B).absMax (m + 2))
     : -- --- CONCL ---
-    ∃ Φ ∈ (MatExp.expIntervalEnclosure (Interval.smul r B) (m + 2)).construct,
-      ∃ F ∈ (MatExp.intervalCorrectionMatrix B r (m + 2)).construct,
+    ∃ Φ ∈ (MatExp.expIntervalEnclosure (Interval.smul r B) (m + 2)).toSet,
+      ∃ F ∈ (MatExp.intervalCorrectionMatrix B r (m + 2)).toSet,
         ∑ k ∈ Finset.range (m + 2 + 1), MatExp.peanoBakerTerm A k t *ᵥ x₀ + ρ
           = ((1 - t / r) • x₀ + (t / r) • (Φ *ᵥ x₀)) + F *ᵥ x₀ := by -- --- PROOF ---
   set η := m + 2 with hη
@@ -128,7 +128,7 @@ theorem MatExp.exists_mem_intervalCorrectionMatrix_of_remainder {B : Interval (M
           ≤ C i j ∧
         C i j ≤ ∑ k ∈ Finset.range (η - 1),
           max ((MatExp.intervalCorrTerm B r (k + 2)).sup i j) 0) →
-      C + E ∈ (MatExp.intervalCorrectionMatrix B r η).construct := by
+      C + E ∈ (MatExp.intervalCorrectionMatrix B r η).toSet := by
     intro C hC
     refine Interval.mem_mat_iff.mpr fun i j => ?_
     have hEij := abs_le.mp (hE i j)
@@ -148,20 +148,20 @@ theorem MatExp.exists_mem_intervalCorrectionMatrix_of_remainder {B : Interval (M
   have hlam1 : lam ≤ 1 := (div_le_one hr).mpr htr
   set Q : ℕ → Mat ℝ n n := fun k => (r / t) ^ k • MatExp.peanoBakerTerm A k t with hQ
   have hQmem : ∀ k, (Nat.factorial k : ℝ) • Q k
-      ∈ (Interval.matPow (Interval.smul r B) k).construct := fun k =>
+      ∈ (Interval.matPow (Interval.smul r B) k).toSet := fun k =>
     MatExp.rescaled_peanoBakerTerm_mem_matPow hA hAB k ht hr.le
   have hPQ : ∀ k, MatExp.peanoBakerTerm A k t = lam ^ k • Q k := fun k => by
     simp only [hQ, hlam, smul_smul, ← mul_pow,
       div_mul_div_comm, mul_comm t r, div_self (mul_ne_zero hr.ne' ht.ne'), one_pow, one_smul]
   -- the mapping matrix: the rescaled terms, each in its order of `r • B`'s Taylor box
   have hΦ : ∑ k ∈ Finset.range (η + 1), Q k
-      ∈ (MatExp.expIntervalEnclosure (Interval.smul r B) η).construct := by
+      ∈ (MatExp.expIntervalEnclosure (Interval.smul r B) η).toSet := by
     have hterm : ∀ k, Q k ∈ (Interval.smul ((Nat.factorial k : ℝ)⁻¹)
-        (Interval.matPow (Interval.smul r B) k)).construct := fun k => by
+        (Interval.matPow (Interval.smul r B) k)).toSet := fun k => by
       have h := Interval.smul_outer ((Nat.factorial k : ℝ)⁻¹) _ (hQmem k)
       rwa [smul_smul, inv_mul_cancel₀ (by positivity), one_smul] at h
     have htay : ∀ η', ∑ k ∈ Finset.range (η' + 1), Q k
-        ∈ (MatExp.expIntervalTaylor (Interval.smul r B) η').construct := by
+        ∈ (MatExp.expIntervalTaylor (Interval.smul r B) η').toSet := by
       intro η'
       induction η' with
       | zero => rw [Finset.sum_range_one]; exact hterm 0
@@ -176,7 +176,7 @@ theorem MatExp.exists_mem_intervalCorrectionMatrix_of_remainder {B : Interval (M
     constructor <;> linarith [h.1, h.2]
   -- the correction: orders `2 … η`, each weighted by `λ^k - λ`, plus the widening
   set C := ∑ i ∈ Finset.range (η - 1), (lam ^ (i + 2) - lam) • Q (i + 2) with hC
-  have hF : C + E ∈ (MatExp.intervalCorrectionMatrix B r η).construct := by
+  have hF : C + E ∈ (MatExp.intervalCorrectionMatrix B r η).toSet := by
     refine hFE C fun i j => ?_
     have hterm : ∀ k ∈ Finset.range (η - 1),
         min ((MatExp.intervalCorrTerm B r (k + 2)).inf i j) 0

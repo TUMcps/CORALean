@@ -46,8 +46,8 @@ functional is determined by what it does. -/
 def HPolytope.boundOfDual (P : HPolytope α) {c : α →ₗ[ℝ] ℝ}
     (y : Fin P.m → ℝ) (z : Fin P.me → ℝ) (hy : ∀ i, 0 ≤ y i)
     (hc : ∀ x : α, c x = (∑ i, y i * P.A i x) + ∑ i, z i * P.Ae i x) :
-    SupportBound P.construct c :=
-  SupportBound.mono (P.construct_eq_feasible).subset (SupportBound.ofDual y z hy hc)
+    SupportBound P.toSet c :=
+  SupportBound.mono (P.toSet_eq_feasible).subset (SupportBound.ofDual y z hy hc)
 
 end CORALean.Real
 

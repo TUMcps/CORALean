@@ -57,13 +57,13 @@ theorem LinearSys.IsCanonicalTrajectory.postDelta_outer {sys : LinearSys 𝕋 n}
     (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r)
-    (hconv : Convex ℝ (construct Ψ)) (hclosed : IsClosed (construct Ψ))
-    (hbdd : Bornology.IsBounded (construct Ψ))
+    (hconv : Convex ℝ (toSet Ψ)) (hclosed : IsClosed (toSet Ψ))
+    (hbdd : Bornology.IsBounded (toSet Ψ))
     (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) Ψ))
     (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) Ψ))
     (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) Ψ))
-    (h0 : (0 : Vec ℝ n) ∈ construct Ψ) :
-    x t - x 0 ∈ construct (sys.postDelta r (m + 2) R₀ Ψ) :=
+    (h0 : (0 : Vec ℝ n) ∈ toSet Ψ) :
+    x t - x 0 ∈ toSet (sys.postDelta r (m + 2) R₀ Ψ) :=
   traj.deltaReach_outer_inputSolution hr hT hε ht0 htr hconv hclosed hbdd hRconv hRclosed hRbdd h0
 
 end CORALean

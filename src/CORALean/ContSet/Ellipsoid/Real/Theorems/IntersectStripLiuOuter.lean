@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripLiu
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
@@ -64,7 +64,7 @@ theorem Ellipsoid.intersectStripLiu_outer {Q : Mat ℝ n n} (hQ : Q.PosDef) (c :
     (C : Mat ℝ m n) {V : Mat ℝ m m} (hV : V.PosDef) (y : Vec ℝ m) (σsqPrev : ℝ) {lam : ℝ}
     (h0 : 0 < lam) (h1 : lam < 1) : -- --- CONCL ---
     {x | (x - c) ⬝ᵥ Q⁻¹ *ᵥ (x - c) ≤ σsqPrev} ∩ {x | (y - C *ᵥ x) ⬝ᵥ V⁻¹ *ᵥ (y - C *ᵥ x) ≤ 1}
-      ⊆ (Ellipsoid.intersectStripLiu Q c C V y σsqPrev lam).construct := by -- --- PROOF ---
+      ⊆ (Ellipsoid.intersectStripLiu Q c C V y σsqPrev lam).toSet := by -- --- PROOF ---
   rintro x ⟨hxE, hxS⟩
   simp only [Set.mem_setOf_eq] at hxE hxS
   have hl : 0 < 1 - lam := by linarith
@@ -128,7 +128,7 @@ theorem Ellipsoid.intersectStripLiu_outer {Q : Mat ℝ n n} (hQ : Q.PosDef) (c :
   show x ∈ (Ellipsoid.ofShape
     (((1 - lam) * σsqPrev + lam - δ ⬝ᵥ T⁻¹ *ᵥ δ) •
       ((1 / (1 - lam)) • ((1 - (1 / (1 - lam)) • (Q * Cᵀ * T⁻¹) * C) * Q)))
-      (c + ((1 / (1 - lam)) • (Q * Cᵀ * T⁻¹)) *ᵥ δ)).construct
+      (c + ((1 / (1 - lam)) • (Q * Cᵀ * T⁻¹)) *ᵥ δ)).toSet
   rw [hshape, hKδ, ← hw]
   set σsq := (1 - lam) * σsqPrev + lam - δ ⬝ᵥ w with hσ
   set a := 1 / (1 - lam) with ha
@@ -197,7 +197,7 @@ theorem Ellipsoid.intersectStripLiu_outer {Q : Mat ℝ n n} (hQ : Q.PosDef) (c :
       have := hPpd.dotProduct_mulVec_pos hne
       simp only [star_trivial] at this
       linarith
-    rw [Ellipsoid.ofShape_eq (by rw [← hzero, zero_smul]; exact .zero), Ellipsoid.construct_eq_sqrt]
+    rw [Ellipsoid.ofShape_eq (by rw [← hzero, zero_smul]; exact .zero), Ellipsoid.toSet_eq_sqrt]
     refine ⟨0, by rw [norm₂_zero]; exact zero_le_one, ?_⟩
     rw [mulVec_zero, add_zero]
     exact sub_eq_zero.1 (hd.symm.trans hd')

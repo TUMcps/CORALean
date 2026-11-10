@@ -79,10 +79,10 @@ hull is `E`. -/
 theorem Ellipsoid.convHull_empty_cora_crash
     (orOuter : Ellipsoid n → Ellipsoid n → Ellipsoid n) (E : Ellipsoid n) :
     E.convHullCora orOuter none = none ∧
-      convexHull ℝ (E.construct ∪ ∅) = E.construct := by
+      convexHull ℝ (E.toSet ∪ ∅) = E.toSet := by
   refine ⟨rfl, ?_⟩
   rw [Set.union_empty]
-  exact (Ellipsoid.convex_construct E).convexHull_eq
+  exact (Ellipsoid.convex_toSet E).convexHull_eq
 
 end CORALean.Real
 

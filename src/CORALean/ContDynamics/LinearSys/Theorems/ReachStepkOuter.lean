@@ -64,8 +64,8 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 theorem LinearSys.reachStepk_outer (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 < Δt) {η : ℕ}
     (hη : 2 ≤ η) (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (X₀ : S n) {k : ℕ} {t : ℝ}
     (hkt : (k : ℝ) * Δt ≤ t) (htk : t - k * Δt ≤ Δt) : -- --- CONCL ---
-    (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' construct X₀
-      ⊆ construct (sys.reachStepk Δt η X₀ k) := by -- --- PROOF ---
+    (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' toSet X₀
+      ⊆ toSet (sys.reachStepk Δt η X₀ k) := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ : ∃ m, η = m + 2 := ⟨η - 2, by omega⟩
   rintro _ ⟨x₀, hx₀, rfl⟩
   -- `e^{A k Δt} x₀` is in `timePoint Δt X₀ k`
@@ -86,7 +86,7 @@ theorem LinearSys.reachStepk_outer (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 
     exact congrArg (· *ᵥ x₀) h
   -- `reachStepk Δt (m + 2) X₀ k` is `timeInterval Δt (m + 2) (timePoint Δt X₀ k)`
   show exp (t • toRealMat sys.A) *ᵥ x₀
-    ∈ construct (sys.timeInterval Δt (m + 2) (sys.timePoint Δt X₀ k))
+    ∈ toSet (sys.timeInterval Δt (m + 2) (sys.timePoint Δt X₀ k))
   rw [hexp]
   exact hstep
 

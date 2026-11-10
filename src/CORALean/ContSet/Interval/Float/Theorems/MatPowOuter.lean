@@ -55,15 +55,15 @@ private theorem aux_toRealMat_diagonalBlock_one :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.matPow_outer (A : Interval (Mat 𝕋 n n)) {M : Mat ℝ n n}
-    (hM : M ∈ A.construct) (k : ℕ) : -- --- CONCL ---
-    M ^ k ∈ (Interval.matPow A k).construct := by -- --- PROOF ---
+    (hM : M ∈ A.toSet) (k : ℕ) : -- --- CONCL ---
+    M ^ k ∈ (Interval.matPow A k).toSet := by -- --- PROOF ---
   induction k with
   | zero =>
     rw [pow_zero, ← aux_toRealMat_diagonalBlock_one (𝕋 := 𝕋)]
     exact Interval.mem_point (diagonalBlock fun _ : Fin n => (one : 𝕋))
   | succ k ih =>
     rw [pow_succ']
-    show M * M ^ k ∈ (Interval.matMul A (Interval.matPow A k)).materialiseMat.construct
+    show M * M ^ k ∈ (Interval.matMul A (Interval.matPow A k)).materialiseMat.toSet
     rw [Interval.materialiseMat_eq]
     exact Interval.matMul_outer A (A.matPow k) hM ih
 

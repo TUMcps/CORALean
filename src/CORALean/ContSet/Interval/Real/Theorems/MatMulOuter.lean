@@ -57,8 +57,8 @@ variable {m n p : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.matMul_outer (A : Interval (Mat ℝ m n)) (B : Interval (Mat ℝ n p))
-    {M : Mat ℝ m n} (hM : M ∈ A.construct) {N : Mat ℝ n p} (hN : N ∈ B.construct) : -- --- CONCL ---
-    M * N ∈ (Interval.matMul A B).construct := by -- --- PROOF ---
+    {M : Mat ℝ m n} (hM : M ∈ A.toSet) {N : Mat ℝ n p} (hN : N ∈ B.toSet) : -- --- CONCL ---
+    M * N ∈ (Interval.matMul A B).toSet := by -- --- PROOF ---
   have hM' := Interval.mem_mat_iff.mp hM
   have hN' := Interval.mem_mat_iff.mp hN
   intro q

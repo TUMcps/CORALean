@@ -57,7 +57,7 @@ variable {n : ℕ}
 theorem ProbZonotope.zonotope_prob (P : ProbZonotope n) (hP : P.cov.PosSemidef) {m : ℝ}
     (hm : 0 < m) {ν : Measure (EuclideanSpace ℝ (Fin n))} (hν : ν ∈ P.laws) : -- --- CONCL ---
     (gaussianReal 0 1 (Set.Icc (-m) m)) ^ n
-      ≤ ν (toLp 2 '' (P.zonotope m).construct) := by -- --- PROOF ---
+      ≤ ν (toLp 2 '' (P.zonotope m).toSet) := by -- --- PROOF ---
   obtain ⟨μ, hμ, rfl⟩ := hν
   set B := CFC.sqrt P.cov
   have hBB : B * B = P.cov := CFC.sqrt_mul_sqrt_self P.cov hP.nonneg

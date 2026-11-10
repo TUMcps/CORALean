@@ -54,9 +54,9 @@ theorem IntervalChain.backprop_outer {n k : ℕ} {c : IntervalChain 𝕋 n k}
     {r : Real.IntervalChain n k} (hc : c.Encloses r) : -- --- CONCL ---
     ∀ (P : Interval (Vec 𝕋 n) × Interval (Vec 𝕋 n)) (p : Vec ℝ n × Vec ℝ n)
       (G : Interval (Vec 𝕋 k) × Interval (Vec 𝕋 k)) (g : Vec ℝ k × Vec ℝ k),
-      p.1 ∈ P.1.construct → p.2 ∈ P.2.construct → g.1 ∈ G.1.construct → g.2 ∈ G.2.construct →
-      (r.backprop p g).1 ∈ (c.backprop P G).1.construct ∧
-        (r.backprop p g).2 ∈ (c.backprop P G).2.construct := by -- --- PROOF ---
+      p.1 ∈ P.1.toSet → p.2 ∈ P.2.toSet → g.1 ∈ G.1.toSet → g.2 ∈ G.2.toSet →
+      (r.backprop p g).1 ∈ (c.backprop P G).1.toSet ∧
+        (r.backprop p g).2 ∈ (c.backprop P G).2.toSet := by -- --- PROOF ---
   induction hc with
   | nil => intro P p G g _ _ h1 h2; exact ⟨h1, h2⟩
   | @linear n m k W b c r _ ih =>

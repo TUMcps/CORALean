@@ -49,9 +49,9 @@ variable {n : ℕ}
 
 /-- [1, Prop. 2]: `Z ⊆ Box_S(Z)`, and along each `s ∈ S` both bounds are attained in `Z`. -/
 theorem Zonotope.boxS_tight (Z : Zonotope (Vec ℝ n)) (S : Finset (Vec ℝ n)) : -- --- CONCL ---
-    Z.construct ⊆ Z.boxS S ∧
-      ∀ s ∈ S, (∃ x ∈ Z.construct, x ⬝ᵥ s = Z.c ⬝ᵥ s - ∑ j, |Z.G j ⬝ᵥ s|) ∧
-        ∃ x ∈ Z.construct, x ⬝ᵥ s = Z.c ⬝ᵥ s + ∑ j, |Z.G j ⬝ᵥ s| := by -- --- PROOF ---
+    Z.toSet ⊆ Z.boxS S ∧
+      ∀ s ∈ S, (∃ x ∈ Z.toSet, x ⬝ᵥ s = Z.c ⬝ᵥ s - ∑ j, |Z.G j ⬝ᵥ s|) ∧
+        ∃ x ∈ Z.toSet, x ⬝ᵥ s = Z.c ⬝ᵥ s + ∑ j, |Z.G j ⬝ᵥ s| := by -- --- PROOF ---
   have h0 : ∀ s : Vec ℝ n, 0 ≤ ∑ j, |Z.G j ⬝ᵥ s| := fun s =>
     Finset.sum_nonneg fun j _ => abs_nonneg _
   refine ⟨fun x hx s _ => ?_, fun s _ => ⟨?_, ?_⟩⟩

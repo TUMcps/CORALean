@@ -53,7 +53,7 @@ theorem HPolytope.anchorEqsInBox_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {ε : V
     (hA : ∀ k, (toRealMat P.A *ᵥ β) k ≤ toReal (P.b k) + |toReal (P.b_error k)|)
     (hE : ∀ i, |(toRealMat P.Ae *ᵥ β) i - toReal (P.be i)| ≤ toReal (ε i)) : -- --- CONCL ---
     ∀ Q τ, (Q, τ) ∈ P.anchorEqsInBox ε →
-      0 ≤ toReal τ ∧ ∃ β'' : Vec ℝ n, (∀ j, |β'' j| ≤ 1) ∧ β'' ∈ Q.nominal.construct
+      0 ≤ toReal τ ∧ ∃ β'' : Vec ℝ n, (∀ j, |β'' j| ≤ 1) ∧ β'' ∈ Q.nominal.toSet
         ∧ ∀ j, |β'' j - β j| ≤ toReal τ := by -- --- PROOF ---
   intro Q τ (h : P.anchorEqsInBox ε = some (Q, τ))
   unfold HPolytope.anchorEqsInBox at h

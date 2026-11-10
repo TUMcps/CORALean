@@ -41,13 +41,13 @@ variable {n : ℕ}
 
 theorem Interval.isFullDim_iff (I : Interval (Vec ℝ n)) : -- --- CONCL ---
     ContSet.IsFullDim I ↔ ∀ i, I.inf i < I.sup i := by -- --- PROOF ---
-  have hc : construct I = Icc I.inf I.sup := by
+  have hc : toSet I = Icc I.inf I.sup := by
     ext x
     exact ⟨fun h => ⟨fun i => (h i).1, fun i => (h i).2⟩, fun h i => ⟨h.1 i, h.2 i⟩⟩
-  have hi : interior (construct I) = Set.pi univ fun i => Ioo (I.inf i) (I.sup i) := by
+  have hi : interior (toSet I) = Set.pi univ fun i => Ioo (I.inf i) (I.sup i) := by
     rw [hc, ← Set.pi_univ_Icc, interior_pi_set Set.finite_univ]
     exact congrArg _ (funext fun i => interior_Icc)
-  change (interior (construct I)).Nonempty ↔ _
+  change (interior (toSet I)).Nonempty ↔ _
   rw [hi, Set.univ_pi_nonempty_iff]
   exact forall_congr' fun i => Set.nonempty_Ioo
 

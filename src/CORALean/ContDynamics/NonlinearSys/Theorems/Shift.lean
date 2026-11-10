@@ -62,7 +62,7 @@ the state it starts from. -/
 theorem NonlinearSys.IsTrajectory.shift {sys : NonlinearSys n m} {T T' : Set ℝ}
     {R₀ R₀' : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q} {t₀ : ℝ}
     (traj : sys.IsTrajectory T R₀ U x u y) (hT : Set.MapsTo (fun t => t₀ + t) T' T)
-    (ht₀ : t₀ ∈ T) (h₀ : x t₀ ∈ construct R₀') :
+    (ht₀ : t₀ ∈ T) (h₀ : x t₀ ∈ toSet R₀') :
     sys.IsTrajectory T' R₀' U (fun t => x (t₀ + t)) (fun t => u (t₀ + t))
       (fun t => y (t₀ + t)) where
   init := by simpa using h₀

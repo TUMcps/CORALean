@@ -2,8 +2,8 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RmId
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.RmIdConstruct
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.RmIdConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.RmIdToSet
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RmIdToSet
 
 @[expose] public section
 
@@ -42,8 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Inner: the pinned set lies in the original. -/
 theorem PolyZonotope.rmId_subset (pZ : PolyZonotope (Vec 𝕋 n)) (S : Finset (Fin pZ.p)) :
-    (pZ.rmId S).construct ⊆ pZ.construct := by
-  rw [PolyZonotope.rmId_construct]
+    (pZ.rmId S).toSet ⊆ pZ.toSet := by
+  rw [PolyZonotope.rmId_toSet]
   rintro _ ⟨_, ⟨a, β, ha, _, hβ, rfl⟩, e, he, rfl⟩
   exact ⟨_, ⟨a, β, ha, hβ, rfl⟩, e, he, rfl⟩
 

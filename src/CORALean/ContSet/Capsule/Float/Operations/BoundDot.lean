@@ -55,7 +55,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 def Capsule.boundDot (C : Capsule 𝕋 n) {f : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hf : ∀ x : Vec ℝ n, f x = ∑ i, toReal (a i) * x i) (s : 𝕋)
     (hs : toReal (sqSumUp fun i => absolute (a i)) ≤ toReal (mulDown s s)) :
-    FloatBound 𝕋 C.construct f :=
+    FloatBound 𝕋 C.toSet f :=
   let segment : 𝕋 := maximum (dotUp a C.g) (neg (dotDown a C.g))
   -- the nominal capsule's bound, then the error box's, added upward
   let nominalPart : FloatBound 𝕋 (InflatedContSet.nominalSet C) f :=

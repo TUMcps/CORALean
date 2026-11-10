@@ -43,8 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m h : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 private theorem Zonotope.aux_zero_mem_interval_plus' {I J : Interval (Vec 𝕋 n)}
-    (hI : (0 : Vec ℝ n) ∈ I.construct) (hJ : (0 : Vec ℝ n) ∈ J.construct) : -- --- CONCL ---
-    (0 : Vec ℝ n) ∈ (I.plus J).construct := by -- --- PROOF ---
+    (hI : (0 : Vec ℝ n) ∈ I.toSet) (hJ : (0 : Vec ℝ n) ∈ J.toSet) : -- --- CONCL ---
+    (0 : Vec ℝ n) ∈ (I.plus J).toSet := by -- --- PROOF ---
   intro i
   have hI1 : toReal (I.inf i) ≤ (0:ℝ) := (hI i).1
   have hI2 : (0:ℝ) ≤ toReal (I.sup i) := (hI i).2
@@ -59,8 +59,8 @@ private theorem Zonotope.aux_zero_mem_interval_plus' {I J : Interval (Vec 𝕋 n
 /-- `Interval.mtimes` keeps `0`: each row's rounded bound is charged against a
 term whose real value already sits on the sound side of `0`. -/
 private theorem Zonotope.aux_zero_mem_interval_mtimes {M : Mat 𝕋 m n} {I : Interval (Vec 𝕋 n)}
-    (hI : (0 : Vec ℝ n) ∈ I.construct) : -- --- CONCL ---
-    (0 : Vec ℝ m) ∈ (Interval.mtimes M I).construct := by -- --- PROOF ---
+    (hI : (0 : Vec ℝ n) ∈ I.toSet) : -- --- CONCL ---
+    (0 : Vec ℝ m) ∈ (Interval.mtimes M I).toSet := by -- --- PROOF ---
   intro i
   have hIk1 : ∀ k, toReal (I.inf k) ≤ (0:ℝ) := fun k => (hI k).1
   have hIk2 : ∀ k, (0:ℝ) ≤ toReal (I.sup k) := fun k => (hI k).2
@@ -96,7 +96,7 @@ private theorem Zonotope.aux_zero_mem_interval_mtimes {M : Mat 𝕋 m n} {I : In
 value stored as its own lower bound always brackets `0`. -/
 private theorem Zonotope.aux_zero_mem_residual_self {lo hi : Vec 𝕋 n}
     (hle : ∀ i, toReal (lo i) ≤ toReal (hi i)) : -- --- CONCL ---
-    (0 : Vec ℝ n) ∈ (Interval.residual lo hi lo).construct := by -- --- PROOF ---
+    (0 : Vec ℝ n) ∈ (Interval.residual lo hi lo).toSet := by -- --- PROOF ---
   intro i
   refine ⟨?_, ?_⟩
   · show toReal (subDown (lo i) (lo i)) ≤ (0:ℝ)
@@ -106,7 +106,7 @@ private theorem Zonotope.aux_zero_mem_residual_self {lo hi : Vec 𝕋 n}
 
 /-- Symmetric outright: a magnitude bound brackets `0` in either direction. -/
 private theorem Zonotope.aux_zero_mem_generatorError (G : Mat 𝕋 n h) : -- --- CONCL ---
-    (0 : Vec ℝ n) ∈ (Zonotope.generatorError G).construct := by -- --- PROOF ---
+    (0 : Vec ℝ n) ∈ (Zonotope.generatorError G).toSet := by -- --- PROOF ---
   intro i
   have hnonneg : (0:ℝ) ≤ toReal (radius G i) :=
     le_trans (Finset.sum_nonneg fun j _ => (toReal_absolute (G i j)) ▸ abs_nonneg _)
@@ -117,7 +117,7 @@ private theorem Zonotope.aux_zero_mem_generatorError (G : Mat 𝕋 n h) : -- ---
   · exact hnonneg
 
 private theorem Zonotope.aux_zero_mem_mtimesResidual (M : Mat 𝕋 m n) (Z : Zonotope (Vec 𝕋 n)) :
-    (0 : Vec ℝ m) ∈ (Zonotope.mtimesResidual M Z).construct :=
+    (0 : Vec ℝ m) ∈ (Zonotope.mtimesResidual M Z).toSet :=
   Zonotope.aux_zero_mem_interval_plus'
     (Zonotope.aux_zero_mem_residual_self
       (fun i => le_trans (dotDown_le (M i) Z.c) (le_dotUp (M i) Z.c)))
@@ -128,8 +128,8 @@ private theorem Zonotope.aux_zero_mem_mtimesResidual (M : Mat 𝕋 m n) (Z : Zon
 
 /-- `mtimes` keeps `0` in the error box, given the operand already has it. -/
 theorem Zonotope.zero_mem_mtimes_error {M : Mat 𝕋 m n} {Z : Zonotope (Vec 𝕋 n)}
-    (h : (0 : Vec ℝ n) ∈ Z.I_error.construct) : (0 : Vec ℝ m) ∈
-        (Zonotope.mtimes M Z).I_error.construct :=
+    (h : (0 : Vec ℝ n) ∈ Z.I_error.toSet) : (0 : Vec ℝ m) ∈
+        (Zonotope.mtimes M Z).I_error.toSet :=
   Zonotope.aux_zero_mem_interval_plus' (Zonotope.aux_zero_mem_interval_mtimes h)
     (Zonotope.aux_zero_mem_mtimesResidual M Z)
 

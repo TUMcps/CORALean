@@ -42,8 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem GridPartition.cellPolytopes_exact (P : GridPartition 𝕋 n) (cs : List ℕ) :
-    (P.cellPolytopes cs).map (fun Q => Q.construct) =
-      (P.nominal.cellIntervals cs).map Real.Interval.construct := by
+    (P.cellPolytopes cs).map (fun Q => Q.toSet) =
+      (P.nominal.cellIntervals cs).map Real.Interval.toSet := by
   rw [← GridPartition.cellIntervals_nominal, GridPartition.cellPolytopes, List.map_map,
     List.map_map]
   exact List.map_congr_left fun B _ => Interval.hPolytope_exact B

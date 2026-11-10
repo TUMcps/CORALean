@@ -85,14 +85,14 @@ theorem NonlinearSys.IsTrajectory.reach_outer {sys : NonlinearSys n m} {T : Set 
     {R₀ Ud L : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {A : Mat ℝ n n} {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m}
     {R : Set (Vec ℝ n)} {Δt : ℝ} {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory T R₀ U x u y)
-    (cert : IsAbstractionError sys.f A B xs us R (construct U) L)
+    (cert : IsAbstractionError sys.f A B xs us R (toSet U) L)
     (hT : Set.Ici 0 ⊆ T) (hR : ∀ t : ℝ, 0 ≤ t → x t ∈ R) (hΔt : 0 ≤ Δt)
-    (hU : Bornology.IsBounded (construct (linInput sys.f A B xs us U L)))
+    (hU : Bornology.IsBounded (toSet (linInput sys.f A B xs us U L)))
     (hUd : ∀ k : ℕ, (NonlinearSys.linearize A).stepInput
-      (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o)
+      (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt k ∈ toSet Ud) {o : ℕ} (ho : 0 < o)
     (k : ℕ) :
     x (k * Δt) ∈
-      construct (((NonlinearSys.linearize A).discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
+      toSet (((NonlinearSys.linearize A).discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
   ((traj.restrict hT).linearize measurableSet_Ici cert hR).reach_outer hΔt subset_rfl hU hUd ho k
 
 end CORALean

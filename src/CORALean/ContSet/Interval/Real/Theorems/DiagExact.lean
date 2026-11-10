@@ -36,7 +36,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.diag_exact (I : Interval (Vec ℝ n)) : -- --- CONCL ---
-    I.diag.construct = Matrix.diagonal '' I.construct := by -- --- PROOF ---
+    I.diag.toSet = Matrix.diagonal '' I.toSet := by -- --- PROOF ---
   ext B
   constructor
   -- a diagonal-box matrix has zero off the diagonal, and its diagonal lies in the vector box

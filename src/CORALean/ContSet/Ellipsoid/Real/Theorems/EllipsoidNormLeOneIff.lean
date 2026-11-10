@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.EllipsoidNorm
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsUnitShape
@@ -47,7 +47,7 @@ variable {n : ℕ}
 
 theorem Ellipsoid.ellipsoidNorm_le_one_iff (E : Ellipsoid n) (hr : E.rank = n)
     (p : Vec ℝ n) : -- --- CONCL ---
-    E.ellipsoidNorm p ≤ 1 ↔ E.q + p ∈ E.construct := by -- --- PROOF ---
+    E.ellipsoidNorm p ≤ 1 ↔ E.q + p ∈ E.toSet := by -- --- PROOF ---
   have hU := E.isUnit_shape hr
   -- the minimum-norm solution `u = Gᵀ Q⁻¹ p` of `G u = p`
   set w : Vec ℝ n := E.Q⁻¹ *ᵥ p with hw
@@ -68,7 +68,7 @@ theorem Ellipsoid.ellipsoidNorm_le_one_iff (E : Ellipsoid n) (hr : E.rank = n)
     simp only
     rw [← hw, ← huu, dotProduct_self, abs_of_nonneg (sq_nonneg _)]
     exact Real.sqrt_sq (norm₂_nonneg u)
-  rw [hnorm, E.construct_eq_sqrt]
+  rw [hnorm, E.toSet_eq_sqrt]
   constructor
   · -- `u` itself reaches the translated point
     intro h

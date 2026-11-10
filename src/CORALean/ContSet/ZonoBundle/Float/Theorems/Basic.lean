@@ -43,7 +43,7 @@ omit [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] in
 
 /-- `enclosingParallelotope_outer` at the selected basis, which holds at any basis. -/
 theorem ZonoBundle.reduceCombined_outer (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k) :
-    zB.construct ⊆ (zB.reduceCombined hk).construct :=
+    zB.toSet ⊆ (zB.reduceCombined hk).toSet :=
   ZonoBundle.enclosingParallelotope_outer zB hk _
 
 end CORALean.Float

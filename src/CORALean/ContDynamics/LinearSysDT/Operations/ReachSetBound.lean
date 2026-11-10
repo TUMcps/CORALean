@@ -47,8 +47,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- A bound on `R₀` and one on `U`, in every direction, give a bound on the set
 reached after `k` steps — no set built, and `reach` never mentioned. -/
 def LinearSysDT.reachSetBound (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
-    (b₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (construct R₀) d)
-    (bU : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (construct U) d) :
+    (b₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (toSet R₀) d)
+    (bU : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (toSet U) d) :
     (k : ℕ) → (c : Vec ℝ n →ₗ[ℝ] ℝ) → SupportBound (sys.reachSetExact R₀ U k) c
   | 0, c => b₀ c
   | k + 1, c =>

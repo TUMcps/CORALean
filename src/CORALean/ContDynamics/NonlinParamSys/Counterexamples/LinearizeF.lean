@@ -41,7 +41,7 @@ open CORALean.Real
 theorem NonlinParamSys.linearize_f_counterexample : -- --- CONCL ---
     let sys : NonlinParamSys 1 1 1 := ⟨fun _ _ p => fun _ => p 0 ^ 2, 1, fun x _ _ => x⟩
     let I : Interval (Vec ℝ 1) := ⟨fun _ => 1, fun _ => 2⟩
-    sys.f 0 0 (fun _ => 2) ∉ (sys.linearizeF 0 0 I).construct := by -- --- PROOF ---
+    sys.f 0 0 (fun _ => 2) ∉ (sys.linearizeF 0 0 I).toSet := by -- --- PROOF ---
   intro sys I
   rintro ⟨β, hβ, h⟩
   -- the coordinate: `4 = 3/2 + β/2`, so `β = 5`

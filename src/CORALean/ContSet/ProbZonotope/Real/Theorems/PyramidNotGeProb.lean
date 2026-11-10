@@ -52,7 +52,7 @@ def step_one : Fin 1 → ℝ := fun _ => 1
 private def aux_stdNormal : ProbZonotope 1 := ⟨⟨0, 0, Fin.elim0⟩, 1⟩
 
 private theorem aux_stdNormal_zonotope_subset : -- --- CONCL ---
-    (aux_stdNormal.zonotope 1).construct ⊆ {y | |y 0| ≤ 1} := by -- --- PROOF ---
+    (aux_stdNormal.zonotope 1).toSet ⊆ {y | |y 0| ≤ 1} := by -- --- PROOF ---
   rw [ProbZonotope.zonotope, ← Zonotope.plus_exact]
   rintro _ ⟨a, ha, b, ⟨β, hβ, rfl⟩, rfl⟩
   obtain ⟨β0, -, rfl⟩ := ha
@@ -60,7 +60,7 @@ private theorem aux_stdNormal_zonotope_subset : -- --- CONCL ---
   simpa using hβ 0
 
 private theorem aux_stdNormal_volume_le : -- --- CONCL ---
-    let P := (toLp 2 '' (aux_stdNormal.zonotope 1).construct : Set (EuclideanSpace ℝ (Fin 1)))
+    let P := (toLp 2 '' (aux_stdNormal.zonotope 1).toSet : Set (EuclideanSpace ℝ (Fin 1)))
     volume.real P ≤ 2 := by -- --- PROOF ---
   intro P
   have hsub : P
@@ -116,7 +116,7 @@ theorem ProbZonotope.pyramid_not_ge_prob : -- --- CONCL ---
     simp
   have hpy : aux_stdNormal.pyramid step_one Set.univ
       = (K - K * Real.exp (-(1 / 2))) * volume.real
-        (toLp 2 '' (aux_stdNormal.zonotope 1).construct : Set (EuclideanSpace ℝ (Fin 1))) := by
+        (toLp 2 '' (aux_stdNormal.zonotope 1).toSet : Set (EuclideanSpace ℝ (Fin 1))) := by
     simp only [ProbZonotope.pyramid, Fin.sum_univ_one, hlo, hhi, Set.inter_univ, step_one]
   -- the volume is at most `2`, the step at most `K (1 - e^{-1/2}) < 1/2`
   rw [hpy]

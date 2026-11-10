@@ -67,8 +67,8 @@ private theorem Ellipsoid.aux_norm₂_mulVec_le_one {a b : ℕ} (T : Mat ℝ a b
 
 theorem Ellipsoid.isBigger_sound {E₁ E₂ : Ellipsoid 𝕋 n}
     (h : E₁.isBigger E₂ = true) : -- --- CONCL ---
-    (fun x => x - toRealVec E₂.q) '' E₂.construct
-      ⊆ (fun x => x - toRealVec E₁.q) '' E₁.construct := by -- --- PROOF ---
+    (fun x => x - toRealVec E₂.q) '' E₂.toSet
+      ⊆ (fun x => x - toRealVec E₁.q) '' E₁.toSet := by -- --- PROOF ---
   simp only [Ellipsoid.isBigger, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨⟨⟨hs₁, hs₂⟩, hc⟩, hbox⟩ := h

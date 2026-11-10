@@ -66,7 +66,7 @@ theorem NonlinearSys.abstrErrPolySearch_eq_some {sys : NonlinearSys n m}
     {hBa : ∀ k, ∀ a ∈ Ba k, ∀ j, |a j| ≤ 1} {Ws : ℕ → PolyZonotope (Vec ℝ n)} {fuel : ℕ}
     {step : sys.LinStep (S := 𝒫𝒵) U}
     (h : sys.abstrErrPolySearch U A B xs us pZ Ba L hp hBa Ws fuel = some step) : -- --- CONCL ---
-    ∃ k, IsPolyAbstractionError sys.f A B xs us (pZ k) (Ba k) (construct U) (L k) (hp k) (Ws k) ∧
+    ∃ k, IsPolyAbstractionError sys.f A B xs us (pZ k) (Ba k) (toSet U) (L k) (hp k) (Ws k) ∧
       step.A = A ∧ step.B = B ∧ step.xs = xs ∧ step.us = us ∧
       step.R = (pZ k).subsetAt (Ba k) ∧ step.L = L k ⊞ Ws k := by -- --- PROOF ---
   unfold NonlinearSys.abstrErrPolySearch at h

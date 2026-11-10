@@ -41,9 +41,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.mpower_outer (Z : Zonotope (Mat 𝕋 n n)) {A : Mat ℝ n n} (hA : A ∈ Z.construct)
+theorem Zonotope.mpower_outer (Z : Zonotope (Mat 𝕋 n n)) {A : Mat ℝ n n} (hA : A ∈ Z.toSet)
     (k : ℕ) : -- --- CONCL ---
-    A ^ k ∈ (Z.mpower k).construct := by -- --- PROOF ---
+    A ^ k ∈ (Z.mpower k).toSet := by -- --- PROOF ---
   rcases k with _ | k
   · -- the identity point is the zeroth power of `matPow`
     exact Zonotope.matPow_outer Z hA 0

@@ -49,8 +49,8 @@ theorem Ellipsoid.abs_sub_le_of_mem_nominalSet {E : Ellipsoid 𝕋 n} {x : Vec �
     |x i - toReal (E.q i)| ≤ Real.sqrt (max 0 (toReal (E.Q i i))) := by -- --- PROOF ---
   by_cases hpsd : (toRealMat E.Q).PosSemidef
   · -- the ellipsoid of `Q`, in its box
-    have hx' : x ∈ (⟨toRealMat E.Q, toRealVec E.q, hpsd⟩ : Real.Ellipsoid n).construct := by
-      have : x ∈ (nominal E).ellipsoid.construct := hx
+    have hx' : x ∈ (⟨toRealMat E.Q, toRealVec E.q, hpsd⟩ : Real.Ellipsoid n).toSet := by
+      have : x ∈ (nominal E).ellipsoid.toSet := hx
       rwa [Ellipsoid.nominal_of_psd hpsd] at this
     have h := Real.Ellipsoid.abs_sub_le_sqrt_diag _ hx' i
     exact h.trans (Real.sqrt_le_sqrt (le_max_right _ _))

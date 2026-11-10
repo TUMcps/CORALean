@@ -77,9 +77,9 @@ private theorem ParallelHybridAutomaton.IsStay.aux_ofTrajectoryWith [ExactScalar
   have key : ∀ t, ∃ uwg : (∀ i, Vec ℝ (P.sys ℓ i).m) × (∀ i, Vec ℝ (P.sys ℓ i).r) × Vec ℝ m,
       t ∈ Set.Icc 0 τ →
       (∀ i j, uwg.1 i j = P.boundInput ℓ (unstack (X t)) uwg.1 uwg.2.2 i j) ∧
-      (∀ i, ∃ v ∈ construct ((P.comp i).loc (ℓ i)).U, ∀ j a, P.bindsAt ℓ i j = .global a →
+      (∀ i, ∃ v ∈ toSet ((P.comp i).loc (ℓ i)).U, ∀ j a, P.bindsAt ℓ i j = .global a →
         v j = uwg.2.2 a) ∧
-      (∀ i, uwg.2.1 i ∈ construct ((P.comp i).loc (ℓ i)).W) ∧
+      (∀ i, uwg.2.1 i ∈ toSet ((P.comp i).loc (ℓ i)).W) ∧
       ∀ i a, (toRealMat (F ℓ).A *ᵥ X t + toRealMat (F ℓ).B *ᵥ g' t + toRealVec (F ℓ).c +
         toRealMat (F ℓ).E *ᵥ w' t) (finSigmaFinEquiv ⟨i, a⟩) =
         (toRealMat (P.sys ℓ i).A *ᵥ unstack (X t) i + toRealMat (P.sys ℓ i).B *ᵥ uwg.1 i +
@@ -162,7 +162,7 @@ theorem ParallelHybridAutomaton.IsRun.ofProductWith [ExactScalar 𝕋]
       obtain ⟨c, hc, he⟩ := List.mem_flatMap.mp hmem
       obtain ⟨e₀, he₀, rfl⟩ := List.mem_map.mp he
       exact ⟨c, hc, e₀, he₀, rfl⟩
-    have hg : x c τ ∈ construct e₀.guard := by
+    have hg : x c τ ∈ toSet e₀.guard := by
       refine hex.guard_inv c e₀.guard (fun i => x i τ) ?_
       rw [hτ, stack_unstack]
       exact hguard

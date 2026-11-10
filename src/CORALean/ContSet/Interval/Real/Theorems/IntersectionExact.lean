@@ -46,7 +46,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.intersection_exact (I₁ I₂ : Interval (Vec ℝ n)) : -- --- CONCL ---
-    (I₁.intersection I₂).construct = I₁.construct ∩ I₂.construct := by -- --- PROOF ---
+    (I₁.intersection I₂).toSet = I₁.toSet ∩ I₂.toSet := by -- --- PROOF ---
   ext x
   constructor
   · intro h

@@ -128,7 +128,7 @@ private theorem SpectraShadow.aux_gen_inter (S₁ S₂ : SpectraShadow (Vec ℝ 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.inter_exact (S₁ S₂ : SpectraShadow (Vec ℝ n)) : -- --- CONCL ---
-    S₁.construct ∩ S₂.construct = (S₁.inter S₂).construct := by -- --- PROOF ---
+    S₁.toSet ∩ S₂.toSet = (S₁.inter S₂).toSet := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro x ⟨⟨β₁, h₁, hx₁⟩, ⟨β₂, h₂, hx₂⟩⟩
     refine ⟨Fin.append β₁ β₂, (SpectraShadow.aux_posSemidef_inter_iff S₁ S₂ _).mpr ⟨?_, ?_⟩, ?_⟩

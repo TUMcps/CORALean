@@ -61,7 +61,7 @@ private def aux_dotBilin {n : ℕ} : Vec ℝ (n + 1) →ₗ[ℝ] Vec ℝ (n + 1)
 lowered by `Z_s`'s own support value `Δd_trans` in each direction. -/
 theorem Zonotope.minkowskiDiff_hRep_eq {n : ℕ} (Zm Zs : Zonotope (Vec ℝ (n + 1)))
     (hspan : Submodule.span ℝ (Set.range Zm.G) = ⊤) : -- --- CONCL ---
-    minkowskiDiff Zm.construct Zs.construct = {x | ∀ S : Fin n → Fin Zm.h,
+    minkowskiDiff Zm.toSet Zs.toSet = {x | ∀ S : Fin n → Fin Zm.h,
       |Zm.facetNormal S ⬝ᵥ (x - (Zm.c - Zs.c))| ≤
         (∑ υ, |Zm.facetNormal S ⬝ᵥ Zm.G υ|) -
           ∑ υ, |Zm.facetNormal S ⬝ᵥ Zs.G υ|} := by -- --- PROOF ---

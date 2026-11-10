@@ -56,9 +56,9 @@ private theorem NonlinearSys.FloatModel.Encloses.aux_relinRunFloat_outer
       fm.step_relinRunFloat U options k R = some Rs → Rs.length = k ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
           sys.IsTrajectory (S := 𝒮)
-            (Set.Icc 0 ((k : ℝ) * toReal options.Δt)) R.construct U.construct x u y →
+            (Set.Icc 0 ((k : ℝ) * toReal options.Δt)) R.toSet U.toSet x u y →
           ∀ (j : ℕ) (hj : j < Rs.length), ∀ t ∈ Set.Icc ((j : ℝ) * toReal options.Δt)
-            (((j : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[j].construct :=
+            (((j : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[j].toSet :=
   fun k _ _ hrun => h.relinRunAtFloat_outer k hrun
 
 
@@ -74,10 +74,10 @@ theorem NonlinearSys.FloatModel.Encloses.reachFloat_outer {fm : NonlinearSys.Flo
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
           sys.IsTrajectory (S := 𝒮)
-            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
-            params.U.construct x u y →
+            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.toSet
+            params.U.toSet x u y →
           ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
-            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
+            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].toSet := by -- --- PROOF ---
   intro Rs (hR : fm.reachFloat params options = some Rs)
   unfold NonlinearSys.FloatModel.reachFloat at hR
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hR

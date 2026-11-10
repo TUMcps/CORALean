@@ -24,7 +24,7 @@ point of `timePointStepExcessFloat` and one of `timePointStepErrorBoxFloat`. Thr
 `exp_mem_expIntervalFloat`; `plus_subset_add_box` and `inputSolutionFloat_subset_add_box`; and
 `inputSolution_subset_constInput_add_errorBox`, the exact input solution against the held input,
 whose error box `timePointStepErrorBox_subset_float` puts inside the float one. `e^{Ar} X` is the
-image of the float `X`'s whole `construct`; a caller splits it further.
+image of the float `X`'s whole `toSet`; a caller splits it further.
 
 ## Inputs
 * `sys` – linear system
@@ -69,37 +69,37 @@ nominal zonotope, widened by `timePointStepExcessFloat` and the step's float err
 upper side of the float step, at `r > 0` and an admissible order. -/
 theorem LinearSys.timePointStepInputFloat_subset_add_excess (sys : LinearSys 𝕋 n) {r : 𝕋}
     (hr : 0 < toReal r) {η : ℕ} (hη : sys.IsOrderAdmissibleFloat r r η) {X U : Zonotope (Vec 𝕋 n)}
-    (hX : (0 : Vec ℝ n) ∈ X.I_error.construct)
-    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) : -- --- CONCL ---
-    (sys.timePointStepInputFloat r η X U).construct
-      ⊆ (exp (toReal r • Scalar.toRealMat sys.A) *ᵥ ·) '' X.construct
+    (hX : (0 : Vec ℝ n) ∈ X.I_error.toSet)
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.toSet) : -- --- CONCL ---
+    (sys.timePointStepInputFloat r η X U).toSet
+      ⊆ (exp (toReal r • Scalar.toRealMat sys.A) *ᵥ ·) '' X.toSet
         + (Real.Zonotope.mtimes (Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal r))
-            (nominal U)).construct
-        + (sys.timePointStepExcessFloat r η X U).construct
-        + (sys.timePointStepErrorBoxFloat r η U).construct := by -- --- PROOF ---
+            (nominal U)).toSet
+        + (sys.timePointStepExcessFloat r η X U).toSet
+        + (sys.timePointStepErrorBoxFloat r η U).toSet := by -- --- PROOF ---
   set eA := sys.expIntervalFloat r r η
   set M := Mtimes.mtimes (𝕄 := ℐ[𝕋])
     (S := 𝒵[𝕋]) eA X
   set P := sys.inputSolutionFloat r η U
   have he := sys.exp_mem_expIntervalFloat hη (t := toReal r) le_rfl le_rfl
-  have hM0 : (0 : Vec ℝ n) ∈ M.I_error.construct := by
-    show (0 : Vec ℝ n) ∈ ((Zonotope.mtimesIntervalMat _ X).materialise).I_error.construct
+  have hM0 : (0 : Vec ℝ n) ∈ M.I_error.toSet := by
+    show (0 : Vec ℝ n) ∈ ((Zonotope.mtimesIntervalMat _ X).materialise).I_error.toSet
     rw [Zonotope.materialise_eq]
     exact Zonotope.zero_mem_mtimesIntervalMat_error he hX
   have hP0 := sys.zero_mem_inputSolutionFloat_error hr.le hη hU
   -- the order bound the exact input solution's theorem asks for
-  have hA : Scalar.toRealMat sys.A ∈ (Interval.point sys.A).construct := Interval.mem_point sys.A
+  have hA : Scalar.toRealMat sys.A ∈ (Interval.point sys.A).toSet := Interval.mem_point sys.A
   have hε : ‖toReal r • Scalar.toRealMat sys.A‖ / ((η : ℝ) + 2) < 1 :=
     lt_of_le_of_lt (le_trans (by gcongr; exact MatExp.norm_smul_le_normUpperBound _ r hA) hη.2)
       (by norm_num)
   intro x hx
-  have hx' : x ∈ (M.plus P).construct := by
+  have hx' : x ∈ (M.plus P).toSet := by
     have h := hx
     simp only [LinearSys.timePointStepInputFloat, Plus.plus, Zonotope.materialise_eq] at h
     exact h
   -- the sum, the product, the float input solution and the exact one, peeled in turn
   obtain ⟨_, ⟨m, hm, q, hq, rfl⟩, p, hp, rfl⟩ := Zonotope.plus_subset_add_box M P hM0 hP0 hx'
-  have hm' : m ∈ (Zonotope.mtimesIntervalMat eA X).construct := by
+  have hm' : m ∈ (Zonotope.mtimesIntervalMat eA X).toSet := by
     have h := hm
     simp only [M, Mtimes.mtimes, Zonotope.materialise_eq] at h
     exact h
@@ -109,11 +109,11 @@ theorem LinearSys.timePointStepInputFloat_subset_add_excess (sys : LinearSys �
     sys.inputSolution_subset_constInput_add_errorBox hr η hε (nominal U) hs
   have ht' := sys.timePointStepErrorBox_subset_float hr.le hη U ht
   -- the three float boxes, read as zonotopes and summed
-  have hb₁' : b₁ ∈ ContSet.construct (Zonotope.mtimesIntervalMatBox eA X).zonotope :=
+  have hb₁' : b₁ ∈ ContSet.toSet (Zonotope.mtimesIntervalMatBox eA X).zonotope :=
     Interval.zonotope_contains _ hb₁
-  have hp' : p ∈ ContSet.construct (Zonotope.plusBox M P).zonotope :=
+  have hp' : p ∈ ContSet.toSet (Zonotope.plusBox M P).zonotope :=
     Interval.zonotope_contains _ hp
-  have hex : b₁ + p + b₂ ∈ (sys.timePointStepExcessFloat r η X U).construct :=
+  have hex : b₁ + p + b₂ ∈ (sys.timePointStepExcessFloat r η X U).toSet :=
     Plus.plus_outer _ _ (Set.add_mem_add (Plus.plus_outer _ _ (Set.add_mem_add hb₁' hp')) hb₂)
   refine ⟨_, ⟨_, ⟨_, ⟨y, hy, rfl⟩, w, hw, rfl⟩, _, hex, rfl⟩, t, ht', ?_⟩
   dsimp only

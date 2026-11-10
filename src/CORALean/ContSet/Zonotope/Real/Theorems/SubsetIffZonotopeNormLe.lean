@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 theorem Zonotope.subset_iff_forall_zonotopeNorm_le (Z₁ Z₂ : Zonotope (Vec ℝ n))
     (hG : Function.Surjective Z₂.genMap) :
-    Z₁.construct ⊆ Z₂.construct ↔ ∀ p ∈ Z₁.construct, Z₂.zonotopeNorm (p - Z₂.c) ≤ 1 := by
+    Z₁.toSet ⊆ Z₂.toSet ↔ ∀ p ∈ Z₁.toSet, Z₂.zonotopeNorm (p - Z₂.c) ≤ 1 := by
   rw [← (Z₂.zonotopeNorm_ball_eq hG).1]
   rfl
 

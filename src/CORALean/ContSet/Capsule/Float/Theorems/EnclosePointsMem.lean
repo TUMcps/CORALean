@@ -70,9 +70,9 @@ private theorem Capsule.aux_residual_le (p c g t : 𝕋) : -- --- CONCL ---
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.range_subset_construct (k : ℕ) {N : ℕ} (pts : Fin N → Vec 𝕋 n) : -- --- CONCL ---
+theorem Capsule.range_subset_toSet (k : ℕ) {N : ℕ} (pts : Fin N → Vec 𝕋 n) : -- --- CONCL ---
     Set.range (fun j => toRealVec (pts j)) ⊆
-      (Capsule.enclosePoints k pts).construct := by -- --- PROOF ---
+      (Capsule.enclosePoints k pts).toSet := by -- --- PROOF ---
   rintro _ ⟨j, rfl⟩
   -- a point exists, so the first branch of the definition is the one taken
   have hN : 0 < N := j.pos
@@ -80,8 +80,8 @@ theorem Capsule.range_subset_construct (k : ℕ) {N : ℕ} (pts : Fin N → Vec 
   rw [dif_pos hN]
   dsimp only
   -- the box is the origin, so the point is one of the nominal capsule
-  refine InflatedContSet.nominalSet_subset_construct ?_ ?_
-  · show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).construct
+  refine InflatedContSet.nominalSet_subset_toSet ?_ ?_
+  · show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).toSet
     rw [Interval.origin_exact]
     rfl
   -- name the stored center, farthest point, generator and parameter

@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.mem_ofPoint_iff (v x : α) : -- --- CONCL ---
-    x ∈ (ConZonotope.ofPoint v).construct ↔ x = v := by -- --- PROOF ---
+    x ∈ (ConZonotope.ofPoint v).toSet ↔ x = v := by -- --- PROOF ---
   constructor
   · rintro ⟨β, _, _, h⟩
     simpa [ConZonotope.ofPoint] using h

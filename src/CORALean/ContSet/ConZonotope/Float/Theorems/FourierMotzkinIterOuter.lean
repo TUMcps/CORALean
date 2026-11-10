@@ -53,16 +53,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {p q : ℕ}
 theorem ConZonotope.fourierMotzkinIter_outer (C : Mat 𝕋 p q) (d : Vec 𝕋 p) (k : ℕ)
     {x : Vec ℝ q} (hx : ∀ j, |x j| ≤ 1)
     (hC : ∀ i, ∑ j, toReal (C i j) * x j ≤ toReal (d i)) : -- --- CONCL ---
-    x ∈ (ConZonotope.fourierMotzkinIter C d k).construct := by -- --- PROOF ---
+    x ∈ (ConZonotope.fourierMotzkinIter C d k).toSet := by -- --- PROOF ---
   -- the unit box holds `x`: its bounds read `-1` and `1`
-  have h0 : x ∈ (⟨fun _ => neg one, fun _ => one⟩ : Interval (Vec 𝕋 q)).construct := by
+  have h0 : x ∈ (⟨fun _ => neg one, fun _ => one⟩ : Interval (Vec 𝕋 q)).toSet := by
     intro j
     show toReal (neg one) ≤ x j ∧ x j ≤ toReal (one : 𝕋)
     rw [toReal_neg, toReal_one]
     exact abs_le.1 (hx j)
   -- each pass keeps `x`
   suffices h : ∀ k, x ∈ ((ConZonotope.fourierMotzkinBounds C d)^[k]
-      (⟨fun _ => neg one, fun _ => one⟩ : Interval (Vec 𝕋 q))).construct from h k
+      (⟨fun _ => neg one, fun _ => one⟩ : Interval (Vec 𝕋 q))).toSet from h k
   intro k
   induction k with
   | zero => exact h0

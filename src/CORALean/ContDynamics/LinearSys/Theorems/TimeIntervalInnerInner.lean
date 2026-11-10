@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.StepInner
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepInnerRep
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalSubsetInitialAddError
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 
@@ -64,14 +64,14 @@ theorem LinearSys.timeIntervalInner_inner (sys : LinearSys 𝕋 n) {r : ℝ} (hr
     (X₀ : Zonotope (Vec ℝ n)) : -- --- CONCL ---
     sys.timeIntervalInner r η X₀
       ⊆ ⋃ t ∈ Set.Icc (0:ℝ) r,
-          (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' X₀.construct := by -- --- PROOF ---
+          (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' X₀.toSet := by -- --- PROOF ---
   have hOuter := sys.timeInterval_subset_initial_add_error hr η hε X₀
   -- the error ball holds a point because it encloses the step's own center
   have hEne : (Metric.closedBall (0 : Vec ℝ n) (sys.timeIntervalStepError r η X₀)).Nonempty := by
-    obtain ⟨_, _, e, he, _⟩ := hOuter (Zonotope.center_mem_construct _)
+    obtain ⟨_, _, e, he, _⟩ := hOuter (Zonotope.center_mem_toSet _)
     exact ⟨e, he⟩
   have hinner := minkowskiDiff_inner_of_outer hEne Metric.isBounded_closedBall
-    (Zonotope.convex_construct X₀) (Zonotope.isCompact_construct X₀).isClosed hOuter
+    (Zonotope.convex_toSet X₀) (Zonotope.isCompact_toSet X₀).isClosed hOuter
   -- and the start of the step is one of the times the flow is taken over
   intro y hy
   refine Set.mem_biUnion (Set.left_mem_Icc.mpr hr.le) ⟨y, hinner hy, ?_⟩

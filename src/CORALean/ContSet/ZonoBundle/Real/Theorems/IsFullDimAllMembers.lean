@@ -41,9 +41,9 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] [FiniteDimensi
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.allMembersFullDim_of_interior {zB : ZonoBundle α}
-    (h : (interior zB.construct).Nonempty) : zB.HasAllMembersFullDim := fun i => by
+    (h : (interior zB.toSet).Nonempty) : zB.HasAllMembersFullDim := fun i => by
   -- the intersection is inside member `i`
-  have hsub : zB.construct ⊆ (zB.Z i).construct := SetIntersection.construct_subset_ofFn _ i
+  have hsub : zB.toSet ⊆ (zB.Z i).toSet := SetIntersection.toSet_subset_ofFn _ i
   exact (Zonotope.isFullDim_iff (zB.Z i)).mp (h.mono (interior_mono hsub))
 
 end CORALean.Real

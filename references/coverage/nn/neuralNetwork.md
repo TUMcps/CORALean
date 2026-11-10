@@ -138,7 +138,7 @@ itself is not recomputed at float.
 (Koller et al. ICLR 2026, Alg. 1): `SetBasedNet.verify`, real layer only, on zonotopes: step 1 of
 `verify.m`, the `unknown` test, is `inter_ineqs_eq_empty_of_row` (Eq. 8). Step 2.1, the `'zonotack'`
 candidates `-sign(A G_y)`, is `zonotackFactors`. Step 3, `aux_refineInputSet` with
-`aux_constructUnsafeInputSet` and `aux_scaleAndOffsetZonotope`, is `encloseUnsafeInputs` (Prop. 2),
+`aux_toSetUnsafeInputSet` and `aux_scaleAndOffsetZonotope`, is `encloseUnsafeInputs` (Prop. 2),
 the split pieces bounded by `ConZonotope.fourierMotzkinIter` (Prop. 3) and stored as the rescaled
 zonotope, an empty piece dropped. The queue (`aux_pop`, `aux_push`) is a list processed one set at a
 time, `max_verif_iter` the budget ending in `UNKNOWN`. `VERIFIED` and `FALSIFIED(x)` are sound for

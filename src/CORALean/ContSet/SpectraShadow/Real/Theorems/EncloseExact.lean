@@ -47,9 +47,9 @@ variable {n : ℕ}
 
 theorem SpectraShadow.enclose_exact (S : SpectraShadow (Vec ℝ n)) (M : Mat ℝ n n)
     (Splus : SpectraShadow (Vec ℝ n)) :
-    ContSet.construct (ContSet.enclose (S := fun n => SpectraShadow (Vec ℝ n)) (𝕋 := ℝ) S M Splus)
-      = convexHull ℝ (S.construct ∪ ((M *ᵥ ·) '' S.construct + Splus.construct)) := by
-  show (S.convHull_ ((SpectraShadow.mtimes M S).plus Splus)).construct = _
+    ContSet.toSet (ContSet.enclose (S := fun n => SpectraShadow (Vec ℝ n)) (𝕋 := ℝ) S M Splus)
+      = convexHull ℝ (S.toSet ∪ ((M *ᵥ ·) '' S.toSet + Splus.toSet)) := by
+  show (S.convHull_ ((SpectraShadow.mtimes M S).plus Splus)).toSet = _
   rw [SpectraShadow.convHull_exact, ← SpectraShadow.plus_exact, ← SpectraShadow.mtimes_exact]
 
 end CORALean.Real

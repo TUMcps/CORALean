@@ -33,10 +33,10 @@ open ContSet
 -- ========================================  INSTANCES  ========================================= --
 
 instance {P : ℕ → Type} [∀ m, ContSet (P m) (Vec ℝ m)] {n : ℕ} :
-    ContSet (StarSet P n) (Vec ℝ n) := ⟨StarSet.construct⟩
+    ContSet (StarSet P n) (Vec ℝ n) := ⟨StarSet.toSet⟩
 
 instance {P : ℕ → Type} [∀ m, ContSet (P m) (Vec ℝ m)] [∀ m, ConvexSet (P m) (Vec ℝ m)] {n : ℕ} :
-    ConvexSet (StarSet P n) (Vec ℝ n) := ⟨StarSet.convex_construct⟩
+    ConvexSet (StarSet P n) (Vec ℝ n) := ⟨StarSet.convex_toSet⟩
 
 instance {n : ℕ} : OfPoint (StarSet ℋ𝒫 n) (Vec ℝ n) where
   ofPoint := StarSet.ofPoint

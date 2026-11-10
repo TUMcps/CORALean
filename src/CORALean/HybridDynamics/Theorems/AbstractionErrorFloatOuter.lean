@@ -14,7 +14,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Interval.Float.Theorems.MulBetweenCorners
 public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.Convex
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
@@ -91,11 +91,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `s v ∈ [a, b] Z` for `s ∈ [a, b]` and `v ∈ Z`, `[a, b]` the interval matrix `[a, b] I`. -/
 private theorem aux_absErrFloat_smul_mem {a b : 𝕋} {s : ℝ} (h₁ : toReal a ≤ s) (h₂ : s ≤ toReal b)
-    {Z : Zonotope (Vec 𝕋 n)} {v : Vec ℝ n} (hv : v ∈ Z.construct) : -- --- CONCL ---
+    {Z : Zonotope (Vec 𝕋 n)} {v : Vec ℝ n} (hv : v ∈ Z.toSet) : -- --- CONCL ---
     s • v ∈ (Zonotope.mtimesIntervalMat (Interval.smul a b
-      (Interval.point (diagonalBlock fun _ => (one : 𝕋)))) Z).construct := by -- --- PROOF ---
+      (Interval.point (diagonalBlock fun _ => (one : 𝕋)))) Z).toSet := by -- --- PROOF ---
   have hone : (1 : Mat ℝ n n) ∈
-      (Interval.point (diagonalBlock fun _ : Fin n => (one : 𝕋))).construct := by
+      (Interval.point (diagonalBlock fun _ : Fin n => (one : 𝕋))).toSet := by
     have h := Interval.mem_point (diagonalBlock fun _ : Fin n => (one : 𝕋))
     convert h using 1
     funext i j
@@ -108,8 +108,8 @@ private theorem aux_absErrFloat_smul_mem {a b : 𝕋} {s : ℝ} (h₁ : toReal a
 
 /-- A point of the interval matrix applied to a point of the zonotope. -/
 private theorem aux_absErrFloat_mulVec_mem {IM : Interval (Mat 𝕋 n n)} {Z : Zonotope (Vec 𝕋 n)}
-    {M : Mat ℝ n n} {v : Vec ℝ n} (hM : M ∈ IM.construct) (hv : v ∈ Z.construct) :
-    M *ᵥ v ∈ (Zonotope.mtimesIntervalMat IM Z).construct :=
+    {M : Mat ℝ n n} {v : Vec ℝ n} (hM : M ∈ IM.toSet) (hv : v ∈ Z.toSet) :
+    M *ᵥ v ∈ (Zonotope.mtimesIntervalMat IM Z).toSet :=
   Zonotope.mtimesIntervalMat_outer _ _ (Set.mem_biUnion hM ⟨v, hv, rfl⟩)
 
 
@@ -122,14 +122,14 @@ theorem GuardMap.abstractionErrorFloat_outer (A : Mat 𝕋 n n)
     {t : ℝ} {η : ℕ} (hη : 1 ≤ η) (ht : t ∈ Set.Icc 0 (toReal tmax)) (hth : 0 ≤ toReal th)
     (hnrm : le (MatExp.normUpperBound (Interval.smul tmax tmax (Interval.point A)))
       (half (nsmulDown (η + 2) one)) = true)
-    {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.construct) (hU : U.construct.Nonempty) {u : ℝ → Vec ℝ n}
-    (hu : ∀ τ ∈ Set.Ioc (0:ℝ) t, u (t - τ) ∈ U.construct)
+    {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.toSet) (hU : U.toSet.Nonempty) {u : ℝ → Vec ℝ n}
+    (hu : ∀ τ ∈ Set.Ioc (0:ℝ) t, u (t - τ) ∈ U.toSet)
     (hmeas : AEStronglyMeasurable (fun τ => u (t - τ)) (volume.restrict (Set.Ioc 0 t)))
     : -- --- CONCL ---
     exp (t • toRealMat A) *ᵥ x₀ + (∫ s in (0:ℝ)..t, exp ((t - s) • toRealMat A) *ᵥ u s)
         - GuardMap.sdcFlow (toRealMat A) (GuardMap.sdcInput (toRealMat A) (toRealVec U.c)
           (toReal th) η (toRealVec R₀.c)) x₀ t
-      ∈ (GuardMap.abstractionErrorFloat A U R₀ th tmax η).construct := by -- --- PROOF ---
+      ∈ (GuardMap.abstractionErrorFloat A U R₀ th tmax η).toSet := by -- --- PROOF ---
   obtain ⟨k, rfl⟩ : ∃ k, η = k + 1 := ⟨η - 1, by omega⟩
   set Ar : Mat ℝ n n := toRealMat A with hAr
   set nrm := MatExp.normUpperBound (Interval.smul tmax tmax (Interval.point A)) with hnrmdef
@@ -169,26 +169,26 @@ theorem GuardMap.abstractionErrorFloat_outer (A : Mat 𝕋 n n)
       (Float.MatExp.expRemainderBound_le (k + 1) (by simpa using hnn) hnn hmargin)
   -- `Ê = [−ε, ε]` holds every matrix within `ε`, and `Ê tmax U` every `tmax M v`
   set What : Interval (Mat 𝕋 n n) := ⟨fun _ _ => neg ε, fun _ _ => ε⟩ with hWhat
-  have hWmem : ∀ M : Mat ℝ n n, (∀ j l, |M j l| ≤ toReal ε) → M ∈ What.construct :=
+  have hWmem : ∀ M : Mat ℝ n n, (∀ j l, |M j l| ≤ toReal ε) → M ∈ What.toSet :=
     fun M hM => Interval.mem_mat_iff.mpr fun j l => by
       show toReal (neg ε) ≤ M j l ∧ M j l ≤ toReal ε
       rw [toReal_neg]
       exact abs_le.mp (hM j l)
   -- `Ê tmax U` holds `tmax M v` and, through the zero matrix, the origin
   have hS : ∀ M : Mat ℝ n n, (∀ j l, |M j l| ≤ (fun _ _ => toReal ε : Mat ℝ n n) j l) →
-      ∀ v ∈ U.construct, toReal tmax • (M *ᵥ v) ∈
-        (Zonotope.mtimesIntervalMat (Interval.smul tmax tmax What) U).construct :=
+      ∀ v ∈ U.toSet, toReal tmax • (M *ᵥ v) ∈
+        (Zonotope.mtimesIntervalMat (Interval.smul tmax tmax What) U).toSet :=
     fun M hM v hv => by
       rw [← Matrix.smul_mulVec]
       exact aux_absErrFloat_mulVec_mem (Interval.smul_outer le_rfl le_rfl _ (hWmem M hM)) hv
   have hS0 : (0 : Vec ℝ n) ∈
-      (Zonotope.mtimesIntervalMat (Interval.smul tmax tmax What) U).construct := by
+      (Zonotope.mtimesIntervalMat (Interval.smul tmax tmax What) U).toSet := by
     obtain ⟨v, hv⟩ := hU
     simpa using hS 0 (fun j l => by simpa using hε0) v hv
   obtain ⟨w, hw, ρ, hρ, hid⟩ := GuardMap.abstractionError_decomp Ar
-    (Zonotope.convex_construct U) (Zonotope.isCompact_construct U).isClosed
-    (Zonotope.isCompact_construct U).isBounded hU (Zonotope.convex_construct _)
-    (Zonotope.isCompact_construct _).isClosed (Zonotope.isCompact_construct _).isBounded hS0
+    (Zonotope.convex_toSet U) (Zonotope.isCompact_toSet U).isClosed
+    (Zonotope.isCompact_toSet U).isBounded hU (Zonotope.convex_toSet _)
+    (Zonotope.isCompact_toSet _).isClosed (Zonotope.isCompact_toSet _).isBounded hS0
     (toRealVec U.c) (toRealVec R₀.c) (toReal th) ht (fun _ _ => toReal ε) hW hS x₀ hu hmeas
   -- the point is `t(v₁ + v₂ + v₃) + R x₀ + ρ`
   rw [hid]
@@ -197,7 +197,7 @@ theorem GuardMap.abstractionErrorFloat_outer (A : Mat 𝕋 n n)
   have htm := ht.2
   have hM : ∀ i m : ℕ, ((Nat.factorial (m + 2) : ℝ)⁻¹) • Ar ^ i ∈ (Interval.smul
       (MatExp.invFactorialBounds (m + 2)).inf (MatExp.invFactorialBounds (m + 2)).sup
-      (Interval.matPow (Interval.point A) i)).construct := fun i m =>
+      (Interval.matPow (Interval.point A) i)).toSet := fun i m =>
     Interval.smul_outer (MatExp.invFactorialBounds_mem (m + 2)).1
       (MatExp.invFactorialBounds_mem (m + 2)).2 _
       (Interval.matPow_outer _ (Interval.mem_point A) i)
@@ -231,7 +231,7 @@ theorem GuardMap.abstractionErrorFloat_outer (A : Mat 𝕋 n n)
         linarith [hthHi m, pow_nonneg ht0 (m + 1)]
       · have h := sub_le_subUp (powUp tmax (m + 1)) (powDown th (m + 1))
         linarith [htHi m, hthLo m]
-      · rw [Zonotope.construct_point]
+      · rw [Zonotope.toSet_point]
         exact Set.mem_singleton _
     · -- `err₃`: `(w₀ − u_c) + ∑ (tᵐ⁺¹ Aᵐ⁺¹/(m + 2)!)(wₘ₊₁ − u_c)`
       refine Zonotope.plus_outer _ _ (Set.add_mem_add (Zonotope.sub_center_mem_recenter (hw 0))

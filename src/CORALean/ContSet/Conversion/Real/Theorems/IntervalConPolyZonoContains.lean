@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.conPolyZono_contains (I : Interval (Vec ℝ n)) :
-    I.construct ⊆ I.conPolyZono.construct :=
+    I.toSet ⊆ I.conPolyZono.toSet :=
   subset_trans I.polyZonotope_contains (PolyZonotope.conPolyZono_exact _).subset
 
 end CORALean.Real

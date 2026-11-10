@@ -163,8 +163,8 @@ private theorem ConZonotope.aux_eliminate_row {ng nc : ℕ} (A : Mat ℝ nc ng) 
 `a_{r,j} ≠ 0`. -/
 private theorem ConZonotope.aux_eliminate_subset {ng nc : ℕ} (c : α) (G : Fin ng → α)
     (A : Mat ℝ nc ng) (b : Vec ℝ nc) (r : Fin nc) (j : Fin ng) (hAj : A r j ≠ 0) : -- --- CONCL ---
-    (ConZonotope.ofMat c G A b).construct
-      ⊆ (ConZonotope.eliminate c G A b r j).construct := by -- --- PROOF ---
+    (ConZonotope.ofMat c G A b).toSet
+      ⊆ (ConZonotope.eliminate c G A b r j).toSet := by -- --- PROOF ---
   intro x hx
   rw [ConZonotope.mem_ofMat_iff] at hx
   obtain ⟨β, hβbox, hβeq, hx⟩ := hx
@@ -212,8 +212,8 @@ private theorem ConZonotope.aux_eliminate_superset {ng nc : ℕ} (c : α) (G : F
               (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).sup ∧
           max (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).inf
               (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).sup ≤ 1) : -- --- CONCL ---
-    (ConZonotope.eliminate c G A b r j).construct
-      ⊆ (ConZonotope.ofMat c G A b).construct := by -- --- PROOF ---
+    (ConZonotope.eliminate c G A b r j).toSet
+      ⊆ (ConZonotope.ofMat c G A b).toSet := by -- --- PROOF ---
   intro x hx
   -- read `hx`'s witness `β'` back in the clean, zeta-reduced sum form
   simp only [ConZonotope.eliminate, ConZonotope.mem_ofMat_iff] at hx
@@ -292,8 +292,8 @@ theorem ConZonotope.eliminate_exact_of_dependClosed {ng nc : ℕ} (c : α) (G : 
               (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).sup ∧
           max (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).inf
               (ConZonotope.rowBound A b r j (ConZonotope.tighten A b)).sup ≤ 1) : -- --- CONCL ---
-    (ConZonotope.ofMat c G A b).construct
-      = (ConZonotope.eliminate c G A b r j).construct := by -- --- PROOF ---
+    (ConZonotope.ofMat c G A b).toSet
+      = (ConZonotope.eliminate c G A b r j).toSet := by -- --- PROOF ---
   exact Set.Subset.antisymm (ConZonotope.aux_eliminate_subset c G A b r j hAj)
     (ConZonotope.aux_eliminate_superset c G A b r j hAj S hjS hrS hclosed hR)
 

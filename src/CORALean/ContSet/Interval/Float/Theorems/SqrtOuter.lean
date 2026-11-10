@@ -36,7 +36,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.sqrt_outer [SoundFloatArithmetic 𝕋] (p : ℕ) (I : Interval (Vec 𝕋 n)) :
-    (fun x i => Real.sqrt (x i)) '' I.construct ⊆ (I.sqrt p).construct := by
+    (fun x i => Real.sqrt (x i)) '' I.toSet ⊆ (I.sqrt p).toSet := by
   rintro _ ⟨x, hx, rfl⟩ i
   have hx' : toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i) := hx i
   exact ⟨le_trans (sqrtDown_le p _) (Real.sqrt_le_sqrt hx'.1),

@@ -56,11 +56,11 @@ private theorem ConPolyZono.aux_linComb_nominal
     (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     Set.linComb (nominalSet cPZ₁) (nominalSet cPZ₂) ⊆
       nominalSet (cPZ₁.linComb cPZ₂)
-        + ((PolyZonotope.midpointResidual cPZ₁.c cPZ₂.c).construct
-            + ((PolyZonotope.halfDiffError cPZ₁.c cPZ₂.c).construct
+        + ((PolyZonotope.midpointResidual cPZ₁.c cPZ₂.c).toSet
+            + ((PolyZonotope.halfDiffError cPZ₁.c cPZ₂.c).toSet
                 + (Zonotope.generatorError
                     (PolyZonotope.linCombGIDiff cPZ₁.polyZonotope
-                      cPZ₂.polyZonotope)).construct)) := by -- --- PROOF ---
+                      cPZ₂.polyZonotope)).toSet)) := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁', y₂, hy₂', lam, ⟨hl0, hl1⟩, rfl⟩
   obtain ⟨a₁, β₁, ha₁, hβ₁, hs₁, hy₁⟩ := ConPolyZono.mem_nominalSet_iff.mp hy₁'
   obtain ⟨a₂, β₂, ha₂, hβ₂, hs₂, hy₂⟩ := ConPolyZono.mem_nominalSet_iff.mp hy₂'
@@ -105,13 +105,13 @@ private theorem ConPolyZono.aux_linComb_nominal
 /-- The box absorbs the two incoming boxes, both center roundings and the
 independent block's, exactly as for the unconstrained set. -/
 private theorem ConPolyZono.aux_linComb_error (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    Set.linComb cPZ₁.I_error.construct cPZ₂.I_error.construct
-        + ((PolyZonotope.midpointResidual cPZ₁.c cPZ₂.c).construct
-            + ((PolyZonotope.halfDiffError cPZ₁.c cPZ₂.c).construct
+    Set.linComb cPZ₁.I_error.toSet cPZ₂.I_error.toSet
+        + ((PolyZonotope.midpointResidual cPZ₁.c cPZ₂.c).toSet
+            + ((PolyZonotope.halfDiffError cPZ₁.c cPZ₂.c).toSet
                 + (Zonotope.generatorError
                     (PolyZonotope.linCombGIDiff cPZ₁.polyZonotope
-                      cPZ₂.polyZonotope)).construct))
-      ⊆ (cPZ₁.linComb cPZ₂).I_error.construct :=
+                      cPZ₂.polyZonotope)).toSet))
+      ⊆ (cPZ₁.linComb cPZ₂).I_error.toSet :=
   subset_trans
     (Set.add_subset_add (Interval.linComb_outer cPZ₁.I_error cPZ₂.I_error)
       (subset_trans (Set.add_subset_add_left (Interval.plus_outer _ _))
@@ -122,7 +122,7 @@ private theorem ConPolyZono.aux_linComb_error (cPZ₁ cPZ₂ : ConPolyZono 𝕋 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.linComb_outer (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    Set.linComb cPZ₁.construct cPZ₂.construct ⊆ (cPZ₁.linComb cPZ₂).construct :=
+    Set.linComb cPZ₁.toSet cPZ₂.toSet ⊆ (cPZ₁.linComb cPZ₂).toSet :=
   InflatedContSet.linComb_subset (ConPolyZono.aux_linComb_nominal cPZ₁ cPZ₂)
     (ConPolyZono.aux_linComb_error cPZ₁ cPZ₂)
 

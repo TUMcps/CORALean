@@ -57,7 +57,7 @@ variable {n : ℕ}
 /-- Dropping generators only shrinks: the ones left out get coefficient zero. -/
 private theorem aux_genSelection_subset {α : Type} [AddCommGroup α] [Module ℝ α]
     (Z : Zonotope α) (σ : Equiv.Perm (Fin Z.h)) (ξ : ℕ) : -- --- CONCL ---
-    (Z.step_genSelection σ Z.c ξ).construct ⊆ Z.construct := by -- --- PROOF ---
+    (Z.step_genSelection σ Z.c ξ).toSet ⊆ Z.toSet := by -- --- PROOF ---
   rintro x ⟨β, hβ, rfl⟩
   set f : Fin (min ξ Z.h) → Fin Z.h :=
     fun i => σ (Fin.castLE (min_le_right ξ Z.h) i) with hf
@@ -89,7 +89,7 @@ private theorem aux_genSelection_subset {α : Type} [AddCommGroup α] [Module �
 /-- [1, Alg. 1]'s `Z_{m,encl}` is a part of the minuend, whatever the oracle. -/
 theorem Zonotope.enclGenSel_subset (le lt : ℝ → ℝ → Bool)
     (encloses : Zonotope (Vec ℝ n) → Bool) (Zm Zs : Zonotope (Vec ℝ n)) (μbar : ℝ) :
-    (Zm.enclGenSel le lt encloses Zs μbar).construct ⊆ Zm.construct :=
+    (Zm.enclGenSel le lt encloses Zs μbar).toSet ⊆ Zm.toSet :=
   aux_genSelection_subset Zm _ _
 
 end CORALean.Real

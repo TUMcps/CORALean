@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemToSetIff
 public import CORALean.Global.EuclideanNorm
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 public import Mathlib.Data.Fin.VecNotation
@@ -49,10 +49,10 @@ open scoped MatrixOrder
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.dist_point_nonneg_counterexample : -- --- CONCL ---
-    ∃ (E : Ellipsoid 1) (a l : Vec ℝ 1), a ∈ E.construct ∧ ‖l‖₂ = 1 ∧
+    ∃ (E : Ellipsoid 1) (a l : Vec ℝ 1), a ∈ E.toSet ∧ ‖l‖₂ = 1 ∧
       l ⬝ᵥ a - l ⬝ᵥ E.q - √(l ⬝ᵥ (E.Q *ᵥ l)) = 0 := by -- --- PROOF ---
   have hG : (⟨1, 0, .one⟩ : Ellipsoid 1).G = 1 := CFC.sqrt_one
-  refine ⟨⟨1, 0, .one⟩, ![1], ![1], Ellipsoid.mem_construct_iff.2 ⟨![1], by simp [norm₂], ?_⟩,
+  refine ⟨⟨1, 0, .one⟩, ![1], ![1], Ellipsoid.mem_toSet_iff.2 ⟨![1], by simp [norm₂], ?_⟩,
     by simp [norm₂], ?_⟩
   · rw [hG, Matrix.one_mulVec, zero_add]
   · show _ - _ - √(_ ⬝ᵥ ((1 : Mat ℝ 1 1) *ᵥ _)) = 0

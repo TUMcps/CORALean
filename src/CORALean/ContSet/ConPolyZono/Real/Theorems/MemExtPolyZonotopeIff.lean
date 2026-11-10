@@ -67,7 +67,7 @@ private theorem ConPolyZono.aux_sum_ext (cPZ : ConPolyZono (Vec ℝ n))
 
 theorem ConPolyZono.mem_extPolyZonotope_iff (cPZ : ConPolyZono (Vec ℝ n)) (p : Vec ℝ n)
     (t : Vec ℝ cPZ.cons.m) : -- --- CONCL ---
-    (p, t) ∈ cPZ.extPolyZonotope.construct ↔
+    (p, t) ∈ cPZ.extPolyZonotope.toSet ↔
       ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
         ∧ (∀ i, (cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R a) i = cPZ.cons.b i + t i)
         ∧ p = cPZ.c + ∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i

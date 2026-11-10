@@ -55,16 +55,16 @@ variable {n nx qx qy : ℕ}
 /-- [1, Cor. 2]: `x̄ + X Px ⊆ Py` iff (12) of [1, Thm. 1] holds at `Y = I`, `ȳ = 0`. -/
 theorem HPolytope.ahPolytope_subset_ineqs_iff {xbar : Vec ℝ n} {X : Mat ℝ n nx}
     {Hx : Mat ℝ qx nx} {hx : Vec ℝ qx} {Hy : Mat ℝ qy n} {hy : Vec ℝ qy}
-    (hne : (HPolytope.ineqs Hx hx).construct.Nonempty) : -- --- CONCL ---
-    HPolytope.ahPolytope xbar X (HPolytope.ineqs Hx hx) ⊆ (HPolytope.ineqs Hy hy).construct ↔
+    (hne : (HPolytope.ineqs Hx hx).toSet.Nonempty) : -- --- CONCL ---
+    HPolytope.ahPolytope xbar X (HPolytope.ineqs Hx hx) ⊆ (HPolytope.ineqs Hy hy).toSet ↔
       ∃ (Γ : Mat ℝ n nx) (β : Vec ℝ n) (Λ : Mat ℝ qy qx), X = (1 : Mat ℝ n n) * Γ ∧
         0 - xbar = (1 : Mat ℝ n n) *ᵥ β ∧ (∀ i j, 0 ≤ Λ i j) ∧ Λ * Hx = Hy * Γ ∧
           Λ *ᵥ hx ≤ hy + Hy *ᵥ β := by -- --- PROOF ---
   constructor
   · intro hsub
     -- `Px` lies in the H-polytope `{Hy X p ≤ hy - Hy x̄}`, so Lemma 1 gives `Λ`
-    have hPx : (HPolytope.ineqs Hx hx).construct
-        ⊆ (HPolytope.ineqs (Hy * X) (hy - Hy *ᵥ xbar)).construct := by
+    have hPx : (HPolytope.ineqs Hx hx).toSet
+        ⊆ (HPolytope.ineqs (Hy * X) (hy - Hy *ᵥ xbar)).toSet := by
       intro p hp
       have hmem := hsub ⟨p, hp, rfl⟩
       rw [HPolytope.mem_ineqs_iff] at hmem ⊢

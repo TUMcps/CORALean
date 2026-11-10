@@ -58,7 +58,7 @@ private theorem ConZonotope.aux_sum_kept {h : ℕ} (S : Finset (Fin h)) (f : Fin
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.compact_exact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    cZ.compact.construct = cZ.construct := by -- --- PROOF ---
+    cZ.compact.toSet = cZ.toSet := by -- --- PROOF ---
   set S : Finset (Fin cZ.h) := Finset.univ.filter fun j : Fin cZ.h =>
     !(HPolytope.isZeroVec (cZ.G j) && cZ.P.isZeroCol j) with hS
   set sel : Fin S.card → Fin cZ.h := ⇑(S.orderEmbOfFin rfl) with hsel
@@ -73,18 +73,18 @@ theorem ConZonotope.compact_exact (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- 
       fun h => (HPolytope.toReal_eq_of_eqScalar h).trans toReal_zero
     exact ⟨fun i => hz (hj.1 i), fun k => hz (hj.2.1 k), fun k => hz (hj.2.2 k)⟩
   -- the zero rows go without changing the nominal part, the box being the origin
-  have hkey : ∀ ξ' : Vec ℝ S.card, ξ' ∈ cZ.compact.P.nominal.construct
-      ↔ ξ' ∈ (cZ.P.selectCols sel).nominal.construct := fun ξ' => by
+  have hkey : ∀ ξ' : Vec ℝ S.card, ξ' ∈ cZ.compact.P.nominal.toSet
+      ↔ ξ' ∈ (cZ.P.selectCols sel).nominal.toSet := fun ξ' => by
     have hI : (cZ.P.selectCols sel).dropZeros.I_error = Interval.origin S.card := by
       unfold HPolytope.dropZeros
       split <;> rfl
-    show ξ' ∈ (cZ.P.selectCols sel).dropZeros.nominal.construct ↔ _
+    show ξ' ∈ (cZ.P.selectCols sel).dropZeros.nominal.toSet ↔ _
     rw [← HPolytope.mem_nominal_of_origin hI, HPolytope.dropZeros_exact,
       HPolytope.mem_nominal_of_origin rfl]
   -- a sum that vanishes off `S` is the sum over the kept indices
   have hsum : ∀ g : Fin cZ.h → ℝ, (∀ j, j ∉ S → g j = 0) → ∑ j, g j = ∑ l, g (sel l) :=
     fun g hg => ConZonotope.aux_sum_kept S g hg
-  show nominalSet cZ.compact + cZ.I_error.construct = nominalSet cZ + cZ.I_error.construct
+  show nominalSet cZ.compact + cZ.I_error.toSet = nominalSet cZ + cZ.I_error.toSet
   congr 1
   ext y
   rw [ConZonotope.mem_nominalSet_iff, ConZonotope.mem_nominalSet_iff]

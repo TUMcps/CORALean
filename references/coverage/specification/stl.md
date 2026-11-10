@@ -121,7 +121,7 @@ The printed version is `STL.Tree.negationNormalFormCora` (run in MATLAB, see Det
 **`negationNormalForm` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): negationNormalForm(~(x(1)<5)) returns x1 > 5 (confirmed).
 
 **`polytope2stl` — the guarantee.** `sat_polytope2stl`: a trace satisfies the result iff its initial
-state lies in the polytope `{x | A x <= b, Ae x = be}` (`HPolytope.construct`, exact `↔`), the
+state lies in the polytope `{x | A x <= b, Ae x = be}` (`HPolytope.toSet`, exact `↔`), the
 equalities as `<=` and `>=` rows.
 
 **`polytope2stl` — the equalities of the polytope.** Documented as converting the polytope

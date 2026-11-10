@@ -39,10 +39,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.or_exact (P Q : Polygon 𝕋) : -- --- CONCL ---
-    ContSet.construct P ∪ ContSet.construct Q =
-      ContSet.construct (Polygon.or P Q) := by -- --- PROOF ---
+    ContSet.toSet P ∪ ContSet.toSet Q =
+      ContSet.toSet (Polygon.or P Q) := by -- --- PROOF ---
   ext x
-  simp only [Set.mem_union, SetUnion.mem_construct, Polygon.or, List.mem_append]
+  simp only [Set.mem_union, SetUnion.mem_toSet, Polygon.or, List.mem_append]
   constructor
   · rintro (⟨s, hs, hx⟩ | ⟨s, hs, hx⟩)
     · exact ⟨s, Or.inl hs, hx⟩

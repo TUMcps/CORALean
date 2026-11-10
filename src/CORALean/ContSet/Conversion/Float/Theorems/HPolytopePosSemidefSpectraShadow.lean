@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_SpectraShadow
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import Mathlib.LinearAlgebra.Matrix.PosDef
@@ -68,7 +68,7 @@ private theorem HPolytope.aux_lmi_diag {k : ℕ} (d : Fin k → 𝕋) (C : Fin n
 
 /-- At a point of the polytope's nominal part the stored inequality is positive semidefinite. -/
 theorem HPolytope.posSemidef_spectraShadow (P : HPolytope 𝕋 (Vec 𝕋 n)) {x : Vec ℝ n}
-    (hx : x ∈ P.nominal.construct) : -- --- CONCL ---
+    (hx : x ∈ P.nominal.toSet) : -- --- CONCL ---
     (toRealMat P.spectraShadow.A₀
       + ∑ i, x i • toRealMat (P.spectraShadow.A i)).PosSemidef := by -- --- PROOF ---
   -- the matrix is the diagonal of the slacks

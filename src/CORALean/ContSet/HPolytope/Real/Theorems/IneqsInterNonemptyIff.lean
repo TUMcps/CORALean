@@ -48,8 +48,8 @@ variable {q₁ q₂ n : ℕ}
 
 theorem HPolytope.ineqs_inter_nonempty_iff (A₁ : Mat ℝ q₁ n) (b₁ : Vec ℝ q₁) (A₂ : Mat ℝ q₂ n)
     (b₂ : Vec ℝ q₂) :
-    ((HPolytope.ineqs A₁ b₁).construct ∩ (HPolytope.ineqs A₂ b₂).construct).Nonempty ↔
-      ¬ ((HPolytope.ineqs A₁ b₁).intersection (HPolytope.ineqs A₂ b₂)).construct = ∅ := by
+    ((HPolytope.ineqs A₁ b₁).toSet ∩ (HPolytope.ineqs A₂ b₂).toSet).Nonempty ↔
+      ¬ ((HPolytope.ineqs A₁ b₁).intersection (HPolytope.ineqs A₂ b₂)).toSet = ∅ := by
   rw [← HPolytope.intersection_exact]
   exact Set.nonempty_iff_ne_empty
 

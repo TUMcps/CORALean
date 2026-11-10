@@ -41,7 +41,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Reindex S] {n m 
 theorem Layer.reshape_encloses (e : Fin m ≃ Fin n) :
     (Layer.reshape (S := S) e).Encloses (reindexLin e) := by
   refine ⟨fun s x hx => ?_⟩
-  show reindexLin e x ∈ construct (reindex e s)
+  show reindexLin e x ∈ toSet (reindex e s)
   rw [reindex_exact]
   exact Set.mem_image_of_mem _ hx
 

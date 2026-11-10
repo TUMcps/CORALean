@@ -50,7 +50,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.hPolytope_contains (Z : Zonotope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
-    Z.construct ⊆ (Z.hPolytope Aq).construct :=
+    Z.toSet ⊆ (Z.hPolytope Aq).toSet :=
   HPolytope.subset_ofBounds _ _
 
 end CORALean.Real

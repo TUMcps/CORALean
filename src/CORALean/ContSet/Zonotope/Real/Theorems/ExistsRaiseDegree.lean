@@ -54,8 +54,8 @@ variable {n : ℕ}
 /-- A full-dimensional zonotope has dimension `n`. -/
 private theorem Zonotope.aux_finrank_vectorSpan_erd (Z : Zonotope (Vec ℝ n))
     (hfull : Submodule.span ℝ (Set.range Z.G) = ⊤) :
-    Module.finrank ℝ (vectorSpan ℝ Z.construct) = n := by
-  rw [Zonotope.vectorSpan_construct, hfull, finrank_top]
+    Module.finrank ℝ (vectorSpan ℝ Z.toSet) = n := by
+  rw [Zonotope.vectorSpan_toSet, hfull, finrank_top]
   exact Module.finrank_fin_fun ℝ
 
 /-- A functional is constant on its exposed face, so it vanishes on the face's affine hull. -/
@@ -91,22 +91,22 @@ private theorem Zonotope.aux_update_erd (Z : Zonotope (Vec ℝ n)) (β : Fin Z.h
 /-- [1, Lemma 3.4]: for `x ∈ Z` with `deg(x) < n - 1`, a step `x* = x + γgⱼ` along a generator
 stays in a facet through `x` and raises the degree, `deg(x) < deg(x*) ≤ n - 1`. -/
 theorem Zonotope.exists_raise_degree (Z : Zonotope (Vec ℝ n))
-    (hfull : Submodule.span ℝ (Set.range Z.G) = ⊤) {x : Vec ℝ n} (hx : x ∈ Z.construct)
-    (hdeg : Zonotope.degree Z.construct x < n - 1) : -- --- CONCL ---
-    ∃ (γ : ℝ) (j : Fin Z.h) (F : Set (Vec ℝ n)), IsExposed ℝ Z.construct F ∧
+    (hfull : Submodule.span ℝ (Set.range Z.G) = ⊤) {x : Vec ℝ n} (hx : x ∈ Z.toSet)
+    (hdeg : Zonotope.degree Z.toSet x < n - 1) : -- --- CONCL ---
+    ∃ (γ : ℝ) (j : Fin Z.h) (F : Set (Vec ℝ n)), IsExposed ℝ Z.toSet F ∧
       Module.finrank ℝ (vectorSpan ℝ F) = n - 1 ∧ x ∈ F ∧ x + γ • Z.G j ∈ F ∧
-      Zonotope.degree Z.construct x < Zonotope.degree Z.construct (x + γ • Z.G j) ∧
-      Zonotope.degree Z.construct (x + γ • Z.G j) ≤ n - 1 := by -- --- PROOF ---
+      Zonotope.degree Z.toSet x < Zonotope.degree Z.toSet (x + γ • Z.G j) ∧
+      Zonotope.degree Z.toSet (x + γ • Z.G j) ≤ n - 1 := by -- --- PROOF ---
   classical
-  have hD : ∀ z ∈ Z.construct, {d | ∃ F : Set (Vec ℝ n), IsExposed ℝ Z.construct F ∧ z ∈ F ∧
+  have hD : ∀ z ∈ Z.toSet, {d | ∃ F : Set (Vec ℝ n), IsExposed ℝ Z.toSet F ∧ z ∈ F ∧
       Module.finrank ℝ (vectorSpan ℝ F) = d}.Nonempty := fun z hz =>
-    ⟨_, Z.construct, IsExposed.refl _, hz, rfl⟩
+    ⟨_, Z.toSet, IsExposed.refl _, hz, rfl⟩
   -- `F(x)`, the least face through `x`, the face of `l`
   obtain ⟨F0, hF0, hxF0, hdim0⟩ := Nat.sInf_mem (hD x hx)
-  have hk : Module.finrank ℝ (vectorSpan ℝ F0) = Zonotope.degree Z.construct x := hdim0
+  have hk : Module.finrank ℝ (vectorSpan ℝ F0) = Zonotope.degree Z.toSet x := hdim0
   obtain ⟨l, rfl⟩ := hF0 ⟨x, hxF0⟩
   have hZ := Z.aux_finrank_vectorSpan_erd hfull
-  have hproper : {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, l y ≤ l x} ≠ Z.construct :=
+  have hproper : {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, l y ≤ l x} ≠ Z.toSet :=
     fun h => by
       rw [h, hZ] at hk
       omega
@@ -114,17 +114,17 @@ theorem Zonotope.exists_raise_degree (Z : Zonotope (Vec ℝ n))
   obtain ⟨F', hF', hdim', hsub⟩ := Z.exists_facet_superset hfull hF0 ⟨x, hxF0⟩ hproper
   obtain ⟨l', rfl⟩ := hF' ⟨x, hsub hxF0⟩
   have hvs : ∀ m : StrongDual ℝ (Vec ℝ n),
-      vectorSpan ℝ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, m y ≤ m x}
+      vectorSpan ℝ {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, m y ≤ m x}
         = Submodule.span ℝ (Set.range (Z.face (m : Vec ℝ n →ₗ[ℝ] ℝ)).G) := fun m => by
-    rw [← Zonotope.vectorSpan_construct, Z.construct_face]
+    rw [← Zonotope.vectorSpan_toSet, Z.toSet_face]
     rfl
   -- a generator of `F′` outside the affine hull of `F(x)`
   obtain ⟨j, hj⟩ : ∃ j : Fin Z.h, (Z.face (l' : Vec ℝ n →ₗ[ℝ] ℝ)).G j
-      ∉ vectorSpan ℝ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, l y ≤ l x} := by
+      ∉ vectorSpan ℝ {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, l y ≤ l x} := by
     by_contra hcon
     push Not at hcon
     have hle : Submodule.span ℝ (Set.range (Z.face (l' : Vec ℝ n →ₗ[ℝ] ℝ)).G)
-        ≤ vectorSpan ℝ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, l y ≤ l x} := by
+        ≤ vectorSpan ℝ {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, l y ≤ l x} := by
       rw [Submodule.span_le]
       rintro _ ⟨j, rfl⟩
       exact hcon j
@@ -158,14 +158,14 @@ theorem Zonotope.exists_raise_degree (Z : Zonotope (Vec ℝ n))
     intro s
     rw [Z.aux_update_erd β j s, ← hxβ, hxs]
     module
-  have hmemS : ∀ s : ℝ, |s| ≤ 1 → xs + s • Z.G j ∈ Z.construct := fun s hs =>
+  have hmemS : ∀ s : ℝ, |s| ≤ 1 → xs + s • Z.G j ∈ Z.toSet := fun s hs =>
     ⟨fun i => if i = j then s else β i, fun i => by by_cases h : i = j <;> simp [h, hs, hβ i],
       hpt s⟩
-  have hxsZ : xs ∈ Z.construct := by
+  have hxsZ : xs ∈ Z.toSet := by
     have := hmemS 0 (by simp)
     rwa [zero_smul, add_zero] at this
   -- on `F′` coefficient `j` is free, the others keep their signs
-  have hxsF' : xs ∈ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, l' y ≤ l' x} := by
+  have hxsF' : xs ∈ {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, l' y ≤ l' x} := by
     refine (Z.mem_argmax_iff (l' : Vec ℝ n →ₗ[ℝ] ℝ) xs).mpr
       ⟨fun i => if i = j then 0 else β i, fun i => ?_, fun i hi => ?_, ?_⟩
     · by_cases h : i = j <;> simp [h, hβ i]
@@ -179,7 +179,7 @@ theorem Zonotope.exists_raise_degree (Z : Zonotope (Vec ℝ n))
   refine ⟨-β j, j, _, hF', hdim', hsub hxF0, hxsF', ?_, Nat.sInf_le ⟨_, hF', hxsF', hdim'⟩⟩
   -- any face `G ∋ x*` is the face of some `m`, and `m gⱼ = 0`
   obtain ⟨G, hG, hxsG, hdimG⟩ := Nat.sInf_mem (hD xs hxsZ)
-  have hkG : Module.finrank ℝ (vectorSpan ℝ G) = Zonotope.degree Z.construct xs := hdimG
+  have hkG : Module.finrank ℝ (vectorSpan ℝ G) = Zonotope.degree Z.toSet xs := hdimG
   obtain ⟨m, rfl⟩ := hG ⟨xs, hxsG⟩
   have hp := hxsG.2 _ (hmemS 1 (by simp))
   have hm1 := hxsG.2 _ (hmemS (-1) (by simp))
@@ -187,37 +187,37 @@ theorem Zonotope.exists_raise_degree (Z : Zonotope (Vec ℝ n))
   have hmg : m (Z.G j) = 0 := by linarith
   have hmx : ∀ s, m (xs + s • Z.G j) = m xs := fun s => by
     rw [map_add, map_smul, hmg, smul_zero, add_zero]
-  have hxZ : x ∈ Z.construct := ⟨β, hβ, hxβ⟩
+  have hxZ : x ∈ Z.toSet := ⟨β, hβ, hxβ⟩
   have hxeq : x = xs + β j • Z.G j := by
     rw [hxs]
     module
-  have hxG : ∀ y ∈ Z.construct, m y ≤ m x := fun y hy => by
+  have hxG : ∀ y ∈ Z.toSet, m y ≤ m x := fun y hy => by
     rw [hxeq, hmx]
     exact hxsG.2 y hy
   -- the face `H` of `m + l` is through `x` and in both `F(x)` and `G`
-  set H := {z | z ∈ Z.construct ∧ ∀ y ∈ Z.construct, (m + l) y ≤ (m + l) z} with hHdef
+  set H := {z | z ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, (m + l) y ≤ (m + l) z} with hHdef
   have hxH : x ∈ H := ⟨hxZ, fun y hy => by
     simp only [_root_.add_apply]
     linarith [hxG y hy, hxF0.2 y hy]⟩
-  have hkH : Zonotope.degree Z.construct x ≤ Module.finrank ℝ (vectorSpan ℝ H) :=
+  have hkH : Zonotope.degree Z.toSet x ≤ Module.finrank ℝ (vectorSpan ℝ H) :=
     Nat.sInf_le ⟨H, fun _ => ⟨m + l, rfl⟩, hxH, rfl⟩
-  have hHF0 : H ⊆ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, l y ≤ l x} := fun z hz => by
+  have hHF0 : H ⊆ {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, l y ≤ l x} := fun z hz => by
     have h1 := hz.2 x hxZ
     have h2 := hxG z hz.1
     simp only [_root_.add_apply] at h1
     exact ⟨hz.1, fun y hy => by linarith [hxF0.2 y hy]⟩
-  have hHG : H ⊆ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, m y ≤ m x} := fun z hz => by
+  have hHG : H ⊆ {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, m y ≤ m x} := fun z hz => by
     have h1 := hz.2 x hxZ
     have h2 := hxF0.2 z hz.1
     simp only [_root_.add_apply] at h1
     exact ⟨hz.1, fun y hy => by linarith [hxG y hy]⟩
-  have heq : vectorSpan ℝ H = vectorSpan ℝ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, l y ≤ l x} :=
+  have heq : vectorSpan ℝ H = vectorSpan ℝ {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, l y ≤ l x} :=
     Submodule.eq_of_le_of_finrank_le (vectorSpan_mono ℝ hHF0) (by omega)
   -- `gⱼ` is in the affine hull of `G` and not in that of `F(x)`
-  have hlt : vectorSpan ℝ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, l y ≤ l x}
-      < vectorSpan ℝ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, m y ≤ m x} := by
+  have hlt : vectorSpan ℝ {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, l y ≤ l x}
+      < vectorSpan ℝ {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, m y ≤ m x} := by
     refine lt_of_le_of_ne (heq.symm.le.trans (vectorSpan_mono ℝ hHG)) fun hne => ?_
-    have hg1 : xs + (1 : ℝ) • Z.G j ∈ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, m y ≤ m x} :=
+    have hg1 : xs + (1 : ℝ) • Z.G j ∈ {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, m y ≤ m x} :=
       ⟨hmemS 1 (by simp), fun y hy => by rw [hmx]; exact hxsG.2 y hy⟩
     have hgG := vsub_mem_vectorSpan ℝ hg1 hxsG
     rw [vsub_eq_sub, one_smul, add_sub_cancel_left, ← hne] at hgG

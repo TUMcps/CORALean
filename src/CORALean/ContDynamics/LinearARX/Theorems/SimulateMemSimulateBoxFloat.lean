@@ -53,7 +53,7 @@ open Plus Mtimes
 /-- A matrix times the real value of a point is in the `mtimes` of its point box. -/
 private theorem LinearARX.aux_mulVec_mem_box (M : Mat 𝕋 (p * dy) du) (v : Vec 𝕋 du) :
     Scalar.toRealMat M *ᵥ Scalar.toRealVec v ∈
-      construct (mtimes (S := ℐ𝒱[𝕋]) M (Interval.point v)) :=
+      toSet (mtimes (S := ℐ𝒱[𝕋]) M (Interval.point v)) :=
   mtimes_outer (S := ℐ𝒱[𝕋]) M _
     (Set.mem_biUnion rfl (Set.mem_image_of_mem _ (Interval.mem_point v)))
 
@@ -62,9 +62,9 @@ private theorem LinearARX.aux_mulVec_mem_box (M : Mat 𝕋 (p * dy) du) (v : Vec
 private theorem LinearARX.aux_foldl_mem_box (M : Fin (p + 1) → Mat 𝕋 (p * dy) du)
     (w : Fin (p + 1) → Vec 𝕋 du) : -- --- CONCL ---
     ∀ (l : List (Fin p)) (acc : Interval (Vec 𝕋 (p * dy))) (a : Vec ℝ (p * dy)),
-      a ∈ construct acc →
+      a ∈ toSet acc →
       a + (l.map fun j => Scalar.toRealMat (M j.succ) *ᵥ Scalar.toRealVec (w j.succ)).sum ∈
-        construct (l.foldl (fun acc j => plus (S := Interval (Vec 𝕋 (p * dy))) acc
+        toSet (l.foldl (fun acc j => plus (S := Interval (Vec 𝕋 (p * dy))) acc
           (mtimes (S := ℐ𝒱[𝕋]) (M j.succ) (Interval.point (w j.succ))))
           acc) := by -- --- PROOF ---
   intro l
@@ -81,7 +81,7 @@ private theorem LinearARX.aux_foldl_mem_box (M : Fin (p + 1) → Mat 𝕋 (p * d
 /-- The real input feed lies in the float feed box. -/
 private theorem LinearARX.aux_feed_mem_feedBox (sys : LinearARX 𝕋 dy du p) (u : ℕ → Vec 𝕋 du)
     (k : ℕ) :
-    sys.feed (fun j => Scalar.toRealVec (u j)) k ∈ construct (sys.step_feedBox u k) := by
+    sys.feed (fun j => Scalar.toRealVec (u j)) k ∈ toSet (sys.step_feedBox u k) := by
   unfold LinearARX.feed LinearARX.step_feedBox
   rw [Fin.sum_univ_succ, Fin.sum_univ_def]
   exact LinearARX.aux_foldl_mem_box sys.inputMat (fun j => u (k + p - j)) (List.finRange p) _ _
@@ -95,7 +95,7 @@ end
 theorem LinearARX.simulate_mem_simulateBox (sys : LinearARX 𝕋 dy du p) (y₀ : Vec 𝕋 (p * dy))
     (u : ℕ → Vec 𝕋 du) (k : ℕ) : -- --- CONCL ---
     LinearARX.stack p (sys.simulate (Scalar.toRealVec y₀) fun j => Scalar.toRealVec (u j)) k ∈
-      construct (sys.simulateBox y₀ u k) := by -- --- PROOF ---
+      toSet (sys.simulateBox y₀ u k) := by -- --- PROOF ---
   -- the ARX recursion for `k ≥ p` is `simulate`'s definition
   have hrec : ∀ k, p ≤ k →
       sys.simulate (Scalar.toRealVec y₀) (fun j => Scalar.toRealVec (u j)) k
@@ -106,7 +106,7 @@ theorem LinearARX.simulate_mem_simulateBox (sys : LinearARX 𝕋 dy du p) (y₀ 
   -- the first window is the start window
   have h0 : LinearARX.stack p
       (sys.simulate (Scalar.toRealVec y₀) fun j => Scalar.toRealVec (u j)) 0 ∈
-        construct (Interval.point y₀) := by
+        toSet (Interval.point y₀) := by
     rw [LinearARX.stack_simulate_zero]
     exact Interval.mem_point y₀
   -- so the stacked windows take the converted system's step

@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 theorem SpectraShadow.polytopeOuter_outer (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (dirs : Fin N → Vec 𝕋 n)
     (Y : (i : Fin N) → Mat 𝕋 S.k S.k) : -- --- CONCL ---
-    S.construct ⊆ (S.polytopeOuter dirs Y).construct := by -- --- PROOF ---
+    S.toSet ⊆ (S.polytopeOuter dirs Y).toSet := by -- --- PROOF ---
   intro x hx
   refine HPolytope.mem_ineqs_iff.2 fun r => ?_
   have hr := (List.mem_filter.1 (List.get_mem

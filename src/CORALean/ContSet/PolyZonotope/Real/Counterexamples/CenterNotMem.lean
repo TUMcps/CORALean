@@ -41,7 +41,7 @@ namespace CORALean.Real
 
 theorem PolyZonotope.center_not_mem_counterexample : -- --- CONCL ---
     let PZ : PolyZonotope (Vec ℝ 1) := ⟨1, 2, 0, 0, ![![2], ![1]], ![![0, 1]], Fin.elim0⟩
-    PZ.c ∉ PZ.construct := by -- --- PROOF ---
+    PZ.c ∉ PZ.toSet := by -- --- PROOF ---
   intro PZ
   rintro ⟨a, β, ha, -, hx⟩
   -- the first coordinate reads `0 = 2 + α`

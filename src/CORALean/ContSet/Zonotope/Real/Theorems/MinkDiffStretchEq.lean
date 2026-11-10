@@ -60,14 +60,14 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 minuend *is* the Minkowski difference. -/
 theorem Zonotope.minkDiffStretch_eq {ι : Type} (Z₁ Z₂ : Zonotope α)
     (C : ι → (α →ₗ[ℝ] ℝ)) (μ : Fin Z₁.h → ℝ) (hμ0 : ∀ υ, 0 ≤ μ υ)
-    (hCm : {y | ∀ i, C i (y - Z₁.c) ≤ ∑ υ, |C i (Z₁.G υ)|} ⊆ Z₁.construct)
+    (hCm : {y | ∀ i, C i (y - Z₁.c) ≤ ∑ υ, |C i (Z₁.G υ)|} ⊆ Z₁.toSet)
     (hCd : {y | ∀ i, C i (y - (Z₁.minkDiffStretch Z₂ μ).c)
                 ≤ ∑ υ, |C i ((Z₁.minkDiffStretch Z₂ μ).G υ)|}
-            ⊆ (Z₁.minkDiffStretch Z₂ μ).construct)
+            ⊆ (Z₁.minkDiffStretch Z₂ μ).toSet)
     (hμ : ∀ i, ∑ υ, |C i (Z₁.G υ)| * μ υ
             = (∑ υ, |C i (Z₁.G υ)|) - ∑ υ, |C i (Z₂.G υ)|) : -- --- CONCL ---
-    minkowskiDiff Z₁.construct Z₂.construct
-      = (Z₁.minkDiffStretch Z₂ μ).construct := by -- --- PROOF ---
+    minkowskiDiff Z₁.toSet Z₂.toSet
+      = (Z₁.minkDiffStretch Z₂ μ).toSet := by -- --- PROOF ---
   refine Set.eq_of_subset_of_subset ?_ ?_
   · -- `≥` in (22) is [1, Thm. 5] at the most conservative admissible `b̃`
     exact Z₁.minkDiffStretch_outer Z₂ C μ hμ0

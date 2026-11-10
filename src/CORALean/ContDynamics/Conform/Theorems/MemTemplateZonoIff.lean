@@ -83,7 +83,7 @@ theorem Conform.mem_templateZono_iff {m : ℕ} {ι κ : Type} [Fintype ι] (c : 
   -- the set and the offsets are the same under the renumbering
   have hset : y ∈ Conform.templateZono c G α ↔
       y ∈ (⟨Z.h, Z.c, fun t => α (e.symm t) • Z.G t⟩ :
-        Real.Zonotope (Vec ℝ (m + 1))).construct := by
+        Real.Zonotope (Vec ℝ (m + 1))).toSet := by
     constructor
     · rintro ⟨β, hβ, rfl⟩
       refine ⟨fun t => β (e.symm t), fun t => hβ _, ?_⟩

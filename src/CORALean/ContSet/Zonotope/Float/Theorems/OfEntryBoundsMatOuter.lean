@@ -73,8 +73,8 @@ theorem Zonotope.ofEntryBoundsMat_outer (Z : CORALean.Real.Zonotope (Mat ℝ m n
     (hc : ∀ i j, toReal (cLo i j) ≤ Z.c i j ∧ Z.c i j ≤ toReal (cHi i j))
     (hG : ∀ k i j, toReal (GLo k i j) ≤ Z.G k i j ∧ Z.G k i j ≤ toReal (GHi k i j))
     : -- --- CONCL ---
-    Z.construct + E.construct
-      ⊆ (Zonotope.ofEntryBoundsMat cLo cHi GLo GHi E).construct := by -- --- PROOF ---
+    Z.toSet + E.toSet
+      ⊆ (Zonotope.ofEntryBoundsMat cLo cHi GLo GHi E).toSet := by -- --- PROOF ---
   rintro _ ⟨_, ⟨β, hβ, rfl⟩, e, he, rfl⟩
   set gap : Mat ℝ m n := fun i j => ∑ k, β k * (Z.G k i j - toReal (GLo k i j))
   set dc : Mat ℝ m n := fun i j => Z.c i j - toReal (cLo i j)

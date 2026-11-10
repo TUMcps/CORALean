@@ -43,8 +43,8 @@ variable {n N : ℕ}
 
 theorem HPolytope.projectHighDim_exact (P : HPolytope (Vec ℝ n))
     (dims : Fin n → Fin N) : -- --- CONCL ---
-    (P.projectHighDim dims).construct
-      = {x | (fun k => x (dims k)) ∈ P.construct
+    (P.projectHighDim dims).toSet
+      = {x | (fun k => x (dims k)) ∈ P.toSet
           ∧ ∀ j, (∀ k, dims k ≠ j) → x j = 0} := by -- --- PROOF ---
   classical
   ext x

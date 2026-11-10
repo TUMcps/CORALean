@@ -46,8 +46,8 @@ variable {n r : ℕ}
 
 /-- CORA's `encloseTight(zB1, zB2, W)`. -/
 noncomputable def ZonoBundle.encloseTight (zB₁ zB₂ : ZonoBundle (Vec ℝ n))
-    (hk₁ : 0 < zB₁.k) (hk₂ : 0 < zB₂.k) (hne₁ : zB₁.construct.Nonempty)
-    (hne₂ : zB₂.construct.Nonempty) (W : Fin r → Mat ℝ n n) (U : Mat ℝ n n) :
+    (hk₁ : 0 < zB₁.k) (hk₂ : 0 < zB₂.k) (hne₁ : zB₁.toSet.Nonempty)
+    (hne₂ : zB₂.toSet.Nonempty) (W : Fin r → Mat ℝ n n) (U : Mat ℝ n n) :
     ZonoBundle (Vec ℝ n) :=
   let V := zB₁.encloseTightVertices zB₂ hk₁ hk₂ hne₁ hne₂            -- vertices([V1, V2])
   haveI : NeZero V.k := ⟨VPolytope.k_ne_zero_of_nonempty

@@ -43,7 +43,7 @@ variable {n : ℕ}
 `contains_vPolytope`, the latter for a nonempty box (`inf ≤ sup`), since the corners of an empty
 box are not in it. -/
 theorem Interval.vPolytope_exact (I : Interval (Vec ℝ n)) (hI : ∀ j, I.inf j ≤ I.sup j) :
-    I.vPolytope.construct = I.construct :=
+    I.vPolytope.toSet = I.toSet :=
   Set.Subset.antisymm (I.contains_vPolytope hI) I.vPolytope_contains
 
 end CORALean.Real

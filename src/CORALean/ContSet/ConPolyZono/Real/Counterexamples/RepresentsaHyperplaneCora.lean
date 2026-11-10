@@ -80,7 +80,7 @@ def ConPolyZono.step_unitSegment : ConPolyZono (Vec ℝ 1) :=
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 private theorem ConPolyZono.aux_mem (t : ℝ) (ht : |t| ≤ 1) :
-    (fun _ => t) ∈ ConPolyZono.step_unitSegment.construct := by
+    (fun _ => t) ∈ ConPolyZono.step_unitSegment.toSet := by
   refine ⟨fun _ => t, Fin.elim0, fun j => j.elim0,
     ⟨(Interval.mem_unit_iff _).mpr fun _ => ht, fun i => i.elim0⟩, ?_⟩
   ext i
@@ -92,7 +92,7 @@ private theorem ConPolyZono.aux_mem (t : ℝ) (ht : |t| ≤ 1) :
 /-- The set is a segment of positive length, no hyperplane; CORA answers `true`. -/
 theorem ConPolyZono.representsa_hyperplane_cora_counterexample : -- --- CONCL ---
     (¬ ∃ (f : (Fin 1 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ), f ≠ 0 ∧
-        ConPolyZono.step_unitSegment.construct = {x | f x = c}) ∧
+        ConPolyZono.step_unitSegment.toSet = {x | f x = c}) ∧
       ConPolyZono.step_unitSegment.representsaHyperplaneCora = true := by -- --- PROOF ---
   refine ⟨CORALean.not_hyperplane_of_two_points_fin1 (ConPolyZono.aux_mem 0 (by norm_num))
     (ConPolyZono.aux_mem 1 (by norm_num)) ?_, by simp [ConPolyZono.representsaHyperplaneCora]⟩

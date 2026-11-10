@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.ExtPolyZonotope
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemExtPolyZonotopeIff
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEq
 
 @[expose] public section
 
@@ -49,7 +49,7 @@ variable {n : ℕ}
 -- The model: CORA's code as printed, kept only to be refuted.
 /-- `[p; ones(m)]` lies in the extended polynomial zonotope. -/
 def ConPolyZono.containsPointCora (cPZ : ConPolyZono (Vec ℝ n)) (p : Vec ℝ n) : Prop :=
-  (p, fun _ => 1) ∈ cPZ.extPolyZonotope.construct
+  (p, fun _ => 1) ∈ cPZ.extPolyZonotope.toSet
 
 end CORALean.Real
 
@@ -62,7 +62,7 @@ open Matrix
 
 theorem ConPolyZono.containsPointCora_counterexample : -- --- CONCL ---
     ∃ (cPZ : ConPolyZono (Vec ℝ 1)) (p : Vec ℝ 1),
-      cPZ.containsPointCora p ∧ p ∉ cPZ.construct := by -- --- PROOF ---
+      cPZ.containsPointCora p ∧ p ∉ cPZ.toSet := by -- --- PROOF ---
   -- one factor `α`, generator `α`, constraint `α = 0`
   let cPZ : ConPolyZono (Vec ℝ 1) :=
     ⟨1, 1, 0, fun _ => 0, fun _ _ => 1, fun _ _ => 1, Fin.elim0, ⟨1, 1, Matrix.of fun _ _ => 1,
@@ -78,7 +78,7 @@ theorem ConPolyZono.containsPointCora_counterexample : -- --- CONCL ---
       simp [cPZ, PolyZonotope.monomial]
   · -- but the constraint pins `α = 0`, so `1` is not in the set
     rintro ⟨a, β, hβ, hs, hx⟩
-    have h0 := ((PolyLevelSet.mem_construct_iff_of_eq cPZ.cons_eq).mp hs).2 0
+    have h0 := ((PolyLevelSet.mem_toSet_iff_of_eq cPZ.cons_eq).mp hs).2 0
     simp [cPZ, Matrix.mulVec, dotProduct, PolyZonotope.monomial] at h0
     have h1 := congrFun hx 0
     simp [cPZ, PolyZonotope.monomial] at h1

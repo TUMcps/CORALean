@@ -40,7 +40,7 @@ variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.I
 
 /-- A set of volume `0` (or `∞`) gets CORA's `iS = 0`, `iProp = 1`: all of it outside. -/
 theorem GridPartition.exactIntersectingCells_of_volume_le (P : GridPartition n) (X : S n)
-    (h : ¬ 0 < GridPartition.volumeOf (construct X)) :
+    (h : ¬ 0 < GridPartition.volumeOf (toSet X)) :
     P.exactIntersectingCells X = ⟨[0], [1]⟩ := by
   unfold GridPartition.exactIntersectingCells; rw [if_neg h]
 

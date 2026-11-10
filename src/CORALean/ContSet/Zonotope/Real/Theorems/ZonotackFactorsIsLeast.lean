@@ -53,7 +53,7 @@ variable {k : ℕ}
 
 /-- The candidate vertex attains the least value of `a y` over `Y`. -/
 theorem Zonotope.zonotackFactors_isLeast (Y : Zonotope (Vec ℝ k)) (a : Vec ℝ k) : -- --- CONCL ---
-    IsLeast ((fun y => a ⬝ᵥ y) '' Y.construct)
+    IsLeast ((fun y => a ⬝ᵥ y) '' Y.toSet)
       (a ⬝ᵥ (Y.c + ∑ j, Y.zonotackFactors a j • Y.G j)) := by -- --- PROOF ---
   -- `a ỹ = a c_y - Σ |a G_y(·,j)|`, as `-sign(x) x = -|x|`
   have hval : a ⬝ᵥ (Y.c + ∑ j, Y.zonotackFactors a j • Y.G j) =

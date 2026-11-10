@@ -46,7 +46,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.vPolytope_contains (I : Interval (Vec ℝ n)) : -- --- CONCL ---
-    I.construct ⊆ I.vPolytope.construct := by -- --- PROOF ---
+    I.toSet ⊆ I.vPolytope.toSet := by -- --- PROOF ---
   intro x hx
   have hlo : ∀ j, I.inf j ≤ x j := fun j => (hx j).1
   have hhi : ∀ j, x j ≤ I.sup j := fun j => (hx j).2

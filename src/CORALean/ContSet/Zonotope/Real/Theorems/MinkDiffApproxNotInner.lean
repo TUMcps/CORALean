@@ -179,9 +179,9 @@ theorem Zonotope.minkDiffApprox_not_inner : -- --- CONCL ---
       (∀ i, StrictMono (S i)) ∧ Function.Injective S ∧
       (∀ i, C i = (√(Z₁.facetNormal (S i) ⬝ᵥ Z₁.facetNormal (S i)))⁻¹
         • Z₁.facetNormal (S i)) ∧
-      (0 : Vec ℝ 3) ∈ minkowskiDiff Z₁.construct Z₂.construct ∧
-      ¬ (Z₁.minkDiffApprox Z₂ C).construct
-          ⊆ minkowskiDiff Z₁.construct Z₂.construct := by -- --- PROOF ---
+      (0 : Vec ℝ 3) ∈ minkowskiDiff Z₁.toSet Z₂.toSet ∧
+      ¬ (Z₁.minkDiffApprox Z₂ C).toSet
+          ⊆ minkowskiDiff Z₁.toSet Z₂.toSet := by -- --- PROOF ---
   refine ⟨aux_Am, aux_As, aux_AC, aux_AS, aux_S_strictMono, aux_S_injective, aux_C_eq, ?_, ?_⟩
   -- `0` is in the difference: `(0, 0, t/2) = (t/4) (g₂ - g₁)`
   · rintro y ⟨β, hβ, rfl⟩
@@ -198,7 +198,7 @@ theorem Zonotope.minkDiffApprox_not_inner : -- --- CONCL ---
   · intro hsub
     rw [aux_minkDiffApprox] at hsub
     have hp : (![56/29, 25/29, 53/29] : Vec ℝ 3)
-        ∈ (aux_Am.minkDiffStretch aux_As ![25/29, 25/29, 28/29, 28/29]).construct := by
+        ∈ (aux_Am.minkDiffStretch aux_As ![25/29, 25/29, 28/29, 28/29]).toSet := by
       have hb : ∀ j : Fin 4, |(![0, 1, 0, 1] : Fin 4 → ℝ) j| ≤ 1 := by
         intro j
         fin_cases j <;> simp
@@ -210,7 +210,7 @@ theorem Zonotope.minkDiffApprox_not_inner : -- --- CONCL ---
       fin_cases k <;> simp [aux_Am, aux_As] <;>
         norm_num
     -- `s = (0, 0, ½)`, at coefficient `1`
-    have hs : (![0, 0, 1/2] : Vec ℝ 3) ∈ aux_As.construct :=
+    have hs : (![0, 0, 1/2] : Vec ℝ 3) ∈ aux_As.toSet :=
       ⟨fun _ => 1, fun _ => by simp, by ext k; fin_cases k <;> simp [aux_As]⟩
     obtain ⟨β, hβ, hx⟩ := hsub hp _ hs
     rw [aux_sum_univ_Zm] at hx

@@ -62,16 +62,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 float error solution for every `v ∈ Vdyn` and `s ∈ Vstat`. -/
 theorem LinearSys.expIntegral_mem_errorSolutionAdaptiveFloat_static (sys : LinearSys 𝕋 n)
     {Δt : 𝕋} {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η)
-    {Vdyn Vstat : Zonotope (Vec 𝕋 n)} {v s : Vec ℝ n} (hv : v ∈ Vdyn.construct)
-    (hs : s ∈ Vstat.construct) : -- --- CONCL ---
+    {Vdyn Vstat : Zonotope (Vec 𝕋 n)} {v s : Vec ℝ n} (hv : v ∈ Vdyn.toSet)
+    (hs : s ∈ Vstat.toSet) : -- --- CONCL ---
     Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt) *ᵥ v
         + Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt) *ᵥ s
-      ∈ (sys.errorSolutionAdaptiveFloat Δt η Vdyn (some Vstat)).construct := by -- --- PROOF ---
+      ∈ (sys.errorSolutionAdaptiveFloat Δt η Vdyn (some Vstat)).toSet := by -- --- PROOF ---
   set A := Scalar.toRealMat sys.A with hA
   have hdyn := sys.expIntegral_mem_errorSolutionAdaptiveFloat hΔt hη hv
   -- the integrated exponential is in the exact `eAtInt`, so in the float one
   have hint : Real.MatExp.expIntegral A (toReal Δt)
-      ∈ (Real.MatExp.adaptiveIntegral A (toReal Δt) η).construct := by
+      ∈ (Real.MatExp.adaptiveIntegral A (toReal Δt) η).toSet := by
     refine Real.Interval.mem_mat_iff.mpr fun j k => ?_
     have hmem := Real.Interval.mem_mat_iff.mp
       (Real.MatExp.expIntegral_sub_sum_mem_adaptiveRemainder A hΔt.le η) j k

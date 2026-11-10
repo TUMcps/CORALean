@@ -36,7 +36,7 @@ variable {n : ℕ}
 
 theorem LevelSet.not_exact {L : LevelSet n} : -- --- CONCL ---
     ∀ L' ∈ L.not,
-      L'.construct = L.construct ᶜ := by -- --- PROOF ---
+      L'.toSet = L.toSet ᶜ := by -- --- PROOF ---
   intro L' (h : L.not = some L')
   obtain ⟨m, f, op⟩ := L
   match m, f, op, h with
@@ -46,10 +46,10 @@ theorem LevelSet.not_exact {L : LevelSet n} : -- --- CONCL ---
     cases hop : op 0 <;> simp only [reduceCtorEq, Option.some.injEq]
     · rintro rfl
       ext x
-      simp [LevelSet.construct, Fin.forall_fin_one, hop, CompOp.holds]
+      simp [LevelSet.toSet, Fin.forall_fin_one, hop, CompOp.holds]
     · rintro rfl
       ext x
-      simp [LevelSet.construct, Fin.forall_fin_one, hop, CompOp.holds]
+      simp [LevelSet.toSet, Fin.forall_fin_one, hop, CompOp.holds]
     · intro h
       exact h.elim
 

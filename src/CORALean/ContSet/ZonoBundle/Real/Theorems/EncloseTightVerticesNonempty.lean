@@ -41,9 +41,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.encloseTightVertices_nonempty (zB₁ zB₂ : ZonoBundle (Vec ℝ n))
-    (hk₁ : 0 < zB₁.k) (hk₂ : 0 < zB₂.k) (hne₁ : zB₁.construct.Nonempty)
-    (hne₂ : zB₂.construct.Nonempty) :
-    (zB₁.encloseTightVertices zB₂ hk₁ hk₂ hne₁ hne₂).construct.Nonempty := by
+    (hk₁ : 0 < zB₁.k) (hk₂ : 0 < zB₂.k) (hne₁ : zB₁.toSet.Nonempty)
+    (hne₂ : zB₂.toSet.Nonempty) :
+    (zB₁.encloseTightVertices zB₂ hk₁ hk₂ hne₁ hne₂).toSet.Nonempty := by
   unfold ZonoBundle.encloseTightVertices
   rw [VPolytope.convHull_exact]
   obtain ⟨x, hx⟩ := hne₁

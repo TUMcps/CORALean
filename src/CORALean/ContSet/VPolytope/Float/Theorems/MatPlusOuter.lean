@@ -42,16 +42,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.matPlus_outer (P₁ P₂ : VPolytope (Mat 𝕋 m n)) : -- --- CONCL ---
-    InflatedContSet.construct P₁ + InflatedContSet.construct P₂ ⊆
-      InflatedContSet.construct (P₁.matPlus P₂) := by -- --- PROOF ---
+    InflatedContSet.toSet P₁ + InflatedContSet.toSet P₂ ⊆
+      InflatedContSet.toSet (P₁.matPlus P₂) := by -- --- PROOF ---
   rintro _ ⟨A, hA, B, hB, rfl⟩
   -- the stacked operands are in the stacked polytopes
-  have hA' : matVecEquiv A ∈ InflatedContSet.construct P₁.vec := by
+  have hA' : matVecEquiv A ∈ InflatedContSet.toSet P₁.vec := by
     rw [VPolytope.vec_exact]; exact ⟨A, hA, rfl⟩
-  have hB' : matVecEquiv B ∈ InflatedContSet.construct P₂.vec := by
+  have hB' : matVecEquiv B ∈ InflatedContSet.toSet P₂.vec := by
     rw [VPolytope.vec_exact]; exact ⟨B, hB, rfl⟩
   -- so their sum is in the stacked pairwise sums
-  have h1 : matVecEquiv A + matVecEquiv B ∈ (P₁.vec.plus P₂.vec).construct :=
+  have h1 : matVecEquiv A + matVecEquiv B ∈ (P₁.vec.plus P₂.vec).toSet :=
     VPolytope.plus_outer P₁.vec P₂.vec ⟨_, hA', _, hB', rfl⟩
   rw [VPolytope.matPlus, VPolytope.unvec_exact]
   exact ⟨_, h1, by simp⟩

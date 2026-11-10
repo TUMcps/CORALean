@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpper
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemAndRowsIff
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEq
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCol
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCoef
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionMeanSq
@@ -11,7 +11,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.ProdUnitCol
 public import Mathlib.Algebra.BigOperators.Fin
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 public import CORALean.ContSet.PolyZonotope.Real.PolyZonotope
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUnit
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEqUnit
 public import Mathlib.Tactic.FinCases
 
 @[expose] public section
@@ -123,7 +123,7 @@ private theorem ConPolyZono.aux_unionCon_value {p₁ p₂ : ℕ}
 /-- The selector rows hold exactly when the factors are in the unit box, `α₁α₂ = 1` and the
 selector polynomial vanishes. -/
 theorem ConPolyZono.mem_unionUpper_iff {p₁ p₂ : ℕ} (a : Fin (p₁ + p₂ + 2) → ℝ) : -- --- CONCL ---
-    a ∈ (ConPolyZono.unionUpper p₁ p₂).construct
+    a ∈ (ConPolyZono.unionUpper p₁ p₂).toSet
       ↔ (∀ k, |a k| ≤ 1) ∧ (a (ConPolyZono.unionSel p₁ p₂) * a (Fin.natAdd (p₁ + p₂) 1) = 1
         ∧ (1 + a (ConPolyZono.unionSel p₁ p₂)
               + 2⁻¹ * ConPolyZono.unionMeanSq (fun j => a (Fin.castAdd 2 (Fin.castAdd p₂ j)))
@@ -132,7 +132,7 @@ theorem ConPolyZono.mem_unionUpper_iff {p₁ p₂ : ℕ} (a : Fin (p₁ + p₂ +
               * ConPolyZono.unionMeanSq (fun k => a (Fin.castAdd 2 (Fin.natAdd p₁ k))))
           - a (Fin.natAdd (p₁ + p₂) 1) - 1 = 0) := by -- --- PROOF ---
   -- the two rows, each a system of its own over the same factors
-  have hsplit : a ∈ (ConPolyZono.unionUpper p₁ p₂).construct
+  have hsplit : a ∈ (ConPolyZono.unionUpper p₁ p₂).toSet
       ↔ ((∀ k, |a k| ≤ 1) ∧ ∀ i : Fin 1, ((fun _ _ => (1 : ℝ)) *ᵥ
           PolyZonotope.monomial (fun k (_ : Fin 1) =>
             ConPolyZono.unitCol (ConPolyZono.unionSel p₁ p₂) 1 k
@@ -141,7 +141,7 @@ theorem ConPolyZono.mem_unionUpper_iff {p₁ p₂ : ℕ} (a : Fin (p₁ + p₂ +
             PolyZonotope.monomial (fun k l => ConPolyZono.unionConCol p₁ p₂ l k) a) i
           - (0 : Vec ℝ 1) i = 0 := by
     rw [ConPolyZono.unionUpper, PolyLevelSet.mem_andRows_iff,
-      PolyLevelSet.mem_construct_iff_of_eq_unit (fun _ => rfl) rfl]
+      PolyLevelSet.mem_toSet_iff_of_eq_unit (fun _ => rfl) rfl]
     rfl
   rw [hsplit]
   constructor

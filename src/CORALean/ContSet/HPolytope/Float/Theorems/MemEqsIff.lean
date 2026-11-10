@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.Eqs
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 
 @[expose] public section
 
@@ -40,9 +40,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mem_eqs_iff {Ae : Mat 𝕋 q n} {be : Vec 𝕋 q} {x : Vec ℝ n} :
-    x ∈ (HPolytope.eqs Ae be).construct ↔ ∀ i, (toRealMat Ae *ᵥ x) i = toReal (be i) :=
-  ⟨fun h => ((HPolytope.mem_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mp h).2,
-   fun h => (HPolytope.mem_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mpr
+    x ∈ (HPolytope.eqs Ae be).toSet ↔ ∀ i, (toRealMat Ae *ᵥ x) i = toReal (be i) :=
+  ⟨fun h => ((HPolytope.mem_toSet_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mp h).2,
+   fun h => (HPolytope.mem_toSet_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)).mpr
      ⟨fun i => i.elim0, h⟩⟩
 
 end CORALean.Float

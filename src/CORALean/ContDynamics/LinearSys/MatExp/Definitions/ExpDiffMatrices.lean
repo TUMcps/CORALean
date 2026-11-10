@@ -52,7 +52,7 @@ variable {n : ℕ}
 
 /-- The matrices `s (e^{Ar} - I) + F`, `s ∈ [0, 1]`, `F` of the correction matrix. -/
 def MatExp.expDiffMatrices (A : Mat ℝ n n) (r : ℝ) (m : ℕ) : Set (Mat ℝ n n) :=
-  {B | ∃ s ∈ Set.Icc (0 : ℝ) 1, ∃ F ∈ (MatExp.correctionMatrix A r (m + 2)).construct,
+  {B | ∃ s ∈ Set.Icc (0 : ℝ) 1, ∃ F ∈ (MatExp.correctionMatrix A r (m + 2)).toSet,
     B = s • (exp (r • A) - 1) + F}
 
 

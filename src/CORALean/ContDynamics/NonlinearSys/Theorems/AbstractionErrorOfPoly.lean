@@ -4,7 +4,7 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.IsAbstractionError
 public import CORALean.ContDynamics.NonlinearSys.Definitions.IsPolyAbstractionError
 public import CORALean.ContSet.PolyZonotope.Real.Instances
 public import CORALean.ContSet.PolyZonotope.Real.Operations.SubsetAt
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemToSet
 
 @[expose] public section
 
@@ -77,7 +77,7 @@ theorem IsAbstractionError.of_poly {f : Vec ℝ n → Vec ℝ m → Vec ℝ n} {
   encloses x hx u hu := by
     obtain ⟨a, ha, rfl⟩ := hx
     exact plus_outer L W
-      (aux_mem_add_of_sub (L.point_mem_construct fun k => hBa a ha _) (cert.encloses a ha u hu))
+      (aux_mem_add_of_sub (L.point_mem_toSet fun k => hBa a ha _) (cert.encloses a ha u hu))
 
 end CORALean
 

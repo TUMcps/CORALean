@@ -36,11 +36,11 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.and_region (P Q : Polygon) : -- --- CONCL ---
-    ContSet.construct P ∩ ContSet.construct Q =
+    ContSet.toSet P ∩ ContSet.toSet Q =
       ⋃ p ∈ P.sets, ⋃ q ∈ Q.sets,
-        (VPolytope.construct p ∩ VPolytope.construct q) := by -- --- PROOF ---
+        (VPolytope.toSet p ∩ VPolytope.toSet q) := by -- --- PROOF ---
   ext x
-  simp only [Set.mem_inter_iff, Set.mem_iUnion, SetUnion.mem_construct, exists_prop]
+  simp only [Set.mem_inter_iff, Set.mem_iUnion, SetUnion.mem_toSet, exists_prop]
   constructor
   · rintro ⟨⟨p, hp, hxp⟩, ⟨q, hq, hxq⟩⟩
     exact ⟨p, hp, q, hq, hxp, hxq⟩

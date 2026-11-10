@@ -42,9 +42,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {P 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.interval_contains
-    (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
-    P.construct ⊆ (HPolytope.interval up lo).construct :=
+    (up : ∀ j, FloatBound 𝕋 P.toSet (LinearMap.proj j))
+    (lo : ∀ j, FloatBound 𝕋 P.toSet (-LinearMap.proj j)) :
+    P.toSet ⊆ (HPolytope.interval up lo).toSet :=
   Interval.subset_ofBounds up lo
 
 end CORALean.Float

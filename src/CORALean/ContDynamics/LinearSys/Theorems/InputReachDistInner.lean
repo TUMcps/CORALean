@@ -69,9 +69,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- Every point of the exact one-step particular solution is `O(Δt²)` from the
 inner approximation. -/
 theorem LinearSys.inputReach_dist_inputSolutionInner (sys : LinearSys 𝕋 n) {U : S n}
-    {Δt ρ : ℝ} (hΔt : 0 < Δt) (hconv : Convex ℝ (construct U))
-    (hclosed : IsClosed (construct U)) (hbdd : Bornology.IsBounded (construct U))
-    (hρ : ∀ v ∈ construct U, ‖v‖ ≤ ρ) : -- --- CONCL ---
+    {Δt ρ : ℝ} (hΔt : 0 < Δt) (hconv : Convex ℝ (toSet U))
+    (hclosed : IsClosed (toSet U)) (hbdd : Bornology.IsBounded (toSet U))
+    (hρ : ∀ v ∈ toSet U, ‖v‖ ≤ ρ) : -- --- CONCL ---
     ∀ x ∈ sys.inputReach U Δt, ∃ y ∈ sys.inputSolutionInner U Δt,
       ‖x - y‖ ≤ 2 * ρ * ‖toRealMat sys.A‖ * Real.exp (Δt * ‖toRealMat sys.A‖)
         * Δt ^ 2 := by -- --- PROOF ---
@@ -80,7 +80,7 @@ theorem LinearSys.inputReach_dist_inputSolutionInner (sys : LinearSys 𝕋 n) {U
   have hmeasIoc : AEStronglyMeasurable u (volume.restrict (Set.Ioc 0 Δt)) :=
     hmeas.mono_measure (Measure.restrict_mono Set.Ioc_subset_Icc_self le_rfl)
   -- the mean input over the step, which convexity and closedness put back in `U`
-  have hmean : (∫ τ in (0:ℝ)..Δt, u τ) ∈ Δt • construct U := by
+  have hmean : (∫ τ in (0:ℝ)..Δt, u τ) ∈ Δt • toSet U := by
     have h := integral_pow_smul_mem hconv hclosed hbdd hΔt 0 hmeasIoc
       (fun τ hτ => hu τ ⟨hτ.1.le, hτ.2⟩)
     simpa using h

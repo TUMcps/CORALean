@@ -56,7 +56,7 @@ theorem PolyZonotope.innerApproxImage_subset_image (pZ : PolyZonotope (Vec 𝕋 
     (X : Interval (Vec 𝕋 pZ.p)) (tol : 𝕋) (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k)
     (iter depth : ℕ) (X₀ : Interval (Vec 𝕋 pZ.p)) : -- --- CONCL ---
     ∀ Y ∈ PolyZonotope.innerApproxImage pZ X tol inv iter depth X₀,
-      Y.construct ⊆ (PolyZonotope.nominal pZ).point '' X.construct := by -- --- PROOF ---
+      Y.toSet ⊆ (PolyZonotope.nominal pZ).point '' X.toSet := by -- --- PROOF ---
   induction depth generalizing X₀ with
   | zero => intro Y hY; cases hY
   | succ depth ih =>

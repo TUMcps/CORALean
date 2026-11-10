@@ -15,8 +15,8 @@ directions and the bounds are composed, `addUp` when two extents are added.
 * `Aq` – `q × n` matrix
 
 ## Hypotheses
-* `u₁` – a float bound of `P₁.construct` along each row
-* `u₂` – a float bound of `P₂.construct` along each row
+* `u₁` – a float bound of `P₁.toSet` along each row
+* `u₂` – a float bound of `P₂.toSet` along each row
 
 ## Output
 * the polytope on the directions `Aq` bounded by the added bounds of `u₁` and `u₂`
@@ -41,8 +41,8 @@ variable {P₁ P₂ : HPolytope 𝕋 (Vec 𝕋 n)}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def HPolytope.plusOf (Aq : Mat 𝕋 q n)
-    (u₁ : ∀ i, FloatBound 𝕋 P₁.construct (Real.HPolytope.rowLin (toRealMat Aq) i))
-    (u₂ : ∀ i, FloatBound 𝕋 P₂.construct (Real.HPolytope.rowLin (toRealMat Aq) i)) : HPolytope 𝕋
+    (u₁ : ∀ i, FloatBound 𝕋 P₁.toSet (Real.HPolytope.rowLin (toRealMat Aq) i))
+    (u₂ : ∀ i, FloatBound 𝕋 P₂.toSet (Real.HPolytope.rowLin (toRealMat Aq) i)) : HPolytope 𝕋
         (Vec 𝕋 n) :=
   HPolytope.ofBounds Aq fun i => (u₁ i).add (u₂ i)
 

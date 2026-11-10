@@ -45,13 +45,13 @@ omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
 theorem LinearSys.inputReach_subset_inputSolution [Mtimes ℐ S]
     (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {U : S n}
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U))
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U))
     (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
     (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
     (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r η
       U)) : -- --- CONCL ---
-    sys.inputReach U r ⊆ construct (sys.inputSolution r η U) := by -- --- PROOF ---
+    sys.inputReach U r ⊆ toSet (sys.inputSolution r η U) := by -- --- PROOF ---
   rintro _ ⟨u, hmem, hmeas, rfl⟩
   refine sys.inputSolution_outer hr η hε hconv hclosed hbdd hRconv hRclosed hRbdd ?_
     (aestronglyMeasurable_reflect_Ioc hmeas)

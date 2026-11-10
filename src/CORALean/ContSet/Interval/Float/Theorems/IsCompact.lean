@@ -10,7 +10,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.IsCompact
 
 The stored box denotes the exact layer's box `nominal`, which is compact by
 Heine–Borel. This is the theorem behind the `CompactSet` instance of
-`Float/Instances.lean`, and with it `CompactSet.isBounded_construct` gives
+`Float/Instances.lean`, and with it `CompactSet.isBounded_toSet` gives
 `isBounded` at float.
 
 ## Inputs
@@ -40,8 +40,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.isCompact_construct (I : Interval (Vec 𝕋 n)) : IsCompact I.construct :=
-  I.nominal.isCompact_construct
+theorem Interval.isCompact_toSet (I : Interval (Vec 𝕋 n)) : IsCompact I.toSet :=
+  I.nominal.isCompact_toSet
 
 end CORALean.Float
 

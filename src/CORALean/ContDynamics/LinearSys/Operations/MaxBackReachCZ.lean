@@ -5,7 +5,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.MinkDiffOf
 public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Real.Theorems.IsBoundedDropEqsMinkDiffOf
 public import CORALean.ContSet.Zonotope.Real.Operations.SupportBound
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 
 @[expose] public section
 
@@ -55,15 +55,15 @@ variable {n : ℕ}
 /-- [1, Alg. 3] line 11, one operand: `CZ(P ⊖ Ẑ_W(τ_k))`, the eroded polytope converted by
 [1, Alg. 1]. -/
 noncomputable def LinearSys.maxBackReachCZ
-    (ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.construct)
-      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
-    (P : HPolytope (Vec ℝ n)) (hP : Bornology.IsBounded P.dropEqs.construct)
+    (ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.toSet)
+      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.toSet c)
+    (P : HPolytope (Vec ℝ n)) (hP : Bornology.IsBounded P.dropEqs.toSet)
     (ZW : Zonotope (Vec ℝ n)) : ConZonotope (Vec ℝ n) :=
   -- 11. P ⊖ Ẑ_W(τ_k), (11)
-  let P_ZW := P.minkDiffOf ZW.construct fun j => ZW.supportBound (P.A j)
-  have hP_ZW : Bornology.IsBounded P_ZW.construct :=                 -- bounded, so `ρ` answers
-    (HPolytope.isBounded_dropEqs_minkDiffOf _ hP ⟨ZW.c, ZW.center_mem_construct⟩).subset
-      P_ZW.construct_subset_dropEqs
+  let P_ZW := P.minkDiffOf ZW.toSet fun j => ZW.supportBound (P.A j)
+  have hP_ZW : Bornology.IsBounded P_ZW.toSet :=                 -- bounded, so `ρ` answers
+    (HPolytope.isBounded_dropEqs_minkDiffOf _ hP ⟨ZW.c, ZW.center_mem_toSet⟩).subset
+      P_ZW.toSet_subset_dropEqs
   -- 11. CZ(P ⊖ Ẑ_W(τ_k))
   HPolytope.conZonotope (P := P_ZW)                                   -- box, by Alg. 1
     (fun j => ρ P_ZW hP_ZW (LinearMap.proj j)) (fun j => ρ P_ZW hP_ZW (-LinearMap.proj j))

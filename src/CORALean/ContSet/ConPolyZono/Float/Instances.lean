@@ -64,7 +64,7 @@ instance {n : ℕ} : Intersection (ConPolyZono 𝕋 (Vec 𝕋 n)) (Vec ℝ n) wh
 instance : Mtimes (Mat 𝕋) (fun k => ConPolyZono 𝕋 (Vec 𝕋 k)) where
   mtimes M cPZ := (ConPolyZono.mtimes M cPZ).materialise
   mtimes_outer M cPZ := by
-    simp only [ContSet.construct_mat, Set.biUnion_singleton, ConPolyZono.materialise_eq]
+    simp only [ContSet.toSet_mat, Set.biUnion_singleton, ConPolyZono.materialise_eq]
     exact ConPolyZono.mtimes_outer M cPZ
 
 /-- Exact, alone among the fields here: a relabelling moves stored floats and

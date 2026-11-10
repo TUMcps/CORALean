@@ -40,7 +40,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.zonoBundle_contains (cZ : ConZonotope α) :
-    cZ.construct ⊆ cZ.zonoBundle.construct :=
+    cZ.toSet ⊆ cZ.zonoBundle.toSet :=
   subset_trans cZ.zonotope_contains (Zonotope.zonoBundle_exact _).subset
 
 end CORALean.Real

@@ -42,7 +42,7 @@ variable {n : ℕ}
 
 /-- Through the box's zonotope, whose factors are the variables here. -/
 theorem Interval.taylm_contains (I : Interval (Vec ℝ n)) (N : ℕ) : -- --- CONCL ---
-    I.construct ⊆ Taylm.construct (I.taylm N) := by -- --- PROOF ---
+    I.toSet ⊆ Taylm.toSet (I.taylm N) := by -- --- PROOF ---
   intro x hx
   obtain ⟨β, hβ, hxβ⟩ := I.zonotope_contains hx
   refine ⟨β, hβ, fun i => ?_⟩

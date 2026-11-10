@@ -41,7 +41,7 @@ variable {n m : ℕ}
 
 /-- `{ (xᵀ T x) * x | x ∈ Z } ⊆ Z.cubMap T`. -/
 theorem Zonotope.cubMap_outer (T : Fin m → Fin n → Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) :
-    PolyZonotope.cubEval T '' Z.construct ⊆ (Z.cubMap T).construct := by
+    PolyZonotope.cubEval T '' Z.toSet ⊆ (Z.cubMap T).toSet := by
   rintro _ ⟨x, ⟨p, hp, rfl⟩, rfl⟩
   obtain ⟨γ, hγ, -, hx⟩ := Zonotope.cubMap_coeff T Z p hp
   exact ⟨γ, hγ, hx⟩

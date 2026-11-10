@@ -40,10 +40,10 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.mem_ofPoint_iff (v x : α) : -- --- CONCL ---
-    x ∈ (ZonoBundle.ofPoint v).construct ↔ x = v := by -- --- PROOF ---
+    x ∈ (ZonoBundle.ofPoint v).toSet ↔ x = v := by -- --- PROOF ---
   constructor
   · intro h
-    exact (Zonotope.mem_ofPoint_iff v x).mp (SetIntersection.mem_construct_ofFn.mp h (0 : Fin 1))
+    exact (Zonotope.mem_ofPoint_iff v x).mp (SetIntersection.mem_toSet_ofFn.mp h (0 : Fin 1))
   · rintro rfl
     exact ZonoBundle.mem_ofPoint _
 

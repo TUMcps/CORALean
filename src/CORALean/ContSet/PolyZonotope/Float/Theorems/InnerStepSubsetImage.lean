@@ -94,9 +94,9 @@ end
 
 /-- `jacobianBox` encloses the Jacobian. -/
 private theorem PolyZonotope.aux_jacobianBox_outer (pZ : PolyZonotope (Vec 𝕋 n))
-    (X : Interval (Vec 𝕋 pZ.p)) {a : Vec ℝ pZ.p} (ha : a ∈ X.construct) : -- --- CONCL ---
+    (X : Interval (Vec 𝕋 pZ.p)) {a : Vec ℝ pZ.p} (ha : a ∈ X.toSet) : -- --- CONCL ---
     Real.PolyZonotope.jacobianMat (PolyZonotope.nominal pZ) a ∈
-      (PolyZonotope.jacobianBox pZ X).construct := by -- --- PROOF ---
+      (PolyZonotope.jacobianBox pZ X).toSet := by -- --- PROOF ---
   rw [PolyZonotope.jacobianBox, Interval.materialiseMat_eq]
   refine Interval.mem_mat_iff.mpr fun i k => ?_
   -- the lowered monomials, and the exact coefficients between their roundings
@@ -104,7 +104,7 @@ private theorem PolyZonotope.aux_jacobianBox_outer (pZ : PolyZonotope (Vec 𝕋 
     (fun k' l => if k' = k then pZ.E k l - 1 else pZ.E k' l) X ha
   have hC : (fun i l => (pZ.E k l : ℝ) * toReal (pZ.G l i)) ∈
       (⟨fun i l => nsmulDown (pZ.E k l) (pZ.G l i), fun i l => nsmulUp (pZ.E k l) (pZ.G l i)⟩ :
-        Interval (Mat 𝕋 n pZ.h)).construct :=
+        Interval (Mat 𝕋 n pZ.h)).toSet :=
     Interval.mem_mat_iff.mpr fun i l => ⟨nsmulDown_le _ _, le_nsmulUp _ _⟩
   have h := Interval.mtimesIntervalMat_outer _ _ (Set.mem_biUnion hC ⟨_, hm, rfl⟩) i
   -- the column's point is that product, coordinate `i`
@@ -126,10 +126,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
 private theorem PolyZonotope.aux_jacobiSlice_mem_sliceBox (X₀ : Interval (Vec 𝕋 p))
     {ind : Fin n → Fin p}
     (hind : Function.Injective ind) (U : Interval (Vec 𝕋 n)) {xc : Vec ℝ p} {v : Vec ℝ n}
-    (hv : v ∈ U.construct)
+    (hv : v ∈ U.toSet)
     (hxc : ∀ k, (∀ i, ind i ≠ k) → toReal (X₀.inf k) ≤ xc k ∧ xc k ≤ toReal (X₀.sup k))
     : -- --- CONCL ---
-    jacobiSlice xc ind v ∈ (PolyZonotope.step_sliceBox X₀ ind U).construct := by -- --- PROOF ---
+    jacobiSlice xc ind v ∈ (PolyZonotope.step_sliceBox X₀ ind U).toSet := by -- --- PROOF ---
   intro k
   show toReal ((PolyZonotope.step_sliceBox X₀ ind U).inf k) ≤ jacobiSlice xc ind v k ∧
     jacobiSlice xc ind v k ≤ toReal ((PolyZonotope.step_sliceBox X₀ ind U).sup k)
@@ -167,14 +167,14 @@ theorem PolyZonotope.innerStep_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
     (hxc : ∀ k, (∀ i, ind i ≠ k) → (toReal (X.inf k) ≤ toReal (xc k) ∧
       toReal (xc k) ≤ toReal (X.sup k)) ∧ (toReal (X₀.inf k) ≤ toReal (xc k) ∧
       toReal (xc k) ≤ toReal (X₀.sup k))) (b : Interval (Vec 𝕋 n))
-    (hb : ∀ y ∈ Y.construct, Matrix.mulVec (toRealMat C)
-      (y - (PolyZonotope.nominal pZ).point (toRealVec xc)) ∈ b.construct) (U : Interval (Vec 𝕋 n))
-    (hU : U.construct ⊆ (⟨fun i => X.inf (ind i), fun i => X.sup (ind i)⟩ :
-      Interval (Vec 𝕋 n)).construct)
+    (hb : ∀ y ∈ Y.toSet, Matrix.mulVec (toRealMat C)
+      (y - (PolyZonotope.nominal pZ).point (toRealVec xc)) ∈ b.toSet) (U : Interval (Vec 𝕋 n))
+    (hU : U.toSet ⊆ (⟨fun i => X.inf (ind i), fun i => X.sup (ind i)⟩ :
+      Interval (Vec 𝕋 n)).toSet)
     (hmem : (Interval.point fun i => xc (ind i)).le U = true) : -- --- CONCL ---
     ∀ t ∈ PolyZonotope.innerStep pZ X₀ ind C xc b U,
       (((Interval.point fun i => xc (ind i)).plus t).le U = true) →
-      Y.construct ⊆ (PolyZonotope.nominal pZ).point '' X.construct := by -- --- PROOF ---
+      Y.toSet ⊆ (PolyZonotope.nominal pZ).point '' X.toSet := by -- --- PROOF ---
   intro t (h : PolyZonotope.innerStep pZ X₀ ind C xc b U = some t) hcand
   unfold PolyZonotope.innerStep at h
   dsimp only at h
@@ -186,9 +186,9 @@ theorem PolyZonotope.innerStep_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
   set CJ := Interval.matMul (Interval.point C) (PolyZonotope.jacobianBox pZ
     (PolyZonotope.step_sliceBox X₀ ind U))
   -- the Jacobian on the slice lies in `C·jacobianBox`
-  have hCJ : ∀ z ∈ (PolyZonotope.step_sliceBox X₀ ind U).construct,
+  have hCJ : ∀ z ∈ (PolyZonotope.step_sliceBox X₀ ind U).toSet,
       toRealMat C * Real.PolyZonotope.jacobianMat (PolyZonotope.nominal pZ) z ∈
-        CJ.construct := fun z hz =>
+        CJ.toSet := fun z hz =>
     Interval.matMul_outer _ _ (Interval.mem_point C) (PolyZonotope.aux_jacobianBox_outer pZ _ hz)
   intro y hy
   have hsel : ∀ k, (List.finRange n).any (fun i => decide (ind i = k)) = false →
@@ -224,7 +224,7 @@ theorem PolyZonotope.innerStep_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
     · rw [aux_jacobiSlice_apply_of_ne _ _ fun i hi => hk ⟨i, hi⟩]
       exact (hxc k fun i hi => hk ⟨i, hi⟩).1
   · intro A hA v hv i
-    have hvU : v ∈ U.construct := fun i => ⟨hv.1 i, hv.2 i⟩
+    have hvU : v ∈ U.toSet := fun i => ⟨hv.1 i, hv.2 i⟩
     -- the diagonal is bounded away from `0`
     have hDi := List.all_eq_true.mp hD i (List.mem_finRange i)
     simp only [Bool.or_eq_true] at hDi
@@ -239,7 +239,7 @@ theorem PolyZonotope.innerStep_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
     set A' : Mat ℝ n n := fun i j => if i = j then 0 else A i j
     have hA' : A' ∈ (⟨fun i j => if i = j then zero else CJ.inf i (ind j),
         fun i j => if i = j then zero else CJ.sup i (ind j)⟩ :
-          Interval (Mat 𝕋 n n)).construct := by
+          Interval (Mat 𝕋 n n)).toSet := by
       refine Interval.mem_mat_iff.mpr fun i j => ?_
       by_cases hij : i = j
       · simp only [A', if_pos hij, toReal_zero, le_refl, and_self]
@@ -250,7 +250,7 @@ theorem PolyZonotope.innerStep_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
     have hoff := Interval.mtimesIntervalMat_outer _ _ (Set.mem_biUnion hA' ⟨_, hw, rfl⟩)
     have hr := Interval.minus_outer _ _ (Set.sub_mem_sub (hb y hy) hoff)
     have hdiag : (fun i => A i i) ∈ (⟨fun i => CJ.inf i (ind i), fun i => CJ.sup i (ind i)⟩ :
-        Interval (Vec 𝕋 n)).construct := fun i => hA i i
+        Interval (Vec 𝕋 n)).toSet := fun i => hA i i
     have hrec := Interval.recip_outer _ (fun i => by
       have h := List.all_eq_true.mp hD i (List.mem_finRange i)
       simpa only [Bool.or_eq_true] using h) ⟨_, hdiag, rfl⟩
@@ -264,7 +264,7 @@ theorem PolyZonotope.innerStep_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
           (jacobiSlice (toRealVec xc) ind v)) i k) ∈ (⟨fun i k =>
             if (List.finRange n).any (fun i => decide (ind i = k)) then zero else CJ.inf i k,
           fun i k => if (List.finRange n).any (fun i => decide (ind i = k)) then zero
-            else CJ.sup i k⟩ : Interval (Mat 𝕋 n pZ.p)).construct := by
+            else CJ.sup i k⟩ : Interval (Mat 𝕋 n pZ.p)).toSet := by
       refine Interval.mem_mat_iff.mpr fun i k => ?_
       by_cases hk : ((List.finRange n).any fun i => decide (ind i = k)) = true
       · simp only [hk, ↓reduceIte, toReal_zero, le_refl, and_self]
@@ -274,7 +274,7 @@ theorem PolyZonotope.innerStep_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
     have hW2 : (0 : Vec ℝ pZ.p) ∈ (⟨fun k => if (List.finRange n).any
           (fun i => decide (ind i = k)) then zero else subDown (X₀.inf k) (xc k),
         fun k => if (List.finRange n).any (fun i => decide (ind i = k)) then zero
-          else subUp (X₀.sup k) (xc k)⟩ : Interval (Vec 𝕋 pZ.p)).construct := by
+          else subUp (X₀.sup k) (xc k)⟩ : Interval (Vec 𝕋 pZ.p)).toSet := by
       intro k
       show toReal (if _ then _ else _) ≤ 0 ∧ 0 ≤ toReal (if _ then _ else _)
       by_cases hk : ((List.finRange n).any fun i => decide (ind i = k)) = true

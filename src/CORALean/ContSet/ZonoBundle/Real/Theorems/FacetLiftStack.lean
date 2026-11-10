@@ -49,10 +49,10 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {s : ℕ}
 
 theorem HPolytope.facetLift_stack_exact (P : Fin s → HPolytope α)
     (Zadd : Zonotope α) : -- --- CONCL ---
-    ((HPolytope.stack P).facetLift Zadd).construct =
-      ⋂ i, ((P i).facetLift Zadd).construct := by -- --- PROOF ---
+    ((HPolytope.stack P).facetLift Zadd).toSet =
+      ⋂ i, ((P i).facetLift Zadd).toSet := by -- --- PROOF ---
   ext x
-  simp only [HPolytope.construct, HPolytope.facetLift, HPolytope.stack, Set.mem_iInter,
+  simp only [HPolytope.toSet, HPolytope.facetLift, HPolytope.stack, Set.mem_iInter,
     Set.mem_setOf_eq]
   constructor
   · rintro ⟨h1, -⟩ i

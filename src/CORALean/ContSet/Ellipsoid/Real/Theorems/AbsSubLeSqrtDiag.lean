@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
 
 @[expose] public section
@@ -42,11 +42,11 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A point of the ellipsoid is within `√Qᵢᵢ` of the center in coordinate `i`. -/
-theorem Ellipsoid.abs_sub_le_sqrt_diag (E : Ellipsoid n) {x : Vec ℝ n} (hx : x ∈ E.construct)
+theorem Ellipsoid.abs_sub_le_sqrt_diag (E : Ellipsoid n) {x : Vec ℝ n} (hx : x ∈ E.toSet)
     (i : Fin n) : -- --- CONCL ---
     |x i - E.q i| ≤ Real.sqrt (E.Q i i) := by -- --- PROOF ---
   -- the ellipsoid as `q + G u`, `‖u‖₂ ≤ 1`
-  simp only [Ellipsoid.construct_eq_sqrt] at *
+  simp only [Ellipsoid.toSet_eq_sqrt] at *
   obtain ⟨u, hu, rfl⟩ := hx
   -- the squared row of `G` is the diagonal entry of `Q`
   have hrow : ∑ j, E.G i j ^ 2 = E.Q i i := by

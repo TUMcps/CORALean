@@ -49,9 +49,9 @@ scoped notation "ℋ𝒫" => fun n => HPolytope (Vec ℝ n)
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (HPolytope α) α := ⟨HPolytope.construct⟩
+instance : ContSet (HPolytope α) α := ⟨HPolytope.toSet⟩
 
-instance : ConvexSet (HPolytope α) α := ⟨HPolytope.convex_construct⟩
+instance : ConvexSet (HPolytope α) α := ⟨HPolytope.convex_toSet⟩
 
 instance : Reduce (HPolytope α) α where
   reduce P _ := P

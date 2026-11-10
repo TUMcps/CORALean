@@ -51,14 +51,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The float step keeps `0` in its error box, given `X` and `U` do. -/
 theorem LinearSys.zero_mem_timePointStepInputFloat_error (sys : LinearSys 𝕋 n) {r : 𝕋}
     (hr : 0 ≤ toReal r) {η : ℕ} (hη : sys.IsOrderAdmissibleFloat r r η) {X U : Zonotope (Vec 𝕋 n)}
-    (hX : (0 : Vec ℝ n) ∈ X.I_error.construct)
-    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) : -- --- CONCL ---
-    (0 : Vec ℝ n) ∈ (sys.timePointStepInputFloat r η X U).I_error.construct := by -- --- PROOF ---
+    (hX : (0 : Vec ℝ n) ∈ X.I_error.toSet)
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.toSet) : -- --- CONCL ---
+    (0 : Vec ℝ n) ∈ (sys.timePointStepInputFloat r η X U).I_error.toSet := by -- --- PROOF ---
   have he := sys.exp_mem_expIntervalFloat hη (t := toReal r) le_rfl le_rfl
-  show (0 : Vec ℝ n) ∈ ((Zonotope.plus _ _).materialise).I_error.construct
+  show (0 : Vec ℝ n) ∈ ((Zonotope.plus _ _).materialise).I_error.toSet
   rw [Zonotope.materialise_eq]
   refine Zonotope.zero_mem_plus_error ?_ (sys.zero_mem_inputSolutionFloat_error hr hη hU)
-  show (0 : Vec ℝ n) ∈ ((Zonotope.mtimesIntervalMat _ X).materialise).I_error.construct
+  show (0 : Vec ℝ n) ∈ ((Zonotope.mtimesIntervalMat _ X).materialise).I_error.toSet
   rw [Zonotope.materialise_eq]
   exact Zonotope.zero_mem_mtimesIntervalMat_error he hX
 

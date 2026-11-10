@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 theorem Zonotope.vec_representsa_origin_sound {Z : Zonotope (Mat 𝕋 m n)}
     (h : Z.vec.representsa_origin = true) :
-    Z.construct = {0} := by
+    Z.toSet = {0} := by
   have h1 := Zonotope.representsa_origin_sound h
   rw [Zonotope.vec_exact, ← map_zero matVecEquiv, ← Set.image_singleton] at h1
   exact matVecEquiv.injective.image_injective h1

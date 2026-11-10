@@ -69,10 +69,10 @@ private theorem LinearSys.aux_inputTerm_eq (sys : LinearSys 𝕋 n) (Δt : ℝ) 
 
 /-- One point of `U` held over every summand at once. -/
 private theorem LinearSys.aux_sum_mulVec_mem (sys : LinearSys 𝕋 n) {U : S n} (Δt : ℝ)
-    {s : Vec ℝ n} (hs : s ∈ construct U) (m : ℕ) : -- --- CONCL ---
+    {s : Vec ℝ n} (hs : s ∈ toSet U) (m : ℕ) : -- --- CONCL ---
     (∑ i ∈ Finset.range m, sys.inputTerm Δt i) *ᵥ s
       ∈ ∑ i ∈ Finset.range m,
-        (fun v => sys.inputTerm Δt i *ᵥ v) '' construct U := by -- --- PROOF ---
+        (fun v => sys.inputTerm Δt i *ᵥ v) '' toSet U := by -- --- PROOF ---
   induction m with
   | zero => simp
   | succ k ih =>
@@ -99,7 +99,7 @@ theorem LinearSys.inputSolutionInner_subset_inputSolutionSet (sys : LinearSys �
       Finset.sum_congr rfl fun i _ => sys.aux_inputTerm_eq Δt i
     rwa [hTeq]
   have hmem : MatExp.expIntegral A Δt - T
-      ∈ (MatExp.inputRemainder A Δt η).construct := by
+      ∈ (MatExp.inputRemainder A Δt η).toSet := by
     refine Interval.mem_mat_iff.mpr fun i j => ?_
     have hentry := abs_entry_le_norm (MatExp.expIntegral A Δt - T) i j
     rw [MatExp.inputRemainder]

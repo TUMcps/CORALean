@@ -4,7 +4,7 @@ public import CORALean.ContSet.Polygon.Float.Operations.Subtract
 public import CORALean.ContSet.Polygon.Float.Theorems.InnerHRepInner
 public import CORALean.ContSet.Polygon.Float.Theorems.PieceSubsetSound
 public import CORALean.ContSet.Interval.Float.Theorems.ContractHalfspaceOuter
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalVPolytopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.Basic
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeIntervalContains
@@ -67,8 +67,8 @@ private theorem Polygon.innerHRep_isErrFree {p : VPolytope (Vec 𝕋 2)} : -- --
 
 /-- Subtracting the piece `q` from `r` leaves pieces that cover every point of `r` outside `q`. -/
 private theorem Polygon.aux_subtractPiece_outer (q r : VPolytope (Vec 𝕋 2)) : -- --- CONCL ---
-    r.construct \ q.construct ⊆
-      {x | ∃ s ∈ Polygon.step_subtractPiece q r, x ∈ s.construct} := by -- --- PROOF ---
+    r.toSet \ q.toSet ⊆
+      {x | ∃ s ∈ Polygon.step_subtractPiece q r, x ∈ s.toSet} := by -- --- PROOF ---
   rintro x ⟨hr, hq⟩
   -- a piece `q` certainly covers is not dropped
   unfold Polygon.step_subtractPiece
@@ -82,8 +82,8 @@ private theorem Polygon.aux_subtractPiece_outer (q r : VPolytope (Vec 𝕋 2)) :
   by_cases hme : H.me = 0
   · rw [if_pos hme]
     -- outside `q`, some row of the inner description fails
-    have hxH : x ∉ H.construct := fun h => hq (Polygon.innerHRep_inner _ hH h)
-    rw [HPolytope.mem_construct_iff (Polygon.innerHRep_isErrFree _ hH)] at hxH
+    have hxH : x ∉ H.toSet := fun h => hq (Polygon.innerHRep_inner _ hH h)
+    rw [HPolytope.mem_toSet_iff (Polygon.innerHRep_isErrFree _ hH)] at hxH
     have hex : ∃ i, toReal (H.b i) < (toRealMat H.A *ᵥ x) i := by
       by_contra hno
       push Not at hno
@@ -106,9 +106,9 @@ end
 /-- A point in a piece of the list and outside every `q` stays in the folded list. -/
 private theorem aux_mem_foldl_subtractPiece {x : Vec ℝ 2}
     (qs L : List (VPolytope (Vec 𝕋 2))) : -- --- CONCL ---
-    (∃ r ∈ L, x ∈ r.construct) → (∀ q ∈ qs, x ∉ q.construct) →
+    (∃ r ∈ L, x ∈ r.toSet) → (∀ q ∈ qs, x ∉ q.toSet) →
       ∃ s ∈ qs.foldl (fun L q => L.flatMap (Polygon.step_subtractPiece q)) L,
-      x ∈ s.construct := by -- --- PROOF ---
+      x ∈ s.toSet := by -- --- PROOF ---
   induction qs generalizing L with
   | nil => exact fun h _ => h
   | cons q qs ih =>
@@ -123,13 +123,13 @@ private theorem aux_mem_foldl_subtractPiece {x : Vec ℝ 2}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.subtract_outer (P Q : Polygon 𝕋) : -- --- CONCL ---
-    ContSet.construct P \ ContSet.construct Q ⊆
-    ContSet.construct (Polygon.subtract P Q) := by -- --- PROOF ---
+    ContSet.toSet P \ ContSet.toSet Q ⊆
+    ContSet.toSet (Polygon.subtract P Q) := by -- --- PROOF ---
   rintro x ⟨hP, hQ⟩
-  obtain ⟨p, hp, hxp⟩ := SetUnion.mem_construct.mp hP
+  obtain ⟨p, hp, hxp⟩ := SetUnion.mem_toSet.mp hP
   obtain ⟨s, hs, hxs⟩ := aux_mem_foldl_subtractPiece Q.sets [p] ⟨p, by simp, hxp⟩
-    fun q hq hxq => hQ (SetUnion.mem_construct.mpr ⟨q, hq, hxq⟩)
-  exact SetUnion.mem_construct.mpr ⟨s, List.mem_flatMap.mpr ⟨p, hp, hs⟩, hxs⟩
+    fun q hq hxq => hQ (SetUnion.mem_toSet.mpr ⟨q, hq, hxq⟩)
+  exact SetUnion.mem_toSet.mpr ⟨s, List.mem_flatMap.mpr ⟨p, hp, hs⟩, hxs⟩
 
 end CORALean.Float
 

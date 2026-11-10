@@ -36,13 +36,13 @@ namespace CORALean.Real
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 private theorem Polygon.aux_union_le (l : List (VPolytope (Vec ℝ 2))) : -- --- CONCL ---
-    MeasureTheory.volume (⋃ p ∈ l, VPolytope.construct p) ≤
-      (l.map fun p => MeasureTheory.volume (VPolytope.construct p)).sum := by -- --- PROOF ---
+    MeasureTheory.volume (⋃ p ∈ l, VPolytope.toSet p) ≤
+      (l.map fun p => MeasureTheory.volume (VPolytope.toSet p)).sum := by -- --- PROOF ---
   induction l with
   | nil => simp
   | cons a l ih =>
-    have e : (⋃ p ∈ a :: l, VPolytope.construct p)
-        = VPolytope.construct a ∪ ⋃ p ∈ l, VPolytope.construct p := by simp
+    have e : (⋃ p ∈ a :: l, VPolytope.toSet p)
+        = VPolytope.toSet a ∪ ⋃ p ∈ l, VPolytope.toSet p := by simp
     rw [e, List.map_cons, List.sum_cons]
     exact (MeasureTheory.measure_union_le _ _).trans (add_le_add_right ih _)
 

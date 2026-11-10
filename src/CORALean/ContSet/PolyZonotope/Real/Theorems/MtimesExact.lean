@@ -49,7 +49,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.mtimes_exact {n m : ℕ} (M : Mat ℝ m n) (pZ : PolyZonotope (Vec ℝ n)) :
-    (M *ᵥ ·) '' pZ.construct = (PolyZonotope.mtimes M pZ).construct :=
+    (M *ᵥ ·) '' pZ.toSet = (PolyZonotope.mtimes M pZ).toSet :=
   PolyZonotope.map_exact (Matrix.mulVecLin M) pZ
 
 end CORALean.Real

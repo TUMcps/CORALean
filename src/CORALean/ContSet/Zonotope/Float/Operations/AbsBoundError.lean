@@ -8,7 +8,7 @@ public import CORALean.ContSet.Zonotope.Float.Zonotope
 # `Zonotope.absBoundError`
 
 `Real.Zonotope.absBound`, rounded, and widened by the error box: how far
-coordinate `j` can reach from the origin over the whole `construct`, nominal
+coordinate `j` can reach from the origin over the whole `toSet`, nominal
 part and box together — the center and the generators' absolute sum, `radius`, plus
 whichever corner of the box is farther out.
 
@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- How far coordinate `j` can reach from the origin, over the whole
-`construct` — nominal part and error box together. -/
+`toSet` — nominal part and error box together. -/
 def Zonotope.absBoundError (Z : Zonotope (Vec 𝕋 n)) (j : Fin n) : 𝕋 :=
   addUp (addUp (absolute (Z.c j)) (radius (fun i j => Z.G j i) j))
     (maximum (absolute (Z.I_error.inf j)) (absolute (Z.I_error.sup j)))

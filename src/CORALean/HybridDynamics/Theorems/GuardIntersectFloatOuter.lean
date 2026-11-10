@@ -58,7 +58,7 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- A point of the start or of any box folded in is a point of the hull. -/
 private theorem aux_mem_foldl_or {x : Vec ℝ n} :
     ∀ (Is : List (Interval (Vec 𝕋 n))) (J : Interval (Vec 𝕋 n)),
-      (x ∈ J.construct ∨ ∃ I ∈ Is, x ∈ I.construct) → x ∈ (Is.foldl Interval.or J).construct
+      (x ∈ J.toSet ∨ ∃ I ∈ Is, x ∈ I.toSet) → x ∈ (Is.foldl Interval.or J).toSet
   | [], _, h => h.resolve_right (by simp)
   | I :: Is, J, h => by
     rw [List.foldl_cons]
@@ -76,12 +76,12 @@ theorem Location.guardIntersectFloat_outer
     (ℓ : Location 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n)
     (guard : HPolytope 𝕋 (Vec 𝕋 n)) {Rs : List (Zonotope (Vec 𝕋 n))}
     {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ Rs)
-    {x : Vec ℝ n} (hx : x ∈ construct R) (hinv : x ∈ construct ℓ.inv)
-    (hguard : x ∈ construct guard) : -- --- CONCL ---
-    ∃ Rg, ℓ.guardIntersectFloat guard Rs = some Rg ∧ x ∈ Rg.construct := by -- --- PROOF ---
+    {x : Vec ℝ n} (hx : x ∈ toSet R) (hinv : x ∈ toSet ℓ.inv)
+    (hguard : x ∈ toSet guard) : -- --- CONCL ---
+    ∃ Rg, ℓ.guardIntersectFloat guard Rs = some Rg ∧ x ∈ Rg.toSet := by -- --- PROOF ---
   -- the cut of `R` holds `x`, so it is not certified empty
   set J := guard.contractBox (ℓ.inv.contractBox R.interval) with hJ
-  have hxJ : x ∈ J.construct := guard.contractBox_outer _
+  have hxJ : x ∈ J.toSet := guard.contractBox_outer _
     ⟨ℓ.inv.contractBox_outer _ ⟨Zonotope.interval_contains R hx, hinv⟩, hguard⟩
   have hne : J.representsa_emptySet = false := by
     cases hb : J.representsa_emptySet

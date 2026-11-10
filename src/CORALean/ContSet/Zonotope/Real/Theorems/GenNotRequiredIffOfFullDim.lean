@@ -41,7 +41,7 @@ open Classical in
 the rows the others imply. -/
 theorem Zonotope.gen_not_required_iff_of_fullDim {n : ℕ} (Zm Zs : Zonotope (Vec ℝ (n + 2)))
     (hspan : Submodule.span ℝ (Set.range Zm.G) = ⊤)
-    (hint : (interior (minkowskiDiff Zm.construct Zs.construct)).Nonempty)
+    (hint : (interior (minkowskiDiff Zm.toSet Zs.toSet)).Nonempty)
     (hdist : ∀ j k : Bool × Finset (Fin Zm.h), j.2.card = n + 1 → k.2.card = n + 1 → j ≠ k →
       {x | dotProductEquiv ℝ _ (Zm.minkDiffRowNormal j) x ≤ Zm.minkDiffRowOffset Zs j}
         = {x | dotProductEquiv ℝ _ (Zm.minkDiffRowNormal k) x ≤ Zm.minkDiffRowOffset Zs k} →
@@ -53,7 +53,7 @@ theorem Zonotope.gen_not_required_iff_of_fullDim {n : ℕ} (Zm Zs : Zonotope (Ve
             dotProductEquiv ℝ _ (Zm.minkDiffRowNormal k) x ≤ Zm.minkDiffRowOffset Zs k}
           ⊆ {x | dotProductEquiv ℝ _ (Zm.minkDiffRowNormal j) x ≤ Zm.minkDiffRowOffset Zs j}),
         (if i ∈ j.2 then 1 else 0) = 2 * (Zm.h - 1).choose n
-      ↔ minkowskiDiff Zm.construct Zs.construct
+      ↔ minkowskiDiff Zm.toSet Zs.toSet
           = {x | ∀ j, j.2.card = n + 1 → i ∉ j.2 →
               dotProductEquiv ℝ _ (Zm.minkDiffRowNormal j) x ≤
                 Zm.minkDiffRowOffset Zs j} := by -- --- PROOF ---

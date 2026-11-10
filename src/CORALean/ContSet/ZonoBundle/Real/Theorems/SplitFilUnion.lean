@@ -49,9 +49,9 @@ variable {n : ℕ}
 /-- The fil heuristic's split is exact. -/
 theorem ZonoBundle.splitFil_union (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k)
     (j : Fin n) : -- --- CONCL ---
-    (zB.split zB.dirFil (zB.enclosingBox zB.dirFil i) j).fst.construct
-      ∪ (zB.split zB.dirFil (zB.enclosingBox zB.dirFil i) j).snd.construct
-      = zB.construct := by -- --- PROOF ---
+    (zB.split zB.dirFil (zB.enclosingBox zB.dirFil i) j).fst.toSet
+      ∪ (zB.split zB.dirFil (zB.enclosingBox zB.dirFil i) j).snd.toSet
+      = zB.toSet := by -- --- PROOF ---
   refine ZonoBundle.split_union_enclosingBox _ ?_ zB i j
   unfold ZonoBundle.dirFil
   dsimp only

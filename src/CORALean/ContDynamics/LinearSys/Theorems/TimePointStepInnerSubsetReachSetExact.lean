@@ -63,7 +63,7 @@ theorem LinearSys.timePointStepInner_subset_reachSetExact (sys : LinearSys 𝕋 
     sys.timePointStepInner r η X₀ U ⊆ sys.reachSetExact (S := 𝒵) (Set.Icc 0 r) X₀ U r :=
   (sys.timePointStepInner_inner hr η hε X₀ U).trans
     (sys.mulVecLin_image_add_inputReach_subset_reachSetExact (S := 𝒵) X₀ U hr.le
-      (Zonotope.isBounded_construct U))
+      (Zonotope.isBounded_toSet U))
 
 end CORALean
 

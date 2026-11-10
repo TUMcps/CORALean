@@ -41,8 +41,8 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem EmptySet.and_exact {S : Type} [ContSet S (Vec ℝ n)] (E : EmptySet n) (s : S) :
-    ContSet.construct (E.and_ s) = ContSet.construct E ∩ ContSet.construct s := by
-  change (∅ : Set (Vec ℝ n)) = ∅ ∩ ContSet.construct s
+    ContSet.toSet (E.and_ s) = ContSet.toSet E ∩ ContSet.toSet s := by
+  change (∅ : Set (Vec ℝ n)) = ∅ ∩ ContSet.toSet s
   exact (Set.empty_inter _).symm
 
 end CORALean.Real

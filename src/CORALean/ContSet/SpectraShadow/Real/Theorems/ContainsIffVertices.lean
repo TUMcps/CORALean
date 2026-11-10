@@ -43,10 +43,10 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.contains_iff_vertices (S : SpectraShadow α) (T V : Set α)
-    (hT : convexHull ℝ V = T) : T ⊆ S.construct ↔ V ⊆ S.construct := by
+    (hT : convexHull ℝ V = T) : T ⊆ S.toSet ↔ V ⊆ S.toSet := by
   subst hT
   exact ⟨fun h => (subset_convexHull ℝ V).trans h,
-    fun h => convexHull_min h S.convex_construct⟩
+    fun h => convexHull_min h S.convex_toSet⟩
 
 end CORALean.Real
 

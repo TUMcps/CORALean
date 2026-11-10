@@ -52,7 +52,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 reaches at `ℓ`: the exact reachable set, and not an enclosure of it. -/
 def HybridAutomaton.reachSetExact (HA : HybridAutomaton S G L 𝕋 n) (R₀ : S n) (ℓ₀ ℓ : L) :
     Set (Vec ℝ n) :=
-  {y | ∃ x, x ∈ construct R₀ ∧ HA.IsRun ℓ₀ x ℓ y}
+  {y | ∃ x, x ∈ toSet R₀ ∧ HA.IsRun ℓ₀ x ℓ y}
 
 /-- Every location some run from `ℓ₀` with an initial state in `R₀` reaches:
 The discrete part, as the locations `reachSetExact` is nonempty at. -/

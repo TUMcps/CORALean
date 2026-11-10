@@ -89,9 +89,9 @@ theorem HybridAutomaton.reachFloat_outer
     (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋
     n) {tFinal : ℚ} {options : LinearSys.ReachOptions 𝕋} {T : ℝ} {k : ℕ} {ℓ ℓ' : L} {x y : Vec ℝ n}
     (run : HA.IsRunUntil T k ℓ x ℓ' y) (hT : T ≤ tFinal) {K : ℕ} (hk : k ≤ K)
-    {X₀ : Zonotope (Vec 𝕋 n)} (hx : x ∈ construct X₀) : -- --- CONCL ---
+    {X₀ : Zonotope (Vec 𝕋 n)} (hx : x ∈ toSet X₀) : -- --- CONCL ---
     ∀ out ∈ HA.reachFloat tFinal options K ℓ X₀,
-      ∃ p ∈ out, p.1 = ℓ' ∧ y ∈ construct p.2 := by -- --- PROOF ---
+      ∃ p ∈ out, p.1 = ℓ' ∧ y ∈ toSet p.2 := by -- --- PROOF ---
   intro out (h : HA.reachFloat tFinal options K ℓ X₀ = some out)
   induction run generalizing K X₀ out with
   | @flow T ℓ τ x u w traj hτ =>
@@ -121,7 +121,7 @@ theorem HybridAutomaton.reachFloat_outer
     obtain ⟨Rg, hRg, hxRg⟩ := (HA.loc ℓ).guardIntersectFloat_outer e.guard hR hxτ
       (traj.invariant τ ⟨traj.nonneg, le_rfl⟩) hguard
     -- so the reset state is in the set the transition's branch continues from
-    have hreset : e.reset (x τ) ∈ construct (e.jumpFloat Rg.zonotope) :=
+    have hreset : e.reset (x τ) ∈ toSet (e.jumpFloat Rg.zonotope) :=
       e.jumpFloat_outer Set.inter_subset_left (Interval.zonotope_contains Rg hxRg) hguard
     obtain ⟨o, ho, hfo⟩ := aux_mapM_some hnext e hmem
     simp only [hRg] at hfo

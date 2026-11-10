@@ -61,8 +61,8 @@ instance [SoundFloatArithmetic 𝕋] :
   I_error E := E.I_error
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
-abbrev Ellipsoid.construct [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) : Set (Vec ℝ n) :=
-  InflatedContSet.construct E
+abbrev Ellipsoid.toSet [SoundFloatArithmetic 𝕋] (E : Ellipsoid 𝕋 n) : Set (Vec ℝ n) :=
+  InflatedContSet.toSet E
 
 end CORALean.Float
 

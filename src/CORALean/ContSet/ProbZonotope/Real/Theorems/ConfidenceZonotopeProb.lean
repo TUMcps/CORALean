@@ -53,15 +53,15 @@ variable {n : ℕ}
 
 theorem confidenceZonotope_prob (G : Mat ℝ n n) (hG : G.det ≠ 0) {m : ℝ}
     (hm : 0 < m) : -- --- CONCL ---
-    gZonotopeLaw 0 G (toLp 2 '' (confidenceZonotope G m).construct)
+    gZonotopeLaw 0 G (toLp 2 '' (confidenceZonotope G m).toSet)
       = (gaussianReal 0 1 (Set.Icc (-m) m)) ^ n := by -- --- PROOF ---
-  have hS : MeasurableSet (toLp 2 '' (confidenceZonotope G m).construct) := by
-    rw [show toLp 2 '' (confidenceZonotope G m).construct
-        = ofLp ⁻¹' (confidenceZonotope G m).construct from by
+  have hS : MeasurableSet (toLp 2 '' (confidenceZonotope G m).toSet) := by
+    rw [show toLp 2 '' (confidenceZonotope G m).toSet
+        = ofLp ⁻¹' (confidenceZonotope G m).toSet from by
       ext x; constructor
       · rintro ⟨y, hy, rfl⟩; exact hy
       · intro hx; exact ⟨ofLp x, hx, rfl⟩]
-    exact (Zonotope.isClosed_construct _).measurableSet.preimage (by fun_prop)
+    exact (Zonotope.isClosed_toSet _).measurableSet.preimage (by fun_prop)
   rw [gZonotopeLaw, Measure.map_apply (by fun_prop) hS, ← stdGaussian_cube m]
   congr 1
   -- `Gβ` is in the zonotope exactly when `β` is in the cube

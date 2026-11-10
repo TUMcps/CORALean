@@ -5,7 +5,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Theorems.ExistsUnionFactorsRight
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxIff
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalAnd
 public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEq
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Union
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.UnionDomainIff
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemUnionUpperIff
@@ -65,7 +65,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The union's rows, the selector rows exactly met and each operand's within its slack. -/
 private theorem ConPolyZono.aux_union_rows (cPZ₁ cPZ₂ : ConPolyZono α) (s₁ : Vec ℝ cPZ₁.cons.m)
     (s₂ : Vec ℝ cPZ₂.cons.m) (a : Fin (cPZ₁.p + cPZ₂.p + 2) → ℝ)
-    (hup : a ∈ (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).construct)
+    (hup : a ∈ (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).toSet)
     (hlow₁ : ∀ r, |(ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons).eval a
         (Fin.castAdd cPZ₂.cons.m r)| ≤ |s₁ r|)
     (hlow₂ : ∀ r, |(ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons).eval a
@@ -83,7 +83,7 @@ private theorem ConPolyZono.aux_union_rows (cPZ₁ cPZ₂ : ConPolyZono α) (s�
   -- the selector rows, which hold exactly, then each operand's, within its slack
   refine Fin.addCases (fun i => ?_) (fun i => ?_) i
   · have hup0 : (ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).eval a i = 0 :=
-      sub_eq_zero.mpr ((PolyLevelSet.mem_construct_iff_of_eq
+      sub_eq_zero.mpr ((PolyLevelSet.mem_toSet_iff_of_eq
         (LevelSet.append_op_eq (fun _ => rfl) fun _ => rfl)).mp hup |>.2 i)
     rw [Fin.append_left, hup0, abs_zero]
     exact abs_nonneg _
@@ -102,9 +102,9 @@ theorem ConPolyZono.union_relax_subset (cPZ₁ cPZ₂ : ConPolyZono α) (s₁ : 
     (hE₁ : ConPolyZono.HasNoZeroCol cPZ₁.E) (hR₁ : ConPolyZono.HasNoZeroCol cPZ₁.cons.R)
     (hE₂ : ConPolyZono.HasNoZeroCol cPZ₂.E)
     (hR₂ : ConPolyZono.HasNoZeroCol cPZ₂.cons.R) : -- --- CONCL ---
-    (cPZ₁.relax s₁).construct ∪ (cPZ₂.relax s₂).construct
+    (cPZ₁.relax s₁).toSet ∪ (cPZ₂.relax s₂).toSet
       ⊆ ((cPZ₁.union cPZ₂).relax
-          (Fin.append (0 : Vec ℝ (1 + 1)) (Fin.append s₁ s₂))).construct := by -- --- PROOF ---
+          (Fin.append (0 : Vec ℝ (1 + 1)) (Fin.append s₁ s₂))).toSet := by -- --- PROOF ---
   rintro _ (hx | hx)
   · -- a point of the first operand, at the branch that selects it
     obtain ⟨a₁, β₁, ha₁, -, hs₁, rfl⟩ := (ConPolyZono.mem_relax_iff _ _).mp hx

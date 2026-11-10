@@ -43,7 +43,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.corner_bottom_le (Z : Zonotope (Vec ℝ 2)) (hH : ∀ j, 0 ≤ Z.G j 1)
-    {z : Vec ℝ 2} (hz : z ∈ Z.construct) : -- --- CONCL ---
+    {z : Vec ℝ 2} (hz : z ∈ Z.toSet) : -- --- CONCL ---
     Z.corner (fun _ => false) 1 ≤ z 1 := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hz
   rw [Zonotope.comb_apply, Zonotope.corner_apply]

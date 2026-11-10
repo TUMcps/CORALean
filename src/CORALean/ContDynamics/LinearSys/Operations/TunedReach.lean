@@ -61,7 +61,7 @@ noncomputable def LinearSys.tunedReach (sys : LinearSys 𝕋 n) (le : ℝ → �
     (X₀ U : Zonotope (Vec ℝ n)) (εHmax εPmax εSmax tf μ : ℝ) (ηmax fuel K : ℕ) :
     Set (Vec ℝ n) :=
   -- 12. R([0,t_f]), the union of the time-interval sets R([t_i,t_{i+1}])
-  ⋃ i < K, ⋃ s ∈ sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel (i + 1), construct s.R
+  ⋃ i < K, ⋃ s ∈ sys.tunedRun le X₀ U εHmax εPmax εSmax tf μ ηmax fuel (i + 1), toSet s.R
 
 end CORALean
 

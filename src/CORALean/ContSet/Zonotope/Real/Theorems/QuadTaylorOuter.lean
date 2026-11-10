@@ -186,8 +186,8 @@ private theorem Zonotope.aux_quadTaylor_pairblock {n h : ℕ} (G : Fin h → Mat
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.quadTaylor_outer {n : ℕ} (A_Z : Zonotope (Mat ℝ n n)) (t : ℝ) : -- --- CONCL ---
-    (fun A => (1 : Mat ℝ n n) + t • A + (t ^ 2 / 2) • (A * A)) '' A_Z.construct
-      ⊆ (A_Z.quadTaylor t).construct := by -- --- PROOF ---
+    (fun A => (1 : Mat ℝ n n) + t • A + (t ^ 2 / 2) • (A * A)) '' A_Z.toSet
+      ⊆ (A_Z.quadTaylor t).toSet := by -- --- PROOF ---
   rintro _ ⟨A, ⟨p, hp, rfl⟩, rfl⟩
   -- `q i := 2(p i)² - 1`, the diagonal block's own coefficient, `p i²`'s image of `[-1,1]`
   have hq : ∀ i, |2 * (p i) ^ 2 - 1| ≤ 1 := fun i => by

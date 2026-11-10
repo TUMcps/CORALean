@@ -59,7 +59,7 @@ private theorem Interval.aux_inv_mem {a b z : ℝ} (hab : a ≤ b) (h : 0 < a �
 
 theorem Interval.recip_exact (J : Interval (Vec ℝ n)) (hne : J.IsNonempty)
     (hJ : ∀ i, 0 < J.inf i ∨ J.sup i < 0) : -- --- CONCL ---
-    J.recip.construct = (fun y i => (y i)⁻¹) '' J.construct := by -- --- PROOF ---
+    J.recip.toSet = (fun y i => (y i)⁻¹) '' J.toSet := by -- --- PROOF ---
   ext z
   constructor
   · intro hz

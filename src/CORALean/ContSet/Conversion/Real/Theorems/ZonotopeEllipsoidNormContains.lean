@@ -1,13 +1,13 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 public import Mathlib.LinearAlgebra.Matrix.DotProduct
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Ellipsoid
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetOfFactor
 
 @[expose] public section
 
@@ -55,8 +55,8 @@ theorem Zonotope.ellipsoidNorm_contains (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ 
     (hF : IsUnit F.det)
     (hr : (⟨Z.h, F⁻¹ *ᵥ Z.c, fun j => F⁻¹ *ᵥ Z.G j⟩ : Zonotope (Vec ℝ n)).maxNormSq ≤ r)
     : -- --- CONCL ---
-    Z.construct ⊆ (Z.ellipsoidNorm F r).construct := by -- --- PROOF ---
-  rw [Zonotope.ellipsoidNorm, Ellipsoid.construct_ofFactor]
+    Z.toSet ⊆ (Z.ellipsoidNorm F r).toSet := by -- --- PROOF ---
+  rw [Zonotope.ellipsoidNorm, Ellipsoid.toSet_ofFactor]
   rintro _ ⟨β, hβ, rfl⟩
   -- the transformed point `v = F⁻¹ ∑ βⱼ gⱼ` is no longer than `√r`
   set v : Vec ℝ n := ∑ j, β j • (F⁻¹ *ᵥ Z.G j) with hv

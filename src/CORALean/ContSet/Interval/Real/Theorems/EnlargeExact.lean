@@ -51,10 +51,10 @@ include inst
 
 theorem Interval.enlarge_exact {I : Interval α} (hI : I.IsNonempty (ι := ι)) {f : ℝ}
     (hf : 0 ≤ f) : -- --- CONCL ---
-    (I.enlarge f).construct =
-      (fun x => I.center + f • (x - I.center)) '' I.construct := by -- --- PROOF ---
+    (I.enlarge f).toSet =
+      (fun x => I.center + f • (x - I.center)) '' I.toSet := by -- --- PROOF ---
   -- a point of the box is a point of `ofCenterRadius center radius`, which is the box itself
-  have hbox : ∀ y, y ∈ (Interval.ofCenterRadius I.center I.radius).construct → y ∈ I.construct :=
+  have hbox : ∀ y, y ∈ (Interval.ofCenterRadius I.center I.radius).toSet → y ∈ I.toSet :=
     fun y hy => by
       have h := Interval.intervalMatrix_eq I
       unfold Interval.intervalMatrix at h

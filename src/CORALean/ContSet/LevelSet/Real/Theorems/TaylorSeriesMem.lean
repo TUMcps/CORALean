@@ -54,8 +54,8 @@ variable {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- A box with a point in it contains its center. -/
-private theorem aux_center_mem {I : Interval (Vec ℝ n)} {x : Vec ℝ n} (hx : x ∈ I.construct) :
-    I.center ∈ I.construct := by
+private theorem aux_center_mem {I : Interval (Vec ℝ n)} {x : Vec ℝ n} (hx : x ∈ I.toSet) :
+    I.center ∈ I.toSet := by
   intro i
   have h : I.inf i ≤ x i ∧ x i ≤ I.sup i := hx i
   change I.inf i ≤ (2 : ℝ)⁻¹ * (I.inf i + I.sup i) ∧ (2 : ℝ)⁻¹ * (I.inf i + I.sup i) ≤ I.sup i
@@ -77,10 +77,10 @@ private theorem aux_fderiv_eq_sum (f : Vec ℝ n → ℝ) (c v : Vec ℝ n) : --
 
 theorem TaylorSeries.mem {f : Vec ℝ n → ℝ} {I : Interval (Vec ℝ n)} {κ : ℕ}
     (T : TaylorSeries f I κ) (hf : ContDiff ℝ (κ + 1) f) (hκ : 1 ≤ κ) {x : Vec ℝ n}
-    (hx : x ∈ I.construct) : -- --- CONCL ---
+    (hx : x ∈ I.toSet) : -- --- CONCL ---
     f x - (f I.center + ∑ i, taylorGrad f I.center i * (x i - I.center i)
       + taylorHigher f κ I.center x) ∈ Set.Icc T.l T.u := by -- --- PROOF ---
-  obtain ⟨ξ, hξ, h⟩ := taylor_lagrange_convex hf (Interval.convex_construct I)
+  obtain ⟨ξ, hξ, h⟩ := taylor_lagrange_convex hf (Interval.convex_toSet I)
     (aux_center_mem hx) hx
   -- split the order-0 and order-1 terms off the sum; the rest is `v`
   obtain ⟨m, rfl⟩ : ∃ m, κ = m + 1 := ⟨κ - 1, by omega⟩

@@ -81,12 +81,12 @@ theorem Example.depth_one_verifies :
 
 /-- What the splitter is worth: `splitAt_cover`, at the one coordinate. -/
 theorem Example.hcov (I : Interval (Vec Example.D 1)) :
-    construct I ⊆ construct (Example.splitter I).1 ∪ construct (Example.splitter I).2 :=
+    toSet I ⊆ toSet (Example.splitter I).1 ∪ toSet (Example.splitter I).2 :=
   Interval.splitAt_cover I (0 : Fin 1)
 
 /-- The consequence: `|x| ≤ 1` on the whole box, from the depth-`1` run alone. -/
 theorem Example.holds :
-    Example.spec.Holds (Example.nn.eval.out '' construct Example.input) :=
+    Example.spec.Holds (Example.nn.eval.out '' toSet Example.input) :=
   Example.nn.verifySplit_sound Example.spec Example.splitter Example.hcov 1 Example.input
     Example.depth_one_verifies
 

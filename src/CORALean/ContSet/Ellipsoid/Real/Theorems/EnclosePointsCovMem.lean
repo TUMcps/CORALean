@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.EnclosePointsCov
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqOfFactor
 
 @[expose] public section
 
@@ -51,7 +51,7 @@ theorem Ellipsoid.enclosePointsCov_mem [NeZero N] (pts : Fin N → Vec ℝ n) {T
     (hT : T * Tᵀ = 1) (hU : U * Uᵀ = 1)
     (hnt : ∀ i, Ellipsoid.step_enclosePointsNt (Ellipsoid.step_enclosePointsOriented pts T U) i ≠ 0)
     (j : Fin N) : -- --- CONCL ---
-    pts j ∈ (Ellipsoid.enclosePointsCov pts T U).construct := by -- --- PROOF ---
+    pts j ∈ (Ellipsoid.enclosePointsCov pts T U).toSet := by -- --- PROOF ---
   -- the oriented coordinates, the scalings `nt`, the radius `maxDist` and the center
   set O := Ellipsoid.step_enclosePointsOriented pts T U with hO
   set nt := Ellipsoid.step_enclosePointsNt O with hnt'
@@ -119,7 +119,7 @@ theorem Ellipsoid.enclosePointsCov_mem [NeZero N] (pts : Fin N → Vec ℝ n) {T
       rw [div_le_one hpos]
       exact hle
   -- the point is the center plus the generators applied to the coefficients
-  rw [Ellipsoid.construct_eq_of_factor _
+  rw [Ellipsoid.toSet_eq_of_factor _
     (T * U * (Matrix.diagonal fun i => nt i * Real.sqrt md : Mat ℝ n n)) rfl]
   refine ⟨u, hu1, ?_⟩
   change pts j = c + (T * U * (Matrix.diagonal fun i => nt i * Real.sqrt md : Mat ℝ n n)) *ᵥ u

@@ -47,7 +47,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 theorem ConZonotope.mem_ofMat_iff {q h : ℕ} {c : α} {G : Fin h → α} {A : Mat ℝ q h}
     {b : Vec ℝ q} {x : α} :
-    x ∈ (ConZonotope.ofMat c G A b).construct ↔
+    x ∈ (ConZonotope.ofMat c G A b).toSet ↔
       ∃ β : Fin h → ℝ, (∀ j, |β j| ≤ 1) ∧ (∀ i, (A *ᵥ β) i = b i)
         ∧ x = c + ∑ j, β j • G j :=
   ⟨fun ⟨β, hβ, hP, hx⟩ => ⟨β, hβ, HPolytope.mem_eqs_iff.mp hP, hx⟩,

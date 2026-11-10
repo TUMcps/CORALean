@@ -66,7 +66,7 @@ private theorem aux_quad_mono {M : Mat ℝ d d} (hM : ∀ j k, 0 ≤ M j k) {γ 
 other expansion point. -/
 theorem abstrErrLin_center_subset {H : Fin n → Mat ℝ d d} (hH : ∀ i j k, 0 ≤ H i j k)
     (Z : Zonotope (Vec ℝ d)) (zs : Vec ℝ d) : -- --- CONCL ---
-    construct (abstrErrLin H Z Z.c) ⊆ construct (abstrErrLin H Z zs) := by -- --- PROOF ---
+    toSet (abstrErrLin H Z Z.c) ⊆ toSet (abstrErrLin H Z zs) := by -- --- PROOF ---
   set γc : Vec ℝ d := fun j => |Z.c j - Z.c j| + ∑ k, |Z.G k j| with hγc
   set γ : Vec ℝ d := fun j => |Z.c j - zs j| + ∑ k, |Z.G k j| with hγ
   have hnn : ∀ j, 0 ≤ γc j := fun j =>

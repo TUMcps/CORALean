@@ -45,9 +45,9 @@ variable {n m : ℕ}
 
 theorem Zonotope.constrSat_sound {Z : Zonotope (Vec ℝ n)} {C : Mat ℝ m n} {d : Vec ℝ m}
     (h : Z.constrSat C d) : -- --- CONCL ---
-    ∀ x ∈ Z.construct, ∀ i, (C *ᵥ x) i < d i := by -- --- PROOF ---
+    ∀ x ∈ Z.toSet, ∀ i, (C *ᵥ x) i < d i := by -- --- PROOF ---
   intro x hx i
-  have hmem : C *ᵥ x ∈ (Zonotope.mtimes C Z).construct := by
+  have hmem : C *ᵥ x ∈ (Zonotope.mtimes C Z).toSet := by
     rw [← Zonotope.mtimes_exact]; exact ⟨x, hx, rfl⟩
   have hle : (C *ᵥ x) i ≤ (Zonotope.mtimes C Z).interval.sup i :=
     ((Zonotope.mtimes C Z).interval_contains hmem i).2

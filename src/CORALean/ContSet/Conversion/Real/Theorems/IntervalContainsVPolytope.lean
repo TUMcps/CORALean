@@ -40,9 +40,9 @@ variable {n : ℕ}
 /-- Every corner of a nonempty box lies in the box, and the box is convex. -/
 theorem Interval.contains_vPolytope (I : Interval (Vec ℝ n))
     (hI : ∀ j, I.inf j ≤ I.sup j) : -- --- CONCL ---
-    I.vPolytope.construct ⊆ I.construct := by -- --- PROOF ---
-  rw [VPolytope.construct_eq_convexHull]
-  refine convexHull_min ?_ I.convex_construct
+    I.vPolytope.toSet ⊆ I.toSet := by -- --- PROOF ---
+  rw [VPolytope.toSet_eq_convexHull]
+  refine convexHull_min ?_ I.convex_toSet
   rintro _ ⟨l, rfl⟩ j
   show I.inf j ≤ I.corner (signEquiv n l) j ∧ I.corner (signEquiv n l) j ≤ I.sup j
   unfold Interval.corner

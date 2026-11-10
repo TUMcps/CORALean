@@ -1,9 +1,9 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqImage
 public import CORALean.Global.EuclideanNorm
 public import Mathlib.Analysis.Normed.Module.FiniteDimension
 public import Mathlib.LinearAlgebra.Matrix.ToLin
@@ -46,7 +46,7 @@ open Matrix Set
 
 /-- `isFullDim`: nonempty interior iff the rank is the ambient dimension. -/
 theorem Ellipsoid.isFullDim_iff {n : ℕ} (E : Ellipsoid n) : -- --- CONCL ---
-    (interior E.construct).Nonempty ↔ E.rank = n := by -- --- PROOF ---
+    (interior E.toSet).Nonempty ↔ E.rank = n := by -- --- PROOF ---
   -- the generator map, and the rank as the dimension of its range
   let L : Vec ℝ n →ₗ[ℝ] Vec ℝ n := Matrix.mulVecLin E.G
   have hrank : E.rank = n ↔ LinearMap.range L = ⊤ := by
@@ -60,8 +60,8 @@ theorem Ellipsoid.isFullDim_iff {n : ℕ} (E : Ellipsoid n) : -- --- CONCL ---
       rw [show Matrix.mulVecLin E.G = L from rfl, h, finrank_top]; simp
   rw [hrank]
   -- the ellipsoid sits inside the translate of the range
-  have hsub : E.construct ⊆ (fun v => E.q + v) '' (LinearMap.range L : Set (Vec ℝ n)) := by
-    rw [E.construct_eq_sqrt]
+  have hsub : E.toSet ⊆ (fun v => E.q + v) '' (LinearMap.range L : Set (Vec ℝ n)) := by
+    rw [E.toSet_eq_sqrt]
     rintro x ⟨u, -, rfl⟩
     exact ⟨L u, ⟨u, rfl⟩, rfl⟩
   constructor
@@ -81,8 +81,8 @@ theorem Ellipsoid.isFullDim_iff {n : ℕ} (E : Ellipsoid n) : -- --- CONCL ---
     have hU : IsOpen U := continuous_norm₂.isOpen_preimage _ isOpen_Iio
     have hV : IsOpen ((fun v => E.q + v) '' (L '' U)) :=
       (Homeomorph.addLeft E.q).isOpenMap _ (hopen _ hU)
-    have hVsub : (fun v => E.q + v) '' (L '' U) ⊆ E.construct := by
-      rw [E.construct_eq_sqrt]
+    have hVsub : (fun v => E.q + v) '' (L '' U) ⊆ E.toSet := by
+      rw [E.toSet_eq_sqrt]
       rintro _ ⟨_, ⟨u, hu, rfl⟩, rfl⟩
       exact ⟨u, le_of_lt hu, rfl⟩
     refine ⟨E.q, interior_maximal hVsub hV ⟨0, ⟨0, ?_, map_zero L⟩, by simp⟩⟩

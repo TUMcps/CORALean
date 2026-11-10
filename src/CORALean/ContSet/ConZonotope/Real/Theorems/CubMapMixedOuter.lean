@@ -45,8 +45,8 @@ variable {n m : ℕ}
 theorem ConZonotope.cubMapMixed_outer (T : Fin m → Fin n → Mat ℝ n n)
     (cZ₁ cZ₂ cZ₃ : ConZonotope (Vec ℝ n)) : -- --- CONCL ---
     (fun x : Vec ℝ n × Vec ℝ n × Vec ℝ n => PolyZonotope.cubEvalMixed T x.1 x.2.1 x.2.2)
-        '' (cZ₁.construct ×ˢ cZ₂.construct ×ˢ cZ₃.construct)
-      ⊆ (ConZonotope.cubMapMixed T cZ₁ cZ₂ cZ₃).construct := by -- --- PROOF ---
+        '' (cZ₁.toSet ×ˢ cZ₂.toSet ×ˢ cZ₃.toSet)
+      ⊆ (ConZonotope.cubMapMixed T cZ₁ cZ₂ cZ₃).toSet := by -- --- PROOF ---
   rintro _ ⟨⟨x₁, x₂, x₃⟩, ⟨⟨p₁, hp₁, hP₁, rfl⟩, ⟨p₂, hp₂, hP₂, rfl⟩, ⟨p₃, hp₃, hP₃, rfl⟩⟩, rfl⟩
   obtain ⟨γ, hγ, h₁, h₂, h₃, hx⟩ := Zonotope.cubMapMixed_coeff T
     (⟨cZ₁.h, cZ₁.c, cZ₁.G⟩ : Zonotope (Vec ℝ n)) ⟨cZ₂.h, cZ₂.c, cZ₂.G⟩ ⟨cZ₃.h, cZ₃.c, cZ₃.G⟩
@@ -64,18 +64,18 @@ theorem ConZonotope.cubMapMixed_outer (T : Fin m → Fin n → Mat ℝ n n)
           (cZ₂.P.comap (ConZonotope.cubLinearAt (cZ₃.h + 1) (cZ₂.h + 1) (cZ₁.h + 1)
             (fun b : Fin cZ₂.h => ((0, b.succ), 0))))).intersection
         (cZ₃.P.comap (ConZonotope.cubLinearAt (cZ₃.h + 1) (cZ₂.h + 1) (cZ₁.h + 1)
-            (fun j : Fin cZ₃.h => ((j.succ, 0), 0))))).construct :=
+            (fun j : Fin cZ₃.h => ((j.succ, 0), 0))))).toSet :=
     fun γ' e₁ e₂ e₃ => by
     -- one constraint polytope per set, each pulled back along its linear block
     refine HPolytope.mem_intersection_iff.mpr ⟨HPolytope.mem_intersection_iff.mpr ⟨?_, ?_⟩, ?_⟩
     · show ConZonotope.cubLinearAt (cZ₃.h + 1) (cZ₂.h + 1) (cZ₁.h + 1)
-        (fun a : Fin cZ₁.h => ((0, 0), a.succ)) γ' ∈ cZ₁.P.construct
+        (fun a : Fin cZ₁.h => ((0, 0), a.succ)) γ' ∈ cZ₁.P.toSet
       rw [e₁]; exact hP₁
     · show ConZonotope.cubLinearAt (cZ₃.h + 1) (cZ₂.h + 1) (cZ₁.h + 1)
-        (fun b : Fin cZ₂.h => ((0, b.succ), 0)) γ' ∈ cZ₂.P.construct
+        (fun b : Fin cZ₂.h => ((0, b.succ), 0)) γ' ∈ cZ₂.P.toSet
       rw [e₂]; exact hP₂
     · show ConZonotope.cubLinearAt (cZ₃.h + 1) (cZ₂.h + 1) (cZ₁.h + 1)
-        (fun j : Fin cZ₃.h => ((j.succ, 0), 0)) γ' ∈ cZ₃.P.construct
+        (fun j : Fin cZ₃.h => ((j.succ, 0), 0)) γ' ∈ cZ₃.P.toSet
       rw [e₃]; exact hP₃
   exact ⟨γ, hγ, key γ (funext h₁) (funext h₂) (funext h₃), hx⟩
 

@@ -44,7 +44,7 @@ variable {P : HPolytope 𝕋 (Vec 𝕋 n)}
 /-- The map is a float matrix, so a direction on the target is pulled back
 through what that matrix denotes. -/
 def HPolytope.mtimesOf (M : Mat 𝕋 p n) (Aq : Mat 𝕋 q p)
-    (u : ∀ i, FloatBound 𝕋 P.construct ((Real.HPolytope.rowLin (toRealMat Aq) i).comp
+    (u : ∀ i, FloatBound 𝕋 P.toSet ((Real.HPolytope.rowLin (toRealMat Aq) i).comp
         (mulVecLin (toRealMat M)))) :
     HPolytope 𝕋 (Vec 𝕋 p) :=
   HPolytope.ofBounds Aq fun i => FloatBound.image _ (u i)

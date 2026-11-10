@@ -43,8 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.mtimes_mem {m n : ℕ} (M : Mat 𝕋 m n) (M' : Mat ℝ m n) (hM : M' = toRealMat M)
-    (I : Interval (Vec 𝕋 n)) {x : Vec ℝ n} (hx : x ∈ I.construct) :
-    M' *ᵥ x ∈ (Interval.mtimes M I).construct :=
+    (I : Interval (Vec 𝕋 n)) {x : Vec ℝ n} (hx : x ∈ I.toSet) :
+    M' *ᵥ x ∈ (Interval.mtimes M I).toSet :=
   hM ▸ Interval.mtimes_outer M I ⟨x, hx, rfl⟩
 
 end CORALean.Float

@@ -6,7 +6,7 @@ public import CORALean.ContSet.SpectraShadow.Float.Operations.Cone
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.AbsorbRoundingNominal
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatBlockDiag
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.ToRealMatConstZero
-public import CORALean.ContSet.SpectraShadow.Real.Theorems.ConeConstruct
+public import CORALean.ContSet.SpectraShadow.Real.Theorems.ConeToSet
 public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.Convex
 public import CORALean.ContSet.SpectraShadow.Float.Theorems.InterOuter
@@ -114,35 +114,35 @@ private theorem SpectraShadow.aux_nominal_cone (T : SpectraShadow 𝕋 (Vec 𝕋
 /-- The float cone encloses the perspective cone. -/
 private theorem SpectraShadow.aux_cone_outer (hN : 0 < N)
     (T : SpectraShadow 𝕋 (Vec 𝕋 N)) : -- --- CONCL ---
-    {z : Vec ℝ N | z = 0 ∨ ∃ s : ℝ, 0 < s ∧ ∃ x ∈ T.construct, z = s • x}
-      ⊆ T.cone.construct := by -- --- PROOF ---
+    {z : Vec ℝ N | z = 0 ∨ ∃ s : ℝ, 0 < s ∧ ∃ x ∈ T.toSet, z = s • x}
+      ⊆ T.cone.toSet := by -- --- PROOF ---
   -- the point is in the nominal part, by the exact layer's description of the cone
   intro z hz
   have hnom : z ∈ InflatedContSet.nominalSet T.cone := by
-    change z ∈ ContSet.construct (InflatedContSet.nominal T.cone)
+    change z ∈ ContSet.toSet (InflatedContSet.nominal T.cone)
     rw [SpectraShadow.aux_nominal_cone]
-    change z ∈ (Real.SpectraShadow.cone (InflatedContSet.nominal T.absorbRounding)).construct
-    rw [Real.SpectraShadow.cone_construct hN]
+    change z ∈ (Real.SpectraShadow.cone (InflatedContSet.nominal T.absorbRounding)).toSet
+    rw [Real.SpectraShadow.cone_toSet hN]
     rcases hz with rfl | ⟨s, hs, x, hx, rfl⟩
     · exact Or.inl rfl
     · exact Or.inr ⟨s, hs, x, T.absorbRounding_nominal hx, rfl⟩
-  have hE : T.cone.I_error.construct = {0} := Interval.origin_exact N
+  have hE : T.cone.I_error.toSet = {0} := Interval.origin_exact N
   refine ⟨z, hnom, 0, ?_, add_zero z⟩
   rw [show T.cone.I_error = Interval.origin N from rfl] at hE
   exact (by
     rw [InflatedContSet.I_error]
-    exact hE ▸ rfl : (0 : Vec ℝ N) ∈ (InflatedContSet.I_error T.cone).construct)
+    exact hE ▸ rfl : (0 : Vec ℝ N) ∈ (InflatedContSet.I_error T.cone).toSet)
 
 end
 
 
 private theorem SpectraShadow.aux_singletonOne_mem : -- --- CONCL ---
     (fun _ : Fin 1 => (1 : ℝ))
-      ∈ (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).construct := by -- --- PROOF ---
+      ∈ (SpectraShadow.singletonOne : SpectraShadow 𝕋 (Vec 𝕋 1)).toSet := by -- --- PROOF ---
   -- the one-dimensional set `{1}`, named once
   set S1 : SpectraShadow 𝕋 (Vec 𝕋 1) := SpectraShadow.singletonOne
   -- the error box is the origin, and the nominal part holds `1` at `β = 1`
-  have hE : (0 : Vec ℝ 1) ∈ S1.I_error.construct := by
+  have hE : (0 : Vec ℝ 1) ∈ S1.I_error.toSet := by
     rw [show S1.I_error = Interval.origin 1 from rfl, Interval.origin_exact]; rfl
   refine ⟨_, ?_, 0, hE, add_zero _⟩
   -- the nominal part, witnessed by `β = 1`
@@ -160,8 +160,8 @@ private theorem SpectraShadow.aux_singletonOne_mem : -- --- CONCL ---
 
 private theorem SpectraShadow.aux_hyperplaneOne_mem (y : Vec ℝ n) : -- --- CONCL ---
     (Fin.append y (fun _ : Fin 1 => (1 : ℝ)) : Vec ℝ (n + 1))
-      ∈ (SpectraShadow.hyperplaneOne 𝕋 n).construct := by -- --- PROOF ---
-  have hE : (0 : Vec ℝ (n + 1)) ∈ (SpectraShadow.hyperplaneOne 𝕋 n).I_error.construct := by
+      ∈ (SpectraShadow.hyperplaneOne 𝕋 n).toSet := by -- --- PROOF ---
+  have hE : (0 : Vec ℝ (n + 1)) ∈ (SpectraShadow.hyperplaneOne 𝕋 n).I_error.toSet := by
     rw [show (SpectraShadow.hyperplaneOne 𝕋 n).I_error = Interval.origin (n + 1) from rfl,
       Interval.origin_exact]; rfl
   refine ⟨_, ?_, 0, hE, add_zero _⟩
@@ -183,30 +183,30 @@ private theorem SpectraShadow.aux_hyperplaneOne_mem (y : Vec ℝ n) : -- --- CON
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.convHull_outer (S₁ S₂ : SpectraShadow 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    convexHull ℝ (S₁.construct ∪ S₂.construct) ⊆ (S₁.convHull_ S₂).construct := by -- --- PROOF ---
+    convexHull ℝ (S₁.toSet ∪ S₂.toSet) ⊆ (S₁.convHull_ S₂).toSet := by -- --- PROOF ---
   unfold SpectraShadow.convHull_
   simp only [SpectraShadow.materialise_eq]
-  refine convexHull_min ?_ (SpectraShadow.convex_construct _)
+  refine convexHull_min ?_ (SpectraShadow.convex_toSet _)
   -- a point `x` of a shadow, at height one, is in the product with `{1}`
-  have happ : ∀ (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (x : Vec ℝ n), x ∈ S.construct →
+  have happ : ∀ (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (x : Vec ℝ n), x ∈ S.toSet →
       (Fin.append x (fun _ : Fin 1 => (1 : ℝ)) : Vec ℝ (n + 1))
-        ∈ (S.cartProd SpectraShadow.singletonOne).construct := fun S x hx =>
+        ∈ (S.cartProd SpectraShadow.singletonOne).toSet := fun S x hx =>
     SpectraShadow.cartProd_outer S SpectraShadow.singletonOne
       ⟨(x, fun _ => 1), ⟨hx, SpectraShadow.aux_singletonOne_mem⟩, rfl⟩
   -- and in the cone of the product (`s = 1`)
-  have hcone : ∀ (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (x : Vec ℝ n), x ∈ S.construct →
+  have hcone : ∀ (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (x : Vec ℝ n), x ∈ S.toSet →
       (Fin.append x (fun _ : Fin 1 => (1 : ℝ)) : Vec ℝ (n + 1))
-        ∈ (S.cartProd SpectraShadow.singletonOne).cone.construct := fun S x hx =>
+        ∈ (S.cartProd SpectraShadow.singletonOne).cone.toSet := fun S x hx =>
     SpectraShadow.aux_cone_outer (Nat.succ_pos n) _
       (Or.inr ⟨1, one_pos, _, happ S x hx, (one_smul _ _).symm⟩)
   -- the origin is in every cone
   have h0 : ∀ (S : SpectraShadow 𝕋 (Vec 𝕋 n)), (0 : Vec ℝ (n + 1))
-      ∈ (S.cartProd SpectraShadow.singletonOne).cone.construct := fun S =>
+      ∈ (S.cartProd SpectraShadow.singletonOne).cone.toSet := fun S =>
     SpectraShadow.aux_cone_outer (Nat.succ_pos n) _ (Or.inl rfl)
   -- a point at height one of a sum of cones is in the hyperplane and projects to `x`
   have hfin : ∀ (A : SpectraShadow 𝕋 (Vec 𝕋 (n + 1))) (x : Vec ℝ n),
-      (Fin.append x (fun _ : Fin 1 => (1 : ℝ)) : Vec ℝ (n + 1)) ∈ A.construct →
-      x ∈ ((A.inter (SpectraShadow.hyperplaneOne 𝕋 n)).project (Fin.castAdd 1)).construct :=
+      (Fin.append x (fun _ : Fin 1 => (1 : ℝ)) : Vec ℝ (n + 1)) ∈ A.toSet →
+      x ∈ ((A.inter (SpectraShadow.hyperplaneOne 𝕋 n)).project (Fin.castAdd 1)).toSet :=
     fun A x hA =>
     SpectraShadow.project_outer _ _
       ⟨_, SpectraShadow.inter_outer _ _ ⟨hA, SpectraShadow.aux_hyperplaneOne_mem x⟩,

@@ -67,7 +67,7 @@ private theorem STL.aux_depCurvatureF_term (A : Mat 𝕋 n n) {r : 𝕋} (hr : 0
         Real.MatExp.corrTerm (toRealMat A) (toReal r) i j k ∧
       Real.MatExp.corrTerm (toRealMat A) (toReal r) i j k ≤
         toReal ((MatExp.intervalCorrTerm (Interval.point A) r i).sup j k) := by -- --- PROOF ---
-  have hM : toRealMat A ∈ (Interval.point A).construct := Float.Interval.mem_point A
+  have hM : toRealMat A ∈ (Interval.point A).toSet := Float.Interval.mem_point A
   obtain ⟨-, hhi⟩ := MatExp.taylorCoeffBounds_mem hr i
   set ρ := toReal r ^ i / (Nat.factorial i : ℝ)
   have hρ : 0 ≤ ρ := by positivity
@@ -100,9 +100,9 @@ private theorem STL.aux_depCurvatureF_term (A : Mat 𝕋 n n) {r : 𝕋} (hr : 0
 theorem STL.depCurvatureFFloat_outer (A : Mat 𝕋 n n) {Δt : 𝕋} (hr : 0 ≤ toReal Δt) (κ : ℕ)
     (hε : toReal (MatExp.normUpperBound (Interval.smul Δt Δt (Interval.point A))) /
       ((κ : ℝ) + 2) ≤ 1 / 2) : -- --- CONCL ---
-    (STL.depCurvatureF (toRealMat A) (toReal Δt) κ).construct ⊆
-      (STL.depCurvatureFFloat A Δt κ).construct := by -- --- PROOF ---
-  have hM : toRealMat A ∈ (Interval.point A).construct := Float.Interval.mem_point A
+    (STL.depCurvatureF (toRealMat A) (toReal Δt) κ).toSet ⊆
+      (STL.depCurvatureFFloat A Δt κ).toSet := by -- --- PROOF ---
+  have hM : toRealMat A ∈ (Interval.point A).toSet := Float.Interval.mem_point A
   have hnorm := MatExp.norm_smul_le_normUpperBound (Interval.point A) Δt hM
   -- the scaled matrix has a norm under the bound the Taylor order admits
   have hlt : ‖toReal Δt • toRealMat A‖ / ((κ : ℝ) + 2) < 1 :=

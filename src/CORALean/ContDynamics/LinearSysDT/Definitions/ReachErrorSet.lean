@@ -56,9 +56,9 @@ variable {n ny nw nv : ℕ}
 def LinearSysDT.reachErrorSet (sys : LinearSysDT ℝ n) (L : Mat ℝ n sys.q) (X₀ : Zonotope (Vec ℝ n))
     (W : Zonotope (Vec ℝ sys.r))
     (V : Zonotope (Vec ℝ sys.s)) (k : ℕ) : Set (Vec ℝ n) :=
-  (((sys.A - L * sys.C) ^ k) *ᵥ ·) '' (⟨X₀.h, 0, X₀.G⟩ : Zonotope (Vec ℝ n)).construct +
-    ∑ i ∈ Finset.range k, (((sys.A - L * sys.C) ^ i * sys.E) *ᵥ ·) '' W.construct +
-    ∑ i ∈ Finset.range k, (((sys.A - L * sys.C) ^ i * -(L * sys.F)) *ᵥ ·) '' V.construct
+  (((sys.A - L * sys.C) ^ k) *ᵥ ·) '' (⟨X₀.h, 0, X₀.G⟩ : Zonotope (Vec ℝ n)).toSet +
+    ∑ i ∈ Finset.range k, (((sys.A - L * sys.C) ^ i * sys.E) *ᵥ ·) '' W.toSet +
+    ∑ i ∈ Finset.range k, (((sys.A - L * sys.C) ^ i * -(L * sys.F)) *ᵥ ·) '' V.toSet
 
 end CORALean
 

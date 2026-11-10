@@ -49,9 +49,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- [1, Thm. 1]'s recursion: fold `A ↦ (A + {g⁽ˢ'ⁱ⁾}) ∩ (A - {g⁽ˢ'ⁱ⁾})` over every
-generator of `Zₛ`, starting from `Zₘ.construct` shifted by `-c⁽ˢ⁾`. -/
+generator of `Zₛ`, starting from `Zₘ.toSet` shifted by `-c⁽ˢ⁾`. -/
 def Zonotope.minkDiffGenRec (Zm Zs : Zonotope α) : Set α :=
-  Fin.foldl Zs.h (fun A i => (A + {Zs.G i}) ∩ (A - {Zs.G i})) (Zm.construct - {Zs.c})
+  Fin.foldl Zs.h (fun A i => (A + {Zs.G i}) ∩ (A - {Zs.G i})) (Zm.toSet - {Zs.c})
 
 end CORALean.Real
 

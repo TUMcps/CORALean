@@ -3,39 +3,39 @@ module
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Relax
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.CartProdExact
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.CenterMemToSet
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactConsExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactFactorsExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.CompactGensExact
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ToSetEqImage
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ContainsPointIff
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ContinuousAffine
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullExact
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleToSet
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ConvHullSingleExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.DependentSetUnionDomain
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.EmptyExact
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.ExactPlusConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.ExactPlusToSet
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ExistsUnionFactorsLeft
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.ExistsUnionFactorsRight
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.GetSubsetToSet
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionDepExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompact
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsCompactDomain
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsFullDimRank
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.IsequalToSet
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombExactOfDependent
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.LinCombOuter
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MapExact
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemToSet
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemExtPolyZonotopeIff
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxIff
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemRelaxVecIff
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MemUnionUpperIff
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffToSet
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffInnerOfConvex
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffNotInner
 public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffOuter
@@ -92,10 +92,10 @@ exact intersection in this repository that is not of convex sets, and with `quad
 it is what a nonlinear reachability step needs: a quadratic map, then a guard, losing
 nothing at either.
 
-`isCompact_construct` is the one guarantee about the set rather than an operation: a
+`isCompact_toSet` is the one guarantee about the set rather than an operation: a
 constraint row is a polynomial in the factors, so it closes the domain rather than opening
-it. `MemConstruct` and `MemRelaxIff` are what the operations are stated over.
-`mem_ofPoint` needs none of that, and `getSubset_construct` is an equality, its
+it. `MemToSet` and `MemRelaxIff` are what the operations are stated over.
+`mem_ofPoint` needs none of that, and `getSubset_toSet` is an equality, its
 substitution a polynomial identity. So are `union_exact_of_noZeroCol` and
 `convHull_exact_of_nonempty` — each under a hypothesis the source omits and is false
 without, which their own files set out. `reduceCon_outer` substitutes too, and only

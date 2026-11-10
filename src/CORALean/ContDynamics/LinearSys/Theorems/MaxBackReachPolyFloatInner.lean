@@ -64,18 +64,18 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 `F box(X_end)` the float zonotope holds and any exact `μ` the float one is above. -/
 theorem LinearSys.maxBackReachPolyFloat_inner (p : ℕ) (X : HPolytope 𝕋 (Vec 𝕋 n))
     (FB : Zonotope (Vec 𝕋 n))
-    (μ : 𝕋) {Fr : Set (Vec ℝ n)} {μr : ℝ} (hFr : Fr ⊆ FB.construct) (hμ : μr ≤ toReal μ)
-    (hker₁ : ∀ i, ∀ y ∈ FB.construct, (toRealMat X.Ae *ᵥ y) i = 0)
+    (μ : 𝕋) {Fr : Set (Vec ℝ n)} {μr : ℝ} (hFr : Fr ⊆ FB.toSet) (hμ : μr ≤ toReal μ)
+    (hker₁ : ∀ i, ∀ y ∈ FB.toSet, (toRealMat X.Ae *ᵥ y) i = 0)
     (hker₂ : ∀ i, ∀ y ∈ (Capsule.mk (fun _ => (zero : 𝕋)) (fun _ => zero) (maximum zero μ)
-      (Interval.origin n)).construct, (toRealMat X.Ae *ᵥ y) i = 0) : -- --- CONCL ---
-    (LinearSys.maxBackReachPolyFloat p X FB μ).construct ⊆
-      minkowskiDiff (minkowskiDiff X.construct Fr)
-        (Real.Capsule.mk (0 : Vec ℝ n) 0 μr).construct := by -- --- PROOF ---
+      (Interval.origin n)).toSet, (toRealMat X.Ae *ᵥ y) i = 0) : -- --- CONCL ---
+    (LinearSys.maxBackReachPolyFloat p X FB μ).toSet ⊆
+      minkowskiDiff (minkowskiDiff X.toSet Fr)
+        (Real.Capsule.mk (0 : Vec ℝ n) 0 μr).toSet := by -- --- PROOF ---
   intro x hx y hy z hz
   set ball : Capsule 𝕋 n := ⟨fun _ => zero, fun _ => zero, maximum zero μ, Interval.origin n⟩
     with hball
   -- the exact ball sits inside the float one
-  have hyball : y ∈ ball.construct := by
+  have hyball : y ∈ ball.toSet := by
     -- the witness `t` is kept, the zero center and segment vanish, the radius grows
     obtain ⟨t, ht, hle⟩ := hy
     have hc : ∀ i, toReal (ball.c i) = 0 := fun i => toReal_zero
@@ -83,8 +83,8 @@ theorem LinearSys.maxBackReachPolyFloat_inner (p : ℕ) (X : HPolytope 𝕋 (Vec
     have hr : toReal ball.r = max 0 (toReal μ) := by
       rw [hball]; show toReal (maximum zero μ) = _; rw [toReal_maximum, toReal_zero]
     -- the box is the origin, so the nominal ball is in the float one
-    refine InflatedContSet.nominalSet_subset_construct ?_ ⟨t, ht, ?_⟩
-    · show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).construct
+    refine InflatedContSet.nominalSet_subset_toSet ?_ ⟨t, ht, ?_⟩
+    · show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).toSet
       rw [Interval.origin_exact]
       rfl
     show Real.sqrt (∑ i, (y i - (toReal (ball.c i) + t * toReal (ball.g i))) ^ 2) ≤ toReal ball.r
@@ -94,8 +94,8 @@ theorem LinearSys.maxBackReachPolyFloat_inner (p : ℕ) (X : HPolytope 𝕋 (Vec
   -- each difference keeps a point plus its subtrahend in the polytope
   have key : ∀ (P : HPolytope 𝕋 (Vec 𝕋 n)) (T : Set (Vec ℝ n))
       (u : ∀ i, FloatBound 𝕋 T (Real.HPolytope.rowLin (toRealMat P.A) i)) (x : Vec ℝ n),
-      x ∈ (P.minkDiffOf T u).construct →
-      (∀ i, ∀ y ∈ T, (toRealMat P.Ae *ᵥ y) i = 0) → ∀ y ∈ T, x + y ∈ P.construct :=
+      x ∈ (P.minkDiffOf T u).toSet →
+      (∀ i, ∀ y ∈ T, (toRealMat P.Ae *ᵥ y) i = 0) → ∀ y ∈ T, x + y ∈ P.toSet :=
     fun P T u x hx hk y hy => HPolytope.minkDiffOf_inner P T u hk hx y hy
   unfold LinearSys.maxBackReachPolyFloat at hx
   have h2 := key _ _ _ x hx hker₂ y hyball

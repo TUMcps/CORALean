@@ -11,7 +11,7 @@ entrywise by `mode`, then grows `E` outward regardless of `mode`. `c`'s rounding
 offset, but `G`'s is multiplied by a coefficient `β ∈ [-1,1]`, so it must enter `E` symmetrically:
 row `i`'s bound is one sum of magnitudes, `r_i := sumUp_l (maximum (neg lo_il) hi_il)`, subtracted
 from `E.inf` and added to `E.sup`, not a separate `sumDown` and `sumUp`, which would miss the `β`
-that hits every generator's worst sign together. `construct Z ⊆ construct Z'` is an informal claim.
+that hits every generator's worst sign together. `toSet Z ⊆ toSet Z'` is an informal claim.
 
 ## Inputs
 * `dops` – dtype operations

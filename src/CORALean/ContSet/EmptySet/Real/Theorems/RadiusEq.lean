@@ -29,7 +29,7 @@ variable {n m : ℕ}
 
 open ContSet in
 theorem EmptySet.radius_eq (E : EmptySet n) :
-    ⨆ x ∈ construct E, (‖x‖₊ : ENNReal) = E.radius := by
+    ⨆ x ∈ toSet E, (‖x‖₊ : ENNReal) = E.radius := by
   change ⨆ x ∈ (∅ : Set (Vec ℝ n)), (‖x‖₊ : ENNReal) = 0
   simp
 

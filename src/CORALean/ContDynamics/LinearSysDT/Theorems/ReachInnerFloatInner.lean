@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerFloat
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachFloatSubsetReachSetExactAddError
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetExactInnerOfOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 
@@ -60,15 +60,15 @@ variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 reachable set, read from the nominal parts of `R₀` and `U` — the float
 counterpart of `reachInner_inner`. -/
 theorem LinearSysDT.reachInnerFloat_inner (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
-    {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.I_error.construct)
-    (hU : (0 : Vec ℝ n) ∈ U.I_error.construct) (k : ℕ) :
+    {R₀ U : Zonotope (Vec 𝕋 n)} (hR₀ : (0 : Vec ℝ n) ∈ R₀.I_error.toSet)
+    (hU : (0 : Vec ℝ n) ∈ U.I_error.toSet) (k : ℕ) :
     sys.reachInnerFloat o ho R₀ U k ⊆
       sys.reachSetExact (S := 𝒵)
         (nominal R₀) (nominal U) k :=
   sys.reachSetExact_inner_of_outer (S := 𝒵)
-    (Real.Zonotope.convex_construct _) (Real.Zonotope.isCompact_construct _)
-    (Real.Zonotope.convex_construct _) (Real.Zonotope.isCompact_construct _) k
-    ⟨_, Real.Zonotope.center_mem_construct _⟩ (Real.Zonotope.isBounded_construct _)
+    (Real.Zonotope.convex_toSet _) (Real.Zonotope.isCompact_toSet _)
+    (Real.Zonotope.convex_toSet _) (Real.Zonotope.isCompact_toSet _) k
+    ⟨_, Real.Zonotope.center_mem_toSet _⟩ (Real.Zonotope.isBounded_toSet _)
     (sys.reach_float_subset_reachSetExact_add_error ho hR₀ hU k)
 
 end CORALean

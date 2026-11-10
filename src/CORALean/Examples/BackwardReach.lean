@@ -100,7 +100,7 @@ theorem BReach.run : BReach.sys.backReachForall (S := 𝒵)
 /-- `0.3` is in the computed set: `0.75` of its one generator, which is `0.4`
 long — half of what the difference left, the inverse having halved it. -/
 theorem BReach.mem : -- --- CONCL ---
-    (![(0.3:ℝ)] : Vec ℝ 1) ∈ (Zonotope.mtimes BReach.Ainv BReach.D).construct := by -- --- PROOF ---
+    (![(0.3:ℝ)] : Vec ℝ 1) ∈ (Zonotope.mtimes BReach.Ainv BReach.D).toSet := by -- --- PROOF ---
   refine ⟨fun _ => 0.75, fun j => by norm_num, ?_⟩
   show (![(0.3:ℝ)] : Vec ℝ 1) =
     BReach.Ainv *ᵥ (![(0:ℝ)] - ![(0:ℝ)]) + ∑ _j : Fin 1,
@@ -120,7 +120,7 @@ theorem BReach.backOne :
 /-- `0.3` is in the target itself as well, which is what lets one run start
 there: `simulate_isTrajectory` asks for a set the start lies in. -/
 theorem BReach.memT : -- --- CONCL ---
-    (![(0.3:ℝ)] : Vec ℝ 1) ∈ BReach.T.construct := by -- --- PROOF ---
+    (![(0.3:ℝ)] : Vec ℝ 1) ∈ BReach.T.toSet := by -- --- PROOF ---
   refine ⟨fun _ => 0.3, fun j => by norm_num, ?_⟩
   show (![(0.3:ℝ)] : Vec ℝ 1) = ![(0:ℝ)] + ∑ _i : Fin 1, (0.3:ℝ) • (![(1:ℝ)] : Vec ℝ 1)
   simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fin, one_smul]
@@ -130,8 +130,8 @@ theorem BReach.memT : -- --- CONCL ---
 
 /-- The guarantee spent: whatever input signal `U` admits, the run from `0.3`
 is inside the target one step later. -/
-example (u : ℕ → Vec ℝ 1) (hu : ∀ k, u k ∈ construct BReach.U) :
-    BReach.sys.simulate ![(0.3:ℝ)] u 1 ∈ construct BReach.T :=
+example (u : ℕ → Vec ℝ 1) (hu : ∀ k, u k ∈ toSet BReach.U) :
+    BReach.sys.simulate ![(0.3:ℝ)] u 1 ∈ toSet BReach.T :=
   BReach.sys.backReachSetForallExact_isTrajectory (S := 𝒵) BReach.T BReach.U
     (BReach.sys.simulate_isTrajectory (S := 𝒵) (R₀ := BReach.T) BReach.memT hu) 1 BReach.backOne
 

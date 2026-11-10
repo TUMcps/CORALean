@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEqIInter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ToSetEqIInter
 public import CORALean.ContSet.ZonoBundle.Float.Operations.IsFullDim
 public import CORALean.ContSet.Zonotope.Float.Operations.InteriorPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemInterior
@@ -50,7 +50,7 @@ open Pointwise InflatedContSet
 /-- A `true` from `Zonotope.interiorPoint` proves the point interior. -/
 private theorem Zonotope.aux_interiorPoint_sound {Z : Zonotope (Vec 𝕋 n)} {H : Mat 𝕋 Z.h n}
     {p : Vec 𝕋 n} (h : Z.interiorPoint H p = true) : -- --- CONCL ---
-    toRealVec p ∈ interior Z.construct := by -- --- PROOF ---
+    toRealVec p ∈ interior Z.toSet := by -- --- PROOF ---
   simp only [Zonotope.interiorPoint, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨⟨hc, hd⟩, hE⟩ := h
@@ -59,7 +59,7 @@ private theorem Zonotope.aux_interiorPoint_sound {Z : Zonotope (Vec 𝕋 n)} {H 
     Zonotope.mem_interior hc _ fun i =>
       lt_of_le_of_lt (Zonotope.deviation_bound p Z.I_error.inf Z.c Z.c (toRealVec Z.c)
         (fun _ => le_refl _) (fun _ => le_refl _) i) hdev
-  have he : (fun i => toReal (Z.I_error.inf i)) ∈ (I_error Z).construct := fun i =>
+  have he : (fun i => toReal (Z.I_error.inf i)) ∈ (I_error Z).toSet := fun i =>
     ⟨le_refl _, toReal_le_of_le (hE i)⟩
   have hsum : toRealVec p = (fun i => toReal (p i) - toReal (Z.I_error.inf i))
       + fun i => toReal (Z.I_error.inf i) := by
@@ -75,10 +75,10 @@ end
 
 theorem ZonoBundle.isFullDim_sound {zB : ZonoBundle (Vec 𝕋 n)}
     {H : (i : Fin zB.k) → Mat 𝕋 (zB.Z i).h n} {x₀ : Vec 𝕋 n}
-    (h : zB.isFullDim H x₀ = true) : (interior zB.construct).Nonempty := by
+    (h : zB.isFullDim H x₀ = true) : (interior zB.toSet).Nonempty := by
   simp only [ZonoBundle.isFullDim, List.all_eq_true, List.mem_finRange, forall_const] at h
   refine ⟨toRealVec x₀, ?_⟩
-  rw [ZonoBundle.construct_eq_iInter, interior_iInter_of_finite]
+  rw [ZonoBundle.toSet_eq_iInter, interior_iInter_of_finite]
   exact Set.mem_iInter.mpr fun i => Zonotope.aux_interiorPoint_sound (h i)
 
 end CORALean.Float

@@ -53,13 +53,13 @@ private def Zonotope.aux_zeroZonotope : Zonotope (Vec 𝕋 n) :=
 /-- `0` lies in it: its nominal set at coefficients all `0`, plus its `0`
 error box. -/
 private theorem Zonotope.aux_zero_mem_zeroZonotope : -- --- CONCL ---
-    (0 : Vec ℝ n) ∈ (Zonotope.aux_zeroZonotope (𝕋 := 𝕋) (n := n)).construct := by -- --- PROOF ---
+    (0 : Vec ℝ n) ∈ (Zonotope.aux_zeroZonotope (𝕋 := 𝕋) (n := n)).toSet := by -- --- PROOF ---
   have hnom : (0 : Vec ℝ n) ∈ nominalSet (Zonotope.aux_zeroZonotope (𝕋 := 𝕋) (n := n)) :=
     Zonotope.mem_nominalSet_iff.mpr ⟨0, fun _ => by norm_num, fun i => by
       show (0 : Vec ℝ n) i = toReal (zero : 𝕋) + ∑ _j : Fin n, toReal (zero : 𝕋) * (0 : ℝ)
       simp [toReal_zero]⟩
   have herr : (0 : Vec ℝ n) ∈
-      (⟨fun _ => (zero : 𝕋), fun _ => (zero : 𝕋)⟩ : Interval (Vec 𝕋 n)).construct := fun i =>
+      (⟨fun _ => (zero : 𝕋), fun _ => (zero : 𝕋)⟩ : Interval (Vec 𝕋 n)).toSet := fun i =>
     ⟨by show toReal (zero : 𝕋) ≤ (0 : Vec ℝ n) i
         rw [toReal_zero]; exact le_refl 0,
      by show (0 : Vec ℝ n) i ≤ toReal (zero : 𝕋)
@@ -70,12 +70,12 @@ private theorem Zonotope.aux_zero_mem_zeroZonotope : -- --- CONCL ---
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `reduce` reaches no further than `Z.construct` widened by
+/-- `reduce` reaches no further than `Z.toSet` widened by
 `reduceGirardBox` — the reverse of `reduce_outer`, and what a float run's own
 accumulated error needs. -/
 theorem Zonotope.reduce_subset_add_box (Z : Zonotope (Vec 𝕋 n)) (o : ℕ) : -- --- CONCL ---
-    (Z.reduce o).construct ⊆
-      Z.construct + (Zonotope.reduceGirardBox Z o).construct := by -- --- PROOF ---
+    (Z.reduce o).toSet ⊆
+      Z.toSet + (Zonotope.reduceGirardBox Z o).toSet := by -- --- PROOF ---
   unfold Zonotope.reduce Zonotope.reduceGirard Zonotope.reduceGirardBox
   split_ifs with hlt
   · exact Z.reduceBy_subset_add_box _

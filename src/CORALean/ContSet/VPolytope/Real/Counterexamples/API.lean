@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.VPolytope.Real.Counterexamples.ConstructEqIff
+public import CORALean.ContSet.VPolytope.Real.Counterexamples.ToSetEqIff
 public import CORALean.ContSet.VPolytope.Real.Counterexamples.PlusPruneCora
 public import CORALean.ContSet.VPolytope.Real.Counterexamples.RepresentsaHalfspaceCora
 public import CORALean.ContSet.VPolytope.Real.Counterexamples.SetLinCombConvHull

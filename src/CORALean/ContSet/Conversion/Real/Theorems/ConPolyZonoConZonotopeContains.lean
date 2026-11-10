@@ -42,7 +42,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.conZonotope_contains (cPZ : ConPolyZono α) :
-    cPZ.construct ⊆ cPZ.conZonotope.construct :=
+    cPZ.toSet ⊆ cPZ.conZonotope.toSet :=
   subset_trans cPZ.polyZonotope_contains (PolyZonotope.conZonotope_contains _)
 
 end CORALean.Real

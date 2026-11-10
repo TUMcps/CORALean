@@ -41,10 +41,10 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {
 
 /-- `absorbRounding` contains the set. -/
 theorem StarSet.absorbRounding_outer (s : StarSet 𝕋 n) :
-    s.construct ⊆ s.absorbRounding.construct :=
-  (s.absorbRounding_nominal).trans (nominalSet_subset_construct
+    s.toSet ⊆ s.absorbRounding.toSet :=
+  (s.absorbRounding_nominal).trans (nominalSet_subset_toSet
     (by
-      show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).construct
+      show (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).toSet
       rw [Interval.origin_exact]
       exact Set.mem_singleton _))
 

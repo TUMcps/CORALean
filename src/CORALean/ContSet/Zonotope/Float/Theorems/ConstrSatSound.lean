@@ -45,7 +45,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 theorem Zonotope.constrSat_sound {Z : Zonotope (Vec 𝕋 n)} {C : Mat 𝕋 m n} {d : Vec 𝕋 m}
     (h : Zonotope.constrSat Z C d = true) : -- --- CONCL ---
-    ∀ x ∈ Z.construct, ∀ i, (toRealMat C *ᵥ x) i < toReal (d i) := by -- --- PROOF ---
+    ∀ x ∈ Z.toSet, ∀ i, (toRealMat C *ᵥ x) i < toReal (d i) := by -- --- PROOF ---
   intro x hx i
   have hmem := (Zonotope.mtimes C Z).interval_contains (Zonotope.mtimes_outer C Z ⟨x, hx, rfl⟩)
   have hle := (hmem i).2

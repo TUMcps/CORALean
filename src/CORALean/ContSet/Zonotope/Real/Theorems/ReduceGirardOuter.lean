@@ -47,7 +47,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.reduceGirard_outer (Z : Zonotope (Vec ℝ n)) (o : ℕ) :
-    Z.construct ⊆ (Z.reduceGirard o).construct := by
+    Z.toSet ⊆ (Z.reduceGirard o).toSet := by
   unfold Zonotope.reduceGirard
   split_ifs with hlt
   · exact Zonotope.reduceBy_outer Z _

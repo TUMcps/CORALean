@@ -62,8 +62,8 @@ variable {n p m : ℕ}
 theorem NonlinDASys.LinPoint.certifies_of_subset (T : NonlinDASys.LinPoint n p m)
     (sys : NonlinDASys n p m) (U : Zonotope (Vec ℝ m)) (Δt : ℝ) (q : ℕ) (x : ℝ → Vec ℝ n)
     (y : ℝ → Vec ℝ p) (u : ℝ → Vec ℝ m) {V V' : Zonotope (Vec ℝ n)}
-    {Va Va' : Zonotope (Vec ℝ p)} (hV : V.construct ⊆ V'.construct)
-    (hVa : Va.construct ⊆ Va'.construct)
+    {Va Va' : Zonotope (Vec ℝ p)} (hV : V.toSet ⊆ V'.toSet)
+    (hVa : Va.toSet ⊆ Va'.toSet)
     (h : ({ T with Verror := V, Verror_y := Va } : NonlinDASys.LinPoint n p m).Certifies
       sys U Δt q x y u) : -- --- CONCL ---
     ({ T with Verror := V', Verror_y := Va' } : NonlinDASys.LinPoint n p m).Certifies

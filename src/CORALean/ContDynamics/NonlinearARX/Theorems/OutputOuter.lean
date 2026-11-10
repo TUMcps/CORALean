@@ -58,12 +58,12 @@ variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋]
 theorem NonlinearARX.output_outer (sys : NonlinearARX dy du p) (hp : 0 < p) {o : ℕ}
     (ho : 0 < o) {Y₀ : S (p * dy)} {U : S du} {V : S ((p + 1) * du)}
     (hV : ∀ v : Vec ℝ ((p + 1) * du),
-      (∀ a : Fin (p + 1), (fun b => v (finProdFinEquiv (a, b))) ∈ construct U) →
-        v ∈ construct V)
+      (∀ a : Fin (p + 1), (fun b => v (finProdFinEquiv (a, b))) ∈ toSet U) →
+        v ∈ toSet V)
     (steps : ℕ → sys.toNonlinearSysDT.LinStep 𝕋 V)
     {y : ℕ → Vec ℝ dy} {u : ℕ → Vec ℝ du} (traj : sys.IsTrajectory Y₀ U y u)
     (hR : ∀ k, NonlinearARX.stack p y k ∈ (steps k).R) (k : ℕ) : -- --- CONCL ---
-    y k ∈ construct (mtimes (𝕄 := Mat 𝕋) (sys.outputSel (𝕋 := 𝕋))
+    y k ∈ toSet (mtimes (𝕄 := Mat 𝕋) (sys.outputSel (𝕋 := 𝕋))
       (sys.toNonlinearSysDT.reach ⟨Y₀, V, 0, k⟩ ⟨o, ho⟩ steps)) := by -- --- PROOF ---
   rw [← sys.outputSel_mulVec (𝕋 := 𝕋) hp y k]
   exact Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (sys.outputSel (𝕋 := 𝕋)) _

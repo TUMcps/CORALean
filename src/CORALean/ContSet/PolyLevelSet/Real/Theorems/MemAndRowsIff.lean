@@ -10,7 +10,7 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalAnd
 # A point of `PolyLevelSet.andRows`
 
 A point of `P.andRows Q` is a point of `P`, its box included, at which `Q`'s rows hold as well:
-`Q`'s box is not read. Where `Q`'s box contains `P`'s, this is `P.construct ∩ Q.construct`, as
+`Q`'s box is not read. Where `Q`'s box contains `P`'s, this is `P.toSet ∩ Q.toSet`, as
 `and_exact` states for `and_`.
 
 ## Inputs
@@ -42,9 +42,9 @@ variable {n : ℕ}
 
 /-- A point of `P.andRows Q` is a point of `P` at which `Q`'s rows hold. -/
 theorem PolyLevelSet.mem_andRows_iff (P Q : PolyLevelSet n) (x : Vec ℝ n) : -- --- CONCL ---
-    x ∈ (P.andRows Q).construct
-      ↔ x ∈ P.construct ∧ ∀ i, (Q.op i).holds (Q.eval x i) := by -- --- PROOF ---
-  show (x ∈ P.dom.construct ∧ ∀ i, ((P.and_ Q).op i).holds ((P.and_ Q).eval x i)) ↔ _
+    x ∈ (P.andRows Q).toSet
+      ↔ x ∈ P.toSet ∧ ∀ i, (Q.op i).holds (Q.eval x i) := by -- --- PROOF ---
+  show (x ∈ P.dom.toSet ∧ ∀ i, ((P.and_ Q).op i).holds ((P.and_ Q).eval x i)) ↔ _
   rw [PolyLevelSet.eval_and_]
   show (_ ∧ ∀ i, (Fin.append P.op Q.op i).holds _) ↔ _
   rw [LevelSet.forall_append_holds]

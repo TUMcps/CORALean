@@ -36,9 +36,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConPolyZono.construct_subset_of_representsa_point (cPZ : ConPolyZono α)
+theorem ConPolyZono.toSet_subset_of_representsa_point (cPZ : ConPolyZono α)
     (h : cPZ.representsa_point = true) : -- --- CONCL ---
-    cPZ.construct ⊆ {cPZ.c} := by -- --- PROOF ---
+    cPZ.toSet ⊆ {cPZ.c} := by -- --- PROOF ---
   simp only [ConPolyZono.representsa_point, Bool.and_eq_true, beq_iff_eq] at h
   rintro _ ⟨a, β, -, -, -, rfl⟩
   -- both sums run over `Fin 0`

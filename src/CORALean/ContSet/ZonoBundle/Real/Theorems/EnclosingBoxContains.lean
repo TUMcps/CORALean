@@ -54,7 +54,7 @@ variable {n : ℕ}
 /-- `enclosingBox` contains the image of the bundle under `Λ⁻¹`. -/
 theorem ZonoBundle.enclosingBox_contains (Λ : Mat ℝ n n) (zB : ZonoBundle (Vec ℝ n))
     (i : Fin zB.k) :
-    (fun x => Λ⁻¹ *ᵥ x) '' zB.construct ⊆ (zB.enclosingBox Λ i).construct :=
+    (fun x => Λ⁻¹ *ᵥ x) '' zB.toSet ⊆ (zB.enclosingBox Λ i).toSet :=
   (SetIntersection.memberwise_outer (Set.image (Λ⁻¹ *ᵥ ·)) Set.monotone_image fun i =>
     ⟨i, (Zonotope.mtimes_exact Λ⁻¹ (zB.Z i)).subset⟩).trans ((zB.mtimes Λ⁻¹).interval_contains i)
 

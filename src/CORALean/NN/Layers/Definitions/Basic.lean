@@ -44,8 +44,8 @@ structure IdentityLayer (n m : ℕ) : Type where
 
 /-- The obligation `Layer` no longer carries: what `enclose` encloses. -/
 structure Layer.Encloses (L : Layer S n m) (f : Vec ℝ n → Vec ℝ m) : Prop where
-  enclose_outer (s : S n) (x : Vec ℝ n) (hx : x ∈ construct s) :
-    f x ∈ construct (L.enclose s)
+  enclose_outer (s : S n) (x : Vec ℝ n) (hx : x ∈ toSet s) :
+    f x ∈ toSet (L.enclose s)
 
 
 -- ======================================  `LinearLayer`  ======================================= --

@@ -109,7 +109,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 /-- `ConPolyZono.conZonotope_contains`: its `conZonotope` contains it. -/
 theorem ConPolyZono.conZonotope_contains (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    cPZ.construct ⊆ cPZ.conZonotope.construct :=
+    cPZ.toSet ⊆ cPZ.conZonotope.toSet :=
   subset_trans cPZ.polyZonotope_contains cPZ.polyZonotope.conZonotope_contains
 
 
@@ -121,7 +121,7 @@ theorem ConPolyZono.conZonotope_contains (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
 
 /-- `ConPolyZono.zonotope_contains`: its `zonotope` contains it. -/
 theorem ConPolyZono.zonotope_contains (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    cPZ.construct ⊆ cPZ.zonotope.construct :=
+    cPZ.toSet ⊆ cPZ.zonotope.toSet :=
   subset_trans cPZ.polyZonotope_contains cPZ.polyZonotope.zonotope_contains
 
 end
@@ -141,9 +141,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {P 
 -- Reviewed:      ---
 
 /-- Through its box, which is what the certificates give. -/
-theorem HPolytope.zonotope_contains (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
-    P.construct ⊆ (HPolytope.zonotope up lo).construct :=
+theorem HPolytope.zonotope_contains (up : ∀ j, FloatBound 𝕋 P.toSet (LinearMap.proj j))
+    (lo : ∀ j, FloatBound 𝕋 P.toSet (-LinearMap.proj j)) :
+    P.toSet ⊆ (HPolytope.zonotope up lo).toSet :=
   subset_trans (HPolytope.interval_contains up lo) (Interval.zonotope_contains _)
 
 
@@ -154,9 +154,9 @@ theorem HPolytope.zonotope_contains (up : ∀ j, FloatBound 𝕋 P.construct (Li
 -- Reviewed:      ---
 
 /-- Through its box's zonotope, whose polynomial-zonotope reading is exact. -/
-theorem HPolytope.polyZonotope_contains (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
-    P.construct ⊆ (HPolytope.polyZonotope up lo).construct :=
+theorem HPolytope.polyZonotope_contains (up : ∀ j, FloatBound 𝕋 P.toSet (LinearMap.proj j))
+    (lo : ∀ j, FloatBound 𝕋 P.toSet (-LinearMap.proj j)) :
+    P.toSet ⊆ (HPolytope.polyZonotope up lo).toSet :=
   subset_trans (HPolytope.zonotope_contains up lo) (Zonotope.polyZonotope_contains _)
 
 
@@ -179,7 +179,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Exact for a nonempty box: `vPolytope_contains` and `contains_vPolytope`. -/
 theorem Interval.vPolytope_exact (I : Interval (Vec 𝕋 n))
     (hI : ∀ i, toReal (I.inf i) ≤ toReal (I.sup i)) :
-    (Interval.vPolytope I).construct = I.construct :=
+    (Interval.vPolytope I).toSet = I.toSet :=
   Set.Subset.antisymm (Interval.contains_vPolytope I hI) (Interval.vPolytope_contains I)
 
 end
@@ -203,7 +203,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The box around the vertices, widened by the error box. Both bounds come from
 `SupportBound`, so nothing is computed here. -/
 theorem VPolytope.interval_contains (P : VPolytope (Vec 𝕋 n)) :
-    P.construct ⊆ P.interval.construct :=
+    P.toSet ⊆ P.interval.toSet :=
   Interval.subset_ofBounds _ _
 
 end
@@ -224,7 +224,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Constraints dropped, then the zonotope's own box. -/
 theorem ConZonotope.interval_contains (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    cZ.construct ⊆ cZ.interval.construct :=
+    cZ.toSet ⊆ cZ.interval.toSet :=
   subset_trans cZ.zonotope_contains (Zonotope.interval_contains _)
 
 
@@ -237,7 +237,7 @@ theorem ConZonotope.interval_contains (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
 /-- Through the zonotope. The generators absorb the center's rounding there, and the
 constraint list stays empty here, so nothing further is paid. -/
 theorem Interval.conZonotope_contains (I : Interval (Vec 𝕋 n)) :
-    I.construct ⊆ I.conZonotope.construct :=
+    I.toSet ⊆ I.conZonotope.toSet :=
   subset_trans I.zonotope_contains (Zonotope.conZonotope_contains _)
 
 
@@ -250,7 +250,7 @@ theorem Interval.conZonotope_contains (I : Interval (Vec 𝕋 n)) :
 /-- Through the zonotope. The generators absorb the center's rounding there, and the
 inequality is the exact diagonal one here, so nothing further is paid. -/
 theorem Interval.spectraShadow_contains (I : Interval (Vec 𝕋 n)) :
-    I.construct ⊆ I.spectraShadow.construct :=
+    I.toSet ⊆ I.spectraShadow.toSet :=
   subset_trans I.zonotope_contains (Zonotope.spectraShadow_contains _)
 
 
@@ -262,7 +262,7 @@ theorem Interval.spectraShadow_contains (I : Interval (Vec 𝕋 n)) :
 
 /-- Through the zonotope enclosure and then that zonotope's rounded sign corners. -/
 theorem PolyZonotope.vPolytope_contains (pZ : PolyZonotope (Vec 𝕋 n)) :
-    pZ.construct ⊆ pZ.vPolytope.construct :=
+    pZ.toSet ⊆ pZ.vPolytope.toSet :=
   subset_trans pZ.zonotope_contains (Zonotope.vPolytope_contains _)
 
 
@@ -274,7 +274,7 @@ theorem PolyZonotope.vPolytope_contains (pZ : PolyZonotope (Vec 𝕋 n)) :
 
 /-- Through `ConPolyZono.zonotope`, which drops the constraints, then the zonotope's corners. -/
 theorem ConPolyZono.vPolytope_contains (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    cPZ.construct ⊆ cPZ.vPolytope.construct :=
+    cPZ.toSet ⊆ cPZ.vPolytope.toSet :=
   subset_trans cPZ.zonotope_contains (Zonotope.vPolytope_contains _)
 
 
@@ -286,7 +286,7 @@ theorem ConPolyZono.vPolytope_contains (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
 
 /-- Through the constrained zonotope of the hull, as CORA's `conPolyZono(conZonotope(P))`. -/
 theorem VPolytope.conPolyZono_contains (P : VPolytope (Vec 𝕋 n)) :
-    P.construct ⊆ P.conPolyZono.construct :=
+    P.toSet ⊆ P.conPolyZono.toSet :=
   subset_trans P.conZonotope_contains (ConZonotope.conPolyZono_contains _)
 
 
@@ -299,7 +299,7 @@ theorem VPolytope.conPolyZono_contains (P : VPolytope (Vec 𝕋 n)) :
 /-- Through its box, the vertices' own error box having already been absorbed
 there. -/
 theorem VPolytope.zonotope_contains (P : VPolytope (Vec 𝕋 n)) :
-    P.construct ⊆ P.zonotope.construct :=
+    P.toSet ⊆ P.zonotope.toSet :=
   subset_trans P.interval_contains (Interval.zonotope_contains _)
 
 
@@ -312,7 +312,7 @@ theorem VPolytope.zonotope_contains (P : VPolytope (Vec 𝕋 n)) :
 /-- Through its zonotope, which is its box. -/
 theorem VPolytope.ellipsoid_contains (P : VPolytope (Vec 𝕋 n)) (σ : 𝕋) (hσ : 0 < toReal σ)
     (hh : (P.zonotope.h : ℝ) ≤ toReal (mulDown σ σ)) :
-    P.construct ⊆ (P.ellipsoid σ).construct :=
+    P.toSet ⊆ (P.ellipsoid σ).toSet :=
   subset_trans P.zonotope_contains (P.zonotope.ellipsoid_contains σ hσ hh)
 
 
@@ -324,7 +324,7 @@ theorem VPolytope.ellipsoid_contains (P : VPolytope (Vec 𝕋 n)) (σ : 𝕋) (h
 
 /-- Through its box's zonotope, whose polynomial-zonotope reading is exact. -/
 theorem VPolytope.polyZonotope_contains (P : VPolytope (Vec 𝕋 n)) :
-    P.construct ⊆ P.polyZonotope.construct :=
+    P.toSet ⊆ P.polyZonotope.toSet :=
   subset_trans P.zonotope_contains (Zonotope.polyZonotope_contains _)
 
 
@@ -346,7 +346,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q : ℕ}
 
 /-- `Zonotope.hPolytope_contains`: its `hPolytope` contains it. -/
 theorem Zonotope.hPolytope_contains (Z : Zonotope (Vec 𝕋 n)) (Aq : Mat 𝕋 q n) :
-    Z.construct ⊆ (Z.hPolytope Aq).construct :=
+    Z.toSet ⊆ (Z.hPolytope Aq).toSet :=
   HPolytope.subset_ofBounds _ _
 
 end
@@ -368,7 +368,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q : ℕ}
 /-- Constraints dropped, then the zonotope answers each direction by summing
 absolute values with directed rounding. -/
 theorem ConZonotope.hPolytope_contains (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (Aq : Mat 𝕋 q n) :
-    cZ.construct ⊆ (cZ.hPolytope Aq).construct :=
+    cZ.toSet ⊆ (cZ.hPolytope Aq).toSet :=
   subset_trans cZ.zonotope_contains (Zonotope.hPolytope_contains _ _)
 
 end
@@ -388,7 +388,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Through the box's own zonotope, then `Zonotope.zonoBundle`, exact by
 `Set.iInter_const`. All the loss is the box-to-zonotope step's. -/
 theorem Interval.zonoBundle_contains (I : Interval (Vec 𝕋 n)) :
-    I.construct ⊆ I.zonoBundle.construct :=
+    I.toSet ⊆ I.zonoBundle.toSet :=
   subset_trans I.zonotope_contains (Zonotope.zonoBundle_exact _).subset
 
 
@@ -401,7 +401,7 @@ theorem Interval.zonoBundle_contains (I : Interval (Vec 𝕋 n)) :
 /-- Through the zonotope the box gives, then `Zonotope.zonoBundle`, exact. All the
 loss is the box route's. -/
 theorem VPolytope.zonoBundle_contains (P : VPolytope (Vec 𝕋 n)) :
-    P.construct ⊆ P.zonoBundle.construct :=
+    P.toSet ⊆ P.zonoBundle.toSet :=
   subset_trans P.zonotope_contains (Zonotope.zonoBundle_exact _).subset
 
 
@@ -414,8 +414,8 @@ theorem VPolytope.zonoBundle_contains (P : VPolytope (Vec 𝕋 n)) :
 /-- Any single member already encloses the whole intersection, so the choice of `i`
 owes no proof: the guarantee is sound at every one. -/
 theorem ZonoBundle.zonotope_contains (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) :
-    zB.construct ⊆ (zB.zonotope i).construct :=
-  SetIntersection.construct_subset_ofFn _ i
+    zB.toSet ⊆ (zB.zonotope i).toSet :=
+  SetIntersection.toSet_subset_ofFn _ i
 
 
 -- =============================  `ZonoBundle.hPolytope_contains`  ============================== --
@@ -427,7 +427,7 @@ theorem ZonoBundle.zonotope_contains (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.
 /-- Through `ZonoBundle.zonotope i`, then that zonotope's own halfspace description
 in the directions the caller names. -/
 theorem ZonoBundle.hPolytope_contains {q : ℕ} (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k)
-    (Aq : Mat 𝕋 q n) : zB.construct ⊆ (zB.hPolytope i Aq).construct :=
+    (Aq : Mat 𝕋 q n) : zB.toSet ⊆ (zB.hPolytope i Aq).toSet :=
   subset_trans (zB.zonotope_contains i) (Zonotope.hPolytope_contains _ _)
 
 
@@ -439,7 +439,7 @@ theorem ZonoBundle.hPolytope_contains {q : ℕ} (zB : ZonoBundle (Vec 𝕋 n)) (
 
 /-- Through `ZonoBundle.zonotope i`, then that zonotope's own box. -/
 theorem ZonoBundle.interval_contains (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) :
-    zB.construct ⊆ (zB.interval i).construct :=
+    zB.toSet ⊆ (zB.interval i).toSet :=
   subset_trans (zB.zonotope_contains i) (Zonotope.interval_contains _)
 
 
@@ -451,7 +451,7 @@ theorem ZonoBundle.interval_contains (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.
 
 /-- Through `ZonoBundle.zonotope i`, then that zonotope's own sign corners. -/
 theorem ZonoBundle.vPolytope_contains (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) :
-    zB.construct ⊆ (zB.vPolytope i).construct :=
+    zB.toSet ⊆ (zB.vPolytope i).toSet :=
   subset_trans (zB.zonotope_contains i) (Zonotope.vPolytope_contains _)
 
 end
@@ -474,7 +474,7 @@ variable [SoundFloatArithmetic 𝕋]
 
 /-- Through the polynomial zonotope, dropping the constraints, then its box. -/
 theorem ConPolyZono.interval_contains (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    cPZ.construct ⊆ cPZ.interval.construct :=
+    cPZ.toSet ⊆ cPZ.interval.toSet :=
   subset_trans cPZ.polyZonotope_contains cPZ.polyZonotope.interval_contains
 
 
@@ -486,7 +486,7 @@ theorem ConPolyZono.interval_contains (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
 
 /-- Through the zonotope, dropping the constraints: nothing rounds at either step. -/
 theorem ConZonotope.polyZonotope_contains (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    cZ.construct ⊆ cZ.polyZonotope.construct :=
+    cZ.toSet ⊆ cZ.polyZonotope.toSet :=
   subset_trans cZ.zonotope_contains cZ.zonotope.polyZonotope_contains
 
 
@@ -498,7 +498,7 @@ theorem ConZonotope.polyZonotope_contains (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
 
 /-- Through the polynomial zonotope, the box riding in `err`: nothing rounds. -/
 theorem Interval.conPolyZono_contains (I : Interval (Vec 𝕋 n)) :
-    I.construct ⊆ I.conPolyZono.construct :=
+    I.toSet ⊆ I.conPolyZono.toSet :=
   subset_trans I.polyZonotope_contains I.polyZonotope.conPolyZono_contains
 
 
@@ -511,7 +511,7 @@ theorem Interval.conPolyZono_contains (I : Interval (Vec 𝕋 n)) :
 /-- The bundle is the intersection of its members, so any one member, converted, holds
 it: nothing rounds. -/
 theorem ZonoBundle.polyZonotope_contains (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) :
-    zB.construct ⊆ (zB.polyZonotope i).construct :=
+    zB.toSet ⊆ (zB.polyZonotope i).toSet :=
   subset_trans (zB.zonotope_contains i) (zB.zonotope i).polyZonotope_contains
 
 
@@ -523,7 +523,7 @@ theorem ZonoBundle.polyZonotope_contains (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin
 
 /-- Through the polynomial zonotope: nothing rounds at either step. -/
 theorem Zonotope.conPolyZono_contains (Z : Zonotope (Vec 𝕋 n)) :
-    Z.construct ⊆ Z.conPolyZono.construct :=
+    Z.toSet ⊆ Z.conPolyZono.toSet :=
   subset_trans Z.polyZonotope_contains Z.polyZonotope.conPolyZono_contains
 
 
@@ -535,7 +535,7 @@ theorem Zonotope.conPolyZono_contains (Z : Zonotope (Vec 𝕋 n)) :
 
 /-- Any one member, converted, holds the bundle: nothing rounds. -/
 theorem ZonoBundle.conPolyZono_contains (zB : ZonoBundle (Vec 𝕋 n)) (i : Fin zB.k) :
-    zB.construct ⊆ (zB.conPolyZono i).construct :=
+    zB.toSet ⊆ (zB.conPolyZono i).toSet :=
   subset_trans (zB.zonotope_contains i) (zB.zonotope i).conPolyZono_contains
 
 end
@@ -557,7 +557,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n q : ℕ}
 /-- Through the zonotope enclosure, then that zonotope's own rounded support bounds; the rows
 are the caller's, as in `Zonotope.hPolytope_contains`. -/
 theorem PolyZonotope.hPolytope_contains (pZ : PolyZonotope (Vec 𝕋 n)) (Aq : Mat 𝕋 q n) :
-    pZ.construct ⊆ (pZ.hPolytope Aq).construct :=
+    pZ.toSet ⊆ (pZ.hPolytope Aq).toSet :=
   subset_trans pZ.zonotope_contains (Zonotope.hPolytope_contains _ _)
 
 
@@ -569,7 +569,7 @@ theorem PolyZonotope.hPolytope_contains (pZ : PolyZonotope (Vec 𝕋 n)) (Aq : M
 
 /-- CORA's default box of a polynomial zonotope holds it: the even-column zonotope, then its box. -/
 theorem PolyZonotope.intervalEven_contains (pZ : PolyZonotope (Vec 𝕋 n)) :
-    pZ.construct ⊆ pZ.intervalEven.construct :=
+    pZ.toSet ⊆ pZ.intervalEven.toSet :=
   subset_trans pZ.zonotopeEven_contains pZ.zonotopeEven.interval_contains
 
 
@@ -591,7 +591,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n qI : ℕ}
 
 /-- Through `ConPolyZono.zonotope`, which drops the constraints, then the zonotope's halfspaces. -/
 theorem ConPolyZono.hPolytope_contains (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (Aq : Mat 𝕋 qI n) :
-    cPZ.construct ⊆ (cPZ.hPolytope Aq).construct :=
+    cPZ.toSet ⊆ (cPZ.hPolytope Aq).toSet :=
   subset_trans cPZ.zonotope_contains (Zonotope.hPolytope_contains _ _)
 
 end

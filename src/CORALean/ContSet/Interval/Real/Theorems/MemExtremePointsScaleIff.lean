@@ -91,16 +91,16 @@ private theorem aux_scale_coord {β bb x : ℝ} (hβ : β ≠ 0) (hbb : 0 ≤ bb
 theorem Interval.mem_extremePoints_scale_iff {b β : Vec ℝ n} (hb0 : ∀ i, 0 ≤ b i)
     (hβ : ∀ i, β i ≠ 0) {α : ℝ} {c : Vec ℝ n} : -- --- CONCL ---
     let bx := (⟨fun i => min 0 (β i * b i), fun i => max 0 (β i * b i)⟩ : Interval (Vec ℝ n))
-    c ∈ Set.extremePoints ℝ ((⟨0, b⟩ : Interval (Vec ℝ n)).construct ∩
+    c ∈ Set.extremePoints ℝ ((⟨0, b⟩ : Interval (Vec ℝ n)).toSet ∩
         Interval.hyperplane β α) ↔
       (fun i => β i * c i) ∈ Set.extremePoints ℝ
-        (bx.construct ∩ Interval.hyperplane 1 α) := by -- --- PROOF ---
+        (bx.toSet ∩ Interval.hyperplane 1 α) := by -- --- PROOF ---
   intro bx
   rw [Interval.mem_extremePoints_inter_hyperplane_iff hβ,
     Interval.mem_extremePoints_inter_hyperplane_iff (a := 1) (fun _ => by simp)]
   have hco := fun i => aux_scale_coord (x := c i) (hβ i) (hb0 i)
-  have hbox : c ∈ (⟨0, b⟩ : Interval (Vec ℝ n)).construct ↔
-      (fun i => β i * c i) ∈ bx.construct :=
+  have hbox : c ∈ (⟨0, b⟩ : Interval (Vec ℝ n)).toSet ↔
+      (fun i => β i * c i) ∈ bx.toSet :=
     ⟨fun h i => (hco i).1.mp (h i), fun h i => (hco i).1.mpr (h i)⟩
   have hplane : c ∈ Interval.hyperplane β α ↔ (fun i => β i * c i) ∈ Interval.hyperplane 1 α := by
     simp [Interval.hyperplane]

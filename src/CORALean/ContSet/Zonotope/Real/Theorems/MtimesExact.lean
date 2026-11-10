@@ -42,7 +42,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.mtimes_exact {n m : ℕ} (M : Mat ℝ m n) (Z : Zonotope (Vec ℝ n)) :
-    (M *ᵥ ·) '' Z.construct = (Zonotope.mtimes M Z).construct :=
+    (M *ᵥ ·) '' Z.toSet = (Zonotope.mtimes M Z).toSet :=
   Zonotope.map_exact (Matrix.mulVecLin M) Z
 
 end CORALean.Real

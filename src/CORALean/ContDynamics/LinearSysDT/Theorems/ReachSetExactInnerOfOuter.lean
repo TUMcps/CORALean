@@ -60,8 +60,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 nonempty bounded `E`, becomes an inner approximation once `E` is taken back off
 — provided `R₀` and `U` are convex and compact, which is all this asks of them. -/
 theorem LinearSysDT.reachSetExact_inner_of_outer (sys : LinearSysDT 𝕋 n) {R₀ U : S n}
-    (hR₀conv : Convex ℝ (construct R₀)) (hR₀comp : IsCompact (construct R₀))
-    (hUconv : Convex ℝ (construct U)) (hUcomp : IsCompact (construct U)) (k : ℕ)
+    (hR₀conv : Convex ℝ (toSet R₀)) (hR₀comp : IsCompact (toSet R₀))
+    (hUconv : Convex ℝ (toSet U)) (hUcomp : IsCompact (toSet U)) (k : ℕ)
     {Ŷ E : Set (Vec ℝ n)} (hE : E.Nonempty) (hEb : Bornology.IsBounded E)
     (hOuter : Ŷ ⊆ sys.reachSetExact R₀ U k + E) :
     minkowskiDiff Ŷ E ⊆ sys.reachSetExact R₀ U k :=

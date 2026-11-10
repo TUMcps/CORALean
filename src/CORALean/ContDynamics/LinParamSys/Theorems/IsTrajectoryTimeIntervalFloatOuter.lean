@@ -77,7 +77,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer
     (hT : Set.Icc 0 (toReal Δt) ⊆ T) (hu : ∀ s ∈ Set.Ico 0 (toReal Δt), u s = 0)
     (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {t : ℝ} (ht0 : 0 ≤ t)
     (htr : t ≤ toReal Δt) : -- --- CONCL ---
-    x t ∈ (sys.timeIntervalFloat Δt η R₀).construct := by -- --- PROOF ---
+    x t ∈ (sys.timeIntervalFloat Δt η R₀).toSet := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hη.1
   set r := toReal Δt with hr
   -- the same run, read at the box's nominal real system
@@ -106,7 +106,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer
     rw [← heq]; abel
   have hx₀ := traj.init
   -- the interpolation to the member `Φ` of `[e^{AΔt}]`, and the member `F` of `[F]`
-  have hE : Φ *ᵥ x 0 ∈ construct
+  have hE : Φ *ᵥ x 0 ∈ toSet
     (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
       (sys.expIntervalFloat Δt Δt (m + 2)) R₀) := by
     refine Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
@@ -114,7 +114,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeIntervalFloat_outer
       (Set.mem_biUnion ?_ (Set.mem_image_of_mem _ hx₀))
     rw [LinParamSys.expIntervalFloat, Interval.materialiseMat_eq]
     exact hΦ
-  have hFm : F *ᵥ x 0 ∈ construct
+  have hFm : F *ᵥ x 0 ∈ toSet
     (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
       (MatExp.intervalCorrectionMatrix sys.A Δt (m + 2)) R₀) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])

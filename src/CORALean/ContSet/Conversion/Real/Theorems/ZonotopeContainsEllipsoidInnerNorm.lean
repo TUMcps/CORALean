@@ -1,13 +1,13 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.ContSet.Zonotope.Real.Theorems.SqNormLeMaxNormSq
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 public import Mathlib.LinearAlgebra.Matrix.DotProduct
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Ellipsoid
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetOfFactor
 
 @[expose] public section
 
@@ -55,9 +55,9 @@ variable {n : ℕ}
 theorem Zonotope.contains_ellipsoidInnerNorm (Z : Zonotope (Vec ℝ n)) (F : Mat ℝ n n) (l : ℝ)
     (hF : IsUnit F.det)
     (hball : ∀ x : Vec ℝ n, ‖x‖₂ ≤ √l → F⁻¹ *ᵥ Z.c + x ∈
-      (⟨Z.h, F⁻¹ *ᵥ Z.c, fun j => F⁻¹ *ᵥ Z.G j⟩ : Zonotope (Vec ℝ n)).construct) : -- --- CONCL ---
-    (Z.ellipsoidInnerNorm F l).construct ⊆ Z.construct := by -- --- PROOF ---
-  rw [Zonotope.ellipsoidInnerNorm, Ellipsoid.construct_ofFactor]
+      (⟨Z.h, F⁻¹ *ᵥ Z.c, fun j => F⁻¹ *ᵥ Z.G j⟩ : Zonotope (Vec ℝ n)).toSet) : -- --- CONCL ---
+    (Z.ellipsoidInnerNorm F l).toSet ⊆ Z.toSet := by -- --- PROOF ---
+  rw [Zonotope.ellipsoidInnerNorm, Ellipsoid.toSet_ofFactor]
   rintro _ ⟨u, hu, rfl⟩
   -- `√l u` is in the ball, so a point of `F⁻¹ Z`; map it back with `F`
   have hx : ‖√l • u‖₂ ≤ √l := by

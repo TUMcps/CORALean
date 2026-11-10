@@ -60,13 +60,13 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 the Minkowski difference. -/
 theorem Zonotope.minkDiffStretch_outer {ι : Type} (Z₁ Z₂ : Zonotope α)
     (C : ι → (α →ₗ[ℝ] ℝ)) (μ : Fin Z₁.h → ℝ) (hμ0 : ∀ υ, 0 ≤ μ υ) (b : ι → ℝ)
-    (hb : ∀ i, ∀ x ∈ minkowskiDiff Z₁.construct Z₂.construct, C i (x - (Z₁.c - Z₂.c)) ≤ b i)
+    (hb : ∀ i, ∀ x ∈ minkowskiDiff Z₁.toSet Z₂.toSet, C i (x - (Z₁.c - Z₂.c)) ≤ b i)
     (hμ : ∀ i, b i ≤ ∑ υ, |C i (Z₁.G υ)| * μ υ)
     (hCd : {y | ∀ i, C i (y - (Z₁.minkDiffStretch Z₂ μ).c)
                 ≤ ∑ υ, |C i ((Z₁.minkDiffStretch Z₂ μ).G υ)|}
-            ⊆ (Z₁.minkDiffStretch Z₂ μ).construct) : -- --- CONCL ---
-    minkowskiDiff Z₁.construct Z₂.construct
-      ⊆ (Z₁.minkDiffStretch Z₂ μ).construct := by -- --- PROOF ---
+            ⊆ (Z₁.minkDiffStretch Z₂ μ).toSet) : -- --- CONCL ---
+    minkowskiDiff Z₁.toSet Z₂.toSet
+      ⊆ (Z₁.minkDiffStretch Z₂ μ).toSet := by -- --- PROOF ---
   intro x hx
   refine hCd fun i => ?_
   -- the stretched minuend's own reach is `Âµ`, the factors being nonnegative

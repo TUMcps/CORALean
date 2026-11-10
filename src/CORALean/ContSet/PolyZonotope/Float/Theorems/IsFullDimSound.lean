@@ -78,7 +78,7 @@ private theorem PolyZonotope.aux_box_subset {pZ : PolyZonotope (Vec 𝕋 n)} {H 
 
 theorem PolyZonotope.isFullDim_sound {pZ : PolyZonotope (Vec 𝕋 n)} {H : Mat 𝕋 pZ.q n}
     (h : pZ.isFullDimWith H = true) : -- --- CONCL ---
-    (interior pZ.construct).Nonempty := by -- --- PROOF ---
+    (interior pZ.toSet).Nonempty := by -- --- PROOF ---
   simp only [PolyZonotope.isFullDimWith, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨hc, hE⟩ := h
@@ -97,7 +97,7 @@ theorem PolyZonotope.isFullDim_sound {pZ : PolyZonotope (Vec 𝕋 n)} {H : Mat �
       exact this.le
   have hx : y₀ ∈ interior (nominalSet pZ) :=
     interior_maximal hVsub hV fun i _ => by simpa [Metric.mem_ball] using hB
-  have he : (fun i => toReal (pZ.I_error.inf i)) ∈ (I_error pZ).construct := fun i =>
+  have he : (fun i => toReal (pZ.I_error.inf i)) ∈ (I_error pZ).toSet := fun i =>
     ⟨le_refl _, toReal_le_of_le (hE i)⟩
   exact ⟨_, subset_interior_add_left (Set.add_mem_add hx he)⟩
 

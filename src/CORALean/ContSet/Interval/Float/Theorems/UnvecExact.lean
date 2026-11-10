@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.unvec_exact (I : Interval (Vec 𝕋 (n * m))) : -- --- CONCL ---
-    I.unvec.construct = matVecEquiv.symm '' I.construct := by -- --- PROOF ---
+    I.unvec.toSet = matVecEquiv.symm '' I.toSet := by -- --- PROOF ---
   -- stacking the unstacked box gives the box back
   have h : I.unvec.vec = I := by
     cases I

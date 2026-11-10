@@ -67,7 +67,7 @@ noncomputable def NonlinDASys.outputSetLinearCora (sys : NonlinDASys n p m)
     (p_x : Vec ℝ n) (p_y : Vec ℝ p) (p_u : Vec ℝ m) (R : S n) : Set (Vec ℝ sys.q) :=
   let zerothorder := sys.h p_x p_y p_u                              -- out_mFile(p_x,p_y,p_u)
   let J := jacobianMat (fun x => sys.h x p_y p_u) p_x               -- out_jacobian(p_x,p_y,p_u)
-  {z | ∃ x ∈ construct R, z = zerothorder + J *ᵥ (x - p_x)}        -- zerothorder + firstorder
+  {z | ∃ x ∈ toSet R, z = zerothorder + J *ᵥ (x - p_x)}        -- zerothorder + firstorder
 
 end CORALean
 

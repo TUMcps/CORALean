@@ -45,8 +45,8 @@ namespace CORALean.Real
 theorem intersectLevelSetBox_parabola : -- --- CONCL ---
     let I : Interval (Vec ℝ 2) := ⟨![-1, 0], ![1, 2]⟩
     let p : Vec ℝ 2 → ℝ := fun x => 2 * x 0 ^ 2
-    I.construct ∩ {x | x 1 = p x} = (intersectLevelSetBox I 1 p).construct ∧
-      I.construct ∩ {x | x 1 = p x}
+    I.toSet ∩ {x | x 1 = p x} = (intersectLevelSetBox I 1 p).toSet ∧
+      I.toSet ∩ {x | x 1 = p x}
         = {y | ∃ α ∈ Set.Icc (-1 : ℝ) 1, y = α • ![1, 0] + α ^ 2 • ![0, 2]} := by -- --- PROOF ---
   intro I p
   refine ⟨intersectLevelSetBox_exact I 1 p (fun x hx => ?_) (fun x t => ?_), ?_⟩

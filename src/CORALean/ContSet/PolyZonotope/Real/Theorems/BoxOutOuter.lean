@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.BoxOut
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
@@ -96,9 +96,9 @@ private theorem PolyZonotope.aux_abs_removed_le (pZ : PolyZonotope (Vec ℝ n)) 
 /-- Boxing out any dependent generators, and widening the box by any independent ones, encloses. -/
 theorem PolyZonotope.boxOut_outer (pZ : PolyZonotope (Vec ℝ n)) (removed : Fin pZ.h → Prop)
     (taken : Fin pZ.q → Prop) [DecidablePred removed] [DecidablePred taken] : -- --- CONCL ---
-    pZ.construct ⊆ (pZ.boxOut removed taken).construct := by -- --- PROOF ---
+    pZ.toSet ⊆ (pZ.boxOut removed taken).toSet := by -- --- PROOF ---
   intro x hxmem
-  obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_construct_iff.mp hxmem
+  obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_toSet_iff.mp hxmem
   set part := Partition.ofPred removed with hpart
   -- the removed dependent generators reach `D i` in coordinate `i`, the box has radius `R i`
   set D : Fin n → ℝ := fun i =>
@@ -124,7 +124,7 @@ theorem PolyZonotope.boxOut_outer (pZ : PolyZonotope (Vec ℝ n)) (removed : Fin
     exact h1.trans h3
   have hnonneg : ∀ i, (0 : ℝ) ≤ R i := fun i => (abs_nonneg _).trans (hbound i)
   -- the witness: the same factors, the same coefficients, and one per coordinate for the box
-  refine PolyZonotope.mem_construct_iff.mpr
+  refine PolyZonotope.mem_toSet_iff.mpr
     ⟨a, Fin.append β (fun i => Zonotope.coefficient (R i) (D i)), ha, ?_, fun i => ?_⟩
   · refine Fin.addCases (fun j => ?_) (fun i => ?_)
     · simpa using hβ j

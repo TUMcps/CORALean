@@ -49,8 +49,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.intersection_exact (zB₁ zB₂ : ZonoBundle α) :
-    (zB₁.intersection zB₂).construct = zB₁.construct ∩ zB₂.construct := by
-  show ContSet.construct (⟨List.ofFn (Fin.append zB₁.Z zB₂.Z)⟩ : SetIntersection _) = _
+    (zB₁.intersection zB₂).toSet = zB₁.toSet ∩ zB₂.toSet := by
+  show ContSet.toSet (⟨List.ofFn (Fin.append zB₁.Z zB₂.Z)⟩ : SetIntersection _) = _
   rw [List.ofFn_fin_append]
   exact SetIntersection.intersection_exact zB₁.toSetIntersection zB₂.toSetIntersection
 

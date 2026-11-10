@@ -58,7 +58,7 @@ variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋]
 set lying inside that step's certified region. -/
 theorem NonlinearSysDT.confinement_of_subset_on (sys : NonlinearSysDT n m) {U : S m} {o : ℕ}
     (ho : 0 < o) (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) {K : ℕ}
-    (hsub : ∀ k < K, construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) ⊆ (steps k).R)
+    (hsub : ∀ k < K, toSet (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) ⊆ (steps k).R)
     {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m} {y : ℕ → Vec ℝ sys.q}
     (traj : sys.IsTrajectoryOn R₀ U K x u y) : -- --- CONCL ---
     ∀ k < K, x k ∈ (steps k).R := by -- --- PROOF ---

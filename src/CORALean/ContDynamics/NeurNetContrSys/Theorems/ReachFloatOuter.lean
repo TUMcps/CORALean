@@ -15,7 +15,7 @@ public import CORALean.ContDynamics.NeurNetContrSys.Theorems.AugmentFlow
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachWithTimePointOuter
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ToRealMatAugmentFloat
 public import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.ProjectOuter
 
 @[expose] public section
@@ -135,12 +135,12 @@ private theorem LinearSys.IsCanonicalTrajectory.aux_discretizeEnclosureFloat_mem
     (traj : sys.IsCanonicalTrajectory (S := 𝒵[𝕋]) T R₀ U x u) (hΔt : 0 < toReal Δt)
     (hT : Set.Icc 0 ((K : ℝ) * toReal Δt) ⊆ T) (hη : sys.IsOrderAdmissibleFloat Δt Δt η)
     {o : ℕ} (ho : 0 < o) : -- --- CONCL ---
-    ∀ k ≤ K, x ((k : ℝ) * toReal Δt) ∈ construct
+    ∀ k ≤ K, x ((k : ℝ) * toReal Δt) ∈ toSet
     ((sys.discretizeEnclosureFloat Δt η).reach (S := 𝒵[𝕋])
       ⟨R₀, sys.inputSolutionFloat Δt η U, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   -- the exact sampling, every step's input inside the float input solution
   have hdt := traj.discretize_horizon (Ud := sys.inputSolutionFloat Δt η U) hΔt.le hT
-    (CompactSet.isBounded_construct U) fun j hj =>
+    (CompactSet.isBounded_toSet U) fun j hj =>
       sys.inputReach_subset_inputSolutionFloat hΔt hη U
         (traj.aux_stepInput_mem_inputReach j (oneStep_subset_horizon hΔt.le hT hj))
   -- the same run, its matrix only enclosed
@@ -169,30 +169,30 @@ theorem NeurNetContrSys.reachFloat_outer (sys : NeurNetContrSys (LinearSys 𝕋 
     {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Encloses π)
     {W : Set (Vec ℝ sys.plant.r)} (hW : ∀ v ∈ W, Scalar.toRealMat sys.plant.E *ᵥ v = 0)
     {x : ℝ → Vec ℝ n} {v : ℝ → Vec ℝ sys.nExt} {w : ℝ → Vec ℝ sys.plant.r}
-    (traj : sys.IsTrajectory π H R₀ (construct U_ext) W x v w) : -- --- CONCL ---
+    (traj : sys.IsTrajectory π H R₀ (toSet U_ext) W x v w) : -- --- CONCL ---
     ∀ i ≤ H, x ((i : ℝ) * sys.dt) ∈
-      construct (sys.reachFloat U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) := by -- --- PROOF ---
+      toSet (sys.reachFloat U_ext ⟨R₀, 0, i⟩ ⟨Δt, N, η, o, ho⟩) := by -- --- PROOF ---
   obtain ⟨hA, hc, hB⟩ := sys.toRealMat_augmentFloat
   refine sys.reachWith_timePoint_outer _ _ _
     (fun X Y x u hx hu => by
-      show _ ∈ (X.cartProd Y).construct
+      show _ ∈ (X.cartProd Y).toSet
       rw [Zonotope.cartProd_exact]
       exact ⟨(x, u), ⟨hx, hu⟩, rfl⟩)
     (fun Z z hz => Zonotope.project_outer Z (Fin.castAdd sys.m) ⟨z, hz, rfl⟩) ?_ hπ traj
   -- a period of the plant is a run of the augmented system, read in floats
   intro Z z u v' w' hz hzt
   obtain ⟨hcont, hvU, hmeas, hflow⟩ :=
-    sys.augment_flow (CompactSet.isBounded_construct U_ext) hW hzt
+    sys.augment_flow (CompactSet.isBounded_toSet U_ext) hW hzt
   -- the augmented input `B_aug v + c_aug` is in `B_aug U_ext ⊕ [c; 0]`
   have hin : ∀ t ∈ Set.Icc 0 sys.dt,
       Scalar.toRealMat sys.augmentFloat.B *ᵥ v' t + Scalar.toRealVec sys.augmentFloat.c ∈
-        construct (Plus.plus (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) sys.augmentFloat.B U_ext)
+        toSet (Plus.plus (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) sys.augmentFloat.B U_ext)
           (Zonotope.point sys.augmentFloat.c) : Zonotope (Vec 𝕋 (n + sys.m))) := fun t ht => by
     refine Plus.plus_outer _ _ (Set.add_mem_add ?_ ?_)
     · exact Mtimes.mtimes_outer _ _
         (Set.mem_biUnion (Set.mem_singleton _) (Set.mem_image_of_mem _ (hvU t ht)))
-    · show _ ∈ (Zonotope.point sys.augmentFloat.c).construct
-      rw [Zonotope.construct_point]
+    · show _ ∈ (Zonotope.point sys.augmentFloat.c).toSet
+      rw [Zonotope.toSet_point]
       rfl
   -- the period as a canonical run of the float system, its input read back through `hB`, `hc`
   have hcl : sys.augmentFloat.IsCanonicalTrajectory (S := 𝒵[𝕋])

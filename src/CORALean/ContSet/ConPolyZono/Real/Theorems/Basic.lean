@@ -43,7 +43,7 @@ theorem ConPolyZono.mtimes_eq_map (M : Mat ℝ m n) (cPZ : ConPolyZono (Vec ℝ 
 /-- Reading the same coordinates of every member, no hypothesis on `dims`: a linear map is exact
 without injectivity, so nothing is added and nothing lost. -/
 theorem ConPolyZono.project_exact (cPZ : ConPolyZono (Vec ℝ n)) (dims : Fin m → Fin n) :
-    (fun x k => x (dims k)) '' cPZ.construct = (cPZ.project dims).construct :=
+    (fun x k => x (dims k)) '' cPZ.toSet = (cPZ.project dims).toSet :=
   ConPolyZono.map_exact (LinearMap.funLeft ℝ ℝ dims) cPZ
 
 end CORALean.Real

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Capsule.Real.Operations.ContainsPoint
-public import CORALean.ContSet.Capsule.Real.Theorems.MemConstructIffNorm
+public import CORALean.ContSet.Capsule.Real.Theorems.MemToSetIffNorm
 
 @[expose] public section
 
@@ -61,8 +61,8 @@ private theorem aux_norm₂_le_iff (x : Vec ℝ n) (r : ℝ) : -- --- CONCL ---
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.containsPoint_iff (C : Capsule n) (p : Vec ℝ n) : -- --- CONCL ---
-    C.containsPoint p ↔ p ∈ C.construct := by -- --- PROOF ---
-  rw [Capsule.mem_construct_iff_norm₂]
+    C.containsPoint p ↔ p ∈ C.toSet := by -- --- PROOF ---
+  rw [Capsule.mem_toSet_iff_norm₂]
   simp only [Capsule.containsPoint]
   set v := p - C.c with hv
   by_cases hg : ‖C.g‖₂ = 0

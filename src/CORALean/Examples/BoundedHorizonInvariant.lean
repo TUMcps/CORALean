@@ -104,7 +104,7 @@ theorem BHI.hinv : BHI.HA.IsInvariantOn BHI.R where
 /-- The one thing the whole file is for: a run known only through its jump
 count lands where `IsInvariantOn`, read at the count reached, says it must. -/
 example {m k : ℕ} {ℓ ℓ' : Bool} {x y : Vec ℝ 1} (run : BHI.HA.IsRunOn m ℓ x ℓ' y)
-    (hx : x ∈ construct (BHI.R k ℓ)) : y ∈ construct (BHI.R (k + m) ℓ') :=
+    (hx : x ∈ toSet (BHI.R k ℓ)) : y ∈ toSet (BHI.R (k + m) ℓ') :=
   run.mem_of_isInvariantOn BHI.hinv hx
 
 end CORALean.Real

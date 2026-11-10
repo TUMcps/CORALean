@@ -88,12 +88,12 @@ private theorem Zonotope.aux_corner_mem (Z : Zonotope (Vec 𝕋 n)) (l : Fin (2 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.vPolytope_contains (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    Z.construct ⊆ Z.vPolytope.construct := by -- --- PROOF ---
+    Z.toSet ⊆ Z.vPolytope.toSet := by -- --- PROOF ---
   -- the exact corners, and the rounded ones actually stored
-  have hstep : (InflatedContSet.nominal Z).vPolytope.construct
+  have hstep : (InflatedContSet.nominal Z).vPolytope.toSet
       ⊆ InflatedContSet.nominalSet Z.vPolytope
-        + (VPolytope.columnGap Z.cornerLo Z.cornerHi).construct := by
-    refine Real.VPolytope.construct_subset_add _ _ (Real.Interval.convex_construct _) fun l => ?_
+        + (VPolytope.columnGap Z.cornerLo Z.cornerHi).toSet := by
+    refine Real.VPolytope.toSet_subset_add _ _ (Real.Interval.convex_toSet _) fun l => ?_
     exact VPolytope.mem_columnGap fun i => Z.aux_corner_mem l i
   intro x hx
   obtain ⟨p, hp, e, he, rfl⟩ := hx

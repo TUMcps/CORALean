@@ -88,7 +88,7 @@ private noncomputable def aux_sum (S : Mat ℝ m n) (j : ℕ) : ℝ :=
 
 /-- A sensitivity in its box has its key in the key box. -/
 private theorem aux_sensitivityKey_mem {SB : Interval (Mat 𝕋 m n)} {S : Mat ℝ m n}
-    (hS : S ∈ SB.construct) (j : ℕ) : -- --- CONCL ---
+    (hS : S ∈ SB.toSet) (j : ℕ) : -- --- CONCL ---
     toReal (step_sensitivityKey SB j).inf ≤ aux_sum S j ∧
       aux_sum S j ≤ toReal (step_sensitivityKey SB j).sup := by -- --- PROOF ---
   by_cases hj : j < n
@@ -129,7 +129,7 @@ private theorem aux_scale_iff {u v c : ℝ} (hc : 0 < c ∨ u = 0 ∧ v = 0) :
 
 theorem IntervalChain.getInputNeuronOrder_eq {c : IntervalChain 𝕋 n m}
     {r : Real.IntervalChain n m} (hc : c.Encloses r) (hs : r.IsSmooth) (method : InputOrderMethod)
-    (X : Interval (Vec 𝕋 n)) {x : Vec ℝ n} (hx : x ∈ X.construct)
+    (X : Interval (Vec 𝕋 n)) {x : Vec ℝ n} (hx : x ∈ X.toSet)
     (inputSize : Option (ℕ × ℕ × ℕ)) : -- --- CONCL ---
     ∀ L ∈ c.getInputNeuronOrder method X inputSize,
       CORALean.getInputNeuronOrder r.toChain method x inputSize = L := by -- --- PROOF ---

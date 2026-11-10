@@ -4,7 +4,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Operations.Enclose
 public import CORALean.ContSet.Ellipsoid.Real.Operations.OfPoint
 public import CORALean.ContSet.ContSet.ContSet
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemToSetIff
 
 @[expose] public section
 
@@ -47,15 +47,15 @@ open Matrix Pointwise
 `E2 = M Eplus` the code uses. -/
 theorem Ellipsoid.enclose_cora_counterexample : -- --- CONCL ---
     ∃ (E Eplus : Ellipsoid 1) (M : Mat ℝ 1 1),
-      ¬ Set.linComb E.construct ((M *ᵥ ·) '' E.construct + Eplus.construct) ⊆
-        Set.linComb E.construct ((Ellipsoid.mtimes M Eplus).construct) := by -- --- PROOF ---
+      ¬ Set.linComb E.toSet ((M *ᵥ ·) '' E.toSet + Eplus.toSet) ⊆
+        Set.linComb E.toSet ((Ellipsoid.mtimes M Eplus).toSet) := by -- --- PROOF ---
   refine ⟨Ellipsoid.ofPoint 0, Ellipsoid.ofPoint (fun _ => 1), 0, fun h => ?_⟩
   -- a point ellipsoid is the singleton of its center
-  have hpt : ∀ v : Vec ℝ 1, (Ellipsoid.ofPoint v).construct = {v} := by
+  have hpt : ∀ v : Vec ℝ 1, (Ellipsoid.ofPoint v).toSet = {v} := by
     intro v
     have hG : (Ellipsoid.ofPoint v).G = 0 := (Ellipsoid.G_eq_zero_iff _).2 rfl
     ext x
-    rw [Ellipsoid.mem_construct_iff]
+    rw [Ellipsoid.mem_toSet_iff]
     constructor
     · rintro ⟨u, -, rfl⟩
       rw [hG, Matrix.zero_mulVec, add_zero]
@@ -63,9 +63,9 @@ theorem Ellipsoid.enclose_cora_counterexample : -- --- CONCL ---
     · rintro rfl
       exact ⟨0, by simp [CORALean.norm₂], by rw [Matrix.mulVec_zero, add_zero]; rfl⟩
   -- the documented set contains `1`, at `a = 0`
-  have hm : (fun _ => (1 : ℝ) : Vec ℝ 1) ∈ Set.linComb (Ellipsoid.ofPoint (0 : Vec ℝ 1)).construct
-      ((fun y => (0 : Mat ℝ 1 1) *ᵥ y) '' (Ellipsoid.ofPoint (0 : Vec ℝ 1)).construct +
-        (Ellipsoid.ofPoint (fun _ => (1 : ℝ) : Vec ℝ 1)).construct) := by
+  have hm : (fun _ => (1 : ℝ) : Vec ℝ 1) ∈ Set.linComb (Ellipsoid.ofPoint (0 : Vec ℝ 1)).toSet
+      ((fun y => (0 : Mat ℝ 1 1) *ᵥ y) '' (Ellipsoid.ofPoint (0 : Vec ℝ 1)).toSet +
+        (Ellipsoid.ofPoint (fun _ => (1 : ℝ) : Vec ℝ 1)).toSet) := by
     refine ⟨0, by rw [hpt]; rfl, fun _ => 1, ?_, 0, by simp, by simp⟩
     rw [hpt, hpt]
     exact ⟨0, ⟨0, rfl, by simp⟩, fun _ => 1, rfl, by simp⟩
@@ -73,7 +73,7 @@ theorem Ellipsoid.enclose_cora_counterexample : -- --- CONCL ---
   obtain ⟨y₁, h₁, y₂, h₂, l, -, ht⟩ := h hm
   rw [hpt] at h₁
   have h₂' : y₂ = 0 := by
-    obtain ⟨u, -, rfl⟩ := Ellipsoid.mem_construct_iff.1 h₂
+    obtain ⟨u, -, rfl⟩ := Ellipsoid.mem_toSet_iff.1 h₂
     have hG : (Ellipsoid.mtimes (0 : Mat ℝ 1 1) (Ellipsoid.ofPoint (fun _ => (1 : ℝ)))).G = 0 :=
       (Ellipsoid.G_eq_zero_iff _).2 (by simp [Ellipsoid.mtimes])
     rw [hG, Matrix.zero_mulVec, add_zero]

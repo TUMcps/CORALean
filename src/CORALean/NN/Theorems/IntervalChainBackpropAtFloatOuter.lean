@@ -56,9 +56,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 theorem IntervalChain.backpropAt_outer {n k : ℕ} {c : IntervalChain 𝕋 n k}
     {r : Real.IntervalChain n k} (hc : c.Encloses r) (hs : r.IsSmooth) (X : Interval (Vec 𝕋 n))
-    {x : Vec ℝ n} (hx : x ∈ X.construct) (G : Interval (Vec 𝕋 k)) {g : Vec ℝ k}
-    (hg : g ∈ G.construct) : -- --- CONCL ---
-    r.toChain.backprop x g ∈ (c.backpropAt X G).construct := by -- --- PROOF ---
+    {x : Vec ℝ n} (hx : x ∈ X.toSet) (G : Interval (Vec 𝕋 k)) {g : Vec ℝ k}
+    (hg : g ∈ G.toSet) : -- --- CONCL ---
+    r.toChain.backprop x g ∈ (c.backpropAt X G).toSet := by -- --- PROOF ---
   have h := (IntervalChain.backprop_outer hc (X, X)
     (x, x) (G, G) (g, g) hx hx hg hg).1
   rwa [Real.IntervalChain.backprop_degenerate r hs] at h

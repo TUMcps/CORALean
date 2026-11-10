@@ -40,9 +40,9 @@ variable {m n : ℕ}
 
 theorem Interval.mask_exact (keep : Fin m → Fin n → Prop) [∀ i j, Decidable (keep i j)]
     (I : Interval (Mat ℝ m n)) (hI : ∀ i j, I.inf i j ≤ I.sup i j) : -- --- CONCL ---
-    (I.mask keep).construct =
+    (I.mask keep).toSet =
       (fun (A : Mat ℝ m n) (i : Fin m) (j : Fin n) => if keep i j then A i j else 0) ''
-        I.construct := by -- --- PROOF ---
+        I.toSet := by -- --- PROOF ---
   ext B
   constructor
   · intro hB

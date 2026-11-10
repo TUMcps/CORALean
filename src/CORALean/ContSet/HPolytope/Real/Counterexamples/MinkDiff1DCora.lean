@@ -63,9 +63,9 @@ noncomputable def HPolytope.minkDiff1DCora (P_ S_ : HPolytope (Vec ℝ 1)) :
     Option (HPolytope (Vec ℝ 1)) :=
   open Classical in
   -- l. 157-159: `if representsa_(P_,'fullspace',0)`, `P_out = polytope.Inf(n)`
-  if P_.construct = Set.univ then some (HPolytope.fullspace _)
+  if P_.toSet = Set.univ then some (HPolytope.fullspace _)
   -- l. 163-165: `if representsa_(S_,'emptySet',1e-10)`, `P_out = fullspace(n)`
-  else if S_.construct = ∅ then some (HPolytope.fullspace _)
+  else if S_.toSet = ∅ then some (HPolytope.fullspace _)
   -- l. 167-171: equality constraints, `CORA:notSupported`
   else if P_.me ≠ 0 ∨ S_.me ≠ 0 then none
   else
@@ -84,16 +84,16 @@ theorem HPolytope.minkDiff1DCora_counterexample : -- --- CONCL ---
     let P_ : HPolytope (Vec ℝ 1) :=
       ⟨2, ![LinearMap.proj 0, -LinearMap.proj 0], ![1, 1], 0, Fin.elim0, Fin.elim0⟩
     let S_ : HPolytope (Vec ℝ 1) := ⟨1, ![LinearMap.proj 0], ![0], 0, Fin.elim0, Fin.elim0⟩
-    ∃ Q, P_.minkDiff1DCora S_ = some Q ∧ (0 : Vec ℝ 1) ∈ Q.construct ∧
-      minkowskiDiff P_.construct S_.construct = ∅ := by -- --- PROOF ---
+    ∃ Q, P_.minkDiff1DCora S_ = some Q ∧ (0 : Vec ℝ 1) ∈ Q.toSet ∧
+      minkowskiDiff P_.toSet S_.toSet = ∅ := by -- --- PROOF ---
   intro P_ S_
   -- `2 ∉ P_`, `0 ∈ S_`: no early return
-  have hP : P_.construct ≠ Set.univ := fun h => by
-    have h2 : (fun _ => 2 : Vec ℝ 1) ∈ P_.construct := h ▸ Set.mem_univ _
+  have hP : P_.toSet ≠ Set.univ := fun h => by
+    have h2 : (fun _ => 2 : Vec ℝ 1) ∈ P_.toSet := h ▸ Set.mem_univ _
     have := h2.1 (show Fin 2 from 0)
     simp [P_] at this
-  have hS : S_.construct ≠ ∅ := fun h => by
-    have h0 : (0 : Vec ℝ 1) ∈ S_.construct :=
+  have hS : S_.toSet ≠ ∅ := fun h => by
+    have h0 : (0 : Vec ℝ 1) ∈ S_.toSet :=
       ⟨fun i => by fin_cases i; simp [S_], fun i => i.elim0⟩
     rw [h] at h0
     exact h0
@@ -104,7 +104,7 @@ theorem HPolytope.minkDiff1DCora_counterexample : -- --- CONCL ---
     fin_cases i <;> simp [P_, S_]
   · -- `x + min 0 (-2 - x)` lies below `-1` for every `x`: the difference is empty
     refine Set.eq_empty_iff_forall_notMem.mpr fun x hx => ?_
-    have hy : (fun _ => min 0 (-2 - x 0) : Vec ℝ 1) ∈ S_.construct := by
+    have hy : (fun _ => min 0 (-2 - x 0) : Vec ℝ 1) ∈ S_.toSet := by
       refine ⟨fun i => ?_, fun i => i.elim0⟩
       fin_cases i
       simp [S_]

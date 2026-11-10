@@ -53,9 +53,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 rival label against the enclosed image. -/
 theorem NeuralNetwork.classifies {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
     (hf : nn.Encloses f) (X : S n) (l : Fin m)
-    (u : ∀ j, SupportBound (construct (nn.enclose X))
+    (u : ∀ j, SupportBound (toSet (nn.enclose X))
       (marginDir m j l))
-    (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ n} (hx : x ∈ construct X)
+    (h : ∀ j, j ≠ l → (u j).val < 0) {x : Vec ℝ n} (hx : x ∈ toSet X)
     {j : Fin m} (hj : j ≠ l) : -- --- CONCL ---
     f x j < f x l := by -- --- PROOF ---
   have hd := disjoint_misclassified_of_bounds l u h

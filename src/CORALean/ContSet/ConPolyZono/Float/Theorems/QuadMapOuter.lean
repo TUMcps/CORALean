@@ -106,8 +106,8 @@ private theorem ConPolyZono.aux_dependent_point (pZ : PolyZonotope (Vec 𝕋 n))
 
 theorem ConPolyZono.quadMap_outer (Q : Fin k → Mat 𝕋 n n)
     (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    Real.PolyZonotope.quadEval (fun i => toRealMat (Q i)) '' cPZ.construct
-      ⊆ (cPZ.quadMap Q).construct := by -- --- PROOF ---
+    Real.PolyZonotope.quadEval (fun i => toRealMat (Q i)) '' cPZ.toSet
+      ⊆ (cPZ.quadMap Q).toSet := by -- --- PROOF ---
   rintro _ ⟨_, ⟨z, hz', e, he, rfl⟩, rfl⟩
   obtain ⟨a, β, ha, hβ, hs, hz⟩ := ConPolyZono.mem_nominalSet_iff.mp hz'
   set D := cPZ.toPolyZonotope.absorbRounding with hD

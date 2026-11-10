@@ -39,7 +39,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.le_subset {I J : Interval α} (h : I.le J) :
-    I.construct ⊆ J.construct := by
+    I.toSet ⊆ J.toSet := by
   intro x hx i
   exact ⟨le_trans (h i).1 (hx i).1, le_trans (hx i).2 (h i).2⟩
 

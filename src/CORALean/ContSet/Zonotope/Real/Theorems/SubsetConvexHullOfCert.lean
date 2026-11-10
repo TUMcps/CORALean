@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import Mathlib.Analysis.Convex.Combination
 public import Mathlib.Algebra.Order.Chebyshev
 public import Mathlib.Tactic.Abel
@@ -57,13 +57,13 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {N : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.construct_subset_convexHull_of_cert (Zx : Zonotope α) (Zy : Fin N → Zonotope α)
+theorem Zonotope.toSet_subset_convexHull_of_cert (Zx : Zonotope α) (Zy : Fin N → Zonotope α)
     (Γ : (i : Fin N) → Mat ℝ (Zy i).h Zx.h) (β : (i : Fin N) → Vec ℝ (Zy i).h)
     (lam : Fin N → ℝ) (hn : ∀ i k, ∑ j, |Γ i k j| + |β i k| ≤ lam i) (hlam : ∀ i, 0 ≤ lam i)
     (hsum : ∑ i, lam i = 1)
     (hc : ∑ i, ((∑ k, β i k • (Zy i).G k) + lam i • (Zy i).c) = Zx.c)
     (hX : ∀ j, ∑ i, ∑ k, Γ i k j • (Zy i).G k = Zx.G j) : -- --- CONCL ---
-    Zx.construct ⊆ convexHull ℝ (⋃ i, (Zy i).construct) := by -- --- PROOF ---
+    Zx.toSet ⊆ convexHull ℝ (⋃ i, (Zy i).toSet) := by -- --- PROOF ---
   rintro _ ⟨a, ha, rfl⟩
   -- the coefficients `bᵢ = Γᵢ a + βᵢ`, bounded by `λᵢ`
   let b : (i : Fin N) → Vec ℝ (Zy i).h := fun i k => ∑ j, Γ i k j * a j + β i k
@@ -75,7 +75,7 @@ theorem Zonotope.construct_subset_convexHull_of_cert (Zx : Zonotope α) (Zy : Fi
       exact mul_le_of_le_one_right (abs_nonneg _) (ha j)
     exact (abs_add_le _ _).trans (by linarith [hn i k])
   -- each summand is `λᵢ zᵢ` for a point `zᵢ` of `Zy i`
-  have hz : ∀ i, ∃ z ∈ (Zy i).construct,
+  have hz : ∀ i, ∃ z ∈ (Zy i).toSet,
       lam i • (Zy i).c + ∑ k, b i k • (Zy i).G k = lam i • z := by
     intro i
     rcases (hlam i).lt_or_eq with hpos | hzero
@@ -85,7 +85,7 @@ theorem Zonotope.construct_subset_convexHull_of_cert (Zx : Zonotope α) (Zy : Fi
         exact hb i k
       · rw [smul_add, Finset.smul_sum]
         simp only [smul_smul, ← mul_assoc, mul_inv_cancel₀ hpos.ne', one_mul]
-    · refine ⟨(Zy i).c, Zonotope.center_mem_construct _, ?_⟩
+    · refine ⟨(Zy i).c, Zonotope.center_mem_toSet _, ?_⟩
       have hb0 : ∀ k, b i k = 0 := fun k => abs_nonpos_iff.mp (hzero ▸ hb i k)
       simp [hb0, ← hzero]
   choose z hzmem hzeq using hz

@@ -17,7 +17,7 @@ CORA's `polytope` [1, Def. 2] with `isHRep` set, its matrices held in `𝕋`, pl
 where its rounding lives: `b_error` the slack of the inequality rows, `A x ≤ b + |b_error|`;
 `be_error` that of the equality rows, `|Aₑ x - bₑ| ≤ |be_error|`; and the state-space box `I_error`.
 A slack is a magnitude, since rounding only widens a row. The nominal part is the exact polytope the
-stored floats describe, slacks included; `construct` adds the box. An operation that rounds a
+stored floats describe, slacks included; `toSet` adds the box. An operation that rounds a
 right-hand side writes the rounding into that row's slack (`HPolytope.setRhs`, #218); one that
 stacks rows moves the box into the slacks (`HPolytope.boxToSlack`); one that reads the rows folds
 all three into them (`HPolytope.absorbRounding`).
@@ -80,8 +80,8 @@ instance [SoundFloatArithmetic 𝕋] :
   I_error P := P.I_error
 
 /-- Inherited from `InflatedContSet`: `nominal + I_error`. -/
-abbrev HPolytope.construct [SoundFloatArithmetic 𝕋] (P : HPolytope 𝕋 (Vec 𝕋 n)) : Set (Vec ℝ n) :=
-  InflatedContSet.construct P
+abbrev HPolytope.toSet [SoundFloatArithmetic 𝕋] (P : HPolytope 𝕋 (Vec 𝕋 n)) : Set (Vec ℝ n) :=
+  InflatedContSet.toSet P
 
 end CORALean.Float
 

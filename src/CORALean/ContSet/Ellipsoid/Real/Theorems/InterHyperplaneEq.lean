@@ -1,10 +1,10 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 public import Mathlib.LinearAlgebra.Matrix.DotProduct
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetOfFactor
 
 @[expose] public section
 
@@ -71,16 +71,16 @@ private theorem aux_proj_mulVec {k : ℕ} (w z : Vec ℝ k) (s : ℝ) : -- --- C
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.inter_hyperplane_eq (E : Ellipsoid n) (v : Vec ℝ n) (c : ℝ)
-    (hne : (E.construct ∩ {x | v ⬝ᵥ x = c}).Nonempty) : -- --- CONCL ---
-    ∃ E' : Ellipsoid n, E.construct ∩ {x | v ⬝ᵥ x = c} = E'.construct := by -- --- PROOF ---
+    (hne : (E.toSet ∩ {x | v ⬝ᵥ x = c}).Nonempty) : -- --- CONCL ---
+    ∃ E' : Ellipsoid n, E.toSet ∩ {x | v ⬝ᵥ x = c} = E'.toSet := by -- --- PROOF ---
   obtain ⟨w, hw⟩ : ∃ w : Vec ℝ n, w = E.Gᵀ *ᵥ v := ⟨_, rfl⟩
   obtain ⟨t, ht⟩ : ∃ t : ℝ, t = c - v ⬝ᵥ E.q := ⟨_, rfl⟩
   -- the hyperplane, read in coefficient space
   have hvG : ∀ u, v ⬝ᵥ (E.q + E.G *ᵥ u) = v ⬝ᵥ E.q + w ⬝ᵥ u := fun u => by
     rw [dotProduct_add, Matrix.dotProduct_mulVec, hw, Matrix.mulVec_transpose]
-  have hmem : ∀ x, x ∈ E.construct ∩ {x | v ⬝ᵥ x = c} ↔
+  have hmem : ∀ x, x ∈ E.toSet ∩ {x | v ⬝ᵥ x = c} ↔
       ∃ u : Vec ℝ n, u ⬝ᵥ u ≤ 1 ∧ x = E.q + E.G *ᵥ u ∧ w ⬝ᵥ u = t := fun x => by
-    rw [E.construct_eq_sqrt]
+    rw [E.toSet_eq_sqrt]
     constructor
     · rintro ⟨⟨u, hu, rfl⟩, hx⟩
       refine ⟨u, (aux_norm₂_le_one_iff u).mp hu, rfl, ?_⟩
@@ -102,7 +102,7 @@ theorem Ellipsoid.inter_hyperplane_eq (E : Ellipsoid n) (v : Vec ℝ n) (c : ℝ
     obtain ⟨u, -, -, hwu⟩ := (hmem x).mp hx
     rw [hw0, zero_dotProduct] at hwu
     refine ⟨E, Set.ext fun y => ⟨fun hy => hy.1, fun hy => ?_⟩⟩
-    rw [E.construct_eq_sqrt] at hy
+    rw [E.toSet_eq_sqrt] at hy
     obtain ⟨u', hu', rfl⟩ := hy
     exact (hmem _).mpr ⟨u', (aux_norm₂_le_one_iff u').mp hu', rfl,
       by rw [hw0, zero_dotProduct, hwu]⟩
@@ -129,7 +129,7 @@ theorem Ellipsoid.inter_hyperplane_eq (E : Ellipsoid n) (v : Vec ℝ n) (c : ℝ
     have hr0' : 0 ≤ r := by rw [hr]; exact Real.sqrt_nonneg _
     obtain ⟨P, hP⟩ : ∃ P : Mat ℝ n n, P = 1 - s⁻¹ • vecMulVec w w := ⟨_, rfl⟩
     refine ⟨Ellipsoid.ofFactor (r • (E.G * P)) (E.q + E.G *ᵥ u₀), Set.ext fun x => ?_⟩
-    rw [hmem, Ellipsoid.construct_ofFactor]
+    rw [hmem, Ellipsoid.toSet_ofFactor]
     constructor
     · rintro ⟨u, hu, rfl, hwu⟩
       -- `u = u₀ + d` with `d ⊥ w`, so `P d = d` and `‖d‖² = ‖u‖² - ‖u₀‖² ≤ r²`

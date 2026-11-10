@@ -54,11 +54,11 @@ theorem LevelSet.isequal_cora_counterexample : -- --- CONCL ---
     let L : LevelSet 2 := ⟨1, fun x _ => x 0, fun _ => .le⟩
     let S : LevelSet 2 := ⟨1, fun x _ => x 1, fun _ => .le⟩
     L.op 0 = S.op 0 ∧ LevelSet.step_rowMatchCora (fun x => L.f x 0) (fun x => S.f x 0) ∧
-      L.construct ≠ S.construct := by -- --- PROOF ---
+      L.toSet ≠ S.toSet := by -- --- PROOF ---
   intro L S
   refine ⟨rfl, ⟨Equiv.swap 0 1, fun x => ?_⟩, fun h => ?_⟩
   · simp [L, S]
-  · have h1 : (fun k : Fin 2 => if k = 0 then (0 : ℝ) else 1) ∈ L.construct := by
+  · have h1 : (fun k : Fin 2 => if k = 0 then (0 : ℝ) else 1) ∈ L.toSet := by
       intro i
       simp [L, CompOp.holds]
     rw [h] at h1

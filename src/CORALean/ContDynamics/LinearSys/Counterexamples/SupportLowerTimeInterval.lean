@@ -123,7 +123,7 @@ theorem LinearSys.supportLower_timeInterval_counterexample : -- --- CONCL ---
       have h0 : toRealMat sys.A = 0 := by simp [hA]
       simp only [h0, MatExp.expIntegral_zero, Matrix.one_mulVec, one_smul] at hmem
       have := Set.add_mem_add (s := (exp ((1 : ℝ) • toRealMat sys.A)).mulVecLin ''
-        construct ({0} : Set (Vec ℝ 3))) (a := 0) ⟨0, rfl, by simp⟩ hmem
+        toSet ({0} : Set (Vec ℝ 3))) (a := 0) ⟨0, rfl, by simp⟩ hmem
       simpa using this
     -- next step of the computation
     · rintro r ⟨t, ⟨ht0, ht1⟩, y, hy, rfl⟩

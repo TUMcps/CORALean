@@ -42,7 +42,7 @@ variable {p q r : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.matMul_outer (M : Zonotope (Mat ℝ p q)) (N : Zonotope (Mat ℝ q r)) :
-    (⋃ A ∈ M.construct, (A * ·) '' N.construct) ⊆ (Zonotope.matMul M N).construct :=
+    (⋃ A ∈ M.toSet, (A * ·) '' N.toSet) ⊆ (Zonotope.matMul M N).toSet :=
   Zonotope.bilin_outer matMulBilin M N
 
 end CORALean.Real

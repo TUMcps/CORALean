@@ -44,14 +44,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.hPolytope_contains (p : ℕ) (C : Capsule 𝕋 n) : -- --- CONCL ---
-    C.construct ⊆ (C.hPolytope p).construct := by -- --- PROOF ---
+    C.toSet ⊆ (C.hPolytope p).toSet := by -- --- PROOF ---
   -- the box, at `n ≤ 1`
-  have hbox : C.construct ⊆ C.interval.hPolytope.construct :=
+  have hbox : C.toSet ⊆ C.interval.hPolytope.toSet :=
     subset_trans C.interval_contains (Interval.hPolytope_exact _).symm.subset
   cases n with
   | zero => exact hbox
   | succ m =>
-    show C.construct ⊆ (if m = 0 then _ else _ : HPolytope 𝕋 (Vec 𝕋 (m + 1))).construct
+    show C.toSet ⊆ (if m = 0 then _ else _ : HPolytope 𝕋 (Vec 𝕋 (m + 1))).toSet
     split_ifs
     · exact hbox
     · exact HPolytope.subset_ofBounds _ _

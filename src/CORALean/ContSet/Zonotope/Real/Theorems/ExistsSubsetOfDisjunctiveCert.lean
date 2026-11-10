@@ -58,7 +58,7 @@ theorem Zonotope.exists_subset_of_disjunctive_cert (Zx : Zonotope α) (Zy : Fin 
     (hn : ∀ i k, ∑ j, |Γ i k j| + |β i k| ≤ δ i)
     (hc : ∑ i, ((∑ k, β i k • (Zy i).G k) + δ i • (Zy i).c) = Zx.c)
     (hX : ∀ j, ∑ i, ∑ k, Γ i k j • (Zy i).G k = Zx.G j) : -- --- CONCL ---
-    ∃ i, Zx.construct ⊆ (Zy i).construct := by -- --- PROOF ---
+    ∃ i, Zx.toSet ⊆ (Zy i).toSet := by -- --- PROOF ---
   have hδ0 : ∀ i, 0 ≤ δ i := fun i => by rcases hδ i with h | h <;> simp [h]
   obtain ⟨i₀, hi₀⟩ : ∃ i, δ i = 1 := by
     by_contra hno
@@ -88,7 +88,7 @@ theorem Zonotope.exists_subset_of_disjunctive_cert (Zx : Zonotope α) (Zy : Fin 
     have hs : 0 ≤ ∑ l, |Γ j k l| := Finset.sum_nonneg fun l _ => abs_nonneg _
     exact abs_nonpos_iff.mp (by linarith)
   -- what is left is `[1, Thm. 3]` at `i₀`, `β` negated
-  refine ⟨i₀, Zonotope.construct_subset_of_cert Zx (Zy i₀) (Γ i₀) (-β i₀) (fun j => ?_) ?_
+  refine ⟨i₀, Zonotope.toSet_subset_of_cert Zx (Zy i₀) (Γ i₀) (-β i₀) (fun j => ?_) ?_
     fun k => by simpa [abs_neg, hi₀] using hn i₀ k⟩
   · rw [← hX j, Finset.sum_eq_single i₀ (fun i _ hi => Finset.sum_eq_zero fun k _ => by
       rw [hΓ0 i hi, zero_smul]) (by simp)]

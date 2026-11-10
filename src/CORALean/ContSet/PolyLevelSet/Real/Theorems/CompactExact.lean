@@ -56,7 +56,7 @@ private theorem PolyLevelSet.aux_mulVec_eq_sum {m q : ℕ} (A : Mat ℝ m q) (v 
 
 /-- The merged monomials denote the same set. -/
 theorem PolyLevelSet.compact_exact (P : PolyLevelSet n) : -- --- CONCL ---
-    P.compact.construct = P.construct := by -- --- PROOF ---
+    P.compact.toSet = P.toSet := by -- --- PROOF ---
   ext x
   refine PolyLevelSet.mem_congr P ?_ Iff.rfl
   rw [PolyLevelSet.aux_mulVec_eq_sum, PolyLevelSet.aux_mulVec_eq_sum,

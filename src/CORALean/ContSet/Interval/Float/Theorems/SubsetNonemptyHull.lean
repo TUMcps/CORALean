@@ -36,8 +36,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.construct_subset_nonemptyHull (I : Interval (Vec 𝕋 n)) :
-    I.construct ⊆ I.nonemptyHull.construct := fun x hx i => by
+theorem Interval.toSet_subset_nonemptyHull (I : Interval (Vec 𝕋 n)) :
+    I.toSet ⊆ I.nonemptyHull.toSet := fun x hx i => by
   obtain ⟨hlo, hhi⟩ := hx i
   refine ⟨hlo, ?_⟩
   show x i ≤ toReal (maximum (I.inf i) (I.sup i))

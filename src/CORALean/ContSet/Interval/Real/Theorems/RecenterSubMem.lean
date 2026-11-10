@@ -38,8 +38,8 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.sub_center_mem_recenter {I : Interval α} {y : α} (hy : y ∈ I.construct) :
-    y - I.center ∈ (I.recenter).construct := fun i => by
+theorem Interval.sub_center_mem_recenter {I : Interval α} {y : α} (hy : y ∈ I.toSet) :
+    y - I.center ∈ (I.recenter).toSet := fun i => by
   have h := hy i
   show entry (I.inf - I.center) i ≤ entry (y - I.center) i ∧
     entry (y - I.center) i ≤ entry (I.sup - I.center) i

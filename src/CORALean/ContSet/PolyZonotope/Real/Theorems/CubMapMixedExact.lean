@@ -47,19 +47,19 @@ variable {n m : ℕ}
 theorem PolyZonotope.cubMapMixed_exact (T : Fin m → Fin n → Mat ℝ n n)
     (pZ₁ pZ₂ pZ₃ : PolyZonotope (Vec ℝ n)) : -- --- CONCL ---
     (fun x : (Vec ℝ n × Vec ℝ n) × Vec ℝ n => cubEvalMixed T x.1.1 x.1.2 x.2)
-        '' ((pZ₁.construct ×ˢ pZ₂.construct) ×ˢ pZ₃.construct)
-      = (cubMapMixed T pZ₁ pZ₂ pZ₃).construct := by -- --- PROOF ---
+        '' ((pZ₁.toSet ×ˢ pZ₂.toSet) ×ˢ pZ₃.toSet)
+      = (cubMapMixed T pZ₁ pZ₂ pZ₃).toSet := by -- --- PROOF ---
   set P := (pZ₁.dependent.cartProd pZ₂.dependent).cartProd pZ₃.dependent with hP
   -- with nothing independent left, the product set is exactly its points
-  have hc : P.construct = P.point '' {a : Fin P.p → ℝ | ∀ k, |a k| ≤ 1} := by
+  have hc : P.toSet = P.point '' {a : Fin P.p → ℝ | ∀ k, |a k| ≤ 1} := by
     apply Set.eq_of_subset_of_subset
     · intro x hx
       obtain ⟨a, ha, rfl⟩ := PolyZonotope.exists_point_of_q_zero P rfl hx
       exact ⟨a, ha, rfl⟩
     · rintro _ ⟨a, ha, rfl⟩
-      exact PolyZonotope.point_mem_construct P ha
+      exact PolyZonotope.point_mem_toSet P ha
   -- and the product set is the three sets, none of them having lost anything
-  have hprod : (pZ₁.construct ×ˢ pZ₂.construct) ×ˢ pZ₃.construct = P.construct := by
+  have hprod : (pZ₁.toSet ×ˢ pZ₂.toSet) ×ˢ pZ₃.toSet = P.toSet := by
     rw [hP, ← PolyZonotope.cartProd_exact, ← PolyZonotope.cartProd_exact,
       pZ₁.dependent_exact, pZ₂.dependent_exact, pZ₃.dependent_exact]
   rw [hprod, hc, ← Set.image_comp]

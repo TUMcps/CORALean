@@ -39,7 +39,7 @@ structure NonlinearReset.FloatModel (𝕋 : Type) (n m p : ℕ) where
 structure NonlinearReset.FloatModel.Encloses (fm : NonlinearReset.FloatModel 𝕋 n m p)
     (r : NonlinearReset n m p) : Prop where
   f_mem (X : Interval (Vec 𝕋 n)) (U : Interval (Vec 𝕋 m)) :
-    ∀ x ∈ construct X, ∀ u ∈ construct U, r.f x u ∈ construct (fm.f X U)
+    ∀ x ∈ toSet X, ∀ u ∈ toSet U, r.f x u ∈ toSet (fm.f X U)
 
 end CORALean
 

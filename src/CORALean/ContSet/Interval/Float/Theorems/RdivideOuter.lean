@@ -43,8 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Interval.rdivide_outer (I J : Interval (Vec 𝕋 n))
     (hJ : ∀ i, ltStrict zero (J.inf i) = true ∨ ltStrict (J.sup i) zero = true) :
-    Set.image2 (fun x y i => x i / y i) I.construct J.construct
-      ⊆ (I.rdivide J).construct := by
+    Set.image2 (fun x y i => x i / y i) I.toSet J.toSet
+      ⊆ (I.rdivide J).toSet := by
   rintro _ ⟨x, hx, y, hy, rfl⟩
   exact Interval.times_outer I J.recip
     ⟨x, hx, fun i => (y i)⁻¹, Interval.recip_outer J hJ ⟨y, hy, rfl⟩, funext fun i => by

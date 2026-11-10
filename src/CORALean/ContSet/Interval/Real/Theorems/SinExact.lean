@@ -54,7 +54,7 @@ private theorem aux_image_sin_Icc (lb ub : ℝ) : -- --- CONCL ---
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.sin_exact (I : Interval (Vec ℝ n)) (hI : ∀ i, I.inf i ≤ I.sup i) : -- --- CONCL ---
-    I.sin.construct = (fun x i => Real.sin (x i)) '' I.construct := by -- --- PROOF ---
+    I.sin.toSet = (fun x i => Real.sin (x i)) '' I.toSet := by -- --- PROOF ---
   have hJ : ∀ i, I.inf i - Real.pi / 2 ≤ I.sup i - Real.pi / 2 := fun i => by linarith [hI i]
   have hc : ∀ i, Real.sin '' Set.Icc (I.inf i) (I.sup i) = Set.Icc
       (-Interval.maxCos (I.inf i - Real.pi / 2 - Real.pi) (I.sup i - Real.pi / 2 - Real.pi))

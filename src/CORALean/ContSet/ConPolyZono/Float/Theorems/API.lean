@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.Basic
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.AbsSubLeSubUp
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CartProdExact
-public import CORALean.ContSet.ConPolyZono.Float.Theorems.CenterMemConstruct
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.CenterMemToSet
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactConsOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactFactorsEqSpec
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.CompactFactorsNominal

@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.vPolytope_contains (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
-    I.construct ⊆ (Interval.vPolytope I).construct := by -- --- PROOF ---
+    I.toSet ⊆ (Interval.vPolytope I).toSet := by -- --- PROOF ---
   intro x hx
   have hnom : x ∈ InflatedContSet.nominalSet (Interval.vPolytope I) := by
     -- reading a stored bound commutes with choosing which one to read
@@ -53,7 +53,7 @@ theorem Interval.vPolytope_contains (I : Interval (Vec 𝕋 n)) : -- --- CONCL -
         = fun (l : Fin (2 ^ n)) => Real.Interval.corner I.nominal (signEquiv n l) := by
       funext l i
       exact apply_ite toReal _ _ _
-    show x ∈ Real.VPolytope.construct
+    show x ∈ Real.VPolytope.toSet
       ⟨2 ^ n, fun l i => toReal (if signEquiv n l i then I.sup i else I.inf i)⟩
     rw [hV]
     exact Real.Interval.vPolytope_contains I.nominal hx

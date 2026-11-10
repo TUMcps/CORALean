@@ -13,7 +13,7 @@ public import CORALean.ContSet.ConZonotope.Real.Instances
 
 An equality, in the layer where every other guarantee is an enclosure, because a
 relabelling does no arithmetic. It is linear, so it distributes over the Minkowski
-sum that `InflatedContSet.construct` is: the relabelled nominal part plus the
+sum that `InflatedContSet.toSet` is: the relabelled nominal part plus the
 relabelled box, with no widening between them.
 
 ## Inputs
@@ -46,9 +46,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 theorem ConZonotope.reindex_exact (e : Fin m ≃ Fin n)
     (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    (cZ.reindex e).construct = reindexLin e '' cZ.construct := by -- --- PROOF ---
-  show InflatedContSet.nominalSet (cZ.reindex e) + (cZ.I_error.reindex e).construct
-    = reindexLin e '' (InflatedContSet.nominalSet cZ + cZ.I_error.construct)
+    (cZ.reindex e).toSet = reindexLin e '' cZ.toSet := by -- --- PROOF ---
+  show InflatedContSet.nominalSet (cZ.reindex e) + (cZ.I_error.reindex e).toSet
+    = reindexLin e '' (InflatedContSet.nominalSet cZ + cZ.I_error.toSet)
   have h : InflatedContSet.nominalSet (cZ.reindex e)
       = reindexLin e '' InflatedContSet.nominalSet cZ :=
     (Real.ConZonotope.map_exact (reindexLin e) (InflatedContSet.nominal cZ)).symm

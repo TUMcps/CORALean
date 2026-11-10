@@ -76,12 +76,12 @@ theorem NonlinearSysDT.observeStripBasedFloat_outer (sys : NonlinearSysDT n m)
     (C : Mat 𝕋 p n) (σ : Vec 𝕋 p) (W R₀ : Zonotope (Vec 𝕋 n)) (y : ℕ → Vec 𝕋 p)
     (options : LinearSysDT.ObserveStripOptions 𝕋 (Zonotope (Vec 𝕋 n)) n p)
     (x w : ℕ → Vec ℝ n)
-    (u : ℕ → Vec ℝ m) (h0 : x 0 ∈ R₀.construct) (hu : ∀ k, u k ∈ construct U)
-    (hw : ∀ k, w k ∈ W.construct) (hR : ∀ k, x k ∈ (steps k).R)
+    (u : ℕ → Vec ℝ m) (h0 : x 0 ∈ R₀.toSet) (hu : ∀ k, u k ∈ toSet U)
+    (hw : ∀ k, w k ∈ W.toSet) (hR : ∀ k, x k ∈ (steps k).R)
     (hstep : ∀ k, x (k + 1) = sys.f (x k) (u k) + w k)
     (hy : ∀ k i, |(Scalar.toRealMat C *ᵥ x k - Scalar.toRealVec (y k)) i|
       ≤ Scalar.toReal (σ i)) (k : ℕ) : -- --- CONCL ---
-    x k ∈ (sys.observeStripBasedFloat steps o C σ W R₀ y options k).construct := by -- --- PROOF ---
+    x k ∈ (sys.observeStripBasedFloat steps o C σ W R₀ y options k).toSet := by -- --- PROOF ---
   induction k with
   | zero =>
     unfold NonlinearSysDT.observeStripBasedFloat

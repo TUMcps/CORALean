@@ -52,9 +52,9 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeurNetContrSys.cartProd_outer (X : S n) (Y : S m) {x : Vec ℝ n} {u : Vec ℝ m}
-    (hx : x ∈ construct X) (hu : u ∈ construct Y) : -- --- CONCL ---
+    (hx : x ∈ toSet X) (hu : u ∈ toSet Y) : -- --- CONCL ---
     (Fin.append x u : Vec ℝ (n + m)) ∈
-      construct (NeurNetContrSys.cartProd X Y) := by -- --- PROOF ---
+      toSet (NeurNetContrSys.cartProd X Y) := by -- --- PROOF ---
   -- the two embeddings, summed, are the stacked vector
   have hsum : (Matrix.of fun i j =>
         Fin.append (fun k => (1 : Mat ℝ n n) k j) (fun _ : Fin m => (0 : ℝ)) i) *ᵥ x +
@@ -67,7 +67,7 @@ theorem NeurNetContrSys.cartProd_outer (X : S n) (Y : S m) {x : Vec ℝ n} {u : 
   rw [← hsum]
   refine Plus.plus_outer _ _ (Set.add_mem_add (Mtimes.mtimes_outer _ _ ?_)
     (Mtimes.mtimes_outer _ _ ?_)) <;>
-  · simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+  · simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Set.mem_image_of_mem _ ‹_›
 
 end CORALean

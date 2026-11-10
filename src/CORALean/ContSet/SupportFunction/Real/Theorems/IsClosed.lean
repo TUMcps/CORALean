@@ -40,12 +40,12 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem SupportFunction.isClosed_construct (S : SupportFunction (Vec ℝ n)) : -- --- CONCL ---
-    IsClosed S.construct := by -- --- PROOF ---
+theorem SupportFunction.isClosed_toSet (S : SupportFunction (Vec ℝ n)) : -- --- CONCL ---
+    IsClosed S.toSet := by -- --- PROOF ---
   -- the set is the intersection over the functionals of the preimage of `(-∞, h ℓ]`
-  have : S.construct = ⋂ ℓ : Vec ℝ n →ₗ[ℝ] ℝ, (fun x => (ℓ x : EReal)) ⁻¹' Set.Iic (S.h ℓ) := by
+  have : S.toSet = ⋂ ℓ : Vec ℝ n →ₗ[ℝ] ℝ, (fun x => (ℓ x : EReal)) ⁻¹' Set.Iic (S.h ℓ) := by
     ext x
-    simp [SupportFunction.construct]
+    simp [SupportFunction.toSet]
   rw [this]
   refine isClosed_iInter fun ℓ => isClosed_Iic.preimage ?_
   exact continuous_coe_real_ereal.comp (LinearMap.continuous_of_finiteDimensional ℓ)

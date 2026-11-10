@@ -31,7 +31,7 @@ variable {n : ℕ}
 /-- The polytope is the mean zonotope `Z`, exactly: not the confidence set of the probabilistic
 generators, which CORA's `polytope` and `vertices_` ignore. -/
 theorem ProbZonotope.vPolytope_exact (P : ProbZonotope n) :
-    P.vPolytope.construct = P.Z.construct :=
+    P.vPolytope.toSet = P.Z.toSet :=
   P.Z.vPolytope_exact
 
 end CORALean.Real

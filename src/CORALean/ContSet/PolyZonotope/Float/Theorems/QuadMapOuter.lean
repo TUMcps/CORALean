@@ -48,8 +48,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 -- the whole operation: `absorbRounding` first, then the exact map, then this refinement
 theorem PolyZonotope.quadMap_outer (Q : Fin m → Mat 𝕋 n n) (pZ : PolyZonotope (Vec 𝕋 n)) :
-    Real.PolyZonotope.quadEval (fun k => toRealMat (Q k)) '' pZ.construct
-      ⊆ (PolyZonotope.quadMap Q pZ).construct := by
+    Real.PolyZonotope.quadEval (fun k => toRealMat (Q k)) '' pZ.toSet
+      ⊆ (PolyZonotope.quadMap Q pZ).toSet := by
   refine subset_trans (Set.image_mono (PolyZonotope.absorbRounding_nominal pZ)) ?_
   refine subset_trans ?_ (PolyZonotope.bilin_refines Q pZ.absorbRounding pZ.absorbRounding rfl)
   exact (Real.PolyZonotope.quadMapDep_exact (fun k => toRealMat (Q k))

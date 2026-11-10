@@ -99,11 +99,11 @@ private theorem aux_heldSim_sum (sys : LinearSys 𝕋 n) (Δt : ℝ) {ι : Type}
 `∑ w_j (x_j(k) - y_j) = 0`, the run from `∑ w_j x_j` under the held inputs `∑ w_j v_j` is an
 `IsCanonicalTrajectory` whose state at `t_k` lies in `L`. -/
 theorem LinearSys.interpolated_run_mem (sys : LinearSys 𝕋 n) (R₀ U : S n)
-    (hR₀ : Convex ℝ (construct R₀)) (hUconv : Convex ℝ (construct U))
-    (hU : Bornology.IsBounded (construct U)) {Δt : ℝ} (hΔt : 0 < Δt) {L : Set (Vec ℝ n)}
+    (hR₀ : Convex ℝ (toSet R₀)) (hUconv : Convex ℝ (toSet U))
+    (hU : Bornology.IsBounded (toSet U)) {Δt : ℝ} (hΔt : 0 < Δt) {L : Set (Vec ℝ n)}
     (hL : Convex ℝ L) {ι : Type} (s : Finset ι) {w : ι → ℝ} (hw₀ : ∀ j ∈ s, 0 ≤ w j)
-    (hw₁ : ∑ j ∈ s, w j = 1) {x : ι → Vec ℝ n} (hx : ∀ j ∈ s, x j ∈ construct R₀)
-    {v : ι → ℕ → Vec ℝ n} (hv : ∀ j ∈ s, ∀ i, v j i ∈ construct U) {y : ι → Vec ℝ n}
+    (hw₁ : ∑ j ∈ s, w j = 1) {x : ι → Vec ℝ n} (hx : ∀ j ∈ s, x j ∈ toSet R₀)
+    {v : ι → ℕ → Vec ℝ n} (hv : ∀ j ∈ s, ∀ i, v j i ∈ toSet U) {y : ι → Vec ℝ n}
     (hy : ∀ j ∈ s, y j ∈ L) {k : ℕ}
     (h0 : ∑ j ∈ s, w j • (sys.heldSim Δt (x j) (v j) k - y j) = 0) : -- --- CONCL ---
     sys.IsCanonicalTrajectory (Set.Icc 0 (k * Δt)) R₀ U
@@ -112,8 +112,8 @@ theorem LinearSys.interpolated_run_mem (sys : LinearSys 𝕋 n) (R₀ U : S n)
         (LinearSys.heldInput Δt fun i => ∑ j ∈ s, w j • v j i) ∧
       sys.closedForm (∑ j ∈ s, w j • x j)
         (LinearSys.heldInput Δt fun i => ∑ j ∈ s, w j • v j i) (k * Δt) ∈ L := by -- --- PROOF ---
-  have hx₀ : ∑ j ∈ s, w j • x j ∈ construct R₀ := hR₀.sum_mem hw₀ hw₁ hx
-  have hu : ∀ i, ∑ j ∈ s, w j • v j i ∈ construct U :=
+  have hx₀ : ∑ j ∈ s, w j • x j ∈ toSet R₀ := hR₀.sum_mem hw₀ hw₁ hx
+  have hu : ∀ i, ∑ j ∈ s, w j • v j i ∈ toSet U :=
     fun i => hUconv.sum_mem hw₀ hw₁ fun j hj => hv j hj i
   refine ⟨sys.isTrajectory_heldInput R₀ U hU (mul_nonneg k.cast_nonneg hΔt.le) Δt hx₀ hu, ?_⟩
   -- the interpolated state is `∑ w_j x_j(k)`, which `h0` makes `∑ w_j y_j`

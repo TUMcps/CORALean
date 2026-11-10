@@ -54,8 +54,8 @@ variable {n m : ℕ}
 
 theorem exists_schedule_linearSigmoid_subset (W : Mat ℝ m n) (b : Vec ℝ m)
     (X : Real.PolyZonotope (Vec ℝ n)) {ε : ℝ} (hε : 0 < ε) : ∃ sch : Schedule,
-      construct ((Real.linearSigmoidNetwork W b).encloseAt sch X)
-        ⊆ (Real.linearSigmoidNetwork W b).image (construct X) + Metric.closedBall 0 ε :=
+      toSet ((Real.linearSigmoidNetwork W b).encloseAt sch X)
+        ⊆ (Real.linearSigmoidNetwork W b).image (toSet X) + Metric.closedBall 0 ε :=
   (Real.linearSigmoidNetwork W b).exists_schedule_encloseAt_subset
     (linearSigmoidNetwork_isConvergent W b) X ε hε
 

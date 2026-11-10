@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 /-- A zonotope centered at the origin is closed under scaling by `[-1, 1]`. -/
 private theorem Zonotope.aux_smul_mem {Z : Zonotope (Vec ℝ n)} (hc : Z.c = 0) {z : Vec ℝ n}
-    (hz : z ∈ Z.construct) {γ : ℝ} (hγ : |γ| ≤ 1) : γ • z ∈ Z.construct := by
+    (hz : z ∈ Z.toSet) {γ : ℝ} (hγ : |γ| ≤ 1) : γ • z ∈ Z.toSet := by
   obtain ⟨β, hβ, rfl⟩ := hz
   refine ⟨fun j => γ * β j, fun j => ?_, ?_⟩
   · rw [abs_mul]; exact mul_le_one₀ hγ (abs_nonneg _) (hβ j)
@@ -62,15 +62,15 @@ private theorem Zonotope.aux_smul_mem {Z : Zonotope (Vec ℝ n)} (hc : Z.c = 0) 
 
 /-- The fold of Minkowski sums holds the sum of one point from each summand. -/
 private theorem Zonotope.aux_foldl_plus_mem {ι : Type} (l : List ι) (Zs : ι → Zonotope (Vec ℝ n))
-    (ys : ι → Vec ℝ n) (hys : ∀ i ∈ l, ys i ∈ (Zs i).construct) : -- --- CONCL ---
-    ∀ (acc : Zonotope (Vec ℝ n)) (y : Vec ℝ n), y ∈ acc.construct →
-      y + (l.map ys).sum ∈ (l.foldl (fun A i => A.plus (Zs i)) acc).construct := by -- --- PROOF ---
+    (ys : ι → Vec ℝ n) (hys : ∀ i ∈ l, ys i ∈ (Zs i).toSet) : -- --- CONCL ---
+    ∀ (acc : Zonotope (Vec ℝ n)) (y : Vec ℝ n), y ∈ acc.toSet →
+      y + (l.map ys).sum ∈ (l.foldl (fun A i => A.plus (Zs i)) acc).toSet := by -- --- PROOF ---
   induction l with
   | nil => intro acc y hy; simpa using hy
   | cons i l ih =>
     intro acc y hy
     simp only [List.foldl_cons, List.map_cons, List.sum_cons]
-    have h1 : y + ys i ∈ (acc.plus (Zs i)).construct := by
+    have h1 : y + ys i ∈ (acc.plus (Zs i)).toSet := by
       rw [← Zonotope.plus_exact]
       exact ⟨y, hy, ys i, hys i List.mem_cons_self, rfl⟩
     have := ih (fun j hj => hys j (List.mem_cons_of_mem _ hj)) _ _ h1
@@ -85,9 +85,9 @@ theorem Zonotope.tensorMultiplication_zono_outer (Z : Zonotope (Vec ℝ n))
     (hmap : ∀ p q, L.map p = L.map q →
       ({L.perm p 0, L.perm p 1, L.perm p 2} : Multiset (Fin Z.h)) =
         {L.perm q 0, L.perm q 1, L.perm q 2})
-    {M' : Tensor3 ℝ n} (hM : M' ∈ M.construct) {x : Vec ℝ n}
-    (hx : x ∈ Z.construct) : -- --- CONCL ---
-    Zonotope.tensorEval M' x ∈ (Z.tensorMultiplication_zono M L).construct := by -- --- PROOF ---
+    {M' : Tensor3 ℝ n} (hM : M' ∈ M.toSet) {x : Vec ℝ n}
+    (hx : x ∈ Z.toSet) : -- --- CONCL ---
+    Zonotope.tensorEval M' x ∈ (Z.tensorMultiplication_zono M L).toSet := by -- --- PROOF ---
   obtain ⟨γ, hγ, rfl⟩ := hM
   have hlin : Zonotope.tensorEval (M.c + ∑ j, γ j • M.G j) x
       = Zonotope.tensorEval M.c x + ∑ j, γ j • Zonotope.tensorEval (M.G j) x := by

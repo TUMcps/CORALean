@@ -71,7 +71,7 @@ theorem Zonotope.pRadius_lt_of_lmi_counterexample : -- --- CONCL ---
           sq_nonneg (x (Sum.inr 0))]
       · nlinarith [sq_pos_of_ne_zero h, sq_nonneg (x (Sum.inl 0) + x (Sum.inr 0))]
   · -- the radius is `1/4`, the printed bound at most `1/4`
-    have hval : ∀ z ∈ Z.construct, (z - Z.c) ⬝ᵥ (W *ᵥ (z - Z.c)) ≤ 1 / 4 := by
+    have hval : ∀ z ∈ Z.toSet, (z - Z.c) ⬝ᵥ (W *ᵥ (z - Z.c)) ≤ 1 / 4 := by
       rintro _ ⟨β, hβ, rfl⟩
       have h := hβ 0
       simp [Z, W, dotProduct, abs_le] at h ⊢

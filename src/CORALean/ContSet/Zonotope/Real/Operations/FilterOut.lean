@@ -48,7 +48,7 @@ variable {n m : ℕ}
 /-- The cells that survive CORA's `filterOut`: those with a remainder of nonempty interior once
 every other cell is removed (`Pint = P_ind \ P_j` over all `j ≠ ind`, `chebyball(Pint)`). -/
 def Zonotope.filterOut (Zs : Fin m → Zonotope (Vec ℝ n)) : Set (Fin m) :=
-  {ind | (interior ((Zs ind).construct \ ⋃ j ∈ {j | j ≠ ind}, (Zs j).construct)).Nonempty}
+  {ind | (interior ((Zs ind).toSet \ ⋃ j ∈ {j | j ≠ ind}, (Zs j).toSet)).Nonempty}
 
 end CORALean.Real
 

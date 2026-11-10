@@ -74,13 +74,13 @@ private theorem ConZonotope.aux_abs_dropped_le (part : Split (Fin h) into (Fin q
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.keepRows_mem (P : HPolytope (Vec ℝ h))
-    (part : Split (Fin h) into (Fin q) ⊕ (Fin r)) {β : Vec ℝ h} (hβ : β ∈ P.construct)
+    (part : Split (Fin h) into (Fin q) ⊕ (Fin r)) {β : Vec ℝ h} (hβ : β ∈ P.toSet)
     (hbox : ∀ l, |β (part.right l)| ≤ 1) : -- --- CONCL ---
-    (fun l => β (part.left l)) ∈ (ConZonotope.keepRows P part).construct := by -- --- PROOF ---
+    (fun l => β (part.left l)) ∈ (ConZonotope.keepRows P part).toSet := by -- --- PROOF ---
   -- every row, an equality as its two halves, holds at `β`
-  have hrows := HPolytope.mem_construct_iff_rows.mp hβ
+  have hrows := HPolytope.mem_toSet_iff_rows.mp hβ
   show ConZonotope.keepEmbed part (fun l => β (part.left l))
-    ∈ (P.toIneqs.relax fun i => ConZonotope.keepSlack part (P.rows i)).construct
+    ∈ (P.toIneqs.relax fun i => ConZonotope.keepSlack part (P.rows i)).toSet
   refine HPolytope.mem_relax_iff.mpr ⟨fun i => ?_, fun i => i.elim0⟩
   -- a row at the kept coefficients is the row at `β` less what the dropped ones add
   have h1 := ConZonotope.aux_apply_split part (P.rows i) β

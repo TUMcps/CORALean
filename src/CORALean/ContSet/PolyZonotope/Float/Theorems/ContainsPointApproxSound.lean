@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsPointApprox
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.CenterMemConstruct
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CenterMemToSet
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.InnerGeneralSubsetImage
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.IndepFactorsPointMem
 
@@ -12,7 +12,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.IndepFactorsPointMem
 # `containsPointApprox` proves membership
 
 `true` puts the point in the polynomial zonotope. At the center, no zero exponent column makes
-every monomial vanish at the zero factors (`center_mem_construct`). Otherwise `innerGeneral`
+every monomial vanish at the zero factors (`center_mem_toSet`). Otherwise `innerGeneral`
 puts the point in the image of `[-1, 1]ᵖ⁺ᵍ` under the point map of `indepFactors`, which stays
 in the nominal set (`indepFactors_point_mem`); the error box holds `0`.
 
@@ -50,7 +50,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem PolyZonotope.containsPointApprox_sound (pZ : PolyZonotope (Vec 𝕋 n)) (s : Vec 𝕋 n)
     (start : Vec 𝕋 (pZ.p + pZ.q)) (inv : {k : ℕ} → Mat 𝕋 k k → Mat 𝕋 k k) (iter : ℕ)
     (h : PolyZonotope.containsPointApprox pZ s start inv iter = true) : -- --- CONCL ---
-    toRealVec s ∈ pZ.construct := by -- --- PROOF ---
+    toRealVec s ∈ pZ.toSet := by -- --- PROOF ---
   unfold PolyZonotope.containsPointApprox at h
   dsimp only at h
   simp only [Bool.and_eq_true, Bool.or_eq_true] at h
@@ -72,7 +72,7 @@ theorem PolyZonotope.containsPointApprox_sound (pZ : PolyZonotope (Vec 𝕋 n)) 
       obtain ⟨k, -, hk⟩ := List.any_eq_true.mp (List.all_eq_true.mp hE l (List.mem_finRange l))
       exact ⟨k, by simpa using hk⟩
     rw [hsc]
-    exact PolyZonotope.center_mem_construct pZ hE' h0
+    exact PolyZonotope.center_mem_toSet pZ hE' h0
   · -- the point is the lifted map's value at some `(α, β)` of the unit box
     obtain ⟨a, ha, hpt⟩ := PolyZonotope.innerGeneral_subset_image _ _ _ _ inv iter hg
       (Interval.mem_point s)

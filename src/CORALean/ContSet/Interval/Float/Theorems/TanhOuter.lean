@@ -41,10 +41,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Interval.tanh_outer (p : ℕ) (I : Interval (Vec 𝕋 n))
     (hI : ∀ i, toReal (I.sup i) ≤ 2 ^ p / 2) : -- --- CONCL ---
-    (fun x i => Real.tanh (x i)) '' I.construct ⊆ (I.tanh p).construct := by -- --- PROOF ---
+    (fun x i => Real.tanh (x i)) '' I.toSet ⊆ (I.tanh p).toSet := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩ i
   -- the real layer's exact image holds `tanh x` between the tanh of the two corners
-  have hmem : (fun j => Real.tanh (x j)) ∈ I.nominal.tanh.construct := by
+  have hmem : (fun j => Real.tanh (x j)) ∈ I.nominal.tanh.toSet := by
     rw [Real.Interval.tanh_exact]
     exact ⟨x, hx, rfl⟩
   have h : Real.tanh (toReal (I.inf i)) ≤ Real.tanh (x i) ∧

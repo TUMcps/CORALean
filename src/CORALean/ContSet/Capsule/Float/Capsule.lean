@@ -10,7 +10,7 @@ public import CORALean.ContSet.InflatedContSet.Interfaces
 # Capsules over a floating-point scalar: the representation
 
 The exact layer's center, generator and radius held in `𝕋`, plus the error box that makes it an
-`InflatedContSet`: the capsule denotes its nominal part, the exact `construct` of the stored floats
+`InflatedContSet`: the capsule denotes its nominal part, the exact `toSet` of the stored floats
 read as reals, plus the box. An operation pays the difference from the exact values into the box; a
 radius, itself a bound, is rounded upward. A capsule is not closed under the sum with a box, so the
 box stays separate until `Capsule.absorbRounding` moves it into the radius (#185). A negative stored
@@ -62,8 +62,8 @@ instance [SoundFloatArithmetic 𝕋] :
   I_error C := C.I_error
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
-abbrev Capsule.construct [SoundFloatArithmetic 𝕋] (C : Capsule 𝕋 n) : Set (Vec ℝ n) :=
-  InflatedContSet.construct C
+abbrev Capsule.toSet [SoundFloatArithmetic 𝕋] (C : Capsule 𝕋 n) : Set (Vec ℝ n) :=
+  InflatedContSet.toSet C
 
 end CORALean.Float
 

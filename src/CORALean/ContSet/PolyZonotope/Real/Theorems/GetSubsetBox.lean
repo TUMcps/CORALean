@@ -14,7 +14,7 @@ over becomes the box with `k`'s side at `cen ± rad` and every other side left
 alone. A degenerate `rad = 0` pins the coordinate instead of shrinking it, which
 is why the reverse inclusion divides by `rad` only where it may.
 
-Its own file because both `getSubset_construct` and `getSubset_evalOn` name the
+Its own file because both `getSubset_toSet` and `getSubset_evalOn` name the
 sub-box this way, and the second is [1, Thm. 1]'s initial inclusion.
 
 ## Inputs

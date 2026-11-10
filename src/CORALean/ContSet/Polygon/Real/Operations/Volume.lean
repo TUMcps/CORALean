@@ -35,7 +35,7 @@ namespace CORALean.Real
 
 /-- The area of the region: Lebesgue measure of the union of the pieces. -/
 noncomputable def Polygon.volume (P : Polygon) : ENNReal :=
-  MeasureTheory.volume (ContSet.construct P)
+  MeasureTheory.volume (ContSet.toSet P)
 
 end CORALean.Real
 

@@ -56,8 +56,8 @@ variable {n : ℕ}
 /-- What the start holds, and what any `h R` of the list holds, the fold of hulls holds. -/
 private theorem Location.aux_mem_foldl_or (h : Real.Interval (Vec ℝ n) → Real.Interval (Vec ℝ n))
     (Rs : List (Real.Interval (Vec ℝ n))) (I : Real.Interval (Vec ℝ n)) {x : Vec ℝ n}
-    (hx : x ∈ I.construct ∨ ∃ R ∈ Rs, x ∈ (h R).construct) : -- --- CONCL ---
-    x ∈ (Rs.foldl (fun I R => I.or (h R)) I).construct := by -- --- PROOF ---
+    (hx : x ∈ I.toSet ∨ ∃ R ∈ Rs, x ∈ (h R).toSet) : -- --- CONCL ---
+    x ∈ (Rs.foldl (fun I R => I.or (h R)) I).toSet := by -- --- PROOF ---
   induction Rs generalizing I with
   | nil =>
     rcases hx with hx | ⟨R, hR, -⟩
@@ -81,12 +81,12 @@ theorem Location.guardIntersectLevelSet_outer {g : Vec ℝ n → ℝ}
     {contract : Real.Interval (Vec ℝ n) → Real.Interval (Vec ℝ n)}
     (hc : Real.IsContractor g contract) {R₀ : Real.Interval (Vec ℝ n)}
     {Rs : List (Real.Interval (Vec ℝ n))} {x : Vec ℝ n}
-    (hx : ∃ R ∈ R₀ :: Rs, x ∈ R.construct) (hg : g x = 0) : -- --- CONCL ---
-    x ∈ (Location.guardIntersectLevelSet contract R₀ Rs).construct ∩
+    (hx : ∃ R ∈ R₀ :: Rs, x ∈ R.toSet) (hg : g x = 0) : -- --- CONCL ---
+    x ∈ (Location.guardIntersectLevelSet contract R₀ Rs).toSet ∩
       {x | g x = 0} := by -- --- PROOF ---
   refine ⟨?_, hg⟩
   obtain ⟨R, hR, hxR⟩ := hx
-  have hxc : x ∈ (contract R).construct := (hc R).2 x hxR hg
+  have hxc : x ∈ (contract R).toSet := (hc R).2 x hxR hg
   -- the contractor keeps `x` in the tightened box of its own reach set
   refine Location.aux_mem_foldl_or contract Rs (contract R₀) ?_
   rcases List.mem_cons.mp hR with rfl | hR

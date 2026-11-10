@@ -39,17 +39,17 @@ private theorem Polygon.aux_mem_vertices_iff (P : Polygon) (v : Vec ℝ 2) :
     v ∈ P.vertices ↔ ∃ p ∈ P.sets, ∃ j, p.V j = v := by
   simp [Polygon.vertices, List.mem_flatMap, List.mem_ofFn]
 
-private theorem Polygon.aux_vertex_mem_construct (P : Polygon) {v : Vec ℝ 2} (hv : v ∈ P.vertices) :
-    v ∈ ContSet.construct P := by
+private theorem Polygon.aux_vertex_mem_toSet (P : Polygon) {v : Vec ℝ 2} (hv : v ∈ P.vertices) :
+    v ∈ ContSet.toSet P := by
   obtain ⟨p, hp, j, rfl⟩ := (Polygon.aux_mem_vertices_iff P v).mp hv
-  exact SetUnion.mem_construct.mpr ⟨p, hp, VPolytope.vertex_mem p j⟩
+  exact SetUnion.mem_toSet.mpr ⟨p, hp, VPolytope.vertex_mem p j⟩
 
-private theorem Polygon.aux_construct_subset_convexHull_vertices (P : Polygon) : -- --- CONCL ---
-    ContSet.construct P ⊆ convexHull ℝ {v | v ∈ P.vertices} := by -- --- PROOF ---
+private theorem Polygon.aux_toSet_subset_convexHull_vertices (P : Polygon) : -- --- CONCL ---
+    ContSet.toSet P ⊆ convexHull ℝ {v | v ∈ P.vertices} := by -- --- PROOF ---
   intro x hx
-  obtain ⟨p, hp, hx⟩ := SetUnion.mem_construct.mp hx
+  obtain ⟨p, hp, hx⟩ := SetUnion.mem_toSet.mp hx
   have hx' : x ∈ convexHull ℝ (Set.range p.V) := by
-    rw [← VPolytope.construct_eq_convexHull]; exact hx
+    rw [← VPolytope.toSet_eq_convexHull]; exact hx
   refine convexHull_mono ?_ hx'
   rintro _ ⟨j, rfl⟩
   exact (Polygon.aux_mem_vertices_iff P _).mpr ⟨p, hp, j, rfl⟩
@@ -58,10 +58,10 @@ private theorem Polygon.aux_construct_subset_convexHull_vertices (P : Polygon) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.convexHull_vertices (P : Polygon) :
-    convexHull ℝ {v | v ∈ P.vertices} = convexHull ℝ (ContSet.construct P) :=
+    convexHull ℝ {v | v ∈ P.vertices} = convexHull ℝ (ContSet.toSet P) :=
   Set.Subset.antisymm
-    (convexHull_mono fun _ hv => Polygon.aux_vertex_mem_construct P hv)
-    (convexHull_min (Polygon.aux_construct_subset_convexHull_vertices P) (convex_convexHull ℝ _))
+    (convexHull_mono fun _ hv => Polygon.aux_vertex_mem_toSet P hv)
+    (convexHull_min (Polygon.aux_toSet_subset_convexHull_vertices P) (convex_convexHull ℝ _))
 
 end CORALean.Real
 

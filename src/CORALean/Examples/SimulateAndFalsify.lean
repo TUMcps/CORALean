@@ -70,7 +70,7 @@ example : SAF.sys.simulate SAF.x0 (fun _ => (0 : Vec ℝ 2)) 3 ∈ {x : Vec ℝ 
 /-- Four steps in, the run is at position `4`, so it refutes `spec` over whatever
 `reach` computes at step `4`, at any order — the half a sample is trusted for. -/
 example {o : ℕ} (ho : 0 < o) :
-    ¬ SAF.spec.Holds (construct (SAF.sys.reach (S := ℐ𝒱) ⟨SAF.R0, SAF.U, 0, 4⟩ ⟨o, ho⟩)) :=
+    ¬ SAF.spec.Holds (toSet (SAF.sys.reach (S := ℐ𝒱) ⟨SAF.R0, SAF.U, 0, 4⟩ ⟨o, ho⟩)) :=
   SAF.sys.not_holds_of_simulate (S := ℐ𝒱) ho SAF.R0 SAF.U SAF.spec
     (Interval.mem_point SAF.x0) (fun _ => Interval.mem_point 0) 4
     (by

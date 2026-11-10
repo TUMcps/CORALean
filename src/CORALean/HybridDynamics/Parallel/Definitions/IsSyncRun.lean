@@ -45,7 +45,7 @@ inductive ParallelHybridAutomaton.IsSyncRun [DecidableEq Λ] [∀ n, ContSet (S 
   | jump {ℓ ℓ' : ∀ i, L i} {τ : ℝ} {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m}
       {y : ∀ i, Vec ℝ (n i)} {c : Fin k} {e : Transition G (L c) 𝕋 (n c)}
       (h : P.IsStay ℓ τ x u w g) (hmem : e ∈ ((P.comp c).loc (ℓ c)).trans)
-      (hlab : lab.label c e = none) (hguard : x c τ ∈ construct e.guard)
+      (hlab : lab.label c e = none) (hguard : x c τ ∈ toSet e.guard)
       (rest : P.IsSyncRun lab (Function.update ℓ c e.target)
         (Function.update (fun i => x i τ) c (e.reset (x c τ))) ℓ' y) :
       P.IsSyncRun lab ℓ (fun i => x i 0) ℓ' y
@@ -53,7 +53,7 @@ inductive ParallelHybridAutomaton.IsSyncRun [DecidableEq Λ] [∀ n, ContSet (S 
   | sync {ℓ ℓ' : ∀ i, L i} {τ : ℝ} {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m}
       {y : ∀ i, Vec ℝ (n i)} {a : Λ} (ha : a ∈ lab.labels) (h : P.IsStay ℓ τ x u w g)
       (havail : ∀ c, lab.parts a c = true → (lab.pick P ℓ a c).isSome)
-      (hguard : ∀ c e, lab.pick P ℓ a c = some e → x c τ ∈ construct e.guard)
+      (hguard : ∀ c e, lab.pick P ℓ a c = some e → x c τ ∈ toSet e.guard)
       (rest : P.IsSyncRun lab
         (fun c => match lab.pick P ℓ a c with
           | some e => e.target

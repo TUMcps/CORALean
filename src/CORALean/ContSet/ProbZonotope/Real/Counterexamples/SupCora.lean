@@ -57,7 +57,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.supCora_lt :
-    ∃ (P : ProbZonotope 1) (μ : Vec ℝ 1), μ ∈ P.Z.construct ∧ P.supCora < ‖μ‖ := by
+    ∃ (P : ProbZonotope 1) (μ : Vec ℝ 1), μ ∈ P.Z.toSet ∧ P.supCora < ‖μ‖ := by
   -- the mean `1` is the generator, of norm `1`
   refine ⟨ProbZonotope.unitMean, fun _ => 1,
     ⟨fun _ => 1, fun _ => by simp, by funext i; simp [ProbZonotope.unitMean]⟩, ?_⟩

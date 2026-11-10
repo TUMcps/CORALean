@@ -58,9 +58,9 @@ variable {n : ℕ}
 
 /-- Every member's Taylor truncation lies in the sharper interval truncation. -/
 theorem MatExp.expTaylor_mem_expIntervalTaylorExact (A : Interval (Mat ℝ n n)) (t : ℝ)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) {κ : ℕ} (hκ : 2 ≤ κ) : -- --- CONCL ---
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) {κ : ℕ} (hκ : 2 ≤ κ) : -- --- CONCL ---
     MatExp.expTaylor (t • M) κ
-      ∈ (MatExp.expIntervalTaylorExact A t κ).construct := by -- --- PROOF ---
+      ∈ (MatExp.expIntervalTaylorExact A t κ).toSet := by -- --- PROOF ---
   -- the truncation splits at order three, which is where the exact part stops
   have hsplit : MatExp.expTaylor (t • M) κ
       = MatExp.expTaylor (t • M) 2

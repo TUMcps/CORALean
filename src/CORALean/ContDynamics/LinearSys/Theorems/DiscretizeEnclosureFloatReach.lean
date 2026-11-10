@@ -65,10 +65,10 @@ after `k` steps under the sampled inputs `Ud`. -/
 theorem LinearSys.IsCanonicalTrajectory.discretizeEnclosureFloat_mem_reach {sys : LinearSys 𝕋 n}
     {T : Set ℝ} {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {Δt : 𝕋} {η : ℕ}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ toReal Δt) (hT : Set.Ici 0 ⊆ T)
-    (hU : Bornology.IsBounded (construct U))
-    (hUd : ∀ k : ℕ, sys.stepInput u (toReal Δt) k ∈ construct Ud)
+    (hU : Bornology.IsBounded (toSet U))
+    (hUd : ∀ k : ℕ, sys.stepInput u (toReal Δt) k ∈ toSet Ud)
     (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {o : ℕ} (ho : 0 < o) (k : ℕ) :
-    x (k * toReal Δt) ∈ construct ((sys.discretizeEnclosureFloat Δt η).reach ⟨R₀, Ud, 0, k⟩
+    x (k * toReal Δt) ∈ toSet ((sys.discretizeEnclosureFloat Δt η).reach ⟨R₀, Ud, 0, k⟩
       ⟨o, ho⟩) :=
   (sys.discretizeEnclosureFloat Δt η).reach_outer ho R₀ Ud
     (traj.discretizeEnclosureFloat hΔt hT hU hUd hη) k

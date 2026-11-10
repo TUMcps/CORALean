@@ -51,7 +51,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.supportFunc_eq (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) : -- --- CONCL ---
-    supportFunc E.construct c = ((dualVec c ⬝ᵥ E.q +
+    supportFunc E.toSet c = ((dualVec c ⬝ᵥ E.q +
       √(dualVec c ⬝ᵥ (E.Q *ᵥ dualVec c)) : ℝ) : EReal) := by -- --- PROOF ---
   have hval :
       (E.supportBound c).val = dualVec c ⬝ᵥ E.q + √(dualVec c ⬝ᵥ (E.Q *ᵥ dualVec c)) := by

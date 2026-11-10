@@ -59,9 +59,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.identifyStep_outer (X : Zonotope (Vec ℝ n)) (r : Vec ℝ n) (y σ : ℝ)
-    (l γ : Vec ℝ n) (P : Set (Vec ℝ n)) (hP : P ⊆ X.construct) : -- --- CONCL ---
+    (l γ : Vec ℝ n) (P : Set (Vec ℝ n)) (hP : P ⊆ X.toSet) : -- --- CONCL ---
     (P ∩ {θ | |r ⬝ᵥ θ - y| ≤ σ}) + {b | ∀ i, |b i| ≤ γ i} ⊆
-      (X.identifyStep r y σ l γ).construct := by -- --- PROOF ---
+      (X.identifyStep r y σ l γ).toSet := by -- --- PROOF ---
   rintro _ ⟨θ, ⟨hθP, hθF⟩, b, hb, rfl⟩
   -- `θ` is in `X`, so its direction `rᵀθ` is between the tangent hyperplanes
   have hθX := hP hθP
@@ -85,7 +85,7 @@ theorem Zonotope.identifyStep_outer (X : Zonotope (Vec ℝ n)) (r : Vec ℝ n) (
     (Matrix.of fun i _ => l i : Mat ℝ n 1) X ⟨hθX, hstrip⟩
   -- the expansion box is the zonotope with the generators `γᵢ eᵢ`
   have hbox : b ∈ ({ h := n, c := 0, G := fun i => Pi.single i (γ i) } :
-      Zonotope (Vec ℝ n)).construct := by
+      Zonotope (Vec ℝ n)).toSet := by
     refine ⟨fun i => Zonotope.coefficient (γ i) (b i), fun i => ?_, ?_⟩
     · exact Zonotope.abs_coefficient_le_one ((abs_nonneg _).trans (hb i)) (hb i)
     · ext k

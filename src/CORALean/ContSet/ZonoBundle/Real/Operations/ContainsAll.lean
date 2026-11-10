@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- Every member contains `S`. -/
 def ZonoBundle.containsAll (zB : ZonoBundle α) (S : Set α) : Prop :=
-  ∀ i : Fin zB.k, S ⊆ (zB.Z i).construct
+  ∀ i : Fin zB.k, S ⊆ (zB.Z i).toSet
 
 end CORALean.Real
 

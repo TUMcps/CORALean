@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.EmptySet
-public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructEmptySet
+public import CORALean.ContSet.HPolytope.Real.Theorems.ToSetEmptySet
 
 @[expose] public section
 
@@ -48,17 +48,17 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- [1, Sec. 3 (minimal representation)]: `emptySet` is `∅`, and every H-representation of `∅` has
 at least its rows. -/
 theorem HPolytope.emptySet_rows_minimal : -- --- CONCL ---
-    (HPolytope.emptySet α).construct = ∅ ∧
-      ∀ P : HPolytope α, P.construct = ∅ →
+    (HPolytope.emptySet α).toSet = ∅ ∧
+      ∀ P : HPolytope α, P.toSet = ∅ →
         (HPolytope.emptySet α).m + (HPolytope.emptySet α).me
           ≤ P.m + P.me := by -- --- PROOF ---
-  refine ⟨HPolytope.construct_emptySet, fun P hP => ?_⟩
+  refine ⟨HPolytope.toSet_emptySet, fun P hP => ?_⟩
   show 1 ≤ P.m + P.me
   by_contra h
   -- no rows: `0` satisfies every one of them, vacuously
   have hm : P.m = 0 := by omega
   have hme : P.me = 0 := by omega
-  have h0 : (0 : α) ∈ P.construct :=
+  have h0 : (0 : α) ∈ P.toSet :=
     ⟨fun i => absurd i.2 (by omega), fun i => absurd i.2 (by omega)⟩
   rw [hP] at h0
   exact h0

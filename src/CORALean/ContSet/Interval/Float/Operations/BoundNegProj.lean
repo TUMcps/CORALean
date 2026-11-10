@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Interval.boundNegProj (I : Interval (Vec 𝕋 n)) (j : Fin n) :
-    FloatBound 𝕋 I.construct (-LinearMap.proj j) :=
+    FloatBound 𝕋 I.toSet (-LinearMap.proj j) :=
   ⟨neg (I.inf j), fun x hx => by
     -- ascribed, `linarith` reading membership no further than reducible defeq
     have h : toReal (I.inf j) ≤ x j := (hx j).1

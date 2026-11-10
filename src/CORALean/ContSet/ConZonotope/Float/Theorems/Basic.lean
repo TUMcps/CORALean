@@ -30,17 +30,17 @@ open Matrix Pointwise FloatOps SoundFloatArithmetic InflatedContSet
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- ==============================  `ConZonotope.convex_construct`  ============================== --
+-- ================================  `ConZonotope.convex_toSet`  ================================ --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- What this denotes is a nominal set plus an error box, so `InflatedContSet.convex_construct`
+/-- What this denotes is a nominal set plus an error box, so `InflatedContSet.convex_toSet`
 carries convexity across: the nominal set is convex as over ℝ, the box because
 its coordinates are bounded independently. -/
-theorem ConZonotope.convex_construct (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Convex ℝ cZ.construct :=
-  InflatedContSet.convex_construct cZ
+theorem ConZonotope.convex_toSet (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Convex ℝ cZ.toSet :=
+  InflatedContSet.convex_toSet cZ
 
 
 -- =================================  `ConZonotope.corner_mem`  ================================= --
@@ -52,21 +52,21 @@ theorem ConZonotope.convex_construct (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : Conv
 /-- When `inf ≤ sup` is certified entry by entry. -/
 theorem ConZonotope.corner_mem {cZ : ConZonotope 𝕋 (Vec 𝕋 n)}
     (hE : ∀ i, le (cZ.I_error.inf i) (cZ.I_error.sup i) = true) :
-    (fun i => toReal (cZ.I_error.inf i)) ∈ (I_error cZ).construct := fun i =>
+    (fun i => toReal (cZ.I_error.inf i)) ∈ (I_error cZ).toSet := fun i =>
   ⟨le_refl _, toReal_le_of_le (hE i)⟩
 
 
--- ============================  `ConZonotope.isCompact_construct`  ============================= --
+-- ==============================  `ConZonotope.isCompact_toSet`  =============================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- What this denotes is a nominal set plus an error box, so `InflatedContSet.isCompact_construct`
+/-- What this denotes is a nominal set plus an error box, so `InflatedContSet.isCompact_toSet`
 carries compactness across: the nominal set is compact as over ℝ, the box by
 Heine–Borel. -/
-theorem ConZonotope.isCompact_construct (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : IsCompact cZ.construct :=
-  InflatedContSet.isCompact_construct cZ
+theorem ConZonotope.isCompact_toSet (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : IsCompact cZ.toSet :=
+  InflatedContSet.isCompact_toSet cZ
 
 end
 

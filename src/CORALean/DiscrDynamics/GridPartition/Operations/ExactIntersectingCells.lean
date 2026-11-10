@@ -40,14 +40,14 @@ variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.I
 /-- `exactIntersectingCells(P, X)`: positive-volume cells and the volume share in each. -/
 noncomputable def GridPartition.exactIntersectingCells (P : GridPartition n) (X : S n) :
     GridPartition.Proportions :=
-  if 0 < GridPartition.volumeOf (ContSet.construct X) then
-    let volTotal := GridPartition.volumeOf (ContSet.construct X)
+  if 0 < GridPartition.volumeOf (ContSet.toSet X) then
+    let volTotal := GridPartition.volumeOf (ContSet.toSet X)
     let cellIndices := P.intersectingCellsOf X
     -- `cellPolytopes` drops cell `0`, the outside, so only real cells are intersected
     let checked := cellIndices.filter fun c => 0 < c ∧ c ≤ P.nrOfCells
-    let iS := checked.filter fun c => 0 < P.cellVolume (ContSet.construct X) c
+    let iS := checked.filter fun c => 0 < P.cellVolume (ContSet.toSet X) c
     let iProp := (List.range' 1 P.nrOfCells).map fun c =>
-      if c ∈ iS then P.cellVolume (ContSet.construct X) c / volTotal else 0
+      if c ∈ iS then P.cellVolume (ContSet.toSet X) c / volTotal else 0
     ⟨0 :: iS, (1 - iProp.sum) :: iProp⟩
   else ⟨[0], [1]⟩
 

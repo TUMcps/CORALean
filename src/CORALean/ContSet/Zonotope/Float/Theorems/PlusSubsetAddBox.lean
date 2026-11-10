@@ -57,13 +57,13 @@ private theorem Zonotope.aux_sum_univ_plus_box {Z₁ Z₂ : Zonotope (Vec 𝕋 n
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- `plus` reaches no further than `Z₁.construct + Z₂.construct`, widened by
+/-- `plus` reaches no further than `Z₁.toSet + Z₂.toSet`, widened by
 `plusBox`, provided both operands already bracket `0` in their own box. -/
 theorem Zonotope.plus_subset_add_box (Z₁ Z₂ : Zonotope (Vec 𝕋 n))
-    (h₁ : (0 : Vec ℝ n) ∈ Z₁.I_error.construct)
-    (h₂ : (0 : Vec ℝ n) ∈ Z₂.I_error.construct) : -- --- CONCL ---
-    (Z₁.plus Z₂).construct ⊆
-      Z₁.construct + Z₂.construct + (Zonotope.plusBox Z₁ Z₂).construct := by -- --- PROOF ---
+    (h₁ : (0 : Vec ℝ n) ∈ Z₁.I_error.toSet)
+    (h₂ : (0 : Vec ℝ n) ∈ Z₂.I_error.toSet) : -- --- CONCL ---
+    (Z₁.plus Z₂).toSet ⊆
+      Z₁.toSet + Z₂.toSet + (Zonotope.plusBox Z₁ Z₂).toSet := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁, y₂, hy₂, rfl⟩
   obtain ⟨β, hβ, hy₁eq⟩ := Zonotope.mem_nominalSet_iff.mp hy₁
   -- the two halves of `β`, read back onto `Z₁` and `Z₂`'s own generators
@@ -74,18 +74,18 @@ theorem Zonotope.plus_subset_add_box (Z₁ Z₂ : Zonotope (Vec 𝕋 n))
   -- the point `plus`'s stored center misses the exact sum by
   set d : Vec ℝ n := fun i =>
     toReal (addDown (Z₁.c i) (Z₂.c i)) - toReal (Z₁.c i) - toReal (Z₂.c i) with hddef
-  -- each half sits in its own zonotope's construct, its error box absorbed at `0`
-  have hp₁ : p₁ ∈ Z₁.construct := by
+  -- each half sits in its own zonotope's `toSet`, its error box absorbed at `0`
+  have hp₁ : p₁ ∈ Z₁.toSet := by
     have h := Set.add_mem_add (Zonotope.mem_nominalSet_iff.mpr
       ⟨fun l => β (Fin.castAdd Z₂.h l), fun l => hβ _, fun _ => rfl⟩) h₁
     rwa [add_zero] at h
-  have hp₂ : p₂ ∈ Z₂.construct := by
+  have hp₂ : p₂ ∈ Z₂.toSet := by
     have h := Set.add_mem_add (Zonotope.mem_nominalSet_iff.mpr
       ⟨fun l => β (Fin.natAdd Z₁.h l), fun l => hβ _, fun _ => rfl⟩) h₂
     rwa [add_zero] at h
   -- `d` bounded in `𝕋` by the same two roundings that produced it
   have hd : d ∈ (⟨fun i => subDown (addDown (Z₁.c i) (Z₂.c i)) (addUp (Z₁.c i) (Z₂.c i)),
-      fun _ => (zero : 𝕋)⟩ : Interval (Vec 𝕋 n)).construct := fun i =>
+      fun _ => (zero : 𝕋)⟩ : Interval (Vec 𝕋 n)).toSet := fun i =>
     ⟨by show toReal (subDown (addDown (Z₁.c i) (Z₂.c i)) (addUp (Z₁.c i) (Z₂.c i))) ≤ d i
         have h1 := subDown_le_sub (addDown (Z₁.c i) (Z₂.c i)) (addUp (Z₁.c i) (Z₂.c i))
         have h2 := add_le_addUp (Z₁.c i) (Z₂.c i)
@@ -94,7 +94,7 @@ theorem Zonotope.plus_subset_add_box (Z₁ Z₂ : Zonotope (Vec 𝕋 n))
         have h3 := addDown_le_add (Z₁.c i) (Z₂.c i)
         rw [hddef, toReal_zero]; linarith⟩
   -- and `plus`'s own error box, read back into `plusBox` by one more `⊆` step
-  have hbox : d + y₂ ∈ (Zonotope.plusBox Z₁ Z₂).construct :=
+  have hbox : d + y₂ ∈ (Zonotope.plusBox Z₁ Z₂).toSet :=
     Interval.plus_outer _ _ (Set.add_mem_add hd hy₂)
   refine ⟨_, Set.add_mem_add hp₁ hp₂, _, hbox, ?_⟩
   funext i

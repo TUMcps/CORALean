@@ -95,7 +95,7 @@ theorem Zonotope.shenmaierVertex_prob (G : Vec ℝ m →ₗ[ℝ] Vec ℝ n) (c d
       simp only [Zonotope.corner, Z]
       rw [LinearMap.pi_apply_eq_sum_univ G (fun j => if σ j then (1:ℝ) else -1)]
   -- the zonotope is the set `c + G B_∞` the radius is taken over
-  have hZ : Z.construct = {x | ∃ α : Vec ℝ m, ‖α‖ ≤ 1 ∧ x = c + G α} := by
+  have hZ : Z.toSet = {x | ∃ α : Vec ℝ m, ‖α‖ ≤ 1 ∧ x = c + G α} := by
     ext x
     constructor
     · rintro ⟨β, hβ, rfl⟩
@@ -109,7 +109,7 @@ theorem Zonotope.shenmaierVertex_prob (G : Vec ℝ m →ₗ[ℝ] Vec ℝ n) (c d
     fun σ => coeffNorm H (Z.corner σ - d)
   have hrσ : r = coeffNorm H (c + G (fun j => if σ j then 1 else -1) - d) := by
     have hset : (fun α => coeffNorm H (G α + c - d)) '' Metric.closedBall 0 1
-        = (fun p => coeffNorm H (p - d)) '' Z.construct := by
+        = (fun p => coeffNorm H (p - d)) '' Z.toSet := by
       rw [hZ]
       ext t
       constructor

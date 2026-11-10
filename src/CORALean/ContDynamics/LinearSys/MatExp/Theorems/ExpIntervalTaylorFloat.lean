@@ -65,13 +65,13 @@ theorem MatExp.step_expIntervalTaylor_eq_impl : -- --- CONCL ---
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.expTaylor_mem_expIntervalTaylor (A : Interval (Mat 𝕋 n n))
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) (η : ℕ) : -- --- CONCL ---
-    Real.MatExp.expTaylor M η ∈ (MatExp.expIntervalTaylor A η).construct := by -- --- PROOF ---
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) (η : ℕ) : -- --- CONCL ---
+    Real.MatExp.expTaylor M η ∈ (MatExp.expIntervalTaylor A η).toSet := by -- --- PROOF ---
   induction η with
   | zero =>
     show (∑ i ∈ Finset.range 1, ((Nat.factorial i : ℝ)⁻¹) • M ^ i)
         ∈ (Interval.smul (MatExp.invFactorialBounds 0).inf (MatExp.invFactorialBounds 0).sup
-            (Interval.matPow A 0)).construct
+            (Interval.matPow A 0)).toSet
     rw [Finset.sum_range_one]
     exact Interval.smul_outer (MatExp.invFactorialBounds_mem 0).1
       (MatExp.invFactorialBounds_mem 0).2 (Interval.matPow A 0) (Interval.matPow_outer A hM 0)
@@ -81,7 +81,7 @@ theorem MatExp.expTaylor_mem_expIntervalTaylor (A : Interval (Mat 𝕋 n n))
         ∈ (Interval.matPlus
              (Interval.smul (MatExp.invFactorialBounds (k + 1)).inf
                (MatExp.invFactorialBounds (k + 1)).sup (Interval.matPow A (k + 1)))
-             (MatExp.expIntervalTaylor A k)).materialiseMat.construct
+             (MatExp.expIntervalTaylor A k)).materialiseMat.toSet
     rw [Interval.materialiseMat_eq, Finset.sum_range_succ, add_comm (∑ i ∈ Finset.range (k + 1),
       ((Nat.factorial i : ℝ)⁻¹) • M ^ i) (((Nat.factorial (k + 1) : ℝ)⁻¹) • M ^ (k + 1))]
     exact Interval.matPlus_outer _ _

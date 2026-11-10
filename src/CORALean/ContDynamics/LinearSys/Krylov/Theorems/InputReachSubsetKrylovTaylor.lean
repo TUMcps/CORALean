@@ -77,13 +77,13 @@ variable {n : ℕ}
 @[reducible] private def Krylov.aux_setMtimes : Mtimes (Mat ℝ) 𝒮 where
   mtimes M s := (M *ᵥ ·) '' s
   mtimes_outer M s := by
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact le_rfl
 
 /-- An interval matrix's images of a plain set, closed and convexified. -/
 @[reducible] private noncomputable def Krylov.aux_setMtimesInterval :
     Mtimes (ℐ) 𝒮 where
-  mtimes I s := closure (convexHull ℝ (⋃ A ∈ construct I, (A *ᵥ ·) '' s))
+  mtimes I s := closure (convexHull ℝ (⋃ A ∈ toSet I, (A *ᵥ ·) '' s))
   mtimes_outer _ _ := (subset_convexHull ℝ _).trans subset_closure
 
 attribute [local instance] Krylov.aux_setPlus Krylov.aux_setMtimes Krylov.aux_setMtimesInterval
@@ -91,7 +91,7 @@ attribute [local instance] Krylov.aux_setPlus Krylov.aux_setMtimes Krylov.aux_se
 /-- The images of a bounded set under the matrices of an interval matrix are bounded. -/
 private theorem Krylov.aux_isBounded_iUnion_image (I : Interval (Mat ℝ n n)) {U : Set (Vec ℝ n)}
     (hU : Bornology.IsBounded U) : -- --- CONCL ---
-    Bornology.IsBounded (⋃ M ∈ I.construct, (M *ᵥ ·) '' U) := by -- --- PROOF ---
+    Bornology.IsBounded (⋃ M ∈ I.toSet, (M *ᵥ ·) '' U) := by -- --- PROOF ---
   obtain ⟨C, hC⟩ := hU.exists_norm_le
   set c := ∑ i, ∑ j, (|I.inf i j| + |I.sup i j|) with hc
   refine isBounded_iff_forall_norm_le.2 ⟨c * |C|, fun x hx => ?_⟩
@@ -145,7 +145,7 @@ theorem Krylov.inputReach_subset_krylovTaylor (A : Mat ℝ n n) {U : Set (Vec �
               (Krylov.arnoldiHessenberg (Krylov.augment A u) (Pi.single (Fin.last n) 1) (m + 1)
                 ^ (j + 1) *ᵥ Pi.single 0 1)) (Fin.castSucc i)) '' U)
         + closure (convexHull ℝ
-            (⋃ M ∈ (MatExp.inputRemainder A δ η).construct, (M *ᵥ ·) '' U)) := by -- --- PROOF ---
+            (⋃ M ∈ (MatExp.inputRemainder A δ η).toSet, (M *ᵥ ·) '' U)) := by -- --- PROOF ---
   have hR := Krylov.aux_isBounded_iUnion_image (MatExp.inputRemainder A δ η) hbdd
   -- [2, Prop. 2]'s enclosure, corrected, at plain sets
   have hexact := (LinearSys.canonical A : LinearSys ℝ n).inputReach_subset_inputSolution
@@ -155,7 +155,7 @@ theorem Krylov.inputReach_subset_krylovTaylor (A : Mat ℝ n n) {U : Set (Vec �
   unfold LinearSys.inputSolution
   refine Set.add_subset_add ?_ le_rfl
   -- its Taylor sum, one order at a time, is the sum of the Krylov terms
-  suffices h : ∀ i ≤ η, construct ((LinearSys.canonical A : LinearSys ℝ n).inputTaylorSum
+  suffices h : ∀ i ≤ η, toSet ((LinearSys.canonical A : LinearSys ℝ n).inputTaylorSum
       (S := 𝒮) δ U i)
       ⊆ ∑ j ∈ Finset.range (i + 1),
           (fun u : Vec ℝ n => (δ ^ (j + 1) / (Nat.factorial (j + 1) : ℝ)) • fun i =>

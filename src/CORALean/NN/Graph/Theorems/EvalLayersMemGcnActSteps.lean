@@ -7,7 +7,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusELeft
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialPlusERight
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.PadBackPoint
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemToSet
 public import CORALean.NN.Graph.Operations.EvalLayers
 public import CORALean.NN.Graph.Operations.GcnActSteps
 public import CORALean.NN.Graph.Theorems.GcnSharedPoint
@@ -102,11 +102,11 @@ theorem GNN.evalLayers_mem_gcnActSteps (L : ℕ) : -- --- CONCL ---
       (Pstar : Mat ℝ N N) (state : Mat ℝ N (c 0)) (a : Fin P.p → ℝ), (∀ k, |a k| ≤ 1) →
       P.point a = Pstar → H.point (fun k => a (Fin.cast hp.symm k)) = state →
         GNN.evalLayers Pstar L c σ W state
-          ∈ (GNN.gcnActSteps L c W acts P H hp).construct := by -- --- PROOF ---
+          ∈ (GNN.gcnActSteps L c W acts P H hp).toSet := by -- --- PROOF ---
   induction L with
   | zero =>
     intro c σ W acts hσ P H hp Pstar state a ha hP hH
-    exact hH ▸ H.point_mem_construct (fun k => ha _)
+    exact hH ▸ H.point_mem_toSet (fun k => ha _)
   | succ L ih =>
     intro c σ W acts hσ P H hp Pstar state a ha hP hH
     -- the convolution at `a` is the product, which the activation enclosure then encloses

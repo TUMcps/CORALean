@@ -4,7 +4,7 @@ public import CORALean.ContSet.LevelSet.Real.LevelSet
 public import CORALean.ContSet.LevelSet.Real.Operations.Basic
 public import CORALean.ContSet.LevelSet.Real.Operations.Lift
 public import CORALean.ContSet.LevelSet.Real.Operations.SplitEquality
-public import CORALean.ContSet.LevelSet.Real.Theorems.MemConstruct
+public import CORALean.ContSet.LevelSet.Real.Theorems.MemToSet
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 @[expose] public section
@@ -38,30 +38,6 @@ theorem LevelSet.append_op_eq {a b : ℕ} {o₁ : Fin a → CompOp} {o₂ : Fin 
     (fun i => (Fin.append_right _ _ i).trans (h₂ i))
 
 
--- ================================  `LevelSet.construct_empty`  ================================ --
--- Authors:       Claude Opus 5.5
--- Written:       02-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- `LevelSet.empty` denotes the empty set -/
-theorem LevelSet.construct_empty (n : ℕ) : (LevelSet.empty n).construct = ∅ := by
-  ext x
-  simp [LevelSet.empty, LevelSet.construct, CompOp.holds]
-
-
--- =================================  `LevelSet.construct_Inf`  ================================= --
--- Authors:       Claude Opus 5.5
--- Written:       02-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- `LevelSet.Inf` denotes the whole space -/
-theorem LevelSet.construct_Inf (n : ℕ) : (LevelSet.Inf n).construct = Set.univ := by
-  ext x
-  simp [LevelSet.Inf, LevelSet.construct, CompOp.holds]
-
-
 -- ================================  `LevelSet.forall_fin_add`  ================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
@@ -83,7 +59,7 @@ theorem LevelSet.forall_fin_add {a b : ℕ} (P : Fin (a + b) → Prop) :
 
 /-- The lifted level set is exactly the points whose selected coordinates lie in the original. -/
 theorem LevelSet.lift_exact {N : ℕ} (L : LevelSet n) (dims : Fin n → Fin N) :
-    (L.lift_ dims).construct = (fun x : Vec ℝ N => fun i => x (dims i)) ⁻¹' L.construct :=
+    (L.lift_ dims).toSet = (fun x : Vec ℝ N => fun i => x (dims i)) ⁻¹' L.toSet :=
   rfl
 
 
@@ -111,6 +87,30 @@ theorem LevelSet.splitEquality_snd_op {n : ℕ} (L : LevelSet n)
     (j : Fin L.splitEquality.2.m) : L.splitEquality.2.op j ≠ .eq := by
   have := Finset.orderEmbOfFin_mem (Finset.univ.filter fun i => L.op i ≠ .eq) rfl j
   exact (Finset.mem_filter.mp this).2
+
+
+-- ==================================  `LevelSet.toSet_empty`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `LevelSet.empty` denotes the empty set -/
+theorem LevelSet.toSet_empty (n : ℕ) : (LevelSet.empty n).toSet = ∅ := by
+  ext x
+  simp [LevelSet.empty, LevelSet.toSet, CompOp.holds]
+
+
+-- ===================================  `LevelSet.toSet_Inf`  =================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       02-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `LevelSet.Inf` denotes the whole space -/
+theorem LevelSet.toSet_Inf (n : ℕ) : (LevelSet.Inf n).toSet = Set.univ := by
+  ext x
+  simp [LevelSet.Inf, LevelSet.toSet, CompOp.holds]
 
 end CORALean.Real
 

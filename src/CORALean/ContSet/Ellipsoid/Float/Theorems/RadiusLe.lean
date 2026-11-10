@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.radius_le (p : ℕ) (E : Ellipsoid 𝕋 n) {x : Vec ℝ n}
-    (hx : x ∈ E.construct) : -- --- CONCL ---
+    (hx : x ∈ E.toSet) : -- --- CONCL ---
     ‖x - toRealVec E.q‖₂ ≤ toReal (E.radius p) := by -- --- PROOF ---
   obtain ⟨y, hy, e, he, rfl⟩ := hx
   -- the same point of the ellipsoid moved to the origin

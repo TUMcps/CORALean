@@ -15,7 +15,7 @@ matrices are real and a point satisfies the inequality only if the combination i
 stacks the matrices as `[A0 A1 ... Am]`; here `A₀` and the family `A` are separate fields, so `plus`
 can append two families without renumbering. Every convex set a conic program can describe is of
 this form, the representation a sum or an image can always land in. Membership, emptiness and the
-support function are semidefinite programs, so none is computed: `construct` is the specification.
+support function are semidefinite programs, so none is computed: `toSet` is the specification.
 Over any real module, as a zonotope is. CORA's header cites Netzer's habilitation, which is unused.
 
 ## References
@@ -54,7 +54,7 @@ structure SpectraShadow (α : Type) where
 
 /-- The set a spectrahedral shadow denotes: the points `c + Σ βᵢ Gᵢ` over coefficients `β` that make
 `A₀ + Σ βᵢ Aᵢ` positive semidefinite. -/
-def SpectraShadow.construct (S : SpectraShadow α) : Set α :=
+def SpectraShadow.toSet (S : SpectraShadow α) : Set α :=
   {x | ∃ β : Fin S.m → ℝ, (S.A₀ + ∑ i, β i • S.A i).PosSemidef ∧ x = S.c + ∑ i, β i • S.G i}
 
 end CORALean.Real

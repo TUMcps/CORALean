@@ -107,8 +107,8 @@ private theorem Zonotope.aux_pRadiusCounterexample_points : -- --- CONCL ---
     let Z := (⟨0, 0, Fin.elim0⟩ : Zonotope (Vec ℝ 1)).intersectDescriptor (0 : Mat ℝ 1 1)
       (1 : Mat ℝ 1 1) (fun _ _ => 2 : Mat ℝ 1 1) (0 : Mat ℝ 1 1) (0 : Mat ℝ 1 1)
       ((0 : Mat ℝ 1 1) * 1) (1 : Mat ℝ 1 1) ((1 : Mat ℝ 1 1) * 1) 0 0
-    Z.c = 0 ∧ (fun _ => 3 : Vec ℝ 1) ∈ Z.construct ∧
-      ∀ z ∈ Z.construct, |z 0| ≤ 3 := by -- --- PROOF ---
+    Z.c = 0 ∧ (fun _ => 3 : Vec ℝ 1) ∈ Z.toSet ∧
+      ∀ z ∈ Z.toSet, |z 0| ≤ 3 := by -- --- PROOF ---
   intro Z
   -- a point of `Z` at the coefficients `b`
   have hsum : ∀ b : Fin (0 + 1 + 1 + 1) → ℝ, ∑ j : Fin (0 + 1 + 1 + 1), b j • Z.G j =
@@ -192,7 +192,7 @@ theorem Zonotope.intersectDescriptorHd_pRadius_counterexample : -- --- CONCL ---
     nlinarith [h.1, h.2]
   -- `X̂_{k-1} = {0}`
   have hX : X.pRadius P = 0 := by
-    have hset : (fun z => (z - X.c) ⬝ᵥ (P *ᵥ (z - X.c))) '' X.construct = {0} := by
+    have hset : (fun z => (z - X.c) ⬝ᵥ (P *ᵥ (z - X.c))) '' X.toSet = {0} := by
       ext r
       simp only [Set.mem_image, Set.mem_singleton_iff]
       constructor

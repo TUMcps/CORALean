@@ -62,13 +62,13 @@ open Matrix
 `Aξ = b` for `βⱼ` places it between the same endpoints `tightenCoeff` computes. -/
 private theorem ConZonotope.aux_tightenCoeff_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (i : Fin nc) (j : Fin ng) {E : Interval (Vec ℝ ng)} {β : Vec ℝ ng}
-    (hβ : β ∈ E.construct) (hrow : (A *ᵥ β) i = b i) : -- --- CONCL ---
-    β ∈ (ConZonotope.tightenCoeff A b i j E).construct := by -- --- PROOF ---
+    (hβ : β ∈ E.toSet) (hrow : (A *ᵥ β) i = b i) : -- --- CONCL ---
+    β ∈ (ConZonotope.tightenCoeff A b i j E).toSet := by -- --- PROOF ---
   unfold ConZonotope.tightenCoeff
   split_ifs with h0
   · exact hβ
   · intro k
-    -- `k` is the coordinate `mem_construct_iff` asks about; only `j` itself can move
+    -- `k` is the coordinate `mem_toSet_iff` asks about; only `j` itself can move
     rcases eq_or_ne k j with rfl | hk
     · -- the tightened coordinate: expose the `Function.update` this is, at its own index
       show Function.update E.inf k (max (E.inf k)
@@ -118,10 +118,10 @@ private theorem ConZonotope.aux_tightenCoeff_outer {nc ng : ℕ} (A : Mat ℝ nc
 the running box. -/
 private theorem ConZonotope.aux_tightenRow_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (i : Fin nc) {E : Interval (Vec ℝ ng)} {β : Vec ℝ ng}
-    (hβ : β ∈ E.construct) (hrow : (A *ᵥ β) i = b i) :
-    β ∈ (ConZonotope.tightenRow A b i E).construct := by
+    (hβ : β ∈ E.toSet) (hrow : (A *ᵥ β) i = b i) :
+    β ∈ (ConZonotope.tightenRow A b i E).toSet := by
   unfold ConZonotope.tightenRow
-  exact Fin.foldl_induction (P := fun y => β ∈ y.construct) ng
+  exact Fin.foldl_induction (P := fun y => β ∈ y.toSet) ng
     (fun E j => ConZonotope.tightenCoeff A b i j E) E hβ
     fun _ j hy => ConZonotope.aux_tightenCoeff_outer A b i j hy hrow
 
@@ -132,11 +132,11 @@ private theorem ConZonotope.aux_tightenRow_outer {nc ng : ℕ} (A : Mat ℝ nc n
 in the interval enclosure `tighten` computes for it. -/
 theorem ConZonotope.tighten_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc) {β : Vec ℝ ng}
     (hbox : ∀ j, |β j| ≤ 1) (heq : ∀ i, (A *ᵥ β) i = b i) : -- --- CONCL ---
-    β ∈ (ConZonotope.tighten A b).construct := by -- --- PROOF ---
+    β ∈ (ConZonotope.tighten A b).toSet := by -- --- PROOF ---
   unfold ConZonotope.tighten
-  have hE₀ : β ∈ (⟨fun _ => -1, fun _ => 1⟩ : Interval (Vec ℝ ng)).construct :=
+  have hE₀ : β ∈ (⟨fun _ => -1, fun _ => 1⟩ : Interval (Vec ℝ ng)).toSet :=
     fun k => abs_le.mp (hbox k)
-  exact Fin.foldl_induction (P := fun y => β ∈ y.construct) nc
+  exact Fin.foldl_induction (P := fun y => β ∈ y.toSet) nc
     (fun E i => ConZonotope.tightenRow A b i E) _ hE₀
     fun _ i hE => ConZonotope.aux_tightenRow_outer A b i hE (heq i)
 

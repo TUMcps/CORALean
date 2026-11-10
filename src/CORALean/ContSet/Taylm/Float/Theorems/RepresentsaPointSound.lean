@@ -62,7 +62,7 @@ private theorem Taylm.aux_polyOf_const (L : List (ℝ × (Fin n → ℕ))) (t : 
 
 theorem Taylm.representsa_point_sound {T : Fin m → Taylm 𝕋 n}
     (h : Taylm.representsa_point T = true) : -- --- CONCL ---
-    Taylm.construct T ⊆ {fun i => (T i).nominal.poly 0} := by -- --- PROOF ---
+    Taylm.toSet T ⊆ {fun i => (T i).nominal.poly 0} := by -- --- PROOF ---
   rintro x ⟨t, -, ht⟩
   funext i
   -- the checks of coordinate `i`

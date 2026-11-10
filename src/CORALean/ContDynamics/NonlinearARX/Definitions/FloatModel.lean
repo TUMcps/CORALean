@@ -39,7 +39,7 @@ structure NonlinearARX.FloatModel (𝕋 : Type) (dy du p : ℕ) where
 structure NonlinearARX.FloatModel.Encloses (fm : NonlinearARX.FloatModel 𝕋 dy du p)
     (sys : NonlinearARX dy du p) : Prop where
   f_mem (Y : Interval (Vec 𝕋 (p * dy))) (V : Interval (Vec 𝕋 ((p + 1) * du))) :
-    ∀ y ∈ construct Y, ∀ v ∈ construct V, sys.f y v ∈ construct (fm.f Y V)
+    ∀ y ∈ toSet Y, ∀ v ∈ toSet V, sys.f y v ∈ toSet (fm.f Y V)
 
 end CORALean
 

@@ -47,7 +47,7 @@ namespace CORALean.Real
 /-- The unit disc's support function is no star set with a polytope predicate. -/
 theorem SupportFunction.exists_not_starSet_hPolytope :
     ∃ S : SupportFunction (Vec ℝ 2),
-      ¬ ∃ s : StarSet ℋ𝒫 2, s.construct = S.construct := by
+      ¬ ∃ s : StarSet ℋ𝒫 2, s.toSet = S.toSet := by
   obtain ⟨E, hE⟩ := Ellipsoid.exists_not_starSet_hPolytope
   exact ⟨E.supportFunction, fun ⟨s, hs⟩ => hE ⟨s, hs.trans E.supportFunction_exact⟩⟩
 

@@ -48,7 +48,7 @@ variable {n : ℕ}
 
 theorem Interval.acos_exact (I : Interval (Vec ℝ n))
     (hI : ∀ i, (-1 ≤ I.inf i ∧ I.inf i ≤ 1) ∧ (-1 ≤ I.sup i ∧ I.sup i ≤ 1)) :
-    I.acos.construct = (fun x i => Real.arccos (x i)) '' I.construct := by
+    I.acos.toSet = (fun x i => Real.arccos (x i)) '' I.toSet := by
   exact Interval.antitoneImage_exact Real.arccos (Set.Icc (-1) 1) Set.ordConnected_Icc
     (Real.strictAntiOn_arccos) (Real.continuous_arccos.continuousOn) I (hI)
 

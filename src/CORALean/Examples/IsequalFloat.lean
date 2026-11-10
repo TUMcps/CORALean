@@ -1,5 +1,5 @@
 import CORALean.ContSet.Equality.Float.Instances
-import CORALean.ContSet.Equality.Float.Theorems.NeBoolOfConstructNe
+import CORALean.ContSet.Equality.Float.Theorems.NeBoolOfToSetNe
 import CORALean.ContSet.Interval.Float.Instances
 import CORALean.ContSet.Zonotope.Float.Instances
 import CORALean.Global.Float.Instances.Dyadic.Instances
@@ -14,7 +14,7 @@ zonotopes written with different mantissas and exponents for the same numbers (`
 `1 · 2¹`) are certified equal; a zonotope and its permutation are not: the test compares generators
 in order and is not CORA's merge of parallel ones, so that `false` decides nothing. Boxes are
 tested by containment each way. The theorem instances apply `ContSet.eqBool_sound` to the certified
-pair, and `ContSet.neBool_of_construct_ne` to two boxes whose sets differ (the point `3/2` is in
+pair, and `ContSet.neBool_of_toSet_ne` to two boxes whose sets differ (the point `3/2` is in
 one and not the other), getting `neBool = true`.
 
 ## Inputs
@@ -72,15 +72,15 @@ def I₂ : Interval (Vec D 1) := ⟨![d 0 0], ![d 1 1]⟩
 
 set_option maxRecDepth 4096 in
 /-- A certified `true` is a proof that the denoted sets of reals are equal. -/
-theorem Z₁_eq_Z₂ : Z₁.construct = Z₂.construct :=
+theorem Z₁_eq_Z₂ : Z₁.toSet = Z₂.toSet :=
   ContSet.eqBool_sound (S := Zonotope (Vec D 2)) (s := Z₁) (t := Z₂) rfl
 
 /-- `[0, 1] ≠ [0, 2]` as sets of reals, so `neBool` is `true` (as the run shows). -/
 theorem I₁_ne_I₂ : -- --- CONCL ---
     ContSet.neBool I₁ I₂ = true := by -- --- PROOF ---
   -- the point `3/2` is in the second box and not in the first
-  refine ContSet.neBool_of_construct_ne (S := Interval (Vec D 1)) fun h => ?_
-  have h2 : (![3 / 2] : Vec ℝ 1) ∈ ContSet.construct I₂ := by
+  refine ContSet.neBool_of_toSet_ne (S := Interval (Vec D 1)) fun h => ?_
+  have h2 : (![3 / 2] : Vec ℝ 1) ∈ ContSet.toSet I₂ := by
     intro i
     obtain rfl : i = 0 := Subsingleton.elim _ _
     show toReal (d 0 0) ≤ (3 / 2 : ℝ) ∧ (3 / 2 : ℝ) ≤ toReal (d 1 1)

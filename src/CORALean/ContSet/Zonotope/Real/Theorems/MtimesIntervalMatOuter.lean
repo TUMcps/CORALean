@@ -5,7 +5,7 @@ public import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 public import CORALean.ContSet.Zonotope.Real.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMul
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
@@ -71,12 +71,12 @@ private theorem Zonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat ℝ 
 -- the image sits in the center's zonotope widened by what the radius can reach
 theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
     (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    (⋃ A ∈ IM.construct, (A *ᵥ ·) '' Z.construct)
-      ⊆ (Zonotope.mtimesIntervalMat IM Z).construct := by -- --- PROOF ---
+    (⋃ A ∈ IM.toSet, (A *ᵥ ·) '' Z.toSet)
+      ⊆ (Zonotope.mtimesIntervalMat IM Z).toSet := by -- --- PROOF ---
   rintro y hy
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
   obtain ⟨A, hA, x, hxmem, rfl⟩ := hy
-  obtain ⟨β, hβ, hx⟩ := Zonotope.mem_construct_iff.mp hxmem
+  obtain ⟨β, hβ, hx⟩ := Zonotope.mem_toSet_iff.mp hxmem
   have hrad : ∀ i j, 0 ≤ IM.radius i j :=
     fun i j => (abs_nonneg _).trans (IM.abs_sub_center_le hA (i, j))
   have hxb := Zonotope.abs_le_absBound hβ hx
@@ -93,7 +93,7 @@ theorem Zonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
   have hreachnn : ∀ i, 0 ≤ Zonotope.radiusReach IM Z i :=
     fun i => (abs_nonneg _).trans (herrb i)
   -- the witness: the old coefficients, plus one per coordinate scaled to that reach
-  refine Zonotope.mem_construct_iff.mpr
+  refine Zonotope.mem_toSet_iff.mpr
     ⟨Fin.append β (fun i => Zonotope.coefficient (Zonotope.radiusReach IM Z i) (err i)),
     ?_, fun i => ?_⟩
   · refine Fin.addCases (fun l => ?_) (fun i => ?_)

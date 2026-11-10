@@ -42,8 +42,8 @@ theorem Location.checkFlowFloat_dropped
     (ℓ : Location 𝒵[𝕋] G L 𝕋 n) (c : Vec 𝕋 n)
     (d : 𝕋) (Rs : List (Zonotope (Vec 𝕋 n))) {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ Rs)
     (hdrop : R ∉ ℓ.checkFlowFloat c d Rs) {x : Vec ℝ n} {u : Vec ℝ ℓ.dynamics.m}
-    {w : Vec ℝ ℓ.dynamics.r} (hx : x ∈ R.construct) (hu : u ∈ ContSet.construct ℓ.U)
-    (hw : w ∈ ContSet.construct ℓ.W) : -- --- CONCL ---
+    {w : Vec ℝ ℓ.dynamics.r} (hx : x ∈ R.toSet) (hu : u ∈ ContSet.toSet ℓ.U)
+    (hw : w ∈ ContSet.toSet ℓ.W) : -- --- CONCL ---
     toRealVec c ⬝ᵥ (Scalar.toRealMat ℓ.dynamics.A *ᵥ
       (x - (toRealVec c ⬝ᵥ x - toReal d) • toRealVec c) + (Scalar.toRealMat ℓ.dynamics.B *ᵥ u +
         toRealVec ℓ.dynamics.c + Scalar.toRealMat ℓ.dynamics.E *ᵥ w)) ≤ 0 := by -- --- PROOF ---

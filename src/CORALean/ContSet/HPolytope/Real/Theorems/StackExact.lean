@@ -43,9 +43,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {s : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.stack_exact (P : Fin s → HPolytope α) : -- --- CONCL ---
-    (HPolytope.stack P).construct = ⋂ i, (P i).construct := by -- --- PROOF ---
+    (HPolytope.stack P).toSet = ⋂ i, (P i).toSet := by -- --- PROOF ---
   ext x
-  simp only [HPolytope.construct, HPolytope.stack, Set.mem_iInter, Set.mem_setOf_eq]
+  simp only [HPolytope.toSet, HPolytope.stack, Set.mem_iInter, Set.mem_setOf_eq]
   constructor
   · rintro ⟨h1, h2⟩ i
     refine ⟨fun j => ?_, fun j => ?_⟩

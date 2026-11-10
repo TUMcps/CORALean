@@ -104,7 +104,7 @@ private theorem aux_expW_offDiag_exists (A : Interval (Mat ℝ n n)) (t : ℝ) {
     (u : Fin n → ℝ) (hu : ∀ p, A.inf p p ≤ u p ∧ u p ≤ A.sup p p)
     (d : Fin n → ℝ) (hd : ∀ q, A.inf i q ≤ d q ∧ d q ≤ A.sup i q)
     (e : Fin n → ℝ) (he : ∀ p, A.inf p j ≤ e p ∧ e p ≤ A.sup p j) : -- --- CONCL ---
-    ∃ M ∈ A.construct, MatExp.expW M t i j
+    ∃ M ∈ A.toSet, MatExp.expW M t i j
       = y * (t + t ^ 2 / 2 * (u i + u j))
         + t ^ 2 / 2
           * ∑ k ∈ Finset.univ \ ({i, j} : Finset (Fin n)), d k * e k := by -- --- PROOF ---
@@ -141,7 +141,7 @@ private theorem aux_expW_diag_exists (A : Interval (Mat ℝ n n)) (t : ℝ) (i :
     {a : ℝ} (ha : A.inf i i ≤ a ∧ a ≤ A.sup i i)
     (d : Fin n → ℝ) (hd : ∀ q, A.inf i q ≤ d q ∧ d q ≤ A.sup i q)
     (e : Fin n → ℝ) (he : ∀ p, A.inf p i ≤ e p ∧ e p ≤ A.sup p i) : -- --- CONCL ---
-    ∃ M ∈ A.construct, MatExp.expW M t i i
+    ∃ M ∈ A.toSet, MatExp.expW M t i i
       = MatExp.quadTerm t a
         + t ^ 2 / 2
           * ∑ k ∈ Finset.univ \ ({i, i} : Finset (Fin n)), d k * e k := by -- --- PROOF ---
@@ -172,8 +172,8 @@ private theorem aux_expW_diag_exists (A : Interval (Mat ℝ n n)) (t : ℝ) (i :
 merely sound. `t ≠ 0` and a non-empty box are what the witnesses need. -/
 theorem MatExp.expIntervalW_attained (A : Interval (Mat ℝ n n)) {t : ℝ} (ht : t ≠ 0)
     (hA : ∀ p q, A.inf p q ≤ A.sup p q) (i j : Fin n) : -- --- CONCL ---
-    (∃ M ∈ A.construct, MatExp.expW M t i j = (MatExp.expIntervalW A t).inf i j) ∧
-      (∃ M ∈ A.construct,
+    (∃ M ∈ A.toSet, MatExp.expW M t i j = (MatExp.expIntervalW A t).inf i j) ∧
+      (∃ M ∈ A.toSet,
         MatExp.expW M t i j = (MatExp.expIntervalW A t).sup i j) := by -- --- PROOF ---
   by_cases hij : i = j
   · -- on the diagonal the parabola's own witness joins the row-column sum's

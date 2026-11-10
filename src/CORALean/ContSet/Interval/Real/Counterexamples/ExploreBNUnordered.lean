@@ -42,7 +42,7 @@ open Classical in
 theorem Interval.exploreBN_unordered_counterexample : -- --- CONCL ---
     let b : Vec ℝ 2 := ![2, 1]
     let x : Vec ℝ 2 := ![1 / 2, 1]
-    x ∈ Set.extremePoints ℝ ((⟨0, b⟩ : Interval (Vec ℝ 2)).construct ∩
+    x ∈ Set.extremePoints ℝ ((⟨0, b⟩ : Interval (Vec ℝ 2)).toSet ∩
         Interval.hyperplane 1 (3 / 2)) ∧ x ∉ Interval.exploreBN b (3 / 2) := by -- --- PROOF ---
   intro b x
   constructor

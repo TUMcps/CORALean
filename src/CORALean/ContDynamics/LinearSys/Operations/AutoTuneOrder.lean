@@ -66,9 +66,9 @@ noncomputable def LinearSys.autoTuneOrder (sys : LinearSys 𝕋 n) (le : ℝ →
     (Δt εaτ εnτ : ℝ) : ℕ → ℕ → Option ℕ
   | _, 0 => none
   | η, k + 1 =>
-    let Δεa := MatExp.particularSolutionError (toRealMat sys.A) tk U₀.construct Δt η  -- eq. (33)
+    let Δεa := MatExp.particularSolutionError (toRealMat sys.A) tk U₀.toSet Δt η  -- eq. (33)
     let Δεh := MatExp.affineDynamicsError (toRealMat sys.A) H ũ Δt η                  -- eq. (23)
-    let ΔεUτ := MatExp.particularSolutionTauError (toRealMat sys.A) tk U₀.construct Δt η -- eq. (26)
+    let ΔεUτ := MatExp.particularSolutionTauError (toRealMat sys.A) tk U₀.toSet Δt η -- eq. (26)
     let Δεn := Δεh + ΔεUτ                                                             -- eq. (32)
     if (le Δεa εaτ && le Δεn εnτ) = true then some η                     -- 15. both admissible
     else LinearSys.autoTuneOrder sys le H ũ tk U₀ Δt εaτ εnτ (η + 1) k

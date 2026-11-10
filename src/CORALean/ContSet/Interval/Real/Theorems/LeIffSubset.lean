@@ -41,10 +41,10 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.le_iff_subset {I J : Interval α} (hI : I.IsNonempty) :
-    I.le J ↔ I.construct ⊆ J.construct := by
+    I.le J ↔ I.toSet ⊆ J.toSet := by
   refine ⟨Interval.le_subset, fun h i => ?_⟩
-  have h₁ : I.inf ∈ J.construct := h fun j => ⟨le_refl _, hI j⟩
-  have h₂ : I.sup ∈ J.construct := h fun j => ⟨hI j, le_refl _⟩
+  have h₁ : I.inf ∈ J.toSet := h fun j => ⟨le_refl _, hI j⟩
+  have h₂ : I.sup ∈ J.toSet := h fun j => ⟨hI j, le_refl _⟩
   exact ⟨(h₁ i).1, (h₂ i).2⟩
 
 

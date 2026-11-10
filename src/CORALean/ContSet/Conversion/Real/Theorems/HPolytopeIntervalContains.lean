@@ -44,9 +44,9 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.interval_contains (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) :
-    P.construct ⊆ (HPolytope.interval up lo).construct :=
+theorem HPolytope.interval_contains (up : ∀ j, SupportBound P.toSet (LinearMap.proj j))
+    (lo : ∀ j, SupportBound P.toSet (-LinearMap.proj j)) :
+    P.toSet ⊆ (HPolytope.interval up lo).toSet :=
   Interval.subset_ofBounds up lo
 
 end CORALean.Real

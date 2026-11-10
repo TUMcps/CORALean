@@ -96,8 +96,8 @@ private theorem ConZonotope.aux_strip_mulDown_gap (a r : 𝕋) : -- --- CONCL --
 theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C : Mat 𝕋 s n)
     (φ y : Vec 𝕋 s)
     (Λ : Mat 𝕋 n s) : -- --- CONCL ---
-    cZ.construct ∩ {x | ∀ k, |(toRealMat C *ᵥ x) k - toReal (y k)| ≤ toReal (φ k)}
-      ⊆ (cZ.intersectStrip C φ y Λ).construct := by -- --- PROOF ---
+    cZ.toSet ∩ {x | ∀ k, |(toRealMat C *ᵥ x) k - toReal (y k)| ≤ toReal (φ k)}
+      ⊆ (cZ.intersectStrip C φ y Λ).toSet := by -- --- PROOF ---
   intro x hx'
   -- the strip rows as a slab first, which `anchorSlab` contains
   refine ConZonotope.anchorSlab_outer _ _ _ _ ?_
@@ -137,7 +137,7 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C
   -- the image's nominal point at `ξ`, and what is left of `C x`, inside the image's box
   set eW : Vec ℝ s := fun k =>
     (toRealMat C *ᵥ x) k - (toReal (W.c k) + ∑ j, toReal (W.G j k) * ξ j) with heW
-  have heWmem : eW ∈ W.I_error.construct := by
+  have heWmem : eW ∈ W.I_error.toSet := by
     have hgen : ∀ k j, |CG k j - toReal (mulVecDown C (cZ.G j) k)|
         ≤ toReal (matMulDiff C (fun i j => cZ.G j i) k j) := by
       intro k j
@@ -182,7 +182,7 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C
   set gap₂ : Mat 𝕋 n s := fun i k => subUp (mulUp (Λ i k) (φ k)) (G₂ k i) with hgap₂
   -- `y - C c` and the columns of `C G`, inside their boxes, and their images under `Λ`
   set wR : Vec ℝ s := fun k => toReal (y k) - ∑ l, toReal (C k l) * toReal (cZ.c l) with hwR
-  have hw : wR ∈ w.construct := fun k => by
+  have hw : wR ∈ w.toSet := fun k => by
     have h1 := dotDown_le (C k) cZ.c
     have h2 := le_dotUp (C k) cZ.c
     have h3 := subDown_le_sub (y k) (dotUp (C k) cZ.c)
@@ -192,7 +192,7 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C
     simp only [hwR]
     constructor <;> linarith
   have hshift := Interval.mtimes_outer Λ w ⟨wR, hw, rfl⟩
-  have hcol : ∀ j, (toRealMat Λ *ᵥ fun k => CG k j) ∈ (LCG j).construct := fun j =>
+  have hcol : ∀ j, (toRealMat Λ *ᵥ fun k => CG k j) ∈ (LCG j).toSet := fun j =>
     Interval.mtimes_outer Λ _ ⟨fun k => CG k j, fun k =>
       ⟨dotDown_le (C k) (fun l => cZ.G j l), le_dotUp (C k) (fun l => cZ.G j l)⟩, rfl⟩
   -- the first generator block's rounding
@@ -220,14 +220,14 @@ theorem ConZonotope.intersectStrip_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (C
     exact ⟨by simp only [hcLo]; linarith, by simp only [hcHi]; linarith⟩
   -- `e - Λ C e`, inside the box of the two interval images
   have heΛ : e - toRealMat Λ *ᵥ (toRealMat C *ᵥ e)
-      ∈ (cZ.I_error.minus (Interval.mtimes Λ (Interval.mtimes C cZ.I_error))).construct :=
+      ∈ (cZ.I_error.minus (Interval.mtimes Λ (Interval.mtimes C cZ.I_error))).toSet :=
     Interval.minus_outer _ _ ⟨e, he, _, Interval.mtimes_outer Λ _
       ⟨_, Interval.mtimes_outer C cZ.I_error ⟨e, he, rfl⟩, rfl⟩, rfl⟩
   -- the strip rows, and the old ones on the first block
   have hPnew : Fin.append ξ ν ∈ ((cZ.P.padLeft s).stackRows (HPolytope.slab
       (fun k => Fin.append (fun j => W.G j k) fun l => if l = k then neg (φ k) else zero)
       (fun k => subDown (subDown (y k) (W.c k)) (W.I_error.sup k))
-      (fun k => subUp (subUp (y k) (W.c k)) (W.I_error.inf k)))).nominal.construct := by
+      (fun k => subUp (subUp (y k) (W.c k)) (W.I_error.inf k)))).nominal.toSet := by
     refine HPolytope.mem_stackRows_nominal_iff.mpr ⟨HPolytope.mem_padLeft_nominal_iff.mpr ?_,
       HPolytope.mem_slab_nominal_iff.mpr fun k => ?_⟩
     · rw [blockLeft_append]; exact hP

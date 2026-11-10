@@ -140,7 +140,7 @@ private theorem LinearSys.aux_corrTerm_chain (Δt : ℝ) (i : ℕ) (j k : Fin 3)
 /-- A matrix of the chain's `F` (19), `η ≥ 2`, maps `x` to `(N₁₃ x₃, 0, 0)`, with `N₁₃` in
 `[-Δt²/8, 0]`. -/
 private theorem LinearSys.aux_mulVec_of_mem_depCurvatureF_chain (Δt : ℝ) {η : ℕ} (hη : 2 ≤ η)
-    (N : Mat ℝ 3 3) (hN : N ∈ (STL.depCurvatureF !![0, 1, 0; 0, 0, 1; 0, 0, 0] Δt η).construct)
+    (N : Mat ℝ 3 3) (hN : N ∈ (STL.depCurvatureF !![0, 1, 0; 0, 0, 1; 0, 0, 0] Δt η).toSet)
     (x : Vec ℝ 3) : -- --- CONCL ---
     N *ᵥ x = ![N 0 2 * x 2, 0, 0] ∧ -(Δt ^ 2 / 8) ≤ N 0 2 ∧ N 0 2 ≤ 0 := by -- --- PROOF ---
   -- the sums over `i` keep their `i = 0` term only
@@ -186,7 +186,7 @@ private theorem LinearSys.aux_mulVec_of_mem_depCurvatureF_chain (Δt : ℝ) {η 
 /-- The box `⟨(0, 0, 256), diag(1, 1/4, 1/4)⟩`, coordinatewise. -/
 private theorem LinearSys.aux_mem_chainBox (x : Vec ℝ 3) : -- --- CONCL ---
     x ∈ (⟨3, ![0, 0, 256], ![![1, 0, 0], ![0, 1 / 4, 0], ![0, 0, 1 / 4]]⟩ :
-      Real.Zonotope (Vec ℝ 3)).construct ↔
+      Real.Zonotope (Vec ℝ 3)).toSet ↔
       |x 0| ≤ 1 ∧ |x 1| ≤ 1 / 4 ∧ |x 2 - 256| ≤ 1 / 4 := by -- --- PROOF ---
   constructor
   · rintro ⟨β, hβ, rfl⟩
@@ -321,10 +321,10 @@ theorem LinearSys.convexHull_minkowskiDiff_ball_counterexample (η : ℕ)
     let Δt : ℝ := 1 / 8
     let Z : Real.Zonotope (Vec ℝ 3) :=
       ⟨3, ![0, 0, 256], ![![1, 0, 0], ![0, 1 / 4, 0], ![0, 0, 1 / 4]]⟩
-    let H₀ := Z.construct -- H(t_k)
+    let H₀ := Z.toSet -- H(t_k)
     let H₁ := (exp (Δt • A) *ᵥ ·) '' H₀ -- H(t_{k+1})
     let Hτ := ⋃ t ∈ Icc (0 : ℝ) Δt, (exp (t • A) *ᵥ ·) '' H₀ -- H(τ_k)
-    let FH := ⋃ N ∈ (STL.depCurvatureF A Δt η).construct, (N *ᵥ ·) '' H₀ -- (19), (20)
+    let FH := ⋃ N ∈ (STL.depCurvatureF A Δt η).toSet, (N *ᵥ ·) '' H₀ -- (19), (20)
     let μ := Real.sqrt (Z.h : ℝ) * genOpNorm₂ fun j => (exp (Δt • A) - 1) *ᵥ Z.G j -- (22)
     let Bμ := {y : Vec ℝ 3 | ‖y‖₂ ≤ μ}
     ![7 / 4, 16, 256] ∈ minkowskiDiff (minkowskiDiff (convexHull ℝ (H₀ ∪ H₁)) FH) Bμ ∧

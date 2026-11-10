@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructFace
-public import CORALean.ContSet.Zonotope.Real.Theorems.VectorSpanConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.ToSetFace
+public import CORALean.ContSet.Zonotope.Real.Theorems.VectorSpanToSet
 public import CORALean.Global.Tensor
 public import Mathlib.Analysis.Convex.Exposed
 public import Mathlib.LinearAlgebra.Dual.Lemmas
@@ -15,7 +15,7 @@ public import Mathlib.Topology.Algebra.Module.FiniteDimension
 
 For `Z ⊆ ℝⁿ` whose generators span, every nonempty exposed face other than `Z` lies in an exposed
 face of dimension `n - 1`, a facet: what [1, Lemma 3.4] uses ("there is a facet `F′ ⊇ F`"). The
-face maximizing `l` is `Z.face l` (`construct_face`), of dimension the rank `k` of the generators
+face maximizing `l` is `Z.face l` (`toSet_face`), of dimension the rank `k` of the generators
 `l` annihilates. While `k ≤ n - 2`, a functional `v` vanishing on those generators but not on
 `ker l` exists; oriented to agree with `l` on some generator, `l - tv` with `t` the first ratio
 `l gⱼ / v gⱼ` keeps every sign of `l` or zeroes it and annihilates one more independent generator,
@@ -98,8 +98,8 @@ private theorem Zonotope.aux_sign_eq_efs {a b : ℝ} (h : 0 < a * b) : Real.sign
 /-- A functional agreeing in sign with `l` wherever it is nonzero has a face containing `l`'s. -/
 private theorem Zonotope.aux_argmax_subset_efs (Z : Zonotope (Vec ℝ n)) (l l' : Vec ℝ n →ₗ[ℝ] ℝ)
     (h : ∀ j, l' (Z.G j) ≠ 0 → 0 < l (Z.G j) * l' (Z.G j)) : -- --- CONCL ---
-    {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, l y ≤ l x}
-      ⊆ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, l' y ≤ l' x} := by -- --- PROOF ---
+    {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, l y ≤ l x}
+      ⊆ {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, l' y ≤ l' x} := by -- --- PROOF ---
   intro x hx
   obtain ⟨β, hβ, hpin, hxβ⟩ := (Z.mem_argmax_iff l x).mp hx
   refine (Z.mem_argmax_iff l' x).mpr ⟨β, hβ, fun j hj => ?_, hxβ⟩
@@ -228,8 +228,8 @@ private theorem Zonotope.aux_exists_top_efs (Z : Zonotope (Vec ℝ n))
       n - Module.finrank ℝ (Submodule.span ℝ (Set.range (Z.face l).G)) = k →
       (∃ j, l (Z.G j) ≠ 0) → ∃ l' : Vec ℝ n →ₗ[ℝ] ℝ, (∃ j, l' (Z.G j) ≠ 0) ∧
         n ≤ Module.finrank ℝ (Submodule.span ℝ (Set.range (Z.face l').G)) + 1 ∧
-        {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, l y ≤ l x}
-          ⊆ {x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, l' y ≤ l' x} := by -- --- PROOF ---
+        {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, l y ≤ l x}
+          ⊆ {x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, l' y ≤ l' x} := by -- --- PROOF ---
   induction k using Nat.strong_induction_on with
   | _ k ih =>
     intro l hk hl
@@ -249,9 +249,9 @@ private theorem Zonotope.aux_exists_top_efs (Z : Zonotope (Vec ℝ n))
 zonotope lies in an exposed face of dimension `n - 1`. -/
 theorem Zonotope.exists_facet_superset (Z : Zonotope (Vec ℝ n))
     (hfull : Submodule.span ℝ (Set.range Z.G) = ⊤) {F : Set (Vec ℝ n)}
-    (hF : IsExposed ℝ Z.construct F) (hne : F.Nonempty)
-    (hproper : F ≠ Z.construct) : -- --- CONCL ---
-    ∃ F' : Set (Vec ℝ n), IsExposed ℝ Z.construct F' ∧
+    (hF : IsExposed ℝ Z.toSet F) (hne : F.Nonempty)
+    (hproper : F ≠ Z.toSet) : -- --- CONCL ---
+    ∃ F' : Set (Vec ℝ n), IsExposed ℝ Z.toSet F' ∧
       Module.finrank ℝ (vectorSpan ℝ F') = n - 1 ∧ F ⊆ F' := by -- --- PROOF ---
   obtain ⟨l, rfl⟩ := hF hne
   -- `l` reaches some generator, or its face would be all of `Z`
@@ -264,9 +264,9 @@ theorem Zonotope.exists_facet_superset (Z : Zonotope (Vec ℝ n))
     simp only [ContinuousLinearMap.coe_coe] at h0
     simp [h0]
   obtain ⟨l', hl', hdim, hsub⟩ := Z.aux_exists_top_efs hfull _ (l : Vec ℝ n →ₗ[ℝ] ℝ) rfl hl
-  refine ⟨{x | x ∈ Z.construct ∧ ∀ y ∈ Z.construct, l' y ≤ l' x},
+  refine ⟨{x | x ∈ Z.toSet ∧ ∀ y ∈ Z.toSet, l' y ≤ l' x},
     fun _ => ⟨LinearMap.toContinuousLinearMap l', rfl⟩, ?_, hsub⟩
-  rw [← Z.construct_face l', Zonotope.vectorSpan_construct]
+  rw [← Z.toSet_face l', Zonotope.vectorSpan_toSet]
   -- the span is proper: `l'` vanishes on it and not on every generator
   have hne' : Submodule.span ℝ (Set.range (Z.face l').G) ≠ ⊤ := fun htop => by
     obtain ⟨j, hj⟩ := hl'

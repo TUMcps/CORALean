@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- The support-function box contains the bundle. -/
 theorem ZonoBundle.intervalSupportFunc_outer (zB : ZonoBundle (Vec 𝕋 n))
     (hk : 0 < zB.k) : -- --- CONCL ---
-    zB.construct ⊆ (zB.intervalSupportFunc hk).construct := by -- --- PROOF ---
+    zB.toSet ⊆ (zB.intervalSupportFunc hk).toSet := by -- --- PROOF ---
   intro x hx
   refine Interval.mem_vec_iff.mpr fun i => ?_
   have hB := Interval.mem_vec_iff.mp (zB.intervalAll_contains hk hx) i

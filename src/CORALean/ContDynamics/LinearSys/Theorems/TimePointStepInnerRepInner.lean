@@ -62,7 +62,7 @@ theorem LinearSys.timePointStepInnerRep_inner (sys : LinearSys 𝕋 n) {r : ℝ}
     (M : Fin (sys.timePointStep (S := 𝒵) r η X₀ U).h →
       Fin (sys.timePointStepErrorBox r η U).h → ℝ) {D : Zonotope (Vec ℝ n)}
     (hD : sys.timePointStepInnerRep r η X₀ U M = some D) :
-    construct D ⊆ sys.reachSetExact (S := 𝒵) (Set.Icc 0 r) X₀ U r :=
+    toSet D ⊆ sys.reachSetExact (S := 𝒵) (Set.Icc 0 r) X₀ U r :=
   ((Zonotope.minkDiffRep_inner _ _ M _ hD).trans
     (minkowskiDiff_mono subset_rfl (Zonotope.closedBall_subset_diagonal _))).trans
     (sys.timePointStepInner_subset_reachSetExact hr η hε X₀ U)

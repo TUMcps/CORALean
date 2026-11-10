@@ -76,7 +76,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeInterval_interval_outer {sys : Lin
     (hu : ∀ s ∈ Set.Ico 0 r, u s = 0) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A.interval).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
-    x t ∈ construct
+    x t ∈ toSet
       ((LinParamSys.canonical sys.A.interval : LinParamSys ℐ n).timeInterval r (m + 2)
         R₀) := by -- --- PROOF ---
   have trajI : (LinParamSys.canonical sys.A.interval : LinParamSys ℐ n).IsCanonicalTrajectory T R₀ U

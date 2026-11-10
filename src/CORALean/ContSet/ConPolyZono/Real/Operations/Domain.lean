@@ -44,7 +44,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The admissible factor and coefficient vectors: the unit cube of the independent half, and the
 constraint on the dependent half, whose own domain is the other cube (`cons_dom`). -/
 def ConPolyZono.domain (cPZ : ConPolyZono α) : Set ((Fin cPZ.p → ℝ) × (Fin cPZ.qI → ℝ)) :=
-  {ab | (∀ j, |ab.2 j| ≤ 1) ∧ ab.1 ∈ cPZ.cons.construct}
+  {ab | (∀ j, |ab.2 j| ≤ 1) ∧ ab.1 ∈ cPZ.cons.toSet}
 
 end CORALean.Real
 

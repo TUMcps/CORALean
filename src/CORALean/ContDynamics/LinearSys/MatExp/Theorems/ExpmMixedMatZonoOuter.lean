@@ -60,10 +60,10 @@ variable {n : ℕ}
 
 /-- The left fold of `Zonotope.plus` over `f s, …, f (s + m - 1)` encloses `a + ∑ x (s + j)`. -/
 private theorem MatExp.aux_foldl_plus_mem_zono (f : ℕ → Zonotope (Mat ℝ n n)) (x : ℕ → Mat ℝ n n)
-    (s m : ℕ) (hx : ∀ j, j < m → x (s + j) ∈ (f (s + j)).construct) {acc : Zonotope (Mat ℝ n n)}
-    {a : Mat ℝ n n} (ha : a ∈ acc.construct) : -- --- CONCL ---
+    (s m : ℕ) (hx : ∀ j, j < m → x (s + j) ∈ (f (s + j)).toSet) {acc : Zonotope (Mat ℝ n n)}
+    {a : Mat ℝ n n} (ha : a ∈ acc.toSet) : -- --- CONCL ---
     a + ∑ j ∈ Finset.range m, x (s + j) ∈ ((List.range' s m).foldl
-      (fun e i => Zonotope.plus e (f i)) acc).construct := by -- --- PROOF ---
+      (fun e i => Zonotope.plus e (f i)) acc).toSet := by -- --- PROOF ---
   -- peel the last index off both the list and the sum
   induction m with
   | zero => simpa using ha
@@ -78,12 +78,12 @@ private theorem MatExp.aux_foldl_plus_mem_zono (f : ℕ → Zonotope (Mat ℝ n 
 
 /-- `eZ` holds the Taylor sum of order `k` and `eI` the rest of the series, of every member. -/
 theorem MatExp.expmMixedMatZono_outer (Z : Zonotope (Mat ℝ n n)) {r : ℝ} (hr : r ≠ 0) {k η : ℕ}
-    (hk : 2 ≤ k) (hη : k < η) {M : Mat ℝ n n} (hM : M ∈ Z.construct) : -- --- CONCL ---
-    MatExp.expTaylor M k ∈ (MatExp.expmMixedMatZono Z r k η).eZ.construct ∧
+    (hk : 2 ≤ k) (hη : k < η) {M : Mat ℝ n n} (hM : M ∈ Z.toSet) : -- --- CONCL ---
+    MatExp.expTaylor M k ∈ (MatExp.expmMixedMatZono Z r k η).eZ.toSet ∧
       exp M - MatExp.expTaylor M k ∈
-        (MatExp.expmMixedMatZono Z r k η).eI.construct := by -- --- PROOF ---
+        (MatExp.expmMixedMatZono Z r k η).eI.toSet := by -- --- PROOF ---
   -- the member scaled by `1 / r` is in the scaled zonotope
-  have hM' : r⁻¹ • M ∈ (Z.map ((1 / r) • LinearMap.id)).construct := by
+  have hM' : r⁻¹ • M ∈ (Z.map ((1 / r) • LinearMap.id)).toSet := by
     rw [← Zonotope.map_exact]
     exact ⟨M, hM, by simp [one_div]⟩
   -- `dependentTerms` of the scaled zonotope encloses the terms of the scaled member
@@ -96,7 +96,7 @@ theorem MatExp.expmMixedMatZono_outer (Z : Zonotope (Mat ℝ n n)) {r : ℝ} (hr
   rw [← hMM] at hsq
   -- the powers from the square enclose `M ^ j`, for `j ≥ 2`
   have hpow : ∀ j, 2 ≤ j → M ^ j ∈ (Zonotope.powers Z
-      (MatExp.dependentTermsMatZono (Z.map ((1 / r) • LinearMap.id)) r).zSq (j - 2)).construct := by
+      (MatExp.dependentTermsMatZono (Z.map ((1 / r) • LinearMap.id)) r).zSq (j - 2)).toSet := by
     intro j hj
     have h := Zonotope.powers_outer Z _ hM hsq (j - 2)
     rwa [← pow_two, ← pow_add, show 2 + (j - 2) = j by omega] at h
@@ -125,7 +125,7 @@ theorem MatExp.expmMixedMatZono_outer (Z : Zonotope (Mat ℝ n n)) {r : ℝ} (hr
   · -- `Z.interval * interval(zPow{k})` encloses `M ^ (k + 1)`, the start of the tail
     have hP : M ^ (j + 2 + 1) ∈ (Interval.matMul Z.interval
         (Zonotope.powers Z (MatExp.dependentTermsMatZono (Z.map ((1 / r) • LinearMap.id)) r).zSq
-          (j + 2 - 2)).interval).construct := by
+          (j + 2 - 2)).interval).toSet := by
       rw [pow_succ']
       exact Interval.matMul_outer _ _ (Z.interval_contains hM)
         (Zonotope.interval_contains _ (hpow (j + 2) (by omega)))

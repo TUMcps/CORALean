@@ -42,7 +42,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 /-- Every `p - x` with `x` in `S` is in `minusFrom p S`: `uminus_outer`, then `plus_outer`. -/
 theorem ContSet.minusFrom_outer (p : Vec ℝ n) (s : S n) :
-    (fun x => p - x) '' construct s ⊆ construct (ContSet.minusFrom (𝕋 := 𝕋) p s) := by
+    (fun x => p - x) '' toSet s ⊆ toSet (ContSet.minusFrom (𝕋 := 𝕋) p s) := by
   rintro _ ⟨x, hx, rfl⟩
   exact Plus.plus_outer _ _ ⟨-x, ContSet.uminus_outer s ⟨x, hx, rfl⟩, p,
     OfPoint.mem_ofPoint _, (sub_eq_neg_add p x).symm⟩

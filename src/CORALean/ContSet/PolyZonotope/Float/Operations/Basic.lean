@@ -51,7 +51,7 @@ def PolyZonotope.bilinGDiff (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : PolyZono
 -- Reviewed:      ---
 
 /-- CORA's `center` for a polynomial zonotope returns the field `c`: the stored center,
-unchanged. It carries no guarantee of its own; `center_mem_construct` says when it lies in
+unchanged. It carries no guarantee of its own; `center_mem_toSet` says when it lies in
 the set. -/
 def PolyZonotope.center (pZ : PolyZonotope (Vec 𝕋 n)) : Vec 𝕋 n := pZ.c
 

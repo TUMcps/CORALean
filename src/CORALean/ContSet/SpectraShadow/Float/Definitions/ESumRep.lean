@@ -42,10 +42,10 @@ structure SpectraShadow.ESumRep (𝕋 : Type) (n : ℕ) where
 
 /-- The set a stored existential sum representation stands for: the exact layer's, the matrices
 read entrywise as reals. -/
-def SpectraShadow.ESumRep.construct [SoundFloatArithmetic 𝕋] (E : SpectraShadow.ESumRep 𝕋 n) :
+def SpectraShadow.ESumRep.toSet [SoundFloatArithmetic 𝕋] (E : SpectraShadow.ESumRep 𝕋 n) :
     Set (Vec ℝ n) :=
   (⟨E.k, E.q, toRealMat E.B₀, fun i => toRealMat (E.B i), fun j => toRealMat (E.C j)⟩ :
-    CORALean.Real.SpectraShadow.ESumRep n).construct
+    CORALean.Real.SpectraShadow.ESumRep n).toSet
 
 end CORALean.Float
 

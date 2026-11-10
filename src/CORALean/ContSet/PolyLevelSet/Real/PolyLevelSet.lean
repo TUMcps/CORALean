@@ -67,8 +67,8 @@ def PolyLevelSet.eval (P : PolyLevelSet n) (x : Vec ℝ n) : Vec ℝ P.m :=
   P.A *ᵥ PolyZonotope.monomial P.R x - P.b
 
 /-- The points of the box meeting every constraint `(A μ_R(x) - b)ᵢ ⋈ᵢ 0`. -/
-def PolyLevelSet.construct (P : PolyLevelSet n) : Set (Vec ℝ n) :=
-  {x | x ∈ P.dom.construct ∧ ∀ i, (P.op i).holds (P.eval x i)}
+def PolyLevelSet.toSet (P : PolyLevelSet n) : Set (Vec ℝ n) :=
+  {x | x ∈ P.dom.toSet ∧ ∀ i, (P.op i).holds (P.eval x i)}
 
 end CORALean.Real
 

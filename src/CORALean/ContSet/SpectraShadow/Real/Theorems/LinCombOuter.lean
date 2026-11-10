@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.setLinComb_subset_convHull (S₁ S₂ : SpectraShadow (Vec ℝ n)) :
-    Set.linComb S₁.construct S₂.construct ⊆ (S₁.convHull_ S₂).construct := by
+    Set.linComb S₁.toSet S₂.toSet ⊆ (S₁.convHull_ S₂).toSet := by
   rw [SpectraShadow.convHull_exact, CORALean.setLinComb_eq_convexJoin]
   exact convexJoin_subset_convexHull _ _
 

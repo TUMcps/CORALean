@@ -61,8 +61,8 @@ variable {n ny nv rv : ℕ}
 
 theorem LinearSysDT.zero_mem_faultResidual (M : Mat ℝ ny ny) (C : Mat ℝ ny n)
     (Dy : Mat ℝ ny nv) (Hv : Mat ℝ nv rv) (X : Zonotope (Vec ℝ n)) (x : Vec ℝ n) (s : Vec ℝ rv)
-    (hx : x ∈ X.construct) (hs : ∀ i, |s i| ≤ 1) : -- --- CONCL ---
-    0 ∈ (X.faultResidual M C Dy Hv (C *ᵥ x + Dy *ᵥ (Hv *ᵥ s))).construct := by -- --- PROOF ---
+    (hx : x ∈ X.toSet) (hs : ∀ i, |s i| ≤ 1) : -- --- CONCL ---
+    0 ∈ (X.faultResidual M C Dy Hv (C *ᵥ x + Dy *ᵥ (Hv *ᵥ s))).toSet := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hx
   refine ⟨Fin.append (fun j => -β j) (fun j => -s j), ?_, ?_⟩
   · intro j

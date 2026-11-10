@@ -70,7 +70,7 @@ private theorem aux_exp_add (A : Mat ℝ n n) (c d : ℝ) : exp (c • A) * exp 
 /-- Over `[0, 0]` any admissible input contributes the empty integral, and a
 nonempty `U` has one: hold it at any of its points. -/
 private theorem aux_zero_mem_inputReach_zero (sys : LinearSys 𝕋 n) (U : S n)
-    (hne : (construct U).Nonempty) : (0 : Vec ℝ n) ∈ sys.inputReach U 0 :=
+    (hne : (toSet U).Nonempty) : (0 : Vec ℝ n) ∈ sys.inputReach U 0 :=
   ⟨fun _ => hne.some, fun _ _ => hne.some_mem, aestronglyMeasurable_const, by simp⟩
 
 
@@ -80,17 +80,17 @@ private theorem aux_zero_mem_inputReach_zero (sys : LinearSys 𝕋 n) (U : S n)
 applied to a point of `R₀` plus a point of `U`'s own `kΔt`-window input reach
 — the zero-order-hold input that realises it is exhibited, not asserted. -/
 theorem LinearSys.discretize_reachSetExact_subset_inputReach (sys : LinearSys 𝕋 n) {Δt : ℝ}
-    (hΔt : 0 < Δt) (R₀ U Ud : S n) (hbdd : Bornology.IsBounded (construct U))
-    (hne : (construct U).Nonempty)
-    (hUd : construct Ud ⊆ (fun c => sys.stepInputConst c Δt) '' construct U)
+    (hΔt : 0 < Δt) (R₀ U Ud : S n) (hbdd : Bornology.IsBounded (toSet U))
+    (hne : (toSet U).Nonempty)
+    (hUd : toSet Ud ⊆ (fun c => sys.stepInputConst c Δt) '' toSet U)
     (k : ℕ) : -- --- CONCL ---
     (sys.discretize Δt).reachSetExact R₀ Ud k
-      ⊆ (exp (((k : ℝ) * Δt) • toRealMat sys.A)).mulVecLin '' construct R₀
+      ⊆ (exp (((k : ℝ) * Δt) • toRealMat sys.A)).mulVecLin '' toSet R₀
         + sys.inputReach U ((k : ℝ) * Δt) := by -- --- PROOF ---
   induction k with
   | zero =>
     intro y hy
-    have hy' : y ∈ construct R₀ := by simpa [LinearSysDT.reachSetExact] using hy
+    have hy' : y ∈ toSet R₀ := by simpa [LinearSysDT.reachSetExact] using hy
     simp only [Nat.cast_zero, zero_mul]
     refine ⟨y, ⟨y, hy', ?_⟩, 0, aux_zero_mem_inputReach_zero sys U hne, ?_⟩ <;> simp
   | succ k ih =>

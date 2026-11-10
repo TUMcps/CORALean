@@ -67,11 +67,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- [1, Prop. 3]: the states no admissible input keeps out of `Xend` are exactly
 `e^{-At}((Xend ⊕ -Z_W(t)) ⊖ Z_U(t))`. -/
 theorem LinearSys.backReachSetForallExistsExact_eq (sys : LinearSys 𝕋 n) (U W Xend : S n)
-    {t : ℝ} (ht : 0 ≤ t) (hU : Bornology.IsBounded (construct U))
-    (hW : Bornology.IsBounded (construct W)) : -- --- CONCL ---
+    {t : ℝ} (ht : 0 ≤ t) (hU : Bornology.IsBounded (toSet U))
+    (hW : Bornology.IsBounded (toSet W)) : -- --- CONCL ---
     sys.backReachSetForallExistsExact (Set.Icc 0 t) U W Xend t
       = (exp ((-t) • toRealMat sys.A)).mulVecLin ''
-          minkowskiDiff (construct Xend + -sys.inputReach W t)
+          minkowskiDiff (toSet Xend + -sys.inputReach W t)
             (sys.inputReach U t) := by -- --- PROOF ---
   ext x₀
   rw [mem_expNeg_image_iff]
@@ -108,7 +108,7 @@ theorem LinearSys.backReachSetForallExistsExact_eq (sys : LinearSys 𝕋 n) (U W
       rw [← hab, hbeq]
       abel
     have hend : sys.closedForm x₀ u t + sys.closedForm 0 w t = a := by rw [hsup]; exact hsum
-    show sys.closedForm x₀ u t + sys.closedForm 0 w t ∈ construct Xend
+    show sys.closedForm x₀ u t + sys.closedForm 0 w t ∈ toSet Xend
     rw [hend]
     exact ha
 

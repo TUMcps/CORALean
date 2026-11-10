@@ -64,7 +64,7 @@ private theorem Interval.aux_lift_find (proj : Fin m → Fin N) (hp : Function.I
 
 theorem Interval.lift_exact (I : Interval (Vec 𝕋 m)) (N : ℕ) (proj : Fin m → Fin N)
     (hp : Function.Injective proj) : -- --- CONCL ---
-    (I.lift_ N proj).construct = {x | (fun i => x (proj i)) ∈ I.construct} := by -- --- PROOF ---
+    (I.lift_ N proj).toSet = {x | (fun i => x (proj i)) ∈ I.toSet} := by -- --- PROOF ---
   -- every source coordinate is found at its own image
   have hfind : ∀ i, (List.finRange m).find? (fun j => proj j = proj i) = some i := fun i =>
     Interval.aux_lift_find proj hp i _ (List.mem_finRange i)

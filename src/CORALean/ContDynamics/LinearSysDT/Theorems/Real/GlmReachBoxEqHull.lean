@@ -118,7 +118,7 @@ theorem LinearSysDT.glmReachBox_eq_hull (sys : LinearSysDT 𝕋 n) (Ω₀ U : Zo
     rw [hφ, Function.comp_apply, LinearSysDT.aux_interval_plus]
   -- each box is the hull of the exact set
   rw [hbox, show (Zonotope.interval : Zonotope (Vec ℝ n) → _)
-      = Interval.hull ∘ Zonotope.construct from funext Zonotope.interval_eq_hull,
+      = Interval.hull ∘ Zonotope.toSet from funext Zonotope.interval_eq_hull,
     ← List.map_map, LinearSysDT.glmReach_eq, List.map_map]
   rfl
 

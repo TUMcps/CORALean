@@ -41,7 +41,7 @@ variable {n : ℕ}
 
 theorem Interval.mrdivide_exact {I : Interval (Vec ℝ n)} (hI : I.IsNonempty) {d : ℝ}
     (hd : d ≠ 0) : -- --- CONCL ---
-    (I.mrdivide d).construct = (fun x i => x i / d) '' I.construct := by -- --- PROOF ---
+    (I.mrdivide d).toSet = (fun x i => x i / d) '' I.toSet := by -- --- PROOF ---
   ext z
   constructor
   · intro hz

@@ -65,8 +65,8 @@ private theorem aux_getVerdict_single_ap (eps : ℝ) (obj : OnlineReachSetAnalyz
     (hne : I ≠ .empty) (h0 : (0 : ℝ) ∈ I.set) : -- --- CONCL ---
     ∃ obj1, OnlineReachSetAnalyzer.observeSet (𝕋 := 𝕋) eps obj set I loc none = some obj1 ∧
       obj1.getVerdict = some (FourValued.fromKleene val) ∧
-      (val = .tt → ∀ x ∈ construct set, a.Holds x loc) ∧
-      (val = .ff → ∀ x ∈ construct set, ¬ a.Holds x loc) := by -- --- PROOF ---
+      (val = .tt → ∀ x ∈ toSet set, a.Holds x loc) ∧
+      (val = .ff → ∀ x ∈ toSet set, ¬ a.Holds x loc) := by -- --- PROOF ---
   obtain ⟨obj1, hobs, hnodes⟩ := OnlineReachSetAnalyzer.observeSet_single_ap (𝕋 := 𝕋) eps obj N hn
     hl hf hc hk hp hch set loc I hne val TentativeKleeneSignal.emptySignal ht a hap hval
   -- its signal is `val` at `0`
@@ -91,8 +91,8 @@ theorem OnlineReachSetAnalyzer.getVerdict_ap (label : String) (a : AtomicProposi
       ∀ obj0 ∈ OnlineReachSetAnalyzer.mk? (OnlineReachSetAnalyzer.Formula.ap label a) 1 dp,
         ∃ obj1, OnlineReachSetAnalyzer.observeSet (𝕋 := 𝕋) eps obj0 set I loc none = some obj1 ∧
           obj1.getVerdict = some (FourValued.fromKleene val) ∧
-          (val = .tt → ∀ x ∈ construct set, a.Holds x loc) ∧
-          (val = .ff → ∀ x ∈ construct set, ¬ a.Holds x loc) := by -- --- PROOF ---
+          (val = .tt → ∀ x ∈ toSet set, a.Holds x loc) ∧
+          (val = .ff → ∀ x ∈ toSet set, ¬ a.Holds x loc) := by -- --- PROOF ---
   intro val (hval : OnlineAnalyzerNode.apValue (𝕋 := 𝕋) a set loc = some val) obj0 (hmk :
       OnlineReachSetAnalyzer.mk? (OnlineReachSetAnalyzer.Formula.ap label a) 1 dp = some obj0)
   -- the analyzer of an atom is one fresh `AP` node

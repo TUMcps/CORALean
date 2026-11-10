@@ -37,7 +37,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.splitFirstGen_outer (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    Z.construct ⊆ Z.splitFirstGen.1.construct ∪ Z.splitFirstGen.2.construct := by -- --- PROOF ---
+    Z.toSet ⊆ Z.splitFirstGen.1.toSet ∪ Z.splitFirstGen.2.toSet := by -- --- PROOF ---
   unfold Zonotope.splitFirstGen
   dsimp only
   split

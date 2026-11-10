@@ -76,12 +76,12 @@ variable {n : ℕ}
 vector on `R(0)`. -/
 theorem GuardMap.hitSet_subset_hitEnclosure (A : Mat ℝ n n) (b nv : Vec ℝ n) (d : ℝ)
     (E : Set (Vec ℝ n)) (R₀ : Real.Zonotope (Vec ℝ n)) (ξ ψc ψg : Vec ℝ n) (φlo φhi : ℝ)
-    (hΛ : ∀ x ∈ R₀.construct, nv ⬝ᵥ (A *ᵥ x + b) ≠ 0)
-    (hφ : ∀ x ∈ R₀.construct, φlo ≤ 1 / (nv ⬝ᵥ (A *ᵥ x + b)) ^ 2 ∧
+    (hΛ : ∀ x ∈ R₀.toSet, nv ⬝ᵥ (A *ᵥ x + b) ≠ 0)
+    (hφ : ∀ x ∈ R₀.toSet, φlo ≤ 1 / (nv ⬝ᵥ (A *ᵥ x + b)) ^ 2 ∧
       1 / (nv ⬝ᵥ (A *ᵥ x + b)) ^ 2 ≤ φhi)
-    (hψ : ∀ x ∈ R₀.construct, ∃ κ : ℝ, |κ| ≤ 1 ∧ (nv ⬝ᵥ (A *ᵥ x + b))⁻¹ •
+    (hψ : ∀ x ∈ R₀.toSet, ∃ κ : ℝ, |κ| ≤ 1 ∧ (nv ⬝ᵥ (A *ᵥ x + b))⁻¹ •
       (-((nv ⬝ᵥ (A *ᵥ x + b)) • nv) - (d - nv ⬝ᵥ x) • (nv ᵥ* A)) = ψc + κ • ψg)
-    (hξ : ξ ∈ R₀.construct) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.construct) : -- --- CONCL ---
+    (hξ : ξ ∈ R₀.toSet) {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ R₀.toSet) : -- --- CONCL ---
     GuardMap.hitSet A b nv d E x₀
       ⊆ GuardMap.hitEnclosure A b nv d E R₀ ξ ψc ψg φlo φhi := by -- --- PROOF ---
   rintro _ ⟨_, rfl, w, ⟨_, ⟨e, he, rfl⟩, e', he', rfl⟩, rfl⟩
@@ -99,7 +99,7 @@ theorem GuardMap.hitSet_subset_hitEnclosure (A : Mat ℝ n n) (b nv : Vec ℝ n)
   have hexp := GuardMap.hitPoint_add_eq A b nv d ξ ν hΛξ (by rw [← hx₀ν]; exact hΛx)
   rw [← hx₀ν] at hexp
   -- `ν ∈ R(0) ⊕ (−ξ)`
-  have hνmem : ν ∈ (⟨R₀.h, R₀.c - ξ, R₀.G⟩ : Real.Zonotope (Vec ℝ n)).construct := by
+  have hνmem : ν ∈ (⟨R₀.h, R₀.c - ξ, R₀.G⟩ : Real.Zonotope (Vec ℝ n)).toSet := by
     refine ⟨βx, hβx, ?_⟩
     show x₀ - ξ = (R₀.c - ξ) + ∑ j, βx j • R₀.G j
     rw [hxeq]; abel
@@ -121,12 +121,12 @@ theorem GuardMap.hitSet_subset_hitEnclosure (A : Mat ℝ n n) (b nv : Vec ℝ n)
       exact h
   have hqmem : q ∈ (Real.Zonotope.quadMapMatZono (fun i => (Q i).c)
       (fun (j : Fin (1 + R₀.h + R₀.h)) i => (Q i).G j)
-      ⟨R₀.h, R₀.c - ξ, R₀.G⟩).construct :=
+      ⟨R₀.h, R₀.c - ξ, R₀.G⟩).toSet :=
     Real.Zonotope.quadMapMatZono_outer _ _ _ ⟨ν, hνmem, fac, hfac1, fun i => by
       rw [hqdef]; dsimp only; rw [hQξ i]⟩
   -- `φ ∈ [φ̲, φ̄]`, written as `0.5(φ̲ + φ̄) + 0.5(φ̄ − φ̲)s`, `|s| ≤ 1`
   obtain ⟨hlo, hhi⟩ := GuardMap.hitFactor_mem_Icc A b nv
-    (Real.Zonotope.convex_construct R₀) hΛ hφ ⟨βξ, hβξ, hξeq⟩ ⟨βx, hβx, hxeq⟩
+    (Real.Zonotope.convex_toSet R₀) hΛ hφ ⟨βξ, hβξ, hξeq⟩ ⟨βx, hβx, hxeq⟩
   rw [← hφdef] at hlo hhi
   obtain ⟨s, hs, hφs⟩ : ∃ s : ℝ, s ∈ Set.Icc (-1 : ℝ) 1 ∧
       φ = (φlo + φhi) / 2 + (φhi - φlo) / 2 * s := by

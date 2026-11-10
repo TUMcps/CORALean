@@ -54,7 +54,7 @@ structure HPolytope (α : Type) [AddCommGroup α] [Module ℝ α] where
 
 /-- The set a halfspace description denotes: the points satisfying all inequalities and all
 equalities. -/
-def HPolytope.construct (P : HPolytope α) : Set α :=
+def HPolytope.toSet (P : HPolytope α) : Set α :=
   {x | (∀ i, P.A i x ≤ P.b i) ∧ ∀ i, P.Ae i x = P.be i}
 
 end CORALean.Real

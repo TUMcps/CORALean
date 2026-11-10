@@ -45,8 +45,8 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : �
 /-- The same as an inclusion of the set that leaves, which is the form a chain
 of steps composes in. -/
 theorem Transition.reset_image_subset (e : Transition G L 𝕋 n) {R Rg : S n}
-    (hinter : construct R ∩ construct e.guard ⊆ construct Rg) :
-    e.reset '' (construct R ∩ construct e.guard) ⊆ construct (e.jump Rg) := by
+    (hinter : toSet R ∩ toSet e.guard ⊆ toSet Rg) :
+    e.reset '' (toSet R ∩ toSet e.guard) ⊆ toSet (e.jump Rg) := by
   rintro _ ⟨z, ⟨hz, hguard⟩, rfl⟩
   exact e.jump_outer hinter hz hguard
 

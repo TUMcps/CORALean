@@ -55,7 +55,7 @@ theorem PolyZonotope.bilinOuter_mem (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (pZ�
     (hβ₂ : ∀ j, |β₂ j| ≤ 1) : -- --- CONCL ---
     f (pZ₁.point a + ∑ j, β₁ j • pZ₁.GI j)
         (pZ₂.point (fun k => a (Fin.cast hp.symm k)) + ∑ j, β₂ j • pZ₂.GI j)
-      ∈ (pZ₁.bilinOuter f pZ₂ hp).construct := by -- --- PROOF ---
+      ∈ (pZ₁.bilinOuter f pZ₂ hp).toSet := by -- --- PROOF ---
   -- `f` at two sums of scaled generators, expanded over the pairs
   have hexp : ∀ {r s : ℕ} (u : Fin r → α) (v : Fin s → β) (x : Fin r → ℝ) (y : Fin s → ℝ),
       f (∑ j, x j • u j) (∑ l, y l • v l) = ∑ j, ∑ l, (x j * y l) • f (u j) (v l) := by

@@ -49,32 +49,32 @@ structure LinParamSysDT (𝕄 : ℕ → ℕ → Type) (n : ℕ) where
   B : 𝕄 n m
   c : Vec ℝ n
 
-/-- A run of the whole equation: a fresh `A k ∈ construct sys.A` and `B k ∈ construct sys.B` at
+/-- A run of the whole equation: a fresh `A k ∈ toSet sys.A` and `B k ∈ toSet sys.B` at
 every step, under inputs in `U`. -/
 structure LinParamSysDT.IsTrajectory (sys : LinParamSysDT 𝕄 n) (R₀ : S n) (U : S sys.m)
     (x : ℕ → Vec ℝ n) (u : ℕ → Vec ℝ sys.m) (A : ℕ → Mat ℝ n n) (B : ℕ → Mat ℝ n sys.m) :
     Prop where
-  init : x 0 ∈ construct R₀
-  input (k : ℕ) : u k ∈ construct U
-  param (k : ℕ) : A k ∈ construct sys.A
-  paramB (k : ℕ) : B k ∈ construct sys.B
+  init : x 0 ∈ toSet R₀
+  input (k : ℕ) : u k ∈ toSet U
+  param (k : ℕ) : A k ∈ toSet sys.A
+  paramB (k : ℕ) : B k ∈ toSet sys.B
   step (k : ℕ) : x (k + 1) = A k *ᵥ x k + B k *ᵥ u k + sys.c
 
 /-- A run of the canonical form, its combined input `B u + c` in state coordinates drawn from
 `U`. -/
 structure LinParamSysDT.IsCanonicalTrajectory (sys : LinParamSysDT 𝕄 n) (R₀ U : S n)
     (x u : ℕ → Vec ℝ n) : Prop where
-  init : x 0 ∈ construct R₀
-  input (k : ℕ) : u k ∈ construct U
-  step (k : ℕ) : ∃ A ∈ construct sys.A, x (k + 1) = A *ᵥ x k + u k
+  init : x 0 ∈ toSet R₀
+  input (k : ℕ) : u k ∈ toSet U
+  step (k : ℕ) : ∃ A ∈ toSet sys.A, x (k + 1) = A *ᵥ x k + u k
 
 /-- A canonical run known only for its first `K` steps: `x` and `u` past that point are
 unconstrained, exactly as `LinearSysDT.IsCanonicalTrajectoryOn`'s are. -/
 structure LinParamSysDT.IsCanonicalTrajectoryOn (sys : LinParamSysDT 𝕄 n) (R₀ U : S n) (K : ℕ)
     (x u : ℕ → Vec ℝ n) : Prop where
-  init : x 0 ∈ construct R₀
-  input (k : ℕ) (hk : k < K) : u k ∈ construct U
-  step (k : ℕ) (hk : k < K) : ∃ A ∈ construct sys.A, x (k + 1) = A *ᵥ x k + u k
+  init : x 0 ∈ toSet R₀
+  input (k : ℕ) (hk : k < K) : u k ∈ toSet U
+  step (k : ℕ) (hk : k < K) : ∃ A ∈ toSet sys.A, x (k + 1) = A *ᵥ x k + u k
 
 end CORALean
 

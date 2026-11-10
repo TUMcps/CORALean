@@ -71,11 +71,11 @@ noncomputable def GuardMap.hitEnclosure (A : Mat ℝ n n) (b nv : Vec ℝ n) (d 
     Real.Zonotope.quadMapMatZono (fun i => (Q i).c)
       (fun (j : Fin (1 + R₀.h + R₀.h)) i => (Q i).G j) Rν
   let Rφ : Set (Vec ℝ n) :=                                         -- `[φ̲, φ̄] ⊗ R_quad`
-    ((φlo + φhi) / 2) • Rquad.construct + ((φhi - φlo) / 2) • Rquad.unitIntervalMul.construct
-  let I : Set ℝ := (fun x => nv ⬝ᵥ (A *ᵥ x + b)) '' R₀.construct    -- `I`, (16)
+    ((φlo + φhi) / 2) • Rquad.toSet + ((φhi - φlo) / 2) • Rquad.unitIntervalMul.toSet
+  let I : Set ℝ := (fun x => nv ⬝ᵥ (A *ᵥ x + b)) '' R₀.toSet    -- `I`, (16)
   let RhE : Set (Vec ℝ n) :=                                        -- `R_{h,E}(R(0))`
-    {z | ∃ x ∈ R₀.construct, ∃ e ∈ E, ∃ a ∈ I, z = (-(nv ⬝ᵥ e) / a) • (A *ᵥ x + b)} + E
-  {yξ} + (fun ν => L *ᵥ ν) '' Rν.construct + (1 / 2 : ℝ) • Rφ + RhE
+    {z | ∃ x ∈ R₀.toSet, ∃ e ∈ E, ∃ a ∈ I, z = (-(nv ⬝ᵥ e) / a) • (A *ᵥ x + b)} + E
+  {yξ} + (fun ν => L *ᵥ ν) '' Rν.toSet + (1 / 2 : ℝ) • Rφ + RhE
 
 end CORALean
 

@@ -48,8 +48,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 def ConPolyZono.supportBound (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j)
     (u : FloatBound 𝕋 ((InflatedContSet.nominal cPZ).polyZonotope.point ''
-      (InflatedContSet.nominal cPZ).cons.construct) c) :
-    FloatBound 𝕋 cPZ.construct c :=
+      (InflatedContSet.nominal cPZ).cons.toSet) c) :
+    FloatBound 𝕋 cPZ.toSet c :=
   boundOfParts (cPZ.nominalSupportBound a hc u) (cPZ.I_error.boundDot a hc)
 
 end CORALean.Float

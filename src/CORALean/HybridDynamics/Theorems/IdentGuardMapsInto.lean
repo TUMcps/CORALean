@@ -58,9 +58,9 @@ reset `r(x) = H x + k` into the polytope `Y = ⟨C, d⟩_P`. -/
 theorem IdentHA.identGuard_maps_into (a : Vec ℝ n) (b : ℝ) (H : Mat ℝ n n) (k : Vec ℝ n)
     (cs : List (Vec ℝ n × ℝ)) : -- --- CONCL ---
     ∀ x ∈ IdentHA.conHyperplane a b (IdentHA.identGuard H k cs),
-      H *ᵥ x + k ∈ (IdentHA.polytope cs).construct := by -- --- PROOF ---
+      H *ᵥ x + k ∈ (IdentHA.polytope cs).toSet := by -- --- PROOF ---
   rintro x ⟨-, hx⟩
-  rw [IdentHA.mem_polytope_construct_iff] at hx ⊢
+  rw [IdentHA.mem_polytope_toSet_iff] at hx ⊢
   intro q hq
   have h : (Hᵀ *ᵥ q.1) ⬝ᵥ x ≤ q.2 - q.1 ⬝ᵥ k := hx _ (List.mem_map_of_mem hq)
   have hid : q.1 ⬝ᵥ (H *ᵥ x + k) = (Hᵀ *ᵥ q.1) ⬝ᵥ x + q.1 ⬝ᵥ k := by

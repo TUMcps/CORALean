@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemToSet
 public import CORALean.Global.Float.FloatBound
 
 @[expose] public section
@@ -58,11 +58,11 @@ def HPolytope.boundOfDual (P : HPolytope 𝕋 (Vec 𝕋 n)) {c : Vec ℝ n →�
       (∑ i, toReal (y i) * (toRealMat P.A *ᵥ x) i)
         + (∑ i, toReal (zu i) * (toRealMat P.Ae *ᵥ x) i)
         - ∑ i, toReal (zl i) * (toRealMat P.Ae *ᵥ x) i) :
-    FloatBound 𝕋 P.construct c where
+    FloatBound 𝕋 P.toSet c where
   val := addUp (dotUp y P.bU) (addUp (dotUp zu P.beU) (dotUp zl P.beLN))
   -- weak duality: every dual weight is nonnegative, so each term is capped by its own row
   le x hx := by
-    obtain ⟨hle, heq⟩ := HPolytope.rows_of_mem_construct hx
+    obtain ⟨hle, heq⟩ := HPolytope.rows_of_mem_toSet hx
     have h1 : (∑ i, toReal (y i) * (toRealMat P.A *ᵥ x) i) ≤ toReal (dotUp y P.bU) :=
       le_trans (Finset.sum_le_sum fun i _ => mul_le_mul_of_nonneg_left (hle i) (hy i))
         (le_dotUp _ _)

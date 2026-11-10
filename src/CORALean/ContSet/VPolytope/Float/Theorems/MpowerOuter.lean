@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.VPolytope.Float.Operations.Mpower
 public import CORALean.ContSet.VPolytope.Float.Theorems.MatMulOuter
-public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructPoint
+public import CORALean.ContSet.VPolytope.Real.Theorems.ToSetPoint
 
 @[expose] public section
 
@@ -42,8 +42,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.mpower_outer (P : VPolytope (Mat 𝕋 n n)) {M : Mat ℝ n n}
-    (hM : M ∈ InflatedContSet.construct P) (k : ℕ) : -- --- CONCL ---
-    M ^ k ∈ InflatedContSet.construct (P.mpower k) := by -- --- PROOF ---
+    (hM : M ∈ InflatedContSet.toSet P) (k : ℕ) : -- --- CONCL ---
+    M ^ k ∈ InflatedContSet.toSet (P.mpower k) := by -- --- PROOF ---
   rcases k with _ | k
   · -- the identity is the single vertex `1`, with a zero error box
     have h1 : toRealMat (diagonalBlock fun _ : Fin n => (one : 𝕋)) = (1 : Mat ℝ n n) := by
@@ -51,9 +51,9 @@ theorem VPolytope.mpower_outer (P : VPolytope (Mat 𝕋 n n)) {M : Mat ℝ n n}
       rw [toRealMat, toReal_diagonalBlock]
       simp [toRealVec, toReal_one, Matrix.one_apply, Matrix.diagonal_apply]
     have hv : toRealMat (diagonalBlock fun _ : Fin n => (one : 𝕋)) ∈
-        (Real.VPolytope.point (toRealMat (diagonalBlock fun _ : Fin n => (one : 𝕋)))).construct
+        (Real.VPolytope.point (toRealMat (diagonalBlock fun _ : Fin n => (one : 𝕋)))).toSet
         := by
-      rw [Real.VPolytope.construct_point]
+      rw [Real.VPolytope.toSet_point]
       rfl
     -- the vertex is the identity, and the zero box holds `0`
     refine ⟨1, ?_, 0, ?_, add_zero 1⟩

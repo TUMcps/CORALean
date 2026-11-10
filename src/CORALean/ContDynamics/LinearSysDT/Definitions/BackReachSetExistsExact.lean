@@ -46,8 +46,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 exactly `k` steps: one choice of input per step, and the state it produces is
 where the remaining `k` steps start. -/
 def LinearSysDT.backReachSetExistsExact (sys : LinearSysDT 𝕋 n) (T U : S n) : ℕ → Set (Vec ℝ n)
-  | 0 => construct T
-  | k + 1 => {x | ∃ u ∈ construct U,
+  | 0 => toSet T
+  | k + 1 => {x | ∃ u ∈ toSet U,
       toRealMat sys.A *ᵥ x + u ∈ sys.backReachSetExistsExact T U k}
 
 end CORALean

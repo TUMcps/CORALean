@@ -10,7 +10,7 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 # A zonotope is the convex hull of its vertices
 
 `vPolytope_exact` says the sign corners denote the zonotope, and a vertex polytope is the hull of
-its vertex list (`construct_eq_convexHull`); the list of `vertices` is that range, as `signEquiv`
+its vertex list (`toSet_eq_convexHull`); the list of `vertices` is that range, as `signEquiv`
 reaches every choice of signs.
 
 ## Inputs
@@ -40,8 +40,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The hull of the vertices is the zonotope: nothing is added and nothing lost. -/
 theorem Zonotope.convexHull_vertices (Z : Zonotope α) : -- --- CONCL ---
-    convexHull ℝ (Z.vertices : Set α) = Z.construct := by -- --- PROOF ---
-  rw [← Zonotope.vPolytope_exact, VPolytope.construct_eq_convexHull]
+    convexHull ℝ (Z.vertices : Set α) = Z.toSet := by -- --- PROOF ---
+  rw [← Zonotope.vPolytope_exact, VPolytope.toSet_eq_convexHull]
   congr 1
   ext x
   simp only [Zonotope.vertices, Finset.coe_image, Finset.coe_univ, Set.image_univ, Set.mem_range,

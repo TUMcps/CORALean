@@ -61,8 +61,8 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 theorem LinearSys.reachStepkWrappingFree_outer (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 < Δt) {m : ℕ}
     (hε : ‖Δt • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n) {k : ℕ} {t : ℝ}
     (hkt : (k : ℝ) * Δt ≤ t) (htk : t - k * Δt ≤ Δt) : -- --- CONCL ---
-    (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' construct X₀
-      ⊆ construct (sys.reachStepkWrappingFree Δt (m + 2) X₀ k) := by -- --- PROOF ---
+    (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' toSet X₀
+      ⊆ toSet (sys.reachStepkWrappingFree Δt (m + 2) X₀ k) := by -- --- PROOF ---
   rintro _ ⟨x₀, hx₀, rfl⟩
   -- `τ = t - t_k ∈ [0, Δt]`, so `R(τ_0)` holds `e^{Aτ} x₀`
   have hτ := sys.timeInterval_outer_at hΔt hε X₀ (sub_nonneg.mpr hkt) htk
@@ -77,7 +77,7 @@ theorem LinearSys.reachStepkWrappingFree_outer (sys : LinearSys 𝕋 n) {Δt : �
     rw [Matrix.mulVec_mulVec]
     exact congrArg (· *ᵥ x₀) h
   -- window `k` is `e^{A t_k} R(τ_0)`
-  show exp (t • toRealMat sys.A) *ᵥ x₀ ∈ construct (Mtimes.mtimes _ _)
+  show exp (t • toRealMat sys.A) *ᵥ x₀ ∈ toSet (Mtimes.mtimes _ _)
   rw [hexp]
   exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hτ))
 

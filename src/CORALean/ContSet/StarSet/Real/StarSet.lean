@@ -53,9 +53,9 @@ structure StarSet (P : ℕ → Type) (n : ℕ) where
   pred : P m
 
 /-- The points `c + G α` over the coefficients `α` of the box the predicate holds of. -/
-def StarSet.construct {P : ℕ → Type} [∀ m, ContSet (P m) (Vec ℝ m)] {n : ℕ} (s : StarSet P n) :
+def StarSet.toSet {P : ℕ → Type} [∀ m, ContSet (P m) (Vec ℝ m)] {n : ℕ} (s : StarSet P n) :
     Set (Vec ℝ n) :=
-  {x | ∃ α : Fin s.m → ℝ, (α ∈ s.dom.construct ∧ α ∈ ContSet.construct s.pred)
+  {x | ∃ α : Fin s.m → ℝ, (α ∈ s.dom.toSet ∧ α ∈ ContSet.toSet s.pred)
     ∧ ∀ i, x i = s.c i + ∑ k, s.G i k * α k}
 
 end CORALean.Real

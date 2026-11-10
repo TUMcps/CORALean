@@ -39,7 +39,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.conPolyZono_contains (P : VPolytope (Vec ℝ n)) :
-    P.construct ⊆ P.conPolyZono.construct :=
+    P.toSet ⊆ P.conPolyZono.toSet :=
   ((VPolytope.conZonotope_exact P).trans (ConZonotope.conPolyZono_exact _)).subset
 
 end CORALean.Real

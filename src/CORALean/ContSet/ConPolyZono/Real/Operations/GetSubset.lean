@@ -15,7 +15,7 @@ own `PolyLevelSet.getSubset`, which applies it to the rows' polynomial part — 
 CORA's own implementation makes. `b` takes no part in either and so is carried across unchanged.
 
 The binomial expansion itself is not reproved here: it is
-`PolyZonotope.getSubset_point`'s, read at the generators in `Theorems/GetSubsetConstruct.lean`
+`PolyZonotope.getSubset_point`'s, read at the generators in `Theorems/GetSubsetToSet.lean`
 and at the rows in `PolyLevelSet.eval_getSubset`.
 
 ## Inputs

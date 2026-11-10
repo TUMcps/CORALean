@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffConstruct
+public import CORALean.ContSet.ConPolyZono.Real.Theorems.MinkDiffToSet
 public import Mathlib.Analysis.Convex.Combination
 public import Mathlib.Analysis.Convex.Segment
 
@@ -41,11 +41,11 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.minkDiff_inner_of_convex (cPZ₁ : ConPolyZono (Vec ℝ n))
-    (Z : Zonotope (Vec ℝ n)) (hP : Convex ℝ cPZ₁.construct) : -- --- CONCL ---
-    (cPZ₁.minkDiff Z).construct ⊆
-      {x | ∀ z ∈ Z.construct, x + z ∈ cPZ₁.construct} := by -- --- PROOF ---
+    (Z : Zonotope (Vec ℝ n)) (hP : Convex ℝ cPZ₁.toSet) : -- --- CONCL ---
+    (cPZ₁.minkDiff Z).toSet ⊆
+      {x | ∀ z ∈ Z.toSet, x + z ∈ cPZ₁.toSet} := by -- --- PROOF ---
   -- the affine map of coefficients to the shifted points
-  rw [ConPolyZono.minkDiff_construct]
+  rw [ConPolyZono.minkDiff_toSet]
   intro x hx z ⟨β, hβ, hz⟩
   let L : (Fin Z.h → ℝ) →ₗ[ℝ] Vec ℝ n :=
     ∑ j, (LinearMap.proj j : (Fin Z.h → ℝ) →ₗ[ℝ] ℝ).smulRight (Z.G j)
@@ -55,7 +55,7 @@ theorem ConPolyZono.minkDiff_inner_of_convex (cPZ₁ : ConPolyZono (Vec ℝ n))
     simp [φ, L, add_assoc]
   -- the corners of the cube are mapped into `P`
   have hcorner :
-      φ '' (Set.pi (Set.univ : Set (Fin Z.h)) fun _ => ({-1, 1} : Set ℝ)) ⊆ cPZ₁.construct := by
+      φ '' (Set.pi (Set.univ : Set (Fin Z.h)) fun _ => ({-1, 1} : Set ℝ)) ⊆ cPZ₁.toSet := by
     rintro _ ⟨γ, hγ, rfl⟩
     rw [hφ]
     have := hx (fun j => decide (γ j = 1))
@@ -67,7 +67,7 @@ theorem ConPolyZono.minkDiff_inner_of_convex (cPZ₁ : ConPolyZono (Vec ℝ n))
     · simp [h]
   -- the cube is their convex hull, and `φ` is affine
   have hcube :
-      (Set.pi (Set.univ : Set (Fin Z.h)) fun _ => Set.Icc (-1 : ℝ) 1) ⊆ φ ⁻¹' cPZ₁.construct := by
+      (Set.pi (Set.univ : Set (Fin Z.h)) fun _ => Set.Icc (-1 : ℝ) 1) ⊆ φ ⁻¹' cPZ₁.toSet := by
     have h1 : convexHull ℝ (Set.pi (Set.univ : Set (Fin Z.h)) fun _ => ({-1, 1} : Set ℝ))
         = Set.pi (Set.univ : Set (Fin Z.h)) fun _ => Set.Icc (-1 : ℝ) 1 := by
       rw [convexHull_pi]

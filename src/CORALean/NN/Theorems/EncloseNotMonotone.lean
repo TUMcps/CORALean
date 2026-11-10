@@ -81,7 +81,7 @@ private def aux_encloseNotMonotone_s : Real.Interval (Vec ℝ 1) := ⟨fun _ => 
 private def aux_encloseNotMonotone_t : Real.Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 3⟩
 
 private theorem aux_encloseNotMonotone_subset :
-    construct aux_encloseNotMonotone_s ⊆ construct aux_encloseNotMonotone_t := by
+    toSet aux_encloseNotMonotone_s ⊆ toSet aux_encloseNotMonotone_t := by
   intro x hx i
   have h1 : (0 : ℝ) ≤ x i := (hx i).1
   have h2 : x i ≤ (1 : ℝ) := (hx i).2
@@ -104,7 +104,7 @@ private theorem aux_encloseNotMonotone_enclose (I : Real.Interval (Vec ℝ 1)) :
 
 /-- The constant `1` vector lies in the narrow box's own propagation, `[-1, 1]`. -/
 private theorem aux_encloseNotMonotone_mem_s : -- --- CONCL ---
-    (fun _ : Fin 1 => (1 : ℝ)) ∈ construct
+    (fun _ : Fin 1 => (1 : ℝ)) ∈ toSet
       ((Layer.activation (S := ℐ𝒱)
         aux_encloseNotMonotone_R).enclose aux_encloseNotMonotone_s) := by -- --- PROOF ---
   rw [aux_encloseNotMonotone_enclose]
@@ -117,7 +117,7 @@ private theorem aux_encloseNotMonotone_mem_s : -- --- CONCL ---
 /-- The wide box's own propagation is the single point `0`: slope `0` drops every
 dependence on the input, so nothing at `1` survives. -/
 private theorem aux_encloseNotMonotone_not_mem_t : -- --- CONCL ---
-    (fun _ : Fin 1 => (1 : ℝ)) ∉ construct
+    (fun _ : Fin 1 => (1 : ℝ)) ∉ toSet
       ((Layer.activation (S := ℐ𝒱)
         aux_encloseNotMonotone_R).enclose aux_encloseNotMonotone_t) := by -- --- PROOF ---
   rw [aux_encloseNotMonotone_enclose]
@@ -134,9 +134,9 @@ private theorem aux_encloseNotMonotone_not_mem_t : -- --- CONCL ---
 encloses past `1`, while its superset `[0, 3]` encloses only to `0`. -/
 theorem Layer.enclose_not_monotone : -- --- CONCL ---
     ¬ ∀ {σ : ℝ → ℝ} (R : Relaxation ℝ), R.Encloses σ → ∀ (s t : Real.Interval (Vec ℝ 1)),
-        construct s ⊆ construct t →
-          construct ((Layer.activation (S := ℐ𝒱) R).enclose s)
-            ⊆ construct ((Layer.activation (S := ℐ𝒱)
+        toSet s ⊆ toSet t →
+          toSet ((Layer.activation (S := ℐ𝒱) R).enclose s)
+            ⊆ toSet ((Layer.activation (S := ℐ𝒱)
               R).enclose t) := by -- --- PROOF ---
   intro h
   exact aux_encloseNotMonotone_not_mem_t

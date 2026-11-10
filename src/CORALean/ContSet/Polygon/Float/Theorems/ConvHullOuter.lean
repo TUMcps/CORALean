@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Polygon.Float.Operations.Basic
 public import CORALean.ContSet.VPolytope.Float.Theorems.ConvHullOuter
-public import CORALean.ContSet.VPolytope.Float.Theorems.ConvexConstruct
+public import CORALean.ContSet.VPolytope.Float.Theorems.ConvexToSet
 
 @[expose] public section
 
@@ -42,12 +42,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 private theorem Polygon.aux_convHullOfList_outer :
     ∀ ps : List (VPolytope (Vec 𝕋 2)),
-      convexHull ℝ (⋃ p ∈ ps, VPolytope.construct p) ⊆
-        (Polygon.convHullOfList ps).construct
+      convexHull ℝ (⋃ p ∈ ps, VPolytope.toSet p) ⊆
+        (Polygon.convHullOfList ps).toSet
   | [] => by simp
   | [p] => by
     simp only [List.mem_singleton, Set.iUnion_iUnion_eq_left]
-    exact convexHull_min (fun x hx => hx) (VPolytope.convex_construct p)
+    exact convexHull_min (fun x hx => hx) (VPolytope.convex_toSet p)
   | p :: q :: ps => by
     have hrec := Polygon.aux_convHullOfList_outer (q :: ps)
     refine subset_trans ?_ (VPolytope.convHull_outer p (Polygon.convHullOfList (q :: ps)))
@@ -65,7 +65,7 @@ private theorem Polygon.aux_convHullOfList_outer :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.convHull_outer (P : Polygon 𝕋) :
-    convexHull ℝ (ContSet.construct P) ⊆ (Polygon.convHull P).construct :=
+    convexHull ℝ (ContSet.toSet P) ⊆ (Polygon.convHull P).toSet :=
   Polygon.aux_convHullOfList_outer P.sets
 
 end CORALean.Float

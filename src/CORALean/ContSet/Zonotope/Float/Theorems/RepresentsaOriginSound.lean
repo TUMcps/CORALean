@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Zonotope.representsa_origin_sound {Z : Zonotope (Vec 𝕋 n)}
     (h : Z.representsa_origin = true) : -- --- CONCL ---
-    Z.construct = {0} := by -- --- PROOF ---
+    Z.toSet = {0} := by -- --- PROOF ---
   simp only [Zonotope.representsa_origin, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨⟨hG, hc⟩, hE⟩ := h
@@ -55,7 +55,7 @@ theorem Zonotope.representsa_origin_sound {Z : Zonotope (Vec 𝕋 n)}
   have hN : InflatedContSet.nominalSet Z = {0} :=
     (Real.Zonotope.representsa_origin_iff (InflatedContSet.nominal Z)).2
       ⟨hc0, fun j => funext fun i => hG0 i j⟩
-  show InflatedContSet.nominalSet Z + Z.I_error.construct = _
+  show InflatedContSet.nominalSet Z + Z.I_error.toSet = _
   rw [hN, Interval.representsa_origin_sound hE, Set.singleton_add_singleton, add_zero]
 
 end CORALean.Float

@@ -38,7 +38,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.containsPoint_zero_iff (S : SpectraShadow α) (p : α) : -- --- CONCL ---
-    S.containsPoint p 0 ↔ p ∈ S.construct := by -- --- PROOF ---
+    S.containsPoint p 0 ↔ p ∈ S.toSet := by -- --- PROOF ---
   constructor
   · -- the slack is zero, so the inequality is the set's own
     rintro ⟨β, s, hp, hs, hM⟩

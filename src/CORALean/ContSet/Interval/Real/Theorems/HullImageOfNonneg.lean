@@ -51,10 +51,10 @@ variable {m n : ℕ}
 
 theorem Interval.hull_image_of_nonneg (A : Mat ℝ m n) (hA : ∀ i j, 0 ≤ A i j) (a b : Vec ℝ n)
     (hab : ∀ j, a j ≤ b j) : -- --- CONCL ---
-    Interval.hull ((A *ᵥ ·) '' (⟨a, b⟩ : Interval (Vec ℝ n)).construct) =
+    Interval.hull ((A *ᵥ ·) '' (⟨a, b⟩ : Interval (Vec ℝ n)).toSet) =
       ⟨A *ᵥ a, A *ᵥ b⟩ := by -- --- PROOF ---
-  have ha : a ∈ (⟨a, b⟩ : Interval (Vec ℝ n)).construct := fun j => ⟨le_rfl, hab j⟩
-  have hb : b ∈ (⟨a, b⟩ : Interval (Vec ℝ n)).construct := fun j => ⟨hab j, le_rfl⟩
+  have ha : a ∈ (⟨a, b⟩ : Interval (Vec ℝ n)).toSet := fun j => ⟨le_rfl, hab j⟩
+  have hb : b ∈ (⟨a, b⟩ : Interval (Vec ℝ n)).toSet := fun j => ⟨hab j, le_rfl⟩
   -- a coordinate of `A x` is monotone in `x`
   have hmono : ∀ x y : Vec ℝ n, (∀ j, x j ≤ y j) → ∀ i, (A *ᵥ x) i ≤ (A *ᵥ y) i :=
     fun x y h i => by

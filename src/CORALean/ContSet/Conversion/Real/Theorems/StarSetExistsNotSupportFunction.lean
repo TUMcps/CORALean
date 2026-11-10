@@ -14,7 +14,7 @@ public import Mathlib.Tactic.NormNum
 The arrow of [1, Fig. 1 (Support Functions → Star Sets)] is strict: the star set of the level set
 `{α | α₀² - 1 = 0}` on the unit box is `{-1, 1}` (`LevelSet.starSet_exact`), which holds both points
 and not their midpoint, while what a support function denotes is convex
-(`SupportFunction.convex_construct`).
+(`SupportFunction.convex_toSet`).
 
 ## Inputs
 * none
@@ -47,11 +47,11 @@ namespace CORALean.Real
 
 /-- A star set, with a level-set predicate, that no support function denotes. -/
 theorem StarSet.exists_not_supportFunction : -- --- CONCL ---
-    ∃ s : StarSet LevelSet 1, ¬ ∃ S : SupportFunction (Vec ℝ 1), S.construct = s.construct
+    ∃ s : StarSet LevelSet 1, ¬ ∃ S : SupportFunction (Vec ℝ 1), S.toSet = s.toSet
     := by -- --- PROOF ---
   -- `{-1, 1}` lies in the unit box, which is the star set's box
-  have hD : (⟨1, fun x _ => x 0 ^ 2 - 1, fun _ => .eq⟩ : LevelSet 1).construct
-      ⊆ (Interval.unit 1).construct := fun x hx => by
+  have hD : (⟨1, fun x _ => x 0 ^ 2 - 1, fun _ => .eq⟩ : LevelSet 1).toSet
+      ⊆ (Interval.unit 1).toSet := fun x hx => by
     rw [Interval.mem_unit_iff]
     intro k
     have h := hx 0
@@ -62,9 +62,9 @@ theorem StarSet.exists_not_supportFunction : -- --- CONCL ---
   rintro ⟨S, hS⟩
   rw [LevelSet.starSet_exact _ hD] at hS
   -- the two points `1` and `-1` are on the level set, and their midpoint `0` is not
-  have h1 : (fun _ => 1 : Vec ℝ 1) ∈ S.construct := hS ▸ (fun _ => by simp [CompOp.holds])
-  have h2 : (fun _ => -1 : Vec ℝ 1) ∈ S.construct := hS ▸ (fun _ => by simp [CompOp.holds])
-  have h0 := S.convex_construct h1 h2 (by norm_num : (0 : ℝ) ≤ 1 / 2)
+  have h1 : (fun _ => 1 : Vec ℝ 1) ∈ S.toSet := hS ▸ (fun _ => by simp [CompOp.holds])
+  have h2 : (fun _ => -1 : Vec ℝ 1) ∈ S.toSet := hS ▸ (fun _ => by simp [CompOp.holds])
+  have h0 := S.convex_toSet h1 h2 (by norm_num : (0 : ℝ) ≤ 1 / 2)
     (by norm_num : (0 : ℝ) ≤ 1 / 2) (by norm_num)
   rw [hS] at h0
   have := h0 0

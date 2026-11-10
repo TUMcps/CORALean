@@ -36,8 +36,8 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 noncomputable def HPolytope.conZonotope
-    (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : ConZonotope (Vec ℝ n) where
+    (up : ∀ j, SupportBound P.toSet (LinearMap.proj j))
+    (lo : ∀ j, SupportBound P.toSet (-LinearMap.proj j)) : ConZonotope (Vec ℝ n) where
   h := (HPolytope.zonotope up lo).h
   c := (HPolytope.zonotope up lo).c
   G := (HPolytope.zonotope up lo).G

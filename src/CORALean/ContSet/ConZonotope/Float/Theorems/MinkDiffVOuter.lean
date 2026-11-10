@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Float.Operations.MinkDiffV
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectionOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.VPolytope.Real.Theorems.VertexMem
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
@@ -50,9 +50,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A point of the start and of every intersected set is a point of the fold. -/
 private theorem ConZonotope.aux_mem_foldl_intersection {x : Vec ℝ n} :
     ∀ {m : ℕ} (g : Fin m → ConZonotope 𝕋 (Vec 𝕋 n)) (cZ : ConZonotope 𝕋 (Vec 𝕋 n)), x ∈
-    cZ.construct →
-      (∀ i, x ∈ (g i).construct) →
-        x ∈ (Fin.foldl m (fun cZ i => cZ.intersection (g i)) cZ).construct
+    cZ.toSet →
+      (∀ i, x ∈ (g i).toSet) →
+        x ∈ (Fin.foldl m (fun cZ i => cZ.intersection (g i)) cZ).toSet
   | 0, _, _, h, _ => by simpa using h
   | m + 1, g, cZ, h, hg => by
     rw [Fin.foldl_succ]
@@ -64,17 +64,17 @@ private theorem ConZonotope.aux_mem_foldl_intersection {x : Vec ℝ n} :
 
 theorem ConZonotope.minkDiffV_outer {k : ℕ} (Z : Zonotope (Vec 𝕋 n))
     (v : Fin (k + 1) → Vec 𝕋 n) : -- --- CONCL ---
-    minkowskiDiff Z.construct
-        (⟨k + 1, fun i => toRealVec (v i)⟩ : Real.VPolytope (Vec ℝ n)).construct
-      ⊆ (ConZonotope.minkDiffV Z v).construct := by -- --- PROOF ---
+    minkowskiDiff Z.toSet
+        (⟨k + 1, fun i => toRealVec (v i)⟩ : Real.VPolytope (Vec ℝ n)).toSet
+      ⊆ (ConZonotope.minkDiffV Z v).toSet := by -- --- PROOF ---
   intro x hx
   -- each translate holds `x`: `x = (x + vᵢ) + (−vᵢ)`
-  have hs : ∀ i, x ∈ (Z.plus (Zonotope.point (-(v i)))).conZonotope.construct := by
+  have hs : ∀ i, x ∈ (Z.plus (Zonotope.point (-(v i)))).conZonotope.toSet := by
     intro i
-    have hv : x + toRealVec (v i) ∈ Z.construct :=
+    have hv : x + toRealVec (v i) ∈ Z.toSet :=
       hx _ (Real.VPolytope.vertex_mem (⟨k + 1, fun i => toRealVec (v i)⟩ : Real.VPolytope _) i)
     refine Zonotope.conZonotope_contains _ (Zonotope.plus_outer _ _ ?_)
-    rw [Zonotope.construct_point]
+    rw [Zonotope.toSet_point]
     refine ⟨_, hv, _, rfl, ?_⟩
     funext r
     simp [toRealVec, toReal_neg']

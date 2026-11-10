@@ -51,9 +51,9 @@ variable {n : ℕ}
 /-- The pca heuristic's split is exact, at any vertex cloud. -/
 theorem ZonoBundle.splitPca_union {m : ℕ} (V : Fin m → Vec ℝ n) (zB : ZonoBundle (Vec ℝ n))
     (i : Fin zB.k) (j : Fin n) :
-    (zB.split (ZonoBundle.dirPca V) (zB.enclosingBox (ZonoBundle.dirPca V) i) j).fst.construct
-      ∪ (zB.split (ZonoBundle.dirPca V) (zB.enclosingBox (ZonoBundle.dirPca V) i) j).snd.construct
-      = zB.construct :=
+    (zB.split (ZonoBundle.dirPca V) (zB.enclosingBox (ZonoBundle.dirPca V) i) j).fst.toSet
+      ∪ (zB.split (ZonoBundle.dirPca V) (zB.enclosingBox (ZonoBundle.dirPca V) i) j).snd.toSet
+      = zB.toSet :=
   ZonoBundle.split_union_enclosingBox _ (Matrix.UnitaryGroup.det_isUnit _) zB i j
 
 end CORALean.Real

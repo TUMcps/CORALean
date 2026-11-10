@@ -12,7 +12,7 @@ public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 Not exact: even with `hP`, the construction gives every generator's block a symmetric `[-1,1]`
 weight, while the true segment ties the two sides' weights to a single `a ∈ [0,1]`, as a zonotope's
-`enclose` already loses. `hP` reads `cZ₂.P` back at `cZ₁`'s index, and `HPolytope.convex_construct`
+`enclose` already loses. `hP` reads `cZ₂.P` back at `cZ₁`'s index, and `HPolytope.convex_toSet`
 turns the two sides' membership in the *same* polytope into membership of their convex combination.
 The value equation reindexes `cZ₂`'s sum by `Fin.castOrderIso`, as `Zonotope.minkDiffAligned_inner`
 does.
@@ -83,12 +83,12 @@ private theorem ConZonotope.aux_sum_univ_enclose {M : Type} [AddCommMonoid M]
 
 theorem ConZonotope.enclose_outer (cZ₁ cZ₂ : ConZonotope α) (hh : cZ₁.h = cZ₂.h)
     (hP : cZ₂.P = cZ₁.P.comap (reindexLin (Fin.castOrderIso hh).toEquiv)) : -- --- CONCL ---
-    Set.linComb cZ₁.construct cZ₂.construct ⊆ (cZ₁.enclose cZ₂ hh).construct := by -- --- PROOF ---
+    Set.linComb cZ₁.toSet cZ₂.toSet ⊆ (cZ₁.enclose cZ₂ hh).toSet := by -- --- PROOF ---
   rintro x ⟨y₁, ⟨β₁, hβ₁, hP₁, rfl⟩, y₂, ⟨β₂, hβ₂, hP₂, rfl⟩, lam, ⟨hl0, hl1⟩, rfl⟩
   have hm0 : (0:ℝ) ≤ 1 - lam := by linarith
   -- `β₂` read at `cZ₁`'s index lies in `cZ₁.P` too, the two sharing one system
-  have hβ₂' : (fun j => β₂ (Fin.cast hh j)) ∈ cZ₁.P.construct := by
-    have h2 : β₂ ∈ (cZ₁.P.comap (reindexLin (Fin.castOrderIso hh).toEquiv)).construct := hP ▸ hP₂
+  have hβ₂' : (fun j => β₂ (Fin.cast hh j)) ∈ cZ₁.P.toSet := by
+    have h2 : β₂ ∈ (cZ₁.P.comap (reindexLin (Fin.castOrderIso hh).toEquiv)).toSet := hP ▸ hP₂
     rwa [HPolytope.comap_exact] at h2
   set β₂' : Fin cZ₁.h → ℝ := fun j => β₂ (Fin.cast hh j) with hβ₂'def
   set s : Fin cZ₁.h → ℝ := fun j => lam * β₁ j + (1 - lam) * β₂' j with hsdef
@@ -107,13 +107,13 @@ theorem ConZonotope.enclose_outer (cZ₁ cZ₂ : ConZonotope α) (hh : cZ₁.h =
       rw [abs_le]; constructor <;> linarith
   -- the coefficient block: `blockLeft` twice recovers `s`, and convexity does the rest
   · show Fin.append (Fin.append s u) (fun _ : Fin 1 => 2 * lam - 1)
-        ∈ (cZ₁.P.comap ((blockLeft cZ₁.h cZ₁.h).comp (blockLeft (cZ₁.h + cZ₁.h) 1))).construct
+        ∈ (cZ₁.P.comap ((blockLeft cZ₁.h cZ₁.h).comp (blockLeft (cZ₁.h + cZ₁.h) 1))).toSet
     rw [HPolytope.comap_exact, Set.mem_preimage, LinearMap.comp_apply]
     have hproj : blockLeft (cZ₁.h + cZ₁.h) 1
         (Fin.append (Fin.append s u) (fun _ : Fin 1 => 2 * lam - 1)) = Fin.append s u :=
       blockLeft_append _ _
     rw [hproj, blockLeft_append]
-    have hconv := (HPolytope.convex_construct cZ₁.P) hP₁ hβ₂' hl0 hm0
+    have hconv := (HPolytope.convex_toSet cZ₁.P) hP₁ hβ₂' hl0 hm0
       (show lam + (1 - lam) = 1 by ring)
     have hseq : s = lam • β₁ + (1 - lam) • β₂' := by
       funext j; simp [hsdef, Pi.add_apply, Pi.smul_apply, smul_eq_mul]

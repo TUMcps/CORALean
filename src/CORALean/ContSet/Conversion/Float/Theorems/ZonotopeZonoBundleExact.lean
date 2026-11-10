@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Float.Theorems.ConstructEqIInter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.ToSetEqIInter
 public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 
@@ -39,10 +39,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.zonoBundle_exact (Z : Zonotope (Vec 𝕋 n)) :
-    Z.construct = Z.zonoBundle.construct := by
-  rw [ZonoBundle.construct_eq_iInter]
-  show Z.construct = ⋂ _ : Fin 1, Z.construct
-  exact (Set.iInter_const Z.construct).symm
+    Z.toSet = Z.zonoBundle.toSet := by
+  rw [ZonoBundle.toSet_eq_iInter]
+  show Z.toSet = ⋂ _ : Fin 1, Z.toSet
+  exact (Set.iInter_const Z.toSet).symm
 
 end CORALean.Float
 

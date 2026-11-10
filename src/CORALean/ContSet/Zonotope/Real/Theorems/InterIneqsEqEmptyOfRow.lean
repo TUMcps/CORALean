@@ -55,7 +55,7 @@ variable {k p : ℕ}
 /-- [1, Eq. 8]: a row whose least value over `Y` exceeds its offset separates `Y` from `U`. -/
 theorem Zonotope.inter_ineqs_eq_empty_of_row (Y : Zonotope (Vec ℝ k)) (A : Mat ℝ p k)
     (b : Vec ℝ p) (h : ∃ i, b i < (A *ᵥ Y.c) i - ∑ j, |(A *ᵥ Y.G j) i|) : -- --- CONCL ---
-    Y.construct ∩ (HPolytope.ineqs A b).construct = ∅ := by -- --- PROOF ---
+    Y.toSet ∩ (HPolytope.ineqs A b).toSet = ∅ := by -- --- PROOF ---
   obtain ⟨i, hi⟩ := h
   refine Set.eq_empty_iff_forall_notMem.2 fun y ⟨⟨β, hβ, hy⟩, hU⟩ => ?_
   have hUi := (HPolytope.mem_ineqs_iff).1 hU i

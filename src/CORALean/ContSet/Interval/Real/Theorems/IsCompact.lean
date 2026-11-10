@@ -39,8 +39,8 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Interval.isCompact_construct (I : Interval (Vec ℝ n)) : IsCompact I.construct :=
-  Metric.isCompact_of_isClosed_isBounded I.isClosed_construct I.isBounded_construct
+theorem Interval.isCompact_toSet (I : Interval (Vec ℝ n)) : IsCompact I.toSet :=
+  Metric.isCompact_of_isClosed_isBounded I.isClosed_toSet I.isBounded_toSet
 
 end CORALean.Real
 

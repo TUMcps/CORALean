@@ -53,9 +53,9 @@ noncomputable def Zonotope.volumeRatio (Z : Zonotope (Vec ℝ (d + k)))
     (P : HPolytope (Vec ℝ (d + k))) : ENNReal :=
   let projDims := fun (i : Fin (k + 1)) (j : Fin d) =>
     (⟨j + i, by omega⟩ : Fin (d + k))                                      -- dimVector + i - 1
-  let volZ := fun i => MeasureTheory.volume (Z.project (projDims i)).construct   -- volume(Zproj)
+  let volZ := fun i => MeasureTheory.volume (Z.project (projDims i)).toSet   -- volume(Zproj)
   let volP := fun i =>
-    MeasureTheory.volume ((LinearMap.funLeft ℝ ℝ (projDims i)) '' P.construct)   -- volume(Pproj)
+    MeasureTheory.volume ((LinearMap.funLeft ℝ ℝ (projDims i)) '' P.toSet)   -- volume(Pproj)
   let partialRatio := fun i => (volP i / volZ i) ^ (1 / (d : ℝ))         -- (volP/volZ)^(1/dims)
   (∑ i, partialRatio i) / ((k + 1 : ℕ) : ENNReal)                        -- mean(partialRatio)
 

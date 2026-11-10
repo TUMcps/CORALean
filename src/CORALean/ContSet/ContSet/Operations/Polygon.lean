@@ -11,7 +11,7 @@ public import CORALean.ContSet.Polygon.Real.Operations.OfPieces
 `polygon(S)` for a two-dimensional set: `polygon(vertices(S))`, and `convHull_` of it where `S` is
 convex. Written over the classes, as the polygon with the one convex piece `vertices s`: a
 representation with `ExactVertices` gets it. The piece is the whole set, so CORA's convex hull
-step has nothing left to do (`ContSet.construct_polygon`). CORA's `polyshape` boundary
+step has nothing left to do (`ContSet.toSet_polygon`). CORA's `polyshape` boundary
 (vertex order, collinear points) is not modelled, as for `Polygon.ofPieces`.
 
 Source: [1].

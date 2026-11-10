@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.vPolytope_contains (C : Capsule n) :
-    C.construct ⊆ C.vPolytope.construct :=
+    C.toSet ⊆ C.vPolytope.toSet :=
   subset_trans C.interval_contains (Interval.vPolytope_contains _)
 
 end CORALean.Real

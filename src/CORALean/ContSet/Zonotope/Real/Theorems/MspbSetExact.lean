@@ -55,8 +55,8 @@ variable {n : ℕ}
 
 theorem Zonotope.mspb_set_exact (A : Mat ℝ n n) (R V : Interval (Vec ℝ n))
     (hR : ∀ i, R.inf i ≤ R.sup i) (hV : ∀ i, V.inf i ≤ V.sup i) : -- --- CONCL ---
-    {x | ∃ r ∈ R.construct, ∃ v ∈ V.construct, x = A *ᵥ r + v} =
-      ((R.zonotope.map (Matrix.mulVecLin A)).plus V.zonotope).construct := by -- --- PROOF ---
+    {x | ∃ r ∈ R.toSet, ∃ v ∈ V.toSet, x = A *ᵥ r + v} =
+      ((R.zonotope.map (Matrix.mulVecLin A)).plus V.zonotope).toSet := by -- --- PROOF ---
   rw [← Zonotope.plus_exact, ← Zonotope.map_exact, ← Interval.zonotope_exact R hR,
     ← Interval.zonotope_exact V hV]
   ext x

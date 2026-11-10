@@ -119,7 +119,7 @@ instance {m n : ℕ} : Entrywise (Mat ℝ m n) (Fin m × Fin n) where
     Entrywise.entry A p = A p.1 p.2 := rfl
 
 /-- `entry_add_sum_smul` at `Vec`, where a coordinate is an application. This is
-the spelling a generator-based representation states `mem_construct_iff` in, so
+the spelling a generator-based representation states `mem_toSet_iff` in, so
 it is stated once here rather than per representation. -/
 theorem Entrywise.add_sum_smul_apply {n m : ℕ} (c : Vec ℝ n) (G : Fin m → Vec ℝ n)
     (β : Fin m → ℝ) (i : Fin n) : (c + ∑ j, β j • G j) i = c i + ∑ j, G j i * β j :=

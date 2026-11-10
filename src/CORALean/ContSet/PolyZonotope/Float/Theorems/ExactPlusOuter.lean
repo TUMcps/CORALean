@@ -50,11 +50,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 private theorem PolyZonotope.aux_exactPlus_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
     (hp : pZ₁.p = pZ₂.p) : -- --- CONCL ---
-    (Real.PolyZonotope.exactPlus (nominal pZ₁) (nominal pZ₂) hp).construct
+    (Real.PolyZonotope.exactPlus (nominal pZ₁) (nominal pZ₂) hp).toSet
       ⊆ nominalSet (pZ₁.exactPlus pZ₂ hp)
-        + (PolyZonotope.centerResidual pZ₁.c pZ₂.c).construct := by -- --- PROOF ---
+        + (PolyZonotope.centerResidual pZ₁.c pZ₂.c).toSet := by -- --- PROOF ---
   intro y hy
-  obtain ⟨a, β, ha, hβ, hy⟩ := Real.PolyZonotope.mem_construct_iff.mp hy
+  obtain ⟨a, β, ha, hβ, hy⟩ := Real.PolyZonotope.mem_toSet_iff.mp hy
   -- the float point at the same factors and coefficients, off by the center's rounding
   refine ⟨fun i => toReal ((pZ₁.exactPlus pZ₂ hp).c i)
             + (∑ l, toReal ((pZ₁.exactPlus pZ₂ hp).G l i)
@@ -96,9 +96,9 @@ private theorem PolyZonotope.aux_exactPlus_nominal (pZ₁ pZ₂ : PolyZonotope (
 
 theorem PolyZonotope.exactPlus_outer (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n))
     (hp : pZ₁.p = pZ₂.p) : -- --- CONCL ---
-    (Real.PolyZonotope.exactPlus (nominal pZ₁) (nominal pZ₂) hp).construct
-        + (pZ₁.I_error.construct + pZ₂.I_error.construct)
-      ⊆ (pZ₁.exactPlus pZ₂ hp).construct := by -- --- PROOF ---
+    (Real.PolyZonotope.exactPlus (nominal pZ₁) (nominal pZ₂) hp).toSet
+        + (pZ₁.I_error.toSet + pZ₂.I_error.toSet)
+      ⊆ (pZ₁.exactPlus pZ₂ hp).toSet := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨y', hy', r, hr, hyr⟩ := PolyZonotope.aux_exactPlus_nominal pZ₁ pZ₂ hp hy
   refine ⟨y', hy', e + r, Interval.plus_outer _ _ ⟨e, Interval.plus_outer _ _ he, r, hr, rfl⟩, ?_⟩

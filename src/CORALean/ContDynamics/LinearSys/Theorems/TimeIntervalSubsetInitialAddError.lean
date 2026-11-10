@@ -92,8 +92,8 @@ private theorem aux_sum_univ_linCombPaired {h : ℕ} {c₁ c₂ : Vec ℝ n} {G�
 
 private theorem aux_linComb_paired_subset {h : ℕ} (c₁ c₂ : Vec ℝ n)
     (G₁ G₂ : Fin h → Vec ℝ n) : -- --- CONCL ---
-    (Zonotope.linComb ⟨h, c₁, G₁⟩ ⟨h, c₂, G₂⟩).construct
-      ⊆ (Zonotope.mk h c₁ G₁).construct
+    (Zonotope.linComb ⟨h, c₁, G₁⟩ ⟨h, c₂, G₂⟩).toSet
+      ⊆ (Zonotope.mk h c₁ G₁).toSet
         + Metric.closedBall (0 : Vec ℝ n)
             (‖c₁ - c₂‖ + ∑ j, ‖G₁ j - G₂ j‖) := by -- --- PROOF ---
   have hgS : ∀ i : Fin h,
@@ -177,8 +177,8 @@ from: what it computes stays inside `X₀` widened by `timeIntervalStepError`. -
 theorem LinearSys.timeInterval_subset_initial_add_error (sys : LinearSys 𝕋 n) {r : ℝ}
     (hr : 0 < r) (η : ℕ) (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (X₀ : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    (sys.timeInterval (S := 𝒵) r η X₀).construct
-      ⊆ X₀.construct
+    (sys.timeInterval (S := 𝒵) r η X₀).toSet
+      ⊆ X₀.toSet
         + Metric.closedBall (0 : Vec ℝ n)
             (sys.timeIntervalStepError r η X₀) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
@@ -196,8 +196,8 @@ theorem LinearSys.timeInterval_subset_initial_add_error (sys : LinearSys 𝕋 n)
         * (1 - ‖r • A‖ / ((η : ℝ) + 2))⁻¹ := by positivity
     linarith
   -- what the hull between the set and its image reaches past the set itself
-  have hhull : (Zonotope.linComb X₀ (Zonotope.mtimes M X₀)).construct
-      ⊆ X₀.construct + Metric.closedBall (0 : Vec ℝ n)
+  have hhull : (Zonotope.linComb X₀ (Zonotope.mtimes M X₀)).toSet
+      ⊆ X₀.toSet + Metric.closedBall (0 : Vec ℝ n)
           (‖X₀.c - M *ᵥ X₀.c‖ + ∑ j, ‖X₀.G j - M *ᵥ X₀.G j‖) :=
     aux_linComb_paired_subset X₀.c (M *ᵥ X₀.c) X₀.G (fun j => M *ᵥ X₀.G j)
   have hdiff : ‖X₀.c - M *ᵥ X₀.c‖ + ∑ j, ‖X₀.G j - M *ᵥ X₀.G j‖ ≤ ‖M - 1‖ * B := by
@@ -217,7 +217,7 @@ theorem LinearSys.timeInterval_subset_initial_add_error (sys : LinearSys 𝕋 n)
       _ ≤ ‖M - 1‖ * B :=
           mul_le_mul_of_nonneg_left (aux_norm_add_sum_le_absBound_sum X₀) (norm_nonneg _)
   -- and what the correction matrix adds, both of its endpoints bounded at once
-  have hbox : ∀ q ∈ (Zonotope.mtimesIntervalMat (MatExp.correctionMatrix A r η) X₀).construct,
+  have hbox : ∀ q ∈ (Zonotope.mtimesIntervalMat (MatExp.correctionMatrix A r η) X₀).toSet,
       ‖q‖ ≤ (ρF + ρF) * B := by
     intro q hq
     have hcen : ∀ i j, |(MatExp.correctionMatrix A r η).center i j| ≤ ρF := by

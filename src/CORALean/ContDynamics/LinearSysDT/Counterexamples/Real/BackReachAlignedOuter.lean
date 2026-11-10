@@ -61,9 +61,9 @@ theorem LinearSysDT.backReachAligned_outer_counterexample : -- --- CONCL ---
         (∀ (c' : Vec ℝ n) (a' : Fin Zj.h → ℝ), (∀ i, 0 ≤ a' i ∧ a' i ≤ 1) →
           (∀ l, (H *ᵥ c') l + ∑ i, |(H *ᵥ Zj.G i) l| * a' i ≤ h l) →
           ∑ i, ‖Zj.G i‖ * Real.log (a' i) ≤ ∑ i, ‖Zj.G i‖ * Real.log ((σ Zj).2 i))) →
-      LinearSysDT.backReachSetRobustExact A B E K U.construct {w | ∀ l, (H *ᵥ w) l ≤ h l}
-          Z₀.construct k
-        ⊆ (Zonotope.backReachAligned A B K U Z₀ σ k).construct := by -- --- PROOF ---
+      LinearSysDT.backReachSetRobustExact A B E K U.toSet {w | ∀ l, (H *ᵥ w) l ≤ h l}
+          Z₀.toSet k
+        ⊆ (Zonotope.backReachAligned A B K U Z₀ σ k).toSet := by -- --- PROOF ---
   intro hall
   -- the maximizer of (max-in) at `Z₀` is `α = 1`, `c = 0`
   have hsub := hall 1 1 2 1 (by simp) 0 !![1 / 2] 0 ⟨0, 0, fun i => i.elim0⟩ !![1; -1] ![1, 1]

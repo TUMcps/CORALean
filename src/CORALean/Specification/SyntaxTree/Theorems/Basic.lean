@@ -93,7 +93,7 @@ theorem SyntaxTree.contains_minusFloat {I J : Float.SyntaxTree.Dom 𝕋} {a b : 
 
 /-- If the image of `I` under `f` lies in `J`, then `J` holds `f t` where `I` holds `t`. -/
 theorem SyntaxTree.contains_of_outerFloat {I J : Float.SyntaxTree.Dom 𝕋} {f : ℝ → ℝ}
-    (h : (fun x i => f (x i)) '' I.construct ⊆ J.construct) {t : ℝ} (ht : I.contains t) :
+    (h : (fun x i => f (x i)) '' I.toSet ⊆ J.toSet) {t : ℝ} (ht : I.contains t) :
     J.contains (f t) :=
   h ⟨fun _ => t, fun i => by obtain rfl : i = 0 := Subsingleton.elim i 0; exact ht, rfl⟩ 0
 

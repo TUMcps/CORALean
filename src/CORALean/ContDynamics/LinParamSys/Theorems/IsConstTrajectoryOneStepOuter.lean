@@ -74,17 +74,17 @@ theorem LinParamSys.IsCanonicalConstTrajectory.oneStep_outer {sys : LinParamSys 
     {R₀ U : S n} {x u : ℝ → Vec ℝ n} {A : Mat ℝ n n} {r : ℝ}
     (traj : sys.IsCanonicalConstTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U))
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U))
     (hRconv : Convex ℝ (MatExp.intervalInputRemainderSet sys.A r (m + 2) U))
     (hRclosed : IsClosed (MatExp.intervalInputRemainderSet sys.A r (m + 2) U))
     (hRbdd : Bornology.IsBounded (MatExp.intervalInputRemainderSet sys.A r (m + 2)
       U)) : -- --- CONCL ---
-    x r ∈ construct (Plus.plus (sys.timeInterval r (m + 2) R₀)
+    x r ∈ toSet (Plus.plus (sys.timeInterval r (m + 2) R₀)
       (sys.inputSolution r (m + 2) U)) := by -- --- PROOF ---
   have lin := traj.toLinearSys
   -- the input's own domain is the step reflected, which is where `hu` is read
-  have hu : ∀ τ ∈ Set.Ioc (0:ℝ) r, u (r - τ) ∈ construct U := fun τ hτ =>
+  have hu : ∀ τ ∈ Set.Ioc (0:ℝ) r, u (r - τ) ∈ toSet U := fun τ hτ =>
     traj.input _ (hT ⟨by linarith [hτ.2], by linarith [hτ.1]⟩)
   have hmeas := lin.aestronglyMeasurable_input_reflected (c := r) (r := r)
     (by rwa [sub_self])

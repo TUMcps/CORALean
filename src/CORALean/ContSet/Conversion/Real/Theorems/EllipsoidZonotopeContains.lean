@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Real.Operations.Ellipsoid_to_Zonotope
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemToSetIff
 
 @[expose] public section
 
@@ -9,7 +9,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
 # An ellipsoid as a zonotope
 
 CORA's `'outer:box'`, `zonotope(q, sqrtm(Q))`: a point of the ellipsoid is `q + G u` with
-`‖u‖₂ ≤ 1` (`mem_construct_iff`), so every coordinate of `u` lies in `[-1, 1]` and `u` is a
+`‖u‖₂ ≤ 1` (`mem_toSet_iff`), so every coordinate of `u` lies in `[-1, 1]` and `u` is a
 coefficient vector of the parallelotope on the columns of `G`.
 
 CORA's `'inner:norm'` and `'outer:norm'` are [1, Thm. 2] and [1, Thm. 4]: points `S` on the unit
@@ -51,9 +51,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.zonotope_contains (E : Ellipsoid n) : -- --- CONCL ---
-    E.construct ⊆ E.zonotope.construct := by -- --- PROOF ---
+    E.toSet ⊆ E.zonotope.toSet := by -- --- PROOF ---
   intro x hx
-  obtain ⟨u, hu, rfl⟩ := Ellipsoid.mem_construct_iff.mp hx
+  obtain ⟨u, hu, rfl⟩ := Ellipsoid.mem_toSet_iff.mp hx
   -- `G *ᵥ u` is the sum of the columns weighted by `u`, each weight in `[-1, 1]`
   refine ⟨u, fun j => le_trans (abs_le_norm₂ u j) hu, ?_⟩
   congr 1

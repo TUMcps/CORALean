@@ -87,16 +87,16 @@ theorem LinParamSys.IsCanonicalConstTrajectory.inputSolution_timeInterval_outer
     {A : Mat ℝ n n} {r : ℝ} (traj : sys.IsCanonicalConstTrajectory T R₀ U x u A)
     (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) (η : ℕ)
     (hε : ‖(Interval.smul r sys.A).absMax‖ / ((η : ℝ) + 2) < 1)
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U))
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U))
     (hRconv : Convex ℝ (MatExp.intervalInputRemainderSet sys.A r η U))
     (hRclosed : IsClosed (MatExp.intervalInputRemainderSet sys.A r η U))
     (hRbdd : Bornology.IsBounded (MatExp.intervalInputRemainderSet sys.A r η U))
     -- `0 ∈ U` is what `inputReach_mono` needs, and the only extra hypothesis here
-    (h0 : (0 : Vec ℝ n) ∈ construct U)
+    (h0 : (0 : Vec ℝ n) ∈ toSet U)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
-      ∈ construct (sys.inputSolution r η U) := by -- --- PROOF ---
+      ∈ toSet (sys.inputSolution r η U) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   -- the fixed matrix names the point system where `inputReach` and its measurability live
   have lin := traj.toLinearSys

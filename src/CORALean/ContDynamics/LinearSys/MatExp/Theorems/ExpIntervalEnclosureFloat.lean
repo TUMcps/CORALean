@@ -55,9 +55,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.exp_mem_expIntervalEnclosure (A : Interval (Mat 𝕋 n n)) (η : ℕ) {M : Mat ℝ n n}
-    (hM : M ∈ A.construct)
+    (hM : M ∈ A.toSet)
     (hε : toReal (MatExp.normUpperBound A) / ((η : ℝ) + 2) ≤ 1 / 2) : -- --- CONCL ---
-    exp M ∈ (MatExp.expIntervalEnclosure A η).construct := by -- --- PROOF ---
+    exp M ∈ (MatExp.expIntervalEnclosure A η).toSet := by -- --- PROOF ---
   refine Real.Interval.mem_mat_iff.mpr fun i j => ?_
   have htay := Real.Interval.mem_mat_iff.mp (MatExp.expTaylor_mem_expIntervalTaylor A hM η) i j
   simp only [Interval.nominal, RealImage.realImage, toRealMat] at htay

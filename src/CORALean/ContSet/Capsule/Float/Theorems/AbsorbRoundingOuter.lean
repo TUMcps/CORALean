@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Capsule.Float.Theorems.Norm2LeErrorNorm
 public import CORALean.ContSet.Capsule.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.Capsule.Float.Theorems.Basic
-public import CORALean.ContSet.Capsule.Float.Theorems.MemConstructOfSplit
+public import CORALean.ContSet.Capsule.Float.Theorems.MemToSetOfSplit
 public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 
 @[expose] public section
@@ -45,10 +45,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- `absorbRounding` contains the set. -/
 theorem Capsule.absorbRounding_outer (k : ℕ) (C : Capsule 𝕋 n) : -- --- CONCL ---
-    C.construct ⊆ (C.absorbRounding k).construct := by -- --- PROOF ---
+    C.toSet ⊆ (C.absorbRounding k).toSet := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨t, ht, w, hw, rfl⟩ := Capsule.exists_split_of_mem hy
-  refine Capsule.mem_construct_of_split _ ht (w := w + e) ?_ ?_
+  refine Capsule.mem_toSet_of_split _ ht (w := w + e) ?_ ?_
   · -- the two lengths, under the radius raised by the box's bound
     have h₁ := Capsule.norm₂_le_errorNorm k C he
     have h₂ := add_le_addUp C.r (C.errorNorm k)
@@ -57,7 +57,7 @@ theorem Capsule.absorbRounding_outer (k : ℕ) (C : Capsule 𝕋 n) : -- --- CON
     show _ ≤ toReal (addUp C.r (C.errorNorm k))
     linarith
   · -- nothing is left, and the origin is in the box
-    show _ ∈ (Interval.origin n : Interval (Vec 𝕋 n)).construct
+    show _ ∈ (Interval.origin n : Interval (Vec 𝕋 n)).toSet
     rw [Interval.origin_exact, Set.mem_singleton_iff]
     show toRealVec C.c + t • toRealVec C.g + w + e - (toRealVec C.c + t • toRealVec C.g + (w + e))
       = 0

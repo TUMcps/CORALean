@@ -46,7 +46,7 @@ theorem NonlinearARX.FloatModel.Encloses.toNonlinearSysDTFloat
     fm.toNonlinearSysDTFloat.Encloses sys.toNonlinearSysDT := by -- --- PROOF ---
   -- a vector is in a float box when every coordinate is between the real bounds
   have mem_iff : ∀ {k : ℕ} (I : Interval (Vec 𝕋 k)) (v : Vec ℝ k),
-      v ∈ construct I ↔ ∀ i, toReal (I.inf i) ≤ v i ∧ v i ≤ toReal (I.sup i) :=
+      v ∈ toSet I ↔ ∀ i, toReal (I.inf i) ≤ v i ∧ v i ≤ toReal (I.sup i) :=
     fun _ _ => Iff.rfl
   refine ⟨fun X V x hx v hv => ?_⟩
   rw [mem_iff] at hx hv

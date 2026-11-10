@@ -56,14 +56,14 @@ def LinearSys.IsReachFloatInputInvariant (sys : LinearSys 𝕋 n) (Δt : ℝ) (X
     Float.Zonotope (Vec 𝕋 n)) : Prop :=
   let A := Scalar.toRealMat sys.A
   (∀ x₀ ∈ X₀, exp ((((k + 1 : ℕ) : ℝ) * Δt) • A) *ᵥ x₀
-      + MatExp.expIntegral A (((k + 1 : ℕ) : ℝ) * Δt) *ᵥ ũ ∈ s.1.construct) ∧
+      + MatExp.expIntegral A (((k + 1 : ℕ) : ℝ) * Δt) *ᵥ ũ ∈ s.1.toSet) ∧
     (∀ x₀ ∈ X₀, ∀ τ ∈ Set.Icc 0 Δt, exp (((k : ℝ) * Δt + τ) • A) *ᵥ x₀
-      + MatExp.expIntegral A ((k : ℝ) * Δt + τ) *ᵥ ũ ∈ s.2.1.construct) ∧
+      + MatExp.expIntegral A ((k : ℝ) * Δt + τ) *ᵥ ũ ∈ s.2.1.toSet) ∧
     sys.inputReach (S := 𝒵[𝕋]) Ũ (((k + 1 : ℕ) : ℝ) * Δt) ⊆
-      s.2.2.1.construct ∧
+      s.2.2.1.toSet ∧
     (fun y => exp (((k : ℝ) * Δt) • A) *ᵥ y) '' sys.inputReach
       (S := 𝒵[𝕋]) Ũ Δt
-      ⊆ s.2.2.2.construct
+      ⊆ s.2.2.2.toSet
 
 end CORALean
 

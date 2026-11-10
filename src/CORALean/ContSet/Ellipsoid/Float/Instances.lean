@@ -58,7 +58,7 @@ makes them sound. Deliberately not an `instance`, as over ℝ. -/
 instance : Mtimes (Mat 𝕋) (Ellipsoid 𝕋) where
   mtimes M E := (Ellipsoid.mtimes M E).materialise
   mtimes_outer M E := by
-    simp only [ContSet.construct_mat, Set.biUnion_singleton, Ellipsoid.materialise_eq]
+    simp only [ContSet.toSet_mat, Set.biUnion_singleton, Ellipsoid.materialise_eq]
     exact Ellipsoid.mtimes_outer M E
 
 /-- Exact, alone among the fields here: a relabelling moves stored floats and

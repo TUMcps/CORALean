@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Capsule.Float.Capsule
 public import CORALean.ContSet.Capsule.Real.Instances
-public import CORALean.ContSet.Capsule.Float.Theorems.MemConstructOfSplit
+public import CORALean.ContSet.Capsule.Float.Theorems.MemToSetOfSplit
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
 public import CORALean.ContSet.Interval.Float.Interval
@@ -59,13 +59,13 @@ variable [SoundFloatArithmetic 𝕋]
 
 theorem Interval.capsuleAlong_contains (k : ℕ) (I : Interval (Vec 𝕋 n))
     (a : Fin n) : -- --- CONCL ---
-    I.construct ⊆ (I.capsuleAlong k a).construct := by -- --- PROOF ---
+    I.toSet ⊆ (I.capsuleAlong k a).toSet := by -- --- PROOF ---
   intro x hx
   have hI : ∀ i, toReal (I.inf i) ≤ toReal (I.sup i) := fun i =>
     le_trans (hx i).1 (hx i).2
   have hK := CORALean.Real.Interval.capsuleAlong_contains I.nominal a hx
   obtain ⟨t, ht, w, hw, rfl⟩ := Capsule.exists_split_of_mem hK
-  refine Capsule.mem_construct_of_split _ ht (w := w) ?_ ?_
+  refine Capsule.mem_toSet_of_split _ ht (w := w) ?_ ?_
   · -- the ball over the other axes is the length of the half-widths there
     refine le_trans hw ?_
     have : Real.sqrt (∑ i, if i = a then 0 else ((toReal (I.sup i) - toReal (I.inf i)) / 2) ^ 2) =
@@ -117,7 +117,7 @@ theorem Interval.capsuleAlong_contains (k : ℕ) (I : Interval (Vec 𝕋 n))
       (fun i => half (addUp (I.inf i) (I.sup i)))
       (fun i => half (addDown (I.inf i) (I.sup i)))).plus
       (Interval.symmetric fun i => if i = a then subUp (half (subUp (I.sup i) (I.inf i)))
-        (half (subDown (I.sup i) (I.inf i))) else zero)).construct
+        (half (subDown (I.sup i) (I.inf i))) else zero)).toSet
     convert Interval.plus_outer _ _ ⟨_, hc, _, hg, rfl⟩ using 1
     funext i
     simp only [CORALean.Real.Interval.capsuleAlong, Interval.capsuleAlong, Interval.nominal,

@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem VPolytope.boundDot_le (P : VPolytope (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ} (a : Vec 𝕋 n)
     (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) :
-    ∀ x ∈ P.construct, c x ≤ toReal (P.boundDot a hc).val :=
+    ∀ x ∈ P.toSet, c x ≤ toReal (P.boundDot a hc).val :=
   (P.boundDot a hc).le
 
 end CORALean.Float

@@ -40,8 +40,8 @@ variable {k : ℕ} {n : Fin k → ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.stackProd_exact (zs : ∀ i, ConZonotope (Vec ℝ (n i))) : -- --- CONCL ---
-    (ConZonotope.stackProd zs).construct =
-      {z | ∀ i, unstack z i ∈ (zs i).construct} := by -- --- PROOF ---
+    (ConZonotope.stackProd zs).toSet =
+      {z | ∀ i, unstack z i ∈ (zs i).toSet} := by -- --- PROOF ---
   classical
   -- the underlying zonotopes, whose stack carries the generators
   let Zs : ∀ i, Zonotope (Vec ℝ (n i)) := fun i => ⟨(zs i).h, (zs i).c, (zs i).G⟩
@@ -57,7 +57,7 @@ theorem ConZonotope.stackProd_exact (zs : ∀ i, ConZonotope (Vec ℝ (n i))) : 
   constructor
   · rintro ⟨β, hβ, hP, rfl⟩ i
     -- the constraints hold block by block, and the block's value is the component's own
-    have hP' : β ∈ (HPolytope.stackProd fun i => (zs i).P).construct := hP
+    have hP' : β ∈ (HPolytope.stackProd fun i => (zs i).P).toSet := hP
     rw [HPolytope.stackProd_exact] at hP'
     exact ⟨unstack β i, fun j => hβ _, hP' i, hval β i⟩
   · intro h
@@ -73,7 +73,7 @@ theorem ConZonotope.stackProd_exact (zs : ∀ i, ConZonotope (Vec ℝ (n i))) : 
       rw [hβi]
       exact hβ i j
     · -- the constraint holds on each block
-      show β ∈ (HPolytope.stackProd fun i => (zs i).P).construct
+      show β ∈ (HPolytope.stackProd fun i => (zs i).P).toSet
       rw [HPolytope.stackProd_exact]
       intro i
       show unstack (stack βf) i ∈ _

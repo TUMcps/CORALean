@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.MtimesIntervalMat
-public import CORALean.ContSet.ConZonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.ConZonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatOuter
@@ -63,12 +63,12 @@ private theorem ConZonotope.aux_sum_univ_mtimesIntervalMat {IM : Interval (Mat �
 
 theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
     (cZ : ConZonotope (Vec ℝ n)) : -- --- CONCL ---
-    (⋃ A ∈ IM.construct, (A *ᵥ ·) '' cZ.construct)
-      ⊆ (ConZonotope.mtimesIntervalMat IM cZ).construct := by -- --- PROOF ---
+    (⋃ A ∈ IM.toSet, (A *ᵥ ·) '' cZ.toSet)
+      ⊆ (ConZonotope.mtimesIntervalMat IM cZ).toSet := by -- --- PROOF ---
   rintro y hy
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
   obtain ⟨A, hA, x, hxmem, rfl⟩ := hy
-  obtain ⟨β, hβ, hP, hx⟩ := ConZonotope.mem_construct_iff.mp hxmem
+  obtain ⟨β, hβ, hP, hx⟩ := ConZonotope.mem_toSet_iff.mp hxmem
   have hrad : ∀ i j, 0 ≤ IM.radius i j :=
     fun i j => (abs_nonneg _).trans (IM.abs_sub_center_le hA (i, j))
   have hxb := Zonotope.abs_le_absBound (Z := cZ.zonotope) hβ hx
@@ -85,14 +85,14 @@ theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
   have hreachnn : ∀ i, 0 ≤ Zonotope.radiusReach IM cZ.zonotope i :=
     fun i => (abs_nonneg _).trans (herrb i)
   -- the witness: the old coefficients, plus one per coordinate scaled to that reach
-  refine ConZonotope.mem_construct_iff.mpr
+  refine ConZonotope.mem_toSet_iff.mpr
     ⟨Fin.append β fun i => Zonotope.coefficient (Zonotope.radiusReach IM cZ.zonotope i) (err i),
       ?_, ?_, fun i => ?_⟩
   · refine Fin.addCases (fun l => ?_) fun l => ?_
     · rw [Fin.append_left]; exact hβ l
     · rw [Fin.append_right]
       exact Zonotope.abs_coefficient_le_one (hreachnn l) (herrb l)
-  · show blockLeft cZ.h m (Fin.append β _) ∈ cZ.P.construct
+  · show blockLeft cZ.h m (Fin.append β _) ∈ cZ.P.toSet
     rw [blockLeft_append]
     exact hP
   · rw [ConZonotope.aux_sum_univ_mtimesIntervalMat]

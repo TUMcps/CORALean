@@ -44,7 +44,7 @@ variable {n : ℕ}
 point of `reduceBy_outer` holding at every pair of partitions: what separates
 the two is the order bound and nothing here. -/
 theorem PolyZonotope.reduceDependent_outer (pZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
-    pZ.construct ⊆ (pZ.reduceDependent o).construct :=
+    pZ.toSet ⊆ (pZ.reduceDependent o).toSet :=
   (PolyZonotope.compact_exact pZ).subset.trans
     (PolyZonotope.reduceGirardDependent_outer pZ.compact o)
 

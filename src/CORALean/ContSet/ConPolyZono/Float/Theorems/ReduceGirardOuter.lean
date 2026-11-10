@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.reduceGirard_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (o : ℕ) :
-    cPZ.construct ⊆ (cPZ.reduceGirard o).construct := by
+    cPZ.toSet ⊆ (cPZ.reduceGirard o).toSet := by
   unfold ConPolyZono.reduceGirard
   split_ifs with hlt
   · exact ConPolyZono.reduceBy_outer cPZ _ _

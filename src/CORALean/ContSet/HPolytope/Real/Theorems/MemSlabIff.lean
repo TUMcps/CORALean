@@ -41,11 +41,11 @@ variable {q n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.mem_slab_iff {Ae : Mat ℝ q n} {lo hi : Vec ℝ q} {x : Vec ℝ n} : -- --- CONCL ---
-    x ∈ (HPolytope.slab Ae lo hi).construct ↔
+    x ∈ (HPolytope.slab Ae lo hi).toSet ↔
       ∀ i, lo i ≤ (Ae *ᵥ x) i ∧ (Ae *ᵥ x) i ≤ hi i := by -- --- PROOF ---
-  have hand : x ∈ (HPolytope.slab Ae lo hi).construct ↔
-      x ∈ (HPolytope.ineqs Ae hi).construct
-        ∧ x ∈ (HPolytope.ineqs (-Ae) (-lo)).construct := HPolytope.mem_intersection_iff
+  have hand : x ∈ (HPolytope.slab Ae lo hi).toSet ↔
+      x ∈ (HPolytope.ineqs Ae hi).toSet
+        ∧ x ∈ (HPolytope.ineqs (-Ae) (-lo)).toSet := HPolytope.mem_intersection_iff
   rw [hand, HPolytope.mem_ineqs_iff, HPolytope.mem_ineqs_iff]
   -- both directions, the lower bound being the negated row read back
   constructor

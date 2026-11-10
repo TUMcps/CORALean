@@ -9,7 +9,7 @@ public import CORALean.ContSet.VPolytope.Real.Operations.Bilin
 
 Nothing is over-approximated here, only unproven: in the vertex representation
 the products `λᵢμⱼ` really are the coefficients of a convex combination, so
-every `f a b` with `a ∈ P.construct`, `b ∈ Q.construct` *is* a convex
+every `f a b` with `a ∈ P.toSet`, `b ∈ Q.toSet` *is* a convex
 combination of the pairwise vertex products, and each vertex of the result is
 attained. Contrast `PolyZonotope.bilin`, exact for a different reason — shared
 factors and an exponent matrix — and #81's `Zonotope.bilin`, which genuinely
@@ -55,8 +55,8 @@ private theorem VPolytope.aux_bilin_V (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (P 
 
 theorem VPolytope.bilin_outer (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (P : VPolytope α)
     (Q : VPolytope β) : -- --- CONCL ---
-    (⋃ a ∈ P.construct, (f a ·) '' Q.construct)
-      ⊆ (VPolytope.bilin f P Q).construct := by -- --- PROOF ---
+    (⋃ a ∈ P.toSet, (f a ·) '' Q.toSet)
+      ⊆ (VPolytope.bilin f P Q).toSet := by -- --- PROOF ---
   rintro y hy
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
   obtain ⟨a, ⟨lam, hlam0, hlam1, rfl⟩, b, ⟨mu, hmu0, hmu1, rfl⟩, rfl⟩ := hy

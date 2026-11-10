@@ -49,9 +49,9 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 theorem NonlinDASys.WithSteps.reachYUnion_subset_image (sys : NonlinDASys.WithSteps S Rg m p n)
     (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) : -- --- CONCL ---
     ∀ R ∈ sys.reachUnion params options,
-      sys.reachYUnionExact (params.tFinal - params.tStart) (construct params.X₀)
+      sys.reachYUnionExact (params.tFinal - params.tStart) (toSet params.X₀)
         ⊆ (fun xu : Vec ℝ n × Vec ℝ m => sys.red.h xu.1 xu.2) ''
-          (construct R ×ˢ construct sys.ode.U) := by -- --- PROOF ---
+          (toSet R ×ˢ toSet sys.ode.U) := by -- --- PROOF ---
   intro R (hR : sys.reachUnion params options = some R)
   have h := sys.reachUnion_outer params options _ hR
   intro z hz

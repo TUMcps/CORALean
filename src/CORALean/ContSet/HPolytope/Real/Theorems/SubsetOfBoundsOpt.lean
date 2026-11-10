@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ} {S : Set α}
 
 theorem HPolytope.subset_ofBoundsOpt (Aq : Fin q → (α →ₗ[ℝ] ℝ))
     (u : ∀ i, Option (SupportBound S (Aq i))) : -- --- CONCL ---
-    S ⊆ (HPolytope.ofBoundsOpt Aq u).construct := by -- --- PROOF ---
+    S ⊆ (HPolytope.ofBoundsOpt Aq u).toSet := by -- --- PROOF ---
   intro x hx
   refine ⟨fun i => ?_, fun i => i.elim0⟩
   show ((u i).elim 0 fun _ => Aq i) x ≤ (u i).elim 0 SupportBound.val

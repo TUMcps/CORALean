@@ -48,7 +48,7 @@ structure IsPolyAbstractionError (f : Vec ℝ n → Vec ℝ m → Vec ℝ n) (A 
     (hp : L.p = pZ.p) (W : Real.PolyZonotope (Vec ℝ n)) : Prop where
   encloses : ∀ a ∈ Ba, ∀ u ∈ U,
     f (pZ.point a) u - (f xs us + A *ᵥ (pZ.point a - xs) + B *ᵥ (u - us))
-      - L.point (fun k => a (Fin.cast hp k)) ∈ W.construct
+      - L.point (fun k => a (Fin.cast hp k)) ∈ W.toSet
 
 end CORALean
 

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Capsule.Float.Operations.Plus
-public import CORALean.ContSet.Capsule.Float.Theorems.MemConstructOfSplit
+public import CORALean.ContSet.Capsule.Float.Theorems.MemToSetOfSplit
 public import CORALean.ContSet.Capsule.Real.Theorems.PlusOuterKeepLeft
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemResidual
@@ -52,12 +52,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 keep-left capsule plus the two box points lies in the stored capsule. -/
 private theorem Capsule.aux_plus_branch (k : ℕ) (C₁ C₂ : Capsule 𝕋 n) {g g' : Vec 𝕋 n}
     {y e : Vec ℝ n} (hy : y ∈ (Real.Capsule.mk (toRealVec C₁.c + toRealVec C₂.c) (toRealVec g)
-      (toReal C₁.r + toReal C₂.r + Real.sqrt (∑ i, toReal (g' i) ^ 2))).construct)
-    (he : e ∈ (C₁.I_error.plus C₂.I_error).construct) : -- --- CONCL ---
+      (toReal C₁.r + toReal C₂.r + Real.sqrt (∑ i, toReal (g' i) ^ 2))).toSet)
+    (he : e ∈ (C₁.I_error.plus C₂.I_error).toSet) : -- --- CONCL ---
     y + e ∈ (Capsule.mk (fun i => addDown (C₁.c i) (C₂.c i)) g
       (addUp (addUp C₁.r C₂.r) (normUp k g')) ((C₁.I_error.plus C₂.I_error).plus
         (Interval.residual (fun i => addDown (C₁.c i) (C₂.c i)) (fun i => addUp (C₁.c i) (C₂.c i))
-          (fun i => addDown (C₁.c i) (C₂.c i))))).construct := by -- --- PROOF ---
+          (fun i => addDown (C₁.c i) (C₂.c i))))).toSet := by -- --- PROOF ---
   obtain ⟨t, ht, w, hw, rfl⟩ := Capsule.exists_split_of_mem hy
   -- the radius rounded up, and the center's rounding
   have hg : ‖toRealVec g'‖₂ ≤ toReal (normUp k g') := norm₂_le_normUp k fun j => le_rfl
@@ -67,7 +67,7 @@ private theorem Capsule.aux_plus_branch (k : ℕ) (C₁ C₂ : Capsule 𝕋 n) {
     (x := toRealVec C₁.c + toRealVec C₂.c)
     (lo := fun i => addDown (C₁.c i) (C₂.c i)) (hi := fun i => addUp (C₁.c i) (C₂.c i))
     fun i => ⟨addDown_le_add _ _, add_le_addUp _ _⟩
-  refine Capsule.mem_construct_of_split _ ht (w := w) ?_ ?_
+  refine Capsule.mem_toSet_of_split _ ht (w := w) ?_ ?_
   · show ‖w‖₂ ≤ toReal (addUp (addUp C₁.r C₂.r) (normUp k g'))
     have : ‖w‖₂ ≤ toReal C₁.r + toReal C₂.r + ‖toRealVec g'‖₂ := hw
     linarith
@@ -80,9 +80,9 @@ private theorem Capsule.aux_plus_branch (k : ℕ) (C₁ C₂ : Capsule 𝕋 n) {
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.plus_outer (k : ℕ) (C₁ C₂ : Capsule 𝕋 n) : -- --- CONCL ---
-    C₁.construct + C₂.construct ⊆ (C₁.plus k C₂).construct := by -- --- PROOF ---
+    C₁.toSet + C₂.toSet ⊆ (C₁.plus k C₂).toSet := by -- --- PROOF ---
   rintro _ ⟨_, ⟨y₁, h₁, e₁, he₁, rfl⟩, _, ⟨y₂, h₂, e₂, he₂, rfl⟩, rfl⟩
-  have he : e₁ + e₂ ∈ (C₁.I_error.plus C₂.I_error).construct :=
+  have he : e₁ + e₂ ∈ (C₁.I_error.plus C₂.I_error).toSet :=
     Interval.plus_outer _ _ ⟨e₁, he₁, e₂, he₂, rfl⟩
   have hsum : y₁ + e₁ + (y₂ + e₂) = (y₁ + y₂) + (e₁ + e₂) := by abel
   show y₁ + e₁ + (y₂ + e₂) ∈ _

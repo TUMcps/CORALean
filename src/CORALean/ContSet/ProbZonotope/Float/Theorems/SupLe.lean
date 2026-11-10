@@ -52,13 +52,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.sup_le (p : ℕ) (P : ProbZonotope 𝕋 n) (M : 𝕋) {μ : Vec ℝ n}
-    (hμ : μ ∈ P.Z.construct) {S : Mat ℝ n n} (hS : S ∈ P.cov.construct) (hpsd : S.PosSemidef)
+    (hμ : μ ∈ P.Z.toSet) {S : Mat ℝ n n} (hS : S ∈ P.cov.toSet) (hpsd : S.PosSemidef)
     {m : ℝ} (hm : 0 ≤ m) (hmM : m ≤ toReal M) : -- --- CONCL ---
     Real.ProbZonotope.sup ⟨⟨0, μ, fun j => j.elim0⟩, S⟩ m
       ≤ toReal (P.sup p M) := by -- --- PROOF ---
   -- the exact confidence set lies in the float box
-  have hsub : (Real.ProbZonotope.zonotope ⟨⟨0, μ, fun j => j.elim0⟩, S⟩ m).construct
-      ⊆ (P.interval p M).construct :=
+  have hsub : (Real.ProbZonotope.zonotope ⟨⟨0, μ, fun j => j.elim0⟩, S⟩ m).toSet
+      ⊆ (P.interval p M).toSet :=
     (ProbZonotope.zonotope_outer p P M hμ hS hpsd hm hmM).trans
       (P.zonotope p M).interval_contains
   refine (Real.ProbZonotope.sup_isLUB _ m).2 ?_

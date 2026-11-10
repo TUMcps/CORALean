@@ -76,7 +76,7 @@ private theorem Ellipsoid.aux_quad' (b l : ℝ) (c x : Vec ℝ n) : -- --- CONCL
 theorem Ellipsoid.cutShape_contains {c : Vec ℝ n} (hc : c ⬝ᵥ c = 1) {γ : ℝ}
     (hn : 2 ≤ n) (hγ : 0 < γ) (hγn : (n : ℝ) * γ ^ 2 < 1) : -- --- CONCL ---
     {x : Vec ℝ n | ‖x‖₂ ≤ 1 ∧ |c ⬝ᵥ x| ≤ γ}
-      ⊆ (Ellipsoid.ofShape (Ellipsoid.cutShape n c γ) 0).construct := by -- --- PROOF ---
+      ⊆ (Ellipsoid.ofShape (Ellipsoid.cutShape n c γ) 0).toSet := by -- --- PROOF ---
   have hn' : (2 : ℝ) ≤ n := by exact_mod_cast hn
   have h1 : 0 < 1 - γ ^ 2 := by nlinarith [sq_nonneg γ]
   have h2 : (0:ℝ) < (n:ℝ) - 1 := by linarith

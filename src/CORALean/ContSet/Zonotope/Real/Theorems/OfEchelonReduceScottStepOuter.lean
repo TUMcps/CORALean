@@ -74,9 +74,9 @@ private theorem Zonotope.aux_ofEchelon_sum {n k : ℕ} (c : Vec ℝ n) (T : Mat 
 encloses. -/
 theorem Zonotope.ofEchelon_reduceScottStep_outer {n k : ℕ} (c : Vec ℝ n) (T : Mat ℝ n n)
     (R : Fin (k + 1) → Vec ℝ n) (ind : Fin (k + 1)) : -- --- CONCL ---
-    (Zonotope.ofEchelon c T R).construct
+    (Zonotope.ofEchelon c T R).toSet
       ⊆ (Zonotope.ofEchelon c (Zonotope.reduceScottStep T R ind).1
-          (Zonotope.reduceScottStep T R ind).2).construct := by -- --- PROOF ---
+          (Zonotope.reduceScottStep T R ind).2).toSet := by -- --- PROOF ---
   rintro x ⟨(β : Fin (n + (k + 1)) → ℝ), hβ, rfl⟩
   set r := R ind with hr
   set d : Fin n → ℝ := fun i => 1 + |r i| with hd

@@ -44,7 +44,7 @@ noncomputable instance NeurNetContrSys.Linear.reachInstance :
     Reach (NeurNetContrSys.Linear 𝕋 S) (fun n _ => Reach.Params (S n) ℕ)
       (NeurNetContrSys.ReachOptions ℝ) S where
   reachExact sys params := sys.sys.reachUnionExact (params.tFinal - params.tStart)
-    (construct sys.U) {0} (construct params.X₀)
+    (toSet sys.U) {0} (toSet params.X₀)
   reach sys params options :=
     if 0 < options.Δt ∧ (options.N : ℝ) * options.Δt = sys.sys.dt then
       some (sys.sys.reachUnion sys.U params options)

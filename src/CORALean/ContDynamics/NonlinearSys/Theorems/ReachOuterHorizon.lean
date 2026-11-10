@@ -76,15 +76,15 @@ theorem NonlinearSys.IsTrajectory.reach_outer_horizon {sys : NonlinearSys n m} {
     {A : Mat ℝ n n} {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m}
     {R : Set (Vec ℝ n)} {Δt : ℝ} {K : ℕ} {y : ℝ → Vec ℝ sys.q}
     (traj : sys.IsTrajectory T R₀ U x u y)
-    (cert : IsAbstractionError sys.f A B xs us R (construct U) L)
+    (cert : IsAbstractionError sys.f A B xs us R (toSet U) L)
     (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T)
     (hR : ∀ t ∈ Set.Icc (0 : ℝ) ((K : ℝ) * Δt), x t ∈ R) (hΔt : 0 ≤ Δt)
-    (hU : Bornology.IsBounded (construct (linInput sys.f A B xs us U L)))
+    (hU : Bornology.IsBounded (toSet (linInput sys.f A B xs us U L)))
     (hUd : ∀ k < K, (NonlinearSys.linearize A).stepInput
-      (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt k ∈ construct Ud) {o : ℕ}
+      (fun t => sys.f (x t) (u t) - A *ᵥ x t) Δt k ∈ toSet Ud) {o : ℕ}
     (ho : 0 < o) :
     ∀ k ≤ K, x ((k : ℝ) * Δt) ∈
-      construct (((NonlinearSys.linearize A).discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
+      toSet (((NonlinearSys.linearize A).discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
   (traj.linearize_horizon cert hT hR).reach_outer_horizon hΔt subset_rfl hU hUd ho
 
 end CORALean

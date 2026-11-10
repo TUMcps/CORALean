@@ -55,7 +55,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem Zonotope.minkDiffStretchInner_inner {Z₁ Z₂ : Zonotope (Vec 𝕋 n)} {μ : Fin Z₁.h → 𝕋}
     {H : Mat 𝕋 Z₁.h n} : -- --- CONCL ---
     ∀ D ∈ Z₁.minkDiffStretchInner Z₂ μ H,
-      D.construct ⊆ minkowskiDiff Z₁.construct Z₂.construct := by -- --- PROOF ---
+      D.toSet ⊆ minkowskiDiff Z₁.toSet Z₂.toSet := by -- --- PROOF ---
   intro D (h : Z₁.minkDiffStretchInner Z₂ μ H = some D)
   unfold Zonotope.minkDiffStretchInner at h
   dsimp only at h

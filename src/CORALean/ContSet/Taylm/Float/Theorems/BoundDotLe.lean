@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 theorem Taylm.boundDot_le {c : Vec ℝ m →ₗ[ℝ] ℝ} (a : Vec 𝕋 m) (T : Fin m → Taylm 𝕋 n)
     (hc : ∀ x : Vec ℝ m, c x = ∑ j, toReal (a j) * x j) :
-    ∀ x ∈ Taylm.construct T, c x ≤ toReal (Taylm.boundDot a T hc).val :=
+    ∀ x ∈ Taylm.toSet T, c x ≤ toReal (Taylm.boundDot a T hc).val :=
   (Taylm.boundDot a T hc).le
 
 end CORALean.Float

@@ -52,8 +52,8 @@ variable {n : ℕ}
 `o * n` generators rather than growing a box per step. -/
 noncomputable def LinearSysDT.reachInnerReduced (sys : LinearSysDT ℝ n) (o : ℕ) (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) : Set (Vec ℝ n) :=
-  minkowskiDiff (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
-    (sys.reachErrorReduced ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).construct
+  minkowskiDiff (sys.reach (S := 𝒵) ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).toSet
+    (sys.reachErrorReduced ⟨R₀, U, 0, k⟩ ⟨o, ho⟩).toSet
 
 end CORALean
 

@@ -39,8 +39,8 @@ variable {n m : ℕ}
 
 theorem Fullspace.project_exact (F : Fullspace n) (dims : Fin m → Fin n)
     (hdims : Function.Injective dims) : -- --- CONCL ---
-    (F.project dims).construct =
-      (fun (x : Vec ℝ n) (j : Fin m) => x (dims j)) '' F.construct := by -- --- PROOF ---
+    (F.project dims).toSet =
+      (fun (x : Vec ℝ n) (j : Fin m) => x (dims j)) '' F.toSet := by -- --- PROOF ---
   ext y
   refine ⟨fun _ => ⟨(Function.extend dims y 0 : Vec ℝ n), Set.mem_univ _, ?_⟩,
     fun _ => Set.mem_univ _⟩

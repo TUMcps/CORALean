@@ -41,14 +41,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.transpose_exact (Z : Zonotope (Mat 𝕋 m n)) : -- --- CONCL ---
-    Z.transpose.construct = Matrix.transpose '' Z.construct := by -- --- PROOF ---
+    Z.transpose.toSet = Matrix.transpose '' Z.toSet := by -- --- PROOF ---
   -- the nominal part and the box are each exactly transposed
   have hn : nominalSet Z.transpose = Matrix.transpose '' nominalSet Z :=
     (Real.Zonotope.transpose_exact Z.nominal).symm
-  have hb : (I_error Z.transpose).construct = Matrix.transpose '' (I_error Z).construct :=
+  have hb : (I_error Z.transpose).toSet = Matrix.transpose '' (I_error Z).toSet :=
     Interval.transpose_exact Z.I_error
   -- and the image of a Minkowski sum under an additive map is the sum of the images
-  show nominalSet Z.transpose + (I_error Z.transpose).construct = _
+  show nominalSet Z.transpose + (I_error Z.transpose).toSet = _
   rw [hn, hb]
   exact (Set.image_add (Matrix.transposeLinearEquiv (Fin m) (Fin n) ℝ ℝ).toLinearMap).symm
 

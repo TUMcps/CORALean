@@ -64,8 +64,8 @@ theorem ProbZonotope.eph_mtimes_exp (P : ProbZonotope n) (hP : 0 < P.cov.det) (A
   rw [Set.image_image]
   -- each density is scaled by `e^{-tr(A)t}`
   have himg : (fun μ => gaussPdf (exp (t • A) *ᵥ μ) (exp (t • A) * P.cov * (exp (t • A))ᵀ)
-      (toLp 2 (exp (t • A) *ᵥ ofLp x))) '' P.Z.construct
-      = (Real.exp (-(t * A.trace)) • ·) '' ((fun μ => gaussPdf μ P.cov x) '' P.Z.construct) := by
+      (toLp 2 (exp (t • A) *ᵥ ofLp x))) '' P.Z.toSet
+      = (Real.exp (-(t * A.trace)) • ·) '' ((fun μ => gaussPdf μ P.cov x) '' P.Z.toSet) := by
     rw [Set.image_image]
     refine Set.image_congr fun μ _ => ?_
     exact gaussPdf_exp_mulVec A t μ hP x

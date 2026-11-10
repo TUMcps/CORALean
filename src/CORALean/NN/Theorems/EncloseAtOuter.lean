@@ -49,8 +49,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem RefinableNetwork.encloseAt_outer (rn : RefinableNetwork S n m) (sch : Schedule)
-    (X : S n) (x : Vec ℝ n) (hx : x ∈ construct X) :
-    rn.eval x ∈ construct (rn.encloseAt sch X) := by
+    (X : S n) (x : Vec ℝ n) (hx : x ∈ toSet X) :
+    rn.eval x ∈ toSet (rn.encloseAt sch X) := by
   exact (rn.atSchedule_encloses sch).enclose_outer X x hx
 
 end CORALean

@@ -45,13 +45,13 @@ open ContSet
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- A star set over a convex predicate is convex, its box being convex. -/
-theorem StarSet.convex_construct {P : ℕ → Type} [∀ m, ContSet (P m) (Vec ℝ m)]
+theorem StarSet.convex_toSet {P : ℕ → Type} [∀ m, ContSet (P m) (Vec ℝ m)]
     [∀ m, ConvexSet (P m) (Vec ℝ m)] {n : ℕ} (s : StarSet P n) : -- --- CONCL ---
-    Convex ℝ s.construct := by -- --- PROOF ---
+    Convex ℝ s.toSet := by -- --- PROOF ---
   -- two points, with their coefficients; the convex combination of the coefficients is the witness
   rintro x ⟨α, hα, hxα⟩ y ⟨β, hβ, hyβ⟩ a b ha hb hab
-  refine ⟨a • α + b • β, ⟨Interval.convex_construct s.dom hα.1 hβ.1 ha hb hab,
-    ConvexSet.convex_construct s.pred hα.2 hβ.2 ha hb hab⟩, fun i => ?_⟩
+  refine ⟨a • α + b • β, ⟨Interval.convex_toSet s.dom hα.1 hβ.1 ha hb hab,
+    ConvexSet.convex_toSet s.pred hα.2 hβ.2 ha hb hab⟩, fun i => ?_⟩
   -- the point is the same combination of the two points
   have : ∑ k, s.G i k * (a • α + b • β) k
       = a * ∑ k, s.G i k * α k + b * ∑ k, s.G i k * β k := by

@@ -97,11 +97,11 @@ private theorem aux_rows_le (ℓ : Fin m → Vec ℝ n) (hn : 0 < n) (hℓ : ∀
 
 theorem HPolytope.generateRandomH_isBounded_interior (ℓ : Fin m → Vec ℝ n) (M : Mat ℝ n n)
     (z : Vec ℝ n) (hn : 0 < n) (hM : IsUnit M.det) (hℓ : ∀ j, ‖ℓ j‖₂ ≤ 1) : -- --- CONCL ---
-    Bornology.IsBounded (HPolytope.generateRandomH ℓ M z).construct ∧
-      (interior (HPolytope.generateRandomH ℓ M z).construct).Nonempty := by -- --- PROOF ---
-  set Q := (HPolytope.ineqs (HPolytope.simplexRows ℓ) 1).construct with hQ
+    Bornology.IsBounded (HPolytope.generateRandomH ℓ M z).toSet ∧
+      (interior (HPolytope.generateRandomH ℓ M z).toSet).Nonempty := by -- --- PROOF ---
+  set Q := (HPolytope.ineqs (HPolytope.simplexRows ℓ) 1).toSet with hQ
   -- the output is `M Q + z`
-  have himg : (HPolytope.generateRandomH ℓ M z).construct = (· + z) '' ((M *ᵥ ·) '' Q) := by
+  have himg : (HPolytope.generateRandomH ℓ M z).toSet = (· + z) '' ((M *ᵥ ·) '' Q) := by
     rw [hQ, HPolytope.image_ineqs_of_invertible _ _ M hM, show HPolytope.generateRandomH ℓ M z =
       HPolytope.ineqs (HPolytope.simplexRows ℓ * M⁻¹)
         (1 + (HPolytope.simplexRows ℓ * M⁻¹) *ᵥ z) from rfl]

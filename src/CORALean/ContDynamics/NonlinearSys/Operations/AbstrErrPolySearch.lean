@@ -83,7 +83,7 @@ noncomputable def NonlinearSys.abstrErrPolySearch (sys : NonlinearSys n m)
     (L : ℕ → PolyZonotope (Vec ℝ n)) (hp : ∀ k, (L k).p = (pZ k).p)
     (hBa : ∀ k, ∀ a ∈ Ba k, ∀ j, |a j| ≤ 1) (Ws : ℕ → PolyZonotope (Vec ℝ n))
     (fuel : ℕ) : Option (sys.LinStep (S := 𝒫𝒵) U) :=
-  (step_search (fun k => IsPolyAbstractionError sys.f A B xs us (pZ k) (Ba k) (construct U) (L k)
+  (step_search (fun k => IsPolyAbstractionError sys.f A B xs us (pZ k) (Ba k) (toSet U) (L k)
       (hp k) (Ws k)) 0 fuel).map
     fun ⟨k, h⟩ => ⟨A, B, xs, us, (pZ k).subsetAt (Ba k), L k ⊞ Ws k,
       IsAbstractionError.of_poly (hBa k) h⟩

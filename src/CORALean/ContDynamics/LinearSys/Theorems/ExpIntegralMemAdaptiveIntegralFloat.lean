@@ -47,10 +47,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem LinearSys.expIntegral_mem_adaptiveIntegralFloat (sys : LinearSys 𝕋 n) {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 ≤ toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) : -- --- CONCL ---
     Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt)
-      ∈ (MatExp.adaptiveIntegral (Interval.point sys.A) Δt η).construct := by -- --- PROOF ---
+      ∈ (MatExp.adaptiveIntegral (Interval.point sys.A) Δt η).toSet := by -- --- PROOF ---
   -- the integrated exponential is in the exact `adaptiveIntegral`, so in the float one
   have hint : Real.MatExp.expIntegral (Scalar.toRealMat sys.A) (toReal Δt)
-      ∈ (Real.MatExp.adaptiveIntegral (Scalar.toRealMat sys.A) (toReal Δt) η).construct := by
+      ∈ (Real.MatExp.adaptiveIntegral (Scalar.toRealMat sys.A) (toReal Δt) η).toSet := by
     refine Real.Interval.mem_mat_iff.mpr fun j k => ?_
     have hmem := Real.Interval.mem_mat_iff.mp
       (Real.MatExp.expIntegral_sub_sum_mem_adaptiveRemainder (Scalar.toRealMat sys.A) hΔt η) j k

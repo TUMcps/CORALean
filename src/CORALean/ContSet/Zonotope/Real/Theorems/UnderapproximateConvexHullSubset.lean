@@ -41,9 +41,9 @@ namespace CORALean.Real
 theorem Zonotope.underapproximate_convexHull_subset {n k : ℕ} (Z : Zonotope (Vec ℝ n))
     (S : Fin k → Vec ℝ n) :
     convexHull ℝ (Set.range fun p : Fin k × Bool => Z.underapproximate S p.1 p.2) ⊆
-      Z.construct :=
+      Z.toSet :=
   convexHull_min (by rintro _ ⟨p, rfl⟩; exact Zonotope.underapproximate_mem Z S p.1 p.2)
-    Z.convex_construct
+    Z.convex_toSet
 
 end CORALean.Real
 

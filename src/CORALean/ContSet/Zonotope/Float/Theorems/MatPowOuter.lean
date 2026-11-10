@@ -53,8 +53,8 @@ private theorem Zonotope.aux_toRealMat_diagonalBlock_one :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.matPow_outer (M : Zonotope (Mat 𝕋 n n)) {A : Mat ℝ n n}
-    (hA : A ∈ M.construct) (k : ℕ) : -- --- CONCL ---
-    A ^ k ∈ (M.matPow k).construct := by -- --- PROOF ---
+    (hA : A ∈ M.toSet) (k : ℕ) : -- --- CONCL ---
+    A ^ k ∈ (M.matPow k).toSet := by -- --- PROOF ---
   induction k with
   | zero =>
     rw [pow_zero, ← Zonotope.aux_toRealMat_diagonalBlock_one (𝕋 := 𝕋)]
@@ -62,7 +62,7 @@ theorem Zonotope.matPow_outer (M : Zonotope (Mat 𝕋 n n)) {A : Mat ℝ n n}
   -- the base paired with the previous power, which is what `matMul` bounds
   | succ k ih =>
     rw [pow_succ']
-    show A * A ^ k ∈ (Zonotope.matMul M (M.matPow k)).materialiseMat.construct
+    show A * A ^ k ∈ (Zonotope.matMul M (M.matPow k)).materialiseMat.toSet
     rw [Zonotope.materialiseMat_eq]
     exact Zonotope.matMul_outer M (M.matPow k) (Set.mem_biUnion hA ⟨A ^ k, ih, rfl⟩)
 

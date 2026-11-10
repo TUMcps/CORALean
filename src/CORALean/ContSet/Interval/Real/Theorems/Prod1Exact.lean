@@ -47,7 +47,7 @@ private theorem Interval.aux_prod₁_succ (I : Interval (Mat ℝ (m + 1) n)) :
 
 /-- A box that is exactly the image of a nonempty set is nonempty. -/
 private theorem Interval.aux_nonempty_of_image {S : Set (Mat ℝ m n)} (hS : S.Nonempty)
-    {J : Interval (Vec ℝ n)} {f : Mat ℝ m n → Vec ℝ n} (h : J.construct = f '' S) :
+    {J : Interval (Vec ℝ n)} {f : Mat ℝ m n → Vec ℝ n} (h : J.toSet = f '' S) :
     J.IsNonempty := by
   rw [Interval.isNonempty_iff, h]
   exact hS.image f
@@ -57,8 +57,8 @@ private theorem Interval.aux_nonempty_of_image {S : Set (Mat ℝ m n)} (hS : S.N
 
 theorem Interval.prod₁_exact : -- --- CONCL ---
     ∀ {m : ℕ} {I : Interval (Mat ℝ m n)}, I.IsNonempty →
-    I.prod₁.construct =
-      (fun A : Mat ℝ m n => fun j => ∏ i, A i j) '' I.construct := by -- --- PROOF ---
+    I.prod₁.toSet =
+      (fun A : Mat ℝ m n => fun j => ∏ i, A i j) '' I.toSet := by -- --- PROOF ---
   -- no rows: the empty product is the point `1`
   intro m
   induction m with

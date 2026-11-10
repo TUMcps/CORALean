@@ -55,18 +55,18 @@ open Matrix MeasureTheory
 theorem Zonotope.reduceScott_parallelotope_volume {n : ℕ} (c : Vec ℝ n) (T : Mat ℝ n n)
     (r : Vec ℝ n) : -- --- CONCL ---
     volume (⟨n, c, fun i a => (T * diagonal fun k => 1 + |r k|) a i⟩
-        : Zonotope (Vec ℝ n)).construct
+        : Zonotope (Vec ℝ n)).toSet
       = ENNReal.ofReal (2 ^ n * |T.det| * ∏ i, (1 + |r i|)) := by -- --- PROOF ---
   set M : Mat ℝ n n := T * diagonal fun k => 1 + |r k| with hM
   set box : Set (Vec ℝ n) := Set.Icc (fun _ => -1) (fun _ => 1) with hbox
   -- the parallelotope is the box under `M`, translated by `c`
-  have hset : (⟨n, c, fun i a => M a i⟩ : Zonotope (Vec ℝ n)).construct
+  have hset : (⟨n, c, fun i a => M a i⟩ : Zonotope (Vec ℝ n)).toSet
       = (fun z => -c + z) ⁻¹' (Matrix.toLin' M '' box) := by
     ext z
     have hsum : ∀ β : Fin n → ℝ, ∑ j, β j • (fun a => M a j) = M *ᵥ β := fun β => by
       funext a
       simp [Matrix.mulVec, dotProduct, Finset.sum_apply, mul_comm]
-    simp only [Zonotope.construct, Set.mem_setOf_eq, Set.mem_preimage, Set.mem_image,
+    simp only [Zonotope.toSet, Set.mem_setOf_eq, Set.mem_preimage, Set.mem_image,
       Matrix.toLin'_apply, hbox, Set.mem_Icc]
     constructor
     · rintro ⟨β, hβ, rfl⟩

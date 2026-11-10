@@ -43,8 +43,8 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
 
 theorem NeuralNetwork.holdsAll_of_enclose (nn : NeuralNetwork S n m) (X : S n)
     (specs : List (Specification ContSet))
-    (h : Specification.HoldsAll specs (construct (nn.enclose X))) :
-    Specification.HoldsAll specs (nn.eval.out '' construct X) :=
+    (h : Specification.HoldsAll specs (toSet (nn.enclose X))) :
+    Specification.HoldsAll specs (nn.eval.out '' toSet X) :=
   (NeuralNetwork.encloses_eval nn).holdsAll_of_enclose X specs h
 
 end CORALean

@@ -62,9 +62,9 @@ private theorem Interval.aux_hull_bdd (S : Set (Vec ℝ n)) (hb : Bornology.IsBo
 
 theorem Interval.hull_isLeast (S : Set (Vec ℝ n)) (hne : S.Nonempty)
     (hb : Bornology.IsBounded S) : -- --- CONCL ---
-    S ⊆ (Interval.hull S).construct ∧
-      ∀ I : Interval (Vec ℝ n), S ⊆ I.construct →
-        (Interval.hull S).construct ⊆ I.construct := by -- --- PROOF ---
+    S ⊆ (Interval.hull S).toSet ∧
+      ∀ I : Interval (Vec ℝ n), S ⊆ I.toSet →
+        (Interval.hull S).toSet ⊆ I.toSet := by -- --- PROOF ---
   have hbdd := Interval.aux_hull_bdd S hb
   refine ⟨fun x hx i => ?_, fun I hI x hx i => ?_⟩
   · -- every point lies between the coordinate's infimum and supremum

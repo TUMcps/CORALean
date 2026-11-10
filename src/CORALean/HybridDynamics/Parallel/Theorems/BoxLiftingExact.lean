@@ -47,7 +47,7 @@ theorem ParallelHybridAutomaton.boxLifting_isExact :
     (ParallelHybridAutomaton.boxLifting (k := k) (n := n) (m := m)).IsExact where
   inv_inv gs x hx := by
     -- the lifted invariant is exactly the blocks'
-    have hx' : stack x ∈ (HPolytope.stackProd gs).construct := hx
+    have hx' : stack x ∈ (HPolytope.stackProd gs).toSet := hx
     rw [HPolytope.stackProd_exact] at hx'
     intro i
     have := hx' i
@@ -55,9 +55,9 @@ theorem ParallelHybridAutomaton.boxLifting_isExact :
     exact this
   guard_inv i g x hx := by
     -- the lifted guard asks of a stack only that block `i` meet the guard
-    have hx' : stack x ∈ (HPolytope.comap (blockProj i) g).construct := hx
+    have hx' : stack x ∈ (HPolytope.comap (blockProj i) g).toSet := hx
     rw [HPolytope.comap_blockProj_exact] at hx'
-    have : unstack (stack x) i ∈ g.construct := hx'
+    have : unstack (stack x) i ∈ g.toSet := hx'
     rw [unstack_stack] at this
     exact this
   input_inv b hb us hne g hg := by
@@ -84,7 +84,7 @@ theorem ParallelHybridAutomaton.boxLifting_isExact :
       | .output _ _ => p j, hv, fun j a hj => by simp only [hj]⟩
   dist_inv ws w hw := by
     -- the product of the disturbance sets is exactly the blocks'
-    have hw' : stack w ∈ (Interval.stackProd ws).construct := hw
+    have hw' : stack w ∈ (Interval.stackProd ws).toSet := hw
     rw [Interval.stackProd_exact] at hw'
     intro i
     have := hw' i

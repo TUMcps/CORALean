@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.intervalMatrix_outer (I : Interval (Mat 𝕋 m n)) : -- --- CONCL ---
-    I.construct ⊆ I.intervalMatrix.construct := by -- --- PROOF ---
+    I.toSet ⊆ I.intervalMatrix.toSet := by -- --- PROOF ---
   intro A hA
   refine Interval.mem_mat_iff.mpr fun i j => ?_
   have hc := Interval.mem_mat_iff.mp (Interval.center_mem_centerBoxMat I) i j

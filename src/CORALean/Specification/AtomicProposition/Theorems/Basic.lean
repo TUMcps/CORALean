@@ -29,7 +29,7 @@ variable {S : ℕ → Type} {n : ℕ} [∀ k, ContSet (S k) (Vec ℝ k)]
 
 /-- The proposition `atomicProposition(set)` holds, at every location, exactly in its set. -/
 theorem AtomicProposition.ofSet_holds_iff (s : S n) (x : Vec ℝ n) (loc : ℕ) :
-    (AtomicProposition.ofSet s).Holds x loc ↔ x ∈ construct s := by
+    (AtomicProposition.ofSet s).Holds x loc ↔ x ∈ toSet s := by
   refine ⟨fun h => h.2, fun h => ⟨?_, h⟩⟩
   simp [AtomicProposition.ofSet, AtomicProposition.containsLoc]
 

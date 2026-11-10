@@ -48,7 +48,7 @@ variable {n : ℕ}
 
 theorem Interval.log_exact (I : Interval (Vec ℝ n))
     (hI : ∀ i, 0 < I.inf i ∧ 0 < I.sup i) :
-    I.log.construct = (fun x i => Real.log (x i)) '' I.construct := by
+    I.log.toSet = (fun x i => Real.log (x i)) '' I.toSet := by
   exact Interval.monotoneImage_exact Real.log (Set.Ioi 0) Set.ordConnected_Ioi
     (Real.strictMonoOn_log) (Real.continuousOn_log.mono (fun x hx => ne_of_gt hx)) I (hI)
 

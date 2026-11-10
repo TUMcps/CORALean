@@ -60,10 +60,10 @@ variable {n : ℕ}
 by `U`, lies inside the step's own result evaluated at `postBox`. -/
 theorem PolyZonotope.post_evalOn (M : Mat ℝ n n) (X U : PolyZonotope (Vec ℝ n)) (o : ℕ)
     {B : Set (Fin X.p → ℝ)} (hB : ∀ a ∈ B, ∀ k, |a k| ≤ 1) : -- --- CONCL ---
-    (M *ᵥ ·) '' X.evalOn B + U.construct
+    (M *ᵥ ·) '' X.evalOn B + U.toSet
       ⊆ (((PolyZonotope.mtimes M X).plus U).reduce o).evalOn
         (PolyZonotope.postBox M X U o B) := by -- --- PROOF ---
-  have hplus : (M *ᵥ ·) '' X.evalOn B + U.construct
+  have hplus : (M *ᵥ ·) '' X.evalOn B + U.toSet
       ⊆ ((PolyZonotope.mtimes M X).plus U).evalOn
         (PolyZonotope.plusBox (PolyZonotope.mtimes M X) U B) := by
     rw [← PolyZonotope.mtimes_evalOn]

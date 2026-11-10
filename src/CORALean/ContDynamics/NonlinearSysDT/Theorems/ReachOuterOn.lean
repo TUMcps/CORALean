@@ -87,7 +87,7 @@ theorem NonlinearSysDT.reach_outer_on (sys : NonlinearSysDT n m) {U : S m} {o : 
     (steps : ℕ → sys.LinStep 𝕋 U) (R₀ : S n) {K : ℕ} {x : ℕ → Vec ℝ n} {u : ℕ → Vec ℝ m}
     {y : ℕ → Vec ℝ sys.q} (traj : sys.IsTrajectoryOn R₀ U K x u y)
     (hR : ∀ k < K, x k ∈ (steps k).R) : -- --- CONCL ---
-    ∀ k ≤ K, x k ∈ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) := by -- --- PROOF ---
+    ∀ k ≤ K, x k ∈ toSet (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) := by -- --- PROOF ---
   -- the induction is on the step count, one linearization spent per step
   intro k
   induction k with
@@ -98,7 +98,7 @@ theorem NonlinearSysDT.reach_outer_on (sys : NonlinearSysDT n m) {U : S m} {o : 
     rw [aux_reach_succ_eq]
     rw [traj.step k hkK]
     -- the certificate's whole job: `f(x,u) - A x` lies in the widened input
-    have hu : sys.f (x k) (u k) - toRealMat (steps k).A *ᵥ x k ∈ construct (steps k).linInput :=
+    have hu : sys.f (x k) (u k) - toRealMat (steps k).A *ᵥ x k ∈ toSet (steps k).linInput :=
       (steps k).linInput_outer (hR k hkK) (traj.input k hkK)
     have key := LinearSysDT.reach_one_outer (NonlinearSysDT.linearize (steps k).A) ho
       (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩ steps) (steps k).linInput (ih hkK.le) hu

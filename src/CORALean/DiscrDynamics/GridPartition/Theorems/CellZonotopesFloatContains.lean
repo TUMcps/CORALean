@@ -41,8 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem GridPartition.cellZonotopes_contains (P : GridPartition 𝕋 n) (cs : List ℕ) :
-    List.Forall₂ (fun S Z => S ⊆ Z.construct)
-      ((P.nominal.cellIntervals cs).map Real.Interval.construct) (P.cellZonotopes cs) := by
+    List.Forall₂ (fun S Z => S ⊆ Z.toSet)
+      ((P.nominal.cellIntervals cs).map Real.Interval.toSet) (P.cellZonotopes cs) := by
   -- each float box is contained in its zonotope
   rw [← GridPartition.cellIntervals_nominal, GridPartition.cellZonotopes, List.map_map,
     List.forall₂_map_left_iff, List.forall₂_map_right_iff]

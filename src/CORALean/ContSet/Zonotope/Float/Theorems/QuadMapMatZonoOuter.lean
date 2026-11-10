@@ -95,10 +95,10 @@ private theorem aux_quadMapMatZono_abs_le {x : Vec ℝ n} {Δ : Mat ℝ n n} {r 
 /-- [1, Thm. 1], at float zonotopes and interval-matrix centers. -/
 theorem Zonotope.quadMapMatZono_outer (D : Fin m → Interval (Mat 𝕋 n n))
     (K : Fin ν → Fin m → Mat 𝕋 n n) (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    {l : Vec ℝ m | ∃ x ∈ Z.construct, ∃ Dr : Fin m → Mat ℝ n n,
-        (∀ i, Dr i ∈ (D i).construct) ∧ ∃ β : Fin ν → ℝ, (∀ j, |β j| ≤ 1) ∧
+    {l : Vec ℝ m | ∃ x ∈ Z.toSet, ∃ Dr : Fin m → Mat ℝ n n,
+        (∀ i, Dr i ∈ (D i).toSet) ∧ ∃ β : Fin ν → ℝ, (∀ j, |β j| ≤ 1) ∧
         ∀ i, l i = x ⬝ᵥ ((Dr i + ∑ j, β j • toRealMat (K j i)) *ᵥ x)}
-      ⊆ (Z.quadMapMatZono D K).construct := by -- --- PROOF ---
+      ⊆ (Z.quadMapMatZono D K).toSet := by -- --- PROOF ---
   rintro l ⟨x, hx, Dr, hDr, β, hβ, hl⟩
   -- the three parts
   set qD : Vec ℝ m := Real.PolyZonotope.quadEval (fun i => toRealMat (D i).inf) x with hqD

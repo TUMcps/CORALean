@@ -81,7 +81,7 @@ theorem LinearSysDT.intervalObserverTransformed_outer (sys : LinearSysDT ℝ n) 
     (hstep : ∀ k, x (k + 1) = sys.A *ᵥ x k + sys.B *ᵥ u k + sys.E *ᵥ w k)
     (hy : ∀ k, y k = sys.C *ᵥ x k + sys.F *ᵥ v k) (k : ℕ) : -- --- CONCL ---
     x k ∈ (LinearSysDT.intervalObserverTransformed sys L S wl wu vl vu xl₀ xu₀ u y
-      k).construct := by -- --- PROOF ---
+      k).toSet := by -- --- PROOF ---
   set Z := LinearSysDT.intervalObserverCoord sys L S wl wu vl vu xl₀ xu₀ u y
   set R := S * (sys.A - L * sys.C) * S⁻¹
   set K := S * sys.E

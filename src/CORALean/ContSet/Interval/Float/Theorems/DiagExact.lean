@@ -38,12 +38,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.diag_exact (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
-    I.diag.construct = Matrix.diagonal '' I.construct := by -- --- PROOF ---
+    I.diag.toSet = Matrix.diagonal '' I.toSet := by -- --- PROOF ---
   have h : I.diag.nominal = Real.Interval.diag I.nominal := by
     unfold Interval.nominal Interval.diag Real.Interval.diag
     congr 1 <;> funext i j <;> by_cases hij : i = j <;>
       simp [RealImage.realImage, toRealMat, toRealVec, hij, Matrix.diagonal_apply_ne, toReal_zero]
-  show I.diag.nominal.construct = _
+  show I.diag.nominal.toSet = _
   rw [h]
   exact Real.Interval.diag_exact I.nominal
 

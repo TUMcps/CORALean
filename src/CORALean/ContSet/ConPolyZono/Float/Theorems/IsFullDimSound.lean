@@ -2,11 +2,11 @@ module
 
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.ConPolyZono.Float.Operations.IsFullDimWith
-public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEqUnit
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemToSetIffOfEqUnit
 public import CORALean.ContSet.Zonotope.Float.Theorems.BallCertReach
 public import Mathlib.Analysis.Normed.Module.FiniteDimension
 public import Mathlib.Topology.Algebra.Group.Pointwise
-public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemToSetIffOfEq
 
 @[expose] public section
 
@@ -68,8 +68,8 @@ private theorem ConPolyZono.aux_satisfies_zero {cPZ : ConPolyZono 𝕋 (Vec 𝕋
         (absolute (cPZ.cons.b_error i)) = true
       ∧ le (subUp (dotUp (cPZ.cons.A i) cPZ.zeroMonomials) (cPZ.cons.b i))
         (absolute (cPZ.cons.b_error i)) = true) : -- --- CONCL ---
-    (fun _ => 0) ∈ cPZ.cons.construct := by -- --- PROOF ---
-  refine (PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).mpr
+    (fun _ => 0) ∈ cPZ.cons.toSet := by -- --- PROOF ---
+  refine (PolyLevelSet.mem_toSet_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom).mpr
     ⟨fun _ => by simp, fun i => ?_⟩
   have hA : (toRealMat cPZ.cons.A *ᵥ Real.PolyZonotope.monomial cPZ.cons.R (fun _ => (0 : ℝ))) i
       = ∑ k, toReal (cPZ.cons.A i k) * toReal (cPZ.zeroMonomials k) := by
@@ -89,7 +89,7 @@ private theorem ConPolyZono.aux_satisfies_zero {cPZ : ConPolyZono 𝕋 (Vec 𝕋
 /-- The box of radius `B` around `y₀` lies in the nominal set. -/
 private theorem ConPolyZono.aux_box_subset {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cPZ.qI n}
     {B : 𝕋} (hc : Zonotope.ballCert (fun i j => cPZ.GI j i) H B one = true)
-    (hsat : (fun _ => 0) ∈ cPZ.cons.construct) {y₀ : Vec ℝ n}
+    (hsat : (fun _ => 0) ∈ cPZ.cons.toSet) {y₀ : Vec ℝ n}
     (hy₀ : ∀ i, y₀ i = toReal (cPZ.c i)
       + ∑ l, toReal (cPZ.G l i) * Real.PolyZonotope.monomial cPZ.E (fun _ => 0) l)
     (y : Vec ℝ n) (hy : ∀ i, |y i - y₀ i| ≤ toReal B) : -- --- CONCL ---
@@ -111,7 +111,7 @@ private theorem ConPolyZono.aux_box_subset {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)}
 
 theorem ConPolyZono.isFullDim_sound {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : Mat 𝕋 cPZ.qI n}
     (h : cPZ.isFullDimWith H = true) : -- --- CONCL ---
-    (interior cPZ.construct).Nonempty := by -- --- PROOF ---
+    (interior cPZ.toSet).Nonempty := by -- --- PROOF ---
   simp only [ConPolyZono.isFullDimWith, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   obtain ⟨⟨hc, hrows⟩, hE⟩ := h
@@ -131,7 +131,7 @@ theorem ConPolyZono.isFullDim_sound {cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)} {H : M
       exact this.le
   have hx : y₀ ∈ interior (nominalSet cPZ) :=
     interior_maximal hVsub hV fun i _ => by simpa [Metric.mem_ball] using hB
-  have he : (fun i => toReal (cPZ.I_error.inf i)) ∈ (I_error cPZ).construct := fun i =>
+  have he : (fun i => toReal (cPZ.I_error.inf i)) ∈ (I_error cPZ).toSet := fun i =>
     ⟨le_refl _, toReal_le_of_le (hE i)⟩
   exact ⟨_, subset_interior_add_left (Set.add_mem_add hx he)⟩
 

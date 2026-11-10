@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosu
 public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.LinCombOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PlusOuter
@@ -58,16 +58,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ProbZonotope.enclose_mean_outer (P : ProbZonotope 𝕋 n) (Ar : Mat 𝕋 n n) {η : ℕ}
     (hη : toReal (MatExp.normUpperBound (Interval.point Ar)) / ((η : ℝ) + 2) ≤ 1 / 2)
-    (Rtrans : Vec 𝕋 n) {μ : Vec ℝ n} (hμ : μ ∈ P.Z.construct) {a : ℝ}
+    (Rtrans : Vec 𝕋 n) {μ : Vec ℝ n} (hμ : μ ∈ P.Z.toSet) {a : ℝ}
     (ha : a ∈ Set.Icc (0 : ℝ) 1) : -- --- CONCL ---
     a • μ + (1 - a) • (NormedSpace.exp (toRealMat Ar) *ᵥ μ + toRealVec Rtrans)
-      ∈ (P.enclose Ar η Rtrans).Z.construct := by -- --- PROOF ---
+      ∈ (P.enclose Ar η Rtrans).Z.toSet := by -- --- PROOF ---
   -- `e^{Ar}` in its float enclosure, and `e^{Ar} - I` in the sum with the point `-I`
   have hE : NormedSpace.exp (toRealMat Ar)
-      ∈ (MatExp.expIntervalEnclosure (Interval.point Ar) η).construct :=
+      ∈ (MatExp.expIntervalEnclosure (Interval.point Ar) η).toSet :=
     MatExp.exp_mem_expIntervalEnclosure _ η (Interval.mem_point Ar) hη
   have hI : (-1 : Mat ℝ n n)
-      ∈ (Interval.point (diagonalBlock fun _ : Fin n => neg (one : 𝕋))).construct := by
+      ∈ (Interval.point (diagonalBlock fun _ : Fin n => neg (one : 𝕋))).toSet := by
     refine Interval.mem_mat_iff.mpr fun i j => ?_
     have e : toReal (diagonalBlock (fun _ : Fin n => neg (one : 𝕋)) i j)
         = (-1 : Mat ℝ n n) i j := by
@@ -79,13 +79,13 @@ theorem ProbZonotope.enclose_mean_outer (P : ProbZonotope 𝕋 n) (Ar : Mat 𝕋
   have hEI := Interval.matPlus_outer _ _ hE hI
   -- `(e^{Ar} - I) μ + Rtrans` in `Zaux`
   have hz : (NormedSpace.exp (toRealMat Ar) + -1) *ᵥ μ + toRealVec Rtrans
-      ∈ ((Zonotope.mtimesIntervalMat _ P.Z).plus (Zonotope.point Rtrans)).construct :=
+      ∈ ((Zonotope.mtimesIntervalMat _ P.Z).plus (Zonotope.point Rtrans)).toSet :=
     Zonotope.plus_outer _ _ (Set.add_mem_add
       (Zonotope.mtimesIntervalMat_outer _ P.Z (Set.mem_biUnion hEI ⟨μ, hμ, rfl⟩))
-      (by rw [Zonotope.construct_point]; rfl))
+      (by rw [Zonotope.toSet_point]; rfl))
   -- the segment from `0` to it in `deltaZ`
-  have h0 : (0 : Vec ℝ n) ∈ (Zonotope.point fun _ : Fin n => (zero : 𝕋)).construct := by
-    rw [Zonotope.construct_point]
+  have h0 : (0 : Vec ℝ n) ∈ (Zonotope.point fun _ : Fin n => (zero : 𝕋)).toSet := by
+    rw [Zonotope.toSet_point]
     funext i
     simp [toRealVec, toReal_zero]
   have hd := Zonotope.linComb_outer _ _ ⟨0, h0, _, hz, a, ha, rfl⟩

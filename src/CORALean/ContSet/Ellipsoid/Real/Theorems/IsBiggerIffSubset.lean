@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.IsBigger
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.EllipsoidNormLeOneIff
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
@@ -55,9 +55,9 @@ private theorem Ellipsoid.aux_quad_eq_norm_sq (E : Ellipsoid n) (v : Vec ℝ n) 
 
 theorem Ellipsoid.isBigger_iff_subset (E₁ E₂ : Ellipsoid n) (hr : E₁.rank = n) : -- --- CONCL ---
     E₁.isBigger E₂ ↔
-      (fun x => x - E₂.q) '' E₂.construct ⊆
-        (fun x => x - E₁.q) '' E₁.construct := by -- --- PROOF ---
-  rw [E₁.construct_eq_sqrt, E₂.construct_eq_sqrt]
+      (fun x => x - E₂.q) '' E₂.toSet ⊆
+        (fun x => x - E₁.q) '' E₁.toSet := by -- --- PROOF ---
+  rw [E₁.toSet_eq_sqrt, E₂.toSet_eq_sqrt]
   constructor
   · rintro h _ ⟨x, ⟨u, hu, rfl⟩, rfl⟩
     -- the centered point `p = G₂ u`
@@ -84,7 +84,7 @@ theorem Ellipsoid.isBigger_iff_subset (E₁ E₂ : Ellipsoid n) (hr : E₁.rank 
     have hle : p ⬝ᵥ w ≤ 1 := by nlinarith
     -- so the centered point is in `E₁ - q₁`
     refine ⟨E₁.q + p, ?_, add_sub_cancel_left _ _⟩
-    rw [← E₁.construct_eq_sqrt]
+    rw [← E₁.toSet_eq_sqrt]
     refine (E₁.ellipsoidNorm_le_one_iff hr p).mp ?_
     unfold Ellipsoid.ellipsoidNorm
     simp only

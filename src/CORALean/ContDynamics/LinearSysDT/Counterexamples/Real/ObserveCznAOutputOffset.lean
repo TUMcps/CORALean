@@ -58,7 +58,7 @@ theorem LinearSysDT.observeCznA_output_offset_counterexample : -- --- CONCL ---
     let y := C *ᵥ x₀ + kOut + v₀  -- `y = params.y(:,1)`, l. 44
     let Y := (ConZonotope.ofPoint y).plus (Zonotope.mtimes (-1) V).conZonotope  -- `y + ...`
     let R₁ := R₀.conZonotope.conIntersect Y C  -- `Rnext.tp = conIntersect(...)`, l. 45
-    x₀ ∈ R₀.construct ∧ v₀ ∈ V.construct ∧ x₀ ∉ R₁.construct := by -- --- PROOF ---
+    x₀ ∈ R₀.toSet ∧ v₀ ∈ V.toSet ∧ x₀ ∉ R₁.toSet := by -- --- PROOF ---
   intro C kOut R₀ V x₀ v₀ y Y R₁
   refine ⟨⟨fun _ => 0, by simp, by funext i; simp [R₀, x₀]⟩,
     ⟨fun _ => 0, by simp, by funext i; simp [V, v₀]⟩, fun h => ?_⟩

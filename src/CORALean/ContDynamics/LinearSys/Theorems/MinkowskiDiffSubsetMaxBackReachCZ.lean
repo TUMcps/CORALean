@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.MaxBackReachCZ
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.SupportBoundAttained
 public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeConZonotopeExact
 
@@ -54,13 +54,13 @@ variable {n : ℕ}
 /-- The exact eroded polytope holds every point of the difference, a subtrahend point attaining
 each row's support. -/
 theorem LinearSys.minkowskiDiff_subset_maxBackReachCZ
-    (ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.construct)
-      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
+    (ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.toSet)
+      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.toSet c)
     (Pr : HPolytope (Vec ℝ n)) (ZWr : Zonotope (Vec ℝ n))
-    (hPrb : Bornology.IsBounded Pr.dropEqs.construct)
+    (hPrb : Bornology.IsBounded Pr.dropEqs.toSet)
     (hker : ∀ (i : Fin Pr.me) (y : Vec ℝ n), Pr.Ae i y = 0) : -- --- CONCL ---
-    minkowskiDiff Pr.construct ZWr.construct ⊆
-      (LinearSys.maxBackReachCZ ρ Pr hPrb ZWr).construct := by -- --- PROOF ---
+    minkowskiDiff Pr.toSet ZWr.toSet ⊆
+      (LinearSys.maxBackReachCZ ρ Pr hPrb ZWr).toSet := by -- --- PROOF ---
   intro x hx
   unfold LinearSys.maxBackReachCZ
   rw [Real.HPolytope.conZonotope_exact]
@@ -72,7 +72,7 @@ theorem LinearSys.minkowskiDiff_subset_maxBackReachCZ
     show Pr.A i x ≤ Pr.b i - (ZWr.supportBound (Pr.A i)).val
     linarith
   · -- an equality row is blind to the subtrahend
-    have h := (hx _ (Real.Zonotope.center_mem_construct ZWr)).2 i
+    have h := (hx _ (Real.Zonotope.center_mem_toSet ZWr)).2 i
     rw [map_add, hker i ZWr.c] at h
     exact (add_zero _).symm.trans h
 

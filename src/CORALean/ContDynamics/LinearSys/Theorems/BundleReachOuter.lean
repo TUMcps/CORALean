@@ -86,13 +86,13 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- [1, Alg. 1]: `R_k` encloses the reachable set at every `t ∈ [t_k, t_{k+1}]`, `k ≤ N`. -/
 theorem LinearSys.bundleReach_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
     (Rh₀ : ZonoBundle (Vec ℝ n)) (Ri₀ : Zonotope (Vec ℝ n)) {r : ℝ} (hr : 0 ≤ r)
-    (hU : Bornology.IsBounded (construct U))
+    (hU : Bornology.IsBounded (toSet U))
     (hh : ∀ τ ∈ Set.Icc (0:ℝ) r,
-      (fun x => exp (τ • toRealMat sys.A) *ᵥ x) '' construct X₀ ⊆ Rh₀.construct)
-    (hi : ∀ τ ∈ Set.Icc (0:ℝ) r, sys.inputReach U τ ⊆ Ri₀.construct)
+      (fun x => exp (τ • toRealMat sys.A) *ᵥ x) '' toSet X₀ ⊆ Rh₀.toSet)
+    (hi : ∀ τ ∈ Set.Icc (0:ℝ) r, sys.inputReach U τ ⊆ Ri₀.toSet)
     {N k : ℕ} (hk : k ≤ N) {t : ℝ} (ht : t ∈ Set.Icc ((k : ℝ) * r) ((k + 1) * r)) : -- --- CONCL ---
     ∃ R, (sys.bundleReach Rh₀ Ri₀ r N)[k]? = some R
-      ∧ sys.reachSetExact (Set.Icc 0 t) X₀ U t ⊆ R.construct := by -- --- PROOF ---
+      ∧ sys.reachSetExact (Set.Icc 0 t) X₀ U t ⊆ R.toSet := by -- --- PROOF ---
   set A := toRealMat sys.A
   set E := exp (r • A)
   set step : ZonoBundle (Vec ℝ n) × Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n)
@@ -107,9 +107,9 @@ theorem LinearSys.bundleReach_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
   have hkr : ∀ k : ℕ, (0:ℝ) ≤ k * r := fun k => mul_nonneg (Nat.cast_nonneg k) hr
   -- the three invariants
   have hinv : ∀ k : ℕ, ∀ τ ∈ Set.Icc (0:ℝ) r,
-      (fun x => exp ((k * r + τ) • A) *ᵥ x) '' construct X₀ ⊆ (step^[k] s₀).1.construct
-      ∧ (fun y => exp ((k * r) • A) *ᵥ y) '' sys.inputReach U τ ⊆ (step^[k] s₀).2.1.construct
-      ∧ sys.inputReach U (k * r + τ) ⊆ (step^[k] s₀).2.2.construct := by
+      (fun x => exp ((k * r + τ) • A) *ᵥ x) '' toSet X₀ ⊆ (step^[k] s₀).1.toSet
+      ∧ (fun y => exp ((k * r) • A) *ᵥ y) '' sys.inputReach U τ ⊆ (step^[k] s₀).2.1.toSet
+      ∧ sys.inputReach U (k * r + τ) ⊆ (step^[k] s₀).2.2.toSet := by
     intro k
     induction k with
     | zero =>
@@ -130,9 +130,9 @@ theorem LinearSys.bundleReach_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
           exp_add_smul_eq_mul]
       -- the homogeneous part: one more `e^{Ar}`
       have h2 : (fun y => exp ((((k + 1 : ℕ) : ℝ) * r) • A) *ᵥ y) '' sys.inputReach U τ
-          ⊆ (step (step^[k] s₀)).2.1.construct := by
+          ⊆ (step (step^[k] s₀)).2.1.toSet := by
         rintro _ ⟨v, hv, rfl⟩
-        show _ ∈ ((step^[k] s₀).2.1.mtimes E).construct
+        show _ ∈ ((step^[k] s₀).2.1.mtimes E).toSet
         rw [← Zonotope.mtimes_exact]
         refine ⟨_, (ih τ hτ).2.1 ⟨v, hv, rfl⟩, ?_⟩
         simp only [hEk, Matrix.mulVec_mulVec]
@@ -147,7 +147,7 @@ theorem LinearSys.bundleReach_outer (sys : LinearSys 𝕋 n) (X₀ U : S n)
         rw [show (((k + 1 : ℕ) : ℝ) * r + τ) = τ + ((k + 1 : ℕ) : ℝ) * r by ring, hsep]
         rintro _ ⟨_, hw, v, hv, rfl⟩
         show _ ∈ ((step^[k] s₀).2.2.plus
-          ((step^[k] s₀).2.1.mtimes E).interval.zonotope).construct
+          ((step^[k] s₀).2.1.mtimes E).interval.zonotope).toSet
         rw [← Zonotope.plus_exact]
         refine ⟨v, ?_, _, (Zonotope.interval_contains _).trans (Interval.zonotope_contains _)
           (h2 hw), add_comm _ _⟩

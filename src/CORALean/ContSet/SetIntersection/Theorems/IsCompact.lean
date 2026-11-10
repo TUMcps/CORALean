@@ -39,15 +39,15 @@ variable {S α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] [ContSet S �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- An intersection of at least one compact member is compact. -/
-theorem SetIntersection.isCompact_construct {I : SetIntersection S}
+theorem SetIntersection.isCompact_toSet {I : SetIntersection S}
     (h : I.sets ≠ []) : -- --- CONCL ---
-    IsCompact (ContSet.construct I) := by -- --- PROOF ---
+    IsCompact (ContSet.toSet I) := by -- --- PROOF ---
   obtain ⟨s, hs⟩ := List.exists_mem_of_ne_nil _ h
   -- the closed intersection sits inside the compact member `s`
-  have hclosed : IsClosed (ContSet.construct I) :=
-    isClosed_biInter fun t _ => (CompactSet.isCompact_construct t).isClosed
-  exact (CompactSet.isCompact_construct s).of_isClosed_subset hclosed
-    (SetIntersection.construct_subset hs)
+  have hclosed : IsClosed (ContSet.toSet I) :=
+    isClosed_biInter fun t _ => (CompactSet.isCompact_toSet t).isClosed
+  exact (CompactSet.isCompact_toSet s).of_isClosed_subset hclosed
+    (SetIntersection.toSet_subset hs)
 
 end CORALean
 

@@ -125,7 +125,7 @@ the support *function* `ℓ^T c + √(ℓ^T Qℓ)` survives there. CORALean stat
 as printed, with the pseudo-inverse `Q⁺` for `Q^{-1}` and `x - c` confined to the range of `Q`
 ([`IsPinvQpinv.lean`](../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/IsPinvQpinv.lean)),
 which is the printed set whenever `Q` is invertible and the one CORA's `pinv`-based `contains_`
-tests otherwise. [`ConstructEqSqrt.lean`](../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/ConstructEqSqrt.lean)
+tests otherwise. [`ToSetEqSqrt.lean`](../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/ToSetEqSqrt.lean)
 shows it is `c + Q^{1/2}` applied to the unit ball, which is what the proofs use, and
 [`SupportBoundAttained.lean`](../../src/CORALean/ContSet/Ellipsoid/Real/Theorems/SupportBoundAttained.lean)
 carries the branch the printed support vector cannot: where `G^T ℓ` vanishes the center

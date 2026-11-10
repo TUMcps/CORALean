@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 private theorem Interval.aux_or_outer_refines (I₁ I₂ : Interval (Vec 𝕋 n)) : -- --- CONCL ---
-    (I₁.nominal.or I₂.nominal).construct ⊆ (I₁.or I₂).construct := by -- --- PROOF ---
+    (I₁.nominal.or I₂.nominal).toSet ⊆ (I₁.or I₂).toSet := by -- --- PROOF ---
   intro x hx i
   refine ⟨?_, ?_⟩
   · show toReal (minimum _ _) ≤ x i
@@ -55,7 +55,7 @@ private theorem Interval.aux_or_outer_refines (I₁ I₂ : Interval (Vec 𝕋 n)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.or_outer (I₁ I₂ : Interval (Vec 𝕋 n)) :
-    I₁.construct ∪ I₂.construct ⊆ (I₁.or I₂).construct :=
+    I₁.toSet ∪ I₂.toSet ⊆ (I₁.or I₂).toSet :=
   subset_trans (Real.Interval.or_outer I₁.nominal I₂.nominal) (Interval.aux_or_outer_refines I₁ I₂)
 
 end CORALean.Float

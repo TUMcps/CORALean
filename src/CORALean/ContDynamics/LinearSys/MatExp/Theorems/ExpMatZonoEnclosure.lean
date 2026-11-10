@@ -64,9 +64,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.exp_mem_expMatZonoEnclosure (M : Zonotope (Mat ℝ n n)) (η : ℕ)
-    {A : Mat ℝ n n} (hA : A ∈ M.construct)
+    {A : Mat ℝ n n} (hA : A ∈ M.toSet)
     (hε : ‖M.interval.absMax‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
-    exp A ∈ (MatExp.expMatZonoEnclosure M η).construct := by -- --- PROOF ---
+    exp A ∈ (MatExp.expMatZonoEnclosure M η).toSet := by -- --- PROOF ---
   have hnorm : ‖A‖ ≤ ‖M.interval.absMax‖ :=
     Interval.norm_le_absMax (Zonotope.interval_contains M hA)
   have hfrac : ‖A‖ / ((η : ℝ) + 2) ≤ ‖M.interval.absMax‖ / ((η : ℝ) + 2) := by gcongr
@@ -76,7 +76,7 @@ theorem MatExp.exp_mem_expMatZonoEnclosure (M : Zonotope (Mat ℝ n n)) (η : �
     le_trans (norm_exp_sub_expTaylor_le A η (lt_of_le_of_lt hfrac hε))
       (MatExp.expRemainderBound_mono η hnorm hε)
   have hrem : exp A - MatExp.expTaylor A η ∈ (MatExp.expMatZonoRemainder n
-      (MatExp.expRemainderBound M.interval.absMax η)).construct :=
+      (MatExp.expRemainderBound M.interval.absMax η)).toSet :=
     MatExp.mem_expMatZonoRemainder fun i j => le_trans (abs_entry_le_norm _ i j) htail
   have hmem := Set.add_mem_add (MatExp.expTaylor_mem_expMatZonoTaylor M hA η) hrem
   rw [Zonotope.plus_exact] at hmem

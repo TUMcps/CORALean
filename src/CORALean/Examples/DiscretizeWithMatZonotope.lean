@@ -60,7 +60,7 @@ noncomputable def DMZ.A0 : Mat ℝ 1 1 := exp ((1:ℝ) • toRealMat DMZ.sys.A)
 
 /-- `hε` is checked at `‖Δt • A‖`; `norm_absMax_ofPoint` carries it to the
 dominating matrix `expMatZonoEnclosure` states it at. -/
-theorem DMZ.A0_mem : DMZ.A0 ∈ construct DMZ.sysD.A :=
+theorem DMZ.A0_mem : DMZ.A0 ∈ toSet DMZ.sysD.A :=
   MatExp.exp_mem_expMatZonoEnclosure _ 0 (Zonotope.mem_ofPoint _)
     (by rw [Zonotope.norm_absMax_ofPoint]; exact DMZ.hε)
 
@@ -82,13 +82,13 @@ theorem DMZ.traj : DMZ.sysD.IsCanonicalTrajectory (S := 𝒵) DMZ.R0 DMZ.U
 
 /-- `reach_outer`, at the matrix zonotope `discretizeMatZonotope` produced. -/
 theorem DMZ.mem_reach {o : ℕ} (ho : 0 < o) (k : ℕ) :
-    DMZ.A0 ^ k *ᵥ DMZ.x0 ∈ construct (DMZ.sysD.reach (S := 𝒵) ⟨DMZ.R0, DMZ.U, 0, k⟩ ⟨o, ho⟩) :=
+    DMZ.A0 ^ k *ᵥ DMZ.x0 ∈ toSet (DMZ.sysD.reach (S := 𝒵) ⟨DMZ.R0, DMZ.U, 0, k⟩ ⟨o, ho⟩) :=
   DMZ.sysD.reach_outer (S := 𝒵) ho DMZ.R0 DMZ.U DMZ.traj k
 
 /-- `holds_of_reach`, closing the chain at whatever specification the caller
 checks the computed reachable set against. -/
 example (spec : Specification (Set (Vec ℝ 1))) {o : ℕ} (ho : 0 < o) (k : ℕ)
-    (h : spec.Holds (construct (DMZ.sysD.reach (S := 𝒵) ⟨DMZ.R0, DMZ.U, 0, k⟩ ⟨o, ho⟩))) :
+    (h : spec.Holds (toSet (DMZ.sysD.reach (S := 𝒵) ⟨DMZ.R0, DMZ.U, 0, k⟩ ⟨o, ho⟩))) :
     spec.Holds {DMZ.A0 ^ k *ᵥ DMZ.x0} :=
   DMZ.sysD.holds_of_reach (S := 𝒵) ho DMZ.R0 DMZ.U spec DMZ.traj k h
 

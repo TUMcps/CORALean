@@ -74,8 +74,8 @@ theorem HPolytope.ahPolytope_add_eq (x₁ x₂ : Vec ℝ n) (X₁ : Mat ℝ n n�
   have hH : ∀ (p₁ : Vec ℝ n₁) (p₂ : Vec ℝ n₂),
       Fin.append p₁ p₂ ∈ (HPolytope.ineqs (Matrix.of fun r k => Fin.addCases
         (fun r₁ => Fin.append (H₁ r₁) 0 k) (fun r₂ => Fin.append 0 (H₂ r₂) k) r)
-        (Fin.append h₁ h₂)).construct ↔
-      p₁ ∈ (HPolytope.ineqs H₁ h₁).construct ∧ p₂ ∈ (HPolytope.ineqs H₂ h₂).construct := by
+        (Fin.append h₁ h₂)).toSet ↔
+      p₁ ∈ (HPolytope.ineqs H₁ h₁).toSet ∧ p₂ ∈ (HPolytope.ineqs H₂ h₂).toSet := by
     intro p₁ p₂
     rw [HPolytope.mem_ineqs_iff, HPolytope.mem_ineqs_iff, HPolytope.mem_ineqs_iff,
       Fin.forall_fin_add]

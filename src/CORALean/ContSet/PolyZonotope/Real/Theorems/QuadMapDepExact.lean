@@ -4,7 +4,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadEval
 public import CORALean.ContSet.PolyZonotope.Real.Operations.QuadMapDep
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemToSet
 
 @[expose] public section
 
@@ -12,7 +12,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 # `quadMapDep` is exact where every coefficient is dependent
 
 The result is [1, Prop. 12], the case with no independent generators. `bilin_exact` at
-`quadBilin` is what `quadMapDep` is; this file adds the step from `point` to `construct`:
+`quadBilin` is what `quadMapDep` is; this file adds the step from `point` to `toSet`:
 with no independent block the two describe the same set. `quadEval Q x` is `quadBilin Q x x`
 definitionally. The empty independent block is a hypothesis here; `quadMap` supplies it by
 running `dependent` first.
@@ -54,15 +54,15 @@ variable {n m : ℕ}
 /-- Exact where every coefficient is dependent, which `quadMap` arranges. -/
 theorem PolyZonotope.quadMapDep_exact (Q : Fin m → Mat ℝ n n) (pZ : PolyZonotope (Vec ℝ n))
     (hq : pZ.q = 0) : -- --- CONCL ---
-    quadEval Q '' pZ.construct = (quadMapDep Q pZ).construct := by -- --- PROOF ---
+    quadEval Q '' pZ.toSet = (quadMapDep Q pZ).toSet := by -- --- PROOF ---
   -- with nothing independent the set is exactly the points, which is what `bilin_exact` pairs
-  have hc : pZ.construct = pZ.point '' {a : Fin pZ.p → ℝ | ∀ k, |a k| ≤ 1} := by
+  have hc : pZ.toSet = pZ.point '' {a : Fin pZ.p → ℝ | ∀ k, |a k| ≤ 1} := by
     apply Set.eq_of_subset_of_subset
     · intro x hx
       obtain ⟨a, ha, rfl⟩ := PolyZonotope.exists_point_of_q_zero pZ hq hx
       exact ⟨a, ha, rfl⟩
     · rintro _ ⟨a, ha, rfl⟩
-      exact PolyZonotope.point_mem_construct pZ ha
+      exact PolyZonotope.point_mem_toSet pZ ha
   rw [hc, ← Set.image_comp]
   exact PolyZonotope.bilin_exact (PolyZonotope.quadBilin Q) pZ pZ rfl
 

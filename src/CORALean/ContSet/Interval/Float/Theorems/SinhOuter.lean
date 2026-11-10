@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Interval.sinh_outer (p : ℕ) (I : Interval (Vec 𝕋 n))
     (hI : ∀ i, toReal (I.sup i) ≤ 2 ^ p / 2 ∧ -toReal (I.inf i) ≤ 2 ^ p / 2) :
-    (fun x i => Real.sinh (x i)) '' I.construct ⊆ (I.sinh p).construct := by
+    (fun x i => Real.sinh (x i)) '' I.toSet ⊆ (I.sinh p).toSet := by
   rintro _ ⟨x, hx, rfl⟩ i
   have hx' : toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i) := hx i
   exact ⟨le_trans (sinhDown_le p _ (hI i).2) (Real.sinh_le_sinh.2 hx'.1),

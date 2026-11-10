@@ -54,11 +54,11 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Layer.softplus_outer (β : 𝕋) (k nl kl : ℕ) (s : S n) (x : Vec ℝ n) (hx : x ∈ construct s)
+theorem Layer.softplus_outer (β : 𝕋) (k nl kl : ℕ) (s : S n) (x : Vec ℝ n) (hx : x ∈ toSet s)
     (hs : ∀ i, IsSoftplusBox β k nl ((Float.IntervalOuter.interval s).inf i)
       ((Float.IntervalOuter.interval s).sup i)) :
     (fun i => Real.softplus (toReal β) (x i)) ∈
-      construct ((Layer.softplus (S := S) (n := n) β k nl kl).enclose s) :=
+      toSet ((Layer.softplus (S := S) (n := n) β k nl kl).enclose s) :=
   Layer.activation_outer_where (softplusRelaxation_enclosesWhere β k nl kl) s x hx hs
 
 end CORALean

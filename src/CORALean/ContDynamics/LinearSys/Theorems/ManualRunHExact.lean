@@ -63,8 +63,8 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `Zonotope.ofPoint v`'s own set, read off `mem_ofPoint_iff` rather than membership alone. -/
-private theorem aux_construct_ofPoint {α : Type} [AddCommGroup α] [Module ℝ α] (v : α) :
-    (Zonotope.ofPoint v).construct = {v} :=
+private theorem aux_toSet_ofPoint {α : Type} [AddCommGroup α] [Module ℝ α] (v : α) :
+    (Zonotope.ofPoint v).toSet = {v} :=
   Set.ext fun x => (Zonotope.mem_ofPoint_iff v x).trans Set.mem_singleton_iff.symm
 
 
@@ -74,9 +74,9 @@ private theorem aux_construct_ofPoint {α : Type} [AddCommGroup α] [Module ℝ 
 precisely `e^{A t_k}·X₀`, Minkowski-shifted by `P^u(t_k)`. -/
 theorem LinearSys.manualRun_H_exact (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Vec ℝ n)) (Δt : ℝ)
     (η ρ : ℕ) (k : ℕ) : -- --- CONCL ---
-    construct (sys.manualRun X₀ U Δt η ρ k).H
+    toSet (sys.manualRun X₀ U Δt η ρ k).H
       = (fun x₀ => exp ((sys.manualRun X₀ U Δt η ρ k).t • toRealMat sys.A) *ᵥ x₀)
-          '' construct X₀ + {(sys.manualRun X₀ U Δt η ρ k).Pu} := by -- --- PROOF ---
+          '' toSet X₀ + {(sys.manualRun X₀ U Δt η ρ k).Pu} := by -- --- PROOF ---
   cases k with
   | zero =>
     simp only [LinearSys.manualRun, LinearSys.step_manualInit]
@@ -86,8 +86,8 @@ theorem LinearSys.manualRun_H_exact (sys : LinearSys 𝕋 n) (X₀ U : Zonotope 
     simp
   | succ k =>
     simp only [LinearSys.manualRun, LinearSys.manualStep]
-    show Zonotope.construct _ = _
-    rw [← Zonotope.plus_exact, ← Zonotope.mtimes_exact, aux_construct_ofPoint]
+    show Zonotope.toSet _ = _
+    rw [← Zonotope.plus_exact, ← Zonotope.mtimes_exact, aux_toSet_ofPoint]
     rfl
 
 end CORALean

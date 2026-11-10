@@ -45,14 +45,14 @@ variable [Mtimes (Mat ℝ) S] [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Location.inputSet_outer (ℓ : Location S G L 𝕋 n) {u : Vec ℝ ℓ.dynamics.m}
-    {w : Vec ℝ ℓ.dynamics.r} (hu : u ∈ construct ℓ.U) (hw : w ∈ construct ℓ.W) : -- --- CONCL ---
+    {w : Vec ℝ ℓ.dynamics.r} (hu : u ∈ toSet ℓ.U) (hw : w ∈ toSet ℓ.W) : -- --- CONCL ---
     toRealMat ℓ.dynamics.B *ᵥ u + toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w ∈
-      construct ℓ.inputSet := by -- --- PROOF ---
+      toSet ℓ.inputSet := by -- --- PROOF ---
   -- a real matrix is the singleton of itself, so `mtimes_outer` puts `M v` in `M V`
-  have hM : ∀ {d : ℕ} (M : Mat ℝ n d) (V : S d) (v : Vec ℝ d), v ∈ construct V →
-      M *ᵥ v ∈ construct (Mtimes.mtimes (𝕄 := Mat ℝ) M V) := fun M V v hv =>
+  have hM : ∀ {d : ℕ} (M : Mat ℝ n d) (V : S d) (v : Vec ℝ d), v ∈ toSet V →
+      M *ᵥ v ∈ toSet (Mtimes.mtimes (𝕄 := Mat ℝ) M V) := fun M V v hv =>
     Mtimes.mtimes_outer (𝕄 := Mat ℝ) M V
-      (Set.mem_biUnion (by simp [construct]) (Set.mem_image_of_mem _ hv))
+      (Set.mem_biUnion (by simp [toSet]) (Set.mem_image_of_mem _ hv))
   exact Plus.plus_outer _ _ (Set.add_mem_add
     (Plus.plus_outer _ _ (Set.add_mem_add (hM _ _ _ hu) (OfPoint.mem_ofPoint _))) (hM _ _ _ hw))
 

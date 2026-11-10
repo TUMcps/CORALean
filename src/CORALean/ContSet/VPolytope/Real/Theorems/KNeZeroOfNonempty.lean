@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.k_ne_zero_of_nonempty {P : VPolytope (Vec ℝ n)} (h : P.construct.Nonempty) :
+theorem VPolytope.k_ne_zero_of_nonempty {P : VPolytope (Vec ℝ n)} (h : P.toSet.Nonempty) :
     P.k ≠ 0 := by
   intro hk
   obtain ⟨x, β, -, hsum, -⟩ := h

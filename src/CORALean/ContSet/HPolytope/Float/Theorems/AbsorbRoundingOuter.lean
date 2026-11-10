@@ -3,7 +3,7 @@ module
 public import CORALean.Global.Float.ToRealMatMulVec
 public import CORALean.ContSet.HPolytope.Float.Operations.AbsorbRounding
 public import CORALean.ContSet.HPolytope.Float.Theorems.MulVecAppendLeft
-public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemToSet
 
 @[expose] public section
 
@@ -42,10 +42,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.absorbRounding_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    P.construct ⊆ P.absorbRounding.construct := by -- --- PROOF ---
+    P.toSet ⊆ P.absorbRounding.toSet := by -- --- PROOF ---
   intro x hx
-  obtain ⟨hA, hE⟩ := HPolytope.rows_of_mem_construct hx
-  rw [HPolytope.mem_construct_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)]
+  obtain ⟨hA, hE⟩ := HPolytope.rows_of_mem_toSet hx
+  rw [HPolytope.mem_toSet_iff (HPolytope.isErrFree_of_origin rfl rfl rfl)]
   refine ⟨Fin.addCases (fun i => ?_) fun k => ?_, fun i => i.elim0⟩
   · simp only [HPolytope.absorbRounding, HPolytope.mulVec_append_left, Fin.append_left]
     exact hA i

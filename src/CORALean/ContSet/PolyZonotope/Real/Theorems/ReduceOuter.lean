@@ -51,7 +51,7 @@ variable {n : ℕ}
 it bounds mean anything. Neither choice shows here: any ranking would discharge
 this line, and compaction contributes an equality. -/
 theorem PolyZonotope.reduce_outer (pZ : PolyZonotope (Vec ℝ n)) (o : ℕ) :
-    pZ.construct ⊆ (pZ.reduce o).construct :=
+    pZ.toSet ⊆ (pZ.reduce o).toSet :=
   (PolyZonotope.compact_exact pZ).subset.trans
     (PolyZonotope.reduceGirard_outer pZ.compact o)
 

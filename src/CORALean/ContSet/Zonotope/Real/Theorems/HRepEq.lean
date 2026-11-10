@@ -59,7 +59,7 @@ namespace CORALean.Real
 their cross products cut out. -/
 theorem Zonotope.hRep_eq {n : ℕ} (Z : Zonotope (Vec ℝ (n + 1)))
     (hspan : Submodule.span ℝ (Set.range Z.G) = ⊤) : -- --- CONCL ---
-    Z.construct = {x | ∀ S : Fin n → Fin Z.h,
+    Z.toSet = {x | ∀ S : Fin n → Fin Z.h,
       |Z.facetNormal S ⬝ᵥ (x - Z.c)| ≤ ∑ υ, |Z.facetNormal S ⬝ᵥ Z.G υ|} := by -- --- PROOF ---
   classical
   -- the generators span, so only `0` annihilates every one of them
@@ -80,7 +80,7 @@ theorem Zonotope.hRep_eq {n : ℕ} (Z : Zonotope (Vec ℝ (n + 1)))
   · -- the exhausting half, by contraposition: separate, then walk to an edge
     by_contra hxZ
     obtain ⟨f, u, hfZ, hfx⟩ :=
-      geometric_hahn_banach_closed_point Z.convex_construct Z.isClosed_construct hxZ
+      geometric_hahn_banach_closed_point Z.convex_toSet Z.isClosed_toSet hxZ
     set r : Vec ℝ (n + 1) := fun i => f fun j => if i = j then (1 : ℝ) else 0 with hr
     have hfr : ∀ y : Vec ℝ (n + 1), f y = y ⬝ᵥ r := by
       intro y
@@ -88,7 +88,7 @@ theorem Zonotope.hRep_eq {n : ℕ} (Z : Zonotope (Vec ℝ (n + 1)))
       rw [map_sum]
       exact Finset.sum_congr rfl fun i _ => by rw [map_smul, smul_eq_mul]
     -- the zonotope's own farthest point in the direction `r`
-    have hmem : Z.c + ∑ υ, (if 0 ≤ Z.G υ ⬝ᵥ r then (1 : ℝ) else -1) • Z.G υ ∈ Z.construct :=
+    have hmem : Z.c + ∑ υ, (if 0 ≤ Z.G υ ⬝ᵥ r then (1 : ℝ) else -1) • Z.G υ ∈ Z.toSet :=
       ⟨fun υ => if 0 ≤ Z.G υ ⬝ᵥ r then (1 : ℝ) else -1,
         fun υ => by by_cases h : 0 ≤ Z.G υ ⬝ᵥ r <;> simp [h], rfl⟩
     have hfar := hfZ _ hmem

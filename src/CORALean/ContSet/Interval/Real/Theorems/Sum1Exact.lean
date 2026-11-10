@@ -66,8 +66,8 @@ private theorem aux_exists_sum {ι : Type} [Fintype ι] {a b : ι → ℝ} (hab 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.sum₁_exact {I : Interval (Mat ℝ m n)} (hI : I.IsNonempty) : -- --- CONCL ---
-    I.sum₁.construct =
-      (fun A : Mat ℝ m n => fun j => ∑ i, A i j) '' I.construct := by -- --- PROOF ---
+    I.sum₁.toSet =
+      (fun A : Mat ℝ m n => fun j => ∑ i, A i j) '' I.toSet := by -- --- PROOF ---
   ext y
   constructor
   · intro hy

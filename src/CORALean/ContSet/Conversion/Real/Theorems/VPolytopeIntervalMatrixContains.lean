@@ -41,7 +41,7 @@ variable {m n : ℕ}
 
 /-- Every member of the matrix polytope lies in its interval matrix. -/
 theorem VPolytope.intervalMatrix_contains (P : VPolytope (Mat ℝ m n)) : -- --- CONCL ---
-    P.construct ⊆ P.intervalMatrix.construct := by -- --- PROOF ---
+    P.toSet ⊆ P.intervalMatrix.toSet := by -- --- PROOF ---
   intro x hx
   refine Interval.mem_mat_iff.mpr fun i j => ?_
   have hbddA : BddAbove (Set.range fun l => P.V l i j) := (Set.finite_range _).bddAbove

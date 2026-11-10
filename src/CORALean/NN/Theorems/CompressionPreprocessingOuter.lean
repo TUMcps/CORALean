@@ -81,12 +81,12 @@ instance of `Φ_org` at every point of `I_X`. -/
 theorem compressionPreprocessing_outer {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋} {fuel : ℕ}
     {R_relu : Relaxation 𝕋} (hR : R_relu.Encloses Real.relu) {hσ_relu : ∃ σ : ℝ → ℝ, R_relu.Encloses
         σ}
-    {n n₁ m : ℕ} {I_X : Interval (Vec 𝕋 n)} (hX : ∀ x ∈ I_X.construct, ∀ i, 0 ≤ x i)
+    {n n₁ m : ℕ} {I_X : Interval (Vec 𝕋 n)} (hX : ∀ x ∈ I_X.toSet, ∀ i, 0 ≤ x i)
     {L_1 : ReducedLinear 𝕋 n n₁} {L_2 : Relaxation 𝕋} {hσ_2 : ∃ σ : ℝ → ℝ, L_2.Encloses σ}
     {B_2 : MergeBuckets 𝕋} {rest : ReducibleNetwork 𝕋 n₁ m} {f : Vec ℝ n → Vec ℝ m}
     (hΦ : (ReducibleNetwork.cons L_1 L_2 hσ_2 B_2 rest).IsInstance f) {ρ : 𝕋} : -- --- CONCL ---
     ∀ Y ∈ compressionPreprocessing (S := S) le tol fuel R_relu hσ_relu I_X L_1 L_2 hσ_2 B_2 rest ρ,
-      f '' I_X.construct ⊆ construct Y := by -- --- PROOF ---
+      f '' I_X.toSet ⊆ toSet Y := by -- --- PROOF ---
   intro Y (hrun : compressionPreprocessing (S := S) le tol fuel R_relu hσ_relu I_X L_1 L_2 hσ_2 B_2
       rest ρ = some Y)
   cases hΦ with
@@ -113,7 +113,7 @@ theorem compressionPreprocessing_outer {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋
         funext i
         simp [toRealVec, toReal_zero]
       have h00 : ∀ k, (0 : Vec ℝ k) - toRealVec (fun _ : Fin k => (FloatOps.zero : 𝕋))
-          ∈ (Interval.point fun _ : Fin k => (FloatOps.zero : 𝕋)).construct := fun k => by
+          ∈ (Interval.point fun _ : Fin k => (FloatOps.zero : 𝕋)).toSet := fun k => by
         rw [hz k, sub_zero, ← hz k]
         exact Interval.mem_point _
       -- the identity kernel selects coordinates, and ReLU is the identity on an image
@@ -125,28 +125,28 @@ theorem compressionPreprocessing_outer {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋
         funext i
         simp [Real.relu, hX x hx i]
       -- line 2's look-ahead box holds `x`, so its bucket `B` holds `x`'s merged pixels
-      have hxI : x ∈ I_m1.construct := by
+      have hxI : x ∈ I_m1.toSet := by
         have h := (Layer.activation_encloses (S := ℐ𝒱[𝕋]) hR).enclose_outer _ _
           (Layer.linearWithError_mem (S := ℐ𝒱[𝕋])
             (diagonalBlock fun _ => FloatOps.one)
-            (Interval.construct_subset_nonemptyHull _ (h00 n)) I_X hx)
+            (Interval.toSet_subset_nonemptyHull _ (h00 n)) I_X hx)
         rwa [hId, hrelu] at h
       set w := x ∘ part.right
       have hw :
-          w ∈ (⟨I_m1.inf ∘ part.right, I_m1.sup ∘ part.right⟩ : Interval (Vec 𝕋 _)).construct :=
+          w ∈ (⟨I_m1.inf ∘ part.right, I_m1.sup ∘ part.right⟩ : Interval (Vec 𝕋 _)).toSet :=
         fun i => hxI (part.right i)
       -- and line 3's `H_{-2}` holds its surviving pixels
-      have hxl : x ∘ part.left ∈ construct (ofInterval (S := S)
+      have hxl : x ∘ part.left ∈ toSet (ofInterval (S := S)
           ((((ReducedLinear.identity (𝕋 := 𝕋) n).mergeRows part).toLayer
             (S := ℐ𝒱[𝕋])).enclose I_X)) := by
         apply ofInterval_outer
         have hc : (0 : Vec ℝ n) ∘ part.left
             - toRealVec ((ReducedLinear.identity (𝕋 := 𝕋) n).mergeRows part).b
-            ∈ ((ReducedLinear.identity (𝕋 := 𝕋) n).mergeRows part).I'.construct :=
+            ∈ ((ReducedLinear.identity (𝕋 := 𝕋) n).mergeRows part).I'.toSet :=
           fun i => h00 n (part.left i)
         have h := Layer.linearWithError_mem (S := ℐ𝒱[𝕋])
           ((ReducedLinear.identity (𝕋 := 𝕋) n).mergeRows part).W
-          (Interval.construct_subset_nonemptyHull _ hc) I_X hx
+          (Interval.toSet_subset_nonemptyHull _ hc) I_X hx
         have hW : toRealMat ((ReducedLinear.identity (𝕋 := 𝕋) n).mergeRows part).W
             = (1 : Mat ℝ n n).submatrix part.left id := by
           show (toRealMat (diagonalBlock fun _ : Fin n => (FloatOps.one : 𝕋))).submatrix _ _ = _
@@ -155,7 +155,7 @@ theorem compressionPreprocessing_outer {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋
       -- `Φ'_org` frozen at `w`: an instance whose bias at `L̂_1` is `c_1 + W_1(·,B) w`
       set W1 := toRealMat L_1.W
       have hc' : c1 + W1.submatrix id part.right *ᵥ w - toRealVec (L_1.mergeCols part I_m1).b
-          ∈ (L_1.mergeCols part I_m1).I'.construct := by
+          ∈ (L_1.mergeCols part I_m1).I'.toSet := by
         have hsplit : c1 + W1.submatrix id part.right *ᵥ w - toRealVec L_1.b
             = (c1 - toRealVec L_1.b) + W1.submatrix id part.right *ᵥ w := by abel
         show c1 + W1.submatrix id part.right *ᵥ w - toRealVec L_1.b ∈ _

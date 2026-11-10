@@ -69,7 +69,7 @@ theorem ParallelHybridAutomaton.IsStay.trajectoryWith [ExactScalar 𝕋]
   classical
   -- at each instant of the stay, the flow law's input and disturbance of the product
   have key : ∀ t, ∃ gw : Vec ℝ (F ℓ).m × Vec ℝ (F ℓ).r, t ∈ Set.Icc 0 τ →
-      gw.1 ∈ construct (U ℓ) ∧ gw.2 ∈ construct (W ℓ) ∧ ∀ i a,
+      gw.1 ∈ toSet (U ℓ) ∧ gw.2 ∈ toSet (W ℓ) ∧ ∀ i a,
         (toRealMat (F ℓ).A *ᵥ stack (fun i => x i t) + toRealMat (F ℓ).B *ᵥ gw.1 +
           toRealVec (F ℓ).c + toRealMat (F ℓ).E *ᵥ gw.2) (finSigmaFinEquiv ⟨i, a⟩) =
         (toRealMat (P.sys ℓ i).A *ᵥ x i t + toRealMat (P.sys ℓ i).B *ᵥ u i t +

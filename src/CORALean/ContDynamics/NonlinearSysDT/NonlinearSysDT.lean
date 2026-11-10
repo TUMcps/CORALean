@@ -53,8 +53,8 @@ structure NonlinearSysDT (n m : ℕ) where
 output follows `f` and `g`. -/
 structure NonlinearSysDT.IsTrajectory (sys : NonlinearSysDT n m) (R₀ : S n) (U : S m)
     (x : ℕ → Vec ℝ n) (u : ℕ → Vec ℝ m) (y : ℕ → Vec ℝ sys.q) : Prop where
-  init : x 0 ∈ construct R₀
-  input (k : ℕ) : u k ∈ construct U
+  init : x 0 ∈ toSet R₀
+  input (k : ℕ) : u k ∈ toSet U
   step (k : ℕ) : x (k + 1) = sys.f (x k) (u k)
   output (k : ℕ) : y k = sys.g (x k) (u k)
 
@@ -62,8 +62,8 @@ structure NonlinearSysDT.IsTrajectory (sys : NonlinearSysDT n m) (R₀ : S n) (U
 unconstrained, exactly as `LinearSysDT.IsCanonicalTrajectoryOn`'s are. -/
 structure NonlinearSysDT.IsTrajectoryOn (sys : NonlinearSysDT n m) (R₀ : S n) (U : S m)
     (K : ℕ) (x : ℕ → Vec ℝ n) (u : ℕ → Vec ℝ m) (y : ℕ → Vec ℝ sys.q) : Prop where
-  init : x 0 ∈ construct R₀
-  input (k : ℕ) (hk : k < K) : u k ∈ construct U
+  init : x 0 ∈ toSet R₀
+  input (k : ℕ) (hk : k < K) : u k ∈ toSet U
   step (k : ℕ) (hk : k < K) : x (k + 1) = sys.f (x k) (u k)
   output (k : ℕ) (hk : k < K) : y k = sys.g (x k) (u k)
 

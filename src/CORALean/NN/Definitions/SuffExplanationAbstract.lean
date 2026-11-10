@@ -60,7 +60,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval 
 def NeuralNetwork.IsSuffExplanationAbstract (nnAbs : NeuralNetwork S n m) (x : Vec ℝ n) (ε : ℝ)
     (E : Finset (Fin n)) (l : Fin m) : Prop :=
   (Specification.unsafeSet (misclassified m l)).Holds
-    (construct (nnAbs.enclose (ofInterval (explainBox x ε E))))
+    (toSet (nnAbs.enclose (ofInterval (explainBox x ε E))))
 
 end CORALean
 

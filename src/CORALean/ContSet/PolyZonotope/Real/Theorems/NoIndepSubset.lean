@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.NoIndepConstruct
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.NoIndepToSet
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemToSet
 
 @[expose] public section
 
@@ -37,10 +37,10 @@ namespace CORALean.Real
 
 /-- Inner: the dependent part is a subset of the set. -/
 theorem PolyZonotope.noIndep_subset {α : Type} [AddCommGroup α] [Module ℝ α]
-    (pZ : PolyZonotope α) : pZ.noIndep.construct ⊆ pZ.construct := by
-  rw [pZ.noIndep_construct]
+    (pZ : PolyZonotope α) : pZ.noIndep.toSet ⊆ pZ.toSet := by
+  rw [pZ.noIndep_toSet]
   rintro _ ⟨a, ha, rfl⟩
-  exact pZ.point_mem_construct ha
+  exact pZ.point_mem_toSet ha
 
 end CORALean.Real
 

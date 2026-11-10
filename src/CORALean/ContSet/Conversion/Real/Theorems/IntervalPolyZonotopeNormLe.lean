@@ -53,9 +53,9 @@ variable {n : ℕ}
 box is: a coordinate is a convex combination of its two ends. -/
 theorem Interval.polyZonotope_norm_le {I : Interval (Vec ℝ n)} {ε : ℝ} (hε : 0 ≤ ε)
     (hlo : ∀ i, |I.inf i| ≤ ε) (hhi : ∀ i, |I.sup i| ≤ ε) {y : Vec ℝ n}
-    (hy : y ∈ I.polyZonotope.construct) : -- --- CONCL ---
+    (hy : y ∈ I.polyZonotope.toSet) : -- --- CONCL ---
     ‖y‖ ≤ ε := by -- --- PROOF ---
-  have hz : y ∈ I.zonotope.construct := by
+  have hz : y ∈ I.zonotope.toSet := by
     rw [Zonotope.polyZonotope_exact]
     exact hy
   obtain ⟨β, hβ, rfl⟩ := hz

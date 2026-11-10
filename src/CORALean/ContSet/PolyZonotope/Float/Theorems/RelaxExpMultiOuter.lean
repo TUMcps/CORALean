@@ -103,7 +103,7 @@ private theorem PolyZonotope.aux_relaxGenMulti_gap (pZ : PolyZonotope (Vec 𝕋 
 private theorem PolyZonotope.aux_relaxExpMulti_nominal (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) : -- --- CONCL ---
     nominalSet pZ ⊆ nominalSet (pZ.relaxExpMulti part)
-      + (PolyZonotope.generatorError (pZ.step_relaxGapMulti part)).construct := by -- --- PROOF ---
+      + (PolyZonotope.generatorError (pZ.step_relaxGapMulti part)).toSet := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, β, ha, hβ, hxi⟩ := PolyZonotope.mem_nominalSet_iff.mp hx
   -- the width is a sum of naturals, and the drift bound is stated over its casts
@@ -186,7 +186,7 @@ private theorem PolyZonotope.aux_relaxExpMulti_nominal (pZ : PolyZonotope (Vec �
 columns, the summed width paying for every exponent that moves. -/
 theorem PolyZonotope.relaxExpMulti_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (part : Split (Fin pZ.h) into (Fin d) ⊕ (Fin 2)) : -- --- CONCL ---
-    pZ.construct ⊆ (pZ.relaxExpMulti part).construct := by -- --- PROOF ---
+    pZ.toSet ⊆ (pZ.relaxExpMulti part).toSet := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', g, hg, hsum⟩ := PolyZonotope.aux_relaxExpMulti_nominal pZ part hz
   refine ⟨z', hz', e + g, Interval.plus_outer _ _ ⟨e, he, g, hg, rfl⟩, ?_⟩

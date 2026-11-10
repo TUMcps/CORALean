@@ -64,7 +64,7 @@ instance {n : ℕ} : Reduce (PolyZonotope (Vec 𝕋 n)) (Vec ℝ n) where
 instance : Mtimes (Mat 𝕋) 𝒫𝒵[𝕋] where
   mtimes M pZ := (PolyZonotope.mtimes M pZ).materialise
   mtimes_outer M pZ := by
-    simp only [ContSet.construct_mat, Set.biUnion_singleton, PolyZonotope.materialise_eq]
+    simp only [ContSet.toSet_mat, Set.biUnion_singleton, PolyZonotope.materialise_eq]
     exact PolyZonotope.mtimes_outer M pZ
 
 /-- Exact, alone among the fields here: a relabelling moves stored floats and

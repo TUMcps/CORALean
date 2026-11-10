@@ -46,7 +46,7 @@ structure LinearSys.WithInput (𝕋 : Type) [Scalar 𝕋] (S : ℕ → Type)
     [∀ n, ContSet (S n) (Vec ℝ n)] (n : ℕ) where
   sys : LinearSys 𝕋 n
   U : S n
-  zero_mem_U : (0 : Vec ℝ n) ∈ construct U
+  zero_mem_U : (0 : Vec ℝ n) ∈ toSet U
 
 end CORALean
 

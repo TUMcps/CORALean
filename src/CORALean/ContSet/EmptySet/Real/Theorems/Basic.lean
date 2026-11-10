@@ -7,9 +7,9 @@ public import CORALean.ContSet.EmptySet.Real.Operations.HPolytope
 public import CORALean.ContSet.EmptySet.Real.Operations.IsBounded
 public import CORALean.ContSet.EmptySet.Real.Operations.Not
 public import CORALean.ContSet.Fullspace.Real.Instances
-public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructEmptySet
+public import CORALean.ContSet.HPolytope.Real.Theorems.ToSetEmptySet
 public import CORALean.ContSet.Interval.Real.Theorems.EmptyExact
-public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructEmptySet
+public import CORALean.ContSet.VPolytope.Real.Theorems.ToSetEmptySet
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 
 @[expose] public section
@@ -32,16 +32,6 @@ open ContSet
 variable {n m : ℕ}
 
 
--- ================================  `EmptySet.construct_empty`  ================================ --
--- Authors:       Claude Opus 5.5
--- Written:       01-October-2026
--- Last update:   ---
--- Reviewed:      ---
-
-/-- `EmptySet.empty` denotes `∅` -/
-theorem EmptySet.construct_empty : construct (EmptySet.empty n) = (∅ : Set (Vec ℝ n)) := rfl
-
-
 -- ================================  `EmptySet.hPolytope_exact`  ================================ --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
@@ -50,8 +40,8 @@ theorem EmptySet.construct_empty : construct (EmptySet.empty n) = (∅ : Set (Ve
 
 /-- `EmptySet.hPolytope` denotes the empty set -/
 theorem EmptySet.hPolytope_exact (E : EmptySet n) :
-    E.hPolytope.construct = construct E :=
-  HPolytope.construct_emptySet
+    E.hPolytope.toSet = toSet E :=
+  HPolytope.toSet_emptySet
 
 
 -- ================================  `EmptySet.interval_exact`  ================================= --
@@ -63,7 +53,7 @@ theorem EmptySet.hPolytope_exact (E : EmptySet n) :
 /-- For `0 < n`, as `Interval.empty_exact`: in dimension `0` a box with no coordinates contains the
 one point. -/
 theorem EmptySet.interval_exact (E : EmptySet n) (hn : 0 < n) :
-    E.interval.construct = construct E :=
+    E.interval.toSet = toSet E :=
   Interval.empty_exact hn
 
 
@@ -75,8 +65,8 @@ theorem EmptySet.interval_exact (E : EmptySet n) (hn : 0 < n) :
 
 /-- The `Bool` `EmptySet.isBounded` is `true` exactly when the set is bounded: exact. -/
 theorem EmptySet.isBounded_iff (F : EmptySet n) :
-    F.isBounded = true ↔ Bornology.IsBounded F.construct := by
-  simp [EmptySet.isBounded, EmptySet.construct]
+    F.isBounded = true ↔ Bornology.IsBounded F.toSet := by
+  simp [EmptySet.isBounded, EmptySet.toSet]
 
 
 -- ===================================  `EmptySet.not_exact`  =================================== --
@@ -86,7 +76,7 @@ theorem EmptySet.isBounded_iff (F : EmptySet n) :
 -- Reviewed:      ---
 
 /-- `EmptySet.not` is the complement -/
-theorem EmptySet.not_exact (E : EmptySet n) : E.not.construct = (E.construct)ᶜ := by
+theorem EmptySet.not_exact (E : EmptySet n) : E.not.toSet = (E.toSet)ᶜ := by
   change (Set.univ : Set (Vec ℝ n)) = (∅ : Set (Vec ℝ n))ᶜ
   exact Set.compl_empty.symm
 
@@ -104,6 +94,16 @@ theorem EmptySet.not_isFullDim (E : EmptySet n) : ¬ ContSet.IsFullDim E := by
   exact Set.not_nonempty_empty
 
 
+-- ==================================  `EmptySet.toSet_empty`  ================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `EmptySet.empty` denotes `∅` -/
+theorem EmptySet.toSet_empty : toSet (EmptySet.empty n) = (∅ : Set (Vec ℝ n)) := rfl
+
+
 -- ===================================  `EmptySet.volume_eq`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026
@@ -112,7 +112,7 @@ theorem EmptySet.not_isFullDim (E : EmptySet n) : ¬ ContSet.IsFullDim E := by
 
 /-- `0`, CORA's value, is the volume of `∅`. -/
 theorem EmptySet.volume_eq (E : EmptySet n) :
-    MeasureTheory.volume (construct E) = E.volume := by
+    MeasureTheory.volume (toSet E) = E.volume := by
   change MeasureTheory.volume (∅ : Set (Vec ℝ n)) = 0
   exact MeasureTheory.measure_empty
 
@@ -125,8 +125,8 @@ theorem EmptySet.volume_eq (E : EmptySet n) :
 
 /-- `EmptySet.vPolytope` denotes the empty set -/
 theorem EmptySet.vPolytope_exact (E : EmptySet n) :
-    E.vPolytope.construct = construct E :=
-  VPolytope.construct_emptySet
+    E.vPolytope.toSet = toSet E :=
+  VPolytope.toSet_emptySet
 
 end CORALean.Real
 

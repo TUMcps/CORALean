@@ -5,7 +5,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.AddSubMemNominalSet
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.InflateSubPosSemidef
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.IsPsdSound
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetOfFactor
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
@@ -59,8 +59,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 factor `r I` about the origin. -/
 private theorem Ellipsoid.aux_mem_ball {r : ℝ} (hr : 0 ≤ r) {e : Vec ℝ n}
     (he : ∑ i, e i ^ 2 ≤ r ^ 2) : -- --- CONCL ---
-    e ∈ (Real.Ellipsoid.ofFactor (r • (1 : Mat ℝ n n)) 0).construct := by -- --- PROOF ---
-  rw [Real.Ellipsoid.construct_ofFactor]
+    e ∈ (Real.Ellipsoid.ofFactor (r • (1 : Mat ℝ n n)) 0).toSet := by -- --- PROOF ---
+  rw [Real.Ellipsoid.toSet_ofFactor]
   rcases eq_or_lt_of_le hr with h0 | hpos
   · -- a ball of radius `0` is the origin, and so is `e`
     subst h0
@@ -99,7 +99,7 @@ private theorem Ellipsoid.aux_weights_admissible {β a c : ℝ} (hβ : 0 < β) (
 
 /-- `absorbRounding` contains the set. -/
 theorem Ellipsoid.absorbRounding_outer (k : ℕ) (E : Ellipsoid 𝕋 n) : -- --- CONCL ---
-    E.construct ⊆ (E.absorbRounding k).construct := by -- --- PROOF ---
+    E.toSet ⊆ (E.absorbRounding k).toSet := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   -- the box's point squared-sums to at most `ρ²`
   have hρ : ∑ i, e i ^ 2 ≤ toReal (sqSumUp E.I_error.normMag) :=
@@ -107,7 +107,7 @@ theorem Ellipsoid.absorbRounding_outer (k : ℕ) (E : Ellipsoid 𝕋 n) : -- ---
       have h := abs_le_max_abs_abs (Interval.mem_vec_iff.mp he j).1 (Interval.mem_vec_iff.mp he j).2
       rw [Interval.normMag, toReal_maximum, toReal_absolute, toReal_absolute]
       exact h
-  have h0 : (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).construct := by
+  have h0 : (0 : Vec ℝ n) ∈ (Interval.origin n : Interval (Vec 𝕋 n)).toSet := by
     rw [Interval.origin_exact]
     rfl
   unfold Ellipsoid.absorbRounding
@@ -157,24 +157,24 @@ theorem Ellipsoid.absorbRounding_outer (k : ℕ) (E : Ellipsoid 𝕋 n) : -- ---
       set A₁ : Real.Ellipsoid n := ⟨toRealMat E.Q, toRealVec E.q, hpsd'⟩
       set r := Real.sqrt (toReal ρ2)
       set A₂ := Real.Ellipsoid.ofFactor (r • (1 : Mat ℝ n n)) 0
-      have hy₁ : y ∈ A₁.construct := by
+      have hy₁ : y ∈ A₁.toSet := by
         have : (InflatedContSet.nominal E).ellipsoid = A₁ := Ellipsoid.nominal_of_psd hpsd'
         rw [← this]
         exact hy
-      have he₂ : e ∈ A₂.construct :=
+      have he₂ : e ∈ A₂.toSet :=
         Ellipsoid.aux_mem_ball (Real.sqrt_nonneg _) (by rw [Real.sq_sqrt hρ0]; exact hρ)
       -- the exact layer's enclosure of the sum at the scalings `√a`, `√c`
       have hsa : Real.sqrt (toReal a) ^ 2 = toReal a := Real.sq_sqrt ha0.le
       have hsc : Real.sqrt (toReal c) ^ 2 = toReal c := Real.sq_sqrt hc0.le
       set F := Real.Ellipsoid.plus (Real.sqrt (toReal a)) (Real.sqrt (toReal c)) A₁ A₂
-      have hyF : y + e ∈ F.construct :=
+      have hyF : y + e ∈ F.toSet :=
         Real.Ellipsoid.plus_outer _ _ A₁ A₂ (Real.sqrt_ne_zero'.mpr ha0)
           (Real.sqrt_ne_zero'.mpr hc0)
           (by rw [hsa, hsc]; exact Ellipsoid.aux_weights_admissible hβ ha hc)
           ⟨y, hy₁, e, he₂, rfl⟩
       -- the interval matrix holds `F.Q`, which the stored shape dominates
       have hX : F.Q ∈ (Interval.matPlus (Interval.smul a a (Interval.point E.Q))
-          ⟨diagonalBlock fun _ => mulDown c ρ2, diagonalBlock fun _ => mulUp c ρ2⟩).construct := by
+          ⟨diagonalBlock fun _ => mulDown c ρ2, diagonalBlock fun _ => mulUp c ρ2⟩).toSet := by
         refine Interval.matPlus_outer _ _ ?_ ?_
         · rw [hsa]
           exact Interval.smul_outer le_rfl le_rfl _ (Interval.mem_point E.Q)

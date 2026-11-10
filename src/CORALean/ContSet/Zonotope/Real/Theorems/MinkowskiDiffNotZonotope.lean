@@ -43,7 +43,7 @@ difference of two zonotopes is not a zonotope. -/
 theorem Zonotope.minkowskiDiff_not_zonotope : -- --- CONCL ---
     ∃ Zm Zs : Zonotope (Vec ℝ 3),
       ¬ ∃ Z : Zonotope (Vec ℝ 3),
-        minkowskiDiff Zm.construct Zs.construct = Z.construct := by -- --- PROOF ---
+        minkowskiDiff Zm.toSet Zs.toSet = Z.toSet := by -- --- PROOF ---
   classical
   set Gm : Fin 4 → Vec ℝ 3 := ![![1, 1, 1], ![1, 0, 0], ![0, 1, 0], ![0, 0, 1]] with hGm
   set Gs : Fin 4 → Vec ℝ 3 :=
@@ -55,7 +55,7 @@ theorem Zonotope.minkowskiDiff_not_zonotope : -- --- CONCL ---
   -- a point of the minuend, read off its three coordinates
   have hmemM : ∀ (y : Vec ℝ 3) (b0 b1 b2 b3 : ℝ), |b0| ≤ 1 → |b1| ≤ 1 → |b2| ≤ 1 →
       |b3| ≤ 1 → y 0 = b0 + b1 → y 1 = b0 + b2 → y 2 = b0 + b3 →
-      y ∈ ZM.construct := by
+      y ∈ ZM.toSet := by
     intro y b0 b1 b2 b3 h0 h1 h2 h3 e0 e1 e2
     refine ⟨![b0, b1, b2, b3], ?_, ?_⟩
     · intro j
@@ -69,13 +69,13 @@ theorem Zonotope.minkowskiDiff_not_zonotope : -- --- CONCL ---
   -- and of the subtrahend, at the coefficients `mu`
   have hmemS : ∀ mu : Fin 4 → ℝ, (∀ j, |mu j| ≤ 1) →
       (![(-mu 0 + mu 1) / 3, (mu 0 + mu 2) / 3, (mu 0 + mu 3) / 3] : Vec ℝ 3)
-        ∈ ZS.construct := by
+        ∈ ZS.toSet := by
     intro mu hmu
     refine ⟨mu, hmu, ?_⟩
     funext i
     fin_cases i <;> simp [ZS, hGs, Fin.sum_univ_four] <;> ring
   -- and the same reading of a point of the subtrahend, run backwards
-  have hdestS : ∀ z ∈ ZS.construct,
+  have hdestS : ∀ z ∈ ZS.toSet,
       ∃ mu : Fin 4 → ℝ, (∀ j, |mu j| ≤ 1) ∧ z 0 = (-mu 0 + mu 1) / 3 ∧
         z 1 = (mu 0 + mu 2) / 3 ∧ z 2 = (mu 0 + mu 3) / 3 := by
     intro z hz
@@ -91,7 +91,7 @@ theorem Zonotope.minkowskiDiff_not_zonotope : -- --- CONCL ---
       simp [ZS, hGs, Fin.sum_univ_four] at h
       linarith only [h]
   -- what a point of the difference must satisfy, once `mu` is chosen
-  have hread : ∀ x ∈ minkowskiDiff ZM.construct ZS.construct,
+  have hread : ∀ x ∈ minkowskiDiff ZM.toSet ZS.toSet,
       ∀ mu : Fin 4 → ℝ, (∀ j, |mu j| ≤ 1) →
       ∃ b : Fin 4 → ℝ, (∀ j, |b j| ≤ 1) ∧
         x 0 + (-mu 0 + mu 1) / 3 = b 0 + b 1 ∧
@@ -111,32 +111,32 @@ theorem Zonotope.minkowskiDiff_not_zonotope : -- --- CONCL ---
       simp [ZM, hGm, Fin.sum_univ_four] at h
       linarith only [h]
   -- `x₂ - x₁ ≤ 2/3`, the first of the four rows of [1, Thm. 2] the argument needs
-  have hC2 : ∀ x ∈ minkowskiDiff ZM.construct ZS.construct, x 1 - x 0 ≤ 2 / 3 := by
+  have hC2 : ∀ x ∈ minkowskiDiff ZM.toSet ZS.toSet, x 1 - x 0 ≤ 2 / 3 := by
     intro x hx
     obtain ⟨b, hb, e0, e1, -⟩ := hread x hx ![1, -1, 1, 0] (by intro j; fin_cases j <;> norm_num)
     norm_num [Matrix.cons_val_two, Matrix.cons_val_three, Matrix.vecHead, Matrix.vecTail] at e0 e1
     linarith only [e0, e1, (abs_le.mp (hb 1)).1, (abs_le.mp (hb 2)).2]
   -- `x₂ ≤ 4/3`, the row the face is cut out by
-  have hC3 : ∀ x ∈ minkowskiDiff ZM.construct ZS.construct, x 1 ≤ 4 / 3 := by
+  have hC3 : ∀ x ∈ minkowskiDiff ZM.toSet ZS.toSet, x 1 ≤ 4 / 3 := by
     intro x hx
     obtain ⟨b, hb, -, e1, -⟩ := hread x hx ![1, 0, 1, 0] (by intro j; fin_cases j <;> norm_num)
     norm_num [Matrix.cons_val_two, Matrix.cons_val_three, Matrix.vecHead, Matrix.vecTail] at e1
     linarith only [e1, (abs_le.mp (hb 0)).2, (abs_le.mp (hb 2)).2]
   -- `x₁ - x₃ ≤ 2/3`, the row that tilts the face
-  have hC4 : ∀ x ∈ minkowskiDiff ZM.construct ZS.construct, x 0 - x 2 ≤ 2 / 3 := by
+  have hC4 : ∀ x ∈ minkowskiDiff ZM.toSet ZS.toSet, x 0 - x 2 ≤ 2 / 3 := by
     intro x hx
     obtain ⟨b, hb, e0, -, e2⟩ := hread x hx ![-1, 1, 0, -1] (by intro j; fin_cases j <;> norm_num)
     norm_num [Matrix.cons_val_two, Matrix.cons_val_three, Matrix.vecHead, Matrix.vecTail] at e0 e2
     linarith only [e0, e2, (abs_le.mp (hb 1)).2, (abs_le.mp (hb 3)).1]
   -- `x₃ ≤ 4/3`, the last of the four
-  have hC5 : ∀ x ∈ minkowskiDiff ZM.construct ZS.construct, x 2 ≤ 4 / 3 := by
+  have hC5 : ∀ x ∈ minkowskiDiff ZM.toSet ZS.toSet, x 2 ≤ 4 / 3 := by
     intro x hx
     obtain ⟨b, hb, -, -, e2⟩ := hread x hx ![1, 0, 0, 1] (by intro j; fin_cases j <;> norm_num)
     norm_num [Matrix.cons_val_two, Matrix.cons_val_three, Matrix.vecHead, Matrix.vecTail] at e2
     linarith only [e2, (abs_le.mp (hb 0)).2, (abs_le.mp (hb 3)).2]
   -- three points of the face `x₂ = 4/3`
   have hA : (![2 / 3, 4 / 3, 0] : Vec ℝ 3) ∈
-      minkowskiDiff ZM.construct ZS.construct := by
+      minkowskiDiff ZM.toSet ZS.toSet := by
     intro z hz
     obtain ⟨mu, hmu, e0, e1, e2⟩ := hdestS z hz
     have m0 := abs_le.mp (hmu 0)
@@ -162,7 +162,7 @@ theorem Zonotope.minkowskiDiff_not_zonotope : -- --- CONCL ---
       rw [e2]; ring
   -- the second of the three, one edge along from the first
   have hB : (![2 / 3, 4 / 3, 4 / 3] : Vec ℝ 3) ∈
-      minkowskiDiff ZM.construct ZS.construct := by
+      minkowskiDiff ZM.toSet ZS.toSet := by
     intro z hz
     obtain ⟨mu, hmu, e0, e1, e2⟩ := hdestS z hz
     have m0 := abs_le.mp (hmu 0)
@@ -188,7 +188,7 @@ theorem Zonotope.minkowskiDiff_not_zonotope : -- --- CONCL ---
       rw [e2]; ring
   -- and the corner of the face
   have hD : (![4 / 3, 4 / 3, 4 / 3] : Vec ℝ 3) ∈
-      minkowskiDiff ZM.construct ZS.construct := by
+      minkowskiDiff ZM.toSet ZS.toSet := by
     intro z hz
     obtain ⟨mu, hmu, e0, e1, e2⟩ := hdestS z hz
     have m0 := abs_le.mp (hmu 0)
@@ -214,7 +214,7 @@ theorem Zonotope.minkowskiDiff_not_zonotope : -- --- CONCL ---
       rw [e2]; ring
   -- were the difference a zonotope, that face would be symmetric about a point
   rintro ⟨Z, hZ⟩
-  have hbnd : ∀ x ∈ Z.construct, (LinearMap.proj 1 : Vec ℝ 3 →ₗ[ℝ] ℝ) x ≤ 4 / 3 := by
+  have hbnd : ∀ x ∈ Z.toSet, (LinearMap.proj 1 : Vec ℝ 3 →ₗ[ℝ] ℝ) x ≤ 4 / 3 := by
     intro x hx
     rw [← hZ] at hx
     exact hC3 x hx

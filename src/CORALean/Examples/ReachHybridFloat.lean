@@ -31,15 +31,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n r : ℕ} {
 example {HA : HybridAutomaton 𝒵[𝕋] 𝒵[𝕋] L 𝕋 n}
     {R : L → Zonotope (Vec 𝕋 n)}
     (hinv : HA.IsInvariant R) (spec : Specification (Set (Vec ℝ n))) {ℓ ℓ' : L}
-    {x y : Vec ℝ n} (run : HA.IsRun ℓ x ℓ' y) (hx : x ∈ construct (R ℓ))
-    (h : spec.Holds (construct (R ℓ'))) : spec.Holds {y} :=
+    {x y : Vec ℝ n} (run : HA.IsRun ℓ x ℓ' y) (hx : x ∈ toSet (R ℓ))
+    (h : spec.Holds (toSet (R ℓ'))) : spec.Holds {y} :=
   HA.holds_of_isInvariant hinv spec run hx h
 
 /-- The same, checked: the invariant at the location the run ends in, against a box. -/
 example {HA : HybridAutomaton 𝒵[𝕋] 𝒵[𝕋] L 𝕋 n}
     {R : L → Zonotope (Vec 𝕋 n)}
     (hinv : HA.IsInvariant R) (spec : Specification (Interval (Vec 𝕋 n))) {ℓ ℓ' : L}
-    {x y : Vec ℝ n} (run : HA.IsRun ℓ x ℓ' y) (hx : x ∈ construct (R ℓ)) :
+    {x y : Vec ℝ n} (run : HA.IsRun ℓ x ℓ' y) (hx : x ∈ toSet (R ℓ)) :
     spec.check (R ℓ') → (spec.Holds {y}) :=
   HybridAutomaton.holds_of_check hinv spec run hx
 

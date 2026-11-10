@@ -47,8 +47,8 @@ variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.I
 
 /-- Every cell containing a point of `X` is among `intersectingCellsOf P X`. -/
 theorem GridPartition.intersectingCellsOf_outer (P : GridPartition n) (X : S n) (hn : n ≠ 0)
-    {c : ℕ} (h1 : 1 ≤ c) (h2 : c ≤ P.nrOfCells) {x : Vec ℝ n} (hx : x ∈ construct X)
-    (hxc : x ∈ (P.cellInterval c).construct) : c ∈ P.intersectingCellsOf X :=
+    {c : ℕ} (h1 : 1 ≤ c) (h2 : c ≤ P.nrOfCells) {x : Vec ℝ n} (hx : x ∈ toSet X)
+    (hxc : x ∈ (P.cellInterval c).toSet) : c ∈ P.intersectingCellsOf X :=
   GridPartition.intersectingCells_outer P _ hn h1 h2 (Real.IntervalOuter.interval_outer X hx) hxc
 
 end CORALean

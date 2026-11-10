@@ -47,7 +47,7 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 /-- Reach for this to say where a run *is*; reach for `reachSetExact_subset_isInvariant`
 to say what encloses it. -/
 theorem HybridAutomaton.IsRun.reachSetExact_outer {HA : HybridAutomaton S G L 𝕋 n} {R₀ : S n}
-    {ℓ₀ ℓ : L} {x y : Vec ℝ n} (run : HA.IsRun ℓ₀ x ℓ y) (hx : x ∈ construct R₀) :
+    {ℓ₀ ℓ : L} {x y : Vec ℝ n} (run : HA.IsRun ℓ₀ x ℓ y) (hx : x ∈ toSet R₀) :
     y ∈ HA.reachSetExact R₀ ℓ₀ ℓ :=
   ⟨x, hx, run⟩
 

@@ -11,7 +11,7 @@ public import Mathlib.Algebra.Order.Star.Real
 
 CORA's `generators` returns a matrix `G` with `G Gᵀ = Q`: `U sqrt(D) sqrt(D)ᵀ Uᵀ = U D Uᵀ = Q`,
 the eigenvalues of the positive semi-definite `Q` being nonnegative. Exact for the shape matrix,
-and so for the set: `construct_eq_of_factor` makes the image of the unit ball under this matrix
+and so for the set: `toSet_eq_of_factor` makes the image of the unit ball under this matrix
 the ellipsoid itself.
 
 ## Inputs

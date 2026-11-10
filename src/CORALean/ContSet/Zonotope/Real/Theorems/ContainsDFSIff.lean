@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.ContainsDFS
-public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
+public import CORALean.ContSet.Zonotope.Real.Theorems.ToSetEqConvexHullCorner
 public import CORALean.Global.CoeffNormBallEq
 public import Mathlib.Data.List.GetD
 public import Mathlib.Data.List.NodupEquivFin
@@ -248,7 +248,7 @@ end Search
 theorem Zonotope.containsDFS_iff [FiniteDimensional ℝ E] (Z : Zonotope (Vec ℝ n))
     (H : E →ₗ[ℝ] Vec ℝ n) (hH : Function.Surjective H) (d : Vec ℝ n) : -- --- CONCL ---
     Z.containsDFS H d = true ↔
-      Z.construct ⊆ {x | ∃ β : E, ‖β‖ ≤ 1 ∧ x = d + H β} := by -- --- PROOF ---
+      Z.toSet ⊆ {x | ∃ β : E, ‖β‖ ≤ 1 ∧ x = d + H β} := by -- --- PROOF ---
   classical
   set nrm := coeffNorm H with hnrm
   have hadd : ∀ x y, nrm (x + y) ≤ nrm x + nrm y := fun x y => coeffNorm_add_le H (hH x) (hH y)
@@ -307,9 +307,9 @@ theorem Zonotope.containsDFS_iff [FiniteDimensional ℝ E] (Z : Zonotope (Vec �
     refine (hadd _ _).trans ?_
     rw [hsmul, hsmul, abs_of_nonneg ha, abs_of_nonneg hc]
     nlinarith
-  have hsub : Z.construct ⊆ {x | ∃ β : E, ‖β‖ ≤ 1 ∧ x = d + H β} ↔
+  have hsub : Z.toSet ⊆ {x | ∃ β : E, ‖β‖ ≤ 1 ∧ x = d + H β} ↔
       ∀ s, nrm (Z.corner s - d) ≤ 1 := by
-    rw [hcirc, Z.construct_eq_convexHull_corner]
+    rw [hcirc, Z.toSet_eq_convexHull_corner]
     constructor
     · exact fun h s => h (subset_convexHull ℝ _ ⟨s, rfl⟩)
     · exact fun h => convexHull_min (by rintro _ ⟨s, rfl⟩; exact h s) hconv

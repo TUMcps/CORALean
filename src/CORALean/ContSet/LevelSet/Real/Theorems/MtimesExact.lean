@@ -29,7 +29,7 @@ variable {n : ℕ}
 open Matrix in
 theorem LevelSet.mtimes_exact (M : Mat ℝ n n) (hM : IsUnit M.det)
     (L : LevelSet n) : -- --- CONCL ---
-    (L.mtimes M).construct = (M *ᵥ ·) '' L.construct := by -- --- PROOF ---
+    (L.mtimes M).toSet = (M *ᵥ ·) '' L.toSet := by -- --- PROOF ---
   ext y
   constructor
   · intro h

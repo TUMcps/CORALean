@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemToSet
 
 @[expose] public section
 
@@ -51,7 +51,7 @@ theorem PolyZonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {pZ : PolyZo
       (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1) ∧ ∀ i, x i = toReal (pZ.c i)
         + (∑ l, toReal (pZ.G l i) * Real.PolyZonotope.monomial pZ.E a l)
         + ∑ j, toReal (pZ.GI j i) * β j :=
-  Real.PolyZonotope.mem_construct_iff
+  Real.PolyZonotope.mem_toSet_iff
 
 end CORALean.Float
 

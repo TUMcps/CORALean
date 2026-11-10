@@ -1921,8 +1921,8 @@ report "$out"
 # `<Dir>/<Dir>.lean` name, does not reach), declares no `theorem`/`lemma`, and no operation, a
 # computable-or-not `def` (not an `abbrev` or an `instance`) returning data, that nothing else in
 # the file is stated with: a `def` the file's other declarations mention is the type's own
-# vocabulary (`construct`, `IsTrajectory`, the input a run is stated with), one nothing in the file
-# mentions is an operation and goes to `Operations/`. The exempt names are `construct`, `nominal…`,
+# vocabulary (`toSet`, `IsTrajectory`, the input a run is stated with), one nothing in the file
+# mentions is an operation and goes to `Operations/`. The exempt names are `toSet`, `nominal…`,
 # `toReal…`, `containsReal`, `IsTrajectory…`; a `def` returning `Prop`, `Set` or a `Type` is a
 # meaning. Out of scope: `Global/` and `Examples/`, which are not class roots, and
 # `Interfaces.lean`, whose operation classes are #135's. There is no list.
@@ -1957,7 +1957,7 @@ function flush(   i, j, k, short, refs, pat, s) {
   for (i = 1; i <= nd; i++) {
     if (dk[i] == "theorem") { report(file "::" dn[i], dl[i], "a " dk[i] " `" dn[i] "` in a main-type file"); continue }
     short = dn[i]; sub(/^.*[.]/, "", short)
-    if (short == "construct" || short ~ /^nominal/ || short ~ /^toReal/ || short == "containsReal" || short ~ /^IsTrajectory/) continue
+    if (short == "toSet" || short ~ /^nominal/ || short ~ /^toReal/ || short == "containsReal" || short ~ /^IsTrajectory/) continue
     if (!dd[i]) continue
     pat = "(^|[^A-Za-z0-9_\x27])" short "([^A-Za-z0-9_\x27]|$)"
     refs = 0

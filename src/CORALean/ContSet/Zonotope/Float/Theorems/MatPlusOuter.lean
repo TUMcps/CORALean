@@ -42,9 +42,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.matPlus_outer (Z₁ Z₂ : Zonotope (Mat 𝕋 m n)) : -- --- CONCL ---
-    Z₁.construct + Z₂.construct ⊆ (Zonotope.matPlus Z₁ Z₂).construct := by -- --- PROOF ---
+    Z₁.toSet + Z₂.toSet ⊆ (Zonotope.matPlus Z₁ Z₂).toSet := by -- --- PROOF ---
   rintro _ ⟨_, ⟨a, ha, e, he, rfl⟩, _, ⟨b, hb, f, hf, rfl⟩, rfl⟩
-  have hab : a + b ∈ (CORALean.Real.Zonotope.plus Z₁.nominal Z₂.nominal).construct := by
+  have hab : a + b ∈ (CORALean.Real.Zonotope.plus Z₁.nominal Z₂.nominal).toSet := by
     rw [← CORALean.Real.Zonotope.plus_exact]
     exact Set.add_mem_add ha hb
   -- the exact sum's generators are the stored ones, read as reals
@@ -61,7 +61,7 @@ theorem Zonotope.matPlus_outer (Z₁ Z₂ : Zonotope (Mat 𝕋 m n)) : -- --- CO
         toRealMat]
       exact ⟨le_rfl, le_rfl⟩
   -- the nominal sum rounded, the two boxes added
-  have hmem : a + b + (e + f) ∈ (Zonotope.matPlus Z₁ Z₂).construct :=
+  have hmem : a + b + (e + f) ∈ (Zonotope.matPlus Z₁ Z₂).toSet :=
     Zonotope.ofEntryBoundsMat_outer
       (CORALean.Real.Zonotope.plus Z₁.nominal Z₂.nominal) (Interval.matPlus Z₁.I_error Z₂.I_error)
       (cLo := fun i j => addDown (Z₁.c i j) (Z₂.c i j))

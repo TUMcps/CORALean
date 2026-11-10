@@ -43,8 +43,8 @@ variable [ContSet N (Vec ℝ n)] [InflatedContSet S N (Vec 𝕋 n) (Vec ℝ n)]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem isCompact_construct [CompactSet N (Vec ℝ n)] (s : S) : IsCompact (construct s) :=
-  IsCompact.add (CompactSet.isCompact_construct (nominal s)) (I_error s).nominal.isCompact_construct
+theorem isCompact_toSet [CompactSet N (Vec ℝ n)] (s : S) : IsCompact (toSet s) :=
+  IsCompact.add (CompactSet.isCompact_toSet (nominal s)) (I_error s).nominal.isCompact_toSet
 
 end CORALean.Float.InflatedContSet
 

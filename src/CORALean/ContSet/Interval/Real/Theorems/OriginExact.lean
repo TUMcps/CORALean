@@ -36,7 +36,7 @@ open Entrywise
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.origin_exact (n : ℕ) : -- --- CONCL ---
-    (Interval.origin n).construct = {0} := by -- --- PROOF ---
+    (Interval.origin n).toSet = {0} := by -- --- PROOF ---
   ext x
   constructor
   · intro hx

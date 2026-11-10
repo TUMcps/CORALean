@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.ConZonotope.Real.Operations.Mtimes
 public import CORALean.ContSet.ConZonotope.Real.Operations.Project
 public import CORALean.ContSet.ConZonotope.Real.Operations.RepresentsaEmptySet
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ToSetEqImage
 public import CORALean.ContSet.ConZonotope.Real.Theorems.IsCompact
 public import CORALean.ContSet.ConZonotope.Real.Theorems.MapExact
 
@@ -29,17 +29,17 @@ open Matrix
 variable {n m : ℕ} {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 
 
--- =============================  `ConZonotope.isClosed_construct`  ============================= --
+-- ===============================  `ConZonotope.isClosed_toSet`  =============================== --
 -- Authors:       Claude Opus 5
 -- Written:       01-September-2026
 -- Last update:   04-September-2026
 -- Reviewed:      ---
 
 /-- Read off compactness. The halfspace description behind `domain` is closed on its
-own, but `construct` is an image of it, and an image of a merely closed set need
+own, but `toSet` is an image of it, and an image of a merely closed set need
 not be closed. -/
-theorem ConZonotope.isClosed_construct (cZ : ConZonotope α) : IsClosed cZ.construct :=
-  cZ.isCompact_construct.isClosed
+theorem ConZonotope.isClosed_toSet (cZ : ConZonotope α) : IsClosed cZ.toSet :=
+  cZ.isCompact_toSet.isClosed
 
 
 -- ===============================  `ConZonotope.mtimes_eq_map`  ================================ --
@@ -62,7 +62,7 @@ theorem ConZonotope.mtimes_eq_map (M : Mat ℝ m n) (cZ : ConZonotope (Vec ℝ n
 /-- `map_exact` at `A *ᵥ ·`, which is the case reachability runs: the constraints
 are on the coefficients and a linear map of the ambient space never sees them. -/
 theorem ConZonotope.mtimes_exact {n m : ℕ} (M : Mat ℝ m n) (cZ : ConZonotope (Vec ℝ n)) :
-    (M *ᵥ ·) '' cZ.construct = (ConZonotope.mtimes M cZ).construct :=
+    (M *ᵥ ·) '' cZ.toSet = (ConZonotope.mtimes M cZ).toSet :=
   ConZonotope.map_exact (Matrix.mulVecLin M) cZ
 
 
@@ -75,7 +75,7 @@ theorem ConZonotope.mtimes_exact {n m : ℕ} (M : Mat ℝ m n) (cZ : ConZonotope
 /-- Reading the same coordinates of every member, no hypothesis on `dims`: a linear map is exact
 without injectivity, so nothing is added and nothing lost. -/
 theorem ConZonotope.project_exact (cZ : ConZonotope (Vec ℝ n)) (dims : Fin m → Fin n) :
-    (fun x k => x (dims k)) '' cZ.construct = (cZ.project dims).construct :=
+    (fun x k => x (dims k)) '' cZ.toSet = (cZ.project dims).toSet :=
   ConZonotope.map_exact (LinearMap.funLeft ℝ ℝ dims) cZ
 
 end
@@ -94,8 +94,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- A constrained zonotope is empty iff its coefficient polytope is -/
 theorem ConZonotope.representsa_emptySet_iff (cZ : ConZonotope α) :
-    cZ.construct = ∅ ↔ cZ.representsa_emptySet := by
-  rw [ConZonotope.construct_eq_image, ConZonotope.representsa_emptySet]
+    cZ.toSet = ∅ ↔ cZ.representsa_emptySet := by
+  rw [ConZonotope.toSet_eq_image, ConZonotope.representsa_emptySet]
   exact Set.image_eq_empty
 
 end

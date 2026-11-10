@@ -52,7 +52,7 @@ private theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n)
     (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     (toRealMat M *ᵥ ·) '' nominalSet cPZ ⊆
       nominalSet (ConPolyZono.mtimes M cPZ)
-        + (ConPolyZono.mtimesResidual M cPZ).construct := by -- --- PROOF ---
+        + (ConPolyZono.mtimesResidual M cPZ).toSet := by -- --- PROOF ---
   -- the exact product of a column with row `i` of `M`, and what its stored rounding is short
   set ex : Vec 𝕋 n → Fin k → ℝ := fun g i => ∑ r, toReal (M i r) * toReal (g r)
   set gap : Vec 𝕋 n → Fin k → ℝ := fun g i => ex g i - toReal (mulVecDown M g i)
@@ -60,14 +60,14 @@ private theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n)
   obtain ⟨a, β, ha, hβ, hsat, hx⟩ := ConPolyZono.mem_nominalSet_iff.mp hx'
   have hres : (fun i => gap cPZ.c i)
       ∈ (Interval.residual (mulVecDown M cPZ.c) (mulVecUp M cPZ.c)
-          (mulVecDown M cPZ.c)).construct :=
+          (mulVecDown M cPZ.c)).toSet :=
     Interval.sub_mem_residual (fun i => ⟨dotDown_le (M i) cPZ.c, le_dotUp (M i) cPZ.c⟩)
   -- the two generator blocks' shortfalls, each bounded by a coefficient inside `[-1,1]`
   have hdepBox : (fun i => ∑ l, gap (cPZ.G l) i * Real.PolyZonotope.monomial cPZ.E a l)
-      ∈ (PolyZonotope.generatorError (matMulDiff M fun i l => cPZ.G l i)).construct :=
+      ∈ (PolyZonotope.generatorError (matMulDiff M fun i l => cPZ.G l i)).toSet :=
     PolyZonotope.mem_generatorError_monomial (PolyZonotope.matMul_close M cPZ.G) ha
   have hindBox : (fun i => ∑ j, gap (cPZ.GI j) i * β j)
-      ∈ (PolyZonotope.generatorError (matMulDiff M fun i j => cPZ.GI j i)).construct :=
+      ∈ (PolyZonotope.generatorError (matMulDiff M fun i j => cPZ.GI j i)).toSet :=
     PolyZonotope.mem_generatorError (PolyZonotope.matMul_close M cPZ.GI) hβ
   refine ⟨fun i => toReal ((ConPolyZono.mtimes M cPZ).c i)
             + (∑ l : Fin cPZ.h, toReal ((ConPolyZono.mtimes M cPZ).G l i)
@@ -101,8 +101,8 @@ private theorem ConPolyZono.aux_mtimes_nominal (M : Mat 𝕋 k n)
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
 private theorem ConPolyZono.aux_mtimes_error (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    (toRealMat M *ᵥ ·) '' (I_error cPZ).construct + (ConPolyZono.mtimesResidual M cPZ).construct ⊆
-      (I_error (ConPolyZono.mtimes M cPZ)).construct :=
+    (toRealMat M *ᵥ ·) '' (I_error cPZ).toSet + (ConPolyZono.mtimesResidual M cPZ).toSet ⊆
+      (I_error (ConPolyZono.mtimes M cPZ)).toSet :=
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M cPZ.I_error))
     (Interval.plus_outer _ _)
 
@@ -110,7 +110,7 @@ private theorem ConPolyZono.aux_mtimes_error (M : Mat 𝕋 k n) (cPZ : ConPolyZo
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.mtimes_outer (M : Mat 𝕋 k n) (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    (toRealMat M *ᵥ ·) '' cPZ.construct ⊆ (ConPolyZono.mtimes M cPZ).construct :=
+    (toRealMat M *ᵥ ·) '' cPZ.toSet ⊆ (ConPolyZono.mtimes M cPZ).toSet :=
   map_subset (fun x y => Matrix.mulVec_add _ x y)
     (ConPolyZono.aux_mtimes_nominal M cPZ) (ConPolyZono.aux_mtimes_error M cPZ)
 

@@ -40,7 +40,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 theorem PolyZonotope.replaceId_subset (pZ : PolyZonotope α) {p' : ℕ}
     (f : Fin pZ.p → Fin p') : -- --- CONCL ---
-    (pZ.replaceId f).construct ⊆ pZ.construct := by -- --- PROOF ---
+    (pZ.replaceId f).toSet ⊆ pZ.toSet := by -- --- PROOF ---
   rintro _ ⟨a', β, ha', hβ, rfl⟩
   refine ⟨fun k => a' (f k), β, fun k => ha' (f k), hβ, ?_⟩
   -- the renamed dependent part is the original's at the composite

@@ -27,7 +27,7 @@ candidate, so it is no longer than `x_iter`.
 * `xiter` – maximizer of [1, Eq. 22] given the columns found so far
 
 ## Hypotheses
-* `hc` – `c ∈ P.construct`
+* `hc` – `c ∈ P.toSet`
 * `hε` – `0 ≤ ε`
 * `hεφ` – `ε < φ`
 * `hfeas` – `xiter` is perpendicular to `B` and completes a point of `P`
@@ -93,27 +93,27 @@ private theorem aux_proj {r : ℕ} {B : Fin r → Vec ℝ n} (horth : ∀ i j, i
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.affineHullBasis_spec (P : HPolytope (Vec ℝ n)) (c : Vec ℝ n)
-    (hc : c ∈ P.construct) {ε φ : ℝ} (hε : 0 ≤ ε) (hεφ : ε < φ)
+    (hc : c ∈ P.toSet) {ε φ : ℝ} (hε : 0 ≤ ε) (hεφ : ε < φ)
     (xiter : (r : ℕ) → (Fin r → Vec ℝ n) → Vec ℝ n)
     (hfeas : ∀ r B, (∀ i, B i ⬝ᵥ xiter r B = 0) ∧
-      ∃ v ∈ Submodule.span ℝ (Set.range B), c + xiter r B + v ∈ P.construct)
+      ∃ v ∈ Submodule.span ℝ (Set.range B), c + xiter r B + v ∈ P.toSet)
     (hopt : ∀ r (B : Fin r → Vec ℝ n) (x : Vec ℝ n), (∀ i, B i ⬝ᵥ x = 0) →
-      (∃ v ∈ Submodule.span ℝ (Set.range B), c + x + v ∈ P.construct) →
+      (∃ v ∈ Submodule.span ℝ (Set.range B), c + x + v ∈ P.toSet) →
         min ‖x‖ φ ≤ ‖xiter r B‖) : -- --- CONCL ---
     (∀ i j, i ≠ j → (HPolytope.affineHullBasis ε xiter n 0 Fin.elim0).2 i ⬝ᵥ
         (HPolytope.affineHullBasis ε xiter n 0 Fin.elim0).2 j = 0) ∧
       (∀ i, (HPolytope.affineHullBasis ε xiter n 0 Fin.elim0).2 i ≠ 0) ∧
       (∀ i, (HPolytope.affineHullBasis ε xiter n 0 Fin.elim0).2 i ∈
-        Submodule.span ℝ ((· - c) '' P.construct)) ∧
-      ∀ z ∈ P.construct, ∃ v ∈ Submodule.span ℝ
+        Submodule.span ℝ ((· - c) '' P.toSet)) ∧
+      ∀ z ∈ P.toSet, ∃ v ∈ Submodule.span ℝ
         (Set.range (HPolytope.affineHullBasis ε xiter n 0 Fin.elim0).2),
           ‖z - c - v‖ ≤ ε := by -- --- PROOF ---
-  set S := Submodule.span ℝ ((· - c) '' P.construct) with hS
+  set S := Submodule.span ℝ ((· - c) '' P.toSet) with hS
   -- the loop, from any state of the invariant with `r + fuel = n` steps in all
   suffices key : ∀ fuel r (B : Fin r → Vec ℝ n), aux_Inv S r B → r + fuel = n →
       aux_Inv S (HPolytope.affineHullBasis ε xiter fuel r B).1
         (HPolytope.affineHullBasis ε xiter fuel r B).2 ∧
-      ∀ z ∈ P.construct, ∃ v ∈ Submodule.span ℝ
+      ∀ z ∈ P.toSet, ∃ v ∈ Submodule.span ℝ
         (Set.range (HPolytope.affineHullBasis ε xiter fuel r B).2), ‖z - c - v‖ ≤ ε by
     obtain ⟨⟨h1, h2, h3⟩, h4⟩ := key n 0 Fin.elim0
       ⟨fun i => i.elim0, fun i => i.elim0, fun i => i.elim0⟩ (zero_add n)

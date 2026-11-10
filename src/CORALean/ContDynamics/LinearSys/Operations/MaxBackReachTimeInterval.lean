@@ -62,14 +62,14 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- [1, Alg. 3] line 14: `R̂^{∃∀}(-τ)`, the union of the `ω` iterations' inner
 approximated time-interval solutions. -/
 noncomputable def LinearSys.maxBackReachTimeInterval (sys : LinearSys 𝕋 n)
-    (ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.construct)
-      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
-    (P₁ P₂ : HPolytope (Vec ℝ n)) (hP₁ : Bornology.IsBounded P₁.dropEqs.construct)
-    (hP₂ : Bornology.IsBounded P₂.dropEqs.construct) (U W₀ : Zonotope (Vec ℝ n))
+    (ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.toSet)
+      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.toSet c)
+    (P₁ P₂ : HPolytope (Vec ℝ n)) (hP₁ : Bornology.IsBounded P₁.dropEqs.toSet)
+    (hP₂ : Bornology.IsBounded P₂.dropEqs.toSet) (U W₀ : Zonotope (Vec ℝ n))
     (Zw : ℝ → Zonotope (Vec ℝ n)) (t₀ tend : ℝ) (η ω : ℕ) : Set (Vec ℝ n) :=
   -- 1. Δt ← (t_end - t₀)/ω
   let Δt := (tend - t₀) / ω
-  ⋃ k < ω, (sys.maxBackReachRun ρ P₁ P₂ hP₁ hP₂ U W₀ Zw t₀ Δt η (k + 1)).R.construct
+  ⋃ k < ω, (sys.maxBackReachRun ρ P₁ P₂ hP₁ hP₂ U W₀ Zw t₀ Δt η (k + 1)).R.toSet
 
 end CORALean
 

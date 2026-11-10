@@ -71,9 +71,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 `supportCounterexample` at `j = k` or `j = k + 1` is an `IsCanonicalTrajectory` on `[0, t_{k+1}]`
 whose state at `t_j` has `ℓ x > f`. -/
 theorem LinearSys.supportCounterexample_violates (sys : LinearSys 𝕋 n) (R₀ U : S n)
-    (hU : Bornology.IsBounded (construct U)) {Δt : ℝ} (hΔt : 0 < Δt)
-    {ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} (hν₀ : ∀ d, ν₀ d ∈ construct R₀)
-    (hνU : ∀ d, νU d ∈ construct U) {c : Vec ℝ n}
+    (hU : Bornology.IsBounded (toSet U)) {Δt : ℝ} (hΔt : 0 < Δt)
+    {ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} (hν₀ : ∀ d, ν₀ d ∈ toSet R₀)
+    (hνU : ∀ d, νU d ∈ toSet U) {c : Vec ℝ n}
     (hc : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, d c ≤ d (νU d)) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) {f : ℝ} {k : ℕ}
     (hf : f < (sys.supportLower Δt ν₀ νU c ℓ (k + 1)).ρRτ) : -- --- CONCL ---
     ∃ j, (j = k ∨ j = k + 1) ∧
@@ -84,14 +84,14 @@ theorem LinearSys.supportCounterexample_violates (sys : LinearSys 𝕋 n) (R₀ 
       f < ℓ (sys.closedForm (sys.supportCounterexample Δt ν₀ νU ℓ j).1
         (LinearSys.heldInput Δt (sys.supportCounterexample Δt ν₀ νU ℓ j).2)
         (j * Δt)) := by -- --- PROOF ---
-  have hv : ∀ j i, (sys.supportCounterexample Δt ν₀ νU ℓ j).2 i ∈ construct U :=
+  have hv : ∀ j i, (sys.supportCounterexample Δt ν₀ νU ℓ j).2 i ∈ toSet U :=
     fun _ _ => hνU _
   have hreach : ∀ j, ℓ (sys.closedForm (sys.supportCounterexample Δt ν₀ νU ℓ j).1
       (LinearSys.heldInput Δt (sys.supportCounterexample Δt ν₀ νU ℓ j).2) (j * Δt))
       = (sys.supportLower Δt ν₀ νU c ℓ j).ρR := fun j => by
     rw [sys.closedForm_heldInput hU hΔt _ (hv j) j]
     exact sys.heldSim_supportCounterexample Δt ν₀ νU c ℓ j
-  have hx₀ : ∀ j, (sys.supportCounterexample Δt ν₀ νU ℓ j).1 ∈ construct R₀ := fun _ => hν₀ _
+  have hx₀ : ∀ j, (sys.supportCounterexample Δt ν₀ νU ℓ j).1 ∈ toSet R₀ := fun _ => hν₀ _
   have htraj := fun j => sys.isTrajectory_heldInput R₀ U hU
     (mul_nonneg (k + 1 : ℕ).cast_nonneg hΔt.le) Δt (hx₀ j) (hv j)
   have hle := sys.supportLower_timeInterval_le Δt ν₀ νU hc ℓ k

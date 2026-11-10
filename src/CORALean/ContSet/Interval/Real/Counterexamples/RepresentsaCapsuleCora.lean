@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Capsule.Real.Capsule
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemToSetIff
 public import CORALean.Global.EuclideanNorm
 public import Mathlib.Algebra.BigOperators.Fin
 public import Mathlib.Tactic.FinCases
@@ -119,9 +119,9 @@ def Interval.step_unitSquare : Interval (Vec ℝ 2) := ⟨![0, 0], ![1, 1]⟩
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 private theorem Interval.aux_mem_unitSquare (x : Vec ℝ 2) : -- --- CONCL ---
-    x ∈ Interval.step_unitSquare.construct ↔
+    x ∈ Interval.step_unitSquare.toSet ↔
       (0 ≤ x 0 ∧ x 0 ≤ 1) ∧ (0 ≤ x 1 ∧ x 1 ≤ 1) := by -- --- PROOF ---
-  unfold Interval.construct Interval.step_unitSquare
+  unfold Interval.toSet Interval.step_unitSquare
   simp only [Set.mem_setOf_eq]
   constructor
   · intro h
@@ -155,9 +155,9 @@ private theorem Interval.aux_lines (g0 g1 d0 d1 : ℝ) (h1 : d0 * g0 = 1) (h2 : 
 
 /-- No capsule is the unit square. -/
 private theorem Interval.aux_unitSquare_not_capsule (C : Capsule 2) : -- --- CONCL ---
-    C.construct ≠ Interval.step_unitSquare.construct := by -- --- PROOF ---
+    C.toSet ≠ Interval.step_unitSquare.toSet := by -- --- PROOF ---
   intro h
-  have hmem : ∀ x : Vec ℝ 2, x ∈ C.construct ↔
+  have hmem : ∀ x : Vec ℝ 2, x ∈ C.toSet ↔
       (0 ≤ x 0 ∧ x 0 ≤ 1) ∧ (0 ≤ x 1 ∧ x 1 ≤ 1) := fun x => by
     rw [h]; exact Interval.aux_mem_unitSquare x
   -- every point of the capsule has a parameter `t` with squared distance `≤ r²`
@@ -239,10 +239,10 @@ private theorem Interval.aux_face_unique {k : ℕ} (a u v : Fin k → ℝ) (q1 :
 
 /-- No ellipsoid is the unit square. -/
 private theorem Interval.aux_unitSquare_not_ellipsoid (E : Ellipsoid 2) : -- --- CONCL ---
-    E.construct ≠ Interval.step_unitSquare.construct := by -- --- PROOF ---
+    E.toSet ≠ Interval.step_unitSquare.toSet := by -- --- PROOF ---
   intro h
   -- membership in the ellipsoid is membership in the square
-  have hmem : ∀ x : Vec ℝ 2, x ∈ E.construct ↔
+  have hmem : ∀ x : Vec ℝ 2, x ∈ E.toSet ↔
       (0 ≤ x 0 ∧ x 0 ≤ 1) ∧ (0 ≤ x 1 ∧ x 1 ≤ 1) := fun x => by
     rw [h]; exact Interval.aux_mem_unitSquare x
   -- a point of the ellipsoid, coordinatewise
@@ -256,7 +256,7 @@ private theorem Interval.aux_unitSquare_not_ellipsoid (E : Ellipsoid 2) : -- ---
     rw [← norm₂_sq]
     nlinarith [norm₂_nonneg u]
   -- the corners `(0,0)`, `(1,0)`, `(0,1)` have preimages `u`, `v`, `u'`
-  rw [E.construct_eq_sqrt] at hmem
+  rw [E.toSet_eq_sqrt] at hmem
   obtain ⟨u, hu, hxu⟩ := (hmem ![0, 0]).mpr (by simp)
   obtain ⟨v, hv, hxv⟩ := (hmem ![1, 0]).mpr (by simp)
   obtain ⟨u', hu', hxu'⟩ := (hmem ![0, 1]).mpr (by simp)
@@ -317,8 +317,8 @@ private theorem Interval.aux_unitSquare_not_ellipsoid (E : Ellipsoid 2) : -- ---
 theorem Interval.representsa_capsule_cora_counterexample : -- --- CONCL ---
     Interval.step_unitSquare.representsaCapsuleCora = true ∧
       Interval.step_unitSquare.representsaEllipsoidCora = true ∧
-      (∀ C : Capsule 2, C.construct ≠ Interval.step_unitSquare.construct) ∧
-      (∀ E : Ellipsoid 2, E.construct ≠ Interval.step_unitSquare.construct) := by -- --- PROOF ---
+      (∀ C : Capsule 2, C.toSet ≠ Interval.step_unitSquare.toSet) ∧
+      (∀ E : Ellipsoid 2, E.toSet ≠ Interval.step_unitSquare.toSet) := by -- --- PROOF ---
   have hrad : ∀ i, Interval.step_unitSquare.radius i = 1 / 2 := by
     intro i
     fin_cases i <;> simp [Interval.radius, Interval.step_unitSquare]

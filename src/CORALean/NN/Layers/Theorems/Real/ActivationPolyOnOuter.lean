@@ -6,7 +6,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyRealOfFn
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemToSet
 public import CORALean.ContSet.Conversion.Float.Theorems.ConPolyZonoPolyZonotopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalPolyZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ConPolyZonoPolyZonotopeContains
@@ -70,10 +70,10 @@ private theorem aux_coord (P : LayerRelaxation ℝ n m) (J : Float.Interval (Vec
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Layer.activationPolyOn_outer {P : LayerRelaxation ℝ n m} (hP : ∀ i, (P i).Encloses σ)
-    (J : Interval (Vec ℝ n)) (s : 𝒫𝒵 n) {x : Vec ℝ n} (hx : x ∈ construct s)
-    (hJ : x ∈ J.construct) : -- --- CONCL ---
-    (fun i => σ (x i)) ∈ construct ((Layer.activationPolyOn P J).enclose s) := by -- --- PROOF ---
-  have hxd : x ∈ s.dependent.construct := by
+    (J : Interval (Vec ℝ n)) (s : 𝒫𝒵 n) {x : Vec ℝ n} (hx : x ∈ toSet s)
+    (hJ : x ∈ J.toSet) : -- --- CONCL ---
+    (fun i => σ (x i)) ∈ toSet ((Layer.activationPolyOn P J).enclose s) := by -- --- PROOF ---
+  have hxd : x ∈ s.dependent.toSet := by
     rw [← PolyZonotope.dependent_exact s]
     exact hx
   obtain ⟨a, ha, hxa⟩ := s.dependent.exists_point_of_q_zero rfl hxd
@@ -87,11 +87,11 @@ theorem Layer.activationPolyOn_outer {P : LayerRelaxation ℝ n m} (hP : ∀ i, 
     rw [aux_coord, PolyZonotope.evalPolyReal_ofFn, ← congrFun hxa i]
     rfl
   have hpmem : (fun i => evalPoly ((P i).coeffs (J.inf i) (J.sup i)) (x i))
-      ∈ (s.dependent.evalPoly (P.coeffList J')).construct :=
-    hpval ▸ PolyZonotope.point_mem_construct _ fun k => ha _
+      ∈ (s.dependent.evalPoly (P.coeffList J')).toSet :=
+    hpval ▸ PolyZonotope.point_mem_toSet _ fun k => ha _
   -- `J` is asked for nothing but the two ends the fit was made between
   have hdev : (fun i => σ (x i) - evalPoly ((P i).coeffs (J.inf i) (J.sup i)) (x i))
-      ∈ (P.box J').nominal.construct := by
+      ∈ (P.box J').nominal.toSet := by
     intro i
     have hrel := abs_le.mp ((hP i).sound (hJ i).1 (hJ i).2)
     exact ⟨hrel.1, hrel.2⟩

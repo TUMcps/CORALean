@@ -43,8 +43,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem HPolytope.compactZeros_outer (p : ℕ) (P : HPolytope 𝕋 (Vec 𝕋 n))
     (dom : Interval (Vec 𝕋 n)) :
-    P.construct ∩ dom.construct ⊆
-      (P.compactZeros p dom).construct ∩ dom.construct := by
+    P.toSet ∩ dom.toSet ⊆
+      (P.compactZeros p dom).toSet ∩ dom.toSet := by
   intro x hx
   have h := HPolytope.normalizeRows_outer p P dom hx
   unfold HPolytope.compactZeros

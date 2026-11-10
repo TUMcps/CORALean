@@ -61,7 +61,7 @@ variable {n nx ny qx qy : ℕ}
 
 theorem HPolytope.ahPolytope_cert_of_subset {xbar ybar : Vec ℝ n} {X : Mat ℝ n nx}
     {Y : Mat ℝ n ny} {Hx : Mat ℝ qx nx} {hx : Vec ℝ qx} {Hy : Mat ℝ qy ny} {hy : Vec ℝ qy}
-    (hfull : (interior (HPolytope.ineqs Hx hx).construct).Nonempty)
+    (hfull : (interior (HPolytope.ineqs Hx hx).toSet).Nonempty)
     (Hdag : Mat ℝ qy ny) (hdag : Hyᵀ * Hdag = 1)
     (h18 : ∀ u : Vec ℝ qy, ∃ (c : Vec ℝ n) (k : Vec ℝ qy),
       u = Hdag *ᵥ (Yᵀ *ᵥ c) + k ∧ Hyᵀ *ᵥ k = 0)

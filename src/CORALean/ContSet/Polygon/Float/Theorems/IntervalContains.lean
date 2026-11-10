@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 private theorem Polygon.aux_intervalOfList_contains :
     ∀ ps : List (VPolytope (Vec 𝕋 2)),
-      (⋃ p ∈ ps, VPolytope.construct p) ⊆ (Polygon.intervalOfList ps).construct
+      (⋃ p ∈ ps, VPolytope.toSet p) ⊆ (Polygon.intervalOfList ps).toSet
   | [] => by simp
   | [p] => by
     intro x hx
@@ -68,7 +68,7 @@ private theorem Polygon.aux_intervalOfList_contains :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.interval_contains (P : Polygon 𝕋) :
-    ContSet.construct P ⊆ (Polygon.interval P).construct :=
+    ContSet.toSet P ⊆ (Polygon.interval P).toSet :=
   Polygon.aux_intervalOfList_contains P.sets
 
 end CORALean.Float

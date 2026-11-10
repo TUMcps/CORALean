@@ -66,9 +66,9 @@ variable {n : ℕ}
 /-- The sum is symmetric about the sum of the centers. -/
 private theorem aux_sum_reflect {K : ℕ} (Qs : Fin K → Mat ℝ n n) (qs : Fin K → Vec ℝ n)
     (hQs : ∀ k, (Qs k).PosDef) {x : Vec ℝ n}
-    (hx : x ∈ ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).construct) : -- --- CONCL ---
+    (hx : x ∈ ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).toSet) : -- --- CONCL ---
     (2 : ℝ) • ∑ k, qs k - x
-      ∈ ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).construct := by -- --- PROOF ---
+      ∈ ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).toSet := by -- --- PROOF ---
   rw [Set.mem_finsetSum] at hx ⊢
   obtain ⟨g, hg, rfl⟩ := hx
   refine ⟨fun k => (2 : ℝ) • qs k - g k, fun {k} hk => ?_, ?_⟩
@@ -96,9 +96,9 @@ private theorem aux_quad_parallelogram (A : Mat ℝ n n) (y p : Vec ℝ n) :
 `q₁ + ⋯ + q_K`. -/
 theorem Ellipsoid.center_of_min_volume {K : ℕ} (Qs : Fin K → Mat ℝ n n) (qs : Fin K → Vec ℝ n)
     (hQs : ∀ k, (Qs k).PosDef) {Q : Mat ℝ n n} (q : Vec ℝ n) (hQ : Q.PosDef)
-    (hsub : ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).construct ⊆ (Ellipsoid.ofShape Q q).construct)
+    (hsub : ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).toSet ⊆ (Ellipsoid.ofShape Q q).toSet)
     (hmin : ∀ (Q' : Mat ℝ n n) (q' : Vec ℝ n), Q'.PosDef →
-      ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).construct ⊆ (Ellipsoid.ofShape Q' q').construct →
+      ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).toSet ⊆ (Ellipsoid.ofShape Q' q').toSet →
         (Ellipsoid.ofShape Q q).volume ≤ (Ellipsoid.ofShape Q' q').volume) : -- --- CONCL ---
     q = ∑ k, qs k := by -- --- PROOF ---
   by_contra hne
@@ -109,7 +109,7 @@ theorem Ellipsoid.center_of_min_volume {K : ℕ} (Qs : Fin K → Mat ℝ n n) (q
   have hAp : 0 < p ⬝ᵥ A *ᵥ p := by
     simpa using hQ.inv.dotProduct_mulVec_pos hp0
   -- the points of the sum satisfy the averaged inequality
-  have hmem : ∀ x ∈ ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).construct,
+  have hmem : ∀ x ∈ ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).toSet,
       (x - c) ⬝ᵥ A *ᵥ (x - c) ≤ 1 - p ⬝ᵥ A *ᵥ p := by
     intro x hx
     have h1 := (Ellipsoid.mem_ofShape_iff hQ q x).1 (hsub hx)
@@ -124,7 +124,7 @@ theorem Ellipsoid.center_of_min_volume {K : ℕ} (Qs : Fin K → Mat ℝ n n) (q
     have := aux_quad_parallelogram A (x - c) p
     linarith
   -- the center itself is in the sum, so the form is at most one
-  have hcmem : c ∈ ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).construct := by
+  have hcmem : c ∈ ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).toSet := by
     rw [Set.mem_finsetSum]
     refine ⟨qs, fun {k} _ => (Ellipsoid.mem_ofShape_iff (hQs k) (qs k) _).2 ?_, rfl⟩
     simp
@@ -144,8 +144,8 @@ theorem Ellipsoid.center_of_min_volume {K : ℕ} (Qs : Fin K → Mat ℝ n n) (q
       exact congrArg (t • ·) (by simpa [conjTranspose_eq_transpose_of_trivial] using hQ.1.eq)
     · simp only [star_trivial, Matrix.smul_mulVec, dotProduct_smul, smul_eq_mul]
       exact mul_pos ht0 (by simpa using hQ.dotProduct_mulVec_pos hx)
-  have hcont : ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).construct
-      ⊆ (Ellipsoid.ofShape (t • Q) c).construct := by
+  have hcont : ∑ k, (Ellipsoid.ofShape (Qs k) (qs k)).toSet
+      ⊆ (Ellipsoid.ofShape (t • Q) c).toSet := by
     intro x hx
     refine (Ellipsoid.mem_ofShape_iff hQ' c x).2 ?_
     have hu : IsUnit Q.det := (isUnit_iff_isUnit_det Q).1 hQ.isUnit

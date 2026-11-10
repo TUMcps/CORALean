@@ -41,7 +41,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 kept. -/
 private theorem PolyZonotope.aux_mem_getSubset (pZ : PolyZonotope α) (k : Fin pZ.p) (cen rad : ℝ)
     (x : α) : -- --- CONCL ---
-    x ∈ (pZ.getSubset k cen rad).construct ↔
+    x ∈ (pZ.getSubset k cen rad).toSet ↔
       ∃ (a : Fin pZ.p → ℝ) (β : Fin pZ.q → ℝ), (∀ k', |a k'| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
         ∧ x = pZ.point (Function.update a k (cen + rad * a k))
           + ∑ j, β j • pZ.GI j := by -- --- PROOF ---
@@ -57,8 +57,8 @@ private theorem PolyZonotope.aux_mem_getSubset (pZ : PolyZonotope α) (k : Fin p
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.splitDepFactor_union (pZ : PolyZonotope α) (k : Fin pZ.p) : -- --- CONCL ---
-    (pZ.splitDepFactor k).1.construct ∪ (pZ.splitDepFactor k).2.construct
-      = pZ.construct := by -- --- PROOF ---
+    (pZ.splitDepFactor k).1.toSet ∪ (pZ.splitDepFactor k).2.toSet
+      = pZ.toSet := by -- --- PROOF ---
   simp only [PolyZonotope.splitDepFactor]
   ext x
   rw [Set.mem_union, PolyZonotope.aux_mem_getSubset, PolyZonotope.aux_mem_getSubset]

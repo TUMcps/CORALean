@@ -15,7 +15,7 @@ infinity is not a vector of `ℝ^n`, so a column here is a vector of `EReal` wit
 `⊤`, in the order of `Interval.vPolytope`'s corners (`signEquiv`). The full space has no extreme
 points, so these columns are not vertices of the set; they are the limit of the vertices of the
 truncated boxes `[-t, t]^n` (`Fullspace.truncatedVertices`), whose hulls exhaust the space
-(`Fullspace.construct_eq_iUnion_truncatedVertices`).
+(`Fullspace.toSet_eq_iUnion_truncatedVertices`).
 
 ## Inputs
 * `_` – full space

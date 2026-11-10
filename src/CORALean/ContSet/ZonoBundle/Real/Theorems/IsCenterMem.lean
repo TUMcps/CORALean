@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.IsCenter.mem {zB : ZonoBundle (Vec ℝ n)} {hk : 0 < zB.k} {x : Vec ℝ n}
-    (hx : zB.IsCenter hk x) : x ∈ zB.construct := by
+    (hx : zB.IsCenter hk x) : x ∈ zB.toSet := by
   obtain ⟨β, hβ, rfl⟩ := hx
   rw [← ZonoBundle.conZonotopeAll_exact zB hk]
   obtain ⟨hb, hP⟩ := ConZonotope.mem_domain_iff.mp hβ.mem

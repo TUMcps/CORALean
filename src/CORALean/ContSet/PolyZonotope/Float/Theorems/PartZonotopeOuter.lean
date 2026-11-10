@@ -41,9 +41,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.partZonotope_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (V : Finset (Fin pZ.p)) : -- --- CONCL ---
-    pZ.construct ⊆ (pZ.partZonotope V).construct := by -- --- PROOF ---
+    pZ.toSet ⊆ (pZ.partZonotope V).toSet := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
-  have h : nominalSet (pZ.partZonotope V) = (nominal (pZ.partZonotope V)).construct := rfl
+  have h : nominalSet (pZ.partZonotope V) = (nominal (pZ.partZonotope V)).toSet := rfl
   refine ⟨y, ?_, e, he, rfl⟩
   rw [h, PolyZonotope.partZonotope_nominal]
   exact Real.PolyZonotope.partZonotope_outer (nominal pZ) V hy

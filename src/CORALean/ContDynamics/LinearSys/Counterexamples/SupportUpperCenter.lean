@@ -122,7 +122,7 @@ theorem LinearSys.supportUpper_center_counterexample : -- --- CONCL ---
       (U := U) (v := ![-2, -3, -3]) (subset_convexHull ℝ _ (by simp))
     simp only [h0, MatExp.expIntegral_zero, Matrix.one_mulVec, one_smul] at hmem
     have := Set.add_mem_add (s := (exp ((1 : ℝ) • toRealMat sys.A)).mulVecLin ''
-      construct ({0} : Set (Vec ℝ 3))) (a := 0) ⟨0, rfl, by simp⟩ hmem
+      toSet ({0} : Set (Vec ℝ 3))) (a := 0) ⟨0, rfl, by simp⟩ hmem
     simpa using this
 
 end CORALean

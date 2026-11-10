@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.splitLongestGen_outer (pZ : PolyZonotope (Vec 𝕋 n)) :
-    pZ.construct ⊆ pZ.splitLongestGen.1.construct ∪ pZ.splitLongestGen.2.construct := by
+    pZ.toSet ⊆ pZ.splitLongestGen.1.toSet ∪ pZ.splitLongestGen.2.toSet := by
   unfold PolyZonotope.splitLongestGen
   cases pZ.longestFactor with
   | some k => exact PolyZonotope.splitDepFactor_outer pZ k

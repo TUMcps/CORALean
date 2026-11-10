@@ -73,7 +73,7 @@ private theorem ConPolyZono.aux_sum_univ_plus_qI {cPZ₁ cPZ₂ : ConPolyZono α
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.plus_exact (cPZ₁ cPZ₂ : ConPolyZono α) : -- --- CONCL ---
-    cPZ₁.construct + cPZ₂.construct = (cPZ₁.plus cPZ₂).construct := by -- --- PROOF ---
+    cPZ₁.toSet + cPZ₂.toSet = (cPZ₁.plus cPZ₂).toSet := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨x₁, ⟨a₁, β₁, hβ₁, hs₁, rfl⟩, x₂, ⟨a₂, β₂, hβ₂, hs₂, rfl⟩, rfl⟩
     have hA₁ : (fun k => Fin.append a₁ a₂ (Fin.castAdd cPZ₂.p k)) = a₁ :=

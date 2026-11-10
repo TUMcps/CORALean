@@ -49,8 +49,8 @@ open Matrix
 
 theorem HPolytope.ineqs_eq_of_strict_counterexample : -- --- CONCL ---
     ∃ (A : Mat ℝ 2 1) (b : Vec ℝ 2) (J : Finset (Fin 2)) (T : Set (Vec ℝ 1)),
-      (HPolytope.ineqs A b).construct ⊆ T ∧ (∀ x ∈ T, ∀ j ∈ J, (A *ᵥ x) j < b j) ∧
-      {x | ∀ i, i ∉ J → (A *ᵥ x) i ≤ b i} ≠ (HPolytope.ineqs A b).construct := by -- --- PROOF ---
+      (HPolytope.ineqs A b).toSet ⊆ T ∧ (∀ x ∈ T, ∀ j ∈ J, (A *ᵥ x) j < b j) ∧
+      {x | ∀ i, i ∉ J → (A *ᵥ x) i ≤ b i} ≠ (HPolytope.ineqs A b).toSet := by -- --- PROOF ---
   refine ⟨!![1; -1], ![0, -1], {0}, ∅, fun x hx => ?_, fun x hx => hx.elim, fun h => ?_⟩
   -- the polytope is empty: `x ≤ 0` and `x ≥ 1`
   · have h0 := HPolytope.mem_ineqs_iff.mp hx 0

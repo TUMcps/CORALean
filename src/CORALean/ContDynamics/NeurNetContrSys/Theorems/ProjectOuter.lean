@@ -47,9 +47,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeurNetContrSys.project_outer (Z : S (n + m)) {z : Vec ℝ (n + m)}
-    (hz : z ∈ construct Z) : -- --- CONCL ---
+    (hz : z ∈ toSet Z) : -- --- CONCL ---
     (fun k => z (Fin.castAdd m k)) ∈
-      construct (NeurNetContrSys.project (n := n) Z) := by -- --- PROOF ---
+      toSet (NeurNetContrSys.project (n := n) Z) := by -- --- PROOF ---
   -- `[I 0] z` reads the first `n` coordinates
   have hP : (Matrix.of fun i j =>
         Fin.append (fun k => (1 : Mat ℝ n n) i k) (fun _ : Fin m => (0 : ℝ)) j) *ᵥ z =
@@ -58,7 +58,7 @@ theorem NeurNetContrSys.project_outer (Z : S (n + m)) {z : Vec ℝ (n + m)}
     simp [Matrix.mulVec, dotProduct, Fin.sum_univ_add, Matrix.one_apply]
   rw [← hP]
   refine Mtimes.mtimes_outer _ _ ?_
-  simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+  simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
   exact Set.mem_image_of_mem _ hz
 
 end CORALean

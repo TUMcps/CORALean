@@ -19,7 +19,7 @@ the result, whose covariance `g gᵀ` the interval-matrix product encloses.
 * `μ` – mean of length `n`
 
 ## Hypotheses
-* `hμ` – `μ ∈ Z.construct`
+* `hμ` – `μ ∈ Z.toSet`
 
 ## Conclusion
 * the Gaussian law with generators `g` is a law of `ofGenerators Z g`
@@ -44,10 +44,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.ofGenerators_laws_outer {q : ℕ} (Z : Zonotope (Vec 𝕋 n)) (g : Mat 𝕋 n q)
-    {μ : Vec ℝ n} (hμ : μ ∈ Z.construct) :
+    {μ : Vec ℝ n} (hμ : μ ∈ Z.toSet) :
     Real.gZonotopeLaw μ (toRealMat g) ∈ (ProbZonotope.ofGenerators Z g).laws := by
-  have hg : toRealMat g ∈ (Interval.point g).construct := fun q => ⟨le_rfl, le_rfl⟩
-  have hgt : (toRealMat g)ᵀ ∈ (Interval.point g.transpose).construct := fun q => ⟨le_rfl, le_rfl⟩
+  have hg : toRealMat g ∈ (Interval.point g).toSet := fun q => ⟨le_rfl, le_rfl⟩
+  have hgt : (toRealMat g)ᵀ ∈ (Interval.point g.transpose).toSet := fun q => ⟨le_rfl, le_rfl⟩
   exact ⟨μ, hμ, toRealMat g * (toRealMat g)ᵀ, Interval.matMul_outer _ _ hg hgt,
     by simpa using posSemidef_self_mul_conjTranspose (toRealMat g), Real.gZonotopeLaw_eq _ _⟩
 

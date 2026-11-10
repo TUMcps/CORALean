@@ -50,8 +50,8 @@ variable {n : ℕ}
 /-- [1, Eq. 2] at the computed box: exact for every invertible `Λ`, member `i` and column `j`. -/
 theorem ZonoBundle.split_union_enclosingBox (Λ : Mat ℝ n n) (hΛ : IsUnit Λ.det)
     (zB : ZonoBundle (Vec ℝ n)) (i : Fin zB.k) (j : Fin n) :
-    (zB.split Λ (zB.enclosingBox Λ i) j).1.construct
-      ∪ (zB.split Λ (zB.enclosingBox Λ i) j).2.construct = zB.construct :=
+    (zB.split Λ (zB.enclosingBox Λ i) j).1.toSet
+      ∪ (zB.split Λ (zB.enclosingBox Λ i) j).2.toSet = zB.toSet :=
   ZonoBundle.split_union Λ hΛ _ j zB (ZonoBundle.enclosingBox_contains Λ zB i)
 
 end CORALean.Real

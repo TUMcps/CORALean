@@ -58,7 +58,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The nominal bound and the error box's own, added. -/
 def VPolytope.boundNegProj (P : VPolytope (Vec 𝕋 n)) (j : Fin n) :
-    FloatBound 𝕋 P.construct (-LinearMap.proj j) :=
+    FloatBound 𝕋 P.toSet (-LinearMap.proj j) :=
   InflatedContSet.boundOfParts (P.nominalBoundNegProj j) (P.I_error.boundNegProj j)
 
 
@@ -70,7 +70,7 @@ def VPolytope.boundNegProj (P : VPolytope (Vec 𝕋 n)) (j : Fin n) :
 
 /-- The nominal bound and the error box's own, added. -/
 def VPolytope.boundProj (P : VPolytope (Vec 𝕋 n)) (j : Fin n) :
-    FloatBound 𝕋 P.construct (LinearMap.proj j) :=
+    FloatBound 𝕋 P.toSet (LinearMap.proj j) :=
   InflatedContSet.boundOfParts (P.nominalBoundProj j) (P.I_error.boundProj j)
 
 end

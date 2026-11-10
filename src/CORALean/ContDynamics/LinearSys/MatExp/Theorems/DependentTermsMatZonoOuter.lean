@@ -91,9 +91,9 @@ private theorem MatExp.aux_double_sum {α : Type} [AddCommMonoid α] {h : ℕ}
 
 /-- The square and `I + M r + ½ M² r²` of every member lie in `zSq` and `zH`. -/
 theorem MatExp.dependentTermsMatZono_outer (Z : Zonotope (Mat ℝ n n)) (r : ℝ) {M : Mat ℝ n n}
-    (hM : M ∈ Z.construct) : -- --- CONCL ---
-    r ^ 2 • (M * M) ∈ (MatExp.dependentTermsMatZono Z r).zSq.construct ∧
-      1 + MatExp.expW M r ∈ (MatExp.dependentTermsMatZono Z r).zH.construct := by -- --- PROOF ---
+    (hM : M ∈ Z.toSet) : -- --- CONCL ---
+    r ^ 2 • (M * M) ∈ (MatExp.dependentTermsMatZono Z r).zSq.toSet ∧
+      1 + MatExp.expW M r ∈ (MatExp.dependentTermsMatZono Z r).zH.toSet := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hM
   -- the member `c + Σ βᵢ Gᵢ`, and the pairs `i < j` in the order the generators are listed
   simp only [MatExp.dependentTermsMatZono]

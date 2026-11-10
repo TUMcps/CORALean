@@ -51,9 +51,9 @@ open Matrix
 /-- [1, Thm. 1] as printed, a factor per coordinate, is not enclosed. -/
 theorem Zonotope.quadMapMatZono_not_outer : -- --- CONCL ---
     ∃ (D : Fin 2 → Mat ℝ 1 1) (K : Fin 1 → Fin 2 → Mat ℝ 1 1) (Z : Zonotope (Vec ℝ 1)),
-      ¬ {l : Vec ℝ 2 | ∃ x ∈ Z.construct, ∃ β : Fin 2 → Fin 1 → ℝ, (∀ i j, |β i j| ≤ 1) ∧
+      ¬ {l : Vec ℝ 2 | ∃ x ∈ Z.toSet, ∃ β : Fin 2 → Fin 1 → ℝ, (∀ i j, |β i j| ≤ 1) ∧
           ∀ i, l i = x ⬝ᵥ ((D i + ∑ j, β i j • K j i) *ᵥ x)}
-        ⊆ (Z.quadMapMatZono D K).construct := by -- --- PROOF ---
+        ⊆ (Z.quadMapMatZono D K).toSet := by -- --- PROOF ---
   refine ⟨0, fun _ _ => 1, ⟨0, fun _ => 1, Fin.elim0⟩, fun hsub => ?_⟩
   set Zr := Zonotope.quadMapMatZono 0 (fun _ _ => (1 : Mat ℝ 1 1)) ⟨0, fun _ => 1, Fin.elim0⟩
   -- `(1, -1)`, coordinate `0` at `β = 1` and coordinate `1` at `β = -1`

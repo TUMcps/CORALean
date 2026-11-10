@@ -39,18 +39,18 @@ variable {k m : ℕ} {n : Fin k → ℕ}
 together. -/
 structure ParallelHybridAutomaton.Lifting.IsExact
     (lift : ParallelHybridAutomaton.Lifting S G n m) : Prop where
-  inv_inv (gs : ∀ i, G (n i)) (x : ∀ i, Vec ℝ (n i)) (hx : stack x ∈ construct (lift.inv gs)) :
-    ∀ i, x i ∈ construct (gs i)
+  inv_inv (gs : ∀ i, G (n i)) (x : ∀ i, Vec ℝ (n i)) (hx : stack x ∈ toSet (lift.inv gs)) :
+    ∀ i, x i ∈ toSet (gs i)
   guard_inv (i : Fin k) (g : G (n i)) (x : ∀ i, Vec ℝ (n i))
-    (hx : stack x ∈ construct (lift.guard i g)) : x i ∈ construct g
+    (hx : stack x ∈ toSet (lift.guard i g)) : x i ∈ toSet g
   input_inv {d q : Fin k → ℕ} (b : ∀ i, Fin (d i) → ResolveSource k q m)
     (hb : ∀ i i' j j' a, b i j = .global a → b i' j' = .global a →
       (⟨i, j⟩ : Σ i, Fin (d i)) = ⟨i', j'⟩)
-    (us : ∀ i, S (d i)) (hne : ∀ i, (construct (us i)).Nonempty) (g : Vec ℝ m)
-    (hg : g ∈ construct (lift.input b us)) :
-    ∀ i, ∃ v ∈ construct (us i), ∀ j a, b i j = .global a → v j = g a
+    (us : ∀ i, S (d i)) (hne : ∀ i, (toSet (us i)).Nonempty) (g : Vec ℝ m)
+    (hg : g ∈ toSet (lift.input b us)) :
+    ∀ i, ∃ v ∈ toSet (us i), ∀ j a, b i j = .global a → v j = g a
   dist_inv {d : Fin k → ℕ} (ws : ∀ i, S (d i)) (w : ∀ i, Vec ℝ (d i))
-    (hw : stack w ∈ construct (lift.dist ws)) : ∀ i, w i ∈ construct (ws i)
+    (hw : stack w ∈ toSet (lift.dist ws)) : ∀ i, w i ∈ toSet (ws i)
 
 end CORALean
 

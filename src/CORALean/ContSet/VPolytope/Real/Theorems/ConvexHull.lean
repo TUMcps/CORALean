@@ -42,13 +42,13 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.construct_eq_convexHull (P : VPolytope α) : -- --- CONCL ---
-    P.construct = convexHull ℝ (Set.range P.V) := by -- --- PROOF ---
+theorem VPolytope.toSet_eq_convexHull (P : VPolytope α) : -- --- CONCL ---
+    P.toSet = convexHull ℝ (Set.range P.V) := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro x ⟨β, hβ, hsum, rfl⟩
     exact Convex.sum_mem (convex_convexHull ℝ _) (fun j _ => hβ j) hsum
       fun j _ => subset_convexHull ℝ _ ⟨j, rfl⟩
-  · exact convexHull_min (Set.range_subset_iff.mpr P.vertex_mem) P.convex_construct
+  · exact convexHull_min (Set.range_subset_iff.mpr P.vertex_mem) P.convex_toSet
 
 end CORALean.Real
 

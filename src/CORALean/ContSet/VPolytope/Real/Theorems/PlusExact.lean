@@ -66,9 +66,9 @@ private theorem VPolytope.aux_range_plus (P₁ P₂ : VPolytope α) : -- --- CON
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.plus_exact (P₁ P₂ : VPolytope α) :
-    P₁.construct + P₂.construct = (P₁.plus P₂).construct := by
-  rw [VPolytope.construct_eq_convexHull P₁, VPolytope.construct_eq_convexHull P₂,
-    VPolytope.construct_eq_convexHull (P₁.plus P₂), VPolytope.aux_range_plus, convexHull_add]
+    P₁.toSet + P₂.toSet = (P₁.plus P₂).toSet := by
+  rw [VPolytope.toSet_eq_convexHull P₁, VPolytope.toSet_eq_convexHull P₂,
+    VPolytope.toSet_eq_convexHull (P₁.plus P₂), VPolytope.aux_range_plus, convexHull_add]
 
 end CORALean.Real
 

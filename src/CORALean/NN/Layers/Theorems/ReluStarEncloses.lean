@@ -46,8 +46,8 @@ theorem Layer.reluStar_encloses (n : ℕ) : -- --- CONCL ---
     (Layer.reluStar n).Encloses fun x i => Real.relu (x i) := by -- --- PROOF ---
   -- the ReLU at the neurons of a list, applied one neuron at a time
   have key : ∀ (L : List (Fin n)) (t : Real.StarSet ℋ𝒫 n) (x : Vec ℝ n),
-      x ∈ construct t →
-      (fun i => if i ∈ L then Real.relu (x i) else x i : Vec ℝ n) ∈ construct
+      x ∈ toSet t →
+      (fun i => if i ∈ L then Real.relu (x i) else x i : Vec ℝ n) ∈ toSet
         (L.foldl (fun t j => t.reluNeuron j (t.rowBounds j)) t) := by
     intro L
     induction L with
@@ -59,7 +59,7 @@ theorem Layer.reluStar_encloses (n : ℕ) : -- --- CONCL ---
         (fun y hy => Real.StarSet.rowBounds_mem t j hy) ⟨x, hx, rfl⟩
       have h2 := ih _ _ h1
       -- the two points are the same
-      refine (congrArg (· ∈ construct _) ?_).mp h2
+      refine (congrArg (· ∈ toSet _) ?_).mp h2
       funext i
       by_cases hij : i = j
       · subst hij; simp [Real.relu]

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.MonomialIdentE
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinPoint
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemToSet
 public import CORALean.NN.Graph.Operations.AdjAt
 public import CORALean.NN.Graph.Operations.Degree
 public import CORALean.NN.Graph.Operations.DegreeAt
@@ -210,7 +210,7 @@ theorem GNN.messagePassing_mem_enclosure (R : Relaxation ℝ) (hR : R.Encloses i
     (U : Fin m → Fin N × Fin N) (hA : ∀ i j, 0 ≤ A i j) (lam : Fin m → ℝ)
     (hlam : ∀ e, 0 ≤ lam e ∧ lam e ≤ 1) : -- --- CONCL ---
     GNN.messagePassing (GNN.adjAt A U lam)
-      ∈ (GNN.messagePassingEnclosure R A U).construct := by -- --- PROOF ---
+      ∈ (GNN.messagePassingEnclosure R A U).toSet := by -- --- PROOF ---
   have hinner := PolyZonotope.bilin_point (Entrywise.hadamardLin (α := Mat ℝ N N))
     (GNN.step_uncertainAdjPad A U) (GNN.step_sqrtRow R A U) rfl (GNN.aux_factors R A U lam)
   have houter := PolyZonotope.bilin_point (Entrywise.hadamardLin (α := Mat ℝ N N))
@@ -239,7 +239,7 @@ theorem GNN.messagePassing_mem_enclosure (R : Relaxation ℝ) (hR : R.Encloses i
     rw [invSqrt_eq_of_one_le (hone i), invSqrt_eq_of_one_le (hone j), div_eq_mul_inv,
       mul_inv, ← mul_assoc]
   rw [← hpt]
-  exact PolyZonotope.point_mem_construct _ (GNN.aux_factors_abs_le R hR A U lam hlam hA)
+  exact PolyZonotope.point_mem_toSet _ (GNN.aux_factors_abs_le R hR A U lam hlam hA)
 
 end CORALean.Real
 

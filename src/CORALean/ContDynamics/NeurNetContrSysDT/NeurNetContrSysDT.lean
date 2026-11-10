@@ -68,7 +68,7 @@ def NeurNetContrSysDT.IsTrajectory (sys : NeurNetContrSysDT P S n)
     (π : Vec ℝ n → Vec ℝ sys.m) (R₀ : S n) (U_ext : Set (Vec ℝ sys.nExt))
     (W : Set (Vec ℝ (nrOfDisturbances sys.plant))) (x : ℕ → Vec ℝ n)
     (v : ℕ → Vec ℝ sys.nExt) (w : ℕ → Vec ℝ (nrOfDisturbances sys.plant)) : Prop :=
-  ContDynamicsDT.IsTrajectory sys.plant (construct R₀) (sys.inputSet Set.univ U_ext) W x
+  ContDynamicsDT.IsTrajectory sys.plant (toSet R₀) (sys.inputSet Set.univ U_ext) W x
     (fun k => sys.input (π (x k)) (v k)) w
 
 end CORALean

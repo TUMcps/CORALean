@@ -13,7 +13,7 @@ CORA's `@ellipsoid/contains_` for a point, as a check of a caller-proposed certi
 checked. `Q` certified positive semi-definite (`isPsd`, without which the nominal part is only the
 center), `wᵀ Q w ≤ 1` from above (`quadUp`), and the remainder `p - q - Q w`, bracketed by
 directed roundings, inside the error box: then `q + Q w` is a point of the nominal ellipsoid
-(`Real.Ellipsoid.add_mulVec_mem_construct`). Only `true` is certain; `false` says only that this
+(`Real.Ellipsoid.add_mulVec_mem_toSet`). Only `true` is certain; `false` says only that this
 `w` does not show membership.
 
 ## Inputs

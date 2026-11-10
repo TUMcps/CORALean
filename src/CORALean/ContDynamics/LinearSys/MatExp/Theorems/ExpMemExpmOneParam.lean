@@ -72,10 +72,10 @@ theorem MatExp.exp_mem_expmOneParam (C G : Mat ℝ n n) (r : ℝ) (η : ℕ) {β
       ((η : ℝ) + 2) < 1) : -- --- CONCL ---
     exp (r • (C + β • G)) ∈ ((MatExp.expmOneParam C G r η).plus (MatExp.expMatZonoRemainder n
       (MatExp.expRemainderBound (⟨1, r • C, fun _ => r • G⟩ : Zonotope (Mat ℝ n n)).interval.absMax
-        η))).construct := by -- --- PROOF ---
+        η))).toSet := by -- --- PROOF ---
   set M : Zonotope (Mat ℝ n n) := ⟨1, r • C, fun _ => r • G⟩
   -- `r (C + βG)` is a member of the matrix zonotope `{rC + βrG}`
-  have hA : r • (C + β • G) ∈ M.construct := ⟨fun _ => β, fun _ => hβ, by
+  have hA : r • (C + β • G) ∈ M.toSet := ⟨fun _ => β, fun _ => hβ, by
     simp only [M, Finset.univ_unique, Finset.sum_singleton, smul_add, smul_smul, mul_comm]⟩
   have hnorm : ‖r • (C + β • G)‖ ≤ ‖M.interval.absMax‖ :=
     Interval.norm_le_absMax (Zonotope.interval_contains M hA)
@@ -87,7 +87,7 @@ theorem MatExp.exp_mem_expmOneParam (C G : Mat ℝ n n) (r : ℝ) (η : ℕ) {β
     le_trans (norm_exp_sub_expTaylor_le _ η (lt_of_le_of_lt hfrac hε))
       (MatExp.expRemainderBound_mono η hnorm hε)
   have hrem : exp (r • (C + β • G)) - MatExp.expTaylor (r • (C + β • G)) η ∈
-      (MatExp.expMatZonoRemainder n (MatExp.expRemainderBound M.interval.absMax η)).construct :=
+      (MatExp.expMatZonoRemainder n (MatExp.expRemainderBound M.interval.absMax η)).toSet :=
     MatExp.mem_expMatZonoRemainder fun i j => le_trans (abs_entry_le_norm _ i j) htail
   have hmem := Set.add_mem_add (MatExp.expTaylor_mem_expmOneParam C G r η hβ) hrem
   rw [Zonotope.plus_exact, add_sub_cancel] at hmem

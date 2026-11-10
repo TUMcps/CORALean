@@ -49,7 +49,7 @@ def ConPolyZono.affine (cPZ : ConPolyZono α) (ab : (Fin cPZ.p → ℝ) × (Fin 
 -- Reviewed:      ---
 
 /-- CORA's `@conPolyZono/center`: the field `c`, with no guarantee that it lies in the set.
-`center_mem_construct` says when it does. -/
+`center_mem_toSet` says when it does. -/
 def ConPolyZono.center (cPZ : ConPolyZono α) : α := cPZ.c
 
 

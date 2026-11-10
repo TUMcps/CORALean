@@ -54,12 +54,12 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 /-- `image_subset`, generalized to an arbitrary starting set: a subset of
-`construct b` is carried through the recursion the same way `b` is, applying
+`toSet b` is carried through the recursion the same way `b` is, applying
 `Layer.image_subset` at each layer instead of `enclose_outer` pointwise. -/
 private theorem NeuralNetwork.Encloses.aux_image_subset {n m : ℕ} {nn : NeuralNetwork S n m}
     {f : Vec ℝ n → Vec ℝ m} (hf : nn.Encloses f) : -- --- CONCL ---
-    ∀ (A : Set (Vec ℝ n)) (b : S n), A ⊆ construct b →
-      f '' A ⊆ construct (nn.enclose b) := by -- --- PROOF ---
+    ∀ (A : Set (Vec ℝ n)) (b : S n), A ⊆ toSet b →
+      f '' A ⊆ toSet (nn.enclose b) := by -- --- PROOF ---
   induction hf with
   | output hn =>
       rintro A b h _ ⟨x, hx, rfl⟩
@@ -74,8 +74,8 @@ private theorem NeuralNetwork.Encloses.aux_image_subset {n m : ℕ} {nn : Neural
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeuralNetwork.Encloses.image_subset {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
-    (hf : nn.Encloses f) (X : S n) : f '' construct X ⊆ construct (nn.enclose X) :=
-  NeuralNetwork.Encloses.aux_image_subset hf (construct X) X Set.Subset.rfl
+    (hf : nn.Encloses f) (X : S n) : f '' toSet X ⊆ toSet (nn.enclose X) :=
+  NeuralNetwork.Encloses.aux_image_subset hf (toSet X) X Set.Subset.rfl
 
 end CORALean
 

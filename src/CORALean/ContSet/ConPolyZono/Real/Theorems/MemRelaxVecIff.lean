@@ -9,7 +9,7 @@ public import CORALean.Global.Entrywise
 # What `ConPolyZono.relax` denotes, coordinatewise
 
 `mem_relax_iff` at `Vec ℝ n`, the defining equation read one coordinate at a time with both
-generator blocks transposed, as `mem_construct_iff` reads `construct`: the form a float layer's
+generator blocks transposed, as `mem_toSet_iff` reads `toSet`: the form a float layer's
 enclosure proofs read the nominal half of a point in.
 
 ## Inputs
@@ -44,7 +44,7 @@ variable {n : ℕ}
 /-- `mem_relax_iff` with the defining equation read one coordinate at a time. -/
 theorem ConPolyZono.mem_relax_vec_iff (cPZ : ConPolyZono (Vec ℝ n)) (s : Vec ℝ cPZ.cons.m)
     {x : Vec ℝ n} : -- --- CONCL ---
-    x ∈ (cPZ.relax s).construct ↔
+    x ∈ (cPZ.relax s).toSet ↔
       ∃ a : Fin cPZ.p → ℝ, ∃ β : Fin cPZ.qI → ℝ, (∀ k, |a k| ≤ 1) ∧ (∀ j, |β j| ≤ 1)
         ∧ (∀ i, |(cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R a) i - cPZ.cons.b i| ≤ |s i|)
         ∧ ∀ i, x i = cPZ.c i + (∑ l, cPZ.G l i * PolyZonotope.monomial cPZ.E a l)

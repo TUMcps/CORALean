@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 private theorem Interval.aux_minkDiff_inner_refines (I₁ I₂ : Interval (Vec 𝕋 n)) :
-    (I₁.minkDiff I₂).construct ⊆ (I₁.nominal.minkDiff I₂.nominal).construct := by
+    (I₁.minkDiff I₂).toSet ⊆ (I₁.nominal.minkDiff I₂.nominal).toSet := by
   intro x hx i
   exact ⟨le_trans (sub_le_subUp _ _) (hx i).1, le_trans (hx i).2 (subDown_le_sub _ _)⟩
 
@@ -52,7 +52,7 @@ private theorem Interval.aux_minkDiff_inner_refines (I₁ I₂ : Interval (Vec �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.minkDiff_inner (I₁ I₂ : Interval (Vec 𝕋 n)) :
-    (I₁.minkDiff I₂).construct ⊆ minkowskiDiff I₁.construct I₂.construct :=
+    (I₁.minkDiff I₂).toSet ⊆ minkowskiDiff I₁.toSet I₂.toSet :=
   subset_trans (Interval.aux_minkDiff_inner_refines I₁ I₂)
     (Real.Interval.minkDiff_inner I₁.nominal I₂.nominal)
 

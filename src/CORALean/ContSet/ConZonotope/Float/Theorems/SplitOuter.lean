@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.split_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) (d : Fin n) : -- --- CONCL ---
-    cZ.construct ⊆ (cZ.split d).fst.construct ∪ (cZ.split d).snd.construct := by -- --- PROOF ---
+    cZ.toSet ⊆ (cZ.split d).fst.toSet ∪ (cZ.split d).snd.toSet := by -- --- PROOF ---
   intro x hx
   -- the set is in its box, which the two half boxes cover
   rcases cZ.interval.splitAt_cover d (cZ.interval_contains hx) with h | h

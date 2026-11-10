@@ -10,8 +10,8 @@ Every result's `E` comes from the library's own sound float operation, reached t
 `Mtimes.mtimes`, `Plus.plus` and `LinComb.linComb`; nothing here re-rounds anything. `plusBox`
 (alias `plusInterval`) is the one exception with no class of its own: `Z ⊞ I` is
 `{Z with E := Z.E ⊞ I}`, `⊞` `Interval`'s own sound `Plus` instance; since
-`construct Z = nominal Z + Z.E` and `Z.E ⊞ I ⊇ Z.E + I` (`Interval.plus_outer`),
-`construct Z + I ⊆ construct {Z with E := Z.E ⊞ I}`, an informal claim. `reduce` goes around the
+`toSet Z = nominal Z + Z.E` and `Z.E ⊞ I ⊇ Z.E + I` (`Interval.plus_outer`),
+`toSet Z + I ⊆ toSet {Z with E := Z.E ⊞ I}`, an informal claim. `reduce` goes around the
 `Reduce` class, fixed to Girard's rule: a `method` choice calls
 `Zonotope.reduceGirard`/`.reduceCombastel` directly, each with its own `_outer` theorem.
 

@@ -41,14 +41,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.and_outer (P Q : Polygon 𝕋) : -- --- CONCL ---
-    ContSet.construct P ∩ ContSet.construct Q ⊆
-      ContSet.construct (Polygon.and P Q) := by -- --- PROOF ---
+    ContSet.toSet P ∩ ContSet.toSet Q ⊆
+      ContSet.toSet (Polygon.and P Q) := by -- --- PROOF ---
   rintro x ⟨hP, hQ⟩
   -- a piece of each polygon holds the point
-  obtain ⟨p, hp, hxp⟩ := SetUnion.mem_construct.mp hP
-  obtain ⟨q, hq, hxq⟩ := SetUnion.mem_construct.mp hQ
+  obtain ⟨p, hp, hxp⟩ := SetUnion.mem_toSet.mp hP
+  obtain ⟨q, hq, hxq⟩ := SetUnion.mem_toSet.mp hQ
   -- and so does their intersection, a piece of the result
-  exact SetUnion.mem_construct.mpr ⟨p.intersection q,
+  exact SetUnion.mem_toSet.mpr ⟨p.intersection q,
     List.mem_map.mpr ⟨(p, q), List.pair_mem_product.mpr ⟨hp, hq⟩, rfl⟩,
     VPolytope.intersection_outer p q ⟨hxp, hxq⟩⟩
 

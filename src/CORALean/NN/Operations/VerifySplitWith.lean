@@ -7,7 +7,7 @@ public import CORALean.NN.Operations.Enclose
 /-!
 # Verification by recursively splitting the input set, at any checker
 
-`spec.Holds (construct s)` is a statement about a set of reals, not decidable, so there is
+`spec.Holds (toSet s)` is a statement about a set of reals, not decidable, so there is
 deliberately no `Decidable` instance here: the loop takes a **sound checker**, a `Bool`-valued test
 whose `true` result a proof backs, and the recursion is only about *where* to spend that checker.
 `d` is a depth budget bounding the height of the binary tree. The `||` short-circuits, so a box the

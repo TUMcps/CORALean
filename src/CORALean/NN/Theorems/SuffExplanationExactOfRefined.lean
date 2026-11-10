@@ -63,8 +63,8 @@ for `nnAbs` is exactly sufficient for the refinement `nnRef` it encloses. -/
 theorem suffExplanationExact_of_refined (nnAbs : NeuralNetwork S n m)
     (f : Vec ℝ n → Vec ℝ m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
-    (hrefine : f '' construct (ofInterval (explainBox x ε E) : S n)
-      ⊆ construct (nnAbs.enclose (ofInterval (explainBox x ε E))))
+    (hrefine : f '' toSet (ofInterval (explainBox x ε E) : S n)
+      ⊆ toSet (nnAbs.enclose (ofInterval (explainBox x ε E))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l) :
     IsSuffExplanationExact S f x ε E l :=
   (Specification.unsafeSet (misclassified m l)).holds_of_outer hrefine hsuffAbs

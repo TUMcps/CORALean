@@ -19,26 +19,26 @@ namespace CORALean
 variable {S α : Type}
 
 
--- ================================  `OptEmpty.construct_empty`  ================================ --
+-- ==================================  `OptEmpty.toSet_empty`  ================================== --
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- The empty case denotes `∅`. -/
-@[simp] theorem OptEmpty.construct_empty [ContSet S α] :
-    ContSet.construct (OptEmpty.empty : OptEmpty S) = (∅ : Set α) := rfl
+@[simp] theorem OptEmpty.toSet_empty [ContSet S α] :
+    ContSet.toSet (OptEmpty.empty : OptEmpty S) = (∅ : Set α) := rfl
 
 
--- =================================  `OptEmpty.construct_of`  ================================== --
+-- ===================================  `OptEmpty.toSet_of`  ==================================== --
 -- Authors:       Claude Opus 5
 -- Written:       07-September-2026
 -- Last update:   14-October-2026
 -- Reviewed:      ---
 
 /-- A wrapped representation denotes what it denotes. -/
-@[simp] theorem OptEmpty.construct_of [ContSet S α] (s : S) :
-    ContSet.construct (OptEmpty.of s) = ContSet.construct s := rfl
+@[simp] theorem OptEmpty.toSet_of [ContSet S α] (s : S) :
+    ContSet.toSet (OptEmpty.of s) = ContSet.toSet s := rfl
 
 end CORALean
 

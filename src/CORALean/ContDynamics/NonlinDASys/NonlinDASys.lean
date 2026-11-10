@@ -54,8 +54,8 @@ integrates `f`, the constraint `g = 0` holds at every instant, and the output fo
 structure NonlinDASys.IsTrajectory (sys : NonlinDASys n p m) (T : Set ℝ) (R₀ : S n)
     (U : S m) (x : ℝ → Vec ℝ n) (y : ℝ → Vec ℝ p) (u : ℝ → Vec ℝ m) (z : ℝ → Vec ℝ sys.q) :
     Prop where
-  init : x 0 ∈ construct R₀
-  input (t : ℝ) (ht : t ∈ T) : u t ∈ construct U
+  init : x 0 ∈ toSet R₀
+  input (t : ℝ) (ht : t ∈ T) : u t ∈ toSet U
   meas : AEStronglyMeasurable (fun t => sys.f (x t) (y t) (u t)) (volume.restrict T)
   integrable (t : ℝ) (ht : t ∈ T) :
     IntervalIntegrable (fun s => sys.f (x s) (y s) (u s)) volume 0 t

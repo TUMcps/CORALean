@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveConstructEq
+public import CORALean.ContSet.ConZonotope.Real.Theorems.PartialSolveToSetEq
 public import CORALean.Global.EuclideanNorm
 
 @[expose] public section
@@ -10,7 +10,7 @@ public import CORALean.Global.EuclideanNorm
 
 [1, Sec. 4.2 (choice of j)]: with `H_j ≡ max_{z̃∈Z̃} min_{z∈Z} ‖z̃ − z‖₂`, "it follows" from (A.4)
 that `H_j = max_ξ min_{δ∈B∞(A,b)} ‖G(ξ − δ)‖₂` subject to `Aξ = b`, `|ξ_i| ≤ 1`, `i ≠ j`. `Z̃` is
-the image of those `ξ` under `ξ ↦ Gξ + c` (`partialSolve_construct_eq`), `Z` the image of
+the image of those `ξ` under `ξ ↦ Gξ + c` (`partialSolve_toSet_eq`), `Z` the image of
 `B∞(A, b)`, and the center cancels in the difference. The `max` and `min` are `sSup` and `sInf`
 here, the same values whenever they are attained.
 
@@ -57,13 +57,13 @@ open Matrix
 `Gδ + c ∈ Z`. -/
 theorem ConZonotope.partialSolve_hausdorff_eq {n q h : ℕ} (c : Vec ℝ n) (G : Fin h → Vec ℝ n)
     (A : Mat ℝ q h) (b : Vec ℝ q) (r : Fin q) (j : Fin h) (hAj : A r j ≠ 0) : -- --- CONCL ---
-    sSup ((fun zt => sInf ((fun z => ‖zt - z‖₂) '' (ConZonotope.ofMat c G A b).construct))
-        '' (ConZonotope.partialSolve c G A b r j).construct)
+    sSup ((fun zt => sInf ((fun z => ‖zt - z‖₂) '' (ConZonotope.ofMat c G A b).toSet))
+        '' (ConZonotope.partialSolve c G A b r j).toSet)
       = sSup ((fun ξ : Vec ℝ h => sInf ((fun δ : Vec ℝ h => ‖∑ k, (ξ k - δ k) • G k‖₂)
           '' {δ | (∀ i, |δ i| ≤ 1) ∧ ∀ i, (A *ᵥ δ) i = b i}))
         '' {ξ | (∀ i, i ≠ j → |ξ i| ≤ 1) ∧ ∀ i, (A *ᵥ ξ) i = b i}) := by -- --- PROOF ---
   -- both sets as images of their coefficient sets under `ξ ↦ Gξ + c`
-  have hZ : (ConZonotope.ofMat c G A b).construct
+  have hZ : (ConZonotope.ofMat c G A b).toSet
       = (fun δ : Vec ℝ h => c + ∑ k, δ k • G k) ''
           {δ | (∀ i, |δ i| ≤ 1) ∧ ∀ i, (A *ᵥ δ) i = b i} := by
     ext x
@@ -72,10 +72,10 @@ theorem ConZonotope.partialSolve_hausdorff_eq {n q h : ℕ} (c : Vec ℝ n) (G :
     · rintro ⟨β, hβ, hA, rfl⟩; exact ⟨β, ⟨hβ, hA⟩, rfl⟩
     · rintro ⟨β, ⟨hβ, hA⟩, rfl⟩; exact ⟨β, hβ, hA, rfl⟩
   -- `Z̃` likewise, through (A.4)
-  have hZt : (ConZonotope.partialSolve c G A b r j).construct
+  have hZt : (ConZonotope.partialSolve c G A b r j).toSet
       = (fun ξ : Vec ℝ h => c + ∑ k, ξ k • G k) ''
           {ξ | (∀ i, i ≠ j → |ξ i| ≤ 1) ∧ ∀ i, (A *ᵥ ξ) i = b i} := by
-    rw [ConZonotope.partialSolve_construct_eq c G A b r j hAj]
+    rw [ConZonotope.partialSolve_toSet_eq c G A b r j hAj]
     ext x
     constructor
     · rintro ⟨ξ, hξ, hA, rfl⟩; exact ⟨ξ, ⟨hξ, hA⟩, rfl⟩

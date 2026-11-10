@@ -52,7 +52,7 @@ that sum is what the stored floats can compute. -/
 def ConPolyZono.nominalSupportBound (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j)
     (u : FloatBound 𝕋 ((InflatedContSet.nominal cPZ).polyZonotope.point ''
-      (InflatedContSet.nominal cPZ).cons.construct) c) :
+      (InflatedContSet.nominal cPZ).cons.toSet) c) :
     FloatBound 𝕋 (nominalSet cPZ) c :=
   let extent : Fin cPZ.qI → 𝕋 := fun j =>
     maximum (dotUp a (cPZ.GI j)) (neg (dotDown a (cPZ.GI j)))

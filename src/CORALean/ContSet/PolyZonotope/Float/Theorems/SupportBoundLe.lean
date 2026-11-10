@@ -42,7 +42,7 @@ theorem PolyZonotope.supportBound_le (pZ : PolyZonotope (Vec 𝕋 n))
     (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j)
     (u : FloatBound 𝕋 ((InflatedContSet.nominal pZ).subsetAt {a | ∀ k, |a k| ≤ 1}) c)
     :
-    ∀ x ∈ pZ.construct, c x ≤ toReal (pZ.supportBound a hc u).val :=
+    ∀ x ∈ pZ.toSet, c x ≤ toReal (pZ.supportBound a hc u).val :=
   (pZ.supportBound a hc u).le
 
 end CORALean.Float

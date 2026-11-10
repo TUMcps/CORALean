@@ -49,7 +49,7 @@ noncomputable instance LinParamSys.reachInstance :
     Reach (LinParamSys ℐ) (fun n sys => Reach.InputParams (S n) (S sys.m) ℝ)
       (LinearSys.ReachStepOptions ℝ) S where
   reachExact sys params :=
-    sys.reachUnionExact (params.tFinal - params.tStart) (construct params.X₀) (construct params.U)
+    sys.reachUnionExact (params.tFinal - params.tStart) (toSet params.X₀) (toSet params.U)
   reach sys params options :=
     if 0 < options.Δt then some (sys.reachUnion params options) else none
   reach_outer sys params options _ hR := by

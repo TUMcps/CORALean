@@ -9,7 +9,7 @@ public import Mathlib.Tactic.FieldSimp
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionConCoef
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionUpper
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
-public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemToSetIffOfEq
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemAndRowsIff
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.AbsMonomialLeOne
 public import CORALean.ContSet.ConPolyZono.Real.Operations.UnionLower
@@ -20,7 +20,7 @@ public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemAndRowsIff
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalPadVars
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalSwitch
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.EvalAnd
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEq
 public import CORALean.ContSet.LevelSet.Real.Theorems.Basic
 public import CORALean.Global.Float.GenBlockDiag
 public import CORALean.ContSet.ConPolyZono.Real.Operations.Union
@@ -146,16 +146,16 @@ private theorem ConPolyZono.aux_unionCon_close (p₁ p₂ : ℕ) (a : Fin (p₁ 
 
 /-- The stored selector rows hold wherever the exact ones do. -/
 private theorem ConPolyZono.aux_holds_unionUpper_of_real (p₁ p₂ : ℕ) (a : Fin (p₁ + p₂ + 2) → ℝ)
-    (ha : ∀ k, |a k| ≤ 1) (h : a ∈ (Real.ConPolyZono.unionUpper p₁ p₂).construct) : -- --- CONCL ---
-    a ∈ (ConPolyZono.unionUpper (𝕋 := 𝕋) p₁ p₂).construct := by -- --- PROOF ---
+    (ha : ∀ k, |a k| ≤ 1) (h : a ∈ (Real.ConPolyZono.unionUpper p₁ p₂).toSet) : -- --- CONCL ---
+    a ∈ (ConPolyZono.unionUpper (𝕋 := 𝕋) p₁ p₂).toSet := by -- --- PROOF ---
   -- both stacks split into their two rows, each an equation
   rw [Real.ConPolyZono.unionUpper, Real.PolyLevelSet.mem_andRows_iff,
-    Real.PolyLevelSet.mem_construct_iff_of_eq fun _ => rfl] at h
+    Real.PolyLevelSet.mem_toSet_iff_of_eq fun _ => rfl] at h
   obtain ⟨⟨-, h₁⟩, h₂⟩ := h
   rw [ConPolyZono.unionUpper, PolyLevelSet.mem_andRows_iff]
-  refine ⟨(PolyLevelSet.mem_construct_iff_of_eq fun _ => rfl).mpr
+  refine ⟨(PolyLevelSet.mem_toSet_iff_of_eq fun _ => rfl).mpr
       ⟨(Interval.mem_unit_iff a).mpr ha, fun i => ?_⟩,
-    fun i => ((PolyLevelSet.mem_construct_iff_of_eq (P := ConPolyZono.unionConRow (𝕋 := 𝕋) p₁ p₂)
+    fun i => ((PolyLevelSet.mem_toSet_iff_of_eq (P := ConPolyZono.unionConRow (𝕋 := 𝕋) p₁ p₂)
       fun _ => rfl).mpr ⟨(Interval.mem_unit_iff a).mpr ha, fun i => ?_⟩).2 i⟩
   · -- the `α₁α₂ = 1` row is copied, its entry `one` reading back as `1`, and holds exactly
     have hA : toRealMat (fun (_ : Fin 1) (_ : Fin 1) => (one : 𝕋)) = fun _ _ => 1 :=
@@ -228,7 +228,7 @@ theorem ConPolyZono.union_satisfies_of_real (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (V
       ≤ |Fin.append (0 : Vec ℝ (1 + 1))
           (Fin.append (toRealVec cPZ₁.cons.b_error)
             (toRealVec cPZ₂.cons.b_error)) i|) : -- --- CONCL ---
-    a ∈ (cPZ₁.union cPZ₂).cons.construct := by -- --- PROOF ---
+    a ∈ (cPZ₁.union cPZ₂).cons.toSet := by -- --- PROOF ---
   -- the exact operand rows, named once
   set L := Real.ConPolyZono.unionLower cPZ₁.nominalCore.cons cPZ₂.nominalCore.cons with hLdef
   -- the exact rows, split into the selector block and the operands' block
@@ -241,8 +241,8 @@ theorem ConPolyZono.union_satisfies_of_real (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (V
       rw [← hv]
       exact h i
   -- the selector rows have no slack, so they hold exactly
-  have hUmem : a ∈ (Real.ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).construct :=
-    (Real.PolyLevelSet.mem_construct_iff_of_eq
+  have hUmem : a ∈ (Real.ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).toSet :=
+    (Real.PolyLevelSet.mem_toSet_iff_of_eq
       (Real.LevelSet.append_op_eq (fun _ => rfl) fun _ => rfl)).mpr
         ⟨(Real.Interval.mem_unit_iff a).mpr ha, fun i => by
         have h0 := h (Fin.castAdd _ i)
@@ -255,7 +255,7 @@ theorem ConPolyZono.union_satisfies_of_real (cPZ₁ cPZ₂ : ConPolyZono 𝕋 (V
     exact h1
   -- the stored union: selector rows by `aux_holds_unionUpper_of_real`, operand rows read back
   show a ∈ ((ConPolyZono.unionUpper cPZ₁.p cPZ₂.p).andRows
-    (ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons)).construct
+    (ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons)).toSet
   rw [PolyLevelSet.mem_andRows_iff]
   refine ⟨ConPolyZono.aux_holds_unionUpper_of_real cPZ₁.p cPZ₂.p a ha hUmem, fun i => ?_⟩
   rw [show (ConPolyZono.unionLower cPZ₁.cons cPZ₂.cons).op i = .eq from

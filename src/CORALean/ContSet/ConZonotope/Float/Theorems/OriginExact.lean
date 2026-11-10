@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.origin_exact (n : ℕ) : -- --- CONCL ---
-    (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n)).construct = {0} := by -- --- PROOF ---
+    (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n)).toSet = {0} := by -- --- PROOF ---
   -- the stored zeros read as ℝ's, so the nominal part is the exact layer's point
   have hc : toRealVec (fun _ : Fin n => (zero : 𝕋)) = 0 := funext fun _ => toReal_zero
   -- the nominal part denotes `{0}`, and so does the box
@@ -65,11 +65,11 @@ theorem ConZonotope.origin_exact (n : ℕ) : -- --- CONCL ---
         (HPolytope.mem_nominal_of_origin rfl).mp (HPolytope.mem_fullspace _), ?_⟩
       show (0 : Vec ℝ n) = toRealVec (fun _ : Fin n => (zero : 𝕋)) + ∑ j : Fin 0, _
       simp [hc]
-  have hE : (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n)).I_error.construct = {0} :=
+  have hE : (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n)).I_error.toSet = {0} :=
     Interval.origin_exact n
   -- the sum of the two singletons
   show InflatedContSet.nominalSet (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n))
-      + (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n)).I_error.construct = _
+      + (ConZonotope.origin n : ConZonotope 𝕋 (Vec 𝕋 n)).I_error.toSet = _
   rw [hN, hE, Set.singleton_add_singleton, add_zero]
 
 end CORALean.Float

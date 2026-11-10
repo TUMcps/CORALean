@@ -53,16 +53,16 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- The two halves of a split cover the zonotope they came from, exactly. -/
 theorem Zonotope.split_union (Z : Zonotope α) (j : Fin Z.h) : -- --- CONCL ---
-    (Z.split j).fst.construct ∪ (Z.split j).snd.construct = Z.construct := by -- --- PROOF ---
-  have h₁ : (Z.split j).fst.construct = {x | ∃ β : Fin Z.h → ℝ, (∀ k, |β k| ≤ 1) ∧
+    (Z.split j).fst.toSet ∪ (Z.split j).snd.toSet = Z.toSet := by -- --- PROOF ---
+  have h₁ : (Z.split j).fst.toSet = {x | ∃ β : Fin Z.h → ℝ, (∀ k, |β k| ≤ 1) ∧
       x = Z.c - (2 : ℝ)⁻¹ • Z.G j
         + ∑ k, β k • Function.update Z.G j ((2 : ℝ)⁻¹ • Z.G j) k} := rfl
-  have h₂ : (Z.split j).snd.construct = {x | ∃ β : Fin Z.h → ℝ, (∀ k, |β k| ≤ 1) ∧
+  have h₂ : (Z.split j).snd.toSet = {x | ∃ β : Fin Z.h → ℝ, (∀ k, |β k| ≤ 1) ∧
       x = Z.c + (2 : ℝ)⁻¹ • Z.G j
         + ∑ k, β k • Function.update Z.G j ((2 : ℝ)⁻¹ • Z.G j) k} := rfl
   rw [h₁, h₂]
   ext x
-  simp only [Zonotope.construct, Set.mem_union, Set.mem_setOf_eq]
+  simp only [Zonotope.toSet, Set.mem_union, Set.mem_setOf_eq]
   constructor
   · rintro (⟨β, hβ, rfl⟩ | ⟨β, hβ, rfl⟩)
     -- the first half reads `β j` off `[-1, 1]` onto `[-1, 0]`

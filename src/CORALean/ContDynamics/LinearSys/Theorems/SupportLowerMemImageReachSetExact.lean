@@ -66,13 +66,13 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- [1, Alg. 1 (lower bounds)]: line 15's `ρ(Ř(t_k), ℓ)` is `ℓ` at a point of the exact
 reachable set `R(t_k)`. -/
 theorem LinearSys.supportLower_mem_image_reachSetExact (sys : LinearSys 𝕋 n) (R₀ U : S n)
-    (hU : Bornology.IsBounded (construct U)) {Δt : ℝ} (hΔt : 0 < Δt)
-    {ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} (hν₀ : ∀ d, ν₀ d ∈ construct R₀)
-    (hνU : ∀ d, νU d ∈ construct U) (c : Vec ℝ n) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- CONCL ---
+    (hU : Bornology.IsBounded (toSet U)) {Δt : ℝ} (hΔt : 0 < Δt)
+    {ν₀ νU : (Vec ℝ n →ₗ[ℝ] ℝ) → Vec ℝ n} (hν₀ : ∀ d, ν₀ d ∈ toSet R₀)
+    (hνU : ∀ d, νU d ∈ toSet U) (c : Vec ℝ n) (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- CONCL ---
     (sys.supportLower Δt ν₀ νU c ℓ k).ρR
       ∈ ℓ '' sys.reachSetExact (Set.Icc 0 (k * Δt)) R₀ U (k * Δt) := by -- --- PROOF ---
   set cex := sys.supportCounterexample Δt ν₀ νU ℓ k
-  have hv : ∀ j, cex.2 j ∈ construct U := fun _ => hνU _
+  have hv : ∀ j, cex.2 j ∈ toSet U := fun _ => hνU _
   refine ⟨sys.closedForm cex.1 (LinearSys.heldInput Δt cex.2) (k * Δt),
     ⟨_, _, sys.isTrajectory_heldInput R₀ U hU (mul_nonneg k.cast_nonneg hΔt.le) Δt (hν₀ _) hv,
       rfl⟩, ?_⟩

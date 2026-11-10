@@ -41,7 +41,7 @@ variable {n : ℕ}
 theorem LevelSet.representsa_fullspace_sound (L : LevelSet n) (O : Fin L.m → Interval EReal)
     (hO : ∀ i x, (O i).inf ≤ ((L.f x i : ℝ) : EReal) ∧ ((L.f x i : ℝ) : EReal) ≤ (O i).sup)
     (h : L.representsa_fullspace O) : -- --- CONCL ---
-    L.construct = Set.univ := by -- --- PROOF ---
+    L.toSet = Set.univ := by -- --- PROOF ---
   ext x
   simp only [Set.mem_univ, iff_true]
   intro i

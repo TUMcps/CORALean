@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.HPolytope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemToSet
 public import CORALean.Global.SupportFunction.SupportFunction
 public import Mathlib.Tactic.Linarith
 
@@ -53,9 +53,9 @@ theorem subset_hPolytope (P : HPolytope α)
     (u : ∀ i, SupportBound O (P.A i)) (hu : ∀ i, (u i).val ≤ P.b i)
     (e : ∀ i, SupportBound O (P.Ae i)) (he : ∀ i, (e i).val ≤ P.be i)
     (f : ∀ i, SupportBound O (-P.Ae i)) (hf : ∀ i, (f i).val ≤ -P.be i) : -- --- CONCL ---
-    O ⊆ P.construct := by -- --- PROOF ---
+    O ⊆ P.toSet := by -- --- PROOF ---
   intro x hx
-  refine HPolytope.mem_construct_iff.mpr ⟨fun i => le_trans ((u i).le x hx) (hu i), fun i => ?_⟩
+  refine HPolytope.mem_toSet_iff.mpr ⟨fun i => le_trans ((u i).le x hx) (hu i), fun i => ?_⟩
   have hle : P.Ae i x ≤ P.be i := le_trans ((e i).le x hx) (he i)
   have hge := (f i).le x hx
   rw [LinearMap.neg_apply] at hge

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Float.Zonotope
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 
 @[expose] public section
 
@@ -49,7 +49,7 @@ theorem Zonotope.mem_nominalSet_iff [SoundFloatArithmetic 𝕋] {Z : Zonotope (V
     {x : Vec ℝ n} :
     x ∈ InflatedContSet.nominalSet Z ↔ ∃ β : Vec ℝ Z.h, (∀ j, |β j| ≤ 1) ∧
       ∀ i, x i = toReal (Z.c i) + ∑ j, toReal (Z.G j i) * β j :=
-  Real.Zonotope.mem_construct_iff
+  Real.Zonotope.mem_toSet_iff
 
 end CORALean.Float
 

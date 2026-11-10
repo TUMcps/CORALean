@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.outerApprox_outer (pZ : PolyZonotope (Vec 𝕋 n)) (tol : 𝕋)
-    (S : Finset (Fin pZ.p)) : pZ.construct ⊆ (pZ.outerApprox tol S).construct :=
+    (S : Finset (Fin pZ.p)) : pZ.toSet ⊆ (pZ.outerApprox tol S).toSet :=
   PolyZonotope.boxOut_outer pZ _ _
 
 end CORALean.Float

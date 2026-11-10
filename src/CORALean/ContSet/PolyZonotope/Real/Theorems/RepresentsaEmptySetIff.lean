@@ -1,14 +1,14 @@
 module
 
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RepresentsaEmptySet
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemToSet
 
 @[expose] public section
 
 /-!
 # A polynomial zonotope is never empty
 
-The point at the factors `0` (`point_mem_construct`) is a member.
+The point at the factors `0` (`point_mem_toSet`) is a member.
 
 ## Inputs
 * `pZ` – polynomial zonotope
@@ -36,9 +36,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.representsa_emptySet_iff (pZ : PolyZonotope α) : -- --- CONCL ---
-    pZ.representsa_emptySet = true ↔ pZ.construct = ∅ := by -- --- PROOF ---
-  have hne : pZ.construct ≠ ∅ := fun h => by
-    have := pZ.point_mem_construct (a := fun _ => 0) fun _ => by simp
+    pZ.representsa_emptySet = true ↔ pZ.toSet = ∅ := by -- --- PROOF ---
+  have hne : pZ.toSet ≠ ∅ := fun h => by
+    have := pZ.point_mem_toSet (a := fun _ => 0) fun _ => by simp
     rw [h] at this
     exact this
   simp [PolyZonotope.representsa_emptySet, hne]

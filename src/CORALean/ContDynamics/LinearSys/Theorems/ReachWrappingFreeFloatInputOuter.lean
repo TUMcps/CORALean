@@ -74,11 +74,11 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
           sys.IsCanonicalTrajectory (S := 𝒮)
-            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
+            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.toSet
             ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-              params.U.construct) x u →
+              params.U.toSet) x u →
           ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
-            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
+            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].toSet := by -- --- PROOF ---
   intro Rs (h : sys.reachWrappingFreeFloatInput params options = some Rs)
   obtain ⟨X₀, U, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options
@@ -97,27 +97,27 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
   set A := Scalar.toRealMat sys.A with hA
   set ũ := Recenter.center V with hũ
   set Ũ := Recenter.recenter V with hŨ
-  have hbdd := CompactSet.isBounded_construct Ũ
+  have hbdd := CompactSet.isBounded_toSet Ũ
   -- `{0}`, `{ũ}` and `[0, ũ]` hold what they are built from
-  have hpt : ũ ∈ (Interval.point V.c).zonotope.construct :=
+  have hpt : ũ ∈ (Interval.point V.c).zonotope.toSet :=
     Interval.zonotope_contains _ (Interval.mem_point V.c)
-  have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.construct := by
+  have hzero : (0 : Vec ℝ n) ∈ (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.toSet := by
     have h0 := Interval.zonotope_contains _ (Interval.mem_point fun _ : Fin n => (zero : 𝕋))
     rwa [show RealImage.realImage (fun _ : Fin n => (zero : 𝕋)) = (0 : Vec ℝ n) from
       funext fun _ => toReal_zero] at h0
   -- the segment `[0, ũ]` holds both its ends
   set seg := LinComb.linComb (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope
     (Interval.point V.c).zonotope with hseg
-  have h0seg : (0 : Vec ℝ n) ∈ seg.construct := by
+  have h0seg : (0 : Vec ℝ n) ∈ seg.toSet := by
     refine LinComb.linComb_outer (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope
       (Interval.point V.c).zonotope ?_
     exact ⟨0, hzero, ũ, hpt, 1, ⟨zero_le_one, le_rfl⟩, by simp⟩
-  have hũseg : ũ ∈ seg.construct := by
+  have hũseg : ũ ∈ seg.toSet := by
     refine LinComb.linComb_outer (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope
       (Interval.point V.c).zonotope ?_
     exact ⟨0, hzero, ũ, hpt, 0, ⟨le_rfl, zero_le_one⟩, by simp⟩
   -- the constant `ũ` held over `[0, τ]` is an admissible input of any set holding `ũ`
-  have hconst : ∀ {W : Zonotope (Vec 𝕋 n)}, ũ ∈ W.construct → ∀ {τ : ℝ}, 0 ≤ τ →
+  have hconst : ∀ {W : Zonotope (Vec 𝕋 n)}, ũ ∈ W.toSet → ∀ {τ : ℝ}, 0 ≤ τ →
       Real.MatExp.expIntegral A τ *ᵥ ũ ∈ sys.inputReach (S := 𝒵[𝕋]) W τ :=
     fun hW _ hτ => ⟨fun _ => ũ, fun _ _ => hW, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A ũ hτ).symm⟩
@@ -128,7 +128,7 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
     (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope with hPdef
   have hP : ∀ (j : ℕ) (hj : j < P.length), ∀ q ∈ sys.inputReach (S := 𝒵[𝕋]) Ũ
     ((j : ℝ) * Δ),
-      Real.MatExp.expIntegral A ((j : ℝ) * Δ) *ᵥ ũ + q ∈ ContSet.construct P[j] := by
+      Real.MatExp.expIntegral A ((j : ℝ) * Δ) *ᵥ ũ + q ∈ ContSet.toSet P[j] := by
     intro j
     induction j with
     | zero =>
@@ -174,7 +174,7 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
   have hτ : t - k * Δ ∈ Set.Icc 0 Δ := ⟨sub_nonneg.mpr ht.1, by linarith [ht.2]⟩
   -- the run's inputs `B u + c` are in `B U ⊕ c`'s float enclosure
   have hUV : (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-      U.construct ⊆ ContSet.construct V :=
+      U.toSet ⊆ ContSet.toSet V :=
     sys.inputSetFloat_outer U
   have hd := traj.sub_mem_inputReach_recenter (S' := 𝒵[𝕋]) hUV
     ⟨ht0, ht.2.trans hkN⟩
@@ -187,12 +187,12 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
     hΔt.le hk0 hbdd hd'
   -- the free motion and the constant's share in the first window, carried to `t_k`
   have hfirst : exp ((t - k * Δ) • A) *ᵥ x 0 + Real.MatExp.expIntegral A (t - k * Δ) *ᵥ ũ
-      ∈ ContSet.construct (Reduce.reduce (sys.timeIntervalFloat Δt η' X₀
+      ∈ ContSet.toSet (Reduce.reduce (sys.timeIntervalFloat Δt η' X₀
         ⊞ sys.inputSolutionFloat Δt η' seg) ρ) :=
     Reduce.reduce_outer _ ρ (Plus.plus_outer _ _ (Set.add_mem_add
       (sys.timeIntervalFloat_outer hΔt hadm X₀ traj.init hτ.1 hτ.2)
       (sys.inputReach_subset_inputSolutionFloat hΔt hadm seg
-        (sys.inputReach_mono (S := 𝒵[𝕋]) (CompactSet.isBounded_construct seg)
+        (sys.inputReach_mono (S := 𝒵[𝕋]) (CompactSet.isBounded_toSet seg)
           h0seg hτ.1 hτ.2
           (hconst hũseg hτ.1)))))
   have hk' : k < N := by simp [hHlen] at hk; omega

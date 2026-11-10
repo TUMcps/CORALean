@@ -35,7 +35,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Zonotope.zero_mem_recenter (Z : Zonotope α) : (0 : α) ∈ Z.recenter.construct := by
+theorem Zonotope.zero_mem_recenter (Z : Zonotope α) : (0 : α) ∈ Z.recenter.toSet := by
   refine ⟨0, fun _ => by simp, ?_⟩
   show (0 : α) = 0 + ∑ j, (0 : Fin Z.h → ℝ) j • Z.G j
   simp

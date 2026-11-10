@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceUnderApproxSadraddini
 public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 
 @[expose] public section
 
@@ -48,16 +48,16 @@ variable {n : ℕ}
 theorem Zonotope.reduceUnderApproxSadraddini_inner
     (opt : (Z : Zonotope (Vec ℝ n)) → Option (Σ h : ℕ, (Fin h → Vec ℝ n) × Mat ℝ Z.h h))
     (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    (Zonotope.reduceUnderApproxSadraddini opt Z).construct ⊆ Z.construct := by -- --- PROOF ---
+    (Zonotope.reduceUnderApproxSadraddini opt Z).toSet ⊆ Z.toSet := by -- --- PROOF ---
   -- the center alone lies in `Z`
-  have hc : (⟨0, Z.c, Fin.elim0⟩ : Zonotope (Vec ℝ n)).construct ⊆ Z.construct := by
+  have hc : (⟨0, Z.c, Fin.elim0⟩ : Zonotope (Vec ℝ n)).toSet ⊆ Z.toSet := by
     rintro _ ⟨β, -, rfl⟩
-    simpa using Z.center_mem_construct
+    simpa using Z.center_mem_toSet
   unfold Zonotope.reduceUnderApproxSadraddini
   split
   · exact hc
   · split_ifs with h
-    · exact Zonotope.construct_subset_of_cert ⟨_, Z.c, _⟩ Z _ 0 h.1 (by simp)
+    · exact Zonotope.toSet_subset_of_cert ⟨_, Z.c, _⟩ Z _ 0 h.1 (by simp)
         fun j => by simpa using h.2 j
     · exact hc
 

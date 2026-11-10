@@ -37,19 +37,19 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.project_exact (P : Polygon) (dims : Fin 2 → Fin 2) : -- --- CONCL ---
-    (fun x k => x (dims k)) '' ContSet.construct P =
-      ContSet.construct (Polygon.project P dims) := by -- --- PROOF ---
+    (fun x k => x (dims k)) '' ContSet.toSet P =
+      ContSet.toSet (Polygon.project P dims) := by -- --- PROOF ---
   ext x
-  simp only [Set.mem_image, SetUnion.mem_construct, Polygon.project, List.mem_map]
+  simp only [Set.mem_image, SetUnion.mem_toSet, Polygon.project, List.mem_map]
   constructor
   · rintro ⟨y, ⟨p, hp, hy⟩, rfl⟩
     refine ⟨_, ⟨p, hp, rfl⟩, ?_⟩
-    rw [show ContSet.construct (VPolytope.project p dims) =
-      VPolytope.construct (VPolytope.project p dims) from rfl, ← VPolytope.project_exact]
+    rw [show ContSet.toSet (VPolytope.project p dims) =
+      VPolytope.toSet (VPolytope.project p dims) from rfl, ← VPolytope.project_exact]
     exact ⟨y, hy, rfl⟩
   · rintro ⟨_, ⟨p, hp, rfl⟩, hx⟩
-    rw [show ContSet.construct (VPolytope.project p dims) =
-      VPolytope.construct (VPolytope.project p dims) from rfl, ← VPolytope.project_exact] at hx
+    rw [show ContSet.toSet (VPolytope.project p dims) =
+      VPolytope.toSet (VPolytope.project p dims) from rfl, ← VPolytope.project_exact] at hx
     obtain ⟨y, hy, rfl⟩ := hx
     exact ⟨y, ⟨p, hp, hy⟩, rfl⟩
 

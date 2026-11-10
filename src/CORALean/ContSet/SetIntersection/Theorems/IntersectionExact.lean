@@ -40,10 +40,10 @@ variable {S α : Type} [ContSet S α]
 
 /-- Appending two lists of members denotes exactly the intersection of the two intersections. -/
 theorem SetIntersection.intersection_exact (I J : SetIntersection S) : -- --- CONCL ---
-    ContSet.construct (SetIntersection.intersection I J)
-      = ContSet.construct I ∩ ContSet.construct J := by -- --- PROOF ---
+    ContSet.toSet (SetIntersection.intersection I J)
+      = ContSet.toSet I ∩ ContSet.toSet J := by -- --- PROOF ---
   ext x
-  simp only [Set.mem_inter_iff, SetIntersection.mem_construct, SetIntersection.intersection,
+  simp only [Set.mem_inter_iff, SetIntersection.mem_toSet, SetIntersection.intersection,
     List.mem_append]
   exact ⟨fun h => ⟨fun s hs => h s (.inl hs), fun s hs => h s (.inr hs)⟩,
     fun h s hs => hs.elim (h.1 s) (h.2 s)⟩

@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.radius_le (k : ℕ) (C : Capsule 𝕋 n) {x : Vec ℝ n}
-    (hx : x ∈ C.construct) : -- --- CONCL ---
+    (hx : x ∈ C.toSet) : -- --- CONCL ---
     ‖x - toRealVec C.c‖₂ ≤ toReal (C.radius k) := by -- --- PROOF ---
   obtain ⟨y, hy, e, he, rfl⟩ := hx
   have h₁ := CORALean.Real.Capsule.norm₂_sub_center_le (C := C.nominal) hy

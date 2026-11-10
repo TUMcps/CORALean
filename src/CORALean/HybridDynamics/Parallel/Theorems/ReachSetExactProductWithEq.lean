@@ -63,7 +63,7 @@ theorem ParallelHybridAutomaton.reachSetExact_productWith_eq [ExactScalar 𝕋]
     (hF' : P.IsFlowLawConverse F U W) {lift : ParallelHybridAutomaton.Lifting S G n m}
     (hex : lift.IsExact) {R₀ : ∀ i, S (n i)}
     {R₀' : S (∑ i, n i)}
-    (hR₀ : ∀ x : ∀ i, Vec ℝ (n i), stack x ∈ construct R₀' ↔ ∀ i, x i ∈ construct (R₀ i))
+    (hR₀ : ∀ x : ∀ i, Vec ℝ (n i), stack x ∈ toSet R₀' ↔ ∀ i, x i ∈ toSet (R₀ i))
     (ℓ₀ ℓ : ∀ i, L i) : -- --- CONCL ---
     (P.productWith lift F U W).reachSetExact R₀' ℓ₀ ℓ =
       stack '' P.reachSetExact R₀ ℓ₀ ℓ := by -- --- PROOF ---

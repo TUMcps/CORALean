@@ -70,10 +70,10 @@ theorem Location.IsTrajectory.timeInterval_outer_split [∀ n, OfPoint (S n) (Ve
     [∀ n, Recenter (S n) (Vec ℝ n)] [∀ n, ConvexSet (S n) (Vec ℝ n)]
     [∀ n, CompactSet (S n) (Vec ℝ n)]
     {ℓ : Location S G L 𝕋 n} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.IsTrajectory τ x u w)
-    {R₀ : S n} (h₀ : x 0 ∈ construct R₀) (hτ : 0 < τ) {m : ℕ}
+    {R₀ : S n} (h₀ : x 0 ∈ toSet R₀) (hτ : 0 < τ) {m : ℕ}
     (hε : ‖τ • toRealMat ℓ.dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htτ : t ≤ τ) :
-    x t ∈ construct (ℓ.timeIntervalSplit τ (m + 2) R₀) :=
+    x t ∈ toSet (ℓ.timeIntervalSplit τ (m + 2) R₀) :=
   (traj.linearSys h₀ traj.inputSet_mem).timeInterval_outer_split hτ subset_rfl hε ht0 htτ
 
 end CORALean

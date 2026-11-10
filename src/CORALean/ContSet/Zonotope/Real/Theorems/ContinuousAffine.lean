@@ -10,7 +10,7 @@ public import Mathlib.Analysis.Normed.Module.Basic
 
 Coefficients enter linearly, so `β ↦ c + ∑ βⱼ • Gⱼ` is continuous. It is what
 carries compactness from the coefficient cube onto the set, both here and for
-the constrained zonotope, whose `construct` is the image of its own domain under
+the constrained zonotope, whose `toSet` is the image of its own domain under
 this same map.
 
 ## Inputs

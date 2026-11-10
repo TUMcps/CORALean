@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsequalConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsequalToSet
 public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.Interval.Real.Instances
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsCompact
@@ -48,11 +48,11 @@ scoped notation "𝒫𝒵" => fun n => PolyZonotope (Vec ℝ n)
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (PolyZonotope α) α := ⟨PolyZonotope.construct⟩
+instance : ContSet (PolyZonotope α) α := ⟨PolyZonotope.toSet⟩
 
 /-- Compact, not convex: the set is the image of a cube under a polynomial. -/
 instance {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] : CompactSet (PolyZonotope α) α :=
-  ⟨PolyZonotope.isCompact_construct⟩
+  ⟨PolyZonotope.isCompact_toSet⟩
 
 instance : Plus (PolyZonotope α) α where
   plus := PolyZonotope.plus
@@ -73,7 +73,7 @@ noncomputable instance : Reduce (PolyZonotope (Vec ℝ n)) (Vec ℝ n) where
 instance : Mtimes (Mat ℝ) (𝒫𝒵) where
   mtimes := PolyZonotope.mtimes
   mtimes_outer M pZ := by
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact (PolyZonotope.mtimes_exact M pZ).subset
 
 /-- The same operation at an interval matrix: the radius is boxed into one fresh
@@ -90,7 +90,7 @@ instance : Reindex 𝒫𝒵 where
 /-- `PolyZonotope.isequal`, structural at tolerance `0`: sound, not exact. -/
 instance : Isequal (PolyZonotope α) where
   isequal := PolyZonotope.isequal
-  isequal_construct _ _ := PolyZonotope.isequal_construct
+  isequal_toSet _ _ := PolyZonotope.isequal_toSet
 
 end CORALean.Real
 

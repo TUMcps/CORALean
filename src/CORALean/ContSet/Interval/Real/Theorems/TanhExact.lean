@@ -64,7 +64,7 @@ private theorem aux_tanh_continuous : Continuous Real.tanh := by
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.tanh_exact (I : Interval (Vec ℝ n)) :
-    I.tanh.construct = (fun x i => Real.tanh (x i)) '' I.construct := by
+    I.tanh.toSet = (fun x i => Real.tanh (x i)) '' I.toSet := by
   exact Interval.monotoneImage_exact Real.tanh (Set.univ) Set.ordConnected_univ
     (fun a _ b _ h => aux_tanh_strictMono h) (aux_tanh_continuous.continuousOn)
     I (fun i => ⟨trivial, trivial⟩)

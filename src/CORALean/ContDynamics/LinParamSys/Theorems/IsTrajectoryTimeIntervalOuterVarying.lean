@@ -75,7 +75,7 @@ theorem LinParamSys.IsCanonicalTrajectory.timeInterval_outer_varying {sys : LinP
     (hu : ∀ s ∈ Set.Ico 0 r, u s = 0) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
-    x t ∈ construct (sys.timeInterval r (m + 2) R₀) := by -- --- PROOF ---
+    x t ∈ toSet (sys.timeInterval r (m + 2) R₀) := by -- --- PROOF ---
   obtain ⟨Â, hÂi, hÂB, hx⟩ := traj.exists_integral_eq hr.le hT hu
   have hxc : ContinuousOn x (Set.Icc 0 r) := traj.cont.mono hT
   obtain ⟨Φ, hΦ, F, hF, heq⟩ :=

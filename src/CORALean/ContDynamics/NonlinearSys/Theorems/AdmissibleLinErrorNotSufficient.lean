@@ -84,8 +84,8 @@ theorem NonlinearSys.admissibleLinError_not_sufficient : -- --- CONCL ---
       IsUnit A ∧ IsUnit (NormedSpace.exp (r • A) - 1) ∧ 0 < r ∧
       (∀ i, L i ≤ NonlinearSys.admissibleLinError A r θ i) ∧
       ¬ (fun x => (A⁻¹ * (NormedSpace.exp (r • A) - 1)) *ᵥ x) ''
-          (⟨-L, L⟩ : Real.Interval (Vec ℝ 2)).construct
-        ⊆ (⟨-(r • θ), r • θ⟩ : Real.Interval (Vec ℝ 2)).construct := by -- --- PROOF ---
+          (⟨-L, L⟩ : Real.Interval (Vec ℝ 2)).toSet
+        ⊆ (⟨-(r • θ), r • θ⟩ : Real.Interval (Vec ℝ 2)).toSet := by -- --- PROOF ---
   -- every entry is a rational function of `e`, which is all `field_simp` needs
   set e := Real.exp 1 with he
   have he2 : 2 < e := by have := Real.add_one_lt_exp (one_ne_zero (α := ℝ)); linarith
@@ -128,7 +128,7 @@ theorem NonlinearSys.admissibleLinError_not_sufficient : -- --- CONCL ---
   · rw [hE, Matrix.isUnit_iff_isUnit_det, Matrix.det_fin_two_of]
     simp only [mul_zero, sub_zero, isUnit_iff_ne_zero]; exact mul_ne_zero h1 h2
   · intro hsub
-    have hmem : L ∈ (⟨-L, L⟩ : Real.Interval (Vec ℝ 2)).construct := by
+    have hmem : L ∈ (⟨-L, L⟩ : Real.Interval (Vec ℝ 2)).toSet := by
       intro i
       change -L i ≤ L i ∧ L i ≤ L i
       refine ⟨?_, le_rfl⟩

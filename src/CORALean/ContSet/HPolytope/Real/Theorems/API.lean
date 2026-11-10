@@ -2,12 +2,12 @@ module
 
 public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Real.Theorems.Convex
-public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageFst
+public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsToSetEqImageFst
 public import CORALean.ContSet.HPolytope.Real.Theorems.IntersectionExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.IsClosed
 public import CORALean.ContSet.HPolytope.Real.Theorems.LinCombOfOuter
 public import CORALean.ContSet.HPolytope.Real.Theorems.MapEquivExact
-public import CORALean.ContSet.HPolytope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Real.Theorems.MemToSet
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemFoldlIntersectionIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemIntersection
 public import CORALean.ContSet.HPolytope.Real.Theorems.MinkDiffOfInner
@@ -69,7 +69,7 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestSignedUnit
 public import CORALean.ContSet.HPolytope.Real.Theorems.MinkowskiDiffIneqsEq
 public import CORALean.ContSet.HPolytope.Real.Theorems.SuccLeOfIsBounded
 public import CORALean.ContSet.HPolytope.Real.Theorems.IsGreatestBallRadius
-public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
+public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictToSet
 public import CORALean.ContSet.HPolytope.Real.Theorems.DropTrivialEqsExact
 public import CORALean.ContSet.HPolytope.Real.Theorems.ColWeightEqZeroIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.CompactZerosExact
@@ -79,7 +79,7 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.RepresentsaFullspaceIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.IsLPCenterMem
 public import CORALean.ContSet.HPolytope.Real.Theorems.VolumeInterval
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemIffRows
-public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsConstructEqImageAffine
+public import CORALean.ContSet.HPolytope.Real.Theorems.ExistsToSetEqImageAffine
 public import CORALean.ContSet.HPolytope.Real.Theorems.BallSubsetIneqsIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.EmptySetRowsMinimal
 public import CORALean.ContSet.HPolytope.Real.Theorems.NaiveHalfspaceNotSubset
@@ -89,14 +89,14 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.MemAddSmulIffChord
 public import CORALean.ContSet.HPolytope.Real.Theorems.HitAndRunStepMem
 public import CORALean.ContSet.HPolytope.Real.Theorems.BilliardEndMem
 public import CORALean.ContSet.HPolytope.Real.Theorems.BilliardStepMem
-public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructEmptySet
-public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructEqEmptyOfDual
+public import CORALean.ContSet.HPolytope.Real.Theorems.ToSetEmptySet
+public import CORALean.ContSet.HPolytope.Real.Theorems.ToSetEqEmptyOfDual
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemHalfScaledIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemSlabIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemSlabSelfIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemUnitBoxIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.SubsetOfBoundsOpt
-public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructFullspace
+public import CORALean.ContSet.HPolytope.Real.Theorems.ToSetFullspace
 
 /-!
 # What `HPolytope` guarantees
@@ -104,7 +104,7 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructFullspace
 The operations whose rows the inputs determine, exactly; the rest enclosing,
 each in one line off `subset_ofBounds`. Convex and closed, but not bounded:
 unbounded is what this representation admits and a vertex one cannot.
-`MemConstruct` names the pair of constraint blocks every one of them is stated
+`MemToSet` names the pair of constraint blocks every one of them is stated
 against. `MinkDiffOfInner` is the one guarantee running the other way: an inner
 approximation of the Minkowski difference, needing `hker` on the equality rows.
 `OfPointMem` is the one at `Vec ℝ n` alone, `LinearMap.proj` needing coordinates.

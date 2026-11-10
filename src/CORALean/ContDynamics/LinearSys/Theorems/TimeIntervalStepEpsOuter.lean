@@ -63,8 +63,8 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 with the order asked for by an admissible error instead of named. -/
 theorem LinearSys.timeIntervalStepEps_outer (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r)
     {ε : ℝ} (hε : 0 < ε) (X₀ : S n) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
-    (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' construct X₀
-      ⊆ construct (sys.timeIntervalStepEps r ε X₀) := by -- --- PROOF ---
+    (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' toSet X₀
+      ⊆ toSet (sys.timeIntervalStepEps r ε X₀) := by -- --- PROOF ---
   obtain ⟨h2, -, hs⟩ := MatExp.expRemainderOrder_spec (r • toRealMat sys.A) hε
   -- the outer theorem takes its order as `m + 2`, which `2 ≤ η` supplies
   obtain ⟨m, hm⟩ : ∃ m : ℕ, MatExp.expRemainderOrder (r • toRealMat sys.A) ε = m + 2 :=

@@ -9,8 +9,8 @@ public import CORALean.ContDynamics.LinParamSysDT.Theorems.ReachOneOuter
 # `reachSetExact` stays inside `reach`
 
 `reach_outer_on`'s induction, off a represented set rather than off one
-trajectory: each step's image at every `A ∈ construct sys.A`, plus every input in
-`construct U`, is exactly what `reach_one_outer` already bounds.
+trajectory: each step's image at every `A ∈ toSet sys.A`, plus every input in
+`toSet U`, is exactly what `reach_one_outer` already bounds.
 
 ## Inputs
 * `sys` – system
@@ -47,13 +47,13 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 theorem LinParamSysDT.reachSetExact_subset_reach (sys : LinParamSysDT 𝕄 n) {o : ℕ} (ho : 0 < o)
     (R₀ U : S n) (k : ℕ) : -- --- CONCL ---
-    sys.reachSetExact R₀ U k ⊆ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
+    sys.reachSetExact R₀ U k ⊆ toSet (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   induction k with
   | zero => exact subset_rfl
   | succ k ih =>
     rintro _ ⟨z, hz, w, hw, rfl⟩
     obtain ⟨A, hA, y, hy, rfl⟩ := Set.mem_iUnion₂.mp hz
-    show A *ᵥ y + w ∈ construct (sys.reach ⟨sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩, U, 0, 1⟩ ⟨o, ho⟩)
+    show A *ᵥ y + w ∈ toSet (sys.reach ⟨sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩, U, 0, 1⟩ ⟨o, ho⟩)
     exact sys.reach_one_outer ho _ _ hA (ih hy) hw
 
 end CORALean

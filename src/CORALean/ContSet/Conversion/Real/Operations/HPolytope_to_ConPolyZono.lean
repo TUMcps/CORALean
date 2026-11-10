@@ -36,8 +36,8 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `conPolyZono(P)`: `conPolyZono(conZonotope(P))`. -/
-noncomputable def HPolytope.conPolyZono (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : ConPolyZono (Vec ℝ n) :=
+noncomputable def HPolytope.conPolyZono (up : ∀ j, SupportBound P.toSet (LinearMap.proj j))
+    (lo : ∀ j, SupportBound P.toSet (-LinearMap.proj j)) : ConPolyZono (Vec ℝ n) :=
   -- `conZonotope(P)`, the box from the support bounds
   let cZ := HPolytope.conZonotope up lo
   -- `conPolyZono(cZ)`

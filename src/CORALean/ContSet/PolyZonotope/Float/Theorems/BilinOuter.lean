@@ -51,7 +51,7 @@ theorem PolyZonotope.bilin_outer (Q : Fin m → Mat 𝕋 n n) (pZ₁ pZ₂ : Pol
         Real.PolyZonotope.quadBilin (fun k => toRealMat (Q k))
           ((nominal pZ₁).point a) ((nominal pZ₂).point fun k => a (Fin.cast hp.symm k)))
         '' {a | ∀ k, |a k| ≤ 1}
-      ⊆ (PolyZonotope.bilin Q pZ₁ pZ₂ hp).construct :=
+      ⊆ (PolyZonotope.bilin Q pZ₁ pZ₂ hp).toSet :=
   (Real.PolyZonotope.bilin_exact (Real.PolyZonotope.quadBilin fun k => toRealMat (Q k))
     (nominal pZ₁) (nominal pZ₂) hp).subset.trans (PolyZonotope.bilin_refines Q pZ₁ pZ₂ hp)
 

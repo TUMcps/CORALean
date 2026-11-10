@@ -43,7 +43,7 @@ variable {n : ℕ}
 
 /-- Every point of `Z` has entrywise absolute value below the corner of `abs Z`. -/
 theorem Zonotope.abs_le_abs_corner {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
-    (hx : x ∈ Z.construct) (i : Fin n) : -- --- CONCL ---
+    (hx : x ∈ Z.toSet) (i : Fin n) : -- --- CONCL ---
     |x i| ≤ Z.abs.absBound i := by -- --- PROOF ---
   obtain ⟨β, hβ, hxβ⟩ := hx
   have h := Zonotope.abs_le_absBound (Z := Z) (x := x) (β := β) hβ

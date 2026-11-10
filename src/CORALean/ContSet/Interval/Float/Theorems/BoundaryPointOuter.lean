@@ -87,12 +87,12 @@ private theorem Interval.aux_boundaryRatioAt_mem {I : Interval (Vec 𝕋 n)} {di
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.boundaryPoint_outer (I : Interval (Vec 𝕋 n)) (dir start : Vec 𝕋 n)
-    (hs : toRealVec start ∈ I.construct) (hex : ∃ i, toReal (dir i) ≠ 0)
+    (hs : toRealVec start ∈ I.toSet) (hex : ∃ i, toReal (dir i) ≠ 0)
     (hcert : ∀ i, toReal (dir i) ≠ 0 →
       ltStrict zero (dir i) = true ∨ ltStrict (dir i) zero = true) : -- --- CONCL ---
     ∃ J, I.boundaryPoint dir start = some J ∧
       Real.Interval.boundaryPoint I.nominal (toRealVec dir) (toRealVec start) hex ∈
-        J.construct := by -- --- PROOF ---
+        J.toSet := by -- --- PROOF ---
   have hs' : ∀ i, toReal (I.inf i) ≤ toReal (start i) ∧ toReal (start i) ≤ toReal (I.sup i) :=
     fun i => hs i
   -- the exact ratio, the greatest on the ray

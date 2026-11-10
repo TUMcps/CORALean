@@ -43,13 +43,13 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ContSet.projectOnHyperplane_outer (s : S n) (c : Vec ℝ n) (d : ℝ) : -- --- CONCL ---
-    (fun x : Vec ℝ n => x - (c ⬝ᵥ x - d) • c) '' construct s ⊆
-      construct (ContSet.projectOnHyperplane s c d) := by -- --- PROOF ---
+    (fun x : Vec ℝ n => x - (c ⬝ᵥ x - d) • c) '' toSet s ⊆
+      toSet (ContSet.projectOnHyperplane s c d) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   refine Plus.plus_outer _ _ ⟨(1 - Matrix.vecMulVec c c).mulVec x, ?_, d • c,
     OfPoint.mem_ofPoint _, ?_⟩
   · refine Mtimes.mtimes_outer (𝕄 := Mat ℝ) _ s ?_
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact ⟨x, hx, rfl⟩
   · funext i
     simp [Matrix.sub_mulVec, Matrix.mulVec, dotProduct, Matrix.vecMulVec, Finset.mul_sum,

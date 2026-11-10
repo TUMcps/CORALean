@@ -45,13 +45,13 @@ theorem LinearSys.IsCanonicalTrajectory.reach_outer_horizon_inputSolution [Mtime
     (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hΔt : 0 < Δt)
     (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U))
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U))
     (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) Δt η U))
     (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) Δt η U))
     (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) Δt η U)) {o : ℕ} (ho :
       0 < o) :
-    ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct
+    ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ toSet
       ((sys.discretize Δt).reach ⟨R₀, sys.inputSolution Δt η U, 0, k⟩ ⟨o, ho⟩) :=
   traj.reach_outer_horizon hΔt.le hT hbdd
     (fun k hk => traj.stepInput_outer hΔt η hε hconv hclosed hbdd hRconv hRclosed hRbdd k

@@ -45,8 +45,8 @@ open Matrix
 
 theorem HPolytope.sum_ahPolytope_subset_ineqs_iff_counterexample : -- --- CONCL ---
     ∃ (Hx : Mat ℝ 3 2) (hx : Vec ℝ 3) (Hy : Mat ℝ 4 2) (hy : Vec ℝ 4),
-      {x | ∃ p : Fin 1 → Vec ℝ 2, (∀ i, p i ∈ (HPolytope.ineqs Hx hx).construct) ∧
-          x = 0 + ∑ i, (1 : Mat ℝ 2 2) *ᵥ p i} ⊆ (HPolytope.ineqs Hy hy).construct ∧
+      {x | ∃ p : Fin 1 → Vec ℝ 2, (∀ i, p i ∈ (HPolytope.ineqs Hx hx).toSet) ∧
+          x = 0 + ∑ i, (1 : Mat ℝ 2 2) *ᵥ p i} ⊆ (HPolytope.ineqs Hy hy).toSet ∧
       ¬ ∃ Λ : Fin 1 → Mat ℝ 4 3, (∀ i j k, 0 ≤ Λ i j k) ∧ (∀ i, Λ i * Hx = Hy * (1 : Mat ℝ 2 2)) ∧
         ∑ i, Λ i *ᵥ hx ≤ hy - Hy *ᵥ 0 := by -- --- PROOF ---
   obtain ⟨Hx, hx, Hy, hy, -, -, hsub, hno⟩ := HPolytope.ineqs_subset_iff_counterexample

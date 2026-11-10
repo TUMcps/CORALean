@@ -149,10 +149,10 @@ private theorem aux_align_step (W : Set α) (hW : Convex ℝ W) (g : α) (μ : �
 
 /-- The zero-centered zonotope on `n + 1` generators splits its head off: the
 segment generator `0` spans, plus the zonotope on the remaining generators. -/
-private theorem aux_construct_cons (n : ℕ) (g : Fin (n + 1) → α) : -- --- CONCL ---
-    (⟨n + 1, (0 : α), g⟩ : Zonotope α).construct
+private theorem aux_toSet_cons (n : ℕ) (g : Fin (n + 1) → α) : -- --- CONCL ---
+    (⟨n + 1, (0 : α), g⟩ : Zonotope α).toSet
       = {y : α | ∃ t : ℝ, |t| ≤ 1 ∧ y = t • g 0}
-          + (⟨n, (0 : α), fun i => g i.succ⟩ : Zonotope α).construct := by -- --- PROOF ---
+          + (⟨n, (0 : α), fun i => g i.succ⟩ : Zonotope α).toSet := by -- --- PROOF ---
   ext y
   constructor
   · rintro ⟨β, hβ, rfl⟩
@@ -177,13 +177,13 @@ private theorem aux_fold_aligned (n : ℕ) : -- --- CONCL ---
     ∀ (W : Set α), Convex ℝ W → ∀ (g : Fin n → α) (μ : Fin n → ℝ),
       (∀ i, 0 ≤ μ i) → (∀ i, μ i ≤ 1) →
       Fin.foldl n (fun A i => (A + {μ i • g i}) ∩ (A - {μ i • g i}))
-          (W + (⟨n, (0 : α), g⟩ : Zonotope α).construct)
-        = W + (⟨n, (0 : α), fun i => (1 - μ i) • g i⟩ : Zonotope α).construct := by -- --- PROOF ---
+          (W + (⟨n, (0 : α), g⟩ : Zonotope α).toSet)
+        = W + (⟨n, (0 : α), fun i => (1 - μ i) • g i⟩ : Zonotope α).toSet := by -- --- PROOF ---
   induction n with
   | zero =>
     intro W hW g μ _ _
     -- no generators: both zonotopes are `{0}` and the fold does nothing
-    have hz : ∀ g' : Fin 0 → α, (⟨0, (0 : α), g'⟩ : Zonotope α).construct = ({0} : Set α) := by
+    have hz : ∀ g' : Fin 0 → α, (⟨0, (0 : α), g'⟩ : Zonotope α).toSet = ({0} : Set α) := by
       intro g'
       ext y
       constructor
@@ -194,30 +194,30 @@ private theorem aux_fold_aligned (n : ℕ) : -- --- CONCL ---
     rw [Fin.foldl_zero, hz, hz]
   | succ n ih =>
     intro W hW g μ h0 h1
-    have hZ : Convex ℝ (⟨n, (0 : α), fun i => g i.succ⟩ : Zonotope α).construct :=
-      Zonotope.convex_construct _
+    have hZ : Convex ℝ (⟨n, (0 : α), fun i => g i.succ⟩ : Zonotope α).toSet :=
+      Zonotope.convex_toSet _
     -- peel the head generator, park the tail in the step's own convex set, take the step
     simp only [Fin.foldl_succ]
-    rw [aux_construct_cons n g,
+    rw [aux_toSet_cons n g,
       show W + ({y : α | ∃ t : ℝ, |t| ≤ 1 ∧ y = t • g 0}
-            + (⟨n, (0 : α), fun i => g i.succ⟩ : Zonotope α).construct)
-          = (W + (⟨n, (0 : α), fun i => g i.succ⟩ : Zonotope α).construct)
+            + (⟨n, (0 : α), fun i => g i.succ⟩ : Zonotope α).toSet)
+          = (W + (⟨n, (0 : α), fun i => g i.succ⟩ : Zonotope α).toSet)
             + {y : α | ∃ t : ℝ, |t| ≤ 1 ∧ y = t • g 0} from by abel,
       aux_align_step _ (hW.add hZ) (g 0) (μ 0) (h0 0) (h1 0),
-      show (W + (⟨n, (0 : α), fun i => g i.succ⟩ : Zonotope α).construct)
+      show (W + (⟨n, (0 : α), fun i => g i.succ⟩ : Zonotope α).toSet)
             + {y : α | ∃ t : ℝ, |t| ≤ 1 ∧ y = t • ((1 - μ 0) • g 0)}
           = (W + {y : α | ∃ t : ℝ, |t| ≤ 1 ∧ y = t • ((1 - μ 0) • g 0)})
-            + (⟨n, (0 : α), fun i => g i.succ⟩ : Zonotope α).construct from by abel,
+            + (⟨n, (0 : α), fun i => g i.succ⟩ : Zonotope α).toSet from by abel,
       ih _ (hW.add (aux_convex_seg _)) (fun i => g i.succ) (fun i => μ i.succ)
         (fun i => h0 _) (fun i => h1 _),
-      aux_construct_cons n (fun i => (1 - μ i) • g i)]
+      aux_toSet_cons n (fun i => (1 - μ i) • g i)]
     abel
 
 /-- A zonotope shifted by `-v` is the zero-centered one on its generators, moved
 to `c - v`. -/
 private theorem aux_sub_singleton (Z : Zonotope α) (v : α) : -- --- CONCL ---
-    Z.construct - ({v} : Set α)
-      = {Z.c - v} + (⟨Z.h, (0 : α), Z.G⟩ : Zonotope α).construct := by -- --- PROOF ---
+    Z.toSet - ({v} : Set α)
+      = {Z.c - v} + (⟨Z.h, (0 : α), Z.G⟩ : Zonotope α).toSet := by -- --- PROOF ---
   ext x
   constructor
   · rintro ⟨a, ⟨β, hβ, rfl⟩, b, hb, rfl⟩
@@ -233,8 +233,8 @@ private theorem aux_sub_singleton (Z : Zonotope α) (v : α) : -- --- CONCL ---
 
 /-- And back: moving a zero-centered zonotope to `v` is its center. -/
 private theorem aux_singleton_add (v : α) (n : ℕ) (g : Fin n → α) : -- --- CONCL ---
-    ({v} : Set α) + (⟨n, (0 : α), g⟩ : Zonotope α).construct
-      = (⟨n, v, g⟩ : Zonotope α).construct := by -- --- PROOF ---
+    ({v} : Set α) + (⟨n, (0 : α), g⟩ : Zonotope α).toSet
+      = (⟨n, v, g⟩ : Zonotope α).toSet := by -- --- PROOF ---
   ext x
   constructor
   · rintro ⟨p, hp, _, ⟨β, hβ, rfl⟩, rfl⟩
@@ -263,8 +263,8 @@ everything the difference holds, the closed form holds too. -/
 theorem Zonotope.minkDiffAligned_outer (Z₁ Z₂ : Zonotope α) (hh : Z₁.h = Z₂.h)
     (μ : Fin Z₁.h → ℝ) (hμ0 : ∀ i, 0 ≤ μ i) (hμ1 : ∀ i, μ i ≤ 1)
     (hG : ∀ i, Z₂.G (Fin.cast hh i) = μ i • Z₁.G i) : -- --- CONCL ---
-    minkowskiDiff Z₁.construct Z₂.construct
-      ⊆ (Z₁.minkDiffAligned Z₂ hh).construct := by -- --- PROOF ---
+    minkowskiDiff Z₁.toSet Z₂.toSet
+      ⊆ (Z₁.minkDiffAligned Z₂ hh).toSet := by -- --- PROOF ---
   rw [← Zonotope.minkDiffGenRec_exact]
   -- taking the two counts apart is what turns `Fin.cast hh` into the identity
   obtain ⟨h₁, c₁, G₁⟩ := Z₁

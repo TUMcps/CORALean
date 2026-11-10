@@ -55,10 +55,10 @@ theorem LinParamSys.reachFloat_outer (sys : LinParamSys ℐ[𝕋] n)
     {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
     ∀ Rs ∈ sys.reachFloat params options,
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
-        Rs.length = N ∧ ∀ (k : ℕ) (hk : k < Rs.length), ∀ A ∈ sys.A.construct,
-          ∀ x₀ ∈ params.X₀.construct, ∀ s ∈ Set.Icc 0 (toReal options.Δt),
+        Rs.length = N ∧ ∀ (k : ℕ) (hk : k < Rs.length), ∀ A ∈ sys.A.toSet,
+          ∀ x₀ ∈ params.X₀.toSet, ∀ s ∈ Set.Icc 0 (toReal options.Δt),
             exp (((k : ℝ) * toReal options.Δt + s) • A) *ᵥ x₀
-              ∈ Rs[k].construct := by -- --- PROOF ---
+              ∈ Rs[k].toSet := by -- --- PROOF ---
   intro Rs (h : sys.reachFloat params options = some Rs)
   obtain ⟨X₀, tStart, tFinal⟩ := params
   obtain ⟨Δt, η, ρ⟩ := options

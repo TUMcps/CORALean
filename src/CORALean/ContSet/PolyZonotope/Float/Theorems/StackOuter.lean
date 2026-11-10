@@ -83,8 +83,8 @@ end
 /-- A box point padded below by zero is a point of the padded box. -/
 private theorem PolyZonotope.aux_padLeft_err (pZ : PolyZonotope (Vec 𝕋 n))
     (n₂ : ℕ) : -- --- CONCL ---
-    CORALean.blockPadLeft n n₂ '' pZ.I_error.construct ⊆
-      (pZ.blockPadLeft n₂).I_error.construct := by -- --- PROOF ---
+    CORALean.blockPadLeft n n₂ '' pZ.I_error.toSet ⊆
+      (pZ.blockPadLeft n₂).I_error.toSet := by -- --- PROOF ---
   rintro _ ⟨e, he, rfl⟩ i
   refine Fin.addCases (fun i => ?_) (fun i => ?_) i
   · show toReal (Fin.append pZ.I_error.inf (fun _ => (zero : 𝕋)) (Fin.castAdd n₂ i)) ≤
@@ -101,8 +101,8 @@ private theorem PolyZonotope.aux_padLeft_err (pZ : PolyZonotope (Vec 𝕋 n))
 /-- A box point padded above by zero is a point of the padded box. -/
 private theorem PolyZonotope.aux_padRight_err (pZ : PolyZonotope (Vec 𝕋 n))
     (n₁ : ℕ) : -- --- CONCL ---
-    CORALean.blockPadRight n₁ n '' pZ.I_error.construct ⊆
-      (pZ.blockPadRight n₁).I_error.construct := by -- --- PROOF ---
+    CORALean.blockPadRight n₁ n '' pZ.I_error.toSet ⊆
+      (pZ.blockPadRight n₁).I_error.toSet := by -- --- PROOF ---
   rintro _ ⟨e, he, rfl⟩ i
   refine Fin.addCases (fun i => ?_) (fun i => ?_) i
   · show toReal (Fin.append (fun _ => (zero : 𝕋)) pZ.I_error.inf (Fin.castAdd n i)) ≤
@@ -121,10 +121,10 @@ private theorem PolyZonotope.aux_padRight_err (pZ : PolyZonotope (Vec 𝕋 n))
 
 theorem PolyZonotope.stack_outer (pZ₁ : PolyZonotope (Vec 𝕋 n₁)) (pZ₂ : PolyZonotope (Vec 𝕋 n₂))
     (hp : pZ₁.p = pZ₂.p) : -- --- CONCL ---
-    (Real.PolyZonotope.stack (nominal pZ₁) (nominal pZ₂) hp).construct
-        + (CORALean.blockPadLeft n₁ n₂ '' pZ₁.I_error.construct
-          + CORALean.blockPadRight n₁ n₂ '' pZ₂.I_error.construct)
-      ⊆ (pZ₁.stack pZ₂ hp).construct := by -- --- PROOF ---
+    (Real.PolyZonotope.stack (nominal pZ₁) (nominal pZ₂) hp).toSet
+        + (CORALean.blockPadLeft n₁ n₂ '' pZ₁.I_error.toSet
+          + CORALean.blockPadRight n₁ n₂ '' pZ₂.I_error.toSet)
+      ⊆ (pZ₁.stack pZ₂ hp).toSet := by -- --- PROOF ---
   have h := PolyZonotope.exactPlus_outer (pZ₁.blockPadLeft n₂) (pZ₂.blockPadRight n₁) hp
   -- the padded nominal sets are the exact layer's maps; the factor-list proof is carried along
   have key : ∀ (A B : Real.PolyZonotope (Vec ℝ (n₁ + n₂)))

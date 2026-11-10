@@ -68,10 +68,10 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- Lines 7-12: one iteration of [1, Alg. 3]'s main loop, propagating the two
 particular solutions and assembling `R̂^{∃∀}(-τ_k)` from `P₁` and `P₂`. -/
 noncomputable def LinearSys.maxBackReachStep (sys : LinearSys 𝕋 n)
-    (ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.construct)
-      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c)
-    (P₁ P₂ : HPolytope (Vec ℝ n)) (hP₁ : Bornology.IsBounded P₁.dropEqs.construct)
-    (hP₂ : Bornology.IsBounded P₂.dropEqs.construct) (U W₀ : Zonotope (Vec ℝ n))
+    (ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.toSet)
+      (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.toSet c)
+    (P₁ P₂ : HPolytope (Vec ℝ n)) (hP₁ : Bornology.IsBounded P₁.dropEqs.toSet)
+    (hP₂ : Bornology.IsBounded P₂.dropEqs.toSet) (U W₀ : Zonotope (Vec ℝ n))
     (Zw : ℝ → Zonotope (Vec ℝ n)) (Δt : ℝ) (η : ℕ)
     (s : LinearSys.MaxBackReachState n) : LinearSys.MaxBackReachState n :=
   -- 7. t_{k+1} ← t_k + Δt

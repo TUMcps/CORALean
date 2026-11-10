@@ -29,7 +29,7 @@ variable {n : ℕ}
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (LevelSet n) (Vec ℝ n) := ⟨LevelSet.construct⟩
+instance : ContSet (LevelSet n) (Vec ℝ n) := ⟨LevelSet.toSet⟩
 
 instance : Intersection (LevelSet n) (Vec ℝ n) where
   intersection := LevelSet.and_

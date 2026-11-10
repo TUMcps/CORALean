@@ -55,11 +55,11 @@ theorem LinearSys.reachFloatInput_timePoint_outer (sys : LinearSys 𝕋 n)
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rtp.length = N + 1 ∧ ∀ {x u : ℝ → Vec ℝ n},
           sys.IsCanonicalTrajectory (S := 𝒮)
-            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
+            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.toSet
             ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-              params.U.construct) x u →
+              params.U.toSet) x u →
           ∀ (k : ℕ) (hk : k < Rtp.length),
-            x ((k : ℝ) * toReal options.Δt) ∈ Rtp[k].construct := by -- --- PROOF ---
+            x ((k : ℝ) * toReal options.Δt) ∈ Rtp[k].toSet := by -- --- PROOF ---
   intro Rti Rtp (h : sys.reachFloatInput params options = some (Rti, Rtp))
   obtain ⟨hΔt, N, hNΔt, S, hlen, rfl, rfl, hinv⟩ := sys.reachFloatInput_invariant _ _ h
   refine ⟨N, hNΔt, by simp [hlen], fun {x u} traj k hk => ?_⟩
@@ -74,7 +74,7 @@ theorem LinearSys.reachFloatInput_timePoint_outer (sys : LinearSys 𝕋 n)
     obtain ⟨h1, -, h3, -⟩ := hinv k hk'
     -- the run's inputs `B u + c` are in `B U ⊕ c`'s float enclosure
     have hUV : (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-        params.U.construct ⊆ ContSet.construct V :=
+        params.U.toSet ⊆ ContSet.toSet V :=
       sys.inputSetFloat_outer params.U
     -- `t_{k+1}` lies inside the horizon
     have hkN : ((k + 1 : ℕ) : ℝ) * Δ ≤ (params.tFinal : ℝ) - params.tStart := by

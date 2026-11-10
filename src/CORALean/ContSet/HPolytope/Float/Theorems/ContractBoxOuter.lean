@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.ContractBox
-public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemToSet
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.ContractHalfspaceOuter
 
@@ -44,8 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- A point every row holds at stays in the box through the whole fold. -/
 private theorem aux_mem_foldl_contractHalfspace {x : Vec ℝ n} :
     ∀ (rows : List (Vec 𝕋 n × 𝕋)), (∀ r ∈ rows, ∑ j, toReal (r.1 j) * x j ≤ toReal r.2) →
-      ∀ J : Interval (Vec 𝕋 n), x ∈ J.construct →
-        x ∈ (rows.foldl (fun J r => (J.contractHalfspace r.1 r.2).materialise) J).construct
+      ∀ J : Interval (Vec 𝕋 n), x ∈ J.toSet →
+        x ∈ (rows.foldl (fun J r => (J.contractHalfspace r.1 r.2).materialise) J).toSet
   | [], _, _, hJ => hJ
   | r :: rows, hrows, J, hJ => by
     rw [List.foldl_cons]
@@ -59,9 +59,9 @@ private theorem aux_mem_foldl_contractHalfspace {x : Vec ℝ n} :
 
 theorem HPolytope.contractBox_outer (P : HPolytope 𝕋 (Vec 𝕋 n))
     (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
-    I.construct ∩ P.construct ⊆ (P.contractBox I).construct := by -- --- PROOF ---
+    I.toSet ∩ P.toSet ⊆ (P.contractBox I).toSet := by -- --- PROOF ---
   rintro x ⟨hI, hP⟩
-  obtain ⟨hle, heq⟩ := HPolytope.rows_of_mem_construct hP
+  obtain ⟨hle, heq⟩ := HPolytope.rows_of_mem_toSet hP
   -- each row of `P`, read as the sum the contraction asks for, is one `hle`/`heq` gives
   refine aux_mem_foldl_contractHalfspace _ (fun r hr => ?_) I hI
   simp only [List.mem_append, List.mem_map, List.mem_finRange, true_and] at hr

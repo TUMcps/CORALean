@@ -9,7 +9,7 @@ public import CORALean.ContSet.InflatedContSet.Theorems.Convex
 public import CORALean.ContSet.InflatedContSet.Theorems.IsCompact
 public import CORALean.ContSet.InflatedContSet.Theorems.Basic
 public import CORALean.ContSet.InflatedContSet.Theorems.ImageAdd
-public import CORALean.ContSet.InflatedContSet.Theorems.AppendConstruct
+public import CORALean.ContSet.InflatedContSet.Theorems.AppendToSet
 
 /-!
 # What the error box guarantees
@@ -19,7 +19,7 @@ operation moves content between the two. A representation discharges its
 operations through these and never reasons about set addition itself.
 
 And what the box leaves alone: a nominal part that is convex, compact or bounded
-stays so with its box added (`convex_construct`, `isCompact_construct`,
-`isBounded_construct`), whatever the nominal representation; and a linear image
+stays so with its box added (`convex_toSet`, `isCompact_toSet`,
+`isBounded_toSet`), whatever the nominal representation; and a linear image
 distributes over the sum (`image_add`).
 -/

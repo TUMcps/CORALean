@@ -71,10 +71,10 @@ def LinearSysDT.outputEq (sys : LinearSysDT 𝕋 n) : OutputEq 𝕋 n sys.m sys.
 structure LinearSysDT.IsTrajectory (sys : LinearSysDT 𝕋 n) (X₀ : S n) (U : S sys.m)
     (W : S sys.r) (V : S sys.s) (x : ℕ → Vec ℝ n) (u : ℕ → Vec ℝ sys.m)
     (w : ℕ → Vec ℝ sys.r) (v : ℕ → Vec ℝ sys.s) (y : ℕ → Vec ℝ sys.q) : Prop where
-  init : x 0 ∈ construct X₀
-  input (k : ℕ) : u k ∈ construct U
-  dist (k : ℕ) : w k ∈ construct W
-  noise (k : ℕ) : v k ∈ construct V
+  init : x 0 ∈ toSet X₀
+  input (k : ℕ) : u k ∈ toSet U
+  dist (k : ℕ) : w k ∈ toSet W
+  noise (k : ℕ) : v k ∈ toSet V
   step (k : ℕ) : x (k + 1) =
     toRealMat sys.A *ᵥ x k + toRealMat sys.B *ᵥ u k + toRealVec sys.c + toRealMat sys.E *ᵥ w k
   output (k : ℕ) : y k = sys.outputEq.eval (x k) (u k) + toRealMat sys.F *ᵥ v k
@@ -82,8 +82,8 @@ structure LinearSysDT.IsTrajectory (sys : LinearSysDT 𝕋 n) (X₀ : S n) (U : 
 /-- A run of the canonical form, its combined input in state coordinates drawn from `U`. -/
 structure LinearSysDT.IsCanonicalTrajectory (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
     (x u : ℕ → Vec ℝ n) : Prop where
-  init : x 0 ∈ construct R₀
-  input (k : ℕ) : u k ∈ construct U
+  init : x 0 ∈ toSet R₀
+  input (k : ℕ) : u k ∈ toSet U
   step (k : ℕ) : x (k + 1) = toRealMat sys.A *ᵥ x k + u k
 
 /-- A run known only for its first `K` steps: `x` and `u` past that point are
@@ -91,16 +91,16 @@ unconstrained, exactly as `LinearSys.IsCanonicalTrajectory`'s `x` and `u` are un
 outside `T`. -/
 structure LinearSysDT.IsCanonicalTrajectoryOn (sys : LinearSysDT 𝕋 n) (R₀ U : S n) (K : ℕ)
     (x u : ℕ → Vec ℝ n) : Prop where
-  init : x 0 ∈ construct R₀
-  input (k : ℕ) (hk : k < K) : u k ∈ construct U
+  init : x 0 ∈ toSet R₀
+  input (k : ℕ) (hk : k < K) : u k ∈ toSet U
   step (k : ℕ) (hk : k < K) : x (k + 1) = toRealMat sys.A *ᵥ x k + u k
 
 /-- A zero-order hold: one point `u` of `U`, reused at every step, unlike
 `IsCanonicalTrajectory` where `input` lets a fresh point be picked each time. -/
 structure LinearSysDT.IsCanonicalHeldTrajectory (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
     (x : ℕ → Vec ℝ n) (u : Vec ℝ n) : Prop where
-  init : x 0 ∈ construct R₀
-  input : u ∈ construct U
+  init : x 0 ∈ toSet R₀
+  input : u ∈ toSet U
   step (k : ℕ) : x (k + 1) = toRealMat sys.A *ᵥ x k + u
 
 end CORALean

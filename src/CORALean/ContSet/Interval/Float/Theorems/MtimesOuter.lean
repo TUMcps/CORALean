@@ -45,8 +45,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 private theorem Interval.aux_mtimes_outer_refines (M : Mat 𝕋 m n)
     (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
-    (Real.Interval.mtimes (toRealMat M) I.nominal).construct ⊆
-      (Interval.mtimes M I).construct := by -- --- PROOF ---
+    (Real.Interval.mtimes (toRealMat M) I.nominal).toSet ⊆
+      (Interval.mtimes M I).toSet := by -- --- PROOF ---
   intro x hx i
   -- the exact bound has to be a visible sum before it can be compared termwise
   have h := hx i
@@ -69,7 +69,7 @@ private theorem Interval.aux_mtimes_outer_refines (M : Mat 𝕋 m n)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.mtimes_outer (M : Mat 𝕋 m n) (I : Interval (Vec 𝕋 n)) :
-    ((toRealMat M) *ᵥ ·) '' I.construct ⊆ (Interval.mtimes M I).construct :=
+    ((toRealMat M) *ᵥ ·) '' I.toSet ⊆ (Interval.mtimes M I).toSet :=
   subset_trans (Real.Interval.mtimes_outer (toRealMat M) I.nominal)
     (Interval.aux_mtimes_outer_refines M I)
 

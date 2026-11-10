@@ -10,7 +10,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalOn
 `subsetAt_unitBox` needs `q = 0` to say this; `evalOn` carries the independent
 block itself, so the same statement holds of every polynomial zonotope: the
 whole of [1, Def. 3] and not only its dependent half. It is what turns an
-argument's `construct` into an `evalOn` and back, which is how a set added to an
+argument's `toSet` into an `evalOn` and back, which is how a set added to an
 evaluated one is read in Lean.
 
 ## Inputs
@@ -48,7 +48,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- Holding the factors in their whole box is holding them nowhere: the
 evaluation is the set. -/
 theorem PolyZonotope.evalOn_unitBox (pZ : PolyZonotope α) : -- --- CONCL ---
-    pZ.evalOn {a | ∀ k, |a k| ≤ 1} = pZ.construct := by -- --- PROOF ---
+    pZ.evalOn {a | ∀ k, |a k| ≤ 1} = pZ.toSet := by -- --- PROOF ---
   ext x
   constructor
   · -- the evaluation's witness is the set's, `point` being the dependent half

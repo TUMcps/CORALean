@@ -54,7 +54,7 @@ variable {n : ℕ}
 
 theorem Zonotope.dominantDirections_outer (Z : Zonotope (Vec ℝ n)) (a b : ℕ) (P : Mat ℝ n n)
     (_ : Z.dominantDirections a b = some P) (hP : IsUnit P.det) :
-    Z.construct ⊆ (Z.parallelotope P).construct :=
+    Z.toSet ⊆ (Z.parallelotope P).toSet :=
   Zonotope.parallelotope_outer hP Z
 
 end CORALean.Real

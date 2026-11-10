@@ -65,7 +65,7 @@ theorem Ellipsoid.volume_setOf_quad_le {Q : Mat ℝ n n} (hQ : Q.PosDef)
       = ENNReal.ofReal (Real.pi ^ ((n : ℝ) / 2) / Real.Gamma ((n : ℝ) / 2 + 1)
           * Real.sqrt Q.det) := by -- --- PROOF ---
   have hset : {x : Vec ℝ n | (x - q) ⬝ᵥ Q⁻¹ *ᵥ (x - q) ≤ 1}
-      = (Ellipsoid.ofShape Q q).construct := by
+      = (Ellipsoid.ofShape Q q).toSet := by
     ext x
     exact (Ellipsoid.mem_ofShape_iff hQ q x).symm
   rw [hset, Ellipsoid.volume_eq _]

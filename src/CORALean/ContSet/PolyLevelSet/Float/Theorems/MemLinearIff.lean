@@ -47,12 +47,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 slack. -/
 theorem PolyLevelSet.mem_linear_iff {m : ℕ} (A : Mat 𝕋 m n) (b b_error : Vec 𝕋 m)
     (op : Fin m → Real.CompOp) (D : Interval (Vec 𝕋 n)) (x : Vec ℝ n) : -- --- CONCL ---
-    x ∈ (PolyLevelSet.linear A b b_error op D).construct
-      ↔ x ∈ D.construct ∧ ∀ i, (op i).IsMetWithin ((toRealMat A *ᵥ x - toRealVec b) i)
+    x ∈ (PolyLevelSet.linear A b b_error op D).toSet
+      ↔ x ∈ D.toSet ∧ ∀ i, (op i).IsMetWithin ((toRealMat A *ᵥ x - toRealVec b) i)
         |toReal (b_error i)| := by -- --- PROOF ---
   have hμ : Real.PolyZonotope.monomial (Real.PolyZonotope.identE n) x = x :=
     funext fun k => Real.PolyZonotope.monomial_identE x k
-  show (x ∈ D.construct ∧ ∀ i, (op i).IsMetWithin ((toRealMat A *ᵥ Real.PolyZonotope.monomial
+  show (x ∈ D.toSet ∧ ∀ i, (op i).IsMetWithin ((toRealMat A *ᵥ Real.PolyZonotope.monomial
     (Real.PolyZonotope.identE n) x - toRealVec b) i) |toReal (b_error i)|) ↔ _
   rw [hμ]
 

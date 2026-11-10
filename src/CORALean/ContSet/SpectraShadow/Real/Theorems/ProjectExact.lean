@@ -38,7 +38,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.project_exact (S : SpectraShadow (Vec ℝ n)) (dims : Fin m → Fin n) :
-    (fun x k => x (dims k)) '' S.construct = (S.project dims).construct :=
+    (fun x k => x (dims k)) '' S.toSet = (S.project dims).toSet :=
   SpectraShadow.map_exact (LinearMap.funLeft ℝ ℝ dims) S
 
 end CORALean.Real

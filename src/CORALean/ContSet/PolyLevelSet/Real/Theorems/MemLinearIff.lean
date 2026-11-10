@@ -46,11 +46,11 @@ variable {n : ℕ}
 /-- A point of the linear level set is in the box and meets every row `(A x - b)ᵢ ⋈ᵢ 0`. -/
 theorem PolyLevelSet.mem_linear_iff {m : ℕ} (A : Mat ℝ m n) (b : Vec ℝ m)
     (op : Fin m → CompOp) (D : Interval (Vec ℝ n)) (x : Vec ℝ n) : -- --- CONCL ---
-    x ∈ (PolyLevelSet.linear A b op D).construct
-      ↔ x ∈ D.construct ∧ ∀ i, (op i).holds ((A *ᵥ x - b) i) := by -- --- PROOF ---
+    x ∈ (PolyLevelSet.linear A b op D).toSet
+      ↔ x ∈ D.toSet ∧ ∀ i, (op i).holds ((A *ᵥ x - b) i) := by -- --- PROOF ---
   have hμ : PolyZonotope.monomial (PolyZonotope.identE n) x = x :=
     funext fun k => PolyZonotope.monomial_identE x k
-  show (x ∈ D.construct
+  show (x ∈ D.toSet
     ∧ ∀ i, (op i).holds ((A *ᵥ PolyZonotope.monomial (PolyZonotope.identE n) x - b) i)) ↔ _
   rw [hμ]
 

@@ -58,7 +58,7 @@ def LinearSysDT.IsConformDyn (sys : LinearSysDT ℝ n) (X₀ : S n) (W : S sys.r
     (K : ℕ) (x0 : ι → Vec ℝ n) (u : ι → ℕ → Vec ℝ sys.m) (y : ι → ℕ → Vec ℝ sys.q) : Prop :=
   ∀ i, ∀ k, k ≤ K →
     y i k - sys.outputEq.eval (sys.nominalState (x0 i) (u i) k) (u i k)
-      ∈ construct (sys.conformReach X₀ W V k)
+      ∈ toSet (sys.conformReach X₀ W V k)
 
 end CORALean
 

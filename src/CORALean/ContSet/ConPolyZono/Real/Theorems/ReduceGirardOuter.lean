@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.reduceGirard_outer (cPZ : ConPolyZono (Vec ℝ n)) (o : ℕ) :
-    cPZ.construct ⊆ (cPZ.reduceGirard o).construct := by
+    cPZ.toSet ⊆ (cPZ.reduceGirard o).toSet := by
   unfold ConPolyZono.reduceGirard
   split_ifs with hlt
   · exact ConPolyZono.reduceBy_outer cPZ _ _

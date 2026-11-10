@@ -47,8 +47,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {s : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.facetLift_stack_outer (P : Fin s → HPolytope α) (Zadd : Zonotope α) :
-    ⋂ i, ((P i).construct + Zadd.construct) ⊆
-      ((HPolytope.stack P).facetLift Zadd).construct := by
+    ⋂ i, ((P i).toSet + Zadd.toSet) ⊆
+      ((HPolytope.stack P).facetLift Zadd).toSet := by
   rw [HPolytope.facetLift_stack_exact]
   exact Set.iInter_mono fun i => HPolytope.facetLift_outer (P i) Zadd
 

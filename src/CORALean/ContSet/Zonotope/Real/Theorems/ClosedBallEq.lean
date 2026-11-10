@@ -10,7 +10,7 @@ public import Mathlib.Analysis.Normed.Ring.Basic
 
 The coefficients a zonotope quantifies over are exactly `Metric.closedBall 0 1`
 in the supremum norm on `Fin h → ℝ`. Stated on its own because two proofs need
-the rewriting in opposite directions: `isCompact_construct` turns the cube into
+the rewriting in opposite directions: `isCompact_toSet` turns the cube into
 a ball to apply `isCompact_closedBall`, and `ConZonotope.isCompact_domain` turns
 the ball back into the cube to bound its domain by it.
 

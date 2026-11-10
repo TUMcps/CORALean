@@ -70,10 +70,10 @@ variable [∀ n, CompactSet (S n) (Vec ℝ n)] [Mtimes ℐ S]
 theorem LinParamSys.expIntegral_mem_constPropagate (sys : LinParamSys ℐ n)
     {Δt : ℝ} (hΔt : 0 < Δt) (η : ℕ)
     (hε : ‖(Interval.smul Δt sys.A).absMax‖ / ((η : ℝ) + 2) < 1)
-    {A : Mat ℝ n n} (hA : A ∈ construct sys.A) (uc : Vec ℝ n) :
+    {A : Mat ℝ n n} (hA : A ∈ toSet sys.A) (uc : Vec ℝ n) :
     ∀ k : ℕ,
     MatExp.expIntegral A ((k : ℝ) * Δt) *ᵥ uc
-      ∈ construct (sys.constPropagate (S := S) Δt η uc k)
+      ∈ toSet (sys.constPropagate (S := S) Δt η uc k)
   | 0 => by
     have hz : MatExp.expIntegral A (((0 : ℕ) : ℝ) * Δt) = 0 := by simp [MatExp.expIntegral]
     rw [hz, Matrix.zero_mulVec]

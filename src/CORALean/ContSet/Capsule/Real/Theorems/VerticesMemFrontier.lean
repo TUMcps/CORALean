@@ -47,9 +47,9 @@ behind, is on the frontier. -/
 private theorem Capsule.aux_mem_frontier (C : Capsule n) (hr : 0 ≤ C.r) {t₀ : ℝ}
     (ht₀ : t₀ ∈ Set.Icc (-1 : ℝ) 1) (u : Vec ℝ n) (hu : ∑ i, u i ^ 2 = 1)
     (hdir : ∀ t ∈ Set.Icc (-1 : ℝ) 1, 0 ≤ (t₀ - t) * ∑ i, C.g i * u i) : -- --- CONCL ---
-    (fun i => C.c i + t₀ * C.g i + C.r * u i) ∈ frontier C.construct := by -- --- PROOF ---
+    (fun i => C.c i + t₀ * C.g i + C.r * u i) ∈ frontier C.toSet := by -- --- PROOF ---
   -- the point is in the capsule: distance `r` at `t₀`
-  have hmem : (fun i => C.c i + t₀ * C.g i + C.r * u i) ∈ C.construct := by
+  have hmem : (fun i => C.c i + t₀ * C.g i + C.r * u i) ∈ C.toSet := by
     refine ⟨t₀, ht₀, ?_⟩
     have : ∑ i, ((C.c i + t₀ * C.g i + C.r * u i) - (C.c i + t₀ * C.g i)) ^ 2 = C.r ^ 2 := by
       have h1 : ∀ i, ((C.c i + t₀ * C.g i + C.r * u i) - (C.c i + t₀ * C.g i)) ^ 2 =
@@ -119,7 +119,7 @@ private theorem Capsule.aux_index_range (i : Fin 500) : -- --- CONCL ---
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.vertices_mem_frontier (C : Capsule 2) (hr : 0 ≤ C.r) : -- --- CONCL ---
-    ∀ x ∈ C.vertices, x ∈ frontier C.construct := by -- --- PROOF ---
+    ∀ x ∈ C.vertices, x ∈ frontier C.toSet := by -- --- PROOF ---
   intro x hx
   unfold Capsule.vertices at hx
   split_ifs at hx with hp
@@ -142,7 +142,7 @@ theorem Capsule.vertices_mem_frontier (C : Capsule 2) (hr : 0 ≤ C.r) : -- --- 
     have key : ∀ (t₀ a : ℝ), t₀ ∈ Set.Icc (-1 : ℝ) 1 →
         (∀ t ∈ Set.Icc (-1 : ℝ) 1, 0 ≤ (t₀ - t) * (C.g 0 * Real.cos a + C.g 1 * Real.sin a)) →
         (![C.c 0 + t₀ * C.g 0 + C.r * Real.cos a, C.c 1 + t₀ * C.g 1 + C.r * Real.sin a] :
-          Vec ℝ 2) ∈ frontier C.construct := fun t₀ a ht₀ hdir => by
+          Vec ℝ 2) ∈ frontier C.toSet := fun t₀ a ht₀ hdir => by
       have := C.aux_mem_frontier hr ht₀ ![Real.cos a, Real.sin a] (hunit a)
         (by simpa only [hg a] using hdir)
       convert this using 1
@@ -151,7 +151,7 @@ theorem Capsule.vertices_mem_frontier (C : Capsule 2) (hr : 0 ≤ C.r) : -- --- 
     -- the first half circle's points, which the closing point repeats
     have first : ∀ i : Fin 500, (![C.c 0 + 1 * C.g 0 + C.r * Real.cos (θ - Real.pi / 2 +
         (i : ℝ) * (Real.pi / 499)), C.c 1 + 1 * C.g 1 + C.r * Real.sin (θ - Real.pi / 2 +
-        (i : ℝ) * (Real.pi / 499))] : Vec ℝ 2) ∈ frontier C.construct := fun i => by
+        (i : ℝ) * (Real.pi / 499))] : Vec ℝ 2) ∈ frontier C.toSet := fun i => by
       have hi := Capsule.aux_index_range i
       exact key 1 (θ - Real.pi / 2 + (i : ℝ) * (Real.pi / 499)) (by simp) (fun t ht => by
         rw [Capsule.aux_dot_cos]

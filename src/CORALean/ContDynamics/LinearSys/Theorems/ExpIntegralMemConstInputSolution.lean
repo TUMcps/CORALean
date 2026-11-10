@@ -67,7 +67,7 @@ theorem LinearSys.expIntegral_mem_constInputSolution (sys : LinearSys 𝕋 n) {r
     (η : ℕ) (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) (uc : Vec ℝ n) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     MatExp.expIntegral (toRealMat sys.A) t *ᵥ uc
-      ∈ construct (sys.constInputSolution (S := S) r η uc) := by -- --- PROOF ---
+      ∈ toSet (sys.constInputSolution (S := S) r η uc) := by -- --- PROOF ---
   set A := toRealMat sys.A
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
   have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr

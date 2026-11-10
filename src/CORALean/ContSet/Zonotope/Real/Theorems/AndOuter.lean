@@ -40,9 +40,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.and_outer (Z S : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    Z.construct ∩ S.construct ⊆ (Z.and_ S).construct := by -- --- PROOF ---
+    Z.toSet ∩ S.toSet ⊆ (Z.and_ S).toSet := by -- --- PROOF ---
   intro x hx
-  have h1 : x ∈ Z.conZonotope.construct ∩ S.conZonotope.construct := by
+  have h1 : x ∈ Z.conZonotope.toSet ∩ S.conZonotope.toSet := by
     rw [Z.conZonotope_exact, S.conZonotope_exact] at hx; exact hx
   rw [ConZonotope.intersection_exact] at h1
   exact (ConZonotope.zonotope_contains _) h1

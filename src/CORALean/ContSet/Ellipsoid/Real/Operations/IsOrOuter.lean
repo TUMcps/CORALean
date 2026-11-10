@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 /-- `E` contains both `E₁` and `E₂`. -/
 def Ellipsoid.IsOrOuter (E₁ E₂ E : Ellipsoid n) : Prop :=
-  E₁.construct ∪ E₂.construct ⊆ E.construct
+  E₁.toSet ∪ E₂.toSet ⊆ E.toSet
 
 
 end CORALean.Real

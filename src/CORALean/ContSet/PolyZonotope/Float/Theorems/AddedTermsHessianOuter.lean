@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Interval.Float.Theorems.AppendConstruct
+public import CORALean.ContSet.Interval.Float.Theorems.AppendToSet
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.PolyZonotope.Float.Operations.AddedTermsHessian
@@ -55,7 +55,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.addedTermsHessian_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (A : Interval (Vec 𝕋 pZ.p)) (L : Interval (Vec 𝕋 n)) {a : Vec ℝ pZ.p} {l : Vec ℝ n}
-    (ha : a ∈ A.construct) (hl : l ∈ L.construct) (j k : Fin pZ.p) : -- --- CONCL ---
+    (ha : a ∈ A.toSet) (hl : l ∈ L.toSet) (j k : Fin pZ.p) : -- --- CONCL ---
     toReal (pZ.addedTermsHessian A L j k).inf
         ≤ Real.PolyZonotope.addedTermsHessian (PolyZonotope.nominal pZ) a l j k
     ∧ Real.PolyZonotope.addedTermsHessian (PolyZonotope.nominal pZ) a l j k
@@ -63,8 +63,8 @@ theorem PolyZonotope.addedTermsHessian_outer (pZ : PolyZonotope (Vec 𝕋 n))
   -- the stored generators read as the exact ones
   have hG := (PolyZonotope.addedTerms_nominal pZ).1
   -- the appended box of factors and weights holds the appended point
-  have hx : (Fin.append a l : Vec ℝ (pZ.p + n)) ∈ (A.append L).construct := by
-    rw [Interval.append_construct]
+  have hx : (Fin.append a l : Vec ℝ (pZ.p + n)) ∈ (A.append L).toSet := by
+    rw [Interval.append_toSet]
     exact ⟨(a, l), ⟨ha, hl⟩, rfl⟩
   -- the sum, its exact counterpart, and the two lowered exponent matrices
   set T := pZ.addedTerms
@@ -78,7 +78,7 @@ theorem PolyZonotope.addedTermsHessian_outer (pZ : PolyZonotope (Vec 𝕋 n))
   have hm := PolyZonotope.monoBox_outer E2 (A.append L) hx
   have hC : (fun (_ : Fin 1) i => ((E1 jj i * T.E kk i : ℕ) : ℝ) * toReal (T.G i 0)) ∈
       (⟨fun _ i => nsmulDown (E1 jj i * T.E kk i) (T.G i 0),
-        fun _ i => nsmulUp (E1 jj i * T.E kk i) (T.G i 0)⟩ : Interval (Mat 𝕋 1 T.h)).construct :=
+        fun _ i => nsmulUp (E1 jj i * T.E kk i) (T.G i 0)⟩ : Interval (Mat 𝕋 1 T.h)).toSet :=
     Interval.mem_mat_iff.mpr fun i l => ⟨nsmulDown_le _ _, le_nsmulUp _ _⟩
   have h := Interval.mtimesIntervalMat_outer _ _ (Set.mem_biUnion hC ⟨_, hm, rfl⟩) 0
   -- the exact entry is that product, coordinate `0`

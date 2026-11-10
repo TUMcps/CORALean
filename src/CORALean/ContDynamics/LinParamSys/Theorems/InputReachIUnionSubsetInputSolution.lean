@@ -65,19 +65,19 @@ theorem LinParamSys.inputReach_iUnion_subset_inputSolution
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)]
     (sys : LinParamSys ℐ n) {r : ℝ} (hr : 0 < r) (η : ℕ)
     (hε : ‖(Interval.smul r sys.A).absMax‖ / ((η : ℝ) + 2) < 1) {U : S n}
-    (h0 : (0 : Vec ℝ n) ∈ construct U) : -- --- CONCL ---
-    (⋃ A ∈ construct sys.A, ⋃ t ∈ Set.Icc (0:ℝ) r,
+    (h0 : (0 : Vec ℝ n) ∈ toSet U) : -- --- CONCL ---
+    (⋃ A ∈ toSet sys.A, ⋃ t ∈ Set.Icc (0:ℝ) r,
         (LinearSys.canonical A : LinearSys ℝ n).inputReach U t)
-      ⊆ construct (sys.inputSolution r η U) := by -- --- PROOF ---
+      ⊆ toSet (sys.inputSolution r η U) := by -- --- PROOF ---
   simp only [Set.iUnion_subset_iff]
   intro A hA t ht
-  have hbdd := CompactSet.isBounded_construct U
+  have hbdd := CompactSet.isBounded_toSet U
   -- `0 ∈ U`: what the input reaches by `t` it can still reach by `r`
   refine ((LinearSys.canonical A : LinearSys ℝ n).inputReach_mono hbdd h0 ht.1 ht.2).trans ?_
   -- the time point `r` at the member `A`, inside the box's enclosure
-  exact sys.inputReach_subset_inputSolution hr η hε hA (ConvexSet.convex_construct U)
-    (CompactSet.isClosed_construct U) hbdd (ConvexSet.convex_construct _)
-    (CompactSet.isClosed_construct _) (CompactSet.isBounded_construct _)
+  exact sys.inputReach_subset_inputSolution hr η hε hA (ConvexSet.convex_toSet U)
+    (CompactSet.isClosed_toSet U) hbdd (ConvexSet.convex_toSet _)
+    (CompactSet.isClosed_toSet _) (CompactSet.isBounded_toSet _)
 
 end CORALean
 

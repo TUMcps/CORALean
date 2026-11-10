@@ -47,11 +47,11 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.parallelotope_eq_abs_mulVec_le_counterexample : -- --- CONCL ---
-    (⟨1, 0, fun _ => ![2]⟩ : Zonotope (Vec ℝ 1)).construct
+    (⟨1, 0, fun _ => ![2]⟩ : Zonotope (Vec ℝ 1)).toSet
       ≠ {x | ∀ i, ((!![2; -2] : Mat ℝ 2 1) *ᵥ x) i ≤ 1} := by -- --- PROOF ---
   intro heq
   -- `2 = 0 + 1 · 2` is in the zonotope
-  have hmem : (![2] : Vec ℝ 1) ∈ (⟨1, 0, fun _ => ![2]⟩ : Zonotope (Vec ℝ 1)).construct :=
+  have hmem : (![2] : Vec ℝ 1) ∈ (⟨1, 0, fun _ => ![2]⟩ : Zonotope (Vec ℝ 1)).toSet :=
     ⟨fun _ => 1, fun _ => by simp, by ext i; fin_cases i; simp⟩
   rw [heq] at hmem
   have := hmem 0

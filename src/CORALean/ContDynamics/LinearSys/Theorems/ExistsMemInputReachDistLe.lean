@@ -68,7 +68,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 point the input reaches over `[0, r]`. -/
 theorem LinearSys.exists_mem_inputReach_dist_le (sys : LinearSys 𝕋 n) {U : S n} {μ r : ℝ}
     (hA : 0 < ‖toRealMat sys.A‖) (hr : 0 ≤ r) (hμ : 0 ≤ μ)
-    (hU : Metric.closedBall 0 μ ⊆ construct U) {w : Vec ℝ n}
+    (hU : Metric.closedBall 0 μ ⊆ toSet U) {w : Vec ℝ n}
     (hw : ‖w‖ ≤ (Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖ * μ) : -- --- CONCL ---
     ∃ v ∈ sys.inputReach U r,
       dist w v ≤ μ * ‖toRealMat sys.A‖ * Real.exp (r * ‖toRealMat sys.A‖)
@@ -87,7 +87,7 @@ theorem LinearSys.exists_mem_inputReach_dist_le (sys : LinearSys 𝕋 n) {U : S 
       calc a / (Real.exp x - 1) * ‖w‖ ≤ a / (Real.exp x - 1) * ((Real.exp x - 1) / a * μ) :=
             mul_le_mul_of_nonneg_left hw (div_nonneg hA.le h.le)
         _ = μ := by field_simp
-  have huU : u ∈ construct U := hU (mem_closedBall_zero_iff.mpr hu)
+  have huU : u ∈ toSet U := hU (mem_closedBall_zero_iff.mpr hu)
   refine ⟨MatExp.expIntegral A r *ᵥ u, sys.expIntegral_mem_inputReach hr huU, ?_⟩
   -- first piece: the integrated exponential against `r I`
   have hM : ‖MatExp.expIntegral A r - r • (1 : Mat ℝ n n)‖ ≤ (Real.exp x - 1 - x) / a := by

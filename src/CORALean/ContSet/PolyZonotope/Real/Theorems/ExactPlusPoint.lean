@@ -10,8 +10,8 @@ public import Mathlib.Tactic.Abel
 /-!
 # `exactPlus` is the sum over shared factors
 
-What [1, Prop. 10] calls exactness: `construct (exactPlus pZ₁ pZ₂ hp)` is not
-`construct pZ₁ + construct pZ₂`, which `plus` computes and is strictly larger. Both sets are
+What [1, Prop. 10] calls exactness: `toSet (exactPlus pZ₁ pZ₂ hp)` is not
+`toSet pZ₁ + toSet pZ₂`, which `plus` computes and is strictly larger. Both sets are
 functions of one shared factor vector, so the claim is about the evaluation map: the result's
 point at `a` is the sum of the two sets' points at that same `a`, with `pZ₂` read through
 `Fin.cast`, as `mul_point` states it for a product. The independent blocks take no part:

@@ -21,7 +21,7 @@ only — so a step loses ground at every operation and this recursion carries a 
 `mtimesBox`, `plusBox` and `reduceGirardBox` bound how far a float result reaches beyond the
 exact operation on its operand, computed in `𝕋` from the same float values `reach` produces that
 step, and read back into this real accumulator by `.nominal`. `U.E.nominal.zonotope` has no
-`reachError` counterpart: `plusBox` bounds against `U`'s *float* construct while `reachSetExact`
+`reachError` counterpart: `plusBox` bounds against `U`'s *float* `toSet` while `reachSetExact`
 advances by its *nominal* one. At `k = 0` the error is `R₀`'s own error box.
 
 ## Inputs

@@ -48,24 +48,24 @@ variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.I
 /-- For a set of positive volume, `exactIntersectingCells` is the positive-volume cells and the
 volume share in each, with `1 - Σ` for the outside. -/
 theorem GridPartition.exactIntersectingCells_exact (P : GridPartition n) (X : S n) (hn : n ≠ 0)
-    (hpos : 0 < GridPartition.volumeOf (construct X)) : -- --- CONCL ---
+    (hpos : 0 < GridPartition.volumeOf (toSet X)) : -- --- CONCL ---
     let shares := (List.range' 1 P.nrOfCells).map
-      fun c => P.cellVolume (construct X) c / GridPartition.volumeOf (construct X)
+      fun c => P.cellVolume (toSet X) c / GridPartition.volumeOf (toSet X)
     (P.exactIntersectingCells X).iS = 0 :: (List.range' 1 P.nrOfCells).filter
-        (fun c => 0 < P.cellVolume (construct X) c) ∧
+        (fun c => 0 < P.cellVolume (toSet X) c) ∧
       (P.exactIntersectingCells X).iProp = (1 - shares.sum) :: shares := by -- --- PROOF ---
   intro shares
   -- the positive-volume cells are all among the candidates of the hull
   have hiS : ((P.intersectingCellsOf X).filter (fun c => 0 < c ∧ c ≤ P.nrOfCells)).filter
-        (fun c => 0 < P.cellVolume (construct X) c) =
-      (List.range' 1 P.nrOfCells).filter (fun c => 0 < P.cellVolume (construct X) c) := by
+        (fun c => 0 < P.cellVolume (toSet X) c) =
+      (List.range' 1 P.nrOfCells).filter (fun c => 0 < P.cellVolume (toSet X) c) := by
     unfold GridPartition.intersectingCellsOf
     rw [GridPartition.filter_intersectingCells P _ hn, List.filter_filter]
     apply List.filter_congr
     intro c hc
     rw [List.mem_range'_1] at hc
     -- a cell with volume is a candidate; one without is not kept either way
-    by_cases hv : 0 < P.cellVolume (construct X) c
+    by_cases hv : 0 < P.cellVolume (toSet X) c
     · have hmem := P.mem_intersectingCells_of_cellVolume_pos _ hn
         (Real.IntervalOuter.interval_outer X) (by omega) (by omega) hv
       have hmem2 : c ∈ (P.intersectingCells (Real.IntervalOuter.interval X)).filter
@@ -76,16 +76,16 @@ theorem GridPartition.exactIntersectingCells_exact (P : GridPartition n) (X : S 
     · simp [hv]
   -- the share of a cell outside the list is `0 / V`, hence `0` as well
   have hmap : ((List.range' 1 P.nrOfCells).map fun c =>
-        if c ∈ (List.range' 1 P.nrOfCells).filter (fun c => 0 < P.cellVolume (construct X) c)
-        then P.cellVolume (construct X) c / GridPartition.volumeOf (construct X) else 0) =
+        if c ∈ (List.range' 1 P.nrOfCells).filter (fun c => 0 < P.cellVolume (toSet X) c)
+        then P.cellVolume (toSet X) c / GridPartition.volumeOf (toSet X) else 0) =
       (List.range' 1 P.nrOfCells).map
-        fun c => P.cellVolume (construct X) c / GridPartition.volumeOf (construct X) := by
+        fun c => P.cellVolume (toSet X) c / GridPartition.volumeOf (toSet X) := by
     apply List.map_congr_left
     intro c _
-    by_cases hv : 0 < P.cellVolume (construct X) c
+    by_cases hv : 0 < P.cellVolume (toSet X) c
     · simp [*]
     · -- a volume that is not positive is zero, so its share is
-      have h0 : P.cellVolume (construct X) c = 0 :=
+      have h0 : P.cellVolume (toSet X) c = 0 :=
         le_antisymm (not_lt.mp hv) ENNReal.toReal_nonneg
       simp [h0]
   unfold GridPartition.exactIntersectingCells

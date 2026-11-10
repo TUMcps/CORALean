@@ -82,8 +82,8 @@ private theorem aux_heldInput_eq {Δt : ℝ} (hΔt : 0 < Δt) (v : ℕ → Vec �
 /-- One step of `closedForm`: the state at `a + Δt` is `e^{AΔt}` applied to the state at `a`,
 plus `T w` from an input held at `w` over `(a, a + Δt]`. -/
 private theorem aux_closedForm_add (sys : LinearSys 𝕋 n) {U : S n}
-    (hU : Bornology.IsBounded (construct U)) {a Δt : ℝ} (ha : 0 ≤ a) (hΔt : 0 ≤ Δt)
-    (x₀ : Vec ℝ n) {u : ℝ → Vec ℝ n} (hu : ∀ s ∈ Set.Icc (0:ℝ) (a + Δt), u s ∈ construct U)
+    (hU : Bornology.IsBounded (toSet U)) {a Δt : ℝ} (ha : 0 ≤ a) (hΔt : 0 ≤ Δt)
+    (x₀ : Vec ℝ n) {u : ℝ → Vec ℝ n} (hu : ∀ s ∈ Set.Icc (0:ℝ) (a + Δt), u s ∈ toSet U)
     (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 (a + Δt)))) {w : Vec ℝ n}
     (hw : ∀ s ∈ Set.Ioc a (a + Δt), u s = w) : -- --- CONCL ---
     sys.closedForm x₀ u (a + Δt)
@@ -139,8 +139,8 @@ private theorem aux_closedForm_add (sys : LinearSys 𝕋 n) {U : S n}
 /-- [1, Sec. 4.2]: the run under `heldInput Δt v`, read at `t_k = k Δt`, is [1]'s Eq. (18)'s
 `x(k)`. -/
 theorem LinearSys.closedForm_heldInput (sys : LinearSys 𝕋 n) {U : S n}
-    (hU : Bornology.IsBounded (construct U)) {Δt : ℝ} (hΔt : 0 < Δt) (x₀ : Vec ℝ n)
-    {v : ℕ → Vec ℝ n} (hv : ∀ j, v j ∈ construct U) (k : ℕ) : -- --- CONCL ---
+    (hU : Bornology.IsBounded (toSet U)) {Δt : ℝ} (hΔt : 0 < Δt) (x₀ : Vec ℝ n)
+    {v : ℕ → Vec ℝ n} (hv : ∀ j, v j ∈ toSet U) (k : ℕ) : -- --- CONCL ---
     sys.closedForm x₀ (LinearSys.heldInput Δt v) (k * Δt)
       = sys.heldSim Δt x₀ v k := by -- --- PROOF ---
   induction k with

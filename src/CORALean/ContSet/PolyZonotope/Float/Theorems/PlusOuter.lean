@@ -67,7 +67,7 @@ private theorem PolyZonotope.aux_sum_univ_plus_q {pZ₁ pZ₂ : PolyZonotope (Ve
 private theorem PolyZonotope.aux_plus_nominal (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
     nominalSet pZ₁ + nominalSet pZ₂ ⊆
       nominalSet (pZ₁.plus pZ₂)
-        + (PolyZonotope.centerResidual pZ₁.c pZ₂.c).construct := by -- --- PROOF ---
+        + (PolyZonotope.centerResidual pZ₁.c pZ₂.c).toSet := by -- --- PROOF ---
   rintro _ ⟨x₁, hx₁', x₂, hx₂', rfl⟩
   obtain ⟨a₁, β₁, ha₁, hβ₁, hx₁⟩ := PolyZonotope.mem_nominalSet_iff.mp hx₁'
   obtain ⟨a₂, β₂, ha₂, hβ₂, hx₂⟩ := PolyZonotope.mem_nominalSet_iff.mp hx₂'
@@ -96,9 +96,9 @@ private theorem PolyZonotope.aux_plus_nominal (pZ₁ pZ₂ : PolyZonotope (Vec �
 
 /-- The box absorbs the two incoming boxes and the center rounding. -/
 private theorem PolyZonotope.aux_plus_error (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
-    pZ₁.I_error.construct + pZ₂.I_error.construct
-        + (PolyZonotope.centerResidual pZ₁.c pZ₂.c).construct ⊆
-      (pZ₁.plus pZ₂).I_error.construct :=
+    pZ₁.I_error.toSet + pZ₂.I_error.toSet
+        + (PolyZonotope.centerResidual pZ₁.c pZ₂.c).toSet ⊆
+      (pZ₁.plus pZ₂).I_error.toSet :=
   subset_trans (Set.add_subset_add_right (Interval.plus_outer pZ₁.I_error pZ₂.I_error))
     (Interval.plus_outer _ _)
 
@@ -106,7 +106,7 @@ private theorem PolyZonotope.aux_plus_error (pZ₁ pZ₂ : PolyZonotope (Vec �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.plus_outer (pZ₁ pZ₂ : PolyZonotope (Vec 𝕋 n)) :
-    pZ₁.construct + pZ₂.construct ⊆ (pZ₁.plus pZ₂).construct :=
+    pZ₁.toSet + pZ₂.toSet ⊆ (pZ₁.plus pZ₂).toSet :=
   InflatedContSet.plus_subset (PolyZonotope.aux_plus_nominal pZ₁ pZ₂)
     (PolyZonotope.aux_plus_error pZ₁ pZ₂)
 

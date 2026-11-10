@@ -42,7 +42,7 @@ variable {α : Type} [Semiring α] {n m k d : ℕ}
 
 /-- The guard `CatCond.ge i j` holds at `x` exactly when `xᵢ ≥ xⱼ`. -/
 theorem CatCond.mem_ge_iff (i j : Fin n) (x : Vec ℝ n) :
-    x ∈ (CatCond.ge i j).construct ↔ x j ≤ x i :=
+    x ∈ (CatCond.ge i j).toSet ↔ x j ≤ x i :=
   ⟨fun h => sub_nonpos.mp (h ⟨0, Nat.zero_lt_one⟩), fun h _ => sub_nonpos.mpr h⟩
 
 
@@ -54,7 +54,7 @@ theorem CatCond.mem_ge_iff (i j : Fin n) (x : Vec ℝ n) :
 
 /-- The guard `CatCond.neg i` holds at `x` exactly when `xᵢ < 0`. -/
 theorem CatCond.mem_neg_iff (i : Fin n) (x : Vec ℝ n) :
-    x ∈ (CatCond.neg i).construct ↔ x i < 0 :=
+    x ∈ (CatCond.neg i).toSet ↔ x i < 0 :=
   ⟨fun h => h ⟨0, Nat.zero_lt_one⟩, fun h _ => h⟩
 
 
@@ -66,7 +66,7 @@ theorem CatCond.mem_neg_iff (i : Fin n) (x : Vec ℝ n) :
 
 /-- The guard `CatCond.nonneg i` holds at `x` exactly when `xᵢ ≥ 0`. -/
 theorem CatCond.mem_nonneg_iff (i : Fin n) (x : Vec ℝ n) :
-    x ∈ (CatCond.nonneg i).construct ↔ 0 ≤ x i :=
+    x ∈ (CatCond.nonneg i).toSet ↔ 0 ≤ x i :=
   ⟨fun h => neg_nonpos.mp (h ⟨0, Nat.zero_lt_one⟩), fun h _ => neg_nonpos.mpr h⟩
 
 
@@ -194,7 +194,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 /-- Its own function, on every input set, with no hypothesis: `sound_eval` read through
 `Encloses.image_subset`. This is the guarantee a network gives as an `Enclose` kind. -/
 theorem NeuralNetwork.enclose_outer (nn : NeuralNetwork S n m) (X : S n) :
-    nn.eval.out '' construct X ⊆ construct (nn.enclose X) :=
+    nn.eval.out '' toSet X ⊆ toSet (nn.enclose X) :=
   (NeuralNetwork.encloses_eval nn).image_subset X
 
 

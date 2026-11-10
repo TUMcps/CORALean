@@ -6,7 +6,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepError
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepError
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesExact
 public import CORALean.ContSet.Zonotope.Real.Theorems.MtimesIntervalMatSubsetClosedBall
 public import CORALean.ContSet.Zonotope.Real.Instances
@@ -70,12 +70,12 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 /-- A point of a zonotope reaches no further than its `ℓ¹` reach. -/
 private theorem aux_norm_le_absBound_sum {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ n}
-    (hx : x ∈ Z.construct) : -- --- CONCL ---
+    (hx : x ∈ Z.toSet) : -- --- CONCL ---
     ‖x‖ ≤ ∑ j, Z.absBound j := by -- --- PROOF ---
   have habs : ∀ j, (0:ℝ) ≤ Z.absBound j := fun j => by
     rw [Zonotope.absBound]
     positivity
-  obtain ⟨β, hβ, hxe⟩ := Zonotope.mem_construct_iff.mp hx
+  obtain ⟨β, hβ, hxe⟩ := Zonotope.mem_toSet_iff.mp hx
   rw [pi_norm_le_iff_of_nonneg (Finset.sum_nonneg fun j _ => habs j)]
   intro i
   rw [Real.norm_eq_abs]
@@ -86,8 +86,8 @@ private theorem aux_norm_le_absBound_sum {Z : Zonotope (Vec ℝ n)} {x : Vec ℝ
 each order is free to pick its own input. -/
 private theorem LinearSys.aux_inputTaylorSum_mem_exists (sys : LinearSys 𝕋 n) (r : ℝ)
     (U : Zonotope (Vec ℝ n)) (η : ℕ) {y : Vec ℝ n}
-    (hy : y ∈ (sys.inputTaylorSum (S := 𝒵) r U η).construct) : -- --- CONCL ---
-    ∃ u : ℕ → Vec ℝ n, (∀ i, u i ∈ U.construct) ∧
+    (hy : y ∈ (sys.inputTaylorSum (S := 𝒵) r U η).toSet) : -- --- CONCL ---
+    ∃ u : ℕ → Vec ℝ n, (∀ i, u i ∈ U.toSet) ∧
       y = ∑ i ∈ Finset.range (η + 1), (sys.inputTerm r i) *ᵥ (u i) := by -- --- PROOF ---
   induction η generalizing y with
   | zero =>
@@ -122,9 +122,9 @@ widened by `timePointStepError`. -/
 theorem LinearSys.timePointStep_subset_constInput_add_error (sys : LinearSys 𝕋 n) {r : ℝ}
     (hr : 0 < r) (η : ℕ) (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (X₀ U : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    (sys.timePointStep (S := 𝒵) r η X₀ U).construct
-      ⊆ ((fun x₀ => exp (r • toRealMat sys.A) *ᵥ x₀) '' X₀.construct
-          + (fun v => MatExp.expIntegral (toRealMat sys.A) r *ᵥ v) '' U.construct)
+    (sys.timePointStep (S := 𝒵) r η X₀ U).toSet
+      ⊆ ((fun x₀ => exp (r • toRealMat sys.A) *ᵥ x₀) '' X₀.toSet
+          + (fun v => MatExp.expIntegral (toRealMat sys.A) r *ᵥ v) '' U.toSet)
         + Metric.closedBall (0 : Vec ℝ n) (sys.timePointStepError r η U) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
   set b := MatExp.expRemainderBound (r • A) η with hb
@@ -143,7 +143,7 @@ theorem LinearSys.timePointStep_subset_constInput_add_error (sys : LinearSys �
       = ((Nat.factorial (i + 1) : ℝ)⁻¹ * r ^ (i + 1)) • A ^ i := fun i => by
     rw [LinearSys.inputTerm, hA, div_eq_inv_mul]
   -- what the Minkowski sum over the orders costs, each order free to pick its own input
-  have hdep : ∀ u : ℕ → Vec ℝ n, (∀ i, u i ∈ U.construct) →
+  have hdep : ∀ u : ℕ → Vec ℝ n, (∀ i, u i ∈ U.toSet) →
       ‖∑ i ∈ Finset.range (η + 1), (sys.inputTerm r i) *ᵥ (u i - u 0)‖
         ≤ 2 * B * (r * (Real.exp (r * ‖A‖) - 1)) := by
     intro u hu
@@ -171,7 +171,7 @@ theorem LinearSys.timePointStep_subset_constInput_add_error (sys : LinearSys �
     rw [← Finset.sum_mul]
     exact (mul_le_mul_of_nonneg_right hsum (by positivity)).trans (le_of_eq (by ring))
   -- what truncating the series costs, at one held input
-  have htail : ∀ v ∈ U.construct,
+  have htail : ∀ v ∈ U.toSet,
       ‖((∑ i ∈ Finset.range (η + 1), sys.inputTerm r i) - MatExp.expIntegral A r) *ᵥ v‖
         ≤ r * b * B := by
     intro v hv
@@ -182,7 +182,7 @@ theorem LinearSys.timePointStep_subset_constInput_add_error (sys : LinearSys �
     rw [hb]
     exact MatExp.norm_expIntegral_sub_taylor_le A hr.le η hε
   -- and what the remainder box adds, its center being the origin
-  have hbox : ∀ w ∈ (Zonotope.mtimesIntervalMat (MatExp.inputRemainder A r η) U).construct,
+  have hbox : ∀ w ∈ (Zonotope.mtimesIntervalMat (MatExp.inputRemainder A r η) U).toSet,
       ‖w‖ ≤ (0 + r * b) * B := by
     intro w hw
     have hcen : ∀ i j, |(MatExp.inputRemainder A r η).center i j| ≤ 0 := by

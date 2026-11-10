@@ -59,7 +59,7 @@ private theorem aux_roundAway_monotone : -- --- CONCL ---
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.round_outer (I : Interval (Vec ℝ n)) :
-    (fun x i => roundAway (x i)) '' I.construct ⊆ I.round.construct :=
+    (fun x i => roundAway (x i)) '' I.toSet ⊆ I.round.toSet :=
   Interval.monotoneImage_outer roundAway aux_roundAway_monotone I
 
 

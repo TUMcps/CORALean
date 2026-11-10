@@ -81,19 +81,19 @@ theorem NonlinearSys.IsTrajectory.reach_outer_inputSolution [Mtimes ℐ S]
     {u : ℝ → Vec ℝ m} {A : Mat ℝ n n} {B : Mat ℝ n m} {xs : Vec ℝ n}
     {us : Vec ℝ m} {R : Set (Vec ℝ n)} {Δt : ℝ} {y : ℝ → Vec ℝ sys.q}
     (traj : sys.IsTrajectory T R₀ U x u y)
-    (cert : IsAbstractionError sys.f A B xs us R (construct U) L)
+    (cert : IsAbstractionError sys.f A B xs us R (toSet U) L)
     (hT : Set.Ici 0 ⊆ T) (hR : ∀ t : ℝ, 0 ≤ t → x t ∈ R) (hΔt : 0 < Δt) (η : ℕ)
     (hε : ‖Δt • A‖ / ((η : ℝ) + 2) < 1)
-    (hconv : Convex ℝ (construct (linInput sys.f A B xs us U L)))
-    (hclosed : IsClosed (construct (linInput sys.f A B xs us U L)))
-    (hbdd : Bornology.IsBounded (construct (linInput sys.f A B xs us U L)))
+    (hconv : Convex ℝ (toSet (linInput sys.f A B xs us U L)))
+    (hclosed : IsClosed (toSet (linInput sys.f A B xs us U L)))
+    (hbdd : Bornology.IsBounded (toSet (linInput sys.f A B xs us U L)))
     -- the next three are asked of the remainder's product, `R(τ)` varying with `τ`
     (hRconv : Convex ℝ (MatExp.inputRemainderSet A Δt η (linInput sys.f A B xs us U L)))
     (hRclosed : IsClosed (MatExp.inputRemainderSet A Δt η (linInput sys.f A B xs us U L)))
     (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet A Δt η (linInput sys.f A B xs us U L)))
       {o : ℕ} (ho : 0 < o)
     (k : ℕ) :
-    x (k * Δt) ∈ construct (((NonlinearSys.linearize A).discretize Δt).reach
+    x (k * Δt) ∈ toSet (((NonlinearSys.linearize A).discretize Δt).reach
       ⟨R₀, (NonlinearSys.linearize A).inputSolution Δt η (linInput sys.f A B xs us U L), 0, k⟩
       ⟨o, ho⟩) :=
   ((traj.restrict hT).linearize measurableSet_Ici cert hR).reach_outer_inputSolution hΔt

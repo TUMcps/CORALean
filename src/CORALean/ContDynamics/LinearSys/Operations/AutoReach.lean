@@ -57,7 +57,7 @@ noncomputable def LinearSys.autoReach (sys : LinearSys 𝕋 n) (le : ℝ → ℝ
     (X₀ U : Zonotope (Vec ℝ n)) (tend εmax ζ : ℝ) (ηmax fuel K : ℕ) : Set (Vec ℝ n) :=
   -- 33. R̂([0,t_end]), the union of the time-interval sets R̂(τ_k)
   ⋃ k < K, ⋃ s ∈ sys.autoRun le X₀ U tend εmax ζ ηmax fuel k,
-    ⋃ r ∈ sys.autoStep le X₀ U tend εmax ζ ηmax fuel s, construct r.2
+    ⋃ r ∈ sys.autoStep le X₀ U tend εmax ζ ηmax fuel s, toSet r.2
 
 end CORALean
 

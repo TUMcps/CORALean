@@ -67,7 +67,7 @@ structure NonlinearSys.IsInnerMinkDiffCorrectedCert (sys : NonlinearSys n m) (u�
   convexE : Convex ℝ (st.C + st.Rerr)
   nonemptyC : st.C.Nonempty
   symmE : ∀ e ∈ st.C + st.Rerr, (2 : ℝ) • st.c - e ∈ st.C + st.Rerr
-  zono : X ⊆ (zono X).construct
+  zono : X ⊆ (zono X).toSet
   -- the solutions from `X`, (21) and the chord representation
   flow : ∃ (Ω : Set (Vec ℝ n)) (K : NNReal), LipschitzOnWith K (fun x => sys.f x u₀) Ω ∧
     ∀ x₀ ∈ X, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Set.Icc 0 Δt,

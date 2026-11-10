@@ -11,7 +11,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.RepresentsaPoint
 CORA's `matZonotope/representsa` hands `zonotope(matZ)` to the vector class, so whatever it answers
 is the answer. The two tests the library models for zonotopes (`representsa_point`,
 `representsa_origin`) are the same on the stacked generators as on the matrices: the vectorisation
-is injective. The set itself is preserved by `vec_construct`; the other types of CORA's
+is injective. The set itself is preserved by `vec_toSet`; the other types of CORA's
 `representsa` are not modelled here.
 
 ## Inputs

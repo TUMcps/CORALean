@@ -62,7 +62,7 @@ def lagrangeSet (f : Vec ℝ n → ℝ) (κ : ℕ) (c : Vec ℝ n) (X : Set (Vec
 structure TaylorSeries (f : Vec ℝ n → ℝ) (I : Interval (Vec ℝ n)) (κ : ℕ) where
   l : ℝ
   u : ℝ
-  encloses : ∀ y ∈ lagrangeSet f κ I.center I.construct, l ≤ y ∧ y ≤ u
+  encloses : ∀ y ∈ lagrangeSet f κ I.center I.toSet, l ≤ y ∧ y ≤ u
 
 end CORALean.Real
 

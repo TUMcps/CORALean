@@ -1,9 +1,9 @@
 module
 
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsToSetEqIffHPolytope
 public import Mathlib.Tactic.Linarith
 public import CORALean.ContSet.Conversion.Real.Theorems.StarSetConZonotopeExact
-public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructEmptySet
+public import CORALean.ContSet.HPolytope.Real.Theorems.ToSetEmptySet
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ A star set is the image of the polytope of its factors under an affine map, and 
 polytope is one (Fourier–Motzkin), so there is no construction to give: the halfspace description is
 found, not computed. It is reached through the constrained zonotope the star set is exactly
 (`StarSet.conZonotope_exact`) and the theorem that these are the bounded halfspace descriptions
-(`ConZonotope.exists_construct_eq_iff_hPolytope`); a crossed factor box denotes `∅`, which one
+(`ConZonotope.exists_toSet_eq_iff_hPolytope`); a crossed factor box denotes `∅`, which one
 row cuts out.
 
 ## Inputs
@@ -43,16 +43,16 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem StarSet.exists_hPolytope_exact (s : StarSet ℋ𝒫 n) : -- --- CONCL ---
-    ∃ P : HPolytope (Vec ℝ n), P.construct = s.construct := by -- --- PROOF ---
+    ∃ P : HPolytope (Vec ℝ n), P.toSet = s.toSet := by -- --- PROOF ---
   by_cases hlu : ∀ k, s.dom.inf k ≤ s.dom.sup k
   · -- an uncrossed box: the star set is a constrained zonotope, which is a halfspace description
-    obtain ⟨P, hP, -⟩ := ConZonotope.exists_construct_eq_iff_hPolytope.mp
+    obtain ⟨P, hP, -⟩ := ConZonotope.exists_toSet_eq_iff_hPolytope.mp
       ⟨s.conZonotope, StarSet.conZonotope_exact s hlu⟩
     exact ⟨P, hP⟩
   · -- a crossed box admits no factor, so the star set is empty
     push Not at hlu
     obtain ⟨k, hk⟩ := hlu
-    refine ⟨HPolytope.emptySet _, HPolytope.construct_emptySet.trans ?_⟩
+    refine ⟨HPolytope.emptySet _, HPolytope.toSet_emptySet.trans ?_⟩
     ext x
     refine ⟨fun h => h.elim, fun ⟨α, ⟨hα, _⟩, _⟩ => ?_⟩
     have h : s.dom.inf k ≤ α k ∧ α k ≤ s.dom.sup k := hα k

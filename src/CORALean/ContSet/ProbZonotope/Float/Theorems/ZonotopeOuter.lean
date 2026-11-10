@@ -61,19 +61,19 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.zonotope_outer (p : ℕ) (P : ProbZonotope 𝕋 n) (M : 𝕋) {μ : Vec ℝ n}
-    (hμ : μ ∈ P.Z.construct) {S : Mat ℝ n n} (hS : S ∈ P.cov.construct) (hpsd : S.PosSemidef)
+    (hμ : μ ∈ P.Z.toSet) {S : Mat ℝ n n} (hS : S ∈ P.cov.toSet) (hpsd : S.PosSemidef)
     {m : ℝ} (hm : 0 ≤ m) (hmM : m ≤ toReal M) : -- --- CONCL ---
-    (Real.ProbZonotope.zonotope ⟨⟨0, μ, fun j => j.elim0⟩, S⟩ m).construct
-      ⊆ (P.zonotope p M).construct := by -- --- PROOF ---
+    (Real.ProbZonotope.zonotope ⟨⟨0, μ, fun j => j.elim0⟩, S⟩ m).toSet
+      ⊆ (P.zonotope p M).toSet := by -- --- PROOF ---
   intro x hx
   rw [Real.ProbZonotope.zonotope, ← Real.Zonotope.plus_exact] at hx
   obtain ⟨a, ha, y, hy, rfl⟩ := hx
   -- the point mean is `μ`
-  obtain ⟨_, _, hai⟩ := Real.Zonotope.mem_construct_iff.mp ha
+  obtain ⟨_, _, hai⟩ := Real.Zonotope.mem_toSet_iff.mp ha
   have haμ : a = μ := funext fun i => by simpa using hai i
   subst haμ
   -- the exact offset: coordinate `k` is `m` times a coordinate of `g β`
-  obtain ⟨γ, hγ, hyk⟩ := Real.Zonotope.mem_construct_iff.mp hy
+  obtain ⟨γ, hγ, hyk⟩ := Real.Zonotope.mem_toSet_iff.mp hy
   have hyk' : ∀ k, y k = m * (CFC.sqrt S *ᵥ γ) k := fun k => by
     rw [hyk k]
     simp only [Real.confidenceZonotope, Pi.zero_apply, zero_add, Pi.smul_apply, smul_eq_mul,
@@ -81,7 +81,7 @@ theorem ProbZonotope.zonotope_outer (p : ℕ) (P : ProbZonotope 𝕋 n) (M : �
     exact Finset.sum_congr rfl fun j _ => by ring
   -- it is under the radius: coordinate `k` of `m g β` is at most `m √(n Σₖₖ)`, rounded up
   have hbox : y ∈ (⟨(-(P.confidenceRadius p M)), P.confidenceRadius p M⟩ :
-      Interval (Vec 𝕋 n)).construct := fun k => by
+      Interval (Vec 𝕋 n)).toSet := fun k => by
     have hSkk : S k k ≤ toReal (P.cov.sup k k) := (Interval.mem_mat_iff.mp hS k k).2
     have hacc := Real.ProbZonotope.abs_sqrt_mulVec_le hpsd hγ k
     -- `n Σₖₖ` is under the rounded count of the upper diagonal, its root under `sqrtUp`

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Capsule.Float.Capsule
 public import CORALean.ContSet.Capsule.Real.Instances
-public import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
+public import CORALean.ContSet.Capsule.Real.Theorems.ToSetSubsetOfDistLe
 public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.ContSet.Conversion.Real.Theorems.IntervalCapsuleAlongContains
 public import CORALean.Global.Float.Sqrt
@@ -68,7 +68,7 @@ private theorem foldl_widest_some (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.capsule_contains (k : ℕ) (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
-    I.construct ⊆ (I.capsule k).construct := by -- --- PROOF ---
+    I.toSet ⊆ (I.capsule k).toSet := by -- --- PROOF ---
   unfold Interval.capsule
   cases h : I.widestAxis with
   | some a => exact I.capsuleAlong_contains k a

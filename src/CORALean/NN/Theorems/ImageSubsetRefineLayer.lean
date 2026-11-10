@@ -53,7 +53,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 
 theorem RefinableNetwork.image_subset_refineLayer (rn : RefinableNetwork S n m)
     (sch : Schedule) (l : ℕ) (X : S n) :
-    rn.image (construct X) ⊆ construct (rn.encloseAt (Schedule.refineLayer sch l) X) :=
+    rn.image (toSet X) ⊆ toSet (rn.encloseAt (Schedule.refineLayer sch l) X) :=
   rn.image_subset_encloseAt _ X
 
 end CORALean

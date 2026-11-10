@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopePosSemidefSpectraShadow
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 public import CORALean.ContSet.Interval.Float.Operations.Point
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import Mathlib.LinearAlgebra.Matrix.PosDef
@@ -47,7 +47,7 @@ variable [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.spectraShadow_contains (P : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    P.construct ⊆ P.spectraShadow.construct := by -- --- PROOF ---
+    P.toSet ⊆ P.spectraShadow.toSet := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   -- the error box is the polytope's own, the nominal part carries the point
   refine ⟨y, SpectraShadow.mem_nominalSet_iff.mpr ⟨y, HPolytope.posSemidef_spectraShadow P hy,

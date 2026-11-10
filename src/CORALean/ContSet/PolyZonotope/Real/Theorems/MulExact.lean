@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
 # `mul` is exactly the product over shared factors
 
 At one dimension this is [1, Prop. 2.9]; `bilin_exact` at the entrywise product is what `mul`
-is. `construct (mul pZ₁ pZ₂)` is not `construct pZ₁ * construct pZ₂`: both sets are functions
+is. `toSet (mul pZ₁ pZ₂)` is not `toSet pZ₁ * toSet pZ₂`: both sets are functions
 of one shared factor vector, so their pointwise product ranges over far fewer points than the
 product of the two sets. The claim is about the evaluation map: the result is exactly the
 image of the admissible factors under `a ↦ point pZ₁ a ⊙ point pZ₂ a`, with `pZ₂` read at the
@@ -53,7 +53,7 @@ variable {n : ℕ}
 theorem PolyZonotope.mul_exact (pZ₁ pZ₂ : PolyZonotope (Vec ℝ n)) (hp : pZ₁.p = pZ₂.p) :
     (fun a : Fin pZ₁.p → ℝ => pZ₁.point a * pZ₂.point (fun k => a (Fin.cast hp.symm k)))
         '' {a | ∀ k, |a k| ≤ 1}
-      = (pZ₁.mul pZ₂ hp).construct :=
+      = (pZ₁.mul pZ₂ hp).toSet :=
   PolyZonotope.bilin_exact Entrywise.hadamardLin pZ₁ pZ₂ hp
 
 end CORALean.Real

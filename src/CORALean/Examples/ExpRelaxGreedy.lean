@@ -30,16 +30,16 @@ namespace CORALean
 
 /-- The exact layer's loop, driven by the lightest-edge rule at threshold `η`. -/
 example {α : Type} [AddCommGroup α] [Module ℝ α] (pZ : Real.PolyZonotope α) (η n : ℕ) :
-    pZ.construct ⊆ (Real.PolyZonotope.relaxExpGreedy
-      (fun pZ' => Real.PolyZonotope.expGreedySel pZ'.E η) n pZ).construct :=
+    pZ.toSet ⊆ (Real.PolyZonotope.relaxExpGreedy
+      (fun pZ' => Real.PolyZonotope.expGreedySel pZ'.E η) n pZ).toSet :=
   Real.PolyZonotope.relaxExpGreedy_outer _ n pZ
 
 /-- The same rule at a float representation, whose exponents are the same
 naturals; it needs no float counterpart of its own. -/
 example {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {n : ℕ}
     (pZ : Float.PolyZonotope (Vec 𝕋 n)) (η m : ℕ) :
-    pZ.construct ⊆ (Float.PolyZonotope.relaxExpGreedy
-      (fun pZ' => Real.PolyZonotope.expGreedySel pZ'.E η) m pZ).construct :=
+    pZ.toSet ⊆ (Float.PolyZonotope.relaxExpGreedy
+      (fun pZ' => Real.PolyZonotope.expGreedySel pZ'.E η) m pZ).toSet :=
   Float.PolyZonotope.relaxExpGreedy_outer _ m pZ
 
 end CORALean

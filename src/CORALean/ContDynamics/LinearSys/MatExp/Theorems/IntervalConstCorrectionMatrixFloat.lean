@@ -56,10 +56,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem MatExp.expIntegralDiff_mem_intervalConstCorrectionMatrix (A : Interval (Mat 𝕋 n n))
     {r : 𝕋} (hr : 0 < toReal r) (η : ℕ)
     (hε : toReal (MatExp.normUpperBound (Interval.smul r r A)) / ((η : ℝ) + 2) ≤ 1 / 2)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) {t : ℝ} (ht0 : 0 ≤ t)
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) {t : ℝ} (ht0 : 0 ≤ t)
     (htr : t ≤ toReal r) : -- --- CONCL ---
     Real.MatExp.expIntegral M t - (t / toReal r) • Real.MatExp.expIntegral M (toReal r)
-      ∈ (MatExp.intervalConstCorrectionMatrix A r η).construct := by -- --- PROOF ---
+      ∈ (MatExp.intervalConstCorrectionMatrix A r η).toSet := by -- --- PROOF ---
   have hnorm := MatExp.norm_smul_le_normUpperBound A r hM
   have hden : (0 : ℝ) < (η : ℝ) + 2 := by positivity
   have hε' : ‖toReal r • M‖ / ((η : ℝ) + 2) < 1 :=

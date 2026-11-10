@@ -40,8 +40,8 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem EmptySet.project_exact (E : EmptySet n) (dims : Fin m → Fin n) :
-    construct (E.project dims) =
-      (fun (x : Vec ℝ n) (j : Fin m) => x (dims j)) '' construct E := by
+    toSet (E.project dims) =
+      (fun (x : Vec ℝ n) (j : Fin m) => x (dims j)) '' toSet E := by
   change (∅ : Set (Vec ℝ m)) = _ '' (∅ : Set (Vec ℝ n))
   exact (Set.image_empty _).symm
 

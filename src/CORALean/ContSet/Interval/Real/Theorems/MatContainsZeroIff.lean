@@ -39,7 +39,7 @@ variable {m n : ℕ}
 
 /-- `contains(intMat, M, 'exact', 0)` holds exactly for the members of the box. -/
 theorem Interval.matContains_zero_iff (A : Interval (Mat ℝ m n)) (M : Mat ℝ m n) : -- --- CONCL ---
-    A.ContainsMat M 0 ↔ M ∈ A.construct := by -- --- PROOF ---
+    A.ContainsMat M 0 ↔ M ∈ A.toSet := by -- --- PROOF ---
   rw [Interval.mem_mat_iff]
   constructor
   · -- every test at tolerance `0` says `inf ≤ M` or `M ≤ sup`

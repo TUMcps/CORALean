@@ -53,8 +53,8 @@ variable {q₁ q₂ n : ℕ}
 
 theorem HPolytope.ineqs_subset_iff_supportFunc {A₁ : Mat ℝ q₁ n} {b₁ : Vec ℝ q₁}
     {A₂ : Mat ℝ q₂ n} {b₂ : Vec ℝ q₂} : -- --- CONCL ---
-    (HPolytope.ineqs A₁ b₁).construct ⊆ (HPolytope.ineqs A₂ b₂).construct ↔
-      ∀ j, supportFunc (HPolytope.ineqs A₁ b₁).construct (HPolytope.rowLin A₂ j)
+    (HPolytope.ineqs A₁ b₁).toSet ⊆ (HPolytope.ineqs A₂ b₂).toSet ↔
+      ∀ j, supportFunc (HPolytope.ineqs A₁ b₁).toSet (HPolytope.rowLin A₂ j)
         ≤ (b₂ j : EReal) := by -- --- PROOF ---
   simp only [supportFunc_le_coe_iff]
   constructor

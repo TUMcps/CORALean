@@ -50,14 +50,14 @@ variable {n : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- [1, Lemma 3.1]: the evolution of `s` by `g, −g` is `Zonotope.construct ⟨M, s, g⟩`. -/
+/-- [1, Lemma 3.1]: the evolution of `s` by `g, −g` is `Zonotope.toSet ⟨M, s, g⟩`. -/
 theorem Zonotope.generatorHull_symmetric (s : Vec ℝ n) (M : ℕ)
     (g : Fin M → Vec ℝ n) : -- --- CONCL ---
     Zonotope.generatorHull s (M + M) (Fin.append g (-g))
-      = (Zonotope.mk M s g).construct := by -- --- PROOF ---
+      = (Zonotope.mk M s g).toSet := by -- --- PROOF ---
   rw [Zonotope.generatorHull_eq]
   ext y
-  simp only [Set.mem_setOf_eq, Zonotope.construct]
+  simp only [Set.mem_setOf_eq, Zonotope.toSet]
   constructor
   · -- the coefficient of `gᵢ` is the difference of those of `gᵢ` and `−gᵢ`
     rintro ⟨α, hα, rfl⟩

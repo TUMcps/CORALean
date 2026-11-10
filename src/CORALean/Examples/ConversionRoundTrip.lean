@@ -36,19 +36,19 @@ variable {n : ℕ}
 
 /-- Out to a box and back: the widening is the bounding box, and the zonotope
 that comes back is that box, not the one that went in. -/
-example (Z : Zonotope (Vec ℝ n)) : Z.construct ⊆ Z.interval.zonotope.construct :=
+example (Z : Zonotope (Vec ℝ n)) : Z.toSet ⊆ Z.interval.zonotope.toSet :=
   Z.interval_contains.trans (Interval.zonotope_contains Z.interval)
 
 /-- Out to a zonotope and back: dropping the dependence between generators is
 what widens, and the return is exact. -/
 example (pZ : PolyZonotope (Vec ℝ n)) :
-    pZ.construct ⊆ pZ.zonotope.polyZonotope.construct :=
+    pZ.toSet ⊆ pZ.zonotope.polyZonotope.toSet :=
   pZ.zonotope_contains.trans (Zonotope.polyZonotope_exact pZ.zonotope).subset
 
 /-- The same for a constrained zonotope, where dropping the constraints is the
 widening and the return is again exact. -/
 example (cZ : ConZonotope (Vec ℝ n)) :
-    cZ.construct ⊆ cZ.zonotope.conZonotope.construct :=
+    cZ.toSet ⊆ cZ.zonotope.conZonotope.toSet :=
   cZ.zonotope_contains.trans (Zonotope.conZonotope_exact cZ.zonotope).subset
 
 end CORALean.Real

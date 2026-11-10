@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
+public import CORALean.ContSet.Zonotope.Real.Theorems.ToSetEqConvexHullCorner
 public import Mathlib.Analysis.Normed.Module.FiniteDimension
 public import Mathlib.Analysis.Convex.Combination
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
@@ -71,7 +71,7 @@ private theorem aux_lift_closedBall_subset_convexHull (c : Vec ℝ n × ℝ) {ρ
   have h1 : closedBall c.1 ρ ⊆ convexHull ℝ {x : Vec ℝ n | ∀ i, |x i - c.1 i| = ρ} := by
     let Z : Zonotope (Vec ℝ n) := ⟨n, c.1, fun j => ρ • Pi.single j 1⟩
     intro x hx
-    have hxZ : x ∈ Z.construct := by
+    have hxZ : x ∈ Z.toSet := by
       refine ⟨fun j => (x j - c.1 j) / ρ, fun j => ?_, ?_⟩
       · rw [abs_div, abs_of_pos hρ, div_le_one hρ, ← Real.dist_eq]
         exact (dist_le_pi_dist x c.1 j).trans (mem_closedBall.mp hx)
@@ -79,7 +79,7 @@ private theorem aux_lift_closedBall_subset_convexHull (c : Vec ℝ n × ℝ) {ρ
         simp [Z, Finset.sum_apply, Pi.single_apply, smul_smul]
         field_simp
         ring
-    rw [Z.construct_eq_convexHull_corner] at hxZ
+    rw [Z.toSet_eq_convexHull_corner] at hxZ
     refine convexHull_mono ?_ hxZ
     rintro _ ⟨σ, rfl⟩ i
     simp only [Zonotope.corner, Z, Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul,

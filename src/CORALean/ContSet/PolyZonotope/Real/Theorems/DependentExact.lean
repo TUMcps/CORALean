@@ -72,7 +72,7 @@ private theorem PolyZonotope.aux_sum_dependent (pZ : PolyZonotope α)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.dependent_exact (pZ : PolyZonotope α) : -- --- CONCL ---
-    pZ.construct = pZ.dependent.construct := by -- --- PROOF ---
+    pZ.toSet = pZ.dependent.toSet := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨a, b, ha, hb, rfl⟩
     -- forward: the free coefficients become the right half of the factor vector

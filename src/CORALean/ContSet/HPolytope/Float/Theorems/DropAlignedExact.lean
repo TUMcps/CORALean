@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.dropAligned_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    Q.dropAligned.construct = Q.construct := by -- --- PROOF ---
+    Q.dropAligned.toSet = Q.toSet := by -- --- PROOF ---
   -- every row is implied by a kept row with its normal and a right-hand side at most its own
   have key : ∀ i, ∃ k, (!(List.finRange Q.m).any fun j =>
         (HPolytope.eqVec (Q.A j) (Q.A k) && le (absolute (Q.b_error j)) (absolute (Q.b_error k))) &&
@@ -88,7 +88,7 @@ theorem HPolytope.dropAligned_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- C
     exact absurd hmem (not_le.mpr hlt)
   -- the result keeps the rows with no dominator; the others follow from `key`
   unfold HPolytope.dropAligned
-  refine HPolytope.construct_congr ?_ rfl
+  refine HPolytope.toSet_congr ?_ rfl
   ext x
   rw [HPolytope.mem_restrict_iff, HPolytope.mem_nominal_iff]
   constructor

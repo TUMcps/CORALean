@@ -78,7 +78,7 @@ private theorem aux_edge_den {I : Interval (Vec ℝ n)} {l : Fin n → Bool} {j 
 theorem Interval.boxPlaneIntersectNaive_eq {I : Interval (Vec ℝ n)} (hn : 0 < n)
     (hI : ∀ i, I.inf i < I.sup i) (α : ℝ) : -- --- CONCL ---
     ↑(I.boxPlaneIntersectNaive α) =
-      Set.extremePoints ℝ (I.construct ∩ Interval.hyperplane 1 α) := by -- --- PROOF ---
+      Set.extremePoints ℝ (I.toSet ∩ Interval.hyperplane 1 α) := by -- --- PROOF ---
   classical
   -- membership in the output: a point of some edge, at a `t ∈ [0, 1]`, on the plane
   have hmem : ∀ x, x ∈ I.boxPlaneIntersectNaive α ↔ ∃ l : Fin n → Bool, ∃ j, l j = false ∧

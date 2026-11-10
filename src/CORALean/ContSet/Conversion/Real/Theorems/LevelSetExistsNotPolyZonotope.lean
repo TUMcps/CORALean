@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.IsCompact
 /-!
 # A level set that is no polynomial zonotope
 
-A polynomial zonotope is a level set (`LevelSet.exists_construct_eq`), and the inclusion is strict:
+A polynomial zonotope is a level set (`LevelSet.exists_toSet_eq`), and the inclusion is strict:
 a polynomial zonotope is compact, and the half-line `{x | 0 ≤ x₀}` is a level set that is not.
 
 This is the arrow from polynomial zonotopes to level sets of
@@ -46,12 +46,12 @@ namespace CORALean.Real
 
 theorem LevelSet.exists_not_polyZonotope : -- --- CONCL ---
     ∃ L : LevelSet 1,
-      ¬ ∃ pZ : PolyZonotope (Vec ℝ 1), pZ.construct = L.construct := by -- --- PROOF ---
+      ¬ ∃ pZ : PolyZonotope (Vec ℝ 1), pZ.toSet = L.toSet := by -- --- PROOF ---
   refine ⟨⟨1, fun x _ => -x 0, fun _ => .le⟩, ?_⟩
   rintro ⟨pZ, hpZ⟩
   -- a compact set is bounded, and the half-line has points of every norm
-  obtain ⟨C, hC⟩ := (isBounded_iff_forall_norm_le.mp pZ.isCompact_construct.isBounded)
-  have hmem : (fun _ => |C| + 1 : Vec ℝ 1) ∈ pZ.construct := by
+  obtain ⟨C, hC⟩ := (isBounded_iff_forall_norm_le.mp pZ.isCompact_toSet.isBounded)
+  have hmem : (fun _ => |C| + 1 : Vec ℝ 1) ∈ pZ.toSet := by
     rw [hpZ]
     intro i
     simp only [CompOp.holds, neg_nonpos]

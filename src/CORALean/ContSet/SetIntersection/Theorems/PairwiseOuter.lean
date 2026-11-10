@@ -57,13 +57,13 @@ intersections. -/
 theorem SetIntersection.pairwise_outer {k k' l : ℕ} {f : Fin k → S} {f' : Fin k' → S'}
     {g : Fin l → T} (Φ : Set α → Set α' → Set β)
     (hΦ : ∀ ⦃A B : Set α⦄ ⦃A' B' : Set α'⦄, A ⊆ B → A' ⊆ B' → Φ A A' ⊆ Φ B B')
-    (h : ∀ p, ∃ i i', Φ (ContSet.construct (f i)) (ContSet.construct (f' i'))
-      ⊆ ContSet.construct (g p)) : -- --- CONCL ---
-    Φ (ContSet.construct (⟨List.ofFn f⟩ : SetIntersection S))
-        (ContSet.construct (⟨List.ofFn f'⟩ : SetIntersection S'))
-      ⊆ ContSet.construct (⟨List.ofFn g⟩ : SetIntersection T) := by -- --- PROOF ---
-  rw [SetIntersection.construct_ofFn, SetIntersection.construct_ofFn,
-    SetIntersection.construct_ofFn]
+    (h : ∀ p, ∃ i i', Φ (ContSet.toSet (f i)) (ContSet.toSet (f' i'))
+      ⊆ ContSet.toSet (g p)) : -- --- CONCL ---
+    Φ (ContSet.toSet (⟨List.ofFn f⟩ : SetIntersection S))
+        (ContSet.toSet (⟨List.ofFn f'⟩ : SetIntersection S'))
+      ⊆ ContSet.toSet (⟨List.ofFn g⟩ : SetIntersection T) := by -- --- PROOF ---
+  rw [SetIntersection.toSet_ofFn, SetIntersection.toSet_ofFn,
+    SetIntersection.toSet_ofFn]
   refine Set.subset_iInter fun p => ?_
   obtain ⟨i, i', hp⟩ := h p
   exact (hΦ (Set.iInter_subset _ i) (Set.iInter_subset _ i')).trans hp

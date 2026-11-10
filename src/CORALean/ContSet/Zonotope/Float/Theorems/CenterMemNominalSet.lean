@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Float.Zonotope
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 
 @[expose] public section
 
@@ -40,7 +40,7 @@ variable {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [
 
 theorem Zonotope.center_mem_nominalSet (Z : Zonotope α) :
     RealImage.realImage Z.c ∈ InflatedContSet.nominalSet Z :=
-  Real.Zonotope.center_mem_construct (InflatedContSet.nominal Z)
+  Real.Zonotope.center_mem_toSet (InflatedContSet.nominal Z)
 
 end CORALean.Float
 

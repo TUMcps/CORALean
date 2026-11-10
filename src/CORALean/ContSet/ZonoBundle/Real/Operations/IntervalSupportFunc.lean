@@ -42,8 +42,8 @@ variable {n : ℕ}
 /-- The bundle's box from the support function of the intersection in the directions `±eᵢ`. -/
 noncomputable def ZonoBundle.intervalSupportFunc (zB : ZonoBundle (Vec ℝ n)) : Interval (Vec ℝ n)
     where
-  inf i := -(supportFunc zB.construct (-LinearMap.proj i)).toReal
-  sup i := (supportFunc zB.construct (LinearMap.proj i)).toReal
+  inf i := -(supportFunc zB.toSet (-LinearMap.proj i)).toReal
+  sup i := (supportFunc zB.toSet (LinearMap.proj i)).toReal
 
 end CORALean.Real
 

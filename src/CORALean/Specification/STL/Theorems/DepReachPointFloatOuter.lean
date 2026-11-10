@@ -49,7 +49,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The float `R(t_i)` holds the real `R(t_i)` of a state it encloses. -/
 theorem STL.depReachPointFloat_outer {sF : STL.DepReachStateFloat 𝕋 n} {sR : STL.DepReachState n}
     {E : Set (Vec ℝ n)} (h : sF.Encloses sR E) : -- --- CONCL ---
-    (STL.depReachPoint sR).construct ⊆ (STL.depReachPointFloat sF).construct := by -- --- PROOF ---
+    (STL.depReachPoint sR).toSet ⊆ (STL.depReachPointFloat sF).toSet := by -- --- PROOF ---
   unfold STL.depReachPoint STL.depReachPointFloat
   rw [← Real.Zonotope.plus_exact, ← Real.Zonotope.plus_exact]
   exact (Set.add_subset_add h.1 (Set.add_subset_add h.2.1 h.2.2.1)).trans

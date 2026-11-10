@@ -89,12 +89,12 @@ theorem NonlinearSys.IsTrajectory.relinReach_evalOn {sys : NonlinearSys n m} {T 
     {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒫𝒵) T R₀ U x u y) (hΔt : 0 ≤ Δt)
     (hT : Set.Icc 0 ((N : ℝ) * Δt) ⊆ T)
     (hR : ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt), x t ∈ (steps i).R)
-    (hU : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
+    (hU : ∀ i < N, Bornology.IsBounded (toSet (steps i).linInput))
     (hUd : ∀ i < N, (NonlinearSys.linearize (steps i).A).stepInput
-      (fun t => sys.f (x t) (u t) - (steps i).A *ᵥ x t) Δt i ∈ construct (Ud i))
+      (fun t => sys.f (x t) (u t) - (steps i).A *ᵥ x t) Δt i ∈ toSet (Ud i))
     (X₀ : 𝒫𝒵 n) (Bs : ∀ i, Set (Fin (sys.relinReach (S := 𝒫𝒵) ⟨X₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud).p →
       ℝ))
-    (h0 : construct R₀ ⊆ X₀.evalOn (Bs 0))
+    (h0 : toSet R₀ ⊆ X₀.evalOn (Bs 0))
     (hunit : ∀ i, ∀ a ∈ Bs i, ∀ k, |a k| ≤ 1)
     (hnext : ∀ i, PolyZonotope.postBox ((NonlinearSys.linearize (steps i).A).discretize Δt).A
       (sys.relinReach (S := 𝒫𝒵) ⟨X₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud) (Ud i) o (Bs i) ⊆ Bs (i + 1))
@@ -116,7 +116,7 @@ theorem NonlinearSys.IsTrajectory.relinReach_evalOn {sys : NonlinearSys n m} {T 
     -- step `i`'s linearized run, and the sample it takes over that window
     have hexp : ((i : ℝ) + 1) * Δt = (i : ℝ) * Δt + Δt := by ring
     rw [hexp] at hwin
-    have hlin := traj.linearize_window (A := (steps i).A) (V := construct (steps i).linInput) hΔt
+    have hlin := traj.linearize_window (A := (steps i).A) (V := toSet (steps i).linInput) hΔt
       hwin fun t ht => linInput_outer (steps i).cert (hR i hiN t (hexp ▸ ht))
         (traj.input t (hwin ht))
     have hstep := hlin.discretize_step hΔt (hU i hiN) 0 (by simp)
@@ -128,7 +128,7 @@ theorem NonlinearSys.IsTrajectory.relinReach_evalOn {sys : NonlinearSys n m} {T 
     have hmem : x (((i : ℝ) + 1) * Δt)
         ∈ (((NonlinearSys.linearize (steps i).A).discretize Δt).A *ᵥ ·)
             '' (sys.relinReach (S := 𝒫𝒵) ⟨X₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud).evalOn (Bs i)
-          + construct (Ud i) := by
+          + toSet (Ud i) := by
       rw [hstep]
       exact Set.add_mem_add ⟨_, ih hiN.le, rfl⟩ (hUd i hiN)
     -- one post step, then the sub-box the loop's own bookkeeping leaves it in

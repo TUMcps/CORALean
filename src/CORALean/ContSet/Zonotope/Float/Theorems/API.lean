@@ -12,10 +12,10 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.BallCertReach
 public import CORALean.ContSet.Zonotope.Float.Theorems.Basic
 public import CORALean.ContSet.Zonotope.Float.Theorems.BoxSubset
 public import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
-public import CORALean.ContSet.Zonotope.Float.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Float.Theorems.CenterMemToSet
 public import CORALean.ContSet.Zonotope.Float.Theorems.CompactZerosExact
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConstrSatSound
-public import CORALean.ContSet.Zonotope.Float.Theorems.ConstructPoint
+public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsPointSound
 public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsZonotopeSound
 public import CORALean.ContSet.Zonotope.Float.Theorems.Convex

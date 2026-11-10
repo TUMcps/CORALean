@@ -180,7 +180,7 @@ theorem LinearSys.supportUpper_outer
     (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 < Δt) {m : ℕ}
     (hε : ‖Δt • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ U : S n)
     {ρ : S n → (Vec ℝ n →ₗ[ℝ] ℝ) → ℝ}
-    (hρ : ∀ X : S n, ∀ x ∈ construct X, ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, d x ≤ ρ X d)
+    (hρ : ∀ X : S n, ∀ x ∈ toSet X, ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, d x ≤ ρ X d)
     (ℓ : Vec ℝ n →ₗ[ℝ] ℝ) (k : ℕ) : -- --- CONCL ---
     (∀ x ∈ sys.reachSetExact (Set.Icc 0 ((k : ℝ) * Δt)) X₀ U ((k : ℝ) * Δt),
         ℓ x ≤ (sys.supportUpper Δt (m + 2) X₀ U ρ ℓ k).ρR) ∧
@@ -191,13 +191,13 @@ theorem LinearSys.supportUpper_outer
   set c := Recenter.center U with hc
   set U₀ := Recenter.recenter U with hU₀
   set PU := sys.inputSolution Δt (m + 2) U₀ with hPU
-  have hbdd₀ : Bornology.IsBounded (construct U₀) := CompactSet.isBounded_construct U₀
-  have h0 : (0 : Vec ℝ n) ∈ construct U₀ := Recenter.zero_mem_recenter U
+  have hbdd₀ : Bornology.IsBounded (toSet U₀) := CompactSet.isBounded_toSet U₀
+  have h0 : (0 : Vec ℝ n) ∈ toSet U₀ := Recenter.zero_mem_recenter U
   -- line 4: one step of the input is inside `P̂_U(Δt)`
-  have hΔ : sys.inputReach U₀ Δt ⊆ construct PU :=
-    sys.inputReach_subset_inputSolution hΔt (m + 2) hε (ConvexSet.convex_construct U₀)
-      (CompactSet.isClosed_construct U₀) hbdd₀ (ConvexSet.convex_construct _)
-      (CompactSet.isClosed_construct _) (CompactSet.isBounded_construct _)
+  have hΔ : sys.inputReach U₀ Δt ⊆ toSet PU :=
+    sys.inputReach_subset_inputSolution hΔt (m + 2) hε (ConvexSet.convex_toSet U₀)
+      (CompactSet.isClosed_toSet U₀) hbdd₀ (ConvexSet.convex_toSet _)
+      (CompactSet.isClosed_toSet _) (CompactSet.isBounded_toSet _)
   -- line 11: `j` steps of it are inside the sum of `ρ(P̂_U(Δt), d_i)`
   have hw : ∀ (j : ℕ) (w : Vec ℝ n), w ∈ sys.inputReach U₀ ((j : ℝ) * Δt) →
       ℓ w ≤ ∑ i ∈ Finset.range j, ρ PU (ℓ.comp (mulVecLin (exp (Δt • A) ^ i))) := by
@@ -206,7 +206,7 @@ theorem LinearSys.supportUpper_outer
     exact aux_propagate_le sys Δt (fun z hz d => hρ PU z hz d) ℓ j w
       (sys.propagateInputSolution_mono Δt hΔ j hwj)
   -- lines 1, 9, 10 at a step `j`: `z(jΔt)` is under `ρ(H(t_j), ℓ)`
-  have hz : ∀ (j : ℕ) (x₀ : Vec ℝ n), x₀ ∈ construct X₀ →
+  have hz : ∀ (j : ℕ) (x₀ : Vec ℝ n), x₀ ∈ toSet X₀ →
       ℓ (exp (((j : ℝ) * Δt) • A) *ᵥ x₀ + MatExp.expIntegral A ((j : ℝ) * Δt) *ᵥ c)
         ≤ (sys.supportUpper Δt (m + 2) X₀ U ρ ℓ j).ρH := by
     intro j x₀ hx₀
@@ -271,11 +271,11 @@ theorem LinearSys.supportUpper_outer
         Matrix.mulVec_add, Matrix.mulVec_sub, Matrix.mulVec_smul, Matrix.one_mulVec]
       module
     -- the correction `E (F x₀ ⊕ G ũ)` lies in `e^{At_k} C`, so `ρ(C, d_k)` bounds it
-    have hFmem : Fs ∈ (MatExp.correctionMatrix A Δt (m + 2)).construct :=
+    have hFmem : Fs ∈ (MatExp.correctionMatrix A Δt (m + 2)).toSet :=
       MatExp.expDiff_mem_correctionMatrix A hΔt hε hs0 hsΔ
-    have hGmem : Gs ∈ (MatExp.constCorrectionMatrix A Δt (m + 2)).construct :=
+    have hGmem : Gs ∈ (MatExp.constCorrectionMatrix A Δt (m + 2)).toSet :=
       MatExp.expIntegralDiff_mem_constCorrectionMatrix A hΔt (m + 2) hε hs0 hsΔ
-    have hC : Fs *ᵥ x 0 + Gs *ᵥ c ∈ construct (Plus.plus
+    have hC : Fs *ᵥ x 0 + Gs *ᵥ c ∈ toSet (Plus.plus
         (Mtimes.mtimes (𝕄 := ℐ) (MatExp.correctionMatrix A Δt (m + 2)) X₀)
         (Mtimes.mtimes (𝕄 := ℐ) (MatExp.constCorrectionMatrix A Δt (m + 2))
           (OfPoint.ofPoint c))) :=

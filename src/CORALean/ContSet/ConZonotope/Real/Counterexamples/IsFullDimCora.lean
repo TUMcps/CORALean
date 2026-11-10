@@ -68,7 +68,7 @@ open Matrix
 /-- The rank test holds for `c = 0`, `G = [1 0]`, `A = [1 1]`, `b = 2`: the set is `{1}`. -/
 theorem ConZonotope.isFullDim_cora_counterexample : -- --- CONCL ---
     ∃ cZ : ConZonotope (Vec ℝ 1), cZ.isFullDimCora ∧
-      ¬ (interior cZ.construct).Nonempty := by -- --- PROOF ---
+      ¬ (interior cZ.toSet).Nonempty := by -- --- PROOF ---
   -- the data
   let G : Fin 2 → Vec ℝ 1 := ![fun _ => 1, fun _ => 0]
   let A : Mat ℝ 1 2 := fun _ _ => 1
@@ -93,7 +93,7 @@ theorem ConZonotope.isFullDim_cora_counterexample : -- --- CONCL ---
   · -- the set is `{1}`, which has no interior point in `ℝ¹`
     rintro ⟨y, hy⟩
     -- every point of the set is `1`: the two factors are pinned by the box
-    have hmem : ∀ x ∈ cZ.construct, x 0 = 1 := by
+    have hmem : ∀ x ∈ cZ.toSet, x 0 = 1 := by
       rintro x ⟨β, hβ, hP, rfl⟩
       have h2 : β (0 : Fin 2) + β (1 : Fin 2) = 2 := by
         have := HPolytope.mem_eqs_iff.mp hP 0

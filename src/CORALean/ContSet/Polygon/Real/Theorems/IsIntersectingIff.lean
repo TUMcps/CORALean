@@ -37,16 +37,16 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.isIntersecting_iff (P Q : Polygon) : -- --- CONCL ---
-    (ContSet.construct P ∩ ContSet.construct Q).Nonempty ↔
+    (ContSet.toSet P ∩ ContSet.toSet Q).Nonempty ↔
       Polygon.isIntersecting P Q := by -- --- PROOF ---
   constructor
   · rintro ⟨x, hx, hy⟩
-    obtain ⟨p, hp, hxp⟩ := SetUnion.mem_construct.mp hx
-    obtain ⟨q, hq, hyq⟩ := SetUnion.mem_construct.mp hy
+    obtain ⟨p, hp, hxp⟩ := SetUnion.mem_toSet.mp hx
+    obtain ⟨q, hq, hyq⟩ := SetUnion.mem_toSet.mp hy
     exact ⟨p, hp, q, hq, (VPolytope.inter_nonempty_iff p q).mp ⟨x, hxp, hyq⟩⟩
   · rintro ⟨p, hp, q, hq, h⟩
     obtain ⟨x, hxp, hxq⟩ := (VPolytope.inter_nonempty_iff p q).mpr h
-    exact ⟨x, SetUnion.mem_construct.mpr ⟨p, hp, hxp⟩, SetUnion.mem_construct.mpr ⟨q, hq, hxq⟩⟩
+    exact ⟨x, SetUnion.mem_toSet.mpr ⟨p, hp, hxp⟩, SetUnion.mem_toSet.mpr ⟨q, hq, hxq⟩⟩
 
 end CORALean.Real
 

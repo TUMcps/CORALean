@@ -88,7 +88,7 @@ open Matrix
 
 theorem Zonotope.normExactCora_lt : -- --- CONCL ---
     let Z : Zonotope (Vec ℝ 2) := ⟨2, ![(2 : ℝ), -20], ![![1, 0], ![1, 1]]⟩
-    ![(2 : ℝ), -21] ∈ Z.construct ∧
+    ![(2 : ℝ), -21] ∈ Z.toSet ∧
       ∀ (lmax : ℝ) (binprog : ((Fin Z.h → Bool) → ℝ) → (Fin Z.h → Bool)),
         (∀ (f : (Fin Z.h → Bool) → ℝ) b, f (binprog f) ≤ f b) →
           Z.normExactCora lmax binprog < ‖![(2 : ℝ), -21]‖₂ := by -- --- PROOF ---

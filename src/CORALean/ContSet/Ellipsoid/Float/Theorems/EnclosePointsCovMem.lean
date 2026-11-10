@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Ellipsoid.Float.Operations.EnclosePointsCov
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.AddSubMemNominalSet
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.InflateSubPosSemidef
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetOfFactor
 public import CORALean.ContSet.Interval.Float.Theorems.MatMulOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
@@ -60,7 +60,7 @@ private theorem Ellipsoid.aux_mem_of_remainder (E : Ellipsoid 𝕋 n) (G : Mat �
       ≤ toReal (subDown (p i) (addUp (E.q i) (dotUp (G i) u))))
     (hhi : ∀ i, toReal (subUp (p i) (addDown (E.q i) (dotDown (G i) u)))
       ≤ toReal (E.I_error.sup i)) : -- --- CONCL ---
-    toRealVec p ∈ E.construct := by -- --- PROOF ---
+    toRealVec p ∈ E.toSet := by -- --- PROOF ---
   -- the factor vector has length at most one
   have hnorm : ‖toRealVec u‖₂ ≤ 1 := by
     have h2 : ‖toRealVec u‖₂ ^ 2 ≤ 1 ^ 2 := by
@@ -69,8 +69,8 @@ private theorem Ellipsoid.aux_mem_of_remainder (E : Ellipsoid 𝕋 n) (G : Mat �
     exact (pow_le_pow_iff_left₀ (norm₂_nonneg _) zero_le_one two_ne_zero).mp h2
   -- the nominal point `q + G u`, in the ellipsoid of `G Gᵀ`, so in the nominal part
   have hF : toRealVec E.q + toRealMat G *ᵥ toRealVec u
-      ∈ (Real.Ellipsoid.ofFactor (toRealMat G) (toRealVec E.q)).construct := by
-    rw [Real.Ellipsoid.construct_ofFactor]
+      ∈ (Real.Ellipsoid.ofFactor (toRealMat G) (toRealVec E.q)).toSet := by
+    rw [Real.Ellipsoid.toSet_ofFactor]
     exact ⟨toRealVec u, hnorm, rfl⟩
   have hy := Ellipsoid.add_sub_mem_nominalSet (Or.inr hG) hF
   rw [show (Real.Ellipsoid.ofFactor (toRealMat G) (toRealVec E.q)).q = toRealVec E.q from rfl,
@@ -95,7 +95,7 @@ private theorem Ellipsoid.aux_mem_of_remainder (E : Ellipsoid 𝕋 n) (G : Mat �
 
 theorem Ellipsoid.enclosePointsCov_mem (steps : ℕ) (pts : Fin N → Vec 𝕋 n) (T U : Mat 𝕋 n n)
     (j : Fin N) : -- --- CONCL ---
-    toRealVec (pts j) ∈ (Ellipsoid.enclosePointsCov steps pts T U).construct := by -- --- PROOF ---
+    toRealVec (pts j) ∈ (Ellipsoid.enclosePointsCov steps pts T U).toSet := by -- --- PROOF ---
   unfold Ellipsoid.enclosePointsCov
   extract_lets cV c OV orientedMatrix ntV nt maxDist r D TUV GV G shrink uV u lo hi err
   refine Ellipsoid.aux_mem_of_remainder _ G ?_ _ (u j) ?_ (fun i => ?_) (fun i => ?_)

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Interval.Real.Operations.Basic
-public import CORALean.ContSet.Interval.Real.Theorems.ConstructEqSingleton
+public import CORALean.ContSet.Interval.Real.Theorems.ToSetEqSingleton
 public import CORALean.ContSet.Interval.Real.Theorems.SingletonOfInfEqSup
 
 @[expose] public section
@@ -39,13 +39,13 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.representsa_origin_iff (I : Interval α) : -- --- CONCL ---
-    I.representsa_origin ↔ I.construct = {0} := by -- --- PROOF ---
+    I.representsa_origin ↔ I.toSet = {0} := by -- --- PROOF ---
   constructor
   · rintro ⟨h₁, h₂⟩
     have h : I.inf = I.sup := h₁.trans h₂.symm
-    rw [Interval.construct_eq_singleton_of_inf_eq_sup h, h₁]
+    rw [Interval.toSet_eq_singleton_of_inf_eq_sup h, h₁]
   · intro h
-    exact Interval.inf_sup_of_construct_eq_singleton h
+    exact Interval.inf_sup_of_toSet_eq_singleton h
 
 
 end CORALean.Real

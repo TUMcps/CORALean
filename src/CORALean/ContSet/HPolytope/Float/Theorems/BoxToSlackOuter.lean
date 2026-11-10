@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The box in the slacks encloses the polytope with its box. -/
 theorem HPolytope.boxToSlack_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    P.construct ⊆ P.boxToSlack.construct := by -- --- PROOF ---
+    P.toSet ⊆ P.boxToSlack.toSet := by -- --- PROOF ---
   rintro _ ⟨y, hy, e, he, rfl⟩
   obtain ⟨hle, heq⟩ := HPolytope.mem_nominal_iff.mp hy
   -- a row reads the sum as the sum of what it reads

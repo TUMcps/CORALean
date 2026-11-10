@@ -47,11 +47,11 @@ variable {n N : ℕ}
 
 theorem Zonotope.enclosePointsMaiga_mem [NeZero N] (dir : (Fin N → Vec ℝ n) → Vec ℝ n)
     (pts : Fin N → Vec ℝ n) (j : Fin N) : -- --- CONCL ---
-    pts j ∈ (Zonotope.enclosePointsMaiga dir pts).construct := by -- --- PROOF ---
+    pts j ∈ (Zonotope.enclosePointsMaiga dir pts).toSet := by -- --- PROOF ---
   unfold Zonotope.enclosePointsMaiga
   generalize List.range' 2 99 = is
   generalize hZ : Zonotope.cloud2zonotope dir (1 / 100) n 0 pts = Z₀
-  have h₀ : pts j ∈ Z₀.construct := hZ ▸ Zonotope.cloud2zonotope_mem dir _ n 0 pts j
+  have h₀ : pts j ∈ Z₀.toSet := hZ ▸ Zonotope.cloud2zonotope_mem dir _ n 0 pts j
   clear hZ
   induction is generalizing Z₀ with
   | nil => exact h₀

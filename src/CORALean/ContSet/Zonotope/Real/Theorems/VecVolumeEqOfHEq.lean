@@ -45,8 +45,8 @@ variable {m n : ℕ}
 /-- With as many generators as entries, the volume of the stacked members is
 `volume(zonotope(matZ))`. -/
 theorem Zonotope.vec_volume_eq_of_h_eq (Z : Zonotope (Mat ℝ m n)) (hh : Z.h = n * m) :
-    MeasureTheory.volume (matVecEquiv '' Z.construct) = Z.vec.volume := by
-  rw [Zonotope.vec_construct]
+    MeasureTheory.volume (matVecEquiv '' Z.toSet) = Z.vec.volume := by
+  rw [Zonotope.vec_toSet]
   exact Zonotope.volume_eq_of_h_eq Z.vec hh
 
 end CORALean.Real

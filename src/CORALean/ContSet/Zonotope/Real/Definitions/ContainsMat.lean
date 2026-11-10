@@ -37,7 +37,7 @@ variable {m n p : ℕ}
 
 /-- Every matrix of `S` lies in the matrix zonotope. -/
 def Zonotope.ContainsMat (Z : Zonotope (Mat ℝ m n)) (S : Fin p → Mat ℝ m n) : Prop :=
-  ∀ k, S k ∈ Z.construct
+  ∀ k, S k ∈ Z.toSet
 
 end CORALean.Real
 

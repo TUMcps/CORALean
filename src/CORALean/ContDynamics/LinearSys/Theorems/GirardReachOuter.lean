@@ -92,9 +92,9 @@ private theorem aux_exists_window {r T t : ℝ} (hr : 0 < r) (ht0 : 0 ≤ t)
 /-- [1, Thm. 1], conservative approximation: `R_[0,T](I) ⊆ R_{N-1}`. -/
 theorem LinearSys.girardReach_outer (sys : LinearSys 𝕋 n) (I U : Zonotope (Vec ℝ n))
     {μ r T : ℝ} (hA : 0 < ‖toRealMat sys.A‖) (hr : 0 < r) (hμ : 0 ≤ μ)
-    (hU : U.construct = Metric.closedBall 0 μ) : -- --- CONCL ---
+    (hU : U.toSet = Metric.closedBall 0 μ) : -- --- CONCL ---
     ⋃ t ∈ Set.Icc (0:ℝ) T, sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) I U t
-      ⊆ ⋃ Q ∈ sys.girardReach I μ r T, Q.construct := by -- --- PROOF ---
+      ⊆ ⋃ Q ∈ sys.girardReach I μ r T, Q.toSet := by -- --- PROOF ---
   set A := toRealMat sys.A
   set E := exp (r • A)
   set β := (Real.exp (r * ‖A‖) - 1) / ‖A‖ * μ
@@ -103,13 +103,13 @@ theorem LinearSys.girardReach_outer (sys : LinearSys 𝕋 n) (I U : Zonotope (Ve
     ((Real.exp (r * ‖A‖) - 1 - r * ‖A‖) * Finset.univ.fold max 0 I.absBound + β))
   have hx := Real.add_one_le_exp (r * ‖A‖)
   have hβ0 : 0 ≤ β := mul_nonneg (div_nonneg (by nlinarith [mul_pos hr hA]) hA.le) hμ
-  have hUb : Bornology.IsBounded (construct U) := Zonotope.isBounded_construct U
-  have hUle : ∀ u ∈ construct U, ‖u‖ ≤ μ := fun u hu => by
+  have hUb : Bornology.IsBounded (toSet U) := Zonotope.isBounded_toSet U
+  have hUle : ∀ u ∈ toSet U, ‖u‖ ≤ μ := fun u hu => by
     have : u ∈ Metric.closedBall (0 : Vec ℝ n) μ := hU ▸ hu
     exact mem_closedBall_zero_iff.mp this
   -- every window lands in its own iterate
   have hwin : ∀ i : ℕ, ∀ t ∈ Set.Icc ((i : ℝ) * r) (((i : ℝ) + 1) * r),
-      sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) I U t ⊆ (f^[i] Q₀).construct := by
+      sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) I U t ⊆ (f^[i] Q₀).toSet := by
     intro i
     induction i with
     | zero =>
@@ -128,7 +128,7 @@ theorem LinearSys.girardReach_outer (sys : LinearSys 𝕋 n) (I U : Zonotope (Ve
         sys.reachSetExact_add_eq (S := 𝒵) I U hti hr.le hUb] at hy
       obtain ⟨_, ⟨q, hq, rfl⟩, v, hv, rfl⟩ := hy
       rw [Function.iterate_succ_apply']
-      show E *ᵥ q + v ∈ ((f^[i] Q₀).mtimes E |>.plus (Zonotope.cube n β)).construct
+      show E *ᵥ q + v ∈ ((f^[i] Q₀).mtimes E |>.plus (Zonotope.cube n β)).toSet
       rw [← Zonotope.plus_exact, ← Zonotope.mtimes_exact, Zonotope.cube_exact n hβ0]
       exact ⟨_, ⟨q, ih _ ht' hq, rfl⟩, v,
         mem_closedBall_zero_iff.mpr (sys.norm_le_of_mem_inputReach hA hr.le hUle hv), rfl⟩

@@ -58,8 +58,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.vPolytope_exact (cZ : ConZonotope α) (hne : cZ.domain.construct.Nonempty) :
-    (cZ.vPolytope hne).construct = cZ.construct :=
+theorem ConZonotope.vPolytope_exact (cZ : ConZonotope α) (hne : cZ.domain.toSet.Nonempty) :
+    (cZ.vPolytope hne).toSet = cZ.toSet :=
   Set.Subset.antisymm (cZ.contains_vPolytope hne) (cZ.vPolytope_contains hne)
 
 end CORALean.Real

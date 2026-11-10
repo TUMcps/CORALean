@@ -75,7 +75,7 @@ variable {k : ℕ} {n : Fin k → ℕ}
 /-- The preimage of a component's guard under the projection onto its block: a constraint on that
 block and free elsewhere, which no box can say. `HPolytope.comap_exact` at `blockProj`. -/
 theorem HPolytope.comap_blockProj_exact (c : Fin k) (g : HPolytope (Vec ℝ (n c))) :
-    (HPolytope.comap (blockProj c) g).construct = {z | unstack z c ∈ g.construct} :=
+    (HPolytope.comap (blockProj c) g).toSet = {z | unstack z c ∈ g.toSet} :=
   HPolytope.comap_exact _ _
 
 end CORALean.Real

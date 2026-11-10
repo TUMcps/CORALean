@@ -53,8 +53,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.atan2_outer (p k : ℕ) (I₁ I₂ : Interval (Vec 𝕋 n)) {y x : Vec ℝ n}
-    (hy : y ∈ I₁.construct) (hx : x ∈ I₂.construct) : -- --- CONCL ---
-    (fun i => Complex.arg ⟨x i, y i⟩) ∈ (Interval.atan2 p k I₁ I₂).construct := by -- --- PROOF ---
+    (hy : y ∈ I₁.toSet) (hx : x ∈ I₂.toSet) : -- --- CONCL ---
+    (fun i => Complex.arg ⟨x i, y i⟩) ∈ (Interval.atan2 p k I₁ I₂).toSet := by -- --- PROOF ---
   intro i
   show toReal ((Interval.atan2 p k I₁ I₂).inf i) ≤ Complex.arg ⟨x i, y i⟩ ∧
     Complex.arg ⟨x i, y i⟩ ≤ toReal ((Interval.atan2 p k I₁ I₂).sup i)
@@ -75,10 +75,10 @@ theorem Interval.atan2_outer (p k : ℕ) (I₁ I₂ : Interval (Vec 𝕋 n)) {y 
   -- the box of this coordinate alone, as an exact one-dimensional box
   let J₁ : Real.Interval (Vec ℝ 1) := ⟨fun _ => toReal (I₁.inf i), fun _ => toReal (I₁.sup i)⟩
   let J₂ : Real.Interval (Vec ℝ 1) := ⟨fun _ => toReal (I₂.inf i), fun _ => toReal (I₂.sup i)⟩
-  have hyJ : (fun _ => y i : Vec ℝ 1) ∈ J₁.construct := fun _ => hy₁
-  have hxJ : (fun _ => x i : Vec ℝ 1) ∈ J₂.construct := fun _ => hx₁
+  have hyJ : (fun _ => y i : Vec ℝ 1) ∈ J₁.toSet := fun _ => hy₁
+  have hxJ : (fun _ => x i : Vec ℝ 1) ∈ J₂.toSet := fun _ => hx₁
   -- the exact corner hull holds the argument
-  have hex : (fun _ => Complex.arg ⟨x i, y i⟩ : Vec ℝ 1) ∈ (J₁.atan2 J₂).construct := by
+  have hex : (fun _ => Complex.arg ⟨x i, y i⟩ : Vec ℝ 1) ∈ (J₁.atan2 J₂).toSet := by
     rcases Bool.or_eq_true_iff.1 hreg with h | h
     · rcases Bool.or_eq_true_iff.1 h with h | h
       · have : 0 < toReal (I₂.inf i) := by simpa [toReal_zero] using toReal_lt_of_ltStrict h

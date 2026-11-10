@@ -12,7 +12,7 @@ public import CORALean.Global.StepOf
 # [1, Alg. 2] is exactly the polynomial, evaluated coordinatewise
 
 The soundness half of [1, Prop. 3.5], in the form `evalPoly_exact` states it: about `point`
-and not `construct`, and against `evalPolyReal`, the reference evaluator Horner's rule is
+and not `toSet`, and against `evalPolyReal`, the reference evaluator Horner's rule is
 measured by, which says the two routes reach the same value. Not claimed: [1, Prop. 3.5] also
 gives the result `O(h^o)` generators and a running cost, neither proved here nor asserted
 under `Complexity/`. Of its regularity only `merge_col_injective` holds, for the reason

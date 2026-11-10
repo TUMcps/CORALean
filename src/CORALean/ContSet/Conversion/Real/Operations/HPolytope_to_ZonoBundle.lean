@@ -45,8 +45,8 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-noncomputable def HPolytope.zonoBundle (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : ZonoBundle (Vec ℝ n) :=
+noncomputable def HPolytope.zonoBundle (up : ∀ j, SupportBound P.toSet (LinearMap.proj j))
+    (lo : ∀ j, SupportBound P.toSet (-LinearMap.proj j)) : ZonoBundle (Vec ℝ n) :=
   (HPolytope.zonotope up lo).zonoBundle
 
 /-- CORA's `@polytope/zonoBundle`: one zonotope per row, the box of the vertices in the row's

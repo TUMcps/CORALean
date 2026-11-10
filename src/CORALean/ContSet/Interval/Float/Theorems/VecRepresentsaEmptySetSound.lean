@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 theorem Interval.vec_representsa_emptySet_sound {I : Interval (Mat 𝕋 m n)}
     (h : I.vec.representsa_emptySet = true) :
-    I.construct = ∅ := by
+    I.toSet = ∅ := by
   have h1 := Interval.representsa_emptySet_sound h
   rw [Interval.vec_exact, Set.image_eq_empty] at h1
   exact h1

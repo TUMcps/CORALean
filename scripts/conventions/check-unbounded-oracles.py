@@ -3,7 +3,7 @@
 
     python3 scripts/conventions/check-unbounded-oracles.py [--root DIR]
 
-A binder `(ρ : ∀ (P : HPolytope (Vec ℝ n)) (c : …), SupportBound P.construct c)` asks for a bound
+A binder `(ρ : ∀ (P : HPolytope (Vec ℝ n)) (c : …), SupportBound P.toSet c)` asks for a bound
 on every set of the class, and a class that holds an unbounded set (the `HPolytope` with no rows is
 all of `ℝⁿ`) has none for `n ≥ 1`: the binder's type is empty and every theorem taking it is
 vacuously true. This rejects a bracketed binder, in a signature or a `variable` line, whose type

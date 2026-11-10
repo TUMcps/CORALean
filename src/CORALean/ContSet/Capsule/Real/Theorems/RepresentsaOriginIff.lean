@@ -36,12 +36,12 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.representsa_origin_iff (hn : 0 < n) (C : Capsule n) : -- --- CONCL ---
-    C.construct = {0} ↔ C.representsa_origin := by -- --- PROOF ---
+    C.toSet = {0} ↔ C.representsa_origin := by -- --- PROOF ---
   constructor
   · intro h
-    have hc : C.c ∈ C.construct :=
-      (Capsule.center_mem_construct_iff C).mpr (by
-        obtain ⟨t, -, ht⟩ : (0 : Vec ℝ n) ∈ C.construct := h ▸ rfl
+    have hc : C.c ∈ C.toSet :=
+      (Capsule.center_mem_toSet_iff C).mpr (by
+        obtain ⟨t, -, ht⟩ : (0 : Vec ℝ n) ∈ C.toSet := h ▸ rfl
         exact le_trans (Real.sqrt_nonneg _) ht)
     rw [h] at hc
     refine ⟨hc, (Capsule.representsa_point_iff hn C).mp ?_⟩

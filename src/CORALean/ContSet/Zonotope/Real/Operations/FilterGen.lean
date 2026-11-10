@@ -10,7 +10,7 @@ public import Mathlib.Data.Finset.Sort
 
 The zonotope that keeps the generators a predicate selects, in their order, and the center.
 The building block of `compact_`: CORA's `nonzeroFilter(Z.G, tol)` is a column filter, and
-dropping a generator whose column is zero changes no point (`filterGen_construct`).
+dropping a generator whose column is zero changes no point (`filterGen_toSet`).
 
 ## Inputs
 * `Z` – zonotope

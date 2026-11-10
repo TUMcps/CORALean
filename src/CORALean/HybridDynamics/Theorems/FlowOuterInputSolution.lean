@@ -77,17 +77,17 @@ enclosure with the input contribution computed from `ℓ.inputSet`, not named. -
 theorem Location.IsTrajectory.timeInterval_outer_inputSolution
     [∀ n, OfPoint (S n) (Vec ℝ n)] {ℓ : Location S G L 𝕋 n} {τ : ℝ}
     {x : ℝ → Vec ℝ n} {u w} (traj : ℓ.IsTrajectory τ x u w) {R₀ : S n}
-    (h₀ : x 0 ∈ construct R₀) (hτ : 0 < τ) {m : ℕ}
+    (h₀ : x 0 ∈ toSet R₀) (hτ : 0 < τ) {m : ℕ}
     (hε : ‖τ • toRealMat ℓ.dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
-    (hconv : Convex ℝ (construct ℓ.inputSet)) (hclosed : IsClosed (construct ℓ.inputSet))
-    (hbdd : Bornology.IsBounded (construct ℓ.inputSet))
+    (hconv : Convex ℝ (toSet ℓ.inputSet)) (hclosed : IsClosed (toSet ℓ.inputSet))
+    (hbdd : Bornology.IsBounded (toSet ℓ.inputSet))
     (hRconv : Convex ℝ (ℓ.dynamics.inputRemainderSet τ (m + 2) ℓ.inputSet))
     (hRclosed : IsClosed (ℓ.dynamics.inputRemainderSet τ (m + 2) ℓ.inputSet))
     (hRbdd : Bornology.IsBounded (ℓ.dynamics.inputRemainderSet τ (m + 2)
       ℓ.inputSet))
-    (h0 : (0 : Vec ℝ n) ∈ construct ℓ.inputSet) {t : ℝ} (ht0 : 0 ≤ t)
+    (h0 : (0 : Vec ℝ n) ∈ toSet ℓ.inputSet) {t : ℝ} (ht0 : 0 ≤ t)
     (htτ : t ≤ τ) :
-    x t ∈ construct (Plus.plus (ℓ.timeInterval τ (m + 2) R₀)
+    x t ∈ toSet (Plus.plus (ℓ.timeInterval τ (m + 2) R₀)
       (ℓ.dynamics.inputSolution τ (m + 2) ℓ.inputSet)) :=
   (traj.linearSys h₀ traj.inputSet_mem).timeInterval_outer_inputSolution hτ subset_rfl hε ht0 htτ
     hconv hclosed hbdd hRconv hRclosed hRbdd h0

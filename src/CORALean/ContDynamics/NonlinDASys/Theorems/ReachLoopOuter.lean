@@ -80,16 +80,16 @@ theorem NonlinDASys.reachLoop_outer (sys : NonlinDASys n p m)
     (corollary1 : NonlinDASys.LinPoint n p m → Zonotope (Vec ℝ n × Vec ℝ p) →
       Zonotope (Vec ℝ m) → Zonotope (Vec ℝ n) × Zonotope (Vec ℝ p))
     (sub : ∀ {k : ℕ}, Zonotope (Vec ℝ k) → Zonotope (Vec ℝ k) → Bool)
-    (hsub : ∀ {k : ℕ} (A B : Zonotope (Vec ℝ k)), sub A B = true → A.construct ⊆ B.construct)
+    (hsub : ∀ {k : ℕ} (A B : Zonotope (Vec ℝ k)), sub A B = true → A.toSet ⊆ B.toSet)
     (Lmax : Zonotope (Vec ℝ n)) (lam : ℝ) {r : ℝ} (hr : 0 < r) {q : ℕ}
     (U : Zonotope (Vec ℝ m))
     (splitFn : Zonotope (Vec ℝ n) → Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n))
-    (hsplit : ∀ Z, Z.construct ⊆ (splitFn Z).1.construct ∪ (splitFn Z).2.construct)
+    (hsplit : ∀ Z, Z.toSet ⊆ (splitFn Z).1.toSet ∪ (splitFn Z).2.toSet)
     {R0 : Zonotope (Vec ℝ n)} {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m} {K : ℕ}
     {z : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 ((K : ℝ) * r)) R0 U x y u z)
     (hcert : ∀ j : ℕ, j < K → ∀ (fuel : ℕ) (Z : Zonotope (Vec ℝ n))
       (L₀ : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ p)) (rr : NonlinDASys.ErrorLoopResult n p),
-      x ((j : ℝ) * r) ∈ Z.construct →
+      x ((j : ℝ) * r) ∈ Z.toSet →
       NonlinDASys.reachRepeat sys (taylor Z) corollary1 sub Lmax lam r (q + 2) Z U fuel L₀
         = some rr →
       ({ taylor Z with Verror := rr.L.1, Verror_y := rr.L.2 } :
@@ -99,7 +99,7 @@ theorem NonlinDASys.reachLoop_outer (sys : NonlinDASys n p m)
     ∀ (k₀ N k : ℕ) (tk tf : ℝ) (Rk : Zonotope (Vec ℝ n))
       (L : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ p)) (Runion : Set (Vec ℝ n)),
       tk = (k : ℝ) * r → tf = (N : ℝ) * r → k ≤ N → k₀ + N ≤ K → 0 < N →
-      x (((k₀ + k : ℕ) : ℝ) * r) ∈ Rk.construct →
+      x (((k₀ + k : ℕ) : ℝ) * r) ∈ Rk.toSet →
       (0 < k → ∀ t ∈ Set.Icc 0 tf, t ≤ tk → x ((k₀ : ℝ) * r + t) ∈ Runion) →
       ∀ res, sys.reachLoop taylor corollary1 sub Lmax lam r (q + 2) U splitFn fuel tk tf Rk L
           Runion = some res → ∀ t ∈ Set.Icc 0 tf, x ((k₀ : ℝ) * r + t) ∈ res := by -- --- PROOF ---
@@ -196,7 +196,7 @@ theorem NonlinDASys.reachLoop_outer (sys : NonlinDASys n p m)
           obtain ⟨-, hint⟩ := NonlinDASys.IsTrajectory.linReach_outer (Rinit := Rk) run hr hF' hR'
             hL' hLa' hus' h0' hε'
           -- the loop from `t_{k+1}`, with `Rᵈ(τ_k)` joined to the union
-          refine ih k₀ N (k + 1) (tk + r) tf _ rr.L (Runion ∪ rr.Rti.construct)
+          refine ih k₀ N (k + 1) (tk + r) tf _ rr.L (Runion ∪ rr.Rti.toSet)
             (by rw [htk]; push_cast; ring) htf (by omega) hK hN ?_ ?_ res hres
           · have hrw : ((k₀ + (k + 1) : ℕ) : ℝ) * r = ((k₀ + k : ℕ) : ℝ) * r + r := by
               push_cast; ring

@@ -68,16 +68,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem MatExp.curvatureEnclosure_outer (A : Interval (Mat 𝕋 n n)) {H : Zonotope (Vec 𝕋 n)}
     {ũ : Vec 𝕋 n} {Δt : 𝕋} {η : ℕ} (hΔt : 0 < toReal Δt) (hη : 2 ≤ η)
     (hε : toReal (MatExp.normUpperBound (Interval.smul Δt Δt A)) / ((η : ℝ) + 2) ≤ 1 / 2)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) {x : Vec ℝ n} (hx : x ∈ H.construct) {τ : ℝ}
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) {x : Vec ℝ n} (hx : x ∈ H.toSet) {τ : ℝ}
     (hτ0 : 0 ≤ τ) (hτ : τ ≤ toReal Δt) : -- --- CONCL ---
     (exp (τ • M) - 1 - (τ / toReal Δt) • (exp (toReal Δt • M) - 1)) *ᵥ x
       + (Real.MatExp.expIntegral M τ
           - (τ / toReal Δt) • Real.MatExp.expIntegral M (toReal Δt)) *ᵥ toRealVec ũ
-      ∈ (MatExp.curvatureEnclosure A H ũ Δt η).construct := by -- --- PROOF ---
+      ∈ (MatExp.curvatureEnclosure A H ũ Δt η).toSet := by -- --- PROOF ---
   obtain ⟨m, rfl⟩ : ∃ m, η = m + 2 := ⟨η - 2, by omega⟩
   have hF := MatExp.expDiff_mem_intervalCorrectionMatrix A hΔt (by exact_mod_cast hε) hM hτ0 hτ
   have hG := MatExp.expIntegralDiff_mem_intervalConstCorrectionMatrix A hΔt (m + 2) hε hM hτ0 hτ
-  have hpt : toRealVec ũ ∈ (Interval.point ũ).zonotope.construct :=
+  have hpt : toRealVec ũ ∈ (Interval.point ũ).zonotope.toSet :=
     Interval.zonotope_contains _ (Interval.mem_point ũ)
   exact Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add
     (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])

@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 /-- CORA's `methC` over-approximates, at whatever basis its search returns. -/
 theorem Zonotope.reduceMethC_outer (Z : Zonotope (Vec ℝ n)) (o : ℕ) : -- --- CONCL ---
-    Z.construct ⊆ (Z.reduceMethC o).construct := by -- --- PROOF ---
+    Z.toSet ⊆ (Z.reduceMethC o).toSet := by -- --- PROOF ---
   unfold Zonotope.reduceMethC
   simp only []
   split_ifs with hlt hdet

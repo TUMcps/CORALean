@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 /-- The zonotope is an axis-aligned box. -/
 def Zonotope.IsBox (Z : Zonotope (Vec ℝ n)) : Prop :=
-  ∃ I : Interval (Vec ℝ n), Z.construct = I.construct
+  ∃ I : Interval (Vec ℝ n), Z.toSet = I.toSet
 
 
 end CORALean.Real

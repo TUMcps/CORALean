@@ -47,7 +47,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.sinh_exact (I : Interval (Vec ℝ n)) :
-    I.sinh.construct = (fun x i => Real.sinh (x i)) '' I.construct := by
+    I.sinh.toSet = (fun x i => Real.sinh (x i)) '' I.toSet := by
   exact Interval.monotoneImage_exact Real.sinh (Set.univ) Set.ordConnected_univ
     (fun a _ b _ h => Real.sinh_strictMono h) (Real.continuous_sinh.continuousOn)
     I (fun i => ⟨trivial, trivial⟩)

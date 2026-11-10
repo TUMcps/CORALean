@@ -53,7 +53,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 theorem Interval.plus_exact (I₁ I₂ : Interval α) (h₁ : I₁.IsNonempty)
     (h₂ : I₂.IsNonempty) : -- --- CONCL ---
-    I₁.construct + I₂.construct = (I₁.plus I₂).construct := by -- --- PROOF ---
+    I₁.toSet + I₂.toSet = (I₁.plus I₂).toSet := by -- --- PROOF ---
   refine Set.eq_of_subset_of_subset (Interval.plus_outer I₁ I₂) fun x hx => ?_
   have hlo : ∀ i, entry I₁.inf i + entry I₂.inf i ≤ entry x i := fun i => by
     have h := (hx i).1

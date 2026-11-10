@@ -52,7 +52,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.mtimes_exact {n m : ℕ} (M : Mat ℝ m n) (P : VPolytope (Vec ℝ n)) :
-    (M *ᵥ ·) '' P.construct = (VPolytope.mtimes M P).construct := by
+    (M *ᵥ ·) '' P.toSet = (VPolytope.mtimes M P).toSet := by
   rw [VPolytope.mtimes_eq_map]
   exact VPolytope.map_exact (Matrix.mulVecLin M) P
 

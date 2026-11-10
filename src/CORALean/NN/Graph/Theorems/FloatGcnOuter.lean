@@ -70,9 +70,9 @@ end
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem GNN.gcn_outer (P : Mat 𝕋 N N) (W : Mat 𝕋 F₁ F₂) (pZ : PolyZonotope (Vec 𝕋 (N * F₁)))
-    (H : Mat ℝ N F₁) (hH : GNN.flatten H ∈ pZ.construct) : -- --- CONCL ---
+    (H : Mat ℝ N F₁) (hH : GNN.flatten H ∈ pZ.toSet) : -- --- CONCL ---
     GNN.flatten (Real.GNN.gcnLin (toRealMat P) (toRealMat W) H)
-      ∈ (GNN.gcn P W pZ).construct := by -- --- PROOF ---
+      ∈ (GNN.gcn P W pZ).toSet := by -- --- PROOF ---
   have h1 := PolyZonotope.mtimes_outer (GNN.rightMat N W) pZ ⟨_, hH, rfl⟩
   have h2 := PolyZonotope.mtimes_outer (GNN.step_leftMat P F₂) _ ⟨_, h1, rfl⟩
   rw [Real.GNN.gcnLin_apply]

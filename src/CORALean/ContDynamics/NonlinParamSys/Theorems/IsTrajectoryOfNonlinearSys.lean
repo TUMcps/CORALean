@@ -8,8 +8,8 @@ public import CORALean.ContDynamics.NonlinParamSys.Operations.ToNonlinearSys
 # The combined-input embedding's trajectories are the parametric system's
 
 The mirror-image hypothesis of `TrajectoryToNonlinearSys.lean`: `hUP` reads the
-two projections of a member of `construct W` back into `construct U` and
-`construct P`, which is what lets `w ∘ Fin.castAdd q` and `w ∘ Fin.natAdd m`
+two projections of a member of `toSet W` back into `toSet U` and
+`toSet P`, which is what lets `w ∘ Fin.castAdd q` and `w ∘ Fin.natAdd m`
 serve as `u` and `p`. `sys.toNonlinearSys.f` unfolds to exactly that split, so
 `flow` needs no rewriting.
 
@@ -53,7 +53,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem NonlinParamSys.isTrajectory_of_toNonlinearSys {sys : NonlinParamSys n m q} {T : Set ℝ}
     {R₀ : S n} {U : S m} {P : S q} {W : S (m + q)} {x : ℝ → Vec ℝ n} {w : ℝ → Vec ℝ (m + q)}
     {y : ℝ → Vec ℝ sys.r} (traj : sys.toNonlinearSys.IsTrajectory T R₀ W x w y)
-    (hUP : ∀ v ∈ construct W, v ∘ Fin.castAdd q ∈ construct U ∧ v ∘ Fin.natAdd m ∈ construct P) :
+    (hUP : ∀ v ∈ toSet W, v ∘ Fin.castAdd q ∈ toSet U ∧ v ∘ Fin.natAdd m ∈ toSet P) :
     sys.IsTrajectory T R₀ U P x (fun t => w t ∘ Fin.castAdd q) (fun t => w t ∘ Fin.natAdd m)
       y where
   init := traj.init

@@ -40,7 +40,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.sign_outer (I : Interval (Vec ℝ n)) :
-    (fun x i => Real.sign (x i)) '' I.construct ⊆ I.sign.construct :=
+    (fun x i => Real.sign (x i)) '' I.toSet ⊆ I.sign.toSet :=
   Interval.monotoneImage_outer Real.sign sign_monotone I
 
 

@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ProbZonotope.abs_le_corner (P : ProbZonotope n) {μ : Vec ℝ n}
-    (hμ : μ ∈ P.Z.construct) (i : Fin n) : |μ i| ≤ P.abs.Z.absBound i :=
+    (hμ : μ ∈ P.Z.toSet) (i : Fin n) : |μ i| ≤ P.abs.Z.absBound i :=
   Zonotope.abs_le_abs_corner hμ i
 
 end CORALean.Real

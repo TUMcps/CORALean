@@ -46,7 +46,7 @@ theorem Specification.holds_custom_iff (p : Set α → Prop)
     (mono : ∀ {X O : Set α}, X ⊆ O → p O → p X)
     (iUnionClosed : ∀ {ι : Type} {X : ι → Set α}, (∀ i, p (X i)) → p (⋃ i, X i))
     {X : Set α} : (Specification.custom p mono iUnionClosed).Holds X ↔ p X := by
-  rw [Specification.custom, Specification.holds_safeSet, ContSet.construct_set]
+  rw [Specification.custom, Specification.holds_safeSet, ContSet.toSet_set]
   refine ⟨fun hsub => mono hsub (iUnionClosed fun h => h.2), fun hpX => ?_⟩
   exact Set.subset_iUnion (fun h : {S : Set α // p S} => h.1) ⟨X, hpX⟩
 

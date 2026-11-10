@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Taylm.Real.Operations.Bounds
 public import CORALean.ContSet.Taylm.Real.Operations.Basic
 public import CORALean.ContSet.Taylm.Real.Theorems.BoundsMem
-public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Taylm.Real.Theorems.MemToSetIff
 public import CORALean.ContSet.Taylm.Real.Theorems.Basic
 public import CORALean.Global.SupportFunction.SupportFunction
 public import Mathlib.Algebra.BigOperators.Pi
@@ -44,11 +44,11 @@ variable {n m : ℕ}
 
 /-- `supportFunc_`, `upper`: the upper end of the range of `dirᵀ T`. -/
 noncomputable def Taylm.supportBound (c : Vec ℝ m →ₗ[ℝ] ℝ) (T : Fin m → Taylm n) :
-    SupportBound (Taylm.construct T) c where
+    SupportBound (Taylm.toSet T) c where
   val := (Taylm.mtimes (fun (_ : Fin 1) j => c (Pi.single j 1)) T 0).bounds.sup
   le x hx := by
     -- the point is the value at some `t` of functions the models enclose
-    obtain ⟨f, hf, t, ht, hxf⟩ := (Taylm.mem_construct_iff T x).1 hx
+    obtain ⟨f, hf, t, ht, hxf⟩ := (Taylm.mem_toSet_iff T x).1 hx
     have hmem := Taylm.bounds_mem
       (Taylm.mtimes_outer (fun (_ : Fin 1) j => c (Pi.single j 1)) hf 0) ht
     -- the direction `c` as a coefficient vector: its value at each unit vector

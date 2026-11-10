@@ -75,8 +75,8 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 theorem LinearSys.WithInputSplit.reach_outer (sys : LinearSys.WithInputSplit 𝕋 S n)
     (params : Reach.Params (S n) ℝ) {options : LinearSys.ReachStepOptions ℝ}
     (hΔt : 0 < options.Δt) : -- --- CONCL ---
-    sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
-      ⊆ construct (sys.reach params options) := by -- --- PROOF ---
+    sys.reachExact (params.tFinal - params.tStart) (toSet params.X₀)
+      ⊆ toSet (sys.reach params options) := by -- --- PROOF ---
   obtain ⟨X₀, tStart, tF⟩ := params
   obtain ⟨Δt, η⟩ := options
   unfold LinearSys.WithInputSplit.reach
@@ -96,20 +96,20 @@ theorem LinearSys.WithInputSplit.reach_outer (sys : LinearSys.WithInputSplit �
   set uc := Recenter.center sys.U with huc
   -- the run on `[0, t]`, split into its free motion and its input's integral
   have hTt : Set.Icc (0:ℝ) t ⊆ Set.Icc 0 tFinal := Set.Icc_subset_Icc_right ht.2
-  have hU : Bornology.IsBounded (construct (construct sys.U)) :=
-    CompactSet.isBounded_construct sys.U
+  have hU : Bornology.IsBounded (toSet (toSet sys.U)) :=
+    CompactSet.isBounded_toSet sys.U
   have hvoc := traj.variation_of_constants hTt le_rfl ht.1 hU
   rw [sub_zero] at hvoc
   -- the input, split along `U ⊆ {ũ} ⊕ Ũ`
-  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - uc ∈ construct (Recenter.recenter sys.U) :=
+  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - uc ∈ toSet (Recenter.recenter sys.U) :=
     fun s hs => Recenter.sub_center_mem_recenter (traj.input s (hTt hs))
   have hmeas₀ : AEStronglyMeasurable (fun s => u s - uc) (volume.restrict (Set.Icc 0 t)) :=
     (traj.aestronglyMeasurable_input hTt).sub aestronglyMeasurable_const
   have hint₁ := intervalIntegrable_expSub_mulVec (A := A) (c := t) ht.1
-    (CompactSet.isBounded_construct (OfPoint.ofPoint uc : S n))
+    (CompactSet.isBounded_toSet (OfPoint.ofPoint uc : S n))
     (fun _ _ => OfPoint.mem_ofPoint uc) aestronglyMeasurable_const
   have hint₀ := intervalIntegrable_expSub_mulVec (A := A) (c := t) ht.1
-    (CompactSet.isBounded_construct (Recenter.recenter sys.U)) hmem₀ hmeas₀
+    (CompactSet.isBounded_toSet (Recenter.recenter sys.U)) hmem₀ hmeas₀
   have hsum : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s)
       = (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ uc)
         + ∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ (u s - uc) := by
@@ -143,7 +143,7 @@ theorem LinearSys.WithInputSplit.reach_outer (sys : LinearSys.WithInputSplit �
     rw [hsum, hconst, hexp, Matrix.mulVec_add]
     abel
   -- window `k`, and `k < N`
-  refine SetUnion.mem_construct.mpr ⟨sys.reachStepk Δt (m + 2) X₀ k, ?_, ?_⟩
+  refine SetUnion.mem_toSet.mpr ⟨sys.reachStepk Δt (m + 2) X₀ k, ?_, ?_⟩
   · rw [← hm]
     exact List.mem_map.mpr ⟨k, List.mem_range.mpr hk, rfl⟩
   · rw [hvoc, hx]

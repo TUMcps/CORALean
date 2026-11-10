@@ -7,7 +7,7 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.BoxSubset
 public import CORALean.ContSet.ConZonotope.Float.Theorems.CartProdExact
 public import CORALean.ContSet.ConZonotope.Float.Theorems.CompactExact
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ConIntersectOuter
-public import CORALean.ContSet.ConZonotope.Float.Theorems.ConstructEqNominal
+public import CORALean.ContSet.ConZonotope.Float.Theorems.ToSetEqNominal
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ContainsPointSound
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ConvexHullSubsetLinComb
 public import CORALean.ContSet.ConZonotope.Float.Theorems.CubMapOuter

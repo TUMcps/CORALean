@@ -125,11 +125,11 @@ theorem Example.compressNetwork_encloses : -- --- CONCL ---
 split of its hidden layer keeps every point of a nonnegative "uncertain image"
 `X` inside the reduced network's enclosure. -/
 theorem Example.exists_compressed_network_contains (X : 𝒵 3)
-    (hX : ∀ x ∈ construct X, ∀ i, 0 ≤ x i) : -- --- CONCL ---
-    ∃ nn' : NeuralNetwork 𝒵 3 3, construct X ⊆ construct (nn'.enclose X) := by -- --- PROOF ---
+    (hX : ∀ x ∈ toSet X, ∀ i, 0 ≤ x i) : -- --- CONCL ---
+    ∃ nn' : NeuralNetwork 𝒵 3 3, toSet X ⊆ toSet (nn'.enclose X) := by -- --- PROOF ---
   -- the identity's output on `X` is `X` itself, so its interval box bounds it
-  have hY : ∀ x ∈ construct X, (fun i => Real.relu ((Example.compressW *ᵥ x + 0) i))
-      ∈ construct (Float.IntervalOuter.interval (S := 𝒵) X) := by
+  have hY : ∀ x ∈ toSet X, (fun i => Real.relu ((Example.compressW *ᵥ x + 0) i))
+      ∈ toSet (Float.IntervalOuter.interval (S := 𝒵) X) := by
     intro x hx
     have hzero : Example.compressW *ᵥ x + 0 = x := by
       rw [add_zero]; exact Example.compressW_apply x

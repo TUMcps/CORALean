@@ -60,13 +60,13 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 theorem LinearSys.inputSolution_subset_constInput_add_errorBox (sys : LinearSys 𝕋 n)
     {r : ℝ} (hr : 0 < r) (η : ℕ) (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (U : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    (sys.inputSolution (S := 𝒵) r η U).construct
-      ⊆ (Zonotope.mtimes (MatExp.expIntegral (toRealMat sys.A) r) U).construct
-        + (sys.timePointStepErrorBox r η U).construct := by -- --- PROOF ---
+    (sys.inputSolution (S := 𝒵) r η U).toSet
+      ⊆ (Zonotope.mtimes (MatExp.expIntegral (toRealMat sys.A) r) U).toSet
+        + (sys.timePointStepErrorBox r η U).toSet := by -- --- PROOF ---
   intro v hv
   -- from the origin, the step ends at its input enclosure and nowhere else
   have hstep : (0 : Vec ℝ n) + v
-      ∈ (sys.timePointStep (S := 𝒵) r η (Zonotope.ofPoint 0) U).construct := by
+      ∈ (sys.timePointStep (S := 𝒵) r η (Zonotope.ofPoint 0) U).toSet := by
     rw [show sys.timePointStep (S := 𝒵) r η (Zonotope.ofPoint 0) U
         = (Zonotope.mtimes (exp (r • toRealMat sys.A)) (Zonotope.ofPoint 0)).plus
             (sys.inputSolution (S := 𝒵) r η U) from rfl,

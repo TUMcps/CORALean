@@ -36,7 +36,7 @@ variable {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.transpose_exact (I : Interval (Mat ℝ m n)) : -- --- CONCL ---
-    I.transpose.construct = Matrix.transpose '' I.construct := by -- --- PROOF ---
+    I.transpose.toSet = Matrix.transpose '' I.toSet := by -- --- PROOF ---
   ext B
   constructor
   · intro hB

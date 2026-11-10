@@ -37,8 +37,8 @@ namespace CORALean.Real
 
 /-- Points `y ∈ [-1, 1]`, `x = -1` whose `atan2` is not in CORA's corner hull. -/
 theorem Interval.atan2_cora_counterexample : -- --- CONCL ---
-    ∃ (I₁ I₂ : Interval (Vec ℝ 1)) (y x : Vec ℝ 1), y ∈ I₁.construct ∧ x ∈ I₂.construct ∧
-      (fun i => Complex.arg ⟨x i, y i⟩) ∉ (I₁.atan2 I₂).construct := by -- --- PROOF ---
+    ∃ (I₁ I₂ : Interval (Vec ℝ 1)) (y x : Vec ℝ 1), y ∈ I₁.toSet ∧ x ∈ I₂.toSet ∧
+      (fun i => Complex.arg ⟨x i, y i⟩) ∉ (I₁.atan2 I₂).toSet := by -- --- PROOF ---
   refine ⟨⟨fun _ => -1, fun _ => 1⟩, ⟨fun _ => -1, fun _ => -1⟩, fun _ => 0, fun _ => -1,
     fun i => ⟨by show (-1 : ℝ) ≤ 0; norm_num, by show (0 : ℝ) ≤ 1; norm_num⟩,
     fun i => ⟨le_rfl, le_rfl⟩, fun h => ?_⟩

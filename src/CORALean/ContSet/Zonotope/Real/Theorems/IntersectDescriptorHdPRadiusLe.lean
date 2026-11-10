@@ -100,7 +100,7 @@ theorem Zonotope.intersectDescriptorHd_pRadius_le (T : Mat ℝ n n) (N Λ : Mat 
       (fromBlocks Dg Rᵀ R P).PosDef)
     (hα0 : 0 ≤ α) (hα1 : α ≤ 1) (hβ₁ : 0 ≤ β₁) (hβ₂ : 0 ≤ β₂) (hβ₃ : 0 ≤ β₃)
     (hβ : β₁ + β₂ + β₃ = 1)
-    (hϱ : ∀ z ∈ X.construct, (z - X.c) ⬝ᵥ (P *ᵥ (z - X.c)) ≤ ϱ)
+    (hϱ : ∀ z ∈ X.toSet, (z - X.c) ⬝ᵥ (P *ᵥ (z - X.c)) ≤ ϱ)
     (hℓd : ∀ b : Vec ℝ m, (∀ i, |b i| ≤ 1) → (Hd *ᵥ b) ⬝ᵥ (Hd *ᵥ b) ≤ ℓd)
     (hγ : ∀ x : Vec ℝ n, x ⬝ᵥ x ≤ γ ^ 2 * (x ⬝ᵥ (P *ᵥ x))) : -- --- CONCL ---
     let Z := X.intersectDescriptor T N Λ A B (D * Hd) C (F * Hd) u y
@@ -122,7 +122,7 @@ theorem Zonotope.intersectDescriptorHd_pRadius_le (T : Mat ℝ n n) (N Λ : Mat 
   have hPi : ∀ {k : ℕ} (M : Mat ℝ n k), P⁻¹ * (P * M) = M := fun M => by
     rw [← Matrix.mul_assoc, inv_mul_of_invertible, Matrix.one_mul]
   -- every point's P-form is at most `α ϱ + (1 - α) ℓ_d`
-  have hpt : ∀ z ∈ Z.construct, (z - Z.c) ⬝ᵥ (P *ᵥ (z - Z.c)) ≤ α * ϱ + (1 - α) * ℓd := by
+  have hpt : ∀ z ∈ Z.toSet, (z - Z.c) ⬝ᵥ (P *ᵥ (z - Z.c)) ≤ α * ϱ + (1 - α) * ℓd := by
     intro z hz
     have hz' : ∃ b : Fin (X.h + m + m + m) → ℝ, (∀ j, |b j| ≤ 1) ∧
         z = Z.c + ∑ j : Fin (X.h + m + m + m), b j • Z.G j := hz
@@ -181,9 +181,9 @@ theorem Zonotope.intersectDescriptorHd_pRadius_le (T : Mat ℝ n n) (N Λ : Mat 
     rw [hoff, hq]
     linarith
   -- the zonotope is nonempty, and the P-form bounded on it
-  have hne : ((fun z => (z - Z.c) ⬝ᵥ (P *ᵥ (z - Z.c))) '' Z.construct).Nonempty :=
+  have hne : ((fun z => (z - Z.c) ⬝ᵥ (P *ᵥ (z - Z.c))) '' Z.toSet).Nonempty :=
     ⟨_, Z.c, ⟨0, by simp, by simp⟩, rfl⟩
-  have hbdd : BddAbove ((fun z => (z - Z.c) ⬝ᵥ (P *ᵥ (z - Z.c))) '' Z.construct) :=
+  have hbdd : BddAbove ((fun z => (z - Z.c) ⬝ᵥ (P *ᵥ (z - Z.c))) '' Z.toSet) :=
     ⟨_, by rintro _ ⟨z, hz, rfl⟩; exact hpt z hz⟩
   refine ⟨csSup_le hne (by rintro _ ⟨z, hz, rfl⟩; exact hpt z hz), ?_⟩
   -- the theorem's Eq. 26 point by point

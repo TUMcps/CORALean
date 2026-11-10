@@ -61,7 +61,7 @@ theorem Zonotope.edge_not_mem_interior (Z : Zonotope (Vec ℝ 2)) {σ : ℝ}
     (hC : ∀ c, s c = false → c ≠ a → 0 ≤ σ * (Z.G a 0 * Z.G c 1 - Z.G a 1 * Z.G c 0))
     (hga : Z.G a ≠ 0) {x : Vec ℝ 2}
     (hx : x ∈ segment ℝ (Z.corner s) (Z.corner s + (2 : ℝ) • Z.G a)) : -- --- CONCL ---
-    x ∉ interior Z.construct := by -- --- PROOF ---
+    x ∉ interior Z.toSet := by -- --- PROOF ---
   intro hint
   obtain ⟨ε, hε, hball⟩ := Metric.mem_nhds_iff.mp (mem_interior_iff_mem_nhds.mp hint)
   have hσ2 : σ * σ = 1 := by rcases hσ with rfl | rfl <;> norm_num
@@ -87,7 +87,7 @@ theorem Zonotope.edge_not_mem_interior (Z : Zonotope (Vec ℝ 2)) {σ : ℝ}
   have hρle : ρ * (|Z.G a 0| + |Z.G a 1|) < ε := by
     rw [hρ, div_mul_eq_mul_div, div_lt_iff₀ (by positivity)]
     nlinarith
-  have hz : (![x 0 + ρ * σ * Z.G a 1, x 1 - ρ * σ * Z.G a 0] : Vec ℝ 2) ∈ Z.construct := by
+  have hz : (![x 0 + ρ * σ * Z.G a 1, x 1 - ρ * σ * Z.G a 0] : Vec ℝ 2) ∈ Z.toSet := by
     refine hball ((dist_pi_lt_iff hε).mpr fun k => ?_)
     have hσabs : |σ| = 1 := by rcases hσ with rfl | rfl <;> norm_num
     fin_cases k

@@ -47,7 +47,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.split_union (cPZ : ConPolyZono (Vec ℝ n)) (d : Fin n) : -- --- CONCL ---
-    (cPZ.split d).fst.construct ∪ (cPZ.split d).snd.construct = cPZ.construct := by -- --- PROOF ---
+    (cPZ.split d).fst.toSet ∪ (cPZ.split d).snd.toSet = cPZ.toSet := by -- --- PROOF ---
   unfold ConPolyZono.split
   dsimp only
   rw [← ConPolyZono.intersection_exact, ← ConPolyZono.intersection_exact]

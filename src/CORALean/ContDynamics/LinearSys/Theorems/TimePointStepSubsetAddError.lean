@@ -57,8 +57,8 @@ what it reaches, widened by `timePointStepError`. -/
 theorem LinearSys.timePointStep_subset_reach_add_error (sys : LinearSys 𝕋 n) {r : ℝ}
     (hr : 0 < r) (η : ℕ) (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (X₀ U : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    (sys.timePointStep (S := 𝒵) r η X₀ U).construct
-      ⊆ ((fun x₀ => exp (r • toRealMat sys.A) *ᵥ x₀) '' X₀.construct
+    (sys.timePointStep (S := 𝒵) r η X₀ U).toSet
+      ⊆ ((fun x₀ => exp (r • toRealMat sys.A) *ᵥ x₀) '' X₀.toSet
           + sys.inputReach (S := 𝒵) U r)
         + Metric.closedBall (0 : Vec ℝ n) (sys.timePointStepError r η U) := by -- --- PROOF ---
   intro y hy

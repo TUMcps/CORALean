@@ -76,14 +76,14 @@ private theorem aux_reducedStepsFloat_row_step {c0 c1 : ℕ} (A : Mat ℝ N N) (
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem GNN.reducedStepsFloat_outer (A : Mat ℝ N N) (P : Interval (Mat 𝕋 N N))
-    (hP : Real.GNN.messagePassing A ∈ P.construct) (v : Fin N) : -- --- CONCL ---
+    (hP : Real.GNN.messagePassing A ∈ P.toSet) (v : Fin N) : -- --- CONCL ---
     ∀ (L : ℕ) (c : ℕ → ℕ) (κ : (k : ℕ) → Fin (c k) → Fin N)
       (_ : ∀ k, Function.Injective (κ k))
       (_ : ∀ k ≤ L, ∀ x ∈ Real.GNN.ball A v (L - k), ∃ a, κ k a = x)
-      (W : ℕ → Interval (Mat 𝕋 F F)) (Wr : ℕ → Mat ℝ F F) (_ : ∀ k, Wr k ∈ (W k).construct)
-      (X : Mat ℝ N F) (Yi : Interval (Mat 𝕋 (c 0) F)) (Y : Mat ℝ (c 0) F) (_ : Y ∈ Yi.construct)
+      (W : ℕ → Interval (Mat 𝕋 F F)) (Wr : ℕ → Mat ℝ F F) (_ : ∀ k, Wr k ∈ (W k).toSet)
+      (X : Mat ℝ N F) (Yi : Interval (Mat 𝕋 (c 0) F)) (Y : Mat ℝ (c 0) F) (_ : Y ∈ Yi.toSet)
       (_ : ∀ a, κ 0 a ∈ Real.GNN.ball A v L → Y a = X (κ 0 a)),
-      ∃ Z ∈ (GNN.reducedStepsFloat P L c κ W Yi).construct, ∀ a, κ L a = v →
+      ∃ Z ∈ (GNN.reducedStepsFloat P L c κ W Yi).toSet, ∀ a, κ L a = v →
         Z a = Real.GNN.evalSteps (Real.GNN.messagePassing A) L (fun i : Fin L => Wr i)
           X v := by -- --- PROOF ---
   -- induct on the number of steps, the node sets shifting by one each time
@@ -97,7 +97,7 @@ theorem GNN.reducedStepsFloat_outer (A : Mat ℝ N N) (P : Interval (Mat 𝕋 N 
       intro c κ hinj hS W Wr hW X Yi Y hY hYX
       -- the restricted real step lies in the interval step
       have hmem : (Real.GNN.messagePassing A).submatrix (κ 1) (κ 0) * Y * Wr 0
-          ∈ (Interval.matMul (Interval.matMul (P.submatrix (κ 1) (κ 0)) Yi) (W 0)).construct :=
+          ∈ (Interval.matMul (Interval.matMul (P.submatrix (κ 1) (κ 0)) Yi) (W 0)).toSet :=
         Interval.matMul_outer _ _
           (Interval.matMul_outer _ _ (Interval.submatrix_mem hP _ _) hY) (hW 0)
       -- at a row inside the ball it is the full step's row

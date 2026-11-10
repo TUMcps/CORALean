@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ProbZonotope.Real.Operations.RepresentsaEmptySet
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 
 @[expose] public section
 
@@ -37,7 +37,7 @@ variable {n : ℕ}
 
 theorem ProbZonotope.representsaEmptySet_iff (P : ProbZonotope n) :
     P.representsaEmptySet = true ↔ P.laws = ∅ := by
-  have hne : P.laws.Nonempty := ⟨_, P.Z.c, P.Z.center_mem_construct, rfl⟩
+  have hne : P.laws.Nonempty := ⟨_, P.Z.c, P.Z.center_mem_toSet, rfl⟩
   simp [ProbZonotope.representsaEmptySet, hne.ne_empty]
 
 end CORALean.Real

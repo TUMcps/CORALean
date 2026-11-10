@@ -45,7 +45,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.isBounded_iff (S : SpectraShadow (Vec ℝ n)) : -- --- CONCL ---
-    S.isBounded ↔ Bornology.IsBounded S.construct := by -- --- PROOF ---
+    S.isBounded ↔ Bornology.IsBounded S.toSet := by -- --- PROOF ---
   rw [isBounded_iff_forall_norm_le]
   constructor
   · -- real bounds `Mp i`, `Mm i` on each coordinate, summed into a bound on the sup norm

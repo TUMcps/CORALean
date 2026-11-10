@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.NeurNetContrSysDT.Theorems.IsTrajectoryOfMap
 /-!
 # `simulate` samples a trajectory
 
-`simulate v x₀` satisfies `IsTrajectory R₀ U_ext` whenever `x₀ ∈ construct R₀` and the external
+`simulate v x₀` satisfies `IsTrajectory R₀ U_ext` whenever `x₀ ∈ toSet R₀` and the external
 input `v` stays in `U_ext`: `init` and `v` are the hypotheses handed in and `step` is `rfl`, since
 `simulate` is `IsTrajectory.step`'s equation read as a recursive definition rather than a
 predicate.
@@ -52,7 +52,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem NeurNetContrSysDT.simulate_isTrajectory (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
     (π : Vec ℝ n → Vec ℝ sys.m) {R₀ : S n} {U_ext : Set (Vec ℝ sys.nExt)}
     {W : Set (Vec ℝ sys.plant.r)} (hW : 0 ∈ W) {v : ℕ → Vec ℝ sys.nExt} (hv : ∀ k, v k ∈ U_ext)
-    {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) :
+    {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ toSet R₀) :
     sys.IsTrajectory π R₀ U_ext W (sys.simulate π v x₀) v 0 :=
   NeurNetContrSysDT.isTrajectory_of_map hW hx₀ hv fun _ => rfl
 

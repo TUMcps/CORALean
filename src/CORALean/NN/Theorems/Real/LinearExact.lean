@@ -61,8 +61,8 @@ variable {n m : ℕ}
 
 /-- A zero-width box denotes its point and nothing else, through both conversion
 steps: every generator vanishes and the center is the point. -/
-private theorem aux_construct_point_polyZonotope (b : Vec ℝ m) : -- --- CONCL ---
-    ((Interval.point b).polyZonotope).construct = ({b} : Set (Vec ℝ m)) := by -- --- PROOF ---
+private theorem aux_toSet_point_polyZonotope (b : Vec ℝ m) : -- --- CONCL ---
+    ((Interval.point b).polyZonotope).toSet = ({b} : Set (Vec ℝ m)) := by -- --- PROOF ---
   have hc : (Interval.point b).zonotope.c = b := by
     funext i
     show (b i + b i) / 2 = b i
@@ -90,13 +90,13 @@ private theorem aux_construct_point_polyZonotope (b : Vec ℝ m) : -- --- CONCL 
 /-- ℝ-only, a polynomial zonotope being exact under `mtimes` and `plus` only there. -/
 theorem Layer.linear_exact (W : Mat ℝ m n) (b : Vec ℝ m)
     (s : PolyZonotope (Vec ℝ n)) : -- --- CONCL ---
-    construct ((CORALean.Layer.linear (S := 𝒫𝒵) W b).enclose s)
-      = (fun x => W *ᵥ x + b) '' construct s := by -- --- PROOF ---
-  show ((PolyZonotope.mtimes W s).plus (Interval.point b).polyZonotope).construct
-      = (fun x => W *ᵥ x + b) '' s.construct
+    toSet ((CORALean.Layer.linear (S := 𝒫𝒵) W b).enclose s)
+      = (fun x => W *ᵥ x + b) '' toSet s := by -- --- PROOF ---
+  show ((PolyZonotope.mtimes W s).plus (Interval.point b).polyZonotope).toSet
+      = (fun x => W *ᵥ x + b) '' s.toSet
   -- both operations read backwards, and the bias is then a translation
   rw [← PolyZonotope.plus_exact, ← PolyZonotope.mtimes_exact,
-    aux_construct_point_polyZonotope, Set.add_singleton, Set.image_image]
+    aux_toSet_point_polyZonotope, Set.add_singleton, Set.image_image]
 
 end CORALean.Real
 

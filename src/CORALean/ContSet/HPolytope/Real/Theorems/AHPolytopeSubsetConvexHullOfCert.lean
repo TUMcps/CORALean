@@ -71,20 +71,20 @@ variable {n nx qx N : ℕ}
 theorem HPolytope.ahPolytope_subset_convexHull_of_cert {qy : Fin N → ℕ} {xbar : Vec ℝ n}
     {X : Mat ℝ n nx} {Hx : Mat ℝ qx nx} {hx : Vec ℝ qx} {Hy : (i : Fin N) → Mat ℝ (qy i) n}
     {hy : (i : Fin N) → Vec ℝ (qy i)}
-    (hne : ∀ i, (HPolytope.ineqs (Hy i) (hy i)).construct.Nonempty)
-    (hb : ∀ i, Bornology.IsBounded (HPolytope.ineqs (Hy i) (hy i)).construct)
+    (hne : ∀ i, (HPolytope.ineqs (Hy i) (hy i)).toSet.Nonempty)
+    (hb : ∀ i, Bornology.IsBounded (HPolytope.ineqs (Hy i) (hy i)).toSet)
     {Λ : (i : Fin N) → Mat ℝ (qy i) qx} {lam : Fin N → ℝ} {β : Fin N → Vec ℝ n}
     {Γ : Fin N → Mat ℝ n nx} (hΛ : ∀ i j k, 0 ≤ Λ i j k) (hlam : ∀ i, 0 ≤ lam i)
     (h1 : ∀ i, Λ i * Hx = Hy i * Γ i) (h2 : ∀ i, Λ i *ᵥ hx ≤ lam i • hy i + Hy i *ᵥ β i)
     (hsum : ∑ i, lam i = 1) (hc : ∑ i, -β i = xbar) (hX : ∑ i, Γ i = X) : -- --- CONCL ---
     HPolytope.ahPolytope xbar X (HPolytope.ineqs Hx hx)
-      ⊆ convexHull ℝ (⋃ i, (HPolytope.ineqs (Hy i) (hy i)).construct) := by -- --- PROOF ---
+      ⊆ convexHull ℝ (⋃ i, (HPolytope.ineqs (Hy i) (hy i)).toSet) := by -- --- PROOF ---
   rintro _ ⟨p, hp, rfl⟩
   -- `qᵢ = Γᵢ p - βᵢ` satisfies `Hᵢ qᵢ ≤ λᵢ hᵢ`
-  have hq : ∀ i, Γ i *ᵥ p - β i ∈ (HPolytope.ineqs (Hy i) (lam i • hy i)).construct :=
+  have hq : ∀ i, Γ i *ᵥ p - β i ∈ (HPolytope.ineqs (Hy i) (lam i • hy i)).toSet :=
     fun i => HPolytope.mem_ineqs_of_cert (hΛ i) (h1 i) (h2 i) hp
   -- so `qᵢ = λᵢ zᵢ` for a point `zᵢ` of `Pᵢ`
-  have hz : ∀ i, ∃ z ∈ (HPolytope.ineqs (Hy i) (hy i)).construct,
+  have hz : ∀ i, ∃ z ∈ (HPolytope.ineqs (Hy i) (hy i)).toSet,
       Γ i *ᵥ p - β i = lam i • z := by
     intro i
     have hqi := HPolytope.mem_ineqs_iff.mp (hq i)

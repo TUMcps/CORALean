@@ -36,9 +36,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.empty_exact (n : ℕ) : -- --- CONCL ---
-    (SpectraShadow.empty n).construct = ∅ := by -- --- PROOF ---
+    (SpectraShadow.empty n).toSet = ∅ := by -- --- PROOF ---
   ext x
-  simp only [SpectraShadow.construct, Set.mem_setOf_eq, Set.mem_empty_iff_false, iff_false]
+  simp only [SpectraShadow.toSet, Set.mem_setOf_eq, Set.mem_empty_iff_false, iff_false]
   rintro ⟨β, hβ, -⟩
   -- the inequality is `-1 ⪰ 0`, whatever `β` is
   rw [SpectraShadow.A₀_add_sum_eq _ β (fun _ => rfl)] at hβ

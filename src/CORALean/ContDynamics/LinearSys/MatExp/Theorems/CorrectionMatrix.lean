@@ -132,7 +132,7 @@ theorem MatExp.expDiff_mem_correctionMatrix (A : Mat ℝ n n) {r : ℝ} (hr : 0 
     (hε : ‖r • A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ} (ht0 : 0 ≤ t)
     (htr : t ≤ r) : -- --- CONCL ---
     exp (t • A) - 1 - (t / r) • (exp (r • A) - 1)
-      ∈ (MatExp.correctionMatrix A r (m + 2)).construct := by -- --- PROOF ---
+      ∈ (MatExp.correctionMatrix A r (m + 2)).toSet := by -- --- PROOF ---
   have hs0 : 0 ≤ t / r := div_nonneg ht0 hr.le
   have hs1 : t / r ≤ 1 := (div_le_one hr).mpr htr
   set f : ℕ → Mat ℝ n n := fun i =>

@@ -73,8 +73,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 motion and what `u₀` contributes, is one `U`-input's contribution. -/
 theorem LinearSys.IsCanonicalTrajectory.sub_mem_inputReach_shift {sys : LinearSys 𝕋 n} {T : ℝ}
     {R₀ W U : S n} {x u : ℝ → Vec ℝ n} (traj : sys.IsCanonicalTrajectory (Set.Icc 0 T) R₀ W x u)
-    (u₀ : Vec ℝ n) (hWU : ∀ v ∈ construct W, v - u₀ ∈ construct U)
-    (hW : Bornology.IsBounded (construct W)) (hU : Bornology.IsBounded (construct U))
+    (u₀ : Vec ℝ n) (hWU : ∀ v ∈ toSet W, v - u₀ ∈ toSet U)
+    (hW : Bornology.IsBounded (toSet W)) (hU : Bornology.IsBounded (toSet U))
     {t : ℝ} (ht : t ∈ Set.Icc 0 T) : -- --- CONCL ---
     x t - (exp (t • toRealMat sys.A) *ᵥ x 0 + MatExp.expIntegral (toRealMat sys.A) t *ᵥ u₀)
       ∈ sys.inputReach U t := by -- --- PROOF ---
@@ -84,7 +84,7 @@ theorem LinearSys.IsCanonicalTrajectory.sub_mem_inputReach_shift {sys : LinearSy
   have hvoc := traj.variation_of_constants hTt le_rfl ht.1 hW
   rw [sub_zero] at hvoc
   -- the input, less the center, is an admissible input of `Ũ`
-  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - uc ∈ construct U :=
+  have hmem₀ : ∀ s ∈ Set.Icc (0:ℝ) t, u s - uc ∈ toSet U :=
     fun s hs => hWU _ (traj.input s (hTt hs))
   have hmeas₀ : AEStronglyMeasurable (fun s => u s - uc) (volume.restrict (Set.Icc 0 t)) :=
     (traj.aestronglyMeasurable_input hTt).sub aestronglyMeasurable_const

@@ -9,7 +9,7 @@ public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 # `ZonoBundle.map`
 
 A linear map applied to every zonotope in the family [1, Prop. 1], the count `k` untouched:
-`construct` reads only the family, so moving each member is all a bundle needs
+`toSet` reads only the family, so moving each member is all a bundle needs
 to move.
 
 ## Inputs

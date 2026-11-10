@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.origin_exact (n : ℕ) : -- --- CONCL ---
-    (ConPolyZono.origin n : ConPolyZono 𝕋 (Vec 𝕋 n)).construct = {0} := by -- --- PROOF ---
+    (ConPolyZono.origin n : ConPolyZono 𝕋 (Vec 𝕋 n)).toSet = {0} := by -- --- PROOF ---
   -- the nominal part has no generators and no rows: its one point is the stored `zero`
   have hN : InflatedContSet.nominalSet (ConPolyZono.origin n : ConPolyZono 𝕋 (Vec 𝕋 n)) = {0} := by
     ext x
@@ -53,11 +53,11 @@ theorem ConPolyZono.origin_exact (n : ℕ) : -- --- CONCL ---
     · rintro rfl
       exact ⟨Fin.elim0, Fin.elim0, fun k => k.elim0, fun j => j.elim0,
         ⟨fun k => k.elim0, fun i => i.elim0⟩, fun i => by simp [ConPolyZono.origin, toReal_zero]⟩
-  have hE : (ConPolyZono.origin n : ConPolyZono 𝕋 (Vec 𝕋 n)).I_error.construct = {0} :=
+  have hE : (ConPolyZono.origin n : ConPolyZono 𝕋 (Vec 𝕋 n)).I_error.toSet = {0} :=
     Interval.origin_exact n
   -- the sum of the two singletons
   show InflatedContSet.nominalSet (ConPolyZono.origin n : ConPolyZono 𝕋 (Vec 𝕋 n))
-      + (ConPolyZono.origin n : ConPolyZono 𝕋 (Vec 𝕋 n)).I_error.construct = _
+      + (ConPolyZono.origin n : ConPolyZono 𝕋 (Vec 𝕋 n)).I_error.toSet = _
   rw [hN, hE, Set.singleton_add_singleton, add_zero]
 
 end CORALean.Float

@@ -55,10 +55,10 @@ every start in `R`, through one of the segments it returns. -/
 theorem NonlinearSys.splitReach_outer (step : Real.Zonotope (Vec ℝ n) → Option β)
     (pick : (R : Real.Zonotope (Vec ℝ n)) → Option (Fin R.h))
     (P : Vec ℝ n → β → Prop)
-    (hstep : ∀ R S, step R = some S → ∀ x ∈ R.construct, P x S) : -- --- CONCL ---
+    (hstep : ∀ R S, step R = some S → ∀ x ∈ R.toSet, P x S) : -- --- CONCL ---
     ∀ (fuel : ℕ) (R : Real.Zonotope (Vec ℝ n)) (l : List β),
       NonlinearSys.splitReach step pick fuel R = some l →
-        ∀ x ∈ R.construct, ∃ S ∈ l, P x S := by -- --- PROOF ---
+        ∀ x ∈ R.toSet, ∃ S ∈ l, P x S := by -- --- PROOF ---
   intro fuel
   induction fuel with
   | zero => intro R l h; simp [NonlinearSys.splitReach] at h

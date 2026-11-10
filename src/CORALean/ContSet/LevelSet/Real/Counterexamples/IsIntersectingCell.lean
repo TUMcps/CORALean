@@ -55,9 +55,9 @@ def LevelSet.step_B : Fin 1 → Interval ℝ := fun _ => ⟨0, 1⟩
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LevelSet.isIntersecting_cell_counterexample : -- --- CONCL ---
-    LevelSet.step_L.construct ∩ LevelSet.step_box.construct ≠ ∅ ∧
+    LevelSet.step_L.toSet ∩ LevelSet.step_box.toSet ≠ ∅ ∧
       (∀ i, IsRangeBound (fun x => LevelSet.step_L.f x i)
-        LevelSet.step_box.construct (LevelSet.step_B i).inf (LevelSet.step_B i).sup) ∧
+        LevelSet.step_box.toSet (LevelSet.step_B i).inf (LevelSet.step_B i).sup) ∧
       ¬ LevelSet.isIntersecting_cell 0 LevelSet.step_L.op LevelSet.step_B := by -- --- PROOF ---
   refine ⟨?_, ?_, ?_⟩
   · -- the point `0` is in both

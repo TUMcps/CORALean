@@ -44,7 +44,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.polyZonotope_contains (zB : ZonoBundle α) (i : Fin zB.k) :
-    zB.construct ⊆ (zB.polyZonotope i).construct :=
+    zB.toSet ⊆ (zB.polyZonotope i).toSet :=
   subset_trans (zB.zonotope_contains i) (Zonotope.polyZonotope_exact _).subset
 
 end CORALean.Real

@@ -46,8 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- `Interval.plus` of two boxes that bracket `0` brackets `0`: each rounded
 bound sits on the sound side of the sum of the two exact ones. -/
 private theorem Zonotope.aux_zero_mem_interval_plus {I J : Interval (Vec 𝕋 n)}
-    (hI : (0 : Vec ℝ n) ∈ I.construct) (hJ : (0 : Vec ℝ n) ∈ J.construct) : -- --- CONCL ---
-    (0 : Vec ℝ n) ∈ (I.plus J).construct := by -- --- PROOF ---
+    (hI : (0 : Vec ℝ n) ∈ I.toSet) (hJ : (0 : Vec ℝ n) ∈ J.toSet) : -- --- CONCL ---
+    (0 : Vec ℝ n) ∈ (I.plus J).toSet := by -- --- PROOF ---
   intro i
   have hI1 : toReal (I.inf i) ≤ (0:ℝ) := (hI i).1
   have hI2 : (0:ℝ) ≤ toReal (I.sup i) := (hI i).2
@@ -63,7 +63,7 @@ private theorem Zonotope.aux_zero_mem_interval_plus {I J : Interval (Vec 𝕋 n)
 subtraction of one value from itself, and its upper bound is at least the gap
 between the two directed roundings of the same addition. -/
 private theorem Zonotope.aux_zero_mem_centerResidual (a b : Vec 𝕋 n) : -- --- CONCL ---
-    (0 : Vec ℝ n) ∈ (Zonotope.centerResidual a b).construct := by -- --- PROOF ---
+    (0 : Vec ℝ n) ∈ (Zonotope.centerResidual a b).toSet := by -- --- PROOF ---
   intro i
   have hle : toReal (addDown (a i) (b i)) ≤ toReal (addUp (a i) (b i)) :=
     le_trans (addDown_le_add _ _) (add_le_addUp _ _)
@@ -78,8 +78,8 @@ private theorem Zonotope.aux_zero_mem_centerResidual (a b : Vec 𝕋 n) : -- ---
 
 /-- `plus` keeps `0` in the error box, given both operands already have it. -/
 theorem Zonotope.zero_mem_plus_error {Z₁ Z₂ : Zonotope (Vec 𝕋 n)}
-    (h₁ : (0 : Vec ℝ n) ∈ Z₁.I_error.construct) (h₂ : (0 : Vec ℝ n) ∈ Z₂.I_error.construct) :
-    (0 : Vec ℝ n) ∈ (Z₁.plus Z₂).I_error.construct :=
+    (h₁ : (0 : Vec ℝ n) ∈ Z₁.I_error.toSet) (h₂ : (0 : Vec ℝ n) ∈ Z₂.I_error.toSet) :
+    (0 : Vec ℝ n) ∈ (Z₁.plus Z₂).I_error.toSet :=
   Zonotope.aux_zero_mem_interval_plus (Zonotope.aux_zero_mem_interval_plus h₁ h₂)
     (Zonotope.aux_zero_mem_centerResidual Z₁.c Z₂.c)
 

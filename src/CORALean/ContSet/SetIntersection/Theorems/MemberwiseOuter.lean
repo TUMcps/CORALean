@@ -53,10 +53,10 @@ variable {S T α β : Type} [ContSet S α] [ContSet T β]
 /-- Each result member enclosing `Φ` of an operand member encloses `Φ` of the intersection. -/
 theorem SetIntersection.memberwise_outer {k l : ℕ} {f : Fin k → S} {g : Fin l → T}
     (Φ : Set α → Set β) (hΦ : Monotone Φ)
-    (h : ∀ j, ∃ i, Φ (ContSet.construct (f i)) ⊆ ContSet.construct (g j)) : -- --- CONCL ---
-    Φ (ContSet.construct (⟨List.ofFn f⟩ : SetIntersection S))
-      ⊆ ContSet.construct (⟨List.ofFn g⟩ : SetIntersection T) := by -- --- PROOF ---
-  rw [SetIntersection.construct_ofFn, SetIntersection.construct_ofFn]
+    (h : ∀ j, ∃ i, Φ (ContSet.toSet (f i)) ⊆ ContSet.toSet (g j)) : -- --- CONCL ---
+    Φ (ContSet.toSet (⟨List.ofFn f⟩ : SetIntersection S))
+      ⊆ ContSet.toSet (⟨List.ofFn g⟩ : SetIntersection T) := by -- --- PROOF ---
+  rw [SetIntersection.toSet_ofFn, SetIntersection.toSet_ofFn]
   refine Set.subset_iInter fun j => ?_
   obtain ⟨i, hi⟩ := h j
   exact (hΦ (Set.iInter_subset _ i)).trans hi

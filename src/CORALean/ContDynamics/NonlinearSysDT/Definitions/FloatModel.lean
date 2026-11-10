@@ -39,7 +39,7 @@ structure NonlinearSysDT.FloatModel (𝕋 : Type) (n m : ℕ) where
 structure NonlinearSysDT.FloatModel.Encloses (fm : NonlinearSysDT.FloatModel 𝕋 n m)
     (sys : NonlinearSysDT n m) : Prop where
   f_mem (X : Interval (Vec 𝕋 n)) (U : Interval (Vec 𝕋 m)) :
-    ∀ x ∈ construct X, ∀ u ∈ construct U, sys.f x u ∈ construct (fm.f X U)
+    ∀ x ∈ toSet X, ∀ u ∈ toSet U, sys.f x u ∈ toSet (fm.f X U)
 
 end CORALean
 

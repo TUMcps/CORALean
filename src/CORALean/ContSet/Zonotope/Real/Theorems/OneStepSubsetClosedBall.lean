@@ -60,13 +60,13 @@ variable {n : ℕ}
 `‖A‖ * r + rU + rbox`, given a ball for each of `Z`, `U` and the box the
 reduction pays at that step. -/
 theorem Zonotope.oneStep_subset_closedBall (A : Mat ℝ n n) {Z U : Zonotope (Vec ℝ n)} {o : ℕ}
-    {r rU rbox : ℝ} (hZ : Z.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r)
-    (hU : U.construct ⊆ Metric.closedBall (0 : Vec ℝ n) rU)
-    (hbox : (((Zonotope.mtimes A Z).plus U).reduceBox o).construct
+    {r rU rbox : ℝ} (hZ : Z.toSet ⊆ Metric.closedBall (0 : Vec ℝ n) r)
+    (hU : U.toSet ⊆ Metric.closedBall (0 : Vec ℝ n) rU)
+    (hbox : (((Zonotope.mtimes A Z).plus U).reduceBox o).toSet
       ⊆ Metric.closedBall (0 : Vec ℝ n) rbox) : -- --- CONCL ---
-    (((Zonotope.mtimes A Z).plus U).reduce o).construct
+    (((Zonotope.mtimes A Z).plus U).reduce o).toSet
       ⊆ Metric.closedBall (0 : Vec ℝ n) (‖A‖ * r + rU + rbox) := by -- --- PROOF ---
-  have hW : ((Zonotope.mtimes A Z).plus U).construct
+  have hW : ((Zonotope.mtimes A Z).plus U).toSet
       ⊆ Metric.closedBall (0 : Vec ℝ n) (‖A‖ * r + rU) :=
     Zonotope.plus_subset_closedBall (Zonotope.mtimes_subset_closedBall A hZ) hU
   intro x hx

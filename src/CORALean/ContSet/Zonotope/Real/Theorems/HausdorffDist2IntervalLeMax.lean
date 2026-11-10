@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.Global.EuclideanHausdorffDist
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
 public import CORALean.Global.StepOf
@@ -136,7 +136,7 @@ private theorem aux_exists_coeff (g lam : Vec ℝ n) (hlam : ∀ i, |lam i| ≤ 
 from the zonotope than twice the generators' trimmed magnitudes reach, at
 `‖·‖₂`. -/
 theorem Zonotope.hausdorffDist₂_interval_le_max (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    hausdorffDist₂ Z.construct Z.interval.construct
+    hausdorffDist₂ Z.toSet Z.interval.toSet
       ≤ 2 * ‖∑ p, step_ghat (Z.G p)‖₂ := by -- --- PROOF ---
   have hr : (0 : ℝ) ≤ 2 * ‖∑ p, step_ghat (Z.G p)‖₂ := by
     have := norm₂_nonneg (∑ p, step_ghat (Z.G p))

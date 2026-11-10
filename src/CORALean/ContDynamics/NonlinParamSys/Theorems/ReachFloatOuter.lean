@@ -56,10 +56,10 @@ theorem NonlinParamSys.reachFloat_outer (sys : NonlinParamSys n m q)
         Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {p : Vec ℝ q}
           {y : ℝ → Vec ℝ sys.r},
           sys.IsConstTrajectory (S := 𝒮)
-            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.construct
-            params.U.construct P.construct x u p y →
+            (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.toSet
+            params.U.toSet P.toSet x u p y →
           ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
-            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].construct := by -- --- PROOF ---
+            (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].toSet := by -- --- PROOF ---
   intro Rs (hR : sys.reachFloat fm P params options = some Rs)
   unfold NonlinParamSys.reachFloat at hR
   simp only [Option.map_eq_some_iff] at hR
@@ -68,7 +68,7 @@ theorem NonlinParamSys.reachFloat_outer (sys : NonlinParamSys n m q)
   refine ⟨N, hN, by simpa using hlen, fun {x u p y} traj k hk t ht => ?_⟩
   have hk' : k < Ra.length := by simpa using hk
   have haug := hout (x := fun t => Fin.append (x t) p) (u := u)
-    (traj.toAugment (Z₀ := (params.X₀.cartProd P).construct) fun v hv w hw => by
+    (traj.toAugment (Z₀ := (params.X₀.cartProd P).toSet) fun v hv w hw => by
       rw [Zonotope.cartProd_exact]
       exact ⟨(v, w), ⟨hv, hw⟩, rfl⟩) k hk' t ht
   have hproj := Zonotope.project_outer Ra[k] (Fin.castAdd q) ⟨_, haug, rfl⟩

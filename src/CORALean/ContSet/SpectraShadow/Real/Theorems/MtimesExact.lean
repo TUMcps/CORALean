@@ -41,7 +41,7 @@ open Matrix
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.mtimes_exact {n m : ℕ} (M : Mat ℝ m n) (S : SpectraShadow (Vec ℝ n)) :
-    (M *ᵥ ·) '' S.construct = (SpectraShadow.mtimes M S).construct :=
+    (M *ᵥ ·) '' S.toSet = (SpectraShadow.mtimes M S).toSet :=
   SpectraShadow.map_exact (Matrix.mulVecLin M) S
 
 end CORALean.Real

@@ -55,7 +55,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.ellipsoid_contains (pZ : PolyZonotope (Vec 𝕋 n)) (σ : 𝕋) (hσ : 0 < toReal σ)
     (hh : ((pZ.h + pZ.q : ℕ) : ℝ) ≤ toReal (mulDown σ σ)) :
-    pZ.construct ⊆ (pZ.ellipsoid σ).construct :=
+    pZ.toSet ⊆ (pZ.ellipsoid σ).toSet :=
   subset_trans pZ.zonotope_contains (pZ.zonotope.ellipsoid_contains σ hσ hh)
 
 end CORALean.Float

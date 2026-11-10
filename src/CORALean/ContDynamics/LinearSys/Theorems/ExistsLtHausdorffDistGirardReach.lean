@@ -56,13 +56,13 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 which `girardExample_spec` exceeds. -/
 theorem LinearSys.exists_lt_hausdorffDist_girardReach : -- --- CONCL ---
     ∃ (sys : LinearSys ℝ 1) (I U : Zonotope (Vec ℝ 1)) (μ r s : ℝ) (N : ℕ),
-      0 < ‖toRealMat sys.A‖ ∧ 0 < r ∧ 0 ≤ μ ∧ U.construct = Metric.closedBall 0 μ ∧ 1 ≤ N
-      ∧ IsGreatest ((fun x => ‖x‖) '' I.construct) s
+      0 < ‖toRealMat sys.A‖ ∧ 0 < r ∧ 0 ≤ μ ∧ U.toSet = Metric.closedBall 0 μ ∧ 1 ≤ N
+      ∧ IsGreatest ((fun x => ‖x‖) '' I.toSet) s
       ∧ r * ‖toRealMat sys.A‖ * Real.exp (‖toRealMat sys.A‖ * (N * r))
             * (2 * μ / ‖toRealMat sys.A‖ + (1 / 2 + r) * s)
         < Metric.hausdorffDist
           (⋃ t ∈ Set.Icc (0:ℝ) (N * r), sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) I U t)
-          (⋃ Q ∈ sys.girardReach I μ r (N * r), Q.construct) := by -- --- PROOF ---
+          (⋃ Q ∈ sys.girardReach I μ r (N * r), Q.toSet) := by -- --- PROOF ---
   obtain ⟨hnorm, hgr, hd⟩ := LinearSys.girardExample_spec
   have he : 2.7182818283 < Real.exp 1 := Real.exp_one_gt_d9
   refine ⟨LinearSys.canonical (Matrix.diagonal fun _ => 100), ⟨1, fun _ => 1, fun _ _ => 1⟩,

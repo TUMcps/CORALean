@@ -82,9 +82,9 @@ theorem LinProbSys.IsTrajectory.mean_eq_add_inputReach {sys : LinProbSys n m} {�
           + w := by -- --- PROOF ---
   set A := sys.A
   -- the input less `uTrans` is in `U`
-  have hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s - uTrans ∈ U.construct := fun s hs => by
+  have hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s - uTrans ∈ U.toSet := fun s hs => by
     have h := traj.input s (hT hs)
-    change u s ∈ (U.plus (Zonotope.ofPoint uTrans)).construct at h
+    change u s ∈ (U.plus (Zonotope.ofPoint uTrans)).toSet at h
     rw [← Zonotope.plus_exact] at h
     obtain ⟨a, ha, b, hb, hab⟩ := h
     rw [Zonotope.mem_ofPoint_iff] at hb
@@ -92,8 +92,8 @@ theorem LinProbSys.IsTrajectory.mean_eq_add_inputReach {sys : LinProbSys n m} {�
     exact ha
   set v : ℝ → Vec ℝ n := fun s => sys.B *ᵥ (u s - uTrans) with hvdef
   -- the input less `uTrans`, in `B U` and measurable on `[0, t]`
-  have hv : ∀ s ∈ Set.Icc (0:ℝ) t, v s ∈ construct (Zonotope.mtimes sys.B U) := fun s hs => by
-    show _ ∈ (Zonotope.mtimes sys.B U).construct
+  have hv : ∀ s ∈ Set.Icc (0:ℝ) t, v s ∈ toSet (Zonotope.mtimes sys.B U) := fun s hs => by
+    show _ ∈ (Zonotope.mtimes sys.B U).toSet
     rw [← Zonotope.mtimes_exact]
     exact ⟨_, hu s hs, rfl⟩
   have hvmeas : AEStronglyMeasurable v (volume.restrict (Set.Icc 0 t)) :=
@@ -111,7 +111,7 @@ theorem LinProbSys.IsTrajectory.mean_eq_add_inputReach {sys : LinProbSys n m} {�
       ((continuous_const.sub continuous_id).smul continuous_const)) continuous_const
       ).intervalIntegrable _ _
   have hw : IntervalIntegrable (fun s => exp ((t - s) • A) *ᵥ v s) volume 0 t :=
-    intervalIntegrable_expSub_mulVec (S := 𝒵) h0 (Zonotope.isCompact_construct _).isBounded hv
+    intervalIntegrable_expSub_mulVec (S := 𝒵) h0 (Zonotope.isCompact_toSet _).isBounded hv
       hvmeas
   -- the constant part is `∫₀ᵗ e^{Aσ} dσ B uTrans`
   have hconst : ∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ (sys.B *ᵥ uTrans)

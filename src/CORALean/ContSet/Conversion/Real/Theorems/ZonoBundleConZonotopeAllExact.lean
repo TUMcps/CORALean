@@ -1,9 +1,9 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ToSetEqIInter
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructFoldlIntersectionEq
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ToSetFoldlIntersectionEq
 public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_ConZonotope
 
 @[expose] public section
@@ -39,12 +39,12 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {n : ℕ}
 /-- Exact: the folded intersection denotes the bundle. -/
 theorem ZonoBundle.conZonotopeAll_exact (zB : ZonoBundle (Vec ℝ n))
     (hk : 0 < zB.k) : -- --- CONCL ---
-    (zB.conZonotopeAll hk).construct = zB.construct := by -- --- PROOF ---
+    (zB.conZonotopeAll hk).toSet = zB.toSet := by -- --- PROOF ---
   unfold ZonoBundle.conZonotopeAll
-  rw [ConZonotope.construct_foldl_intersection_eq]
+  rw [ConZonotope.toSet_foldl_intersection_eq]
   ext x
   simp only [Set.mem_inter_iff, Set.mem_iInter, ← Zonotope.conZonotope_exact,
-    ZonoBundle.construct_eq_iInter]
+    ZonoBundle.toSet_eq_iInter]
   constructor
   · rintro ⟨h0, hi⟩ ⟨j, hj⟩
     rcases j with _ | j

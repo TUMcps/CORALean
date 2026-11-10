@@ -111,10 +111,10 @@ theorem NonlinearSys.reachSetExact_subset_relinTimeInterval_horizon (sys : Nonli
     (hR : ∀ i < N, ∀ t ∈ Set.Icc ((i : ℝ) * Δt) (((i : ℝ) + 1) * Δt),
       sys.reachSetExact T R₀ U t ⊆ (steps i).R)
     (q : ℕ) (hε : ∀ i < N, ‖Δt • (steps i).A‖ / (((q + 2 : ℕ) : ℝ) + 2) < 1)
-    (hconv : ∀ i < N, Convex ℝ (construct (steps i).linInput))
-    (hclosed : ∀ i < N, IsClosed (construct (steps i).linInput))
-    (hbdd : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
-    (h0 : ∀ i < N, (0 : Vec ℝ n) ∈ construct (steps i).linInput)
+    (hconv : ∀ i < N, Convex ℝ (toSet (steps i).linInput))
+    (hclosed : ∀ i < N, IsClosed (toSet (steps i).linInput))
+    (hbdd : ∀ i < N, Bornology.IsBounded (toSet (steps i).linInput))
+    (h0 : ∀ i < N, (0 : Vec ℝ n) ∈ toSet (steps i).linInput)
     (hRconv : ∀ i < N, Convex ℝ (MatExp.inputRemainderSet (steps i).A Δt (q + 2) (steps
       i).linInput))
     (hRclosed : ∀ i < N, IsClosed (MatExp.inputRemainderSet (steps i).A Δt (q + 2) (steps
@@ -122,7 +122,7 @@ theorem NonlinearSys.reachSetExact_subset_relinTimeInterval_horizon (sys : Nonli
     (hRbdd : ∀ i < N, Bornology.IsBounded (MatExp.inputRemainderSet (steps i).A Δt (q + 2) (steps
       i).linInput))
     {o : ℕ} (ho : 0 < o) {t : ℝ} (ht : t ∈ Set.Icc (0 : ℝ) ((N : ℝ) * Δt)) : -- --- CONCL ---
-    sys.reachSetExact T R₀ U t ⊆ ⋃ i < N, construct (sys.relinTimeInterval o ho Δt (q + 2) steps
+    sys.reachSetExact T R₀ U t ⊆ ⋃ i < N, toSet (sys.relinTimeInterval o ho Δt (q + 2) steps
       (fun i => (NonlinearSys.linearize (steps i).A).inputSolution Δt (q + 2)
         (steps i).linInput) R₀ i) := by -- --- PROOF ---
   -- the step whose window holds `t`, and then that step's own enclosure

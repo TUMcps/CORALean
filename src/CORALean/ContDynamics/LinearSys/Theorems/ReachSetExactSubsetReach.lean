@@ -60,11 +60,11 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 /-- Reach for this where the input enclosure is already in hand; the guarantee
 attaches to the reachable set, not to a run of it. -/
 theorem LinearSys.reachSetExact_subset_reach (sys : LinearSys 𝕋 n) {T : Set ℝ} (R₀ U Ud : S n)
-    {Δt : ℝ} (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T) (hU : Bornology.IsBounded (construct U))
+    {Δt : ℝ} (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T) (hU : Bornology.IsBounded (toSet U))
     (hUd : ∀ x u : ℝ → Vec ℝ n, sys.IsCanonicalTrajectory T R₀ U x u →
-      ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) (k : ℕ) : -- --- CONCL ---
+      ∀ k : ℕ, sys.stepInput u Δt k ∈ toSet Ud) {o : ℕ} (ho : 0 < o) (k : ℕ) : -- --- CONCL ---
     sys.reachSetExact T R₀ U ((k : ℝ) * Δt)
-      ⊆ construct ((sys.discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
+      ⊆ toSet ((sys.discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   rintro _ ⟨x, u, traj, rfl⟩
   exact traj.reach_outer hΔt hT hU (hUd x u traj) ho k
 

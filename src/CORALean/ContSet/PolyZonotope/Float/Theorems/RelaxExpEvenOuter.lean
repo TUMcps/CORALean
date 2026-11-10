@@ -132,7 +132,7 @@ private theorem PolyZonotope.aux_relaxExpEven_nominal (pZ : PolyZonotope (Vec �
     (hle : pZ.E k₀ (part.right 1) ≤ pZ.E k₀ (part.right 0)) : -- --- CONCL ---
     nominalSet pZ ⊆ nominalSet (pZ.relaxExpEven part k₀)
       + (PolyZonotope.generatorError
-          (pZ.step_relaxGapEven part k₀)).construct := by -- --- PROOF ---
+          (pZ.step_relaxGapEven part k₀)).toSet := by -- --- PROOF ---
   intro x hx
   obtain ⟨a, β, ha, hβ, hxi⟩ := PolyZonotope.mem_nominalSet_iff.mp hx
   have habs : |Real.PolyZonotope.monomial pZ.E a (part.right 0)
@@ -232,7 +232,7 @@ theorem PolyZonotope.relaxExpEven_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (heven : ∀ k, Even (pZ.E k (part.right 0)))
     (hevenj : Even (pZ.E k₀ (part.right 1)))
     (hle : pZ.E k₀ (part.right 1) ≤ pZ.E k₀ (part.right 0)) : -- --- CONCL ---
-    pZ.construct ⊆ (pZ.relaxExpEven part k₀).construct := by -- --- PROOF ---
+    pZ.toSet ⊆ (pZ.relaxExpEven part k₀).toSet := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨z', hz', g, hg, hsum⟩ :=
     PolyZonotope.aux_relaxExpEven_nominal pZ part k₀ hsim heven hevenj hle hz

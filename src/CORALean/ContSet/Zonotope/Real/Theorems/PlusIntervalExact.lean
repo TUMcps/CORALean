@@ -55,9 +55,9 @@ variable {n : ℕ}
 generators onto it — an identity, not merely an enclosure. -/
 theorem Zonotope.plus_interval_exact (Z : Zonotope (Vec ℝ n)) {I : Interval (Vec ℝ n)}
     (hI : I.IsNonempty (ι := Fin n)) :
-    Z.construct + I.construct = (Z.plus I.zonotope).construct := by
+    Z.toSet + I.toSet = (Z.plus I.zonotope).toSet := by
   rw [← Zonotope.plus_exact]
-  exact congrArg (Z.construct + ·)
+  exact congrArg (Z.toSet + ·)
     (Set.Subset.antisymm (Interval.zonotope_contains I)
       (Interval.zonotope_subset_of_isNonempty hI))
 

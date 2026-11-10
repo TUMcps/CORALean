@@ -53,7 +53,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.supportBound_attained (P : VPolytope α) (c : α →ₗ[ℝ] ℝ) (hk : 0 < P.k) :
-    ∃ x ∈ P.construct, c x = (P.supportBound c).val := by
+    ∃ x ∈ P.toSet, c x = (P.supportBound c).val := by
   have : Nonempty (Fin P.k) := Fin.pos_iff_nonempty.mp hk
   obtain ⟨l, hl⟩ := exists_eq_ciSup_of_finite (f := fun l : Fin P.k => c (P.V l))
   exact ⟨P.V l, P.vertex_mem l, hl⟩

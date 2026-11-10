@@ -62,8 +62,8 @@ theorem VPolytope.restrict_affineHull (P : VPolytope (Vec ℝ n)) (c : Vec ℝ n
       vectorSpan ℝ (Set.range P.V)) : -- --- CONCL ---
     let M : Mat ℝ r n := Matrix.of fun i l => U l (Fin.castLE hrn i)
     let P' : VPolytope (Vec ℝ r) := ⟨P.k, fun i => M *ᵥ (P.V i - c)⟩
-    P.construct = (fun y => Mᵀ *ᵥ y + c) '' P'.construct ∧
-      (interior P'.construct).Nonempty := by -- --- PROOF ---
+    P.toSet = (fun y => Mᵀ *ᵥ y + c) '' P'.toSet ∧
+      (interior P'.toSet).Nonempty := by -- --- PROOF ---
   intro M P'
   -- `M` sends the first `r` columns of `U` to the unit vectors, and `Mᵀ` sends them back
   have hMu : ∀ j : Fin r, M *ᵥ U.col (Fin.castLE hrn j) = Pi.single j 1 := fun j => by
@@ -94,16 +94,16 @@ theorem VPolytope.restrict_affineHull (P : VPolytope (Vec ℝ n)) (c : Vec ℝ n
     rw [Matrix.mulVec_mulVec]
     exact this
   -- `P'` is the image of `P` under `x ↦ M (x - c)`
-  have hP' : P'.construct = (fun x => M *ᵥ (x - c)) '' P.construct := by
-    rw [VPolytope.construct_eq_convexHull, VPolytope.construct_eq_convexHull]
+  have hP' : P'.toSet = (fun x => M *ᵥ (x - c)) '' P.toSet := by
+    rw [VPolytope.toSet_eq_convexHull, VPolytope.toSet_eq_convexHull]
     let f : Vec ℝ n →ᵃ[ℝ] Vec ℝ r := ⟨fun x => M *ᵥ (x - c), Matrix.mulVecLin M, fun p v => by
       simp [Matrix.mulVec_add, Matrix.mulVec_sub, vadd_eq_add]
       abel⟩
     have hf : (fun x => M *ᵥ (x - c)) = f := rfl
     rw [hf, f.image_convexHull, ← Set.range_comp]
     rfl
-  have hmemdir : ∀ x ∈ P.construct, x - c ∈ vectorSpan ℝ (Set.range P.V) := fun x hx => by
-    rw [P.construct_eq_convexHull] at hx
+  have hmemdir : ∀ x ∈ P.toSet, x - c ∈ vectorSpan ℝ (Set.range P.V) := fun x hx => by
+    rw [P.toSet_eq_convexHull] at hx
     have hxa : x ∈ affineSpan ℝ (Set.range P.V) :=
       (convexHull_subset_affineSpan _) hx
     rw [← direction_affineSpan]
@@ -118,7 +118,7 @@ theorem VPolytope.restrict_affineHull (P : VPolytope (Vec ℝ n)) (c : Vec ℝ n
       show Mᵀ *ᵥ (M *ᵥ (x - c)) + c = x
       rw [hfix _ (hmemdir x hx), sub_add_cancel]
     · rintro ⟨y, hy, rfl⟩
-      show Mᵀ *ᵥ (M *ᵥ (y - c)) + c ∈ P.construct
+      show Mᵀ *ᵥ (M *ᵥ (y - c)) + c ∈ P.toSet
       rw [hfix _ (hmemdir y hy), sub_add_cancel]
       exact hy
   -- `M` maps the direction of the hull onto `ℝʳ`

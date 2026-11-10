@@ -53,10 +53,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem PolyZonotope.split_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (j : Fin pZ.splitParallelotope.h) : -- --- CONCL ---
-    pZ.construct ⊆ (pZ.split j).fst.construct ∪ (pZ.split j).snd.construct := by -- --- PROOF ---
+    pZ.toSet ⊆ (pZ.split j).fst.toSet ∪ (pZ.split j).snd.toSet := by -- --- PROOF ---
   intro x hx
   -- the parallelotope holds the zonotope, which holds the set
-  have hP : x ∈ pZ.splitParallelotope.construct :=
+  have hP : x ∈ pZ.splitParallelotope.toSet :=
     Zonotope.reduceMethC_outer pZ.zonotope 1 (pZ.zonotope_contains hx)
   rcases Zonotope.split_outer _ j hP with h | h
   · exact Or.inl ((pZ.splitParallelotope.split j).fst.polyZonotope_contains h)

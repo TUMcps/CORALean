@@ -86,11 +86,11 @@ namespace CORALean.Real
 theorem Zonotope.minkDiffOuterScalingCora_not_outer : -- --- CONCL ---
     let Z : Zonotope (Vec ℝ 3) := ⟨3, 0, fun j i => if i = j then 1 else 0⟩
     let I : Interval (Vec ℝ 3) := ⟨0, 1⟩
-    ¬ minkowskiDiff Z.construct I.construct ⊆
-      (Z.minkDiffOuterScalingCora I).construct := by -- --- PROOF ---
+    ¬ minkowskiDiff Z.toSet I.toSet ⊆
+      (Z.minkDiffOuterScalingCora I).toSet := by -- --- PROOF ---
   intro Z I h
   -- `(-1, -1, -1) + y ∈ Z` for every `y ∈ [0, 1]³`: coefficients `y - 1`
-  have hmem : (fun _ => -1 : Vec ℝ 3) ∈ minkowskiDiff Z.construct I.construct := by
+  have hmem : (fun _ => -1 : Vec ℝ 3) ∈ minkowskiDiff Z.toSet I.toSet := by
     intro y hy
     refine ⟨fun j => -1 + y j, fun j => ?_, ?_⟩
     · have hj : 0 ≤ y j ∧ y j ≤ 1 := hy j

@@ -54,7 +54,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
 noncomputable instance LinearSys.reachInstance :
     Reach (LinearSys 𝕋) (fun n _ => Reach.Params (S n) ℝ) (LinearSys.ReachStepOptions ℝ) S where
-  reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
+  reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (toSet params.X₀)
   reach sys params options :=
     if 0 < params.tFinal - params.tStart ∧ 0 < options.Δt then
       some (sys.reachAdmissible params options)
@@ -69,7 +69,7 @@ noncomputable instance LinearSys.reachInstance :
 unambiguous between it and `LinearSys.reachInstance`. -/
 @[reducible] noncomputable def LinearSys.reachWrappingFreeInstance :
     Reach (LinearSys 𝕋) (fun n _ => Reach.Params (S n) ℝ) (LinearSys.ReachStepOptions ℝ) S where
-  reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
+  reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (toSet params.X₀)
   reach sys params options :=
     if 0 < options.Δt then some (sys.reachWrappingFree params options) else none
   reach_outer sys params options _ hR := by
@@ -82,7 +82,7 @@ noncomputable instance LinearSys.WithInput.reachInstance
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)] :
     Reach (LinearSys.WithInput 𝕋 S) (fun n _ => Reach.Params (S n) ℝ)
       (LinearSys.ReachStepOptions ℝ) S where
-  reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
+  reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (toSet params.X₀)
   reach sys params options :=
     if 0 < options.Δt then some (sys.reach params options) else none
   reach_outer sys params options _ hR := by
@@ -96,7 +96,7 @@ noncomputable instance LinearSys.WithInputSplit.reachInstance
     [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)] :
     Reach (LinearSys.WithInputSplit 𝕋 S) (fun n _ => Reach.Params (S n) ℝ)
       (LinearSys.ReachStepOptions ℝ) S where
-  reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (construct params.X₀)
+  reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (toSet params.X₀)
   reach sys params options :=
     if 0 < options.Δt then some (sys.reach params options) else none
   reach_outer sys params options _ hR := by

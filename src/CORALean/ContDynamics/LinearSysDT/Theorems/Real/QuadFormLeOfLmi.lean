@@ -19,7 +19,7 @@ nonpositive at every `A` in the convex hull of the vertices, which
 `Zonotope.pRadius_predict_strip_le` turns into the P-radius bound [1, Eq. 4]. Two steps, as in the
 paper: the matrix is affine in the vertex, so the set of `A` at which it is semidefinite is convex
 and holds the hull; at one `A`, the Schur complement (`Matrix.PosDef.fromBlocks₂₂`) gives the form
-of Eq. 8. That `[A]` is the hull of its vertices is `Interval.construct_subset_convexHull_vertices`.
+of Eq. 8. That `[A]` is the hull of its vertices is `Interval.toSet_subset_convexHull_vertices`.
 
 ## Inputs
 * `G` – vertex matrices

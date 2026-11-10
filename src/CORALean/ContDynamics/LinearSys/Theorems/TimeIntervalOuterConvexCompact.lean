@@ -81,14 +81,14 @@ theorem LinearSys.IsCanonicalTrajectory.timeInterval_outer_convexCompact
     {sys : LinearSys 𝕋 n} {T : Set ℝ} {R₀ U : S n} {x u : ℝ → Vec ℝ n} {r : ℝ}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
-    (ht0 : 0 ≤ t) (htr : t ≤ r) (h0 : (0 : Vec ℝ n) ∈ construct U) :
-    x t ∈ construct (Plus.plus
+    (ht0 : 0 ≤ t) (htr : t ≤ r) (h0 : (0 : Vec ℝ n) ∈ toSet U) :
+    x t ∈ toSet (Plus.plus
       (sys.timeInterval r (m + 2) R₀) (sys.inputSolution r (m + 2) U)) :=
   traj.timeInterval_outer_inputSolution hr hT hε ht0 htr
-    (ConvexSet.convex_construct U) (CompactSet.isClosed_construct U)
-    (CompactSet.isBounded_construct U)
-    (ConvexSet.convex_construct _) (CompactSet.isClosed_construct _)
-    (CompactSet.isBounded_construct _) h0
+    (ConvexSet.convex_toSet U) (CompactSet.isClosed_toSet U)
+    (CompactSet.isBounded_toSet U)
+    (ConvexSet.convex_toSet _) (CompactSet.isClosed_toSet _)
+    (CompactSet.isBounded_toSet _) h0
 
 end CORALean
 

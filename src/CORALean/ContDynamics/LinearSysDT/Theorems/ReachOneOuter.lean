@@ -53,8 +53,8 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.reach_one_outer (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o) (R U : S n)
-    {x u : Vec ℝ n} (hx : x ∈ construct R) (hu : u ∈ construct U) :
-    toRealMat sys.A *ᵥ x + u ∈ construct (sys.reach ⟨R, U, 0, 1⟩ ⟨o, ho⟩) :=
+    {x u : Vec ℝ n} (hx : x ∈ toSet R) (hu : u ∈ toSet U) :
+    toRealMat sys.A *ᵥ x + u ∈ toSet (sys.reach ⟨R, U, 0, 1⟩ ⟨o, ho⟩) :=
   reduce_outer _ _ (plus_outer _ _
     (Set.add_mem_add
       (mtimes_outer sys.A _ (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))

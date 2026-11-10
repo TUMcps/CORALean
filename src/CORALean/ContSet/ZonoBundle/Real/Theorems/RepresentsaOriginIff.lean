@@ -38,7 +38,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.representsa_origin_iff (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k) :
-    zB.construct = {0} ↔ zB.representsa_origin hk := by
+    zB.toSet = {0} ↔ zB.representsa_origin hk := by
   rw [← ZonoBundle.conZonotopeAll_exact zB hk]
   exact ConZonotope.representsa_origin_iff _
 

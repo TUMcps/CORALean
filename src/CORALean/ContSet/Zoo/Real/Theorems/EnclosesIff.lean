@@ -40,12 +40,12 @@ variable {n : ℕ}
 theorem Zoo.encloses_iff {Z : Zoo n} {f : Vec ℝ n → ℝ} : -- --- CONCL ---
     Z.Encloses f ↔ (∀ T, Z.taylm = some T → T.Encloses f) ∧
       ∀ I, Z.ivl = some I → ∀ t ∈ Taylm.box n,
-        (fun _ => f t : Vec ℝ 1) ∈ I.construct := by -- --- PROOF ---
+        (fun _ => f t : Vec ℝ 1) ∈ I.toSet := by -- --- PROOF ---
   obtain ⟨a, b⟩ := Z
-  show f ∈ ContSet.construct (Zoo.members ⟨a, b⟩) ↔ _
-  simp only [SetIntersection.mem_construct, Zoo.members, List.mem_append, List.mem_map,
+  show f ∈ ContSet.toSet (Zoo.members ⟨a, b⟩) ↔ _
+  simp only [SetIntersection.mem_toSet, Zoo.members, List.mem_append, List.mem_map,
     Option.mem_toList]
-  cases a <;> cases b <;> simp [ContSet.construct, or_imp, forall_and, forall_eq']
+  cases a <;> cases b <;> simp [ContSet.toSet, or_imp, forall_and, forall_eq']
 
 end CORALean.Real
 

@@ -65,7 +65,7 @@ structure Interval (α : Type) where
   sup : α
 
 /-- `sup i < inf i` denotes the empty set `∅` -/
-def Interval.construct (I : Interval α) : Set α :=
+def Interval.toSet (I : Interval α) : Set α :=
   {x | ∀ i, entry I.inf i ≤ entry x i ∧ entry x i ≤ entry I.sup i}
 
 end CORALean.Real

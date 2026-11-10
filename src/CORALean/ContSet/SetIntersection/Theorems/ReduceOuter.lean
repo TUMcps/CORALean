@@ -40,11 +40,11 @@ variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α] [Reduce 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SetIntersection.reduce_outer (I : SetIntersection S) (o : ℕ) : -- --- CONCL ---
-    ContSet.construct I ⊆
-      ContSet.construct (SetIntersection.reduce I o) := by -- --- PROOF ---
+    ContSet.toSet I ⊆
+      ContSet.toSet (SetIntersection.reduce I o) := by -- --- PROOF ---
   intro x hx
-  have hx := SetIntersection.mem_construct.mp hx
-  refine SetIntersection.mem_construct.mpr ?_
+  have hx := SetIntersection.mem_toSet.mp hx
+  refine SetIntersection.mem_toSet.mpr ?_
   intro t ht
   obtain ⟨s, hs, rfl⟩ := List.mem_map.mp ht
   exact Reduce.reduce_outer s o (hx s hs)

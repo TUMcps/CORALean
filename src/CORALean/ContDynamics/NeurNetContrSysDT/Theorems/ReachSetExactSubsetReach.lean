@@ -61,8 +61,8 @@ theorem NeurNetContrSysDT.reachSetExact_subset_reach (sys : NeurNetContrSysDT (L
     (U_ext : S sys.nExt) {o : ℕ} (ho : 0 < o) (R₀ : S n) {π : Vec ℝ n → Vec ℝ sys.m}
     (hπ : sys.contr.Encloses π) (W : Set (Vec ℝ sys.plant.r))
     (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) (k : ℕ) : -- --- CONCL ---
-    sys.reachSetExact π R₀ (construct U_ext) W k ⊆
-      construct (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
+    sys.reachSetExact π R₀ (toSet U_ext) W k ⊆
+      toSet (sys.reach U_ext ⟨R₀, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   rintro _ ⟨x, v, w, traj, rfl⟩
   exact sys.reach_outer U_ext ho R₀ hπ hW traj k
 

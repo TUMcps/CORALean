@@ -73,7 +73,7 @@ private theorem LinearSys.aux_isVerifySpecFloat_of_verifyStepFloat
     : -- --- CONCL ---
     LinearSys.IsVerifySpecFloat G F Reach := by -- --- PROOF ---
   -- the outer approximation, read as a constrained zonotope, still contains `Reach`
-  have hR : Reach ⊆ (reachFn εmax).conZonotope.construct :=
+  have hR : Reach ⊆ (reachFn εmax).conZonotope.toSet :=
     (h.outer εmax).trans (Zonotope.conZonotope_contains _)
   simp only [LinearSys.step_verifyStepFloat, LinearSys.toReal_maximumFold,
     LinearSys.toReal_minimumFold] at hG hF

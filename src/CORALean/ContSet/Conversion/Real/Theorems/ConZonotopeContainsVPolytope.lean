@@ -44,14 +44,14 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- back: each listed vertex comes from a domain vertex, hence from a point of the set
 theorem ConZonotope.contains_vPolytope (cZ : ConZonotope α)
-    (hne : cZ.domain.construct.Nonempty) : -- --- CONCL ---
-    (cZ.vPolytope hne).construct ⊆ cZ.construct := by -- --- PROOF ---
-  rw [VPolytope.construct_eq_convexHull]
-  refine convexHull_min ?_ cZ.convex_construct
+    (hne : cZ.domain.toSet.Nonempty) : -- --- CONCL ---
+    (cZ.vPolytope hne).toSet ⊆ cZ.toSet := by -- --- PROOF ---
+  rw [VPolytope.toSet_eq_convexHull]
+  refine convexHull_min ?_ cZ.convex_toSet
   rintro _ ⟨l, rfl⟩
-  have hd : (cZ.domain.vPolytope hne).V l ∈ cZ.domain.construct :=
+  have hd : (cZ.domain.vPolytope hne).V l ∈ cZ.domain.toSet :=
     cZ.domain.contains_vPolytope hne (by
-      rw [VPolytope.construct_eq_convexHull]
+      rw [VPolytope.toSet_eq_convexHull]
       exact subset_convexHull ℝ _ ⟨l, rfl⟩)
   obtain ⟨hb, hP⟩ := ConZonotope.mem_domain_iff.mp hd
   exact ⟨_, hb, hP, rfl⟩

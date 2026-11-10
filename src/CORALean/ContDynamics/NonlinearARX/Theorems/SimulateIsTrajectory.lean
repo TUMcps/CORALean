@@ -45,8 +45,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinearARX.simulate_isTrajectory (sys : NonlinearARX dy du p) {Y₀ : S (p * dy)}
-    {U : S du} {y₀ : Vec ℝ (p * dy)} (hy₀ : y₀ ∈ construct Y₀) {u : ℕ → Vec ℝ du}
-    (hu : ∀ k, u k ∈ construct U) : sys.IsTrajectory Y₀ U (sys.simulate y₀ u) u where
+    {U : S du} {y₀ : Vec ℝ (p * dy)} (hy₀ : y₀ ∈ toSet Y₀) {u : ℕ → Vec ℝ du}
+    (hu : ∀ k, u k ∈ toSet U) : sys.IsTrajectory Y₀ U (sys.simulate y₀ u) u where
   init := by
     -- the window of the first `p` outputs is `y₀` itself
     have h : NonlinearARX.stack p (sys.simulate y₀ u) 0 = y₀ := by

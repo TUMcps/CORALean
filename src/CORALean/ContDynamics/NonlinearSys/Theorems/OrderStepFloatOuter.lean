@@ -59,9 +59,9 @@ theorem NonlinearSys.FloatHessModel.Encloses.orderStepFloat_outer
     ∀ Rτ Rt, (Rτ, Rt) ∈ fm.orderStepFloat κ U options R →
       0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
         sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
-          R.construct U.construct x u y →
-        (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
-          x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
+          R.toSet U.toSet x u y →
+        (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.toSet) ∧
+          x (toReal options.Δt) ∈ Rt.toSet := by -- --- PROOF ---
   intro Rτ Rt (hstep : fm.orderStepFloat κ U options R = some (Rτ, Rt))
   unfold NonlinearSys.FloatHessModel.orderStepFloat at hstep
   split at hstep

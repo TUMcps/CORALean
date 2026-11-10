@@ -68,15 +68,15 @@ example {n : ℕ} {s₁ s₂ : ℝ} (hne₁ : s₁ ≠ 0) (hne₂ : s₂ ≠ 0)
 /-- The instance is lawful, and its law is the operation's own theorem. -/
 example {n : ℕ} {s₁ s₂ : ℝ} (hne₁ : s₁ ≠ 0) (hne₂ : s₂ ≠ 0)
     (hs : 1 / s₁ ^ 2 + 1 / s₂ ^ 2 ≤ 1) (E₁ E₂ : Ellipsoid n) :
-    construct E₁ + construct E₂ ⊆ construct (Ellipsoid.plus s₁ s₂ E₁ E₂) := by
+    toSet E₁ + toSet E₂ ⊆ toSet (Ellipsoid.plus s₁ s₂ E₁ E₂) := by
   letI := Ellipsoid.plusInstance hne₁ hne₂ hs
   exact Plus.plus_outer E₁ E₂
 
 /-- A caller holding Kurzhanski and Varaiya's `l` is no worse off than before:
 its two square roots discharge the three obligations. -/
 example {n : ℕ} {l : ℝ} (hl : 0 < l) (E₁ E₂ : Ellipsoid n) :
-    construct E₁ + construct E₂
-      ⊆ construct (Ellipsoid.plus (Real.sqrt (1 + 1 / l)) (Real.sqrt (1 + l)) E₁ E₂) := by
+    toSet E₁ + toSet E₂
+      ⊆ toSet (Ellipsoid.plus (Real.sqrt (1 + 1 / l)) (Real.sqrt (1 + l)) E₁ E₂) := by
   obtain ⟨hne₁, hne₂, hs⟩ := Ellipsoid.plus_scalings_admissible hl
   letI := Ellipsoid.plusInstance hne₁ hne₂ (le_of_eq hs)
   exact Plus.plus_outer E₁ E₂
@@ -94,7 +94,7 @@ example {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {s�
     (hne₁ : toReal s₁ ≠ 0) (hne₂ : toReal s₂ ≠ 0)
     (hs : 1 / toReal s₁ ^ 2 + 1 / toReal s₂ ^ 2 ≤ 1) (E₁ E₂ : Ellipsoid 𝕋 n) :
     letI := Ellipsoid.plusInstance hne₁ hne₂ hs
-    construct E₁ + construct E₂ ⊆ construct (E₁ ⊞ E₂) := by
+    toSet E₁ + toSet E₂ ⊆ toSet (E₁ ⊞ E₂) := by
   letI := Ellipsoid.plusInstance hne₁ hne₂ hs
   exact Plus.plus_outer E₁ E₂
 

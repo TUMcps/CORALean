@@ -57,7 +57,7 @@ theorem NeurNetContrSysDT.IsTrajectory.linear {sys : NeurNetContrSysDT (LinearSy
     {W : Set (Vec ℝ sys.plant.r)}
     (hW : ∀ v ∈ W, toRealMat sys.plant.E *ᵥ v = 0) {x : ℕ → Vec ℝ n} {v : ℕ → Vec ℝ sys.nExt}
     {w : ℕ → Vec ℝ sys.plant.r} (traj : sys.IsTrajectory π R₀ U_ext W x v w) : -- --- CONCL ---
-    x 0 ∈ construct R₀ ∧ (∀ k, v k ∈ U_ext) ∧
+    x 0 ∈ toSet R₀ ∧ (∀ k, v k ∈ U_ext) ∧
       ∀ k, x (k + 1) = sys.map π (x k) (v k) := by -- --- PROOF ---
   obtain ⟨vv, y, tr⟩ := traj
   refine ⟨tr.init, fun k => ?_, fun k => ?_⟩

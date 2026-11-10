@@ -50,9 +50,9 @@ variable {q₁ q₂ n : ℕ}
 
 theorem HPolytope.ineqs_eq_iff_supportFunc {A₁ : Mat ℝ q₁ n} {b₁ : Vec ℝ q₁}
     {A₂ : Mat ℝ q₂ n} {b₂ : Vec ℝ q₂} : -- --- CONCL ---
-    (HPolytope.ineqs A₁ b₁).construct = (HPolytope.ineqs A₂ b₂).construct ↔
-      (∀ j, supportFunc (HPolytope.ineqs A₁ b₁).construct (HPolytope.rowLin A₂ j) ≤ (b₂ j : EReal))
-        ∧ ∀ j, supportFunc (HPolytope.ineqs A₂ b₂).construct (HPolytope.rowLin A₁ j)
+    (HPolytope.ineqs A₁ b₁).toSet = (HPolytope.ineqs A₂ b₂).toSet ↔
+      (∀ j, supportFunc (HPolytope.ineqs A₁ b₁).toSet (HPolytope.rowLin A₂ j) ≤ (b₂ j : EReal))
+        ∧ ∀ j, supportFunc (HPolytope.ineqs A₂ b₂).toSet (HPolytope.rowLin A₁ j)
           ≤ (b₁ j : EReal) := by -- --- PROOF ---
   rw [Set.Subset.antisymm_iff, HPolytope.ineqs_subset_iff_supportFunc,
     HPolytope.ineqs_subset_iff_supportFunc]

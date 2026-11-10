@@ -10,7 +10,7 @@ public import CORALean.ContSet.Interval.Real.Operations.Round
 # `Interval.round` encloses the exact rounding
 
 Outer: the exact layer's `Interval.round` of the nominal box is inside the float result's
-construct, so, with the exact layer's `round_outer`, is the rounding of every point of the nominal
+`toSet`, so, with the exact layer's `round_outer`, is the rounding of every point of the nominal
 box. The bounds are the integers `roundAway` of the scalars' exact values, between `intDown` and
 `intUp` of themselves.
 
@@ -61,7 +61,7 @@ private theorem aux_roundAwayInt_cast (q : ℚ) : -- --- CONCL ---
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.round_outer (I : Interval (Vec 𝕋 n)) : -- --- CONCL ---
-    I.nominal.round.construct ⊆ I.round.construct := by -- --- PROOF ---
+    I.nominal.round.toSet ⊆ I.round.toSet := by -- --- PROOF ---
   intro x hx i
   have h := hx i
   have hl : CORALean.Real.roundAway (toReal (I.inf i)) =

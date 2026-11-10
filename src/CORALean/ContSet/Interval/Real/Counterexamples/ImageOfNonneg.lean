@@ -53,12 +53,12 @@ theorem Interval.image_of_nonneg_counterexample : -- --- CONCL ---
     let a : Vec ℝ 2 := fun _ => 0
     let b : Vec ℝ 2 := fun _ => 1
     (∀ i j, 0 ≤ A i j) ∧ (∀ j, a j ≤ b j) ∧
-      (A *ᵥ ·) '' (⟨a, b⟩ : Interval (Vec ℝ 2)).construct ≠
-        (⟨A *ᵥ a, A *ᵥ b⟩ : Interval (Vec ℝ 2)).construct := by -- --- PROOF ---
+      (A *ᵥ ·) '' (⟨a, b⟩ : Interval (Vec ℝ 2)).toSet ≠
+        (⟨A *ᵥ a, A *ᵥ b⟩ : Interval (Vec ℝ 2)).toSet := by -- --- PROOF ---
   intro A a b
   refine ⟨fun _ _ => zero_le_one, fun _ => zero_le_one, fun h => ?_⟩
   -- `(2, 0)` is in the box `[0, 2]²`
-  have hmem : (![2, 0] : Vec ℝ 2) ∈ (⟨A *ᵥ a, A *ᵥ b⟩ : Interval (Vec ℝ 2)).construct := by
+  have hmem : (![2, 0] : Vec ℝ 2) ∈ (⟨A *ᵥ a, A *ᵥ b⟩ : Interval (Vec ℝ 2)).toSet := by
     intro i
     change (A *ᵥ a) i ≤ (![2, 0] : Vec ℝ 2) i ∧ (![2, 0] : Vec ℝ 2) i ≤ (A *ᵥ b) i
     fin_cases i <;> simp [A, a, b, mulVec, dotProduct]

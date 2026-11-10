@@ -56,8 +56,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 theorem ConPolyZono.getSubset_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : Fin cPZ.p)
     (cen rad : 𝕋) : -- --- CONCL ---
     ((Real.ConPolyZono.getSubset cPZ.nominalCore k (toReal cen) (toReal rad)).relax
-        (toRealVec cPZ.cons.b_error)).construct + cPZ.I_error.construct
-      ⊆ (cPZ.getSubset k cen rad).construct := by -- --- PROOF ---
+        (toRealVec cPZ.cons.b_error)).toSet + cPZ.I_error.toSet
+      ⊆ (cPZ.getSubset k cen rad).toSet := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨a, β, ha, hβ, hsat, hz⟩ := (Real.ConPolyZono.mem_relax_vec_iff _ _).mp hz
   -- the exact generators, the stored (rounded down) ones and the monomials, named once
@@ -72,7 +72,7 @@ theorem ConPolyZono.getSubset_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (k : F
   set err : Fin n → ℝ := fun i => ∑ l : Fin (cPZ.toPolyZonotope.h *
     (cPZ.toPolyZonotope.maxExp k + 1)), (G l i - toReal (Gd i l)) * mon l with herr
   have hbox : err ∈
-      GE.construct :=
+      GE.toSet :=
     PolyZonotope.mem_generatorError_monomial
       (PolyZonotope.getSubsetG_close cPZ.toPolyZonotope k cen rad) ha
   -- the float point at the same factors and coefficients, plus what the rounding and the box add

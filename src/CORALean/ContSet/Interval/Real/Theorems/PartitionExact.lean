@@ -80,8 +80,8 @@ private theorem Interval.aux_partition_exists (a b x : ℝ) (s : ℕ) (hs : 0 < 
 
 theorem Interval.partition_exact (I : Interval (Vec ℝ n)) (splits : ℕ)
     (hs : 0 < splits) : -- --- CONCL ---
-    (⋃ ind : Fin n → Fin splits, (I.partition splits ind).construct) =
-      I.construct := by -- --- PROOF ---
+    (⋃ ind : Fin n → Fin splits, (I.partition splits ind).toSet) =
+      I.toSet := by -- --- PROOF ---
   have hs' : (0 : ℝ) < splits := Nat.cast_pos.mpr hs
   ext x
   simp only [Set.mem_iUnion]

@@ -86,7 +86,7 @@ private theorem aux_integral_exp_sub_mul {a τ : ℝ} (ha : 0 < a) (μ : ℝ) : 
 
 /-- eq. 3 of [1]: an input bounded by `μ` reaches no further than `(e^{τ‖A‖} - 1)/‖A‖ · μ`. -/
 theorem LinearSys.norm_le_of_mem_inputReach (sys : LinearSys 𝕋 n) {U : S n} {μ τ : ℝ}
-    (hA : 0 < ‖toRealMat sys.A‖) (hτ : 0 ≤ τ) (hU : ∀ u ∈ construct U, ‖u‖ ≤ μ)
+    (hA : 0 < ‖toRealMat sys.A‖) (hτ : 0 ≤ τ) (hU : ∀ u ∈ toSet U, ‖u‖ ≤ μ)
     {v : Vec ℝ n} (hv : v ∈ sys.inputReach U τ) : -- --- CONCL ---
     ‖v‖ ≤ (Real.exp (τ * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖ * μ := by -- --- PROOF ---
   obtain ⟨u, hu, -, rfl⟩ := hv

@@ -63,18 +63,18 @@ center, `f(x, u) - A(x - x✱)` lies in `linInputFloat`. -/
 theorem NonlinearSys.FloatModel.Encloses.linInputFloat_outer
     {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) {xs : Vec 𝕋 n} {X : Interval (Vec 𝕋 n)}
-    {U : Zonotope (Vec 𝕋 m)} {U' : Interval (Vec 𝕋 m)} (hxs : toRealVec xs ∈ X.construct)
-    (hU : U.construct ⊆ U'.construct) (hus : toRealVec U.c ∈ U'.construct)
-    {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ X.construct) (hu : u ∈ U.construct) : -- --- CONCL ---
+    {U : Zonotope (Vec 𝕋 m)} {U' : Interval (Vec 𝕋 m)} (hxs : toRealVec xs ∈ X.toSet)
+    (hU : U.toSet ⊆ U'.toSet) (hus : toRealVec U.c ∈ U'.toSet)
+    {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ X.toSet) (hu : u ∈ U.toSet) : -- --- CONCL ---
     sys.f x u - Scalar.toRealMat A *ᵥ (x - toRealVec xs)
-      ∈ (fm.linInputFloat A B xs X U U').construct := by -- --- PROOF ---
+      ∈ (fm.linInputFloat A B xs X U U').toSet := by -- --- PROOF ---
   set us := toRealVec U.c with hus_def
   have hL := (h.slopeRemainder_abstractionError A B hxs hus).encloses x hx u (hU hu)
   -- `f(x✱, u✱)`, from the model at the point
-  have hf₀ : sys.f (toRealVec xs) us ∈ (fm.f (Interval.point xs) (Interval.point U.c)).construct :=
+  have hf₀ : sys.f (toRealVec xs) us ∈ (fm.f (Interval.point xs) (Interval.point U.c)).toSet :=
     h.f_mem _ _ _ (Interval.mem_point (α := Vec 𝕋 n) xs) _ (Interval.mem_point (α := Vec 𝕋 m) U.c)
   -- `B(u - u✱)`, `u - u✱` being in `U`'s recentered set
-  have hBu : Scalar.toRealMat B *ᵥ (u - us) ∈ construct
+  have hBu : Scalar.toRealMat B *ᵥ (u - us) ∈ toSet
     (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
       (Recenter.recenter U)) :=
     Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B _

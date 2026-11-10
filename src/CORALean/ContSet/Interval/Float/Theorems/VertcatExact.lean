@@ -41,13 +41,13 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m₁ m₂ n 
 
 theorem Interval.vertcat_exact (I : Interval (Mat 𝕋 m₁ n))
     (J : Interval (Mat 𝕋 m₂ n)) : -- --- CONCL ---
-    (I.vertcat J).construct = (fun p : Mat ℝ m₁ n × Mat ℝ m₂ n => Fin.append p.1 p.2) ''
-      (I.construct ×ˢ J.construct) := by -- --- PROOF ---
+    (I.vertcat J).toSet = (fun p : Mat ℝ m₁ n × Mat ℝ m₂ n => Fin.append p.1 p.2) ''
+      (I.toSet ×ˢ J.toSet) := by -- --- PROOF ---
   have h : (I.vertcat J).nominal = Real.Interval.vertcat I.nominal J.nominal := by
     unfold Interval.nominal Interval.vertcat Real.Interval.vertcat
     congr 1 <;> funext k j <;> refine Fin.addCases (fun i => ?_) (fun i => ?_) k <;>
       simp [RealImage.realImage, toRealMat]
-  show (I.vertcat J).nominal.construct = _
+  show (I.vertcat J).nominal.toSet = _
   rw [h]
   exact Real.Interval.vertcat_exact I.nominal J.nominal
 

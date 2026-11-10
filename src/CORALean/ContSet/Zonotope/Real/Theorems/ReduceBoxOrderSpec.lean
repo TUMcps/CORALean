@@ -54,7 +54,7 @@ theorem Zonotope.reduceBoxOrder_spec (Z : Zonotope (Vec ℝ n)) (hn : 0 < n)
     calc Z.h = Z.h * 1 := (mul_one Z.h).symm
       _ ≤ Z.h * n := Nat.mul_le_mul (le_refl Z.h) hn
   have hmem : Z.IsReduceBoxAdmissible B Z.h := by
-    show (Z.reduceBox Z.h).construct ⊆ B
+    show (Z.reduceBox Z.h).toSet ⊆ B
     rw [Zonotope.reduceBox_eq_ofPoint hthr]
     intro x hx
     rw [Zonotope.mem_ofPoint_iff] at hx

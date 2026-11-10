@@ -74,8 +74,8 @@ theorem HPolytope.ahPolytope_subset_convexHull_ahPolytope_of_cert {ny qy : Fin N
     {xbar : Vec ℝ n} {X : Mat ℝ n nx} {Hx : Mat ℝ qx nx} {hx : Vec ℝ qx}
     {ybar : Fin N → Vec ℝ n} {Y : (i : Fin N) → Mat ℝ n (ny i)}
     {Hy : (i : Fin N) → Mat ℝ (qy i) (ny i)} {hy : (i : Fin N) → Vec ℝ (qy i)}
-    (hne : ∀ i, (HPolytope.ineqs (Hy i) (hy i)).construct.Nonempty)
-    (hb : ∀ i, Bornology.IsBounded (HPolytope.ineqs (Hy i) (hy i)).construct)
+    (hne : ∀ i, (HPolytope.ineqs (Hy i) (hy i)).toSet.Nonempty)
+    (hb : ∀ i, Bornology.IsBounded (HPolytope.ineqs (Hy i) (hy i)).toSet)
     {Λ : (i : Fin N) → Mat ℝ (qy i) qx} {lam : Fin N → ℝ} {β : (i : Fin N) → Vec ℝ (ny i)}
     {Γ : (i : Fin N) → Mat ℝ (ny i) nx} (hΛ : ∀ i j k, 0 ≤ Λ i j k) (hlam : ∀ i, 0 ≤ lam i)
     (h1 : ∀ i, Λ i * Hx = Hy i * Γ i) (h2 : ∀ i, Λ i *ᵥ hx ≤ lam i • hy i + Hy i *ᵥ β i)
@@ -85,10 +85,10 @@ theorem HPolytope.ahPolytope_subset_convexHull_ahPolytope_of_cert {ny qy : Fin N
         ⊆ convexHull ℝ (⋃ i, HPolytope.ahPolytope (ybar i) (Y i)
         (HPolytope.ineqs (Hy i) (hy i))) := by -- --- PROOF ---
   rintro _ ⟨p, hp, rfl⟩
-  have hq : ∀ i, Γ i *ᵥ p - β i ∈ (HPolytope.ineqs (Hy i) (lam i • hy i)).construct :=
+  have hq : ∀ i, Γ i *ᵥ p - β i ∈ (HPolytope.ineqs (Hy i) (lam i • hy i)).toSet :=
     fun i => HPolytope.mem_ineqs_of_cert (hΛ i) (h1 i) (h2 i) hp
   -- `qᵢ = λᵢ zᵢ` with `zᵢ ∈ Pᵢ`, as for `[1, Prop. 3]`
-  have hz : ∀ i, ∃ z ∈ (HPolytope.ineqs (Hy i) (hy i)).construct,
+  have hz : ∀ i, ∃ z ∈ (HPolytope.ineqs (Hy i) (hy i)).toSet,
       Γ i *ᵥ p - β i = lam i • z := by
     intro i
     have hqi := HPolytope.mem_ineqs_iff.mp (hq i)

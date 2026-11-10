@@ -68,10 +68,10 @@ theorem LinearSysDT.intersectDescriptorHd_outer (E T A : Mat ℝ n n) (N Λ : Ma
     (B : Mat ℝ n nu) (D : Mat ℝ n nd) (C : Mat ℝ ny n) (F : Mat ℝ ny nd) (Hd : Mat ℝ nd m)
     (u : Vec ℝ nu) (y : Vec ℝ ny) (X : Zonotope (Vec ℝ n))
     (hTN : T * E + N * C = 1) : -- --- CONCL ---
-    {x | ∃ xp ∈ X.construct, ∃ b : Vec ℝ m, (∀ i, |b i| ≤ 1) ∧
+    {x | ∃ xp ∈ X.toSet, ∃ b : Vec ℝ m, (∀ i, |b i| ≤ 1) ∧
         E *ᵥ x - B *ᵥ u = A *ᵥ xp + D *ᵥ (Hd *ᵥ b)} ∩
       {x | ∃ b : Vec ℝ m, (∀ i, |b i| ≤ 1) ∧ y - C *ᵥ x = F *ᵥ (Hd *ᵥ b)} ⊆
-      (X.intersectDescriptor T N Λ A B (D * Hd) C (F * Hd) u y).construct := by -- --- PROOF ---
+      (X.intersectDescriptor T N Λ A B (D * Hd) C (F * Hd) u y).toSet := by -- --- PROOF ---
   rintro x ⟨⟨xp, hxp, b, hb, hE⟩, b', hb', hy⟩
   -- the sets of [1, Thm. 1] at `D H_d`, `F H_d`, no unknown input, noise `-b'`
   refine LinearSysDT.intersectDescriptor_outer E T A N Λ B (D * Hd) (0 : Mat ℝ n 0) C (F * Hd)

@@ -46,7 +46,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 theorem Zonotope.minkDiffOrEmpty_inner (Z₁ Z₂ : Zonotope α) {D : Zonotope α}
     (hD : Z₁.minkDiffOrEmpty Z₂ = .of D) : -- --- CONCL ---
-    D.construct ⊆ minkowskiDiff Z₁.construct Z₂.construct := by -- --- PROOF ---
+    D.toSet ⊆ minkowskiDiff Z₁.toSet Z₂.toSet := by -- --- PROOF ---
   unfold Zonotope.minkDiffOrEmpty at hD
   split_ifs at hD with h
   -- `D` is what the chosen candidate returned, and that candidate checked out

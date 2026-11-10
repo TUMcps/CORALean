@@ -52,11 +52,11 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋
 theorem LinearSysDT.backReachForall_inner (sys : LinearSysDT 𝕋 n) {Ainv : Mat 𝕋 n n}
     (hA : toRealMat sys.A * toRealMat Ainv = 1) {diff : S n → S n → Option (S n)}
     (hdiff : ∀ B V D, diff B V = some D →
-      construct D ⊆ minkowskiDiff (construct B) (construct V))
-    (hinv : ∀ s : S n, construct (mtimes Ainv s) ⊆ (toRealMat Ainv *ᵥ ·) '' construct s)
+      toSet D ⊆ minkowskiDiff (toSet B) (toSet V))
+    (hinv : ∀ s : S n, toSet (mtimes Ainv s) ⊆ (toRealMat Ainv *ᵥ ·) '' toSet s)
     (T U : S n) : -- --- CONCL ---
     ∀ (k : ℕ) (R : S n), sys.backReachForall ⟨T, U, 0, k⟩ ⟨Ainv, diff⟩ = some R →
-      construct R ⊆ sys.backReachSetForallExact T U k := by -- --- PROOF ---
+      toSet R ⊆ sys.backReachSetForallExact T U k := by -- --- PROOF ---
   intro k
   induction k with
   | zero => intro R hR; rw [← Option.some.inj hR]; exact subset_rfl
@@ -71,7 +71,7 @@ theorem LinearSysDT.backReachForall_inner (sys : LinearSysDT 𝕋 n) {Ainv : Mat
     obtain ⟨D, hD, rfl⟩ := hR'
     intro z hz
     obtain ⟨y, hy, rfl⟩ := hinv D hz
-    show ∀ w ∈ construct U,
+    show ∀ w ∈ toSet U,
       toRealMat sys.A *ᵥ (toRealMat Ainv *ᵥ y) + w ∈ sys.backReachSetForallExact T U k
     -- one step forward undoes `Ainv`, and the difference pays for the input
     intro w hw

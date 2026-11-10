@@ -70,7 +70,7 @@ private theorem PolyZonotope.aux_taylm_poly (pZ : PolyZonotope (Vec 𝕋 n)) (N 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.taylm_exact (pZ : PolyZonotope (Vec 𝕋 n)) (N : ℕ) : -- --- CONCL ---
-    Taylm.construct (pZ.taylm N) = pZ.construct := by -- --- PROOF ---
+    Taylm.toSet (pZ.taylm N) = pZ.toSet := by -- --- PROOF ---
   ext x
   constructor
   -- a point of the range set: the variables split into the factors and the coefficients

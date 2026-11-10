@@ -54,7 +54,7 @@ namespace CORALean.Real
 private abbrev aux_hex : Zonotope (Vec ℝ 2) := ⟨3, 0, ![![1, 0], ![0, 1], ![1, 1]]⟩
 
 /-- A point of the hexagon has `|z₀|, |z₁|, |z₀ - z₁| ≤ 2`. -/
-private theorem aux_hex_bounds {z : Vec ℝ 2} (hz : z ∈ aux_hex.construct) : -- --- CONCL ---
+private theorem aux_hex_bounds {z : Vec ℝ 2} (hz : z ∈ aux_hex.toSet) : -- --- CONCL ---
     -2 ≤ z 0 ∧ z 0 ≤ 2 ∧ -2 ≤ z 1 ∧ z 1 ≤ 2 ∧ -2 ≤ z 0 - z 1 ∧ z 0 - z 1 ≤ 2 := by -- --- PROOF ---
   obtain ⟨β, hβ, rfl⟩ := hz
   have h0 := abs_le.mp (hβ 0)
@@ -69,7 +69,7 @@ private theorem aux_hex_bounds {z : Vec ℝ 2} (hz : z ∈ aux_hex.construct) : 
 `θ₂ = max(z₀, z₁, 0) - 1`. -/
 private theorem aux_hex_mem {z : Vec ℝ 2} (h0 : |z 0| ≤ 2) (h1 : |z 1| ≤ 2)
     (h01 : |z 0 - z 1| ≤ 2) : -- --- CONCL ---
-    z ∈ aux_hex.construct := by -- --- PROOF ---
+    z ∈ aux_hex.toSet := by -- --- PROOF ---
   obtain ⟨h0l, h0u⟩ := abs_le.mp h0
   obtain ⟨h1l, h1u⟩ := abs_le.mp h1
   obtain ⟨hdl, hdu⟩ := abs_le.mp h01
@@ -100,9 +100,9 @@ private theorem aux_hex_mem {z : Vec ℝ 2} (h0 : |z 0| ≤ 2) (h1 : |z 1| ≤ 2
 
 /-- `u ∈ Z ⊖ conv V` once `u + v ∈ Z` at each of the three vertices. -/
 private theorem aux_mem_minkowskiDiff {u : Vec ℝ 2} {V : Set (Vec ℝ 2)}
-    (hV : ∀ v ∈ V, u + v ∈ aux_hex.construct) :
-    u ∈ minkowskiDiff aux_hex.construct (convexHull ℝ V) := fun _ hs =>
-  convexHull_min hV ((Zonotope.convex_construct aux_hex).translate_preimage_right u) hs
+    (hV : ∀ v ∈ V, u + v ∈ aux_hex.toSet) :
+    u ∈ minkowskiDiff aux_hex.toSet (convexHull ℝ V) := fun _ hs =>
+  convexHull_min hV ((Zonotope.convex_toSet aux_hex).translate_preimage_right u) hs
 
 /-- `θ a` for `|θ| ≤ 1` and `a ≥ 0` lies in `[-a, a]`. -/
 private theorem aux_mul_bounds {θ a : ℝ} (hθ : |θ| ≤ 1) (ha : 0 ≤ a) : -a ≤ θ * a ∧ θ * a ≤ a := by
@@ -112,7 +112,7 @@ private theorem aux_mul_bounds {θ a : ℝ} (hθ : |θ| ≤ 1) (ha : 0 ≤ a) : 
 
 /-- A point of the aligned hexagon, by coordinates. -/
 private theorem aux_aligned_coords {c : Vec ℝ 2} {a : Fin 3 → ℝ} {y : Vec ℝ 2}
-    (hy : y ∈ (aux_hex.aligned c a).construct) : ∃ θ : Fin 3 → ℝ, (∀ j, |θ j| ≤ 1) ∧
+    (hy : y ∈ (aux_hex.aligned c a).toSet) : ∃ θ : Fin 3 → ℝ, (∀ j, |θ j| ≤ 1) ∧
       y 0 = c 0 + θ 0 * a 0 + θ 2 * a 2 ∧ y 1 = c 1 + θ 1 * a 1 + θ 2 * a 2 := by
   obtain ⟨θ, hθ, rfl⟩ := hy
   refine ⟨θ, hθ, ?_, ?_⟩ <;> simp [Zonotope.aligned, aux_hex] <;> erw [Fin.sum_univ_three] <;>
@@ -121,7 +121,7 @@ private theorem aux_aligned_coords {c : Vec ℝ 2} {a : Fin 3 → ℝ} {y : Vec 
 /-- The corner of the aligned hexagon at coefficients `θ`. -/
 private theorem aux_aligned_corner (c : Vec ℝ 2) (a θ : Fin 3 → ℝ) (hθ : ∀ j, |θ j| ≤ 1) :
     ![c 0 + θ 0 * a 0 + θ 2 * a 2, c 1 + θ 1 * a 1 + θ 2 * a 2]
-      ∈ (aux_hex.aligned c a).construct := by
+      ∈ (aux_hex.aligned c a).toSet := by
   refine ⟨θ, hθ, ?_⟩
   funext i
   fin_cases i <;> simp [Zonotope.aligned, aux_hex] <;> erw [Fin.sum_univ_three] <;> simp <;> ring
@@ -134,15 +134,15 @@ triangle misses a point of the true difference. -/
 theorem Zonotope.minkowskiDiff_not_subset_minkDiffAligned : -- --- CONCL ---
     ∃ (Z : Zonotope (Vec ℝ 2)) (S : Set (Vec ℝ 2)), S = convexHull ℝ {![0, 0], ![1, 0], ![1, 1]} ∧
       ∀ (c : Vec ℝ 2) (a : Fin Z.h → ℝ), (∀ i, 0 ≤ a i ∧ a i ≤ 1) →
-        S ⊆ (Z.aligned c a).construct →
-        ∃ u ∈ minkowskiDiff Z.construct S,
-          u ∉ (Z.minkDiffAligned (Z.aligned c a) rfl).construct := by -- --- PROOF ---
+        S ⊆ (Z.aligned c a).toSet →
+        ∃ u ∈ minkowskiDiff Z.toSet S,
+          u ∉ (Z.minkDiffAligned (Z.aligned c a) rfl).toSet := by -- --- PROOF ---
   refine ⟨aux_hex, _, rfl, fun c a ha hS => ?_⟩
   rw [aux_hex.minkDiffAligned_exact (aux_hex.aligned c a) rfl a (fun i => (ha i).1)
     (fun i => (ha i).2) (fun _ => rfl)]
   -- the triangle's vertices are in `Z̄`, which bounds `c` and `a` in each direction
   have hv : ∀ v ∈ ({![0, 0], ![1, 0], ![1, 1]} : Set (Vec ℝ 2)),
-      v ∈ (aux_hex.aligned c a).construct := fun v hv => hS (subset_convexHull ℝ _ hv)
+      v ∈ (aux_hex.aligned c a).toSet := fun v hv => hS (subset_convexHull ℝ _ hv)
   obtain ⟨θ, hθ, e00, e01⟩ := aux_aligned_coords (hv ![0, 0] (by simp))
   obtain ⟨φ, hφ, e10, e11⟩ := aux_aligned_coords (hv ![1, 0] (by simp))
   obtain ⟨ψ, hψ, e20, e21⟩ := aux_aligned_coords (hv ![1, 1] (by simp))
@@ -157,7 +157,7 @@ theorem Zonotope.minkowskiDiff_not_subset_minkDiffAligned : -- --- CONCL ---
   -- a candidate `u` is in `Z ⊖ S` when `u + v ∈ Z` at the three vertices
   have hin : ∀ u : Vec ℝ 2, (∀ v ∈ ({![0, 0], ![1, 0], ![1, 1]} : Set (Vec ℝ 2)),
       |u 0 + v 0| ≤ 2 ∧ |u 1 + v 1| ≤ 2 ∧ |u 0 + v 0 - (u 1 + v 1)| ≤ 2) →
-      u ∈ minkowskiDiff aux_hex.construct (convexHull ℝ {![0, 0], ![1, 0], ![1, 1]}) :=
+      u ∈ minkowskiDiff aux_hex.toSet (convexHull ℝ {![0, 0], ![1, 0], ![1, 1]}) :=
     fun u hu => aux_mem_minkowskiDiff fun v hv => by
       obtain ⟨h0, h1, h2⟩ := hu v hv
       exact aux_hex_mem (by simpa using h0) (by simpa using h1) (by simpa using h2)
@@ -166,7 +166,7 @@ theorem Zonotope.minkowskiDiff_not_subset_minkDiffAligned : -- --- CONCL ---
       (let y0 := u 0 + (c 0 + t 0 * a 0 + t 2 * a 2)
        let y1 := u 1 + (c 1 + t 1 * a 1 + t 2 * a 2)
        y0 < -2 ∨ 2 < y0 ∨ y1 < -2 ∨ 2 < y1 ∨ y0 - y1 < -2) →
-      u ∉ minkowskiDiff aux_hex.construct (aux_hex.aligned c a).construct := by
+      u ∉ minkowskiDiff aux_hex.toSet (aux_hex.aligned c a).toSet := by
     intro u t ht hy hu
     have := aux_hex_bounds (hu _ (aux_aligned_corner c a t ht))
     simp only [Pi.add_apply, Matrix.cons_val_zero, Matrix.cons_val_one] at this

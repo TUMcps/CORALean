@@ -64,7 +64,7 @@ theorem LinearSys.IsTrajectory.canonical {sys : LinearSys 𝕋 n} {T : Set ℝ} 
     {w : ℝ → Vec ℝ sys.r} {v : ℝ → Vec ℝ sys.s} {y : ℝ → Vec ℝ sys.q}
     (traj : sys.IsTrajectory T X₀ U W V x u w v y) {U' : S n}
     (hU' : ∀ t ∈ T,
-      toRealMat sys.B *ᵥ u t + toRealVec sys.c + toRealMat sys.E *ᵥ w t ∈ construct U') :
+      toRealMat sys.B *ᵥ u t + toRealVec sys.c + toRealMat sys.E *ᵥ w t ∈ toSet U') :
     sys.IsCanonicalTrajectory T X₀ U' x
       (fun t => toRealMat sys.B *ᵥ u t + toRealVec sys.c + toRealMat sys.E *ᵥ w t) where
   init := traj.init

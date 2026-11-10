@@ -8,7 +8,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormFlow
 public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormZero
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalSubsetInitialAddError
 public import CORALean.ContSet.ContSet.Theorems.MinkowskiDiffInnerOfOuter
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
@@ -71,15 +71,15 @@ theorem LinearSys.timeIntervalInner_subset_timeIntervalReachSetExact
   have hOuter := sys.timeInterval_subset_initial_add_error hr η hε X₀
   -- the error ball holds a point because it encloses the step's own center
   have hEne : (Metric.closedBall (0 : Vec ℝ n) (sys.timeIntervalStepError r η X₀)).Nonempty := by
-    obtain ⟨_, _, e, he, _⟩ := hOuter (Zonotope.center_mem_construct _)
+    obtain ⟨_, _, e, he, _⟩ := hOuter (Zonotope.center_mem_toSet _)
     exact ⟨e, he⟩
   have hinner := minkowskiDiff_inner_of_outer hEne Metric.isBounded_closedBall
-    (Zonotope.convex_construct X₀) (Zonotope.isCompact_construct X₀).isClosed hOuter
+    (Zonotope.convex_toSet X₀) (Zonotope.isCompact_toSet X₀).isClosed hOuter
   intro y hy
   -- the run from `y` under the input held at `U`'s center, read at `t = 0`
-  have hU := Zonotope.isBounded_construct U
-  have hu : ∀ s ∈ Set.Icc (0:ℝ) r, (fun _ => U.c) s ∈ construct U :=
-    fun _ _ => Zonotope.center_mem_construct U
+  have hU := Zonotope.isBounded_toSet U
+  have hu : ∀ s ∈ Set.Icc (0:ℝ) r, (fun _ => U.c) s ∈ toSet U :=
+    fun _ _ => Zonotope.center_mem_toSet U
   have hmeas : AEStronglyMeasurable (fun _ : ℝ => U.c) (volume.restrict (Set.Icc 0 r)) :=
     aestronglyMeasurable_const
   have traj : sys.IsCanonicalTrajectory (S := 𝒵) (Set.Icc 0 r) X₀ U

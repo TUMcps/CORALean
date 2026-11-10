@@ -43,7 +43,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- `zonotope/boundaryPoint(Z, dir, startPoint)`. -/
 noncomputable def Zonotope.boundaryPoint (Z : Zonotope α) (dir start : α) : α :=
   -- the largest step along `dir` that stays in `Z` (CORA's LP optimum `-fval`)
-  let t := sSup {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.construct}
+  let t := sSup {t : ℝ | 0 ≤ t ∧ start + t • dir ∈ Z.toSet}
   start + t • dir
 
 end CORALean.Real

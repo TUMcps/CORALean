@@ -69,9 +69,9 @@ private theorem LinParamSys.aux_toReal_half_iterate (a : 𝕋) : -- --- CONCL --
 theorem LinParamSys.exp_mem_expSquaringFloat
     (sys : LinParamSys ℐ[𝕋] n) {tLo tHi : 𝕋} {η s : ℕ}
     (hη : sys.IsOrderAdmissibleFloat (half^[s] tLo) (half^[s] tHi) η) {A : Mat ℝ n n}
-    (hA : A ∈ sys.A.construct) {t : ℝ} (htLo : toReal tLo ≤ t)
+    (hA : A ∈ sys.A.toSet) {t : ℝ} (htLo : toReal tLo ≤ t)
     (htHi : t ≤ toReal tHi) : -- --- CONCL ---
-    exp (t • A) ∈ (sys.expSquaringFloat tLo tHi η s).construct := by -- --- PROOF ---
+    exp (t • A) ∈ (sys.expSquaringFloat tLo tHi η s).toSet := by -- --- PROOF ---
   have h2s : (0 : ℝ) < 2 ^ s := by positivity
   -- the base: `t / 2^s` is in the halved range
   have hbase := sys.exp_mem_expIntervalFloat hη hA (t := t / 2 ^ s)
@@ -80,7 +80,7 @@ theorem LinParamSys.exp_mem_expSquaringFloat
   -- each squaring doubles the time
   have hsq : ∀ j ≤ s, exp ((t / 2 ^ s * 2 ^ j) • A) ∈
       ((fun P => (Interval.matMul P P).materialiseMat)^[j]
-        (sys.expIntervalFloat (half^[s] tLo) (half^[s] tHi) η)).construct := by
+        (sys.expIntervalFloat (half^[s] tLo) (half^[s] tHi) η)).toSet := by
     intro j _
     induction j with
     | zero => simpa using hbase

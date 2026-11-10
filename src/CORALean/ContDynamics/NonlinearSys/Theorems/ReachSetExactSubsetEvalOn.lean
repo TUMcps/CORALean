@@ -89,20 +89,20 @@ theorem NonlinearSys.reachSetExact_subset_evalOn (sys : NonlinearSys n m)
       sys.reachSetExact (S := 𝒫𝒵) T R₀ U t ⊆ (steps i).R)
     -- the nine `stepInput_outer` hypotheses, each about step `i`'s own linearization
     (η : ℕ) (hε : ∀ i < N, ‖Δt • (steps i).A‖ / ((η : ℝ) + 2) < 1)
-    (hconv : ∀ i < N, Convex ℝ (construct (steps i).linInput))
-    (hclosed : ∀ i < N, IsClosed (construct (steps i).linInput))
-    (hbdd : ∀ i < N, Bornology.IsBounded (construct (steps i).linInput))
+    (hconv : ∀ i < N, Convex ℝ (toSet (steps i).linInput))
+    (hclosed : ∀ i < N, IsClosed (toSet (steps i).linInput))
+    (hbdd : ∀ i < N, Bornology.IsBounded (toSet (steps i).linInput))
     (hRconv : ∀ i < N, Convex ℝ (inputRemainderSet (S := 𝒫𝒵) (steps i).A Δt η (steps i).linInput))
     (hRclosed : ∀ i < N, IsClosed (inputRemainderSet (S := 𝒫𝒵) (steps i).A Δt η (steps i).linInput))
     (hRbdd : ∀ i < N, Bornology.IsBounded (inputRemainderSet (S := 𝒫𝒵) (steps i).A Δt η (steps
       i).linInput))
     (Ud : ℕ → 𝒫𝒵 n)
-    (hUd : ∀ i < N, construct ((NonlinearSys.linearize (steps i).A).inputSolution
-      (S := 𝒫𝒵) Δt η (steps i).linInput) ⊆ construct (Ud i))
+    (hUd : ∀ i < N, toSet ((NonlinearSys.linearize (steps i).A).inputSolution
+      (S := 𝒫𝒵) Δt η (steps i).linInput) ⊆ toSet (Ud i))
     -- and the evaluation, carried by the sub-boxes the loop's own bookkeeping leaves
     {o : ℕ} (ho : 0 < o) (X₀ : 𝒫𝒵 n)
     (Bs : ∀ i, Set (Fin (sys.relinReach (S := 𝒫𝒵) ⟨X₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud).p → ℝ))
-    (h0 : construct R₀ ⊆ X₀.evalOn (Bs 0))
+    (h0 : toSet R₀ ⊆ X₀.evalOn (Bs 0))
     (hunit : ∀ i, ∀ a ∈ Bs i, ∀ k, |a k| ≤ 1)
     (hnext : ∀ i, PolyZonotope.postBox ((NonlinearSys.linearize (steps i).A).discretize Δt).A
       (sys.relinReach (S := 𝒫𝒵) ⟨X₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud) (Ud i) o (Bs i) ⊆ Bs (i + 1))
@@ -113,7 +113,7 @@ theorem NonlinearSys.reachSetExact_subset_evalOn (sys : NonlinearSys n m)
   rintro i hi _ ⟨x, u, traj, rfl⟩
   -- every step's input integral enclosed on the original clock, as [1, Alg. 1] leaves it
   have hstep : ∀ j < N, (NonlinearSys.linearize (steps j).A).stepInput
-      (fun t => sys.f (x t) (u t) - (steps j).A *ᵥ x t) Δt j ∈ construct (Ud j) := by
+      (fun t => sys.f (x t) (u t) - (steps j).A *ᵥ x t) Δt j ∈ toSet (Ud j) := by
     intro j hj
     have hlin := (traj.restrict (oneStep_subset_horizon hΔt.le hT hj)).linearize measurableSet_Icc
       (steps j).cert (fun t ht => hR j hj t ht (traj.reachSetExact_outer t))

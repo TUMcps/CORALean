@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.levelSet_exact (I : Interval (Vec ℝ n)) : -- --- CONCL ---
-    I.levelSet.construct = I.construct := by -- --- PROOF ---
+    I.levelSet.toSet = I.toSet := by -- --- PROOF ---
   ext x
   refine (LevelSet.forall_append_holds (fun _ => .le) (fun _ => .le)
     (fun i => I.inf i - x i) (fun i => x i - I.sup i)).trans ?_

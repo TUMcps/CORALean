@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
-public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
+public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictToSet
 
 @[expose] public section
 
@@ -9,7 +9,7 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.RestrictConstruct
 # `HPolytope.dropTrivialEqs` loses nothing
 
 Every point meets a row `0 = 0`, so dropping those rows leaves the set as it was
-(`HPolytope.restrict_construct` with every inequality and the other equalities kept).
+(`HPolytope.restrict_toSet` with every inequality and the other equalities kept).
 
 ## Inputs
 * `P` – H-polytope
@@ -38,9 +38,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 /-- Dropping the equality rows `0 = 0` leaves the set unchanged. -/
 theorem HPolytope.dropTrivialEqs_exact (P : HPolytope α) : -- --- CONCL ---
-    P.dropTrivialEqs.construct = P.construct := by -- --- PROOF ---
+    P.dropTrivialEqs.toSet = P.toSet := by -- --- PROOF ---
   classical
-  rw [HPolytope.dropTrivialEqs, HPolytope.restrict_construct]
+  rw [HPolytope.dropTrivialEqs, HPolytope.restrict_toSet]
   ext x
   simp only [Set.mem_setOf_eq, Finset.mem_univ, true_implies, Finset.mem_filter, true_and]
   refine and_congr Iff.rfl ⟨fun h i => ?_, fun h i _ => h i⟩

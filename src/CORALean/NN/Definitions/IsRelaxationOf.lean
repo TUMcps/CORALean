@@ -49,7 +49,7 @@ inductive SetBasedNet.IsRelaxationOf :
       IsRelaxationOf (.linear W b tail) (fun x => Φ (W *ᵥ x + b))
   | nonlinear {n k : ℕ} (ϕ : ℝ → ℝ) {m eLo eUp : Zonotope (Vec ℝ 1) → ℝ}
       {tail : SetBasedNet n k} {Φ : Vec ℝ n → Vec ℝ k}
-      (hϕ : ∀ (H : Zonotope (Vec ℝ 1)) (t : ℝ), (fun _ => t) ∈ H.construct →
+      (hϕ : ∀ (H : Zonotope (Vec ℝ 1)) (t : ℝ), (fun _ => t) ∈ H.toSet →
         eLo H ≤ ϕ t - m H * t ∧ ϕ t - m H * t ≤ eUp H)
       (h : IsRelaxationOf tail Φ) :
       IsRelaxationOf (.nonlinear m eLo eUp tail) (fun x => Φ (fun i => ϕ (x i)))

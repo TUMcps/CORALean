@@ -51,12 +51,12 @@ variable {n N : ℕ} {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [Fini
 theorem Zonotope.naive_vertex_sample_not_subset (Z : Zonotope (Vec ℝ n)) (H : E →ₗ[ℝ] Vec ℝ n)
     (d : Vec ℝ n) (hN : (Finset.univ : Finset (Fin N)).Nonempty) (a : Fin N → Fin Z.h → Bool)
     (h : 1 < Finset.univ.sup' hN fun i => coeffNorm H (Z.corner (a i) - d)) : -- --- CONCL ---
-    ¬ Z.construct ⊆ {x | ∃ β : E, ‖β‖ ≤ 1 ∧ x = d + H β} := by -- --- PROOF ---
+    ¬ Z.toSet ⊆ {x | ∃ β : E, ‖β‖ ≤ 1 ∧ x = d + H β} := by -- --- PROOF ---
   obtain ⟨i, -, hi⟩ := Finset.exists_mem_eq_sup' hN fun i => coeffNorm H (Z.corner (a i) - d)
   intro hsub
   -- a corner is a point of the zonotope
-  have hmem : Z.corner (a i) ∈ Z.construct := by
-    rw [Z.construct_eq_convexHull_corner]
+  have hmem : Z.corner (a i) ∈ Z.toSet := by
+    rw [Z.toSet_eq_convexHull_corner]
     exact subset_convexHull ℝ _ ⟨a i, rfl⟩
   obtain ⟨β, hβ, he⟩ := hsub hmem
   have hle : coeffNorm H (Z.corner (a i) - d) ≤ 1 :=

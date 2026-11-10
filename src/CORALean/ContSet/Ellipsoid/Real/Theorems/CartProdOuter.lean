@@ -42,7 +42,7 @@ variable {n m : ℕ}
 
 theorem Ellipsoid.cartProd_outer (E₁ : Ellipsoid n) (E₂ : Ellipsoid m) : -- --- CONCL ---
     (fun p : Vec ℝ n × Vec ℝ m => (Fin.append p.1 p.2 : Vec ℝ (n + m))) ''
-        (E₁.construct ×ˢ E₂.construct) ⊆ (E₁.cartProd E₂).construct := by -- --- PROOF ---
+        (E₁.toSet ×ˢ E₂.toSet) ⊆ (E₁.cartProd E₂).toSet := by -- --- PROOF ---
   rintro _ ⟨⟨x, y⟩, ⟨hx, hy⟩, rfl⟩
   refine Interval.ellipsoid_contains _ ?_
   have h1 := E₁.interval_contains hx

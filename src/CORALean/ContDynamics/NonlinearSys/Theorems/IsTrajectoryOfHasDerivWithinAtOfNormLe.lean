@@ -75,8 +75,8 @@ private theorem aux_intervalIntegrable_of_hasDerivWithinAt {T : Set ℝ} {x g : 
 /-- A run with the field as its derivative on a convex `T ∋ 0`, bounded there, is a run. -/
 theorem NonlinearSys.IsTrajectory.of_hasDerivWithinAt_of_norm_le {sys : NonlinearSys n m}
     {T : Set ℝ} {R₀ : S n} {U : S m} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {C : ℝ}
-    (hTconv : Convex ℝ T) (h0T : (0:ℝ) ∈ T) (init : x 0 ∈ construct R₀)
-    (input : ∀ t ∈ T, u t ∈ construct U)
+    (hTconv : Convex ℝ T) (h0T : (0:ℝ) ∈ T) (init : x 0 ∈ toSet R₀)
+    (input : ∀ t ∈ T, u t ∈ toSet U)
     (hd : ∀ t ∈ T, HasDerivWithinAt x (sys.f (x t) (u t)) T t)
     (hC : ∀ t ∈ T, ‖sys.f (x t) (u t)‖ ≤ C) :
     sys.IsTrajectory T R₀ U x u (fun t => sys.g (x t) (u t)) :=

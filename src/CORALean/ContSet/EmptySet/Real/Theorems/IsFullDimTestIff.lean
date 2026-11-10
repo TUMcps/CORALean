@@ -37,9 +37,9 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem EmptySet.isFullDimTest_iff (F : EmptySet n) :
-    F.isFullDimTest = true ↔ (interior F.construct).Nonempty := by
+    F.isFullDimTest = true ↔ (interior F.toSet).Nonempty := by
   rw [EmptySet.isFullDimTest]
-  simp [EmptySet.construct]
+  simp [EmptySet.toSet]
 
 end CORALean.Real
 

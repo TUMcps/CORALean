@@ -4,7 +4,7 @@ public import CORALean.ContSet.HPolytope.Float.Operations.DropZeros
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.HPolytope.Float.Theorems.Basic
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemRestrictIff
-public import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEmptySet
+public import CORALean.ContSet.HPolytope.Float.Theorems.ToSetEmptySet
 
 @[expose] public section
 
@@ -53,7 +53,7 @@ private theorem HPolytope.aux_isZeroVec_dot {v : Vec 𝕋 n} (h : HPolytope.isZe
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.dropZeros_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    Q.dropZeros.construct = Q.construct := by -- --- PROOF ---
+    Q.dropZeros.toSet = Q.toSet := by -- --- PROOF ---
   unfold HPolytope.dropZeros
   -- a certified zero row has the value `0` at every point
   have hzA : ∀ i, HPolytope.isZeroVec (Q.A i) = true → ∀ x : Vec ℝ n,
@@ -62,7 +62,7 @@ theorem HPolytope.dropZeros_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CON
       (toRealMat Q.Ae *ᵥ x) r = 0 := fun r h x => HPolytope.aux_isZeroVec_dot h x
   split_ifs with h
   · -- infeasible: the nominal part is empty, so both sets are
-    have hN : Q.nominal.construct = ∅ := by
+    have hN : Q.nominal.toSet = ∅ := by
       refine Set.eq_empty_of_forall_notMem fun x hx => ?_
       obtain ⟨h1, h2⟩ := HPolytope.mem_nominal_iff.mp hx
       -- the certified row is violated at every point
@@ -80,11 +80,11 @@ theorem HPolytope.dropZeros_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CON
         have := toReal_lt_of_ltStrict hl
         rw [toReal_absolute, toReal_absolute] at this
         linarith
-    rw [HPolytope.construct_emptySet]
-    show _ = Q.nominal.construct + Q.I_error.construct
+    rw [HPolytope.toSet_emptySet]
+    show _ = Q.nominal.toSet + Q.I_error.toSet
     rw [hN, Set.empty_add]
   · -- no certified infeasible row: the deleted rows hold everywhere
-    refine HPolytope.construct_congr ?_ rfl
+    refine HPolytope.toSet_congr ?_ rfl
     ext x
     -- membership in the restriction, against membership in `Q`
     rw [HPolytope.mem_restrict_iff, HPolytope.mem_nominal_iff]

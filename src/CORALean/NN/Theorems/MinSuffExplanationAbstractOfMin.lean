@@ -61,8 +61,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval 
 theorem NeuralNetwork.minSuffExplanationAbstract_of_min (f : Vec ℝ n → Vec ℝ m)
     (nnAbs : NeuralNetwork S n m)
     (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m)
-    (hcontain : ∀ E' : Finset (Fin n), f '' construct (ofInterval (explainBox x ε E') : S n)
-      ⊆ construct (nnAbs.enclose (ofInterval (explainBox x ε E'))))
+    (hcontain : ∀ E' : Finset (Fin n), f '' toSet (ofInterval (explainBox x ε E') : S n)
+      ⊆ toSet (nnAbs.enclose (ofInterval (explainBox x ε E'))))
     (hsuffAbs : nnAbs.IsSuffExplanationAbstract x ε E l)
     (hmin : IsMinSuffExplanation f x ε E l) :
     nnAbs.IsMinSuffExplanationAbstract x ε E l :=

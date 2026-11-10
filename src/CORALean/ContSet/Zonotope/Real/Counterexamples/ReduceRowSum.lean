@@ -49,10 +49,10 @@ namespace CORALean.Real
 theorem Zonotope.reduce_rowSum_counterexample : -- --- CONCL ---
     let Z : Zonotope (Vec ℝ 1) := ⟨2, 0, ![fun _ => 1, fun _ => -1]⟩
     let Zred : Zonotope (Vec ℝ 1) := ⟨1, 0, fun _ i => ∑ l, Z.G l i⟩
-    ¬ Z.construct ⊆ Zred.construct := by -- --- PROOF ---
+    ¬ Z.toSet ⊆ Zred.toSet := by -- --- PROOF ---
   intro Z Zred hsub
   -- `2 ∈ Z`, at the coefficients `(1, -1)`
-  have hmem : (fun _ => 2 : Vec ℝ 1) ∈ Z.construct :=
+  have hmem : (fun _ => 2 : Vec ℝ 1) ∈ Z.toSet :=
     ⟨![1, -1], ⟨fun j => by fin_cases j <;> simp, by
       funext i; simp [Z, Fin.sum_univ_two]; norm_num⟩⟩
   -- but the reduced zonotope is `{0}`

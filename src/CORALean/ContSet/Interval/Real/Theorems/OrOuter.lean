@@ -40,7 +40,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.or_outer (I₁ I₂ : Interval α) : -- --- CONCL ---
-    I₁.construct ∪ I₂.construct ⊆ (I₁.or I₂).construct := by -- --- PROOF ---
+    I₁.toSet ∪ I₂.toSet ⊆ (I₁.or I₂).toSet := by -- --- PROOF ---
   rintro x (hx | hx) i
   · simp only [Interval.or, Entrywise.entry_ofEntry]
     exact ⟨le_trans (min_le_left _ _) (hx i).1, le_trans (hx i).2 (le_max_left _ _)⟩

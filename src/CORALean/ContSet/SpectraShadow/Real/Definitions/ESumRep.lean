@@ -40,7 +40,7 @@ structure SpectraShadow.ESumRep (n : ℕ) where
   C : Fin q → Mat ℝ k k
 
 /-- The set an existential sum representation stands for. -/
-def SpectraShadow.ESumRep.construct (E : SpectraShadow.ESumRep n) : Set (Vec ℝ n) :=
+def SpectraShadow.ESumRep.toSet (E : SpectraShadow.ESumRep n) : Set (Vec ℝ n) :=
   {x | ∃ y : Fin E.q → ℝ, (E.B₀ + ∑ i, x i • E.B i + ∑ j, y j • E.C j).PosSemidef}
 
 end CORALean.Real

@@ -11,7 +11,7 @@ public import CORALean.ContSet.ContSet.Theorems.EnlargeOuter
 The bundle denotes an intersection of its members, and each member is scaled about its own
 center. So the statement is per member: the image of member `i` under `x ↦ cᵢ + f ⊙ (x - cᵢ)`
 lies in member `i` of the result, and the result is the intersection of those members
-(`construct_enlarge`). It is not a statement about the image of the intersection: the maps differ
+(`toSet_enlarge`). It is not a statement about the image of the intersection: the maps differ
 from member to member, so the image of the intersection need not lie in the intersection of the
 images, and nothing here claims it.
 
@@ -46,7 +46,7 @@ variable {n : ℕ}
 
 theorem ZonoBundle.enlarge_outer (zB : ZonoBundle (Vec ℝ n)) (f : Vec ℝ n) (i : Fin zB.k) :
     (fun x : Vec ℝ n => (zB.Z i).c + fun j => f j * (x j - (zB.Z i).c j)) ''
-      (zB.Z i).construct ⊆ ((zB.enlarge f).Z i).construct :=
+      (zB.Z i).toSet ⊆ ((zB.enlarge f).Z i).toSet :=
   ContSet.enlarge_outer (S := 𝒵) (𝕋 := ℝ) (zB.Z i) f
 
 end CORALean.Real

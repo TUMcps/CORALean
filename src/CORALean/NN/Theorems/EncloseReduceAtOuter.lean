@@ -48,7 +48,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Reduce (S
 
 theorem RefinableNetwork.encloseReduceAt_outer (ρ : ℕ) :
     ∀ {n m : ℕ} (rn : RefinableNetwork S n m) (ψ : Schedule) (X : S n) (x : Vec ℝ n),
-      x ∈ construct X → rn.eval x ∈ construct (rn.encloseReduceAt ρ ψ X)
+      x ∈ toSet X → rn.eval x ∈ toSet (rn.encloseReduceAt ρ ψ X)
   | _, _, .nil, _, _, _, hx => hx
   | _, _, .cons L rest, ψ, X, x, hx =>
     rest.encloseReduceAt_outer ρ (Schedule.tail ψ) _ (L.eval x)

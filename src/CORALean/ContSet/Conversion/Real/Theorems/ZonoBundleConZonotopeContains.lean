@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonoBundleZonotopeContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructFoldlIntersectionEq
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ToSetFoldlIntersectionEq
 public import CORALean.ContSet.Conversion.Real.Operations.ZonoBundle_to_ConZonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
 
@@ -45,7 +45,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.conZonotope_contains (zB : ZonoBundle α) (i : Fin zB.k) :
-    zB.construct ⊆ (zB.conZonotope i).construct :=
+    zB.toSet ⊆ (zB.conZonotope i).toSet :=
   subset_trans (zB.zonotope_contains i) (Zonotope.conZonotope_exact _).subset
 
 end CORALean.Real

@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Interval.lt_subset {I J : Interval (Vec 𝕋 n)}
     (h : Interval.lt I J = true) : -- --- CONCL ---
-    I.construct ⊆ J.construct := by -- --- PROOF ---
+    I.toSet ⊆ J.toSet := by -- --- PROOF ---
   simp only [Interval.lt, List.all_eq_true, List.mem_finRange, Bool.and_eq_true,
     forall_const] at h
   intro x hx j

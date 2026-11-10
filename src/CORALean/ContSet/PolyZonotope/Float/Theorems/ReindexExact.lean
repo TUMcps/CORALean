@@ -13,7 +13,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Instances
 
 An equality, in the layer where every other guarantee is an enclosure, because a
 relabelling does no arithmetic. It is linear, so it distributes over the Minkowski
-sum that `InflatedContSet.construct` is: the relabelled nominal part plus the
+sum that `InflatedContSet.toSet` is: the relabelled nominal part plus the
 relabelled box, with no widening between them.
 
 ## Inputs
@@ -46,9 +46,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
 theorem PolyZonotope.reindex_exact (e : Fin m ≃ Fin n)
     (pZ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    (pZ.reindex e).construct = reindexLin e '' pZ.construct := by -- --- PROOF ---
-  show InflatedContSet.nominalSet (pZ.reindex e) + (pZ.I_error.reindex e).construct
-    = reindexLin e '' (InflatedContSet.nominalSet pZ + pZ.I_error.construct)
+    (pZ.reindex e).toSet = reindexLin e '' pZ.toSet := by -- --- PROOF ---
+  show InflatedContSet.nominalSet (pZ.reindex e) + (pZ.I_error.reindex e).toSet
+    = reindexLin e '' (InflatedContSet.nominalSet pZ + pZ.I_error.toSet)
   have h : InflatedContSet.nominalSet (pZ.reindex e)
       = reindexLin e '' InflatedContSet.nominalSet pZ :=
     (Real.PolyZonotope.map_exact (reindexLin e) (InflatedContSet.nominal pZ)).symm

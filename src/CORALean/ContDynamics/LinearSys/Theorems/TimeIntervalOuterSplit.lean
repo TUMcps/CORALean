@@ -62,7 +62,7 @@ theorem LinearSys.IsCanonicalTrajectory.timeInterval_outer_split [Mtimes ℐ S]
     (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) :
-    x t ∈ construct (Plus.plus
+    x t ∈ toSet (Plus.plus
       (sys.timeInterval r (m + 2) R₀)
       (Plus.plus
         (Plus.plus
@@ -78,19 +78,19 @@ theorem LinearSys.IsCanonicalTrajectory.timeInterval_outer_split [Mtimes ℐ S]
   let rem : S n := Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder (toRealMat sys.A) r (m + 2))
     (Recenter.recenter U)
   -- every hypothesis comes off `Recenter`/`OfPoint`, which is why this needs no representation
-  traj.timeInterval_outer hr hT hε ht0 htr (CompactSet.isBounded_construct U)
+  traj.timeInterval_outer hr hT hε ht0 htr (CompactSet.isBounded_toSet U)
     (traj.inputSolution_timeInterval_outer_split hr hT (m + 2) hε
       (fun _ hy => Recenter.sub_center_mem_recenter hy)
       (OfPoint.mem_ofPoint (Recenter.center U))
       (fun _ hlam => smul_mem_linComb_ofPoint (Recenter.center U) hlam)
-      (CompactSet.isBounded_construct (OfPoint.ofPoint (Recenter.center U)))
+      (CompactSet.isBounded_toSet (OfPoint.ofPoint (Recenter.center U)))
       (Recenter.zero_mem_recenter U)
-      (ConvexSet.convex_construct (Recenter.recenter U))
-      (CompactSet.isClosed_construct (Recenter.recenter U))
-      (CompactSet.isBounded_construct (Recenter.recenter U))
-      (ConvexSet.convex_construct rem)
-      (CompactSet.isClosed_construct rem)
-      (CompactSet.isBounded_construct rem)
+      (ConvexSet.convex_toSet (Recenter.recenter U))
+      (CompactSet.isClosed_toSet (Recenter.recenter U))
+      (CompactSet.isBounded_toSet (Recenter.recenter U))
+      (ConvexSet.convex_toSet rem)
+      (CompactSet.isClosed_toSet rem)
+      (CompactSet.isBounded_toSet rem)
       ht0 htr)
 
 end CORALean

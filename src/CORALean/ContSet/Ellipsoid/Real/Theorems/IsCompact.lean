@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqImage
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ContinuousAffine
 
 @[expose] public section
@@ -46,8 +46,8 @@ private theorem _root_.CORALean.aux_isCompact_unitBall₂ : IsCompact (unitBall�
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.isCompact_construct (E : Ellipsoid n) : IsCompact E.construct := by
-  rw [E.construct_eq_image]
+theorem Ellipsoid.isCompact_toSet (E : Ellipsoid n) : IsCompact E.toSet := by
+  rw [E.toSet_eq_image]
   exact aux_isCompact_unitBall₂.image E.continuous_affine
 
 end CORALean.Real

@@ -10,7 +10,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Point
 
 `map` leaves the exponent matrix and the factor count alone, so one factor vector names the
 same monomials before and after and the point commutes with `f`. Stated over `point` rather
-than `construct` (which `map_exact` says): a recursion that pairs sets at *shared* factors, a
+than `toSet` (which `map_exact` says): a recursion that pairs sets at *shared* factors, a
 chain of graph convolutions say, argues one factor vector at a time and never reaches the
 independent block. `bilin_point` sits beside `bilin_exact` for the same reason.
 

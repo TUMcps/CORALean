@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.taylm_contains (I : Interval (Vec 𝕋 n)) (N : ℕ) :
-    I.construct ⊆ Taylm.construct (I.taylm N) := by
+    I.toSet ⊆ Taylm.toSet (I.taylm N) := by
   have h := Zonotope.taylm_exact I.zonotope N
   exact fun x hx => h.symm ▸ I.zonotope_contains hx
 

@@ -66,7 +66,7 @@ the statement mentions. -/
 private theorem LinearSysDT.aux_backReachSetExistsExact_input (sys : LinearSysDT 𝕋 n) (T U : S n)
     (k : ℕ) : -- --- CONCL ---
     ∀ x₀ ∈ sys.backReachSetExistsExact T U k, ∃ u : ℕ → Vec ℝ n,
-      (∀ j < k, u j ∈ construct U) ∧ sys.simulate x₀ u k ∈ construct T := by -- --- PROOF ---
+      (∀ j < k, u j ∈ toSet U) ∧ sys.simulate x₀ u k ∈ toSet T := by -- --- PROOF ---
   induction k with
   | zero => exact fun x₀ hx => ⟨fun _ => 0, fun j hj => absurd hj (Nat.not_lt_zero j), hx⟩
   | succ k ih =>
@@ -84,10 +84,10 @@ private theorem LinearSysDT.aux_backReachSetExistsExact_input (sys : LinearSysDT
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSysDT.backReachSetExistsExact_isTrajectory (sys : LinearSysDT 𝕋 n) (T U : S n)
-    {R₀ : S n} {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct R₀) (k : ℕ)
+    {R₀ : S n} {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ toSet R₀) (k : ℕ)
     (hx : x₀ ∈ sys.backReachSetExistsExact T U k) : -- --- CONCL ---
     ∃ u : ℕ → Vec ℝ n, sys.IsCanonicalTrajectoryOn R₀ U k (sys.simulate x₀ u) u ∧
-      sys.simulate x₀ u k ∈ construct T := by -- --- PROOF ---
+      sys.simulate x₀ u k ∈ toSet T := by -- --- PROOF ---
   obtain ⟨u, hu, hT⟩ := sys.aux_backReachSetExistsExact_input T U k x₀ hx
   exact ⟨u, ⟨hx₀, hu, fun _ _ => rfl⟩, hT⟩
 

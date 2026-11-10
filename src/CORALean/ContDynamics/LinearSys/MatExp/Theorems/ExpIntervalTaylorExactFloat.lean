@@ -50,9 +50,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.expTaylor_mem_expIntervalTaylorExact (A : Interval (Mat 𝕋 n n)) (t : 𝕋)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) {κ : ℕ} (hκ : 2 ≤ κ) : -- --- CONCL ---
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) {κ : ℕ} (hκ : 2 ≤ κ) : -- --- CONCL ---
     Real.MatExp.expTaylor (toReal t • M) κ
-      ∈ (MatExp.expIntervalTaylorExact A t κ).construct := by -- --- PROOF ---
+      ∈ (MatExp.expIntervalTaylorExact A t κ).toSet := by -- --- PROOF ---
   -- the truncation splits at order three, which is where the exact part stops
   have hsplit : Real.MatExp.expTaylor (toReal t • M) κ
       = Real.MatExp.expTaylor (toReal t • M) 2
@@ -62,7 +62,7 @@ theorem MatExp.expTaylor_mem_expIntervalTaylorExact (A : Interval (Mat 𝕋 n n)
   rw [hsplit, Real.MatExp.expTaylor_two]
   simp only [MatExp.expIntervalTaylorExact, Interval.materialiseMat_eq]
   -- the identity is `M ^ 0`, which `matPow` holds as the stored identity block
-  have hI : (1 : Mat ℝ n n) ∈ (Interval.matPow A 0).construct := by
+  have hI : (1 : Mat ℝ n n) ∈ (Interval.matPow A 0).toSet := by
     simpa using Interval.matPow_outer A hM 0
   exact Interval.matPlus_outer _ _
     (Interval.matPlus_outer _ _ (by simpa [Interval.matPow] using hI)

@@ -8,7 +8,7 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.ConvexHull
 # V-polytope in V-polytope
 
 [1, Eq. 3]: `⟨V₁⟩ ⊆ ⟨V₂⟩` exactly when every point of `V₁` lies in `⟨V₂⟩`, each tested by the
-feasibility of [1, Eq. 4] — which is `VPolytope.construct` itself. The containing polytope is
+feasibility of [1, Eq. 4] — which is `VPolytope.toSet` itself. The containing polytope is
 convex, and that is all the argument uses.
 
 ## Inputs
@@ -44,9 +44,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.construct_subset_iff (P₁ P₂ : VPolytope α) :
-    P₁.construct ⊆ P₂.construct ↔ ∀ l, P₁.V l ∈ P₂.construct := by
-  rw [P₁.construct_eq_convexHull, P₂.convex_construct.convexHull_subset_iff, Set.range_subset_iff]
+theorem VPolytope.toSet_subset_iff (P₁ P₂ : VPolytope α) :
+    P₁.toSet ⊆ P₂.toSet ↔ ∀ l, P₁.V l ∈ P₂.toSet := by
+  rw [P₁.toSet_eq_convexHull, P₂.convex_toSet.convexHull_subset_iff, Set.range_subset_iff]
 
 end CORALean.Real
 

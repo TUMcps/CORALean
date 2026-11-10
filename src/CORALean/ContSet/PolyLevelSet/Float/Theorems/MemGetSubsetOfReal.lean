@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.PolyLevelSet.Float.Operations.GetSubset
-public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemConstructIffOfEq
+public import CORALean.ContSet.PolyLevelSet.Float.Theorems.MemToSetIffOfEq
 public import CORALean.ContSet.PolyLevelSet.Real.Operations.GetSubset
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.GetSubsetGClose
@@ -54,22 +54,22 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- The widened slack holds wherever the exact re-parametrized rows are within the old one, at a
 point of the box. -/
 theorem PolyLevelSet.mem_getSubset_of_real (P : PolyLevelSet 𝕋 n) (hP : ∀ i, P.op i = .eq)
-    (k : Fin n) (cen rad : 𝕋) (a : Fin n → ℝ) (ha : ∀ k, |a k| ≤ 1) (hdom : a ∈ P.dom.construct)
+    (k : Fin n) (cen rad : 𝕋) (a : Fin n → ℝ) (ha : ∀ k, |a k| ≤ 1) (hdom : a ∈ P.dom.toSet)
     (hsat : ∀ i, |(P.nominalCore.getSubset k (toReal cen) (toReal rad)).eval a i|
       ≤ |toReal (P.b_error i)|) : -- --- CONCL ---
-    a ∈ (P.getSubset k cen rad).construct := by -- --- PROOF ---
+    a ∈ (P.getSubset k cen rad).toSet := by -- --- PROOF ---
   -- the exact generators, the stored (rounded down) ones, and the monomials, named once
   set G := Real.PolyZonotope.getSubsetG (nominal P.lhs) k (toReal cen) (toReal rad)
   set Gd := P.lhs.getSubsetGDown k cen rad
   set mon := Real.PolyZonotope.monomial (Real.PolyZonotope.getSubsetE (nominal P.lhs) k) a
   -- what rounding `A` costs, scaled by the monomials, a point of the box
   have hd : (fun i => ∑ l, (toReal (Gd i l) - G l i) * mon l)
-      ∈ (PolyZonotope.generatorError (P.lhs.getSubsetGDiff k cen rad)).construct :=
+      ∈ (PolyZonotope.generatorError (P.lhs.getSubsetGDiff k cen rad)).toSet :=
     PolyZonotope.mem_generatorError_monomial
       (fun i l => by
         rw [abs_sub_comm]
         exact PolyZonotope.getSubsetG_close P.lhs k cen rad i l) ha
-  refine (PolyLevelSet.mem_construct_iff_of_eq (P := P.getSubset k cen rad) hP).mpr
+  refine (PolyLevelSet.mem_toSet_iff_of_eq (P := P.getSubset k cen rad) hP).mpr
     ⟨hdom, fun i => ?_⟩
   have hi := hd i
   -- and the stored row is the exact one plus that point

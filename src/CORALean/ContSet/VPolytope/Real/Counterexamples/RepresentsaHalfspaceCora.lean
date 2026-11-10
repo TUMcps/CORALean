@@ -61,16 +61,16 @@ def VPolytope.representsaHalfspaceCora (_P : VPolytope (Vec ℝ 1)) : Option Boo
 /-- CORA's test errors on `polytope(0)`, which is no halfspace. -/
 theorem VPolytope.representsa_halfspace_cora_crash : -- --- CONCL ---
     ∃ P : VPolytope (Vec ℝ 1), P.representsaHalfspaceCora = none ∧
-      ¬ ∃ (a : Vec ℝ 1) (b : ℝ), a 0 ≠ 0 ∧ P.construct = {x | a 0 * x 0 ≤ b} := by -- --- PROOF ---
+      ¬ ∃ (a : Vec ℝ 1) (b : ℝ), a 0 ≠ 0 ∧ P.toSet = {x | a 0 * x 0 ≤ b} := by -- --- PROOF ---
   refine ⟨⟨1, fun _ => fun _ => 0⟩, rfl, ?_⟩
   rintro ⟨a, b, ha, h⟩
   have hmem : ∀ t : ℝ, 0 ≤ t → (fun _ => (b - t) / a 0 : Vec ℝ 1) ∈
-      (VPolytope.mk 1 fun _ => fun _ => (0 : ℝ)).construct → (b - t) / a 0 = 0 := by
+      (VPolytope.mk 1 fun _ => fun _ => (0 : ℝ)).toSet → (b - t) / a 0 = 0 := by
     rintro t - ⟨β, -, -, hx⟩
     have := congrFun hx 0
     simpa using this
   have hin : ∀ t : ℝ, 0 ≤ t → (fun _ => (b - t) / a 0 : Vec ℝ 1) ∈
-      (VPolytope.mk 1 fun _ => fun _ => (0 : ℝ)).construct := by
+      (VPolytope.mk 1 fun _ => fun _ => (0 : ℝ)).toSet := by
     intro t ht
     rw [h]
     show a 0 * ((b - t) / a 0) ≤ b

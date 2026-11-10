@@ -52,10 +52,10 @@ theorem Zonotope.naive_vertex_sample_printed_counterexample : -- --- CONCL ---
       let r := 1 - coeffNorm (LinearMap.id : Vec ℝ 2 →ₗ[ℝ] Vec ℝ 2) (Z.corner σ - 0)
       coeffNorm (LinearMap.id : Vec ℝ 2 →ₗ[ℝ] Vec ℝ 2) (Z.corner σ - 0) ≤ 1 ∧
       0 < shenmaierProb Z.h 1 0 r ∧
-      ¬ Z.construct ⊆
+      ¬ Z.toSet ⊆
         {x | ∃ β : Vec ℝ 2, ‖β‖ ≤ 1 ∧ x = 0 + (LinearMap.id : Vec ℝ 2 →ₗ[ℝ] Vec ℝ 2) β} ∧
       ∀ (Ω : Type) [MeasurableSpace Ω] (P : Measure Ω),
-        P {_ω | Z.construct ⊆
+        P {_ω | Z.toSet ⊆
           {x | ∃ β : Vec ℝ 2, ‖β‖ ≤ 1 ∧ x = 0 + (LinearMap.id : Vec ℝ 2 →ₗ[ℝ] Vec ℝ 2) β}}
         < ENNReal.ofReal (shenmaierProb Z.h 1 0 r) := by -- --- PROOF ---
   let Z : Zonotope (Vec ℝ 2) := ⟨2, ![21 / 20, 0], ![![1 / 10, 0], ![0, 1 / 10]]⟩
@@ -80,10 +80,10 @@ theorem Zonotope.naive_vertex_sample_printed_counterexample : -- --- CONCL ---
   have hr : coeffNorm (LinearMap.id : Vec ℝ 2 →ₗ[ℝ] Vec ℝ 2) (Z.corner σ - 0) = 19 / 20 := by
     rw [hid, hcorner, hnorm]
   -- `(23/20, 0)` is a point of `Ẑ` outside the box
-  have hnot : ¬ Z.construct ⊆
+  have hnot : ¬ Z.toSet ⊆
       {x | ∃ β : Vec ℝ 2, ‖β‖ ≤ 1 ∧ x = 0 + (LinearMap.id : Vec ℝ 2 →ₗ[ℝ] Vec ℝ 2) β} := by
     intro hsub
-    have hmem : (![23 / 20, 0] : Vec ℝ 2) ∈ Z.construct := by
+    have hmem : (![23 / 20, 0] : Vec ℝ 2) ∈ Z.toSet := by
       refine ⟨![1, 0], fun j => ?_, ?_⟩
       · fin_cases j <;> simp
       · ext i

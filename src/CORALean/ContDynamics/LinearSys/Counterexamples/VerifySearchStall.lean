@@ -189,9 +189,9 @@ theorem LinearSys.verifySearch_stall_counterexample (η : ℕ) : -- --- CONCL --
       c - (Real.exp 1 - 1) ≤ ‖x - y‖) ∧
     -- and yet, for every sound oracle, `Alg. 3` never exits
     ∀ (ρ : Zonotope (Vec ℝ 1) → (Vec ℝ 1 →ₗ[ℝ] ℝ) → ℝ)
-      (_ : ∀ X : Zonotope (Vec ℝ 1), ∀ x ∈ construct X, ∀ d : Vec ℝ 1 →ₗ[ℝ] ℝ, d x ≤ ρ X d)
-      (ν₀ νU νL : (Vec ℝ 1 →ₗ[ℝ] ℝ) → Vec ℝ 1) (_ : ∀ d, ν₀ d ∈ construct X₀)
-      (_ : ∀ d, νU d ∈ construct U) (_ : ∀ d, νL d ∈ L)
+      (_ : ∀ X : Zonotope (Vec ℝ 1), ∀ x ∈ toSet X, ∀ d : Vec ℝ 1 →ₗ[ℝ] ℝ, d x ≤ ρ X d)
+      (ν₀ νU νL : (Vec ℝ 1 →ₗ[ℝ] ℝ) → Vec ℝ 1) (_ : ∀ d, ν₀ d ∈ toSet X₀)
+      (_ : ∀ d, νU d ∈ toSet U) (_ : ∀ d, νL d ∈ L)
       (ρL : (Vec ℝ 1 →ₗ[ℝ] ℝ) → ℝ) (_ : ∀ d, ∀ y ∈ L, d y ≤ ρL d)
       (νhat : ℝ → (Vec ℝ 1 →ₗ[ℝ] ℝ) → Vec ℝ 1)
       (_ : ℓ₁ (νhat 1 ℓ₁) = (sys.supportUpper (S := 𝒵) 1 η X₀ U ρ ℓ₁ 1).ρR)
@@ -207,8 +207,8 @@ theorem LinearSys.verifySearch_stall_counterexample (η : ℕ) : -- --- CONCL --
   intro sys X₀ U c L ℓ₁
   have hA : toRealMat sys.A = 1 := rfl
   have hnormA : ‖toRealMat sys.A‖ = 1 := by rw [hA]; exact norm_one
-  have hUbdd : Bornology.IsBounded (construct U) := CompactSet.isBounded_construct U
-  have hUnorm : ∀ u ∈ construct U, ‖u‖ ≤ 1 := by
+  have hUbdd : Bornology.IsBounded (toSet U) := CompactSet.isBounded_toSet U
+  have hUnorm : ∀ u ∈ toSet U, ‖u‖ ≤ 1 := by
     rintro u ⟨β, hβ, rfl⟩
     refine (pi_norm_le_iff_of_nonneg zero_le_one).mpr fun i => ?_
     simpa [U] using hβ 0
@@ -260,17 +260,17 @@ theorem LinearSys.verifySearch_stall_counterexample (η : ℕ) : -- --- CONCL --
   -- a point of `P̂_U(Δt)`: the Taylor terms and the remainder at the input `1 ∈ U₀`
   let U₀ := Recenter.recenter U
   let w : Vec ℝ 1 := fun _ => 1
-  have hw : w ∈ construct U₀ := by
+  have hw : w ∈ toSet U₀ := by
     refine ⟨fun _ => 1, by simp, ?_⟩
     funext i
     simp [U₀, w, U, Recenter.recenter, Zonotope.recenter]
   -- the Taylor terms of `P̂_U(Δt)` at `w`
   have hmt : ∀ M : Mat ℝ 1 1,
-      M *ᵥ w ∈ construct (Mtimes.mtimes (𝕄 := Mat ℝ) (S := 𝒵) M U₀) := fun M =>
+      M *ᵥ w ∈ toSet (Mtimes.mtimes (𝕄 := Mat ℝ) (S := 𝒵) M U₀) := fun M =>
     Mtimes.mtimes_outer (𝕄 := Mat ℝ) (S := 𝒵) M U₀
       (Set.mem_biUnion (x := M) (by simp) ⟨w, hw, rfl⟩)
   have htay : ∀ j : ℕ, (∑ i ∈ Finset.range (j + 1), sys.inputTerm 1 i *ᵥ w) ∈
-      construct (sys.inputTaylorSum (S := 𝒵) 1 U₀ j) := by
+      toSet (sys.inputTaylorSum (S := 𝒵) 1 U₀ j) := by
     intro j
     induction j with
     | zero =>
@@ -281,10 +281,10 @@ theorem LinearSys.verifySearch_stall_counterexample (η : ℕ) : -- --- CONCL --
       exact Plus.plus_outer _ _ (Set.add_mem_add ih (hmt _))
   -- the remainder term holds the constant matrix `ε`, and so the point reaches `Σ + ε`
   let Mε : Mat ℝ 1 1 := fun _ _ => ε
-  have hM : Mε ∈ construct (MatExp.inputRemainder (toRealMat sys.A) 1 η) :=
+  have hM : Mε ∈ toSet (MatExp.inputRemainder (toRealMat sys.A) 1 η) :=
     fun p => ⟨by simp only [Entrywise.entry_mat, MatExp.inputRemainder, Mε]; linarith, le_rfl⟩
   have hxp : (∑ i ∈ Finset.range (η + 1), sys.inputTerm 1 i *ᵥ w) + Mε *ᵥ w ∈
-      construct (sys.inputSolution (S := 𝒵) 1 η U₀) :=
+      toSet (sys.inputSolution (S := 𝒵) 1 η U₀) :=
     Plus.plus_outer _ _ (Set.add_mem_add (htay η) (Mtimes.mtimes_outer (𝕄 := ℐ) (S := 𝒵)
       (MatExp.inputRemainder (toRealMat sys.A) 1 η) U₀
       (Set.mem_biUnion (x := Mε) hM ⟨w, hw, rfl⟩)))
@@ -306,7 +306,7 @@ theorem LinearSys.verifySearch_stall_counterexample (η : ℕ) : -- --- CONCL --
       (sys.supportUpper (S := 𝒵) 1 η X₀ U ρ ℓ₁ 1).ρR := by
     -- line 12 at `k = 1`: `ρ(X₀, d₁) + ℓ₁(P_u(t₁)) + ρ(P̂_U(Δt), ℓ₁)`, the middle term `0`
     simp only [LinearSys.supportUpper]
-    have h0X : (0 : Vec ℝ 1) ∈ construct X₀ := OfPoint.mem_ofPoint (0 : Vec ℝ 1)
+    have h0X : (0 : Vec ℝ 1) ∈ toSet X₀ := OfPoint.mem_ofPoint (0 : Vec ℝ 1)
     have h1 := hρ X₀ 0 h0X (ℓ₁ ∘ₗ (exp ((1 : ℝ) • toRealMat sys.A)).mulVecLin)
     have h3 := hρ _ _ hxp ℓ₁
     have hc : Recenter.center U = 0 := rfl
@@ -328,7 +328,7 @@ theorem LinearSys.verifySearch_stall_counterexample (η : ℕ) : -- --- CONCL --
   have hcheck : ℓ₁ (sys.heldSim 1 (sys.supportCounterexample 1 ν₀ νU ℓ₁ 1).1
       (sys.supportCounterexample 1 ν₀ νU ℓ₁ 1).2 1 - νL (-ℓ₁)) < 0 := by
     have hmem := sys.convexHull_supportCounterexample_subset_reachSetExact (S := 𝒵) X₀ U
-      (ConvexSet.convex_construct X₀) (ConvexSet.convex_construct U) hUbdd one_pos hν₀ hνU
+      (ConvexSet.convex_toSet X₀) (ConvexSet.convex_toSet U) hUbdd one_pos hν₀ hνU
       (fun _ : Unit => ℓ₁) 1 (subset_convexHull ℝ _ ⟨(), rfl⟩)
     rw [Nat.cast_one, one_mul] at hmem
     have := hR _ hmem
@@ -362,9 +362,9 @@ theorem LinearSys.verifySearch_stall_exact_counterexample (η : ℕ) : -- --- CO
       c - (Real.exp 1 - 1) ≤ ‖x - y‖) ∧
     -- and yet, for every sound oracle, `Alg. 3` never exits
     ∀ (ρ : Zonotope (Vec ℝ 1) → (Vec ℝ 1 →ₗ[ℝ] ℝ) → ℝ)
-      (_ : ∀ X : Zonotope (Vec ℝ 1), ∀ x ∈ construct X, ∀ d : Vec ℝ 1 →ₗ[ℝ] ℝ, d x ≤ ρ X d)
-      (ν₀ νU νL : (Vec ℝ 1 →ₗ[ℝ] ℝ) → Vec ℝ 1) (_ : ∀ d, ν₀ d ∈ construct X₀)
-      (_ : ∀ d, νU d ∈ construct U) (_ : ∀ d, νL d ∈ L)
+      (_ : ∀ X : Zonotope (Vec ℝ 1), ∀ x ∈ toSet X, ∀ d : Vec ℝ 1 →ₗ[ℝ] ℝ, d x ≤ ρ X d)
+      (ν₀ νU νL : (Vec ℝ 1 →ₗ[ℝ] ℝ) → Vec ℝ 1) (_ : ∀ d, ν₀ d ∈ toSet X₀)
+      (_ : ∀ d, νU d ∈ toSet U) (_ : ∀ d, νL d ∈ L)
       (ρL : (Vec ℝ 1 →ₗ[ℝ] ℝ) → ℝ) (_ : ∀ d, ∀ y ∈ L, d y ≤ ρL d)
       (νhat : ℝ → (Vec ℝ 1 →ₗ[ℝ] ℝ) → Vec ℝ 1)
       (_ : ℓ₁ (νhat 1 ℓ₁) = (sys.supportUpper (S := 𝒵) 1 η X₀ U ρ ℓ₁ 1).ρR)

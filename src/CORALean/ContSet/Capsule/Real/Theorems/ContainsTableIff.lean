@@ -50,7 +50,7 @@ variable {n : ℕ}
 
 /-- [1, Table 2]'s capsule test, at `≤ r` on the axis, decides membership. -/
 theorem Capsule.mem_iff_table (C : Capsule n) (x : Vec ℝ n) : -- --- CONCL ---
-    x ∈ C.construct ↔
+    x ∈ C.toSet ↔
       (‖((x - C.c) ⬝ᵥ (‖C.g‖₂⁻¹ • C.g)) • (‖C.g‖₂⁻¹ • C.g) - (x - C.c)‖₂ ≤ C.r ∧
           |(x - C.c) ⬝ᵥ (‖C.g‖₂⁻¹ • C.g)| < ‖C.g‖₂) ∨
         ‖(x - C.c) - C.g‖₂ ≤ C.r ∨ ‖(x - C.c) + C.g‖₂ ≤ C.r := by -- --- PROOF ---
@@ -68,8 +68,8 @@ theorem Capsule.mem_iff_table (C : Capsule n) (x : Vec ℝ n) : -- --- CONCL ---
   · rintro (⟨hle, hlt⟩ | h | h)
     · exact (C.containsPoint_iff x).mp (Or.inl ⟨hlt, by rwa [hax]⟩)
     · -- an end sphere lies in the capsule: `t = 1`
-      exact (C.mem_construct_iff_norm₂ x).mpr ⟨1, ⟨by norm_num, le_rfl⟩, by rwa [one_smul]⟩
-    · exact (C.mem_construct_iff_norm₂ x).mpr
+      exact (C.mem_toSet_iff_norm₂ x).mpr ⟨1, ⟨by norm_num, le_rfl⟩, by rwa [one_smul]⟩
+    · exact (C.mem_toSet_iff_norm₂ x).mpr
         ⟨-1, ⟨le_rfl, by norm_num⟩, by rwa [neg_one_smul, sub_neg_eq_add]⟩
 
 end CORALean.Real

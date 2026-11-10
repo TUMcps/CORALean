@@ -40,7 +40,7 @@ variable {S : ℕ → Type} {n : ℕ} [∀ k, ContSet (S k) (Vec ℝ k)]
 
 /-- `x` satisfies `ap` at `loc`. -/
 def AtomicProposition.Holds (ap : AtomicProposition S n) (x : Vec ℝ n) (loc : ℕ) : Prop :=
-  ap.containsLoc loc = true ∧ ap.readPoint x ∈ construct ap.set
+  ap.containsLoc loc = true ∧ ap.readPoint x ∈ toSet ap.set
 
 end CORALean
 

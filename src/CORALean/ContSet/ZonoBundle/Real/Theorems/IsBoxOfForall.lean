@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.ZonoBundle.Real.Theorems.ConstructEqIInter
+public import CORALean.ContSet.ZonoBundle.Real.Theorems.ToSetEqIInter
 public import CORALean.ContSet.ZonoBundle.Real.ZonoBundle
 public import CORALean.ContSet.Zonotope.Real.Operations.IsBox
 public import Mathlib.Data.Finset.Lattice.Fold
@@ -43,7 +43,7 @@ variable {n : ℕ}
 
 theorem ZonoBundle.isBox_of_forall (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k)
     (h : ∀ i, (zB.Z i).IsBox) : -- --- CONCL ---
-    ∃ I : Interval (Vec ℝ n), zB.construct = I.construct := by -- --- PROOF ---
+    ∃ I : Interval (Vec ℝ n), zB.toSet = I.toSet := by -- --- PROOF ---
   -- the box of the largest lower and smallest upper bounds
   choose Is hIs using h
   have hne : (Finset.univ : Finset (Fin zB.k)).Nonempty := ⟨⟨0, hk⟩, Finset.mem_univ _⟩
@@ -51,8 +51,8 @@ theorem ZonoBundle.isBox_of_forall (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k)
     fun j => Finset.univ.inf' hne fun i => (Is i).sup j⟩, ?_⟩
   ext x
   have hc : ∀ (J : Interval (Vec ℝ n)) (x : Vec ℝ n),
-      x ∈ J.construct ↔ ∀ j, J.inf j ≤ x j ∧ x j ≤ J.sup j := fun _ _ => Iff.rfl
-  simp only [ZonoBundle.construct_eq_iInter, Set.mem_iInter, hIs, hc]
+      x ∈ J.toSet ↔ ∀ j, J.inf j ≤ x j ∧ x j ≤ J.sup j := fun _ _ => Iff.rfl
+  simp only [ZonoBundle.toSet_eq_iInter, Set.mem_iInter, hIs, hc]
   constructor
   · -- inside every member: above every lower bound, below every upper bound
     intro hx j

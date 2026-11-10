@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.ApplyMulVec
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.NormPullbackEq
 public import CORALean.Global.SupportFunction.SupportFunction
@@ -51,10 +51,10 @@ variable {n : ℕ}
 /-- No linear program and no dual solution: the value is closed form and the
 maximum is attained, which `Theorems.SupportBoundAttained` states. -/
 noncomputable def Ellipsoid.supportBound (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
-    SupportBound E.construct c where
+    SupportBound E.toSet c where
   val := c E.q + Real.sqrt (dualVec c ⬝ᵥ E.Q *ᵥ dualVec c)
   le := by
-    rw [E.construct_eq_sqrt]
+    rw [E.toSet_eq_sqrt]
     rintro _ ⟨u, hu, rfl⟩
     rw [map_add, ← E.norm₂_pullback]
     refine add_le_add le_rfl ?_

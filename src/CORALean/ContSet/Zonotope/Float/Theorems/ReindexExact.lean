@@ -15,7 +15,7 @@ reason is that a relabelling does no arithmetic.
 
 What the float layer adds is the error box, and it costs nothing here either. A
 reindexing is linear, so it distributes over the Minkowski sum that
-`InflatedContSet.construct` is — the relabelled set is the relabelled nominal
+`InflatedContSet.toSet` is — the relabelled set is the relabelled nominal
 part plus the relabelled box, with no widening between them.
 
 ## Inputs
@@ -47,9 +47,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.reindex_exact (e : Fin m ≃ Fin n) (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    (Z.reindex e).construct = reindexLin e '' Z.construct := by -- --- PROOF ---
-  show InflatedContSet.nominalSet (Z.reindex e) + (Z.I_error.reindex e).construct
-    = reindexLin e '' (InflatedContSet.nominalSet Z + Z.I_error.construct)
+    (Z.reindex e).toSet = reindexLin e '' Z.toSet := by -- --- PROOF ---
+  show InflatedContSet.nominalSet (Z.reindex e) + (Z.I_error.reindex e).toSet
+    = reindexLin e '' (InflatedContSet.nominalSet Z + Z.I_error.toSet)
   have h : InflatedContSet.nominalSet (Z.reindex e)
       = reindexLin e '' InflatedContSet.nominalSet Z :=
     (Real.Zonotope.map_exact (reindexLin e) (InflatedContSet.nominal Z)).symm

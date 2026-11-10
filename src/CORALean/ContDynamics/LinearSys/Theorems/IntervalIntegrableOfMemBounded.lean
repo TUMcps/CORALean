@@ -10,7 +10,7 @@ public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 
 The one fact every flow equation here needs of its input and of its
 disturbance, and the only place a representation enters an integrability
-argument: `construct U` is bounded, `u` stays inside it on the window, so the
+argument: `toSet U` is bounded, `u` stays inside it on the window, so the
 integrand is dominated by a constant over a finite measure.
 
 Stated for a bare signal rather than for a run, since the two-signal flow of
@@ -53,8 +53,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- A signal staying in a bounded set on `[0, t]` and measurable there is
 interval integrable over that window. -/
 theorem intervalIntegrable_of_mem_bounded {U : S n} {t : ℝ} (ht : 0 ≤ t)
-    (hU : Bornology.IsBounded (construct U)) {u : ℝ → Vec ℝ n}
-    (hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s ∈ construct U)
+    (hU : Bornology.IsBounded (toSet U)) {u : ℝ → Vec ℝ n}
+    (hu : ∀ s ∈ Set.Icc (0:ℝ) t, u s ∈ toSet U)
     (hmeas : AEStronglyMeasurable u (volume.restrict (Set.Icc 0 t))) : -- --- CONCL ---
     IntervalIntegrable u volume 0 t := by -- --- PROOF ---
   obtain ⟨Cu, hCu⟩ := hU.exists_norm_le

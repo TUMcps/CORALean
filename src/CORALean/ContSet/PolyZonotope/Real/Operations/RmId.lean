@@ -10,7 +10,7 @@ public import Mathlib.Data.Finset.Sort
 
 CORA's `@polyZonotope/rmId`: delete the exponent rows, and the identifiers, of the listed
 factors. A deleted factor no longer scales anything, which is the same as pinning it at `1`
-(`rmId_construct`), so the result is the subset of the set where those factors are `1`.
+(`rmId_toSet`), so the result is the subset of the set where those factors are `1`.
 CORA then runs `removeRedundantExponents`, merging equal exponent columns; the denoted set is
 the same and the merge is left out.
 

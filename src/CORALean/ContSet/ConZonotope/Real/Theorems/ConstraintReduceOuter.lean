@@ -55,8 +55,8 @@ open Matrix
 /-- [1, Prop. 5]: `Z ⊂ Z̃` for every `Λ_G ∈ ℝ^{n×nc}` and `Λ_A ∈ ℝ^{nc×nc}`. -/
 theorem ConZonotope.constraintReduce_outer {n q h : ℕ} (c : Vec ℝ n) (G : Fin h → Vec ℝ n)
     (A : Mat ℝ q h) (b : Vec ℝ q) (ΛG : Mat ℝ n q) (ΛA : Mat ℝ q q) : -- --- CONCL ---
-    (ConZonotope.ofMat c G A b).construct
-      ⊆ (ConZonotope.constraintReduce c G A b ΛG ΛA).construct := by -- --- PROOF ---
+    (ConZonotope.ofMat c G A b).toSet
+      ⊆ (ConZonotope.constraintReduce c G A b ΛG ΛA).toSet := by -- --- PROOF ---
   intro x hx
   obtain ⟨β, hβ, hAβ, rfl⟩ := ConZonotope.mem_ofMat_iff.mp hx
   have hAβ' : A *ᵥ β = b := funext hAβ

@@ -87,8 +87,8 @@ private theorem Zonotope.aux_bilin_right (g : β →ₗ[ℝ] γ) {h : ℕ} (c : 
 
 theorem Zonotope.bilin_outer (f : α →ₗ[ℝ] β →ₗ[ℝ] γ) (Z₁ : Zonotope α)
     (Z₂ : Zonotope β) : -- --- CONCL ---
-    (⋃ a ∈ Z₁.construct, (f a ·) '' Z₂.construct)
-      ⊆ (Zonotope.bilin f Z₁ Z₂).construct := by -- --- PROOF ---
+    (⋃ a ∈ Z₁.toSet, (f a ·) '' Z₂.toSet)
+      ⊆ (Zonotope.bilin f Z₁ Z₂).toSet := by -- --- PROOF ---
   rintro y hy
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
   obtain ⟨a, ha, x, hx, rfl⟩ := hy

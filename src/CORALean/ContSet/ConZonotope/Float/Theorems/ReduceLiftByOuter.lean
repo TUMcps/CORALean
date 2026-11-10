@@ -104,7 +104,7 @@ private theorem Zonotope.aux_reduceBy_coeff (Z : Zonotope (Vec 𝕋 n))
 
 theorem ConZonotope.reduceLiftBy_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
     (part : Split (Fin cZ.h) into (Fin q) ⊕ (Fin r)) : -- --- CONCL ---
-    cZ.construct ⊆ (cZ.reduceLiftBy part).construct := by -- --- PROOF ---
+    cZ.toSet ⊆ (cZ.reduceLiftBy part).toSet := by -- --- PROOF ---
   rintro x ⟨y, hy', e, he, hx⟩
   obtain ⟨β, hβ, hP, hy⟩ := ConZonotope.mem_nominalSet_iff.mp hy'
   obtain ⟨hPin, hPeq⟩ := HPolytope.mem_nominal_iff.mp hP
@@ -113,7 +113,7 @@ theorem ConZonotope.reduceLiftBy_outer (cZ : ConZonotope 𝕋 (Vec 𝕋 n))
   · refine HPolytope.mem_stackRows_nominal_iff.mpr ⟨?_, HPolytope.mem_nominal_iff.mpr
       ⟨fun i => i.elim0, fun i => ?_⟩⟩
     · -- the inequality rows: the kept coefficients, the fresh ones read as zero
-      show ξ ∈ (((cZ.P.keepCols part).dropEqs).padLeft (n + cZ.P.me)).nominal.construct
+      show ξ ∈ (((cZ.P.keepCols part).dropEqs).padLeft (n + cZ.P.me)).nominal.toSet
       rw [HPolytope.mem_padLeft_nominal_iff]
       have hk := HPolytope.mem_keepCols_nominal cZ.P part hP fun l => hβ (part.right l)
       have hl : blockLeft q (n + cZ.P.me) ξ = fun l => β (part.left l) := funext hξl

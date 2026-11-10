@@ -63,8 +63,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 witness for the time-point reachable set at `t` — no set built, and
 `reachSetExact` named only in the conclusion. -/
 noncomputable def LinearSys.timePointWitness (sys : LinearSys 𝕋 n) (R₀ U : S n)
-    {t : ℝ} (ht : 0 ≤ t) (hU : Bornology.IsBounded (construct U))
-    (w₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportWitness (construct R₀) d)
+    {t : ℝ} (ht : 0 ≤ t) (hU : Bornology.IsBounded (toSet U))
+    (w₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportWitness (toSet R₀) d)
     (wP : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportWitness (sys.inputReach U t) d)
     (c : Vec ℝ n →ₗ[ℝ] ℝ) :
     SupportWitness (sys.reachSetExact (Set.Icc 0 t) R₀ U t) c :=

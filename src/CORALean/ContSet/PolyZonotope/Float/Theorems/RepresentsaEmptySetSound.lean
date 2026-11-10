@@ -39,9 +39,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.representsa_emptySet_sound {pZ : PolyZonotope (Vec 𝕋 n)}
-    (h : pZ.representsa_emptySet = true) : pZ.construct = ∅ := by
+    (h : pZ.representsa_emptySet = true) : pZ.toSet = ∅ := by
   have hE := Interval.representsa_emptySet_sound h
-  show nominalSet pZ + pZ.I_error.construct = ∅
+  show nominalSet pZ + pZ.I_error.toSet = ∅
   rw [hE, Set.add_empty]
 
 end CORALean.Float

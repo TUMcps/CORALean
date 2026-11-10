@@ -11,7 +11,7 @@ public import Mathlib.Topology.MetricSpace.Pseudo.Pi
 Stated by a Minkowski inflation and no metric on sets: some order pattern
 brings the enclosure inside the exact image widened by any closed `ε`-ball.
 `Pointwise` addition does all the work, with no Hausdorff distance to define,
-to relate to `construct`, or to prove complete.
+to relate to `toSet`, or to prove complete.
 
 ## Inputs
 * `L` – refinable layer
@@ -41,7 +41,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 def RefinableLayer.IsConvergent (L : RefinableLayer S n m) : Prop :=
   ∀ (s : S n) (ε : ℝ), 0 < ε →
     ∃ t : OrderPattern n,
-      construct (L.enclose t s) ⊆ L.eval '' construct s + Metric.closedBall 0 ε
+      toSet (L.enclose t s) ⊆ L.eval '' toSet s + Metric.closedBall 0 ε
 
 end CORALean
 

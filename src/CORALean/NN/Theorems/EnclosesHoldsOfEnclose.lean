@@ -48,8 +48,8 @@ variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
 
 theorem NeuralNetwork.Encloses.holds_of_enclose {nn : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
     (hf : nn.Encloses f) (X : S n)
-    (spec : Specification ContSet) (h : spec.Holds (construct (nn.enclose X))) :
-    spec.Holds (f '' construct X) :=
+    (spec : Specification ContSet) (h : spec.Holds (toSet (nn.enclose X))) :
+    spec.Holds (f '' toSet X) :=
   spec.holds_of_outer (hf.image_subset X) h
 
 end CORALean

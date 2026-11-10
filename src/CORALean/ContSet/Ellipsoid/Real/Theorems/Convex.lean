@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqImage
 
 @[expose] public section
 
@@ -9,7 +9,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqImage
 
 An affine image of the Euclidean unit ball, and that ball is convex by the
 triangle inequality, so nothing here is specific to ellipsoids beyond
-`construct_eq_image`.
+`toSet_eq_image`.
 
 What the reachability theorems consume: an integral valued in the set needs it,
 and it holds whatever `G` is, degenerate ones included.
@@ -49,12 +49,12 @@ private theorem _root_.CORALean.aux_convex_unitBall₂ : Convex ℝ (unitBall₂
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Ellipsoid.convex_construct (E : Ellipsoid n) : -- --- CONCL ---
-    Convex ℝ E.construct := by -- --- PROOF ---
+theorem Ellipsoid.convex_toSet (E : Ellipsoid n) : -- --- CONCL ---
+    Convex ℝ E.toSet := by -- --- PROOF ---
   have himg : (fun u : Vec ℝ n => E.q + E.G *ᵥ u) '' unitBall₂ n
       = (fun z : Vec ℝ n => E.q + z) '' (Matrix.mulVecLin E.G '' unitBall₂ n) := by
     simp only [Set.image_image, Matrix.mulVecLin_apply]
-  rw [E.construct_eq_image, himg]
+  rw [E.toSet_eq_image, himg]
   exact (aux_convex_unitBall₂.linear_image (Matrix.mulVecLin E.G)).translate E.q
 
 end CORALean.Real

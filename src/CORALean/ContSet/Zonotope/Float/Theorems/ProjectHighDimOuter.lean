@@ -103,8 +103,8 @@ private theorem Zonotope.aux_extend_eq_embed (proj : Fin n → Fin N)
 
 theorem Zonotope.projectHighDim_outer (Z : Zonotope (Vec 𝕋 n)) (proj : Fin n → Fin N)
     (hproj : Function.Injective proj) : -- --- CONCL ---
-    (fun x => Function.extend proj x 0) '' Z.construct ⊆
-      (Z.projectHighDim_ N proj).construct := by -- --- PROOF ---
+    (fun x => Function.extend proj x 0) '' Z.toSet ⊆
+      (Z.projectHighDim_ N proj).toSet := by -- --- PROOF ---
   have hext : (fun x : Vec ℝ n => Function.extend proj x 0) = Real.Zonotope.embed proj :=
     funext (Zonotope.aux_extend_eq_embed proj hproj)
   refine image_subset (fun x y => by simp only [congrFun hext]; exact map_add _ x y) ?_

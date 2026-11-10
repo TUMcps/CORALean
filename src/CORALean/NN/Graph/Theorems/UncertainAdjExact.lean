@@ -55,7 +55,7 @@ variable {N m : ℕ}
 rescaled to the unit interval around zero. -/
 theorem GNN.uncertainAdj_exact (A : Mat ℝ N N) (U : Fin m → Fin N × Fin N) : -- --- CONCL ---
     (fun lam => GNN.adjAt A U lam) '' {lam | ∀ e, 0 ≤ lam e ∧ lam e ≤ 1}
-      = (GNN.uncertainAdj A U).construct := by -- --- PROOF ---
+      = (GNN.uncertainAdj A U).toSet := by -- --- PROOF ---
   -- one adjacency written at the factors producing it, which is both inclusions
   have hpt : ∀ (lam a : Fin m → ℝ) (b : Fin (GNN.uncertainAdj A U).q → ℝ),
       (∀ e, lam e = (1 + a e) / 2) →

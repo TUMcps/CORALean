@@ -42,10 +42,10 @@ variable {n : ℕ}
 
 /-- A point every box of the list holds, and the start holds, is in the fold. -/
 private theorem ZonoBundle.aux_foldl_intersection (zB : ZonoBundle (Vec ℝ n))
-    (L : List (Fin zB.k)) (I : Interval (Vec ℝ n)) {x : Vec ℝ n} (hI : x ∈ I.construct)
-    (hL : ∀ i ∈ L, x ∈ (zB.interval i).construct) : -- --- CONCL ---
+    (L : List (Fin zB.k)) (I : Interval (Vec ℝ n)) {x : Vec ℝ n} (hI : x ∈ I.toSet)
+    (hL : ∀ i ∈ L, x ∈ (zB.interval i).toSet) : -- --- CONCL ---
     x ∈ (L.foldl (fun I i => Interval.intersection I (zB.interval i))
-      I).construct := by -- --- PROOF ---
+      I).toSet := by -- --- PROOF ---
   induction L generalizing I with
   | nil => exact hI
   | cons i L ih =>
@@ -57,7 +57,7 @@ private theorem ZonoBundle.aux_foldl_intersection (zB : ZonoBundle (Vec ℝ n))
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.intervalAll_contains (zB : ZonoBundle (Vec ℝ n)) (hk : 0 < zB.k) :
-    zB.construct ⊆ (zB.intervalAll hk).construct := fun _ hx =>
+    zB.toSet ⊆ (zB.intervalAll hk).toSet := fun _ hx =>
   ZonoBundle.aux_foldl_intersection zB _ _ (ZonoBundle.interval_contains zB _ hx)
     fun i _ => ZonoBundle.interval_contains zB i hx
 

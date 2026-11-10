@@ -89,7 +89,7 @@ private theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n))
               (coeffs.map toRealVec)).2.trans (PolyZonotope.nominal_p pZ)) k)) i
         - Real.PolyZonotope.point (nominal (PolyZonotope.evalPolyP pZ coeffs).1)
             (fun k => b (Fin.cast (PolyZonotope.evalPolyP pZ coeffs).2 k)) i)
-      ∈ ((PolyZonotope.evalPolyP pZ coeffs).1.I_error).construct := by -- --- PROOF ---
+      ∈ ((PolyZonotope.evalPolyP pZ coeffs).1.I_error).toSet := by -- --- PROOF ---
   -- both sides are the zero vector at the empty list, matched termwise below
   induction coeffs with
   | nil =>
@@ -131,7 +131,7 @@ private theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n))
           (fun k => b (Fin.cast hXS k))
         - Real.PolyZonotope.point (nominal (PolyZonotope.evalPolyStep R pZ hR a0))
             (fun k => b (Fin.cast hR k))
-      ∈ (PolyZonotope.evalPolyStep R pZ hR a0).I_error.construct
+      ∈ (PolyZonotope.evalPolyStep R pZ hR a0).I_error.toSet
     -- the exact Horner step: `a₀ + X ⊙ (nominal pZ)`, `evalPolyStep_point` unfolded
     have hXstep : (Real.PolyZonotope.evalPolyStep X (nominal pZ) hX (toRealVec a0)).point
           (fun k => b (Fin.cast hXS k))
@@ -226,7 +226,7 @@ private theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n))
         with hprodErr
     -- term B, priced by `mulG_close`
     have hmulErr : prodErr
-        ∈ (PolyZonotope.generatorError (PolyZonotope.mulGDiff R pZ)).construct := by
+        ∈ (PolyZonotope.generatorError (PolyZonotope.mulGDiff R pZ)).toSet := by
       have key := PolyZonotope.mem_generatorError_monomial (E := PolyZonotope.mulE R pZ hR)
         (a := fun k => b (Fin.cast hR k)) (PolyZonotope.mulG_close R pZ)
         (fun k => hb (Fin.cast hR k))
@@ -270,7 +270,7 @@ private theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n))
     have htermAmem : (fun i => (dX i)
           * Real.PolyZonotope.point (nominal pZ) b i)
         ∈ (Interval.symmetric (fun i => mulUp (PolyZonotope.errorBound R.I_error i)
-            (PolyZonotope.evalPolyBoundS pZ i))).construct := by
+            (PolyZonotope.evalPolyBoundS pZ i))).toSet := by
       intro i
       have habs := htermAbound i
       rw [abs_le] at habs
@@ -282,7 +282,7 @@ private theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n))
     -- term residual: `a₀`'s center shift, priced by `Interval.sub_mem_residual`
     have hresidualMem : (fun i => toReal (a0 i)
           - toReal (FloatOps.addDown ((PolyZonotope.mul R pZ hR).c i) (a0 i)))
-        ∈ (PolyZonotope.centerResidual (PolyZonotope.mul R pZ hR).c a0).construct := by
+        ∈ (PolyZonotope.centerResidual (PolyZonotope.mul R pZ hR).c a0).toSet := by
       have := Interval.sub_mem_residual
         (lo := fun i => FloatOps.addDown ((PolyZonotope.mul R pZ hR).c i) (a0 i))
         (hi := fun i => FloatOps.addUp ((PolyZonotope.mul R pZ hR).c i) (a0 i))
@@ -297,7 +297,7 @@ private theorem PolyZonotope.aux_evalPoly_close (pZ : PolyZonotope (Vec 𝕋 n))
         - (toReal (FloatOps.addDown ((PolyZonotope.mul R pZ hR).c i) (a0 i))
             + Real.PolyZonotope.point (nominal (PolyZonotope.mul R pZ hR))
                 (fun k => b (Fin.cast hR k)) i))
-      ∈ (PolyZonotope.evalPolyStep R pZ hR a0).I_error.construct
+      ∈ (PolyZonotope.evalPolyStep R pZ hR a0).I_error.toSet
     -- regroup as (mul's rounding) + (center residual) + (`R`'s own propagated gap)
     have hsplit : (fun i => toReal (a0 i) + X.point (fun k => b (Fin.cast hXS k)) i
           * Real.PolyZonotope.point (nominal pZ) b i
@@ -323,7 +323,7 @@ theorem PolyZonotope.evalPoly_outer (pZ : PolyZonotope (Vec 𝕋 n))
     (fun a : Fin pZ.p → ℝ => fun i => Real.PolyZonotope.evalPolyReal
         (coeffs.map fun v => toReal (v i))
         (Real.PolyZonotope.point (nominal pZ) a i)) '' {a | ∀ k, |a k| ≤ 1}
-      ⊆ (PolyZonotope.evalPoly pZ coeffs).construct := by -- --- PROOF ---
+      ⊆ (PolyZonotope.evalPoly pZ coeffs).toSet := by -- --- PROOF ---
   rintro _ ⟨a, ha, rfl⟩
   have hexact := Real.PolyZonotope.evalPoly_exact (nominal pZ) (coeffs.map toRealVec) a
   -- one coordinate of a list of coefficient vectors is that coordinate's own scalar list
@@ -334,7 +334,7 @@ theorem PolyZonotope.evalPoly_outer (pZ : PolyZonotope (Vec 𝕋 n))
         (Real.PolyZonotope.point (nominal pZ) a i)
       - Real.PolyZonotope.point (nominal (PolyZonotope.evalPoly pZ coeffs))
           (fun k => a (Fin.cast (PolyZonotope.evalPoly_p pZ coeffs) k)) i)
-      ∈ (PolyZonotope.evalPoly pZ coeffs).I_error.construct := by
+      ∈ (PolyZonotope.evalPoly pZ coeffs).I_error.toSet := by
     -- `hexact` rewrites the invariant's exact side into the target's own shape
     intro i
     have hi := congrFun hexact i

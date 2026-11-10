@@ -1,6 +1,6 @@
 import CORALean.ContSet.ConPolyZono.Float.Theorems.IntersectionOuter
 import CORALean.ContSet.ConPolyZono.Real.Theorems.IntersectionExact
-import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUnit
+import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEqUnit
 import CORALean.ContSet.Conversion.Float.Theorems.ConZonotopeConPolyZonoContains
 import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeConPolyZonoExact
 import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_ConPolyZono
@@ -39,16 +39,16 @@ namespace Real
 /-- A guard given by inequalities, met exactly by a set that need not be
 convex. -/
 example (cPZ : ConPolyZono (Vec ℝ n)) (G : ConZonotope (Vec ℝ n)) :
-    cPZ.construct ∩ G.construct = (cPZ.intersection G.conPolyZono).construct := by
+    cPZ.toSet ∩ G.toSet = (cPZ.intersection G.conPolyZono).toSet := by
   rw [ConZonotope.conPolyZono_exact G]
   exact ConPolyZono.intersection_exact cPZ G.conPolyZono
 
 /-- The paper's `A μ(α) = b` on `[-1, 1]ᵖ` is the factor constraint: `cons` is a polynomial level
 set with `=` in every row on the unit box, a point of it in the box and solving the equations. -/
 example (cPZ : ConPolyZono (Vec ℝ n)) (a : Fin cPZ.p → ℝ) :
-    a ∈ cPZ.cons.construct ↔ (∀ k, |a k| ≤ 1)
+    a ∈ cPZ.cons.toSet ↔ (∀ k, |a k| ≤ 1)
       ∧ ∀ i, (cPZ.cons.A *ᵥ PolyZonotope.monomial cPZ.cons.R a) i = cPZ.cons.b i :=
-  PolyLevelSet.mem_construct_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom
+  PolyLevelSet.mem_toSet_iff_of_eq_unit cPZ.cons_eq cPZ.cons_dom
 
 end Real
 
@@ -59,7 +59,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- The same cut on a machine: the only non-convex intersection in this
 repository that a float layer computes. -/
 example (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) (G : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    cPZ.construct ∩ G.construct ⊆ (cPZ.intersection G.conPolyZono).construct :=
+    cPZ.toSet ∩ G.toSet ⊆ (cPZ.intersection G.conPolyZono).toSet :=
   subset_trans (Set.inter_subset_inter subset_rfl (ConZonotope.conPolyZono_contains G))
     (ConPolyZono.intersection_outer cPZ G.conPolyZono)
 

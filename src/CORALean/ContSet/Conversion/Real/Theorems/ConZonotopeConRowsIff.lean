@@ -74,7 +74,7 @@ theorem ConZonotope.conRows_iff (cZ : ConZonotope (Vec ℝ n)) (β : Vec ℝ cZ.
     (hβ : ∀ j, |β j| ≤ 1) : -- --- CONCL ---
     (∀ i, ConZonotope.conLo cZ i ≤ (ConZonotope.conA cZ *ᵥ β) i
         ∧ (ConZonotope.conA cZ *ᵥ β) i ≤ ConZonotope.conHi cZ i)
-      ↔ β ∈ cZ.P.construct := by -- --- PROOF ---
+      ↔ β ∈ cZ.P.toSet := by -- --- PROOF ---
   have hlin : ∀ i : Fin cZ.P.m, (ConZonotope.conA cZ *ᵥ β) (Fin.castAdd cZ.P.me i)
       = cZ.P.A i β := by
     intro i

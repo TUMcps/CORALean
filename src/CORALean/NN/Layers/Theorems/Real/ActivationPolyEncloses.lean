@@ -7,7 +7,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPolyRealOfFn
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemToSet
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
@@ -79,7 +79,7 @@ theorem Layer.activationPoly_encloses {P : LayerRelaxation ℝ n m}
     (Layer.activationPoly P).Encloses (fun x i => σ (x i)) := by -- --- PROOF ---
   refine ⟨fun s x hx => ?_⟩
   have hbox := PolyZonotope.interval_contains s hx
-  have hxd : x ∈ s.dependent.construct := by
+  have hxd : x ∈ s.dependent.toSet := by
     rw [← PolyZonotope.dependent_exact s]
     exact hx
   obtain ⟨a, ha, hxa⟩ := s.dependent.exists_point_of_q_zero rfl hxd
@@ -93,10 +93,10 @@ theorem Layer.activationPoly_encloses {P : LayerRelaxation ℝ n m}
     funext i
     rw [aux_coord, PolyZonotope.evalPolyReal_ofFn, ← congrFun hxa i]
     rfl
-  have hpmem : pv ∈ (s.dependent.evalPoly (P.coeffList J)).construct :=
-    hpval ▸ PolyZonotope.point_mem_construct _ fun k => ha _
+  have hpmem : pv ∈ (s.dependent.evalPoly (P.coeffList J)).toSet :=
+    hpval ▸ PolyZonotope.point_mem_toSet _ fun k => ha _
   -- and the deviation from that polynomial is inside the box, which is `sound`
-  have hdev : (fun i => σ (x i) - pv i) ∈ (P.box J).nominal.construct := by
+  have hdev : (fun i => σ (x i) - pv i) ∈ (P.box J).nominal.toSet := by
     intro i
     have hrel := abs_le.mp ((hP i).sound (hbox i).1 (hbox i).2)
     exact ⟨hrel.1, hrel.2⟩

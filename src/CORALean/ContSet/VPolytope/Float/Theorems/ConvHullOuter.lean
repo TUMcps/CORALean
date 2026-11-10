@@ -53,8 +53,8 @@ private theorem VPolytope.aux_convHull_nominal (P Q : VPolytope (Vec 𝕋 n)) : 
     congr 1
     funext l
     refine Fin.addCases (fun j => ?_) (fun j => ?_) l <;> simp
-  show Real.VPolytope.construct (nominal (P.convHull Q)) =
-    convexHull ℝ (Real.VPolytope.construct (nominal P) ∪ Real.VPolytope.construct (nominal Q))
+  show Real.VPolytope.toSet (nominal (P.convHull Q)) =
+    convexHull ℝ (Real.VPolytope.toSet (nominal P) ∪ Real.VPolytope.toSet (nominal Q))
   rw [h]
   exact Real.VPolytope.convHull_exact _ _
 
@@ -62,8 +62,8 @@ private theorem VPolytope.aux_convHull_nominal (P Q : VPolytope (Vec 𝕋 n)) : 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.convHull_outer (P Q : VPolytope (Vec 𝕋 n)) : -- --- CONCL ---
-    convexHull ℝ (P.construct ∪ Q.construct) ⊆ (P.convHull Q).construct := by -- --- PROOF ---
-  have hbox : (I_error (P.convHull Q)).construct = (P.I_error.or Q.I_error).construct := rfl
+    convexHull ℝ (P.toSet ∪ Q.toSet) ⊆ (P.convHull Q).toSet := by -- --- PROOF ---
+  have hbox : (I_error (P.convHull Q)).toSet = (P.I_error.or Q.I_error).toSet := rfl
   refine convexHull_min ?_ ?_
   · -- each operand's point is a nominal point plus an error
     rintro x (⟨a, ha, e, he, rfl⟩ | ⟨a, ha, e, he, rfl⟩)
@@ -79,7 +79,7 @@ theorem VPolytope.convHull_outer (P Q : VPolytope (Vec 𝕋 n)) : -- --- CONCL -
     refine Convex.add ?_ ?_
     · rw [VPolytope.aux_convHull_nominal]
       exact convex_convexHull ℝ _
-    · exact Real.Interval.convex_construct _
+    · exact Real.Interval.convex_toSet _
 
 end CORALean.Float
 

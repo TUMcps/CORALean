@@ -66,9 +66,9 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 
 /-- A point of a finite Minkowski sum of images names one point per summand. -/
 private theorem LinearSys.aux_exists_of_mem_sum (sys : LinearSys 𝕋 n) {U : S n} (Δt : ℝ)
-    (hne : (construct U).Nonempty) (m : ℕ) : -- --- CONCL ---
-    ∀ x ∈ ∑ i ∈ Finset.range m, (fun v => sys.inputTerm Δt i *ᵥ v) '' construct U,
-      ∃ s : ℕ → Vec ℝ n, (∀ i, s i ∈ construct U) ∧
+    (hne : (toSet U).Nonempty) (m : ℕ) : -- --- CONCL ---
+    ∀ x ∈ ∑ i ∈ Finset.range m, (fun v => sys.inputTerm Δt i *ᵥ v) '' toSet U,
+      ∃ s : ℕ → Vec ℝ n, (∀ i, s i ∈ toSet U) ∧
         x = ∑ i ∈ Finset.range m, sys.inputTerm Δt i *ᵥ s i := by -- --- PROOF ---
   obtain ⟨v₀, hv₀⟩ := hne
   induction m with
@@ -82,7 +82,7 @@ private theorem LinearSys.aux_exists_of_mem_sum (sys : LinearSys 𝕋 n) {U : S 
     obtain ⟨a, ha, b, hb, rfl⟩ := hx
     obtain ⟨w, hw, rfl⟩ := hb
     obtain ⟨s', hs', rfl⟩ := ih a ha
-    have hmem : ∀ i, (if i = k then w else s' i) ∈ construct U := by
+    have hmem : ∀ i, (if i = k then w else s' i) ∈ toSet U := by
       intro i; by_cases h : i = k <;> simp [h, hw, hs']
     refine ⟨fun i => if i = k then w else s' i, hmem, ?_⟩
     rw [Finset.sum_range_succ]
@@ -171,7 +171,7 @@ private theorem LinearSys.aux_tail_term_le (sys : LinearSys 𝕋 n) {Δt : ℝ} 
 inner approximation, hence from the exact particular solution. -/
 theorem LinearSys.inputSolutionSet_dist_inputSolutionInner (sys : LinearSys 𝕋 n) {U : S n}
     {Δt ρ : ℝ} (hΔt : 0 < Δt) (hAΔ : Δt * ‖toRealMat sys.A‖ ≤ 1)
-    (hne : (construct U).Nonempty) (hρ : ∀ v ∈ construct U, ‖v‖ ≤ ρ) (η : ℕ) : -- --- CONCL ---
+    (hne : (toSet U).Nonempty) (hρ : ∀ v ∈ toSet U, ‖v‖ ≤ ρ) (η : ℕ) : -- --- CONCL ---
     ∀ x ∈ sys.inputSolutionSet U Δt η, ∃ y ∈ sys.inputSolutionInner U Δt,
       ‖x - y‖ ≤ ρ * ‖toRealMat sys.A‖
         * (2 * (n : ℝ) + 2 + Real.exp (Δt * ‖toRealMat sys.A‖)) * Δt ^ 2 := by -- --- PROOF ---

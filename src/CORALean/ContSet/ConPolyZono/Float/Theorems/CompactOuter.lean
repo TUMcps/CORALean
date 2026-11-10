@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.compact_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) :
-    cPZ.construct ⊆ cPZ.compact.construct := by
+    cPZ.toSet ⊆ cPZ.compact.toSet := by
   simp only [ConPolyZono.compact, ConPolyZono.materialise_eq]
   exact subset_trans (ConPolyZono.compactGens_outer cPZ)
     (subset_trans (ConPolyZono.compactCons_outer cPZ.compactGens)

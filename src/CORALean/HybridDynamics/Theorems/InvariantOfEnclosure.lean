@@ -74,19 +74,19 @@ since `hε` cannot hold at one order for every one of them. -/
 theorem HybridAutomaton.isInvariant_of_enclosure [∀ n, Intersection (S n) (Vec ℝ n)]
     [∀ n, OfPoint (S n) (Vec ℝ n)]
     (HA : HybridAutomaton S S L 𝕋 n) (R : L → S n)
-    (hconv : ∀ ℓ : L, Convex ℝ (construct (HA.loc ℓ).inputSet))
-    (hclosed : ∀ ℓ : L, IsClosed (construct (HA.loc ℓ).inputSet))
-    (hbdd : ∀ ℓ : L, Bornology.IsBounded (construct (HA.loc ℓ).inputSet))
-    (h0 : ∀ ℓ : L, (0 : Vec ℝ n) ∈ construct (HA.loc ℓ).inputSet)
+    (hconv : ∀ ℓ : L, Convex ℝ (toSet (HA.loc ℓ).inputSet))
+    (hclosed : ∀ ℓ : L, IsClosed (toSet (HA.loc ℓ).inputSet))
+    (hbdd : ∀ ℓ : L, Bornology.IsBounded (toSet (HA.loc ℓ).inputSet))
+    (h0 : ∀ ℓ : L, (0 : Vec ℝ n) ∈ toSet (HA.loc ℓ).inputSet)
     (hflow : ∀ (ℓ : L) (τ : ℝ), 0 < τ → ∃ m : ℕ,
       ‖τ • toRealMat (HA.loc ℓ).dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 ∧
-      Convex ℝ (construct (step_remainder (HA.loc ℓ) τ m)) ∧
-      IsClosed (construct (step_remainder (HA.loc ℓ) τ m)) ∧
-      Bornology.IsBounded (construct (step_remainder (HA.loc ℓ) τ m)) ∧
-      construct (Plus.plus ((HA.loc ℓ).timeInterval τ (m + 2) (R ℓ))
-        ((HA.loc ℓ).dynamics.inputSolution τ (m + 2) (HA.loc ℓ).inputSet)) ⊆ construct (R ℓ))
+      Convex ℝ (toSet (step_remainder (HA.loc ℓ) τ m)) ∧
+      IsClosed (toSet (step_remainder (HA.loc ℓ) τ m)) ∧
+      Bornology.IsBounded (toSet (step_remainder (HA.loc ℓ) τ m)) ∧
+      toSet (Plus.plus ((HA.loc ℓ).timeInterval τ (m + 2) (R ℓ))
+        ((HA.loc ℓ).dynamics.inputSolution τ (m + 2) (HA.loc ℓ).inputSet)) ⊆ toSet (R ℓ))
     (hjump : ∀ (ℓ : L) (e : Transition S L 𝕋 n), e ∈ (HA.loc ℓ).trans →
-      construct (e.jumpIntersection (R ℓ)) ⊆ construct (R e.target)) :
+      toSet (e.jumpIntersection (R ℓ)) ⊆ toSet (R e.target)) :
     HA.IsInvariant R where
   flow {ℓ τ x u w} h h₀ {t} ht := by
     rcases h.nonneg.lt_or_eq with hτ | hτ0

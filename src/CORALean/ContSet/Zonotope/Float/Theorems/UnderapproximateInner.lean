@@ -53,7 +53,7 @@ private theorem aux_abs_sign_le (Z : Zonotope (Vec 𝕋 n)) (s : Vec 𝕋 n) (b 
 /-- A candidate whose sums are exact is the real point of its coefficients, a member. -/
 private theorem aux_exact_mem {Z : Zonotope (Vec 𝕋 n)} {s : Vec 𝕋 n} {b : Bool}
     (h : Z.step_underapproximateExact s b = true) : -- --- CONCL ---
-    toRealVec (Z.step_underapproximateCandidate s b) ∈ Z.construct := by -- --- PROOF ---
+    toRealVec (Z.step_underapproximateCandidate s b) ∈ Z.toSet := by -- --- PROOF ---
   simp only [Zonotope.step_underapproximateExact, Bool.and_eq_true, List.all_eq_true,
     List.mem_finRange, forall_const] at h
   -- the real point of the sign coefficients is the candidate, the sums being squeezed exact
@@ -96,7 +96,7 @@ private theorem aux_exact_mem {Z : Zonotope (Vec 𝕋 n)} {s : Vec 𝕋 n} {b : 
 theorem Zonotope.underapproximate_inner {Z : Zonotope (Vec 𝕋 n)} {H : Mat 𝕋 Z.h n} {s : Vec 𝕋 n}
     {b : Bool} : -- --- CONCL ---
     ∀ p ∈ Z.underapproximate H s b,
-      toRealVec p ∈ Z.construct := by -- --- PROOF ---
+      toRealVec p ∈ Z.toSet := by -- --- PROOF ---
   intro p (h : Z.underapproximate H s b = some p)
   unfold Zonotope.underapproximate at h
   dsimp only at h

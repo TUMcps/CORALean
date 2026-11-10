@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Float.Operations.Empty
-public import CORALean.ContSet.HPolytope.Float.Theorems.ConstructEmptySet
+public import CORALean.ContSet.HPolytope.Float.Theorems.ToSetEmptySet
 
 @[expose] public section
 
@@ -39,16 +39,16 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.empty_exact (n : ℕ) : -- --- CONCL ---
-    (ConZonotope.empty n : ConZonotope 𝕋 (Vec 𝕋 n)).construct = ∅ := by -- --- PROOF ---
+    (ConZonotope.empty n : ConZonotope 𝕋 (Vec 𝕋 n)).toSet = ∅ := by -- --- PROOF ---
   have hN : InflatedContSet.nominalSet (ConZonotope.empty n : ConZonotope 𝕋 (Vec 𝕋 n)) = ∅ := by
     ext x
     simp only [Set.mem_empty_iff_false, iff_false]
     rintro ⟨β, -, hβ, -⟩
-    have h : β ∈ (HPolytope.emptySet 𝕋 0).construct := (HPolytope.mem_nominal_of_origin rfl).mpr hβ
-    rw [HPolytope.construct_emptySet] at h
+    have h : β ∈ (HPolytope.emptySet 𝕋 0).toSet := (HPolytope.mem_nominal_of_origin rfl).mpr hβ
+    rw [HPolytope.toSet_emptySet] at h
     exact h
   show InflatedContSet.nominalSet (ConZonotope.empty n : ConZonotope 𝕋 (Vec 𝕋 n))
-      + (ConZonotope.empty n : ConZonotope 𝕋 (Vec 𝕋 n)).I_error.construct = _
+      + (ConZonotope.empty n : ConZonotope 𝕋 (Vec 𝕋 n)).I_error.toSet = _
   rw [hN, Set.empty_add]
 
 end CORALean.Float

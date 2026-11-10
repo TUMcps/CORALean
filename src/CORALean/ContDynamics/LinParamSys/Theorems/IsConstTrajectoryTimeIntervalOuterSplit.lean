@@ -86,7 +86,7 @@ theorem LinParamSys.IsCanonicalConstTrajectory.timeInterval_outer_split
     (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) :
-    x t ∈ construct (Plus.plus
+    x t ∈ toSet (Plus.plus
       (sys.timeInterval r (m + 2) R₀)
       (Plus.plus
         (Plus.plus
@@ -104,28 +104,28 @@ theorem LinParamSys.IsCanonicalConstTrajectory.timeInterval_outer_split
   let rem₂ : S n := Mtimes.mtimes (𝕄 := ℐ) (MatExp.intervalInputRemainder sys.A r (m + 2))
     (Recenter.recenter U)
   -- every hypothesis comes off `Recenter`/`OfPoint`, which is why no representation is named
-  traj.timeInterval_outer hr hT hε ht0 htr (CompactSet.isBounded_construct U)
+  traj.timeInterval_outer hr hT hε ht0 htr (CompactSet.isBounded_toSet U)
     (traj.inputSolution_timeInterval_outer_split hr hT (m + 2) hε
       (fun _ hy => Recenter.sub_center_mem_recenter hy)
       (OfPoint.mem_ofPoint (Recenter.center U))
       (fun _ hlam => smul_mem_linComb_ofPoint (Recenter.center U) hlam)
-      (CompactSet.isBounded_construct (OfPoint.ofPoint (Recenter.center U)))
-      (ConvexSet.convex_construct seg)
-      (CompactSet.isClosed_construct seg)
-      (CompactSet.isBounded_construct seg)
+      (CompactSet.isBounded_toSet (OfPoint.ofPoint (Recenter.center U)))
+      (ConvexSet.convex_toSet seg)
+      (CompactSet.isClosed_toSet seg)
+      (CompactSet.isBounded_toSet seg)
       -- the tail of `C(r)` meets the segment, so the shape is asked of that product
-      (ConvexSet.convex_construct rem)
-      (CompactSet.isClosed_construct rem)
-      (CompactSet.isBounded_construct rem)
+      (ConvexSet.convex_toSet rem)
+      (CompactSet.isClosed_toSet rem)
+      (CompactSet.isBounded_toSet rem)
       -- and the recentered set is what [1, Sec. 3.3] is read at
       (Recenter.zero_mem_recenter U)
-      (ConvexSet.convex_construct (Recenter.recenter U))
-      (CompactSet.isClosed_construct (Recenter.recenter U))
-      (CompactSet.isBounded_construct (Recenter.recenter U))
+      (ConvexSet.convex_toSet (Recenter.recenter U))
+      (CompactSet.isClosed_toSet (Recenter.recenter U))
+      (CompactSet.isBounded_toSet (Recenter.recenter U))
       -- its own remainder product, the same three facts again
-      (ConvexSet.convex_construct rem₂)
-      (CompactSet.isClosed_construct rem₂)
-      (CompactSet.isBounded_construct rem₂)
+      (ConvexSet.convex_toSet rem₂)
+      (CompactSet.isClosed_toSet rem₂)
+      (CompactSet.isBounded_toSet rem₂)
       ht0 htr)
 
 end CORALean

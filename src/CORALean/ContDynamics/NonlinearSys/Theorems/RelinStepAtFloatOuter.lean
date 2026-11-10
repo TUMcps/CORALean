@@ -63,7 +63,7 @@ omit [ToRat 𝕋] in
 /-- The generator-free zonotope at `v` holds `v`. -/
 private theorem aux_mem_pt {k : ℕ} (v : Vec 𝕋 k) : -- --- CONCL ---
     toRealVec v ∈ (⟨0, v, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
-      Zonotope (Vec 𝕋 k)).construct := by -- --- PROOF ---
+      Zonotope (Vec 𝕋 k)).toSet := by -- --- PROOF ---
   refine ⟨toRealVec v, Zonotope.mem_nominalSet_iff.mpr ⟨fun j => j.elim0, fun j => j.elim0,
     fun i => by simp [toRealVec]⟩, 0, fun i => ?_, add_zero _⟩
   show toReal (zero : 𝕋) ≤ (0 : Vec ℝ k) i ∧ (0 : Vec ℝ k) i ≤ toReal (zero : 𝕋)
@@ -73,9 +73,9 @@ private theorem aux_mem_pt {k : ℕ} (v : Vec 𝕋 k) : -- --- CONCL ---
 omit [ToRat 𝕋] in
 /-- A box widened to a point holds the box and the point. -/
 private theorem aux_mem_hull {k : ℕ} (I : Interval (Vec 𝕋 k)) (v : Vec 𝕋 k) : -- --- CONCL ---
-    I.construct ⊆ (⟨fun i => minimum (I.inf i) (v i), fun i => maximum (I.sup i) (v i)⟩ :
-      Interval (Vec 𝕋 k)).construct ∧ toRealVec v ∈ (⟨fun i => minimum (I.inf i) (v i),
-        fun i => maximum (I.sup i) (v i)⟩ : Interval (Vec 𝕋 k)).construct := by -- --- PROOF ---
+    I.toSet ⊆ (⟨fun i => minimum (I.inf i) (v i), fun i => maximum (I.sup i) (v i)⟩ :
+      Interval (Vec 𝕋 k)).toSet ∧ toRealVec v ∈ (⟨fun i => minimum (I.inf i) (v i),
+        fun i => maximum (I.sup i) (v i)⟩ : Interval (Vec 𝕋 k)).toSet := by -- --- PROOF ---
   refine ⟨fun y hy i => ?_, fun i => ?_⟩
   · show toReal (minimum (I.inf i) (v i)) ≤ y i ∧ y i ≤ toReal (maximum (I.sup i) (v i))
     rw [toReal_minimum, toReal_maximum]
@@ -96,9 +96,9 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer {fm : NonlinearS
     ∀ Rτ Rt, (Rτ, Rt) ∈ fm.relinStepAtFloat U options R xs →
       0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
         sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
-          R.construct U.construct x u y →
-        (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.construct) ∧
-          x (toReal options.Δt) ∈ Rt.construct := by -- --- PROOF ---
+          R.toSet U.toSet x u y →
+        (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.toSet) ∧
+          x (toReal options.Δt) ∈ Rt.toSet := by -- --- PROOF ---
   intro Rτ Rt (hstep : fm.relinStepAtFloat U options R xs = some (Rτ, Rt))
   -- every `←` of the step succeeded: name what each returned
   unfold NonlinearSys.FloatModel.relinStepAtFloat at hstep
@@ -122,18 +122,18 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer {fm : NonlinearS
   have hconf := h.regionFloat_confined hΔt.le traj
     (Zonotope.interval_contains U) (a := 0) (by rw [zero_add])
     (Zonotope.interval_contains R traj.init) _ hΩ
-  have hxX : ∀ t ∈ Set.Icc 0 (toReal Δt), x t ∈ X.construct := fun t ht =>
+  have hxX : ∀ t ∈ Set.Icc 0 (toReal Δt), x t ∈ X.toSet := fun t ht =>
     (aux_mem_hull Ω xs).1 (hconf t (by rwa [zero_add]))
-  have hUU' : U.construct ⊆ U'.construct :=
+  have hUU' : U.toSet ⊆ U'.toSet :=
     fun v hv => (aux_mem_hull U.interval U.c).1 (Zonotope.interval_contains U hv)
   -- `δ = x - x✱` is a run of the linearized system from `R - x✱`
   have ltraj : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).IsCanonicalTrajectory (S := 𝒮)
       (Set.Icc 0 (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)))
       (R ⊞ (⟨0, (-xs), fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
-        Zonotope (Vec 𝕋 n))).construct
+        Zonotope (Vec 𝕋 n))).toSet
       ((fun u => Scalar.toRealMat (LinearSys.canonicalFloat A).B *ᵥ u +
         Scalar.toRealVec (LinearSys.canonicalFloat A).c) ''
-        (fm.linInputFloat A B xs X U U').construct)
+        (fm.linInputFloat A B xs X U U').toSet)
       (fun t => x t - toRealVec xs)
       (fun t => sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs)) := by
     rw [hTf]
@@ -152,8 +152,8 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer {fm : NonlinearS
   obtain ⟨N, -, hlen, hout⟩ := LinearSys.reachFloatInput_outer _ _ _ hS
   obtain ⟨N', -, -, hout'⟩ := LinearSys.reachFloatInput_timePoint_outer _ _ _ hS
   -- adding `x✱` back
-  have hback : ∀ {Z : Zonotope (Vec 𝕋 n)} {y : Vec ℝ n}, y - toRealVec xs ∈ Z.construct →
-      y ∈ construct (Z ⊞ (⟨0, xs, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
+  have hback : ∀ {Z : Zonotope (Vec 𝕋 n)} {y : Vec ℝ n}, y - toRealVec xs ∈ Z.toSet →
+      y ∈ toSet (Z ⊞ (⟨0, xs, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
         Zonotope (Vec 𝕋 n))) := fun {Z y} hy => by
     have := Plus.plus_outer Z (⟨0, xs, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
       Zonotope (Vec 𝕋 n)) (Set.add_mem_add hy (aux_mem_pt xs))

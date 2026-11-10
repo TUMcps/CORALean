@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Taylm.Float.Operations.Basic
 public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMem
 public import CORALean.ContSet.Taylm.Float.Theorems.Basic
-public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Taylm.Real.Theorems.MemToSetIff
 public import CORALean.Global.Float.FloatBound
 
 @[expose] public section
@@ -48,11 +48,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 /-- `supportFunc_`, `upper`: the upper end of the range of `aᵀ T`, rounded up. -/
 def Taylm.boundDot {c : Vec ℝ m →ₗ[ℝ] ℝ} (a : Vec 𝕋 m) (T : Fin m → Taylm 𝕋 n)
     (hc : ∀ x : Vec ℝ m, c x = ∑ j, toReal (a j) * x j) :
-    FloatBound 𝕋 (Taylm.construct T) c where
+    FloatBound 𝕋 (Taylm.toSet T) c where
   val := (Taylm.mtimes (fun (_ : Fin 1) j => a j) T 0).bounds.sup
   le x hx := by
     -- the point is the value at some `t` of functions the models enclose
-    obtain ⟨f, hf, t, ht, hxf⟩ := (Real.Taylm.mem_construct_iff _ x).1 hx
+    obtain ⟨f, hf, t, ht, hxf⟩ := (Real.Taylm.mem_toSet_iff _ x).1 hx
     have hmem := Taylm.bounds_mem
       (Taylm.mtimes_outer (fun (_ : Fin 1) j => a j) (T := T) hf 0) ht
     rw [hc x]

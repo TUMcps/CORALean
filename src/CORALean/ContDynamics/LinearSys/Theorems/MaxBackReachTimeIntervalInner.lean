@@ -85,10 +85,10 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable {ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.construct)
-  (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.construct c}
-variable {P₁ P₂ : HPolytope (Vec ℝ n)} {hP₁ : Bornology.IsBounded P₁.dropEqs.construct}
-  {hP₂ : Bornology.IsBounded P₂.dropEqs.construct} {Uz W₀ ZW : Zonotope (Vec ℝ n)}
+variable {ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.toSet)
+  (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.toSet c}
+variable {P₁ P₂ : HPolytope (Vec ℝ n)} {hP₁ : Bornology.IsBounded P₁.dropEqs.toSet}
+  {hP₂ : Bornology.IsBounded P₂.dropEqs.toSet} {Uz W₀ ZW : Zonotope (Vec ℝ n)}
 variable {Zw : ℝ → Zonotope (Vec ℝ n)} {Δt : ℝ} {η : ℕ}
 
 
@@ -111,8 +111,8 @@ input found for time `t` is extended past `t` by a constant, which superposition
 shows changes nothing at `t`. -/
 private theorem LinearSys.aux_backReach_subset_timeInterval (sys : LinearSys 𝕋 n) {U W Xend : S n}
     {tend t : ℝ} (ht : 0 ≤ t) (hle : t ≤ tend) {τ : Set ℝ} (hτ : t ∈ τ)
-    (hU : Bornology.IsBounded (construct U)) (hW : Bornology.IsBounded (construct W))
-    {c : Vec ℝ n} (hc : c ∈ construct U) : -- --- CONCL ---
+    (hU : Bornology.IsBounded (toSet U)) (hW : Bornology.IsBounded (toSet W))
+    {c : Vec ℝ n} (hc : c ∈ toSet U) : -- --- CONCL ---
     sys.backReachSetExistsForallExact (Set.Icc 0 t) U W Xend t ⊆
       sys.timeIntervalBackReachSetExistsForallExact
         (Set.Icc 0 tend) U W Xend τ := by -- --- PROOF ---
@@ -124,7 +124,7 @@ private theorem LinearSys.aux_backReach_subset_timeInterval (sys : LinearSys �
       = volume.restrict (Set.Icc (0:ℝ) t) := by
     rw [Measure.restrict_restrict measurableSet_Icc, Set.inter_eq_self_of_subset_left hsub]
   set u' : ℝ → Vec ℝ n := Set.piecewise (Set.Icc (0:ℝ) t) u (fun _ => c) with hu'def
-  have hu'adm : ∀ s ∈ Set.Icc (0:ℝ) tend, u' s ∈ construct U := by
+  have hu'adm : ∀ s ∈ Set.Icc (0:ℝ) tend, u' s ∈ toSet U := by
     intro s _
     by_cases h : s ∈ Set.Icc (0:ℝ) t
     · rw [hu'def, Set.piecewise_eq_of_mem _ _ _ h]; exact hu s h
@@ -148,7 +148,7 @@ private theorem LinearSys.aux_backReach_subset_timeInterval (sys : LinearSys �
   have hend : sys.closedForm x₀ u' t + sys.closedForm 0 w t = x t := by
     rw [hsup]
     simp only [LinearSys.closedForm, hint, Matrix.mulVec_zero, zero_add]
-  show sys.closedForm x₀ u' t + sys.closedForm 0 w t ∈ construct Xend
+  show sys.closedForm x₀ u' t + sys.closedForm 0 w t ∈ toSet Xend
   rw [hend]
   exact hxt
 
@@ -157,17 +157,17 @@ private theorem LinearSys.aux_backReach_subset_timeInterval (sys : LinearSys �
 private theorem LinearSys.aux_maxBackReachStep_inner (sys : LinearSys 𝕋 n) {U W Xend : S n}
     {s : LinearSys.MaxBackReachState n} (hs : 0 ≤ s.t)
     (hZW : (sys.maxBackReachStep ρ P₁ P₂ hP₁ hP₂ Uz W₀ Zw Δt η s).ZW = ZW)
-    (hU : Bornology.IsBounded (construct U)) (hW : Bornology.IsBounded (construct W))
+    (hU : Bornology.IsBounded (toSet U)) (hW : Bornology.IsBounded (toSet W))
     (hker₁ : ∀ (i : Fin P₁.me) (y : Vec ℝ n), P₁.Ae i y = 0)
     (hker₂ : ∀ (i : Fin P₂.me) (y : Vec ℝ n), P₂.Ae i y = 0)
-    (hne₁ : (LinearSys.maxBackReachCZ ρ P₁ hP₁ ZW).construct.Nonempty)
-    (hne₂ : (LinearSys.maxBackReachCZ ρ P₂ hP₂ ZW).construct.Nonempty)
-    (hhom : ∀ y ∈ minkowskiDiff (Set.linComb P₁.construct P₂.construct) ZW.construct,
+    (hne₁ : (LinearSys.maxBackReachCZ ρ P₁ hP₁ ZW).toSet.Nonempty)
+    (hne₂ : (LinearSys.maxBackReachCZ ρ P₂ hP₂ ZW).toSet.Nonempty)
+    (hhom : ∀ y ∈ minkowskiDiff (Set.linComb P₁.toSet P₂.toSet) ZW.toSet,
       ∃ t ∈ Set.Icc s.t (s.t + Δt), y ∈ (exp ((s.t + Δt - t) • toRealMat sys.A)).mulVecLin ''
-        minkowskiDiff (construct Xend) (sys.inputReach W t))
-    (hZU : ∀ t ∈ Set.Icc s.t (s.t + Δt), s.ZU.construct ⊆
+        minkowskiDiff (toSet Xend) (sys.inputReach W t))
+    (hZU : ∀ t ∈ Set.Icc s.t (s.t + Δt), s.ZU.toSet ⊆
       (exp ((s.t + Δt - t) • toRealMat sys.A)).mulVecLin '' sys.inputReach U t) : -- --- CONCL ---
-    (sys.maxBackReachStep ρ P₁ P₂ hP₁ hP₂ Uz W₀ Zw Δt η s).R.construct ⊆
+    (sys.maxBackReachStep ρ P₁ P₂ hP₁ hP₂ Uz W₀ Zw Δt η s).R.toSet ⊆
       ⋃ t ∈ Set.Icc s.t (s.t + Δt),
         sys.backReachSetExistsForallExact (Set.Icc 0 t) U W Xend t := by -- --- PROOF ---
   -- line 12: the map, the hull and the input summand, spelled out
@@ -185,17 +185,17 @@ private theorem LinearSys.aux_maxBackReachStep_inner (sys : LinearSys 𝕋 n) {U
   obtain ⟨y, hy, z, hz, rfl⟩ := Set.mem_add.mp hv
   obtain ⟨c, hc, rfl⟩ := hz
   -- lines 11, Alg. 1, (11): each endpoint of the hull is a `P_i` eroded by `Ẑ_W(τ_k)`
-  have hsub : ∀ (P : HPolytope (Vec ℝ n)) (hb : Bornology.IsBounded P.dropEqs.construct),
+  have hsub : ∀ (P : HPolytope (Vec ℝ n)) (hb : Bornology.IsBounded P.dropEqs.toSet),
       (∀ (i : Fin P.me) (w : Vec ℝ n), P.Ae i w = 0) →
-      (LinearSys.maxBackReachCZ ρ P hb ZW).construct ⊆ minkowskiDiff P.construct ZW.construct := by
+      (LinearSys.maxBackReachCZ ρ P hb ZW).toSet ⊆ minkowskiDiff P.toSet ZW.toSet := by
     intro P hb hker
-    have heq : (LinearSys.maxBackReachCZ ρ P hb ZW).construct
-        = (P.minkDiffOf ZW.construct fun i => ZW.supportBound (P.A i)).construct :=
+    have heq : (LinearSys.maxBackReachCZ ρ P hb ZW).toSet
+        = (P.minkDiffOf ZW.toSet fun i => ZW.supportBound (P.A i)).toSet :=
       HPolytope.conZonotope_exact _ _
     rw [heq]
     exact HPolytope.minkDiffOf_inner _ _ _ fun i w _ => hker i w
   -- [1, Lemma 1]: the hull of the two erosions is inside the erosion of the hull
-  have hL : y ∈ minkowskiDiff (Set.linComb P₁.construct P₂.construct) ZW.construct := by
+  have hL : y ∈ minkowskiDiff (Set.linComb P₁.toSet P₂.toSet) ZW.toSet := by
     obtain ⟨y₁, h₁, y₂, h₂, lam, hlam, rfl⟩ := ConZonotope.linComb_inner _ _ hne₁ hne₂ hy
     exact setLinComb_minkowskiDiff_subset _ _ _
       ⟨y₁, hsub P₁ hP₁ hker₁ h₁, y₂, hsub P₂ hP₂ hker₂ h₂, lam, hlam, rfl⟩
@@ -234,22 +234,22 @@ theorem LinearSys.maxBackReachTimeInterval_inner (sys : LinearSys 𝕋 n) {U W X
     (hΔt : Δt = (tend - t₀) / ω) (ht₀ : 0 ≤ t₀) (hΔt0 : 0 ≤ Δt)
     (hst : ∀ k, st k = sys.maxBackReachRun ρ P₁ P₂ hP₁ hP₂ Uz W₀ Zw t₀ Δt η k)
     (hτ : Set.Icc t₀ tend ⊆ τ) (hlast : t₀ + ω * Δt ≤ tend)
-    (hU : Bornology.IsBounded (construct U)) (hW : Bornology.IsBounded (construct W))
-    {c : Vec ℝ n} (hc : c ∈ construct U)
+    (hU : Bornology.IsBounded (toSet U)) (hW : Bornology.IsBounded (toSet W))
+    {c : Vec ℝ n} (hc : c ∈ toSet U)
     -- no equality rows: [1, Def. 2]'s target set is a `⟨H,d⟩_H`
     (hker₁ : ∀ (i : Fin P₁.me) (y : Vec ℝ n), P₁.Ae i y = 0)
     (hker₂ : ∀ (i : Fin P₂.me) (y : Vec ℝ n), P₂.Ae i y = 0)
     -- [1, Lemma 1] asks for nonempty sets, and so does the hull of line 11
-    (hne₁ : ∀ k < ω, (LinearSys.maxBackReachCZ ρ P₁ hP₁ (st (k + 1)).ZW).construct.Nonempty)
-    (hne₂ : ∀ k < ω, (LinearSys.maxBackReachCZ ρ P₂ hP₂ (st (k + 1)).ZW).construct.Nonempty)
+    (hne₁ : ∀ k < ω, (LinearSys.maxBackReachCZ ρ P₁ hP₁ (st (k + 1)).ZW).toSet.Nonempty)
+    (hne₂ : ∀ k < ω, (LinearSys.maxBackReachCZ ρ P₂ hP₂ (st (k + 1)).ZW).toSet.Nonempty)
     -- (21): the hull of `P₁`, `P₂` eroded by `Ẑ_W(τ_k)`, covered slice by slice
-    (hhom : ∀ k < ω, ∀ y ∈ minkowskiDiff (Set.linComb P₁.construct P₂.construct)
-        (st (k + 1)).ZW.construct,
+    (hhom : ∀ k < ω, ∀ y ∈ minkowskiDiff (Set.linComb P₁.toSet P₂.toSet)
+        (st (k + 1)).ZW.toSet,
       ∃ t ∈ Set.Icc (st k).t ((st k).t + Δt),
         y ∈ (exp (((st k).t + Δt - t) • toRealMat sys.A)).mulVecLin ''
-          minkowskiDiff (construct Xend) (sys.inputReach W t))
+          minkowskiDiff (toSet Xend) (sys.inputReach W t))
     -- (25)-(29): the inner input particular solution, carried to `t_{k+1}`
-    (hZU : ∀ k < ω, ∀ t ∈ Set.Icc (st k).t ((st k).t + Δt), (st k).ZU.construct ⊆
+    (hZU : ∀ k < ω, ∀ t ∈ Set.Icc (st k).t ((st k).t + Δt), (st k).ZU.toSet ⊆
       (exp (((st k).t + Δt - t) • toRealMat sys.A)).mulVecLin '' sys.inputReach U t)
     : -- --- CONCL ---
     sys.maxBackReachTimeInterval ρ P₁ P₂ hP₁ hP₂ Uz W₀ Zw t₀ tend η ω ⊆

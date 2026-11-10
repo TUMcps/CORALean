@@ -65,9 +65,9 @@ variable {n : ℕ}
 /-- Every entry of the exponential sits between the interval Taylor truncation
 and the tail bound taken at the interval matrix's dominating matrix. -/
 theorem MatExp.exp_mem_expIntervalEnclosure (A : Interval (Mat ℝ n n)) (η : ℕ)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct)
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet)
     (hε : ‖A.absMax‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
-    exp M ∈ (MatExp.expIntervalEnclosure A η).construct := by -- --- PROOF ---
+    exp M ∈ (MatExp.expIntervalEnclosure A η).toSet := by -- --- PROOF ---
   refine Interval.mem_mat_iff.mpr fun i j => ?_
   have hnorm : ‖M‖ ≤ ‖A.absMax‖ := Interval.norm_le_absMax hM
   have hfrac : ‖M‖ / ((η : ℝ) + 2) ≤ ‖A.absMax‖ / ((η : ℝ) + 2) := by gcongr

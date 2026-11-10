@@ -41,7 +41,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {q n : ℕ}
 
 theorem HPolytope.mem_slab_nominal_iff {A : Mat 𝕋 q n} {lo hi : Vec 𝕋 q}
     {x : Vec ℝ n} : -- --- CONCL ---
-    x ∈ (HPolytope.slab A lo hi).nominal.construct ↔
+    x ∈ (HPolytope.slab A lo hi).nominal.toSet ↔
       ∀ i, toReal (lo i) ≤ (toRealMat A *ᵥ x) i
         ∧ (toRealMat A *ᵥ x) i ≤ toReal (hi i) := by -- --- PROOF ---
   unfold HPolytope.slab

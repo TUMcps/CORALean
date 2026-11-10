@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ConZonotope.isequal_sound {Z S : ConZonotope 𝕋 (Vec 𝕋 n)}
     (h : Z.isequal S = true) : -- --- CONCL ---
-    Z.construct = S.construct := by -- --- PROOF ---
+    Z.toSet = S.toSet := by -- --- PROOF ---
   unfold ConZonotope.isequal at h
   split at h
   · rename_i e
@@ -63,12 +63,12 @@ theorem ConZonotope.isequal_sound {Z S : ConZonotope 𝕋 (Vec 𝕋 n)}
     have hEs : toRealVec E₁.sup = toRealVec E₂.sup := funext fun i => eqr (hnum i).1.2
     have hPn : P₁.nominal = P₂.nominal := HPolytope.isequal_nominal hP
     -- the error boxes read as the same real box
-    have hE : E₁.construct = E₂.construct := by
+    have hE : E₁.toSet = E₂.toSet := by
       have : E₁.nominal = E₂.nominal := by
         have e₁ : RealImage.realImage E₁.inf = RealImage.realImage E₂.inf := hEi
         have e₂ : RealImage.realImage E₁.sup = RealImage.realImage E₂.sup := hEs
         simp only [Interval.nominal, e₁, e₂]
-      unfold Interval.construct
+      unfold Interval.toSet
       rw [this]
     have hN : (nominal (⟨h₁, c₁, G₁, P₁, E₁⟩ : ConZonotope 𝕋 (Vec 𝕋 n))) =
         nominal (⟨h₁, c₂, G₂, P₂, E₂⟩ : ConZonotope 𝕋 (Vec 𝕋 n)) := by
@@ -76,9 +76,9 @@ theorem ConZonotope.isequal_sound {Z S : ConZonotope 𝕋 (Vec 𝕋 n)}
           CORALean.Real.ConZonotope (Vec ℝ n)) =
         ⟨h₁, toRealVec c₂, fun j => toRealVec (G₂ j), P₂.nominal⟩
       rw [hc, hG, hPn]
-    change ContSet.construct (nominal (⟨h₁, c₁, G₁, P₁, E₁⟩ : ConZonotope 𝕋 (Vec 𝕋 n))) +
-      E₁.construct =
-      ContSet.construct (nominal (⟨h₁, c₂, G₂, P₂, E₂⟩ : ConZonotope 𝕋 (Vec 𝕋 n))) + E₂.construct
+    change ContSet.toSet (nominal (⟨h₁, c₁, G₁, P₁, E₁⟩ : ConZonotope 𝕋 (Vec 𝕋 n))) +
+      E₁.toSet =
+      ContSet.toSet (nominal (⟨h₁, c₂, G₂, P₂, E₂⟩ : ConZonotope 𝕋 (Vec 𝕋 n))) + E₂.toSet
     rw [hN, hE]
   · simp at h
 

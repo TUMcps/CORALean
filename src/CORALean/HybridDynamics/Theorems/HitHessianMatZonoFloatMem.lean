@@ -66,10 +66,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- `C + κG = C̲ + E + κG̲` with `E` in `[−(Ḡ − G̲), (C̄ − C̲) + (Ḡ − G̲)]`, for `C`, `G` in their
 interval matrices and `|κ| ≤ 1`. -/
 private theorem aux_hessF_box (C G : Interval (Mat 𝕋 n n)) {Cr Gr : Mat ℝ n n}
-    (hC : Cr ∈ C.construct) (hG : Gr ∈ G.construct) {κ : ℝ} (hκ : |κ| ≤ 1) : -- --- CONCL ---
+    (hC : Cr ∈ C.toSet) (hG : Gr ∈ G.toSet) {κ : ℝ} (hκ : |κ| ≤ 1) : -- --- CONCL ---
     ∃ E ∈ (⟨fun l m => neg (subUp (G.sup l m) (G.inf l m)),
         fun l m => addUp (subUp (C.sup l m) (C.inf l m)) (subUp (G.sup l m) (G.inf l m))⟩ :
-          Interval (Mat 𝕋 n n)).construct,
+          Interval (Mat 𝕋 n n)).toSet,
       Cr + κ • Gr = (toRealMat C.inf + E) + κ • toRealMat G.inf := by -- --- PROOF ---
   refine ⟨Cr - toRealMat C.inf + κ • (Gr - toRealMat G.inf), Interval.mem_mat_iff.mpr
     fun l m => ?_, by module⟩
@@ -96,7 +96,7 @@ plus a point of its error box. -/
 theorem GuardMap.hitHessianMatZonoFloat_mem (A : Mat 𝕋 n n) (b nv : Vec 𝕋 n) (d : 𝕋)
     (R₀ : Zonotope (Vec 𝕋 n)) (τc τg : 𝕋) (i : Fin n) {κ : ℝ} (hκ : |κ| ≤ 1) : -- --- CONCL ---
     let cf := Fin.append (Fin.append ![κ] (0 : Fin R₀.h → ℝ)) fun α => κ * (0 : Fin R₀.h → ℝ) α
-    ∃ E ∈ (GuardMap.hitHessianMatZonoFloat A b nv d R₀ τc τg i).I_error.construct,
+    ∃ E ∈ (GuardMap.hitHessianMatZonoFloat A b nv d R₀ τc τg i).I_error.toSet,
       (GuardMap.hitHessianMatZono (toRealMat A) (toRealVec b) (toRealVec nv) (toReal d)
           (⟨R₀.h, toRealVec R₀.c, fun j => toRealVec (R₀.G j)⟩ : Real.Zonotope (Vec ℝ n))
           (-toRealVec nv - toReal τc • (toRealVec nv ᵥ* toRealMat A))
@@ -133,12 +133,12 @@ theorem GuardMap.hitHessianMatZonoFloat_mem (A : Mat 𝕋 n n) (b nv : Vec 𝕋 
     rw [toReal_neg]
     linarith
   -- each formula's real matrix lies in its float interval matrix
-  have pt : ∀ {p q : ℕ} (M : Mat 𝕋 p q), toRealMat M ∈ (Interval.point M).construct :=
+  have pt : ∀ {p q : ℕ} (M : Mat 𝕋 p q), toRealMat M ∈ (Interval.point M).toSet :=
     fun M => Interval.mem_point M
   have ptr : ∀ v : Vec 𝕋 n, rowR (toRealVec v) ∈
-      (Interval.point (show Mat 𝕋 1 n from fun _ m => v m)).construct := fun v => pt _
+      (Interval.point (show Mat 𝕋 1 n from fun _ m => v m)).toSet := fun v => pt _
   have ptc : ∀ v : Vec 𝕋 n, colR (toRealVec v) ∈
-      (Interval.point (show Mat 𝕋 n 1 from fun l _ => v l)).construct := fun v => pt _
+      (Interval.point (show Mat 𝕋 n 1 from fun l _ => v l)).toSet := fun v => pt _
   have hΥ := Interval.matMul_outer _ _ (ptr nv) (pt A)
   have hΥT := Interval.matMul_outer _ _ (pt (show Mat 𝕋 n n from fun l j => A j l)) (ptc nv)
   have hy := Interval.matPlus_outer _ _ (Interval.matMul_outer _ _ (pt A) (ptc R₀.c))

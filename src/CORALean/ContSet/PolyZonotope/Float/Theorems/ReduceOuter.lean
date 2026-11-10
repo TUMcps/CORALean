@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- Girard's is the rule `reduce` runs, and this line is the whole of that
 choice: any other would discharge it too. -/
 theorem PolyZonotope.reduce_outer (pZ : PolyZonotope (Vec 𝕋 n)) (o : ℕ) :
-    pZ.construct ⊆ (pZ.reduce o).construct :=
+    pZ.toSet ⊆ (pZ.reduce o).toSet :=
   subset_trans (PolyZonotope.compact_outer pZ)
     (PolyZonotope.reduceGirard_outer pZ.compact o)
 

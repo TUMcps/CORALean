@@ -48,17 +48,17 @@ variable {n : ℕ} {P : HPolytope (Vec ℝ n)}
 /-- One candidate per subset of the inequality rows, kept when feasible and
 replaced by a point of the polytope when not — so every vertex listed is a point
 of the polytope, which is what makes the conversion exact. -/
-noncomputable def HPolytope.vPolytope (P : HPolytope (Vec ℝ n)) (hne : P.construct.Nonempty) :
+noncomputable def HPolytope.vPolytope (P : HPolytope (Vec ℝ n)) (hne : P.toSet.Nonempty) :
     VPolytope (Vec ℝ n) where
   k := 2 ^ P.m
   V := fun l =>
-    if P.basicPoint (signEquiv P.m l) ∈ P.construct then P.basicPoint (signEquiv P.m l)
+    if P.basicPoint (signEquiv P.m l) ∈ P.toSet then P.basicPoint (signEquiv P.m l)
     else hne.choose
 
 /-- The cheap route: a box from `2n` certificates, then its corners. -/
 noncomputable def HPolytope.vPolytopeBox
-    (up : ∀ j, SupportBound P.construct (LinearMap.proj j))
-    (lo : ∀ j, SupportBound P.construct (-LinearMap.proj j)) : VPolytope (Vec ℝ n) :=
+    (up : ∀ j, SupportBound P.toSet (LinearMap.proj j))
+    (lo : ∀ j, SupportBound P.toSet (-LinearMap.proj j)) : VPolytope (Vec ℝ n) :=
   Interval.vPolytope (HPolytope.interval up lo)
 
 end CORALean.Real

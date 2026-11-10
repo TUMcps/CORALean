@@ -45,8 +45,8 @@ private theorem VPolytope.aux_range_map (f : α →ₗ[ℝ] β) (P : VPolytope �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.map_exact (f : α →ₗ[ℝ] β) (P : VPolytope α) :
-    ⇑f '' P.construct = (P.map f).construct := by
-  rw [VPolytope.construct_eq_convexHull P, VPolytope.construct_eq_convexHull (P.map f),
+    ⇑f '' P.toSet = (P.map f).toSet := by
+  rw [VPolytope.toSet_eq_convexHull P, VPolytope.toSet_eq_convexHull (P.map f),
     VPolytope.aux_range_map, ← LinearMap.image_convexHull]
 
 end CORALean.Real

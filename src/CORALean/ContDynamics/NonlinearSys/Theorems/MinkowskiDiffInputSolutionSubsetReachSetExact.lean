@@ -92,29 +92,29 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 theorem NonlinearSys.minkowskiDiff_inputSolution_subset_reachSetExact [Mtimes ℐ S]
     (sys : NonlinearSys n m) (R₀ : S n) (U : S m) {Δt : ℝ} (hΔt : 0 < Δt) {A : Mat ℝ n n}
     {B : Mat ℝ n m} {xs : Vec ℝ n} {us : Vec ℝ m} {R : Set (Vec ℝ n)} {L : S n}
-    (cert : IsAbstractionError sys.f A B xs us R (construct U) L) {u₀ : Vec ℝ m}
-    (hu₀ : u₀ ∈ construct U) (η : ℕ) (hε : ‖Δt • A‖ / ((η : ℝ) + 2) < 1)
-    (hconv : Convex ℝ (construct L)) (hclosed : IsClosed (construct L))
-    (hbdd : Bornology.IsBounded (construct L))
-    (hRconv : Convex ℝ (construct (Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder A Δt η) L)))
-    (hRclosed : IsClosed (construct (Mtimes.mtimes (𝕄 := ℐ)
+    (cert : IsAbstractionError sys.f A B xs us R (toSet U) L) {u₀ : Vec ℝ m}
+    (hu₀ : u₀ ∈ toSet U) (η : ℕ) (hε : ‖Δt • A‖ / ((η : ℝ) + 2) < 1)
+    (hconv : Convex ℝ (toSet L)) (hclosed : IsClosed (toSet L))
+    (hbdd : Bornology.IsBounded (toSet L))
+    (hRconv : Convex ℝ (toSet (Mtimes.mtimes (𝕄 := ℐ) (MatExp.inputRemainder A Δt η) L)))
+    (hRclosed : IsClosed (toSet (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder A Δt η) L)))
-    (hRbdd : Bornology.IsBounded (construct (Mtimes.mtimes (𝕄 := ℐ)
+    (hRbdd : Bornology.IsBounded (toSet (Mtimes.mtimes (𝕄 := ℐ)
       (MatExp.inputRemainder A Δt η) L)))
-    (hEc : IsCompact (construct ((NonlinearSys.linearize A).inputSolution Δt η L)))
-    (hEcv : Convex ℝ (construct ((NonlinearSys.linearize A).inputSolution Δt η L)))
-    (hEne : (construct ((NonlinearSys.linearize A).inputSolution Δt η L)).Nonempty)
-    {c : Vec ℝ n} (hEs : ∀ e ∈ construct ((NonlinearSys.linearize A).inputSolution Δt η L),
-      (2 : ℝ) • c - e ∈ construct ((NonlinearSys.linearize A).inputSolution Δt η L))
+    (hEc : IsCompact (toSet ((NonlinearSys.linearize A).inputSolution Δt η L)))
+    (hEcv : Convex ℝ (toSet ((NonlinearSys.linearize A).inputSolution Δt η L)))
+    (hEne : (toSet ((NonlinearSys.linearize A).inputSolution Δt η L)).Nonempty)
+    {c : Vec ℝ n} (hEs : ∀ e ∈ toSet ((NonlinearSys.linearize A).inputSolution Δt η L),
+      (2 : ℝ) • c - e ∈ toSet ((NonlinearSys.linearize A).inputSolution Δt η L))
     {Ω : Set (Vec ℝ n)} {K : NNReal} (hLip : LipschitzOnWith K (fun x => sys.f x u₀) Ω)
-    (hex : ∀ x₀ ∈ construct R₀, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Set.Icc 0 Δt,
+    (hex : ∀ x₀ ∈ toSet R₀, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Set.Icc 0 Δt,
       x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Set.Icc 0 Δt) t)
-    (hconf : ∀ x₀ ∈ construct R₀, ∀ x : ℝ → Vec ℝ n, x 0 = x₀ →
+    (hconf : ∀ x₀ ∈ toSet R₀, ∀ x : ℝ → Vec ℝ n, x 0 = x₀ →
       (∀ t ∈ Set.Icc 0 Δt, HasDerivWithinAt x (sys.f (x t) u₀) (Set.Icc 0 Δt) t) →
       ∀ t ∈ Set.Icc 0 Δt, x t ∈ R) : -- --- CONCL ---
     (fun s => s + (2 : ℝ) • c) '' minkowskiDiff ((fun x₀ => exp (Δt • A) *ᵥ x₀ +
       ∫ s in (0:ℝ)..Δt, exp ((Δt - s) • A) *ᵥ (sys.f xs us - A *ᵥ xs + B *ᵥ (u₀ - us))) ''
-        construct R₀) (construct ((NonlinearSys.linearize A).inputSolution Δt η L))
+        toSet R₀) (toSet ((NonlinearSys.linearize A).inputSolution Δt η L))
       ⊆ sys.reachSetExact (Set.Icc 0 Δt) R₀ U Δt := by -- --- PROOF ---
   refine NonlinearSys.minkowskiDiff_add_subset_reachSetExact sys R₀ U hΔt.le (exp (Δt • A))
     ((Matrix.isUnit_iff_isUnit_det _).mp (Matrix.isUnit_exp _)) _ hEc hEcv hEne hEs hu₀ hLip hex

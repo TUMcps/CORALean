@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemToSetIff
 public import CORALean.Global.NotHyperplaneOneDim
 public import Mathlib.Tactic.FinCases
 public import Mathlib.Tactic.Linarith
@@ -82,16 +82,16 @@ def Ellipsoid.step_unitSegment : Ellipsoid 1 := ⟨1, fun _ => 0, .one⟩
 private theorem Ellipsoid.aux_unitSegment_G : Ellipsoid.step_unitSegment.G = 1 := CFC.sqrt_one
 
 private theorem Ellipsoid.aux_zero_mem :
-    (fun _ => (0 : ℝ)) ∈ Ellipsoid.step_unitSegment.construct :=
+    (fun _ => (0 : ℝ)) ∈ Ellipsoid.step_unitSegment.toSet :=
     by
-  refine Ellipsoid.mem_construct_iff.2 ⟨fun _ => 0, ?_, ?_⟩
+  refine Ellipsoid.mem_toSet_iff.2 ⟨fun _ => 0, ?_, ?_⟩
   · simp [CORALean.norm₂]
   · rw [Ellipsoid.aux_unitSegment_G, Matrix.one_mulVec]
     ext i; simp [Ellipsoid.step_unitSegment]
 
-private theorem Ellipsoid.aux_one_mem : (fun _ => (1 : ℝ)) ∈ Ellipsoid.step_unitSegment.construct :=
+private theorem Ellipsoid.aux_one_mem : (fun _ => (1 : ℝ)) ∈ Ellipsoid.step_unitSegment.toSet :=
     by
-  refine Ellipsoid.mem_construct_iff.2 ⟨fun _ => 1, ?_, ?_⟩
+  refine Ellipsoid.mem_toSet_iff.2 ⟨fun _ => 1, ?_, ?_⟩
   · simp [CORALean.norm₂]
   · rw [Ellipsoid.aux_unitSegment_G, Matrix.one_mulVec]
     ext i; simp [Ellipsoid.step_unitSegment]
@@ -102,7 +102,7 @@ private theorem Ellipsoid.aux_one_mem : (fun _ => (1 : ℝ)) ∈ Ellipsoid.step_
 /-- The set is a segment of positive length, no hyperplane; CORA answers `true`. -/
 theorem Ellipsoid.representsa_hyperplane_cora_counterexample : -- --- CONCL ---
     (¬ ∃ (f : (Fin 1 → ℝ) →ₗ[ℝ] ℝ) (c : ℝ), f ≠ 0 ∧
-        Ellipsoid.step_unitSegment.construct = {x | f x = c}) ∧
+        Ellipsoid.step_unitSegment.toSet = {x | f x = c}) ∧
       Ellipsoid.step_unitSegment.representsaHyperplaneCora = true := by -- --- PROOF ---
   refine ⟨CORALean.not_hyperplane_of_two_points_fin1 Ellipsoid.aux_zero_mem
     Ellipsoid.aux_one_mem ?_, by simp [Ellipsoid.representsaHyperplaneCora]⟩

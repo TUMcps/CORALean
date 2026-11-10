@@ -41,8 +41,8 @@ variable {m n : ℕ}
 
 /-- Stacking the entries does not change whether the polytope is empty or a single matrix. -/
 theorem VPolytope.vec_representsa (P : VPolytope (Mat ℝ n m)) :
-    (P.vec.construct = ∅ ↔ P.construct = ∅) ∧
-      ∀ A : Mat ℝ n m, (P.vec.construct = {matVecEquiv A} ↔ P.construct = {A}) := by
+    (P.vec.toSet = ∅ ↔ P.toSet = ∅) ∧
+      ∀ A : Mat ℝ n m, (P.vec.toSet = {matVecEquiv A} ↔ P.toSet = {A}) := by
   refine ⟨?_, fun A => ?_⟩
   · rw [← VPolytope.vec_exact, Set.image_eq_empty]
   · rw [← VPolytope.vec_exact, ← Set.image_singleton]

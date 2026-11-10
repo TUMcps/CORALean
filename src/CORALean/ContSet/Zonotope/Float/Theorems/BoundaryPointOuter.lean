@@ -50,14 +50,14 @@ theorem Zonotope.boundaryPoint_outer (Z : Zonotope (Vec 𝕋 (n + 1)))
     (dir start : Vec 𝕋 (n + 1)) : -- --- CONCL ---
     ∀ J ∈ Z.boundaryPoint dir start,
       CORALean.Real.Zonotope.boundaryPoint (nominal Z) (toRealVec dir) (toRealVec start)
-        ∈ J.construct := by -- --- PROOF ---
+        ∈ J.toSet := by -- --- PROOF ---
   intro J (hJ : Z.boundaryPoint dir start = some J)
   unfold Zonotope.boundaryPoint at hJ
   obtain ⟨U, hU, rfl⟩ := Option.map_eq_some_iff.mp hJ
   set T := maximum zero U with hT
   have hT0 : 0 ≤ toReal T := by rw [hT, toReal_maximum, toReal_zero]; exact le_max_left _ _
   -- the exact step: non-negative, and at most the computed bound
-  set S : Set ℝ := {t | 0 ≤ t ∧ toRealVec start + t • toRealVec dir ∈ (nominal Z).construct}
+  set S : Set ℝ := {t | 0 ≤ t ∧ toRealVec start + t • toRealVec dir ∈ (nominal Z).toSet}
     with hS
   have hlo : 0 ≤ sSup S := Real.sSup_nonneg fun t ht => ht.1
   have hup : sSup S ≤ toReal T := by

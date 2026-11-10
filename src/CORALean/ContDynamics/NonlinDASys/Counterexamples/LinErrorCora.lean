@@ -96,10 +96,10 @@ theorem NonlinDASys.linErrorCora_counterexample : -- --- CONCL ---
         (1 : Mat ℝ 1 1) *ᵥ (fun _ : Fin 1 => (![1] : Vec ℝ 1) ⬝ᵥ (!![-2] *ᵥ ![1]))
     (1 / 2 : ℝ) • w
       ∈ (NonlinDASys.linError (p := 1) (q := 1) 0 0 (fun _ => !![-2]) 0 1
-          ⟨1, 0, fun _ => ![1]⟩).construct ∧
+          ⟨1, 0, fun _ => ![1]⟩).toSet ∧
     (1 / 2 : ℝ) • w
       ∉ (NonlinDASys.linErrorCora (p := 1) (q := 1) 0 0 (fun _ => !![-2]) 0 1
-          ⟨1, 0, fun _ => ![1]⟩).construct := by -- --- PROOF ---
+          ⟨1, 0, fun _ => ![1]⟩).toSet := by -- --- PROOF ---
   intro w
   refine ⟨NonlinDASys.linError_outer _ _ _ _ _ _ (by simp) (by simp)
     ⟨fun _ => 1, fun _ => by simp, by funext i; fin_cases i; simp⟩, ?_⟩

@@ -126,8 +126,8 @@ private theorem Zonotope.aux_quadMap_pairblock {h : ℕ} (f : Fin h → Fin h �
 /-- [1, Lemma 1]: `{λ | λᵢ = xᵀQ⁽ⁱ⁾x, x ∈ Z} ⊆ Z.quadMap Q`. -/
 theorem Zonotope.quadMap_outer {n m : ℕ} (Q : Fin m → Mat ℝ n n)
     (Z : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    (fun x : Vec ℝ n => fun i => x ⬝ᵥ (Q i *ᵥ x)) '' Z.construct
-      ⊆ (Z.quadMap Q).construct := by -- --- PROOF ---
+    (fun x : Vec ℝ n => fun i => x ⬝ᵥ (Q i *ᵥ x)) '' Z.toSet
+      ⊆ (Z.quadMap Q).toSet := by -- --- PROOF ---
   rintro _ ⟨x, ⟨p, hp, rfl⟩, rfl⟩
   -- the square's coefficient `2pⱼ² - 1`, `pⱼ²`'s image of `[-1, 1]`
   have hq : ∀ j, |2 * (p j) ^ 2 - 1| ≤ 1 := fun j => by

@@ -59,9 +59,9 @@ private theorem ConZonotope.aux_mem_ofMat_drop_iff {α : Type} [AddCommGroup α]
     {q h : ℕ} (c : α) (G : Fin h → α) (A : Mat ℝ q h) (b : Vec ℝ q) (r : Fin q) (j : Fin h)
     (hG : G j = 0) (hA : ∀ i, A i j = 0) (hr : ∀ l, A r l = 0) (hb : b r = 0)
     (x : α) : -- --- CONCL ---
-    x ∈ (ConZonotope.ofMat c G A b).construct ↔
+    x ∈ (ConZonotope.ofMat c G A b).toSet ↔
       x ∈ (ConZonotope.ofMat c (G ∘ dropIdx j)
-        (fun i k => A (dropIdx r i) (dropIdx j k)) (b ∘ dropIdx r)).construct := by -- --- PROOF ---
+        (fun i k => A (dropIdx r i) (dropIdx j k)) (b ∘ dropIdx r)).toSet := by -- --- PROOF ---
   rw [ConZonotope.mem_ofMat_iff, ConZonotope.mem_ofMat_iff]
   constructor
   · rintro ⟨β, hβ, hAβ, hx⟩
@@ -94,8 +94,8 @@ private theorem ConZonotope.aux_mem_ofMat_drop_iff {α : Type} [AddCommGroup α]
 theorem ConZonotope.partialSolve_eq_eliminate {n q h : ℕ} (c : Vec ℝ n)
     (G : Fin h → Vec ℝ n) (A : Mat ℝ q h) (b : Vec ℝ q) (r : Fin q) (j : Fin h)
     (hAj : A r j ≠ 0) : -- --- CONCL ---
-    (ConZonotope.partialSolve c G A b r j).construct
-      = (ConZonotope.eliminate c G A b r j).construct := by -- --- PROOF ---
+    (ConZonotope.partialSolve c G A b r j).toSet
+      = (ConZonotope.eliminate c G A b r j).toSet := by -- --- PROOF ---
   obtain ⟨hG, hA⟩ := ConZonotope.partialSolve_zero_col G A r j hAj
   obtain ⟨hr, hb⟩ := ConZonotope.partialSolve_zero_row A b r j hAj
   ext x

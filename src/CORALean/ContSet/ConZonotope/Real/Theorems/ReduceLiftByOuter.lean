@@ -53,12 +53,12 @@ variable {n q r : ℕ}
 
 theorem ConZonotope.reduceLiftBy_outer (cZ : ConZonotope (Vec ℝ n))
     (part : Split (Fin cZ.h) into (Fin q) ⊕ (Fin r)) : -- --- CONCL ---
-    cZ.construct ⊆ (cZ.reduceLiftBy part).construct := by -- --- PROOF ---
+    cZ.toSet ⊆ (cZ.reduceLiftBy part).toSet := by -- --- PROOF ---
   intro x hx
   have hlift := ConZonotope.mem_liftEq_of_mem cZ hx
-  obtain ⟨ξ, hξ, hPξ, hxi⟩ := ConZonotope.mem_construct_iff.mp
+  obtain ⟨ξ, hξ, hPξ, hxi⟩ := ConZonotope.mem_toSet_iff.mp
     (ConZonotope.reduceKeepBy_outer cZ.liftEq part hlift)
-  refine ConZonotope.mem_construct_iff.mpr ⟨ξ, hξ,
+  refine ConZonotope.mem_toSet_iff.mpr ⟨ξ, hξ,
     HPolytope.mem_intersection_iff.mpr ⟨hPξ, HPolytope.mem_eqs_iff.mpr fun i => ?_⟩,
     fun k => ?_⟩
   · -- the lower coordinate of the lifted point is `0 = -bₑ i + Σ ξⱼ (G' j)(n + i)`

@@ -66,8 +66,8 @@ theorem holds_of_reduceOnTheFly {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋} {fuel
     {Φ : ReducibleNetwork 𝕋 n m} {f : Vec ℝ n → Vec ℝ m} (hΦ : Φ.IsInstance f) {ContSet : Type}
     [CORALean.ContSet ContSet (Vec ℝ m)] (spec : Specification ContSet) :
     ∀ Φhat Y, (Φhat, Y) ∈ reduceOnTheFly le tol fuel X ρ Φ →
-      spec.Holds (construct Y) →
-      spec.Holds (f '' construct X) := fun _ _ hrun hspec =>
+      spec.Holds (toSet Y) →
+      spec.Holds (f '' toSet X) := fun _ _ hrun hspec =>
   spec.holds_of_outer (reduceOnTheFly_outer hΦ _ _ hrun).1 hspec
 
 end CORALean

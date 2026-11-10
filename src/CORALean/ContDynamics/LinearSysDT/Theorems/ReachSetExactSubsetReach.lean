@@ -51,13 +51,13 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 
 theorem LinearSysDT.reachSetExact_subset_reach (sys : LinearSysDT 𝕋 n) {o : ℕ} (ho : 0 < o)
     (R₀ U : S n) (k : ℕ) : -- --- CONCL ---
-    sys.reachSetExact R₀ U k ⊆ construct (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
+    sys.reachSetExact R₀ U k ⊆ toSet (sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩) := by -- --- PROOF ---
   induction k with
   | zero => exact subset_rfl
   | succ k ih =>
     rintro _ ⟨_, ⟨y, hy, rfl⟩, w, hw, rfl⟩
     show toRealMat sys.A *ᵥ y + w ∈
-      construct (sys.reach ⟨sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩, U, 0, 1⟩ ⟨o, ho⟩)
+      toSet (sys.reach ⟨sys.reach ⟨R₀, U, 0, k⟩ ⟨o, ho⟩, U, 0, 1⟩ ⟨o, ho⟩)
     exact sys.reach_one_outer ho _ _ (ih hy) hw
 
 end CORALean

@@ -55,20 +55,20 @@ variable {q n : ℕ}
 theorem HPolytope.ineqs_eq_drop_iff_supportFunc (A : Mat ℝ q n) (b : Vec ℝ q)
     (j : Fin q) : -- --- CONCL ---
     let D := HPolytope.ineqs (A.submatrix (dropIdx j) id) (fun i => b (dropIdx j i))
-    (HPolytope.ineqs A b).construct
-        = D.construct ↔
-      supportFunc (HPolytope.ineqs A b).construct (HPolytope.rowLin A j)
-        = supportFunc D.construct (HPolytope.rowLin A j) := by -- --- PROOF ---
+    (HPolytope.ineqs A b).toSet
+        = D.toSet ↔
+      supportFunc (HPolytope.ineqs A b).toSet (HPolytope.rowLin A j)
+        = supportFunc D.toSet (HPolytope.rowLin A j) := by -- --- PROOF ---
   intro D
   constructor
   · intro h
     rw [h]
   · intro h
     -- dropping a row only enlarges the set
-    have hsub : (HPolytope.ineqs A b).construct ⊆ D.construct := fun x hx =>
+    have hsub : (HPolytope.ineqs A b).toSet ⊆ D.toSet := fun x hx =>
       HPolytope.mem_ineqs_iff.mpr fun i => HPolytope.mem_ineqs_iff.mp hx (dropIdx j i)
     -- the full polytope sits below `b j`, so the smaller support function does too
-    have hle : supportFunc (HPolytope.ineqs A b).construct (HPolytope.rowLin A j) ≤ (b j : EReal) :=
+    have hle : supportFunc (HPolytope.ineqs A b).toSet (HPolytope.rowLin A j) ≤ (b j : EReal) :=
       supportFunc_le_coe_iff.mpr fun x hx => HPolytope.mem_ineqs_iff.mp hx j
     rw [h] at hle
     have hrow := supportFunc_le_coe_iff.mp hle

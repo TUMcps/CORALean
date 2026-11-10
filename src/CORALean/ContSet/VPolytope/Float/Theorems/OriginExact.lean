@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 public import CORALean.ContSet.VPolytope.Float.Operations.Origin
 public import CORALean.ContSet.VPolytope.Float.Theorems.NominalEq
-public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructPoint
+public import CORALean.ContSet.VPolytope.Real.Theorems.ToSetPoint
 public import CORALean.ContSet.VPolytope.Real.Operations.Point
 
 @[expose] public section
@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.origin_exact (n : ℕ) : -- --- CONCL ---
-    (VPolytope.origin n : VPolytope (Vec 𝕋 n)).construct = {0} := by -- --- PROOF ---
+    (VPolytope.origin n : VPolytope (Vec 𝕋 n)).toSet = {0} := by -- --- PROOF ---
   -- the stored zero reads as ℝ's
   have h : InflatedContSet.nominal (VPolytope.origin n : VPolytope (Vec 𝕋 n))
       = Real.VPolytope.point (0 : Vec ℝ n) := by
@@ -54,11 +54,11 @@ theorem VPolytope.origin_exact (n : ℕ) : -- --- CONCL ---
   have hN : InflatedContSet.nominalSet (VPolytope.origin n : VPolytope (Vec 𝕋 n)) = {0} := by
     unfold InflatedContSet.nominalSet
     rw [h]
-    exact Real.VPolytope.construct_point 0
-  have hE : (VPolytope.origin n : VPolytope (Vec 𝕋 n)).I_error.construct = {0} :=
+    exact Real.VPolytope.toSet_point 0
+  have hE : (VPolytope.origin n : VPolytope (Vec 𝕋 n)).I_error.toSet = {0} :=
     Interval.origin_exact n
   show InflatedContSet.nominalSet (VPolytope.origin n : VPolytope (Vec 𝕋 n))
-      + (VPolytope.origin n : VPolytope (Vec 𝕋 n)).I_error.construct = _
+      + (VPolytope.origin n : VPolytope (Vec 𝕋 n)).I_error.toSet = _
   rw [hN, hE, Set.singleton_add_singleton, add_zero]
 
 end CORALean.Float

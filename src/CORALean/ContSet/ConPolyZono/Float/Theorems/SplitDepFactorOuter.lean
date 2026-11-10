@@ -44,14 +44,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ConPolyZono.splitDepFactor_outer (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n))
     (k : Fin cPZ.p) : -- --- CONCL ---
-    cPZ.construct ⊆
-      (cPZ.splitDepFactor k).1.construct ∪ (cPZ.splitDepFactor k).2.construct := by -- --- PROOF ---
+    cPZ.toSet ⊆
+      (cPZ.splitDepFactor k).1.toSet ∪ (cPZ.splitDepFactor k).2.toSet := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   obtain ⟨a, β, ha, hβ, hs, hz⟩ := ConPolyZono.mem_nominalSet_iff.mp hz
   -- a half reaches the point at any factor vector its re-parametrization sends to `a`
   have key : ∀ (cen rad : 𝕋) (a' : Fin cPZ.p → ℝ), (∀ k, |a' k| ≤ 1) →
       Function.update a' k (toReal cen + toReal rad * a' k) = a →
-        z + e ∈ (cPZ.getSubset k cen rad).construct := by
+        z + e ∈ (cPZ.getSubset k cen rad).toSet := by
     intro cen rad a' ha' hupd
     obtain ⟨hs', hpt⟩ := ConPolyZono.getSubset_point_outer cPZ k cen rad a' ha' (hupd ▸ hs)
     obtain ⟨e', he', hsum⟩ := hpt e he

@@ -15,7 +15,7 @@ bounds it too — soundness needs no choice at all. `minimum` only says which,
 and being exact it rounds nothing, so what the fold returns denotes the least
 of the members' bounds and costs no width.
 
-Needs `0 < zB.k`, as `SetIntersection.isCompact_construct` needs a member, and for the same
+Needs `0 < zB.k`, as `SetIntersection.isCompact_toSet` needs a member, and for the same
 reason: at `k = 0` the bundle is the whole space, unbounded in every nonzero direction.
 
 ## Inputs
@@ -61,7 +61,7 @@ def ZonoBundle.step_minimumFrom {k : ℕ} (b : 𝕋) (u : Fin k → 𝕋) : 𝕋
 `hk` buys the *value*, not the proof: an empty family has no member to read. -/
 def ZonoBundle.boundDot (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k) {c : Vec ℝ n →ₗ[ℝ] ℝ}
     (a : Vec 𝕋 n) (hc : ∀ x : Vec ℝ n, c x = ∑ j, toReal (a j) * x j) :
-    FloatBound 𝕋 zB.construct c where
+    FloatBound 𝕋 zB.toSet c where
   val := ZonoBundle.step_minimumFrom (Zonotope.boundDot (zB.Z ⟨0, hk⟩) a hc).val
     fun i => (Zonotope.boundDot (zB.Z i) a hc).val
   le x hx := by
@@ -76,7 +76,7 @@ def ZonoBundle.boundDot (zB : ZonoBundle (Vec 𝕋 n)) (hk : 0 < zB.k) {c : Vec 
         intro b u x hb hu
         rw [ZonoBundle.step_minimumFrom, Fin.foldr_succ, toReal_minimum]
         exact le_min (hu 0) (ih hb fun j => hu j.succ)
-    have hmem : ∀ i, x ∈ (zB.Z i).construct := fun i => SetIntersection.mem_construct_ofFn.mp hx i
+    have hmem : ∀ i, x ∈ (zB.Z i).toSet := fun i => SetIntersection.mem_toSet_ofFn.mp hx i
     exact hle ((Zonotope.boundDot (zB.Z ⟨0, hk⟩) a hc).le x (hmem _))
       fun i => (Zonotope.boundDot (zB.Z i) a hc).le x (hmem i)
 

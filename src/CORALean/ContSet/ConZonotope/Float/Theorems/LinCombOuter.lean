@@ -6,8 +6,8 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.AbsSmulCoeffLeOne
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemUnitBoxIff
 public import CORALean.ContSet.HPolytope.Float.Theorems.SmulMemHalfScaledLeft
 public import CORALean.ContSet.HPolytope.Float.Operations.HalfScaledRight
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsConstructIff
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemStackRowsToSetIff
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.HPolytope.Float.Theorems.MulVecAppendLast
 public import CORALean.ContSet.HPolytope.Float.Theorems.MulVecPadRight
@@ -66,9 +66,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 /-- A weighted block meets the weighted constraints, on the right. -/
 private theorem HPolytope.aux_smul_mem_halfScaledRight {P : HPolytope 𝕋 (Vec 𝕋 n₂)} {y : Vec ℝ n₂}
     {z : Vec ℝ n₁} {w t : ℝ} (hw : (1 - t) / 2 = w) (hw0 : 0 ≤ w) (hw1 : w ≤ 1)
-    (hy : y ∈ P.nominal.construct) : -- --- CONCL ---
+    (hy : y ∈ P.nominal.toSet) : -- --- CONCL ---
     Fin.append (Fin.append z (w • y)) (fun _ : Fin 1 => t)
-      ∈ (HPolytope.halfScaledRight n₁ P).construct := by -- --- PROOF ---
+      ∈ (HPolytope.halfScaledRight n₁ P).toSet := by -- --- PROOF ---
   obtain ⟨hle, heq⟩ := HPolytope.mem_nominal_iff.mp hy
   -- the third row group is the equality's lower end, which enters negated
   have hneg : toRealMat (fun i => -P.Ae i) = -toRealMat P.Ae := toRealMat_neg P.Ae
@@ -158,15 +158,15 @@ private theorem ConZonotope.aux_abs_linCombCoeff {h₁ h₂ : ℕ} {β₁ : Vec 
 /-- Each block answers to its own constraints, and to its own unit box, at the
 weight the trailing coefficient names. -/
 private theorem ConZonotope.aux_mem_linComb_P (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) {β₁ : Vec ℝ cZ₁.h}
-    {β₂ : Vec ℝ cZ₂.h} {lam : ℝ} (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hP₁ : β₁ ∈ cZ₁.P.nominal.construct)
-    (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hP₂ : β₂ ∈ cZ₂.P.nominal.construct) (hl0 : 0 ≤ lam)
+    {β₂ : Vec ℝ cZ₂.h} {lam : ℝ} (hβ₁ : ∀ j, |β₁ j| ≤ 1) (hP₁ : β₁ ∈ cZ₁.P.nominal.toSet)
+    (hβ₂ : ∀ j, |β₂ j| ≤ 1) (hP₂ : β₂ ∈ cZ₂.P.nominal.toSet) (hl0 : 0 ≤ lam)
     (hl1 : lam ≤ 1) : -- --- CONCL ---
     ConZonotope.aux_linCombCoeff β₁ β₂ lam
-      ∈ (cZ₁.linComb cZ₂).P.nominal.construct := by -- --- PROOF ---
-  have hd₁ : β₁ ∈ (cZ₁.P.stackRows (HPolytope.unitBox 𝕋 cZ₁.h)).nominal.construct :=
+      ∈ (cZ₁.linComb cZ₂).P.nominal.toSet := by -- --- PROOF ---
+  have hd₁ : β₁ ∈ (cZ₁.P.stackRows (HPolytope.unitBox 𝕋 cZ₁.h)).nominal.toSet :=
     HPolytope.mem_stackRows_nominal_iff.mpr
       ⟨hP₁, (HPolytope.mem_nominal_of_origin rfl).mp (HPolytope.mem_unitBox_iff.mpr hβ₁)⟩
-  have hd₂ : β₂ ∈ (cZ₂.P.stackRows (HPolytope.unitBox 𝕋 cZ₂.h)).nominal.construct :=
+  have hd₂ : β₂ ∈ (cZ₂.P.stackRows (HPolytope.unitBox 𝕋 cZ₂.h)).nominal.toSet :=
     HPolytope.mem_stackRows_nominal_iff.mpr
       ⟨hP₂, (HPolytope.mem_nominal_of_origin rfl).mp (HPolytope.mem_unitBox_iff.mpr hβ₂)⟩
   exact HPolytope.mem_stackRows_nominal_iff.mpr
@@ -228,9 +228,9 @@ private theorem ConZonotope.aux_linComb_nominal
     (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
     Set.linComb (nominalSet cZ₁) (nominalSet cZ₂) ⊆
       nominalSet (cZ₁.linComb cZ₂)
-        + ((Zonotope.midpointResidual cZ₁.c cZ₂.c).construct
+        + ((Zonotope.midpointResidual cZ₁.c cZ₂.c).toSet
             + (Zonotope.generatorError
-              (ConZonotope.linCombGDiff cZ₁ cZ₂)).construct) := by -- --- PROOF ---
+              (ConZonotope.linCombGDiff cZ₁ cZ₂)).toSet) := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁', y₂, hy₂', lam, ⟨hl0, hl1⟩, rfl⟩
   obtain ⟨β₁, hβ₁, hP₁, hy₁⟩ := ConZonotope.mem_nominalSet_iff.mp hy₁'
   obtain ⟨β₂, hβ₂, hP₂, hy₂⟩ := ConZonotope.mem_nominalSet_iff.mp hy₂'
@@ -261,10 +261,10 @@ private theorem ConZonotope.aux_linComb_nominal
 /-- The box absorbs the two incoming boxes, the center rounding and the center
 generator's. -/
 private theorem ConZonotope.aux_linComb_error (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    Set.linComb cZ₁.I_error.construct cZ₂.I_error.construct
-        + ((Zonotope.midpointResidual cZ₁.c cZ₂.c).construct
-            + (Zonotope.generatorError (ConZonotope.linCombGDiff cZ₁ cZ₂)).construct)
-      ⊆ (cZ₁.linComb cZ₂).I_error.construct :=
+    Set.linComb cZ₁.I_error.toSet cZ₂.I_error.toSet
+        + ((Zonotope.midpointResidual cZ₁.c cZ₂.c).toSet
+            + (Zonotope.generatorError (ConZonotope.linCombGDiff cZ₁ cZ₂)).toSet)
+      ⊆ (cZ₁.linComb cZ₂).I_error.toSet :=
   subset_trans
     (Set.add_subset_add (Interval.linComb_outer cZ₁.I_error cZ₂.I_error) (Interval.plus_outer _ _))
     (Interval.plus_outer _ _)
@@ -273,7 +273,7 @@ private theorem ConZonotope.aux_linComb_error (cZ₁ cZ₂ : ConZonotope 𝕋 (V
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.linComb_outer (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) :
-    Set.linComb cZ₁.construct cZ₂.construct ⊆ (cZ₁.linComb cZ₂).construct :=
+    Set.linComb cZ₁.toSet cZ₂.toSet ⊆ (cZ₁.linComb cZ₂).toSet :=
   InflatedContSet.linComb_subset (ConZonotope.aux_linComb_nominal cZ₁ cZ₂)
     (ConZonotope.aux_linComb_error cZ₁ cZ₂)
 

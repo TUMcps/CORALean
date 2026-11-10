@@ -47,7 +47,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.intersection_exact (P₁ P₂ : HPolytope α) :
-    P₁.construct ∩ P₂.construct = (P₁.intersection P₂).construct :=
+    P₁.toSet ∩ P₂.toSet = (P₁.intersection P₂).toSet :=
   Set.ext fun _ => HPolytope.mem_intersection_iff.symm
 
 end CORALean.Real

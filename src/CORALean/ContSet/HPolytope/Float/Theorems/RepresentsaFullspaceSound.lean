@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.RepresentsaFullspace
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 
 @[expose] public section
@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem HPolytope.representsaFullspace_sound {P : HPolytope 𝕋 (Vec 𝕋 n)}
     (h : P.representsaFullspace = true) : -- --- CONCL ---
-    P.construct = Set.univ := by -- --- PROOF ---
+    P.toSet = Set.univ := by -- --- PROOF ---
   unfold HPolytope.representsaFullspace at h
   simp only [Bool.and_eq_true, List.all_eq_true, List.mem_finRange, forall_const] at h
   obtain ⟨⟨hin, heq⟩, hbox⟩ := h
@@ -53,9 +53,9 @@ theorem HPolytope.representsaFullspace_sound {P : HPolytope 𝕋 (Vec 𝕋 n)}
       (toReal_zero (𝕋 := 𝕋) ▸ toReal_le_of_le h₂)
   -- every point is the nominal point `x - e` plus the box point `e = inf`
   refine Set.eq_univ_of_forall fun x => ?_
-  have he : (fun j => toReal (P.I_error.inf j)) ∈ P.I_error.construct :=
+  have he : (fun j => toReal (P.I_error.inf j)) ∈ P.I_error.toSet :=
     Interval.mem_vec_iff.mpr fun j => ⟨le_rfl, toReal_le_of_le (hbox j)⟩
-  have hy : x - (fun j => toReal (P.I_error.inf j)) ∈ P.nominal.construct := by
+  have hy : x - (fun j => toReal (P.I_error.inf j)) ∈ P.nominal.toSet := by
     refine HPolytope.mem_nominal_iff.mpr ⟨fun i => ?_, fun r => ?_⟩
     · -- the row is zero, and its bound is not negative
       have hrow : (toRealMat P.A *ᵥ (x - fun j => toReal (P.I_error.inf j))) i = 0 := by

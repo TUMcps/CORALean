@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq
 public import CORALean.ContSet.HPolytope.Real.Theorems.PolyNormIsAsymmNorm
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 
 @[expose] public section
 
@@ -56,14 +56,14 @@ variable {n s : ℕ}
 
 theorem Zonotope.zonotopeNorm_eq_polyNorm (Z : Zonotope (Vec ℝ n)) (hc : Z.c = 0)
     (hG : Function.Surjective Z.genMap) {H : Mat ℝ s n} {h : Vec ℝ s}
-    (hrep : (HPolytope.ineqs H h).construct = Z.construct) (hne : ∀ i, h i ≠ 0)
+    (hrep : (HPolytope.ineqs H h).toSet = Z.toSet) (hne : ∀ i, h i ≠ 0)
     (x : Vec ℝ n) : -- --- CONCL ---
     Z.zonotopeNorm x = HPolytope.polyNorm H h x := by -- --- PROOF ---
   obtain ⟨hball, -⟩ := Z.zonotopeNorm_ball_eq hG
   -- `0 ∈ Z` makes every right-hand side positive
   have hpos : ∀ i, 0 < h i := fun i => by
-    have h0 : (0 : Vec ℝ n) ∈ (HPolytope.ineqs H h).construct := by
-      rw [hrep, ← hc]; exact Z.center_mem_construct
+    have h0 : (0 : Vec ℝ n) ∈ (HPolytope.ineqs H h).toSet := by
+      rw [hrep, ← hc]; exact Z.center_mem_toSet
     have := HPolytope.mem_ineqs_iff.mp h0 i
     simp only [mulVec_zero, Pi.zero_apply] at this
     exact lt_of_le_of_ne this (hne i).symm
@@ -77,7 +77,7 @@ theorem Zonotope.zonotopeNorm_eq_polyNorm (Z : Zonotope (Vec ℝ n)) (hc : Z.c =
         coeffNorm_smul _ (hG x) _, abs_of_pos (inv_pos.mpr ht), inv_mul_le_iff₀ ht, mul_one]
     have e₂ : HPolytope.polyNorm H h x ≤ t ↔ HPolytope.polyNorm H h (t⁻¹ • x) ≤ 1 := by
       rw [hhom _ _ (inv_pos.mpr ht), inv_mul_le_iff₀ ht, mul_one]
-    have e₃ : Z.zonotopeNorm (t⁻¹ • x) ≤ 1 ↔ t⁻¹ • x ∈ Z.construct := by
+    have e₃ : Z.zonotopeNorm (t⁻¹ • x) ≤ 1 ↔ t⁻¹ • x ∈ Z.toSet := by
       rw [← hball, Set.mem_setOf_eq, hc, sub_zero]
     rw [e₁, e₂, e₃, hunit, hrep]
   have h0ν : 0 ≤ Z.zonotopeNorm x := coeffNorm_nonneg _ _

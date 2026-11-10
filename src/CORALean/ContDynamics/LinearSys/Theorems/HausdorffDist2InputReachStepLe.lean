@@ -81,22 +81,22 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 between `P^U(t_k+Δt_k)` and the recursively computed `P̂^U(t_k) ⊕ e^{At_k}P̂^U(Δt_k)`. -/
 theorem LinearSys.hausdorffDist₂_inputReach_step_le (sys : LinearSys 𝕋 n) {U : S n}
     {tk Δt : ℝ} (htk : 0 ≤ tk) (hΔt : 0 < Δt) (η : ℕ) {Pk : Set (Vec ℝ n)} {εk : ℝ}
-    (hbdd : Bornology.IsBounded (construct U)) (hne : (construct U).Nonempty)
+    (hbdd : Bornology.IsBounded (toSet U)) (hne : (toSet U).Nonempty)
     (hcP : IsCompact (sys.inputReach U tk)) (hcPΔ : IsCompact (sys.inputReach U Δt))
     (hcQ : IsCompact Pk) (hQne : Pk.Nonempty)
-    (hcQΔ : IsCompact (MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η))
+    (hcQΔ : IsCompact (MatExp.particularSolutionOuter (toRealMat sys.A) (toSet U) 0 Δt η))
     (hstep : hausdorffDist₂ (sys.inputReach U tk) Pk ≤ εk)
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (h0 : (0 : Vec ℝ n) ∈ construct U) : -- --- CONCL ---
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (h0 : (0 : Vec ℝ n) ∈ toSet U) : -- --- CONCL ---
     hausdorffDist₂ (sys.inputReach U (tk + Δt))
         (Pk + (fun x => exp (tk • toRealMat sys.A) *ᵥ x)
-          '' MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η)
+          '' MatExp.particularSolutionOuter (toRealMat sys.A) (toSet U) 0 Δt η)
       ≤ εk + MatExp.particularSolutionError
-        (toRealMat sys.A) tk (construct U) Δt η := by -- --- PROOF ---
+        (toRealMat sys.A) tk (toSet U) Δt η := by -- --- PROOF ---
   obtain ⟨c, hc⟩ := hne
   have hPne : (sys.inputReach U tk).Nonempty := ⟨_, sys.expIntegral_mem_inputReach htk hc⟩
   have hPΔne : (sys.inputReach U Δt).Nonempty := ⟨_, sys.expIntegral_mem_inputReach hΔt.le hc⟩
-  have hQΔne : (MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η).Nonempty :=
+  have hQΔne : (MatExp.particularSolutionOuter (toRealMat sys.A) (toSet U) 0 Δt η).Nonempty :=
     ⟨0, MatExp.zero_mem_particularSolutionOuter _ h0 0 Δt η⟩
   have hcont : Continuous (fun x : Vec ℝ n => exp (tk • toRealMat sys.A) *ᵥ x) :=
     (mulVecL (exp (tk • toRealMat sys.A))).continuous

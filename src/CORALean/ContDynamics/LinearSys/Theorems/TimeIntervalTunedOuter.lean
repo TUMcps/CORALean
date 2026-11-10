@@ -70,8 +70,8 @@ theorem LinearSys.timeInterval_outer_tuned (sys : LinearSys 𝕋 n) {r ε : 𝕋
     {fuel : ℕ} (X₀ : S n) {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ toReal r) : -- --- CONCL ---
     ∀ η ∈ MatExp.tuneOrder
         (MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A))) ε fuel,
-      (fun x₀ => exp (t • Scalar.toRealMat sys.A) *ᵥ x₀) '' construct X₀
-        ⊆ construct (sys.timeInterval (toReal r) η X₀) := by -- --- PROOF ---
+      (fun x₀ => exp (t • Scalar.toRealMat sys.A) *ᵥ x₀) '' toSet X₀
+        ⊆ toSet (sys.timeInterval (toReal r) η X₀) := by -- --- PROOF ---
   intro η (h : MatExp.tuneOrder (MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A))) ε
       fuel = some η)
   have hnorm := MatExp.norm_smul_le_normUpperBound (Interval.point sys.A) r

@@ -66,8 +66,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem LinearSys.IsCanonicalTrajectory.discretizeMatZonotope {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} {η : ℕ}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ Δt) (hT : Set.Ici 0 ⊆ T)
-    (hU : Bornology.IsBounded (construct U))
-    (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ construct Ud)
+    (hU : Bornology.IsBounded (toSet U))
+    (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ toSet Ud)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) :
     (sys.discretizeMatZonotope Δt η).IsCanonicalTrajectory R₀ Ud
       (fun k : ℕ => x (k * Δt)) (sys.stepInput u Δt) where

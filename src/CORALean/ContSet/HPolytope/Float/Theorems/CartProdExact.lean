@@ -44,9 +44,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 private theorem HPolytope.aux_mem_cartProd_iff {P₁ : HPolytope 𝕋 (Vec 𝕋 n₁)}
     {P₂ : HPolytope 𝕋 (Vec 𝕋 n₂)} {x : Vec ℝ (n₁ + n₂)} : -- --- CONCL ---
-    x ∈ (P₁.cartProd P₂).construct
-      ↔ blockLeft n₁ n₂ x ∈ P₁.construct
-        ∧ blockRight n₁ n₂ x ∈ P₂.construct := by -- --- PROOF ---
+    x ∈ (P₁.cartProd P₂).toSet
+      ↔ blockLeft n₁ n₂ x ∈ P₁.toSet
+        ∧ blockRight n₁ n₂ x ∈ P₂.toSet := by -- --- PROOF ---
   -- the two blocks, as one map into a product
   let L : Vec ℝ (n₁ + n₂) →+ Vec ℝ n₁ × Vec ℝ n₂ :=
     ((blockLeft n₁ n₂).prod (blockRight n₁ n₂)).toAddMonoidHom
@@ -59,12 +59,12 @@ private theorem HPolytope.aux_mem_cartProd_iff {P₁ : HPolytope 𝕋 (Vec 𝕋 
         funext j
         refine Fin.addCases (fun i => ?_) (fun i => ?_) j <;> simp }
   -- the nominal parts multiply
-  have hN : (P₁.cartProd P₂).nominal.construct
-      = L ⁻¹' (P₁.nominal.construct ×ˢ P₂.nominal.construct) :=
+  have hN : (P₁.cartProd P₂).nominal.toSet
+      = L ⁻¹' (P₁.nominal.toSet ×ˢ P₂.nominal.toSet) :=
     HPolytope.cartProd_nominal_exact P₁ P₂
   -- and so do the boxes
-  have hE : (P₁.cartProd P₂).I_error.construct
-      = S '' (P₁.I_error.construct ×ˢ P₂.I_error.construct) := by
+  have hE : (P₁.cartProd P₂).I_error.toSet
+      = S '' (P₁.I_error.toSet ×ˢ P₂.I_error.toSet) := by
     ext y
     constructor
     -- a point of the stacked box splits into its two blocks
@@ -87,10 +87,10 @@ private theorem HPolytope.aux_mem_cartProd_iff {P₁ : HPolytope 𝕋 (Vec 𝕋 
       · simpa [HPolytope.cartProd, S] using Interval.mem_vec_iff.mp h₂ i
   have key := HPolytope.preimage_inter_add_image L S
     (fun e => Prod.ext (blockLeft_append e.1 e.2) (blockRight_append e.1 e.2))
-    (P₁.nominal.construct ×ˢ P₂.nominal.construct) (P₁.I_error.construct ×ˢ P₂.I_error.construct)
+    (P₁.nominal.toSet ×ˢ P₂.nominal.toSet) (P₁.I_error.toSet ×ˢ P₂.I_error.toSet)
     Set.univ (fun _ _ => by simp)
   simp only [Set.inter_univ, Set.prod_add_prod_comm] at key
-  show x ∈ (P₁.cartProd P₂).nominal.construct + (P₁.cartProd P₂).I_error.construct ↔ _
+  show x ∈ (P₁.cartProd P₂).nominal.toSet + (P₁.cartProd P₂).I_error.toSet ↔ _
   rw [hN, hE]
   refine (Set.ext_iff.mp key x).trans ?_
   simp only [Set.mem_preimage, Set.mem_prod]
@@ -100,8 +100,8 @@ private theorem HPolytope.aux_mem_cartProd_iff {P₁ : HPolytope 𝕋 (Vec 𝕋 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.cartProd_exact (P₁ : HPolytope 𝕋 (Vec 𝕋 n₁)) (P₂ : HPolytope 𝕋 (Vec 𝕋 n₂)) :
-    (P₁.cartProd P₂).construct
-      = blockLeft n₁ n₂ ⁻¹' P₁.construct ∩ blockRight n₁ n₂ ⁻¹' P₂.construct :=
+    (P₁.cartProd P₂).toSet
+      = blockLeft n₁ n₂ ⁻¹' P₁.toSet ∩ blockRight n₁ n₂ ⁻¹' P₂.toSet :=
   Set.ext fun _ => HPolytope.aux_mem_cartProd_iff
 
 end CORALean.Float

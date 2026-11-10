@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsConstructEqIffHPolytope
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemToSet
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ExistsToSetEqIffHPolytope
 public import CORALean.ContSet.Conversion.Real.Theorems.ConZonotopeVPolytopeExact
 public import CORALean.ContSet.Conversion.Real.Theorems.EllipsoidExistsNotVPolytope
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.IsCompact
@@ -13,7 +13,7 @@ public import CORALean.ContSet.ConZonotope.Real.Theorems.MemDomainIff
 # An ellipsoid that is no halfspace description
 
 A bounded halfspace description is a constrained zonotope
-(`ConZonotope.exists_construct_eq_iff_hPolytope`), and a nonempty constrained zonotope is a polytope
+(`ConZonotope.exists_toSet_eq_iff_hPolytope`), and a nonempty constrained zonotope is a polytope
 by vertices (`ConZonotope.vPolytope_exact`), which the unit disc is not
 (`Ellipsoid.exists_not_vPolytope`).
 
@@ -41,15 +41,15 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.exists_not_hPolytope : -- --- CONCL ---
-    ∃ E : Ellipsoid 2, ¬ ∃ P : HPolytope (Vec ℝ 2), P.construct = E.construct := by -- --- PROOF ---
+    ∃ E : Ellipsoid 2, ¬ ∃ P : HPolytope (Vec ℝ 2), P.toSet = E.toSet := by -- --- PROOF ---
   obtain ⟨E, hE⟩ := Ellipsoid.exists_not_vPolytope
   refine ⟨E, ?_⟩
   rintro ⟨P, hP⟩
   -- the halfspace description is bounded, so a constrained zonotope
-  obtain ⟨cZ, hcZ⟩ := ConZonotope.exists_construct_eq_iff_hPolytope.mpr
-    ⟨P, hP, E.isCompact_construct.isBounded⟩
+  obtain ⟨cZ, hcZ⟩ := ConZonotope.exists_toSet_eq_iff_hPolytope.mpr
+    ⟨P, hP, E.isCompact_toSet.isBounded⟩
   -- the center is a point of it, so its coefficient domain is nonempty
-  have hc : E.q ∈ E.construct := E.q_mem_construct
+  have hc : E.q ∈ E.toSet := E.q_mem_toSet
   obtain ⟨β, hβ, hβP, -⟩ := hcZ ▸ hc
   exact hE ⟨cZ.vPolytope ⟨β, ConZonotope.mem_domain_iff.mpr ⟨hβ, hβP⟩⟩,
     (ConZonotope.vPolytope_exact cZ _).trans hcZ⟩

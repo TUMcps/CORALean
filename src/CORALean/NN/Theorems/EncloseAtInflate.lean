@@ -111,8 +111,8 @@ private theorem aux_image_inflate_subset {k : ℕ} {f : Vec ℝ m → Vec ℝ k}
 theorem RefinableNetwork.exists_schedule_encloseAt_subset : -- --- CONCL ---
     ∀ {n m : ℕ} (rn : RefinableNetwork S n m), rn.IsConvergent → ∀ (X : S n) (ε : ℝ), 0 < ε →
       ∃ sch : Schedule,
-        construct (rn.encloseAt sch X)
-          ⊆ rn.image (construct X) + Metric.closedBall 0 ε
+        toSet (rn.encloseAt sch X)
+          ⊆ rn.image (toSet X) + Metric.closedBall 0 ε
   | k, _, .nil, _, X, ε, hε => by
     refine ⟨fun _ _ => 0, fun y hy => ?_⟩
     -- the empty network encloses its input, and nothing has to be inflated
@@ -120,7 +120,7 @@ theorem RefinableNetwork.exists_schedule_encloseAt_subset : -- --- CONCL ---
       rw [Metric.mem_closedBall, dist_self]
       exact hε.le
     have hmem := Set.add_mem_add
-      (show y ∈ (RefinableNetwork.nil : RefinableNetwork S k k).image (construct X)
+      (show y ∈ (RefinableNetwork.nil : RefinableNetwork S k k).image (toSet X)
         from ⟨y, hy, rfl⟩) h0
     rwa [add_zero] at hmem
   | _, _, .cons L rest, hc, X, ε, hε => by
@@ -135,13 +135,13 @@ theorem RefinableNetwork.exists_schedule_encloseAt_subset : -- --- CONCL ---
       have hne : (2 * ((K : ℝ) + 1)) ≠ 0 := ne_of_gt hKpos
       have hcancel : (2 * ((K : ℝ) + 1)) * (ε / (2 * ((K : ℝ) + 1))) = ε := by field_simp
       nlinarith [K.coe_nonneg, (div_pos hε hKpos).le]
-    have hset : rest.eval '' (L.eval '' construct X)
-        = (RefinableNetwork.cons L rest).image (construct X) := by
+    have hset : rest.eval '' (L.eval '' toSet X)
+        = (RefinableNetwork.cons L rest).image (toSet X) := by
       rw [Set.image_image]
       rfl
     -- the head's residual, carried through the tail and paid at half the budget
-    have himg : rest.eval '' construct (L.enclose o X)
-        ⊆ (RefinableNetwork.cons L rest).image (construct X)
+    have himg : rest.eval '' toSet (L.enclose o X)
+        ⊆ (RefinableNetwork.cons L rest).image (toSet X)
           + Metric.closedBall 0 (ε / 2) := by
       refine subset_trans (Set.image_mono ho)
         (subset_trans (aux_image_inflate_subset hK _ _) ?_)

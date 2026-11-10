@@ -74,15 +74,15 @@ theorem LinParamSys.initReachInputDependence_outer (sys : LinParamSys 𝕄𝒵 n
     (hr : 0 < r) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A.interval).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1)
     (Rinit : Zonotope (Vec ℝ n)) (Uc : Vec ℝ sys.m) (UG : Fin sys.A.h → Vec ℝ sys.m)
-    {p : Fin sys.A.h → ℝ} (hp : ∀ i, |p i| ≤ 1) {B : Mat ℝ n sys.m} (hB : B ∈ construct sys.B)
-    {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ construct Rinit) {t : ℝ} (ht0 : 0 ≤ t)
+    {p : Fin sys.A.h → ℝ} (hp : ∀ i, |p i| ≤ 1) {B : Mat ℝ n sys.m} (hB : B ∈ toSet sys.B)
+    {x₀ : Vec ℝ n} (hx₀ : x₀ ∈ toSet Rinit) {t : ℝ} (ht0 : 0 ≤ t)
     (htr : t ≤ r) : -- --- CONCL ---
     let A := sys.A.c + ∑ i, p i • sys.A.G i
     let u := B *ᵥ (Uc + ∑ i, p i • UG i) + sys.c
     exp (r • A) *ᵥ x₀ + ∫ s in (0:ℝ)..r, exp ((r - s) • A) *ᵥ u
-        ∈ construct (sys.initReachInputDependence r (m + 2) Rinit Uc UG).1 ∧
+        ∈ toSet (sys.initReachInputDependence r (m + 2) Rinit Uc UG).1 ∧
       exp (t • A) *ᵥ x₀ + ∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u
-        ∈ construct (sys.initReachInputDependence r (m + 2) Rinit Uc UG).2 := by -- --- PROOF ---
+        ∈ toSet (sys.initReachInputDependence r (m + 2) Rinit Uc UG).2 := by -- --- PROOF ---
   intro A u
   -- the input in the state space: `Vc + Σ pᵢ VG i` at the center of `B`, and the deviation `w`
   set Vc : Vec ℝ n := sys.B.c *ᵥ Uc + sys.c with hVc
@@ -92,11 +92,11 @@ theorem LinParamSys.initReachInputDependence_outer (sys : LinParamSys 𝕄𝒵 n
   set BΔ : Zonotope (Mat ℝ n sys.m) := ⟨sys.B.h, 0, sys.B.G⟩ with hBΔ
   set Vdev : Zonotope (Vec ℝ n) := Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) BΔ Uconst with hVdev
   set w : Vec ℝ n := (B - sys.B.c) *ᵥ (Uc + ∑ i, p i • UG i) with hw
-  have hu0 : Uc + ∑ i, p i • UG i ∈ construct Uconst := ⟨p, hp, rfl⟩
-  have hD : B - sys.B.c ∈ construct BΔ := ⟨β, hβ, by
+  have hu0 : Uc + ∑ i, p i • UG i ∈ toSet Uconst := ⟨p, hp, rfl⟩
+  have hD : B - sys.B.c ∈ toSet BΔ := ⟨β, hβ, by
     show B - sys.B.c = 0 + ∑ j, β j • sys.B.G j
     rw [hBβ]; abel⟩
-  have hwmem : w ∈ construct Vdev :=
+  have hwmem : w ∈ toSet Vdev :=
     Mtimes.mtimes_outer (𝕄 := 𝕄𝒵) (S := 𝒵) BΔ Uconst
       (Set.mem_iUnion₂.mpr ⟨_, hD, _, hu0, rfl⟩)
   have hu : u = (Vc + ∑ i, p i • VG i) + w := by
@@ -104,23 +104,23 @@ theorem LinParamSys.initReachInputDependence_outer (sys : LinParamSys 𝕄𝒵 n
       Matrix.mulVec_smul, smul_sub, Finset.sum_sub_distrib]
     abel
   -- the matrix `A(p)` is in `sys.A`, and so in its box
-  have hAmem : A ∈ construct sys.A := ⟨p, hp, rfl⟩
-  have hAbox : A ∈ sys.A.interval.construct := Zonotope.interval_contains _ hAmem
+  have hAmem : A ∈ toSet sys.A := ⟨p, hp, rfl⟩
+  have hAbox : A ∈ sys.A.interval.toSet := Zonotope.interval_contains _ hAmem
   -- the time-point set: the parameter-sharing part, and `w` by `inputSolutionZono`
   have htp1 : exp (r • A) *ᵥ x₀ + ∫ s in (0:ℝ)..r, exp ((r - s) • A) *ᵥ (Vc + ∑ i, p i • VG i)
-      ∈ construct (sys.dependentHomSol r (m + 2) Rinit Vc VG) :=
+      ∈ toSet (sys.dependentHomSol r (m + 2) Rinit Vc VG) :=
     sys.dependentHomSol_outer hr hε Rinit Vc VG hp hx₀
   -- the deviation's share, `inputSolutionZono` of the constant `w`
   have htp2 : (∫ s in (0:ℝ)..r, exp ((r - s) • A) *ᵥ w)
-      ∈ construct (sys.inputSolutionZono (S := 𝒵) r (m + 2) Vdev) :=
-    sys.inputSolutionZono_outer hr (by omega) hε hAmem (ConvexSet.convex_construct _)
-      (CompactSet.isClosed_construct _) (CompactSet.isBounded_construct _)
-      (ConvexSet.convex_construct _) (CompactSet.isClosed_construct _)
-      (CompactSet.isBounded_construct _) (u := fun _ => w) (fun _ _ => hwmem)
+      ∈ toSet (sys.inputSolutionZono (S := 𝒵) r (m + 2) Vdev) :=
+    sys.inputSolutionZono_outer hr (by omega) hε hAmem (ConvexSet.convex_toSet _)
+      (CompactSet.isClosed_toSet _) (CompactSet.isBounded_toSet _)
+      (ConvexSet.convex_toSet _) (CompactSet.isClosed_toSet _)
+      (CompactSet.isBounded_toSet _) (u := fun _ => w) (fun _ _ => hwmem)
       MeasureTheory.aestronglyMeasurable_const
   rw [MatExp.expIntegral_constInput A _ hr.le] at htp1 htp2
   have htp : exp (r • A) *ᵥ x₀ + MatExp.expIntegral A r *ᵥ u
-      ∈ construct (sys.initReachInputDependence r (m + 2) Rinit Uc UG).1 := by
+      ∈ toSet (sys.initReachInputDependence r (m + 2) Rinit Uc UG).1 := by
     have h := Plus.plus_outer _ _ (Set.add_mem_add htp1 htp2)
     have heq : exp (r • A) *ᵥ x₀ + MatExp.expIntegral A r *ᵥ u
         = (exp (r • A) *ᵥ x₀ + MatExp.expIntegral A r *ᵥ (Vc + ∑ i, p i • VG i))

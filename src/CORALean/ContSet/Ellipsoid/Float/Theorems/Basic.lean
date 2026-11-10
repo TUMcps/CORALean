@@ -47,30 +47,30 @@ theorem Ellipsoid.ball_posSemidef (r : 𝕋) : (toRealMat (Ellipsoid.ball n r).Q
   exact Matrix.PosSemidef.diagonal fun _ => le_trans (mul_self_nonneg _) (mul_le_mulUp r r)
 
 
--- ===============================  `Ellipsoid.convex_construct`  =============================== --
+-- =================================  `Ellipsoid.convex_toSet`  ================================= --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- What this denotes is a nominal set plus an error box, so `InflatedContSet.convex_construct`
+/-- What this denotes is a nominal set plus an error box, so `InflatedContSet.convex_toSet`
 carries convexity across: the nominal set is convex as over ℝ, the box because
 its coordinates are bounded independently. -/
-theorem Ellipsoid.convex_construct (E : Ellipsoid 𝕋 n) : Convex ℝ E.construct :=
-  InflatedContSet.convex_construct E
+theorem Ellipsoid.convex_toSet (E : Ellipsoid 𝕋 n) : Convex ℝ E.toSet :=
+  InflatedContSet.convex_toSet E
 
 
--- =============================  `Ellipsoid.isCompact_construct`  ============================== --
+-- ===============================  `Ellipsoid.isCompact_toSet`  ================================ --
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
 -- Last update:   ---
 -- Reviewed:      ---
 
-/-- What this denotes is a nominal set plus an error box, so `InflatedContSet.isCompact_construct`
+/-- What this denotes is a nominal set plus an error box, so `InflatedContSet.isCompact_toSet`
 carries compactness across: the nominal set is compact as over ℝ, the box by
 Heine–Borel. -/
-theorem Ellipsoid.isCompact_construct (E : Ellipsoid 𝕋 n) : IsCompact E.construct :=
-  InflatedContSet.isCompact_construct E
+theorem Ellipsoid.isCompact_toSet (E : Ellipsoid 𝕋 n) : IsCompact E.toSet :=
+  InflatedContSet.isCompact_toSet E
 
 
 end

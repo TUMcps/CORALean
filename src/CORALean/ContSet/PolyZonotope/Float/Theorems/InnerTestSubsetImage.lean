@@ -86,7 +86,7 @@ theorem PolyZonotope.innerTest_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
     (X X₀ : Interval (Vec 𝕋 pZ.p)) (Y : Interval (Vec 𝕋 n)) (ind : Fin n ↪ Fin pZ.p)
     (M C : Mat 𝕋 n n) (iter : ℕ)
     (h : PolyZonotope.innerTest pZ X X₀ Y ind M C iter = true) : -- --- CONCL ---
-    Y.construct ⊆ (PolyZonotope.nominal pZ).point '' X.construct := by -- --- PROOF ---
+    Y.toSet ⊆ (PolyZonotope.nominal pZ).point '' X.toSet := by -- --- PROOF ---
   unfold PolyZonotope.innerTest at h
   simp only [Bool.and_eq_true, beq_iff_eq] at h
   obtain ⟨⟨hC, hsel⟩, hit⟩ := h
@@ -103,10 +103,10 @@ theorem PolyZonotope.innerTest_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
     exact ⟨⟨toReal_le_of_le h.1.1.1, toReal_le_of_le h.1.1.2⟩,
       ⟨toReal_le_of_le h.1.2, toReal_le_of_le h.2⟩⟩
   -- `C(y - f(x_))` in `b`
-  have hb : ∀ y ∈ Y.construct, Matrix.mulVec (toRealMat C)
+  have hb : ∀ y ∈ Y.toSet, Matrix.mulVec (toRealMat C)
       (y - (PolyZonotope.nominal pZ).point (toRealVec (Interval.center X₀))) ∈
         ((Interval.mtimes C Y).minus (Interval.mtimes C (PolyZonotope.pointBox pZ
-          (Interval.point (Interval.center X₀))))).materialise.construct := by
+          (Interval.point (Interval.center X₀))))).materialise.toSet := by
     intro y hy
     rw [Interval.materialise_eq]
     have hCy := Interval.mtimes_outer C Y ⟨y, hy, rfl⟩
@@ -117,7 +117,7 @@ theorem PolyZonotope.innerTest_subset_image (pZ : PolyZonotope (Vec 𝕋 n))
   -- the answer stays unknown, or `false`, until a pass accepts
   refine Function.Iterate.rec
     (fun s : Interval (Vec 𝕋 n) × Option 𝕋 × Option 𝕋 × Option Bool => s.2.2.2 = some true →
-      Y.construct ⊆ (PolyZonotope.nominal pZ).point '' X.construct)
+      Y.toSet ⊆ (PolyZonotope.nominal pZ).point '' X.toSet)
     (fun h0 => by cases h0) ?_ iter hit
   clear hit
   intro s ih hst

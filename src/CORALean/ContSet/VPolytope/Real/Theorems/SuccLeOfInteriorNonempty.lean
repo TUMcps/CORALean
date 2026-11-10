@@ -44,7 +44,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.succ_le_of_interior_nonempty (P : VPolytope (Vec ℝ n))
-    (h : (interior P.construct).Nonempty) : -- --- CONCL ---
+    (h : (interior P.toSet).Nonempty) : -- --- CONCL ---
     n + 1 ≤ P.k := by -- --- PROOF ---
   have htop := (VPolytope.isFullDim_iff P).mp h
   obtain ⟨k, V⟩ := P

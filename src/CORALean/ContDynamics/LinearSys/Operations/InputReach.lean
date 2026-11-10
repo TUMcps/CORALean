@@ -53,7 +53,7 @@ those staying in `U` and measurable enough to integrate, no more. -/
 noncomputable def LinearSys.inputReach (sys : LinearSys 𝕋 n) (U : S n) (τ : ℝ) :
     Set (Vec ℝ n) :=
   {y | ∃ u : ℝ → Vec ℝ n,
-      (∀ s ∈ Set.Icc (0:ℝ) τ, u s ∈ construct U) ∧
+      (∀ s ∈ Set.Icc (0:ℝ) τ, u s ∈ toSet U) ∧
       AEStronglyMeasurable u (volume.restrict (Set.Icc 0 τ)) ∧
       y = ∫ s in (0:ℝ)..τ, exp ((τ - s) • toRealMat sys.A) *ᵥ u s}
 

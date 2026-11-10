@@ -117,7 +117,7 @@ is `1`. -/
 theorem NonlinDASys.compLocalErrorCora_counterexample : -- --- CONCL ---
     (∀ (Csub Fsub : Mat ℝ 1 1) (R_xyu : Zonotope (Vec ℝ 3)),
       ∀ e ∈ (NonlinDASys.compLocalErrorCora (fun _ => 0) (fun _ => 0) (fun _ => 0)
-        (fun _ => 0) Csub Fsub R_xyu).construct, e = 0) ∧
+        (fun _ => 0) Csub Fsub R_xyu).toSet, e = 0) ∧
     -- true error of `ẋ₁ = y₁` at `x₂ = 1`, `y = (1, 1)`: `f₁ - (w₁ + Ã₁ Δx)` with `w = 0`, `Ã = 0`
     ((![1, 1] : Fin 2 → ℝ) 0 - 0 = 1 ∧
       (![(1 : ℝ), 1] 0 - ![1, 1] 1 = 0 ∧ ![(1 : ℝ), 1] 1 - (1 : ℝ) ^ 2 = 0)) := by -- --- PROOF ---

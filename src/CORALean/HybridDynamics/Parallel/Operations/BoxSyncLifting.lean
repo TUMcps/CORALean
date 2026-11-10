@@ -3,7 +3,7 @@ module
 public import CORALean.HybridDynamics.Parallel.Operations.BoxLifting
 public import CORALean.HybridDynamics.Parallel.Definitions.SyncLifting
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
-public import CORALean.ContSet.HPolytope.Real.Theorems.ConstructFullspace
+public import CORALean.ContSet.HPolytope.Real.Theorems.ToSetFullspace
 
 @[expose] public section
 
@@ -45,13 +45,13 @@ def ParallelHybridAutomaton.boxSyncLifting :
     | some g => g
     | none => HPolytope.fullspace (Vec ℝ (n i))
   mem_guardAll gs x hx := by
-    show stack x ∈ (HPolytope.stackProd _).construct
+    show stack x ∈ (HPolytope.stackProd _).toSet
     rw [HPolytope.stackProd_exact]
     intro i
     rw [unstack_stack]
     cases hg : gs i with
     | some g => exact hx i g hg
-    | none => simp [HPolytope.construct_fullspace]
+    | none => simp [HPolytope.toSet_fullspace]
 
 end CORALean
 

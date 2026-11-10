@@ -49,7 +49,7 @@ variable {n : ℕ}
 /-- [1, Fig. 1 (Support Functions → Star Sets)]: the star set of a support function on a box around
 its set denotes that set. -/
 theorem SupportFunction.starSet_exact (S : SupportFunction (Vec ℝ n)) {D : Interval (Vec ℝ n)}
-    (hD : S.construct ⊆ D.construct) : (S.starSet D).construct = S.construct :=
+    (hD : S.toSet ⊆ D.toSet) : (S.starSet D).toSet = S.toSet :=
   (StarSet.ofPred_exact (P := fun m => SupportFunction (Vec ℝ m)) D S).trans
     (Set.inter_eq_right.mpr hD)
 

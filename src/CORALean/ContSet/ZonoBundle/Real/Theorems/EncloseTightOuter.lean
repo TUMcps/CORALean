@@ -53,19 +53,19 @@ variable {n r : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.encloseTight_outer (zB₁ zB₂ : ZonoBundle (Vec ℝ n))
-    (hk₁ : 0 < zB₁.k) (hk₂ : 0 < zB₂.k) (hne₁ : zB₁.construct.Nonempty)
-    (hne₂ : zB₂.construct.Nonempty) (W : Fin r → Mat ℝ n n) (hW : ∀ i, IsUnit (W i).det)
+    (hk₁ : 0 < zB₁.k) (hk₂ : 0 < zB₂.k) (hne₁ : zB₁.toSet.Nonempty)
+    (hne₂ : zB₂.toSet.Nonempty) (W : Fin r → Mat ℝ n n) (hW : ∀ i, IsUnit (W i).det)
     {U : Mat ℝ n n} (hU : U * Uᵀ = 1) : -- --- CONCL ---
-    convexHull ℝ (zB₁.construct ∪ zB₂.construct)
-      ⊆ (zB₁.encloseTight zB₂ hk₁ hk₂ hne₁ hne₂ W U).construct := by -- --- PROOF ---
+    convexHull ℝ (zB₁.toSet ∪ zB₂.toSet)
+      ⊆ (zB₁.encloseTight zB₂ hk₁ hk₂ hne₁ hne₂ W U).toSet := by -- --- PROOF ---
   -- the joined vertices span both bundles
   have hV := VPolytope.convHull_exact (zB₁.vPolytopeAll hk₁ hne₁) (zB₂.vPolytopeAll hk₂ hne₂)
   rw [ZonoBundle.vPolytopeAll_exact, ZonoBundle.vPolytopeAll_exact] at hV
-  have hV' : (zB₁.encloseTightVertices zB₂ hk₁ hk₂ hne₁ hne₂).construct
-      = convexHull ℝ (zB₁.construct ∪ zB₂.construct) := hV
-  rw [← hV', VPolytope.construct_eq_convexHull]
+  have hV' : (zB₁.encloseTightVertices zB₂ hk₁ hk₂ hne₁ hne₂).toSet
+      = convexHull ℝ (zB₁.toSet ∪ zB₂.toSet) := hV
+  rw [← hV', VPolytope.toSet_eq_convexHull]
   -- the bundle is convex and holds every vertex
-  refine convexHull_min ?_ (SetIntersection.convex_construct _)
+  refine convexHull_min ?_ (SetIntersection.convex_toSet _)
   rintro _ ⟨j, rfl⟩
   haveI : NeZero (zB₁.encloseTightVertices zB₂ hk₁ hk₂ hne₁ hne₂).k :=
     ⟨VPolytope.k_ne_zero_of_nonempty

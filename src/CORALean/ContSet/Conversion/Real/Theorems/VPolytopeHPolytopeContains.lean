@@ -45,7 +45,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α] {q : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.hPolytope_contains (P : VPolytope α) (Aq : Fin q → (α →ₗ[ℝ] ℝ)) :
-    P.construct ⊆ (P.hPolytope Aq).construct :=
+    P.toSet ⊆ (P.hPolytope Aq).toSet :=
   HPolytope.subset_ofBounds _ _
 
 end CORALean.Real

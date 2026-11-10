@@ -60,7 +60,7 @@ private theorem Zonotope.aux_sum_univ_absorbError {Z : Zonotope (Vec 𝕋 n)} (f
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.absorbError_outer (Z : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    Z.construct ⊆ Z.absorbError.construct := by -- --- PROOF ---
+    Z.toSet ⊆ Z.absorbError.toSet := by -- --- PROOF ---
   rintro _ ⟨z, hz', e, he, rfl⟩
   obtain ⟨β, hβ, hz⟩ := Zonotope.mem_nominalSet_iff.mp hz'
   refine ⟨fun i => toReal (Z.absorbError.c i)

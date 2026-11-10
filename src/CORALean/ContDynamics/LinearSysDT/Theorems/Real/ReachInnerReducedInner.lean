@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSysDT.Definitions.ReachInnerReduced
 public import CORALean.ContDynamics.LinearSysDT.Theorems.ReachSetExactInnerOfOuter
 public import CORALean.ContDynamics.LinearSysDT.Theorems.Real.ReachSubsetReachSetExactAddErrorReduced
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsBounded
 public import CORALean.ContSet.Zonotope.Real.Theorems.IsCompact
 
@@ -57,10 +57,10 @@ bought with a bounded generator count. -/
 theorem LinearSysDT.reachInnerReduced_inner (sys : LinearSysDT ℝ n) {o : ℕ} (ho : 0 < o)
     (R₀ U : Zonotope (Vec ℝ n)) (k : ℕ) :
     sys.reachInnerReduced o ho R₀ U k ⊆ sys.reachSetExact (S := 𝒵) R₀ U k :=
-  sys.reachSetExact_inner_of_outer (S := 𝒵) (Zonotope.convex_construct R₀)
-    (Zonotope.isCompact_construct R₀) (Zonotope.convex_construct U)
-    (Zonotope.isCompact_construct U) k ⟨_, Zonotope.center_mem_construct _⟩
-    (Zonotope.isBounded_construct _) (sys.reach_subset_reachSetExact_add_errorReduced ho R₀ U k)
+  sys.reachSetExact_inner_of_outer (S := 𝒵) (Zonotope.convex_toSet R₀)
+    (Zonotope.isCompact_toSet R₀) (Zonotope.convex_toSet U)
+    (Zonotope.isCompact_toSet U) k ⟨_, Zonotope.center_mem_toSet _⟩
+    (Zonotope.isBounded_toSet _) (sys.reach_subset_reachSetExact_add_errorReduced ho R₀ U k)
 
 end CORALean
 

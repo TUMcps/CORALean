@@ -70,14 +70,14 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 theorem Location.IsTrajectory.timeIntervalInvFloat_outer
     {ℓ : Location 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n} {τ : ℝ}
     {x : ℝ → Vec ℝ n} {u w}
-    (traj : ℓ.IsTrajectory τ x u w) {R₀ Ud : Zonotope (Vec 𝕋 n)} (h₀ : x 0 ∈ construct R₀) {r : 𝕋}
+    (traj : ℓ.IsTrajectory τ x u w) {R₀ Ud : Zonotope (Vec 𝕋 n)} (h₀ : x 0 ∈ toSet R₀) {r : 𝕋}
     {η : ℕ} (hr : 0 < toReal r) (hη : ℓ.dynamics.IsOrderAdmissibleFloat r r η) {t : ℝ}
     (ht0 : 0 ≤ t) (htτ : t ≤ τ) (htr : t ≤ toReal r)
     (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • Scalar.toRealMat ℓ.dynamics.A) *ᵥ
       (Scalar.toRealMat ℓ.dynamics.B *ᵥ u s + Scalar.toRealVec ℓ.dynamics.c +
         Scalar.toRealMat ℓ.dynamics.E *ᵥ w s))
-      ∈ construct Ud) :
-    x t ∈ construct (ℓ.timeIntervalInvFloat r η R₀ Ud) :=
+      ∈ toSet Ud) :
+    x t ∈ toSet (ℓ.timeIntervalInvFloat r η R₀ Ud) :=
   Interval.zonotope_contains _ (ℓ.inv.contractBox_outer _
     ⟨Zonotope.interval_contains _ (traj.timeIntervalFloat_outer h₀ hr hη ht0 htτ htr hUd),
       traj.invariant t ⟨ht0, htτ⟩⟩)

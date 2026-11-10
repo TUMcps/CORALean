@@ -64,9 +64,9 @@ instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [Sou
   I_error cZ := cZ.I_error
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
-abbrev ConZonotope.construct [SoundFloatArithmetic 𝕋] (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
+abbrev ConZonotope.toSet [SoundFloatArithmetic 𝕋] (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) :
     Set (Vec ℝ n) :=
-  InflatedContSet.construct cZ
+  InflatedContSet.toSet cZ
 
 end CORALean.Float
 

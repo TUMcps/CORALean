@@ -72,10 +72,10 @@ private theorem SpectraShadow.aux_padRight_nominal
 
 /-- `SpectraShadow.padRight` contains the embedded shadow. -/
 private theorem SpectraShadow.aux_padRight_outer (n : ℕ) (S : SpectraShadow 𝕋 (Vec 𝕋 m)) :
-    ⇑(blockPadRight n m) '' S.construct ⊆ (S.padRight n).construct :=
+    ⇑(blockPadRight n m) '' S.toSet ⊆ (S.padRight n).toSet :=
   image_subset (fun _ _ => map_add _ _ _)
     (by
-      show ⇑(blockPadRight n m) '' nominalSet S ⊆ ContSet.construct (nominal (S.padRight n))
+      show ⇑(blockPadRight n m) '' nominalSet S ⊆ ContSet.toSet (nominal (S.padRight n))
       rw [SpectraShadow.aux_padRight_nominal]
       exact le_of_eq (Real.SpectraShadow.map_exact _ _))
     (by
@@ -117,10 +117,10 @@ private theorem SpectraShadow.aux_padLeft_nominal (S : SpectraShadow 𝕋 (Vec �
 
 /-- `SpectraShadow.padLeft` contains the embedded shadow. -/
 private theorem SpectraShadow.aux_padLeft_outer (S : SpectraShadow 𝕋 (Vec 𝕋 n)) (m : ℕ) :
-    ⇑(blockPadLeft n m) '' S.construct ⊆ (S.padLeft m).construct :=
+    ⇑(blockPadLeft n m) '' S.toSet ⊆ (S.padLeft m).toSet :=
   image_subset (fun _ _ => map_add _ _ _)
     (by
-      show ⇑(blockPadLeft n m) '' nominalSet S ⊆ ContSet.construct (nominal (S.padLeft m))
+      show ⇑(blockPadLeft n m) '' nominalSet S ⊆ ContSet.toSet (nominal (S.padLeft m))
       rw [SpectraShadow.aux_padLeft_nominal]
       exact le_of_eq (Real.SpectraShadow.map_exact _ _))
     (by
@@ -140,7 +140,7 @@ end
 theorem SpectraShadow.cartProd_outer (S : SpectraShadow 𝕋 (Vec 𝕋 n))
     (T : SpectraShadow 𝕋 (Vec 𝕋 m)) : -- --- CONCL ---
     (fun p : Vec ℝ n × Vec ℝ m => (Fin.append p.1 p.2 : Vec ℝ (n + m)))
-      '' (S.construct ×ˢ T.construct) ⊆ (S.cartProd T).construct := by -- --- PROOF ---
+      '' (S.toSet ×ˢ T.toSet) ⊆ (S.cartProd T).toSet := by -- --- PROOF ---
   rintro _ ⟨⟨x, y⟩, ⟨hx, hy⟩, rfl⟩
   refine SpectraShadow.plus_outer _ _ ?_
   -- the point is the sum of its two embeddings, one in each padded shadow

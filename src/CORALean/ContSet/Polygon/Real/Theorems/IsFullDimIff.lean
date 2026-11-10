@@ -51,14 +51,14 @@ private theorem Polygon.aux_interior_union (s t : Set (Vec ℝ 2))
 
 private theorem Polygon.aux_interior_nonempty_iff
     (l : List (VPolytope (Vec ℝ 2))) : -- --- CONCL ---
-    (interior (⋃ p ∈ l, VPolytope.construct p)).Nonempty ↔
-      ∃ p ∈ l, (interior (VPolytope.construct p)).Nonempty := by -- --- PROOF ---
+    (interior (⋃ p ∈ l, VPolytope.toSet p)).Nonempty ↔
+      ∃ p ∈ l, (interior (VPolytope.toSet p)).Nonempty := by -- --- PROOF ---
   induction l with
   | nil => simp
   | cons a l ih =>
-    have e : (⋃ p ∈ a :: l, VPolytope.construct p)
-        = VPolytope.construct a ∪ ⋃ p ∈ l, VPolytope.construct p := by simp
-    rw [e, Polygon.aux_interior_union _ _ (VPolytope.isCompact_construct a).isClosed, ih]
+    have e : (⋃ p ∈ a :: l, VPolytope.toSet p)
+        = VPolytope.toSet a ∪ ⋃ p ∈ l, VPolytope.toSet p := by simp
+    rw [e, Polygon.aux_interior_union _ _ (VPolytope.isCompact_toSet a).isClosed, ih]
     simp
 
 
@@ -66,8 +66,8 @@ private theorem Polygon.aux_interior_nonempty_iff
 
 /-- A polygon has an interior point iff some piece has affinely spanning vertices. -/
 theorem Polygon.isFullDim_iff (P : Polygon) :
-    (interior (ContSet.construct P)).Nonempty ↔ Polygon.isFullDim P := by
-  change (interior (⋃ s ∈ P.sets, VPolytope.construct s)).Nonempty ↔ _
+    (interior (ContSet.toSet P)).Nonempty ↔ Polygon.isFullDim P := by
+  change (interior (⋃ s ∈ P.sets, VPolytope.toSet s)).Nonempty ↔ _
   unfold Polygon.isFullDim
   rw [Polygon.aux_interior_nonempty_iff]
   simp only [VPolytope.isFullDim_iff]

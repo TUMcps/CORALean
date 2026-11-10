@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.LevelSet.Real.Operations.SplitEquality
-public import CORALean.ContSet.LevelSet.Real.Theorems.RestrictConstruct
+public import CORALean.ContSet.LevelSet.Real.Theorems.RestrictToSet
 
 @[expose] public section
 
@@ -36,10 +36,10 @@ namespace CORALean.Real
 
 /-- Exact: `L` is the equality part intersected with the rest. -/
 theorem LevelSet.splitEquality_exact {n : ℕ} (L : LevelSet n) : -- --- CONCL ---
-    L.construct = L.splitEquality.1.construct ∩ L.splitEquality.2.construct := by -- --- PROOF ---
+    L.toSet = L.splitEquality.1.toSet ∩ L.splitEquality.2.toSet := by -- --- PROOF ---
   ext x
-  show x ∈ L.construct ↔ x ∈ (L.restrict _).construct ∩ (L.restrict _).construct
-  rw [Set.mem_inter_iff, LevelSet.restrict_construct, LevelSet.restrict_construct]
+  show x ∈ L.toSet ↔ x ∈ (L.restrict _).toSet ∩ (L.restrict _).toSet
+  rw [Set.mem_inter_iff, LevelSet.restrict_toSet, LevelSet.restrict_toSet]
   simp only [Set.mem_setOf_eq, Finset.mem_filter, Finset.mem_univ, true_and]
   change (∀ i, _) ↔ _
   constructor

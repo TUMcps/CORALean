@@ -79,12 +79,12 @@ theorem abstrErr_mono (sys : LinearSys 𝕋 n) (r : ℝ) (η : ℕ) (B : Mat ℝ
     (D : Fin n → Mat ℝ (n + m) (n + m)) {E : Fin n → Fin (n + m) → Mat ℝ (n + m) (n + m)}
     (hE : ∀ i j k l, 0 ≤ E i j k l) (U UΔ : PolyZonotope (Vec ℝ m))
     {Z₁ Z₂ : Zonotope (Vec ℝ (n + m))} (zs : Vec ℝ (n + m))
-    {R₁ R₂ Ψ₁ Ψ₂ : PolyZonotope (Vec ℝ n)} (hR : R₁.construct ⊆ R₂.construct)
-    (hpost : (sys.postDelta (S := 𝒫𝒵) r η R₁ Ψ₁).construct
-      ⊆ (sys.postDelta (S := 𝒫𝒵) r η R₂ Ψ₂).construct)
-    (hZ : Z₁.construct ⊆ Z₂.construct) :
-    (abstrErr sys r η B D E U UΔ Z₁ zs R₁ Ψ₁).construct
-      ⊆ (abstrErr sys r η B D E U UΔ Z₂ zs R₂ Ψ₂).construct :=
+    {R₁ R₂ Ψ₁ Ψ₂ : PolyZonotope (Vec ℝ n)} (hR : R₁.toSet ⊆ R₂.toSet)
+    (hpost : (sys.postDelta (S := 𝒫𝒵) r η R₁ Ψ₁).toSet
+      ⊆ (sys.postDelta (S := 𝒫𝒵) r η R₂ Ψ₂).toSet)
+    (hZ : Z₁.toSet ⊆ Z₂.toSet) :
+    (abstrErr sys r η B D E U UΔ Z₁ zs R₁ Ψ₁).toSet
+      ⊆ (abstrErr sys r η B D E U UΔ Z₂ zs R₂ Ψ₂).toSet :=
   PolyZonotope.plus_mono
     (varInputs_mono B D
       (PolyZonotope.plus_mono (PolyZonotope.map_mono _ hR) subset_rfl)

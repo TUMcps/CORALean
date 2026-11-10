@@ -41,7 +41,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Fullspace.supportFunc_eq (F : Fullspace n) (c : Vec ℝ n →ₗ[ℝ] ℝ) : -- --- CONCL ---
-    F.supportFunc c = ⨆ x ∈ F.construct, ((c x : ℝ) : EReal) := by -- --- PROOF ---
+    F.supportFunc c = ⨆ x ∈ F.toSet, ((c x : ℝ) : EReal) := by -- --- PROOF ---
   by_cases hc : c = 0
   · subst hc
     change _ = ⨆ x ∈ (Set.univ : Set (Vec ℝ n)), (((0 : Vec ℝ n →ₗ[ℝ] ℝ) x : ℝ) : EReal)
@@ -58,7 +58,7 @@ theorem Fullspace.supportFunc_eq (F : Fullspace n) (c : Vec ℝ n →ₗ[ℝ] �
       rw [map_smul, smul_eq_mul, div_mul_cancel₀ _ hx₀]
     refine lt_of_lt_of_le (EReal.coe_lt_coe_iff.mpr (show y < y + 1 by linarith)) ?_
     rw [← hp]
-    exact le_iSup₂ (f := fun x (_ : x ∈ F.construct) => ((c x : ℝ) : EReal)) _ (Set.mem_univ _)
+    exact le_iSup₂ (f := fun x (_ : x ∈ F.toSet) => ((c x : ℝ) : EReal)) _ (Set.mem_univ _)
 
 end CORALean.Real
 

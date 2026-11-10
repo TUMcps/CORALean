@@ -67,7 +67,7 @@ private theorem aux_exists_unit_smul (g : Vec ℝ n) (hn : g ≠ 0 ∨ 0 < n) : 
 /-- The bound is attained, for a non-empty capsule whose far end can be pushed outward. -/
 theorem Capsule.radius_isGreatest {C : Capsule n} (hr : 0 ≤ C.r)
     (hn : C.g ≠ 0 ∨ 0 < n) : -- --- CONCL ---
-    IsGreatest ((fun x => ‖x - C.c‖₂) '' C.construct) C.radius := by -- --- PROOF ---
+    IsGreatest ((fun x => ‖x - C.c‖₂) '' C.toSet) C.radius := by -- --- PROOF ---
   refine ⟨?_, fun d ⟨x, hx, hd⟩ => hd ▸ Capsule.norm₂_sub_center_le hx⟩
   obtain ⟨u, hu, hgu⟩ := aux_exists_unit_smul C.g hn
   refine ⟨C.c + (‖C.g‖₂ + C.r) • u, ⟨1, by simp, ?_⟩, ?_⟩

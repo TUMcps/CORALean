@@ -38,8 +38,8 @@ variable {n N : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Capsule.range_subset_construct (pts : Fin N → Vec ℝ n) : -- --- CONCL ---
-    Set.range pts ⊆ (Capsule.enclosePoints pts).construct := by -- --- PROOF ---
+theorem Capsule.range_subset_toSet (pts : Fin N → Vec ℝ n) : -- --- CONCL ---
+    Set.range pts ⊆ (Capsule.enclosePoints pts).toSet := by -- --- PROOF ---
   rintro _ ⟨j, rfl⟩
   -- the two branches of `enclosePoints`: no points is impossible, `j` being one
   unfold Capsule.enclosePoints

@@ -48,16 +48,16 @@ namespace CORALean.Real
 
 theorem Zonotope.exists_not_interval : -- --- CONCL ---
     ∃ Z : Zonotope (Vec ℝ 2),
-      ¬ ∃ I : Interval (Vec ℝ 2), I.construct = Z.construct := by -- --- PROOF ---
+      ¬ ∃ I : Interval (Vec ℝ 2), I.toSet = Z.toSet := by -- --- PROOF ---
   refine ⟨⟨1, 0, fun _ => fun _ => 1⟩, ?_⟩
   rintro ⟨I, hI⟩
   -- the two ends of the segment are in the box
-  have hend : ∀ t : ℝ, |t| ≤ 1 → (fun _ => t : Vec ℝ 2) ∈ I.construct := fun t ht =>
+  have hend : ∀ t : ℝ, |t| ≤ 1 → (fun _ => t : Vec ℝ 2) ∈ I.toSet := fun t ht =>
     hI ▸ ⟨fun _ => t, fun _ => ht, funext fun i => by simp⟩
   have h1 := hend 1 (by norm_num)
   have h2 := hend (-1) (by norm_num)
   -- so is the corner `(1, -1)`, coordinate by coordinate
-  have hcorner : (fun i : Fin 2 => if i = 0 then (1 : ℝ) else -1 : Vec ℝ 2) ∈ I.construct :=
+  have hcorner : (fun i : Fin 2 => if i = 0 then (1 : ℝ) else -1 : Vec ℝ 2) ∈ I.toSet :=
     fun i => by
     have a : I.inf i ≤ 1 ∧ 1 ≤ I.sup i := h1 i
     have b : I.inf i ≤ -1 ∧ -1 ≤ I.sup i := h2 i

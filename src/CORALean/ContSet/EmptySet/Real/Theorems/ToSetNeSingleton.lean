@@ -1,0 +1,50 @@
+module
+
+public import CORALean.ContSet.EmptySet.Real.EmptySet
+public import CORALean.ContSet.EmptySet.Real.Instances
+
+@[expose] public section
+
+/-!
+# The empty set is not a point
+
+`representsa_(O,'point')` and `'origin'` are `false` for `emptySet`.
+
+## Inputs
+* `E` – empty set
+* `v` – vector
+
+## Hypotheses
+* none
+
+## Conclusion
+* the empty set is not the singleton of `v`
+-/
+
+-- Authors:       Claude Opus 5.5
+-- Written:       01-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Real
+
+open ContSet
+
+variable {n m : ℕ}
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+theorem EmptySet.toSet_ne_singleton (E : EmptySet n) (v : Vec ℝ n) :
+    toSet E ≠ {v} := by
+  intro h
+  have : v ∈ toSet E := by rw [h]; exact Set.mem_singleton v
+  exact this.elim
+
+end CORALean.Real
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

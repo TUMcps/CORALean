@@ -95,10 +95,10 @@ theorem Zonotope.pRadius_lt_of_lmi (W : Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) 
     linarith
   -- the values form the image of the compact box
   set f : (Fin Z.h → ℝ) → ℝ := fun b => (∑ j, b j • Z.G j) ⬝ᵥ (W *ᵥ ∑ j, b j • Z.G j)
-  have himg : (fun z => (z - Z.c) ⬝ᵥ (W *ᵥ (z - Z.c))) '' Z.construct =
+  have himg : (fun z => (z - Z.c) ⬝ᵥ (W *ᵥ (z - Z.c))) '' Z.toSet =
       f '' {b | ∀ j, |b j| ≤ 1} := by
     ext r
-    simp only [Set.mem_image, Zonotope.construct, Set.mem_setOf_eq]
+    simp only [Set.mem_image, Zonotope.toSet, Set.mem_setOf_eq]
     constructor
     · rintro ⟨_, ⟨b, hb, rfl⟩, rfl⟩
       exact ⟨b, hb, by simp [f]⟩

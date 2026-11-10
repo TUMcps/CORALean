@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceByBox
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumUnivReduceBy
 public import Mathlib.Algebra.Group.Pointwise.Set.Basic
 
@@ -51,10 +51,10 @@ variable {n q r : ℕ}
 reduced zonotope lies inside the original plus the box it introduced. -/
 theorem Zonotope.reduceBy_subset_add_box (Z : Zonotope (Vec ℝ n))
     (part : Split (Fin Z.h) into (Fin q) ⊕ (Fin r)) : -- --- CONCL ---
-    (Z.reduceBy part).construct ⊆
-      Z.construct + (Z.reduceByBox part).construct := by -- --- PROOF ---
+    (Z.reduceBy part).toSet ⊆
+      Z.toSet + (Z.reduceByBox part).toSet := by -- --- PROOF ---
   intro x hx
-  obtain ⟨β, hβ, hxi⟩ := Zonotope.mem_construct_iff.mp hx
+  obtain ⟨β, hβ, hxi⟩ := Zonotope.mem_toSet_iff.mp hx
   -- the kept coefficients, read back onto `Z`'s own generator indices
   obtain ⟨α, hα⟩ : ∃ α : Fin Z.h → ℝ, ∀ j, α j =
       Sum.elim (fun l : Fin q => β (Fin.castAdd n l)) (fun _ : Fin r => (0:ℝ))
@@ -77,10 +77,10 @@ theorem Zonotope.reduceBy_subset_add_box (Z : Zonotope (Vec ℝ n))
     | inr l => simp
   -- the two summands: `Z` with the dropped coefficients zeroed, and the box
   refine Set.mem_add.mpr ⟨fun i => Z.c i + ∑ j, Z.G j i * α j,
-    Zonotope.mem_construct_iff.mpr ⟨α, hαbound, fun i => rfl⟩,
+    Zonotope.mem_toSet_iff.mpr ⟨α, hαbound, fun i => rfl⟩,
     fun i => ∑ l : Fin n,
       Matrix.diagonal (fun i' => ∑ l', |Z.G (part.right l') i'|) l i * β (Fin.natAdd q l),
-    Zonotope.mem_construct_iff.mpr
+    Zonotope.mem_toSet_iff.mpr
       ⟨fun l => β (Fin.natAdd q l), fun l => hβ _, fun i => by
         simp only [Zonotope.reduceByBox, Pi.zero_apply, zero_add]; rfl⟩, ?_⟩
   funext i

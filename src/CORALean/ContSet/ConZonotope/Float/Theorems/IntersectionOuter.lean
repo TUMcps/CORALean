@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.intersection_outer (cZ₁ cZ₂ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    cZ₁.construct ∩ cZ₂.construct ⊆ (cZ₁.intersection cZ₂).construct := by -- --- PROOF ---
+    cZ₁.toSet ∩ cZ₂.toSet ⊆ (cZ₁.intersection cZ₂).toSet := by -- --- PROOF ---
   intro x hx
   -- the rows as a slab first, which `anchorSlab` contains
   refine ConZonotope.anchorSlab_outer _ _ _ _ ?_

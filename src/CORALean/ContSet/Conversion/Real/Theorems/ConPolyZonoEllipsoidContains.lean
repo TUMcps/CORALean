@@ -43,7 +43,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.ellipsoid_contains (cPZ : ConPolyZono (Vec ℝ n)) :
-    cPZ.construct ⊆ cPZ.ellipsoid.construct :=
+    cPZ.toSet ⊆ cPZ.ellipsoid.toSet :=
   subset_trans cPZ.polyZonotope_contains (PolyZonotope.ellipsoid_contains _)
 
 end CORALean.Real

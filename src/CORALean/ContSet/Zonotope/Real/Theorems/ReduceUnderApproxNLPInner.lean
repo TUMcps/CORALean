@@ -58,10 +58,10 @@ theorem Zonotope.reduceUnderApproxNLP_inner (Z : Zonotope (Vec ℝ n)) (r : ℕ)
     (T : Mat ℝ (Z.splitDropped (Z.lengthSplit (r - n) (by omega))).h n)
     (hG : ∀ k, Gb' k = ∑ i, T i k • (Z.splitDropped (Z.lengthSplit (r - n) (by omega))).G i)
     (hT : ∀ i, ∑ k, |T i k| ≤ 1) : -- --- CONCL ---
-    (Z.reduceUnderApproxNLP r hn hr Gb').construct ⊆ Z.construct := by -- --- PROOF ---
+    (Z.reduceUnderApproxNLP r hn hr Gb').toSet ⊆ Z.toSet := by -- --- PROOF ---
   -- `⟨0, Ĝ_b⟩ = ⟨0, G_b T⟩` is inside `⟨0, G_b⟩` by (1)
-  have hb : (⟨n, 0, Gb'⟩ : Zonotope (Vec ℝ n)).construct ⊆
-      (Z.splitDropped (Z.lengthSplit (r - n) (by omega))).construct := by
+  have hb : (⟨n, 0, Gb'⟩ : Zonotope (Vec ℝ n)).toSet ⊆
+      (Z.splitDropped (Z.lengthSplit (r - n) (by omega))).toSet := by
     have h := Zonotope.mulGens_inner (Z.splitDropped (Z.lengthSplit (r - n) (by omega))) T hT
     have e : (Z.splitDropped (Z.lengthSplit (r - n) (by omega))).mulGens T = ⟨n, 0, Gb'⟩ := by
       simp only [Zonotope.mulGens, Zonotope.splitDropped]

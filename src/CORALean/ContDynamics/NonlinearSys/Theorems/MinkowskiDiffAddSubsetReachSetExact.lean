@@ -79,17 +79,17 @@ solution under the input `u₀` and the field `K`-Lipschitz along them. -/
 theorem NonlinearSys.minkowskiDiff_add_subset_reachSetExact (sys : NonlinearSys n m) (R₀ : S n)
     (U : S m) {Δt : ℝ} (hΔt : 0 ≤ Δt) (M : Mat ℝ n n) (hM : IsUnit M.det) (v : Vec ℝ n)
     {E : Set (Vec ℝ n)} (hE : IsCompact E) (hEc : Convex ℝ E) (hEne : E.Nonempty)
-    {c : Vec ℝ n} (hEs : ∀ e ∈ E, (2 : ℝ) • c - e ∈ E) {u₀ : Vec ℝ m} (hu₀ : u₀ ∈ construct U)
+    {c : Vec ℝ n} (hEs : ∀ e ∈ E, (2 : ℝ) • c - e ∈ E) {u₀ : Vec ℝ m} (hu₀ : u₀ ∈ toSet U)
     {Ω : Set (Vec ℝ n)} {K : NNReal} (hLip : LipschitzOnWith K (fun x => sys.f x u₀) Ω)
-    (hex : ∀ x₀ ∈ construct R₀, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Set.Icc 0 Δt,
+    (hex : ∀ x₀ ∈ toSet R₀, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Set.Icc 0 Δt,
       x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Set.Icc 0 Δt) t)
-    (herr : ∀ x₀ ∈ construct R₀, ∀ x : ℝ → Vec ℝ n, x 0 = x₀ →
+    (herr : ∀ x₀ ∈ toSet R₀, ∀ x : ℝ → Vec ℝ n, x 0 = x₀ →
       (∀ t ∈ Set.Icc 0 Δt, HasDerivWithinAt x (sys.f (x t) u₀) (Set.Icc 0 Δt) t) →
       x Δt - (M *ᵥ x₀ + v) ∈ E) : -- --- CONCL ---
-    (fun s => s + (2 : ℝ) • c) '' minkowskiDiff ((fun x₀ => M *ᵥ x₀ + v) '' construct R₀) E
+    (fun s => s + (2 : ℝ) • c) '' minkowskiDiff ((fun x₀ => M *ᵥ x₀ + v) '' toSet R₀) E
       ⊆ sys.reachSetExact (Set.Icc 0 Δt) R₀ U Δt := by -- --- PROOF ---
   classical
-  set X₀ := construct R₀
+  set X₀ := toSet R₀
   choose sol hsol0 hsol using hex
   set ξ : Vec ℝ n → Vec ℝ n := fun x₀ => if h : x₀ ∈ X₀ then sol x₀ h Δt else 0
   -- each solution is continuous on `[0, Δt]` and solves the equation from the right

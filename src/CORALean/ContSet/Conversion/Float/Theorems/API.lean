@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Conversion.Float.Theorems.Basic
 public import CORALean.ContSet.Conversion.Float.Theorems.CapsuleConPolyZonoContains
-public import CORALean.ContSet.Conversion.Float.Theorems.CapsuleConstructSubsetSegmentAddBall
+public import CORALean.ContSet.Conversion.Float.Theorems.CapsuleToSetSubsetSegmentAddBall
 public import CORALean.ContSet.Conversion.Float.Theorems.CapsuleEllipsoidContains
 public import CORALean.ContSet.Conversion.Float.Theorems.CapsuleHPolytopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.CapsuleIntervalContains

@@ -53,7 +53,7 @@ open Matrix
 exists and is `≤ 1`. -/
 theorem ConZonotope.mem_iff_isLeast {n q h : ℕ} (c : Vec ℝ n) (G : Fin h → Vec ℝ n)
     (A : Mat ℝ q h) (b : Vec ℝ q) (z : Vec ℝ n) : -- --- CONCL ---
-    z ∈ (ConZonotope.ofMat c G A b).construct ↔
+    z ∈ (ConZonotope.ofMat c G A b).toSet ↔
       ∃ m, IsLeast {t | ∃ ξ : Vec ℝ h,
         Matrix.fromRows (Matrix.of fun (i : Fin n) (j : Fin h) => G j i) A *ᵥ ξ
           = Sum.elim (z - c) b ∧ t = ‖ξ‖} m ∧ m ≤ 1 := by -- --- PROOF ---

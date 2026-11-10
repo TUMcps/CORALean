@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemToSetIff
 public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.ContSet.VPolytope.Real.VPolytope
 public import CORALean.Global.EuclideanNorm
@@ -15,7 +15,7 @@ public import Mathlib.Tactic.Positivity
 # An ellipsoid that is no polytope
 
 A polytope is a convex hull of finitely many points, and the closed unit disc is not one. Were it
-`V.construct`, every unit vector `d` would be a convex combination of the vertices, so one vertex
+`V.toSet`, every unit vector `d` would be a convex combination of the vertices, so one vertex
 `v` would have `d · v ≥ 1`; a vertex lies in the disc, so `|v - d|² ≤ 1 - 2 d · v + 1 ≤ 0` and `v =
 d`. Every unit vector would then be a vertex, and there are infinitely many of them.
 
@@ -47,10 +47,10 @@ open scoped MatrixOrder
 
 /-- The points of the unit ellipsoid in the plane: the closed unit disc. -/
 private theorem Ellipsoid.aux_mem_disc (x : Vec ℝ 2) : -- --- CONCL ---
-    x ∈ (⟨1, 0, .one⟩ : Ellipsoid 2).construct ↔ x 0 ^ 2 + x 1 ^ 2 ≤ 1 := by -- --- PROOF ---
+    x ∈ (⟨1, 0, .one⟩ : Ellipsoid 2).toSet ↔ x 0 ^ 2 + x 1 ^ 2 ≤ 1 := by -- --- PROOF ---
   have hG : (⟨1, 0, .one⟩ : Ellipsoid 2).G = 1 := CFC.sqrt_one
-  have hball : x ∈ (⟨1, 0, .one⟩ : Ellipsoid 2).construct ↔ ‖x‖₂ ≤ 1 :=
-    Ellipsoid.mem_construct_iff.trans
+  have hball : x ∈ (⟨1, 0, .one⟩ : Ellipsoid 2).toSet ↔ ‖x‖₂ ≤ 1 :=
+    Ellipsoid.mem_toSet_iff.trans
       ⟨fun ⟨u, hu, hx⟩ => by rw [hx, hG, Matrix.one_mulVec, zero_add]; exact hu,
       fun h => ⟨x, h, by rw [hG, Matrix.one_mulVec, zero_add]⟩⟩
   have hsq : ‖x‖₂ ^ 2 = x 0 ^ 2 + x 1 ^ 2 := by rw [norm₂_sq, Fin.sum_univ_two]
@@ -76,7 +76,7 @@ private theorem Ellipsoid.aux_unit_family (t : ℕ) : -- --- CONCL ---
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.exists_not_vPolytope : -- --- CONCL ---
-    ∃ E : Ellipsoid 2, ¬ ∃ V : VPolytope (Vec ℝ 2), V.construct = E.construct := by -- --- PROOF ---
+    ∃ E : Ellipsoid 2, ¬ ∃ V : VPolytope (Vec ℝ 2), V.toSet = E.toSet := by -- --- PROOF ---
   refine ⟨⟨1, 0, .one⟩, ?_⟩
   rintro ⟨V, hV⟩
   -- every vertex is in the disc

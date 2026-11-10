@@ -47,7 +47,7 @@ theorem Interval.vertex_edge_solution_counterexample : -- --- CONCL ---
     let b : Vec ℝ 1 := fun _ => 1
     let v := (⟨0, b⟩ : Interval (Vec ℝ 1)).corner fun _ => true
     Function.update v 0 (1 / 2) ∈
-        (⟨0, b⟩ : Interval (Vec ℝ 1)).construct ∩ Interval.hyperplane 1 (1 / 2) ∧
+        (⟨0, b⟩ : Interval (Vec ℝ 1)).toSet ∩ Interval.hyperplane 1 (1 / 2) ∧
       ¬ ∑ k, v k < 1 / 2 := by -- --- PROOF ---
   intro b v
   have hv : v = fun _ => 1 := by funext i; simp [v, b, Interval.corner]

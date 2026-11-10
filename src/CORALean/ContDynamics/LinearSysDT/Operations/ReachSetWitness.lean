@@ -54,8 +54,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- A witness for `R₀` and one for `U`, in every direction, give a witness for
 the set reached after `k` steps — no set built, and `reach` never mentioned. -/
 def LinearSysDT.reachSetWitness (sys : LinearSysDT 𝕋 n) (R₀ U : S n)
-    (b₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportWitness (construct R₀) d)
-    (bU : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportWitness (construct U) d) :
+    (b₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportWitness (toSet R₀) d)
+    (bU : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportWitness (toSet U) d) :
     (k : ℕ) → (c : Vec ℝ n →ₗ[ℝ] ℝ) → SupportWitness (sys.reachSetExact R₀ U k) c
   | 0, c => b₀ c
   | k + 1, c =>

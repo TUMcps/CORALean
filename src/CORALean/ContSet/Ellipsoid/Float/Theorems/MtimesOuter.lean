@@ -56,11 +56,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 private theorem Ellipsoid.aux_mtimes_nominal (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) : -- --- CONCL ---
     (toRealMat M *ᵥ ·) '' nominalSet E ⊆
       nominalSet (Ellipsoid.mtimes M E)
-        + (Ellipsoid.mtimesResidual M E).construct := by -- --- PROOF ---
+        + (Ellipsoid.mtimesResidual M E).toSet := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   set Mr : Mat ℝ m n := toRealMat M with hMr
   set F : Real.Ellipsoid m := Real.Ellipsoid.mtimes Mr (nominal E).ellipsoid with hFdef
-  have hxF : Mr *ᵥ x ∈ F.construct := by
+  have hxF : Mr *ᵥ x ∈ F.toSet := by
     rw [hFdef, ← Real.Ellipsoid.mtimes_exact]
     exact ⟨x, hx, rfl⟩
   -- the stored shape dominates `M Q Mᵀ`, or the nominal part is a point
@@ -94,8 +94,8 @@ private theorem Ellipsoid.aux_mtimes_nominal (M : Mat 𝕋 m n) (E : Ellipsoid �
 
 /-- The old box travels through the map as a box, and the spill is added on. -/
 private theorem Ellipsoid.aux_mtimes_error (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
-    (toRealMat M *ᵥ ·) '' (I_error E).construct + (Ellipsoid.mtimesResidual M E).construct ⊆
-      (I_error (Ellipsoid.mtimes M E)).construct :=
+    (toRealMat M *ᵥ ·) '' (I_error E).toSet + (Ellipsoid.mtimesResidual M E).toSet ⊆
+      (I_error (Ellipsoid.mtimes M E)).toSet :=
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M E.I_error))
     (Interval.plus_outer _ _)
 
@@ -103,7 +103,7 @@ private theorem Ellipsoid.aux_mtimes_error (M : Mat 𝕋 m n) (E : Ellipsoid �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.mtimes_outer (M : Mat 𝕋 m n) (E : Ellipsoid 𝕋 n) :
-    (toRealMat M *ᵥ ·) '' E.construct ⊆ (Ellipsoid.mtimes M E).construct :=
+    (toRealMat M *ᵥ ·) '' E.toSet ⊆ (Ellipsoid.mtimes M E).toSet :=
   map_subset (fun x y => Matrix.mulVec_add _ x y)
     (Ellipsoid.aux_mtimes_nominal M E) (Ellipsoid.aux_mtimes_error M E)
 

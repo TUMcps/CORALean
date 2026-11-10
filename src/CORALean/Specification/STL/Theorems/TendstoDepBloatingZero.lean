@@ -60,14 +60,14 @@ variable {n m : ℕ}
 theorem STL.tendsto_depBloating_zero (A : Mat ℝ n n) (B : Mat ℝ n m) (U : Zonotope (Vec ℝ m))
     (κ : ℕ) : -- --- CONCL ---
     Tendsto (fun Δt : ℝ =>
-      sSup ((fun v => ‖v‖) '' (STL.depReachConsts A B U Δt κ).D.construct))
+      sSup ((fun v => ‖v‖) '' (STL.depReachConsts A B U Δt κ).D.toSet))
       (𝓝[>] (0 : ℝ)) (𝓝 0) := by -- --- PROOF ---
   set U₀ : Zonotope (Vec ℝ n) := Zonotope.mtimes B (U.plus (Zonotope.ofPoint (-U.c))) with hU₀
   set r : ℝ := ∑ j, U₀.absBound j with hr
   have habs : ∀ j, 0 ≤ U₀.absBound j := fun j =>
     add_nonneg (abs_nonneg _) (Finset.sum_nonneg fun _ _ => abs_nonneg _)
   have hr0 : 0 ≤ r := Finset.sum_nonneg fun j _ => habs j
-  have hball : U₀.construct ⊆ Metric.closedBall (0 : Vec ℝ n) r :=
+  have hball : U₀.toSet ⊆ Metric.closedBall (0 : Vec ℝ n) r :=
     Zonotope.subset_closedBall_of_absBound_le hr0 fun j =>
       Finset.single_le_sum (f := fun j => U₀.absBound j) (fun j _ => habs j) (Finset.mem_univ j)
   -- the coefficient matrices vanish with the step

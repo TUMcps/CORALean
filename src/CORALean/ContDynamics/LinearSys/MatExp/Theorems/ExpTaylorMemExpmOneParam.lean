@@ -82,7 +82,7 @@ private theorem aux_expTaylor_oneParam (C G : Mat ℝ n n) (r β : ℝ) (η : �
 /-- [1, Thm. 1]: the Taylor polynomial of `e^{(C + βG) r}` lies in `K(r)` for every `β`. -/
 theorem MatExp.expTaylor_mem_expmOneParam (C G : Mat ℝ n n) (r : ℝ) (η : ℕ) {β : ℝ}
     (hβ : |β| ≤ 1) :
-    MatExp.expTaylor (r • (C + β • G)) η ∈ (MatExp.expmOneParam C G r η).construct := by
+    MatExp.expTaylor (r • (C + β • G)) η ∈ (MatExp.expmOneParam C G r η).toSet := by
   rw [aux_expmOneParam_eq, aux_expTaylor_oneParam]
   exact Zonotope.ofOneParamPoly_contains _ η hβ
 

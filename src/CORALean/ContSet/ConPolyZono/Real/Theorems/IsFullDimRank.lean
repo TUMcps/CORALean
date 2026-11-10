@@ -40,7 +40,7 @@ variable {α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.isFullDimCora_of_interior (cPZ : ConPolyZono α)
-    (h : (interior cPZ.construct).Nonempty) : cPZ.isFullDimCora := by
+    (h : (interior cPZ.toSet).Nonempty) : cPZ.isFullDimCora := by
   refine ⟨?_, PolyZonotope.isFullDimCora_of_interior cPZ.polyZonotope ?_⟩
   · obtain ⟨y, hy⟩ := h
     exact ⟨y, interior_subset hy⟩

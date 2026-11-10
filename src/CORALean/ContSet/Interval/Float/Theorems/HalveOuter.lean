@@ -38,8 +38,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.halve_outer {I : Interval (Vec 𝕋 n)} {x : Vec ℝ n}
-    (hx : x ∈ I.construct) : -- --- CONCL ---
-    (1 / 2 : ℝ) • x ∈ (Interval.halve I).construct := by -- --- PROOF ---
+    (hx : x ∈ I.toSet) : -- --- CONCL ---
+    (1 / 2 : ℝ) • x ∈ (Interval.halve I).toSet := by -- --- PROOF ---
   intro i
   have h : toReal (I.inf i) ≤ x i ∧ x i ≤ toReal (I.sup i) := hx i
   show toReal (half (I.inf i)) ≤ ((1 / 2 : ℝ) • x) i ∧ ((1 / 2 : ℝ) • x) i ≤ toReal (half (I.sup i))

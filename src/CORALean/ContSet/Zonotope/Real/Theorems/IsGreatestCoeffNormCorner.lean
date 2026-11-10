@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
+public import CORALean.ContSet.Zonotope.Real.Theorems.ToSetEqConvexHullCorner
 public import CORALean.Global.CoeffNorm
 public import Mathlib.Analysis.Convex.Jensen
 public import Mathlib.Tactic.Module
@@ -52,10 +52,10 @@ variable {n : ℕ} {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [Finite
 
 theorem Zonotope.isGreatest_coeffNorm_corner (Z : Zonotope (Vec ℝ n)) (H : E →ₗ[ℝ] Vec ℝ n)
     (hH : Function.Surjective H) (d : Vec ℝ n) : -- --- CONCL ---
-    IsGreatest ((fun p => coeffNorm H (p - d)) '' Z.construct)
+    IsGreatest ((fun p => coeffNorm H (p - d)) '' Z.toSet)
       (Finset.univ.sup' Finset.univ_nonempty fun σ =>
         coeffNorm H (Z.corner σ - d)) := by -- --- PROOF ---
-  have hhull := Z.construct_eq_convexHull_corner
+  have hhull := Z.toSet_eq_convexHull_corner
   -- `p ↦ ‖p - d‖` is convex: the triangle inequality with homogeneity
   have hconv : ConvexOn ℝ Set.univ fun p => coeffNorm H (p - d) := by
     refine ⟨convex_univ, fun x _ y _ a b ha hb hab => ?_⟩

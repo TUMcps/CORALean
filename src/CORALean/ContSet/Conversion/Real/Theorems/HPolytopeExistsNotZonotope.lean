@@ -49,7 +49,7 @@ namespace CORALean.Real
 
 theorem HPolytope.exists_not_zonotope : -- --- CONCL ---
     ∃ P : HPolytope (Vec ℝ 2),
-      ¬ ∃ Z : Zonotope (Vec ℝ 2), Z.construct = P.construct := by -- --- PROOF ---
+      ¬ ∃ Z : Zonotope (Vec ℝ 2), Z.toSet = P.toSet := by -- --- PROOF ---
   -- the triangle `x₀ ≥ 0`, `x₁ ≥ 0`, `x₀ + x₁ ≤ 1`
   let p : Fin 2 → (Vec ℝ 2 →ₗ[ℝ] ℝ) := fun i => LinearMap.proj i
   refine ⟨{ m := 3
@@ -60,13 +60,13 @@ theorem HPolytope.exists_not_zonotope : -- --- CONCL ---
             be := Fin.elim0 }, ?_⟩
   rintro ⟨Z, hZ⟩
   -- a zonotope is symmetric about its center
-  have hsym : ∀ x ∈ Z.construct, (Z.c + Z.c - x : Vec ℝ 2) ∈ Z.construct := by
+  have hsym : ∀ x ∈ Z.toSet, (Z.c + Z.c - x : Vec ℝ 2) ∈ Z.toSet := by
     rintro x ⟨β, hβ, rfl⟩
     refine ⟨fun j => -β j, fun j => by simpa using hβ j, ?_⟩
     simp only [neg_smul, Finset.sum_neg_distrib]
     abel
   -- the three vertices, and the reflections of two of them
-  have hmem : ∀ x : Vec ℝ 2, x ∈ Z.construct ↔ 0 ≤ x 0 ∧ 0 ≤ x 1 ∧ x 0 + x 1 ≤ 1 := fun x => by
+  have hmem : ∀ x : Vec ℝ 2, x ∈ Z.toSet ↔ 0 ≤ x 0 ∧ 0 ≤ x 1 ∧ x 0 + x 1 ≤ 1 := fun x => by
     rw [hZ]
     constructor
     · rintro ⟨h, -⟩
@@ -78,11 +78,11 @@ theorem HPolytope.exists_not_zonotope : -- --- CONCL ---
     · rintro ⟨h0, h1, h2⟩
       refine ⟨fun i => ?_, fun i => i.elim0⟩
       fin_cases i <;> simp [p, h0, h1, h2]
-  have v0 : (fun _ => 0 : Vec ℝ 2) ∈ Z.construct := (hmem _).mpr (by simp)
+  have v0 : (fun _ => 0 : Vec ℝ 2) ∈ Z.toSet := (hmem _).mpr (by simp)
   -- the vertices lie in the triangle, and so do their reflections about the center
-  have v1 : (fun i : Fin 2 => if i = 0 then (1 : ℝ) else 0) ∈ Z.construct :=
+  have v1 : (fun i : Fin 2 => if i = 0 then (1 : ℝ) else 0) ∈ Z.toSet :=
     (hmem _).mpr (by simp)
-  have v2 : (fun i : Fin 2 => if i = 0 then (0 : ℝ) else 1) ∈ Z.construct :=
+  have v2 : (fun i : Fin 2 => if i = 0 then (0 : ℝ) else 1) ∈ Z.toSet :=
     (hmem _).mpr (by simp)
   have r0 := (hmem _).mp (hsym _ v0)
   have r1 := (hmem _).mp (hsym _ v1)

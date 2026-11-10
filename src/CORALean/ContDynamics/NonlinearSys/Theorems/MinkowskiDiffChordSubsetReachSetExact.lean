@@ -77,15 +77,15 @@ theorem NonlinearSys.minkowskiDiff_chord_subset_reachSetExact (sys : NonlinearSy
     (hM : ∀ t ∈ Set.Icc 0 Δt, IsUnit ((1 - t / Δt) • (1 : Mat ℝ n n) + (t / Δt) • M).det)
     (v : Vec ℝ n) (C Rerr : Set (Vec ℝ n)) (hE : IsCompact (C + Rerr))
     (hEc : Convex ℝ (C + Rerr)) (hEne : (C + Rerr).Nonempty) {c : Vec ℝ n}
-    (hEs : ∀ e ∈ C + Rerr, (2 : ℝ) • c - e ∈ C + Rerr) {u₀ : Vec ℝ m} (hu₀ : u₀ ∈ construct U)
+    (hEs : ∀ e ∈ C + Rerr, (2 : ℝ) • c - e ∈ C + Rerr) {u₀ : Vec ℝ m} (hu₀ : u₀ ∈ toSet U)
     {Ω : Set (Vec ℝ n)} {K : NNReal} (hLip : LipschitzOnWith K (fun x => sys.f x u₀) Ω)
-    (hex : ∀ x₀ ∈ construct R₀, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Set.Icc 0 Δt,
+    (hex : ∀ x₀ ∈ toSet R₀, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Set.Icc 0 Δt,
       x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Set.Icc 0 Δt) t)
-    (herr : ∀ t ∈ Set.Icc 0 Δt, ∀ x₀ ∈ construct R₀, ∀ x : ℝ → Vec ℝ n, x 0 = x₀ →
+    (herr : ∀ t ∈ Set.Icc 0 Δt, ∀ x₀ ∈ toSet R₀, ∀ x : ℝ → Vec ℝ n, x 0 = x₀ →
       (∀ s ∈ Set.Icc 0 t, HasDerivWithinAt x (sys.f (x s) u₀) (Set.Icc 0 t) s) →
       x t - (x₀ + (t / Δt) • (M *ᵥ x₀ + v - x₀)) ∈ C + Rerr) : -- --- CONCL ---
     ⋃ t ∈ Set.Icc 0 Δt, (fun s => s + (2 : ℝ) • c) '' minkowskiDiff
-        (minkowskiDiff ((fun x₀ => x₀ + (t / Δt) • (M *ᵥ x₀ + v - x₀)) '' construct R₀) C) Rerr
+        (minkowskiDiff ((fun x₀ => x₀ + (t / Δt) • (M *ᵥ x₀ + v - x₀)) '' toSet R₀) C) Rerr
       ⊆ ⋃ t ∈ Set.Icc 0 Δt, sys.reachSetExact (Set.Icc 0 t) R₀ U t := by -- --- PROOF ---
   refine Set.iUnion₂_subset fun t ht => ?_
   -- the chord point is the affine map `Mₜ x₀ + vₜ` of `Prop. 1` at time `t`

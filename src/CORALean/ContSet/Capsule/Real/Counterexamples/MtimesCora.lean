@@ -66,13 +66,13 @@ of the capsule with center `0`, no segment and radius `1` (the point `1` maps to
 ball of radius `¼`). -/
 theorem Capsule.mtimes_cora_counterexample : -- --- CONCL ---
     ∃ (M : Mat ℝ 1 1) (C : Capsule 1), M * M.transpose = Matrix.of (fun _ _ => (1 / 4 : ℝ)) ∧
-      ¬ (fun x => M.mulVec x) '' C.construct ⊆
-        (C.mtimesCora M (1 / 4)).construct := by -- --- PROOF ---
+      ¬ (fun x => M.mulVec x) '' C.toSet ⊆
+        (C.mtimesCora M (1 / 4)).toSet := by -- --- PROOF ---
   refine ⟨Matrix.of fun _ _ => (1 / 2 : ℝ), ⟨0, 0, 1⟩, ?_, fun h => ?_⟩
   · ext i j
     fin_cases i; fin_cases j
     simp [Matrix.mul_apply]; norm_num
-  · have hx : (fun _ => (1 : ℝ) : Vec ℝ 1) ∈ (Capsule.mk (0 : Vec ℝ 1) 0 1).construct :=
+  · have hx : (fun _ => (1 : ℝ) : Vec ℝ 1) ∈ (Capsule.mk (0 : Vec ℝ 1) 0 1).toSet :=
       ⟨0, by simp, by simp⟩
     obtain ⟨t, -, ht⟩ := h ⟨_, hx, rfl⟩
     simp [Capsule.mtimesCora, Matrix.mulVec, dotProduct] at ht

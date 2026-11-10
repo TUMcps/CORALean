@@ -91,11 +91,11 @@ private theorem Ellipsoid.aux_two_dot_le {P : Mat ℝ n n} (hP : P.PosDef) (a e 
 
 theorem Ellipsoid.mem_ofShape_affine_add {Q : Mat ℝ n n} (hQ : Q.PosDef) {W : Mat ℝ m m}
     (hW : W.PosDef) (M : Mat ℝ m n) {p : ℝ} (hp0 : 0 < p) (hp1 : p < 1) (c : Vec ℝ n)
-    (u : Vec ℝ m) {x : Vec ℝ n} {w : Vec ℝ m} (hx : x ∈ (Ellipsoid.ofShape Q c).construct)
-    (hw : w ∈ (Ellipsoid.ofShape W 0).construct) : -- --- CONCL ---
+    (u : Vec ℝ m) {x : Vec ℝ n} {w : Vec ℝ m} (hx : x ∈ (Ellipsoid.ofShape Q c).toSet)
+    (hw : w ∈ (Ellipsoid.ofShape W 0).toSet) : -- --- CONCL ---
     ((1 - p)⁻¹ • (M * Q * Mᵀ) + p⁻¹ • W).PosDef ∧
       M *ᵥ x + u + w ∈ (Ellipsoid.ofShape ((1 - p)⁻¹ • (M * Q * Mᵀ) + p⁻¹ • W)
-        (M *ᵥ c + u)).construct := by -- --- PROOF ---
+        (M *ᵥ c + u)).toSet := by -- --- PROOF ---
   rw [Ellipsoid.mem_ofShape_iff hQ] at hx
   rw [Ellipsoid.mem_ofShape_iff hW, sub_zero] at hw
   have hq : 0 < 1 - p := by linarith

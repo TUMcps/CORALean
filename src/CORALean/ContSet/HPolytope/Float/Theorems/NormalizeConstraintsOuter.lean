@@ -62,7 +62,7 @@ private theorem HPolytope.recipUp_pos (a : 𝕋) : -- --- CONCL ---
 /-- Normalizing the constraints keeps every point of the polytope that lies in the domain box. -/
 theorem HPolytope.normalizeConstraints_outer (P : HPolytope 𝕋 (Vec 𝕋 n))
     (dom : Interval (Vec 𝕋 n)) :
-    P.construct ∩ dom.construct ⊆ (P.normalizeConstraints dom).construct ∩ dom.construct :=
+    P.toSet ∩ dom.toSet ⊆ (P.normalizeConstraints dom).toSet ∩ dom.toSet :=
   fun _ hx => HPolytope.scaleRows_outer (if P.isErrFree then P else P.absorbRounding)
     (by split <;> rename_i h
         exacts [HPolytope.errFree_of_isErrFree h, HPolytope.isErrFree_of_origin rfl rfl rfl]) _ _

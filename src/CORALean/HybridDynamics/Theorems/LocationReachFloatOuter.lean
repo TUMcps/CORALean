@@ -88,10 +88,10 @@ private theorem aux_window {N : ℕ} {Δ t : ℝ} (hΔ : 0 < Δ) (hN : 0 < N) (h
 one of the computed time-interval sets. -/
 theorem Location.IsTrajectory.reachFloat_outer {ℓ : Location 𝒵[𝕋] G L 𝕋 n} {τ : ℝ} {x : ℝ → Vec ℝ n}
     {u w} (traj : ℓ.IsTrajectory τ x u w) {tFinal : ℚ} {options : LinearSys.ReachOptions 𝕋}
-    {X₀ : Zonotope (Vec 𝕋 n)} (h₀ : x 0 ∈ construct X₀) (hτ : τ ≤ tFinal) {t : ℝ}
+    {X₀ : Zonotope (Vec 𝕋 n)} (h₀ : x 0 ∈ toSet X₀) (hτ : τ ≤ tFinal) {t : ℝ}
     (ht : t ∈ Set.Icc 0 τ) : -- --- CONCL ---
     ∀ Rs ∈ ℓ.reachFloat tFinal options X₀,
-      ∃ R ∈ Rs, x t ∈ construct R := by -- --- PROOF ---
+      ∃ R ∈ Rs, x t ∈ toSet R := by -- --- PROOF ---
   intro Rs (h : ℓ.reachFloat tFinal options X₀ = some Rs)
   unfold Location.reachFloat at h
   split_ifs at h with htf
@@ -113,14 +113,14 @@ theorem Location.IsTrajectory.reachFloat_outer {ℓ : Location 𝒵[𝕋] G L �
   have hk' : k < S.length := by rw [hlen]; exact hk
   obtain ⟨-, h2, h3, -⟩ := hinv k hk'
   -- the combined inputs are in `inputSetFloat`'s enclosure, the canonical form's `B = I`, `c = 0`
-  have hUV : construct ℓ.inputSetFloat ⊆ construct V := by
+  have hUV : toSet ℓ.inputSetFloat ⊆ toSet V := by
     have h := (LinearSys.canonicalFloat ℓ.dynamics.A).inputSetFloat_outer ℓ.inputSetFloat
     rw [LinearSys.canonicalFloat_input, Set.image_id] at h
     exact h
   have hd := (traj.linearSys h₀ traj.inputSetFloat_mem).sub_mem_inputReach_recenter
       (S' := 𝒵[𝕋]) hUV ht
   -- the `Ũ`-input's share by `t`, inside `P^R(t_{k+1})`
-  have hy := h3 (ℓ.dynamics.inputReach_mono (CompactSet.isBounded_construct _)
+  have hy := h3 (ℓ.dynamics.inputReach_mono (CompactSet.isBounded_toSet _)
     (Recenter.zero_mem_recenter _) ht.1 (by push_cast; exact htk) hd)
   -- the free motion and the constant's share at `t = t_k + (t - t_k)`, inside `H(τ_k)`
   have hx := h2 (x 0) h₀ (t - k * Δ) ⟨sub_nonneg.mpr hkt, by linarith⟩

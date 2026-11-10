@@ -52,8 +52,8 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [OfScalarPoint �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem OutputEq.outputSet_outer (out : OutputEq 𝕋 n m r) (R : S n) (U : S m)
-    {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ construct R) (hu : u ∈ construct U) :
-    out.eval x u ∈ construct (out.outputSet R U) :=
+    {x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ toSet R) (hu : u ∈ toSet U) :
+    out.eval x u ∈ toSet (out.outputSet R U) :=
   plus_outer _ _ (Set.add_mem_add (plus_outer _ _ (Set.add_mem_add
     (mtimes_outer out.C R (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))
     (mtimes_outer out.D U (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hu)))))

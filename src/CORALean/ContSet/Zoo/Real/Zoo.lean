@@ -54,9 +54,9 @@ inductive Zoo.Member (n : ℕ) where
 /-- The functions on the box that a member encloses: for a Taylor model its `Encloses`, for an
 interval those whose value at every box point it holds. -/
 instance : ContSet (Zoo.Member n) (Vec ℝ n → ℝ) where
-  construct
+  toSet
     | .taylm T => {f | T.Encloses f}
-    | .ivl I => {f | ∀ t ∈ Taylm.box n, (fun _ => f t : Vec ℝ 1) ∈ I.construct}
+    | .ivl I => {f | ∀ t ∈ Taylm.box n, (fun _ => f t : Vec ℝ 1) ∈ I.toSet}
 
 /-- The members a zoo holds, as a `SetIntersection`: an absent member is left out, which reads
 it as every function. -/
@@ -64,7 +64,7 @@ def Zoo.members (Z : Zoo n) : SetIntersection (Zoo.Member n) :=
   ⟨Z.taylm.toList.map .taylm ++ Z.ivl.toList.map .ivl⟩
 
 /-- A zoo denotes the functions all its members enclose: CORA's intersection of enclosures. -/
-instance : ContSet (Zoo n) (Vec ℝ n → ℝ) := ⟨fun Z => ContSet.construct Z.members⟩
+instance : ContSet (Zoo n) (Vec ℝ n → ℝ) := ⟨fun Z => ContSet.toSet Z.members⟩
 
 /-- Every member encloses `f` on the box. -/
 def Zoo.Encloses (Z : Zoo n) (f : Vec ℝ n → ℝ) : Prop := f ∈ Z

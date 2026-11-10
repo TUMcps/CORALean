@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.OfShapeEq
 
 @[expose] public section
@@ -53,9 +53,9 @@ variable {n : ℕ}
 
 /-- [2, Sec. 1.1 (ellipse)]: `x ∈ E(Q, q)` iff `(x − q)ᵀ Q⁻¹ (x − q) ≤ 1`. -/
 theorem Ellipsoid.mem_ofShape_iff {Q : Mat ℝ n n} (hQ : Q.PosDef) (q x : Vec ℝ n) : -- --- CONCL ---
-    x ∈ (Ellipsoid.ofShape Q q).construct ↔ (x - q) ⬝ᵥ Q⁻¹ *ᵥ (x - q) ≤ 1 := by -- --- PROOF ---
+    x ∈ (Ellipsoid.ofShape Q q).toSet ↔ (x - q) ⬝ᵥ Q⁻¹ *ᵥ (x - q) ≤ 1 := by -- --- PROOF ---
   -- the ellipsoid as `q + G u`, `‖u‖₂ ≤ 1`
-  simp only [Ellipsoid.construct_eq_sqrt] at *
+  simp only [Ellipsoid.toSet_eq_sqrt] at *
   rw [Ellipsoid.ofShape_eq hQ.posSemidef]
   set N : Mat ℝ n n := CFC.sqrt Q with hN
   have hNh : N.IsHermitian := (CFC.sqrt_nonneg Q).posSemidef.isHermitian

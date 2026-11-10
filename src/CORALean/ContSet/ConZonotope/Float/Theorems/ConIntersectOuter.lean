@@ -84,8 +84,8 @@ private theorem ConZonotope.aux_mulVec_regroup {h : ℕ} (M : Mat 𝕋 m n) (c :
 theorem ConZonotope.conIntersect_outer (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n))
     (cZ₂ : ConZonotope 𝕋 (Vec 𝕋 m))
     (M : Mat 𝕋 m n) : -- --- CONCL ---
-    {x | x ∈ cZ₁.construct ∧ toRealMat M *ᵥ x ∈ cZ₂.construct}
-      ⊆ (cZ₁.conIntersect cZ₂ M).construct := by -- --- PROOF ---
+    {x | x ∈ cZ₁.toSet ∧ toRealMat M *ᵥ x ∈ cZ₂.toSet}
+      ⊆ (cZ₁.conIntersect cZ₂ M).toSet := by -- --- PROOF ---
   intro x hx
   -- the rows as a slab first, which `anchorSlab` contains
   refine ConZonotope.anchorSlab_outer _ _ _ _ ?_
@@ -102,7 +102,7 @@ theorem ConZonotope.conIntersect_outer (cZ₁ : ConZonotope 𝕋 (Vec 𝕋 n))
     simp only at h
     rw [← h, Pi.add_apply, hy₁ k]
   -- the rest lies in the float image's error box
-  have heWmem : eW ∈ W.I_error.construct := by
+  have heWmem : eW ∈ W.I_error.toSet := by
     -- the generators are wrong by this much, entrywise
     have hgen : ∀ i j, |(∑ k, toReal (M i k) * toReal (cZ₁.G j k))
         - toReal (mulVecDown M (cZ₁.G j) i)|

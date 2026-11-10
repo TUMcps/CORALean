@@ -46,8 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 
 theorem Interval.smul_outer {cLo cHi : 𝕋} {c : ℝ} (hcLo : toReal cLo ≤ c)
     (hcHi : c ≤ toReal cHi) (I : Interval (Mat 𝕋 m n)) {v : Mat ℝ m n}
-    (hv : v ∈ I.construct) : -- --- CONCL ---
-    c • v ∈ (Interval.smul cLo cHi I).construct := by -- --- PROOF ---
+    (hv : v ∈ I.toSet) : -- --- CONCL ---
+    c • v ∈ (Interval.smul cLo cHi I).toSet := by -- --- PROOF ---
   intro q
   obtain ⟨i, j⟩ := q
   have hv' := hv (i, j)

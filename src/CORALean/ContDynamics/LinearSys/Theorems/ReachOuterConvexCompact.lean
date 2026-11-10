@@ -74,13 +74,13 @@ theorem LinearSys.IsCanonicalTrajectory.reach_outer_convexCompact [Mtimes ℐ S]
     (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hΔt : 0 < Δt) (hT : Set.Ici 0 ⊆ T) (η : ℕ)
     (hε : ‖Δt • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {o : ℕ} (ho : 0 < o)
     (k : ℕ) :
-    x (k * Δt) ∈ construct
+    x (k * Δt) ∈ toSet
       ((sys.discretize Δt).reach ⟨R₀, sys.inputSolution Δt η U, 0, k⟩ ⟨o, ho⟩) :=
   traj.reach_outer_inputSolution hΔt hT η hε
-    (ConvexSet.convex_construct U) (CompactSet.isClosed_construct U)
-    (CompactSet.isBounded_construct U)
-    (ConvexSet.convex_construct _) (CompactSet.isClosed_construct _)
-    (CompactSet.isBounded_construct _) ho k
+    (ConvexSet.convex_toSet U) (CompactSet.isClosed_toSet U)
+    (CompactSet.isBounded_toSet U)
+    (ConvexSet.convex_toSet _) (CompactSet.isClosed_toSet _)
+    (CompactSet.isBounded_toSet _) ho k
 
 end CORALean
 

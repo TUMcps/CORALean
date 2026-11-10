@@ -85,7 +85,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 /-- A matrix's negation, stored entrywise, is a point interval at the negated real one. -/
 private theorem aux_polyErr_neg_mat {k l : ℕ} (A : Mat 𝕋 k l) : -- --- CONCL ---
     -Scalar.toRealMat A ∈
-      (Interval.point (α := Mat 𝕋 k l) (-A)).construct := by -- --- PROOF ---
+      (Interval.point (α := Mat 𝕋 k l) (-A)).toSet := by -- --- PROOF ---
   have h := Interval.mem_point (α := Mat 𝕋 k l) (-A)
   have he : (RealImage.realImage (α := Mat 𝕋 k l) (-A) : Mat ℝ k l)
       = -Scalar.toRealMat A := by
@@ -95,10 +95,10 @@ private theorem aux_polyErr_neg_mat {k l : ℕ} (A : Mat 𝕋 k l) : -- --- CONC
 
 /-- `y - ys` lies in the box `Y - ys`. -/
 private theorem aux_polyErr_sub_mem {k : ℕ} {Y : Interval (Vec 𝕋 k)} (ys : Vec 𝕋 k) {y : Vec ℝ k}
-    (hy : y ∈ Y.construct) : -- --- CONCL ---
+    (hy : y ∈ Y.toSet) : -- --- CONCL ---
     y - toRealVec ys ∈
-      (Interval.plus Y (Interval.point (-ys))).construct := by -- --- PROOF ---
-  have hn : -toRealVec ys ∈ (Interval.point (α := Vec 𝕋 k) (-ys)).construct := by
+      (Interval.plus Y (Interval.point (-ys))).toSet := by -- --- PROOF ---
+  have hn : -toRealVec ys ∈ (Interval.point (α := Vec 𝕋 k) (-ys)).toSet := by
     have h := Interval.mem_point (α := Vec 𝕋 k) (-ys)
     rwa [show (RealImage.realImage (α := Vec 𝕋 k) (-ys) : Vec ℝ k)
       = -toRealVec ys from funext fun i => toReal_neg (ys i)] at h
@@ -107,12 +107,12 @@ private theorem aux_polyErr_sub_mem {k : ℕ} {Y : Interval (Vec 𝕋 k)} (ys : 
 
 /-- `(J - A)(y - ys)` lies in `([J] - A)(Y - ys)`. -/
 private theorem aux_polyErr_jacTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {Y : Interval (Vec 𝕋 l)}
-    (A : Mat 𝕋 k l) (ys : Vec 𝕋 l) {J : Mat ℝ k l} (hJ : J ∈ IJ.construct) {y : Vec ℝ l}
-    (hy : y ∈ Y.construct) : -- --- CONCL ---
+    (A : Mat 𝕋 k l) (ys : Vec 𝕋 l) {J : Mat ℝ k l} (hJ : J ∈ IJ.toSet) {y : Vec ℝ l}
+    (hy : y ∈ Y.toSet) : -- --- CONCL ---
     (J - Scalar.toRealMat A) *ᵥ (y - toRealVec ys) ∈
       (Interval.mtimesIntervalMat (Interval.matPlus IJ (Interval.point (α := Mat 𝕋 k l)
         (-A))) (Interval.plus Y (Interval.point (α := Vec 𝕋 l)
-          (-ys)))).construct := by -- --- PROOF ---
+          (-ys)))).toSet := by -- --- PROOF ---
   have hM := Interval.matPlus_outer IJ _ hJ (aux_polyErr_neg_mat A)
   rw [← sub_eq_add_neg] at hM
   exact Interval.mtimesIntervalMat_outer _ _
@@ -120,7 +120,7 @@ private theorem aux_polyErr_jacTerm {k l : ℕ} {IJ : Interval (Mat 𝕋 k l)} {
 
 /-- A point of a box is no larger in magnitude than the box's `normMag`. -/
 private theorem aux_polyErr_abs_le {k : ℕ} {I : Interval (Vec 𝕋 k)} {y : Vec ℝ k}
-    (hy : y ∈ I.construct) (j : Fin k) : |y j| ≤ toReal (I.normMag j) := by
+    (hy : y ∈ I.toSet) (j : Fin k) : |y j| ≤ toReal (I.normMag j) := by
   obtain ⟨h1, h2⟩ := hy j
   rw [Interval.normMag, toReal_maximum, toReal_absolute, toReal_absolute]
   exact abs_le_max_abs_abs h1 h2
@@ -165,13 +165,13 @@ split at `x` and any `u ∈ U` lies in `abstrErrPolyFloat`. -/
 theorem NonlinearSys.FloatHessModel.Encloses.abstrErrPolyFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) {xs : Vec 𝕋 n} {us : Vec 𝕋 m} {X : Interval (Vec 𝕋 n)}
-    {U : Interval (Vec 𝕋 m)} {Rdelta Rdiff : Zonotope (Vec 𝕋 n)} (hxs : toRealVec xs ∈ X.construct)
-    (hus : toRealVec us ∈ U.construct) {x₀ x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ X.construct)
-    (hu : u ∈ U.construct) (hx₀ : x₀ - toRealVec xs ∈ Rdelta.construct)
-    (hδ : x - x₀ ∈ Rdiff.construct) : -- --- CONCL ---
+    {U : Interval (Vec 𝕋 m)} {Rdelta Rdiff : Zonotope (Vec 𝕋 n)} (hxs : toRealVec xs ∈ X.toSet)
+    (hus : toRealVec us ∈ U.toSet) {x₀ x : Vec ℝ n} {u : Vec ℝ m} (hx : x ∈ X.toSet)
+    (hu : u ∈ U.toSet) (hx₀ : x₀ - toRealVec xs ∈ Rdelta.toSet)
+    (hδ : x - x₀ ∈ Rdiff.toSet) : -- --- CONCL ---
     sys.f x u - (sys.f (toRealVec xs) (toRealVec us)
         + Scalar.toRealMat A *ᵥ (x - toRealVec xs) + Scalar.toRealMat B *ᵥ (u - toRealVec us))
-      ∈ (fm.abstrErrPolyFloat A B xs us X U Rdelta Rdiff).construct := by -- --- PROOF ---
+      ∈ (fm.abstrErrPolyFloat A B xs us X U Rdelta Rdiff).toSet := by -- --- PROOF ---
   obtain ⟨Jx, hJx, Ju, hJu, H, hH, htay⟩ := h.taylor_mem X U xs us hxs hus x hx u hu
   set Hs := fun i => (fm.hess (Interval.point xs) (Interval.point us) i).centerMat with hHs
   set Q : Fin n → Mat 𝕋 n n := fun i j k => half (Hs i (Fin.castAdd m j) (Fin.castAdd m k))
@@ -194,7 +194,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.abstrErrPolyFloat_outer
     abel
   rw [hrem]
   -- the static error at the start state, inside `quadMap` of the start set
-  have hstat : stat ∈ (PolyZonotope.quadMap Q Rdelta.polyZonotope).zonotope.construct :=
+  have hstat : stat ∈ (PolyZonotope.quadMap Q Rdelta.polyZonotope).zonotope.toSet :=
     PolyZonotope.zonotope_contains _ (PolyZonotope.quadMap_outer Q _
       (Set.mem_image_of_mem _ (Rdelta.polyZonotope_contains hx₀)))
   refine Plus.plus_outer (PolyZonotope.quadMap Q Rdelta.polyZonotope).zonotope _

@@ -47,10 +47,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 variables. -/
 theorem PolyLevelSet.mem_cartProd_iff (P₁ : PolyLevelSet 𝕋 n₁) (P₂ : PolyLevelSet 𝕋 n₂)
     (x : Vec ℝ (n₁ + n₂)) : -- --- CONCL ---
-    x ∈ (P₁.cartProd P₂).construct
-      ↔ (fun k => x (Fin.castAdd n₂ k)) ∈ P₁.construct
-        ∧ (fun k => x (Fin.natAdd n₁ k)) ∈ P₂.construct := by -- --- PROOF ---
-  show (x ∈ (P₁.dom.append P₂.dom).construct ∧ ∀ i : Fin (P₁.m + P₂.m),
+    x ∈ (P₁.cartProd P₂).toSet
+      ↔ (fun k => x (Fin.castAdd n₂ k)) ∈ P₁.toSet
+        ∧ (fun k => x (Fin.natAdd n₁ k)) ∈ P₂.toSet := by -- --- PROOF ---
+  show (x ∈ (P₁.dom.append P₂.dom).toSet ∧ ∀ i : Fin (P₁.m + P₂.m),
     ((P₁.cartProd P₂).op i).IsMetWithin ((P₁.cartProd P₂).nominalCore.eval x i)
       |toReal ((P₁.cartProd P₂).b_error i)|) ↔ _
   rw [PolyLevelSet.eval_nominalCore_cartProd, Real.PolyLevelSet.eval_cartProd,

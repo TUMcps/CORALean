@@ -35,7 +35,7 @@ open ContSet
 class ExactVertices (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
     [ContSet S α] where
   vertices : S → VPolytope α
-  vertices_exact (s : S) : (vertices s).construct = construct s
+  vertices_exact (s : S) : (vertices s).toSet = toSet s
 
 end CORALean.Real
 

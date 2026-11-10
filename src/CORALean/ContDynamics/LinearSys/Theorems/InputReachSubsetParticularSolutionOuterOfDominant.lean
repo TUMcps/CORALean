@@ -116,12 +116,12 @@ private theorem aux_intervalMulVecSet_eq_box (E : Mat ℝ n n) {U : Set (Vec ℝ
 /-- [1, Prop. 11], eq. (20): `P^U(Δt) ⊆ ⊕_{i≤η} ÃᵢU₀ ⊕ E(Δt,η)ΔtU₀` when some `w* ∈ U₀` has
 `|w_k| ≤ |w*_k|` for every `w ∈ U₀` and every `k`. -/
 theorem LinearSys.inputReach_subset_particularSolutionOuter_of_dominant (sys : LinearSys 𝕋 n)
-    {U : S n} (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U)) {w : Vec ℝ n} (hw : w ∈ construct U)
-    (hdom : ∀ v ∈ construct U, ∀ k, |v k| ≤ |w k|) {Δt : ℝ} (hΔt : 0 < Δt)
+    {U : S n} (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U)) {w : Vec ℝ n} (hw : w ∈ toSet U)
+    (hdom : ∀ v ∈ toSet U, ∀ k, |v k| ≤ |w k|) {Δt : ℝ} (hΔt : 0 < Δt)
     (η : ℕ) : -- --- CONCL ---
     sys.inputReach U Δt ⊆
-      MatExp.particularSolutionOuter (toRealMat sys.A) (construct U) 0 Δt η := by -- --- PROOF ---
+      MatExp.particularSolutionOuter (toRealMat sys.A) (toSet U) 0 Δt η := by -- --- PROOF ---
   set E := MatExp.expRemainderMat (toRealMat sys.A) Δt η
   set B : Set (Vec ℝ n) := {y | ∀ j, |y j| ≤ ∑ k, |E j k| * (Δt * |w k|)}
   have hEq := aux_intervalMulVecSet_eq_box E hΔt.le hw hdom

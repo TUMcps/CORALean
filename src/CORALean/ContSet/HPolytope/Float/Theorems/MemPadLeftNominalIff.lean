@@ -40,7 +40,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n₁ n₂ : 
 
 /-- Membership of the padded nominal part is membership of the block it came from. -/
 theorem HPolytope.mem_padLeft_nominal_iff {P : HPolytope 𝕋 (Vec 𝕋 n₁)} {x : Vec ℝ (n₁ + n₂)} :
-    x ∈ (P.padLeft n₂).nominal.construct ↔ blockLeft n₁ n₂ x ∈ P.nominal.construct := by
+    x ∈ (P.padLeft n₂).nominal.toSet ↔ blockLeft n₁ n₂ x ∈ P.nominal.toSet := by
   rw [HPolytope.mem_nominal_iff, HPolytope.mem_nominal_iff]
   simp only [HPolytope.padLeft, HPolytope.mulVec_padLeft]
 

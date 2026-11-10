@@ -9,9 +9,9 @@ public import Mathlib.LinearAlgebra.Matrix.ToLin
 # The set interfaces
 
 Every class a representation instantiates in its `Instances.lean`. CORA's `contSet`: one field,
-`construct`, sending a representation to the set it denotes, always over ℝ whichever arithmetic the
+`toSet`, sending a representation to the set it denotes, always over ℝ whichever arithmetic the
 representation computes in, so over-approximation and refinement are the one relation
-`X ⊆ construct s`. The operation classes stay separate from `ContSet`, since `construct` is
+`X ⊆ toSet s`. The operation classes stay separate from `ContSet`, since `toSet` is
 meaningful at more types than the operations are. `Mtimes` and `Reindex` keep a family indexed by ℕ;
 `Contains` and `IsDisjoint` take two representations of one. `IntersectStrip` is CORA's
 `intersectStrip` [2, Prop. 6], outer for every gain. A precision parameter stays out of the classes:
@@ -65,16 +65,16 @@ open Matrix Pointwise Scalar
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- A representation of sets of `α`: `construct` is the set it denotes. -/
+/-- A representation of sets of `α`: `toSet` is the set it denotes. -/
 class ContSet (S : Type) (α : outParam Type) where
-  construct : S → Set α
+  toSet : S → Set α
 
 open ContSet
 
 /-- `x ∈ s` for a representation means what it denotes. Low priority, so that at
 `Set α`, itself a representation (`ContSet.lean`), Mathlib's own membership is the one found. -/
 instance (priority := low) {S α : Type} [ContSet S α] : Membership α S :=
-  ⟨fun s x => x ∈ construct s⟩
+  ⟨fun s x => x ∈ toSet s⟩
 
 /-- The set of linear maps `α → β` that `M` denotes. `α` is an input and only
 `β` an `outParam`, so one matrix type acts on several ambient types, the
@@ -90,7 +90,7 @@ class Mtimes (𝕄 : ℕ → ℕ → Type) (S : ℕ → Type)
     [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [∀ n, ContSet (S n) (Vec ℝ n)] where
   mtimes {m n : ℕ} : 𝕄 m n → S n → S m
   mtimes_outer {m n : ℕ} (M : 𝕄 m n) (s : S n) :
-    (⋃ A ∈ construct M, (A *ᵥ ·) '' construct s) ⊆ construct (mtimes M s)
+    (⋃ A ∈ toSet M, (A *ᵥ ·) '' toSet s) ⊆ toSet (mtimes M s)
 
 /-- Relabelling coordinates, bundled: a reindexing is a linear map, which is
 what lets a representation closed under `map` discharge the guarantee below with
@@ -106,7 +106,7 @@ and not a plain function: a box cannot constrain two copies of a coordinate. -/
 class Reindex (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] where
   reindex {n m : ℕ} : (Fin m ≃ Fin n) → S n → S m
   reindex_exact {n m : ℕ} (e : Fin m ≃ Fin n) (s : S n) :
-    construct (reindex e s) = reindexLin e '' construct s
+    toSet (reindex e s) = reindexLin e '' toSet s
 
 /-- Every point on a segment running from one set to the other: [1, Def. 7],
 which writes the parameter over `[-1,1]` and calls the result a convex hull — it
@@ -126,7 +126,7 @@ class Plus (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
     [ContSet S α] where
   plus : S → S → S
   plus_outer (s₁ s₂ : S) :
-    construct s₁ + construct s₂ ⊆ construct (plus s₁ s₂)
+    toSet s₁ + toSet s₂ ⊆ toSet (plus s₁ s₂)
 
 /-- CORA's intersection, outer even though five of six implementations are
 exact: an intersection is a set an algorithm computes, and `VPolytope`'s goes
@@ -134,7 +134,7 @@ through a halfspace round trip that only encloses, never exactly. -/
 class Intersection (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
     [ContSet S α] where
   intersection : S → S → S
-  intersection_outer (s t : S) : construct s ∩ construct t ⊆ construct (intersection s t)
+  intersection_outer (s t : S) : toSet s ∩ toSet t ⊆ toSet (intersection s t)
 
 /-- CORA's Minkowski difference. The opposite of `Plus`: a difference is a
 *guarantee*, so an implementation may only ever *under*-approximate — never
@@ -142,7 +142,7 @@ over — and the obligation below is an **inner**, not an outer, inclusion. -/
 class MinkDiff (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
     [ContSet S α] where
   minkDiff : S → S → S
-  minkDiff_inner (s t : S) : construct (minkDiff s t) ⊆ minkowskiDiff (construct s) (construct t)
+  minkDiff_inner (s t : S) : toSet (minkDiff s t) ⊆ minkowskiDiff (toSet s) (toSet t)
 
 /-- CORA's `linComb`, not the convex hull: the two agree only when both sets are
 convex, and this is what keeps a non-convex representation non-convex. -/
@@ -150,13 +150,13 @@ class LinComb (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
     [ContSet S α] where
   linComb : S → S → S
   linComb_outer (s₁ s₂ : S) :
-    Set.linComb (construct s₁) (construct s₂) ⊆ construct (linComb s₁ s₂)
+    Set.linComb (toSet s₁) (toSet s₂) ⊆ toSet (linComb s₁ s₂)
 
 /-- A singleton, as a set of the representation. -/
 class OfPoint (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
     [ContSet S α] where
   ofPoint : α → S
-  mem_ofPoint (v : α) : v ∈ construct (ofPoint v)
+  mem_ofPoint (v : α) : v ∈ toSet (ofPoint v)
 
 -- Data and law are two classes, so a float operation builds the identity without a `ContSet`.
 /-- The identity matrix as a set of the family, data only (`IsIdentityMem` says it is one). -/
@@ -166,7 +166,7 @@ class OfIdentity (𝕄 : ℕ → ℕ → Type) where
 /-- `OfIdentity.identity` denotes a set holding the real identity matrix. -/
 class IsIdentityMem (𝕄 : ℕ → ℕ → Type) [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [OfIdentity 𝕄] :
     Prop where
-  one_mem_identity (n : ℕ) : (1 : Mat ℝ n n) ∈ construct (OfIdentity.identity (𝕄 := 𝕄) n)
+  one_mem_identity (n : ℕ) : (1 : Mat ℝ n n) ∈ toSet (OfIdentity.identity (𝕄 := 𝕄) n)
 
 /-- A singleton, from a point *of the representation's own scalar*. `OfPoint` takes a real
 point, which a float representation cannot store; this takes what it can, and says it holds the
@@ -174,7 +174,7 @@ real point that value reads as. -/
 class OfScalarPoint (𝕋 : Type) [Scalar 𝕋] (S : ℕ → Type)
     [∀ n, ContSet (S n) (Vec ℝ n)] where
   ofVec {n : ℕ} : Vec 𝕋 n → S n
-  mem_ofVec {n : ℕ} (v : Vec 𝕋 n) : Scalar.toRealVec v ∈ construct (ofVec v)
+  mem_ofVec {n : ℕ} (v : Vec 𝕋 n) : Scalar.toRealVec v ∈ toSet (ofVec v)
 
 /-- A point of the representation's scalar the set is centered on, as CORA's `center`. No law:
 what an algorithm does with the point (CORA's `enlarge`) is sound for any point, the center only
@@ -189,9 +189,9 @@ class Recenter (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
     [ContSet S α] where
   center : S → α
   recenter : S → S
-  zero_mem_recenter (s : S) : (0 : α) ∈ construct (recenter s)
-  sub_center_mem_recenter {s : S} {y : α} (hy : y ∈ construct s) :
-    y - center s ∈ construct (recenter s)
+  zero_mem_recenter (s : S) : (0 : α) ∈ toSet (recenter s)
+  sub_center_mem_recenter {s : S} {y : α} (hy : y ∈ toSet s) :
+    y - center s ∈ toSet (recenter s)
 
 /-- To a maximum order, read in the representation's own terms. Sound for any
 target, so the order is a precision knob and never a correctness one. -/
@@ -199,7 +199,7 @@ class Reduce (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
     [ContSet S α] where
   reduce : S → ℕ → S
   reduce_outer (s : S) (o : ℕ) :
-    construct s ⊆ construct (reduce s o)
+    toSet s ⊆ toSet (reduce s o)
 
 -- No class bundles these: a representation with no `linComb` still runs what never combines.
 
@@ -217,34 +217,34 @@ class LinMtimes (M S : Type) (T : outParam Type) (α : outParam Type) (β : outP
     [ContSet S α] [ContSet T β] [LinMapSet M α β] where
   lmtimes : M → S → T
   lmtimes_outer (m : M) (s : S) :
-    (⋃ f ∈ LinMapSet.denote (β := β) m, f '' construct s) ⊆ construct (lmtimes m s)
+    (⋃ f ∈ LinMapSet.denote (β := β) m, f '' toSet s) ⊆ toSet (lmtimes m s)
 
 /-- CORA's `contains`: `true` only if `t` holds all of `s`. Conservative, so `false`
 says only that containment was not shown. `T` the container, as in CORA. -/
 class Contains (T S : Type) {α : outParam Type} [ContSet T α] [ContSet S α] where
   contains : T → S → Bool
-  contains_sound (t : T) (s : S) : contains t s = true → construct s ⊆ construct t
+  contains_sound (t : T) (s : S) : contains t s = true → toSet s ⊆ toSet t
 
 /-- The negation of CORA's `isIntersecting`: `true` only if `t` and `s` share no
 point, and as conservative as `Contains`. -/
 class IsDisjoint (T S : Type) {α : outParam Type} [ContSet T α] [ContSet S α] where
   isDisjoint : T → S → Bool
   isDisjoint_sound (t : T) (s : S) :
-    isDisjoint t s = true → Disjoint (construct s) (construct t)
+    isDisjoint t s = true → Disjoint (toSet s) (toSet t)
 
 /-- The set met with the strips of `C`, `φ`, `y` at the gain `Λ`, outer for every gain. -/
 class IntersectStrip (𝕋 : Type) [Scalar 𝕋] (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] where
   intersectStrip {n p : ℕ} : Mat 𝕋 p n → Vec 𝕋 p → Vec 𝕋 p → Mat 𝕋 n p → S n → S n
   intersectStrip_outer {n p : ℕ} (C : Mat 𝕋 p n) (φ y : Vec 𝕋 p) (Λ : Mat 𝕋 n p) (s : S n) :
-    construct s ∩ {x | ∀ i, |(toRealMat C *ᵥ x - toRealVec y) i| ≤ toReal (φ i)} ⊆
-      construct (intersectStrip C φ y Λ s)
+    toSet s ∩ {x | ∀ i, |(toRealMat C *ᵥ x - toRealVec y) i| ≤ toReal (φ i)} ⊆
+      toSet (intersectStrip C φ y Λ s)
 
 /-- CORA's `isequal`: `isequal s t` only if `s` and `t` denote one set. Conservative like
 `Contains`: structural tests (tolerance `0`) fail on different representations of one set.
 Prop-valued, as those tests are. -/
 class Isequal (S : Type) {α : outParam Type} [ContSet S α] where
   isequal : S → S → Prop
-  isequal_construct (s t : S) : isequal s t → construct s = construct t
+  isequal_toSet (s t : S) : isequal s t → toSet s = toSet t
 
 end CORALean
 

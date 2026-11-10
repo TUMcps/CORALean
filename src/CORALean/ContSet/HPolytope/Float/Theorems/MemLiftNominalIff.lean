@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.HPolytope.Float.Operations.Lift
 public import CORALean.ContSet.HPolytope.Float.Operations.LiftCols
 public import Mathlib.Data.Matrix.Mul
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 
 @[expose] public section
 
@@ -82,7 +82,7 @@ end
 
 theorem HPolytope.mem_lift_nominal_iff (P : HPolytope 𝕋 (Vec 𝕋 n)) {dims : Fin n → Fin N}
     (hdims : Function.Injective dims) {y : Vec ℝ N} :
-    y ∈ (P.lift_ dims).nominal.construct ↔ (fun k => y (dims k)) ∈ P.nominal.construct := by
+    y ∈ (P.lift_ dims).nominal.toSet ↔ (fun k => y (dims k)) ∈ P.nominal.toSet := by
   rw [HPolytope.mem_nominal_iff, HPolytope.mem_nominal_iff]
   simp only [HPolytope.lift_, HPolytope.aux_mulVec_liftCols hdims]
 

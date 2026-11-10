@@ -185,7 +185,7 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
     ∃ x u : ℝ → Vec ℝ 1,
       sys.IsConstTrajectory (S := 𝒵) (Set.Icc 0 r) (Zonotope.ofPoint fun _ => x₀)
         (Zonotope.ofPoint 0) P x u (fun _ => 2) x ∧
-      x r ∉ construct R.1 ∧ x r ∉ construct R.2 := by -- --- PROOF ---
+      x r ∉ toSet R.1 ∧ x r ∉ toSet R.2 := by -- --- PROOF ---
   intro sys P I R
   -- the size of a zonotope in coordinate `0`: center plus the absolute generators
   obtain ⟨S, hS⟩ : ∃ S : Zonotope (Vec ℝ 1) → ℝ, ∀ Z, S Z = Z.c 0 + ∑ l, |Z.G l 0| :=
@@ -211,7 +211,7 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
   have hSpt : ∀ v : Vec ℝ 1, S (Zonotope.ofPoint v) = v 0 := by
     intro v; simp [hS, Zonotope.ofPoint]
   -- every point of a zonotope is below its size
-  have hbound : ∀ (Z : Zonotope (Vec ℝ 1)) z, z ∈ construct Z → z 0 ≤ S Z := by
+  have hbound : ∀ (Z : Zonotope (Vec ℝ 1)) z, z ∈ toSet Z → z 0 ≤ S Z := by
     rintro Z z ⟨β, hβ, rfl⟩
     rw [hS]
     simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
@@ -418,7 +418,7 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
     simp
   -- both sets of `linReachCora` stay below `x₀ + 2 r`, the run at `p = 2` is at `x₀ + 4 r`
   have hx : ∀ x : ℝ → Vec ℝ 1, (∀ t, x t = fun _ => x₀ + 4 * t) →
-      x r ∉ construct R.1 ∧ x r ∉ construct R.2 := by
+      x r ∉ toSet R.1 ∧ x r ∉ toSet R.2 := by
     intro x hx
     have hxr : x r 0 = x₀ + 4 * r := by rw [hx]
     -- the time-point and the time-interval set

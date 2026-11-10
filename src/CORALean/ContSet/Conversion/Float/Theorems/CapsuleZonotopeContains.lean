@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Capsule.zonotope_contains (C : Capsule 𝕋 n) : -- --- CONCL ---
-    C.construct ⊆ C.zonotope.construct := by -- --- PROOF ---
+    C.toSet ⊆ C.zonotope.toSet := by -- --- PROOF ---
   rintro _ ⟨x, ⟨t, ht, hle⟩, e, he, rfl⟩
   -- what the segment point `c + t g` leaves of `x`, and the segment with the error box
   set y : Vec ℝ n := x - (toRealVec C.c + t • toRealVec C.g) with hy
@@ -55,7 +55,7 @@ theorem Capsule.zonotope_contains (C : Capsule 𝕋 n) : -- --- CONCL ---
     rw [h]
     exact hle
   have hseg : toRealVec C.c + t • toRealVec C.g + e ∈
-      (⟨1, C.c, fun _ => C.g, C.I_error⟩ : Zonotope (Vec 𝕋 n)).construct :=
+      (⟨1, C.c, fun _ => C.g, C.I_error⟩ : Zonotope (Vec 𝕋 n)).toSet :=
     ⟨_, ⟨fun _ => t, fun _ => abs_le.mpr ht,
       by simp [InflatedContSet.nominal, Zonotope.nominal, RealImage.realImage]⟩, e, he, rfl⟩
   unfold Capsule.zonotope
@@ -75,7 +75,7 @@ theorem Capsule.zonotope_contains (C : Capsule 𝕋 n) : -- --- CONCL ---
       exact sub_eq_zero.mp h1
     rwa [hx]
   · -- the ball's part: `y` in the box `[-r, r]ⁿ`, and the box in its zonotope
-    have hB : y ∈ (⟨fun _ => neg C.r, fun _ => C.r⟩ : Interval (Vec 𝕋 n)).construct := fun i => by
+    have hB : y ∈ (⟨fun _ => neg C.r, fun _ => C.r⟩ : Interval (Vec 𝕋 n)).toSet := fun i => by
       have h := CORALean.abs_le_norm₂ y i
       have h' := abs_le.mp (le_trans h hy2)
       show toReal (neg C.r) ≤ y i ∧ y i ≤ toReal C.r

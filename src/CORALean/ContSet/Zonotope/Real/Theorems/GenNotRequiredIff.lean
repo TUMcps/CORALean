@@ -61,15 +61,15 @@ theorem Zonotope.gen_not_required_iff {n : ℕ} (Zm Zs : Zonotope (Vec ℝ (n + 
     (C : Bool × Finset (Fin Zm.h) → (Vec ℝ (n + 2) →ₗ[ℝ] ℝ))
     (d : Bool × Finset (Fin Zm.h) → ℝ) (Red : Finset (Bool × Finset (Fin Zm.h)))
     (hRed : ∀ j ∈ Red, j.2.card = n + 1)
-    (hrows : minkowskiDiff Zm.construct Zs.construct
+    (hrows : minkowskiDiff Zm.toSet Zs.toSet
       = {x | ∀ j, j.2.card = n + 1 → C j x ≤ d j})
-    (hmin : minkowskiDiff Zm.construct Zs.construct
+    (hmin : minkowskiDiff Zm.toSet Zs.toSet
       = {x | ∀ j, j.2.card = n + 1 → j ∉ Red → C j x ≤ d j})
     (hirr : ∀ j, j.2.card = n + 1 → j ∉ Red →
       ¬{x | ∀ k, k.2.card = n + 1 → k ≠ j → C k x ≤ d k} ⊆ {x | C j x ≤ d j})
     (i : Fin Zm.h) : -- --- CONCL ---
     ∑ j ∈ Red, (if i ∈ j.2 then 1 else 0) = 2 * (Zm.h - 1).choose n
-      ↔ minkowskiDiff Zm.construct Zs.construct
+      ↔ minkowskiDiff Zm.toSet Zs.toSet
           = {x | ∀ j, j.2.card = n + 1 → i ∉ j.2 → C j x ≤ d j} := by -- --- PROOF ---
   classical
   constructor
@@ -88,7 +88,7 @@ theorem Zonotope.gen_not_required_iff {n : ℕ} (Zm Zs : Zonotope (Vec ℝ (n + 
     refine (Zm.gen_removable_iff Red hRed i).mpr fun b S hS hiS => ?_
     by_contra hnot
     refine hirr (b, S) hS hnot fun x hx => ?_
-    have hxP : x ∈ minkowskiDiff Zm.construct Zs.construct := by
+    have hxP : x ∈ minkowskiDiff Zm.toSet Zs.toSet := by
       rw [hdrop]
       exact fun j hj hij => hx j hj (by rintro rfl; exact hij hiS)
     rw [hrows] at hxP

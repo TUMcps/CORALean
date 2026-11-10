@@ -50,7 +50,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 
 theorem Interval.minus_exact (I₁ I₂ : Interval α) (h₁ : I₁.IsNonempty)
     (h₂ : I₂.IsNonempty) : -- --- CONCL ---
-    I₁.construct - I₂.construct = (I₁.minus I₂).construct := by -- --- PROOF ---
+    I₁.toSet - I₂.toSet = (I₁.minus I₂).toSet := by -- --- PROOF ---
   refine Set.eq_of_subset_of_subset (Interval.minus_outer I₁ I₂) fun x hx => ?_
   -- the negated box is nonempty, so the sum is exact
   have h₂' : I₂.uminus.IsNonempty := fun i => by

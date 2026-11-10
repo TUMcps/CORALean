@@ -50,7 +50,7 @@ variable {q n : ℕ}
 
 theorem VPolytope.inter_ineqs_nonempty_iff (P : VPolytope (Vec ℝ n)) (A : Mat ℝ q n)
     (b : Vec ℝ q) : -- --- CONCL ---
-    (P.construct ∩ (HPolytope.ineqs A b).construct).Nonempty ↔
+    (P.toSet ∩ (HPolytope.ineqs A b).toSet).Nonempty ↔
       ∃ (x : Vec ℝ n) (β : Fin P.k → ℝ), A *ᵥ x ≤ b ∧ ∑ j, β j • P.V j = x ∧
         ∑ j, β j = 1 ∧ ∀ j, 0 ≤ β j := by -- --- PROOF ---
   constructor

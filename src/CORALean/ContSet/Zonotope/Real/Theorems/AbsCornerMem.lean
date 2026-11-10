@@ -41,7 +41,7 @@ variable {n : ℕ}
 
 /-- The corner `|c| + Σ |gⱼ|` is a vertex of `abs Z`. -/
 theorem Zonotope.abs_corner_mem (Z : Zonotope (Vec ℝ n)) :
-    (fun i => Z.absBound i) ∈ Z.abs.construct :=
+    (fun i => Z.absBound i) ∈ Z.abs.toSet :=
   ⟨fun _ => 1, fun _ => by simp, funext fun i => by
     simp [Zonotope.abs, Zonotope.absBound, Finset.sum_apply]; rfl⟩
 

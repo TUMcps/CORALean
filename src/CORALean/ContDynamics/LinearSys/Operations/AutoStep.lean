@@ -121,7 +121,7 @@ noncomputable def LinearSys.autoStep (sys : LinearSys 𝕋 n) (le : ℝ → ℝ 
       -- 28. Ĥ(τ_k)
       let Hτk := Zonotope.plus (Zonotope.linComb s.H Hk1) C
       -- 29. Δε^a_k, eq. (33)
-      let Δεa := MatExp.particularSolutionError A' s.t U₀.construct Δtk ηk
+      let Δεa := MatExp.particularSolutionError A' s.t U₀.toSet Δtk ηk
       -- 29. ε^a_{k+1}
       let εa1 := s.εa + Δεa
       -- 29. Δε^r_k, Prop. 4

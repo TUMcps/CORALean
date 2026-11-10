@@ -19,8 +19,8 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.IsFullDimIff
 public import CORALean.ContSet.VPolytope.Real.Theorems.ProjectHighDimExact
 public import CORALean.ContSet.VPolytope.Real.Theorems.CenterMem
 public import CORALean.ContSet.VPolytope.Real.Theorems.CartProdExact
-public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructEqDropIff
-public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructEqIffOfInjective
+public import CORALean.ContSet.VPolytope.Real.Theorems.ToSetEqDropIff
+public import CORALean.ContSet.VPolytope.Real.Theorems.ToSetEqIffOfInjective
 public import CORALean.ContSet.VPolytope.Real.Theorems.InterIneqsNonemptyIff
 public import CORALean.ContSet.VPolytope.Real.Theorems.InterNonemptyIff
 public import CORALean.ContSet.VPolytope.Real.Theorems.InteriorEqEmptyIffRankLt
@@ -34,11 +34,11 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.SuccLeOfInteriorNonempty
 public import CORALean.ContSet.VPolytope.Real.Theorems.SupportFuncEq
 public import CORALean.ContSet.VPolytope.Real.Theorems.HausdorffDistEq
 public import CORALean.ContSet.VPolytope.Real.Theorems.DistPointEq
-public import CORALean.ContSet.VPolytope.Real.Theorems.KEqZeroOfConstructEqEmpty
+public import CORALean.ContSet.VPolytope.Real.Theorems.KEqZeroOfToSetEqEmpty
 public import CORALean.ContSet.VPolytope.Real.Theorems.MpowerOuter
 public import CORALean.ContSet.VPolytope.Real.Theorems.VecRepresentsa
-public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructEmptySet
-public import CORALean.ContSet.VPolytope.Real.Theorems.ConstructPoint
+public import CORALean.ContSet.VPolytope.Real.Theorems.ToSetEmptySet
+public import CORALean.ContSet.VPolytope.Real.Theorems.ToSetPoint
 public import CORALean.ContSet.VPolytope.Real.Theorems.KNeZeroOfNonempty
 public import CORALean.ContSet.VPolytope.Real.Theorems.LeOfForallLe
 

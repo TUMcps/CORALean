@@ -45,7 +45,7 @@ variable {n : ℕ}
 
 theorem intersectLevelSetBox_subset (I : Interval (Vec ℝ n)) (k : Fin n)
     (p : Vec ℝ n → ℝ) : -- --- CONCL ---
-    I.construct ∩ {x | x k = p x} ⊆ (intersectLevelSetBox I k p).construct := by -- --- PROOF ---
+    I.toSet ∩ {x | x k = p x} ⊆ (intersectLevelSetBox I k p).toSet := by -- --- PROOF ---
   rintro x ⟨hxI, hxk⟩
   refine ⟨x, hxI, 0, fun i => ⟨le_rfl, le_rfl⟩, ?_⟩
   simp only [intersectLevelSetBox, add_zero]

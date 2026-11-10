@@ -10,7 +10,7 @@ public import CORALean.ContSet.ConZonotope.Real.ConZonotope
 The affine image of a polytope. Read off the coefficients: a weighted average of
 two admissible ones stays in the unit box, and stays in `P` because a polytope is
 convex — that second half is all the constraints add over a zonotope, and it is
-`HPolytope.convex_construct` rather than an argument of its own.
+`HPolytope.convex_toSet` rather than an argument of its own.
 
 ## Inputs
 * `cZ` – constrained zonotope
@@ -39,8 +39,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem ConZonotope.convex_construct (cZ : ConZonotope α) : -- --- CONCL ---
-    Convex ℝ cZ.construct := by -- --- PROOF ---
+theorem ConZonotope.convex_toSet (cZ : ConZonotope α) : -- --- CONCL ---
+    Convex ℝ cZ.toSet := by -- --- PROOF ---
   rintro x ⟨β₁, hβ₁, hP₁, rfl⟩ y ⟨β₂, hβ₂, hP₂, rfl⟩ s t hs ht hst
   have hbox : ∀ j, |s * β₁ j + t * β₂ j| ≤ 1 := by
     intro j
@@ -56,8 +56,8 @@ theorem ConZonotope.convex_construct (cZ : ConZonotope α) : -- --- CONCL ---
       _ ≤ s + t := add_le_add h1 h2
       _ = 1 := hst
   -- the constraints are a polytope, and a polytope is convex
-  have hP : s • β₁ + t • β₂ ∈ cZ.P.construct :=
-    HPolytope.convex_construct cZ.P hP₁ hP₂ hs ht hst
+  have hP : s • β₁ + t • β₂ ∈ cZ.P.toSet :=
+    HPolytope.convex_toSet cZ.P hP₁ hP₂ hs ht hst
   have hval : ∑ j, (s * β₁ j + t * β₂ j) • cZ.G j
       = s • (∑ j, β₁ j • cZ.G j) + t • ∑ j, β₂ j • cZ.G j := by
     rw [Finset.smul_sum, Finset.smul_sum, ← Finset.sum_add_distrib]

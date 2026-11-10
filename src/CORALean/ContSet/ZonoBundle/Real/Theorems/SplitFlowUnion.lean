@@ -52,9 +52,9 @@ variable {n : ℕ}
 /-- The flow heuristic's split is exact, for a nonzero flow. -/
 theorem ZonoBundle.splitFlow_union (f : Vec ℝ n) (hf : f ≠ 0) (zB : ZonoBundle (Vec ℝ n))
     (i : Fin zB.k) (j : Fin n) : -- --- CONCL ---
-    (zB.split (ZonoBundle.dirFlow f) (zB.enclosingBox (ZonoBundle.dirFlow f) i) j).fst.construct
-      ∪ (zB.split (ZonoBundle.dirFlow f) (zB.enclosingBox (ZonoBundle.dirFlow f) i) j).snd.construct
-      = zB.construct := by -- --- PROOF ---
+    (zB.split (ZonoBundle.dirFlow f) (zB.enclosingBox (ZonoBundle.dirFlow f) i) j).fst.toSet
+      ∪ (zB.split (ZonoBundle.dirFlow f) (zB.enclosingBox (ZonoBundle.dirFlow f) i) j).snd.toSet
+      = zB.toSet := by -- --- PROOF ---
   refine ZonoBundle.split_union_enclosingBox _ ?_ zB i j
   -- some coordinate of the flow is nonzero, so there is at least one axis
   obtain ⟨k, hk⟩ : ∃ k, f k ≠ 0 := by

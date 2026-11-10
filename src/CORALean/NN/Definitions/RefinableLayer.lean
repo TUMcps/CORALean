@@ -49,8 +49,8 @@ set. -/
 structure RefinableLayer (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] (n m : ℕ) where
   eval : Vec ℝ n → Vec ℝ m
   enclose : OrderPattern n → S n → S m
-  enclose_outer (t : OrderPattern n) (s : S n) (x : Vec ℝ n) (hx : x ∈ construct s) :
-    eval x ∈ construct (enclose t s)
+  enclose_outer (t : OrderPattern n) (s : S n) (x : Vec ℝ n) (hx : x ∈ toSet s) :
+    eval x ∈ toSet (enclose t s)
 
 end CORALean
 

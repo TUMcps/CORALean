@@ -52,8 +52,8 @@ variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 /-- Reach for this where the invariant is already in hand; reach for
 `reachSetExact_outer` where one run is what is in hand instead. -/
 theorem HybridAutomaton.reachSetExact_subset_isInvariant {HA : HybridAutomaton S G L 𝕋 n} {R₀ : S n}
-    {ℓ₀ : L} {R : L → S n} (hinv : HA.IsInvariant R) (hR₀ : construct R₀ ⊆ construct (R ℓ₀))
-    (ℓ : L) : HA.reachSetExact R₀ ℓ₀ ℓ ⊆ construct (R ℓ) := by
+    {ℓ₀ : L} {R : L → S n} (hinv : HA.IsInvariant R) (hR₀ : toSet R₀ ⊆ toSet (R ℓ₀))
+    (ℓ : L) : HA.reachSetExact R₀ ℓ₀ ℓ ⊆ toSet (R ℓ) := by
   rintro y ⟨x, hx, run⟩
   exact run.mem_of_isInvariant hinv (hR₀ hx)
 

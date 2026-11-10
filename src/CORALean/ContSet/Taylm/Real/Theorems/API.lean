@@ -51,11 +51,11 @@ public import CORALean.ContSet.Taylm.Real.Theorems.LdbStepWitness
 public import CORALean.ContSet.Taylm.Real.Theorems.LeListMax
 public import CORALean.ContSet.Taylm.Real.Theorems.ListMinLe
 public import CORALean.ContSet.Taylm.Real.Theorems.LogOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.MemConstructIff
+public import CORALean.ContSet.Taylm.Real.Theorems.MemToSetIff
 public import CORALean.ContSet.Taylm.Real.Theorems.MinusOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.MmulOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.MpowerOuter
-public import CORALean.ContSet.Taylm.Real.Theorems.MtimesConstructOuter
+public import CORALean.ContSet.Taylm.Real.Theorems.MtimesToSetOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.OptBnbAdvMem
 public import CORALean.ContSet.Taylm.Real.Theorems.OptBnbMem
 public import CORALean.ContSet.Taylm.Real.Theorems.OptLinQuadMem
@@ -85,7 +85,7 @@ public import CORALean.ContSet.Taylm.Real.Theorems.ReachLe
 public import CORALean.ContSet.Taylm.Real.Theorems.ReexpBoxBoundsMem
 public import CORALean.ContSet.Taylm.Real.Theorems.ReexpandOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.RepresentsaEmptySetIff
-public import CORALean.ContSet.Taylm.Real.Theorems.RepresentsaPointConstruct
+public import CORALean.ContSet.Taylm.Real.Theorems.RepresentsaPointToSet
 public import CORALean.ContSet.Taylm.Real.Theorems.SinOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.SinRdivideCosOuter
 public import CORALean.ContSet.Taylm.Real.Theorems.SinScaled

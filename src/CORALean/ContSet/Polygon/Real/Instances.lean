@@ -11,7 +11,7 @@ public import CORALean.ContSet.VPolytope.Real.Instances
 
 `ContSet`, `Plus` and `Reduce` come from `SetUnion` at the member `VPolytope (Vec ℝ 2)`;
 `Mtimes` too, at the family `𝒱𝒫`, at the `Mat ℝ` of any size.
-`LinComb` is this layer's own, as `SetUnion` has none, and `CompactSet` is `isCompact_construct`
+`LinComb` is this layer's own, as `SetUnion` has none, and `CompactSet` is `isCompact_toSet`
 at the one-field class.
 -/
 
@@ -33,7 +33,7 @@ instance : LinComb Polygon (Vec ℝ 2) where
   linComb_outer := Polygon.linComb_outer
 
 instance : CompactSet Polygon (Vec ℝ 2) :=
-  ⟨Polygon.isCompact_construct⟩
+  ⟨Polygon.isCompact_toSet⟩
 
 end CORALean.Real
 

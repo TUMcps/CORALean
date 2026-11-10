@@ -49,11 +49,11 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ZonoBundle.box_subset_interval (zB : ZonoBundle α) : -- --- CONCL ---
-    zB.box ⊆ ⋂ i, (zB.Z i).interval.construct := by -- --- PROOF ---
+    zB.box ⊆ ⋂ i, (zB.Z i).interval.toSet := by -- --- PROOF ---
   refine Set.subset_iInter fun i => ?_
   refine Set.iInter_subset_of_subset
     ⟨(zB.Z i).interval,
-      (SetIntersection.construct_subset_ofFn _ i).trans (Zonotope.interval_contains _)⟩ ?_
+      (SetIntersection.toSet_subset_ofFn _ i).trans (Zonotope.interval_contains _)⟩ ?_
   exact subset_rfl
 
 end CORALean.Real

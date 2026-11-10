@@ -67,10 +67,10 @@ private theorem LinearSysDT.aux_intervalEstimateState_closed (sys : LinearSysDT 
     (X₀ : Zonotope (Vec ℝ n)) (W : Zonotope (Vec ℝ sys.r)) (V : Zonotope (Vec ℝ sys.s))
     (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q) (k : ℕ) : -- --- CONCL ---
     let s := LinearSysDT.intervalEstimateState sys L X₀ W V u y
-    (s k).Sx.construct = (((sys.A - L * sys.C) ^ k) *ᵥ ·) ''
-        (⟨X₀.h, 0, X₀.G⟩ : Zonotope (Vec ℝ n)).construct ∧
-      (s k).Dw.construct = (((sys.A - L * sys.C) ^ k * sys.E) *ᵥ ·) '' W.construct ∧
-      (s k).Dv.construct = (((sys.A - L * sys.C) ^ k * -(L * sys.F)) *ᵥ ·) '' V.construct ∧
+    (s k).Sx.toSet = (((sys.A - L * sys.C) ^ k) *ᵥ ·) ''
+        (⟨X₀.h, 0, X₀.G⟩ : Zonotope (Vec ℝ n)).toSet ∧
+      (s k).Dw.toSet = (((sys.A - L * sys.C) ^ k * sys.E) *ᵥ ·) '' W.toSet ∧
+      (s k).Dv.toSet = (((sys.A - L * sys.C) ^ k * -(L * sys.F)) *ᵥ ·) '' V.toSet ∧
       (s k).Sw.sup = ∑ i ∈ Finset.range k, (s i).Dw.interval.sup ∧
       (s k).Sw.inf = ∑ i ∈ Finset.range k, (s i).Dw.interval.inf ∧
       (s k).Sv.sup = ∑ i ∈ Finset.range k, (s i).Dv.interval.sup ∧
@@ -107,7 +107,7 @@ theorem LinearSysDT.intervalEstimate_error_eq_hull (sys : LinearSysDT ℝ n) (L 
     (u : ℕ → Vec ℝ sys.m) (y : ℕ → Vec ℝ sys.q) (k : ℕ) : -- --- CONCL ---
     let s := LinearSysDT.intervalEstimateState sys L X₀ W V u y k
     LinearSysDT.reachErrorSet sys L X₀ W V k ⊆
-        (s.Sx.interval.plus (s.Sw.plus s.Sv)).construct ∧
+        (s.Sx.interval.plus (s.Sw.plus s.Sv)).toSet ∧
       s.Sx.interval.plus (s.Sw.plus s.Sv) =
         Interval.hull (LinearSysDT.reachErrorSet sys L X₀ W V k) := by -- --- PROOF ---
   intro s
@@ -127,14 +127,14 @@ theorem LinearSysDT.intervalEstimate_error_eq_hull (sys : LinearSysDT ℝ n) (L 
     show s.Sx.interval.inf j + (s.Sw.inf j + s.Sv.inf j) = _
     rw [hwi, hvi, Finset.sum_apply, Finset.sum_apply, add_assoc]
   -- every point of `Ω_k` lies in the box
-  have hsub : Ω ⊆ (s.Sx.interval.plus (s.Sw.plus s.Sv)).construct := by
+  have hsub : Ω ⊆ (s.Sx.interval.plus (s.Sw.plus s.Sv)).toSet := by
     rintro _ ⟨_, ⟨a, ha, b, hb, rfl⟩, c, hc, rfl⟩ j
     obtain ⟨g, hg, rfl⟩ := (Set.mem_finsetSum _ _ _).mp hb
     obtain ⟨g', hg', rfl⟩ := (Set.mem_finsetSum _ _ _).mp hc
-    have ha' : a ∈ s.Sx.construct := by rw [hx]; exact ha
-    have hgi : ∀ i ∈ Finset.range k, g i ∈ (S i).Dw.construct := fun i hi => by
+    have ha' : a ∈ s.Sx.toSet := by rw [hx]; exact ha
+    have hgi : ∀ i ∈ Finset.range k, g i ∈ (S i).Dw.toSet := fun i hi => by
       rw [(hcl i).2.1]; exact hg hi
-    have hgi' : ∀ i ∈ Finset.range k, g' i ∈ (S i).Dv.construct := fun i hi => by
+    have hgi' : ∀ i ∈ Finset.range k, g' i ∈ (S i).Dv.toSet := fun i hi => by
       rw [(hcl i).2.2.1]; exact hg' hi
     -- each summand within its own zonotope's box
     have hA : s.Sx.interval.inf j ≤ a j ∧ a j ≤ s.Sx.interval.sup j :=
@@ -160,11 +160,11 @@ theorem LinearSysDT.intervalEstimate_error_eq_hull (sys : LinearSysDT ℝ n) (L 
   have hatt : ∀ j, (∃ e ∈ Ω, e j = (s.Sx.interval.plus (s.Sw.plus s.Sv)).sup j) ∧
       ∃ e ∈ Ω, e j = (s.Sx.interval.plus (s.Sw.plus s.Sv)).inf j := fun j => by
     obtain ⟨⟨a, ha, haj⟩, ⟨a', ha', haj'⟩⟩ := s.Sx.interval_attained j
-    have hDw : ∀ i, (∃ z ∈ (S i).Dw.construct, z j = (S i).Dw.interval.sup j) ∧
-        ∃ z ∈ (S i).Dw.construct, z j = (S i).Dw.interval.inf j := fun i =>
+    have hDw : ∀ i, (∃ z ∈ (S i).Dw.toSet, z j = (S i).Dw.interval.sup j) ∧
+        ∃ z ∈ (S i).Dw.toSet, z j = (S i).Dw.interval.inf j := fun i =>
       (S i).Dw.interval_attained j
-    have hDv : ∀ i, (∃ z ∈ (S i).Dv.construct, z j = (S i).Dv.interval.sup j) ∧
-        ∃ z ∈ (S i).Dv.construct, z j = (S i).Dv.interval.inf j := fun i =>
+    have hDv : ∀ i, (∃ z ∈ (S i).Dv.toSet, z j = (S i).Dv.interval.sup j) ∧
+        ∃ z ∈ (S i).Dv.toSet, z j = (S i).Dv.interval.inf j := fun i =>
       (S i).Dv.interval_attained j
     -- one attaining point per summand and per side
     choose g hg hgj using fun i => (hDw i).1
@@ -173,8 +173,8 @@ theorem LinearSysDT.intervalEstimate_error_eq_hull (sys : LinearSysDT ℝ n) (L 
     choose f' hf' hfj' using fun i => (hDv i).2
     rw [hx] at ha ha'
     have hmem : ∀ a ∈ (((sys.A - L * sys.C) ^ k) *ᵥ ·) ''
-        (⟨X₀.h, 0, X₀.G⟩ : Zonotope (Vec ℝ n)).construct, ∀ g f : ℕ → Vec ℝ n,
-        (∀ i, g i ∈ (S i).Dw.construct) → (∀ i, f i ∈ (S i).Dv.construct) →
+        (⟨X₀.h, 0, X₀.G⟩ : Zonotope (Vec ℝ n)).toSet, ∀ g f : ℕ → Vec ℝ n,
+        (∀ i, g i ∈ (S i).Dw.toSet) → (∀ i, f i ∈ (S i).Dv.toSet) →
         a + ∑ i ∈ Finset.range k, g i + ∑ i ∈ Finset.range k, f i ∈ Ω := by
       intro a ha g f hg hf
       refine Set.add_mem_add (Set.add_mem_add ha ?_) ?_

@@ -4,10 +4,10 @@ public import CORALean.ContSet.Conversion.Real.Theorems.PolyZonotopeZonotopeCont
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.AbsSubCenterLe
 public import CORALean.ContSet.PolyZonotope.Real.Operations.MtimesIntervalMat
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsCoefficientLeOne
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.MulCoefficient
 public import CORALean.ContSet.Zonotope.Real.Theorems.SumDiagonalMulCol
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
@@ -78,16 +78,16 @@ private theorem PolyZonotope.aux_sum_univ_mtimesIntervalMat_dep {IM : Interval (
 -- the image sits in the center's polynomial zonotope widened by what the radius can reach
 theorem PolyZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
     (pZ : PolyZonotope (Vec ℝ n)) : -- --- CONCL ---
-    (⋃ A ∈ IM.construct, (A *ᵥ ·) '' pZ.construct)
-      ⊆ (PolyZonotope.mtimesIntervalMat IM pZ).construct := by -- --- PROOF ---
+    (⋃ A ∈ IM.toSet, (A *ᵥ ·) '' pZ.toSet)
+      ⊆ (PolyZonotope.mtimesIntervalMat IM pZ).toSet := by -- --- PROOF ---
   rintro y hy
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
   obtain ⟨A, hA, x, hxmem, rfl⟩ := hy
-  obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_construct_iff.mp hxmem
+  obtain ⟨a, β, ha, hβ, hx⟩ := PolyZonotope.mem_toSet_iff.mp hxmem
   have hrad : ∀ i j, 0 ≤ IM.radius i j :=
     fun i j => (abs_nonneg _).trans (IM.abs_sub_center_le hA (i, j))
   -- `x` bounded through the enclosing zonotope, which never grows what a point can reach
-  obtain ⟨γ, hγ, hxz⟩ := Zonotope.mem_construct_iff.mp (PolyZonotope.zonotope_contains pZ hxmem)
+  obtain ⟨γ, hγ, hxz⟩ := Zonotope.mem_toSet_iff.mp (PolyZonotope.zonotope_contains pZ hxmem)
   have hxb := fun j => Zonotope.abs_le_absBound hγ hxz j
   -- what the radius is allowed to add to coordinate `i`
   set err : Fin m → ℝ := fun i => ∑ j, (A i j - IM.center i j) * x j with herr
@@ -102,7 +102,7 @@ theorem PolyZonotope.mtimesIntervalMat_outer (IM : Interval (Mat ℝ m n))
   have hreachnn : ∀ i, 0 ≤ PolyZonotope.radiusReach IM pZ i :=
     fun i => (abs_nonneg _).trans (herrb i)
   -- the witness: the old factors and coefficients, plus one per coordinate scaled to that reach
-  refine PolyZonotope.mem_construct_iff.mpr
+  refine PolyZonotope.mem_toSet_iff.mpr
     ⟨a, Fin.append β (fun i => Zonotope.coefficient (PolyZonotope.radiusReach IM pZ i) (err i)),
     ha, ?_, fun i => ?_⟩
   · refine Fin.addCases (fun l => ?_) (fun i => ?_)

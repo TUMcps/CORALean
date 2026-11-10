@@ -35,7 +35,7 @@ variable {n : ℕ}
 --                19-October-2026 (Tobias Ladner)
 
 /-- The generator matrix `Q^(1/2)`, CORA's `sqrtm(Q)`: symmetric, and `G G = Q`. The set is its
-image of the unit ball (`Theorems/ConstructEqSqrt`). -/
+image of the unit ball (`Theorems/ToSetEqSqrt`). -/
 noncomputable def Ellipsoid.G (E : Ellipsoid n) : Mat ℝ n n := CFC.sqrt E.Q
 
 

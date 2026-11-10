@@ -89,7 +89,7 @@ private theorem Krylov.aux_image_sum_subset (M : Mat ℝ n n) (F : ℕ → Set (
 /-- `R_p(kδ + s) ⊆ ⊕_{i=0}^{k} e^{Aiδ} R_p(δ)` for `s ∈ [0, δ]`, `0 ∈ U`: Alg. 2's input part
 with (24)'s exponent. -/
 theorem Krylov.inputReach_subset_sum_exp_image (sys : LinearSys 𝕋 n) {U : S n}
-    (hbdd : Bornology.IsBounded (construct U)) (h0 : (0 : Vec ℝ n) ∈ construct U) {δ : ℝ}
+    (hbdd : Bornology.IsBounded (toSet U)) (h0 : (0 : Vec ℝ n) ∈ toSet U) {δ : ℝ}
     (hδ : 0 ≤ δ) (k : ℕ) {s : ℝ} (hs0 : 0 ≤ s) (hsδ : s ≤ δ) : -- --- CONCL ---
     sys.inputReach U (k * δ + s)
       ⊆ ∑ i ∈ Finset.range (k + 1),

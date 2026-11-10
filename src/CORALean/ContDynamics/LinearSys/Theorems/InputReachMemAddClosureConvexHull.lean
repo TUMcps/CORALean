@@ -76,21 +76,21 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 /-- [1, Prop. 11], eq. (20): a point of `P^U(Δt)` is a point of `⊕_{i≤η} ÃᵢU₀` plus a point of the
 closed convex hull of `E(Δt,η)ΔtU₀`. -/
 theorem LinearSys.inputReach_mem_add_closure_convexHull (sys : LinearSys 𝕋 n) {U : S n}
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U)) {Δt : ℝ} (hΔt : 0 < Δt) (η : ℕ)
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U)) {Δt : ℝ} (hΔt : 0 < Δt) (η : ℕ)
     (hEbdd : Bornology.IsBounded (MatExp.intervalMulVecSet
-      (MatExp.expRemainderMat (toRealMat sys.A) Δt η) (Δt • construct U)))
+      (MatExp.expRemainderMat (toRealMat sys.A) Δt η) (Δt • toSet U)))
     {y : Vec ℝ n} (hy : y ∈ sys.inputReach U Δt) : -- --- CONCL ---
     ∃ x ∈ ∑ i ∈ Finset.Ico 0 (η + 1),
-        (fun v => (MatExp.particularCoeff (toRealMat sys.A) Δt i).mulVec v) '' construct U,
+        (fun v => (MatExp.particularCoeff (toRealMat sys.A) Δt i).mulVec v) '' toSet U,
       ∃ t ∈ closure (convexHull ℝ (MatExp.intervalMulVecSet
-          (MatExp.expRemainderMat (toRealMat sys.A) Δt η) (Δt • construct U))),
+          (MatExp.expRemainderMat (toRealMat sys.A) Δt η) (Δt • toSet U))),
         y = x + t := by -- --- PROOF ---
   obtain ⟨u, hmem, hmeas0, rfl⟩ := hy
   set A := toRealMat sys.A with hA
   set E := MatExp.expRemainderMat A Δt η with hE
   set g : ℝ → Vec ℝ n := fun τ => u (Δt - τ) with hg
-  have hu : ∀ τ ∈ Set.Ioc (0:ℝ) Δt, g τ ∈ construct U := fun τ hτ =>
+  have hu : ∀ τ ∈ Set.Ioc (0:ℝ) Δt, g τ ∈ toSet U := fun τ hτ =>
     hmem _ ⟨by linarith [hτ.2], by linarith [hτ.1]⟩
   have hmeas : AEStronglyMeasurable g (volume.restrict (Set.Ioc 0 Δt)) :=
     aestronglyMeasurable_reflect_Ioc hmeas0
@@ -119,7 +119,7 @@ theorem LinearSys.inputReach_mem_add_closure_convexHull (sys : LinearSys 𝕋 n)
     rw [← MatExp.expTaylor_smul_mulVec A η τ (g τ), Matrix.sub_mulVec]
     abel
   -- each exact order is `Ãᵢ` at a point of `U₀`, the `τⁱ`-weighted mean of the input
-  have hterm : ∀ i : ℕ, ∃ z ∈ construct U,
+  have hterm : ∀ i : ℕ, ∃ z ∈ toSet U,
       (∫ τ in (0:ℝ)..Δt, ((Nat.factorial i : ℝ)⁻¹ * τ ^ i) • (A ^ i *ᵥ g τ))
         = (MatExp.particularCoeff A Δt i).mulVec z := by
     intro i
@@ -176,7 +176,7 @@ theorem LinearSys.inputReach_mem_add_closure_convexHull (sys : LinearSys 𝕋 n)
     exact Finset.aestronglyMeasurable_sum _ fun k _ =>
       (((MatExp.continuous_expDiff A η).matrix_elem j k).aestronglyMeasurable).mul (hgk k)
   -- at every `τ`, `Δt` times the remainder's value lies in `E(Δt,η)ΔtU₀`
-  set Eset := MatExp.intervalMulVecSet E (Δt • construct U) with hEset
+  set Eset := MatExp.intervalMulVecSet E (Δt • toSet U) with hEset
   have hpt : ∀ τ ∈ Set.Ioc (0:ℝ) Δt,
       Δt • ((exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ) ∈ Eset := by
     intro τ hτ

@@ -56,7 +56,7 @@ private theorem SpectraShadow.aux_sum_single {m : ℕ} (γ : Fin m → ℝ) :
 omit [AddCommGroup α] [Module ℝ α] in
 private theorem SpectraShadow.aux_mem_base_iff (S : SpectraShadow α)
     (β : Vec ℝ S.m) : -- --- CONCL ---
-    β ∈ S.base.construct ↔ (S.A₀ + ∑ i, β i • S.A i).PosSemidef := by -- --- PROOF ---
+    β ∈ S.base.toSet ↔ (S.A₀ + ∑ i, β i • S.A i).PosSemidef := by -- --- PROOF ---
   constructor
   · rintro ⟨γ, hγ, hx⟩
     have hx' : β = γ := hx.trans (SpectraShadow.aux_sum_single (m := S.m) γ)
@@ -85,10 +85,10 @@ private theorem Interval.aux_zonotope_coord {n : ℕ} (I : Interval (Vec ℝ n))
 
 theorem SpectraShadow.zonotope_contains (S : SpectraShadow α)
     (hb : S.base.isBounded) : -- --- CONCL ---
-    S.construct ⊆ S.zonotope.construct := by -- --- PROOF ---
+    S.toSet ⊆ S.zonotope.toSet := by -- --- PROOF ---
   -- a variable vector `β` of the shadow's point lies in the base spectrahedron
   rintro _ ⟨β, hβ, rfl⟩
-  have hβb : β ∈ S.base.construct := (S.aux_mem_base_iff β).mpr hβ
+  have hβb : β ∈ S.base.toSet := (S.aux_mem_base_iff β).mpr hβ
   -- hence in its interval hull, which is the zonotope `I.zonotope`
   have hI := S.base.interval_contains hb hβb
   obtain ⟨γ, hγ, hγeq⟩ : ∃ γ : Fin S.m → ℝ, (∀ j, |γ j| ≤ 1)

@@ -93,8 +93,8 @@ set. -/
 theorem NonlinearSys.WithSteps.guardIntersectPancake_outer (sys : NonlinearSys.WithSteps S Rg m n)
     (scaled : NonlinParamSys.WithSteps S Rg m 1 n) (nv : Vec ℝ n) (d : ℝ) (R₀ : S n) (tScaled δ : ℝ)
     (optionsScaled optionsJump : LinearSys.ReachOptions ℝ)
-    (hsc : scaled.sys = sys.sys.pancakeScaled nv d) (hU : construct scaled.aug.U = construct sys.U)
-    {p : Vec ℝ 1} (hp : p ∈ construct scaled.P) (hp0 : 0 < p 0) {T : ℝ} {x : ℝ → Vec ℝ n}
+    (hsc : scaled.sys = sys.sys.pancakeScaled nv d) (hU : toSet scaled.aug.U = toSet sys.U)
+    {p : Vec ℝ 1} (hp : p ∈ toSet scaled.P) (hp0 : 0 < p 0) {T : ℝ} {x : ℝ → Vec ℝ n}
     {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.sys.q}
     (traj : sys.sys.IsTrajectory (Icc 0 T) R₀ sys.U x u y)
     (hf : ContinuousOn (fun s => sys.sys.f (x s) (u s)) (Icc 0 T)) {tf : ℝ} (htf : 0 ≤ tf)
@@ -102,7 +102,7 @@ theorem NonlinearSys.WithSteps.guardIntersectPancake_outer (sys : NonlinearSys.W
     (hclock : ∫ r in (0 : ℝ)..tf, ((nv ⬝ᵥ x r - d) / p 0)⁻¹ = tScaled) {t : ℝ}
     (ht : t ∈ Icc tf (tf + δ)) (hhit : nv ⬝ᵥ x t = d) : -- --- CONCL ---
     ∀ Z ∈ sys.guardIntersectPancake scaled nv d R₀ tScaled δ optionsScaled optionsJump,
-      x t ∈ construct Z := by -- --- PROOF ---
+      x t ∈ toSet Z := by -- --- PROOF ---
   intro Z (hZ : sys.guardIntersectPancake scaled nv d R₀ tScaled δ optionsScaled optionsJump = some
       Z)
   -- the run before `t_f`, reparametrized: a constant-parameter run of the scaled system
@@ -131,9 +131,9 @@ theorem NonlinearSys.WithSteps.guardIntersectPancake_outer (sys : NonlinearSys.W
   simp only [Option.bind_eq_some_iff, Option.map_eq_some_iff] at hZ
   obtain ⟨Rs, hRs, Rj, hRj, rfl⟩ := hZ
   -- `x(t_f)` is in the scaled reach set at the horizon
-  have hmem : x tf ∈ construct Rs := by
+  have hmem : x tf ∈ toSet Rs := by
     have h1 := scaled.reachUnion_outer ⟨R₀, 0, tScaled⟩ optionsScaled _ hRs
-    have hx : x tf ∈ scaled.reachUnionExact (tScaled - 0) (construct R₀) := by
+    have hx : x tf ∈ scaled.reachUnionExact (tScaled - 0) (toSet R₀) := by
       simp only [NonlinParamSys.WithSteps.reachUnionExact, mem_iUnion, mem_setOf_eq, sub_zero]
       have hmapsT : MapsTo σ (Icc 0 tScaled) (Icc 0 T) :=
         fun s hs => ⟨(hmaps' hs).1, (hmaps' hs).2.trans htfT'⟩
@@ -151,7 +151,7 @@ theorem NonlinearSys.WithSteps.guardIntersectPancake_outer (sys : NonlinearSys.W
       · rw [hsc]; exact hy' s hs
       · simp [hσT']
     exact h1 hx
-  obtain ⟨Ri, hRi, hxRi⟩ := SetUnion.mem_construct.mp hmem
+  obtain ⟨Ri, hRi, hxRi⟩ := SetUnion.mem_toSet.mp hmem
   -- the jump from the member `Ri` is somewhere in the list
   have hmap : ∀ (l : List (S n)) (r : List (SetUnion (S n))),
       l.mapM (fun Ri => sys.reachUnion ⟨Ri, 0, δ⟩ optionsJump) = some r → ∀ a ∈ l,
@@ -177,24 +177,24 @@ theorem NonlinearSys.WithSteps.guardIntersectPancake_outer (sys : NonlinearSys.W
             exact ⟨J', hJ', List.mem_cons_of_mem _ hm⟩
   obtain ⟨J, hJ, hJm⟩ := hmap _ _ hRj Ri hRi
   -- the shifted run is a run of the original system from `Ri` over `[0, δ]`
-  have hxJ : x t ∈ construct J := by
+  have hxJ : x t ∈ toSet J := by
     have h2 := sys.reachUnion_outer ⟨Ri, 0, δ⟩ optionsJump _ hJ
     refine h2 ?_
     simp only [NonlinearSys.WithSteps.reachUnionExact, mem_iUnion, NonlinearSys.reachSetExact,
       mem_setOf_eq, sub_zero]
-    have traj' : sys.sys.IsTrajectory (S := 𝒮) (Icc 0 T) (construct R₀) (construct sys.U) x u y :=
+    have traj' : sys.sys.IsTrajectory (S := 𝒮) (Icc 0 T) (toSet R₀) (toSet sys.U) x u y :=
       ⟨traj.init, traj.input, traj.meas, traj.integrable, traj.cont, traj.flow, traj.output⟩
-    have hxtf : x tf ∈ construct Ri := by simpa [hσT'] using hxRi
+    have hxtf : x tf ∈ toSet Ri := by simpa [hσT'] using hxRi
     exact ⟨t - tf, ⟨by linarith [ht.1], by linarith [ht.2]⟩, fun s => x (tf + s),
-      fun s => u (tf + s), { traj'.shift (R₀' := construct Ri) (T' := Icc 0 δ)
+      fun s => u (tf + s), { traj'.shift (R₀' := toSet Ri) (T' := Icc 0 δ)
         (fun s hs => ⟨by linarith [hs.1], by linarith [hs.2]⟩) ⟨htf, htfT'⟩ hxtf with
           output := fun _ _ => rfl }, by simp⟩
   -- a point of the hyperplane is fixed by the projection
-  obtain ⟨Rk, hRk, hxRk⟩ := SetUnion.mem_construct.mp hxJ
-  refine SetUnion.mem_construct.mpr
+  obtain ⟨Rk, hRk, hxRk⟩ := SetUnion.mem_toSet.mp hxJ
+  refine SetUnion.mem_toSet.mpr
     ⟨_, List.mem_map.mpr ⟨Rk, List.mem_flatMap.mpr ⟨J, hJm, hRk⟩, rfl⟩, ?_⟩
   have hfix : x t - (((Real.sqrt (nv ⬝ᵥ nv))⁻¹ • nv) ⬝ᵥ x t - d / Real.sqrt (nv ⬝ᵥ nv)) •
-      ((Real.sqrt (nv ⬝ᵥ nv))⁻¹ • nv) ∈ construct (ContSet.projectOnHyperplane Rk
+      ((Real.sqrt (nv ⬝ᵥ nv))⁻¹ • nv) ∈ toSet (ContSet.projectOnHyperplane Rk
         ((Real.sqrt (nv ⬝ᵥ nv))⁻¹ • nv) (d / Real.sqrt (nv ⬝ᵥ nv))) :=
     ContSet.projectOnHyperplane_outer Rk _ _ ⟨x t, hxRk, rfl⟩
   have h0 : ((Real.sqrt (nv ⬝ᵥ nv))⁻¹ • nv) ⬝ᵥ x t - d / Real.sqrt (nv ⬝ᵥ nv) = 0 := by

@@ -78,10 +78,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n p : ℕ}
 private theorem LinearSysDT.aux_observeIntervalFloat_Rx (sys : LinearSysDT 𝕋 n) (L : Mat 𝕋 n sys.q)
     (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 sys.q)) (u : ℕ → Vec 𝕋 sys.m)
     (y : ℕ → Vec 𝕋 sys.q) {M : Mat ℝ n n}
-    (hM : M ∈ (LinearSysDT.errMatFloat sys.A L sys.C).construct)
-    {e : Vec ℝ n} (he : e ∈ R₀.construct) (k : ℕ) : -- --- CONCL ---
+    (hM : M ∈ (LinearSysDT.errMatFloat sys.A L sys.C).toSet)
+    {e : Vec ℝ n} (he : e ∈ R₀.toSet) (k : ℕ) : -- --- CONCL ---
     (M ^ k) *ᵥ e ∈
-      (sys.step_observeIntervalStateFloat L R₀ W V u y k).Rx.construct := by -- --- PROOF ---
+      (sys.step_observeIntervalStateFloat L R₀ W V u y k).Rx.toSet := by -- --- PROOF ---
   induction k with
   | zero => simpa [LinearSysDT.step_observeIntervalStateFloat] using he
   | succ k ih =>
@@ -93,11 +93,11 @@ private theorem LinearSysDT.aux_observeIntervalFloat_Rx (sys : LinearSysDT 𝕋 
 private theorem LinearSysDT.aux_observeIntervalFloat_D (sys : LinearSysDT 𝕋 n) (L : Mat 𝕋 n sys.q)
     (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 sys.q)) (u : ℕ → Vec 𝕋 sys.m)
     (y : ℕ → Vec 𝕋 sys.q) {M : Mat ℝ n n}
-    (hM : M ∈ (LinearSysDT.errMatFloat sys.A L sys.C).construct)
+    (hM : M ∈ (LinearSysDT.errMatFloat sys.A L sys.C).toSet)
     {d : Vec ℝ n}
-    (hd : d ∈ ((Zonotope.mtimes (-L) V).plus W).construct) (k : ℕ) : -- --- CONCL ---
+    (hd : d ∈ ((Zonotope.mtimes (-L) V).plus W).toSet) (k : ℕ) : -- --- CONCL ---
     (M ^ k) *ᵥ d ∈
-      (sys.step_observeIntervalStateFloat L R₀ W V u y k).D.construct := by -- --- PROOF ---
+      (sys.step_observeIntervalStateFloat L R₀ W V u y k).D.toSet := by -- --- PROOF ---
   induction k with
   | zero => simpa [LinearSysDT.step_observeIntervalStateFloat] using hd
   | succ k ih =>
@@ -108,11 +108,11 @@ private theorem LinearSysDT.aux_observeIntervalFloat_D (sys : LinearSysDT 𝕋 n
 private theorem LinearSysDT.aux_observeIntervalFloat_Rwv (sys : LinearSysDT 𝕋 n) (L : Mat 𝕋 n sys.q)
     (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 sys.q)) (u : ℕ → Vec 𝕋 sys.m)
     (y : ℕ → Vec 𝕋 sys.q) {M : Mat ℝ n n}
-    (hM : M ∈ (LinearSysDT.errMatFloat sys.A L sys.C).construct)
+    (hM : M ∈ (LinearSysDT.errMatFloat sys.A L sys.C).toSet)
     (d : ℕ → Vec ℝ n)
-    (hd : ∀ j, d j ∈ ((Zonotope.mtimes (-L) V).plus W).construct) (k : ℕ) : -- --- CONCL ---
+    (hd : ∀ j, d j ∈ ((Zonotope.mtimes (-L) V).plus W).toSet) (k : ℕ) : -- --- CONCL ---
     ∑ m ∈ Finset.range k, (M ^ m) *ᵥ d m ∈
-      (sys.step_observeIntervalStateFloat L R₀ W V u y k).Rwv.construct := by -- --- PROOF ---
+      (sys.step_observeIntervalStateFloat L R₀ W V u y k).Rwv.toSet := by -- --- PROOF ---
   induction k with
   | zero =>
     -- the empty sum is the origin, which the collected box starts at
@@ -124,7 +124,7 @@ private theorem LinearSysDT.aux_observeIntervalFloat_Rwv (sys : LinearSysDT 𝕋
   | succ k ih =>
     -- the new term is in the box of `D` after `k` steps
     have hk : (M ^ k) *ᵥ d k ∈
-        (sys.step_observeIntervalStateFloat L R₀ W V u y k).D.interval.construct :=
+        (sys.step_observeIntervalStateFloat L R₀ W V u y k).D.interval.toSet :=
       Zonotope.interval_contains _ (LinearSysDT.aux_observeIntervalFloat_D sys L R₀ W V u y hM
         (hd k) k)
     rw [Finset.sum_range_succ]
@@ -136,25 +136,25 @@ private theorem LinearSysDT.aux_observeIntervalFloat_Rwv (sys : LinearSysDT 𝕋
 theorem LinearSysDT.observeIntervalFloat_outer (sys : LinearSysDT 𝕋 n) (L : Mat 𝕋 n sys.q)
     (R₀ W : Zonotope (Vec 𝕋 n)) (V : Zonotope (Vec 𝕋 sys.q)) (u : ℕ → Vec 𝕋 sys.m)
     (y : ℕ → Vec 𝕋 sys.q) (x w : ℕ → Vec ℝ n) (v : ℕ → Vec ℝ sys.q)
-    (h0 : x 0 - toRealVec R₀.c ∈ R₀.construct) (hw : ∀ k, w k ∈ W.construct)
-    (hv : ∀ k, v k ∈ V.construct)
+    (h0 : x 0 - toRealVec R₀.c ∈ R₀.toSet) (hw : ∀ k, w k ∈ W.toSet)
+    (hv : ∀ k, v k ∈ V.toSet)
     (hstep : ∀ k, x (k + 1) = toRealMat sys.A *ᵥ x k + toRealMat sys.B *ᵥ toRealVec (u k) + w k)
     (hy : ∀ k, toRealVec (y k) = toRealMat sys.C *ᵥ x k + v k) (k : ℕ) : -- --- CONCL ---
-    x k ∈ (sys.observeIntervalFloat L R₀ W V u y k).construct := by -- --- PROOF ---
+    x k ∈ (sys.observeIntervalFloat L R₀ W V u y k).toSet := by -- --- PROOF ---
   set M : Mat ℝ n n := toRealMat sys.A - toRealMat L * toRealMat sys.C with hMdef
   have hM := LinearSysDT.errMatFloat_mem sys.A L sys.C
   -- the disturbance terms `ω_j - L v_j` lie in `D`'s initial set `(-L) V ⊕ W`
   have hd : ∀ j, w j - toRealMat L *ᵥ v j ∈
-      ((Zonotope.mtimes (-L) V).plus W).construct := fun j => by
+      ((Zonotope.mtimes (-L) V).plus W).toSet := fun j => by
     have hneg : toRealMat (-L) = -toRealMat L := toRealMat_neg _
     refine Zonotope.plus_outer _ _ ⟨toRealMat (-L) *ᵥ v j,
       Zonotope.mtimes_outer _ V ⟨v j, hv j, rfl⟩, w j, hw j, ?_⟩
     rw [hneg, Matrix.neg_mulVec]
     abel_nf
   -- the nominal estimate and the error's closed form, carried together
-  have key : ∀ k, ∃ xh ∈ (sys.step_observeIntervalStateFloat L R₀ W V u y k).x.construct,
+  have key : ∀ k, ∃ xh ∈ (sys.step_observeIntervalStateFloat L R₀ W V u y k).x.toSet,
       ∃ ds : ℕ → Vec ℝ n,
-        (∀ m, ds m ∈ ((Zonotope.mtimes (-L) V).plus W).construct) ∧
+        (∀ m, ds m ∈ ((Zonotope.mtimes (-L) V).plus W).toSet) ∧
         x k = xh + ((M ^ k) *ᵥ (x 0 - toRealVec R₀.c) +
           ∑ m ∈ Finset.range k, (M ^ m) *ᵥ ds m) := by
     intro k

@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.MinkDiffV
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructFoldlIntersectionEq
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ToSetFoldlIntersectionEq
 public import CORALean.ContSet.VPolytope.Real.Theorems.MinkowskiDiffEqIInter
 public import CORALean.ContSet.Zonotope.Real.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Real.Theorems.ShiftMemIff
@@ -14,7 +14,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeConZonotopeExact
 
 [1, Prop. 6]: `minkDiffV` denotes `Z ⊖ ⟨v⟩_V` on the nose, no enclosure anywhere. Two steps:
 `minkowskiDiff_eq_iInter` reduces the Minkowski difference by the vertex polytope to the
-intersection of the translated zonotopes `Z − v i`, and `construct_foldl_intersection_eq` reads
+intersection of the translated zonotopes `Z − v i`, and `toSet_foldl_intersection_eq` reads
 the fold that computes `minkDiffV` as exactly that intersection.
 
 Unlike `MinkDiff.minkDiff_inner`'s obligation, an under-approximation for a total operation, this
@@ -58,11 +58,11 @@ variable {n : ℕ}
 /-- [1, Prop. 6]: the constrained zonotope `minkDiffV Z v` denotes exactly `Z ⊖ ⟨v⟩_V`. -/
 theorem ConZonotope.minkDiffV_exact {k : ℕ} (Z : Zonotope (Vec ℝ n))
     (v : Fin (k + 1) → Vec ℝ n) : -- --- CONCL ---
-    (ConZonotope.minkDiffV Z v).construct = minkowskiDiff Z.construct
-      (⟨k + 1, v⟩ : VPolytope (Vec ℝ n)).construct := by -- --- PROOF ---
-  rw [VPolytope.minkowskiDiff_eq_iInter Z.convex_construct]
+    (ConZonotope.minkDiffV Z v).toSet = minkowskiDiff Z.toSet
+      (⟨k + 1, v⟩ : VPolytope (Vec ℝ n)).toSet := by -- --- PROOF ---
+  rw [VPolytope.minkowskiDiff_eq_iInter Z.convex_toSet]
   unfold ConZonotope.minkDiffV
-  rw [ConZonotope.construct_foldl_intersection_eq]
+  rw [ConZonotope.toSet_foldl_intersection_eq]
   ext x
   simp only [Set.mem_inter_iff, Set.mem_iInter, ← Zonotope.conZonotope_exact,
     Zonotope.mem_shift_iff, Set.mem_setOf_eq, Fin.forall_fin_succ]

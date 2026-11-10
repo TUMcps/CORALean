@@ -53,7 +53,7 @@ variable {n : ℕ}
 
 theorem ProbZonotope.interval_prob (P : ProbZonotope n) (hP : P.cov.PosSemidef) {m : ℝ}
     (hm : 0 < m) {ν : Measure (EuclideanSpace ℝ (Fin n))} (hν : ν ∈ P.laws) :
-    (gaussianReal 0 1 (Set.Icc (-m) m)) ^ n ≤ ν (toLp 2 '' (P.interval m).construct) :=
+    (gaussianReal 0 1 (Set.Icc (-m) m)) ^ n ≤ ν (toLp 2 '' (P.interval m).toSet) :=
   (P.zonotope_prob hP hm hν).trans
     (measure_mono (Set.image_mono (P.zonotope m).interval_contains))
 

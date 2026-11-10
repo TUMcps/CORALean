@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- A point of the error box is within `errorNorm`: per coordinate, the larger end magnitude. -/
 theorem Capsule.norm₂_le_errorNorm (k : ℕ) (C : Capsule 𝕋 n) {e : Vec ℝ n}
-    (he : e ∈ C.I_error.construct) : ‖e‖₂ ≤ toReal (C.errorNorm k) :=
+    (he : e ∈ C.I_error.toSet) : ‖e‖₂ ≤ toReal (C.errorNorm k) :=
   norm₂_le_normUp k fun j => by
     rw [Interval.normMag, toReal_maximum, toReal_absolute, toReal_absolute,
       abs_of_nonneg (le_max_of_le_left (abs_nonneg _))]

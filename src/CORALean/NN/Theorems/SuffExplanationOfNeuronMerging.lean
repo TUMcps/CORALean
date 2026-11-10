@@ -86,8 +86,8 @@ theorem NeuralNetwork.suffExplanation_of_neuronMerging [∀ n, Plus (S n) (Vec �
     (x : Vec ℝ n₀) (ε : ℝ) (E : Finset (Fin n₀)) (l : Fin n₃)
     {fpre : Vec ℝ n₀ → Vec ℝ n₁} (hpre : pre.Encloses fpre)
     {fpost : Vec ℝ n₂ → Vec ℝ n₃} (hpost : post.Encloses fpost)
-    (hY : ∀ z ∈ construct (pre.enclose (ofInterval (explainBox x ε E))),
-      (fun i => σ ((toRealMat W0 *ᵥ z + toRealVec b0) i)) ∈ Y.construct)
+    (hY : ∀ z ∈ toSet (pre.enclose (ofInterval (explainBox x ε E))),
+      (fun i => σ ((toRealMat W0 *ᵥ z + toRealVec b0) i)) ∈ Y.toSet)
     -- the reduced network: both linear layers trimmed to `part.left`, the bucket boxed into `k+1`
     (hsuffAbs : (NeuralNetwork.layer (Enclose.pack (S := S) pre)
         (.layer (LinearLayer.mk (W0.submatrix part.left id) (b0 ∘ part.left))

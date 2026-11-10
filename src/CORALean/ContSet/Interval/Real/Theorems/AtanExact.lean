@@ -46,7 +46,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.atan_exact (I : Interval (Vec ℝ n)) :
-    I.atan.construct = (fun x i => Real.arctan (x i)) '' I.construct := by
+    I.atan.toSet = (fun x i => Real.arctan (x i)) '' I.toSet := by
   exact Interval.monotoneImage_exact Real.arctan (Set.univ) Set.ordConnected_univ
     (fun a _ b _ h => Real.arctan_strictMono h) (Real.continuous_arctan.continuousOn)
     I (fun i => ⟨trivial, trivial⟩)

@@ -41,10 +41,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 theorem SpectraShadow.isBounded_sound {S : SpectraShadow 𝕋 (Vec 𝕋 n)}
     {Yup Ylo : Fin n → Mat 𝕋 S.k S.k}
-    (h : S.isBounded Yup Ylo = true) : Bornology.IsBounded S.construct := by
+    (h : S.isBounded Yup Ylo = true) : Bornology.IsBounded S.toSet := by
   simp only [SpectraShadow.isBounded, Option.isSome_iff_exists] at h
   obtain ⟨I, hI⟩ := h
-  exact (Interval.isCompact_construct I).isBounded.subset (SpectraShadow.interval_contains _ hI)
+  exact (Interval.isCompact_toSet I).isBounded.subset (SpectraShadow.interval_contains _ hI)
 
 end CORALean.Float
 

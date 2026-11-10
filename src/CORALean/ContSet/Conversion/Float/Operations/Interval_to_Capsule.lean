@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Capsule.Float.Capsule
 public import CORALean.ContSet.Capsule.Real.Instances
-public import CORALean.ContSet.Capsule.Real.Theorems.ConstructSubsetOfDistLe
+public import CORALean.ContSet.Capsule.Real.Theorems.ToSetSubsetOfDistLe
 public import CORALean.ContSet.Interval.Float.Interval
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Capsule

@@ -45,7 +45,7 @@ theorem GridPartition.cellInterval_nonempty (P : GridPartition n) (hP : P.IsWell
 
 /-- A point is in a box iff each coordinate is between the bounds. -/
 theorem GridPartition.mem_interval_iff (I : Real.Interval (Vec ℝ n)) (x : Vec ℝ n) :
-    x ∈ I.construct ↔ ∀ j, I.inf j ≤ x j ∧ x j ≤ I.sup j := Iff.rfl
+    x ∈ I.toSet ↔ ∀ j, I.inf j ≤ x j ∧ x j ≤ I.sup j := Iff.rfl
 
 
 -- ==============================  `GridPartition.nrOfCells_card`  ============================== --

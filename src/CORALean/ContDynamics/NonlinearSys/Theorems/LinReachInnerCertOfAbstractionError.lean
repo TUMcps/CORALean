@@ -83,9 +83,9 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
 keep to gives the step from `X` [1, Prop. 1]'s hypotheses, (21) among them. -/
 theorem NonlinearSys.IsLinReachInnerCert.of_abstractionError [Mtimes ℐ S]
     (ops : NonlinearSys.LinReachInnerOps n (S n)) (sys : NonlinearSys n m) (u₀ : Vec ℝ m) (U : S m)
-    (hu₀ : u₀ ∈ construct U) {Δt : ℝ} (hΔt : 0 < Δt) (fuel η : ℕ)
+    (hu₀ : u₀ ∈ toSet U) {Δt : ℝ} (hΔt : 0 < Δt) (fuel η : ℕ)
     (herr : ∀ A L, ops.inputSol Δt A L =
-      construct ((NonlinearSys.linearize A).inputSolution Δt η L)) {X : Set (Vec ℝ n)} {e : Vec ℝ n}
+      toSet ((NonlinearSys.linearize A).inputSolution Δt η L)) {X : Set (Vec ℝ n)} {e : Vec ℝ n}
     {B : Mat ℝ n m} {R : Set (Vec ℝ n)} (hconf : ∀ x₀ ∈ X, ∀ x : ℝ → Vec ℝ n, x 0 = x₀ →
       (∀ t ∈ Icc 0 Δt, HasDerivWithinAt x (sys.f (x t) u₀) (Icc 0 Δt) t) →
       ∀ t ∈ Icc 0 Δt, x t ∈ R) {Ω : Set (Vec ℝ n)} {K : NNReal}
@@ -93,11 +93,11 @@ theorem NonlinearSys.IsLinReachInnerCert.of_abstractionError [Mtimes ℐ S]
     (hex : ∀ x₀ ∈ X, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Icc 0 Δt,
       x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Icc 0 Δt) t) : -- --- CONCL ---
     ∀ o ∈ NonlinearSys.linReachInner ops (fun x => sys.f x u₀) Δt fuel X e, ∀ st ∈ o,
-      IsAbstractionError sys.f st.A B st.p u₀ R (construct U) st.VerrorDyn →
+      IsAbstractionError sys.f st.A B st.p u₀ R (toSet U) st.VerrorDyn →
       ‖Δt • st.A‖ / ((η : ℝ) + 2) < 1 →
-      Convex ℝ (construct st.VerrorDyn) →
-      IsClosed (construct st.VerrorDyn) →
-      Bornology.IsBounded (construct st.VerrorDyn) →
+      Convex ℝ (toSet st.VerrorDyn) →
+      IsClosed (toSet st.VerrorDyn) →
+      Bornology.IsBounded (toSet st.VerrorDyn) →
       Convex ℝ (MatExp.inputRemainderSet st.A Δt η st.VerrorDyn) →
       IsClosed (MatExp.inputRemainderSet st.A Δt η st.VerrorDyn) →
       Bornology.IsBounded

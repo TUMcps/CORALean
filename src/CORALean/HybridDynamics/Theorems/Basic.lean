@@ -39,7 +39,7 @@ variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet
 /-- The combined input of a stay lies in `inputSet` at every time of the stay. -/
 theorem Location.IsTrajectory.inputSet_mem {ℓ : Location S G L 𝕋 n} {τ : ℝ} {x u w}
     (traj : ℓ.IsTrajectory τ x u w) : ∀ t ∈ Set.Icc 0 τ, toRealMat ℓ.dynamics.B *ᵥ u t +
-      toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w t ∈ construct ℓ.inputSet :=
+      toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w t ∈ toSet ℓ.inputSet :=
   fun t ht => ℓ.inputSet_outer (traj.input t ht) (traj.dist t ht)
 
 end
@@ -62,7 +62,7 @@ variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L 𝕋 : Type} [
 /-- The combined input of a stay lies in `inputSetFloat` at every time of the stay. -/
 theorem Location.IsTrajectory.inputSetFloat_mem {ℓ : Location 𝒵[𝕋] G L 𝕋 n} {τ : ℝ} {x u w}
     (traj : ℓ.IsTrajectory τ x u w) : ∀ t ∈ Set.Icc 0 τ, toRealMat ℓ.dynamics.B *ᵥ u t +
-      toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w t ∈ construct ℓ.inputSetFloat :=
+      toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w t ∈ toSet ℓ.inputSetFloat :=
   fun t ht => ℓ.inputSetFloat_outer (traj.input t ht) (traj.dist t ht)
 
 end

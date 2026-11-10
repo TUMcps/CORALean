@@ -97,7 +97,7 @@ private theorem aux_extremalHi_continuous {d : ℕ} {C : Interval (Vec ℝ (d + 
 /-- Membership in `B` with coordinate `k` replaced by `[a, b]`. -/
 private theorem aux_mem_update_iff {B : Interval (Vec ℝ n)} {k : Fin n} {a b : ℝ}
     {z : Vec ℝ n} : -- --- CONCL ---
-    z ∈ (⟨Function.update B.inf k a, Function.update B.sup k b⟩ : Interval (Vec ℝ n)).construct ↔
+    z ∈ (⟨Function.update B.inf k a, Function.update B.sup k b⟩ : Interval (Vec ℝ n)).toSet ↔
       (a ≤ z k ∧ z k ≤ b) ∧ ∀ i, i ≠ k → B.inf i ≤ z i ∧ z i ≤ B.sup i := by -- --- PROOF ---
   constructor
   · intro h
@@ -121,11 +121,11 @@ theorem Interval.polyBoxRevise_isContractor {d : ℕ} {c : Vec ℝ n → ℝ}
     {F : Fin (d + 1) → Vec ℝ n → ℝ} {coeff : Interval (Vec ℝ n) → Interval (Vec ℝ (d + 1))}
     {k : Fin n} {rootL rootR : (ℝ → ℝ) → ℝ → ℝ → ℝ}
     (hc : ∀ z, c z = ∑ i, F i z * z k ^ (i : ℕ))
-    (hF : ∀ B : Interval (Vec ℝ n), ∀ z ∈ B.construct, (fun i => F i z) ∈ (coeff B).construct)
+    (hF : ∀ B : Interval (Vec ℝ n), ∀ z ∈ B.toSet, (fun i => F i z) ∈ (coeff B).toSet)
     (hL : Interval.IsLeftRootBound rootL) (hR : Interval.IsRightRootBound rootR) : -- --- CONCL ---
     IsContractor c (Interval.polyBoxRevise coeff k rootL rootR) := by -- --- PROOF ---
   intro B
-  have hB : ∀ z ∈ B.construct, ∀ i, B.inf i ≤ z i ∧ z i ≤ B.sup i := fun z hz i => hz i
+  have hB : ∀ z ∈ B.toSet, ∀ i, B.inf i ≤ z i ∧ z i ≤ B.sup i := fun z hz i => hz i
   refine ⟨fun z hz => ?_, fun z hz hcz => ?_⟩
   · -- the result lies in `B`: coordinate `k` is cut to `[x̲, x̅]`, the rest unchanged
     dsimp only [Interval.polyBoxRevise] at hz

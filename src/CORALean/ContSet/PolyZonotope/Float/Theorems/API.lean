@@ -10,7 +10,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.BilinRefines
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.BlockPadLeftNominal
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.BoxOutOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CartProdExact
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.CenterMemConstruct
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CenterMemToSet
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactFactorsNominal
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactGensOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactOuter
@@ -88,7 +88,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReplaceIdSubset
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.RepresentsaEmptySetSound
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.RepresentsaPointSound
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ResolveOuter
-public import CORALean.ContSet.PolyZonotope.Float.Theorems.RmIdConstruct
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.RmIdToSet
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.RmIdSubset
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitDepFactorOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitIndepGenOuter

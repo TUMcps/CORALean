@@ -50,10 +50,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.ellipsoid_contains {P : HPolytope 𝕋 (Vec 𝕋 n)}
-    (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) (σ : 𝕋) (hσ : 0 < toReal σ)
+    (up : ∀ j, FloatBound 𝕋 P.toSet (LinearMap.proj j))
+    (lo : ∀ j, FloatBound 𝕋 P.toSet (-LinearMap.proj j)) (σ : 𝕋) (hσ : 0 < toReal σ)
     (hh : ((HPolytope.zonotope up lo).h : ℝ) ≤ toReal (mulDown σ σ)) :
-    P.construct ⊆ (HPolytope.ellipsoid up lo σ).construct :=
+    P.toSet ⊆ (HPolytope.ellipsoid up lo σ).toSet :=
   subset_trans (HPolytope.zonotope_contains up lo)
     ((HPolytope.zonotope up lo).ellipsoid_contains σ hσ hh)
 

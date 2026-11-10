@@ -56,7 +56,7 @@ open Pointwise
 
 /-- `Ellipsoid.ofPoint` is exactly the point. -/
 private theorem Ellipsoid.aux_ofPoint_exact (p : Vec 𝕋 n) : -- --- CONCL ---
-    (Ellipsoid.ofPoint p).construct = {toRealVec p} := by -- --- PROOF ---
+    (Ellipsoid.ofPoint p).toSet = {toRealVec p} := by -- --- PROOF ---
   have hQ : toRealMat (fun _ _ : Fin n => (zero : 𝕋)) = 0 :=
     funext fun _ => funext fun _ => toReal_zero
   have h : (InflatedContSet.nominal (Ellipsoid.ofPoint p)).ellipsoid
@@ -65,12 +65,12 @@ private theorem Ellipsoid.aux_ofPoint_exact (p : Vec 𝕋 n) : -- --- CONCL ---
     rw [hQ, Real.Ellipsoid.ofShape_eq .zero]
     rfl
   have hN : InflatedContSet.nominalSet (Ellipsoid.ofPoint p) = {toRealVec p} := by
-    show (InflatedContSet.nominal (Ellipsoid.ofPoint p)).ellipsoid.construct = _
+    show (InflatedContSet.nominal (Ellipsoid.ofPoint p)).ellipsoid.toSet = _
     rw [h]
     exact Set.ext fun x =>
       (Real.Ellipsoid.mem_ofPoint_iff (toRealVec p) x).trans Set.mem_singleton_iff.symm
-  have hE : (Ellipsoid.ofPoint p).I_error.construct = {0} := Interval.origin_exact n
-  show InflatedContSet.nominalSet (Ellipsoid.ofPoint p) + (Ellipsoid.ofPoint p).I_error.construct =
+  have hE : (Ellipsoid.ofPoint p).I_error.toSet = {0} := Interval.origin_exact n
+  show InflatedContSet.nominalSet (Ellipsoid.ofPoint p) + (Ellipsoid.ofPoint p).I_error.toSet =
       _
   rw [hN, hE, Set.singleton_add_singleton, add_zero]
 
@@ -81,12 +81,12 @@ end
 
 theorem Ellipsoid.andPoint_outer (E : Ellipsoid 𝕋 n) (p w : Vec 𝕋 n)
     (a : Vec 𝕋 n) (s : 𝕋) : -- --- CONCL ---
-    E.construct ∩ {toRealVec p} ⊆ ContSet.construct (E.andPoint p w a s) := by -- --- PROOF ---
+    E.toSet ∩ {toRealVec p} ⊆ ContSet.toSet (E.andPoint p w a s) := by -- --- PROOF ---
   -- the point ellipsoid holds every point of `E ∩ {p}`
-  have hpt : E.construct ∩ {toRealVec p}
-      ⊆ ContSet.construct (OptEmpty.of (Ellipsoid.ofPoint p) : OptEmpty (Ellipsoid 𝕋 n)) := by
-    rw [OptEmpty.construct_of]
-    change _ ⊆ (Ellipsoid.ofPoint p).construct
+  have hpt : E.toSet ∩ {toRealVec p}
+      ⊆ ContSet.toSet (OptEmpty.of (Ellipsoid.ofPoint p) : OptEmpty (Ellipsoid 𝕋 n)) := by
+    rw [OptEmpty.toSet_of]
+    change _ ⊆ (Ellipsoid.ofPoint p).toSet
     rw [Ellipsoid.aux_ofPoint_exact]
     exact Set.inter_subset_right
   unfold Ellipsoid.andPoint

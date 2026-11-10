@@ -39,15 +39,15 @@ attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNorm
 it took and wherever it stopped. -/
 example (HA : HybridAutomaton 𝒵 ℋ𝒫 Unit ℝ 2) {R : Unit → Zonotope (Vec ℝ 2)}
     (hinv : HA.IsInvariant R) {ℓ ℓ' : Unit} {x y : Vec ℝ 2} (run : HA.IsRun ℓ x ℓ' y)
-    (hx : x ∈ construct (R ℓ)) : y ∈ construct (R ℓ') :=
+    (hx : x ∈ toSet (R ℓ)) : y ∈ toSet (R ℓ') :=
   run.mem_of_isInvariant hinv hx
 
 /-- The floor as a requirement rather than as a guard: checked on the invariant
 of the location a run ends in, it is answered for the state it ends at. -/
 example (HA : HybridAutomaton 𝒵 ℋ𝒫 Unit ℝ 2) {R : Unit → Zonotope (Vec ℝ 2)}
     (hinv : HA.IsInvariant R) {ℓ ℓ' : Unit} {x y : Vec ℝ 2} (run : HA.IsRun ℓ x ℓ' y)
-    (hx : x ∈ construct (R ℓ))
-    (h : (Specification.safeSet {z : Vec ℝ 2 | 0 ≤ z 0}).Holds (construct (R ℓ'))) :
+    (hx : x ∈ toSet (R ℓ))
+    (h : (Specification.safeSet {z : Vec ℝ 2 | 0 ≤ z 0}).Holds (toSet (R ℓ'))) :
     (Specification.safeSet {z : Vec ℝ 2 | 0 ≤ z 0}).Holds {y} :=
   HA.holds_of_isInvariant hinv _ run hx h
 
@@ -55,21 +55,21 @@ example (HA : HybridAutomaton 𝒵 ℋ𝒫 Unit ℝ 2) {R : Unit → Zonotope (V
 `LinearSys` dynamics in a location buys. -/
 example (ℓ : Location 𝒵 ℋ𝒫 Unit ℝ 2) {τ : ℝ} {x : ℝ → Vec ℝ 2} {u w}
     (traj : ℓ.IsTrajectory τ x u w) {R₀ Ud : Zonotope (Vec ℝ 2)}
-    (h₀ : x 0 ∈ construct R₀) (hτ : 0 < τ) {m : ℕ}
+    (h₀ : x 0 ∈ toSet R₀) (hτ : 0 < τ) {m : ℕ}
     (hε : ‖τ • toRealMat ℓ.dynamics.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
-    (ht0 : 0 ≤ t) (htτ : t ≤ τ) (hU : Bornology.IsBounded (construct ℓ.inputSet))
+    (ht0 : 0 ≤ t) (htτ : t ≤ τ) (hU : Bornology.IsBounded (toSet ℓ.inputSet))
     (hUd : (∫ s in (0 : ℝ)..t, exp ((t - s) • toRealMat ℓ.dynamics.A) *ᵥ
       (toRealMat ℓ.dynamics.B *ᵥ u s + toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w s))
-      ∈ construct Ud) :
-    x t ∈ construct (Plus.plus (ℓ.timeInterval τ (m + 2) R₀) Ud) :=
+      ∈ toSet Ud) :
+    x t ∈ toSet (Plus.plus (ℓ.timeInterval τ (m + 2) R₀) Ud) :=
   traj.timeInterval_outer h₀ hτ hε ht0 htτ hU hUd
 
 /-- The whole point of the separation: a zonotope reachable set, a halfspace
 guard, and the reset image once the caller has cut the one down to the other. -/
 example (e : Transition ℋ𝒫 Unit ℝ 2) {R Rg : Zonotope (Vec ℝ 2)}
-    (hand : construct R ∩ construct e.guard ⊆ construct Rg) {z : Vec ℝ 2}
-    (hz : z ∈ construct R) (hguard : z ∈ construct e.guard) :
-    e.reset z ∈ construct (e.jump (S := 𝒵) Rg) :=
+    (hand : toSet R ∩ toSet e.guard ⊆ toSet Rg) {z : Vec ℝ 2}
+    (hz : z ∈ toSet R) (hguard : z ∈ toSet e.guard) :
+    e.reset z ∈ toSet (e.jump (S := 𝒵) Rg) :=
   e.jump_outer hand hz hguard
 
 /-- The one thing the automaton computes, at the concrete transition: `jump`

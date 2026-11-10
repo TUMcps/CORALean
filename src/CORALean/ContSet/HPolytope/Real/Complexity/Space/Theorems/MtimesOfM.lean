@@ -16,7 +16,7 @@ does not otherwise touch.
 ## Inputs
 * `M` – linear map
 * `Aq` – family indexed by `Fin q`
-* `u` – a support bound of `P.construct` along each row
+* `u` – a support bound of `P.toSet` along each row
 
 ## Hypotheses
 * none
@@ -44,7 +44,7 @@ variable {q : ℕ} {P : HPolytope α}
 
 /-- The `m` count of `mtimesOf`'s result. -/
 theorem HPolytope.mtimesOf_m (M : α →ₗ[ℝ] β) (Aq : Fin q → (β →ₗ[ℝ] ℝ))
-    (u : ∀ i, SupportBound P.construct ((Aq i).comp M)) :
+    (u : ∀ i, SupportBound P.toSet ((Aq i).comp M)) :
     (HPolytope.mtimesOf M Aq u).m = q := rfl
 
 end CORALean.Real

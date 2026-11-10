@@ -52,10 +52,10 @@ variable [OfInterval S 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ContSet.projectOnHyperplaneIntervalFloat_outer (s : S n) (c : Interval (Vec 𝕋 n))
-    (dLo dHi : 𝕋) {cr : Vec ℝ n} (hc : cr ∈ c.construct) {δ : ℝ} (hδ : toReal dLo ≤ δ)
+    (dLo dHi : 𝕋) {cr : Vec ℝ n} (hc : cr ∈ c.toSet) {δ : ℝ} (hδ : toReal dLo ≤ δ)
     (hδ' : δ ≤ toReal dHi) : -- --- CONCL ---
-    (fun x : Vec ℝ n => x - (cr ⬝ᵥ x - δ) • cr) '' construct s ⊆
-      construct (ContSet.projectOnHyperplaneIntervalFloat s c dLo dHi) := by -- --- PROOF ---
+    (fun x : Vec ℝ n => x - (cr ⬝ᵥ x - δ) • cr) '' toSet s ⊆
+      toSet (ContSet.projectOnHyperplaneIntervalFloat s c dLo dHi) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   have hci : ∀ i, toReal (c.inf i) ≤ cr i ∧ cr i ≤ toReal (c.sup i) := hc
   refine Plus.plus_outer _ _ ⟨(1 - Matrix.vecMulVec cr cr).mulVec x, ?_,

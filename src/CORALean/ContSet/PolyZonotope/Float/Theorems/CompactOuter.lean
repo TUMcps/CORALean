@@ -39,7 +39,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.compact_outer (pZ : PolyZonotope (Vec 𝕋 n)) :
-    pZ.construct ⊆ pZ.compact.construct :=
+    pZ.toSet ⊆ pZ.compact.toSet :=
   subset_trans (PolyZonotope.compactGens_outer pZ)
     (PolyZonotope.compactFactors_outer pZ.compactGens)
 

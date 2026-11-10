@@ -65,11 +65,11 @@ theorem NonlinDASys.IsTrajectory.shift {sys : NonlinDASys n p m} {T : ℝ} {R₀
     {U : Zonotope (Vec ℝ m)} {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m}
     {z : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 T) R₀ U x y u z) {a b : ℝ}
     (ha : 0 ≤ a)
-    (hab : a + b ≤ T) {Z : Zonotope (Vec ℝ n)} (hx : x a ∈ Z.construct) :
+    (hab : a + b ≤ T) {Z : Zonotope (Vec ℝ n)} (hx : x a ∈ Z.toSet) :
     sys.IsTrajectory (S := 𝒵) (Set.Icc 0 b) Z U (fun s => x (a + s)) (fun s => y (a + s))
       (fun s => u (a + s)) (fun s => z (a + s)) where
   init := by
-    show x (a + 0) ∈ Z.construct
+    show x (a + 0) ∈ Z.toSet
     rw [add_zero]
     exact hx
   input s hs := traj.input (a + s) ⟨by linarith [hs.1], by linarith [hs.2]⟩

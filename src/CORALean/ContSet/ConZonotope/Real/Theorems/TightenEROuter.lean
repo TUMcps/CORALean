@@ -64,7 +64,7 @@ open Matrix
 `rowBound`'s two endpoints. -/
 private theorem ConZonotope.aux_rowBound_mem {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (i : Fin nc) (j : Fin ng) {E : Interval (Vec ℝ ng)} {β : Vec ℝ ng} (h0 : A i j ≠ 0)
-    (hβ : β ∈ E.construct) (hrow : (A *ᵥ β) i = b i) : -- --- CONCL ---
+    (hβ : β ∈ E.toSet) (hrow : (A *ᵥ β) i = b i) : -- --- CONCL ---
     min (ConZonotope.rowBound A b i j E).inf (ConZonotope.rowBound A b i j E).sup ≤ β j ∧
       β j ≤ max (ConZonotope.rowBound A b i j E).inf
         (ConZonotope.rowBound A b i j E).sup := by -- --- PROOF ---
@@ -90,9 +90,9 @@ private theorem ConZonotope.aux_rowBound_mem {nc ng : ℕ} (A : Mat ℝ nc ng) (
 private theorem ConZonotope.aux_tightenCoeffER_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     (i : Fin nc) (j : Fin ng) {β : Vec ℝ ng}
     {S : Interval (Vec ℝ ng) × ((Fin ng → EReal) × (Fin ng → EReal))}
-    (hS : β ∈ S.1.construct ∧ ∀ k, S.2.1 k ≤ (β k : EReal) ∧ (β k : EReal) ≤ S.2.2 k)
+    (hS : β ∈ S.1.toSet ∧ ∀ k, S.2.1 k ≤ (β k : EReal) ∧ (β k : EReal) ≤ S.2.2 k)
     (hrow : (A *ᵥ β) i = b i) : -- --- CONCL ---
-    β ∈ (ConZonotope.tightenCoeffER A b i j S).1.construct ∧
+    β ∈ (ConZonotope.tightenCoeffER A b i j S).1.toSet ∧
       ∀ k, (ConZonotope.tightenCoeffER A b i j S).2.1 k ≤ (β k : EReal) ∧
         (β k : EReal) ≤ (ConZonotope.tightenCoeffER A b i j S).2.2 k := by -- --- PROOF ---
   unfold ConZonotope.tightenCoeffER
@@ -132,18 +132,18 @@ private theorem ConZonotope.aux_tightenCoeffER_outer {nc ng : ℕ} (A : Mat ℝ 
 /-- One pass of lines 2-10 keeps the same invariant. -/
 private theorem ConZonotope.aux_tightenPassER_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc)
     {β : Vec ℝ ng} {S : Interval (Vec ℝ ng) × ((Fin ng → EReal) × (Fin ng → EReal))}
-    (hS : β ∈ S.1.construct ∧ ∀ k, S.2.1 k ≤ (β k : EReal) ∧ (β k : EReal) ≤ S.2.2 k)
+    (hS : β ∈ S.1.toSet ∧ ∀ k, S.2.1 k ≤ (β k : EReal) ∧ (β k : EReal) ≤ S.2.2 k)
     (heq : ∀ i, (A *ᵥ β) i = b i) : -- --- CONCL ---
-    β ∈ (ConZonotope.tightenPassER A b S).1.construct ∧
+    β ∈ (ConZonotope.tightenPassER A b S).1.toSet ∧
       ∀ k, (ConZonotope.tightenPassER A b S).2.1 k ≤ (β k : EReal) ∧
         (β k : EReal) ≤ (ConZonotope.tightenPassER A b S).2.2 k := by -- --- PROOF ---
   unfold ConZonotope.tightenPassER
   refine Fin.foldl_induction (P := fun S : Interval (Vec ℝ ng) × ((Fin ng → EReal) ×
-      (Fin ng → EReal)) => β ∈ S.1.construct ∧
+      (Fin ng → EReal)) => β ∈ S.1.toSet ∧
         ∀ k, S.2.1 k ≤ (β k : EReal) ∧ (β k : EReal) ≤ S.2.2 k) nc _ S hS ?_
   intro S' i hS'
   exact Fin.foldl_induction (P := fun S : Interval (Vec ℝ ng) × ((Fin ng → EReal) ×
-      (Fin ng → EReal)) => β ∈ S.1.construct ∧
+      (Fin ng → EReal)) => β ∈ S.1.toSet ∧
         ∀ k, S.2.1 k ≤ (β k : EReal) ∧ (β k : EReal) ≤ S.2.2 k) ng _ S' hS'
     fun S'' j hS'' => ConZonotope.aux_tightenCoeffER_outer A b i j hS'' (heq i)
 
@@ -154,12 +154,12 @@ private theorem ConZonotope.aux_tightenPassER_outer {nc ng : ℕ} (A : Mat ℝ n
 every `β ∈ B∞(A, b)` lies in `E`, and `R_j ∋ β_j` for every `j`. -/
 theorem ConZonotope.tightenER_outer {nc ng : ℕ} (A : Mat ℝ nc ng) (b : Vec ℝ nc) (k : ℕ)
     {β : Vec ℝ ng} (hbox : ∀ j, |β j| ≤ 1) (heq : ∀ i, (A *ᵥ β) i = b i) : -- --- CONCL ---
-    β ∈ (ConZonotope.tightenER A b k).1.construct ∧
+    β ∈ (ConZonotope.tightenER A b k).1.toSet ∧
       ∀ j, (ConZonotope.tightenER A b k).2.1 j ≤ (β j : EReal) ∧
         (β j : EReal) ≤ (ConZonotope.tightenER A b k).2.2 j := by -- --- PROOF ---
   unfold ConZonotope.tightenER
   -- line 1's state already holds `β`: `[-1, 1]` by the box, `[-∞, +∞]` trivially
-  have h₀ : β ∈ (⟨fun _ => -1, fun _ => 1⟩ : Interval (Vec ℝ ng)).construct ∧
+  have h₀ : β ∈ (⟨fun _ => -1, fun _ => 1⟩ : Interval (Vec ℝ ng)).toSet ∧
       ∀ j, ((fun _ => ⊥, fun _ => ⊤) : (Fin ng → EReal) × (Fin ng → EReal)).1 j
           ≤ (β j : EReal) ∧
         (β j : EReal) ≤ ((fun _ => ⊥, fun _ => ⊤) : (Fin ng → EReal) × (Fin ng → EReal)).2 j :=

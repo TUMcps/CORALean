@@ -49,7 +49,7 @@ variable {n : ℕ}
 /-- [1, Fig. 1 (Star Sets ↔ Level Sets)]: the star set of a level set on a box around it denotes
 its set. -/
 theorem LevelSet.starSet_exact (L : LevelSet n) {D : Interval (Vec ℝ n)}
-    (hD : L.construct ⊆ D.construct) : (L.starSet D).construct = L.construct :=
+    (hD : L.toSet ⊆ D.toSet) : (L.starSet D).toSet = L.toSet :=
   (StarSet.ofPred_exact D L).trans (Set.inter_eq_right.mpr hD)
 
 end CORALean.Real

@@ -70,7 +70,7 @@ private theorem LinearSys.aux_isVerifySpec_of_verifyStep {Reach : Set (Vec ℝ n
     : -- --- CONCL ---
     LinearSys.IsVerifySpec G F Reach := by -- --- PROOF ---
   -- the outer approximation, read as a constrained zonotope, still contains `Reach`
-  have hR : Reach ⊆ (reachFn εmax).conZonotope.construct :=
+  have hR : Reach ⊆ (reachFn εmax).conZonotope.toSet :=
     (Zonotope.conZonotope_exact (reachFn εmax)) ▸ h.outer εmax
   simp only [LinearSys.verifyStep] at hG hF
   refine ⟨fun j => ?_, fun j => ?_⟩

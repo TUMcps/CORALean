@@ -54,8 +54,8 @@ variable {n d : ℕ}
 /-- A fold of `intersection` is every polytope at once. -/
 private theorem ConZonotope.aux_mem_foldl_intersection {α : Type} [AddCommGroup α] [Module ℝ α]
     {m : ℕ} (g : Fin m → HPolytope α) (init : HPolytope α) (x : α) : -- --- CONCL ---
-    x ∈ (Fin.foldl m (fun P i => P.intersection (g i)) init).construct ↔
-      x ∈ init.construct ∧ ∀ i, x ∈ (g i).construct := by -- --- PROOF ---
+    x ∈ (Fin.foldl m (fun P i => P.intersection (g i)) init).toSet ↔
+      x ∈ init.toSet ∧ ∀ i, x ∈ (g i).toSet := by -- --- PROOF ---
   induction m generalizing init with
   | zero => simp [Fin.foldl_zero]
   | succ m ih =>
@@ -96,9 +96,9 @@ private theorem ConZonotope.aux_row (cs : Fin (d + 1) → ConZonotope (Vec ℝ n
 
 private theorem ConZonotope.aux_mem_intersectMany_P_iff (cs : Fin (d + 1) → ConZonotope (Vec ℝ n))
     (β : Vec ℝ ((cs 0).h + ∑ j : Fin d, (cs j.succ).h)) : -- --- CONCL ---
-    β ∈ (ConZonotope.intersectMany cs).P.construct ↔
-      ((fun t => β (Fin.castAdd _ t)) ∈ (cs 0).P.construct ∧
-        ∀ j, ConZonotope.aux_block cs β j ∈ (cs j.succ).P.construct) ∧
+    β ∈ (ConZonotope.intersectMany cs).P.toSet ↔
+      ((fun t => β (Fin.castAdd _ t)) ∈ (cs 0).P.toSet ∧
+        ∀ j, ConZonotope.aux_block cs β j ∈ (cs j.succ).P.toSet) ∧
       ∀ j a, (∑ t, (cs 0).G t a * β (Fin.castAdd _ t))
           - ∑ t, (cs j.succ).G t a * ConZonotope.aux_block cs β j t
         = (cs j.succ).c a - (cs 0).c a := by -- --- PROOF ---
@@ -145,7 +145,7 @@ private theorem ConZonotope.aux_value_intersectMany (cs : Fin (d + 1) → ConZon
 
 theorem ConZonotope.intersectMany_exact
     (cs : Fin (d + 1) → ConZonotope (Vec ℝ n)) : -- --- CONCL ---
-    (ConZonotope.intersectMany cs).construct = ⋂ i, (cs i).construct := by -- --- PROOF ---
+    (ConZonotope.intersectMany cs).toSet = ⋂ i, (cs i).toSet := by -- --- PROOF ---
   ext x
   rw [Set.mem_iInter]
   constructor

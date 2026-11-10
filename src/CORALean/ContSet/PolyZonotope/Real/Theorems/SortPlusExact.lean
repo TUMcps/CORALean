@@ -52,7 +52,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.sortPlus_exact (pZ₁ pZ₂ : PolyZonotope α) (hp : pZ₁.p = pZ₂.p) :
-    (pZ₁.exactPlus pZ₂ hp).construct = (pZ₁.sortPlus pZ₂ hp).construct :=
+    (pZ₁.exactPlus pZ₂ hp).toSet = (pZ₁.sortPlus pZ₂ hp).toSet :=
   ((pZ₁.exactPlus pZ₂ hp).sort_exact).trans (pZ₁.exactPlus pZ₂ hp).sort.merge_exact
 
 end CORALean.Real

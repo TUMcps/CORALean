@@ -48,8 +48,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem Ellipsoid.intersectStripLiu_outer (steps : ℕ) (E : Ellipsoid 𝕋 n) (c : Vec 𝕋 n)
     (V y lam : 𝕋) (hV : 0 < toReal V) : -- --- CONCL ---
-    E.construct ∩ {x | (toReal y - ∑ i, toReal (c i) * x i) ^ 2 / toReal V ≤ 1}
-      ⊆ (Ellipsoid.intersectStripLiu steps E c V y lam).construct := by -- --- PROOF ---
+    E.toSet ∩ {x | (toReal y - ∑ i, toReal (c i) * x i) ^ 2 / toReal V ≤ 1}
+      ⊆ (Ellipsoid.intersectStripLiu steps E c V y lam).toSet := by -- --- PROOF ---
   rintro x ⟨hxE, hxS⟩
   refine Ellipsoid.intersectStripGollamudi_outer steps E c _ y _ ⟨hxE, ?_⟩
   simp only [Set.mem_setOf_eq] at hxS ⊢

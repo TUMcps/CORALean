@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Volume
 public import CORALean.ContSet.Ellipsoid.Real.Operations.Rank
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.GMulTranspose
@@ -58,9 +58,9 @@ private theorem Ellipsoid.aux_det_shape_eq_zero (E : Ellipsoid n)
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.volume_eq_of_rank_lt (E : Ellipsoid n) (hr : E.rank < n) : -- --- CONCL ---
-    MeasureTheory.volume E.construct = E.volume := by -- --- PROOF ---
+    MeasureTheory.volume E.toSet = E.volume := by -- --- PROOF ---
   -- the ellipsoid as `q + G u`, `‖u‖₂ ≤ 1`
-  simp only [Ellipsoid.construct_eq_sqrt] at *
+  simp only [Ellipsoid.toSet_eq_sqrt] at *
   have h0 : E.volume = 0 := by
     unfold Ellipsoid.volume
     simp only [E.aux_det_shape_eq_zero hr, Real.sqrt_zero, mul_zero, ENNReal.ofReal_zero]

@@ -49,7 +49,7 @@ variable {n m : ℕ}
 
 theorem Zonotope.diffusionUpdate_outer [NeZero m] (o : ℕ) (Zb : Fin m → Zonotope (Vec ℝ n))
     (hα : ∀ j, 0 < ∑ i, ∑ k, (Zb j).G k i ^ 2) : -- --- CONCL ---
-    (⋂ j, (Zb j).construct) ⊆ (Zonotope.diffusionUpdate o Zb).construct := by -- --- PROOF ---
+    (⋂ j, (Zb j).toSet) ⊆ (Zonotope.diffusionUpdate o Zb).toSet := by -- --- PROOF ---
   intro x hx
   have hw := (Zonotope.averagingWeights_optimal Zb hα).1
   have h1 := Zonotope.andAveraging_outer Zb (Zonotope.averagingWeights Zb)

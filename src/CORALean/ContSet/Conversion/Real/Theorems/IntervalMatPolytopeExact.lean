@@ -40,7 +40,7 @@ variable {m n : ℕ}
 /-- A nonempty interval matrix and its matrix polytope denote one set. -/
 theorem Interval.matPolytope_exact (A : Interval (Mat ℝ m n))
     (hA : ∀ p q, A.inf p q ≤ A.sup p q) : -- --- CONCL ---
-    A.matPolytope.construct = A.construct := by -- --- PROOF ---
+    A.matPolytope.toSet = A.toSet := by -- --- PROOF ---
   have hr : Set.range A.matPolytope.V = (A.vertices : Set (Mat ℝ m n)) := by
     ext x
     constructor
@@ -48,7 +48,7 @@ theorem Interval.matPolytope_exact (A : Interval (Mat ℝ m n))
       exact (A.vertices.equivFin.symm l).2
     · intro hx
       exact ⟨A.vertices.equivFin ⟨x, hx⟩, by simp [Interval.matPolytope]⟩
-  rw [VPolytope.construct_eq_convexHull, hr]
+  rw [VPolytope.toSet_eq_convexHull, hr]
   exact Interval.convexHull_vertices A hA
 
 end CORALean.Real

@@ -54,7 +54,7 @@ theorem NonlinearReset.FloatModel.Encloses.lift {fm : NonlinearReset.FloatModel 
   refine ⟨fun X U x hx u hu => ?_⟩
   -- a vector is in a float box when every coordinate is between the real bounds
   have mem_iff : ∀ {k : ℕ} (I : Interval (Vec 𝕋 k)) (v : Vec ℝ k),
-      v ∈ construct I ↔ ∀ i, toReal (I.inf i) ≤ v i ∧ v i ≤ toReal (I.sup i) :=
+      v ∈ toSet I ↔ ∀ i, toReal (I.inf i) ≤ v i ∧ v i ≤ toReal (I.sup i) :=
     fun _ _ => Iff.rfl
   rw [mem_iff] at hx hu ⊢
   -- the old reset reads the bound coordinates of the boxes, which hold the bound coordinates

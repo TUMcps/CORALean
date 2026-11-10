@@ -38,7 +38,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 -- Reviewed:      ---
 
 /-- CORA's `center` of a constrained polynomial zonotope: the stored field `c`, nothing computed,
-so nothing rounds. Whether it is a point of the set is `center_mem_construct`. -/
+so nothing rounds. Whether it is a point of the set is `center_mem_toSet`. -/
 def ConPolyZono.center (cPZ : ConPolyZono 𝕋 (Vec 𝕋 n)) : Vec 𝕋 n := cPZ.c
 
 

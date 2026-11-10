@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Ellipsoid.Real.Operations.SupportBound
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemConstruct
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.QMemToSet
 
 @[expose] public section
 
@@ -52,17 +52,17 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Ellipsoid.supportBound_attained (E : Ellipsoid n) (c : Vec ℝ n →ₗ[ℝ] ℝ) : -- --- CONCL ---
-    ∃ x ∈ E.construct, c x = (E.supportBound c).val := by -- --- PROOF ---
+    ∃ x ∈ E.toSet, c x = (E.supportBound c).val := by -- --- PROOF ---
   have hval : (E.supportBound c).val = c E.q + ‖E.pullback c‖₂ := by
     show c E.q + Real.sqrt _ = _
     rw [E.norm₂_pullback]
   rw [hval]
   by_cases hv : ‖E.pullback c‖₂ = 0
-  · refine ⟨E.q, E.q_mem_construct, ?_⟩
+  · refine ⟨E.q, E.q_mem_toSet, ?_⟩
     rw [hv, add_zero]
   · have hpos : 0 < ‖E.pullback c‖₂ := lt_of_le_of_ne (norm₂_nonneg _) (Ne.symm hv)
     refine ⟨E.q + E.G *ᵥ ((‖E.pullback c‖₂)⁻¹ • E.pullback c),
-      Ellipsoid.mem_construct ?_, ?_⟩
+      Ellipsoid.mem_toSet ?_, ?_⟩
     · rw [norm₂_smul, abs_of_nonneg (le_of_lt (inv_pos.mpr hpos)), inv_mul_cancel₀ hv]
     · rw [map_add, E.apply_mulVec c, dotProduct_smul, smul_eq_mul, dotProduct_self, pow_two,
         ← mul_assoc, inv_mul_cancel₀ hv, one_mul]

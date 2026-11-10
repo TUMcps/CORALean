@@ -10,7 +10,7 @@ public import CORALean.ContSet.ConPolyZono.Real.Operations.Basic
 public import CORALean.ContSet.ConPolyZono.Real.Operations.CompactFactors
 public import CORALean.ContSet.Interval.Real.Theorems.Basic
 public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemCongr
-public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemConstructIffOfEqUnit
+public import CORALean.ContSet.PolyLevelSet.Real.Theorems.MemToSetIffOfEqUnit
 
 @[expose] public section
 
@@ -81,9 +81,9 @@ private theorem ConPolyZono.aux_sum_compactFactors_extend (cPZ : ConPolyZono α)
 -- the constraint monomials restrict alongside the generator ones, the box projects with them
 omit [AddCommGroup α] [Module ℝ α] in
 private theorem ConPolyZono.aux_satisfies_compactFactors (cPZ : ConPolyZono α) {a : Fin cPZ.p → ℝ}
-    (ha : a ∈ cPZ.cons.construct) :
+    (ha : a ∈ cPZ.cons.toSet) :
     (fun k => a (ConPolyZono.factorIdx cPZ.E cPZ.cons.R k))
-      ∈ cPZ.compactFactors.cons.construct :=
+      ∈ cPZ.compactFactors.cons.toSet :=
   (PolyLevelSet.mem_congr cPZ.cons (congrArg (cPZ.cons.A *ᵥ ·)
     (funext fun l => ConPolyZono.monomial_factorIdx_right cPZ.E cPZ.cons.R a l))
     (iff_of_true (Interval.project_outer _ _ ⟨a, ha.1, rfl⟩) ha.1)).mpr ha
@@ -92,11 +92,11 @@ private theorem ConPolyZono.aux_satisfies_compactFactors (cPZ : ConPolyZono α) 
 omit [AddCommGroup α] [Module ℝ α] in
 private theorem ConPolyZono.aux_satisfies_compactFactors_extend (cPZ : ConPolyZono α)
     {a : Fin cPZ.compactFactors.p → ℝ}
-    (ha : a ∈ cPZ.compactFactors.cons.construct) : -- --- CONCL ---
-    (ConPolyZono.factorExtend cPZ.E cPZ.cons.R a) ∈ cPZ.cons.construct := by -- --- PROOF ---
-  have hbox : ∀ k, |a k| ≤ 1 := ((PolyLevelSet.mem_construct_iff_of_eq_unit
+    (ha : a ∈ cPZ.compactFactors.cons.toSet) : -- --- CONCL ---
+    (ConPolyZono.factorExtend cPZ.E cPZ.cons.R a) ∈ cPZ.cons.toSet := by -- --- PROOF ---
+  have hbox : ∀ k, |a k| ≤ 1 := ((PolyLevelSet.mem_toSet_iff_of_eq_unit
     cPZ.compactFactors.cons_eq cPZ.compactFactors.cons_dom).mp ha).1
-  have hext : ConPolyZono.factorExtend cPZ.E cPZ.cons.R a ∈ cPZ.cons.dom.construct := by
+  have hext : ConPolyZono.factorExtend cPZ.E cPZ.cons.R a ∈ cPZ.cons.dom.toSet := by
     rw [cPZ.cons_dom, Interval.mem_unit_iff]
     exact fun k => ConPolyZono.abs_factorExtend_le_one cPZ.E cPZ.cons.R hbox k
   exact (PolyLevelSet.mem_congr cPZ.cons (congrArg (cPZ.cons.A *ᵥ ·)
@@ -107,7 +107,7 @@ private theorem ConPolyZono.aux_satisfies_compactFactors_extend (cPZ : ConPolyZo
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConPolyZono.compactFactors_exact (cPZ : ConPolyZono α) : -- --- CONCL ---
-    cPZ.construct = cPZ.compactFactors.construct := by -- --- PROOF ---
+    cPZ.toSet = cPZ.compactFactors.toSet := by -- --- PROOF ---
   have key : ∀ (a : Fin cPZ.p → ℝ) (β : Fin cPZ.qI → ℝ),
       cPZ.c + (∑ i, PolyZonotope.monomial cPZ.E a i • cPZ.G i) + ∑ j, β j • cPZ.GI j
         = cPZ.c + (∑ i : Fin cPZ.compactFactors.h, PolyZonotope.monomial cPZ.compactFactors.E

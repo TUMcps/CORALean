@@ -61,11 +61,11 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 /-- [1, Lemma 1], convergence: `d_H(Φ_r(Z), e^{rA}Z + □(β_r)) ≤ µ‖A‖e^{r‖A‖}r²`. -/
 theorem LinearSys.hausdorffDist_reachSetExact_mtimes_plus_cube_le (sys : LinearSys 𝕋 n)
     (Z U : Zonotope (Vec ℝ n)) {μ r : ℝ} (hA : 0 < ‖toRealMat sys.A‖) (hr : 0 ≤ r)
-    (hμ : 0 ≤ μ) (hU : U.construct = Metric.closedBall 0 μ) : -- --- CONCL ---
+    (hμ : 0 ≤ μ) (hU : U.toSet = Metric.closedBall 0 μ) : -- --- CONCL ---
     Metric.hausdorffDist (sys.reachSetExact (S := 𝒵) (Set.Icc 0 r) Z U r)
       ((Z.mtimes (exp (r • toRealMat sys.A))).plus
           (Zonotope.cube n ((Real.exp (r * ‖toRealMat sys.A‖) - 1) / ‖toRealMat sys.A‖
-            * μ))).construct
+            * μ))).toSet
       ≤ μ * ‖toRealMat sys.A‖ * Real.exp (r * ‖toRealMat sys.A‖)
         * r ^ 2 := by -- --- PROOF ---
   have hx := Real.add_one_le_exp (r * ‖toRealMat sys.A‖)
@@ -83,9 +83,9 @@ theorem LinearSys.hausdorffDist_reachSetExact_mtimes_plus_cube_le (sys : LinearS
   rw [← Zonotope.plus_exact, ← Zonotope.mtimes_exact, Zonotope.cube_exact n hβ] at hq
   obtain ⟨_, ⟨z, hz, rfl⟩, w, hw, rfl⟩ := hq
   obtain ⟨v, hv, hdist⟩ := sys.exists_mem_inputReach_dist_le hA hr hμ (S := 𝒵) (U := U)
-    (by rw [show construct U = U.construct from rfl, hU]) (mem_closedBall_zero_iff.mp hw)
+    (by rw [show toSet U = U.toSet from rfl, hU]) (mem_closedBall_zero_iff.mp hw)
   refine ⟨exp (r • toRealMat sys.A) *ᵥ z + v, ?_, ?_⟩
-  · rw [sys.reachSetExact_eq (S := 𝒵) Z U hr (Zonotope.isBounded_construct U)]
+  · rw [sys.reachSetExact_eq (S := 𝒵) Z U hr (Zonotope.isBounded_toSet U)]
     exact ⟨_, ⟨z, hz, rfl⟩, v, hv, rfl⟩
   · rwa [dist_add_left]
 

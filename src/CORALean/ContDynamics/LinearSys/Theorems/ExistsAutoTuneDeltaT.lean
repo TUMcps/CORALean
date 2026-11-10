@@ -132,9 +132,9 @@ clears, `1 ≤ ηmax` being what leaves it an iteration to report in. -/
 private theorem aux_autoTuneOrder_exists (sys : LinearSys 𝕋 n) (le : ℝ → ℝ → Bool)
     (H : Zonotope (Vec ℝ n)) (ũ : Vec ℝ n) (tk : ℝ) (U₀ : Zonotope (Vec ℝ n))
     (Δt εaτ εnτ : ℝ) {ηmax : ℕ} (hηmax : 1 ≤ ηmax)
-    (hc : (le (MatExp.particularSolutionError (toRealMat sys.A) tk U₀.construct Δt 2) εaτ
+    (hc : (le (MatExp.particularSolutionError (toRealMat sys.A) tk U₀.toSet Δt 2) εaτ
       && le (MatExp.affineDynamicsError (toRealMat sys.A) H ũ Δt 2
-        + MatExp.particularSolutionTauError (toRealMat sys.A) tk U₀.construct Δt 2) εnτ)
+        + MatExp.particularSolutionTauError (toRealMat sys.A) tk U₀.toSet Δt 2) εnτ)
       = true) : -- --- CONCL ---
     sys.autoTuneOrder le H ũ tk U₀ Δt εaτ εnτ 2 ηmax = some 2 := by -- --- PROOF ---
   obtain ⟨m, hm⟩ : ∃ m, ηmax = m + 1 := ⟨ηmax - 1, by omega⟩
@@ -224,8 +224,8 @@ theorem LinearSys.exists_autoTuneDeltaT (sys : LinearSys 𝕋 n) {le : ℝ → �
       simpa using hpow.const_mul Δtprev
     · exact Eventually.of_forall fun j => Set.mem_Ioi.mpr (by positivity)
   have hboth := (aux_eventually_particularSolutionError_le (toRealMat sys.A) tk
-      U₀.isBounded_construct 2 htpos hεmax hζ1 hacc).and
-    (aux_eventually_nonAccumulating_le (toRealMat sys.A) H ũ tk U₀.isBounded_construct 2
+      U₀.isBounded_toSet 2 htpos hεmax hζ1 hacc).and
+    (aux_eventually_nonAccumulating_le (toRealMat sys.A) H ũ tk U₀.isBounded_toSet 2
       htpos htend hεmax hacc)
   obtain ⟨j, ha, hn⟩ := (hseq.eventually hboth).exists
   -- at that candidate the coarsest order clears both shares, so the order sweep reports it

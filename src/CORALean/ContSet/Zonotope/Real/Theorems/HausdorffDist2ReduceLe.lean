@@ -4,7 +4,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceBoxError
 public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrderLoop
 public import CORALean.ContSet.Zonotope.Real.Operations.AdaptSetOrder
 public import CORALean.ContSet.Zonotope.Real.Theorems.AbsLeAbsBound
-public import CORALean.ContSet.Zonotope.Real.Theorems.MemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.MemToSet
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSubsetAddBox
 public import CORALean.Global.EuclideanHausdorffDist
@@ -62,14 +62,14 @@ variable {n : ℕ}
 /-- [1, Prop. 4], eq. (29) at an order: one reduction to order `ρ` moves a zonotope by at
 most `Δε^r_k(ρ)`, the `err` of the box it absorbs the dropped generators into. -/
 theorem Zonotope.hausdorffDist₂_reduce_le (Z : Zonotope (Vec ℝ n)) (o : ℕ) : -- --- CONCL ---
-    hausdorffDist₂ Z.construct (Z.reduce o).construct ≤ Z.reduceBoxError o := by -- --- PROOF ---
+    hausdorffDist₂ Z.toSet (Z.reduce o).toSet ≤ Z.reduceBoxError o := by -- --- PROOF ---
   refine hausdorffDist₂_le_of_mem_dist (norm₂_nonneg _) (fun x hx => ?_) (fun y hy => ?_)
   · exact ⟨x, Z.reduce_outer o hx, by rw [sub_self, norm₂_zero]; exact norm₂_nonneg _⟩
   -- the other way the reduction only added the box, and `absBound` is what bounds that
   · obtain ⟨z, hz, b, hb, rfl⟩ := Set.mem_add.mp (Z.reduce_subset_add_box o hy)
     refine ⟨z, hz, ?_⟩
     rw [show z + b - z = b by abel]
-    obtain ⟨β, hβ, hbi⟩ := Zonotope.mem_construct_iff.mp hb
+    obtain ⟨β, hβ, hbi⟩ := Zonotope.mem_toSet_iff.mp hb
     simp only [Zonotope.reduceBoxError, norm₂]
     refine Real.sqrt_le_sqrt (Finset.sum_le_sum fun j _ => ?_)
     calc b j ^ 2 = |b j| ^ 2 := (sq_abs _).symm

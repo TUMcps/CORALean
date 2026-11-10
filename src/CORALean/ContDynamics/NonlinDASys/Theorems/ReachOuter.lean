@@ -78,16 +78,16 @@ theorem NonlinDASys.reach_outer (sys : NonlinDASys n p m)
     (corollary1 : NonlinDASys.LinPoint n p m → Zonotope (Vec ℝ n × Vec ℝ p) →
       Zonotope (Vec ℝ m) → Zonotope (Vec ℝ n) × Zonotope (Vec ℝ p))
     (sub : ∀ {k : ℕ}, Zonotope (Vec ℝ k) → Zonotope (Vec ℝ k) → Bool)
-    (hsub : ∀ {k : ℕ} (A B : Zonotope (Vec ℝ k)), sub A B = true → A.construct ⊆ B.construct)
+    (hsub : ∀ {k : ℕ} (A B : Zonotope (Vec ℝ k)), sub A B = true → A.toSet ⊆ B.toSet)
     (splitFn : Zonotope (Vec ℝ n) → Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n))
-    (hsplit : ∀ Z, Z.construct ⊆ (splitFn Z).1.construct ∪ (splitFn Z).2.construct)
+    (hsplit : ∀ Z, Z.toSet ⊆ (splitFn Z).1.toSet ∪ (splitFn Z).2.toSet)
     (Lmax : Zonotope (Vec ℝ n)) (lam : ℝ) {r : ℝ} (hr : 0 < r) {q : ℕ}
     (U : Zonotope (Vec ℝ m)) {R0 : Zonotope (Vec ℝ n)} {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p}
     {u : ℝ → Vec ℝ m} {K : ℕ} (hK : 0 < K)
     {z : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒵) (Set.Icc 0 ((K : ℝ) * r)) R0 U x y u z)
     (hcert : ∀ j : ℕ, j < K → ∀ (fuel : ℕ) (Z : Zonotope (Vec ℝ n))
       (L₀ : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ p)) (rr : NonlinDASys.ErrorLoopResult n p),
-      x ((j : ℝ) * r) ∈ Z.construct →
+      x ((j : ℝ) * r) ∈ Z.toSet →
       NonlinDASys.reachRepeat sys (taylor Z) corollary1 sub Lmax lam r (q + 2) Z U fuel L₀
         = some rr →
       ({ taylor Z with Verror := rr.L.1, Verror_y := rr.L.2 } :

@@ -67,8 +67,8 @@ private theorem ConZonotope.aux_nominal_zonotope {cZ : ConZonotope 𝕋 (Vec �
 
 theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n))
     (cZ : ConZonotope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    (⋃ A ∈ IM.construct, (A *ᵥ ·) '' cZ.construct) ⊆
-      (ConZonotope.mtimesIntervalMat IM cZ).construct := by -- --- PROOF ---
+    (⋃ A ∈ IM.toSet, (A *ᵥ ·) '' cZ.toSet) ⊆
+      (ConZonotope.mtimesIntervalMat IM cZ).toSet := by -- --- PROOF ---
   -- a point of the set, split into its nominal part and its error
   rintro y hy
   simp only [Set.mem_iUnion, Set.mem_image, exists_prop] at hy
@@ -82,9 +82,9 @@ theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n))
     ConZonotope.mtimes_outer C cZ ⟨z + e, ⟨z, hz, e, he, rfl⟩, rfl⟩
   have hsum' : t₀ + e₀ = toRealMat C *ᵥ (z + e) := hsum
   -- `A` known only to within `matResidual` of the center matrix
-  have hR : R ∈ Rs.construct := Interval.sub_mem_matResidual fun i j => hA (i, j)
+  have hR : R ∈ Rs.toSet := Interval.sub_mem_matResidual fun i j => hA (i, j)
   -- the residual on the error box, box times box
-  have hRe : R *ᵥ e ∈ (Interval.mtimesIntervalMat Rs cZ.I_error).construct :=
+  have hRe : R *ᵥ e ∈ (Interval.mtimesIntervalMat Rs cZ.I_error).toSet :=
     Interval.mtimesIntervalMat_outer _ _ (Set.mem_biUnion hR ⟨e, he, rfl⟩)
   -- the residual on the nominal part, within the new generators
   have hbound' := Zonotope.abs_residual_le IM hR (ConZonotope.aux_nominal_zonotope hz)
@@ -92,7 +92,7 @@ theorem ConZonotope.mtimesIntervalMat_outer (IM : Interval (Mat 𝕋 m n))
   -- the product's coefficient count is `cZ.h`, definitionally
   let γ : Vec ℝ cZ.h := γ₀
   have hγ : ∀ j, |γ j| ≤ 1 := hγ₀
-  have hPγ : γ ∈ (ConZonotope.mtimes C cZ).P.nominal.construct := hPγ₀
+  have hPγ : γ ∈ (ConZonotope.mtimes C cZ).P.nominal.toSet := hPγ₀
   have ht₀γ : ∀ i, t₀ i = toReal ((ConZonotope.mtimes C cZ).c i)
       + ∑ j, toReal ((ConZonotope.mtimes C cZ).G j i) * γ j := ht₀γ₀
   set b : Vec 𝕋 m := fun i => sumUp fun j =>

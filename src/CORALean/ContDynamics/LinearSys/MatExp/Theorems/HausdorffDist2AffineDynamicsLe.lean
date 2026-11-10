@@ -69,15 +69,15 @@ variable {n : ℕ}
 
 /-- A zonotope's center is one of its points, which is all the nonemptiness a Hausdorff
 distance asks of it. -/
-private theorem aux_center_mem_construct {α : Type} [AddCommGroup α] [Module ℝ α] (Z : Zonotope α) :
-    Z.c ∈ Z.construct :=
+private theorem aux_center_mem_toSet {α : Type} [AddCommGroup α] [Module ℝ α] (Z : Zonotope α) :
+    Z.c ∈ Z.toSet :=
   ⟨0, fun _ => by simp, by simp⟩
 
 /-- And the segments between two zonotopes are nonempty for the same reason. -/
 private theorem aux_setLinComb_nonempty {α : Type} [AddCommGroup α] [Module ℝ α]
     (Z₁ Z₂ : Zonotope α) :
-    (Set.linComb Z₁.construct Z₂.construct).Nonempty :=
-  ⟨Z₁.c, Z₁.c, aux_center_mem_construct Z₁, Z₂.c, aux_center_mem_construct Z₂, 1,
+    (Set.linComb Z₁.toSet Z₂.toSet).Nonempty :=
+  ⟨Z₁.c, Z₁.c, aux_center_mem_toSet Z₁, Z₂.c, aux_center_mem_toSet Z₂, 1,
     ⟨zero_le_one, le_refl 1⟩, by simp⟩
 
 
@@ -87,24 +87,24 @@ private theorem aux_setLinComb_nonempty {α : Type} [AddCommGroup α] [Module �
 affine dynamics and eq. (22)'s enclosure, given [1]'s own two inclusions. -/
 theorem MatExp.hausdorffDist₂_affineDynamics_le (A : Mat ℝ n n) (H : Zonotope (Vec ℝ n))
     (ũ : Vec ℝ n) (Δt : ℝ) (η : ℕ)
-    (hinner : Set.linComb H.construct (MatExp.affineTimePointNext A H ũ Δt).construct
+    (hinner : Set.linComb H.toSet (MatExp.affineTimePointNext A H ũ Δt).toSet
       ⊆ MatExp.affineTimeIntervalSolution A H ũ Δt
-        + (MatExp.curvatureEnclosure A H ũ Δt η).construct)
+        + (MatExp.curvatureEnclosure A H ũ Δt η).toSet)
     (houter : MatExp.affineTimeIntervalSolution A H ũ Δt
-      ⊆ (MatExp.affineTimeIntervalOuter A H ũ Δt η).construct) : -- --- CONCL ---
+      ⊆ (MatExp.affineTimeIntervalOuter A H ũ Δt η).toSet) : -- --- CONCL ---
     hausdorffDist₂ (MatExp.affineTimeIntervalSolution A H ũ Δt)
-        (MatExp.affineTimeIntervalOuter A H ũ Δt η).construct
+        (MatExp.affineTimeIntervalOuter A H ũ Δt η).toSet
       ≤ MatExp.affineDynamicsError A H ũ Δt η := by -- --- PROOF ---
   have hε := MatExp.affineDynamicsError_nonneg A H ũ Δt η
-  have hCb : Bornology.IsBounded (MatExp.curvatureEnclosure A H ũ Δt η).construct :=
-    Zonotope.isBounded_construct _
-  have hOut : (MatExp.affineTimeIntervalOuter A H ũ Δt η).construct
-      = (H.linComb (MatExp.affineTimePointNext A H ũ Δt)).construct
-        + (MatExp.curvatureEnclosure A H ũ Δt η).construct := (Zonotope.plus_exact _ _).symm
+  have hCb : Bornology.IsBounded (MatExp.curvatureEnclosure A H ũ Δt η).toSet :=
+    Zonotope.isBounded_toSet _
+  have hOut : (MatExp.affineTimeIntervalOuter A H ũ Δt η).toSet
+      = (H.linComb (MatExp.affineTimePointNext A H ũ Δt)).toSet
+        + (MatExp.curvatureEnclosure A H ũ Δt η).toSet := (Zonotope.plus_exact _ _).symm
   -- [1, Prop. 9] at `cp = P^u(Δt)`: `linComb`'s own enclosure error is `µ`
   have hP9 : hausdorffDist₂
-      (Set.linComb H.construct (MatExp.affineTimePointNext A H ũ Δt).construct)
-      ((H.linComb (MatExp.affineTimePointNext A H ũ Δt)).construct)
+      (Set.linComb H.toSet (MatExp.affineTimePointNext A H ũ Δt).toSet)
+      ((H.linComb (MatExp.affineTimePointNext A H ũ Δt)).toSet)
         ≤ Real.sqrt H.h * genOpNorm₂ (MatExp.genMinus A H Δt) :=
     Zonotope.hausdorffDist₂_linComb_le A Δt H ((MatExp.expIntegral A Δt).mulVec ũ)
   refine hausdorffDist₂_le_of_mem_dist hε ?_ ?_
@@ -116,11 +116,11 @@ theorem MatExp.hausdorffDist₂_affineDynamics_le (A : Mat ℝ n n) (H : Zonotop
   obtain ⟨ŝ, hŝ, c, hc, rfl⟩ := hy
   -- `Prop. 9`'s bound read back as a point of the exact combination
   obtain ⟨s, hs, hsd⟩ := hausdorffDist₂_exists_mem_dist_le
-    (isCompact_setLinComb H.isCompact_construct
-      (MatExp.affineTimePointNext A H ũ Δt).isCompact_construct)
+    (isCompact_setLinComb H.isCompact_toSet
+      (MatExp.affineTimePointNext A H ũ Δt).isCompact_toSet)
     (aux_setLinComb_nonempty H (MatExp.affineTimePointNext A H ũ Δt))
-    (Zonotope.isBounded_construct _)
-    ⟨_, aux_center_mem_construct (H.linComb (MatExp.affineTimePointNext A H ũ Δt))⟩ hP9 hŝ
+    (Zonotope.isBounded_toSet _)
+    ⟨_, aux_center_mem_toSet (H.linComb (MatExp.affineTimePointNext A H ũ Δt))⟩ hP9 hŝ
   -- and `hinner` turns that point into one of the tube, one curvature apart
   obtain ⟨x, hx, c', hc', hxeq⟩ := Set.mem_add.mp (hinner hs)
   refine ⟨x, hx, ?_⟩
@@ -132,8 +132,8 @@ theorem MatExp.hausdorffDist₂_affineDynamics_le (A : Mat ℝ n n) (H : Zonotop
   calc ‖ŝ + c - x‖₂ = ‖(ŝ - s) + (c + c')‖₂ := by rw [hsplit]
     _ ≤ ‖ŝ - s‖₂ + ‖c + c'‖₂ := norm₂_add_le _ _
     _ ≤ Real.sqrt H.h * genOpNorm₂ (MatExp.genMinus A H Δt)
-          + 2 * err (MatExp.curvatureEnclosure A H ũ Δt η).construct := by linarith
-    _ = 2 * err (MatExp.curvatureEnclosure A H ũ Δt η).construct
+          + 2 * err (MatExp.curvatureEnclosure A H ũ Δt η).toSet := by linarith
+    _ = 2 * err (MatExp.curvatureEnclosure A H ũ Δt η).toSet
           + Real.sqrt H.h * genOpNorm₂ (MatExp.genMinus A H Δt) := by ring
 
 end CORALean.Real

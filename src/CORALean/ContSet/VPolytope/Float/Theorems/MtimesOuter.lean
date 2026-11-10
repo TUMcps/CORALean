@@ -16,7 +16,7 @@ public import CORALean.ContSet.VPolytope.Real.Theorems.MtimesExact
 
 `InflatedContSet.map_subset` splits this in two. The nominal obligation is the
 exact `mtimes_exact` — the image of a hull is the hull of the images — followed
-by `construct_subset_add`, every stored column being within `columnGap` of the
+by `toSet_subset_add`, every stored column being within `columnGap` of the
 exact product. The error obligation is the interval `mtimes` and one `plus`.
 
 ## Inputs
@@ -52,20 +52,20 @@ private theorem VPolytope.aux_mtimes_nominal (M : Mat 𝕋 m n)
     (toRealMat M *ᵥ ·) '' nominalSet P ⊆
       nominalSet (VPolytope.mtimes M P)
         + (VPolytope.columnGap (fun l => mulVecDown M (P.V l))
-            fun l => mulVecUp M (P.V l)).construct := by -- --- PROOF ---
+            fun l => mulVecUp M (P.V l)).toSet := by -- --- PROOF ---
   have hexact : (toRealMat M *ᵥ ·) '' nominalSet P
-      = (Real.VPolytope.mtimes (toRealMat M) (nominal P)).construct :=
+      = (Real.VPolytope.mtimes (toRealMat M) (nominal P)).toSet :=
     Real.VPolytope.mtimes_exact _ _
   rw [hexact]
-  refine Real.VPolytope.construct_subset_add _ _ (Real.Interval.convex_construct _) fun l => ?_
+  refine Real.VPolytope.toSet_subset_add _ _ (Real.Interval.convex_toSet _) fun l => ?_
   exact VPolytope.mem_columnGap fun i => ⟨dotDown_le _ _, le_dotUp _ _⟩
 
 -- the old box travels through the map and absorbs the column gap on the way
 private theorem VPolytope.aux_mtimes_error (M : Mat 𝕋 m n) (P : VPolytope (Vec 𝕋 n)) :
-    (toRealMat M *ᵥ ·) '' (I_error P).construct
+    (toRealMat M *ᵥ ·) '' (I_error P).toSet
       + (VPolytope.columnGap (fun l => mulVecDown M (P.V l))
-          fun l => mulVecUp M (P.V l)).construct ⊆
-      (I_error (VPolytope.mtimes M P)).construct :=
+          fun l => mulVecUp M (P.V l)).toSet ⊆
+      (I_error (VPolytope.mtimes M P)).toSet :=
   subset_trans (Set.add_subset_add_right (Interval.mtimes_outer M P.I_error))
     (Interval.plus_outer _ _)
 
@@ -73,7 +73,7 @@ private theorem VPolytope.aux_mtimes_error (M : Mat 𝕋 m n) (P : VPolytope (Ve
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem VPolytope.mtimes_outer (M : Mat 𝕋 m n) (P : VPolytope (Vec 𝕋 n)) :
-    (toRealMat M *ᵥ ·) '' P.construct ⊆ (VPolytope.mtimes M P).construct :=
+    (toRealMat M *ᵥ ·) '' P.toSet ⊆ (VPolytope.mtimes M P).toSet :=
   map_subset (fun x y => Matrix.mulVec_add _ x y)
     (VPolytope.aux_mtimes_nominal M P) (VPolytope.aux_mtimes_error M P)
 

@@ -42,10 +42,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {m n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.matPolytope_contains (Z : Zonotope (Mat 𝕋 m n)) : -- --- CONCL ---
-    Z.construct ⊆ InflatedContSet.construct Z.matPolytope := by -- --- PROOF ---
+    Z.toSet ⊆ InflatedContSet.toSet Z.matPolytope := by -- --- PROOF ---
   intro A hA
   -- the stacked matrix is in the stacked zonotope, hence in its corners
-  have h1 : matVecEquiv A ∈ Z.vec.vPolytope.construct :=
+  have h1 : matVecEquiv A ∈ Z.vec.vPolytope.toSet :=
     Zonotope.vPolytope_contains Z.vec (by rw [Zonotope.vec_exact]; exact ⟨A, hA, rfl⟩)
   rw [Zonotope.matPolytope, VPolytope.unvec_exact]
   exact ⟨_, h1, matVecEquiv.symm_apply_apply A⟩

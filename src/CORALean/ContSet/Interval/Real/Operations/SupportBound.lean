@@ -47,7 +47,7 @@ variable {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι]
 /-- As `Interval.supportBound`, but over any `Entrywise` ambient type. -/
 @[step_of Interval.supportBound]
 noncomputable def Interval.step_supportBoundEntrywise [Fintype ι] [DecidableEq ι]
-    (I : Interval α) (c : α →ₗ[ℝ] ℝ) : SupportBound I.construct c where
+    (I : Interval α) (c : α →ₗ[ℝ] ℝ) : SupportBound I.toSet c where
   val := ∑ i, max (c (ofEntry (Pi.single i 1)) * entry I.inf i)
                   (c (ofEntry (Pi.single i 1)) * entry I.sup i)
   le := by
@@ -68,7 +68,7 @@ end
 /-- No linear program: the value is a sum of corner products, one per
 coordinate, each attained by moving that coordinate to its far endpoint. -/
 noncomputable def Interval.supportBound (I : Interval (Vec ℝ n)) (c : Vec ℝ n →ₗ[ℝ] ℝ) :
-    SupportBound I.construct c :=
+    SupportBound I.toSet c :=
   Interval.step_supportBoundEntrywise I c
 
 end CORALean.Real

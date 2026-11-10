@@ -56,7 +56,7 @@ theorem Zonotope.tensorMultiplication_coeff (Z : Zonotope (Vec 𝕋 n)) (M : Ten
     (hmap : ∀ p q, L.map p = L.map q →
       ({L.perm p 0, L.perm p 1, L.perm p 2} : Multiset (Fin Z.absorbRounding.h)) =
         {L.perm q 0, L.perm q 1, L.perm q 2})
-    {x : Vec ℝ n} (hx : x ∈ Z.construct) : -- --- CONCL ---
+    {x : Vec ℝ n} (hx : x ∈ Z.toSet) : -- --- CONCL ---
     ∃ γ : Fin L.C → ℝ, (∀ m, |γ m| ≤ 1)
       ∧ ∃ Δ : Fin n → Fin L.C → ℝ,
         (∀ i m, |Δ i m| ≤ toReal (Zonotope.step_tensorHDiff M Z.absorbRounding L i m))

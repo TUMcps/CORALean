@@ -49,8 +49,8 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Zonotope.interval_attained (Z : Zonotope (Vec ℝ n)) (i : Fin n) : -- --- CONCL ---
-    (∃ z ∈ Z.construct, z i = Z.interval.sup i) ∧
-      ∃ z ∈ Z.construct, z i = Z.interval.inf i := by -- --- PROOF ---
+    (∃ z ∈ Z.toSet, z i = Z.interval.sup i) ∧
+      ∃ z ∈ Z.toSet, z i = Z.interval.inf i := by -- --- PROOF ---
   -- the sign of each generator's `i`-th entry
   set s : Fin Z.h → ℝ := fun j => if 0 ≤ Z.G j i then 1 else -1 with hs
   have hs1 : ∀ j, |s j| ≤ 1 := fun j => by simp only [hs]; split_ifs <;> norm_num

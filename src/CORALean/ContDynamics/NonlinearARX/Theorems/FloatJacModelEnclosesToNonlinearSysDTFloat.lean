@@ -92,17 +92,17 @@ theorem NonlinearARX.FloatJacModel.Encloses.toNonlinearSysDTFloat
     fm.toNonlinearSysDTFloat.Encloses sys.toNonlinearSysDT.f := by -- --- PROOF ---
   -- a vector is in a float box when every coordinate is between the real bounds
   have mem_iff : ∀ {k : ℕ} (I : Interval (Vec 𝕋 k)) (v : Vec ℝ k),
-      v ∈ construct I ↔ ∀ i, toReal (I.inf i) ≤ v i ∧ v i ≤ toReal (I.sup i) :=
+      v ∈ toSet I ↔ ∀ i, toReal (I.inf i) ≤ v i ∧ v i ≤ toReal (I.sup i) :=
     fun _ _ => Iff.rfl
   -- the window and the inputs newest first lie in the reindexed boxes
-  have hY : ∀ (X : Interval (Vec 𝕋 (p * dy))) (x : Vec ℝ (p * dy)), x ∈ construct X →
-      (fun s => x (NonlinearARX.revBlocks s)) ∈ construct (⟨fun s => X.inf (NonlinearARX.revBlocks
+  have hY : ∀ (X : Interval (Vec 𝕋 (p * dy))) (x : Vec ℝ (p * dy)), x ∈ toSet X →
+      (fun s => x (NonlinearARX.revBlocks s)) ∈ toSet (⟨fun s => X.inf (NonlinearARX.revBlocks
         s),
           fun s => X.sup (NonlinearARX.revBlocks s)⟩ : Interval (Vec 𝕋 (p * dy))) :=
     fun X x hx => (mem_iff _ _).2 fun s => (mem_iff _ _).1 hx _
   have hW : ∀ (V : Interval (Vec 𝕋 ((p + 1) * du))) (v : Vec ℝ ((p + 1) * du)),
-      v ∈ construct V →
-      (fun s => v (NonlinearARX.revBlocks s)) ∈ construct (⟨fun s => V.inf (NonlinearARX.revBlocks
+      v ∈ toSet V →
+      (fun s => v (NonlinearARX.revBlocks s)) ∈ toSet (⟨fun s => V.inf (NonlinearARX.revBlocks
         s),
           fun s => V.sup (NonlinearARX.revBlocks s)⟩ : Interval (Vec 𝕋 ((p + 1) * du))) :=
     fun V v hv => (mem_iff _ _).2 fun s => (mem_iff _ _).1 hv _

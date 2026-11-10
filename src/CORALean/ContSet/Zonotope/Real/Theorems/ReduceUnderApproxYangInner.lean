@@ -49,10 +49,10 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 theorem Zonotope.reduceUnderApproxYang_inner
     (sel : (Z : Zonotope α) → {m : ℕ} → Z.h = m + 2 → Fin (m + 2) × Fin (m + 1) × Bool)
     (N : ℕ) (Z : Zonotope α) : -- --- CONCL ---
-    (Z.reduceUnderApproxYang sel N).construct ⊆ Z.construct := by -- --- PROOF ---
+    (Z.reduceUnderApproxYang sel N).toSet ⊆ Z.toSet := by -- --- PROOF ---
   -- by induction on the remaining steps, for every start
   suffices h : ∀ k (Z : Zonotope α),
-      (Zonotope.reduceUnderApproxYang.go sel k Z).construct ⊆ Z.construct from h _ Z
+      (Zonotope.reduceUnderApproxYang.go sel k Z).toSet ⊆ Z.toSet from h _ Z
   intro k
   induction k with
   | zero => exact fun _ => subset_rfl

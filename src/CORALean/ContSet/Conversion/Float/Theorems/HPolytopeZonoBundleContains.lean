@@ -42,9 +42,9 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ} {P 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem HPolytope.zonoBundle_contains (up : ∀ j, FloatBound 𝕋 P.construct (LinearMap.proj j))
-    (lo : ∀ j, FloatBound 𝕋 P.construct (-LinearMap.proj j)) :
-    P.construct ⊆ (HPolytope.zonoBundle up lo).construct :=
+theorem HPolytope.zonoBundle_contains (up : ∀ j, FloatBound 𝕋 P.toSet (LinearMap.proj j))
+    (lo : ∀ j, FloatBound 𝕋 P.toSet (-LinearMap.proj j)) :
+    P.toSet ⊆ (HPolytope.zonoBundle up lo).toSet :=
   subset_trans (HPolytope.zonotope_contains up lo) (Zonotope.zonoBundle_exact _).subset
 
 end CORALean.Float

@@ -50,7 +50,7 @@ variable {n : ℕ}
 theorem Zonotope.minnormPoint_mem (Z : Zonotope (Vec ℝ (n + 1)))
     (hspan : Submodule.span ℝ (Set.range Z.G) = ⊤) (S : Fin n → Fin Z.h)
     (hC : Z.facetNormal S ≠ 0) (hoff : Z.minnormOffset S = Z.minnorm) :
-    Z.minnormPoint S ∈ Z.construct := by
+    Z.minnormPoint S ∈ Z.toSet := by
   have := Zonotope.minnorm_ball_subset Z hspan (Z.minnormPoint S - Z.c)
     (le_of_eq (Zonotope.minnormPoint_dist Z S hC hoff))
   rwa [add_sub_cancel] at this

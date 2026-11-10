@@ -58,11 +58,11 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 minuend stays inside the Minkowski difference. -/
 theorem Zonotope.minkDiffStretch_inner {ι : Type} (Z₁ Z₂ : Zonotope α)
     (C : ι → (α →ₗ[ℝ] ℝ)) (μ : Fin Z₁.h → ℝ) (hμ0 : ∀ υ, 0 ≤ μ υ)
-    (hCm : {y | ∀ i, C i (y - Z₁.c) ≤ ∑ υ, |C i (Z₁.G υ)|} ⊆ Z₁.construct)
+    (hCm : {y | ∀ i, C i (y - Z₁.c) ≤ ∑ υ, |C i (Z₁.G υ)|} ⊆ Z₁.toSet)
     (hμ : ∀ i, ∑ υ, |C i (Z₁.G υ)| * μ υ
             ≤ (∑ υ, |C i (Z₁.G υ)|) - ∑ υ, |C i (Z₂.G υ)|) : -- --- CONCL ---
-    (Z₁.minkDiffStretch Z₂ μ).construct
-      ⊆ minkowskiDiff Z₁.construct Z₂.construct := by -- --- PROOF ---
+    (Z₁.minkDiffStretch Z₂ μ).toSet
+      ⊆ minkowskiDiff Z₁.toSet Z₂.toSet := by -- --- PROOF ---
   intro x hx z hz
   dsimp only [Zonotope.minkDiffStretch] at hx
   obtain ⟨β, hβ, rfl⟩ := hx

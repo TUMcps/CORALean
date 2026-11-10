@@ -55,7 +55,7 @@ theorem Zonotope.exists_minnormFacet (Z : Zonotope (Vec ℝ (n + 1)))
     push Not at hall
     -- every halfspace is trivial, so a far point on the first axis is in the zonotope
     set t : ℝ := ∑ υ, |Z.G υ 0| + 1 with ht
-    have hmem : Z.c + Pi.single 0 t ∈ Z.construct := by
+    have hmem : Z.c + Pi.single 0 t ∈ Z.toSet := by
       rw [Zonotope.hRep_eq Z hspan]
       intro S
       simp [hall S]

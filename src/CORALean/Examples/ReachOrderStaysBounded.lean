@@ -65,7 +65,7 @@ theorem Example.rosTraj : Example.rosSys.IsCanonicalTrajectory (S := 𝒵) Examp
 neither fact was bought at the other's expense. -/
 example (k : ℕ) :
     Example.rosX0 ∈
-      construct (Example.rosSys.reach (S := 𝒵) ⟨Example.rosR0, Example.rosU, 0, k⟩
+      toSet (Example.rosSys.reach (S := 𝒵) ⟨Example.rosR0, Example.rosU, 0, k⟩
         ⟨3, by norm_num⟩) :=
   Example.rosSys.reach_outer (S := 𝒵) (by norm_num) Example.rosR0 Example.rosU Example.rosTraj k
 

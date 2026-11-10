@@ -62,8 +62,8 @@ instance {α β : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] :
   I_error P := P.I_error
 
 /-- Inherited from `InflatedContSet`; named here so statements read locally. -/
-abbrev VPolytope.construct [SoundFloatArithmetic 𝕋] (P : VPolytope (Vec 𝕋 n)) : Set (Vec ℝ n) :=
-  InflatedContSet.construct P
+abbrev VPolytope.toSet [SoundFloatArithmetic 𝕋] (P : VPolytope (Vec 𝕋 n)) : Set (Vec ℝ n) :=
+  InflatedContSet.toSet P
 
 end CORALean.Float
 

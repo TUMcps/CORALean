@@ -80,7 +80,7 @@ private theorem PolyZonotope.aux_matMap_hull {n k : ℕ} (pZ : PolyZonotope (Mat
     (hβ : ∀ j, |β j| ≤ 1) : -- --- CONCL ---
     (PolyZonotope.nominal pZ).point a + ∑ j, β j • (PolyZonotope.nominal pZ).GI j
       ∈ (PolyZonotope.matGeneratorError
-          (Fin.append (PolyZonotope.step_extGens pZ) pZ.GI)).construct := by -- --- PROOF ---
+          (Fin.append (PolyZonotope.step_extGens pZ) pZ.GI)).toSet := by -- --- PROOF ---
   -- the coefficients: the extended monomials, then `β`
   have ht : ∀ s, |Fin.append (Real.PolyZonotope.extM (PolyZonotope.nominal pZ) a) β s| ≤ 1 := by
     intro s
@@ -107,11 +107,11 @@ set plus a share of the rounding box. -/
 private theorem PolyZonotope.aux_matMap_refines (pZ₁ : PolyZonotope (Mat 𝕋 n k))
     (pZ₂ : PolyZonotope (Mat 𝕋 k m)) (hp : pZ₁.p = pZ₂.p) {X : Mat ℝ n m}
     (hX : X ∈ (Real.PolyZonotope.matMap (PolyZonotope.nominal pZ₁)
-      (PolyZonotope.nominal pZ₂) hp).construct) : -- --- CONCL ---
-    ∃ P ∈ (PolyZonotope.nominal (PolyZonotope.matMap pZ₁ pZ₂ hp)).construct,
+      (PolyZonotope.nominal pZ₂) hp).toSet) : -- --- CONCL ---
+    ∃ P ∈ (PolyZonotope.nominal (PolyZonotope.matMap pZ₁ pZ₂ hp)).toSet,
       X - P ∈
         (PolyZonotope.matGeneratorError (Fin.append (PolyZonotope.step_pairG matMulDiff pZ₁ pZ₂)
-        (PolyZonotope.step_pairGI matMulDiff pZ₁ pZ₂))).construct := by -- --- PROOF ---
+        (PolyZonotope.step_pairGI matMulDiff pZ₁ pZ₂))).toSet := by -- --- PROOF ---
   obtain ⟨a, b, ha, hb, hX⟩ := hX
   -- a stored product and its exact counterpart differ by at most the gap
   have close : ∀ (A : Mat 𝕋 n k) (B : Mat 𝕋 k m) (D : Mat ℝ n m),
@@ -221,12 +221,12 @@ is a point of the float `matMap`. -/
 theorem PolyZonotope.matMap_outer (pZ₁ : PolyZonotope (Mat 𝕋 n k))
     (pZ₂ : PolyZonotope (Mat 𝕋 k m)) (hp : pZ₁.p = pZ₂.p) (a : Fin pZ₁.p → ℝ)
     (ha : ∀ i, |a i| ≤ 1) (β₁ : Fin pZ₁.q → ℝ) (β₂ : Fin pZ₂.q → ℝ) (hβ₁ : ∀ j, |β₁ j| ≤ 1)
-    (hβ₂ : ∀ j, |β₂ j| ≤ 1) {e₁ : Mat ℝ n k} (he₁ : e₁ ∈ pZ₁.I_error.construct) {e₂ : Mat ℝ k m}
-    (he₂ : e₂ ∈ pZ₂.I_error.construct) : -- --- CONCL ---
+    (hβ₂ : ∀ j, |β₂ j| ≤ 1) {e₁ : Mat ℝ n k} (he₁ : e₁ ∈ pZ₁.I_error.toSet) {e₂ : Mat ℝ k m}
+    (he₂ : e₂ ∈ pZ₂.I_error.toSet) : -- --- CONCL ---
     ((PolyZonotope.nominal pZ₁).point a + ∑ j, β₁ j • (PolyZonotope.nominal pZ₁).GI j + e₁) *
         ((PolyZonotope.nominal pZ₂).point (fun i => a (Fin.cast hp.symm i))
           + ∑ j, β₂ j • (PolyZonotope.nominal pZ₂).GI j + e₂)
-      ∈ InflatedContSet.construct (PolyZonotope.matMap pZ₁ pZ₂ hp) := by -- --- PROOF ---
+      ∈ InflatedContSet.toSet (PolyZonotope.matMap pZ₁ pZ₂ hp) := by -- --- PROOF ---
   -- the nominal product: a nominal point of the result plus a share of the rounding box
   obtain ⟨P, hP, hg⟩ := PolyZonotope.aux_matMap_refines pZ₁ pZ₂ hp
     (Real.PolyZonotope.matMap_outer (PolyZonotope.nominal pZ₁) (PolyZonotope.nominal pZ₂) hp

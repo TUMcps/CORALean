@@ -34,8 +34,8 @@ namespace CORALean.Real
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-private theorem Polygon.aux_construct_eq_empty_iff (p : VPolytope (Vec ℝ 2)) : -- --- CONCL ---
-    VPolytope.construct p = ∅ ↔ p.k = 0 := by -- --- PROOF ---
+private theorem Polygon.aux_toSet_eq_empty_iff (p : VPolytope (Vec ℝ 2)) : -- --- CONCL ---
+    VPolytope.toSet p = ∅ ↔ p.k = 0 := by -- --- PROOF ---
   constructor
   · intro h
     by_contra hk
@@ -54,17 +54,17 @@ private theorem Polygon.aux_construct_eq_empty_iff (p : VPolytope (Vec ℝ 2)) :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.representsaEmptySet_iff (P : Polygon) : -- --- CONCL ---
-    Polygon.representsaEmptySet P = true ↔ ContSet.construct P = ∅ := by -- --- PROOF ---
+    Polygon.representsaEmptySet P = true ↔ ContSet.toSet P = ∅ := by -- --- PROOF ---
   simp only [Polygon.representsaEmptySet, List.all_eq_true, beq_iff_eq,
-    Set.eq_empty_iff_forall_notMem, SetUnion.mem_construct, not_exists, not_and]
+    Set.eq_empty_iff_forall_notMem, SetUnion.mem_toSet, not_exists, not_and]
   constructor
   · intro h x p hp hx
-    have := (Polygon.aux_construct_eq_empty_iff p).mpr (h p hp)
-    have hx' : x ∈ VPolytope.construct p := hx
+    have := (Polygon.aux_toSet_eq_empty_iff p).mpr (h p hp)
+    have hx' : x ∈ VPolytope.toSet p := hx
     rw [this] at hx'
     exact hx'
   · intro h p hp
-    refine (Polygon.aux_construct_eq_empty_iff p).mp ?_
+    refine (Polygon.aux_toSet_eq_empty_iff p).mp ?_
     ext x
     simp only [Set.mem_empty_iff_false, iff_false]
     exact h x p hp

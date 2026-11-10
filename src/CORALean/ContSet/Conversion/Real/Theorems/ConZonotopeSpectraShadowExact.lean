@@ -51,7 +51,7 @@ omit [AddCommGroup α] in
 private theorem ConZonotope.aux_posSemidef_spectraShadow_iff (cZ : ConZonotope α)
     (β : Fin cZ.h → ℝ) : -- --- CONCL ---
     (cZ.spectraShadow.A₀ + ∑ j, β j • cZ.spectraShadow.A j).PosSemidef
-      ↔ (∀ j, |β j| ≤ 1) ∧ β ∈ cZ.P.construct := by -- --- PROOF ---
+      ↔ (∀ j, |β j| ≤ 1) ∧ β ∈ cZ.P.toSet := by -- --- PROOF ---
   change (blockDiag 0 (Zonotope.spectraShadow ⟨cZ.h, cZ.c, cZ.G⟩).A₀ cZ.P.spectraShadow.A₀
       + ∑ j, β j • blockDiag 0 ((Zonotope.spectraShadow ⟨cZ.h, cZ.c, cZ.G⟩).A j)
         (cZ.P.spectraShadow.A j)).PosSemidef ↔ _
@@ -64,7 +64,7 @@ private theorem ConZonotope.aux_posSemidef_spectraShadow_iff (cZ : ConZonotope �
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.spectraShadow_exact (cZ : ConZonotope α) : -- --- CONCL ---
-    cZ.construct = cZ.spectraShadow.construct := by -- --- PROOF ---
+    cZ.toSet = cZ.spectraShadow.toSet := by -- --- PROOF ---
   apply Set.eq_of_subset_of_subset
   · rintro _ ⟨β, hβ, hP, rfl⟩
     exact ⟨β, (ConZonotope.aux_posSemidef_spectraShadow_iff cZ β).mpr ⟨hβ, hP⟩, rfl⟩

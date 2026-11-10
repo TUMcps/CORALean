@@ -66,8 +66,8 @@ end
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem GNN.sumPool_outer (pZ : PolyZonotope (Vec 𝕋 (N * F))) (H : Mat ℝ N F)
-    (hH : GNN.flatten H ∈ pZ.construct) :
-    Real.GNN.sumPoolLin N F H ∈ (GNN.sumPool pZ).construct := by
+    (hH : GNN.flatten H ∈ pZ.toSet) :
+    Real.GNN.sumPoolLin N F H ∈ (GNN.sumPool pZ).toSet := by
   rw [← GNN.aux_sumPoolMat_mulVec (𝕋 := 𝕋)]
   exact PolyZonotope.mtimes_outer (GNN.step_sumPoolMat N F) pZ ⟨_, hH, rfl⟩
 

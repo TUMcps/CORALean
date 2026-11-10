@@ -61,8 +61,8 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 bound on the time-point reachable set at `t` — no set built, and
 `reachSetExact` named only in the conclusion. -/
 noncomputable def LinearSys.timePointBoundOfInputReach (sys : LinearSys 𝕋 n) (R₀ U : S n)
-    {t : ℝ} (ht : 0 ≤ t) (hU : Bornology.IsBounded (construct U))
-    (b₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (construct R₀) d)
+    {t : ℝ} (ht : 0 ≤ t) (hU : Bornology.IsBounded (toSet U))
+    (b₀ : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (toSet R₀) d)
     (bP : ∀ d : Vec ℝ n →ₗ[ℝ] ℝ, SupportBound (sys.inputReach U t) d)
     (c : Vec ℝ n →ₗ[ℝ] ℝ) :
     SupportBound (sys.reachSetExact (Set.Icc 0 t) R₀ U t) c :=

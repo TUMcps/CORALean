@@ -11,7 +11,7 @@ public import Mathlib.Analysis.Convex.Basic
 A weighted average of two convex combinations reweights to a third. Holds for
 any vertex list, the empty one included.
 
-Proved directly rather than from the hull, since `construct_eq_convexHull` is
+Proved directly rather than from the hull, since `toSet_eq_convexHull` is
 what needs it.
 
 ## Inputs
@@ -39,8 +39,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem VPolytope.convex_construct (P : VPolytope α) : -- --- CONCL ---
-    Convex ℝ P.construct := by -- --- PROOF ---
+theorem VPolytope.convex_toSet (P : VPolytope α) : -- --- CONCL ---
+    Convex ℝ P.toSet := by -- --- PROOF ---
   rintro x ⟨β₁, hβ₁, hs₁, rfl⟩ y ⟨β₂, hβ₂, hs₂, rfl⟩ a b ha hb hab
   have hnn : ∀ j, 0 ≤ a * β₁ j + b * β₂ j := fun j =>
     add_nonneg (mul_nonneg ha (hβ₁ j)) (mul_nonneg hb (hβ₂ j))

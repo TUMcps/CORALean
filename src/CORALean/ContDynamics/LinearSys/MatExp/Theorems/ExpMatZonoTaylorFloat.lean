@@ -46,8 +46,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- One order of the series: the member's power, scaled. -/
 private theorem MatExp.aux_term_mem_expMatZonoTerm (M : Zonotope (Mat 𝕋 n n)) {A : Mat ℝ n n}
-    (hA : A ∈ M.construct) (i : ℕ) :
-    ((Nat.factorial i : ℝ)⁻¹) • A ^ i ∈ (MatExp.expMatZonoTerm M i).construct :=
+    (hA : A ∈ M.toSet) (i : ℕ) :
+    ((Nat.factorial i : ℝ)⁻¹) • A ^ i ∈ (MatExp.expMatZonoTerm M i).toSet :=
   Zonotope.matSmul_outer (MatExp.invFactorialBounds_mem i).1 (MatExp.invFactorialBounds_mem i).2
     (M.matPow i) (Zonotope.matPow_outer M hA i)
 
@@ -55,8 +55,8 @@ private theorem MatExp.aux_term_mem_expMatZonoTerm (M : Zonotope (Mat 𝕋 n n))
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem MatExp.expTaylor_mem_expMatZonoTaylor (M : Zonotope (Mat 𝕋 n n)) {A : Mat ℝ n n}
-    (hA : A ∈ M.construct) (η : ℕ) : -- --- CONCL ---
-    Real.MatExp.expTaylor A η ∈ (MatExp.expMatZonoTaylor M η).construct := by -- --- PROOF ---
+    (hA : A ∈ M.toSet) (η : ℕ) : -- --- CONCL ---
+    Real.MatExp.expTaylor A η ∈ (MatExp.expMatZonoTaylor M η).toSet := by -- --- PROOF ---
   induction η with
   | zero =>
       have h : Real.MatExp.expTaylor A 0 = ((Nat.factorial 0 : ℝ)⁻¹) • A ^ 0 :=
@@ -72,7 +72,7 @@ theorem MatExp.expTaylor_mem_expMatZonoTaylor (M : Zonotope (Mat 𝕋 n n)) {A :
         exact add_comm _ _
       rw [h]
       show _ ∈ (Zonotope.matPlus (MatExp.expMatZonoTerm M (k + 1))
-        (MatExp.expMatZonoTaylor M k)).materialiseMat.construct
+        (MatExp.expMatZonoTaylor M k)).materialiseMat.toSet
       rw [Zonotope.materialiseMat_eq]
       exact Zonotope.matPlus_outer _ _
         (Set.add_mem_add (MatExp.aux_term_mem_expMatZonoTerm M hA (k + 1)) ih)

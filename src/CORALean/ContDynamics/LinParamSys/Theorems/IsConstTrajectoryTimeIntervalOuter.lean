@@ -76,9 +76,9 @@ theorem LinParamSys.IsCanonicalConstTrajectory.timeInterval_outer {sys : LinPara
     (traj : sys.IsCanonicalConstTrajectory T R₀ U x u A) (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖(Interval.smul r sys.A).absMax‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r)
-    (hU : Bornology.IsBounded (construct U))
-    (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s) ∈ construct Ud) : -- --- CONCL ---
-    x t ∈ construct (Plus.plus (sys.timeInterval r (m + 2) R₀) Ud) := by -- --- PROOF ---
+    (hU : Bornology.IsBounded (toSet U))
+    (hUd : (∫ s in (0:ℝ)..t, exp ((t - s) • A) *ᵥ u s) ∈ toSet Ud) : -- --- CONCL ---
+    x t ∈ toSet (Plus.plus (sys.timeInterval r (m + 2) R₀) Ud) := by -- --- PROOF ---
   have hTt : Set.Icc (0:ℝ) t ⊆ T := fun s hs => hT ⟨hs.1, le_trans hs.2 htr⟩
   have lin := traj.toLinearSys
   have hvoc := lin.variation_of_constants hTt le_rfl ht0 hU

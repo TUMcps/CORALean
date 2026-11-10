@@ -13,7 +13,7 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 `fun t => Fin.append (x t) p` is the augmented state: its first half moves as
 `x` does, its second half is the constant `p`, whose integral equation is that of
 the `0` the augmented field puts there. `hZ` is what makes the initial state land in
-`construct Z₀`, as `hW` does in `TrajectoryToNonlinearSys.lean`, there being no
+`toSet Z₀`, as `hW` does in `TrajectoryToNonlinearSys.lean`, there being no
 cartesian-product class on `ContSet` to build `Z₀` from `R₀` and `P` instead.
 The augmented field is the parameterized one under the linear map `v ↦ (v, 0)`,
 which moves through the integral.
@@ -59,7 +59,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
 theorem NonlinParamSys.IsConstTrajectory.toAugment {sys : NonlinParamSys n m q} {T : Set ℝ}
     {R₀ : S n} {U : S m} {P : S q} {Z₀ : S (n + q)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
     {p : Vec ℝ q} {y : ℝ → Vec ℝ sys.r} (traj : sys.IsConstTrajectory T R₀ U P x u p y)
-    (hZ : ∀ v ∈ construct R₀, ∀ w ∈ construct P, Fin.append v w ∈ construct Z₀) : -- --- CONCL ---
+    (hZ : ∀ v ∈ toSet R₀, ∀ w ∈ toSet P, Fin.append v w ∈ toSet Z₀) : -- --- CONCL ---
     sys.augment.IsTrajectory T Z₀ U (fun t => Fin.append (x t) p) u y := by -- --- PROOF ---
   -- `v ↦ (v, 0)`, the linear map the parameter's zero field makes of the state's
   let L : Vec ℝ n →ₗ[ℝ] Vec ℝ (n + q) :=

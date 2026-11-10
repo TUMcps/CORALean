@@ -10,7 +10,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.SubsetOfCert
 
 [1, Eq. (1)], the sufficient containment condition of [2, Thm. 3]: if `Ĝ = G T` and every
 row of `T` has absolute sum at most `1` (`‖T‖∞ ≤ 1`), then `⟨c, Ĝ⟩ ⊆ ⟨c, G⟩`. It is [2, Thm. 3]
-at `β = 0` (`construct_subset_of_cert`).
+at `β = 0` (`toSet_subset_of_cert`).
 
 ## Inputs
 * `Z` – zonotope
@@ -51,9 +51,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- [1, Eq. (1)]: `‖T‖∞ ≤ 1` gives `⟨c, G T⟩ ⊆ ⟨c, G⟩`. -/
 theorem Zonotope.mulGens_inner (Z : Zonotope α) {r : ℕ} (T : Mat ℝ Z.h r)
     (hT : ∀ i, ∑ j, |T i j| ≤ 1) : -- --- CONCL ---
-    (Z.mulGens T).construct ⊆ Z.construct := by -- --- PROOF ---
+    (Z.mulGens T).toSet ⊆ Z.toSet := by -- --- PROOF ---
   -- [2, Thm. 3] at `Γ := T`, `β := 0`: the centers agree
-  refine Zonotope.construct_subset_of_cert (Z.mulGens T) Z T 0 (fun j => ?_) ?_ (fun k => ?_)
+  refine Zonotope.toSet_subset_of_cert (Z.mulGens T) Z T 0 (fun j => ?_) ?_ (fun k => ?_)
   · simp [Zonotope.mulGens]
   · simp [Zonotope.mulGens]
   · simp only [Pi.zero_apply, abs_zero, add_zero]

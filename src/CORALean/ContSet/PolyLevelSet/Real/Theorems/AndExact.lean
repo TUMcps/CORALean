@@ -40,9 +40,9 @@ variable {n : ℕ}
 
 /-- The stacked rows on the boxes' intersection denote the intersection of the two sets. -/
 theorem PolyLevelSet.and_exact (P₁ P₂ : PolyLevelSet n) : -- --- CONCL ---
-    (P₁.and_ P₂).construct = P₁.construct ∩ P₂.construct := by -- --- PROOF ---
+    (P₁.and_ P₂).toSet = P₁.toSet ∩ P₂.toSet := by -- --- PROOF ---
   ext x
-  show (x ∈ (P₁.dom.intersection P₂.dom).construct
+  show (x ∈ (P₁.dom.intersection P₂.dom).toSet
     ∧ ∀ i, ((P₁.and_ P₂).op i).holds ((P₁.and_ P₂).eval x i)) ↔ _
   rw [PolyLevelSet.eval_and_, Interval.intersection_exact]
   show (_ ∧ ∀ i, (Fin.append P₁.op P₂.op i).holds _) ↔ _

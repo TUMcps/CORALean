@@ -4,7 +4,7 @@ public import CORALean.ContSet.Ellipsoid.Real.Ellipsoid
 public import CORALean.Global.EuclideanNorm
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 public import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructOfFactor
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetOfFactor
 
 @[expose] public section
 
@@ -55,9 +55,9 @@ variable {n : ℕ}
 
 theorem Ellipsoid.det_ne_zero_of_superset_parallelotope {G F : Mat ℝ n n} (hG : IsUnit G.det)
     {z q : Vec ℝ n} (hsub : {x | ∃ β : Vec ℝ n, (∀ j, |β j| ≤ 1) ∧ x = z + G *ᵥ β} ⊆
-      (Ellipsoid.ofFactor F q).construct) : -- --- CONCL ---
+      (Ellipsoid.ofFactor F q).toSet) : -- --- CONCL ---
     F.det ≠ 0 := by -- --- PROOF ---
-  rw [Ellipsoid.construct_ofFactor] at hsub
+  rw [Ellipsoid.toSet_ofFactor] at hsub
   have hvert : ∀ β : Vec ℝ n, (∀ j, |β j| ≤ 1) → ∃ u : Vec ℝ n, ‖u‖₂ ≤ 1 ∧
       z + G *ᵥ β = q + F *ᵥ u := fun β hβ => hsub ⟨β, hβ, rfl⟩
   intro hF

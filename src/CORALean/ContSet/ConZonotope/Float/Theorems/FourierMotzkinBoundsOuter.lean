@@ -52,12 +52,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {p q : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ConZonotope.fourierMotzkinBounds_outer (C : Mat 𝕋 p q) (d : Vec 𝕋 p)
-    (B : Interval (Vec 𝕋 q)) {x : Vec ℝ q} (hx : x ∈ B.construct)
+    (B : Interval (Vec 𝕋 q)) {x : Vec ℝ q} (hx : x ∈ B.toSet)
     (hC : ∀ i, ∑ j, toReal (C i j) * x j ≤ toReal (d i)) : -- --- CONCL ---
-    x ∈ (ConZonotope.fourierMotzkinBounds C d B).construct := by -- --- PROOF ---
+    x ∈ (ConZonotope.fourierMotzkinBounds C d B).toSet := by -- --- PROOF ---
   -- the fold keeps `x` in the running box, each row's contraction containing it
-  have key : ∀ (l : List (Fin p)) (J : Interval (Vec 𝕋 q)), x ∈ J.construct →
-      x ∈ (l.foldl (fun J i => J.intersection (B.contractHalfspace (C i) (d i))) J).construct := by
+  have key : ∀ (l : List (Fin p)) (J : Interval (Vec 𝕋 q)), x ∈ J.toSet →
+      x ∈ (l.foldl (fun J i => J.intersection (B.contractHalfspace (C i) (d i))) J).toSet := by
     intro l
     induction l with
     | nil => exact fun J hJ => hJ

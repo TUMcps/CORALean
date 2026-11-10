@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.HPolytope.Float.Operations.PairsToEq
 public import CORALean.ContSet.HPolytope.Float.Theorems.Basic
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 
 @[expose] public section
 
@@ -67,8 +67,8 @@ private theorem HPolytope.aux_isInvertedPair_dot {Q : HPolytope 𝕋 (Vec 𝕋 n
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.pairsToEq_exact (Q : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    Q.pairsToEq.construct = Q.construct := by -- --- PROOF ---
-  refine HPolytope.construct_congr ?_ rfl
+    Q.pairsToEq.toSet = Q.toSet := by -- --- PROOF ---
+  refine HPolytope.toSet_congr ?_ rfl
   ext x
   rw [HPolytope.mem_nominal_iff, HPolytope.mem_nominal_iff]
   -- the rows of the result, read in `Q`

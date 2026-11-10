@@ -39,8 +39,8 @@ variable {m n : ℕ}
 
 theorem Interval.triu_exact (K : ℕ) (I : Interval (Mat ℝ m n))
     (hI : ∀ i j, I.inf i j ≤ I.sup i j) :
-    (I.triu K).construct = (fun (A : Mat ℝ m n) (i : Fin m) (j : Fin n) =>
-      if (i : ℕ) + K ≤ (j : ℕ) then A i j else 0) '' I.construct :=
+    (I.triu K).toSet = (fun (A : Mat ℝ m n) (i : Fin m) (j : Fin n) =>
+      if (i : ℕ) + K ≤ (j : ℕ) then A i j else 0) '' I.toSet :=
   Interval.mask_exact _ I hI
 
 end CORALean.Real

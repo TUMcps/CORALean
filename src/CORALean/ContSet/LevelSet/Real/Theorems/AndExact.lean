@@ -37,7 +37,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LevelSet.and_exact (L₁ L₂ : LevelSet n) :
-    (L₁.and_ L₂).construct = L₁.construct ∩ L₂.construct := by
+    (L₁.and_ L₂).toSet = L₁.toSet ∩ L₂.toSet := by
   ext x
   exact LevelSet.forall_append_holds _ _ _ _
 

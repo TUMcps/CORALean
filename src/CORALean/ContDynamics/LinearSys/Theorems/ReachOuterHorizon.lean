@@ -37,9 +37,9 @@ omit [∀ n, LinComb (S n) (Vec ℝ n)] in
 theorem LinearSys.IsCanonicalTrajectory.reach_outer_horizon {sys : LinearSys 𝕋 n} {T : Set ℝ}
     {R₀ U Ud : S n} {x u : ℝ → Vec ℝ n} {Δt : ℝ} {K : ℕ}
     (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
-    (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T) (hU : Bornology.IsBounded (construct U))
-    (hUd : ∀ k < K, sys.stepInput u Δt k ∈ construct Ud) {o : ℕ} (ho : 0 < o) :
-    ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ construct ((sys.discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
+    (hT : Set.Icc 0 ((K : ℝ) * Δt) ⊆ T) (hU : Bornology.IsBounded (toSet U))
+    (hUd : ∀ k < K, sys.stepInput u Δt k ∈ toSet Ud) {o : ℕ} (ho : 0 < o) :
+    ∀ k ≤ K, x ((k : ℝ) * Δt) ∈ toSet ((sys.discretize Δt).reach ⟨R₀, Ud, 0, k⟩ ⟨o, ho⟩) :=
   (sys.discretize Δt).reach_outer_on ho R₀ Ud (traj.discretize_horizon hΔt hT hU hUd)
 
 end CORALean

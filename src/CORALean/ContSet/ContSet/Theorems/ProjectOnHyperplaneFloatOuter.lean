@@ -46,8 +46,8 @@ variable [OfInterval S 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem ContSet.projectOnHyperplaneFloat_outer (s : S n) (c : Vec 𝕋 n) (d : 𝕋) : -- --- CONCL ---
-    (fun x : Vec ℝ n => x - (toRealVec c ⬝ᵥ x - toReal d) • toRealVec c) '' construct s ⊆
-      construct (ContSet.projectOnHyperplaneFloat s c d) := by -- --- PROOF ---
+    (fun x : Vec ℝ n => x - (toRealVec c ⬝ᵥ x - toReal d) • toRealVec c) '' toSet s ⊆
+      toSet (ContSet.projectOnHyperplaneFloat s c d) := by -- --- PROOF ---
   rintro _ ⟨x, hx, rfl⟩
   refine Plus.plus_outer _ _ ⟨(1 - Matrix.vecMulVec (toRealVec c) (toRealVec c)).mulVec x, ?_,
     toReal d • toRealVec c, OfInterval.ofInterval_outer _ ?_, ?_⟩

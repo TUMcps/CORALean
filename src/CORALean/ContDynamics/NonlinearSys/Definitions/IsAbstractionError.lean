@@ -46,7 +46,7 @@ structure IsAbstractionError (f : Vec ℝ n → Vec ℝ m → Vec ℝ n) (A : Ma
     (B : Mat ℝ n m) (xs : Vec ℝ n) (us : Vec ℝ m) (R : Set (Vec ℝ n)) (U : Set (Vec ℝ m))
     (L : S n) : Prop where
   encloses : ∀ x ∈ R, ∀ u ∈ U,
-    f x u - (f xs us + A *ᵥ (x - xs) + B *ᵥ (u - us)) ∈ construct L
+    f x u - (f xs us + A *ᵥ (x - xs) + B *ᵥ (u - us)) ∈ toSet L
 
 end CORALean
 

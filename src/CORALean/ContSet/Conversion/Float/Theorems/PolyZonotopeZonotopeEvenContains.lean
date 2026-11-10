@@ -44,7 +44,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- The float polynomial zonotope lies in its even-column zonotope. -/
 theorem PolyZonotope.zonotopeEven_contains (pZ : PolyZonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    pZ.construct ⊆ pZ.zonotopeEven.construct := by -- --- PROOF ---
+    pZ.toSet ⊆ pZ.zonotopeEven.toSet := by -- --- PROOF ---
   rintro _ ⟨z, hz, e, he, rfl⟩
   set w := Real.PolyZonotope.evenWeight pZ.E with hw
   -- the stored generators and the center's shift terms, as `zonotopeEven` writes them
@@ -62,7 +62,7 @@ theorem PolyZonotope.zonotopeEven_contains (pZ : PolyZonotope (Vec 𝕋 n)) : --
   obtain ⟨β, hβ, hzeq⟩ := Real.PolyZonotope.zonotopeEven_contains (nominal pZ) hz
   set s : Vec ℝ n := ∑ l, (1 - w l) • toRealVec (pZ.G l) with hs
   have hs_box : s ∈ (⟨fun i => sumDown fun l => t l i, fun i => sumUp fun l => t l i⟩
-        : Interval (Vec 𝕋 n)).construct := by
+        : Interval (Vec 𝕋 n)).toSet := by
     rw [Interval.mem_vec_iff]
     intro i
     -- `s` is the exact sum of the stored shift terms

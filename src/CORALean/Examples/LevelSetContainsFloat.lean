@@ -71,7 +71,7 @@ def Bout : Fin 3 → Interval D := ![⟨d 3 0, d 3 0⟩, ⟨d (-2) 0, d (-2) 0�
 
 set_option maxRecDepth 4096 in
 /-- The point is in the set: the three certified comparisons, read as reals. -/
-theorem levelPoint_mem : levelPoint ∈ levelSet.construct := by
+theorem levelPoint_mem : levelPoint ∈ levelSet.toSet := by
   refine LevelSet.containsPoint_sound (𝕋 := D) levelSet B levelPoint ?_ rfl
   intro i
   fin_cases i <;> simp [levelSet, B, levelPoint, toReal_d] <;> norm_num

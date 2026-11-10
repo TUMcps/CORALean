@@ -37,7 +37,7 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SpectraShadow.representsa_emptySet_iff (S : SpectraShadow α) : -- --- CONCL ---
-    S.representsa_emptySet ↔ S.construct = ∅ := by -- --- PROOF ---
+    S.representsa_emptySet ↔ S.toSet = ∅ := by -- --- PROOF ---
   unfold SpectraShadow.representsa_emptySet
   constructor
   · -- a point would give a solution
@@ -47,7 +47,7 @@ theorem SpectraShadow.representsa_emptySet_iff (S : SpectraShadow α) : -- --- C
     exact h ⟨β, hβ⟩
   · -- a solution gives a point
     rintro h ⟨β, hβ⟩
-    have : (S.c + ∑ i, β i • S.G i) ∈ S.construct := ⟨β, hβ, rfl⟩
+    have : (S.c + ∑ i, β i • S.G i) ∈ S.toSet := ⟨β, hβ, rfl⟩
     rw [h] at this
     exact this
 

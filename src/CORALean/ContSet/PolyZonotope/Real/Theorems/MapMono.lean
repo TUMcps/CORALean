@@ -40,7 +40,7 @@ variable {α β : Type} [AddCommGroup α] [Module ℝ α] [AddCommGroup β] [Mod
 
 /-- A larger operand denotes a larger image. -/
 theorem PolyZonotope.map_mono (f : α →ₗ[ℝ] β) {pZ₁ pZ₂ : PolyZonotope α}
-    (h : pZ₁.construct ⊆ pZ₂.construct) : (pZ₁.map f).construct ⊆ (pZ₂.map f).construct := by
+    (h : pZ₁.toSet ⊆ pZ₂.toSet) : (pZ₁.map f).toSet ⊆ (pZ₂.map f).toSet := by
   rw [← PolyZonotope.map_exact, ← PolyZonotope.map_exact]
   exact Set.image_mono h
 

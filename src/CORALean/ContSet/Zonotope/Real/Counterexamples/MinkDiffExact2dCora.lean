@@ -101,26 +101,26 @@ noncomputable def Zonotope.minkDiffExact2dCora (minuend subtrahend : Zonotope (V
 theorem Zonotope.minkDiffExact2dCora_not_inner : -- --- CONCL ---
     let Z₁ : Zonotope (Vec ℝ 2) := ⟨2, 0, fun j i => if i = j then 1 else 0⟩
     let Z₂ : Zonotope (Vec ℝ 2) := ⟨2, 0, fun j i => if i = j then 2 else 0⟩
-    minkowskiDiff Z₁.construct Z₂.construct = ∅ ∧
-      ∃ S, Z₁.minkDiffExact2dCora Z₂ = some S ∧ S.construct.Nonempty ∧
-        ¬ S.construct ⊆ minkowskiDiff Z₁.construct Z₂.construct := by -- --- PROOF ---
+    minkowskiDiff Z₁.toSet Z₂.toSet = ∅ ∧
+      ∃ S, Z₁.minkDiffExact2dCora Z₂ = some S ∧ S.toSet.Nonempty ∧
+        ¬ S.toSet ⊆ minkowskiDiff Z₁.toSet Z₂.toSet := by -- --- PROOF ---
   intro Z₁ Z₂
   -- membership in `Z₁` bounds coordinate `0` by `1`
-  have hmem : ∀ z ∈ Z₁.construct, |z 0| ≤ 1 := by
+  have hmem : ∀ z ∈ Z₁.toSet, |z 0| ≤ 1 := by
     rintro z ⟨β, hβ, hz⟩
     have h0 := congrFun hz 0
     simp [Z₁, Fin.sum_univ_two] at h0
     rw [h0]
     exact hβ 0
   -- `±2 e₀ ∈ Z₂`
-  have hpm : ∀ s : ℝ, |s| ≤ 1 → (fun i => if i = 0 then 2 * s else 0 : Vec ℝ 2) ∈ Z₂.construct := by
+  have hpm : ∀ s : ℝ, |s| ≤ 1 → (fun i => if i = 0 then 2 * s else 0 : Vec ℝ 2) ∈ Z₂.toSet := by
     intro s hs
     refine ⟨fun j => if j = 0 then s else 0, fun j => ?_, ?_⟩
     · by_cases hj : j = 0 <;> simp [hj, hs]
     · funext i
       fin_cases i <;> simp [Z₂]; ring
   -- the difference is empty: `±2 e₀ ∈ Z₂` push coordinate `0` out of `[-1, 1]`
-  have hempty : minkowskiDiff Z₁.construct Z₂.construct = ∅ := by
+  have hempty : minkowskiDiff Z₁.toSet Z₂.toSet = ∅ := by
     refine Set.eq_empty_iff_forall_notMem.mpr fun x hx => ?_
     have h1 := abs_le.mp (hmem _ (hx _ (hpm 1 (by norm_num))))
     have h2 := abs_le.mp (hmem _ (hx _ (hpm (-1) (by norm_num))))
@@ -138,7 +138,7 @@ theorem Zonotope.minkDiffExact2dCora_not_inner : -- --- CONCL ---
     norm_num
     intro j
     fin_cases j <;> simp [Z₁, Z₂]
-  have hS : (Z₁.minkDiffAligned Z₂ rfl).c ∈ (Z₁.minkDiffAligned Z₂ rfl).construct :=
+  have hS : (Z₁.minkDiffAligned Z₂ rfl).c ∈ (Z₁.minkDiffAligned Z₂ rfl).toSet :=
     ⟨fun _ => 0, fun _ => by simp, by simp⟩
   -- CORA returns the aligned closed form, whose center lies in it, so it is nonempty and not `∅`
   refine ⟨hempty, Z₁.minkDiffAligned Z₂ rfl, ?_, ⟨_, hS⟩, ?_⟩

@@ -52,10 +52,10 @@ variable {q n r : ℕ}
 
 theorem HPolytope.ineqs_eq_image_restrict (A : Mat ℝ q n) (b : Vec ℝ q) (B : Mat ℝ n r)
     (c : Vec ℝ n)
-    (hP : ∀ x ∈ (HPolytope.ineqs A b).construct, ∃ y, x - c = B *ᵥ y) : -- --- CONCL ---
-    (HPolytope.ineqs A b).construct =
+    (hP : ∀ x ∈ (HPolytope.ineqs A b).toSet, ∃ y, x - c = B *ᵥ y) : -- --- CONCL ---
+    (HPolytope.ineqs A b).toSet =
       (fun y => B *ᵥ y + c) ''
-        (HPolytope.ineqs (A * B) (b - A *ᵥ c)).construct := by -- --- PROOF ---
+        (HPolytope.ineqs (A * B) (b - A *ᵥ c)).toSet := by -- --- PROOF ---
   have hrow : ∀ y i, (A *ᵥ (B *ᵥ y + c)) i ≤ b i ↔ ((A * B) *ᵥ y) i ≤ (b - A *ᵥ c) i :=
     fun y i => by
       rw [Matrix.mulVec_add, Matrix.mulVec_mulVec, Pi.add_apply, Pi.sub_apply]

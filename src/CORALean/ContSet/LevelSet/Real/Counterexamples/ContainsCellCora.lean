@@ -80,8 +80,8 @@ theorem LevelSet.containsCellCora_counterexample : -- --- CONCL ---
     let ls : LevelSet 1 := ⟨2, fun x => ![x 0 - 2, x 0 - 10], ![CompOp.eq, CompOp.le]⟩
     let S : Interval (Vec ℝ 1) := ⟨fun _ => 0, fun _ => 1⟩
     let B : Fin 2 → Interval ℝ := ![⟨-2, -1⟩, ⟨-10, -9⟩]
-    (∀ i, IsRangeBound (fun x => ls.f x i) S.construct (B i).inf (B i).sup) ∧
-      LevelSet.containsCellCora ls.op B ∧ ¬ S.construct ⊆ ls.construct := by -- --- PROOF ---
+    (∀ i, IsRangeBound (fun x => ls.f x i) S.toSet (B i).inf (B i).sup) ∧
+      LevelSet.containsCellCora ls.op B ∧ ¬ S.toSet ⊆ ls.toSet := by -- --- PROOF ---
   intro ls S B
   refine ⟨?_, ?_, ?_⟩
   · -- `x - 2` and `x - 10` over `[0, 1]`
@@ -94,7 +94,7 @@ theorem LevelSet.containsCellCora_counterexample : -- --- CONCL ---
     fin_cases i <;> simp [ls, B]
   · -- `0 ∈ [0, 1]`, and `0 - 2 ≠ 0`
     intro h
-    have hmem : (fun _ => (0 : ℝ) : Vec ℝ 1) ∈ S.construct :=
+    have hmem : (fun _ => (0 : ℝ) : Vec ℝ 1) ∈ S.toSet :=
       fun _ => ⟨le_rfl, zero_le_one⟩
     have := h hmem 0
     simp [ls, CompOp.holds] at this

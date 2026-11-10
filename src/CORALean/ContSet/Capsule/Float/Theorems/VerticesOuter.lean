@@ -10,7 +10,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.Atan2HiLe
 public import CORALean.ContSet.Interval.Float.Theorems.MinusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Capsule.Real.Theorems.VerticesMemFrontier
-public import CORALean.ContSet.Capsule.Float.Theorems.ConstructEqNominal
+public import CORALean.ContSet.Capsule.Float.Theorems.ToSetEqNominal
 public import CORALean.ContSet.Capsule.Float.Theorems.RepresentsaPointParts
 
 @[expose] public section
@@ -101,19 +101,19 @@ private theorem Capsule.aux_piStep_mem (p k : ℕ) : -- --- CONCL ---
 /-- `Capsule.arcBox` holds the sampled point. -/
 private theorem Capsule.aux_arcBox_mem (p : ℕ) (step : Interval 𝕋) {s : ℝ}
     (hs : toReal step.inf ≤ s ∧ s ≤ toReal step.sup) (ctr : Interval (Vec 𝕋 2))
-    (a₀ : Interval (Vec 𝕋 1)) (r : 𝕋) (i : ℕ) {c : Vec ℝ 2} (hc : c ∈ ctr.construct) {a : ℝ}
-    (ha : (fun _ => a : Vec ℝ 1) ∈ a₀.construct) : -- --- CONCL ---
+    (a₀ : Interval (Vec 𝕋 1)) (r : 𝕋) (i : ℕ) {c : Vec ℝ 2} (hc : c ∈ ctr.toSet) {a : ℝ}
+    (ha : (fun _ => a : Vec ℝ 1) ∈ a₀.toSet) : -- --- CONCL ---
     (![c 0 + toReal r * Real.cos (a + (i : ℝ) * s), c 1 + toReal r * Real.sin (a + (i : ℝ) * s)] :
-      Vec ℝ 2) ∈ (Capsule.arcBox p step ctr a₀ r i).construct := by -- --- PROOF ---
+      Vec ℝ 2) ∈ (Capsule.arcBox p step ctr a₀ r i).toSet := by -- --- PROOF ---
   -- the index and the step in their boxes
   have hi := intDown_le_intUp (𝕋 := 𝕋) (i : ℤ)
   have hidx : (fun _ => (i : ℝ) : Vec ℝ 1) ∈
-      (⟨fun _ => intDown (i : ℤ), fun _ => intUp (i : ℤ)⟩ : Interval (Vec 𝕋 1)).construct :=
+      (⟨fun _ => intDown (i : ℤ), fun _ => intUp (i : ℤ)⟩ : Interval (Vec 𝕋 1)).toSet :=
     fun _ => (show toReal (intDown (i : ℤ) : 𝕋) ≤ (i : ℝ) ∧
         (i : ℝ) ≤ toReal (intUp (i : ℤ) : 𝕋) from
       ⟨by simpa using hi.1, by simpa using hi.2⟩)
   have hstp : (fun _ => s : Vec ℝ 1) ∈
-      (⟨fun _ => step.inf, fun _ => step.sup⟩ : Interval (Vec 𝕋 1)).construct := fun _ => hs
+      (⟨fun _ => step.inf, fun _ => step.sup⟩ : Interval (Vec 𝕋 1)).toSet := fun _ => hs
   -- the angle, then its cosine and sine
   have hprod := Interval.times_outer
     (⟨fun _ => intDown (i : ℤ), fun _ => intUp (i : ℤ)⟩ : Interval (Vec 𝕋 1))
@@ -123,11 +123,11 @@ private theorem Capsule.aux_arcBox_mem (p : ℕ) (step : Interval 𝕋) {s : ℝ
   have hsin := Interval.sin_outer p _ ⟨_, hang, rfl⟩
   -- the radius and the center's coordinates
   have hrad : (fun _ => toReal r : Vec ℝ 1) ∈
-      (Interval.point fun _ => r : Interval (Vec 𝕋 1)).construct := fun _ => ⟨le_rfl, le_rfl⟩
+      (Interval.point fun _ => r : Interval (Vec 𝕋 1)).toSet := fun _ => ⟨le_rfl, le_rfl⟩
   have hc0 : (fun _ => c 0 : Vec ℝ 1) ∈
-      (⟨fun _ => ctr.inf 0, fun _ => ctr.sup 0⟩ : Interval (Vec 𝕋 1)).construct := fun _ => hc 0
+      (⟨fun _ => ctr.inf 0, fun _ => ctr.sup 0⟩ : Interval (Vec 𝕋 1)).toSet := fun _ => hc 0
   have hc1 : (fun _ => c 1 : Vec ℝ 1) ∈
-      (⟨fun _ => ctr.inf 1, fun _ => ctr.sup 1⟩ : Interval (Vec 𝕋 1)).construct := fun _ => hc 1
+      (⟨fun _ => ctr.inf 1, fun _ => ctr.sup 1⟩ : Interval (Vec 𝕋 1)).toSet := fun _ => hc 1
   have hx := Interval.plus_outer _ _ (Set.add_mem_add hc0
     (Interval.times_outer _ _ ⟨_, hrad, _, hcos, rfl⟩))
   have hy := Interval.plus_outer _ _ (Set.add_mem_add hc1
@@ -142,10 +142,10 @@ private theorem Capsule.aux_arcBox_mem (p : ℕ) (step : Interval 𝕋) {s : ℝ
 
 theorem Capsule.vertices_outer (p k : ℕ) (C : Capsule 𝕋 2) (hr : 0 ≤ toReal C.r)
     (hnp : ¬ Real.Capsule.representsa_point C.nominal)
-    (hI : C.I_error.construct = {0}) : -- --- CONCL ---
-    ∀ B ∈ C.vertices p k, ∃ x ∈ B.construct, x ∈ frontier C.construct := by -- --- PROOF ---
+    (hI : C.I_error.toSet = {0}) : -- --- CONCL ---
+    ∀ B ∈ C.vertices p k, ∃ x ∈ B.toSet, x ∈ frontier C.toSet := by -- --- PROOF ---
   -- the box is the origin, so the set is the nominal capsule
-  rw [Capsule.construct_eq_nominal hI]
+  rw [Capsule.toSet_eq_nominal hI]
   -- the float test answers `false`, or the capsule would be a point
   have hfl : C.representsa_point = false := by
     by_contra hne
@@ -157,11 +157,11 @@ theorem Capsule.vertices_outer (p k : ℕ) (C : Capsule 𝕋 2) (hr : 0 ≤ toRe
     with hθB
   -- the angle `θ`, `π/2`, the step and the two centers, in their boxes
   have hθ : (fun _ => Complex.arg ⟨toReal (C.g 0), toReal (C.g 1)⟩ : Vec ℝ 1) ∈
-      θB.construct :=
+      θB.toSet :=
     fun _ => ⟨Interval.atan2Lo_le p k _ _, Interval.le_atan2Hi p k _ _⟩
   -- `π/2` in the box of `acos` at `0`
   have hq : (fun _ => Real.pi / 2 : Vec ℝ 1) ∈
-      (⟨fun _ => acosDown p k zero, fun _ => acosUp p k zero⟩ : Interval (Vec 𝕋 1)).construct := by
+      (⟨fun _ => acosDown p k zero, fun _ => acosUp p k zero⟩ : Interval (Vec 𝕋 1)).toSet := by
     intro _
     refine ⟨?_, ?_⟩
     · have := acosDown_le p k (zero : 𝕋)
@@ -172,20 +172,20 @@ theorem Capsule.vertices_outer (p k : ℕ) (C : Capsule 𝕋 2) (hr : 0 ≤ toRe
   have hstep := Capsule.aux_piStep_mem (𝕋 := 𝕋) p k
   have hc₁ : (C.nominal.c + C.nominal.g : Vec ℝ 2) ∈
       (⟨fun j => addDown (C.c j) (C.g j), fun j => addUp (C.c j) (C.g j)⟩ :
-        Interval (Vec 𝕋 2)).construct :=
+        Interval (Vec 𝕋 2)).toSet :=
     fun j => ⟨addDown_le_add _ _, add_le_addUp _ _⟩
   have hc₂ : (C.nominal.c - C.nominal.g : Vec ℝ 2) ∈
       (⟨fun j => subDown (C.c j) (C.g j), fun j => subUp (C.c j) (C.g j)⟩ :
-        Interval (Vec 𝕋 2)).construct :=
+        Interval (Vec 𝕋 2)).toSet :=
     fun j => ⟨subDown_le_sub _ _, sub_le_subUp _ _⟩
   -- the base angles `θ - π/2` and `θ + π/2` in their boxes
   have hm : (fun _ => Complex.arg ⟨toReal (C.g 0), toReal (C.g 1)⟩ - Real.pi / 2 : Vec ℝ 1) ∈
       (θB.minus
-        ⟨fun _ => acosDown p k zero, fun _ => acosUp p k zero⟩).construct :=
+        ⟨fun _ => acosDown p k zero, fun _ => acosUp p k zero⟩).toSet :=
     Interval.minus_outer _ _ (Set.sub_mem_sub hθ hq)
   have hpl : (fun _ => Complex.arg ⟨toReal (C.g 0), toReal (C.g 1)⟩ + Real.pi / 2 : Vec ℝ 1) ∈
       (θB.plus
-        ⟨fun _ => acosDown p k zero, fun _ => acosUp p k zero⟩).construct :=
+        ⟨fun _ => acosDown p k zero, fun _ => acosUp p k zero⟩).toSet :=
     Interval.plus_outer _ _ (Set.add_mem_add hθ hq)
   unfold Capsule.vertices
   rw [if_neg (by simp [hfl])]

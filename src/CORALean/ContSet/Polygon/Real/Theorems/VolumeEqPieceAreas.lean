@@ -40,21 +40,21 @@ namespace CORALean.Real
 private theorem Polygon.aux_union_eq (l : List (VPolytope (Vec ℝ 2)))
     (h : l.Pairwise fun p q =>
       MeasureTheory.AEDisjoint MeasureTheory.volume
-        (VPolytope.construct p) (VPolytope.construct q)) : -- --- CONCL ---
-    MeasureTheory.volume (⋃ p ∈ l, VPolytope.construct p) =
-      (l.map fun p => MeasureTheory.volume (VPolytope.construct p)).sum := by -- --- PROOF ---
+        (VPolytope.toSet p) (VPolytope.toSet q)) : -- --- CONCL ---
+    MeasureTheory.volume (⋃ p ∈ l, VPolytope.toSet p) =
+      (l.map fun p => MeasureTheory.volume (VPolytope.toSet p)).sum := by -- --- PROOF ---
   induction l with
   | nil => simp
   | cons a l ih =>
-    have e : (⋃ p ∈ a :: l, VPolytope.construct p)
-        = VPolytope.construct a ∪ ⋃ p ∈ l, VPolytope.construct p := by simp
+    have e : (⋃ p ∈ a :: l, VPolytope.toSet p)
+        = VPolytope.toSet a ∪ ⋃ p ∈ l, VPolytope.toSet p := by simp
     rw [List.pairwise_cons] at h
-    have hm : MeasureTheory.NullMeasurableSet (⋃ p ∈ l, VPolytope.construct p) := by
+    have hm : MeasureTheory.NullMeasurableSet (⋃ p ∈ l, VPolytope.toSet p) := by
       refine (Set.Finite.isClosed_biUnion l.finite_toSet fun p _ => ?_)
         |>.measurableSet.nullMeasurableSet
-      exact (VPolytope.isCompact_construct p).isClosed
-    have hd : MeasureTheory.AEDisjoint MeasureTheory.volume (VPolytope.construct a)
-        (⋃ p ∈ l, VPolytope.construct p) := by
+      exact (VPolytope.isCompact_toSet p).isClosed
+    have hd : MeasureTheory.AEDisjoint MeasureTheory.volume (VPolytope.toSet a)
+        (⋃ p ∈ l, VPolytope.toSet p) := by
       unfold MeasureTheory.AEDisjoint
       rw [Set.inter_iUnion₂]
       exact (MeasureTheory.measure_biUnion_null_iff l.finite_toSet.countable).2 fun p hp => h.1 p hp
@@ -66,7 +66,7 @@ private theorem Polygon.aux_union_eq (l : List (VPolytope (Vec ℝ 2)))
 /-- Exact when the pieces overlap in null sets only. -/
 theorem Polygon.volume_eq_pieceAreas (P : Polygon)
     (h : P.sets.Pairwise fun p q => MeasureTheory.AEDisjoint MeasureTheory.volume
-      (VPolytope.construct p) (VPolytope.construct q)) :
+      (VPolytope.toSet p) (VPolytope.toSet q)) :
     Polygon.volume P = Polygon.pieceAreas P :=
   Polygon.aux_union_eq P.sets h
 

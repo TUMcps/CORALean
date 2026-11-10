@@ -1,0 +1,49 @@
+module
+
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+public import CORALean.ContSet.SetIntersection.Theorems.Basic
+
+@[expose] public section
+
+/-!
+# A float bundle denotes the intersection over its index
+
+`ZonoBundle.toSet` is `SetIntersection`'s intersection of the listed members by definition,
+at any ambient type; this reads it back over `Fin k` with each member's own inflated set,
+through the general `SetIntersection.toSet_ofFn`. It is the form a proof about one of CORA's
+algorithms, which names members by their index, starts from.
+
+## Inputs
+* `zB` – zonotope bundle
+
+## Hypotheses
+* none
+
+## Conclusion
+* the bundle denotes the intersection of its members
+-/
+
+-- Authors:       Claude Opus 5.5
+-- Written:       18-October-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean.Float
+
+variable {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [Entrywise β ι]
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- A float bundle denotes the intersection of its members' inflated sets over their index. -/
+theorem ZonoBundle.toSet_eq_iInter (zB : ZonoBundle α) :
+    (zB.toSet : Set β) = ⋂ i, (zB.Z i).toSet :=
+  SetIntersection.toSet_ofFn zB.Z
+
+end CORALean.Float
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

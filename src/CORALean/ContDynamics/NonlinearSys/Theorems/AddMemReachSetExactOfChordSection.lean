@@ -80,20 +80,20 @@ through a start and time `σ` chosen continuously. -/
 theorem NonlinearSys.add_mem_reachSetExact_of_chord_section (sys : NonlinearSys n m)
     (R₀ : S n) (U : S m) {Δt : ℝ} (M : Mat ℝ n n) (v : Vec ℝ n)
     {E : Set (Vec ℝ n)} (hE : IsCompact E) (hEc : Convex ℝ E) (hEne : E.Nonempty) {c : Vec ℝ n}
-    (hEs : ∀ e ∈ E, (2 : ℝ) • c - e ∈ E) {u₀ : Vec ℝ m} (hu₀ : u₀ ∈ construct U)
+    (hEs : ∀ e ∈ E, (2 : ℝ) • c - e ∈ E) {u₀ : Vec ℝ m} (hu₀ : u₀ ∈ toSet U)
     {Ω : Set (Vec ℝ n)} {K : NNReal} (hLip : LipschitzOnWith K (fun x => sys.f x u₀) Ω)
-    (hex : ∀ x₀ ∈ construct R₀, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Set.Icc 0 Δt,
+    (hex : ∀ x₀ ∈ toSet R₀, ∃ x : ℝ → Vec ℝ n, x 0 = x₀ ∧ ∀ t ∈ Set.Icc 0 Δt,
       x t ∈ Ω ∧ HasDerivWithinAt x (sys.f (x t) u₀) (Set.Icc 0 Δt) t)
-    (herr : ∀ t ∈ Set.Icc 0 Δt, ∀ x₀ ∈ construct R₀, ∀ x : ℝ → Vec ℝ n, x 0 = x₀ →
+    (herr : ∀ t ∈ Set.Icc 0 Δt, ∀ x₀ ∈ toSet R₀, ∀ x : ℝ → Vec ℝ n, x 0 = x₀ →
       (∀ s ∈ Set.Icc 0 t, HasDerivWithinAt x (sys.f (x s) u₀) (Set.Icc 0 t) s) →
       x t - (x₀ + (t / Δt) • (M *ᵥ x₀ + v - x₀)) ∈ E)
     {z : Vec ℝ n} (σ : Vec ℝ n → Vec ℝ n × ℝ) (hσc : ContinuousOn σ ((z + ·) '' E))
-    (hσ : ∀ p ∈ (z + ·) '' E, (σ p).1 ∈ construct R₀ ∧ (σ p).2 ∈ Set.Icc 0 Δt ∧
+    (hσ : ∀ p ∈ (z + ·) '' E, (σ p).1 ∈ toSet R₀ ∧ (σ p).2 ∈ Set.Icc 0 Δt ∧
       (σ p).1 + ((σ p).2 / Δt) • (M *ᵥ (σ p).1 + v - (σ p).1) = p) : -- --- CONCL ---
     z + (2 : ℝ) • c ∈
       ⋃ t ∈ Set.Icc 0 Δt, sys.reachSetExact (Set.Icc 0 t) R₀ U t := by -- --- PROOF ---
   classical
-  set X₀ := construct R₀
+  set X₀ := toSet R₀
   choose sol hsol0 hsol using hex
   set F : Vec ℝ n × ℝ → Vec ℝ n := fun q => if h : q.1 ∈ X₀ then sol q.1 h q.2 else 0
   -- each solution is continuous on `[0, Δt]` and solves the equation from the right

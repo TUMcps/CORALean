@@ -8,7 +8,7 @@ public import CORALean.ContSet.ContSet.Definitions.Interfaces
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
 public import CORALean.ContSet.Conversion.Real.Instances
 public import CORALean.ContSet.HPolytope.Float.Instances
-public import CORALean.ContSet.HPolytope.Float.Theorems.MemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
 public import CORALean.ContSet.Interval.Float.Theorems.IsFullDimSound
 public import CORALean.ContSet.Polygon.Float.Theorems.IsDisjointSound
 public import CORALean.ContSet.Polygon.Float.Theorems.IsFullDimSound
@@ -48,7 +48,7 @@ public import CORALean.ContSet.Conversion.Real.Theorems.HPolytopeIntervalContain
 public import CORALean.ContSet.Conversion.Real.Theorems.Basic
 public import CORALean.ContSet.Conversion.Real.Theorems.VPolytopeIntervalContains
 public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
-public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemConstruct
+public import CORALean.ContSet.HPolytope.Float.Theorems.RowsOfMemToSet
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.Global.StepOf
 
@@ -96,7 +96,7 @@ def step_boxBound (I : Interval (Vec 𝕋 n)) (a : Vec 𝕋 n) : 𝕋 :=
 
 @[step_of containsPolytopeInterval]
 theorem step_boxBound_le (I : Interval (Vec 𝕋 n)) :
-    ∀ a, ∀ x ∈ I.construct, ∑ j, toReal (a j) * x j ≤ toReal (step_boxBound I a) :=
+    ∀ a, ∀ x ∈ I.toSet, ∑ j, toReal (a j) * x j ≤ toReal (step_boxBound I a) :=
   fun a => (I.boundDot (c := step_dirLin a) a fun _ => rfl).le
 
 /-- A zonotope's bound along `a`, with no solver. -/
@@ -106,7 +106,7 @@ def step_zonoBound (Z : Zonotope (Vec 𝕋 n)) (a : Vec 𝕋 n) : 𝕋 :=
 
 @[step_of containsPolytopeZonotope]
 theorem step_zonoBound_le (Z : Zonotope (Vec 𝕋 n)) :
-    ∀ a, ∀ x ∈ Z.construct, ∑ j, toReal (a j) * x j ≤ toReal (step_zonoBound Z a) :=
+    ∀ a, ∀ x ∈ Z.toSet, ∑ j, toReal (a j) * x j ≤ toReal (step_zonoBound Z a) :=
   fun a => (Z.boundDot (c := step_dirLin a) a fun _ => rfl).le
 
 /-- Every coordinate of `B` inside `I`'s. -/
@@ -117,7 +117,7 @@ def step_containsBox (I B : Interval (Vec 𝕋 n)) : Bool :=
 @[step_of containsBoxOuter]
 theorem step_containsBox_sound {I B : Interval (Vec 𝕋 n)}
     (h : step_containsBox I B = true) : -- --- CONCL ---
-    B.construct ⊆ I.construct := by -- --- PROOF ---
+    B.toSet ⊆ I.toSet := by -- --- PROOF ---
   simp only [step_containsBox, List.all_eq_true, List.mem_finRange, Bool.and_eq_true,
     forall_const] at h
   intro x hx j
@@ -133,7 +133,7 @@ def step_disjointBox (I B : Interval (Vec 𝕋 n)) : Bool :=
 @[step_of isDisjointBoxOuter]
 theorem step_disjointBox_sound {I B : Interval (Vec 𝕋 n)}
     (h : step_disjointBox I B = true) : -- --- CONCL ---
-    Disjoint B.construct I.construct := by -- --- PROOF ---
+    Disjoint B.toSet I.toSet := by -- --- PROOF ---
   simp only [step_disjointBox, List.any_eq_true, List.mem_finRange, Bool.or_eq_true,
     true_and] at h
   obtain ⟨j, hj⟩ := h
@@ -171,7 +171,7 @@ def step_containsRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (bnd : Vec 𝕋 n → �
 theorem step_containsRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
     (hb : ∀ a, ∀ x ∈ X, ∑ j, toReal (a j) * x j ≤ toReal (bnd a))
     (h : step_containsRows P bnd = true) : -- --- CONCL ---
-    X ⊆ P.construct := by -- --- PROOF ---
+    X ⊆ P.toSet := by -- --- PROOF ---
   simp only [step_containsRows, Bool.and_eq_true, List.all_eq_true, List.mem_finRange,
     forall_const] at h
   intro x hx
@@ -199,13 +199,13 @@ def step_disjointRows (P : HPolytope 𝕋 (Vec 𝕋 n)) (bnd : Vec 𝕋 n → �
 theorem step_disjointRows_sound {P : HPolytope 𝕋 (Vec 𝕋 n)} {X : Set (Vec ℝ n)} {bnd : Vec 𝕋 n → 𝕋}
     (hb : ∀ a, ∀ x ∈ X, ∑ j, toReal (a j) * x j ≤ toReal (bnd a))
     (h : step_disjointRows P bnd = true) : -- --- CONCL ---
-    Disjoint X P.construct := by -- --- PROOF ---
+    Disjoint X P.toSet := by -- --- PROOF ---
   simp only [step_disjointRows, List.any_eq_true, List.mem_finRange, true_and] at h
   obtain ⟨i, hi⟩ := h
   rw [Set.disjoint_left]
   intro x hX hP
   have hrow : ∑ j, toReal (P.A i j) * x j ≤ toReal (P.bU i) :=
-    (HPolytope.rows_of_mem_construct hP).1 i
+    (HPolytope.rows_of_mem_toSet hP).1 i
   linarith [step_neg_bound hb (P.A i) hX, toReal_lt_of_ltStrict hi]
 
 /-- Some member's hull of `zB` strictly to one side of `B`. -/
@@ -216,11 +216,11 @@ def step_disjointBundleBox (zB : ZonoBundle (Vec 𝕋 n)) (B : Interval (Vec �
 @[step_of isDisjointZonoBundleOuter]
 theorem step_disjointBundleBox_sound {zB : ZonoBundle (Vec 𝕋 n)} {B : Interval (Vec 𝕋 n)}
     (h : step_disjointBundleBox zB B = true) : -- --- CONCL ---
-    Disjoint B.construct zB.construct := by -- --- PROOF ---
+    Disjoint B.toSet zB.toSet := by -- --- PROOF ---
   simp only [step_disjointBundleBox, List.any_eq_true, List.mem_finRange, true_and] at h
   obtain ⟨i, hi⟩ := h
   exact (step_disjointBox_sound hi).mono_right
-    ((SetIntersection.construct_subset_ofFn _ i).trans
+    ((SetIntersection.toSet_subset_ofFn _ i).trans
       (Zonotope.interval_contains (zB.Z i)))
 
 /-- Some member of `zB'` and some member of `zB` with disjoint hulls. -/
@@ -231,11 +231,11 @@ def step_disjointBundles (zB zB' : ZonoBundle (Vec 𝕋 n)) : Bool :=
 @[step_of isDisjointZonoBundleZonoBundle]
 theorem step_disjointBundles_sound {zB zB' : ZonoBundle (Vec 𝕋 n)}
     (h : step_disjointBundles zB zB' = true) : -- --- CONCL ---
-    Disjoint zB'.construct zB.construct := by -- --- PROOF ---
+    Disjoint zB'.toSet zB.toSet := by -- --- PROOF ---
   simp only [step_disjointBundles, List.any_eq_true, List.mem_finRange, true_and] at h
   obtain ⟨j, hj⟩ := h
   exact (step_disjointBundleBox_sound hj).mono_left
-    ((SetIntersection.construct_subset_ofFn _ j).trans
+    ((SetIntersection.toSet_subset_ofFn _ j).trans
       (Zonotope.interval_contains (zB'.Z j)))
 
 

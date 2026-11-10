@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Real.Theorems.ConstructEqConvexHullCorner
+public import CORALean.ContSet.Zonotope.Real.Theorems.ToSetEqConvexHullCorner
 public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormEquivNorm
 public import Mathlib.Tactic.Module
 public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_VPolytope
@@ -51,10 +51,10 @@ variable {n : ℕ}
 
 theorem Zonotope.isGreatest_zonotopeNorm_corner (Z₁ Z₂ : Zonotope (Vec ℝ n))
     (hG : Function.Surjective Z₂.genMap) : -- --- CONCL ---
-    IsGreatest ((fun p => Z₂.zonotopeNorm (p - Z₂.c)) '' Z₁.construct)
+    IsGreatest ((fun p => Z₂.zonotopeNorm (p - Z₂.c)) '' Z₁.toSet)
       (Finset.univ.sup' Finset.univ_nonempty fun σ =>
         Z₂.zonotopeNorm (Z₁.corner σ - Z₂.c)) := by -- --- PROOF ---
-  have hhull := Z₁.construct_eq_convexHull_corner
+  have hhull := Z₁.toSet_eq_convexHull_corner
   -- `p ↦ ‖p - c₂‖` is convex, a translate of the norm
   have hconv : ConvexOn ℝ Set.univ fun p => Z₂.zonotopeNorm (p - Z₂.c) := by
     have h := (Z₂.zonotopeNorm_equiv_norm hG).2.1

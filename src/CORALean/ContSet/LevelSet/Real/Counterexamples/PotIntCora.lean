@@ -82,8 +82,8 @@ def LevelSet.step_BG (g : LevelSet 1) (_ : ℕ) : Fin g.m → Interval ℝ :=
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LevelSet.potIntCora_misses_counterexample : -- --- CONCL ---
-    LevelSet.step_G.construct ∩ LevelSet.step_R.construct ≠ ∅ ∧
-      (∀ i : Fin 2, IsRangeBound (fun x => LevelSet.step_G.f x i) LevelSet.step_R.construct
+    LevelSet.step_G.toSet ∩ LevelSet.step_R.toSet ≠ ∅ ∧
+      (∀ i : Fin 2, IsRangeBound (fun x => LevelSet.step_G.f x i) LevelSet.step_R.toSet
         (LevelSet.step_BG LevelSet.step_G 0 i).inf (LevelSet.step_BG LevelSet.step_G 0 i).sup) ∧
       (0, 0) ∉ LevelSet.potIntCora [LevelSet.step_G] 1 LevelSet.step_BG := by -- --- PROOF ---
   refine ⟨?_, ?_, ?_⟩

@@ -61,7 +61,7 @@ structure LinearSys.MaxBackReachStateFloat (𝕋 : Type) [FloatOps 𝕋] (n : �
 /-- `R̂^{∃∀}(-τ_{k-1})`, line 12: the first summand and the negated second. -/
 def LinearSys.MaxBackReachStateFloat.R [SoundFloatArithmetic 𝕋]
     (s : LinearSys.MaxBackReachStateFloat 𝕋 n) : Set (Vec ℝ n) :=
-  s.RH.construct + -s.RU.construct
+  s.RH.toSet + -s.RU.toSet
 
 end CORALean
 

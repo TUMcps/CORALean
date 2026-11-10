@@ -5,7 +5,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.BilinExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.CartProdExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.DependentExact
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.ExistsPointOfQZero
-public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemToSet
 
 @[expose] public section
 
@@ -14,7 +14,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.PointMemConstruct
 
 Unlike `bilin`, whose claim is about the evaluation map because its operands share factors,
 this is a claim about the two *sets*: the result is exactly the image of
-`pZ₁.construct ×ˢ pZ₂.construct` under `(x₁, x₂) ↦ x₁ᵀQx₂`, what the Cartesian product buys
+`pZ₁.toSet ×ˢ pZ₂.toSet` under `(x₁, x₂) ↦ x₁ᵀQx₂`, what the Cartesian product buys
 (`[1, Prop. 11]`). Three exact steps: `dependent_exact` empties the independent blocks,
 `cartProd_exact` turns the pair into the product set, and `bilin_exact` pairs the product with
 itself over its own factors, whose empty independent block `cartProd` preserves.
@@ -59,10 +59,10 @@ their own sets independently. -/
 theorem PolyZonotope.quadMapMixed_exact (Q : Fin m → Mat ℝ n n)
     (pZ₁ pZ₂ : PolyZonotope (Vec ℝ n)) : -- --- CONCL ---
     (fun x : Vec ℝ n × Vec ℝ n => PolyZonotope.quadBilin Q x.1 x.2)
-        '' (pZ₁.construct ×ˢ pZ₂.construct)
-      = (PolyZonotope.quadMapMixed Q pZ₁ pZ₂).construct := by -- --- PROOF ---
+        '' (pZ₁.toSet ×ˢ pZ₂.toSet)
+      = (PolyZonotope.quadMapMixed Q pZ₁ pZ₂).toSet := by -- --- PROOF ---
   -- with nothing independent left, the product set is exactly its points
-  have hc : (pZ₁.dependent.cartProd pZ₂.dependent).construct
+  have hc : (pZ₁.dependent.cartProd pZ₂.dependent).toSet
       = (pZ₁.dependent.cartProd pZ₂.dependent).point
           '' {a : Fin (pZ₁.dependent.cartProd pZ₂.dependent).p → ℝ | ∀ k, |a k| ≤ 1} := by
     apply Set.eq_of_subset_of_subset
@@ -71,10 +71,10 @@ theorem PolyZonotope.quadMapMixed_exact (Q : Fin m → Mat ℝ n n)
         PolyZonotope.exists_point_of_q_zero (pZ₁.dependent.cartProd pZ₂.dependent) rfl hx
       exact ⟨a, ha, rfl⟩
     · rintro _ ⟨a, ha, rfl⟩
-      exact PolyZonotope.point_mem_construct _ ha
+      exact PolyZonotope.point_mem_toSet _ ha
   -- and the product set is the pair of sets, neither operand having lost anything
-  have hprod : pZ₁.construct ×ˢ pZ₂.construct
-      = (pZ₁.dependent.cartProd pZ₂.dependent).construct := by
+  have hprod : pZ₁.toSet ×ˢ pZ₂.toSet
+      = (pZ₁.dependent.cartProd pZ₂.dependent).toSet := by
     rw [pZ₁.dependent_exact, pZ₂.dependent_exact]
     exact PolyZonotope.cartProd_exact _ _
   rw [hprod, hc, ← Set.image_comp]

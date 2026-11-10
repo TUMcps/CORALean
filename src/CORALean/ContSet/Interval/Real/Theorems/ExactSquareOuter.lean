@@ -47,8 +47,8 @@ variable {n : ℕ}
 
 /-- Every square of a member of the box lies in `exactSquare`. -/
 theorem Interval.exactSquare_outer (A : Interval (Mat ℝ n n)) {M : Mat ℝ n n}
-    (hM : M ∈ A.construct) : -- --- CONCL ---
-    M * M ∈ A.exactSquare.construct := by -- --- PROOF ---
+    (hM : M ∈ A.toSet) : -- --- CONCL ---
+    M * M ∈ A.exactSquare.toSet := by -- --- PROOF ---
   have hm := Interval.mem_mat_iff.mp hM
   refine Interval.mem_mat_iff.mpr fun i j => ?_
   simp only [Interval.exactSquare]

@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.polyZonotope_contains (I : Interval (Vec 𝕋 n)) :
-    I.construct ⊆ I.polyZonotope.construct := fun x hx => by
+    I.toSet ⊆ I.polyZonotope.toSet := fun x hx => by
   -- the nominal part is the origin, so the box carries the whole point
   refine ⟨0, PolyZonotope.mem_nominalSet_iff.mpr
     ⟨Fin.elim0, Fin.elim0, fun k => k.elim0, fun j => j.elim0, fun i => ?_⟩, x, hx, zero_add x⟩

@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.Zonotope.Real.Operations.Polymax
 public import CORALean.ContSet.Zonotope.Real.Theorems.ZonotopeNormBallEq
-public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemConstruct
+public import CORALean.ContSet.Zonotope.Real.Theorems.CenterMemToSet
 public import CORALean.ContSet.HPolytope.Real.Operations.Basic
 public import CORALean.ContSet.HPolytope.Real.Theorems.Basic
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
@@ -58,15 +58,15 @@ variable {n s : ℕ}
 
 theorem Zonotope.polymax_iff (Z₁ Z₂ : Zonotope (Vec ℝ n)) (hG : Function.Surjective Z₂.genMap)
     {H : Mat ℝ s n} {h : Vec ℝ s}
-    (hrep : (HPolytope.ineqs H h).construct = {y | Z₂.c + y ∈ Z₂.construct})
+    (hrep : (HPolytope.ineqs H h).toSet = {y | Z₂.c + y ∈ Z₂.toSet})
     (hne : ∀ i, h i ≠ 0) : -- --- CONCL ---
-    Z₁.polymax Z₂ H h = true ↔ Z₁.construct ⊆ Z₂.construct := by -- --- PROOF ---
+    Z₁.polymax Z₂ H h = true ↔ Z₁.toSet ⊆ Z₂.toSet := by -- --- PROOF ---
   have hball := (Z₂.zonotopeNorm_ball_eq hG).1
   set x : Fin s → Fin Z₁.h → ℝ := fun i j => if (H *ᵥ Z₁.G j) i / h i ≥ 0 then 1 else -1
     with hx
   set v : Fin s → Vec ℝ n := fun i => Z₁.c + ∑ j, x i j • Z₁.G j with hv
   -- the test is that every `vᵢ` lies in `Z₂`
-  have htest : Z₁.polymax Z₂ H h = true ↔ ∀ i, v i ∈ Z₂.construct := by
+  have htest : Z₁.polymax Z₂ H h = true ↔ ∀ i, v i ∈ Z₂.toSet := by
     simp only [Zonotope.polymax, gt_iff_lt, not_lt, ite_eq_left_iff, Bool.false_eq_true,
       imp_false, not_not]
     rw [← hball]
@@ -77,16 +77,16 @@ theorem Zonotope.polymax_iff (Z₁ Z₂ : Zonotope (Vec ℝ n)) (hG : Function.S
   · intro hvin p hp
     -- every right-hand side is positive, `0` being inside
     have hpos : ∀ i, 0 < h i := fun i => by
-      have h0 : (0 : Vec ℝ n) ∈ (HPolytope.ineqs H h).construct := by
-        rw [hrep]; simpa using Z₂.center_mem_construct
+      have h0 : (0 : Vec ℝ n) ∈ (HPolytope.ineqs H h).toSet := by
+        rw [hrep]; simpa using Z₂.center_mem_toSet
       have := HPolytope.mem_ineqs_iff.mp h0 i
       simp only [mulVec_zero, Pi.zero_apply] at this
       exact lt_of_le_of_ne this (hne i).symm
     -- `p - c₂` meets every facet `vᵢ - c₂` meets
     obtain ⟨β, hβ, rfl⟩ := hp
-    have hmem : Z₁.c + ∑ j, β j • Z₁.G j - Z₂.c ∈ (HPolytope.ineqs H h).construct := by
+    have hmem : Z₁.c + ∑ j, β j • Z₁.G j - Z₂.c ∈ (HPolytope.ineqs H h).toSet := by
       refine HPolytope.mem_ineqs_iff.mpr fun i => ?_
-      have hvi : v i - Z₂.c ∈ (HPolytope.ineqs H h).construct := by
+      have hvi : v i - Z₂.c ∈ (HPolytope.ineqs H h).toSet := by
         rw [hrep]; simpa using hvin i
       refine le_trans ?_ (HPolytope.mem_ineqs_iff.mp hvi i)
       -- `vᵢ` takes each generator with the sign of `ηᵢ gⱼ`, which is the most `βⱼ` can give

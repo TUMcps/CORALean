@@ -55,13 +55,13 @@ omit [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 /-- A matrix applied to a scaled point is the scaled matrix applied to it, which
 is how a constant in front of an integral is absorbed into the operation. -/
 private theorem aux_smul_mtimes_mem {M : Mat ℝ n n} {c : ℝ} {U : S n} {y : Vec ℝ n}
-    (hy : y ∈ construct U) : -- --- CONCL ---
-    M *ᵥ (c • y) ∈ construct (Mtimes.mtimes (c • M) U) := by -- --- PROOF ---
+    (hy : y ∈ toSet U) : -- --- CONCL ---
+    M *ᵥ (c • y) ∈ toSet (Mtimes.mtimes (c • M) U) := by -- --- PROOF ---
   have hM : M *ᵥ (c • y) = (c • M) *ᵥ y := by
     rw [Matrix.mulVec_smul, Matrix.smul_mulVec]
   rw [hM]
   refine Mtimes.mtimes_outer _ _ ?_
-  simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+  simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
   exact Set.mem_image_of_mem _ hy
 
 omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
@@ -69,8 +69,8 @@ omit [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] in
 time, exactly as the operation builds it. -/
 private theorem LinearSys.aux_inputTaylorSum_outer (sys : LinearSys 𝕋 n) (r : ℝ) (U : S n)
     (x : ℕ → Vec ℝ n) : ∀ (η : ℕ),
-    (∀ i, i ≤ η → x i ∈ construct (Mtimes.mtimes (sys.inputTerm r i) U)) →
-    (∑ i ∈ Finset.range (η + 1), x i) ∈ construct (sys.inputTaylorSum r U η)
+    (∀ i, i ≤ η → x i ∈ toSet (Mtimes.mtimes (sys.inputTerm r i) U)) →
+    (∑ i ∈ Finset.range (η + 1), x i) ∈ toSet (sys.inputTaylorSum r U η)
   | 0, hx => by
     rw [Finset.sum_range_one]
     exact hx 0 (le_refl 0)
@@ -88,18 +88,18 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
     (sys : LinearSys 𝕋 n)
     {r : ℝ} (hr : 0 < r) (η : ℕ)
     (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1) {U : S n}
-    (hconv : Convex ℝ (construct U)) (hclosed : IsClosed (construct U))
-    (hbdd : Bornology.IsBounded (construct U))
+    (hconv : Convex ℝ (toSet U)) (hclosed : IsClosed (toSet U))
+    (hbdd : Bornology.IsBounded (toSet U))
     -- the next three are asked of the product and not of `U`, `R(τ)` varying with `τ`
     (hRconv : Convex ℝ (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
     (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
     (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r η U))
     {u : ℝ → Vec ℝ n}
-    (hu : ∀ τ ∈ Set.Ioc (0:ℝ) r, u (r - τ) ∈ construct U)
+    (hu : ∀ τ ∈ Set.Ioc (0:ℝ) r, u (r - τ) ∈ toSet U)
     (hmeas : AEStronglyMeasurable (fun τ => u (r - τ)) (volume.restrict (Set.Ioc 0 r)))
     : -- --- CONCL ---
     (∫ s in (0:ℝ)..r, exp ((r - s) • toRealMat sys.A) *ᵥ u s)
-      ∈ construct (sys.inputSolution r η U) := by -- --- PROOF ---
+      ∈ toSet (sys.inputSolution r η U) := by -- --- PROOF ---
   set A := toRealMat sys.A with hA
   set g : ℝ → Vec ℝ n := fun τ => u (r - τ) with hg
   obtain ⟨C, hC⟩ := hbdd.exists_norm_le
@@ -129,7 +129,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
   -- each exact order lands in its own term of the operation
   have hterm : ∀ i, i ≤ η →
       (∫ τ in (0:ℝ)..r, ((Nat.factorial i : ℝ)⁻¹ * τ ^ i) • (A ^ i *ᵥ g τ))
-        ∈ construct (Mtimes.mtimes (sys.inputTerm r i) U) := by
+        ∈ toSet (Mtimes.mtimes (sys.inputTerm r i) U) := by
     intro i _
     have hgi : IntervalIntegrable (fun τ => τ ^ i • g τ) volume 0 r :=
       hint _ (r ^ i * C) ((continuous_pow i).aestronglyMeasurable.smul hmeas)
@@ -137,7 +137,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
           rw [norm_smul, Real.norm_eq_abs, abs_of_nonneg (pow_nonneg hτ.1.le i)]
           exact mul_le_mul (pow_le_pow_left₀ hτ.1.le hτ.2 i) (hgbd τ hτ) (norm_nonneg _)
             (pow_nonneg hr.le i))
-    have hy : (∫ τ in (0:ℝ)..r, τ ^ i • g τ) ∈ (r ^ (i + 1) / ((i : ℝ) + 1)) • construct U :=
+    have hy : (∫ τ in (0:ℝ)..r, τ ^ i • g τ) ∈ (r ^ (i + 1) / ((i : ℝ) + 1)) • toSet U :=
       integral_pow_smul_mem hconv hclosed hbdd hr i hmeas hu
     obtain ⟨z, hz, hzeq⟩ := hy
     -- the matrix leaves the integral, so convexity is asked only of `U`
@@ -167,7 +167,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
       field_simp
     rw [hcomb]
     refine Mtimes.mtimes_outer _ _ ?_
-    simp only [ContSet.construct_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
+    simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
     exact Set.mem_image_of_mem _ hz
   -- `Matrix` blocks instance search, so the remainder is measured one real entry at a time
   have hgk : ∀ k, AEStronglyMeasurable (fun τ => g τ k) (volume.restrict (Set.Ioc 0 r)) := by
@@ -195,11 +195,11 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
   -- every entry of `r · R(τ)` lies in the interval matrix `inputRemainder` names
   have hpt : ∀ τ ∈ Set.Ioc (0:ℝ) r,
       r • ((exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ)
-        ∈ construct (Mtimes.mtimes (𝕄 := ℐ)
+        ∈ toSet (Mtimes.mtimes (𝕄 := ℐ)
         (MatExp.inputRemainder A r η) U) := by
     intro τ hτ
     have hM : (r • (exp (τ • A) - MatExp.expTaylor (τ • A) η))
-        ∈ (MatExp.inputRemainder A r η).construct := by
+        ∈ (MatExp.inputRemainder A r η).toSet := by
       refine Interval.mem_mat_iff.mpr fun j k => ?_
       have hb := MatExp.remainder_entry_le A η hr hτ.1.le hτ.2 hε j k
       rw [abs_le] at hb
@@ -212,7 +212,7 @@ theorem LinearSys.inputSolution_outer [Mtimes ℐ S]
     exact Mtimes.mtimes_outer _ _ (Set.mem_biUnion hM (Set.mem_image_of_mem _ (hu τ hτ)))
   -- the `r` scaled in above divides back out, leaving the integral itself in the product
   have hrem : (∫ τ in (0:ℝ)..r, (exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ)
-      ∈ construct (Mtimes.mtimes (𝕄 := ℐ)
+      ∈ toSet (Mtimes.mtimes (𝕄 := ℐ)
         (MatExp.inputRemainder A r η) U) := by
     have hI := integral_pow_smul_mem hRconv hRclosed hRbdd hr 0
       (f := fun τ => r • ((exp (τ • A) - MatExp.expTaylor (τ • A) η) *ᵥ g τ))

@@ -38,7 +38,7 @@ variable {n m : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem EmptySet.vertices_exact (E : EmptySet n) :
-    convexHull ℝ (Set.range E.vertices) = construct E := by
+    convexHull ℝ (Set.range E.vertices) = toSet E := by
   have h : Set.range E.vertices = ∅ := Set.range_eq_empty _
   rw [h]
   exact convexHull_empty

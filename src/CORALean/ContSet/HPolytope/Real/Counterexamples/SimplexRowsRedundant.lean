@@ -51,9 +51,9 @@ open Matrix
 
 theorem HPolytope.simplexRows_redundant_counterexample : -- --- CONCL ---
     ∃ ℓ : Fin 1 → Vec ℝ 1, ‖ℓ 0‖₂ = 1 ∧
-      (HPolytope.ineqs (HPolytope.simplexRows ℓ) 1).construct =
+      (HPolytope.ineqs (HPolytope.simplexRows ℓ) 1).toSet =
         (HPolytope.ineqs ((HPolytope.simplexRows ℓ).submatrix (dropIdx (Fin.last 2)) id)
-          fun i => (1 : Vec ℝ 3) (dropIdx (Fin.last 2) i)).construct := by -- --- PROOF ---
+          fun i => (1 : Vec ℝ 3) (dropIdx (Fin.last 2) i)).toSet := by -- --- PROOF ---
   refine ⟨fun _ => 1, by simp [norm₂], ?_⟩
   -- the rows `x ≤ 1`, `-x ≤ 1`, `x ≤ 1`, read off the appended blocks
   have hA : ∀ r : Fin 3, HPolytope.simplexRows (fun _ : Fin 1 => (1 : Vec ℝ 1)) r =

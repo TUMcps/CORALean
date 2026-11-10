@@ -96,7 +96,7 @@ spanned by `Z`'s generators — `z'` with its center scaled by `m` — at coeffi
 `[-1, 1]`, and every such point is in `P`. -/
 theorem Zonotope.mem_linComb_mtimes_iff {Z : Zonotope (Vec ℝ n)} {E : Mat ℝ n n}
     {p : Vec ℝ n} : -- --- CONCL ---
-    p ∈ (Z.linComb (Z.mtimes E)).construct ↔
+    p ∈ (Z.linComb (Z.mtimes E)).toSet ↔
       ∃ β γ : Fin Z.h → ℝ, ∃ m : ℝ, (∀ j, |β j| ≤ 1) ∧ (∀ j, |γ j| ≤ 1) ∧ |m| ≤ 1 ∧
         p = (2:ℝ)⁻¹ • ((Z.c + ∑ j, β j • Z.G j) + E *ᵥ (Z.c + ∑ j, β j • Z.G j))
           + (2:ℝ)⁻¹ • ((m • Z.c + ∑ j, γ j • Z.G j)

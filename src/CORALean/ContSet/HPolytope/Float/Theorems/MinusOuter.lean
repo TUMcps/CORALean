@@ -46,7 +46,7 @@ open Pointwise Matrix
 /-- The shifted polytope contains the shift of every point. -/
 private theorem HPolytope.aux_translate_outer (t : Vec 𝕋 n)
     (P : HPolytope 𝕋 (Vec 𝕋 n)) : -- --- CONCL ---
-    (toRealVec t + ·) '' P.construct ⊆ (HPolytope.translate t P).construct := by -- --- PROOF ---
+    (toRealVec t + ·) '' P.toSet ⊆ (HPolytope.translate t P).toSet := by -- --- PROOF ---
   rintro _ ⟨y, hy, rfl⟩
   obtain ⟨z, hz, e, he, rfl⟩ := Set.mem_add.mp hy
   obtain ⟨hle, heq⟩ := HPolytope.mem_nominal_iff.mp hz
@@ -84,11 +84,11 @@ end
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HPolytope.minus_outer (P : HPolytope 𝕋 (Vec 𝕋 n)) (v : Vec 𝕋 n) : -- --- CONCL ---
-    (· - toRealVec v) '' P.construct ⊆ (P.minus v).construct := by -- --- PROOF ---
+    (· - toRealVec v) '' P.toSet ⊆ (P.minus v).toSet := by -- --- PROOF ---
   have h := HPolytope.aux_translate_outer (-v) P
   have hneg : toRealVec (-v) = -toRealVec v := toRealVec_neg _
   rw [hneg] at h
-  show _ ⊆ (HPolytope.translate (-v) P).construct
+  show _ ⊆ (HPolytope.translate (-v) P).toSet
   simpa only [sub_eq_add_neg, add_comm _ (-toRealVec v)] using h
 
 end CORALean.Float

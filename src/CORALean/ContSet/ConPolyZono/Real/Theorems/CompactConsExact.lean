@@ -48,9 +48,9 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 /-- The generators are copied and the constraint is `PolyLevelSet.compact`'s, which denotes the
 same set (`PolyLevelSet.compact_exact`). -/
 theorem ConPolyZono.compactCons_exact (cPZ : ConPolyZono α) :
-    cPZ.construct = cPZ.compactCons.construct := by
+    cPZ.toSet = cPZ.compactCons.toSet := by
   ext x
-  show _ ↔ ∃ a β, _ ∧ a ∈ cPZ.cons.compact.construct ∧ _
+  show _ ↔ ∃ a β, _ ∧ a ∈ cPZ.cons.compact.toSet ∧ _
   rw [PolyLevelSet.compact_exact]
   rfl
 

@@ -13,7 +13,7 @@ The padded set at a joint factor vector is the original set at the half of that
 vector it was written against. Nothing but the monomials could have changed, and
 a factor at exponent zero contributes `a ^ 0 = 1` to every one of them.
 
-Stated over `point` rather than `construct` because that is what a product of
+Stated over `point` rather than `toSet` because that is what a product of
 two sets is stated over; the set itself follows, the two constructions differing
 in no field a point does not read.
 

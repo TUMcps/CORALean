@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.ConZonotope.Real.Operations.Domain
-public import CORALean.ContSet.ConZonotope.Real.Theorems.ConstructEqImage
+public import CORALean.ContSet.ConZonotope.Real.Theorems.ToSetEqImage
 public import CORALean.ContSet.HPolytope.Real.Operations.SupportBound
 public import CORALean.Global.StepOf
 
@@ -57,12 +57,12 @@ def step_conZonotopeObjective (cZ : ConZonotope α) (c : α →ₗ[ℝ] ℝ) : V
 
 /-- `c` of the center plus a certified bound of the coefficient program. -/
 noncomputable def ConZonotope.supportBound (cZ : ConZonotope α) (c : α →ₗ[ℝ] ℝ) :
-    Option (SupportBound cZ.construct c) :=
+    Option (SupportBound cZ.toSet c) :=
   (cZ.domain.supportBound (step_conZonotopeObjective cZ c)).map fun u =>
     { val := c cZ.c + u.val
       le := by
         intro x hx
-        rw [ConZonotope.construct_eq_image] at hx
+        rw [ConZonotope.toSet_eq_image] at hx
         obtain ⟨β, hβ, rfl⟩ := hx
         have h1 := u.le β hβ
         have h2 : c (cZ.c + ∑ j, β j • cZ.G j) = c cZ.c + step_conZonotopeObjective cZ c β := by

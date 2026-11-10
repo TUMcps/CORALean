@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Ellipsoid.Real.Theorems.ConstructEqSqrt
+public import CORALean.ContSet.Ellipsoid.Real.Theorems.ToSetEqSqrt
 public import CORALean.ContSet.Ellipsoid.Real.Operations.IntersectStripGollamudi
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.Basic
 public import CORALean.ContSet.Ellipsoid.Real.Theorems.MemOfShapeIff
@@ -71,8 +71,8 @@ private theorem Ellipsoid.aux_dot_symm {A : Mat ℝ n n} (hA : Aᵀ = A) (u v : 
 
 theorem Ellipsoid.intersectStripGollamudi_outer {Q : Mat ℝ n n} (hQ : Q.PosDef) (c : Vec ℝ n)
     (C : Mat ℝ m n) (φ : ℝ) (y : Vec ℝ m) {lam : ℝ} (h0 : 0 ≤ lam) (h1 : lam < 1) : -- --- CONCL ---
-    (Ellipsoid.ofShape Q c).construct ∩ {x | ‖C *ᵥ x - y‖₂ ≤ φ}
-      ⊆ (Ellipsoid.intersectStripGollamudi Q c C φ y lam).construct := by -- --- PROOF ---
+    (Ellipsoid.ofShape Q c).toSet ∩ {x | ‖C *ᵥ x - y‖₂ ≤ φ}
+      ⊆ (Ellipsoid.intersectStripGollamudi Q c C φ y lam).toSet := by -- --- PROOF ---
   rintro x ⟨hxE, hxS⟩
   rw [Ellipsoid.mem_ofShape_iff hQ] at hxE
   have hl : 0 < 1 - lam := by linarith
@@ -112,7 +112,7 @@ theorem Ellipsoid.intersectStripGollamudi_outer {Q : Mat ℝ n n} (hQ : Q.PosDef
   -- the goal, at the center `c + λ Q u`
   show x ∈ (Ellipsoid.ofShape
     ((1 - lam + lam * φ ^ 2 - lam * (1 - lam) * (δ ⬝ᵥ T⁻¹ *ᵥ δ)) • P⁻¹)
-      (c + lam • (P⁻¹ *ᵥ (Cᵀ *ᵥ δ)))).construct
+      (c + lam • (P⁻¹ *ᵥ (Cᵀ *ᵥ δ)))).toSet
   rw [hcen, ← hw]
   set σsq := 1 - lam + lam * φ ^ 2 - lam * (1 - lam) * (δ ⬝ᵥ w) with hσ
   obtain ⟨d, hd⟩ : ∃ d, d = x - (c + lam • (Q *ᵥ u)) := ⟨_, rfl⟩
@@ -179,7 +179,7 @@ theorem Ellipsoid.intersectStripGollamudi_outer {Q : Mat ℝ n n} (hQ : Q.PosDef
       have := hPpd.dotProduct_mulVec_pos hne
       simp only [star_trivial] at this
       linarith
-    rw [Ellipsoid.ofShape_eq (by rw [← hzero, zero_smul]; exact .zero), Ellipsoid.construct_eq_sqrt]
+    rw [Ellipsoid.ofShape_eq (by rw [← hzero, zero_smul]; exact .zero), Ellipsoid.toSet_eq_sqrt]
     refine ⟨0, by rw [norm₂_zero]; exact zero_le_one, ?_⟩
     rw [mulVec_zero, add_zero]
     exact sub_eq_zero.1 (hd.symm.trans hd')

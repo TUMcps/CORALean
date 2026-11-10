@@ -38,14 +38,14 @@ namespace CORALean.Real
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Polygon.hausdorffDist_le (P : Polygon) (hne : (ContSet.construct P).Nonempty)
+theorem Polygon.hausdorffDist_le (P : Polygon) (hne : (ContSet.toSet P).Nonempty)
     (S : List (Vec ℝ 2)) (hS : S ≠ []) : -- --- CONCL ---
-    P.hausdorffDist S ≤ hausdorffDist₂ (ContSet.construct P) {s | s ∈ S} := by -- --- PROOF ---
+    P.hausdorffDist S ≤ hausdorffDist₂ (ContSet.toSet P) {s | s ∈ S} := by -- --- PROOF ---
   have hTne : ({s | s ∈ S} : Set (Vec ℝ 2)).Nonempty := ⟨S.head hS, List.head_mem hS⟩
-  have hr : 0 ≤ hausdorffDist₂ (ContSet.construct P) {s | s ∈ S} := Metric.hausdorffDist_nonneg
+  have hr : 0 ≤ hausdorffDist₂ (ContSet.toSet P) {s | s ∈ S} := Metric.hausdorffDist_nonneg
   rw [Polygon.hausdorffDist_le_iff P hne S hr]
   intro s hs
-  exact hausdorffDist₂_exists_mem_dist_le (Polygon.isCompact_construct P) hne
+  exact hausdorffDist₂_exists_mem_dist_le (Polygon.isCompact_toSet P) hne
     (List.finite_toSet S).isBounded hTne le_rfl hs
 
 end CORALean.Real

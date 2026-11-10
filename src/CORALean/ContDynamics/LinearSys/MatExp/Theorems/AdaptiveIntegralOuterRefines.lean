@@ -62,15 +62,15 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- At every member `M` of `A` and `Δt ≥ 0`, the exact `Σᵢ₌ᵢ₀^η Ãᵢ` is in the float sum. -/
 private theorem MatExp.aux_particularCoeffSum_mem (A : Interval (Mat 𝕋 n n)) {r : 𝕋}
-    (hr : 0 ≤ toReal r) {M : Mat ℝ n n} (hM : M ∈ A.construct) (i0 η : ℕ) : -- --- CONCL ---
+    (hr : 0 ≤ toReal r) {M : Mat ℝ n n} (hM : M ∈ A.toSet) (i0 η : ℕ) : -- --- CONCL ---
     Real.MatExp.particularCoeffSum M (toReal r) i0 η
-      ∈ (MatExp.particularCoeffSum A r i0 η).construct := by -- --- PROOF ---
+      ∈ (MatExp.particularCoeffSum A r i0 η).toSet := by -- --- PROOF ---
   -- the point `0` holds the empty sum
   have hzero : (0 : Mat ℝ n n)
-      ∈ (Interval.point fun _ _ => (zero : 𝕋) : Interval (Mat 𝕋 n n)).construct :=
+      ∈ (Interval.point fun _ _ => (zero : 𝕋) : Interval (Mat 𝕋 n n)).toSet :=
     Interval.mem_mat_iff.mpr fun _ _ => by simp [Interval.point, toReal_zero]
   have hterm : ∀ i, Real.MatExp.particularCoeff M (toReal r) i
-      ∈ (MatExp.intervalInputTerm A r i).construct :=
+      ∈ (MatExp.intervalInputTerm A r i).toSet :=
     fun i => MatExp.smul_pow_mem_intervalInputTerm A hr hM i
   induction η with
   | zero =>
@@ -93,20 +93,20 @@ private theorem MatExp.aux_particularCoeffSum_mem (A : Interval (Mat 𝕋 n n)) 
 theorem MatExp.adaptiveIntegral_outer_refines (A : Interval (Mat 𝕋 n n)) {r : 𝕋}
     (hr : 0 ≤ toReal r) (η : ℕ)
     (hε : toReal (MatExp.normUpperBound (Interval.smul r r A)) / ((η : ℝ) + 2) ≤ 1 / 2)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) : -- --- CONCL ---
-    (Real.MatExp.adaptiveIntegral M (toReal r) η).construct
-      ⊆ (MatExp.adaptiveIntegral A r η).construct := by -- --- PROOF ---
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) : -- --- CONCL ---
+    (Real.MatExp.adaptiveIntegral M (toReal r) η).toSet
+      ⊆ (MatExp.adaptiveIntegral A r η).toSet := by -- --- PROOF ---
   intro X hX
   set S := ∑ i ∈ Finset.range (η + 1), Real.MatExp.particularCoeff M (toReal r) i with hS
   -- `X - Asum` is in the exact remainder box, so in the float one
-  have hrem : X - S ∈ (Real.MatExp.adaptiveRemainder M (toReal r) η).construct := by
+  have hrem : X - S ∈ (Real.MatExp.adaptiveRemainder M (toReal r) η).toSet := by
     have hX' := Real.Interval.mem_mat_iff.mp hX
     refine Real.Interval.mem_mat_iff.mpr fun j k => ?_
     simp only [Real.MatExp.adaptiveIntegral, Real.MatExp.adaptiveRemainder] at hX' ⊢
     rw [Matrix.sub_apply]
     constructor <;> linarith [(hX' j k).1, (hX' j k).2]
   -- `Asum` is the float sum's from order `0`
-  have hsum : S ∈ (MatExp.particularCoeffSum A r 0 η).construct := by
+  have hsum : S ∈ (MatExp.particularCoeffSum A r 0 η).toSet := by
     have h := MatExp.aux_particularCoeffSum_mem A hr hM 0 η
     rwa [Real.MatExp.particularCoeffSum, ← Finset.range_eq_Ico] at h
   rw [show X = S + (X - S) by abel]

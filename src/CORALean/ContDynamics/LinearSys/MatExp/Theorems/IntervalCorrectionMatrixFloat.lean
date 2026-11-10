@@ -65,7 +65,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- Every member's correction term lies in the float box. -/
 private theorem MatExp.aux_corrTerm_mem_intervalCorrTerm (A : Interval (Mat 𝕋 n n)) {r : 𝕋}
-    (hr : 0 ≤ toReal r) {i : ℕ} (hi : 2 ≤ i) {M : Mat ℝ n n} (hM : M ∈ A.construct)
+    (hr : 0 ≤ toReal r) {i : ℕ} (hi : 2 ≤ i) {M : Mat ℝ n n} (hM : M ∈ A.toSet)
     (j k : Fin n) : -- --- CONCL ---
     toReal ((MatExp.intervalCorrTerm A r i).inf j k) ≤ Real.MatExp.corrTerm M (toReal r) i j k
       ∧ Real.MatExp.corrTerm M (toReal r) i j k
@@ -102,10 +102,10 @@ theorem MatExp.expDiff_mem_intervalCorrectionMatrix (A : Interval (Mat 𝕋 n n)
     (hr : 0 < toReal r) {m : ℕ}
     (hε : toReal (MatExp.normUpperBound (Interval.smul r r A)) / (((m + 2 : ℕ) : ℝ) + 2)
       ≤ 1 / 2)
-    {M : Mat ℝ n n} (hM : M ∈ A.construct) {t : ℝ} (ht0 : 0 ≤ t)
+    {M : Mat ℝ n n} (hM : M ∈ A.toSet) {t : ℝ} (ht0 : 0 ≤ t)
     (htr : t ≤ toReal r) : -- --- CONCL ---
     exp (t • M) - 1 - (t / toReal r) • (exp (toReal r • M) - 1)
-      ∈ (MatExp.intervalCorrectionMatrix A r (m + 2)).construct := by -- --- PROOF ---
+      ∈ (MatExp.intervalCorrectionMatrix A r (m + 2)).toSet := by -- --- PROOF ---
   have hnorm := MatExp.norm_smul_le_normUpperBound A r hM
   have hden : (0 : ℝ) < ((m + 2 : ℕ) : ℝ) + 2 := by positivity
   have hε' : ‖toReal r • M‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1 :=

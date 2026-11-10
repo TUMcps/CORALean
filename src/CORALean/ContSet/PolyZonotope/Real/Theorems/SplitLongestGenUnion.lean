@@ -37,7 +37,7 @@ variable {n : ℕ}
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem PolyZonotope.splitLongestGen_union (pZ : PolyZonotope (Vec ℝ n)) :
-    pZ.splitLongestGen.1.construct ∪ pZ.splitLongestGen.2.construct = pZ.construct := by
+    pZ.splitLongestGen.1.toSet ∪ pZ.splitLongestGen.2.toSet = pZ.toSet := by
   unfold PolyZonotope.splitLongestGen
   cases pZ.longestFactor with
   | some k => exact pZ.splitDepFactor_union k

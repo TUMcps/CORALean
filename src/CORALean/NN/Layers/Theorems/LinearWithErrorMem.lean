@@ -50,11 +50,11 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 
 /-- `W x + c` for any `c` within what `E` denotes of `b`. -/
 theorem Layer.linearWithError_mem (W : Mat 𝕋 m n) {b : Vec 𝕋 m} {c : Vec ℝ m}
-    {E : Interval (Vec 𝕋 m)} (hc : c - toRealVec b ∈ E.construct) (s : S n) {x : Vec ℝ n}
-    (hx : x ∈ construct s) : -- --- CONCL ---
+    {E : Interval (Vec 𝕋 m)} (hc : c - toRealVec b ∈ E.toSet) (s : S n) {x : Vec ℝ n}
+    (hx : x ∈ toSet s) : -- --- CONCL ---
     toRealMat W *ᵥ x + c ∈
-      construct ((Layer.linearWithError (S := S) W b E).enclose s) := by -- --- PROOF ---
-  have hbox : toRealVec b + (c - toRealVec b) ∈ construct (Interval.plus (Interval.point b) E) :=
+      toSet ((Layer.linearWithError (S := S) W b E).enclose s) := by -- --- PROOF ---
+  have hbox : toRealVec b + (c - toRealVec b) ∈ toSet (Interval.plus (Interval.point b) E) :=
     Interval.plus_outer _ _ (Set.add_mem_add (Interval.mem_point b) hc)
   rw [add_sub_cancel] at hbox
   exact plus_outer _ _ (Set.add_mem_add
