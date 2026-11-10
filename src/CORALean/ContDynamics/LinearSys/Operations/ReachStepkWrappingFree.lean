@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
+public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 
 @[expose] public section
 
@@ -53,7 +54,8 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 noncomputable def LinearSys.reachStepkWrappingFree (sys : LinearSys 𝕋 n) (Δt : ℝ) (η : ℕ) (X₀ : S n)
     (k : ℕ) : S n :=
   let tk := (k : ℝ) * Δt                                        -- t_k = k Δt
-  let Rτ₀ := sys.timeInterval Δt η X₀                       -- R(τ_0), τ_0 = [0, Δt]
+  let X₁ := sys.timePoint Δt X₀ 1                                -- R(t_1) = e^{AΔt} X₀
+  let Rτ₀ := sys.timeInterval Δt η X₀ X₁                         -- R(τ_0), τ_0 = [0, Δt]
   let eAtk := exp (tk • toRealMat sys.A)                        -- e^{A t_k}
   Mtimes.mtimes eAtk Rτ₀                                        -- R(τ_k) = e^{A t_k} R(τ_0)
 

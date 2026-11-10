@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.ConstInputSolution
 public import CORALean.ContDynamics.LinearSys.Operations.ParticularSolution
 public import CORALean.ContDynamics.LinearSys.Operations.StepInputConst
 public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
+public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 
 @[expose] public section
 
@@ -66,7 +67,8 @@ noncomputable def LinearSys.WithInputSplit.reachStepk (sys : LinearSys.WithInput
   let uc := Recenter.center sys.U                                -- ũ, the constant
   let U₀ := Recenter.recenter sys.U                              -- Ũ = U - ũ, holding 0
   let tk := (k : ℝ) * Δt                                         -- t_k = k Δt
-  let HRτ₀ := sys.sys.timeInterval Δt η X₀                   -- H^R(τ_0)
+  let X₁ := sys.sys.timePoint Δt X₀ 1                            -- e^{AΔt} X₀
+  let HRτ₀ := sys.sys.timeInterval Δt η X₀ X₁                    -- H^R(τ_0)
   let PcRτ₀ : S n := sys.sys.constInputSolution Δt η uc          -- P̃^R(τ_0), ũ over τ_0
   let eAtk := exp (tk • toRealMat sys.sys.A)                     -- e^{A t_k}
   let Pctk : S n := OfPoint.ofPoint (sys.sys.stepInputConst uc tk)  -- P̃(t_k)

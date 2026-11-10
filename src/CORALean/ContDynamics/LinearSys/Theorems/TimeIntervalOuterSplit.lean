@@ -63,7 +63,7 @@ theorem LinearSys.IsCanonicalTrajectory.timeInterval_outer_split [Mtimes ℐ S]
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) :
     x t ∈ toSet (Plus.plus
-      (sys.timeInterval r (m + 2) R₀)
+      (sys.timeInterval r (m + 2) R₀ (sys.timePoint r R₀ 1))
       (Plus.plus
         (Plus.plus
           (Mtimes.mtimes (𝕄 := Mat ℝ)

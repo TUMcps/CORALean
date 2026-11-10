@@ -31,6 +31,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.VerifyIterFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifySpecFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifySoundFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachExact
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachExactAt
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
 public import CORALean.ContDynamics.LinearSys.Definitions.WithInput
@@ -72,7 +73,7 @@ at a time point, `TimeIntervalBackReachSetExistsForallExact`/`ForallExists` over
 interval. `TimeIntervalBackReachSetOfInputExact` is the set under one fixed input
 signal, [1, Thm. 1]'s intersection target.
 
-`ReachExact` is what `Reach` asks of it, homogeneous;
+`ReachExact` is what `Reach` asks of it, homogeneous, the union of `ReachExactAt`'s;
 `WithInput`/`WithInputReachExact` the same with an input set holding the
 origin, `WithInputSplit`/`WithInputSplitReachExact` with one anywhere.
 `IsOrderAdmissibleFloat` is the order the float steps ask for,

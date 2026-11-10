@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachExactAt
 public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 public import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 
@@ -12,7 +13,7 @@ By induction on `k`: point `0` is `X₀` itself, at `e^{A · 0} = I`; at
 `k + 1`, `e^{A(k+1)Δt} = e^{AΔt} e^{AkΔt}`, both powers of the same matrix, so
 the inductive hypothesis's point at `kΔt` carries to `(k+1)Δt` by
 `mtimes_outer`, the same step `timePoint` itself takes — the sample-time half
-of [1, Alg. 1]'s own recursion, `reachStepk_outer` the window it encloses from
+of [1, Alg. 1]'s own recursion, `timeInterval_timePoint_outer` the window it encloses from
 each one.
 
 ## Inputs
@@ -61,7 +62,7 @@ variable [Mtimes (Mat ℝ) S]
 is in `timePoint`'s set for it. -/
 theorem LinearSys.timePoint_outer (sys : LinearSys 𝕋 n) (Δt : ℝ) (X₀ : S n)
     (k : ℕ) : -- --- CONCL ---
-    (fun x₀ => exp (((k : ℝ) * Δt) • toRealMat sys.A) *ᵥ x₀) '' toSet X₀
+    sys.reachExactAt ((k : ℝ) * Δt) (toSet X₀)
       ⊆ toSet (sys.timePoint Δt X₀ k) := by -- --- PROOF ---
   induction k with
   | zero =>

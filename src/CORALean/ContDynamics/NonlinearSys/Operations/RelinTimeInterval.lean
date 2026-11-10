@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
+public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 public import CORALean.ContDynamics.NonlinearSys.Operations.RelinReach
 
 @[expose] public section
@@ -68,8 +69,9 @@ enclosure. -/
 noncomputable def NonlinearSys.relinTimeInterval (sys : NonlinearSys n m) {U : S m} (o : ℕ)
     (ho : 0 < o) (Δt : ℝ) (η : ℕ) (steps : ℕ → sys.LinStep U) (Ud : ℕ → S n) (R₀ : S n) (i : ℕ) :
     S n :=
-  ((NonlinearSys.linearize (steps i).A).timeInterval Δt η
-    (sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud)) ⊞ Ud i
+  let lsys := NonlinearSys.linearize (steps i).A
+  let Ri := sys.relinReach ⟨R₀, 0, i⟩ ⟨Δt, o, ho⟩ steps Ud
+  (lsys.timeInterval Δt η Ri (lsys.timePoint Δt Ri 1)) ⊞ Ud i
 
 end CORALean
 

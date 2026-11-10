@@ -52,7 +52,7 @@ theorem LinearSys.IsCanonicalTrajectory.timeInterval_outer_inputSolution {sys : 
     (hRclosed : IsClosed (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U))
     (hRbdd : Bornology.IsBounded (MatExp.inputRemainderSet (toRealMat sys.A) r (m + 2) U))
     (h0 : (0 : Vec ℝ n) ∈ toSet U) :
-    x t ∈ toSet (Plus.plus (sys.timeInterval r (m + 2) R₀)
+    x t ∈ toSet (Plus.plus (sys.timeInterval r (m + 2) R₀ (sys.timePoint r R₀ 1))
       (sys.inputSolution r (m + 2) U)) :=
   traj.timeInterval_outer hr hT hε ht0 htr hbdd
     (traj.inputSolution_timeInterval_outer hr hT (m + 2) hε hconv hclosed hbdd

@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderOrderSpec
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalStepEps
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterAt
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointOneOuter
 
 @[expose] public section
 
@@ -71,7 +72,7 @@ theorem LinearSys.timeIntervalStepEps_outer (sys : LinearSys 𝕋 n) {r : ℝ} (
     ⟨MatExp.expRemainderOrder (r • toRealMat sys.A) ε - 2, by omega⟩
   simp only [LinearSys.timeIntervalStepEps]
   rw [hm] at hs ⊢
-  exact sys.timeInterval_outer_at hr hs X₀ ht0 htr
+  exact sys.timeInterval_outer_at hr hs X₀ _ (sys.timePoint_one_outer r X₀) ht0 htr
 
 end CORALean
 

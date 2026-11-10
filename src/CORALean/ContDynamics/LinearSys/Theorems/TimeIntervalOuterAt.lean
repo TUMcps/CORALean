@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachExactAt
 public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSetLinComb
 
@@ -49,21 +50,22 @@ variable [Mtimes ℐ S]
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-omit [∀ n, Reduce (S n) (Vec ℝ n)] in
+omit [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
 /-- Every image of the initial set under the flow, at a named time of the step.
 `timeInterval_outer` is the same guarantee, quantified over every such
 time at once. -/
 theorem LinearSys.timeInterval_outer_at (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) {m : ℕ}
-    (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n)
+    (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ X₁ : S n)
+    (hX : sys.reachExactAt r (toSet X₀) ⊆ toSet X₁)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' toSet X₀
-      ⊆ toSet (sys.timeInterval r (m + 2) X₀) := by -- --- PROOF ---
+      ⊆ toSet (sys.timeInterval r (m + 2) X₀ X₁) := by -- --- PROOF ---
   -- the two lifts `timeInterval_outer_setLinComb` stops short of
   refine (sys.timeInterval_outer_setLinComb hr hε X₀ ht0 htr).trans
     ((Set.add_subset_add ?_ subset_rfl).trans (Plus.plus_outer _ _))
   rintro _ ⟨y₁, hy₁, y₂, hy₂, lam, hlam, rfl⟩
   exact LinComb.linComb_outer _ _
-    ⟨y₁, hy₁, y₂, Mtimes.mtimes_outer _ _ (Set.mem_biUnion rfl hy₂), lam, hlam, rfl⟩
+    ⟨y₁, hy₁, y₂, hX hy₂, lam, hlam, rfl⟩
 
 end CORALean
 

@@ -93,7 +93,7 @@ theorem LinearSys.reachBox_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Ve
       ∧ sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) X₀ U t ⊆ R.toSet := by -- --- PROOF ---
   set A := toRealMat sys.A
   set E := exp (r • A)
-  set H₀ := sys.timeInterval (S := 𝒵) r (m + 2) X₀
+  set H₀ := sys.timeInterval (S := 𝒵) r (m + 2) X₀ (sys.timePoint (S := 𝒵) r X₀ 1)
   set V₀ := sys.inputSolution (S := 𝒵) r (m + 2) U
   set step : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n)
       → Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) :=

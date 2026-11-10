@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderOrder
 public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
+public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 
 @[expose] public section
 
@@ -62,6 +63,7 @@ under `ε`. -/
 noncomputable def LinearSys.timeIntervalStepEps
     (sys : LinearSys 𝕋 n) (r ε : ℝ) (X₀ : S n) : S n :=
   sys.timeInterval r (MatExp.expRemainderOrder (r • toRealMat sys.A) ε) X₀
+    (sys.timePoint r X₀ 1)
 
 end CORALean
 

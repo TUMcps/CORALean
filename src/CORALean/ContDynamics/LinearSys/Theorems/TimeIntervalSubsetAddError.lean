@@ -55,7 +55,7 @@ what the flow visits over it, widened by `timeIntervalStepError`. -/
 theorem LinearSys.timeInterval_subset_reach_add_error (sys : LinearSys 𝕋 n) {r : ℝ}
     (hr : 0 < r) (η : ℕ) (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (X₀ : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    (sys.timeInterval (S := 𝒵) r η X₀).toSet
+    (sys.timeInterval (S := 𝒵) r η X₀ (sys.timePoint (S := 𝒵) r X₀ 1)).toSet
       ⊆ (⋃ t ∈ Set.Icc (0:ℝ) r,
             (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' X₀.toSet)
         + Metric.closedBall (0 : Vec ℝ n)

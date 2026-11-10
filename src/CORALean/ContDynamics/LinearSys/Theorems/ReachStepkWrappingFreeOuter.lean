@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFree
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterAt
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointOneOuter
 
 @[expose] public section
 
@@ -65,7 +66,8 @@ theorem LinearSys.reachStepkWrappingFree_outer (sys : LinearSys 𝕋 n) {Δt : �
       ⊆ toSet (sys.reachStepkWrappingFree Δt (m + 2) X₀ k) := by -- --- PROOF ---
   rintro _ ⟨x₀, hx₀, rfl⟩
   -- `τ = t - t_k ∈ [0, Δt]`, so `R(τ_0)` holds `e^{Aτ} x₀`
-  have hτ := sys.timeInterval_outer_at hΔt hε X₀ (sub_nonneg.mpr hkt) htk
+  have hτ := sys.timeInterval_outer_at hΔt hε X₀ _ (sys.timePoint_one_outer Δt X₀)
+    (sub_nonneg.mpr hkt) htk
     (Set.mem_image_of_mem _ hx₀)
   -- `e^{At} = e^{A t_k} e^{Aτ}`, both powers of the same matrix
   have hc : Commute (((k : ℝ) * Δt) • toRealMat sys.A) ((t - k * Δt) • toRealMat sys.A) :=

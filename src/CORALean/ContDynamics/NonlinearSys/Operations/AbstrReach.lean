@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.TimeInterval
+public import CORALean.ContDynamics.LinearSys.Operations.TimePoint
 public import CORALean.ContDynamics.LinearSys.Operations.TimePointStep
 public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrReachOptions
 public import CORALean.ContDynamics.NonlinearSys.Definitions.AbstrState
@@ -86,7 +87,7 @@ noncomputable def NonlinearSys.step_abstrStep (sys : NonlinearSys n m) (U : S m)
   -- 6. linReach, eq. (10)
   let Rlint := lsys.timePointStep Δt ηlin s.R Ulin
   -- 6. linReach, eq. (12)
-  let Rlinτ := (lsys.timeInterval Δt ηlin s.R)
+  let Rlinτ := (lsys.timeInterval Δt ηlin s.R (lsys.timePoint Δt s.R 1))
     ⊞ lsys.inputSolution Δt ηlin Ulin
   -- 7. Ψ ← 0
   let Ψ₀ := OfPoint.ofPoint (0 : Vec ℝ n)

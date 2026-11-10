@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachExact
 public import CORALean.ContDynamics.LinearSys.Operations.Reach
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsReachWindowExact
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalTimePointOuter
 public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 @[expose] public section
@@ -13,7 +13,7 @@ public import CORALean.ContSet.SetUnion.Theorems.Basic
 
 A time `t ∈ [0, tFinal]` falls in a window `τ_k` with `k < max 1 ⌈tFinal / Δt⌉`
 (`exists_reach_window`), and `0 < tFinal` makes that `k < ⌈tFinal / Δt⌉`, a window
-`reach` keeps; `reachStepk_outer` puts `e^{At} x₀` in its set, off the
+`reach` keeps; `timeInterval_timePoint_outer` puts `e^{At} x₀` in its set, off the
 time-point set `timePoint Δt X₀ k` the window's own recursion runs on. The
 order is the caller's, `η` itself rather than `m + 2`, admissible by `hε`,
 since `reach` raises nothing itself: the statement is `reachWrappingFree_outer`'s
@@ -79,7 +79,8 @@ theorem LinearSys.reach_outer (sys : LinearSys 𝕋 n) {params : Reach.Params (S
   obtain ⟨Δt, η⟩ := options
   dsimp only at *
   generalize tF - tStart = tFinal at *
-  rintro _ ⟨t, ht, x₀, hx₀, rfl⟩
+  intro y hy
+  obtain ⟨t, ht, x₀, hx₀, rfl⟩ := Set.mem_iUnion₂.mp hy
   obtain ⟨k, hk, hkt, htk⟩ := LinearSys.exists_reach_window hΔt ht
   -- `0 < tFinal` keeps at least one window, so `max 1` changes nothing
   have hN : 1 ≤ ⌈tFinal / Δt⌉₊ := Nat.one_le_iff_ne_zero.mpr (Nat.ceil_pos.mpr
@@ -87,7 +88,7 @@ theorem LinearSys.reach_outer (sys : LinearSys 𝕋 n) {params : Reach.Params (S
   rw [max_eq_right hN] at hk
   -- window `k` holds `e^{At} x₀`, and `k < N`
   exact SetUnion.mem_toSet_range hk
-    (sys.reachStepk_outer hΔt hη hε X₀ hkt htk (Set.mem_image_of_mem _ hx₀))
+    (sys.timeInterval_timePoint_outer hΔt hη hε X₀ hkt htk (Set.mem_image_of_mem _ hx₀))
 
 end CORALean
 

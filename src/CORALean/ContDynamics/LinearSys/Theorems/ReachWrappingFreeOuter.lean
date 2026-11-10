@@ -65,7 +65,8 @@ theorem LinearSys.reachWrappingFree_outer (sys : LinearSys 𝕋 n)
   unfold LinearSys.reachWrappingFree
   dsimp only at *
   generalize tF - tStart = tFinal at *
-  rintro _ ⟨t, ht, x₀, hx₀, rfl⟩
+  intro y hy
+  obtain ⟨t, ht, x₀, hx₀, rfl⟩ := Set.mem_iUnion₂.mp hy
   obtain ⟨k, hk, hkt, htk⟩ := LinearSys.exists_reach_window hΔt ht
   -- the order `reachWrappingFree` runs at, `m + 2` in `timeInterval_outer_at`'s naming
   obtain ⟨m, hm⟩ : ∃ m, max η (sys.reachOrder Δt + 2) = m + 2 :=

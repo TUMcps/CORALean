@@ -172,7 +172,6 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactSubsetImageInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactSubsetReach
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSetExactSubsetTimeIntervalInputSolution
-public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachStepkWrappingFreeOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachSubsetDiscretizeReachSetExactAddError
@@ -191,6 +190,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.OneStepSubsetHorizon
 public import CORALean.ContDynamics.LinearSys.Theorems.SuperlinearDecreaseTimePointStepRemainderError
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterAt
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterConvexCompact
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterOfSubset
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterInputSolution
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSplit
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalReachSetExactOuter
@@ -203,6 +203,8 @@ public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterSetLinComb
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalSubsetAddError
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalSubsetInitialAddError
+public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalTimePointOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointOneOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalTunedOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TimePointStepFloatOuter

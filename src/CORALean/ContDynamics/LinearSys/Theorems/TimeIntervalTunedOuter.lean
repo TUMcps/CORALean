@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormSmulLeNormUpperBoundFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TuneOrderSpecFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.TimeIntervalOuterAt
+public import CORALean.ContDynamics.LinearSys.Theorems.TimePointOneOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 
 @[expose] public section
@@ -71,14 +72,15 @@ theorem LinearSys.timeInterval_outer_tuned (sys : LinearSys 𝕋 n) {r ε : 𝕋
     ∀ η ∈ MatExp.tuneOrder
         (MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A))) ε fuel,
       (fun x₀ => exp (t • Scalar.toRealMat sys.A) *ᵥ x₀) '' toSet X₀
-        ⊆ toSet (sys.timeInterval (toReal r) η X₀) := by -- --- PROOF ---
+        ⊆ toSet (sys.timeInterval (toReal r) η X₀
+          (sys.timePoint (toReal r) X₀ 1)) := by -- --- PROOF ---
   intro η (h : MatExp.tuneOrder (MatExp.normUpperBound (Interval.smul r r (Interval.point sys.A))) ε
       fuel = some η)
   have hnorm := MatExp.norm_smul_le_normUpperBound (Interval.point sys.A) r
     (Interval.mem_point sys.A)
   obtain ⟨h2, -, hs⟩ := MatExp.tuneOrder_spec hnorm _ h
   obtain ⟨m, rfl⟩ : ∃ m : ℕ, η = m + 2 := ⟨η - 2, by omega⟩
-  exact sys.timeInterval_outer_at hr hs X₀ ht0 htr
+  exact sys.timeInterval_outer_at hr hs X₀ _ (sys.timePoint_one_outer _ X₀) ht0 htr
 
 end CORALean
 
