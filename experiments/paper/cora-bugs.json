@@ -137,10 +137,10 @@
   },
   "contDynamics/nonlinearSys": {
     "linReach_adaptive": {
-      "description": "Hessian read over a region missing the linearization point",
+      "description": "Hessian region misses linearization point; window misses its start",
       "kind": "unsound",
       "cex": "LinReachAdaptiveCora1D.lean",
-      "matlab": "not run"
+      "matlab": "confirmed"
     },
     "reachInner": {
       "description": "'minkdiff', 'scale' sets not inner; timeStepInner option crashes",
@@ -988,6 +988,11 @@
       "description": "half-width used as width; half range, no vertices",
       "kind": "other",
       "fix": null,
+      "matlab": "confirmed"
+    },
+    "plus": {
+      "description": "interval summand silently dropped from the sum",
+      "kind": "unsound",
       "matlab": "confirmed"
     }
   },

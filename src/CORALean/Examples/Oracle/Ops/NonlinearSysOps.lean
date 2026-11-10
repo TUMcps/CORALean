@@ -1,5 +1,8 @@
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.ReachAlgFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.LinReachAdaptiveInit
+import CORALean.ContDynamics.NonlinearSys.Operations.ReachAdaptiveFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.AdaptiveOrdersFloat
 import CORALean.ContSet.Interval.Float.Operations.Basic
 import CORALean.ContSet.Interval.Float.Operations.Cos
 import CORALean.ContSet.Interval.Float.Operations.Power
@@ -22,8 +25,8 @@ takes. Its enclosure property (`FloatHessModel.Encloses`, the hypothesis of `lin
 is by construction, not proved in Lean, so the ops are served at `nearest` only and refused at
 every guaranteed dtype. An operand outside an elementary function's domain (a division by a box
 holding 0, `sqrt` of a negative box) is not refused but evaluated by CORALean's definition. The tree
-and the ops are in `experiments/oracle/README.md`. `tan` is served where its enclosure is bounded
-on every box of the run, an error otherwise.
+and the ops, the `…Adaptive` ones (CORA's `lin-adaptive`, repaired) too, are in
+`experiments/oracle/README.md`. `tan` is served where its enclosure is bounded on every box.
 
 ## Inputs
 * `dops` – dtype operations
@@ -311,8 +314,303 @@ def handleNonlinearReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
     if !noNaN (𝕋 := 𝕋) Rs then throw aux_tanMsg
     else pure [("timeInterval", Json.arr (Rs.toArray.map (printZonotope dops.showExact)))]
 
+
+/-- A scalar of the request, or the exact dyadic `m·2^e` (CORA's double) when absent. -/
+private def aux_scalarOr (dops : DtypeOps 𝕋) (req : Json) (name : String) (m e : Int) :
+    Except String 𝕋 :=
+  match fieldOpt req name with
+  | some _ => do dops.readExact name (← scalarField req name)
+  | none => dops.readExact name (.dy ⟨m, e⟩)
+
+/-- A natural number of the request, or `d` when absent. -/
+private def aux_natOr (req : Json) (name : String) (d : Nat) : Except String Nat :=
+  match fieldOpt req name with
+  | some _ => natField req name
+  | none => pure d
+
+/-- The `lin-adaptive` options: the request's, else CORA's (`postProcessing`, the literals of
+`linReach_adaptive`); `redFactor` defaults to CORA's `0.0005`. -/
+private def aux_adaptiveOptions (dops : DtypeOps 𝕋) (req : Json) :
+    Except String (NonlinearSys.LinReachAdaptiveOptions 𝕋) := do
+  let rat := fun (name : String) (d : ℚ) => match fieldOpt req name with
+    | some _ => do pure (aux_ratOf (← scalarField req name))
+    | none => pure d
+  let zetaphi ← match fieldOpt req "zetaphi" with
+    | some _ => do
+      let v ← parseVecFixed dops.readExact 3 (← field req "zetaphi")
+      pure v
+    | none => do
+      let z1 ← dops.readExact "zetaphi" (.dy ⟨7656119366529843, -53⟩)
+      let z2 ← dops.readExact "zetaphi" (.dy ⟨3422735716801577, -52⟩)
+      let z3 ← dops.readExact "zetaphi" (.dy ⟨6124895493223875, -53⟩)
+      pure ![z1, z2, z3]
+  -- every field: the request's, else CORA's double
+  pure {
+    tStart := ← rat "tStart" 0,
+    tFinal := ← rat "tFinal" 0,
+    taylorTerms := ← aux_natOr req "taylorTerms" 10,
+    zonotopeOrder := ← aux_natOr req "zonotopeOrder" 1000,
+    -- the constants of `postProcessing` and the literals of `linReach_adaptive`
+    redFactor := ← aux_scalarOr dops req "redFactor" 1152921504606847 (-61),
+    decrFactor := ← aux_scalarOr dops req "decrFactor" 8106479329266893 (-53),
+    zetaphi := zetaphi,
+    zetaK := ← aux_scalarOr dops req "zetaK" 8106479329266893 (-53),
+    initFactor := ← aux_scalarOr dops req "initFactor" 5764607523034235 (-59),
+    enlarge := ← aux_scalarOr dops req "enlarge" 2476979795053773 (-51),
+    horizonTol := ← aux_scalarOr dops req "horizonTol" 1152921504606847 (-60),
+    zeroTol := ← aux_scalarOr dops req "zeroTol" 3022314549036573 (-78),
+    varphiTol := ← aux_scalarOr dops req "varphiTol" 4835703278458517 (-82),
+    varphiStep := ← aux_scalarOr dops req "varphiStep" 4722366482869645 (-72),
+    endTol := ← aux_scalarOr dops req "endTol" 4951760157141521 (-92),
+    abortRatio := ← aux_scalarOr dops req "abortRatio" 1000000000 0,
+    prec := ← natField req "p",
+    fuel := ← aux_natOr req "fuel" 10000 }
+
+/-- The option fields every adaptive op accepts. -/
+private def aux_adaptiveFields : List String :=
+  ["tStart", "tFinal", "taylorTerms", "zonotopeOrder", "redFactor", "decrFactor", "zetaphi",
+    "zetaK", "initFactor", "enlarge", "horizonTol", "zeroTol", "varphiTol", "varphiStep",
+    "endTol", "abortRatio", "fuel"]
+
+/-- The model of the request's dynamics tree. -/
+private def aux_adaptiveModel (dops : DtypeOps 𝕋) (req : Json) :
+    Except String (Σ n m : Nat, NonlinearSys.FloatHessModel 𝕋 n m) := do
+  let n ← natField req "n"
+  let m ← natField req "m"
+  let fs ← (← arrField req "f").mapM (aux_parse dops n m)
+  if h : fs.size = n then
+    if fs.any aux_hasTan then throw "tan: not served by the adaptive ops"
+    pure ⟨n, m, aux_model (← natField req "p") n m fun i => fs[i.val]'(h ▸ i.isLt)⟩
+  else throw s!"`f` has {fs.size} components, expected n = {n}"
+
+/-- A dyadic rational as a wire scalar; a non-dyadic one is refused. -/
+private def aux_showRat (q : ℚ) : Except String String :=
+  let d := q.den
+  if d &&& (d - 1) = 0 then
+    pure (showExactDyadic ⟨q.num, -((Nat.log2 d : Nat) : Int)⟩)
+  else throw s!"time {q} is not dyadic"
+
+/-- An array of booleans of length `n`. -/
+private def aux_boolsField (req : Json) (name : String) (n : Nat) :
+    Except String (Fin n → Bool) := do
+  let a ← arrField req name
+  if a.size ≠ n then throw s!"`{name}` has {a.size} entries, expected {n}"
+  let bs ← a.mapM fun j => match j.getBool? with
+    | .ok b => pure b
+    | .error _ => throw s!"`{name}` must hold booleans"
+  pure fun i => bs.getD i.val false
+
+/-- The state fields of a request (absent ones as `linReachAdaptiveInit` sets them). -/
+private def aux_parseAdaptiveState (dops : DtypeOps 𝕋) (o : NonlinearSys.LinReachAdaptiveOptions 𝕋)
+    (n : Nat) (req : Json) : Except String (NonlinearSys.LinReachAdaptiveState 𝕋 n) := do
+  let R ← parseZonotopeFixed dops.readExact n (← field req "R")
+  let s₀ := NonlinearSys.linReachAdaptiveInit o R
+  let sc := fun (name : String) (d : 𝕋) => match fieldOpt req name with
+    | some _ => do dops.readExact name (← scalarField req name)
+    | none => pure d
+  let vec := fun (name : String) (d : Vec 𝕋 n) => match fieldOpt req name with
+    | some _ => do parseVecFixed dops.readExact n (← field req name)
+    | none => pure d
+  let orders ← match fieldOpt req "orders" with
+    | none => pure s₀.orders
+    | some _ => do
+      let a ← arrField req "orders"
+      if a.size ≠ n then throw s!"`orders` has {a.size} entries, expected {n}"
+      let os ← a.mapM fun j => if j.isNull then pure none else match j.getNat? with
+        | .ok k => pure (some k)
+        | .error _ => throw "`orders` must hold naturals or null (Inf)"
+      pure fun i => os.getD i.val none
+  -- the step sizes so far, latest first
+  let steps ← match fieldOpt req "steps" with
+    | none => pure []
+    | some _ => do
+      let a ← arrField req "steps"
+      (a.toList.mapM fun j => do
+        let x ← match j.getStr? with
+          | .ok _ => pure (← scalarField (Json.mkObj [("x", j)]) "x")
+          | .error _ => throw "`steps` must hold scalars"
+        dops.readExact "steps" x)
+  -- the fields the request gives, the rest as at the first step
+  pure { s₀ with
+    i := ← aux_natOr req "i" 1,
+    t := match fieldOpt req "t" with
+      | some _ => match scalarField req "t" with
+        | .ok x => aux_ratOf x
+        | .error _ => o.tStart
+      | none => o.tStart,
+    timeStep := ← sc "timeStep" s₀.timeStep,
+    finitehorizon := ← sc "finitehorizon" s₀.finitehorizon,
+    varphi := ← sc "varphi" s₀.varphi,
+    -- the admissible errors, the tensor order and the orders
+    errAdmHorizon := ← vec "errAdmHorizon" s₀.errAdmHorizon,
+    errAdmDeltatopt := ← vec "errAdmDeltatopt" s₀.errAdmDeltatopt,
+    tensorOrder := ← aux_natOr req "tensorOrder" 2,
+    orders := orders,
+    minorder := ← aux_natOr req "minorder" 0,
+    zeroWidthDim := ← match fieldOpt req "zeroWidthDim" with
+      | some _ => aux_boolsField req "zeroWidthDim" n
+      | none => pure s₀.zeroWidthDim,
+    kappaDeltat := ← sc "kappaDeltat" s₀.kappaDeltat,
+    kappaAbstrerr := ← sc "kappaAbstrerr" s₀.kappaAbstrerr,
+    steps := steps }
+
+/-- The state as response fields: the sets as `timePoint` and `timeInterval`. -/
+private def aux_printAdaptiveState (dops : DtypeOps 𝕋) {n : Nat}
+    (s : NonlinearSys.LinReachAdaptiveState 𝕋 n) : Except String (List (String × Json)) := do
+  pure [("i", Lean.toJson s.i), ("t", Json.str (← aux_showRat s.t)),
+    ("timePoint", printZonotope dops.showExact s.R),
+    ("timeInterval", printZonotope dops.showExact s.Rτ),
+    ("timeStep", Json.str (dops.showExact s.timeStep)),
+    ("finitehorizon", Json.str (dops.showExact s.finitehorizon)),
+    ("varphi", Json.str (dops.showExact s.varphi)),
+    -- the tuning state
+    ("errAdmHorizon", printVec dops.showExact s.errAdmHorizon),
+    ("errAdmDeltatopt", printVec dops.showExact s.errAdmDeltatopt),
+    ("tensorOrder", Lean.toJson s.tensorOrder),
+    ("orders", Json.arr (Array.ofFn fun i : Fin n => match s.orders i with
+      | some k => Lean.toJson k
+      | none => Json.null)),
+    ("minorder", Lean.toJson s.minorder),
+    ("zeroWidthDim", Json.arr (Array.ofFn fun i : Fin n => Json.bool (s.zeroWidthDim i))),
+    ("kappaDeltat", Json.str (dops.showExact s.kappaDeltat)),
+    ("kappaAbstrerr", Json.str (dops.showExact s.kappaAbstrerr)),
+    ("steps", Json.arr (s.steps.toArray.map fun x => Json.str (dops.showExact x)))]
+
+/-- `nonlinearSys.reachAdaptive`: `FloatHessModel.reachAdaptiveFloat` from `R0`, at most `maxSteps`
+steps: the step sizes and tensor orders, the last time-point set, and every time-interval set when
+`sets` is true. -/
+def handleNonlinearReachAdaptive (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  dops.requireUnguaranteed "nonlinearSys.reachAdaptive"
+  checkFields "reachAdaptive" req (["n", "m", "f", "p", "R0", "U", "maxSteps", "sets"] ++
+    aux_adaptiveFields)
+  let ⟨n, m, fm⟩ ← aux_adaptiveModel dops req
+  let o ← aux_adaptiveOptions dops req
+  let R0 ← parseZonotopeFixed dops.readExact n (← field req "R0")
+  let U ← aux_input dops req m
+  -- the run, and the sets when asked for
+  let sets := match fieldOpt req "sets" with
+    | some j => j.getBool?.toOption.getD false
+    | none => false
+  match fm.reachAdaptiveFloat U o (← aux_natOr req "maxSteps" 1000000)
+      (NonlinearSys.linReachAdaptiveInit o R0) with
+  | none => throw "reachAdaptive: a step's loop ran out of fuel"
+  | some ss =>
+    let last := (ss.getLast?).getD (NonlinearSys.linReachAdaptiveInit o R0)
+    pure ([("steps", Json.arr (ss.toArray.map fun s => Json.str (dops.showExact s.timeStep))),
+      ("tensorOrders", Json.arr (ss.toArray.map fun s => Lean.toJson s.tensorOrder)),
+      ("t", Json.str (← aux_showRat last.t)),
+      ("timePoint", printZonotope dops.showExact last.R)] ++
+      (if sets then [("timeInterval", Json.arr (ss.toArray.map fun s =>
+        printZonotope dops.showExact s.Rτ))] else []))
+
+/-- `nonlinearSys.linReachAdaptive`: one step `FloatHessModel.linReachAdaptiveFloat` from the
+state of the request, the state after it (sets unreduced). -/
+def handleNonlinearLinReachAdaptive (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  dops.requireUnguaranteed "nonlinearSys.linReachAdaptive"
+  checkFields "linReachAdaptive" req (["n", "m", "f", "p", "U", "R", "i", "t", "timeStep",
+    "finitehorizon", "varphi", "errAdmHorizon", "errAdmDeltatopt", "tensorOrder", "orders",
+    "minorder", "zeroWidthDim", "kappaDeltat", "kappaAbstrerr", "steps"] ++ aux_adaptiveFields)
+  let ⟨n, m, fm⟩ ← aux_adaptiveModel dops req
+  let o ← aux_adaptiveOptions dops req
+  let st ← aux_parseAdaptiveState dops o n req
+  match fm.linReachAdaptiveFloat (← aux_input dops req m) o st with
+  | none => throw "linReachAdaptive: the step's loop ran out of fuel"
+  | some s => aux_printAdaptiveState dops s
+
+/-- `nonlinearSys.linReachAdaptivePass`: `FloatHessModel.linReachAdaptivePassFloat`, one pass at
+`timeStep` from `R` and `errorAdm`. -/
+def handleNonlinearLinReachAdaptivePass (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  dops.requireUnguaranteed "nonlinearSys.linReachAdaptivePass"
+  checkFields "linReachAdaptivePass" req ["n", "m", "f", "p", "U", "R", "timeStep", "taylorTerms",
+    "zonotopeOrder", "tensorOrder", "errorAdm", "redFactor", "enlarge", "fuel"]
+  let ⟨n, m, fm⟩ ← aux_adaptiveModel dops req
+  let o ← aux_adaptiveOptions dops req
+  let R ← parseZonotopeFixed dops.readExact n (← field req "R")
+  let opts : LinearSys.ReachFloatOptions 𝕋 :=
+    ⟨⟨← dops.readExact "timeStep" (← scalarField req "timeStep"), o.taylorTerms⟩, o.zonotopeOrder⟩
+  let e ← parseVecFixed dops.readExact n (← field req "errorAdm")
+  -- one pass, and what the tuning reads of it
+  match fm.linReachAdaptivePassFloat (← aux_natOr req "tensorOrder" 2) (← aux_input dops req m)
+      opts o.enlarge o.redFactor o.prec o.fuel R e with
+  | none => throw "linReachAdaptivePass: the abstraction-error loop did not converge"
+  | some P => pure [("timeInterval", printZonotope dops.showExact P.Rti),
+      ("timePoint", printZonotope dops.showExact P.Rtp), ("A", printMat dops.showExact P.A),
+      ("xs", printVec dops.showExact P.xs), ("Rmax", printZonotope dops.showExact P.Rmax),
+      ("trueError", printVec dops.showExact P.trueError),
+      ("abstrerr", printVec dops.showExact P.abstrerr),
+      ("Gzero", Json.arr (Array.ofFn fun i : Fin n => Json.bool (P.Gzero i)))]
+
+/-- `nonlinearSys.abstrErrAdaptive`: `FloatHessModel.abstrErrAdaptiveFloat` for `Rmax` at the
+linearization point `xs` (`A`, `B` the model's Jacobians there), and `trueError`. -/
+def handleNonlinearAbstrErrAdaptive (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  dops.requireUnguaranteed "nonlinearSys.abstrErrAdaptive"
+  checkFields "abstrErrAdaptive" req ["n", "m", "f", "p", "U", "xs", "Rmax", "tensorOrder",
+    "redFactor"]
+  let ⟨n, m, fm⟩ ← aux_adaptiveModel dops req
+  let o ← aux_adaptiveOptions dops req
+  let xs ← parseVecFixed dops.readExact n (← field req "xs")
+  let Rmax ← parseZonotopeFixed dops.readExact n (← field req "Rmax")
+  let U ← aux_input dops req m
+  let AB := fm.toFloatModel.linearizeFloat xs U.c
+  let V := fm.abstrErrAdaptiveFloat (← aux_natOr req "tensorOrder" 2) AB.1 AB.2 xs Rmax U
+    o.redFactor o.prec
+  pure [("VerrorDyn", printZonotope dops.showExact V),
+    ("trueError", printVec dops.showExact V.interval.normMag)]
+
+/-- `nonlinearSys.ordersAdaptive`: `NonlinearSys.adaptiveOrdersFloat`, the orders `q_i` (`null` for
+`Inf`) from `A`, the zero-width dimensions, the zero rows of the error and the model's Hessian at
+`xs`, `u✱ = center(U)`. -/
+def handleNonlinearOrdersAdaptive (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  dops.requireUnguaranteed "nonlinearSys.ordersAdaptive"
+  checkFields "ordersAdaptive" req ["n", "m", "f", "p", "U", "A", "xs", "zeroWidthDim", "Gzero"]
+  let ⟨n, m, fm⟩ ← aux_adaptiveModel dops req
+  let ⟨r, A⟩ ← parseMatColsFixed dops.readExact n (← field req "A")
+  if h : r = n then
+    let xs ← parseVecFixed dops.readExact n (← field req "xs")
+    let U ← aux_input dops req m
+    let q := NonlinearSys.adaptiveOrdersFloat (h ▸ A) (← aux_boolsField req "zeroWidthDim" n)
+      (← aux_boolsField req "Gzero" n) (fm.hess (Interval.point xs) (Interval.point U.c)) 100
+    pure [("orders", Json.arr (Array.ofFn fun i : Fin n => match q i with
+      | some k => Lean.toJson k
+      | none => Json.null))]
+  else throw s!"`A` has {r} rows, expected n = {n}"
+
+/-- `nonlinearSys.optimalDeltatAdaptive`: `NonlinearSys.optimalDeltatAdaptiveFloat`. -/
+def handleNonlinearOptimalDeltatAdaptive (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  dops.requireUnguaranteed "nonlinearSys.optimalDeltatAdaptive"
+  checkFields "optimalDeltatAdaptive" req ["p", "decrFactor", "redFactor", "rR", "rerr1", "deltat",
+    "varphimin", "zetaP"]
+  let o ← aux_adaptiveOptions dops req
+  let sc := fun (name : String) => do dops.readExact name (← scalarField req name)
+  valueScalar dops.showExact (NonlinearSys.optimalDeltatAdaptiveFloat o.prec o.decrFactor
+    o.redFactor (← sc "rR") (← sc "rerr1") (← sc "deltat") (← sc "varphimin") (← sc "zetaP"))
+
+/-- `nonlinearSys.varphiTotalAdaptive`: `NonlinearSys.varphiTotalFloat`. -/
+def handleNonlinearVarphiTotalAdaptive (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  dops.requireUnguaranteed "nonlinearSys.varphiTotalAdaptive"
+  checkFields "varphiTotalAdaptive" req ["p", "varphi", "varphiLim", "prev", "curr", "decrFactor"]
+  let o ← aux_adaptiveOptions dops req
+  let sc := fun (name : String) => do dops.readExact name (← scalarField req name)
+  valueScalar dops.showExact (NonlinearSys.varphiTotalFloat o.prec (← sc "varphi")
+    (← sc "varphiLim") (← sc "prev") (← sc "curr") o.decrFactor)
+
+/-- `nonlinearSys.varphiEstAdaptive`: `NonlinearSys.varphiEstFloat`. -/
+def handleNonlinearVarphiEstAdaptive (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  dops.requireUnguaranteed "nonlinearSys.varphiEstAdaptive"
+  checkFields "varphiEstAdaptive" req ["n", "p", "horizon", "deltat", "abstrerrH", "abstrerr",
+    "decrFactor", "mask", "minorder", "varphiTol", "varphiStep", "fuel"]
+  let n ← natField req "n"
+  let o ← aux_adaptiveOptions dops req
+  let sc := fun (name : String) => do dops.readExact name (← scalarField req name)
+  valueScalar dops.showExact (NonlinearSys.varphiEstFloat o.prec (← sc "horizon") (← sc "deltat")
+    (← parseVecFixed dops.readExact n (← field req "abstrerrH"))
+    (← parseVecFixed dops.readExact n (← field req "abstrerr")) o.decrFactor
+    (← aux_boolsField req "mask" n) (← natField req "minorder") o.varphiTol o.varphiStep o.fuel)
+
 /-- Every op of this file, without the `nonlinearSys.` prefix. -/
-def nonlinearSysOpNames : List String := [ "linReach", "reach" ]
+def nonlinearSysOpNames : List String := [ "linReach", "reach", "reachAdaptive",
+  "linReachAdaptive", "linReachAdaptivePass", "abstrErrAdaptive", "optimalDeltatAdaptive",
+  "varphiTotalAdaptive", "varphiEstAdaptive", "ordersAdaptive" ]
 
 /-- `op` of `nonlinearSys.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -320,6 +618,14 @@ def handleNonlinearSysOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opt
   match op with
   | "linReach" => some (handleNonlinearLinReach dops req)
   | "reach" => some (handleNonlinearReach dops req)
+  | "reachAdaptive" => some (handleNonlinearReachAdaptive dops req)
+  | "linReachAdaptive" => some (handleNonlinearLinReachAdaptive dops req)
+  | "linReachAdaptivePass" => some (handleNonlinearLinReachAdaptivePass dops req)
+  | "abstrErrAdaptive" => some (handleNonlinearAbstrErrAdaptive dops req)
+  | "optimalDeltatAdaptive" => some (handleNonlinearOptimalDeltatAdaptive dops req)
+  | "varphiTotalAdaptive" => some (handleNonlinearVarphiTotalAdaptive dops req)
+  | "varphiEstAdaptive" => some (handleNonlinearVarphiEstAdaptive dops req)
+  | "ordersAdaptive" => some (handleNonlinearOrdersAdaptive dops req)
   | _ => none
 
 end

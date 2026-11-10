@@ -83,6 +83,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuterRefines
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceBySubsetAddBox
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceCombastelOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceAdaptiveOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceMethCOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOrder
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOuter

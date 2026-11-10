@@ -63,6 +63,15 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.OrderStepFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptLinPassFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptStepFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptRunFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.AbstrErrAdaptiveFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachAdaptivePassFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.OptimalDeltatAdaptiveFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.VarphiTotalFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.VarphiEstFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.AdaptiveOrdersFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachAdaptiveFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachAdaptiveInit
+public import CORALean.ContDynamics.NonlinearSys.Operations.ReachAdaptiveFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.CenterAbstrStepFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.CenterAbstrRunFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.LagrangeRemainderFloat

@@ -6,7 +6,7 @@ the scripts that produced it and the record.
 
 * `R.m` — the harness: `R(id, code)` evaluates the MATLAB statements `code` (which set `out`), catches
   an error and prints `RES|id|output`.
-* `runs/run01.m` … `runs/run16.m` — the batches, in the order they were run, errors of the invocation
+* `runs/run01.m` … `runs/run17.m` — the batches, in the order they were run, errors of the invocation
   included (a batch that failed because of a wrong call was repeated in a later one). Run one with
   `matlab -batch "run('experiments/cora-bugs/runs/run01.m')" | grep '^RES'`; CORA must be on the path
   (`installCORA`). `em/encloseMany.m` and `em/filterOut.m` are copies of the zonotope methods, which MATLAB cannot dispatch

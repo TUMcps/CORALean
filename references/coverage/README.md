@@ -202,7 +202,7 @@ Rulings on borderline cases:
 | [nonlinDASys](contDynamics/nonlinDASys.md) | contDynamics | 13 | 5 | 4 | 4 | 0 | 1 | 3 | 5 |
 | [nonlinParamSys](contDynamics/nonlinParamSys.md) | contDynamics | 9 | 1 | 3 | 3 | 0 | 1 | 4 | 1 |
 | [nonlinearARX](contDynamics/nonlinearARX.md) | contDynamics | 8 | 0 | 5 | 4 | 0 | 0 | 3 | 1 |
-| [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 3 | 6 | 5 | 0 | 1 | 8 | 2 |
+| [nonlinearSys](contDynamics/nonlinearSys.md) | contDynamics | 18 | 3 | 6 | 6 | 0 | 1 | 8 | 2 |
 | [nonlinearSysDT](contDynamics/nonlinearSysDT.md) | contDynamics | 11 | 1 | 7 | 3 | 0 | 0 | 3 | 2 |
 | [abstractReset](hybridDynamics/abstractReset.md) | hybridDynamics | 4 | 0 | 0 | 0 | 0 | 0 | 4 | 0 |
 | [hybridAutomaton](hybridDynamics/hybridAutomaton.md) | hybridDynamics | 15 | 0 | 2 | 0 | 0 | 2 | 11 | 1 |
@@ -237,7 +237,7 @@ Rulings on borderline cases:
 | [commonocean2cora](others/commonocean2cora.md) | others | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 0 |
 | [commonroad2cora](others/commonroad2cora.md) | others | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 0 |
 | [cora2spaceex](others/cora2spaceex.md) | others | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 0 |
-| [intervalMatrix](others/intervalMatrix.md) | others | 39 | 3 | 20 | 0 | 1 | 5 | 10 | 3 |
+| [intervalMatrix](others/intervalMatrix.md) | others | 39 | 3 | 20 | 0 | 1 | 5 | 10 | 4 |
 | [markovchain](others/markovchain.md) | others | 12 | 5 | 0 | 0 | 0 | 2 | 5 | 1 |
 | [matPolytope](others/matPolytope.md) | others | 20 | 4 | 7 | 0 | 0 | 1 | 8 | 5 |
 | [matZonotope](others/matZonotope.md) | others | 33 | 3 | 13 | 0 | 4 | 3 | 10 | 3 |

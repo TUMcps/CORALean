@@ -38,6 +38,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.GirardSplit
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceByBox
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirard
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceAdaptive
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceCombastel
 public import CORALean.ContSet.Zonotope.Float.Operations.Reduce
