@@ -143,22 +143,19 @@ RESULT_CLASSES = [
 ]
 # the bar of (b) is every result in scope: the formalized ones by how they fared, then the rest
 RESULTS = RESULT_CLASSES + [seg("not_yet", "not yet", "white")]
-# a float row whose theorem assumes that a model encloses the system: a greyer blue
-CONDITIONAL_COLOUR = "CORAcolorReachSet!50!CORAcolorUnknown"
-CORA[CONDITIONAL_COLOUR] = mix("CORAcolorReachSet", "CORAcolorUnknown", 50)
+# the figures draw every float row as "at float", including those whose theorem assumes that a
+# model encloses the system (owner, 2026-11-10); the JSON and the coverage README keep the split
 COVERAGE = [
-    seg("float_unconditional", "proved, at float", "CORAcolorReachSet"),
-    seg("conditional", "at float, given a model", CONDITIONAL_COLOUR),
+    seg("float", "proved, at float", "CORAcolorReachSet"),
     seg("proved", "proved, real only", PROVED_COLOUR),
     seg("bound", "looser bound only", "CORAcolorReachSet2"),
     seg("not_yet", "not yet", "white"),
 ]
 THEOREMS = [
-    ("paper", "paper theorems", *blue_to_purple(0, 5)),
-    ("lemma", "lemmas", *blue_to_purple(1, 5)),
-    ("float", "float refinements", *blue_to_purple(2, 5)),
-    ("float_conditional", "float refinements given a model", *blue_to_purple(3, 5)),
-    ("helper", "proof helpers", *blue_to_purple(4, 5)),
+    ("paper", "paper theorems", *blue_to_purple(0, 4)),
+    ("lemma", "lemmas", *blue_to_purple(1, 4)),
+    ("float", "float refinements", *blue_to_purple(2, 4)),
+    ("helper", "proof helpers", *blue_to_purple(3, 4)),
 ]
 OUT_LEGEND = "+n: out of scope, not in the bar"
 BAR = 6  # bar width in pt
@@ -325,7 +322,8 @@ def overview_entries(data):
     methods = [(LABEL[g], {k: v[k] for k, *_ in COVERAGE}, v["out_of_scope"])
                for g, v in groups]
     th = cov["theorems"]
-    theorems = [("Lean theorems", {k: th[k] for k, *_ in THEOREMS}, None)]
+    theorems = [("Lean theorems", {k: th[k] + (th["float_conditional"] if k == "float" else 0)
+                                   for k, *_ in THEOREMS}, None)]
     t = data["totals"]
     results = [("Paper results", {**t["by_class"], "not_yet": t["not_formalized"]}, t["out_of_scope"])]
     return methods, theorems, results, groups
