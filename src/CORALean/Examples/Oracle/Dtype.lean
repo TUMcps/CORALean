@@ -85,6 +85,9 @@ structure DtypeOps (𝕋 : Type) [FloatOps 𝕋] where
   readExact : String → ExactScalar → Except String 𝕋
   roundToScalar : String → ExactScalar → Except String (𝕋 × 𝕋 × 𝕋)
   showExact : 𝕋 → String
+  /-- Whether results at this dtype carry a soundness theorem. Only `nearest` has none, being
+  round-to-nearest. -/
+  guaranteed : Bool
 
 /-- The message every `ieee`/`dyadic` `.decNeg` rejection shares: a negative decimal exponent
 is generally not exact in binary, `1/50` again. -/
@@ -127,6 +130,7 @@ def ieeeDtypeOps (label : String) (fmt : IEEEFormat) : DtypeOps (IEEE fmt) where
     | .decNeg m d => throw (aux_decNegRefused s!"field `{field}`" m d)
   roundToScalar := ieeeRoundToScalar fmt
   showExact x := showExactDyadic ⟨x.mantissa, x.exponent⟩
+  guaranteed := true
 
 -- `Dyadic p`'s own counterpart: unbounded exponent, so no overflow check is ever needed.
 /-- Rounds an exact scalar into a `p`-bit dyadic by `mode`, returning the kept value and its
@@ -152,6 +156,7 @@ def dyadicDtypeOps (label : String) (p : Nat) : DtypeOps (DyP p) where
     | .decNeg m d => throw (aux_decNegRefused s!"field `{field}`" m d)
   roundToScalar := dyadicRoundToScalar p
   showExact x := showExactDyadic ⟨x.mantissa, x.exponent⟩
+  guaranteed := true
 
 /-- `v`, at `FixedPoint f`, off-grid but exact -- `.dy` embeds through `ExactDyadic.toFixedPoint`
 at enough digits (`fitsDigits`'s own bound), `.decNeg` is already this shape, unconditionally. -/
@@ -189,6 +194,7 @@ def fixedPointDtypeOps (label : String) (f : Nat) : DtypeOps (FixedPoint f) wher
       else throw s!"field `{field}`: {m}*10^-{d} needs more than {f} decimal digits"
   roundToScalar := fixedPointRoundToScalar f
   showExact := aux_showFixedPointExact
+  guaranteed := true
 
 /-- Every valid `dtype` form, for `ping` and for an unknown-dtype error. -/
 def dtypeForms : List String :=

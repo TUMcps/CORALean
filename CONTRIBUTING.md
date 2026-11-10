@@ -513,6 +513,13 @@ the size of the state space satisfies all of them, so a widening is invisible to
 the compiler and visible in that file. It needs a built tree, which is why it is
 not on the pre-commit hook.
 
+The sound oracle serves only results backed by an unconditional theorem. An op handler whose
+definition reaches a hand-built model (a structure `…Model` with an `…Model.Encloses` hypothesis in
+its theorems, e.g. `FloatHessModel`) must call `DtypeOps.requireUnguaranteed`, which refuses it at
+every dtype with a guarantee and serves it at `nearest`; `check-axioms.sh` finds such handlers in the
+built tree and fails on one that does not, with no list to keep. In `references/coverage/`, a `float`
+row whose theorem takes that hypothesis is counted as conditional, apart from the unconditional ones.
+
 `scripts/check-axioms.sh` asks Lean, through `collectAxioms` on the built tree,
 whether any library declaration rests on `nearestUnsound`, the bench's false
 round-to-nearest axiom: the headline guarantees by name, every declaration of

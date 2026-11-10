@@ -32,6 +32,16 @@ namespace CORALean.Oracle
 open CORALean CORALean.Float
 open Lean (Json)
 
+/-- The gate of an op whose soundness rests on an unproved `Encloses` hypothesis: served at
+`nearest`, refused at a guaranteed dtype; `check-axioms.lean` requires it of such handlers. -/
+def DtypeOps.requireUnguaranteed {𝕋 : Type} [FloatOps 𝕋] (dops : DtypeOps 𝕋) (op : String) :
+    Except String Unit :=
+  if dops.guaranteed then
+    throw s!"{op}: not served at the guaranteed dtype `{dops.label}`: its soundness rests on a \
+      hypothesis that is not proved in Lean (the dynamics' model encloses the system); \
+      use dtype `nearest`"
+  else pure ()
+
 /-- A result of a handler: the response fields, or an error message. -/
 abbrev Resp : Type := Except String (List (String × Json))
 

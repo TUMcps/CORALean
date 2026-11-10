@@ -27,6 +27,8 @@
 \addplot[draw=none, forget plot] coordinates {(0,0) (0,11)};
 \addlegendimage{fill=CORAcolorReachSet}
 \addlegendentry{proved, at float}
+\addlegendimage{fill=CORAcolorReachSet!50!CORAcolorUnknown}
+\addlegendentry{at float, given a model}
 \addlegendimage{fill=CORAcolorReachSet!50!CORAcolorReachSet2}
 \addlegendentry{proved, real only}
 \addlegendimage{fill=CORAcolorReachSet2}
@@ -58,7 +60,8 @@
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,5) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:16,5) -- ([yshift=2.5pt]axis cs:16,5) [sharp corners] -- ([yshift=2.5pt]axis cs:0,5) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:16,5) {\hspace{0em}\textcolor{black!40}{+8}};
 \begin{scope}\clip([yshift=-2.5pt]axis cs:0,6) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:5,6) -- ([yshift=2.5pt]axis cs:5,6) [sharp corners] -- ([yshift=2.5pt]axis cs:0,6) -- cycle;
-\fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,6) rectangle ([yshift=2.5pt]axis cs:5,6);
+\fill[CORAcolorReachSet] ([yshift=-2.5pt]axis cs:0,6) rectangle ([yshift=2.5pt]axis cs:1,6);
+\fill[CORAcolorReachSet!50!CORAcolorUnknown] ([yshift=-2.5pt]axis cs:1,6) rectangle ([yshift=2.5pt]axis cs:5,6);
 \end{scope}
 \draw[black, line width=0.2pt] ([yshift=-2.5pt]axis cs:0,6) [rounded corners=1.25pt] -- ([yshift=-2.5pt]axis cs:5,6) -- ([yshift=2.5pt]axis cs:5,6) [sharp corners] -- ([yshift=2.5pt]axis cs:0,6) -- cycle;
 \node[anchor=west, font=\ttfamily\scriptsize, inner sep=3pt] at (axis cs:5,6) {\hspace{0em}\textcolor{black!40}{+4}};
@@ -92,7 +95,7 @@
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:3.5,4) {7};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:6.5,5) {13};
 \node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:14,5) {2};
-\node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:2.5,6) {5};
+\node[font=\ttfamily\scriptsize, text=black, inner sep=0pt] at (axis cs:3,6) {4};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:3,7) {6};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:2.5,8) {5};
 \node[font=\ttfamily\scriptsize, text=white, inner sep=0pt] at (axis cs:19.5,10) {39};

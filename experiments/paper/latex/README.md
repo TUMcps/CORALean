@@ -55,9 +55,12 @@ read at a glance as bars, with the exact numbers in the JSON and the appendix.
 One bar per group of CORA classes: `contSet`, `contDynamics` (continuous- and discrete-time
 systems, parameter systems, ARX, neural-network controlled systems), *Hybrid systems*
 (`hybridDynamics/`) and *Neural networks* (`nn/@neuralNetwork` and the layer files). The segments
-are the method states: `float` (a real-layer definition with a theorem, and a float-layer
-computable definition with an outer or inner theorem), `proved` at the real layer only (the float
-backlog, `needs_float` in the JSON), `bound` (a sound result looser than or different from CORA's, drawn as "sound bound only"), and not yet. Methods out of scope are not drawn; their count is the grey number after the bar (by reason, it is in
+are the method states. `float` is a real-layer definition with a theorem and a float-layer computable
+definition with an outer or inner theorem; it is drawn in two shades, the darker for the rows whose
+theorem takes the hypothesis that a caller's model encloses the system (`conditional` in the JSON).
+`proved` is the real layer only (the float backlog, `needs_float` in the JSON). `bound` is a sound
+result looser than or different from CORA's, drawn as "sound bound only". The last segment is not yet.
+Methods out of scope are not drawn; their count is the grey number after the bar (by reason, it is in
 the JSON). There is no *Other* bar: what is left of
 CORA (`global/`, `matrixSet/`, `specification/`, `discrDynamics/`, `converter/`) is a mixture
 with no common unit, and is not tabulated.

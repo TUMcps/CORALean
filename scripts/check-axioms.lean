@@ -8,6 +8,7 @@ import CORALean.Examples.Oracle.Ops.Reach
 import CORALean.Examples.Oracle.Ops.FromRound
 import CORALean.Examples.Oracle.Ops.ZonotopeOps
 import CORALean.Examples.Oracle.Ops.Enclosure
+import CORALean.Examples.Oracle.Ops.ClassOps
 import CORALean.Examples.Bench.OracleUnsound
 
 /-!
@@ -21,7 +22,7 @@ round-to-nearest as CORA does. A false axiom taints exactly the declarations
 whose proof terms reach it, and `Lean.collectAxioms` is what says which those
 are. `CORALean.Global.Float.Instances.Flint` assumes `trustedFlint` instead,
 true but opt-in: the same sweep says whether anything outside that backend and
-its bench reaches it, whether or not the axiom itself is true. Eight questions:
+its bench reaches it, whether or not the axiom itself is true. Nine questions:
 
 1. Are `trustedHardware`, `nearestUnsound` and `trustedFlint` the only axioms
    any `CORALean` module declares?
@@ -44,6 +45,15 @@ its bench reaches it, whether or not the axiom itself is true. Eight questions:
 8. Does `Bench.OracleUnsound.dtypes` reach `nearestUnsound`? The positive control for 7: the
    unsound executable is the same code with one more dtype, so a check that cannot see that
    dtype's taint would pass 7 vacuously.
+
+9. Does every oracle handler that builds on a hand-made model keep to `nearest`? A *model*
+   (`NonlinearSys.FloatModel`, `FloatHessModel`, ...) is a structure with an `Encloses` Prop beside
+   it, the hypothesis of its soundness theorems, which no proof discharges when the model is built
+   at run time from a request. The sweep finds every `CORALean.Oracle.handle*` whose definition,
+   transitively through definitions, mentions such a structure (a name `M…Model` with a constant
+   `M…Model.Encloses`), and requires it to reach `DtypeOps.requireUnguaranteed`, the refusal at
+   every dtype with a guarantee. Nothing is listed by hand. The positive control is the set of
+   handlers found: it must not be empty, and each is shown.
 
 Every failure is an error, so `lean` exits nonzero.
 -/
@@ -209,3 +219,57 @@ run_cmd do
       logInfo m!"ok      {n} reaches {unsoundAxiom}, as it must"
     else
       logError m!"{n} should reach {unsoundAxiom} and does not — the oracle check sees no taint"
+
+/-- The constants a declaration's type and (for a definition) value mention, one step. -/
+def usedConstants (ci : ConstantInfo) : Array Name :=
+  let fromExpr (e : Expr) : Array Name := e.foldConsts #[] fun c acc => acc.push c
+  let v := match ci with
+    | .defnInfo d => fromExpr d.value
+    | _ => #[]
+  fromExpr ci.type ++ v
+
+/-- Whether `n` is a model structure or one of its parts (constructor, field, method): a prefix
+of `n` ends in `Model` and has an `Encloses` Prop beside it. -/
+def isModelPart (env : Environment) (n : Name) : Bool := Id.run do
+  let mut p := n
+  while !p.isAnonymous do
+    if p.isStr && p.getString!.endsWith "Model" && env.contains (p ++ `Encloses) then return true
+    p := p.getPrefix
+  return false
+
+/-- The names reachable from `root` through types and definition values, inside CORALean (the
+library's model structures are CORALean's own). -/
+partial def closureOf (env : Environment) (root : Name) : NameSet := Id.run do
+  let mut seen : NameSet := {}
+  let mut todo : Array Name := #[root]
+  while h : todo.size > 0 do
+    let n := todo.back
+    todo := todo.pop
+    if seen.contains n then continue
+    seen := seen.insert n
+    match env.find? n with
+    | none => continue
+    | some ci =>
+      for c in usedConstants ci do
+        if !seen.contains c && (`CORALean).isPrefixOf c then todo := todo.push c
+  return seen
+
+run_cmd do
+  let env ← getEnv
+  let modules := env.header.moduleNames
+  let moduleOf (n : Name) : Option Name := (env.getModuleIdxFor? n).map (modules[·.toNat]!)
+  let gate : Name := `CORALean.Oracle.DtypeOps.requireUnguaranteed
+  unless env.contains gate do logError m!"{gate}: not found — renamed? update scripts/check-axioms.lean"
+  let mut found : Array Name := #[]
+  for (n, _) in env.constants.map₁.toList do
+    unless ((moduleOf n).map isOurs).getD false do continue
+    unless (`CORALean.Oracle).isPrefixOf n && n.isStr && n.getString!.startsWith "handle" do continue
+    let cl := closureOf env n
+    if cl.toList.any (isModelPart env) then
+      found := found.push n
+      if cl.contains gate then logInfo m!"ok      {n} builds on a model and keeps to `nearest`"
+      else logError m!"{n} builds on a hand-made model (its soundness rests on an `Encloses` \
+        hypothesis nobody proves) and does not call `DtypeOps.requireUnguaranteed`"
+  if found.isEmpty then
+    logError m!"no oracle handler builds on a model — the check sees nothing, or the model ops \
+      were removed: update scripts/check-axioms.lean"

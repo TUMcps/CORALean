@@ -18,11 +18,12 @@ import CORALean.Specification.Instances
 
 The dynamics are an expression tree of the request, evaluated over boxes by the interval natural
 extension and differentiated symbolically, which gives the `FloatHessModel` that `linReachFloat`
-takes. The model's enclosure property is by construction, not checked in Lean; an operand outside
-an elementary function's domain (a division by a box holding 0, `sqrt` of a negative box) is not
-refused but evaluated by CORALean's definition. The tree and the ops are in
-`experiments/oracle/README.md`. `tan` is served where its enclosure is bounded on every box of the
-run, an error otherwise.
+takes. Its enclosure property (`FloatHessModel.Encloses`, the hypothesis of `linReachFloat_outer`)
+is by construction, not proved in Lean, so the ops are served at `nearest` only and refused at
+every guaranteed dtype. An operand outside an elementary function's domain (a division by a box
+holding 0, `sqrt` of a negative box) is not refused but evaluated by CORALean's definition. The tree
+and the ops are in `experiments/oracle/README.md`. `tan` is served where its enclosure is bounded
+on every box of the run, an error otherwise.
 
 ## Inputs
 * `dops` – dtype operations
@@ -276,6 +277,7 @@ private def aux_input (dops : DtypeOps 𝕋) (req : Json) (m : Nat) :
 
 /-- `nonlinearSys.linReach`: one step of `FloatHessModel.linReachFloat` from `R`. -/
 def handleNonlinearLinReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  dops.requireUnguaranteed "nonlinearSys.linReach"
   checkFields "linReach" req ["n", "m", "f", "p", "alg", "errorOrder", "R", "U", "timeStep",
     "taylorTerms", "zonotopeOrder"]
   let ⟨n, m, fm, alg, options⟩ ← aux_setup dops req
@@ -289,6 +291,7 @@ def handleNonlinearLinReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
 
 /-- `nonlinearSys.reach`: `FloatHessModel.reachAlgFloat`, the windows of every step. -/
 def handleNonlinearReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  dops.requireUnguaranteed "nonlinearSys.reach"
   checkFields "reach" req ["n", "m", "f", "p", "alg", "errorOrder", "X0", "U", "tStart", "tFinal",
     "timeStep", "taylorTerms", "zonotopeOrder"]
   let ⟨n, m, fm, alg, options⟩ ← aux_setup dops req
