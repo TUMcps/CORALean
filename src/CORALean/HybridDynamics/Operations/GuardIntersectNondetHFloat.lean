@@ -1,0 +1,78 @@
+module
+
+public import CORALean.ContSet.ConZonotope.Float.Operations.IntersectHPolytope
+public import CORALean.ContSet.ConZonotope.Float.Instances
+public import CORALean.ContSet.Conversion.Float.Operations.Basic
+public import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_IntervalTight
+public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Interval.Float.Operations.Basic
+public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
+public import CORALean.HybridDynamics.Definitions.Location
+public import CORALean.ContSet.Conversion.Real.Operations.Basic
+public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_ConZonotope
+public import CORALean.ContSet.Conversion.Real.Operations.Zonotope_to_Interval
+
+@[expose] public section
+
+/-!
+# `Location.guardIntersectNondetHFloat`
+
+CORA's `guardIntersect_nondetGuard` with a polytope guard, at float zonotopes: as
+`Location.guardIntersectNondetFloat`, the parallelotope `B_i I_i` is cut to the guard, here by
+`ConZonotope.intersectHPolytope` (CORA's `polytope/and_`), and the cut is boxed in the basis by
+`ConZonotope.intervalTight` with `k` contraction passes, which keeps the constraints as CORA's
+linear programs do. A hyperplane or halfspace guard is an `HPolytope` with an equality or an
+inequality row. The sets are `R₀ :: Rs`, never empty; a bundle of one member is kept a bundle.
+
+## Inputs
+* `k` – contraction passes of the box of a cut
+* `Bs` – bases
+* `R₀` – initial zonotope
+* `Rs` – reach sets
+* `guard` – halfspace polytope guard
+
+## Output
+* bundle of boxes enclosing the guard intersection
+-/
+
+-- Authors:       Claude Sonnet 5.5
+-- Written:       10-November-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+
+-- ----------------------------------------  BEGIN CODE  ---------------------------------------- --
+
+namespace CORALean
+
+open CORALean.Float Matrix
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The bundle over the bases `Bs`: member `i` boxes the sets in `Bs[i]`, cut to the guard. -/
+def Location.guardIntersectNondetHFloat (k : ℕ) (Bs : List (Mat 𝕋 n n)) (R₀ : Zonotope (Vec 𝕋 n))
+    (Rs : List (Zonotope (Vec 𝕋 n))) (guard : HPolytope 𝕋 (Vec 𝕋 n)) : ZonoBundle (Vec 𝕋 n) where
+  k := Bs.length
+  Z := fun i =>
+    let B := Bs[i]
+    let box := (Rs.map fun R => (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) Bᵀ
+      R).interval).foldl Interval.or
+      (Mtimes.mtimes (𝕄 := Mat 𝕋)  -- I_i, the sets boxed in the basis
+        (S := 𝒵[𝕋]) Bᵀ R₀).interval
+    let cZ := (Zonotope.conZonotope (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
+      box.zonotope)).intersectHPolytope guard          -- the parallelotope cut to the guard
+    Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
+      (ConZonotope.intervalTight k
+        (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ cZ)).zonotope
+
+end CORALean
+
+
+-- ---------------------------------------  END OF CODE  ---------------------------------------- --

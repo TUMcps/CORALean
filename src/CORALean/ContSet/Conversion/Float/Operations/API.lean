@@ -7,6 +7,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.Capsule_to_SpectraSha
 public import CORALean.ContSet.Conversion.Float.Operations.Capsule_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Operations.ConPolyZono_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_ConPolyZono
+public import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_IntervalTight
 public import CORALean.ContSet.Conversion.Float.Operations.ConZonotope_to_SpectraShadow
 public import CORALean.ContSet.Conversion.Float.Operations.Ellipsoid_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Float.Operations.Ellipsoid_to_SpectraShadow

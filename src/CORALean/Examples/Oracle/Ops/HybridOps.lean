@@ -6,7 +6,9 @@ import CORALean.HybridDynamics.Operations.CalcBasisBox
 import CORALean.HybridDynamics.Operations.GuardGroups
 import CORALean.HybridDynamics.Operations.CheckFlowFloat
 import CORALean.HybridDynamics.Operations.GuardIntersectNondetFloat
+import CORALean.HybridDynamics.Operations.GuardIntersectNondetHFloat
 import CORALean.HybridDynamics.Operations.GuardIntersectPolytopeFloat
+import CORALean.HybridDynamics.Operations.GuardIntersectPolytopeHFloat
 import CORALean.HybridDynamics.Operations.GuardIntersectZonoGirardFloat
 import CORALean.HybridDynamics.Operations.InputSetFloat
 import CORALean.HybridDynamics.Operations.JumpFloat
@@ -171,22 +173,48 @@ def handleGuardZonoGirard (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   let zB := Location.guardIntersectZonoGirardFloat Bs R0 Rs nv γ
   pure [("zB", printZonoBundle dops.showExact zB)]
 
-/-- `location.guardIntersect_nondetGuard`: `Location.guardIntersectNondetFloat`. -/
+/-- The guard of a request: a constrained zonotope when it has generators `G`, else a halfspace
+polytope `A`, `b`, `Ae`, `be`. -/
+private def aux_guard (dops : DtypeOps 𝕋) (req : Json) (n : Nat) :
+    Except String (ConZonotope 𝕋 (Vec 𝕋 n) ⊕ HPolytope 𝕋 (Vec 𝕋 n)) := do
+  let g ← field req "guard"
+  if (fieldOpt g "G").isSome then pure (.inl (← parseConZonotopeFixed dops.readExact n g))
+  else pure (.inr (← parseHPolytopeFixed dops.readExact n g))
+
+/-- The contraction passes `fmPasses` of the box of a cut, asked for with a polytope guard. -/
+private def aux_passes (req : Json) : Except String Nat := do
+  if (fieldOpt req "fmPasses").isSome then natField req "fmPasses"
+  else throw "a polytope guard needs `fmPasses`, the Fourier-Motzkin passes of the box of a cut"
+
+/-- `location.guardIntersect_nondetGuard`: `Location.guardIntersectNondetFloat` for a constrained
+zonotope guard, `Location.guardIntersectNondetHFloat` for a polytope guard (`fmPasses`). -/
 def handleGuardNondet (dops : DtypeOps 𝕋) (req : Json) : Resp := do
-  checkFields "guardIntersect_nondetGuard" req ["Bs", "R0", "R", "guard"]
+  checkFields "guardIntersect_nondetGuard" req ["Bs", "R0", "R", "guard", "fmPasses"]
   let ⟨n, Bs, R0, Rs⟩ ← aux_guardInput dops req
-  let guard ← parseConZonotopeFixed dops.readExact n (← field req "guard")
-  pure [("zB", printZonoBundle dops.showExact (Location.guardIntersectNondetFloat Bs R0 Rs guard))]
+  match ← aux_guard dops req n with
+  | .inl guard =>
+    if (fieldOpt req "fmPasses").isSome then throw "`fmPasses` is for a polytope guard"
+    pure [("zB", printZonoBundle dops.showExact
+      (Location.guardIntersectNondetFloat Bs R0 Rs guard))]
+  | .inr guard =>
+    pure [("zB", printZonoBundle dops.showExact
+      (Location.guardIntersectNondetHFloat (← aux_passes req) Bs R0 Rs guard))]
 
 /-- `location.guardIntersect_conZonotope`: `Location.guardIntersectPolytopeFloat` on the sets
-reduced to `guardOrder`. -/
+reduced to `guardOrder`, for a constrained zonotope guard, `Location.guardIntersectPolytopeHFloat`
+for a polytope guard (`fmPasses`). -/
 def handleGuardConZonotope (dops : DtypeOps 𝕋) (req : Json) : Resp := do
-  checkFields "guardIntersect_conZonotope" req ["Bs", "R0", "R", "guard", "guardOrder"]
+  checkFields "guardIntersect_conZonotope" req ["Bs", "R0", "R", "guard", "guardOrder", "fmPasses"]
   let ⟨n, Bs, R0, Rs⟩ ← aux_guardInput dops req
-  let guard ← parseConZonotopeFixed dops.readExact n (← field req "guard")
   let order ← natField req "guardOrder"
-  pure [("zB", printZonoBundle dops.showExact (Location.guardIntersectPolytopeFloat Bs
-    (aux_reduce order R0) (Rs.map (aux_reduce order)) guard))]
+  match ← aux_guard dops req n with
+  | .inl guard =>
+    if (fieldOpt req "fmPasses").isSome then throw "`fmPasses` is for a polytope guard"
+    pure [("zB", printZonoBundle dops.showExact (Location.guardIntersectPolytopeFloat Bs
+      (aux_reduce order R0) (Rs.map (aux_reduce order)) guard))]
+  | .inr guard =>
+    pure [("zB", printZonoBundle dops.showExact (Location.guardIntersectPolytopeHFloat
+      (← aux_passes req) Bs (aux_reduce order R0) (Rs.map (aux_reduce order)) guard))]
 
 /-- `location.guardGroups`: `Location.guardGroups`, the hits grouped by guard and split at gaps. -/
 def handleLocationGuardGroups (_dops : DtypeOps 𝕋) (req : Json) : Resp := do

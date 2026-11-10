@@ -38,7 +38,9 @@ public import CORALean.HybridDynamics.Operations.SdcFlow
 public import CORALean.HybridDynamics.Operations.LocationPotInt
 public import CORALean.HybridDynamics.Operations.LocationPotOut
 public import CORALean.HybridDynamics.Operations.GuardIntersectNondetFloat
+public import CORALean.HybridDynamics.Operations.GuardIntersectNondetHFloat
 public import CORALean.HybridDynamics.Operations.GuardIntersectPolytopeFloat
+public import CORALean.HybridDynamics.Operations.GuardIntersectPolytopeHFloat
 public import CORALean.HybridDynamics.Operations.GuardIntersectZonoGirardFloat
 public import CORALean.HybridDynamics.Operations.ZonoGirardUpperFloat
 public import CORALean.HybridDynamics.Operations.CheckFlowFloat
