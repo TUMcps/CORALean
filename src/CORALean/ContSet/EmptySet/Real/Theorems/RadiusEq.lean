@@ -27,7 +27,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-open ContSet in
+open ContSetLike in
 theorem EmptySet.radius_eq (E : EmptySet n) :
     ⨆ x ∈ toSet E, (‖x‖₊ : ENNReal) = E.radius := by
   change ⨆ x ∈ (∅ : Set (Vec ℝ n)), (‖x‖₊ : ENNReal) = 0

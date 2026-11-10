@@ -56,7 +56,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 if one of them fails. -/
 def NonlinearSys.FloatHessModel.adaptRunFloat [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
     (fm : NonlinearSys.FloatHessModel 𝕋 n m) (U : Zonotope (Vec 𝕋 m))
-    (options : LinearSys.ReachOptions 𝕋) (ζδ ζh ζZ ζK : 𝕋) (prec bis fuel : ℕ) (tend : ℚ) :
+    (options : LinearSys.ReachFloatOptions 𝕋) (ζδ ζh ζZ ζK : 𝕋) (prec bis fuel : ℕ) (tend : ℚ) :
     ℕ → NonlinearSys.AdaptState 𝒵[𝕋] n ℚ 𝕋 →
       Option (List (NonlinearSys.AdaptState 𝒵[𝕋] n ℚ 𝕋))
   | 0, _ => some []

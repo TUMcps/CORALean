@@ -25,13 +25,13 @@ else is a property of `U` that a representation supplies.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar
+open Matrix ContSet ContSetLike Scalar
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 variable [Mtimes ℐ S]

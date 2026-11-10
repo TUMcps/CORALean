@@ -9,7 +9,7 @@ public import CORALean.ContDynamics.NonlinearARX.Theorems.ToNonlinearSysDTStep
 
 The windows `stack p y` run through `toNonlinearSysDT` under the input signal
 `feed p u`. `V` is the input set of the converted system, which must enclose every
-stacked input whose `p+1` blocks all lie in `U`, hypothesis `hV`; no `ContSet`
+stacked input whose `p+1` blocks all lie in `U`, hypothesis `hV`; no `ContSetLike`
 here has a product, so the caller supplies it. The converse is not stated: a run of
 the converted system need not have its window's blocks agree, nor its input be of the
 form `feed p u`.
@@ -40,10 +40,10 @@ form `feed p u`.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 variable {dy du p : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

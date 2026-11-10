@@ -49,10 +49,10 @@ one sample at a time.
 
 namespace CORALean
 
-open Matrix ContSet Plus Mtimes
+open Matrix ContSet ContSetLike Plus Mtimes
 
 variable {n : ℕ} {ι : Type}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 

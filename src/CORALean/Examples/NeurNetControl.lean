@@ -44,7 +44,7 @@ nothing quietly assumes they are equal. Compiled at concrete types and an abstra
 
 namespace CORALean.Real
 
-open Matrix ContSet Scalar
+open Matrix ContSet ContSetLike Scalar
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

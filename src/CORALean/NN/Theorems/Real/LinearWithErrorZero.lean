@@ -46,7 +46,7 @@ error of merging denotes, before any merge, the network it was adapted from.
 
 namespace CORALean.Real
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [Real.OfInterval S] {n m : ℕ}
 
 

@@ -48,13 +48,13 @@ namespace CORALean
 open Float SoundFloatArithmetic
 
 variable {T : Type} [FloatOps T] [SoundFloatArithmetic T] [ExactLe T]
-variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} {n : ℕ} [∀ k, ContSet (S k) (Vec ℝ k)]
+variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} {n : ℕ} [∀ k, ContSetLike (S k) (Vec ℝ k)]
   [OfScalarPoint 𝕋 S] [∀ k, Contains (S k) (S k)]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-omit [∀ k, ContSet (S k) (Vec ℝ k)] [OfScalarPoint 𝕋 S] [∀ k, Contains (S k) (S k)] in
+omit [∀ k, ContSetLike (S k) (Vec ℝ k)] [OfScalarPoint 𝕋 S] [∀ k, Contains (S k) (S k)] in
 /-- Marking a float signal true on an interval, read as reals, is the real marking. -/
 private theorem aux_markKey_mapTime (dur lo hi : T) (sigs : List (String × FiniteSignal T Bool))
     (k : String) : -- --- CONCL ---

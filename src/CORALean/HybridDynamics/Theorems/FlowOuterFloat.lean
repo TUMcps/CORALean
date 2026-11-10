@@ -55,13 +55,13 @@ stay need not last `r`: any `t ≤ r` it reaches is covered.
 namespace CORALean
 
 open CORALean.Float SoundFloatArithmetic
-open Matrix ContSet NormedSpace MeasureTheory
+open Matrix ContSet ContSetLike NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
-variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)]
+variable {G : ℕ → Type} [∀ n, ContSetLike (G n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -35,7 +35,7 @@ upper bound, not the smallest ball: that is a different quantity, as `radius₂`
 
 namespace CORALean.Real
 
-open ContSet Entrywise
+open ContSet ContSetLike Entrywise
 
 variable {n : ℕ}
 

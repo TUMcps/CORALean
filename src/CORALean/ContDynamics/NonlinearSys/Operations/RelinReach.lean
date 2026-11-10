@@ -51,13 +51,13 @@ is `iΔt`. `steps` and `Ud` are the certificates CORA computes inside `reach`. `
 
 namespace CORALean
 
-open Matrix ContSet Scalar NormedSpace
+open Matrix ContSetLike Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 

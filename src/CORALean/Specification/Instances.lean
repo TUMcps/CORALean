@@ -77,7 +77,7 @@ generic over a family `S : ℕ → Type` that search cannot read off a lambda; f
 
 namespace CORALean.Float
 
-open ContSet FloatOps SoundFloatArithmetic
+open ContSet ContSetLike FloatOps SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
@@ -255,13 +255,13 @@ theorem step_disjointBundles_sound {zB zB' : ZonoBundle (Vec 𝕋 n)}
 -- ========================================  INSTANCES  ========================================= --
 
 /-- Through the interval hull, so exact at a box and, for `contains`, at a zonotope. -/
-instance containsBoxOuter {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] :
+instance containsBoxOuter {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] :
     Contains (Interval (Vec 𝕋 n)) (S n) where
   contains I s := step_containsBox I (IntervalOuter.interval s)
   contains_sound _ s h := (IntervalOuter.interval_outer s).trans (step_containsBox_sound h)
 
 /-- Axis-aligned separation of the interval hull: conservative beyond a box. -/
-instance isDisjointBoxOuter {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] :
+instance isDisjointBoxOuter {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] :
     IsDisjoint (Interval (Vec 𝕋 n)) (S n) where
   isDisjoint I s := step_disjointBox I (IntervalOuter.interval s)
   isDisjoint_sound _ s h := (step_disjointBox_sound h).mono_left (IntervalOuter.interval_outer s)
@@ -269,7 +269,7 @@ instance isDisjointBoxOuter {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)
 /-- Each set through its interval hull, `'approx'` `isIntersecting_`: `true` separates the hulls,
 `false` says nothing. Low priority, so the box and polytope instances above come first. -/
 instance (priority := 50) isDisjointBoxBoxOuter {T S : ℕ → Type}
-    [∀ n, ContSet (T n) (Vec ℝ n)] [∀ n, ContSet (S n) (Vec ℝ n)]
+    [∀ n, ContSetLike (T n) (Vec ℝ n)] [∀ n, ContSetLike (S n) (Vec ℝ n)]
     [IntervalOuter T 𝕋] [IntervalOuter S 𝕋] : IsDisjoint (T n) (S n) where
   isDisjoint t s := step_disjointBox (IntervalOuter.interval t) (IntervalOuter.interval s)
   isDisjoint_sound t s h :=
@@ -281,7 +281,7 @@ instance (priority := 50) isDisjointBoxBoxOuter {T S : ℕ → Type}
 /-- A bundle lies in each member, so one member's hull apart from the other hull suffices; the
 bundle has no total box of its own (`k = 0` is the whole space). -/
 instance (priority := 50) isDisjointZonoBundleOuter {S : ℕ → Type}
-    [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] : IsDisjoint
+    [∀ n, ContSetLike (S n) (Vec ℝ n)] [IntervalOuter S 𝕋] : IsDisjoint
     (ZonoBundle (Vec 𝕋 n)) (S n) where
   isDisjoint zB s := step_disjointBundleBox zB (IntervalOuter.interval s)
   isDisjoint_sound _ s h :=
@@ -289,7 +289,7 @@ instance (priority := 50) isDisjointZonoBundleOuter {S : ℕ → Type}
 
 -- the same with the bundle second
 instance (priority := 50) isDisjointOuterZonoBundle {T : ℕ → Type}
-    [∀ n, ContSet (T n) (Vec ℝ n)] [IntervalOuter T 𝕋] : IsDisjoint (T n)
+    [∀ n, ContSetLike (T n) (Vec ℝ n)] [IntervalOuter T 𝕋] : IsDisjoint (T n)
     (ZonoBundle (Vec 𝕋 n)) where
   isDisjoint t zB := step_disjointBundleBox zB (IntervalOuter.interval t)
   isDisjoint_sound t _ h :=

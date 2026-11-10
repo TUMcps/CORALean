@@ -38,10 +38,10 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 
 namespace CORALean
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

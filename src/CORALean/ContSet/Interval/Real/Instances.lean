@@ -56,7 +56,7 @@ scoped notation "ℐ𝒱" => fun n => Interval (Vec ℝ n)
 instance too. The operation instances below are stated only at `Vec`, which is
 where an algorithm asks for them. -/
 instance {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι] :
-    ContSet (Interval α) α := ⟨Interval.toSet⟩
+    ContSetLike (Interval α) α := ⟨Interval.toSet⟩
 
 instance {α ι : Type} [AddCommGroup α] [Module ℝ α] [Entrywise α ι] :
     ConvexSet (Interval α) α := ⟨Interval.convex_toSet⟩

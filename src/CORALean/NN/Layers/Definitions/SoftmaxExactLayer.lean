@@ -24,7 +24,7 @@ softmax is `SoftmaxLayer`. It keeps the dimension, so its only field is `dim`.
 
 namespace CORALean.Real
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [IntervalOuter S] [OfInterval S]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [IntervalOuter S] [OfInterval S]
 
 
 -- ========================================  MAIN TYPE  ========================================= --
@@ -36,14 +36,14 @@ structure SoftmaxLayer (n m : ℕ) : Type where
 /-- The exact softmax layer is an `Enclose` kind; noncomputable, as the box of `Real.exp` has no
 scalar evaluation. -/
 noncomputable instance : Enclose SoftmaxLayer S where
-  eval := fun {n m} l => match n, m, l with
+  eval := fun {n m} L => match n, m, L with
     | _, _, ⟨rfl⟩ => Erased.mk softmax
-  enclose := fun {n m} l => match n, m, l with
+  enclose := fun {n m} L => match n, m, L with
     | _, _, ⟨rfl⟩ => (Layer.softmax (S := S)).enclose
-  enclose_outer := fun {n m} l s => match n, m, l with
+  enclose_outer := fun {n m} L S => match n, m, L with
     | _, _, ⟨rfl⟩ => by
       rw [Erased.out_mk]
-      exact Layer.softmax_encloses.image_subset s
+      exact Layer.softmax_encloses.image_subset S
 
 end CORALean.Real
 

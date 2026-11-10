@@ -44,16 +44,16 @@ a refinement lands in the exact predicate and nowhere else.
 
 namespace CORALean
 
-open ContSet Real.OfInterval
+open ContSet ContSetLike Real.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Real.OfInterval S] {n m : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- Exactly sufficient, and no single feature of `E` can be dropped without
 losing that. -/
-def IsMinSuffExplanationExact (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] [Real.OfInterval S]
+def IsMinSuffExplanationExact (S : ℕ → Type) [∀ n, ContSetLike (S n) (Vec ℝ n)] [Real.OfInterval S]
     (f : Vec ℝ n → Vec ℝ m) (x : Vec ℝ n) (ε : ℝ) (E : Finset (Fin n)) (l : Fin m) : Prop :=
   IsSuffExplanationExact S f x ε E l ∧
     ∀ i ∈ E, ¬ IsSuffExplanationExact S f x ε (E \ {i}) l

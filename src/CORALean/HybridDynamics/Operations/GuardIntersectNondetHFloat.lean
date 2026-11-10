@@ -62,15 +62,15 @@ def Location.guardIntersectNondetHFloat (k : ℕ) (Bs : List (Mat 𝕋 n n)) (R�
   k := Bs.length
   Z := fun i =>
     let B := Bs[i]
-    let box := (Rs.map fun R => (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) Bᵀ
+    let box := (Rs.map fun R => (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) Bᵀ
       R).interval).foldl Interval.or
       (Mtimes.mtimes (𝕄 := Mat 𝕋)  -- I_i, the sets boxed in the basis
-        (S := 𝒵[𝕋]) Bᵀ R₀).interval
-    let cZ := (Zonotope.conZonotope (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
+        (ContSet := 𝒵[𝕋]) Bᵀ R₀).interval
+    let cZ := (Zonotope.conZonotope (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B
       box.zonotope)).intersectHPolytope guard          -- the parallelotope cut to the guard
-    Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
+    Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B
       (ConZonotope.intervalTight k
-        (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ cZ)).zonotope
+        (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ cZ)).zonotope
 
 end CORALean
 

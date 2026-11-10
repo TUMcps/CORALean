@@ -37,9 +37,9 @@ Source: [1].
 
 namespace CORALean
 
-open ContSet Real
+open ContSetLike Real
 
-variable {S : Type} [ContSet S (Vec ℝ 2)] [Real.ExactVertices S (Vec ℝ 2)]
+variable {S : Type} [ContSetLike S (Vec ℝ 2)] [Real.ExactVertices S (Vec ℝ 2)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

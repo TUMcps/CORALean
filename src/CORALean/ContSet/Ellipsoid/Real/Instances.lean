@@ -17,14 +17,14 @@ public import CORALean.ContSet.Ellipsoid.Real.Theorems.PlusOuter
 /-!
 # What `Ellipsoid` instantiates
 
-`ContSet` and `Mtimes` by instance search, `OfPoint` at the degenerate case (`G` with no columns),
-and `Plus` only once a caller has named the parameter it carries. Otherwise closed under a linear
-image alone: a Minkowski sum of two ellipsoids is not one, nor is a `linComb`. `Reduce` is the
-identity, as CORA's `reduce` body is empty. `Ellipsoid.plus_outer` holds at a fixed pair of
+`ContSetLike` and `Mtimes` by instance search, `OfPoint` at the degenerate case (`G` with no
+columns), and `Plus` only once a caller has named the parameter it carries. Otherwise closed under a
+linear image alone: a Minkowski sum of two ellipsoids is not one, nor is a `linComb`. `Reduce` is
+the identity, as CORA's `reduce` body is empty. `Ellipsoid.plus_outer` holds at a fixed pair of
 scalings, so fixing `s₁` and `s₂`, with the inequality they owe, yields a lawful `Plus`. It is a
 `def` and not an `instance`, since instance search must not make a precision choice: a caller writes
-`letI := Ellipsoid.plusInstance hne₁ hne₂ hs`; per-call precision names `Ellipsoid.plus`. At
-`Vec ℝ n` only: the Euclidean norm needs coordinates.
+`letI := Ellipsoid.plusInstance hne₁ hne₂ hs`; per-call precision names `Ellipsoid.plus`. At `Vec ℝ
+n` only: the Euclidean norm needs coordinates.
 -/
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5
@@ -44,7 +44,7 @@ variable {n : ℕ}
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (Ellipsoid n) (Vec ℝ n) := ⟨Ellipsoid.toSet⟩
+instance : ContSetLike (Ellipsoid n) (Vec ℝ n) := ⟨Ellipsoid.toSet⟩
 
 instance : ConvexSet (Ellipsoid n) (Vec ℝ n) := ⟨Ellipsoid.convex_toSet⟩
 
@@ -87,7 +87,7 @@ instance : Isequal (Ellipsoid n) where
   isequal_toSet _ _ := Ellipsoid.isequal_toSet
 
 /-- Unchecked fields denote what CORA's constructor makes of them (`Ellipsoid.ofShape`). -/
-noncomputable instance : ContSet (Ellipsoid.Unchecked n) (Vec ℝ n) :=
+noncomputable instance : ContSetLike (Ellipsoid.Unchecked n) (Vec ℝ n) :=
   ⟨fun D => D.ellipsoid.toSet⟩
 
 /-- Convex as the ellipsoid they denote is. -/

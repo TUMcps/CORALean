@@ -26,15 +26,15 @@ can test containment in, so the bundle also carries `region i`, a representation
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
 
 -- ========================================  MAIN TYPE  ========================================= --
 
 /-- `sys` with its input set `U`, a chain of linearizations `steps`, and for
 each step a checkable region inside the one its certificate was issued for. -/
-structure NonlinearSysDT.WithSteps (S Rg : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)]
-    [∀ n, ContSet (Rg n) (Vec ℝ n)] (𝕋 : Type) [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
+structure NonlinearSysDT.WithSteps (S Rg : ℕ → Type) [∀ n, ContSetLike (S n) (Vec ℝ n)]
+    [∀ n, ContSetLike (Rg n) (Vec ℝ n)] (𝕋 : Type) [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
     (m n : ℕ) where
   sys : NonlinearSysDT n m
   U : S m

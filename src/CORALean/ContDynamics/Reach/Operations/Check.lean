@@ -36,18 +36,18 @@ universe u
 
 namespace CORALean
 
-variable {Sys : ℕ → Type u} {P : (n : ℕ) → Sys n → Type} {O : Type} {S : ℕ → Type}
-variable [∀ n, ContSet (S n) (Vec ℝ n)]
-variable {n : ℕ} {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
+variable {Sys : ℕ → Type u} {Params : (n : ℕ) → Sys n → Type} {Options : Type}
+variable {ContSet₂ : ℕ → Type} [∀ n, ContSetLike (ContSet₂ n) (Vec ℝ n)]
+variable {n : ℕ} {ContSet₁ : Type} [ContSetLike ContSet₁ (Vec ℝ n)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `spec` checked on `reach sys params options`; `false` if `reach` returned `none`. -/
-def Reach.check [Reach Sys P O S] [Contains ContSet (SetUnion (S n))]
-    [IsDisjoint ContSet (SetUnion (S n))] (sys : Sys n) (params : P n sys) (options : O)
-    (spec : Specification ContSet) : Bool :=
-  match Reach.reach (S := S) sys params options with
+def Reach.check [Reach Sys Params Options ContSet₂] [Contains ContSet₁ (SetUnion (ContSet₂ n))]
+    [IsDisjoint ContSet₁ (SetUnion (ContSet₂ n))] (sys : Sys n) (params : Params n sys)
+    (options : Options) (spec : Specification ContSet₁) : Bool :=
+  match Reach.reach (ContSet := ContSet₂) sys params options with
   | some R => spec.check R
   | none => false
 

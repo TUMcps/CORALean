@@ -27,7 +27,7 @@ variable {n m : ℕ}
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-open ContSet in
+open ContSetLike in
 theorem EmptySet.isequal_iff (E F : EmptySet n) :
     E.isequal F = true ↔ toSet E = toSet F :=
   ⟨fun _ => rfl, fun _ => rfl⟩

@@ -80,7 +80,7 @@ and `F⁻¹ F = I`. Where `Verror` comes from `NonlinDASys.linError`, `linError_
 
 namespace CORALean
 
-open CORALean.Real Matrix ContSet
+open CORALean.Real Matrix ContSet ContSetLike
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -125,13 +125,13 @@ theorem NonlinDASys.IsTrajectory.linReach_outer {sys : NonlinDASys n p m} {Δt :
   -- the shifted run is a run of the linear system `oneStep` is taken of
   have lin := traj.toLinearSys hF measurableSet_Icc hR hL
   -- `oneStep`'s side conditions, all of zonotopes
-  have hWU : ∀ v ∈ toSet (S := Zonotope (Vec ℝ n)) W,
-      v - f0 ∈ toSet (S := Zonotope (Vec ℝ n)) (U_lin.plus Verror) := by
+  have hWU : ∀ v ∈ toSet (ContSet := Zonotope (Vec ℝ n)) W,
+      v - f0 ∈ toSet (ContSet := Zonotope (Vec ℝ n)) (U_lin.plus Verror) := by
     intro v hv
     obtain ⟨a, ha, b, hb, rfl⟩ := (Zonotope.plus_exact _ _).symm.subset hv
     rw [(Zonotope.mem_ofPoint_iff _ _).mp ha, add_sub_cancel_left]
     exact hb
-  have h0U : (0 : Vec ℝ n) ∈ toSet (S := Zonotope (Vec ℝ n)) (U_lin.plus Verror) := by
+  have h0U : (0 : Vec ℝ n) ∈ toSet (ContSet := Zonotope (Vec ℝ n)) (U_lin.plus Verror) := by
     show (0 : Vec ℝ n) ∈ (U_lin.plus Verror).toSet
     rw [← Zonotope.plus_exact, ← zero_add (0 : Vec ℝ n)]
     refine Set.add_mem_add ?_ h0
@@ -141,14 +141,14 @@ theorem NonlinDASys.IsTrajectory.linReach_outer {sys : NonlinDASys n p m} {Δt :
       (((q + 2 : ℕ) : ℝ) + 2) < 1 := by
     rw [Scalar.toRealMat_real]; exact hε
   -- the remainder's product with the lifted input
-  set RM₂ : Zonotope (Vec ℝ n) := Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵)
+  set RM₂ : Zonotope (Vec ℝ n) := Mtimes.mtimes (𝕄 := ℐ) (ContSet := 𝒵)
     (MatExp.inputRemainder A_lin Δt (q + 2)) (U_lin.plus Verror) with hRM₂
   -- the time-varying input's interval-matrix images, and `{f0}`, are zonotopes too
   have hRc := Zonotope.convex_toSet RM₂
   have hRk := Zonotope.isClosed_toSet RM₂
   have hRb := Zonotope.isBounded_toSet RM₂
   -- the remainder's product with the point `f0`
-  set RM : Zonotope (Vec ℝ n) := Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵)
+  set RM : Zonotope (Vec ℝ n) := Mtimes.mtimes (𝕄 := ℐ) (ContSet := 𝒵)
     (MatExp.inputRemainder A_lin Δt (q + 2)) (Zonotope.ofPoint f0) with hRM
   have pRc := Zonotope.convex_toSet RM
   have pRk := Zonotope.isClosed_toSet RM

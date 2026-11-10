@@ -34,14 +34,14 @@ reduction.
 
 namespace CORALean
 
-variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α] [Reduce S α]
+variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSetLike S α] [Reduce S α]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SetIntersection.reduce_outer (I : SetIntersection S) (o : ℕ) : -- --- CONCL ---
-    ContSet.toSet I ⊆
-      ContSet.toSet (SetIntersection.reduce I o) := by -- --- PROOF ---
+    ContSetLike.toSet I ⊆
+      ContSetLike.toSet (SetIntersection.reduce I o) := by -- --- PROOF ---
   intro x hx
   have hx := SetIntersection.mem_toSet.mp hx
   refine SetIntersection.mem_toSet.mpr ?_

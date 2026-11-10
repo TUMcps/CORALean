@@ -41,10 +41,10 @@ errors are the `linResidual`s, not bounded.
 
 namespace CORALean
 
-open Matrix ContSet
+open Matrix ContSetLike
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

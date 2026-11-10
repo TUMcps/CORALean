@@ -34,7 +34,7 @@ The ReLU image of the star set lies in the set the float layer returns, as in
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 

@@ -35,14 +35,14 @@ namespace CORALean
 
 open Pointwise
 
-variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α] [Plus S α]
+variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSetLike S α] [Plus S α]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SetIntersection.plus_outer (I J : SetIntersection S) : -- --- CONCL ---
-    ContSet.toSet I + ContSet.toSet J ⊆
-      ContSet.toSet (SetIntersection.plus I J) := by -- --- PROOF ---
+    ContSetLike.toSet I + ContSetLike.toSet J ⊆
+      ContSetLike.toSet (SetIntersection.plus I J) := by -- --- PROOF ---
   rintro _ ⟨a, ha, b, hb, rfl⟩
   have ha := SetIntersection.mem_toSet.mp ha
   have hb := SetIntersection.mem_toSet.mp hb

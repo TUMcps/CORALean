@@ -74,7 +74,7 @@ this one's is over the full stacked `(x, u)`, so the two do not yet compose.
 namespace CORALean
 
 open CORALean.Real
-open Matrix Set ContSet
+open Matrix Set ContSet ContSetLike
 
 variable {d n m : ℕ}
 

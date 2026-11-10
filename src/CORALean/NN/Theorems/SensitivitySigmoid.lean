@@ -38,9 +38,9 @@ enclosure and for the heuristic that decides where to tighten it.
 
 namespace CORALean
 
-open Matrix ContSet Plus Mtimes Real.IntervalOuter Real.OfInterval
+open Matrix ContSet ContSetLike Plus Mtimes Real.IntervalOuter Real.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S] {n : ℕ}
 
 

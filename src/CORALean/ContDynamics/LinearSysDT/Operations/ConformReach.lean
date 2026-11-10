@@ -38,10 +38,10 @@ mapping by `E` and `F`, which this applies, as `isconform_dyn` does.
 
 namespace CORALean
 
-open Matrix ContSet Plus Mtimes
+open Matrix ContSetLike Plus Mtimes
 
 variable {n : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 

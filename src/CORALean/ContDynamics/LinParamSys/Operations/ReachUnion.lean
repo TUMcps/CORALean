@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinParamSys.Operations.InputSet
 public import CORALean.ContDynamics.LinParamSys.Operations.ParticularSolution
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachOrder
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepk
-public import CORALean.ContDynamics.LinearSys.Definitions.ReachStepOptions
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 public import CORALean.ContDynamics.Reach.Definitions.InputParams
 public import CORALean.ContSet.SetUnion.SetUnion
 public import CORALean.Global.StepOf
@@ -50,10 +50,10 @@ where that is higher: the enclosures hold only at an admissible order.
 namespace CORALean
 
 open CORALean.Real
-open ContSet
+open ContSet ContSetLike
 
 variable {n : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes ℐ S]
 
@@ -82,7 +82,7 @@ noncomputable def LinParamSys.step_reachStepkInput (sys : LinParamSys ℐ n)
 /-- One time-interval set per window `τ_k`, `k < ⌈(tFinal - tStart) / Δt⌉` (at least one),
 under inputs `params.U` in input coordinates, at order `η` raised until admissible. -/
 noncomputable def LinParamSys.reachUnion (sys : LinParamSys ℐ n)
-    (params : Reach.InputParams (S n) (S sys.m) ℝ) (options : LinearSys.ReachStepOptions ℝ) :
+    (params : Reach.InputParams (S n) (S sys.m) ℝ) (options : LinearSys.ReachOptions ℝ) :
     SetUnion (S n) :=
   let X₀ := params.X₀                                             -- the paper's symbols
   let Δt := options.Δt

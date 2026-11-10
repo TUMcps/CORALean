@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.InputSetFloat
-public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachFloatOptions
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
 public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
@@ -69,7 +69,7 @@ def LinearSys.step_reachFloatInputStep (eAΔt : Interval (Mat 𝕋 n n)) (Pu : Z
   let PU := s.2.2.1                                                 -- P^R(t_{k+1})
   let PUnext := s.2.2.2                                             -- [e^{AΔt}]^k P^R(Δt)
   let eA := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{AΔt}] ·
-    (S := 𝒵[𝕋]) eAΔt
+    (ContSet := 𝒵[𝕋]) eAΔt
   let PUnext' := eA PUnext                                          -- [e^{AΔt}]^{k+1} P^R(Δt)
   (Reduce.reduce (eA Htp ⊞ Pu) ρ,                                   -- H(t_{k+2})
     Reduce.reduce (eA Hti ⊞ Pu) ρ,                                  -- H(τ_{k+1})
@@ -85,7 +85,7 @@ end
 of `ẋ = Ax + Bu + c` from `X₀` under inputs in `U`, reducing to order `ρ`. -/
 def LinearSys.reachFloatInput (sys : LinearSys 𝕋 n) (params : Reach.InputParams (Zonotope (Vec 𝕋 n))
     (Zonotope (Vec 𝕋 sys.m)) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) :
+    (options : LinearSys.ReachFloatOptions 𝕋) :
     Option (List (Zonotope (Vec 𝕋 n)) × List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.X₀                                               -- the paper's symbols
   let Δt := options.Δt
@@ -99,7 +99,7 @@ def LinearSys.reachFloatInput (sys : LinearSys 𝕋 n) (params : Reach.InputPara
   let eAΔt := sys.expIntervalFloat Δt Δt η'                         -- [e^{AΔt}], once
   let F := MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt η'   -- [F], once
   let eA := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{AΔt}] ·
-    (S := 𝒵[𝕋]) eAΔt
+    (ContSet := 𝒵[𝕋]) eAΔt
   let Pu := sys.inputSolutionFloat Δt η' ũ                          -- P̃(Δt)
   let seg := LinComb.linComb (Interval.point fun _ => zero).zonotope ũ    -- [0, ũ]
   let PuR := sys.inputSolutionFloat Δt η' seg                       -- P̃^R(τ_0)
@@ -107,7 +107,7 @@ def LinearSys.reachFloatInput (sys : LinearSys 𝕋 n) (params : Reach.InputPara
   let Htp₁ := Reduce.reduce (eA X₀ ⊞ Pu) ρ                          -- H(t_1)
   let Hti₀ := (LinComb.linComb X₀ (eA X₀) ⊞                         -- H(τ_0) = H^R ⊕ P̃^R
     Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋]) F X₀) ⊞ PuR
+    (ContSet := 𝒵[𝕋]) F X₀) ⊞ PuR
   let S := List.iterate (LinearSys.step_reachFloatInputStep eAΔt Pu ρ)   -- the loop, k = 0 … N-1
     (Htp₁, Hti₀, PU, PU) N
   let Rti := S.map fun s => s.2.1 ⊞ s.2.2.1                         -- H(τ_k) ⊕ P^R(t_{k+1})

@@ -29,7 +29,8 @@ fold as a loop on a box. `k / 255` is not dyadic, so `inputBox` encloses it.
 
 namespace CORALean.Bench.Mnist
 
-open CORALean CORALean.Float ContSet Plus Mtimes Float.OfInterval Float.SoundFloatArithmetic
+open CORALean CORALean.Float ContSet ContSetLike Plus Mtimes Float.OfInterval
+open Float.SoundFloatArithmetic
   Float.FloatOps
 open scoped Matrix
 
@@ -63,7 +64,7 @@ theorem mem_outVec {m : ℕ} (b : Vec 𝕋 m) : toRealVec b ∈ (outVec b).toSet
 
 /-! ## The affine layer, weights rounded outward -/
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [Mtimes ℐ[𝕋] S] [Float.IntervalOuter S 𝕋]
   [Float.OfInterval S 𝕋] {n m : ℕ}
 

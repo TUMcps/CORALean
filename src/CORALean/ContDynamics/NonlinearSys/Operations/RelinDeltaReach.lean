@@ -39,10 +39,10 @@ term at `x = z + δ`, and each product left over carries at least one `δ`.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 

@@ -41,23 +41,24 @@ universe u
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {Sys : ℕ → Type u} {P : (n : ℕ) → Sys n → Type} {O : Type} {S : ℕ → Type}
-variable [∀ n, ContSet (S n) (Vec ℝ n)]
-variable {n : ℕ} {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
+variable {Sys : ℕ → Type u} {Params : (n : ℕ) → Sys n → Type} {Options : Type}
+variable {ContSet₂ : ℕ → Type} [∀ n, ContSetLike (ContSet₂ n) (Vec ℝ n)]
+variable {n : ℕ} {ContSet₁ : Type} [ContSetLike ContSet₁ (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Reach.holds_of_check [Reach Sys P O S] [Contains ContSet (SetUnion (S n))]
-    [IsDisjoint ContSet (SetUnion (S n))] (sys : Sys n) (params : P n sys) (options : O)
-    (spec : Specification ContSet) : -- --- CONCL ---
-    Reach.check (S := S) sys params options spec →
-    (spec.Holds (Reach.reachExact (S := S) sys params)) := by -- --- PROOF ---
+theorem Reach.holds_of_check [Reach Sys Params Options ContSet₂]
+    [Contains ContSet₁ (SetUnion (ContSet₂ n))] [IsDisjoint ContSet₁ (SetUnion (ContSet₂ n))]
+    (sys : Sys n) (params : Params n sys) (options : Options)
+    (spec : Specification ContSet₁) : -- --- CONCL ---
+    Reach.check (ContSet₂ := ContSet₂) sys params options spec →
+    (spec.Holds (Reach.reachExact (ContSet := ContSet₂) sys params)) := by -- --- PROOF ---
   unfold Reach.check
   -- `none` checks `false`, so only a returned set is left, and it encloses
-  cases hR : Reach.reach (S := S) sys params options with
+  cases hR : Reach.reach (ContSet := ContSet₂) sys params options with
   | none => intro h; exact absurd h Bool.false_ne_true
   | some R =>
     intro h

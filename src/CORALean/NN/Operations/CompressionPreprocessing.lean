@@ -55,11 +55,11 @@ ReLU is the caller's relaxation; `compressionPreprocessing_outer` asks it be sou
 
 namespace CORALean
 
-open Float ContSet OfInterval
+open Float ContSet ContSetLike OfInterval
 open scoped CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [IntervalOuter S 𝕋] [OfInterval S 𝕋]
 
 

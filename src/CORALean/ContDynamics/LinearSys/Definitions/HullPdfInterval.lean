@@ -39,10 +39,10 @@ of the hulls at the times of the interval (`LinearSys.hullPdf`).
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSetLike Scalar
 
 variable {n m : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

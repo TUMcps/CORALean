@@ -52,13 +52,13 @@ enclosure guarantee is the same.
 namespace CORALean
 
 open CORALean.Float CORALean.Real
-open Matrix ContSet NormedSpace SoundFloatArithmetic
+open Matrix ContSet ContSetLike NormedSpace SoundFloatArithmetic
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 

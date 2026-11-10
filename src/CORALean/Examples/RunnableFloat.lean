@@ -295,14 +295,14 @@ def Z_reduce : Zonotope (Vec D 2) := Z.reduce 1
 def Z_reindex : Zonotope (Vec D 2) :=
   Reindex.reindex (S := 𝒵[D]) (Equiv.refl (Fin 2)) Z
 def Z_mtimes : Zonotope (Vec D 2) :=
-  Mtimes.mtimes (S := 𝒵[D]) (identityMat D 2) Z
+  Mtimes.mtimes (ContSet := 𝒵[D]) (identityMat D 2) Z
 
 -- `SetUnion` of float zonotopes: `Plus`, `Reduce`, `Mtimes`, generic over the member type
 def uZ : SetUnion (Zonotope (Vec D 2)) := ⟨[Z, Z_mtimes]⟩
 def uZ_plus : SetUnion (Zonotope (Vec D 2)) := Plus.plus uZ uZ
 def uZ_reduce : SetUnion (Zonotope (Vec D 2)) := Reduce.reduce uZ 1
 def uZ_mtimes : SetUnion (Zonotope (Vec D 2)) :=
-  Mtimes.mtimes (S := fun n => SetUnion (Zonotope (Vec D n))) (identityMat D 2) uZ
+  Mtimes.mtimes (ContSet := fun n => SetUnion (Zonotope (Vec D n))) (identityMat D 2) uZ
 
 -- `Interval`: `Plus`, `MinkDiff`, `Intersection`, `LinComb`, `Reduce`, `Reindex`, `Mtimes`
 def I_plus : Interval (Vec D 2) := Plus.plus I I
@@ -313,7 +313,7 @@ def I_reduce : Interval (Vec D 2) := Reduce.reduce I 1
 def I_reindex : Interval (Vec D 2) :=
   Reindex.reindex (S := ℐ𝒱[D]) (Equiv.refl (Fin 2)) I
 def I_mtimes : Interval (Vec D 2) :=
-  Mtimes.mtimes (S := ℐ𝒱[D]) (identityMat D 2) I
+  Mtimes.mtimes (ContSet := ℐ𝒱[D]) (identityMat D 2) I
 
 
 /-! ## The float interval-matrix chain: `matMul`/`matPow`/`smul`/`expIntervalEnclosure`
@@ -341,12 +341,12 @@ def quadTermBoundsRun : Interval D :=
   ⟨MatExp.quadTermLo (d 1 (-1)) (d (-3) 0) (d 1 0), MatExp.quadTermHi (d 1 (-1)) (d (-3) 0) (d 1 0)⟩
 
 def mtimesIntervalMatRun : Interval (Vec D 2) :=
-  Mtimes.mtimes (𝕄 := ℐ[D]) (S := ℐ𝒱[D])
+  Mtimes.mtimes (𝕄 := ℐ[D]) (ContSet := ℐ𝒱[D])
     matExpA I
 
 -- the same interval matrix, at `expEnclosureRun`, times a float zonotope (#1, phase 3 prep)
 def mtimesIntervalMatZonoRun : Zonotope (Vec D 2) :=
-  Mtimes.mtimes (𝕄 := ℐ[D]) (S := 𝒵[D])
+  Mtimes.mtimes (𝕄 := ℐ[D]) (ContSet := 𝒵[D])
     expEnclosureRun Z
 
 -- `HPolytope`: `Reduce`, `Intersection`
@@ -359,7 +359,7 @@ def V_intersection : VPolytope (Vec D 2) := Intersection.intersection V V
 def V_linComb : VPolytope (Vec D 2) := LinComb.linComb V V
 def V_reduce : VPolytope (Vec D 2) := Reduce.reduce V 1
 def V_mtimes : VPolytope (Vec D 2) :=
-  Mtimes.mtimes (S := 𝒱𝒫[D]) (identityMat D 2) V
+  Mtimes.mtimes (ContSet := 𝒱𝒫[D]) (identityMat D 2) V
 
 -- `ConZonotope`: `Plus`, `LinComb`, `Reduce`
 def cZ_plus : ConZonotope D (Vec D 2) := Plus.plus cZ cZ
@@ -371,7 +371,7 @@ def pZ_plus : PolyZonotope (Vec D 2) := Plus.plus pZ pZ
 def pZ_linComb : PolyZonotope (Vec D 2) := LinComb.linComb pZ pZ
 def pZ_reduce : PolyZonotope (Vec D 2) := Reduce.reduce pZ 1
 def pZ_mtimes : PolyZonotope (Vec D 2) :=
-  Mtimes.mtimes (S := 𝒫𝒵[D]) (identityMat D 2) pZ
+  Mtimes.mtimes (ContSet := 𝒫𝒵[D]) (identityMat D 2) pZ
 def pZ_convHull : PolyZonotope (Vec D 2) := PolyZonotope.convHull pZ pZ
 
 -- the quadratic map `x ↦ xᵀ x` of `pZ`, its two-operand pairings, and the varying input part
@@ -389,7 +389,7 @@ def cpZ_plus : ConPolyZono D (Vec D 2) := Plus.plus cpZ cpZ
 def cpZ_reduce : ConPolyZono D (Vec D 2) := Reduce.reduce cpZ 1
 def cpZ_intersection : ConPolyZono D (Vec D 2) := Intersection.intersection cpZ cpZ
 def cpZ_mtimes : ConPolyZono D (Vec D 2) :=
-  Mtimes.mtimes (S := fun k => ConPolyZono D (Vec D k)) (identityMat D 2) cpZ
+  Mtimes.mtimes (ContSet := fun k => ConPolyZono D (Vec D k)) (identityMat D 2) cpZ
 
 -- `ZonoBundle`: `Plus`, `LinComb`, `Intersection`, `Reduce`, `Reindex`, `Mtimes`
 def zB_plus : ZonoBundle (Vec D 2) := Plus.plus zB zB
@@ -399,7 +399,7 @@ def zB_reduce : ZonoBundle (Vec D 2) := Reduce.reduce zB 1
 def zB_reindex : ZonoBundle (Vec D 2) :=
   Reindex.reindex (S := 𝒵ℬ[D]) (Equiv.refl (Fin 2)) zB
 def zB_mtimes : ZonoBundle (Vec D 2) :=
-  Mtimes.mtimes (S := 𝒵ℬ[D]) (identityMat D 2) zB
+  Mtimes.mtimes (ContSet := 𝒵ℬ[D]) (identityMat D 2) zB
 
 -- `Ellipsoid`: `Mtimes` alone — the rest of its operations have no float file yet
 def E_mtimes : Ellipsoid D 2 := Mtimes.mtimes (identityMat D 2) E
@@ -548,7 +548,7 @@ def lpReachRun : Zonotope (Vec D 2) :=
     ⟨2, two_pos⟩
 /-- Four windows of `[0, 2⁻³]` at every member, each from the first by scaling and squaring. -/
 def lpWindowsRun : Option (List (Zonotope (Vec D 2))) := lpSys.reachFloat
-    ⟨Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
+    ⟨Z, 0, 1 / 8⟩ ⟨⟨stepR, 4⟩, 2⟩
 
 /-- The same four windows with an input `params.U`: `Z` re-centered at the origin, whose
 contribution `P^R(t_{k+1})` accumulates by `particularSolutionFloat`; then `Z` itself, split at
@@ -558,9 +558,9 @@ def lpParticularRun : Option (Zonotope (Vec D 2)) := lpSys.particularSolutionFlo
     2 lpInputSet 2
 def lpConstRun : Zonotope (Vec D 2) := lpSys.constPropagateFloat stepR 4 2 (Z.c) 3
 def lpInputWindowsRun : Option (List (Zonotope (Vec D 2))) :=
-  lpSys.reachFloatInput (fun _ => FloatOps.zero) ⟨Z, lpInputSet, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
+  lpSys.reachFloatInput (fun _ => FloatOps.zero) ⟨Z, lpInputSet, 0, 1 / 8⟩ ⟨⟨stepR, 4⟩, 2⟩
 def lpSplitWindowsRun : Option (List (Zonotope (Vec D 2))) :=
-  lpSys.reachFloatInput (fun _ => FloatOps.zero) ⟨Z, Z, 0, 1 / 8⟩ ⟨stepR, 4, 2⟩
+  lpSys.reachFloatInput (fun _ => FloatOps.zero) ⟨Z, Z, 0, 1 / 8⟩ ⟨⟨stepR, 4⟩, 2⟩
 
 
 /-! ## The continuous-time inner approximation in floats (#129)
@@ -630,7 +630,7 @@ most `2⁻⁴`; CORA's `errorSolution_adaptive` with its order, `Z` dynamic and 
 input solution's orders `1 … 4` and `H(t_{k+1})` from `Z`, under the constant `Z`'s center. -/
 
 def manualReachRun : Option (List (Zonotope (Vec D 2))) :=
-  ctSys.manualReachFloat { X₀ := Z, U := Z, tFinal := 1 / 8 } ⟨stepR, 4, 2⟩
+  ctSys.manualReachFloat { X₀ := Z, U := Z, tFinal := 1 / 8 } ⟨⟨stepR, 4⟩, 2⟩
 def curvatureErrorRun : D := ctSys.timeIntervalStepCurvatureErrorFloat stepR 4 Z
 def intervalErrorRun : D := ctSys.timeIntervalStepErrorFloat stepR 4 Z
 def pointErrorRun : D := ctSys.timePointStepErrorFloat stepR 4 Z
@@ -775,7 +775,7 @@ def mixedNet : NeuralNetwork 𝒵[D] 2 2 :=
   .layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2)
     (.layer (⟨2, rfl⟩ : SigmoidLayer D 2 2)
       (.layer (ActivationLayer.of (sigmoidRelaxation_encloses (𝕋 := D) 2))
-        (.layer (Enclose.pack (S := 𝒵[D]) net)
+        (.layer (Enclose.pack (ContSet := 𝒵[D]) net)
           (.layer (⟨identityMat D 2, fun _ => d 0 0⟩ : LinearLayer D 2 2) .output))))
 
 /-- The zonotope enclosure of `mixedNet` on `Z`. -/
@@ -1289,7 +1289,7 @@ def verifySplitRun : Bool := net.verifySplit safeBox (fun X => (X, X)) 2 Z
 
 /-- What `checkSafe`'s `true` is worth: the specification on the network's exact image. -/
 example : safeBox.check (net.enclose Z) →
-    (safeBox.Holds (net.eval.out '' ContSet.toSet Z)) :=
+    (safeBox.Holds (net.eval.out '' ContSetLike.toSet Z)) :=
   net.holds_of_check Z safeBox
 
 #eval checkSafe

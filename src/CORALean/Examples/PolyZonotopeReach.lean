@@ -21,7 +21,7 @@ cannot be read off `S n`, so a use site names the family, and `PolyZonotope` shi
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 -- Anonymous, since their content is that they elaborate.
 

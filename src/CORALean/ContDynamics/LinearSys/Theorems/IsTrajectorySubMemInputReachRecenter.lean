@@ -55,14 +55,14 @@ reach can state its windows against the same three pieces.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace MeasureTheory
+open Matrix ContSet ContSetLike Scalar NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable {S' : ℕ → Type} [∀ n, ContSet (S' n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
+variable {S' : ℕ → Type} [∀ n, ContSetLike (S' n) (Vec ℝ n)]
 variable [∀ n, Recenter (S' n) (Vec ℝ n)] [∀ n, CompactSet (S' n) (Vec ℝ n)]
 
 

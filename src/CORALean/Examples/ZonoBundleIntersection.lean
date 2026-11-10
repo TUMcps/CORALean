@@ -30,7 +30,7 @@ the class's unconditional obligation has no proof; a member is what the theorem 
 
 namespace CORALean.Real
 
-open Matrix Pointwise ContSet
+open Matrix Pointwise ContSet ContSetLike
 
 -- A unit box at the origin, and a unit diamond centered away from it, sharing no center.
 
@@ -71,8 +71,8 @@ example :
 site has to. -/
 example (M : Mat ℝ 2 2) :
     (⋃ A ∈ toSet M, (A *ᵥ ·) '' toSet Example.boxBundle)
-      ⊆ toSet (Mtimes.mtimes (S := 𝒵ℬ) M Example.boxBundle) :=
-  Mtimes.mtimes_outer (S := 𝒵ℬ) M Example.boxBundle
+      ⊆ toSet (Mtimes.mtimes (ContSet := 𝒵ℬ) M Example.boxBundle) :=
+  Mtimes.mtimes_outer (ContSet := 𝒵ℬ) M Example.boxBundle
 
 /-- Compact, since this bundle's `k` is `1`, not `0`. -/
 example : IsCompact Example.boxBundle.toSet :=

@@ -51,9 +51,9 @@ def LinearARX.step_feedBox (sys : LinearARX 𝕋 dy du p) (u : ℕ → Vec 𝕋 
     Interval (Vec 𝕋 (p * dy)) :=
   (List.finRange p).foldl
     (fun acc j => plus (S := Interval (Vec 𝕋 (p * dy))) acc
-      (mtimes (S := ℐ𝒱[𝕋]) (sys.inputMat j.succ)
+      (mtimes (ContSet := ℐ𝒱[𝕋]) (sys.inputMat j.succ)
         (Interval.point (u (k + p - (j.succ : ℕ))))))
-    (mtimes (S := ℐ𝒱[𝕋]) (sys.inputMat 0)
+    (mtimes (ContSet := ℐ𝒱[𝕋]) (sys.inputMat 0)
       (Interval.point (u (k + p - (0 : Fin (p + 1))))))
 
 end

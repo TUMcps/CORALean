@@ -36,10 +36,10 @@ trajectory: each step's image at every `A ∈ toSet sys.A`, plus every input in
 
 namespace CORALean
 
-open Matrix Pointwise ContSet Plus Reduce Mtimes
+open Matrix Pointwise ContSetLike Plus Reduce Mtimes
 
-variable {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n : ℕ}
+variable {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSetLike (𝕄 m n) (Mat ℝ m n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes 𝕄 S]
 
 

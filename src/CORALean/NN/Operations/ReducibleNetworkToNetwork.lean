@@ -35,10 +35,10 @@ linear layer runs on `I'.nonemptyHull`, which is `I'` whenever `I'` is nonempty.
 
 namespace CORALean
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋]
 
 

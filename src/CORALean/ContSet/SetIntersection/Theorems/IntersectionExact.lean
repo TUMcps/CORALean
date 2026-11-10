@@ -33,15 +33,15 @@ every member of each. The one guarantee of this class that is an equality; `Zono
 
 namespace CORALean
 
-variable {S α : Type} [ContSet S α]
+variable {S α : Type} [ContSetLike S α]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Appending two lists of members denotes exactly the intersection of the two intersections. -/
 theorem SetIntersection.intersection_exact (I J : SetIntersection S) : -- --- CONCL ---
-    ContSet.toSet (SetIntersection.intersection I J)
-      = ContSet.toSet I ∩ ContSet.toSet J := by -- --- PROOF ---
+    ContSetLike.toSet (SetIntersection.intersection I J)
+      = ContSetLike.toSet I ∩ ContSetLike.toSet J := by -- --- PROOF ---
   ext x
   simp only [Set.mem_inter_iff, SetIntersection.mem_toSet, SetIntersection.intersection,
     List.mem_append]

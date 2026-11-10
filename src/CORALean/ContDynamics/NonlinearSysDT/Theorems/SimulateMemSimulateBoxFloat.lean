@@ -36,7 +36,7 @@ start under the real value of a float input signal lies, at every step, in the b
 
 namespace CORALean
 
-open Matrix Scalar ContSet CORALean.Float
+open Matrix Scalar ContSet ContSetLike CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 

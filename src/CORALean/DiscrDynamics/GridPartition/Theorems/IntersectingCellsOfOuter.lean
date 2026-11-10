@@ -38,9 +38,9 @@ the set sits in its interval hull, so a cell meeting the set meets the hull.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.IntervalOuter S]
+variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Real.IntervalOuter S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

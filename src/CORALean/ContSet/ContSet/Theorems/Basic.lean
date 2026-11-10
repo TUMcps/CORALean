@@ -21,9 +21,9 @@ namespace CORALean
 
 section
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] [ContSet S α]
+variable {S α : Type} [NormedAddCommGroup α] [NormedSpace ℝ α] [ContSetLike S α]
 
 
 -- ===============================  `CompactSet.isBounded_toSet`  =============================== --
@@ -53,9 +53,9 @@ end
 
 section
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S α : Type} [ContSet S α] [Isequal S]
+variable {S α : Type} [ContSetLike S α] [Isequal S]
 
 
 -- ====================================  `ContSet.eq_toSet`  ==================================== --
@@ -87,7 +87,7 @@ end
 section
 
 open Matrix Pointwise
-open ContSet
+open ContSet ContSetLike
 
 
 -- ====================================  `ContSet.mem_iff`  ===================================== --
@@ -97,7 +97,7 @@ open ContSet
 -- Reviewed:      ---
 
 /-- Membership in a representation is membership in the set it denotes. -/
-theorem ContSet.mem_iff {S α : Type} [ContSet S α] {s : S} {x : α} :
+theorem ContSet.mem_iff {S α : Type} [ContSetLike S α] {s : S} {x : α} :
     x ∈ s ↔ x ∈ toSet s := Iff.rfl
 
 
@@ -107,7 +107,7 @@ theorem ContSet.mem_iff {S α : Type} [ContSet S α] {s : S} {x : α} :
 -- Last update:   14-October-2026
 -- Reviewed:      ---
 
-/-- A set is its own `ContSet` representation. -/
+/-- A set is its own `ContSetLike` representation. -/
 @[simp] theorem ContSet.toSet_set {α : Type} (X : Set α) : toSet X = X := rfl
 
 end
@@ -116,7 +116,7 @@ end
 section
 
 open Matrix Pointwise
-open ContSet
+open ContSet ContSetLike
 open Scalar
 
 
@@ -158,9 +158,9 @@ end
 
 section
 
-open ContSet Scalar
+open ContSet ContSetLike Scalar
 
-variable {S α : Type} [ContSet S α]
+variable {S α : Type} [ContSetLike S α]
 
 
 -- ==================================  `ContSet.uplus_exact`  =================================== --
@@ -177,9 +177,9 @@ end
 
 section
 
-open ContSet
+open ContSet ContSetLike
 
-variable {α : Type} [AddCommGroup α] [Module ℝ α] {S : Type} [ContSet S α]
+variable {α : Type} [AddCommGroup α] [Module ℝ α] {S : Type} [ContSetLike S α]
 
 
 -- ==============================  `LinComb.union_subset_linComb`  ============================== --

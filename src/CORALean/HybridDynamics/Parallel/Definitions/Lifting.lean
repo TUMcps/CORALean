@@ -27,9 +27,9 @@ those of a point of `us i`, zero at the global inputs nothing reads. `dist` is C
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (G n) (Vec ℝ n)]
 variable {k m : ℕ} {n : Fin k → ℕ}
 
 
@@ -38,8 +38,8 @@ variable {k m : ℕ} {n : Fin k → ℕ}
 /-- What a caller owes to lift the components' sets into the product space: the invariant, the
 guards, the input set and the disturbance set, each as a set containing what the components' sets
 put together. -/
-structure ParallelHybridAutomaton.Lifting (S G : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)]
-    [∀ n, ContSet (G n) (Vec ℝ n)] (n : Fin k → ℕ) (m : ℕ) where
+structure ParallelHybridAutomaton.Lifting (S G : ℕ → Type) [∀ n, ContSetLike (S n) (Vec ℝ n)]
+    [∀ n, ContSetLike (G n) (Vec ℝ n)] (n : Fin k → ℕ) (m : ℕ) where
   inv : (∀ i, G (n i)) → G (∑ i, n i)
   guard : ∀ i, G (n i) → G (∑ i, n i)
   input {d q : Fin k → ℕ} : (∀ i, Fin (d i) → ResolveSource k q m) → (∀ i, S (d i)) → S m

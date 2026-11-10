@@ -40,10 +40,10 @@ equation read as a recursive definition rather than as a predicate.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

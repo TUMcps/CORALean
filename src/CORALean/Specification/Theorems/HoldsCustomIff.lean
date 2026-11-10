@@ -10,12 +10,12 @@ public import CORALean.Specification.Operations.Custom
 /-!
 # `Specification.holds_custom_iff`
 
-A custom specification holds on `X` exactly when its predicate does: the predicate is downward
+A custom specification holds on `𝒳` exactly when its predicate does: the predicate is downward
 closed and closed under unions, so the largest set it admits is the union of all of them.
 
 ## Inputs
 * `p` – property of sets
-* `X` – set of points
+* `𝒳` – set of points
 
 ## Hypotheses
 * `mono` – the property is monotone
@@ -35,20 +35,20 @@ closed and closed under unions, so the largest set it admits is the union of all
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {ContSet α : Type} [CORALean.ContSet ContSet α]
+variable {ContSet α : Type} [ContSetLike ContSet α]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Specification.holds_custom_iff (p : Set α → Prop)
-    (mono : ∀ {X O : Set α}, X ⊆ O → p O → p X)
-    (iUnionClosed : ∀ {ι : Type} {X : ι → Set α}, (∀ i, p (X i)) → p (⋃ i, X i))
-    {X : Set α} : (Specification.custom p mono iUnionClosed).Holds X ↔ p X := by
+    (mono : ∀ {𝒳 O : Set α}, 𝒳 ⊆ O → p O → p 𝒳)
+    (iUnionClosed : ∀ {ι : Type} {𝒳 : ι → Set α}, (∀ i, p (𝒳 i)) → p (⋃ i, 𝒳 i))
+    {𝒳 : Set α} : (Specification.custom p mono iUnionClosed).Holds 𝒳 ↔ p 𝒳 := by
   rw [Specification.custom, Specification.holds_safeSet, ContSet.toSet_set]
   refine ⟨fun hsub => mono hsub (iUnionClosed fun h => h.2), fun hpX => ?_⟩
-  exact Set.subset_iUnion (fun h : {S : Set α // p S} => h.1) ⟨X, hpX⟩
+  exact Set.subset_iUnion (fun h : {S : Set α // p S} => h.1) ⟨𝒳, hpX⟩
 
 end CORALean
 

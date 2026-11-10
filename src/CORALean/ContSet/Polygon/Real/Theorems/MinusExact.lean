@@ -27,9 +27,9 @@ namespace CORALean.Real
 
 open Pointwise in
 theorem Polygon.minus_exact (P : Polygon) (p : Vec ℝ 2) : -- --- CONCL ---
-    (fun x => x - p) '' ContSet.toSet P = ContSet.toSet (P.minus p) := by -- --- PROOF ---
+    (fun x => x - p) '' ContSetLike.toSet P = ContSetLike.toSet (P.minus p) := by -- --- PROOF ---
   -- the singleton `{-p}` is what `OfPoint` denotes
-  have hQ : ContSet.toSet (OfPoint.ofPoint (-p) : Polygon) = {-p} := by
+  have hQ : ContSetLike.toSet (OfPoint.ofPoint (-p) : Polygon) = {-p} := by
     ext x
     show x ∈ SetUnion.toSet _ ↔ _
     simp only [SetUnion.toSet, OfPoint.ofPoint, List.mem_singleton, Set.iUnion_iUnion_eq_left]

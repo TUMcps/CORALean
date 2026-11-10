@@ -34,12 +34,12 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.isConvex_iff (P : Polygon) : -- --- CONCL ---
-    Polygon.isConvex P ↔ Convex ℝ (ContSet.toSet P) := by -- --- PROOF ---
+    Polygon.isConvex P ↔ Convex ℝ (ContSetLike.toSet P) := by -- --- PROOF ---
   unfold Polygon.isConvex
   rw [Polygon.convHull_exact]
   constructor
   · intro h
-    have : convexHull ℝ (ContSet.toSet P) = ContSet.toSet P :=
+    have : convexHull ℝ (ContSetLike.toSet P) = ContSetLike.toSet P :=
       Set.Subset.antisymm h (subset_convexHull ℝ _)
     rw [← this]; exact convex_convexHull ℝ _
   · intro h

@@ -11,9 +11,9 @@ public import Mathlib.Data.Real.Basic
 CORA's `emptySet` [1, Sec. 2.2.2.1], a set class of its own rather than a degenerate case of
 another: `Interval` says `∅` with a crossed box and `HPolytope` with an unsatisfiable row, each
 spending data on a fact that carries none. No fields at all. The dimension is the index and not a
-field, as `ContSet (EmptySet n) (Vec ℝ n)` needs it to pin the ambient type, and CORA's `emptySet`
-carries its dimension the same way. Real layer only: the representation holds no scalar to round, so
-a `Float` copy would be the same type twice.
+field, as `ContSetLike (EmptySet n) (Vec ℝ n)` needs it to pin the ambient type, and CORA's
+`emptySet` carries its dimension the same way. Real layer only: the representation holds no scalar
+to round, so a `Float` copy would be the same type twice.
 
 ## References
 

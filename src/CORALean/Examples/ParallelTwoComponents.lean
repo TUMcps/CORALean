@@ -34,7 +34,7 @@ tuple in it; the invariant proof is by hand.
 
 namespace CORALean.Real
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 /-- `x ∈ [lo, hi]` as a slab, in one dimension. -/
 def PTC.range (lo hi : ℝ) : HPolytope (Vec ℝ 1) :=

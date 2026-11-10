@@ -45,7 +45,7 @@ three are `NonlinDASys.linError_outer`, at `CF⁻¹ = 0` for the parts (CORA's t
 
 namespace CORALean
 
-open CORALean.Real Matrix ContSet
+open CORALean.Real Matrix ContSetLike
 
 variable {n p m q : ℕ}
 

@@ -41,8 +41,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.and_outer (P Q : Polygon 𝕋) : -- --- CONCL ---
-    ContSet.toSet P ∩ ContSet.toSet Q ⊆
-      ContSet.toSet (Polygon.and P Q) := by -- --- PROOF ---
+    ContSetLike.toSet P ∩ ContSetLike.toSet Q ⊆
+      ContSetLike.toSet (Polygon.and P Q) := by -- --- PROOF ---
   rintro x ⟨hP, hQ⟩
   -- a piece of each polygon holds the point
   obtain ⟨p, hp, hxp⟩ := SetUnion.mem_toSet.mp hP

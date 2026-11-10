@@ -52,10 +52,10 @@ rest, so no derivative is taken at the steps where the input jumps.
 
 namespace CORALean
 
-open Matrix ContSet Scalar MeasureTheory
+open Matrix ContSetLike Scalar MeasureTheory
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

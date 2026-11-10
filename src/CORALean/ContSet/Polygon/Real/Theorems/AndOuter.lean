@@ -29,8 +29,8 @@ namespace CORALean.Real
 open scoped Classical in
 theorem Polygon.and_outer {q : ℕ} (P Q : Polygon)
     (Aq : Fin q → (Vec ℝ 2 →ₗ[ℝ] ℝ)) : -- --- CONCL ---
-    ContSet.toSet P ∩ ContSet.toSet Q ⊆
-      ContSet.toSet (Polygon.and P Q Aq) := by -- --- PROOF ---
+    ContSetLike.toSet P ∩ ContSetLike.toSet Q ⊆
+      ContSetLike.toSet (Polygon.and P Q Aq) := by -- --- PROOF ---
   rw [Polygon.and_region]
   intro x hx
   simp only [Set.mem_iUnion, exists_prop] at hx

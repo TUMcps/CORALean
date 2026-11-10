@@ -43,10 +43,10 @@ the two inclusions chained. `⊥` is never reached, a point being in some case.
 
 namespace CORALean
 
-open ContSet Float
+open ContSetLike Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {S : ℕ → Type}
-  [∀ n, ContSet (S n) (Vec ℝ n)]
+  [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

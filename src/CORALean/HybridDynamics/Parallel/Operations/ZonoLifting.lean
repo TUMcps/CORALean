@@ -37,7 +37,7 @@ the other blocks, which no Zonotope is.
 
 namespace CORALean
 
-open CORALean.Real ContSet
+open CORALean.Real ContSet ContSetLike
 
 variable {k m : ℕ} {n : Fin k → ℕ}
 

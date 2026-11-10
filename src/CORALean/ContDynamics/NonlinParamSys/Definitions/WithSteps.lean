@@ -27,15 +27,15 @@ with them. The linearizations are of the augmented field; CORA's matrix-set line
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
 
 -- ========================================  MAIN TYPE  ========================================= --
 
 /-- `sys` with its parameter set `P` and the data a `NonlinearSys.WithSteps` run of
 its augmented system `sys.augment` spends, in dimension `n + q`. -/
-structure NonlinParamSys.WithSteps (S Rg : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)]
-    [∀ n, ContSet (Rg n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+structure NonlinParamSys.WithSteps (S Rg : ℕ → Type) [∀ n, ContSetLike (S n) (Vec ℝ n)]
+    [∀ n, ContSetLike (Rg n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
     [Real.OfInterval S] (m q n : ℕ) where
   sys : NonlinParamSys n m q
   P : S q

@@ -32,17 +32,17 @@ Exact for a convex operand, which is every `ConvexSet`.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 variable {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem EmptySet.convHull_exact {S : Type} [ContSet S (Vec ℝ n)] [ConvexSet S (Vec ℝ n)]
+theorem EmptySet.convHull_exact {S : Type} [ContSetLike S (Vec ℝ n)] [ConvexSet S (Vec ℝ n)]
     (E : EmptySet n) (s : S) :
-    convexHull ℝ (E.toSet ∪ ContSet.toSet s) = ContSet.toSet (E.convHull s) := by
-  change convexHull ℝ ((∅ : Set (Vec ℝ n)) ∪ ContSet.toSet s) = ContSet.toSet s
+    convexHull ℝ (E.toSet ∪ ContSetLike.toSet s) = ContSetLike.toSet (E.convHull s) := by
+  change convexHull ℝ ((∅ : Set (Vec ℝ n)) ∪ ContSetLike.toSet s) = ContSetLike.toSet s
   rw [Set.empty_union]
   exact (ConvexSet.convex_toSet s).convexHull_eq
 

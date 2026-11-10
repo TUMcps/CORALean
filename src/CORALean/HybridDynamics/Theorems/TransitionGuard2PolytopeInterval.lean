@@ -34,7 +34,7 @@ A box guard, converted by `Interval.hPolytope`, is the same guard: exact
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 open scoped CORALean.Real
 
 variable {L : Type} {𝕋 : Type} {n : ℕ}

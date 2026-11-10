@@ -54,10 +54,10 @@ not, and the general case is open (see `Prop. 11` on [1]'s page).
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace Pointwise
+open Matrix ContSetLike Scalar NormedSpace Pointwise
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

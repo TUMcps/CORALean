@@ -34,7 +34,7 @@ builders.
 namespace CORALean
 
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : ℕ}
-  [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
+  [∀ k, ContSetLike (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)]
 
 

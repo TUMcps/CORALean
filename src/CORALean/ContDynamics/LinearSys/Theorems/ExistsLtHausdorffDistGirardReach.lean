@@ -44,7 +44,7 @@ the two bounds agree; so `girardExample_spec`, which breaks [1, Lemma 2], breaks
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace
+open Matrix ContSet ContSetLike Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

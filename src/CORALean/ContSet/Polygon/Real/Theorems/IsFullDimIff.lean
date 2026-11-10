@@ -66,7 +66,7 @@ private theorem Polygon.aux_interior_nonempty_iff
 
 /-- A polygon has an interior point iff some piece has affinely spanning vertices. -/
 theorem Polygon.isFullDim_iff (P : Polygon) :
-    (interior (ContSet.toSet P)).Nonempty ↔ Polygon.isFullDim P := by
+    (interior (ContSetLike.toSet P)).Nonempty ↔ Polygon.isFullDim P := by
   change (interior (⋃ s ∈ P.sets, VPolytope.toSet s)).Nonempty ↔ _
   unfold Polygon.isFullDim
   rw [Polygon.aux_interior_nonempty_iff]

@@ -59,10 +59,10 @@ from a check on the computed sets, not by CORA's own, circular check. This is th
 
 namespace CORALean
 
-open Matrix ContSet Scalar Plus Mtimes Real.OfInterval MeasureTheory
+open Matrix ContSet ContSetLike Scalar Plus Mtimes Real.OfInterval MeasureTheory
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 
 

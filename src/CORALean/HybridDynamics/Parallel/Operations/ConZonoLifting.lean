@@ -37,7 +37,7 @@ cylinder, unbounded in the other blocks, which no ConZonotope is.
 
 namespace CORALean
 
-open CORALean.Real ContSet
+open CORALean.Real ContSet ContSetLike
 
 variable {k m : ℕ} {n : Fin k → ℕ}
 

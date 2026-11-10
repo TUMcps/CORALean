@@ -49,10 +49,10 @@ needs, in place of the hypothesis `NonlinearSys.relinReach_outer` takes on `Ud`.
 
 namespace CORALean
 
-open Matrix ContSet Scalar Plus Reduce Mtimes
+open Matrix ContSet ContSetLike Scalar Plus Reduce Mtimes
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable {𝕋 : Type} [CORALean.Float.FloatOps 𝕋] [CORALean.Float.SoundFloatArithmetic 𝕋]
 variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋]

@@ -36,7 +36,7 @@ namespace CORALean.Real
 
 /-- The largest value of `c` over the vertices, seeded with the first one; `0` if there are none. -/
 noncomputable def Polygon.supportBound (P : Polygon) (c : Vec ℝ 2 →ₗ[ℝ] ℝ) :
-    SupportBound (ContSet.toSet P) c where
+    SupportBound (ContSetLike.toSet P) c where
   val := (P.vertices.map c).foldr max ((P.vertices.map c).headD 0)
   le x hx := by
     -- nothing in a list exceeds its fold of `max`

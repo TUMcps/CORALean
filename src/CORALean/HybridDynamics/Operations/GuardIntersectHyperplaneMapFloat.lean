@@ -79,7 +79,7 @@ namespace CORALean
 open CORALean.Float CORALean.Float.FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {G : ℕ → Type}
-  [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
+  [∀ n, ContSetLike (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
 
 
 -- ------------------------------------------  STEPS  ------------------------------------------- --

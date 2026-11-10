@@ -241,7 +241,7 @@ def handleLocationReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   let X0 ← parseZonotopeFixed dops.readExact n (← field req "X0")
   let tFinal ← scalarField req "tFinal"
   let Δt ← dops.readExact "timeStep" (← scalarField req "timeStep")
-  let options : LinearSys.ReachOptions 𝕋 :=
+  let options : LinearSys.ReachFloatOptions 𝕋 :=
     { Δt := Δt, η := ← natField req "taylorTerms", ρ := ← natField req "zonotopeOrder" }
   match ℓ.reachFloat (aux_ratOf tFinal) options X0 with
   | none => throw "reach: no admissible Taylor order was found, or tFinal/timeStep is not a \

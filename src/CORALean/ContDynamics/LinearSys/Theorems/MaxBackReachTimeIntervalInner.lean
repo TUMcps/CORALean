@@ -78,13 +78,13 @@ fails; see the findings on the paper's page.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace MeasureTheory Pointwise
+open Matrix ContSet ContSetLike Scalar NormedSpace MeasureTheory Pointwise
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable {ρ : ∀ (P : HPolytope (Vec ℝ n)) (_ : Bornology.IsBounded P.toSet)
   (c : Vec ℝ n →ₗ[ℝ] ℝ), SupportBound P.toSet c}
 variable {P₁ P₂ : HPolytope (Vec ℝ n)} {hP₁ : Bornology.IsBounded P₁.dropEqs.toSet}

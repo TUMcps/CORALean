@@ -67,7 +67,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- `(R(τ_k), R(t_{k+1}))` from `R = R(t_k)` under inputs in `U`, abstracting by `alg`,
 or `none` if the region check, the order search or the linear step fails. -/
 def NonlinearSys.FloatHessModel.linReachFloat (fm : NonlinearSys.FloatHessModel 𝕋 n m)
-    (alg : NonlinearSys.LinReachAlg) (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachOptions 𝕋)
+    (alg : NonlinearSys.LinReachAlg) (U : Zonotope (Vec 𝕋 m))
+    (options : LinearSys.ReachFloatOptions 𝕋)
     (R : Zonotope (Vec 𝕋 n)) : Option (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) := do
   let Δt := options.Δt                                        -- the paper's symbols
   let Ub := U.interval                                              -- U's box
@@ -82,7 +83,7 @@ def NonlinearSys.FloatHessModel.linReachFloat (fm : NonlinearSys.FloatHessModel 
   let B := (fm.linearizeFloat xs us).2                              -- 3. B
   let f₀ := fm.f (Interval.point xs) (Interval.point us)            -- [f(x✱, u✱)]
   let V := fun (L : Zonotope (Vec 𝕋 n)) =>                                -- f(z✱) ⊕ B(U - u✱) ⊕ L
-    (f₀.zonotope ⊞ Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
+    (f₀.zonotope ⊞ Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B
       (Recenter.recenter U)) ⊞ L
   let Vlin := V (fm.hessRemainder A B xs us X U').zonotope          -- priv_abstrerr_lin
   match alg with

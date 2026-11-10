@@ -284,7 +284,7 @@ with `<kind>` one of `generators` (the generator block), `data` (data of one con
 
 ### The ambient type
 
-`ContSet` is indexed by the ambient type, so a representation is written once and
+`ContSetLike` is indexed by the ambient type, so a representation is written once and
 instantiated wherever it makes sense: `Zonotope (Mat ℝ n m)` is CORA's
 `matZonotope` and `Interval (Mat ℝ m n)` its `intervalMatrix`, neither needing a
 development or a name of its own. Not indexed by a `Tensor` shape — `Mat` is
@@ -1007,15 +1007,15 @@ closes the namespace after the last of them.
 namespace CORALean
 
 section
-open ContSet
-variable {S α : Type} [ContSet S α] [Isequal S]
+open ContSetLike
+variable {S α : Type} [ContSetLike S α] [Isequal S]
 
 -- … the sections that use these `variable`s …
 
 end
 
 section
-open ContSet Scalar
+open ContSetLike Scalar
 variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type}
 
 -- … the sections that use those …
@@ -1362,7 +1362,7 @@ other way, which is `Source.contains_target`, or both hold and it is
 `HPolytope.contains_of_pinned`.
 
 Not a relation of its own: the statement stays `X.toSet ⊆ Y.toSet`. A
-`contains` over `ContSet` would need both instances, and `Instances.lean`
+`contains` over `ContSetLike` would need both instances, and `Instances.lean`
 imports the operations, some of which are implemented by conversion —
 `VPolytope.intersectionH` is — so a conversion file cannot import it without a
 cycle. The one word used everywhere is what fixes the direction; there is
@@ -1461,7 +1461,7 @@ bare form is rejected by `scripts/conventions/check-float-wrappers.py`, and so i
 to the arguments read as reals — `Real.HPolytope.rowLin (toRealMat M) i` — which is no more than the
 conversion under a name. The one bare wrapper that stays is recognized by its form: `X.toSet`
 in the float main file `ContSet/X/Float/X.lean` of a set with no error box (`Interval.toSet`),
-which the `ContSet` instance and every `I.toSet` in a statement resolve through by dot
+which the `ContSetLike` instance and every `I.toSet` in a statement resolve through by dot
 notation; there is no list. A name for the conversion (`rowLin` was one) is not kept: its uses spell it out.
 
 **The float layer is part of the work, not a follow-up.** New work carries both
@@ -1979,7 +1979,7 @@ header lines and refuses any other file that is not a module.
 
 A handful of files are imported by most of the tree: `Global/Tensor` by about nine
 thousand files, the entrywise and scalar layers, `Float/FloatOps`, the abstract
-`ContSet` class and `Interval/Real/Interval` by thousands each. An import added to
+`ContSetLike` class and `Interval/Real/Interval` by thousands each. An import added to
 one of them is added to all of them, so a heavy theory (measure theory, probability,
 determinants and spectra, the analytic special functions, calculus, inner-product
 geometry) that reaches such a file's closure rebuilds the whole tree on every change

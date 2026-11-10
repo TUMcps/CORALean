@@ -34,11 +34,11 @@ the result. Outer only.
 
 namespace CORALean
 
-open ContSet Float FloatOps SoundFloatArithmetic Pointwise
+open ContSet ContSetLike Float FloatOps SoundFloatArithmetic Pointwise
 open scoped CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes ℐ[𝕋] S]
 variable [OfInterval S 𝕋]
 

@@ -40,9 +40,9 @@ catches up, and then it is checked by the same theorem everything else is.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

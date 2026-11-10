@@ -70,10 +70,10 @@ the float run's own outputs. `hp` is stated at the real number `p_(j)` denotes, 
 namespace CORALean
 
 open CORALean.Float SoundFloatArithmetic
-open Matrix ContSet MeasureTheory
+open Matrix ContSet ContSetLike MeasureTheory
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n q : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

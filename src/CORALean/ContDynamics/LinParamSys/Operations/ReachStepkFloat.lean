@@ -52,7 +52,7 @@ def LinParamSys.reachStepkFloat (sys : LinParamSys ℐ[𝕋] n)
   let sk ← sys.squaringsFloat Δt tk.inf tk.sup η                        -- t_k / 2^s within Δt
   let eAtk := sys.expSquaringFloat tk.inf tk.sup η sk                   -- [e^{[A] t_k}], squared
   pure (Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- H^R(τ_k)
-    (S := 𝒵[𝕋]) eAtk Rτ₀)
+    (ContSet := 𝒵[𝕋]) eAtk Rτ₀)
 
 end CORALean
 

@@ -54,7 +54,7 @@ def NonlinearSys.FloatModel.linInputFloat (fm : NonlinearSys.FloatModel 𝕋 n m
   let us := U.c                                                     -- u✱
   let f₀ := fm.f (Interval.point xs) (Interval.point us)            -- [f(x✱, u✱)]
   let L := fm.slopeRemainder A B xs us X U'                         -- L, the abstraction error
-  (f₀.zonotope ⊞ Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
+  (f₀.zonotope ⊞ Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B
     (Recenter.recenter U)) ⊞ L.zonotope
 
 end CORALean

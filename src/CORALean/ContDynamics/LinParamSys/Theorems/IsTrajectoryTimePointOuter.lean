@@ -53,13 +53,13 @@ of `priv_mappingMatrix` applied to the initial set; the same set
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [Mtimes ℐ S]
 
 

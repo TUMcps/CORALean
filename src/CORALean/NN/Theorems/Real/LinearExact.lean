@@ -52,7 +52,7 @@ set *is* the image, so it lies inside every inflation of it and no level is spen
 
 namespace CORALean.Real
 
-open Matrix Pointwise ContSet Plus Mtimes OfInterval
+open Matrix Pointwise ContSet ContSetLike Plus Mtimes OfInterval
 
 variable {n m : ℕ}
 

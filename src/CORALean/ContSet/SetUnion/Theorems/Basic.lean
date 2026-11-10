@@ -26,8 +26,8 @@ variable {S α : Type}
 -- Reviewed:      ---
 
 /-- Unfolds membership to a witnessing branch, for every proof below. -/
-theorem SetUnion.mem_toSet [ContSet S α] {u : SetUnion S} {x : α} :
-    x ∈ ContSet.toSet u ↔ ∃ s ∈ u.sets, x ∈ ContSet.toSet s := by
+theorem SetUnion.mem_toSet [ContSetLike S α] {u : SetUnion S} {x : α} :
+    x ∈ ContSetLike.toSet u ↔ ∃ s ∈ u.sets, x ∈ ContSetLike.toSet s := by
   show x ∈ SetUnion.toSet u ↔ _
   simp [SetUnion.toSet]
 
@@ -39,9 +39,9 @@ theorem SetUnion.mem_toSet [ContSet S α] {u : SetUnion S} {x : α} :
 -- Reviewed:      ---
 
 /-- A point of step `k < K` lies in the union over the steps, as a run enters a `reach` result. -/
-theorem SetUnion.mem_toSet_range [ContSet S α] {f : ℕ → S} {K k : ℕ} (hk : k < K) {x : α}
-    (hx : x ∈ ContSet.toSet (f k)) :
-    x ∈ ContSet.toSet (⟨(List.range K).map f⟩ : SetUnion S) :=
+theorem SetUnion.mem_toSet_range [ContSetLike S α] {f : ℕ → S} {K k : ℕ} (hk : k < K) {x : α}
+    (hx : x ∈ ContSetLike.toSet (f k)) :
+    x ∈ ContSetLike.toSet (⟨(List.range K).map f⟩ : SetUnion S) :=
   SetUnion.mem_toSet.mpr ⟨f k, List.mem_map_of_mem (List.mem_range.mpr hk), hx⟩
 
 end CORALean

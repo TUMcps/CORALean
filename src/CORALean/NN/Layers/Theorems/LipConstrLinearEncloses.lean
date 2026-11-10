@@ -35,9 +35,9 @@ is `Layer.lipConstrScale_rowSum_le`.
 
 namespace CORALean
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [Float.OfInterval S ℝ] {n m : ℕ}
 
 

@@ -192,7 +192,7 @@ def handleLinearSysReachOp (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   let tFinal := aux_ratOf (← scalarField req "tFinal")
   let Δt ← aux_timeStep dops req
   let _ ← aux_steps tStart tFinal (aux_ratOf (← scalarField req "timeStep"))
-  let options : LinearSys.ReachOptions 𝕋 :=
+  let options : LinearSys.ReachFloatOptions 𝕋 :=
     { Δt := Δt, η := ← natField req "taylorTerms", ρ := ← natField req "zonotopeOrder" }
   -- an input set, or a nonzero offset `c`, is the input variant
   let hasInput := (fieldOpt req "U").isSome || (← aux_nonzero req "c")

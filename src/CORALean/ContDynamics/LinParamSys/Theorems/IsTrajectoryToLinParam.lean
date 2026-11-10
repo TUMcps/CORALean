@@ -39,12 +39,12 @@ in the set, never that the set is only the point. Not stated.
 
 namespace CORALean
 
-open Matrix ContSet Scalar
+open Matrix ContSetLike Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)]
+variable {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSetLike (𝕄 m n) (Mat ℝ m n)]
 variable [∀ m n, OfPoint (𝕄 m n) (Mat ℝ m n)]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

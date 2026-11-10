@@ -63,7 +63,7 @@ the stored values.
 
 namespace CORALean
 
-open Matrix ContSet Scalar CORALean.Float
+open Matrix ContSet ContSetLike Scalar CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m p : ℕ}
 

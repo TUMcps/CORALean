@@ -36,9 +36,9 @@ end
 
 
 section
-open ContSet ContDynamics
+open ContSetLike ContDynamics
 variable {n : ℕ} {P : Type} [ContDynamics P n]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =================================  `NeurNetContrSys.ofFull`  ================================= --

@@ -9,11 +9,11 @@ public import CORALean.ContSet.SetUnion.Theorems.ReduceOuter
 /-!
 # What `SetUnion` instantiates
 
-`ContSet` is already at `SetUnion.lean`. `Mtimes`, `Plus` and `Reduce` follow whenever the member
-type `S` has them, each the branch-wise operation from `Operations/` with the guarantee `Theorems/`
-proves. `OfPoint` is a one-member union. `Contains`/`IsDisjoint` lift both ways. As the *computed*
-set, `S := SetUnion S'`: exact, checking every member. As the *container*, `T := SetUnion T'`:
-`contains` by any member (conservative), `isDisjoint` by every member (exact). Both instantiate
+`ContSetLike` is already at `SetUnion.lean`. `Mtimes`, `Plus` and `Reduce` follow whenever the
+member type `S` has them, each the branch-wise operation from `Operations/` with the guarantee
+`Theorems/` proves. `OfPoint` is a one-member union. `Contains`/`IsDisjoint` lift both ways. As the
+*computed* set, `S := SetUnion S'`: exact, checking every member. As the *container*, `T := SetUnion
+T'`: `contains` by any member (conservative), `isDisjoint` by every member (exact). Both instantiate
 `Contains (SetUnion T') (SetUnion S')` at once, so the container pair carries `(priority := low)`,
 the rule `SetIntersection` uses. Computable throughout: a float member type makes every instance
 compute in turn, with nothing rounded and no error box to carry.
@@ -35,12 +35,12 @@ open Matrix
 -- ========================================  INSTANCES  ========================================= --
 
 instance {𝕄 : ℕ → ℕ → Type} {S : ℕ → Type}
-    [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes 𝕄 S] :
+    [∀ m n, ContSetLike (𝕄 m n) (Mat ℝ m n)] [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes 𝕄 S] :
     Mtimes 𝕄 (fun n => SetUnion (S n)) where
   mtimes := SetUnion.mtimes
   mtimes_outer := SetUnion.mtimes_outer
 
-variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α]
+variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSetLike S α]
 
 instance [Plus S α] : Plus (SetUnion S) α where
   plus := SetUnion.plus
@@ -55,7 +55,7 @@ instance [OfPoint S α] : OfPoint (SetUnion S) α where
   ofPoint v := ⟨[OfPoint.ofPoint v]⟩
   mem_ofPoint v := SetUnion.mem_toSet.mpr ⟨_, List.mem_singleton_self _, OfPoint.mem_ofPoint v⟩
 
-variable {T α : Type} [ContSet T α] [ContSet S α]
+variable {T α : Type} [ContSetLike T α] [ContSetLike S α]
 
 /-- Exact as a computed set: `t` contains the union iff it contains every
 member. Default priority: tried before the container reading below. -/

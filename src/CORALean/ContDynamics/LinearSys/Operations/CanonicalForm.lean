@@ -40,10 +40,10 @@ times only repeats the formula with `uVec = 0`.
 
 namespace CORALean
 
-open Matrix ContSet Scalar Plus Mtimes
+open Matrix ContSetLike Scalar Plus Mtimes
 
 variable {n : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 variable [∀ n, Recenter (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 

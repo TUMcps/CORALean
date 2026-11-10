@@ -116,7 +116,7 @@ end CORALean
 
 namespace CORALean
 
-open CORALean.Real Matrix ContSet
+open CORALean.Real Matrix ContSet ContSetLike
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

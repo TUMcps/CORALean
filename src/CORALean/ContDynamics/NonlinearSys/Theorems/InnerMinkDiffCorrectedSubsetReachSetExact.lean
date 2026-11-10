@@ -54,7 +54,7 @@ are inner approximations by the same theorem at `k ≤ ω`.
 
 namespace CORALean
 
-open ContSet Set
+open ContSetLike Set
 
 variable {n m : ℕ} {𝓛 : Type}
 

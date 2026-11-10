@@ -50,7 +50,7 @@ def LinearSys.timePointStepInputFloat (sys : LinearSys 𝕋 n) (r : 𝕋) (η : 
   let eAr := sys.expIntervalFloat r r η                                     -- [e^{Ar}]
   let P := sys.inputSolutionFloat r η U                                     -- P(r), in floats
   Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{Ar}] X ⊞ P
-    (S := 𝒵[𝕋]) eAr X ⊞ P
+    (ContSet := 𝒵[𝕋]) eAr X ⊞ P
 
 end CORALean
 

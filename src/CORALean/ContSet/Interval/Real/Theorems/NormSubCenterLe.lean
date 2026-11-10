@@ -33,7 +33,7 @@ In `‖·‖₂`: coordinatewise a member's distance to the center is at most th
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 variable {n : ℕ}
 

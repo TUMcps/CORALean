@@ -57,13 +57,13 @@ of `x t` is one of the laws of `𝒵`, and `ProbZonotope.zonotope_prob` bounds e
 
 namespace CORALean
 
-open Matrix ContSet MeasureTheory ProbabilityTheory WithLp NormedSpace CORALean.Real
+open Matrix ContSet ContSetLike MeasureTheory ProbabilityTheory WithLp NormedSpace CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

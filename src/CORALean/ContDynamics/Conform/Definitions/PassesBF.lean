@@ -38,9 +38,9 @@ CORA return `false` at once.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {n p q : ℕ} {M S : Type} [ContSet S (Vec ℝ q)]
+variable {n p q : ℕ} {M S : Type} [ContSetLike S (Vec ℝ q)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

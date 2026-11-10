@@ -16,8 +16,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.InputRemainderS
 from a hypothesis into a theorem. Every step has the same length, so the enclosing set does not
 depend on `k`: shifting `u` by `kΔt` leaves an integral over `[0, Δt]` of the same shape, and
 `inputSolution Δt η U` covers every step at once. The cost is convexity and closedness of `U`, which
-`ContSet` does not offer; a representation that cannot supply them keeps the general form, where the
-enclosure stays a hypothesis.
+`ContSetLike` does not offer; a representation that cannot supply them keeps the general form, where
+the enclosure stays a hypothesis.
 
 ## References
 
@@ -38,13 +38,13 @@ enclosure stays a hypothesis.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace MeasureTheory
+open Matrix ContSet ContSetLike Scalar NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 

@@ -46,15 +46,15 @@ output is that output, computed with the feeding component's output-bound inputs
 
 namespace CORALean
 
-open Matrix ContSet Scalar
+open Matrix ContSet ContSetLike Scalar
 
-variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (G n) (Vec ℝ n)]
 variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-omit [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)] in
+omit [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (G n) (Vec ℝ n)] in
 /-- `bindsAt` binds to a global input exactly where `binds` does. -/
 private theorem aux_bindsAt_global {𝕋 : Type} {P : ParallelHybridAutomaton S G k L 𝕋 n m}
     {ℓ : ∀ i, L i} {i : Fin k} {j : Fin (P.sys ℓ i).m} {a : Fin m}
@@ -67,7 +67,7 @@ private theorem aux_bindsAt_global {𝕋 : Type} {P : ParallelHybridAutomaton S 
     exact h'
   · cases h
 
-omit [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)] in
+omit [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (G n) (Vec ℝ n)] in
 /-- `GlobalsDistinct` at the dimensions of the locations `ℓ`. -/
 private theorem aux_bindsAt_distinct {𝕋 : Type} {P : ParallelHybridAutomaton S G k L 𝕋 n m}
     (hdist : P.GlobalsDistinct) (ℓ : ∀ i, L i) : -- --- CONCL ---

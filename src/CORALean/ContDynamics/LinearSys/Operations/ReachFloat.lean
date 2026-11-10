@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachFloatOptions
 public import CORALean.ContDynamics.LinearSys.Operations.ReachOrderFloat
 public import CORALean.ContDynamics.LinearSys.Operations.TimeIntervalFloat
 public import CORALean.ContDynamics.Reach.Definitions.Params
@@ -57,7 +57,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- The windows `R(τ_0), …, R(τ_{N-1})` and the time-point sets `R_0, …, R_N`
 from `X₀`, reducing to order `ρ` after every step. -/
 def LinearSys.reachFloat (sys : LinearSys 𝕋 n) (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) :
+    (options : LinearSys.ReachFloatOptions 𝕋) :
     Option (List (Zonotope (Vec 𝕋 n)) × List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.X₀                                               -- the paper's symbols
   let Δt := options.Δt
@@ -69,12 +69,12 @@ def LinearSys.reachFloat (sys : LinearSys 𝕋 n) (params : Reach.Params (Zonoto
   let F := MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt η'   -- [F], once
   let next := fun R =>                                              -- reduce([e^{AΔt}] R_k, ρ)
     Reduce.reduce (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋]) eAΔt R) ρ
+    (ContSet := 𝒵[𝕋]) eAΔt R) ρ
   let Rtp := List.iterate next X₀ (N + 1)                           -- R_0, …, R_N
   let Rti := (Rtp.take N).map fun R =>                              -- R(τ_k) from R_k
     LinComb.linComb R (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋]) eAΔt R) ⊞
-      Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) F R
+    (ContSet := 𝒵[𝕋]) eAΔt R) ⊞
+      Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) F R
   pure (Rti, Rtp)
 
 end CORALean

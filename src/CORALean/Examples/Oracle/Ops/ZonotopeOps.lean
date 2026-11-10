@@ -45,7 +45,7 @@ def handleMtimes (dops : DtypeOps 𝕋) (req : Json) : Except String (List (Stri
   let dz ← parseZonotope dops.readExact (← field req "Z")
   let ⟨_, M⟩ ← parseMatColsFixed dops.readExact dz.n (← field req "M")
   pure [("Z", printZonotope dops.showExact
-    (Mtimes.mtimes (S := 𝒵[𝕋]) M dz.Z))]
+    (Mtimes.mtimes (ContSet := 𝒵[𝕋]) M dz.Z))]
 
 /-- Handles `mtimesInterval`: the zonotope `Z` multiplied by an interval matrix. -/
 def handleMtimesInterval (dops : DtypeOps 𝕋) (req : Json) :
@@ -53,7 +53,7 @@ def handleMtimesInterval (dops : DtypeOps 𝕋) (req : Json) :
   let dz ← parseZonotope dops.readExact (← field req "Z")
   let ⟨_, IM⟩ ← parseIntervalMatColsFixed dops.readExact dz.n (← field req "M")
   pure [("Z", printZonotope dops.showExact
-    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
       IM dz.Z))]
 
 /-- Handles `plus`: the Minkowski sum of `Z` and `Z2`. -/

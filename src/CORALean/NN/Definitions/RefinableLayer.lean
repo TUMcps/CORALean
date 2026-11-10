@@ -33,9 +33,9 @@ order with a range, `Layer.refinable` reads nothing.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
 
 /-- The order pattern of one layer [1, Eq. 23]: the level each of its `n` input
 neurons is abstracted at. A uniform level is `Function.const _ o`. -/
@@ -46,7 +46,7 @@ abbrev OrderPattern (n : ℕ) := Fin n → ℕ
 
 /-- A layer with its exact function and, for every order pattern, an enclosure of its image of a
 set. -/
-structure RefinableLayer (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] (n m : ℕ) where
+structure RefinableLayer (S : ℕ → Type) [∀ n, ContSetLike (S n) (Vec ℝ n)] (n m : ℕ) where
   eval : Vec ℝ n → Vec ℝ m
   enclose : OrderPattern n → S n → S m
   enclose_outer (t : OrderPattern n) (s : S n) (x : Vec ℝ n) (hx : x ∈ toSet s) :

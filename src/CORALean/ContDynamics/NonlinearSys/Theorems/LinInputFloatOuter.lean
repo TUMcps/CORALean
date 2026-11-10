@@ -51,7 +51,7 @@ its own summand.
 
 namespace CORALean
 
-open CORALean.Float FloatOps SoundFloatArithmetic Matrix ContSet
+open CORALean.Float FloatOps SoundFloatArithmetic Matrix ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 
@@ -75,9 +75,9 @@ theorem NonlinearSys.FloatModel.Encloses.linInputFloat_outer
     h.f_mem _ _ _ (Interval.mem_point (α := Vec 𝕋 n) xs) _ (Interval.mem_point (α := Vec 𝕋 m) U.c)
   -- `B(u - u✱)`, `u - u✱` being in `U`'s recentered set
   have hBu : Scalar.toRealMat B *ᵥ (u - us) ∈ toSet
-    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B
+    (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B
       (Recenter.recenter U)) :=
-    Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) B _
+    Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B _
       (Set.mem_biUnion (Set.mem_singleton _)
       (Set.mem_image_of_mem _ (Zonotope.sub_center_mem_recenter hu)))
   have hsplit : sys.f x u - Scalar.toRealMat A *ᵥ (x - toRealVec xs)

@@ -27,10 +27,10 @@ the controller; and no disturbance, as CORA's loop at a linear plant drops `E`.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
 variable {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 variable [OfScalarPoint 𝕋 S]
 

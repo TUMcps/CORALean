@@ -32,17 +32,17 @@ stay. `HybridAutomaton.reachSetExact` reads the same runs at every time at once;
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSetLike Scalar
 
-variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (G n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 
 -- ========================================  MAIN TYPE  ========================================= --
 
 /-- An urgent run from `x` at `ℓ` to `y` at `ℓ'` lasting `r` in all. -/
-inductive HybridAutomaton.IsUrgentRunAt {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-    [∀ n, ContSet (G n) (Vec ℝ n)] {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
+inductive HybridAutomaton.IsUrgentRunAt {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
+    [∀ n, ContSetLike (G n) (Vec ℝ n)] {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
     (HA : HybridAutomaton S G L 𝕋 n) :
     ℝ → L → Vec ℝ n → L → Vec ℝ n → Prop where
   | flow {ℓ : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (h : (HA.loc ℓ).IsTrajectory τ x u w)

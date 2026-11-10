@@ -82,15 +82,15 @@ theorem LinearSys.timePointStepInputFloat_subset_add_innerErrorFloat (sys : Line
   -- `X₀`'s point splits into its nominal part and its error box, which `[e^{Ar}]` carries
   obtain ⟨a, ha, e₀, he₀, rfl⟩ := hy
   have he₀' : exp (toReal r • Scalar.toRealMat sys.A) *ᵥ e₀ ∈
-    (Mtimes.mtimes (S := 𝒵[𝕋])
+    (Mtimes.mtimes (ContSet := 𝒵[𝕋])
       (𝕄 := ℐ[𝕋]) eA X₀.I_error.zonotope).toSet :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) eA _
+      (ContSet := 𝒵[𝕋]) eA _
       (Set.mem_biUnion he ⟨e₀, Interval.zonotope_contains _ he₀, rfl⟩)
   have hB : exp (toReal r • Scalar.toRealMat sys.A) *ᵥ e₀ + b + t
       ∈ (sys.timePointStepInnerErrorFloat r η X₀ U).toSet := by
-    show _ ∈ ContSet.toSet
-      ((Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eA
+    show _ ∈ ContSetLike.toSet
+      ((Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) eA
       X₀.I_error.zonotope ⊞ sys.timePointStepExcessFloat r η X₀ U) ⊞ sys.timePointStepErrorBoxFloat
           r η U)
     exact Plus.plus_outer _ _ (Set.add_mem_add (Plus.plus_outer _ _ (Set.add_mem_add he₀' hb)) ht)

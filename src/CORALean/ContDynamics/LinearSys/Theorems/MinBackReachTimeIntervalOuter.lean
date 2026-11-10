@@ -70,10 +70,10 @@ none, the left-hand side would be empty whenever `U` holds two points.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar MeasureTheory
+open Matrix ContSet ContSetLike Scalar MeasureTheory
 
 variable {n q : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -32,7 +32,7 @@ CORA's `supportFunc_(O,dir,'lower')` is `Inf`: the infimum of `c` over no point 
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 variable {n m : ℕ}
 

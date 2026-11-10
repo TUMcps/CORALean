@@ -32,7 +32,7 @@ jumped set.
 
 namespace CORALean.Real
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

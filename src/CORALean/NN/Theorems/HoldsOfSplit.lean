@@ -44,10 +44,10 @@ Bool` and `parts := fun b => if b then (I.splitAt j).1 else (I.splitAt j).2` wit
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
-variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
+variable {ContSet : Type} [ContSetLike ContSet (Vec ℝ m)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

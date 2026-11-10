@@ -51,7 +51,7 @@ each coordinate moves at a rate in `[F_i⁻, F_i⁺]`; the integral of that rate
 
 namespace CORALean
 
-open CORALean.Float FloatOps SoundFloatArithmetic ContSet
+open CORALean.Float FloatOps SoundFloatArithmetic ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
 

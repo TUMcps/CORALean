@@ -46,7 +46,7 @@ the bounds straddle `0`.
 
 namespace CORALean.Float
 
-open ContSet Float.FloatOps Float.SoundFloatArithmetic InflatedContSet
+open ContSet ContSetLike Float.FloatOps Float.SoundFloatArithmetic InflatedContSet
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {n : ℕ}
 

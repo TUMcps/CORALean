@@ -52,7 +52,7 @@ the set `Rᵈ(t_k)` is the new initial set, and the step's soundness is about th
 
 namespace CORALean
 
-open CORALean.Real ContSet MeasureTheory
+open CORALean.Real ContSet ContSetLike MeasureTheory
 
 variable {n p m : ℕ}
 

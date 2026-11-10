@@ -38,10 +38,10 @@ C.2.1), as piecewise-continuous inputs jump; `meas` and `cont` are the regularit
 
 namespace CORALean
 
-open Matrix ContSet Scalar MeasureTheory
+open Matrix ContSetLike Scalar MeasureTheory
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ========================================  MAIN TYPE  ========================================= --

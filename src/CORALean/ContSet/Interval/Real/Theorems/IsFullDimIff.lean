@@ -32,7 +32,7 @@ coordinate fails the right-hand side too.
 
 namespace CORALean.Real
 
-open ContSet Set
+open ContSet ContSetLike Set
 
 variable {n : ℕ}
 

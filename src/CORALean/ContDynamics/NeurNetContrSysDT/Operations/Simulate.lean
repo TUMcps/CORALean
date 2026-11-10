@@ -22,17 +22,17 @@ part of the input, so a run is determined by its initial state and its external 
 
 namespace CORALean
 
-open Matrix ContSet Scalar Plus Reduce Mtimes
+open Matrix ContSetLike Scalar Plus Reduce Mtimes
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 variable [OfScalarPoint 𝕋 S]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-omit [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
+omit [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
     [Mtimes (Mat 𝕋) S] in
 /-- One sampled run of the closed loop from `x₀` under the external input signal `v`: the
 controller supplies the rest, so a run is determined by its initial state and `v`. -/

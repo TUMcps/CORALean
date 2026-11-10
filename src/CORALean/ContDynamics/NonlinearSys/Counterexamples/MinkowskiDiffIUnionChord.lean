@@ -45,7 +45,7 @@ chords for a field that is `(1/2, 0)` on the runs and `(1, 0)`, with zero Jacobi
 
 namespace CORALean
 
-open ContSet Matrix Pointwise Set
+open ContSetLike Matrix Pointwise Set
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

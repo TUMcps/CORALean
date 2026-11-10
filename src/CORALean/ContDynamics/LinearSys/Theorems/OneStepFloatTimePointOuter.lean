@@ -59,7 +59,8 @@ zonotopes have all three, and the float input solution's soundness asks only an 
 
 namespace CORALean
 
-open CORALean.Float SoundFloatArithmetic Matrix Pointwise ContSet NormedSpace MeasureTheory
+open CORALean.Float SoundFloatArithmetic Matrix Pointwise ContSet ContSetLike NormedSpace
+open MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -91,10 +92,10 @@ theorem LinearSys.IsCanonicalTrajectory.oneStepFloat_timePoint_outer {sys : Line
     ⟨fun _ => toRealVec u, fun _ _ => hpt, aestronglyMeasurable_const,
       (Real.MatExp.expIntegral_constInput A (toRealVec u) hΔt.le).symm⟩
   -- the free motion, in `[e^{AΔt}] X`
-  have hex : exp (r • A) *ᵥ x 0 ∈ toSet (Mtimes.mtimes (S := 𝒵[𝕋])
+  have hex : exp (r • A) *ᵥ x 0 ∈ toSet (Mtimes.mtimes (ContSet := 𝒵[𝕋])
       (𝕄 := ℐ[𝕋]) (sys.expIntervalFloat Δt Δt η) X) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) _ X
+      (ContSet := 𝒵[𝕋]) _ X
       (Set.mem_biUnion (sys.exp_mem_expIntervalFloat hη le_rfl le_rfl)
         (Set.mem_image_of_mem _ traj.init))
   have hx : x r = (exp (r • A) *ᵥ x 0 + Real.MatExp.expIntegral A r *ᵥ toRealVec u)

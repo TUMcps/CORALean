@@ -67,10 +67,10 @@ every solution stays within `E` of its chord is a hypothesis, as in
 
 namespace CORALean
 
-open ContSet Matrix
+open ContSetLike Matrix
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

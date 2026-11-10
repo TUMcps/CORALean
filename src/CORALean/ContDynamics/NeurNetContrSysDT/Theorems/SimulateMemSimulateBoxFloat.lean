@@ -43,7 +43,7 @@ enclosure, so the box is outer.
 
 namespace CORALean
 
-open Matrix Scalar Plus Mtimes ContSet CORALean.Float
+open Matrix Scalar Plus Mtimes ContSet ContSetLike CORALean.Float
 
 variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
@@ -70,13 +70,13 @@ theorem NeurNetContrSysDT.simulate_mem_simulateBox
       rw [mulVec_joinInput, ← toRealMat_leftCols, ← toRealMat_rightCols, add_assoc]]
     -- `A x`, `B_nn π(x)`, `B_ext v` and `c` each in the box of its own term
     exact plus_outer (S := Interval (Vec 𝕋 n)) _ _
-      (Set.add_mem_add (mtimes_outer (S := ℐ𝒱[𝕋]) sys.plant.A _
+      (Set.add_mem_add (mtimes_outer (ContSet := ℐ𝒱[𝕋]) sys.plant.A _
         (Set.mem_biUnion rfl (Set.mem_image_of_mem _ ih)))
         (plus_outer (S := Interval (Vec 𝕋 n)) _ _ (Set.add_mem_add
           (plus_outer (S := Interval (Vec 𝕋 n)) _ _ (Set.add_mem_add
-            (mtimes_outer (S := ℐ𝒱[𝕋]) (leftCols sys.hm sys.plant.B) _
+            (mtimes_outer (ContSet := ℐ𝒱[𝕋]) (leftCols sys.hm sys.plant.B) _
               (Set.mem_biUnion rfl (Set.mem_image_of_mem _ (hπ.enclose_outer _ _ ih))))
-            (mtimes_outer (S := ℐ𝒱[𝕋]) (rightCols sys.hm sys.plant.B) _
+            (mtimes_outer (ContSet := ℐ𝒱[𝕋]) (rightCols sys.hm sys.plant.B) _
               (Set.mem_biUnion rfl (Set.mem_image_of_mem _ (hv k))))))
           (OfScalarPoint.mem_ofVec (S := ℐ𝒱[𝕋]) sys.plant.c))))
 

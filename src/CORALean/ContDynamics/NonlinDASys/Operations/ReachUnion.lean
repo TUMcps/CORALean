@@ -32,9 +32,9 @@ the union encloses the states, and the algebraic variables are `h` of them,
 namespace CORALean
 
 open CORALean.Real
-open ContSet
+open ContSet ContSetLike
 
-variable {S Rg : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (Rg n) (Vec ℝ n)]
+variable {S Rg : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (Rg n) (Vec ℝ n)]
 variable {m p n : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S] [∀ n, Contains (Rg n) (S n)]
@@ -44,7 +44,7 @@ variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S] [∀ n, Contains (Rg
 
 /-- `ode.reachUnion`, or `none` where the run-time tests of the reduced run fail. -/
 noncomputable def NonlinDASys.WithSteps.reachUnion (sys : NonlinDASys.WithSteps S Rg m p n)
-    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) :
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachFloatOptions ℝ) :
     Option (SetUnion (S n)) :=
   sys.ode.reachUnion params options
 

@@ -62,7 +62,7 @@ scoped notation "𝒵" => fun n => Zonotope (Vec ℝ n)
 /-- At every ambient type, not only `Vec`: what a zonotope denotes needs no
 coordinates. The operation instances below stay at `Vec`, because `reduce`
 does. -/
-instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSet (Zonotope α) α :=
+instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSetLike (Zonotope α) α :=
   ⟨Zonotope.toSet⟩
 
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : ConvexSet (Zonotope α) α :=
@@ -171,7 +171,7 @@ noncomputable instance {α : Type} [AddCommGroup α] [Module ℝ α] :
     cases s <;> cases t
     -- only the pair of zonotopes has anything to prove; `∅` discharges the rest
     case of.of Z₁ Z₂ =>
-      show ContSet.toSet (Z₁.minkDiffOrEmpty Z₂) ⊆ _
+      show ContSetLike.toSet (Z₁.minkDiffOrEmpty Z₂) ⊆ _
       cases hE : Z₁.minkDiffOrEmpty Z₂ with
       | empty => exact Set.empty_subset _
       | of D => exact Zonotope.minkDiffOrEmpty_inner Z₁ Z₂ hE

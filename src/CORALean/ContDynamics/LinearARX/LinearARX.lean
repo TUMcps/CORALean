@@ -32,10 +32,10 @@ first window in `Y₀`, as CORA's `y0`, every input in `U`.
 
 namespace CORALean
 
-open Matrix ContSet Scalar
+open Matrix ContSetLike Scalar
 
 variable {𝕋 : Type} [Scalar 𝕋] {dy du p : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ========================================  MAIN TYPE  ========================================= --

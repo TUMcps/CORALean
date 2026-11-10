@@ -34,7 +34,7 @@ every child, as the comment ("use the current copy for last child") means.
 namespace CORALean
 
 variable {𝕋 T : Type} [Scalar 𝕋] [ExactScalar 𝕋] [TimeOrder T] [Zero T] {S : ℕ → Type}
-  {n : ℕ} [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
+  {n : ℕ} [∀ k, ContSetLike (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)]
 
 

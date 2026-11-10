@@ -15,7 +15,7 @@ sample times `k Δt`.
 ## Inputs
 * `sys` – linear system
 * `t` – time
-* `X₀` – initial set
+* `𝒳₀` – initial set
 
 ## Output
 * images of the initial set under the matrix exponential at the time
@@ -38,10 +38,10 @@ variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The image of a bare initial set `X₀` under `exp (t • sys.A)`, the set at the one time `t`. -/
+/-- The image of a bare initial set `𝒳₀` under `exp (t • sys.A)`, the set at the one time `t`. -/
 noncomputable def LinearSys.reachExactAt (sys : LinearSys 𝕋 n) (t : ℝ)
-    (X₀ : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
-  (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' X₀
+    (𝒳₀ : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
+  (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' 𝒳₀
 
 end CORALean
 

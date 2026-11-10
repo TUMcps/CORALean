@@ -44,15 +44,15 @@ assembled from.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace
+open Matrix ContSet ContSetLike Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+variable {ContSet : ℕ → Type} [∀ n, ContSetLike (ContSet n) (Vec ℝ n)]
+variable [∀ n, Plus (ContSet n) (Vec ℝ n)] [∀ n, LinComb (ContSet n) (Vec ℝ n)]
+variable [Mtimes (Mat ℝ) ContSet] [Mtimes ℐ ContSet]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -60,7 +60,7 @@ variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 /-- Every image of the initial set under the flow, at every time of the window
 `τ_k`, is in `reachStepkWrappingFree`'s set for it. -/
 theorem LinearSys.reachStepkWrappingFree_outer (sys : LinearSys 𝕋 n) {Δt : ℝ} (hΔt : 0 < Δt) {m : ℕ}
-    (hε : ‖Δt • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : S n) {k : ℕ} {t : ℝ}
+    (hε : ‖Δt • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ : ContSet n) {k : ℕ} {t : ℝ}
     (hkt : (k : ℝ) * Δt ≤ t) (htk : t - k * Δt ≤ Δt) : -- --- CONCL ---
     (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' toSet X₀
       ⊆ toSet (sys.reachStepkWrappingFree Δt (m + 2) X₀ k) := by -- --- PROOF ---

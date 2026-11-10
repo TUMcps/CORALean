@@ -66,10 +66,10 @@ The printed proof applies [1, Lemma 1] with a set not convex for a nonconvex `X�
 
 namespace CORALean
 
-open ContSet Matrix
+open ContSetLike Matrix
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

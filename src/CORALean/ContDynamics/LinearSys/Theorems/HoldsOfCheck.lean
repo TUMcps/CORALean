@@ -42,26 +42,27 @@ reaches this one at `LinearSys`, `reachInstance` now running the same recursive 
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace
+open Matrix ContSet ContSetLike Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
-variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ n)]
+variable {ContSet₂ : ℕ → Type} [∀ n, ContSetLike (ContSet₂ n) (Vec ℝ n)]
+variable [∀ n, Plus (ContSet₂ n) (Vec ℝ n)] [∀ n, LinComb (ContSet₂ n) (Vec ℝ n)]
+variable [Mtimes (Mat ℝ) ContSet₂] [Mtimes ℐ ContSet₂]
+variable {ContSet₁ : Type} [ContSetLike ContSet₁ (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem LinearSys.holds_of_check [Contains ContSet (SetUnion (S n))]
-    [IsDisjoint ContSet (SetUnion (S n))] (sys : LinearSys 𝕋 n) {params : Reach.Params (S n) ℝ}
-    {options : LinearSys.ReachStepOptions ℝ} (htFinal : 0 < params.tFinal - params.tStart)
+theorem LinearSys.holds_of_check [Contains ContSet₁ (SetUnion (ContSet₂ n))]
+    [IsDisjoint ContSet₁ (SetUnion (ContSet₂ n))] (sys : LinearSys 𝕋 n)
+    {params : Reach.Params (ContSet₂ n) ℝ}
+    {options : LinearSys.ReachOptions ℝ} (htFinal : 0 < params.tFinal - params.tStart)
     (hΔt : 0 < options.Δt) (hη : 2 ≤ options.η)
     (hε : ‖options.Δt • toRealMat sys.A‖ / ((options.η : ℝ) + 2) < 1)
-    (spec : Specification ContSet) :
+    (spec : Specification ContSet₁) :
     spec.check (sys.reach params options) →
     (spec.Holds (sys.reachExact (params.tFinal - params.tStart) (toSet params.X₀))) :=
   fun h => spec.holds_of_outer (sys.reach_outer (sub_pos.mp htFinal) hΔt hη hε)

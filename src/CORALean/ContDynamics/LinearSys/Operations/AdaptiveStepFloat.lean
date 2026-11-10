@@ -74,7 +74,7 @@ def LinearSys.adaptiveStepFloat (sys : LinearSys 𝕋 n) (X₀ V : Zonotope (Vec
   let sq ← sys.squaringsFloat s.Δt s.tEnc.inf s.tEnc.sup ηe        -- t_i / 2^sq within Δt_{i-1}
   let eAt := sys.expSquaringFloat s.tEnc.inf s.tEnc.sup ηe sq                 -- [e^{A t_i}]
   let eA := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{A t_i}] ·
-    (S := 𝒵[𝕋]) eAt
+    (ContSet := 𝒵[𝕋]) eAt
   -- 5. Alg. 2
   let (Δt, η, εH, εP) ← sys.adaptTimeStepFloat eAt X₀ Ũ options.εHmax
     options.εPmax s.εP tf s.t s.Δt options.μ options.ηmax options.fuel

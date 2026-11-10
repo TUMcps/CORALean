@@ -52,13 +52,13 @@ of it.
 
 namespace CORALean
 
-open CORALean.Float SoundFloatArithmetic NormedSpace Matrix ContSet
+open CORALean.Float SoundFloatArithmetic NormedSpace Matrix ContSet ContSetLike
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
-variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)]
+variable {G : ℕ → Type} [∀ n, ContSetLike (G n) (Vec ℝ n)]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
@@ -87,7 +87,7 @@ private theorem aux_window {N : ℕ} {Δ t : ℝ} (hΔ : 0 < Δ) (hN : 0 < N) (h
 /-- Every state a stay of length `τ ≤ tFinal` from `X₀` passes through lies in
 one of the computed time-interval sets. -/
 theorem Location.IsTrajectory.reachFloat_outer {ℓ : Location 𝒵[𝕋] G L 𝕋 n} {τ : ℝ} {x : ℝ → Vec ℝ n}
-    {u w} (traj : ℓ.IsTrajectory τ x u w) {tFinal : ℚ} {options : LinearSys.ReachOptions 𝕋}
+    {u w} (traj : ℓ.IsTrajectory τ x u w) {tFinal : ℚ} {options : LinearSys.ReachFloatOptions 𝕋}
     {X₀ : Zonotope (Vec 𝕋 n)} (h₀ : x 0 ∈ toSet X₀) (hτ : τ ≤ tFinal) {t : ℝ}
     (ht : t ∈ Set.Icc 0 τ) : -- --- CONCL ---
     ∀ Rs ∈ ℓ.reachFloat tFinal options X₀,

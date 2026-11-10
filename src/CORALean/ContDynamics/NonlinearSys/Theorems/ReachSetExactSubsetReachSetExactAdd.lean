@@ -51,7 +51,7 @@ added to what the first had reached, the integral split at `T`.
 
 namespace CORALean
 
-open ContSet Set MeasureTheory intervalIntegral
+open ContSetLike Set MeasureTheory intervalIntegral
 
 variable {n m : ℕ}
 

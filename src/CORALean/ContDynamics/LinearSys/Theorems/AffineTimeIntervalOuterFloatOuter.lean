@@ -77,7 +77,7 @@ private theorem LinearSys.aux_affineTimePointNextFloat_outer (sys : LinearSys �
   -- `e^{AΔt} h` in `[e^{AΔt}] H`
   have hexp := sys.exp_mem_expIntervalFloat hη le_rfl le_rfl
   have hmt := Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋])
+    (ContSet := 𝒵[𝕋])
     (sys.expIntervalFloat Δt Δt η) H (Set.mem_biUnion hexp (Set.mem_image_of_mem _ hh))
   -- the input held at `ũ` over `[0, Δt]` contributes the constant's share
   have hpt : toRealVec ũ ∈ (Interval.point ũ).zonotope.toSet :=

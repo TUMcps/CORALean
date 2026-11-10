@@ -93,7 +93,7 @@ CLAIM = re.compile(r"^(Thm\.|Prop\.|Property|Lemma|Cor\.)", re.I)
 # structure that carries its own guarantee -- `SupportBound`'s `le := by ...`.
 PROOF = re.compile(r"^(theorem|lemma)\s|:=\s*by\b", re.M)
 # What makes a file "stated for a generic scalar or representation" (route b of a row).
-GENERIC_SCALAR = re.compile(r"Scalar|FloatOps|ExactScalar|ContSet \(S n\)|Contains ContSet S")
+GENERIC_SCALAR = re.compile(r"Scalar|FloatOps|ExactScalar|ContSetLike \((?:S|ContSet) n\)|Contains ContSet")
 # A cell deferring a result to the page that owns it: ``tracked as `X` on
 # [Title](../year/file.md)``. The locator and the page are what get checked.
 TRACKED = re.compile(r"tracked as\s+`([^`]+)`\s+on\s+\[[^\]]*\]\(([^)]+)\)")

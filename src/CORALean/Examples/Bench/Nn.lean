@@ -175,11 +175,11 @@ def soundZonotope (inst : ExactDyadic → 𝕋) : Zonotope (Vec 𝕋 1) × Bool 
 /-- What its bounds are worth, at binary32's precision: the exact network at
 every point of `X` lies in the enclosure `soundZonotope` computes. -/
 example {x : Vec ℝ 1}
-    (hx : x ∈ ContSet.toSet (inputZonotope (𝕋 := Dyadic 24) ExactDyadic.toDyadicPUnchecked)) :
+    (hx : x ∈ ContSetLike.toSet (inputZonotope (𝕋 := Dyadic 24) ExactDyadic.toDyadicPUnchecked)) :
     let inst : ExactDyadic → Dyadic 24 := ExactDyadic.toDyadicPUnchecked
     Scalar.toRealMat (layer₂.mat inst 1 1) *ᵥ (fun i => Real.relu ((Scalar.toRealMat
         (layer₁.mat inst 1 1) *ᵥ x + Scalar.toRealVec (layer₁.vec inst 1)) i))
-      + Scalar.toRealVec (layer₂.vec inst 1) ∈ ContSet.toSet (soundZonotope inst).1 :=
+      + Scalar.toRealVec (layer₂.vec inst 1) ∈ ContSetLike.toSet (soundZonotope inst).1 :=
   network_mem_enclose _ _ _ _ _ hx
 
 /-- The same over float intervals. -/

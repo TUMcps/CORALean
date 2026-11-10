@@ -148,7 +148,7 @@ def handleFullspaceOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option
       checkFields op req ["n", "M"]
       let n ← natField req "n"
       let ⟨m, M⟩ ← parseMatColsFixed dops.readExact n (← field req "M")
-      let _ := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => Fullspace k) M (Fullspace.Inf n)
+      let _ := Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := fun k => Fullspace k) M (Fullspace.Inf n)
       pure [("F", printTrivialSet m)])
   -- the arms from `not` on
   | "not" => some (do

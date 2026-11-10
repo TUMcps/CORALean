@@ -54,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 one of them fails: `relinRunAtFloat` at `x✱ = linPointFloat`. -/
 @[step_of NonlinearSys.FloatModel.reachFloat]
 def NonlinearSys.FloatModel.step_relinRunFloat (fm : NonlinearSys.FloatModel 𝕋 n m)
-    (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachOptions 𝕋) :
+    (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachFloatOptions 𝕋) :
     ℕ → Zonotope (Vec 𝕋 n) → Option (List (Zonotope (Vec 𝕋 n))) :=
   fm.relinRunAtFloat U options fun R => (fm.linPointFloat options.Δt R U).1
 
@@ -65,7 +65,7 @@ def NonlinearSys.FloatModel.step_relinRunFloat (fm : NonlinearSys.FloatModel �
 `U`, re-linearizing once per step, [1, Alg. 1]'s `R([0, t_f])`. -/
 def NonlinearSys.FloatModel.reachFloat (fm : NonlinearSys.FloatModel 𝕋 n m)
     (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
-    (options : LinearSys.ReachOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
+    (options : LinearSys.ReachFloatOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.X₀                                               -- the paper's symbols
   let Δt := options.Δt
   -- 2. the loop runs while `t_k < t_end`: `N = (tFinal - tStart) / Δt` iterations

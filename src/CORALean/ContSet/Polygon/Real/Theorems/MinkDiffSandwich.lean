@@ -55,7 +55,7 @@ open Pointwise
 
 /-- The region of a point is that point. -/
 private theorem Polygon.aux_toSet_ofPoint (v : Vec ℝ 2) : -- --- CONCL ---
-    ContSet.toSet (OfPoint.ofPoint v : Polygon) = {v} := by -- --- PROOF ---
+    ContSetLike.toSet (OfPoint.ofPoint v : Polygon) = {v} := by -- --- PROOF ---
   ext x
   show x ∈ SetUnion.toSet _ ↔ _
   simp only [SetUnion.toSet, OfPoint.ofPoint, List.mem_singleton, Set.iUnion_iUnion_eq_left]
@@ -79,8 +79,8 @@ private theorem Polygon.aux_linComb_subset {p q : VPolytope (Vec ℝ 2)} {C : Se
 
 /-- The mirrored subtrahend about the center is the points `c - b`. -/
 private theorem Polygon.aux_toSet_mirror (B : Polygon) (c : Vec ℝ 2) : -- --- CONCL ---
-    ContSet.toSet (Polygon.times (-1) (B.minus c))
-      = (fun b => c - b) '' ContSet.toSet B := by -- --- PROOF ---
+    ContSetLike.toSet (Polygon.times (-1) (B.minus c))
+      = (fun b => c - b) '' ContSetLike.toSet B := by -- --- PROOF ---
   -- `times (-1)` negates and `minus c` subtracts `c`
   rw [← Polygon.times_exact, ← Polygon.minus_exact, Set.image_image]
   refine Set.image_congr fun b _ => ?_
@@ -96,17 +96,17 @@ private theorem Polygon.aux_convex_mirror {B : Set (Vec ℝ 2)} (hB : Convex ℝ
     _ = a • (c - b₁) + b • (c - b₂) := by module
 
 /-- The `linComb` of two shifts of the mirror sweeps the mirror along the segment. -/
-private theorem Polygon.aux_edge (B : Polygon) (c : Vec ℝ 2) (hB : Convex ℝ (ContSet.toSet B))
+private theorem Polygon.aux_edge (B : Polygon) (c : Vec ℝ 2) (hB : Convex ℝ (ContSetLike.toSet B))
     (u v : Vec ℝ 2) : -- --- CONCL ---
-    ContSet.toSet (Polygon.linComb
+    ContSetLike.toSet (Polygon.linComb
         (Polygon.plus (Polygon.times (-1) (B.minus c)) (OfPoint.ofPoint u))
         (Polygon.plus (Polygon.times (-1) (B.minus c)) (OfPoint.ofPoint v)))
-      = (fun b => c - b) '' ContSet.toSet B + segment ℝ u v := by -- --- PROOF ---
+      = (fun b => c - b) '' ContSetLike.toSet B + segment ℝ u v := by -- --- PROOF ---
   have hK := Polygon.aux_convex_mirror hB c
   -- each shift is the mirror plus a point
-  have hshift : ∀ w : Vec ℝ 2, ContSet.toSet
+  have hshift : ∀ w : Vec ℝ 2, ContSetLike.toSet
       (Polygon.plus (Polygon.times (-1) (B.minus c)) (OfPoint.ofPoint w))
-        = (fun b => c - b) '' ContSet.toSet B + {w} := fun w => by
+        = (fun b => c - b) '' ContSetLike.toSet B + {w} := fun w => by
     rw [← Polygon.plus_exact, Polygon.aux_toSet_mirror, Polygon.aux_toSet_ofPoint]
   apply Set.Subset.antisymm
   · -- the sweep lies in the convex set `mirror + segment`
@@ -205,20 +205,20 @@ private theorem Polygon.aux_minkDiff_outer {A B : Set (Vec ℝ 2)} {c : Vec ℝ 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.minkDiff_sandwich (A B : Polygon) (V : List (Vec ℝ 2))
-    (hB : Convex ℝ (ContSet.toSet B)) (hc : Polygon.center B ∈ ContSet.toSet B)
+    (hB : Convex ℝ (ContSetLike.toSet B)) (hc : Polygon.center B ∈ ContSetLike.toSet B)
     (hV : (⋃ e ∈ V.zip (V.rotate 1), segment ℝ e.1 e.2)
-      = frontier ((fun x => x - Polygon.center B) '' ContSet.toSet A)) : -- --- CONCL ---
-    interior {x | ∀ b ∈ ContSet.toSet B, x + b ∈ ContSet.toSet A}
+      = frontier ((fun x => x - Polygon.center B) '' ContSetLike.toSet A)) : -- --- CONCL ---
+    interior {x | ∀ b ∈ ContSetLike.toSet B, x + b ∈ ContSetLike.toSet A}
         ⊆ Polygon.minkDiff A B V ∧
       Polygon.minkDiff A B V ⊆
-        {x | ∀ b ∈ ContSet.toSet B, x + b ∈ ContSet.toSet A} := by -- --- PROOF ---
+        {x | ∀ b ∈ ContSetLike.toSet B, x + b ∈ ContSetLike.toSet A} := by -- --- PROOF ---
   -- the swept region is the mirror plus the boundary
-  have hdiff : ContSet.toSet (⟨(V.zip (V.rotate 1)).flatMap fun e => (Polygon.linComb
+  have hdiff : ContSetLike.toSet (⟨(V.zip (V.rotate 1)).flatMap fun e => (Polygon.linComb
       (Polygon.plus (Polygon.times (-1) (B.minus (Polygon.center B))) (OfPoint.ofPoint e.1))
       (Polygon.plus (Polygon.times (-1) (B.minus (Polygon.center B))) (OfPoint.ofPoint e.2))).sets⟩
         : Polygon)
-      = (fun b => Polygon.center B - b) '' ContSet.toSet B
-        + frontier ((fun x => x - Polygon.center B) '' ContSet.toSet A) := by
+      = (fun b => Polygon.center B - b) '' ContSetLike.toSet B
+        + frontier ((fun x => x - Polygon.center B) '' ContSetLike.toSet A) := by
     rw [← hV]
     ext z
     constructor
@@ -227,7 +227,7 @@ theorem Polygon.minkDiff_sandwich (A B : Polygon) (V : List (Vec ℝ 2))
       obtain ⟨t, ht, hzt⟩ := SetUnion.mem_toSet.mp hz
       obtain ⟨e, he, hte⟩ := List.mem_flatMap.mp ht
       have h := Polygon.aux_edge B (Polygon.center B) hB e.1 e.2
-      have hzE : z ∈ ContSet.toSet (Polygon.linComb
+      have hzE : z ∈ ContSetLike.toSet (Polygon.linComb
           (Polygon.plus (Polygon.times (-1) (B.minus (Polygon.center B))) (OfPoint.ofPoint e.1))
           (Polygon.plus (Polygon.times (-1) (B.minus (Polygon.center B)))
             (OfPoint.ofPoint e.2))) :=
@@ -239,16 +239,16 @@ theorem Polygon.minkDiff_sandwich (A B : Polygon) (V : List (Vec ℝ 2))
       rintro ⟨k, hk, s, hs, rfl⟩
       obtain ⟨e, he, hse⟩ := Set.mem_iUnion₂.mp hs
       have h := Polygon.aux_edge B (Polygon.center B) hB e.1 e.2
-      have hzE : k + s ∈ (fun b => Polygon.center B - b) '' ContSet.toSet B
+      have hzE : k + s ∈ (fun b => Polygon.center B - b) '' ContSetLike.toSet B
           + segment ℝ e.1 e.2 := ⟨k, hk, s, hse, rfl⟩
       rw [← h] at hzE
       obtain ⟨t, ht, hzt⟩ := SetUnion.mem_toSet.mp hzE
       exact SetUnion.mem_toSet.mpr ⟨t, List.mem_flatMap.mpr ⟨e, he, ht⟩, hzt⟩
   -- the shifted minuend, and the minuend closed
-  have hA : ContSet.toSet (A.minus (Polygon.center B))
-      = (fun x => x - Polygon.center B) '' ContSet.toSet A :=
+  have hA : ContSetLike.toSet (A.minus (Polygon.center B))
+      = (fun x => x - Polygon.center B) '' ContSetLike.toSet A :=
     (Polygon.minus_exact A _).symm
-  have hAcl : IsClosed (ContSet.toSet A) := (Polygon.isCompact_toSet A).isClosed
+  have hAcl : IsClosed (ContSetLike.toSet A) := (Polygon.isCompact_toSet A).isClosed
   -- the result is the closure of the shifted minuend's interior off the sweep
   unfold Polygon.minkDiff Polygon.subtract
   simp only
@@ -262,8 +262,8 @@ theorem Polygon.minkDiff_sandwich (A B : Polygon) (V : List (Vec ℝ 2))
     refine closure_minimal ?_ ?_
     · rintro x ⟨h1, h2⟩
       exact Polygon.aux_minkDiff_inner hB hc h1 h2
-    · have : {x | ∀ b ∈ ContSet.toSet B, x + b ∈ ContSet.toSet A}
-          = ⋂ b ∈ ContSet.toSet B, (fun x => x + b) ⁻¹' ContSet.toSet A := by
+    · have : {x | ∀ b ∈ ContSetLike.toSet B, x + b ∈ ContSetLike.toSet A}
+          = ⋂ b ∈ ContSetLike.toSet B, (fun x => x + b) ⁻¹' ContSetLike.toSet A := by
         ext x; simp
       rw [this]
       exact isClosed_biInter fun b _ => hAcl.preimage (by fun_prop)

@@ -37,10 +37,10 @@ exponential that no machine scalar supplies totally.
 
 namespace CORALean
 
-open ContSet Float.IntervalOuter Float.OfInterval
+open ContSet ContSetLike Float.IntervalOuter Float.OfInterval
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋]
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋]
   {n : ℕ}
 
 

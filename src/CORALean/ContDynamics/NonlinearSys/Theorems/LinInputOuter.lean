@@ -49,10 +49,10 @@ parts `linInput` is built from.
 
 namespace CORALean
 
-open Matrix Pointwise ContSet Plus Mtimes Real.OfInterval
+open Matrix Pointwise ContSet ContSetLike Plus Mtimes Real.OfInterval
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Real.OfInterval S]
 
 

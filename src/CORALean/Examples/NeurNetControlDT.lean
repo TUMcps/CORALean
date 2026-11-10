@@ -36,7 +36,7 @@ an abstract system, for the reason `NeurNetControl` gives.
 
 namespace CORALean.Real
 
-open Matrix ContSet Scalar
+open Matrix ContSet ContSetLike Scalar
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

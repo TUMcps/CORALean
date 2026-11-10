@@ -45,7 +45,7 @@ namespace CORALean
 open Float SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ExactLe 𝕋] [Scalar 𝕋]
-  [ExactScalar 𝕋] {S : ℕ → Type} {d : ℕ} [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S]
+  [ExactScalar 𝕋] {S : ℕ → Type} {d : ℕ} [∀ k, ContSetLike (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S]
   [∀ k, Contains (S k) (S k)] [∀ k, IsDisjoint (S k) (S k)]
 
 

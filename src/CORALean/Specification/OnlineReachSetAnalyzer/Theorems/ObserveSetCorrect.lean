@@ -1085,7 +1085,7 @@ end core
 section observe
 
 variable {A : Type} {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : ℕ}
-  [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
+  [∀ k, ContSetLike (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)]
 
 /-- The atom signals after observing `set` on `I`: `â(set)` on `I`, the old value elsewhere. -/
@@ -1096,14 +1096,14 @@ private noncomputable def aux_observeAtoms (sig : AtomicProposition S d → Four
     | some v => (sig a).set I (FourValued.fromKleene v)
     | none => sig a
 
-omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
+omit [∀ k, ContSetLike (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
 /-- The semantics of node `i`. -/
 private noncomputable def aux_sem (ψ : ℕ → OnlineReachSetAnalyzer.Formula ℝ (AtomicProposition S d))
     (sig : AtomicProposition S d → FourValuedSignal ℝ) (i : ℕ) : FourValuedSignal ℝ :=
   ((ψ i).sat sig).getD (FourValuedSignal.uniformSignal .ii)
 
-omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
+omit [∀ k, ContSetLike (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
 /-- The semantics of node `i` exists and is valid. -/
 private theorem aux_sem_spec (ψ : ℕ → OnlineReachSetAnalyzer.Formula ℝ (AtomicProposition S d))
@@ -1412,7 +1412,7 @@ end mk
 section main
 
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : ℕ}
-  [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
+  [∀ k, ContSetLike (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)]
 
 

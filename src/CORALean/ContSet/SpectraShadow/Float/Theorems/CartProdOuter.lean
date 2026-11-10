@@ -75,7 +75,7 @@ private theorem SpectraShadow.aux_padRight_outer (n : ℕ) (S : SpectraShadow �
     ⇑(blockPadRight n m) '' S.toSet ⊆ (S.padRight n).toSet :=
   image_subset (fun _ _ => map_add _ _ _)
     (by
-      show ⇑(blockPadRight n m) '' nominalSet S ⊆ ContSet.toSet (nominal (S.padRight n))
+      show ⇑(blockPadRight n m) '' nominalSet S ⊆ ContSetLike.toSet (nominal (S.padRight n))
       rw [SpectraShadow.aux_padRight_nominal]
       exact le_of_eq (Real.SpectraShadow.map_exact _ _))
     (by
@@ -120,7 +120,7 @@ private theorem SpectraShadow.aux_padLeft_outer (S : SpectraShadow 𝕋 (Vec �
     ⇑(blockPadLeft n m) '' S.toSet ⊆ (S.padLeft m).toSet :=
   image_subset (fun _ _ => map_add _ _ _)
     (by
-      show ⇑(blockPadLeft n m) '' nominalSet S ⊆ ContSet.toSet (nominal (S.padLeft m))
+      show ⇑(blockPadLeft n m) '' nominalSet S ⊆ ContSetLike.toSet (nominal (S.padLeft m))
       rw [SpectraShadow.aux_padLeft_nominal]
       exact le_of_eq (Real.SpectraShadow.map_exact _ _))
     (by

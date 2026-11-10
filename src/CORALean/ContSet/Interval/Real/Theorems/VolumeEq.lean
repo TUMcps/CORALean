@@ -31,7 +31,7 @@ box is empty and so is the product's zero factor: no separate case.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 variable {n : ℕ}
 

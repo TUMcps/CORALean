@@ -39,10 +39,10 @@ nowhere else to put it (#39).
 
 namespace CORALean
 
-open Matrix ContSet Scalar Plus Mtimes OfPoint
+open Matrix ContSet ContSetLike Scalar Plus Mtimes OfPoint
 open scoped CORALean.Real
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
 variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [∀ n, OfPoint (S n) (Vec ℝ n)]
 variable {L : Type} {n : ℕ}
 
@@ -50,7 +50,7 @@ variable {L : Type} {n : ℕ}
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
 section
-variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
+variable {G : ℕ → Type} [∀ n, ContSetLike (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
 
 /-- `R` encloses the state at the moment of the jump, `Rg` its intersection with
 the guard; the reset image then lands in `step_jumpOfPoint Rg`. -/

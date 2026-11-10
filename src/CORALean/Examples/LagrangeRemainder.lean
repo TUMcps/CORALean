@@ -32,7 +32,7 @@ admit. Everything the theorem needs is supplied by hand, as CORA's `hessian` han
 
 namespace CORALean.Real
 
-open Matrix Set ContSet
+open Matrix Set ContSet ContSetLike
 
 -- The field: nonlinear in the state, affine in the input.
 def Example.sqField : Vec ℝ 1 → Vec ℝ 1 → Vec ℝ 1 := fun x u _ => x 0 * x 0 + u 0

@@ -39,9 +39,9 @@ input ([1, Prop. 2.13]) and each layer's enclosure its image ([1, Prop. 2.14]).
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

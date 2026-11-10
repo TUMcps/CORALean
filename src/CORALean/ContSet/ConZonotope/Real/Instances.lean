@@ -52,7 +52,7 @@ scoped notation "𝒞" => fun n => ConZonotope (Vec ℝ n)
 
 /-- At every ambient type, not only `Vec`: the constraints live on the
 coefficient space whatever the generators point into. -/
-instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSet (ConZonotope α) α :=
+instance {α : Type} [AddCommGroup α] [Module ℝ α] : ContSetLike (ConZonotope α) α :=
   ⟨ConZonotope.toSet⟩
 
 instance {α : Type} [AddCommGroup α] [Module ℝ α] : ConvexSet (ConZonotope α) α :=

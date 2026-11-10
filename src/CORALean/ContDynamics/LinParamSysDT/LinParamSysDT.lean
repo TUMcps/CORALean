@@ -33,10 +33,10 @@ takes every run into it. `IsTrajectory` picks a fresh `A k`, `B k` at every `k`.
 
 namespace CORALean
 
-open Matrix ContSet
+open Matrix ContSetLike
 
-variable {n : ℕ} {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {n : ℕ} {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSetLike (𝕄 m n) (Mat ℝ m n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ========================================  MAIN TYPE  ========================================= --

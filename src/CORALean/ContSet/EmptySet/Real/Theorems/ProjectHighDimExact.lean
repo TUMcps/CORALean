@@ -33,7 +33,7 @@ public import CORALean.ContSet.EmptySet.Real.Instances
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 variable {n m : ℕ}
 

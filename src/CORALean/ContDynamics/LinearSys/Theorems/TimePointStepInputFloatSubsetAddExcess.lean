@@ -79,7 +79,7 @@ theorem LinearSys.timePointStepInputFloat_subset_add_excess (sys : LinearSys �
         + (sys.timePointStepErrorBoxFloat r η U).toSet := by -- --- PROOF ---
   set eA := sys.expIntervalFloat r r η
   set M := Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋]) eA X
+    (ContSet := 𝒵[𝕋]) eA X
   set P := sys.inputSolutionFloat r η U
   have he := sys.exp_mem_expIntervalFloat hη (t := toReal r) le_rfl le_rfl
   have hM0 : (0 : Vec ℝ n) ∈ M.I_error.toSet := by
@@ -109,9 +109,9 @@ theorem LinearSys.timePointStepInputFloat_subset_add_excess (sys : LinearSys �
     sys.inputSolution_subset_constInput_add_errorBox hr η hε (nominal U) hs
   have ht' := sys.timePointStepErrorBox_subset_float hr.le hη U ht
   -- the three float boxes, read as zonotopes and summed
-  have hb₁' : b₁ ∈ ContSet.toSet (Zonotope.mtimesIntervalMatBox eA X).zonotope :=
+  have hb₁' : b₁ ∈ ContSetLike.toSet (Zonotope.mtimesIntervalMatBox eA X).zonotope :=
     Interval.zonotope_contains _ hb₁
-  have hp' : p ∈ ContSet.toSet (Zonotope.plusBox M P).zonotope :=
+  have hp' : p ∈ ContSetLike.toSet (Zonotope.plusBox M P).zonotope :=
     Interval.zonotope_contains _ hp
   have hex : b₁ + p + b₂ ∈ (sys.timePointStepExcessFloat r η X U).toSet :=
     Plus.plus_outer _ _ (Set.add_mem_add (Plus.plus_outer _ _ (Set.add_mem_add hb₁' hp')) hb₂)

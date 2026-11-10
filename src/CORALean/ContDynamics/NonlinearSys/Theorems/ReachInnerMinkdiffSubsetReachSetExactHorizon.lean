@@ -51,7 +51,7 @@ set at its own times, which are in the horizon, and the cells past it are empty
 
 namespace CORALean
 
-open ContSet Set
+open ContSetLike Set
 
 variable {n m : ℕ} {𝓛 : Type}
 

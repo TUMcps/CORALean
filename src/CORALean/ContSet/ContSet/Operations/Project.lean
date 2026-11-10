@@ -32,10 +32,10 @@ has, an enclosure in general, and computable over any scalar that has `0` and `1
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSetLike Scalar
 
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type}
-variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n k : ℕ}
+variable [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n k : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

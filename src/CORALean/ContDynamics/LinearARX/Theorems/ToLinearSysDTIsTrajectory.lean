@@ -38,10 +38,10 @@ system need not have its window's blocks agree, nor its input be of the form `fe
 
 namespace CORALean
 
-open ContSet Scalar Plus Reduce Mtimes
+open ContSetLike Scalar Plus Reduce Mtimes
 
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 
 

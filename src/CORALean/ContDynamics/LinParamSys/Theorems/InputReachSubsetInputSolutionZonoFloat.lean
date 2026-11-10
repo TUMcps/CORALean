@@ -63,7 +63,7 @@ exact sum is regrouped as the float one is, Minkowski sums being associative.
 
 namespace CORALean
 
-open CORALean.Float SoundFloatArithmetic Matrix ContSet Pointwise
+open CORALean.Float SoundFloatArithmetic Matrix ContSet ContSetLike Pointwise
 open scoped CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
@@ -108,12 +108,12 @@ attribute [local instance] aux_zonoSetPlus aux_zonoSetMtimes aux_zonoSetMtimesIn
 
 /-- One exact order's image inside the float product at a family that holds its matrix. -/
 private theorem LinParamSys.aux_image_subset_mtimes {𝕄 : ℕ → ℕ → Type}
-    [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [Mtimes 𝕄 𝒵[𝕋]]
+    [∀ m n, ContSetLike (𝕄 m n) (Mat ℝ m n)] [Mtimes 𝕄 𝒵[𝕋]]
     {M : Mat ℝ n n} {X : 𝕄 n n}
     (hM : M ∈ toSet X) (V : Zonotope (Vec 𝕋 n)) :
-    (M *ᵥ ·) '' V.toSet ⊆ toSet (Mtimes.mtimes (S := 𝒵[𝕋]) X V) :=
+    (M *ᵥ ·) '' V.toSet ⊆ toSet (Mtimes.mtimes (ContSet := 𝒵[𝕋]) X V) :=
   (Set.subset_biUnion_of_mem (u := fun A => (A *ᵥ ·) '' V.toSet) hM).trans
-    (Mtimes.mtimes_outer (S := 𝒵[𝕋]) X V)
+    (Mtimes.mtimes_outer (ContSet := 𝒵[𝕋]) X V)
 
 /-- The member's exact orders `0 … m + 2`, regrouped as the float sum is: orders `0` and
 `1` through the matrix zonotope, then the interval tail. -/
@@ -123,9 +123,9 @@ private theorem LinParamSys.aux_inputTaylorSum_subset_zono
     ∀ m, toSet ((LinearSys.canonical A : LinearSys ℝ n).inputTaylorSum
       (S := 𝒮) (toReal r) V.toSet (m + 2))
       ⊆ toSet (Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋])
-        (S := 𝒵[𝕋])
+        (ContSet := 𝒵[𝕋])
           (sys.inputTermZonoFloat r 0) V ⊞
-          Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋]) (S := 𝒵[𝕋])
+          Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋]) (ContSet := 𝒵[𝕋])
             (sys.inputTermZonoFloat r 1) V)
         + toSet ((LinParamSys.canonical (𝕄 := ℐ[𝕋])
             sys.A.matInterval).inputTaylorSumTailFloat r V (m + 2)) := by -- --- PROOF ---
@@ -134,7 +134,7 @@ private theorem LinParamSys.aux_inputTaylorSum_subset_zono
   have hZ : ∀ i, ((LinearSys.canonical A : LinearSys ℝ n).inputTerm (toReal r) i *ᵥ ·) ''
       V.toSet
       ⊆ toSet (Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋])
-        (S := 𝒵[𝕋])
+        (ContSet := 𝒵[𝕋])
         (sys.inputTermZonoFloat r i) V) :=
     fun i => LinParamSys.aux_image_subset_mtimes
       (sys.aux_smul_pow_mem_inputTermZonoFloat hr hA i) V
@@ -142,14 +142,14 @@ private theorem LinParamSys.aux_inputTaylorSum_subset_zono
   have hI : ∀ i, ((LinearSys.canonical A : LinearSys ℝ n).inputTerm (toReal r) i *ᵥ ·) ''
       V.toSet
       ⊆ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋])
+        (ContSet := 𝒵[𝕋])
         (MatExp.intervalInputTerm sys.A.matInterval r i) V) :=
     fun i => LinParamSys.aux_image_subset_mtimes
       (MatExp.smul_pow_mem_intervalInputTerm _ hr hAI i) V
   have h01 := (Set.add_subset_add (hZ 0) (hZ 1)).trans (Plus.plus_outer
-    (Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋]) (S := 𝒵[𝕋])
+    (Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋]) (ContSet := 𝒵[𝕋])
       (sys.inputTermZonoFloat r 0) V)
-    (Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋]) (S := 𝒵[𝕋])
+    (Mtimes.mtimes (𝕄 := 𝕄𝒵[𝕋]) (ContSet := 𝒵[𝕋])
       (sys.inputTermZonoFloat r 1) V))
   intro m
   induction m with
@@ -160,7 +160,7 @@ private theorem LinParamSys.aux_inputTaylorSum_subset_zono
     rw [add_assoc]
     exact Set.add_subset_add le_rfl (Plus.plus_outer ((LinParamSys.canonical (𝕄 := fun m n =>
       Interval (Mat 𝕋 m n)) sys.A.matInterval).inputTaylorSumTailFloat r V (m + 2))
-      (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+      (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
         (MatExp.intervalInputTerm sys.A.matInterval r (m + 3)) V))
 
 /-- The member's remainder, closed and convexified, inside the float product. -/
@@ -170,12 +170,12 @@ private theorem LinParamSys.aux_inputRemainder_subset_zono
       sys.A.matInterval).IsOrderAdmissibleFloat r r η)
     {A : Mat ℝ n n} (hA : A ∈ sys.A.toSet) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     toSet (Mtimes.mtimes (𝕄 := ℐ)
-      (S := 𝒮) (Real.MatExp.inputRemainder A (toReal r) η)
+      (ContSet := 𝒮) (Real.MatExp.inputRemainder A (toReal r) η)
       (V.toSet : Set (Vec ℝ n)))
       ⊆ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋])
+        (ContSet := 𝒵[𝕋])
         (MatExp.intervalInputRemainder sys.A.matInterval r η) V) := by -- --- PROOF ---
-  set Z := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+  set Z := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
     (MatExp.intervalInputRemainder sys.A.matInterval r η) V
   refine closure_minimal (convexHull_min ?_ (ConvexSet.convex_toSet Z))
     (CompactSet.isClosed_toSet Z)

@@ -16,7 +16,7 @@ function the network is sound at, which a reduced network needs.
 
 ## Inputs
 * `nn` – network
-* `X` – input set
+* `S` – input set
 * `spec` – specification
 
 ## Hypotheses
@@ -36,18 +36,18 @@ function the network is sound at, which a reduced network needs.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
-variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
+variable {ContSet₂ : ℕ → Type} [∀ n, ContSetLike (ContSet₂ n) (Vec ℝ n)] {n m : ℕ}
+variable {ContSet₁ : Type} [ContSetLike ContSet₁ (Vec ℝ m)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeuralNetwork.holds_of_enclose (nn : NeuralNetwork S n m) (X : S n)
-    (spec : Specification ContSet) (h : spec.Holds (toSet (nn.enclose X))) :
-    spec.Holds (nn.eval.out '' toSet X) :=
-  (NeuralNetwork.encloses_eval nn).holds_of_enclose X spec h
+theorem NeuralNetwork.holds_of_enclose (nn : NeuralNetwork ContSet₂ n m) (S : ContSet₂ n)
+    (spec : Specification ContSet₁) (h : spec.Holds (toSet (nn.enclose S))) :
+    spec.Holds (nn.eval.out '' toSet S) :=
+  (NeuralNetwork.encloses_eval nn).holds_of_enclose S spec h
 
 end CORALean
 

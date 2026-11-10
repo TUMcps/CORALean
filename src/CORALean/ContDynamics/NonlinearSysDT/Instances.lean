@@ -27,9 +27,9 @@ step's region, which lets `reach_outer` hold with no confinement hypothesis on a
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S Rg : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (Rg n) (Vec ℝ n)]
+variable {S Rg : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (Rg n) (Vec ℝ n)]
 variable {m : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable {𝕋 : Type} [CORALean.Float.FloatOps 𝕋] [CORALean.Float.SoundFloatArithmetic 𝕋]

@@ -37,10 +37,10 @@ sequence. Expressible, as [1]'s tuning algorithm needs, not *chosen*.
 
 namespace CORALean
 
-open Matrix ContSet Scalar Plus Reduce Mtimes
+open Matrix ContSetLike Scalar Plus Reduce Mtimes
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 
 

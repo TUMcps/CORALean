@@ -28,9 +28,9 @@ and every schedule encloses that same set.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

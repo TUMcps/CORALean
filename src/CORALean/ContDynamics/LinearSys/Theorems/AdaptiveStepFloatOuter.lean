@@ -109,10 +109,10 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
     rwa [← ToRat.toReal_toRat]⟩
   -- `[e^{At_i}] Z` holds `e^{At_i} z`
   have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.toSet → exp (ti • A) *ᵥ z
-      ∈ ContSet.toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) eAt Z) :=
+      ∈ ContSetLike.toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (ContSet := 𝒵[𝕋]) eAt Z) :=
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) eAt Z
+      (ContSet := 𝒵[𝕋]) eAt Z
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
         (LinearSys.squaringsFloat_spec (le_max_right _ _) _ hsq) hlo hhi)
         (Set.mem_image_of_mem _ hz))

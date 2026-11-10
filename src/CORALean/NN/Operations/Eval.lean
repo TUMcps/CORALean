@@ -28,7 +28,7 @@ argument before anything is compiled, so a network of float layers still runs.
 
 namespace CORALean
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -36,7 +36,7 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
 def NeuralNetwork.eval : ∀ {n m : ℕ}, NeuralNetwork S n m → Erased (Vec ℝ n → Vec ℝ m)
   | _, _, .output => Erased.mk id
   | _, _, .layer (inst := _) curr tail =>
-      Erased.mk (tail.eval.out ∘ (Enclose.eval (S := S) curr).out)
+      Erased.mk (tail.eval.out ∘ (Enclose.eval (ContSet := S) curr).out)
 
 end CORALean
 

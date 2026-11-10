@@ -34,9 +34,9 @@ Positional, as the mathematics: `Reach` reads `K = tFinal - tStart` off `params`
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S Rg : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (Rg n) (Vec ℝ n)]
+variable {S Rg : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (Rg n) (Vec ℝ n)]
 variable {m n : ℕ} {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 
 

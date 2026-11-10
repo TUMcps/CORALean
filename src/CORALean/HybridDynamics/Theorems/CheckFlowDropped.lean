@@ -29,18 +29,18 @@ namespace CORALean
 open Matrix Scalar
 open scoped CORALean.Real
 
-variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
+variable {G : ℕ → Type} [∀ n, ContSetLike (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-omit [∀ n, ContSet (G n) (Vec ℝ n)] in
+omit [∀ n, ContSetLike (G n) (Vec ℝ n)] in
 /-- A dropped set carries the flow nowhere outward on its projection. -/
 theorem Location.checkFlow_dropped (ℓ : Location 𝒵 G L ℝ n)
     (c : Vec ℝ n) (d : ℝ) (Rs : List (Real.Zonotope (Vec ℝ n)))
     {R : Real.Zonotope (Vec ℝ n)} (hR : R ∈ Rs) (hdrop : R ∉ ℓ.checkFlow c d Rs)
     {x : Vec ℝ n} {u : Vec ℝ ℓ.dynamics.m} {w : Vec ℝ ℓ.dynamics.r} (hx : x ∈ R.toSet)
-    (hu : u ∈ ContSet.toSet ℓ.U) (hw : w ∈ ContSet.toSet ℓ.W) : -- --- CONCL ---
+    (hu : u ∈ ContSetLike.toSet ℓ.U) (hw : w ∈ ContSetLike.toSet ℓ.W) : -- --- CONCL ---
     c ⬝ᵥ (toRealMat ℓ.dynamics.A *ᵥ (x - (c ⬝ᵥ x - d) • c) + (toRealMat ℓ.dynamics.B *ᵥ u +
       toRealVec ℓ.dynamics.c + toRealMat ℓ.dynamics.E *ᵥ w)) ≤ 0 := by -- --- PROOF ---
   -- the combined input is a point of `inputSet`

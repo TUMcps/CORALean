@@ -55,13 +55,13 @@ being bounded.
 namespace CORALean
 
 open CORALean.Real
-open Matrix Pointwise ContSet Scalar NormedSpace MeasureTheory
+open Matrix Pointwise ContSet ContSetLike Scalar NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [Mtimes ℐ S]
 

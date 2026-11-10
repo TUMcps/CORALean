@@ -31,17 +31,17 @@ runs are `IsTrajectory`: a run of the plant whose input at step `k` is `[π(x(k)
 
 namespace CORALean
 
-open ContSet ContDynamicsDT
+open ContSetLike ContDynamicsDT
 
 variable {n : ℕ} {P : Type} [ContDynamicsDT P n]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ========================================  MAIN TYPE  ========================================= --
 
 /-- The plant and the network controlling its first `m` inputs, the rest external, and the
 sampling time `dt`: CORA's `neurNetContrSys(sys, nn, dt)`. -/
-structure NeurNetContrSysDT (P : Type) (S : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)] (n : ℕ)
+structure NeurNetContrSysDT (P : Type) (S : ℕ → Type) [∀ n, ContSetLike (S n) (Vec ℝ n)] (n : ℕ)
     [ContDynamicsDT P n] where
   plant : P
   m : ℕ

@@ -14,7 +14,7 @@ sampled run is a discrete run, the discrete guarantee is the continuous one at
 `0, Δt, 2Δt, ...`. Between the sample times it says nothing — that is
 `TimeIntervalOuter`.
 
-`Mtimes (Mat ℝ) S`, not `Mat 𝕋`: the propagated matrix is `e^{AΔt}`, which is
+`Mtimes (Mat ℝ) ContSet`, not `Mat 𝕋`: the propagated matrix is `e^{AΔt}`, which is
 real whatever the system stores.
 -/
 
@@ -28,21 +28,21 @@ real whatever the system stores.
 
 namespace CORALean
 
-open Matrix ContSet Scalar
+open Matrix ContSet ContSetLike Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+variable {ContSet : ℕ → Type} [∀ n, ContSetLike (ContSet n) (Vec ℝ n)]
+variable [∀ n, Plus (ContSet n) (Vec ℝ n)] [∀ n, LinComb (ContSet n) (Vec ℝ n)]
+variable [∀ n, Reduce (ContSet n) (Vec ℝ n)] [Mtimes (Mat ℝ) ContSet]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-omit [∀ n, LinComb (S n) (Vec ℝ n)] in
+omit [∀ n, LinComb (ContSet n) (Vec ℝ n)] in
 /-- Sampling and then running the discrete-time recursion; nothing here
 combines, which is why `LinComb` is not asked for. -/
 theorem LinearSys.IsCanonicalTrajectory.reach_outer {sys : LinearSys 𝕋 n} {T : Set ℝ}
-    {R₀ U Ud : S n}
+    {R₀ U Ud : ContSet n}
     {x u : ℝ → Vec ℝ n} {Δt : ℝ} (traj : sys.IsCanonicalTrajectory T R₀ U x u) (hΔt : 0 ≤ Δt)
     (hT : Set.Ici 0 ⊆ T) (hU : Bornology.IsBounded (toSet U))
     (hUd : ∀ k : ℕ, sys.stepInput u Δt k ∈ toSet Ud) {o : ℕ} (ho : 0 < o)

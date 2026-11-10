@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyLevelSet.Float.Theorems.AndExact
 /-!
 # What `PolyLevelSet` instantiates over a floating-point scalar
 
-`ContSet`, and `Intersection` by stacking the rows, exact although the class asks only for an
+`ContSetLike`, and `Intersection` by stacking the rows, exact although the class asks only for an
 outer bound.
 -/
 
@@ -27,7 +27,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (PolyLevelSet 𝕋 n) (Vec ℝ n) := ⟨PolyLevelSet.toSet⟩
+instance : ContSetLike (PolyLevelSet 𝕋 n) (Vec ℝ n) := ⟨PolyLevelSet.toSet⟩
 
 instance : Intersection (PolyLevelSet 𝕋 n) (Vec ℝ n) where
   intersection := PolyLevelSet.and_

@@ -49,7 +49,7 @@ exists (`NonlinearSys.add_mem_reachSetExact_of_chord_section`). `M`, `v`, `E` ar
 
 namespace CORALean
 
-open ContSet Matrix Pointwise Set
+open ContSetLike Matrix Pointwise Set
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

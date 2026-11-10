@@ -59,11 +59,11 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 def LinearSys.particularSolutionErrorFloat (sys : LinearSys 𝕋 n) (eAtk : Interval (Mat 𝕋 n n))
     (U₀ : Zonotope (Vec 𝕋 n)) (Δt : 𝕋) (η : ℕ) : 𝕋 :=
   let eA := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{At_k}] ·
-    (S := 𝒵[𝕋]) eAtk
-  let rem := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+    (ContSet := 𝒵[𝕋]) eAtk
+  let rem := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
     (MatExp.intervalInputRemainder (Interval.point sys.A) Δt η) U₀           -- E(Δt,η) Δt U₀
   let corr := Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋])
+    (ContSet := 𝒵[𝕋])
     (MatExp.particularCoeffSum (Interval.point sys.A) Δt 1 η) U₀ ⊞ rem        -- (Σᵢ Ãᵢ)U₀ ⊕ E Δt U₀
   let decorr := sys.inputTaylorSumTailFloat Δt U₀ η ⊞ rem                      -- ⊕ᵢ ÃᵢU₀ ⊕ E Δt U₀
   addUp (eA corr).errUp (eA decorr).errUp                                      -- err(·) + err(·)

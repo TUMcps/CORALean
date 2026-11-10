@@ -14,7 +14,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.ReindexExact
 `Mtimes` by instance search, and `Plus` once a caller has named the two scalings, the same pair of
 classes as over ℝ and for the same reasons. An ellipsoid is closed under a linear image and under
 nothing else the interface names, and every enclosure of a sum or a combination carries a free
-parameter; `Reduce` is the identity, as CORA's `reduce` body is empty. `ContSet` is supplied by
+parameter; `Reduce` is the identity, as CORA's `reduce` body is empty. `ContSetLike` is supplied by
 `InflatedContSet`. `plusInstance` is the exact layer's, with the parameter it really has: two floats
 and the certificate `1/s₁² + 1/s₂² ≤ 1` rather than one real `l`, which widens the family. It is a
 `def` and not an `instance` for the same reason as over ℝ.

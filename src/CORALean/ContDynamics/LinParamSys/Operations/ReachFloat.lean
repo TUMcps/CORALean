@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachOrderFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.ReachStepkFloat
 public import CORALean.ContDynamics.LinParamSys.Operations.TimeIntervalFloat
-public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
+public import CORALean.ContDynamics.LinearSys.Definitions.ReachFloatOptions
 public import CORALean.ContDynamics.Reach.Definitions.Params
 public import CORALean.ContDynamics.Reach.Operations.Steps
 public import CORALean.Global.Float.Interfaces
@@ -57,7 +57,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- The windows `τ_0, …, τ_{N-1}` of width `Δt` from `X₀` at every member of `sys.A`,
 the first reduced to order `ρ`, at Taylor order `η` raised until admissible. -/
 def LinParamSys.reachFloat (sys : LinParamSys ℐ[𝕋] n)
-    (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ) (options : LinearSys.ReachOptions 𝕋) :
+    (params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ) (options : LinearSys.ReachFloatOptions 𝕋) :
     Option (List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.X₀                                               -- the paper's symbols
   let Δt := options.Δt

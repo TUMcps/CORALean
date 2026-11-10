@@ -48,7 +48,7 @@ the hull — and the hull is `some`. This is the `hinter` that
 
 namespace CORALean
 
-open CORALean.Float ContSet
+open CORALean.Float ContSet ContSetLike
 
 variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 

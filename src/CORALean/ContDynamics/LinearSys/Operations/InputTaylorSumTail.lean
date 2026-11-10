@@ -41,10 +41,10 @@ gives: `plus` is only an enclosure and never has to be reassociated.
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSetLike Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 

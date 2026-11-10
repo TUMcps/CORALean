@@ -42,10 +42,10 @@ the input of an `IsCanonicalTrajectory` on its own.
 
 namespace CORALean
 
-open Matrix ContSet Scalar MeasureTheory
+open Matrix ContSetLike Scalar MeasureTheory
 
 variable {n : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

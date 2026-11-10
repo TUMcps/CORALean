@@ -51,7 +51,7 @@ a `Prop`.
 
 namespace CORALean.Float
 
-open ContSet SoundFloatArithmetic
+open ContSet ContSetLike SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 

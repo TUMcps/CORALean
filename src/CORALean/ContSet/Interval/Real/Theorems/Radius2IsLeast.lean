@@ -34,7 +34,7 @@ smaller still. Nonemptiness is needed, as a crossed box has no corner to reach i
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 variable {n : ℕ}
 

@@ -43,11 +43,11 @@ each end rounded outward on the way.
 
 namespace CORALean
 
-open ContSet Float Float.IntervalOuter Float.OfInterval Float.FloatOps
+open ContSet ContSetLike Float Float.IntervalOuter Float.OfInterval Float.FloatOps
   Float.SoundFloatArithmetic
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋]
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋]
   {n : ℕ}
 
 

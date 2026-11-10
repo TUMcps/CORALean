@@ -50,10 +50,10 @@ time-interval sets.
 namespace CORALean
 
 open CORALean.Real
-open ContSet
+open ContSet ContSetLike
 
 variable {n m o : ℕ}
-open Matrix ContSet Real.OfInterval
+open Matrix ContSet ContSetLike Real.OfInterval
 
 
 -- ------------------------------------------  STEPS  ------------------------------------------- --

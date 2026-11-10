@@ -34,7 +34,7 @@ namespace CORALean.Real
 open Classical in
 /-- The largest distance from a point of `S` to the polygon. -/
 noncomputable def Polygon.hausdorffDist (P : Polygon) (S : List (Vec ℝ 2)) : ℝ :=
-  let R : Set (Vec ℝ 2) := ContSet.toSet P
+  let R : Set (Vec ℝ 2) := ContSetLike.toSet P
   -- `val_ = 0` if `contains(pgon, S(:,i))`, else the distance to the boundary segments
   let val_ : Vec ℝ 2 → ℝ := fun s =>
     if s ∈ R then 0 else Metric.infDist (toEuclidean s) (toEuclidean '' frontier R)

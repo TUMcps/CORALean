@@ -55,10 +55,10 @@ on the reachable set rather than on one run.
 
 namespace CORALean
 
-open Matrix ContSet Scalar Plus Reduce Mtimes
+open Matrix ContSet ContSetLike Scalar Plus Reduce Mtimes
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 variable [OfScalarPoint 𝕋 S]
 

@@ -53,12 +53,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 def LinearSys.errorSolutionAdaptiveFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ)
     (Vdyn : Zonotope (Vec 𝕋 n)) (Vstat : Option (Zonotope (Vec 𝕋 n))) : Zonotope (Vec 𝕋 n) :=
   let AVsum := sys.inputTaylorSumFloat Δt Vdyn η                     -- ∑ᵢ Aⁱ Δt^{i+1}/(i+1)! Vdyn
-  let F := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+  let F := Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
     (MatExp.intervalInputRemainder (Interval.point sys.A) Δt η) Vdyn  -- E Vdyn Δt
   match Vstat with
   | none => AVsum ⊞ F                                                -- AVsum + F
   | some Vs => (AVsum ⊞ F) ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋])
+    (ContSet := 𝒵[𝕋])
       (MatExp.adaptiveIntegral (Interval.point sys.A) Δt η) Vs       -- ... + eAtInt Vstat
 
 end CORALean

@@ -98,7 +98,7 @@ def handleLinParamSysReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
       | some _ => pure (aux_ratOf (← scalarField req "tStart"))
     let tFinal := aux_ratOf (← scalarField req "tFinal")
     let Δt ← dops.readExact "timeStep" (← scalarField req "timeStep")
-    let options : LinearSys.ReachOptions 𝕋 :=
+    let options : LinearSys.ReachFloatOptions 𝕋 :=
       { Δt := Δt, η := ← natField req "taylorTerms", ρ := ← natField req "zonotopeOrder" }
     let hasInput := (fieldOpt req "U").isSome || (fieldOpt req "B").isSome ||
       (fieldOpt req "c").isSome

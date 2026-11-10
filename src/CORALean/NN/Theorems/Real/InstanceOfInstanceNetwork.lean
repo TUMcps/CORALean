@@ -37,9 +37,9 @@ nothing else does; forgetting it is this, one constructor at a time, the map unc
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S]
 
 

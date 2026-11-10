@@ -36,7 +36,7 @@ components' sets, and where each global input feeds one input those blocks agree
 
 namespace CORALean
 
-open CORALean.Real ContSet Matrix
+open CORALean.Real ContSet ContSetLike Matrix
 
 variable {k m : ℕ} {n : Fin k → ℕ}
 

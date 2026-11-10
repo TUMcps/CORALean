@@ -42,9 +42,9 @@ is what `NeuralNetwork.Encloses.enclose_outer` then answers from.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

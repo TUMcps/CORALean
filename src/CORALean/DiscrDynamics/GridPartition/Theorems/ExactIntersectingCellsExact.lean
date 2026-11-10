@@ -38,9 +38,9 @@ Not proved: that the outside share is the part of `P` beyond the state space.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.IntervalOuter S]
+variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Real.IntervalOuter S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

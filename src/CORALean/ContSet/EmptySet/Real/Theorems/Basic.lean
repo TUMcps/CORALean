@@ -27,7 +27,7 @@ sections each one uses (CONTRIBUTING, "Small declarations").
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 variable {n m : ℕ}
 

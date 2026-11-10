@@ -10,13 +10,13 @@ public import CORALean.ContSet.SetIntersection.SetIntersection
 
 `HoldsAll` checks a list of specifications one at a time, any mix of kinds;
 restricted to safe sets (or invariants, checked identically) it is exactly
-`X` inside their `SetIntersection`, the safe-set spec CORA names nothing but
+`𝒳` inside their `SetIntersection`, the safe-set spec CORA names nothing but
 this tree already has a representation of. Stated for `safeSet`, and does
 not replace `HoldsAll`, which stays what a heterogeneous list still needs.
 
 ## Inputs
 * `sets` – list of sets
-* `X` – set of points
+* `𝒳` – set of points
 
 ## Hypotheses
 * none
@@ -35,20 +35,20 @@ not replace `HoldsAll`, which stays what a heterogeneous list still needs.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {ContSet α : Type} [CORALean.ContSet ContSet α]
+variable {ContSet α : Type} [ContSetLike ContSet α]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `HoldsAll` over a list of safe sets, read as one safe set on their
-`SetIntersection`: `X` inside every listed set iff `X` inside all of them. -/
+`SetIntersection`: `𝒳` inside every listed set iff `𝒳` inside all of them. -/
 theorem Specification.holdsAll_safeSet_iff_setIntersection_holds
-    (sets : List ContSet) (X : Set α) : -- --- CONCL ---
-    Specification.HoldsAll (sets.map Specification.safeSet) X ↔
+    (sets : List ContSet) (𝒳 : Set α) : -- --- CONCL ---
+    Specification.HoldsAll (sets.map Specification.safeSet) 𝒳 ↔
       (Specification.safeSet (⟨sets⟩ : SetIntersection ContSet) :
-        Specification (SetIntersection ContSet)).Holds X := by -- --- PROOF ---
+        Specification (SetIntersection ContSet)).Holds 𝒳 := by -- --- PROOF ---
   constructor
   · intro h
     exact Set.subset_iInter₂ fun s hs => h (Specification.safeSet s) (List.mem_map_of_mem hs)

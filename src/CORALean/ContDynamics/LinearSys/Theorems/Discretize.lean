@@ -48,10 +48,10 @@ no partial form. A bounded domain goes through `reach_outer_horizon` instead.
 
 namespace CORALean
 
-open Matrix ContSet Scalar
+open Matrix ContSet ContSetLike Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 

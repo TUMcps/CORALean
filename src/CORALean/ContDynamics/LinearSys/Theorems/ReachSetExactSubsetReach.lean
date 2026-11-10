@@ -48,10 +48,10 @@ nothing is left to supply. Between the sample times this says nothing; that is
 
 namespace CORALean
 
-open Matrix ContSet Scalar
+open Matrix ContSet ContSetLike Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 

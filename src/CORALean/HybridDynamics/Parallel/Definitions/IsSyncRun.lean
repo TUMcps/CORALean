@@ -24,9 +24,9 @@ labels (`labels = []`, every `label = none`).
 
 namespace CORALean
 
-open Matrix ContSet Scalar
+open Matrix ContSetLike Scalar
 
-variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (G n) (Vec ℝ n)]
 variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type} {Λ : Type}
 
 
@@ -35,8 +35,8 @@ variable {𝕋 : Type} [Scalar 𝕋] {k m : ℕ} {n : Fin k → ℕ} {L : Fin k 
 /-- The runs of a parallel automaton with synchronization labels: an unlabeled transition is taken
 alone, a labeled one together with the same-labeled transition of every participant, all guards
 holding at the end of the same stay. -/
-inductive ParallelHybridAutomaton.IsSyncRun [DecidableEq Λ] [∀ n, ContSet (S n) (Vec ℝ n)]
-    [∀ n, ContSet (G n) (Vec ℝ n)] (P : ParallelHybridAutomaton S G k L 𝕋 n m)
+inductive ParallelHybridAutomaton.IsSyncRun [DecidableEq Λ] [∀ n, ContSetLike (S n) (Vec ℝ n)]
+    [∀ n, ContSetLike (G n) (Vec ℝ n)] (P : ParallelHybridAutomaton S G k L 𝕋 n m)
     (lab : ParallelHybridAutomaton.SyncLabels G L 𝕋 n Λ) :
     (∀ i, L i) → (∀ i, Vec ℝ (n i)) → (∀ i, L i) → (∀ i, Vec ℝ (n i)) → Prop where
   | flow {ℓ : ∀ i, L i} {τ : ℝ} {x : ∀ i, ℝ → Vec ℝ (n i)} {u w} {g : ℝ → Vec ℝ m}

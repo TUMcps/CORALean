@@ -55,10 +55,10 @@ is not in the set.
 
 namespace CORALean
 
-open Matrix ContSet
+open Matrix ContSetLike
 
 variable {n p m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- The model: CORA's code as printed, kept only to be refuted.
@@ -73,9 +73,9 @@ end CORALean
 
 namespace CORALean
 
-open Matrix ContSet
+open Matrix ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

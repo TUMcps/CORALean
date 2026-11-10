@@ -42,12 +42,12 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.isConvex_sound {P : Polygon 𝕋} (h : Polygon.isConvex P = true) : -- --- CONCL ---
-    Convex ℝ (ContSet.toSet P) := by -- --- PROOF ---
+    Convex ℝ (ContSetLike.toSet P) := by -- --- PROOF ---
   simp only [Polygon.isConvex, Bool.or_eq_true, List.isEmpty_iff, List.any_eq_true,
     List.all_eq_true] at h
   rcases h with h | ⟨p, hp, hall⟩
   · -- no piece: the empty region
-    have : ContSet.toSet P = ∅ := by
+    have : ContSetLike.toSet P = ∅ := by
       ext x
       simp only [Set.mem_empty_iff_false, iff_false]
       intro hx
@@ -57,7 +57,7 @@ theorem Polygon.isConvex_sound {P : Polygon 𝕋} (h : Polygon.isConvex P = true
     rw [this]
     exact convex_empty
   · -- the region is the piece that holds every piece
-    have : ContSet.toSet P = p.toSet := by
+    have : ContSetLike.toSet P = p.toSet := by
       ext x
       constructor
       · intro hx

@@ -27,7 +27,7 @@ built on a zonotope.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 -- Anonymous, since their content is that they elaborate.
 

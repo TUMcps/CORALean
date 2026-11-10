@@ -12,7 +12,7 @@ public import CORALean.ContSet.Interval.Real.Instances
 /-!
 # `LinearSys` and `LinearSys.WithInput` instantiate `ContDynamics` and `Reach`
 
-`params` is `Reach.Params` at real time, `options` `ReachStepOptions`; `reachExact` is each system's
+`params` is `Reach.Params` at real time, `options` `ReachOptions`; `reachExact` is each system's
 own on `[0, tFinal - tStart]`, the system being time-invariant. All of it is the canonical form's,
 as CORA's `reach` runs on `canonicalForm`: a `U` is the combined input `B U ⊕ c ⊕ E W` in state
 coordinates. `LinearSys.WithInput` carries `U ∋ 0` and asks the representation to be convex and
@@ -42,18 +42,19 @@ homogeneous case: `reachInstance` runs `reachAdmissible` (CORA's `standard`, [1,
 namespace CORALean
 
 open CORALean.Real
-open ContSet
+open ContSet ContSetLike
 
 variable {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
+variable {ContSet : ℕ → Type} [∀ n, ContSetLike (ContSet n) (Vec ℝ n)]
+variable [∀ n, Plus (ContSet n) (Vec ℝ n)] [∀ n, LinComb (ContSet n) (Vec ℝ n)]
+variable [Mtimes (Mat ℝ) ContSet] [Mtimes ℐ ContSet]
 
 
 -- ========================================  INSTANCES  ========================================= --
 
 noncomputable instance LinearSys.reachInstance :
-    Reach (LinearSys 𝕋) (fun n _ => Reach.Params (S n) ℝ) (LinearSys.ReachStepOptions ℝ) S where
+    Reach (LinearSys 𝕋) (fun n _ => Reach.Params (ContSet n) ℝ) (LinearSys.ReachOptions ℝ)
+      ContSet where
   reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (toSet params.X₀)
   reach sys params options :=
     if 0 < params.tFinal - params.tStart ∧ 0 < options.Δt then
@@ -68,7 +69,8 @@ noncomputable instance LinearSys.reachInstance :
 /-- Kept as a named `def` rather than an `instance`, so instance resolution stays
 unambiguous between it and `LinearSys.reachInstance`. -/
 @[reducible] noncomputable def LinearSys.reachWrappingFreeInstance :
-    Reach (LinearSys 𝕋) (fun n _ => Reach.Params (S n) ℝ) (LinearSys.ReachStepOptions ℝ) S where
+    Reach (LinearSys 𝕋) (fun n _ => Reach.Params (ContSet n) ℝ) (LinearSys.ReachOptions ℝ)
+      ContSet where
   reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (toSet params.X₀)
   reach sys params options :=
     if 0 < options.Δt then some (sys.reachWrappingFree params options) else none
@@ -79,9 +81,9 @@ unambiguous between it and `LinearSys.reachInstance`. -/
     exact sys.reachWrappingFree_outer params h
 
 noncomputable instance LinearSys.WithInput.reachInstance
-    [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)] :
-    Reach (LinearSys.WithInput 𝕋 S) (fun n _ => Reach.Params (S n) ℝ)
-      (LinearSys.ReachStepOptions ℝ) S where
+    [∀ n, ConvexSet (ContSet n) (Vec ℝ n)] [∀ n, CompactSet (ContSet n) (Vec ℝ n)] :
+    Reach (LinearSys.WithInput 𝕋 ContSet) (fun n _ => Reach.Params (ContSet n) ℝ)
+      (LinearSys.ReachOptions ℝ) ContSet where
   reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (toSet params.X₀)
   reach sys params options :=
     if 0 < options.Δt then some (sys.reach params options) else none
@@ -92,10 +94,10 @@ noncomputable instance LinearSys.WithInput.reachInstance
     exact sys.reach_outer params h
 
 noncomputable instance LinearSys.WithInputSplit.reachInstance
-    [∀ n, OfPoint (S n) (Vec ℝ n)] [∀ n, Recenter (S n) (Vec ℝ n)]
-    [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ n)] :
-    Reach (LinearSys.WithInputSplit 𝕋 S) (fun n _ => Reach.Params (S n) ℝ)
-      (LinearSys.ReachStepOptions ℝ) S where
+    [∀ n, OfPoint (ContSet n) (Vec ℝ n)] [∀ n, Recenter (ContSet n) (Vec ℝ n)]
+    [∀ n, ConvexSet (ContSet n) (Vec ℝ n)] [∀ n, CompactSet (ContSet n) (Vec ℝ n)] :
+    Reach (LinearSys.WithInputSplit 𝕋 ContSet) (fun n _ => Reach.Params (ContSet n) ℝ)
+      (LinearSys.ReachOptions ℝ) ContSet where
   reachExact sys params := sys.reachExact (params.tFinal - params.tStart) (toSet params.X₀)
   reach sys params options :=
     if 0 < options.Δt then some (sys.reach params options) else none

@@ -65,13 +65,13 @@ def LinearSys.oneStepFloat (sys : LinearSys 𝕋 n) (X U : Zonotope (Vec 𝕋 n)
   let PU := sys.inputSolutionFloat Δt η U                                 -- time-varying input
   let Pu := sys.inputSolutionFloat Δt η (Zonotope.point u)                -- constant input
   let C_input := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- `[G] u`
-    (S := 𝒵[𝕋])
+    (ContSet := 𝒵[𝕋])
     (MatExp.intervalConstCorrectionMatrix A Δt η) (Zonotope.point u)
   let Htp := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- `[e^{AΔt}] X ⊕ Pu`
-    (S := 𝒵[𝕋])
+    (ContSet := 𝒵[𝕋])
     (sys.expIntervalFloat Δt Δt η) X ⊞ Pu
   let C_state := Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- `[F] X`
-    (S := 𝒵[𝕋])
+    (ContSet := 𝒵[𝕋])
     (MatExp.intervalCorrectionMatrix A Δt η) X
   let Hti := LinComb.linComb X Htp ⊞ C_state                              -- `CH(X, Htp) ⊕ C_state`
   ⟨Htp ⊞ PU, Hti ⊞ PU ⊞ C_input⟩                                          -- `Rtp`, `Rti`

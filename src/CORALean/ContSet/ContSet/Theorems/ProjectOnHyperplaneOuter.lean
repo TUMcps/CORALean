@@ -33,10 +33,10 @@ from `x` to `{y | c ⬝ y = d}`; `mtimes_outer` and `plus_outer` carry it into t
 
 namespace CORALean
 
-open ContSet Pointwise
+open ContSet ContSetLike Pointwise
 
 variable {S : ℕ → Type}
-variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] {n : ℕ}
+variable [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] {n : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 

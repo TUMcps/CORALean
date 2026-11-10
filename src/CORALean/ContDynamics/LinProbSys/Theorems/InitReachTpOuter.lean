@@ -60,7 +60,7 @@ as for `initReach_ti_outer`.
 
 namespace CORALean
 
-open CORALean.Real Matrix NormedSpace ContSet
+open CORALean.Real Matrix NormedSpace ContSet ContSetLike
 open scoped MatrixOrder
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace

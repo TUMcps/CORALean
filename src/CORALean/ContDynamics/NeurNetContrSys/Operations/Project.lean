@@ -34,10 +34,10 @@ it runs at whichever representation the loop is reached in (`project_outer`).
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

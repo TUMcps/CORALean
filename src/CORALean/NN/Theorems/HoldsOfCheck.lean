@@ -15,7 +15,7 @@ everything the network computes on the input set.
 
 ## Inputs
 * `nn` – network
-* `X` – input set
+* `S` – input set
 * `spec` – specification
 
 ## Hypotheses
@@ -35,18 +35,19 @@ everything the network computes on the input set.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
-variable {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
+variable {ContSet₂ : ℕ → Type} [∀ n, ContSetLike (ContSet₂ n) (Vec ℝ n)] {n m : ℕ}
+variable {ContSet₁ : Type} [ContSetLike ContSet₁ (Vec ℝ m)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem NeuralNetwork.holds_of_check [Contains ContSet (S m)] [IsDisjoint ContSet (S m)]
-    (nn : NeuralNetwork S n m) (X : S n) (spec : Specification ContSet) :
-    spec.check (nn.enclose X) → (spec.Holds (nn.eval.out '' toSet X)) :=
-  fun h => nn.holds_of_enclose X spec (spec.check_sound _ h)
+theorem NeuralNetwork.holds_of_check [Contains ContSet₁ (ContSet₂ m)]
+    [IsDisjoint ContSet₁ (ContSet₂ m)]
+    (nn : NeuralNetwork ContSet₂ n m) (S : ContSet₂ n) (spec : Specification ContSet₁) :
+    spec.check (nn.enclose S) → (spec.Holds (nn.eval.out '' toSet S)) :=
+  fun h => nn.holds_of_enclose S spec (spec.check_sound _ h)
 
 end CORALean
 

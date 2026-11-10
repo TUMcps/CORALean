@@ -46,7 +46,7 @@ out.
 
 namespace CORALean
 
-open CORALean.Real Matrix ContSet
+open CORALean.Real Matrix ContSet ContSetLike
 
 variable {n p m q : ℕ}
 

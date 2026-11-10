@@ -14,10 +14,10 @@ public import CORALean.ContSet.Capsule.Float.Theorems.ReindexExact
 # What a float `Capsule` instantiates
 
 `ConvexSet` and `CompactSet`, from the theorems that say so, then `Reduce` (the identity, as CORA's
-empty body) and `Reindex` (CORA's `lift_` at a permutation). `ContSet` comes from `InflatedContSet`.
-`Plus` and `Mtimes` take 100 Newton steps for their roots (`Capsule.plus`,
-`Capsule.mtimes`; more steps buy accuracy only). As over ℝ, no `LinComb`: a capsule is closed
-under almost nothing.
+empty body) and `Reindex` (CORA's `lift_` at a permutation). `ContSetLike` comes from
+`InflatedContSet`. `Plus` and `Mtimes` take 100 Newton steps for their roots (`Capsule.plus`,
+`Capsule.mtimes`; more steps buy accuracy only). As over ℝ, no `LinComb`: a capsule is closed under
+almost nothing.
 -/
 
 -- Authors:       Claude Opus 5.5

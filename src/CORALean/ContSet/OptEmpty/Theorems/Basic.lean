@@ -26,8 +26,8 @@ variable {S α : Type}
 -- Reviewed:      ---
 
 /-- The empty case denotes `∅`. -/
-@[simp] theorem OptEmpty.toSet_empty [ContSet S α] :
-    ContSet.toSet (OptEmpty.empty : OptEmpty S) = (∅ : Set α) := rfl
+@[simp] theorem OptEmpty.toSet_empty [ContSetLike S α] :
+    ContSetLike.toSet (OptEmpty.empty : OptEmpty S) = (∅ : Set α) := rfl
 
 
 -- ===================================  `OptEmpty.toSet_of`  ==================================== --
@@ -37,8 +37,8 @@ variable {S α : Type}
 -- Reviewed:      ---
 
 /-- A wrapped representation denotes what it denotes. -/
-@[simp] theorem OptEmpty.toSet_of [ContSet S α] (s : S) :
-    ContSet.toSet (OptEmpty.of s) = ContSet.toSet s := rfl
+@[simp] theorem OptEmpty.toSet_of [ContSetLike S α] (s : S) :
+    ContSetLike.toSet (OptEmpty.of s) = ContSetLike.toSet s := rfl
 
 end CORALean
 

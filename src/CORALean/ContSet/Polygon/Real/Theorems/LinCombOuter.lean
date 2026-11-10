@@ -37,8 +37,8 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.linComb_outer (P Q : Polygon) : -- --- CONCL ---
-    Set.linComb (ContSet.toSet P) (ContSet.toSet Q) ⊆
-      ContSet.toSet (Polygon.linComb P Q) := by -- --- PROOF ---
+    Set.linComb (ContSetLike.toSet P) (ContSetLike.toSet Q) ⊆
+      ContSetLike.toSet (Polygon.linComb P Q) := by -- --- PROOF ---
   rintro _ ⟨y₁, hy₁, y₂, hy₂, lam, hlam, rfl⟩
   obtain ⟨p, hp, hy₁⟩ := SetUnion.mem_toSet.mp hy₁
   obtain ⟨q, hq, hy₂⟩ := SetUnion.mem_toSet.mp hy₂

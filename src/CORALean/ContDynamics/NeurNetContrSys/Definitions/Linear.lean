@@ -31,7 +31,7 @@ namespace CORALean
 /-- The closed loop at a `LinearSys` plant, over every state dimension, with its external input
 set. -/
 structure NeurNetContrSys.Linear (𝕋 : Type) [Scalar 𝕋] (S : ℕ → Type)
-    [∀ n, ContSet (S n) (Vec ℝ n)] (n : ℕ) : Type 1 where
+    [∀ n, ContSetLike (S n) (Vec ℝ n)] (n : ℕ) : Type 1 where
   sys : NeurNetContrSys (LinearSys 𝕋 n) S n
   U : S sys.nExt
 

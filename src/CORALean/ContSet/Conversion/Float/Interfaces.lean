@@ -31,7 +31,7 @@ function of its range; `OfInterval` puts a computed box back, as a bias vector o
 
 namespace CORALean.Float
 
-open ContSet
+open ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
@@ -41,14 +41,14 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 /-- Named for the target, as every conversion is: `interval` is CORA's
 `interval(S)`. -/
 class IntervalOuter (S : ℕ → Type) (𝕋 : outParam Type) [FloatOps 𝕋]
-    [SoundFloatArithmetic 𝕋] [∀ n, ContSet (S n) (Vec ℝ n)] where
+    [SoundFloatArithmetic 𝕋] [∀ n, ContSetLike (S n) (Vec ℝ n)] where
   interval {n : ℕ} : S n → Interval (Vec 𝕋 n)
   interval_outer {n : ℕ} (s : S n) : toSet s ⊆ toSet (interval s)
 
 /-- Named for the source, alone among the conversions, the target having no name
 to be called after. -/
 class OfInterval (S : ℕ → Type) (𝕋 : outParam Type) [FloatOps 𝕋]
-    [SoundFloatArithmetic 𝕋] [∀ n, ContSet (S n) (Vec ℝ n)] where
+    [SoundFloatArithmetic 𝕋] [∀ n, ContSetLike (S n) (Vec ℝ n)] where
   ofInterval {n : ℕ} : Interval (Vec 𝕋 n) → S n
   ofInterval_outer {n : ℕ} (I : Interval (Vec 𝕋 n)) : toSet I ⊆ toSet (ofInterval I)
 

@@ -61,13 +61,13 @@ it in its float input solution.
 namespace CORALean
 
 open CORALean.Float FloatOps SoundFloatArithmetic
-open Matrix ContSet NormedSpace MeasureTheory
+open Matrix ContSet ContSetLike NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
-variable {G : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)]
+variable {G : ℕ → Type} [∀ n, ContSetLike (G n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -36,26 +36,26 @@ with a non-zero input a trajectory also picks up the input integral, which is
 namespace CORALean
 
 open CORALean.Real
-open Matrix Pointwise ContSet Scalar NormedSpace
+open Matrix Pointwise ContSet ContSetLike Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
-variable [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
-variable [Mtimes ℐ S]
+variable {ContSet : ℕ → Type} [∀ n, ContSetLike (ContSet n) (Vec ℝ n)]
+variable [∀ n, Plus (ContSet n) (Vec ℝ n)] [∀ n, LinComb (ContSet n) (Vec ℝ n)]
+variable [∀ n, Reduce (ContSet n) (Vec ℝ n)] [Mtimes (Mat ℝ) ContSet]
+variable [Mtimes ℐ ContSet]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-omit [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] in
+omit [∀ n, Reduce (ContSet n) (Vec ℝ n)] [Mtimes (Mat ℝ) ContSet] in
 /-- Every image of the initial set under the flow, at a named time of the step.
 `timeInterval_outer` is the same guarantee, quantified over every such
 time at once. -/
 theorem LinearSys.timeInterval_outer_at (sys : LinearSys 𝕋 n) {r : ℝ} (hr : 0 < r) {m : ℕ}
-    (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ X₁ : S n)
+    (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) (X₀ X₁ : ContSet n)
     (hX : sys.reachExactAt r (toSet X₀) ⊆ toSet X₁)
     {t : ℝ} (ht0 : 0 ≤ t) (htr : t ≤ r) : -- --- CONCL ---
     (fun x₀ => exp (t • toRealMat sys.A) *ᵥ x₀) '' toSet X₀

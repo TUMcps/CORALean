@@ -50,9 +50,9 @@ does.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {S α L : Type} [ContSet S α]
+variable {S α L : Type} [ContSetLike S α]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

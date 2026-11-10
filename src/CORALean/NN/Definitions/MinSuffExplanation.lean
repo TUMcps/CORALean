@@ -38,7 +38,7 @@ its features breaks sufficiency.
 
 namespace CORALean
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

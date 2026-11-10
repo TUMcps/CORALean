@@ -38,7 +38,7 @@ what lets a caller state the map in its own terms, as `NeuralNetwork.Encloses.co
 
 namespace CORALean
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S]
 
 

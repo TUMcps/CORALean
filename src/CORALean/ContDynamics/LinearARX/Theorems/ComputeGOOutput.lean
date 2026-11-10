@@ -46,10 +46,10 @@ first block yet, which is `aux_outputC_pow_mulVec_inputMat`.
 
 namespace CORALean
 
-open ContSet Scalar Plus Mtimes Matrix
+open ContSetLike Scalar Plus Mtimes Matrix
 
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {dy du p : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 
 

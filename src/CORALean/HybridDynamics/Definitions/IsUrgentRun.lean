@@ -39,9 +39,9 @@ non-urgent runs as well, so every enclosure of its reachable states encloses the
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSetLike Scalar
 
-variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (G n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 
@@ -53,8 +53,8 @@ def Location.IsGuardFreeBefore (ℓ : Location S G L 𝕋 n) (τ : ℝ) (x : ℝ
 
 /-- [1, Def. 1]'s runs: as `IsRun`, with every transition taken at the first time its
 location's guards are met. -/
-inductive HybridAutomaton.IsUrgentRun {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
-    [∀ n, ContSet (G n) (Vec ℝ n)] {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
+inductive HybridAutomaton.IsUrgentRun {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
+    [∀ n, ContSetLike (G n) (Vec ℝ n)] {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
     (HA : HybridAutomaton S G L 𝕋 n) :
     L → Vec ℝ n → L → Vec ℝ n → Prop where
   | flow {ℓ : L} {τ : ℝ} {x : ℝ → Vec ℝ n} {u w} (h : (HA.loc ℓ).IsTrajectory τ x u w)

@@ -44,7 +44,7 @@ invertible.
 
 namespace CORALean
 
-variable {S T α β : Type} [ContSet S α] [ContSet T β]
+variable {S T α β : Type} [ContSetLike S α] [ContSetLike T β]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
@@ -52,9 +52,9 @@ variable {S T α β : Type} [ContSet S α] [ContSet T β]
 /-- Members that are the exact images under a bijection denote the image of the intersection. -/
 theorem SetIntersection.memberwise_image_exact {k : ℕ} {f : Fin k → S} {g : Fin k → T}
     (F : α → β) (hF : Function.Bijective F)
-    (h : ∀ i, ContSet.toSet (g i) = F '' ContSet.toSet (f i)) : -- --- CONCL ---
-    ContSet.toSet (⟨List.ofFn g⟩ : SetIntersection T)
-      = F '' ContSet.toSet (⟨List.ofFn f⟩ : SetIntersection S) := by -- --- PROOF ---
+    (h : ∀ i, ContSetLike.toSet (g i) = F '' ContSetLike.toSet (f i)) : -- --- CONCL ---
+    ContSetLike.toSet (⟨List.ofFn g⟩ : SetIntersection T)
+      = F '' ContSetLike.toSet (⟨List.ofFn f⟩ : SetIntersection S) := by -- --- PROOF ---
   rw [SetIntersection.toSet_ofFn, SetIntersection.toSet_ofFn, Set.image_iInter hF]
   exact Set.iInter_congr h
 

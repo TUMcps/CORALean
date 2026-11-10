@@ -40,7 +40,7 @@ needed, not an artefact of the proof (#40).
 
 namespace CORALean.Real
 
-open Matrix ContSet Scalar
+open Matrix ContSet ContSetLike Scalar
 
 
 -- ------------------------------------------  STEPS  ------------------------------------------- --

@@ -33,9 +33,9 @@ the `tranFrac.TP` the function reads; the second output `tp` is `reachProbabilit
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {n m : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.IntervalOuter S]
+variable {n m : ℕ} {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Real.IntervalOuter S]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

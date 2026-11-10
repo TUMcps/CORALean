@@ -45,7 +45,7 @@ member `A` of the float interval matrix and every `t ∈ [0, Δt]`. The time poi
 
 namespace CORALean
 
-open CORALean.Float SoundFloatArithmetic Matrix ContSet
+open CORALean.Float SoundFloatArithmetic Matrix ContSet ContSetLike
 open scoped CORALean.Real
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace

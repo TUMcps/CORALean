@@ -66,13 +66,13 @@ open Float SoundFloatArithmetic
 
 variable {T : Type} [FloatOps T] [SoundFloatArithmetic T] [ExactLe T]
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {n : ℕ}
-  [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
+  [∀ k, ContSetLike (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
 
-omit [ExactLe T] [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
+omit [ExactLe T] [∀ k, ContSetLike (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
 /-- Mapping the time stamps keeps the parents, so the children of every entry. -/
 private theorem aux_children_mapTime (R : List (ReachSetAnalyzer.Entry T S n)) :
@@ -83,7 +83,7 @@ private theorem aux_children_mapTime (R : List (ReachSetAnalyzer.Entry T S n)) :
   simp only [List.length_map, List.getElem?_map, Option.map_map]
   rfl
 
-omit [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
+omit [∀ k, ContSetLike (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)] in
 /-- A valid mask that lets an interval through lets every interval enclosing it through. -/
 private theorem aux_maskOk_mono (obj : ReachSetAnalyzer ℝ S n) (hm : ∀ p ∈ obj.masks, p.2.IsValid)

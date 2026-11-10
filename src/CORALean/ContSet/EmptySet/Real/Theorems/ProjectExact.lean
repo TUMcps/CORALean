@@ -32,7 +32,7 @@ returned empty set in `m` dimensions denotes.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 variable {n m : ℕ}
 

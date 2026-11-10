@@ -35,7 +35,7 @@ whole window. An input set off the origin is split as in [2, Eq. 4], a constant 
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 
 -- ========================================  MAIN TYPE  ========================================= --
@@ -43,7 +43,7 @@ open ContSet
 /-- A `LinearSys` paired with the input set every run draws from, which holds
 the origin. -/
 structure LinearSys.WithInput (𝕋 : Type) [Scalar 𝕋] (S : ℕ → Type)
-    [∀ n, ContSet (S n) (Vec ℝ n)] (n : ℕ) where
+    [∀ n, ContSetLike (S n) (Vec ℝ n)] (n : ℕ) where
   sys : LinearSys 𝕋 n
   U : S n
   zero_mem_U : (0 : Vec ℝ n) ∈ toSet U

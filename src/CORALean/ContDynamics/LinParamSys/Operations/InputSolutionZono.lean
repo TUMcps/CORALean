@@ -50,10 +50,10 @@ to second order for the same reason). The four pieces stay four separate product
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {n : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes 𝕄𝒵 S] [Mtimes ℐ S]
 
 

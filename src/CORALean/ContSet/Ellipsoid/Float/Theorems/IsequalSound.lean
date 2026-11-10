@@ -68,8 +68,8 @@ theorem Ellipsoid.isequal_sound {E S : Ellipsoid 𝕋 n} (h : E.isequal S = true
       = ⟨toRealMat Q₂, toRealVec q₂⟩
     rw [hq, hQ]
   -- so the two sums of nominal set and error box are the same
-  change ContSet.toSet (nominal (⟨Q₁, q₁, E₁⟩ : Ellipsoid 𝕋 n)) + E₁.toSet =
-    ContSet.toSet (nominal (⟨Q₂, q₂, E₂⟩ : Ellipsoid 𝕋 n)) + E₂.toSet
+  change ContSetLike.toSet (nominal (⟨Q₁, q₁, E₁⟩ : Ellipsoid 𝕋 n)) + E₁.toSet =
+    ContSetLike.toSet (nominal (⟨Q₂, q₂, E₂⟩ : Ellipsoid 𝕋 n)) + E₂.toSet
   rw [hN, hE]
 
 end CORALean.Float

@@ -67,13 +67,13 @@ conservative linearization assumes: the confinement `hconf` and the properties o
 namespace CORALean
 
 open CORALean.Real
-open ContSet Matrix NormedSpace Scalar Set
+open ContSet ContSetLike Matrix NormedSpace Scalar Set
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [OfInterval S]
 
 

@@ -47,7 +47,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.volume_le (P : Polygon 𝕋) :
-    MeasureTheory.volume (ContSet.toSet P) ≤ ENNReal.ofReal (toReal (Polygon.volume P)) :=
+    MeasureTheory.volume (ContSetLike.toSet P) ≤ ENNReal.ofReal (toReal (Polygon.volume P)) :=
   le_trans (MeasureTheory.measure_mono (Polygon.interval_contains P))
     (Interval.volume_le (Polygon.interval P))
 

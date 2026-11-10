@@ -34,9 +34,9 @@ width through `OfInterval`, which keeps `ConPolyZono` out. `W` and `w` are read 
 
 namespace CORALean
 
-open Matrix ContSet Scalar Plus Mtimes Real.OfInterval
+open Matrix ContSet ContSetLike Scalar Plus Mtimes Real.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
 variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [Real.OfInterval S] {G : ℕ → Type}
 variable {L : Type} {n : ℕ}
 

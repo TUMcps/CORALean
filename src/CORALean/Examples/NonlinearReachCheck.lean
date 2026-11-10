@@ -26,7 +26,7 @@ further — no confinement of any run — to answer for every trajectory.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 open scoped CORALean.Float
 
 -- Anonymous, since their content is that they elaborate.
@@ -36,16 +36,16 @@ example (sys : NonlinearSysDT.WithSteps ℐ𝒱
       ℐ𝒱[ℝ] ℝ 1 2)
     (params : Reach.Params (Interval (Vec ℝ 2)) ℕ) (options : NonlinearSysDT.ReachOptions)
     (spec : Specification (Float.Interval (Vec ℝ 2))) :
-    Reach.check (S := ℐ𝒱) sys params options spec →
-    (spec.Holds (Reach.reachExact (S := ℐ𝒱) sys params)) :=
+    Reach.check (ContSet₂ := ℐ𝒱) sys params options spec →
+    (spec.Holds (Reach.reachExact (ContSet := ℐ𝒱) sys params)) :=
   Reach.holds_of_check _ _ _ _
 
 /-- The continuous case, the ball test `2MΔt` about each step's start run by `reach`. -/
 example (sys : NonlinearSys.WithSteps 𝒵 ℐ𝒱[ℝ] 1 2)
-    (params : Reach.Params (Zonotope (Vec ℝ 2)) ℝ) (options : LinearSys.ReachOptions ℝ)
+    (params : Reach.Params (Zonotope (Vec ℝ 2)) ℝ) (options : LinearSys.ReachFloatOptions ℝ)
     (spec : Specification (Float.Interval (Vec ℝ 2))) :
-    Reach.check (S := 𝒵) sys params options spec →
-    (spec.Holds (Reach.reachExact (S := 𝒵) sys params)) :=
+    Reach.check (ContSet₂ := 𝒵) sys params options spec →
+    (spec.Holds (Reach.reachExact (ContSet := 𝒵) sys params)) :=
   Reach.holds_of_check _ _ _ _
 
 end CORALean.Real

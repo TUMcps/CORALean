@@ -58,7 +58,7 @@ lies in `inputSolutionFloat`. Each propagator `e^{A t_j}` is in the window
 
 namespace CORALean
 
-open CORALean.Float SoundFloatArithmetic Matrix ContSet NormedSpace
+open CORALean.Float SoundFloatArithmetic Matrix ContSet ContSetLike NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

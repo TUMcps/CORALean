@@ -61,7 +61,7 @@ theorem LinearSys.reachInputError_subset_float (sys : LinearSys 𝕋 n) {Δt : �
     (hΔt : 0 ≤ toReal Δt) {η : ℕ} (hη : sys.IsOrderAdmissibleFloat Δt Δt η)
     (U : Zonotope (Vec 𝕋 n)) (k : ℕ) : -- --- CONCL ---
     (sys.reachInputError (toReal Δt) η (nominal U) k).toSet ⊆
-      ContSet.toSet (sys.reachInputErrorFloat Δt η U k) := by -- --- PROOF ---
+      ContSetLike.toSet (sys.reachInputErrorFloat Δt η U k) := by -- --- PROOF ---
   have heA := sys.exp_mem_expIntervalFloat hη (t := toReal Δt) le_rfl le_rfl
   have hbox := sys.timePointStepErrorBox_subset_float hΔt hη U
   induction k with

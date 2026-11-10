@@ -32,9 +32,9 @@ public import CORALean.ContSet.ContSet.Theorems.ConvexHullUnionEqSetLinComb
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {α : Type} [AddCommGroup α] [Module ℝ α] {S : Type} [ContSet S α]
+variable {α : Type} [AddCommGroup α] [Module ℝ α] {S : Type} [ContSetLike S α]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -44,11 +44,11 @@ is `x t` here, at whichever `x`, external input `v` and disturbance `w` a `IsTra
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 open ContDynamics
 
 variable {n : ℕ} {P : Type} [ContDynamics P n]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

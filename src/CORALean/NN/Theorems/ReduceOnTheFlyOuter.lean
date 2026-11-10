@@ -58,11 +58,11 @@ at every `le`, `tol`, `fuel` and `ρ`: which buckets come out never matters to s
 
 namespace CORALean
 
-open Matrix ContSet Float Float.IntervalOuter Float.SoundFloatArithmetic
+open Matrix ContSet ContSetLike Float Float.IntervalOuter Float.SoundFloatArithmetic
 open scoped CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [IntervalOuter S 𝕋] [OfInterval S 𝕋] {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋}
   {fuel : ℕ} {ρ : 𝕋}
 

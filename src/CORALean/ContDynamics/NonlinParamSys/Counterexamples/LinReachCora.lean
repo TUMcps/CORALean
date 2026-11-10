@@ -61,7 +61,7 @@ system has `zA = 0` and `zf = [1, 2]`, so its step set is `x₀ + r [1, 2]`.
 
 namespace CORALean
 
-open CORALean.Real ContSet
+open CORALean.Real ContSet ContSetLike
 
 variable {n m q : ℕ}
 
@@ -89,7 +89,7 @@ end CORALean
 
 namespace CORALean
 
-open CORALean.Real ContSet Matrix
+open CORALean.Real ContSet ContSetLike Matrix
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -111,7 +111,7 @@ private theorem aux_IsNullZono_plus {Z₁ Z₂ : Zonotope (Vec ℝ 1)} (h₁ : a
 
 private theorem aux_IsNullZono_mtimesInterval {Z : Zonotope (Vec ℝ 1)} (hZ : aux_IsNullZono Z)
     (IM : Interval (Mat ℝ 1 1)) : -- --- CONCL ---
-    aux_IsNullZono (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) IM Z) := by -- --- PROOF ---
+    aux_IsNullZono (Mtimes.mtimes (𝕄 := ℐ) (ContSet := 𝒵) IM Z) := by -- --- PROOF ---
   refine ⟨by show IM.center *ᵥ Z.c = 0; rw [hZ.1]; simp, fun l => ?_⟩
   show Fin.append (fun l => IM.center *ᵥ Z.G l)
     (Matrix.diagonal fun i => Zonotope.radiusReach IM Z i) l = 0
@@ -123,7 +123,7 @@ private theorem aux_IsNullZono_mtimesInterval {Z : Zonotope (Vec ℝ 1)} (hZ : a
 
 private theorem aux_IsNullZono_mtimesMatZonotope {Z : Zonotope (Vec ℝ 1)} (hZ : aux_IsNullZono Z)
     (M : Zonotope (Mat ℝ 1 1)) : -- --- CONCL ---
-    aux_IsNullZono (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) M Z) := by -- --- PROOF ---
+    aux_IsNullZono (Mtimes.mtimes (𝕄 := 𝕄𝒵) (ContSet := 𝒵) M Z) := by -- --- PROOF ---
   refine ⟨by simp [Mtimes.mtimes, Zonotope.mtimesMatZonotope, Zonotope.bilin, hZ.1], fun l => ?_⟩
   simp only [Mtimes.mtimes, Zonotope.mtimesMatZonotope, Zonotope.bilin]
   refine Fin.addCases (fun i => ?_) (fun k => ?_) l
@@ -133,7 +133,7 @@ private theorem aux_IsNullZono_mtimesMatZonotope {Z : Zonotope (Vec ℝ 1)} (hZ 
 
 private theorem aux_IsNullZono_mtimesMatZonotope_zero {Z : Zonotope (Vec ℝ 1)}
     {M : Zonotope (Mat ℝ 1 1)} (hc : M.c = 0) (hh : M.h = 0) : -- --- CONCL ---
-    aux_IsNullZono (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) M Z) := by -- --- PROOF ---
+    aux_IsNullZono (Mtimes.mtimes (𝕄 := 𝕄𝒵) (ContSet := 𝒵) M Z) := by -- --- PROOF ---
   refine ⟨by simp [Mtimes.mtimes, Zonotope.mtimesMatZonotope, Zonotope.bilin, hc], fun l => ?_⟩
   simp only [Mtimes.mtimes, Zonotope.mtimesMatZonotope, Zonotope.bilin]
   refine Fin.addCases (fun i => ?_) (fun k => ?_) l
@@ -150,7 +150,7 @@ private theorem LinParamSys.aux_inputSolutionZono_null (zA : Zonotope (Mat ℝ 1
     (UG : Fin zA.h → Vec ℝ 1) (Uc : Vec ℝ 1) (r : ℝ) (S : Zonotope (Vec ℝ 1) → ℝ)
     (hS : ∀ Z, S Z = Z.c 0 + ∑ l, |Z.G l 0|) : -- --- CONCL ---
     let X := (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).inputSolutionZono (S := 𝒵) r 2
-      (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵)
+      (Mtimes.mtimes (𝕄 := 𝕄𝒵) (ContSet := 𝒵)
         (⟨(LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).B.h, 0,
           (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).B.G⟩ : Zonotope (Mat ℝ 1 1))
         (⟨zA.h, Uc, UG⟩ : Zonotope (Vec ℝ 1)))
@@ -198,7 +198,7 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
     simp [Fin.append_left, Fin.append_right]
     ring
   have hSmt : ∀ (IM : Interval (Mat ℝ 1 1)) (Z : Zonotope (Vec ℝ 1)),
-      (∀ i j, IM.radius i j = 0) → S (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) IM Z)
+      (∀ i j, IM.radius i j = 0) → S (Mtimes.mtimes (𝕄 := ℐ) (ContSet := 𝒵) IM Z)
         = IM.center 0 0 * Z.c 0 + ∑ l, |IM.center 0 0 * Z.G l 0| := by
     intro IM Z hrad
     simp only [hS]
@@ -259,7 +259,7 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
     have hfst : ((LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).initReachInputDependence
         r 2 Rd Uc UG).1 = (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).dependentHomSol
           r 2 Rd Uc UG ⊞ (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).inputSolutionZono
-            (S := 𝒵) r 2 (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵)
+            (S := 𝒵) r 2 (Mtimes.mtimes (𝕄 := 𝕄𝒵) (ContSet := 𝒵)
               (⟨(LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).B.h, 0,
                 (LinParamSys.canonical zA : LinParamSys 𝕄𝒵 1).B.G⟩ : Zonotope (Mat ℝ 1 1))
               (⟨zA.h, Uc, UG⟩ : Zonotope (Vec ℝ 1))) := by
@@ -311,19 +311,19 @@ theorem NonlinParamSys.linReachCora_misses_counterexample {r : ℝ} (hr : 0 < r)
         (hpow C hzC _ _ _).1, (hpow C hzC _ _ _).2, habs C hzC, hE, (hp0 C _ _).1, (hp0 C _ _).2]
     -- the center and the size of an interval matrix times a zonotope
     have hcmt : ∀ (IM : Interval (Mat ℝ 1 1)) (Z : Zonotope (Vec ℝ 1)),
-        (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) IM Z).c 0 = IM.center 0 0 * Z.c 0 := by
+        (Mtimes.mtimes (𝕄 := ℐ) (ContSet := 𝒵) IM Z).c 0 = IM.center 0 0 * Z.c 0 := by
       intro IM Z
       show (IM.center *ᵥ Z.c) 0 = _
       simp [Matrix.mulVec, dotProduct]
     have hZ : ∀ (IM : Interval (Mat ℝ 1 1)) (Z : Zonotope (Vec ℝ 1)),
         (∀ i j, IM.inf i j = 0 ∧ IM.sup i j = 0) →
-        S (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) IM Z) = 0 := by
+        S (Mtimes.mtimes (𝕄 := ℐ) (ContSet := 𝒵) IM Z) = 0 := by
       intro IM Z h0
       rw [hSmt IM Z (fun i j => by simp [Interval.radius, (h0 i j).1, (h0 i j).2])]
       simp [Interval.center, (h0 0 0).1, (h0 0 0).2]
     have hI1 : ∀ (IM : Interval (Mat ℝ 1 1)) (Z : Zonotope (Vec ℝ 1)),
         (∀ i j, IM.inf i j = (if i = j then 1 else 0) ∧ IM.sup i j = (if i = j then 1 else 0)) →
-        S (Mtimes.mtimes (𝕄 := ℐ) (S := 𝒵) IM Z) = S Z := by
+        S (Mtimes.mtimes (𝕄 := ℐ) (ContSet := 𝒵) IM Z) = S Z := by
       intro IM Z h0
       rw [hSmt IM Z (fun i j => by simp [Interval.radius, (h0 i j).1, (h0 i j).2])]
       simp [Interval.center, (h0 0 0).1, (h0 0 0).2, hS]

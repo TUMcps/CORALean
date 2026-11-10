@@ -41,9 +41,9 @@ false if none does.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {S : ℕ → Type} {n : ℕ} [∀ k, ContSet (S k) (Vec ℝ k)]
+variable {S : ℕ → Type} {n : ℕ} [∀ k, ContSetLike (S k) (Vec ℝ k)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

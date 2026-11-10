@@ -39,7 +39,7 @@ with one parameter `p ∈ P` is, at every time of window `k`, in the `k`-th set
 
 namespace CORALean
 
-open CORALean.Float SoundFloatArithmetic ContSet
+open CORALean.Float SoundFloatArithmetic ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n m q : ℕ}
 
@@ -50,7 +50,7 @@ theorem NonlinParamSys.reachFloat_outer (sys : NonlinParamSys n m q)
     {fm : NonlinearSys.FloatModel 𝕋 (n + q) m} (h : fm.Encloses sys.augment)
     {P : Zonotope (Vec 𝕋 q)}
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
+    {options : LinearSys.ReachFloatOptions 𝕋} : -- --- CONCL ---
     ∀ Rs ∈ sys.reachFloat fm P params options,
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {p : Vec ℝ q}

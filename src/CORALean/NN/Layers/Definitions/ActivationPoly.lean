@@ -58,7 +58,7 @@ stored polynomial zonotope, which rounds.
 
 namespace CORALean.Real
 
-open Pointwise ContSet Plus
+open Pointwise ContSet ContSetLike Plus
 
 variable {m n : ℕ}
 

@@ -57,11 +57,11 @@ and `pr`: [1, Alg. 2] at the cycle ends.
 
 namespace CORALean
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 open ContDynamics
 
 variable {n : ℕ} {P : Type} [ContDynamics P n]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -46,7 +46,7 @@ this direction.
 namespace CORALean
 
 open CORALean.Real
-open Matrix Pointwise ContSet Scalar
+open Matrix Pointwise ContSet ContSetLike Scalar
 
 variable {n : ℕ}
 

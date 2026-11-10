@@ -17,9 +17,9 @@ public import CORALean.Global.SupportFunction.Composition
 /-!
 # What `HPolytope` instantiates
 
-`ContSet`, `ConvexSet`, and `Reduce` as the identity: CORA's `compact` drops redundant halfspaces
-and keeps the set exactly, so doing nothing is the sound stand-in until that algorithm is written.
-`Plus` and `LinComb` at `Vec ℝ n`, where `supportBound` answers a direction by simplex; a
+`ContSetLike`, `ConvexSet`, and `Reduce` as the identity: CORA's `compact` drops redundant
+halfspaces and keeps the set exactly, so doing nothing is the sound stand-in until that algorithm is
+written. `Plus` and `LinComb` at `Vec ℝ n`, where `supportBound` answers a direction by simplex; a
 description with no rows is unbounded, so the answer is an `Option` and an unanswered direction
 contributes the vacuous row `0 x ≤ 0`, the directions being the operands' own rows. Not `Mtimes`: no
 direction on the target is named by the operands, so the choice would be a precision one.
@@ -49,7 +49,7 @@ scoped notation "ℋ𝒫" => fun n => HPolytope (Vec ℝ n)
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (HPolytope α) α := ⟨HPolytope.toSet⟩
+instance : ContSetLike (HPolytope α) α := ⟨HPolytope.toSet⟩
 
 instance : ConvexSet (HPolytope α) α := ⟨HPolytope.convex_toSet⟩
 

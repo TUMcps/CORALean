@@ -63,7 +63,7 @@ theorem LinearSys.reachStepkWrappingFreeFloat_outer (sys : LinearSys 𝕋 n) {Δ
   -- `t_k` lies in its bracket
   obtain ⟨hLo, hHi⟩ := LinearSys.sampleTimeFloat_mem Δt k
   exact Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋]) _ Rτ₀
+    (ContSet := 𝒵[𝕋]) _ Rτ₀
     (Set.mem_biUnion (sys.exp_mem_expSquaringFloat (LinearSys.squaringsFloat_spec h2 _ hsk)
       hLo hHi) (Set.mem_image_of_mem _ hy))
 

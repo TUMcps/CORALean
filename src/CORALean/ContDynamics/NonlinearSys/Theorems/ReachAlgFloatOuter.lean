@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 private theorem NonlinearSys.FloatHessModel.Encloses.aux_linReachRunFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {alg : NonlinearSys.LinReachAlg} {U : Zonotope (Vec 𝕋 m)}
-    {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
+    {options : LinearSys.ReachFloatOptions 𝕋} : -- --- CONCL ---
     ∀ (k : ℕ) {R : Zonotope (Vec 𝕋 n)} {Rs : List (Zonotope (Vec 𝕋 n))},
       fm.step_linReachRunFloat alg U options k R = some Rs → Rs.length = k ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
@@ -105,7 +105,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.reachAlgFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {alg : NonlinearSys.LinReachAlg}
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
+    {options : LinearSys.ReachFloatOptions 𝕋} : -- --- CONCL ---
     ∀ Rs ∈ fm.reachAlgFloat alg params options,
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},

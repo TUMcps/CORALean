@@ -42,13 +42,13 @@ denotes the star set's. The level set is found, not computed: eliminating the co
 
 namespace CORALean.Real
 
-open ContSet
+open ContSetLike
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- [1, Fig. 1 (Star Sets ↔ Level Sets)]: a star set, at any predicate, is a level set. -/
-theorem StarSet.exists_levelSet_exact {P : ℕ → Type} [∀ m, ContSet (P m) (Vec ℝ m)] {n : ℕ}
+theorem StarSet.exists_levelSet_exact {P : ℕ → Type} [∀ m, ContSetLike (P m) (Vec ℝ m)] {n : ℕ}
     (s : StarSet P n) : ∃ L : LevelSet n, L.toSet = s.toSet :=
   LevelSet.exists_toSet_eq s.toSet
 

@@ -41,10 +41,10 @@ over a window `[a, b]` reads, where a classical run read the mean value inequali
 
 namespace CORALean
 
-open ContSet intervalIntegral
+open ContSetLike intervalIntegral
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

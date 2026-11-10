@@ -8,7 +8,7 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.IntersectionOuter
 /-!
 # What the float `HPolytope` instantiates
 
-`ContSet` (through `InflatedContSet`), `Reduce` and `Intersection`, as over ℝ; the intersection
+`ContSetLike` (through `InflatedContSet`), `Reduce` and `Intersection`, as over ℝ; the intersection
 is an outer approximation, the boxes being folded into the rows first. Not `Plus`, `LinComb`
 or `Mtimes`, though `plusOf`, `linCombOf` and `mtimesOf` all compute: closing over their
 directions needs bounds for every polytope, and that oracle does not exist here.

@@ -52,7 +52,7 @@ contribution, which the caller's `Ud` holds.
 namespace CORALean
 
 open CORALean.Float SoundFloatArithmetic
-open Matrix ContSet NormedSpace MeasureTheory
+open Matrix ContSet ContSetLike NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

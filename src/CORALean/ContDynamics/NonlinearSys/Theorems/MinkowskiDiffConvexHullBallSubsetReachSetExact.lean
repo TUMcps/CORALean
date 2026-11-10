@@ -77,7 +77,7 @@ of its chord is a hypothesis.
 
 namespace CORALean
 
-open ContSet Matrix Pointwise Set
+open ContSetLike Matrix Pointwise Set
 
 variable {n m : ℕ}
 

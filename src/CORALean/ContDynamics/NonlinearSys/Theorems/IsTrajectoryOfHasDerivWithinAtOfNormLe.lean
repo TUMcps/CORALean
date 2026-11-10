@@ -44,10 +44,10 @@ field is bounded, or one an abstraction error certifies there, has such a field.
 
 namespace CORALean
 
-open ContSet MeasureTheory
+open ContSetLike MeasureTheory
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

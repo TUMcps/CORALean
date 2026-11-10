@@ -43,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 theorem Polygon.triangulation_exact (P : Polygon 𝕋) : -- --- CONCL ---
     (∀ t ∈ (Polygon.triangulation P).sets, t.k = 3) ∧
-      ContSet.toSet (Polygon.triangulation P) = ContSet.toSet P := by -- --- PROOF ---
+      ContSetLike.toSet (Polygon.triangulation P) = ContSetLike.toSet P := by -- --- PROOF ---
   constructor
   · -- a returned set is a triple of vertices
     intro t ht

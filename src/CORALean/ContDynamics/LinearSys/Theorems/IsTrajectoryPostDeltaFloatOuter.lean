@@ -58,7 +58,7 @@ inside those at `Δt` (`inputReach_mono`, both sets holding `0`), which
 
 namespace CORALean
 
-open CORALean.Float SoundFloatArithmetic NormedSpace Matrix ContSet
+open CORALean.Float SoundFloatArithmetic NormedSpace Matrix ContSet ContSetLike
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -114,21 +114,21 @@ private theorem LinearSys.aux_deltaReachFloat_outer (sys : LinearSys 𝕋 n) {Δ
     simp only [Matrix.sub_mulVec, smul_mulVec, Matrix.one_mulVec, smul_sub]
     abel
   -- `(e^{AΔt} - I) x` lies in `([e^{AΔt}] - I) R`
-  have hE : (exp (r • A) - 1) *ᵥ x ∈ toSet (Mtimes.mtimes (S := 𝒵[𝕋])
+  have hE : (exp (r • A) - 1) *ᵥ x ∈ toSet (Mtimes.mtimes (ContSet := 𝒵[𝕋])
       (𝕄 := ℐ[𝕋]) (Interval.matPlus (sys.expIntervalFloat Δt Δt (m + 2))
         (Interval.point (negIdentityMat 𝕋 n))) R) := by
     have hM := Interval.matPlus_outer _ _ (sys.exp_mem_expIntervalFloat hη le_rfl le_rfl)
       aux_negOne_mem_point
     rw [← sub_eq_add_neg] at hM
     exact Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) _ R
+      (ContSet := 𝒵[𝕋]) _ R
       (Set.mem_biUnion hM (Set.mem_image_of_mem _ hx))
   -- the interpolation error lies in `[F] R`
   have hF : (exp (s • A) - 1 - (s / r) • (exp (r • A) - 1)) *ᵥ x ∈ toSet
-      (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+      (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
         (MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt (m + 2)) R) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) _ R
+      (ContSet := 𝒵[𝕋]) _ R
       (Set.mem_biUnion (MatExp.expDiff_mem_intervalCorrectionMatrix _ hΔt hη.2
         (Interval.mem_point sys.A) hs0 hs) (Set.mem_image_of_mem _ hx))
   rw [hdecomp]

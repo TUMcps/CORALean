@@ -42,7 +42,7 @@ chord from `(l, 0)` to `(u, u)`, since `max` is convex.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

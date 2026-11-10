@@ -42,10 +42,10 @@ from the run's own input set.
 
 namespace CORALean
 
-open Matrix ContSet Scalar Plus Mtimes
+open Matrix ContSetLike Scalar Plus Mtimes
 
 variable {n m r : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [OfScalarPoint 𝕋 S]
 
 

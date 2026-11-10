@@ -13,7 +13,7 @@ public import CORALean.ContSet.VPolytope.Float.Theorems.PlusOuter
 # What the float `VPolytope` instantiates
 
 `Plus`, `LinComb`, `Reduce` — the identity again — and `Mtimes`, as the exact
-layer's. `ContSet` comes from `InflatedContSet` and is not declared here.
+layer's. `ContSetLike` comes from `InflatedContSet` and is not declared here.
 
 `Intersection` too, and needs no direction family here: it goes through the float box's
 own exact `intersection`, unlike the exact layer's, which must be handed one. No

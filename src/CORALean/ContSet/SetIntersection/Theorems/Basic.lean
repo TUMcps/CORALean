@@ -28,8 +28,8 @@ variable {S α : Type} [AddCommGroup α] [Module ℝ α]
 -- Reviewed:      ---
 
 /-- An intersection of convex members is convex, `univ` at the empty list included. -/
-theorem SetIntersection.convex_toSet [ContSet S α] [ConvexSet S α] (I : SetIntersection S) :
-    Convex ℝ (ContSet.toSet I) :=
+theorem SetIntersection.convex_toSet [ContSetLike S α] [ConvexSet S α] (I : SetIntersection S) :
+    Convex ℝ (ContSetLike.toSet I) :=
   convex_iInter₂ fun s _ => ConvexSet.convex_toSet s
 
 end
@@ -45,8 +45,8 @@ variable {S α : Type}
 -- Reviewed:      ---
 
 /-- Unfolds membership to a fact about every branch, for every proof below. -/
-theorem SetIntersection.mem_toSet [ContSet S α] {I : SetIntersection S} {x : α} :
-    x ∈ ContSet.toSet I ↔ ∀ s ∈ I.sets, x ∈ ContSet.toSet s := by
+theorem SetIntersection.mem_toSet [ContSetLike S α] {I : SetIntersection S} {x : α} :
+    x ∈ ContSetLike.toSet I ↔ ∀ s ∈ I.sets, x ∈ ContSetLike.toSet s := by
   show x ∈ SetIntersection.toSet I ↔ _
   simp [SetIntersection.toSet]
 
@@ -58,8 +58,8 @@ theorem SetIntersection.mem_toSet [ContSet S α] {I : SetIntersection S} {x : α
 -- Reviewed:      ---
 
 /-- A `Fin k`-indexed family, listed in order, denotes the intersection over its index. -/
-theorem SetIntersection.toSet_ofFn [ContSet S α] {k : ℕ} (f : Fin k → S) :
-    ContSet.toSet (⟨List.ofFn f⟩ : SetIntersection S) = ⋂ i, ContSet.toSet (f i) := by
+theorem SetIntersection.toSet_ofFn [ContSetLike S α] {k : ℕ} (f : Fin k → S) :
+    ContSetLike.toSet (⟨List.ofFn f⟩ : SetIntersection S) = ⋂ i, ContSetLike.toSet (f i) := by
   ext x
   simp [SetIntersection.mem_toSet, List.mem_ofFn]
 
@@ -71,9 +71,9 @@ theorem SetIntersection.toSet_ofFn [ContSet S α] {k : ℕ} (f : Fin k → S) :
 -- Reviewed:      ---
 
 /-- Membership in a `Fin`-indexed family's intersection, member by index. -/
-theorem SetIntersection.mem_toSet_ofFn [ContSet S α] {k : ℕ} {f : Fin k → S} {x : α} :
-    x ∈ ContSet.toSet (⟨List.ofFn f⟩ : SetIntersection S) ↔
-      ∀ i, x ∈ ContSet.toSet (f i) := by
+theorem SetIntersection.mem_toSet_ofFn [ContSetLike S α] {k : ℕ} {f : Fin k → S} {x : α} :
+    x ∈ ContSetLike.toSet (⟨List.ofFn f⟩ : SetIntersection S) ↔
+      ∀ i, x ∈ ContSetLike.toSet (f i) := by
   rw [SetIntersection.toSet_ofFn, Set.mem_iInter]
 
 
@@ -84,8 +84,8 @@ theorem SetIntersection.mem_toSet_ofFn [ContSet S α] {k : ℕ} {f : Fin k → S
 -- Reviewed:      ---
 
 /-- The intersection lies in each of its members: one member is already an outer bound. -/
-theorem SetIntersection.toSet_subset [ContSet S α] {I : SetIntersection S} {s : S}
-    (hs : s ∈ I.sets) : ContSet.toSet I ⊆ ContSet.toSet s :=
+theorem SetIntersection.toSet_subset [ContSetLike S α] {I : SetIntersection S} {s : S}
+    (hs : s ∈ I.sets) : ContSetLike.toSet I ⊆ ContSetLike.toSet s :=
   fun _ hx => SetIntersection.mem_toSet.mp hx s hs
 
 
@@ -96,8 +96,8 @@ theorem SetIntersection.toSet_subset [ContSet S α] {I : SetIntersection S} {s :
 -- Reviewed:      ---
 
 /-- A set lies in the intersection iff it lies in every member: containment, member by member. -/
-theorem SetIntersection.subset_toSet_iff [ContSet S α] {I : SetIntersection S} {X : Set α} :
-    X ⊆ ContSet.toSet I ↔ ∀ s ∈ I.sets, X ⊆ ContSet.toSet s :=
+theorem SetIntersection.subset_toSet_iff [ContSetLike S α] {I : SetIntersection S} {X : Set α} :
+    X ⊆ ContSetLike.toSet I ↔ ∀ s ∈ I.sets, X ⊆ ContSetLike.toSet s :=
   ⟨fun h _ hs => h.trans (SetIntersection.toSet_subset hs),
     fun h _ hx => SetIntersection.mem_toSet.mpr fun s hs => h s hs hx⟩
 
@@ -109,8 +109,8 @@ theorem SetIntersection.subset_toSet_iff [ContSet S α] {I : SetIntersection S} 
 -- Reviewed:      ---
 
 /-- A `Fin k`-indexed family's intersection lies in its member `i`. -/
-theorem SetIntersection.toSet_subset_ofFn [ContSet S α] {k : ℕ} (f : Fin k → S) (i : Fin k) :
-    ContSet.toSet (⟨List.ofFn f⟩ : SetIntersection S) ⊆ ContSet.toSet (f i) :=
+theorem SetIntersection.toSet_subset_ofFn [ContSetLike S α] {k : ℕ} (f : Fin k → S) (i : Fin k) :
+    ContSetLike.toSet (⟨List.ofFn f⟩ : SetIntersection S) ⊆ ContSetLike.toSet (f i) :=
   SetIntersection.toSet_subset (List.mem_ofFn.mpr ⟨i, rfl⟩)
 
 end

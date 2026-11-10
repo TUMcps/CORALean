@@ -26,15 +26,15 @@ step. `0 ∈ linInput` is `timeInterval_outer`'s own price.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
 
 -- ========================================  MAIN TYPE  ========================================= --
 
 /-- `sys` with its input set `U`, a chain of linearizations `steps`, for each step
 a checkable region inside its certified one, and a bound `M` on the field there. -/
-structure NonlinearSys.WithSteps (S Rg : ℕ → Type) [∀ n, ContSet (S n) (Vec ℝ n)]
-    [∀ n, ContSet (Rg n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
+structure NonlinearSys.WithSteps (S Rg : ℕ → Type) [∀ n, ContSetLike (S n) (Vec ℝ n)]
+    [∀ n, ContSetLike (Rg n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
     [Real.OfInterval S] (m n : ℕ) where
   sys : NonlinearSys n m
   U : S m

@@ -50,7 +50,7 @@ variant unchanged. The converse fails: `L ⊞ W` says only that the error is *so
 namespace CORALean
 
 open CORALean.Real
-open Matrix Pointwise ContSet Plus PolyZonotope
+open Matrix Pointwise ContSet ContSetLike Plus PolyZonotope
 
 variable {n m : ℕ}
 

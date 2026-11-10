@@ -124,7 +124,8 @@ point is in the exact hull (`Lemma 1`'s segments, `linComb_outer`).
 
 namespace CORALean
 
-open CORALean.Float FloatOps SoundFloatArithmetic ContSet InflatedContSet Matrix NormedSpace
+open CORALean.Float FloatOps SoundFloatArithmetic ContSet ContSetLike InflatedContSet Matrix
+open NormedSpace
 open scoped Pointwise
 open scoped CORALean.Real
 
@@ -471,7 +472,7 @@ theorem LinearSys.maxBackReachStepFloat_encloses (sys : LinearSys 𝕋 n) (Bx : 
     obtain ⟨b', hb', rfl⟩ := hb
     exact Plus.plus_outer s.ZW₀ _ (Set.add_mem_add (hs.ZW₀ ha)
       (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) Φk _
+        (ContSet := 𝒵[𝕋]) Φk _
         (Set.mem_biUnion hΦk (Set.mem_image_of_mem _ (hW hb')))))
   -- and so is the new `Ẑ_W`: the new `Ẑ_{W₀}` plus the disturbance part
   have h6 : toSet (sys.maxBackReachStep ρ P₁r P₂r hP₁b hP₂b Ur W₀r Zwr Δ η' sr).ZW ⊆

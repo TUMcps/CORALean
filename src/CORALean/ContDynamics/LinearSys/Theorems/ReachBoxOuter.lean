@@ -74,7 +74,7 @@ which `0 ∈ U` gives (`inputReach_mono`); the third is [3, Prop. 4]'s separatio
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace Pointwise
+open Matrix ContSet ContSetLike Scalar NormedSpace Pointwise
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -93,7 +93,7 @@ theorem LinearSys.reachBox_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Ve
       ∧ sys.reachSetExact (S := 𝒵) (Set.Icc 0 t) X₀ U t ⊆ R.toSet := by -- --- PROOF ---
   set A := toRealMat sys.A
   set E := exp (r • A)
-  set H₀ := sys.timeInterval (S := 𝒵) r (m + 2) X₀ (sys.timePoint (S := 𝒵) r X₀ 1)
+  set H₀ := sys.timeInterval (ContSet := 𝒵) r (m + 2) X₀ (sys.timePoint (ContSet := 𝒵) r X₀ 1)
   set V₀ := sys.inputSolution (S := 𝒵) r (m + 2) U
   set step : Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n)
       → Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) × Zonotope (Vec ℝ n) :=
@@ -104,13 +104,13 @@ theorem LinearSys.reachBox_outer (sys : LinearSys 𝕋 n) (X₀ U : Zonotope (Ve
   have hlist : sys.reachBox X₀ U r (m + 2) N
       = (List.range (N + 1)).map fun j => out (step^[j] s₀) :=
     congrArg Prod.snd (foldl_range_step_out step out s₀ N)
-  have hU : Bornology.IsBounded (toSet (S := Zonotope (Vec ℝ n)) U) :=
+  have hU : Bornology.IsBounded (toSet (ContSet := Zonotope (Vec ℝ n)) U) :=
     CompactSet.isBounded_toSet U
   have hkr : ∀ k : ℕ, (0:ℝ) ≤ k * r := fun k => mul_nonneg (Nat.cast_nonneg k) hr.le
   -- the listing's first two sets: `H^R_0` and `V₀` enclose the first interval
   have hh : ∀ τ ∈ Set.Icc (0:ℝ) r, (fun x => exp (τ • A) *ᵥ x) '' X₀.toSet ⊆ H₀.toSet := by
     intro τ hτ
-    have h := sys.reachStepkWrappingFree_outer (S := 𝒵) hr hε X₀ (k := 0) (t := τ)
+    have h := sys.reachStepkWrappingFree_outer (ContSet := 𝒵) hr hε X₀ (k := 0) (t := τ)
       (by simpa using hτ.1) (by simpa using hτ.2)
     refine h.trans ?_
     show (Zonotope.mtimes (exp ((((0 : ℕ) : ℝ) * r) • A)) H₀).toSet ⊆ H₀.toSet

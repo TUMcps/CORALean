@@ -50,10 +50,10 @@ system. The output equation plays no part: the canonical form keeps the state.
 
 namespace CORALean
 
-open Matrix ContSet Scalar MeasureTheory
+open Matrix ContSetLike Scalar MeasureTheory
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

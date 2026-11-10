@@ -7,7 +7,7 @@ public import CORALean.ContSet.Polygon.Float.Theorems.LinCombOuter
 /-!
 # What the float `Polygon` instantiates
 
-`ContSet`, `Plus` and `Reduce` come from `SetUnion` at the float polytope, which has them;
+`ContSetLike`, `Plus` and `Reduce` come from `SetUnion` at the float polytope, which has them;
 `LinComb` is this layer's own.
 -/
 

@@ -55,7 +55,7 @@ splitting into center and generators holds: after `P` and `e₁` the Krylov term
 
 namespace CORALean.Real
 
-open Matrix ContSet Pointwise
+open Matrix ContSet ContSetLike Pointwise
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

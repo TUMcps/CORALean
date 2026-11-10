@@ -94,7 +94,7 @@ end
 
 section
 variable {n : ℕ}
-open Pointwise ContSet
+open Pointwise ContSet ContSetLike
 variable {σ : ℝ → ℝ} {m n : ℕ}
 
 -- the polynomial part, one neuron's own fit per coordinate, read without the scalar

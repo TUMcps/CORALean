@@ -243,7 +243,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 /-- The model, the algorithm and the options shared by the two ops. -/
 private def aux_setup (dops : DtypeOps 𝕋) (req : Json) :
     Except String (Σ n m : Nat, NonlinearSys.FloatHessModel 𝕋 n m × NonlinearSys.LinReachAlg ×
-      LinearSys.ReachOptions 𝕋) := do
+      LinearSys.ReachFloatOptions 𝕋) := do
   -- the dimensions, the field and the tuning
   let n ← natField req "n"
   let m ← natField req "m"

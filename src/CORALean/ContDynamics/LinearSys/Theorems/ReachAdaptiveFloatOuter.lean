@@ -165,7 +165,7 @@ theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n)
       exact ⟨k, hk, hmem⟩
   · -- the run's inputs `B u + c` are in `B U ⊕ c`'s float enclosure
     have hUV : (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-        params.U.toSet ⊆ ContSet.toSet V :=
+        params.U.toSet ⊆ ContSetLike.toSet V :=
       sys.inputSetFloat_outer params.U
     rw [← htf'] at traj
     exact hsnd _ (List.getElem_mem hk) traj hUV t ht

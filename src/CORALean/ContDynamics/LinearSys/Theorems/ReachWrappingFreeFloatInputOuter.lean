@@ -69,7 +69,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 at every time of window `k`, in the `k`-th set. -/
 theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
+    {options : LinearSys.ReachFloatOptions 𝕋} : -- --- CONCL ---
     ∀ Rs ∈ sys.reachWrappingFreeFloatInput params options,
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
@@ -81,7 +81,7 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
             (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].toSet := by -- --- PROOF ---
   intro Rs (h : sys.reachWrappingFreeFloatInput params options = some Rs)
   obtain ⟨X₀, U, tStart, tFinal⟩ := params
-  obtain ⟨Δt, η, ρ⟩ := options
+  obtain ⟨⟨Δt, η⟩, ρ⟩ := options
   dsimp only at h ⊢
   simp only [LinearSys.reachWrappingFreeFloatInput, Option.bind_eq_bind,
     Option.bind_eq_some_iff, Option.pure_def, Option.some.injEq] at h
@@ -128,7 +128,7 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
     (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope with hPdef
   have hP : ∀ (j : ℕ) (hj : j < P.length), ∀ q ∈ sys.inputReach (S := 𝒵[𝕋]) Ũ
     ((j : ℝ) * Δ),
-      Real.MatExp.expIntegral A ((j : ℝ) * Δ) *ᵥ ũ + q ∈ ContSet.toSet P[j] := by
+      Real.MatExp.expIntegral A ((j : ℝ) * Δ) *ᵥ ũ + q ∈ ContSetLike.toSet P[j] := by
     intro j
     induction j with
     | zero =>
@@ -174,7 +174,7 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
   have hτ : t - k * Δ ∈ Set.Icc 0 Δ := ⟨sub_nonneg.mpr ht.1, by linarith [ht.2]⟩
   -- the run's inputs `B u + c` are in `B U ⊕ c`'s float enclosure
   have hUV : (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-      U.toSet ⊆ ContSet.toSet V :=
+      U.toSet ⊆ ContSetLike.toSet V :=
     sys.inputSetFloat_outer U
   have hd := traj.sub_mem_inputReach_recenter (S' := 𝒵[𝕋]) hUV
     ⟨ht0, ht.2.trans hkN⟩
@@ -187,7 +187,7 @@ theorem LinearSys.reachWrappingFreeFloatInput_outer (sys : LinearSys 𝕋 n)
     hΔt.le hk0 hbdd hd'
   -- the free motion and the constant's share in the first window, carried to `t_k`
   have hfirst : exp ((t - k * Δ) • A) *ᵥ x 0 + Real.MatExp.expIntegral A (t - k * Δ) *ᵥ ũ
-      ∈ ContSet.toSet (Reduce.reduce (sys.timeIntervalFloat Δt η' X₀
+      ∈ ContSetLike.toSet (Reduce.reduce (sys.timeIntervalFloat Δt η' X₀
         ⊞ sys.inputSolutionFloat Δt η' seg) ρ) :=
     Reduce.reduce_outer _ ρ (Plus.plus_outer _ _ (Set.add_mem_add
       (sys.timeIntervalFloat_outer hΔt hadm X₀ traj.init hτ.1 hτ.2)

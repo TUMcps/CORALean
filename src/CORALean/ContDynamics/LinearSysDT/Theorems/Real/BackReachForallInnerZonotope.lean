@@ -45,7 +45,7 @@ is not known before the run. `Interval` cannot take this place: it has the `Mink
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar Mtimes
+open Matrix ContSet ContSetLike Scalar Mtimes
 
 variable {n : ℕ}
 

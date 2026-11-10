@@ -46,7 +46,7 @@ reads `ρ(Ř(τ₀), ℓ) = 3/2` there (`supportLower` at `k = 1`), while the ex
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace MeasureTheory
+open Matrix ContSetLike Scalar NormedSpace MeasureTheory
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

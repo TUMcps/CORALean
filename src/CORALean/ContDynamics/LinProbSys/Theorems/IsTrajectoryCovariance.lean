@@ -53,10 +53,10 @@ covariance of the solution of [1, Eq. 2]: `Σ_s(t)` is positive semidefinite
 
 namespace CORALean
 
-open Matrix ContSet MeasureTheory ProbabilityTheory WithLp
+open Matrix ContSetLike MeasureTheory ProbabilityTheory WithLp
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

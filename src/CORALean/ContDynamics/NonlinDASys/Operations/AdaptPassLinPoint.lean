@@ -37,7 +37,7 @@ The linearization of a pass with the errors it settled on: the accepted pass's s
 
 namespace CORALean
 
-open CORALean.Real Matrix ContSet
+open CORALean.Real Matrix ContSetLike
 
 variable {n p m q : ℕ}
 

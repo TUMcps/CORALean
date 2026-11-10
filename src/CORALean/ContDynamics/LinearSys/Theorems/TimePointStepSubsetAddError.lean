@@ -42,7 +42,7 @@ the sharper form and never this one.
 namespace CORALean
 
 open CORALean.Real
-open Matrix Pointwise ContSet Scalar NormedSpace
+open Matrix Pointwise ContSet ContSetLike Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

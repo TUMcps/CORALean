@@ -104,8 +104,8 @@ theorem ConPolyZono.isequal_sound {Z S : ConPolyZono 𝕋 (Vec 𝕋 n)}
           ⟨m₁, q₁, toRealMat A₂, R₂, toRealVec b₂, o₁, d₁.nominal⟩, ho₂, hdn⟩ (toRealVec s₂)
       rw [hc, hG, hGI, hE₁, hE₂, hA, hb, hs]
     -- the sum of nominal set and error box, on both sides
-    change ContSet.toSet (nominal Z') + r₁.toSet
-      = ContSet.toSet (nominal S') + r₂.toSet
+    change ContSetLike.toSet (nominal Z') + r₁.toSet
+      = ContSetLike.toSet (nominal S') + r₂.toSet
     rw [hN, hr]
   · simp at h
 

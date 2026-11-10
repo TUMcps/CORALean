@@ -22,7 +22,7 @@ through [1, Sec. 3.3]'s `P([0, r]) = P(r)` unchanged, and the constant contribut
 `intervalConstCorrectionMatrix`, the input correction matrix `F̃` over the whole box (not in a
 paper; CORA's `priv_inputTie` [2]). The line is the series `inputSolution` already encloses,
 applied to the segment rather than to an input set; distributing the product over that sum is
-the tightness this costs. The split itself is a hypothesis, `ContSet` being unable to name a center.
+the tightness this costs. The split is a hypothesis: `ContSetLike` cannot name a center.
 
 ## Inputs
 * `sys` – system
@@ -88,13 +88,13 @@ the tightness this costs. The split itself is a hypothesis, `ContSet` being unab
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace MeasureTheory Pointwise
+open Matrix ContSet ContSetLike Scalar NormedSpace MeasureTheory Pointwise
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes ℐ S]
 
 

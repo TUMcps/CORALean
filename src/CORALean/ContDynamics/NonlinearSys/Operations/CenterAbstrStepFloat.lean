@@ -54,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 /-- `(R(τ_s), R(t_{s+1}))` from `R = R(t_s)` under inputs in `U`, linearized at the
 center of `R`, or `none` if the region check or the linear step fails. -/
 def NonlinearSys.FloatModel.centerAbstrStepFloat (fm : NonlinearSys.FloatModel 𝕋 n m)
-    (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachOptions 𝕋) (R : Zonotope (Vec 𝕋 n)) :
+    (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachFloatOptions 𝕋) (R : Zonotope (Vec 𝕋 n)) :
     Option (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) :=
   let xs := R.c                                                     -- 3. z✱(t_s) ← center(R(t_s))
   fm.relinStepAtFloat U options R xs                                -- 4.-15. the step at z✱

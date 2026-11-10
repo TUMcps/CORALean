@@ -26,7 +26,7 @@ caller's own set, never reduced.
 
 namespace CORALean.Real
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 -- The identity on `Vec ℝ 2`, order held at `3`, started at `(1, 1)` with no input.
 

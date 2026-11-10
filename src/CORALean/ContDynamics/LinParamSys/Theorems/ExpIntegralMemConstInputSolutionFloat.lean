@@ -52,7 +52,7 @@ What the constant `ũ` contributes by any `t ∈ [0, r]` at a member `A` of `sys
 
 namespace CORALean
 
-open CORALean.Float FloatOps SoundFloatArithmetic Matrix ContSet MeasureTheory
+open CORALean.Float FloatOps SoundFloatArithmetic Matrix ContSet ContSetLike MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

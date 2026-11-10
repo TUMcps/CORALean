@@ -38,7 +38,7 @@ returns, whose center is the constant of the system `linearizeFloat` returns.
 
 namespace CORALean
 
-open CORALean.Float ContSet
+open CORALean.Float ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m q : ℕ}
 

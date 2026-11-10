@@ -100,8 +100,8 @@ theorem LinearSys.timePointStepInnerRepFloat_inner (sys : LinearSys 𝕋 n) {r :
     (Real.Zonotope.convex_toSet Q) (Real.Zonotope.isCompact_toSet Q) 1
     ⟨b, hb⟩ (Zonotope.isCompact_toSet B).isBounded hout
   -- each step's held input is `stepInputConst` at a point of `U`
-  have hstep : ContSet.toSet Q
-      ⊆ (fun c => sys.stepInputConst c (toReal r)) '' ContSet.toSet (nominal U) := by
+  have hstep : ContSetLike.toSet Q
+      ⊆ (fun c => sys.stepInputConst c (toReal r)) '' ContSetLike.toSet (nominal U) := by
     intro v hv
     have hv' : v ∈ Q.toSet := hv
     rw [← Real.Zonotope.mtimes_exact] at hv'

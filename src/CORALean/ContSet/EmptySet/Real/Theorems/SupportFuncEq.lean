@@ -33,7 +33,7 @@ one; `SupportBound.ofEmpty` is the same fact over `ℝ`, every number bounding `
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 variable {n m : ℕ}
 

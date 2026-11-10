@@ -33,10 +33,10 @@ first `K` steps.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ========================================  MAIN TYPE  ========================================= --

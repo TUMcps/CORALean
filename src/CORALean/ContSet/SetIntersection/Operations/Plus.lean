@@ -30,7 +30,7 @@ which is what makes the pairwise intersection an outer bound.
 
 namespace CORALean
 
-variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α] [Plus S α]
+variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSetLike S α] [Plus S α]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

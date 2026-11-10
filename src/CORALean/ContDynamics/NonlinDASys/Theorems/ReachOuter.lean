@@ -64,7 +64,7 @@ whole number, and positive: at `t_f = 0` the loop does not run and the union is 
 
 namespace CORALean
 
-open CORALean.Real Matrix ContSet
+open CORALean.Real Matrix ContSet ContSetLike
 
 variable {n p m : ℕ}
 

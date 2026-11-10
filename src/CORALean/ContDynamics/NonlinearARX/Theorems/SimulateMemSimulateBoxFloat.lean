@@ -38,7 +38,7 @@ at every step, in the box `simulateBoxFloat` computes. An outer statement.
 
 namespace CORALean
 
-open Matrix Scalar ContSet CORALean.Float
+open Matrix Scalar ContSet ContSetLike CORALean.Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {dy du p : ℕ}
 

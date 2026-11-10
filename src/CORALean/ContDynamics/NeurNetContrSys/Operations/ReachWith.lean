@@ -44,11 +44,11 @@ newest first, whose union is the paper's `R`. The extended state stacks the netw
 
 namespace CORALean
 
-open Matrix ContSet
+open Matrix ContSetLike
 open ContDynamics
 
 variable {n : ℕ} {P : Type} [ContDynamics P n]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

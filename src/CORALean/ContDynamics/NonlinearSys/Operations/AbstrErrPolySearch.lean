@@ -56,7 +56,7 @@ region `pZ k`, its sub-box and static error as well as `Ws k`; `step_abstrErrPol
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {n m : ℕ}
 

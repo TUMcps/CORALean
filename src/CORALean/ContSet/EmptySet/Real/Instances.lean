@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (EmptySet n) (Vec ℝ n) := ⟨EmptySet.toSet⟩
+instance : ContSetLike (EmptySet n) (Vec ℝ n) := ⟨EmptySet.toSet⟩
 
 instance : ConvexSet (EmptySet n) (Vec ℝ n) := ⟨fun _ => convex_empty⟩
 
@@ -72,14 +72,14 @@ instance {𝕋 : Type} [Scalar 𝕋] : Mtimes (Mat 𝕋) (fun n => EmptySet n) w
 
 /-- CORA's `isIntersecting_` answers `false` outright, so nothing is ever shared with
 the empty set and `true` is the right answer for every operand. -/
-instance {S : Type} [ContSet S (Vec ℝ n)] : IsDisjoint (EmptySet n) S where
+instance {S : Type} [ContSetLike S (Vec ℝ n)] : IsDisjoint (EmptySet n) S where
   isDisjoint _ _ := true
   isDisjoint_sound _ _ _ := Set.disjoint_empty _
 
 /-- CORA's `contains_` answers `isemptyobject(S)`. The wrapper `OptEmpty` is the representation
 that can say it: `true` exactly at its own `empty` member, which `∅` contains; an `of s` answers
 `false`, which refutes nothing (`s` may denote `∅` too). -/
-instance {S : Type} [ContSet S (Vec ℝ n)] : Contains (EmptySet n) (OptEmpty S) where
+instance {S : Type} [ContSetLike S (Vec ℝ n)] : Contains (EmptySet n) (OptEmpty S) where
   contains _ s := match s with
     | .empty => true
     | .of _ => false

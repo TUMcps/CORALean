@@ -36,10 +36,10 @@ denote; `IsInstanceNetwork` is the same at `𝕋 := ℝ`, which `ReducesAt` rela
 
 namespace CORALean
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋]
 
 /-- [1, Eq. 2]'s linear layer, `W h + b ⊕ I'`: the weights, the bias, and the box of errors
@@ -75,7 +75,7 @@ inductive ReducibleNetwork.IsInstance :
 
 /-- ℝ-only, an instance's bias `c` being real: `nn` is `Φ` with every error box replaced by
 one of its values, as a network of layers, and computes `f`. -/
-inductive ReducibleNetwork.IsInstanceNetwork {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+inductive ReducibleNetwork.IsInstanceNetwork {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
     [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S] :
     ∀ {n m : ℕ}, ReducibleNetwork ℝ n m → NeuralNetwork S n m → (Vec ℝ n → Vec ℝ m) → Prop where
   | nil {n : ℕ} {f : Vec ℝ n → Vec ℝ n} (hf : ∀ x, f x = x) :

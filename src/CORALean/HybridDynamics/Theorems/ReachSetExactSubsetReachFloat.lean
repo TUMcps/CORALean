@@ -40,7 +40,7 @@ claimed, as CORA's `reach` claims none past `tFinal`.
 
 namespace CORALean
 
-open CORALean.Float ContSet
+open CORALean.Float ContSet ContSetLike
 
 variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 
@@ -51,7 +51,8 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [
 sets `reachFloat` computed for `ℓ`. -/
 theorem HybridAutomaton.reachSetExact_subset_reachFloat
     (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋
-    n) {tFinal : ℚ} {options : LinearSys.ReachOptions 𝕋} {K : ℕ} {ℓ₀ : L} {X₀ : Zonotope (Vec 𝕋 n)}
+    n) {tFinal : ℚ} {options : LinearSys.ReachFloatOptions 𝕋} {K : ℕ} {ℓ₀ : L}
+    {X₀ : Zonotope (Vec 𝕋 n)}
     (ℓ : L) : -- --- CONCL ---
     ∀ out ∈ HA.reachFloat tFinal options K ℓ₀ X₀,
       (⋃ (T : ℝ) (_ : T ≤ tFinal) (k : ℕ) (_ : k ≤ K),

@@ -82,10 +82,10 @@ private theorem LinearSys.aux_reachFloatInputStep_invariant (sys : LinearSys �
   set A := Scalar.toRealMat sys.A with hA
   -- `[e^{AΔt}] Z` holds `e^{AΔt} z`
   have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.toSet → exp (Δt • A) *ᵥ z
-      ∈ ContSet.toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) eAΔt Z) :=
+      ∈ ContSetLike.toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (ContSet := 𝒵[𝕋]) eAΔt Z) :=
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) eAΔt Z
+      (ContSet := 𝒵[𝕋]) eAΔt Z
       (Set.mem_biUnion heA (Set.mem_image_of_mem _ hz))
   -- `e^{A(a+Δt)} = e^{AΔt} e^{Aa}`, both powers of the same matrix
   have hexp : ∀ a : ℝ, exp ((a + Δt) • A) = exp (Δt • A) * exp (a • A) := fun a => by
@@ -94,17 +94,17 @@ private theorem LinearSys.aux_reachFloatInputStep_invariant (sys : LinearSys �
   -- the free motion and the constant's contribution, one step on
   have hnext : ∀ {Z : Zonotope (Vec 𝕋 n)} {a : ℝ}, 0 ≤ a → ∀ {x₀ : Vec ℝ n},
       exp (a • A) *ᵥ x₀ + Real.MatExp.expIntegral A a *ᵥ ũ ∈ Z.toSet →
-      exp ((a + Δt) • A) *ᵥ x₀ + Real.MatExp.expIntegral A (a + Δt) *ᵥ ũ ∈ ContSet.toSet
+      exp ((a + Δt) • A) *ᵥ x₀ + Real.MatExp.expIntegral A (a + Δt) *ᵥ ũ ∈ ContSetLike.toSet
         (Reduce.reduce (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-          (S := 𝒵[𝕋]) eAΔt Z ⊞ Pu) ρ) := by
+          (ContSet := 𝒵[𝕋]) eAΔt Z ⊞ Pu) ρ) := by
     intro Z a ha x₀ hz
     rw [hexp, ← Matrix.mulVec_mulVec, Real.MatExp.expIntegral_add_mulVec A ũ ha hΔt, ← add_assoc,
       ← Matrix.mulVec_add]
     exact Reduce.reduce_outer _ ρ (Plus.plus_outer _ _ (Set.add_mem_add (hmt hz) hPu))
   -- the one-step set carried across `t_{k+1}` rather than `t_k`
   have h4' : (fun y => exp ((((k + 1 : ℕ) : ℝ) * Δt) • A) *ᵥ y)
-      '' sys.inputReach (S := 𝒵[𝕋]) Ũ Δt ⊆ ContSet.toSet
-        (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋])
+      '' sys.inputReach (S := 𝒵[𝕋]) Ũ Δt ⊆ ContSetLike.toSet
+        (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
           eAΔt s.2.2.2) := by
     rintro _ ⟨y, hy, rfl⟩
     have ht : (((k + 1 : ℕ) : ℝ) * Δt) = (k : ℝ) * Δt + Δt := by push_cast; ring
@@ -135,7 +135,7 @@ end
 the horizon, each holding what `IsReachFloatInputInvariant` asks at its pass. -/
 theorem LinearSys.reachFloatInput_invariant (sys : LinearSys 𝕋 n)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
+    {options : LinearSys.ReachFloatOptions 𝕋} : -- --- CONCL ---
     ∀ Rti Rtp, (Rti, Rtp) ∈ sys.reachFloatInput params options →
       0 < toReal options.Δt ∧ ∃ N : ℕ,
         (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
@@ -149,7 +149,7 @@ theorem LinearSys.reachFloatInput_invariant (sys : LinearSys 𝕋 n)
             (Recenter.recenter (sys.inputSetFloat params.U)) k S[k] := by -- --- PROOF ---
   intro Rti Rtp (h : sys.reachFloatInput params options = some (Rti, Rtp))
   obtain ⟨X₀, U, tStart, tFinal⟩ := params
-  obtain ⟨Δt, η, ρ⟩ := options
+  obtain ⟨⟨Δt, η⟩, ρ⟩ := options
   dsimp only at h ⊢
   simp only [LinearSys.reachFloatInput, Option.bind_eq_bind, Option.bind_eq_some_iff,
     Option.pure_def, Option.some.injEq, Prod.mk.injEq] at h
@@ -165,11 +165,11 @@ theorem LinearSys.reachFloatInput_invariant (sys : LinearSys 𝕋 n)
   set ũ := Recenter.center V with hũ
   have heA := sys.exp_mem_expIntervalFloat hadm (t := toReal Δt) le_rfl le_rfl
   have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.toSet → exp (toReal Δt • A) *ᵥ z
-      ∈ ContSet.toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋])
+      ∈ ContSetLike.toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (ContSet := 𝒵[𝕋])
         (sys.expIntervalFloat Δt Δt η') Z) :=
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) _ Z
+      (ContSet := 𝒵[𝕋]) _ Z
       (Set.mem_biUnion heA (Set.mem_image_of_mem _ hz))
   -- `{ũ}` and `[0, ũ]` hold what they are built from
   have hpt : ũ ∈ (Interval.point V.c).zonotope.toSet :=

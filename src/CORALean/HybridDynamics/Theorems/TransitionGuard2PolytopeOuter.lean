@@ -31,9 +31,9 @@ transition is a jump of the new one.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {G P : ℕ → Type} [∀ n, ContSet (G n) (Vec ℝ n)] [∀ n, ContSet (P n) (Vec ℝ n)]
+variable {G P : ℕ → Type} [∀ n, ContSetLike (G n) (Vec ℝ n)] [∀ n, ContSetLike (P n) (Vec ℝ n)]
   {L : Type} {𝕋 : Type} {n : ℕ}
 
 

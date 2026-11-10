@@ -49,10 +49,10 @@ reached at `t₀` is what the previous step enclosed, which makes this compose.
 
 namespace CORALean
 
-open ContSet MeasureTheory intervalIntegral
+open ContSetLike MeasureTheory intervalIntegral
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

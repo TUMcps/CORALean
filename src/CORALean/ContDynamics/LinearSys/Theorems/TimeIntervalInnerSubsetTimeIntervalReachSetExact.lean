@@ -51,7 +51,7 @@ zonotope is never empty, so no hypothesis on `U` is needed.
 namespace CORALean
 
 open CORALean.Real
-open Matrix Pointwise ContSet Scalar NormedSpace MeasureTheory
+open Matrix Pointwise ContSet ContSetLike Scalar NormedSpace MeasureTheory
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

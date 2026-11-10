@@ -38,10 +38,10 @@ time interval, as the family of all its laws at the times of the interval
 
 namespace CORALean
 
-open ContSet Scalar MeasureTheory
+open ContSetLike Scalar MeasureTheory
 
 variable {n m : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

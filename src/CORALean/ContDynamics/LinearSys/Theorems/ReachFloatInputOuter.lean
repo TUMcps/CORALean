@@ -52,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 at every time of window `k`, in the `k`-th time-interval set. -/
 theorem LinearSys.reachFloatInput_outer (sys : LinearSys 𝕋 n)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
+    {options : LinearSys.ReachFloatOptions 𝕋} : -- --- CONCL ---
     ∀ Rti Rtp, (Rti, Rtp) ∈ sys.reachFloatInput params options →
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rti.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
@@ -71,7 +71,7 @@ theorem LinearSys.reachFloatInput_outer (sys : LinearSys 𝕋 n)
   obtain ⟨-, h2, h3, -⟩ := hinv k hk'
   -- the run's inputs `B u + c` are in `B U ⊕ c`'s float enclosure
   have hUV : (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-      params.U.toSet ⊆ ContSet.toSet V :=
+      params.U.toSet ⊆ ContSetLike.toSet V :=
     sys.inputSetFloat_outer params.U
   -- window `k` lies inside the horizon
   have hkN : ((k : ℝ) + 1) * Δ ≤ (params.tFinal : ℝ) - params.tStart := by

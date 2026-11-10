@@ -42,7 +42,7 @@ asks for `Mtimes (Mat ℝ) S`, which no float representation can have; those hav
 
 namespace CORALean.Float
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n r : ℕ} {L : Type}
 

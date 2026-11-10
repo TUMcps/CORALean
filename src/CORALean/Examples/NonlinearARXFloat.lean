@@ -110,7 +110,7 @@ theorem boxes_eq : arxSys.simulateBoxFloat model.toNonlinearSysDTFloat y₀ uIn 
 theorem run_mem (k : ℕ) :
     NonlinearARX.stack 2
       (arxSys.simulate (Scalar.toRealVec y₀) fun j => Scalar.toRealVec (uIn j)) k ∈
-      ContSet.toSet (boxes k) :=
+      ContSetLike.toSet (boxes k) :=
   NonlinearARX.simulate_mem_simulateBoxFloat arxSys model_encloses.toNonlinearSysDTFloat y₀ uIn k
 
 end CORALean.Examples.NonlinearARXFloat

@@ -31,9 +31,9 @@ stored values without arithmetic, so it rounds nothing even at a machine scalar.
 
 namespace CORALean
 
-open ContSet Reindex
+open ContSetLike Reindex
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Reindex S] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Reindex S] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

@@ -47,12 +47,12 @@ def square : Zonotope (Vec D 2) := ⟨2, ![d 0 0, d 0 0], ![![d 1 0, d 0 0], ![d
 
 /-- `∅ ∩ s = ∅`, for a float zonotope `s`. -/
 example (E : Real.EmptySet 2) :
-    ContSet.toSet (E.and_ square) = ContSet.toSet E ∩ ContSet.toSet square :=
+    ContSetLike.toSet (E.and_ square) = ContSetLike.toSet E ∩ ContSetLike.toSet square :=
   Real.EmptySet.and_exact E square
 
 /-- `univ ∩ s = s`, for a float zonotope `s`. -/
 example (F : Real.Fullspace 2) :
-    ContSet.toSet (F.and_ square) = F.toSet ∩ ContSet.toSet square :=
+    ContSetLike.toSet (F.and_ square) = F.toSet ∩ ContSetLike.toSet square :=
   Real.Fullspace.and_exact F square
 
 end CORALean.Examples.AndEmptyFullspace

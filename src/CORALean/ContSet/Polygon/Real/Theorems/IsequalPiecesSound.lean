@@ -37,7 +37,7 @@ namespace CORALean.Real
 
 theorem Polygon.isequalPieces_sound {P Q : Polygon}
     (h : Polygon.isequalPieces P Q) : -- --- CONCL ---
-    ContSet.toSet P = ContSet.toSet Q := by -- --- PROOF ---
+    ContSetLike.toSet P = ContSetLike.toSet Q := by -- --- PROOF ---
   refine Set.Subset.antisymm ?_ ?_
   · intro x hx
     obtain ⟨p, hp, hxp⟩ := SetUnion.mem_toSet.mp hx

@@ -112,21 +112,21 @@ private theorem LinearSys.aux_manualStepFloat_outer (sys : LinearSys 𝕋 n)
     push_cast; rw [hΔq]; ring
   -- `[e^{At_k}] Z` and `[e^{At_{k+1}}] Z` hold `e^{At_k} z` and `e^{At_{k+1}} z`
   have hmt : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.toSet → exp (tk • A) *ᵥ z
-      ∈ ContSet.toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋])
+      ∈ ContSetLike.toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+        (ContSet := 𝒵[𝕋])
         (sys.expSquaringFloat s.tEnc.inf s.tEnc.sup η sq) Z) :=
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) _ Z
+      (ContSet := 𝒵[𝕋]) _ Z
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
         (LinearSys.squaringsFloat_spec hη.1 _ hsq) hlo hhi) (Set.mem_image_of_mem _ hz))
   -- the same at `t_{k+1}`, inside the bracket `[tLo ⊖ Δt, tHi ⊕ Δt]`
   have hmt1 : ∀ {Z : Zonotope (Vec 𝕋 n)} {z : Vec ℝ n}, z ∈ Z.toSet
       → exp ((toReal Δt + tk) • A) *ᵥ z
-        ∈ ContSet.toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-          (S := 𝒵[𝕋])
+        ∈ ContSetLike.toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
+          (ContSet := 𝒵[𝕋])
           (sys.expSquaringFloat (addDown s.tEnc.inf Δt) (addUp s.tEnc.sup Δt) η sq1) Z) :=
     fun {Z} {_} hz => Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) _ Z
+      (ContSet := 𝒵[𝕋]) _ Z
       (Set.mem_biUnion (sys.exp_mem_expSquaringFloat
         (LinearSys.squaringsFloat_spec hη.1 _ hsq1)
         ((addDown_le_add _ _).trans (by linarith)) (le_trans (by linarith) (add_le_addUp _ _)))
@@ -157,7 +157,7 @@ private theorem LinearSys.aux_manualStepFloat_outer (sys : LinearSys 𝕋 n)
   -- the `Ũ`-input's share by `t_k + Δt` comes apart at `t_k`, and so does the constant's
   have hPU' : ∀ y ∈ sys.inputReach (S := 𝒵[𝕋]) Ũ (toReal Δt + tk),
       y ∈ (Reduce.reduce (s.PU ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋])
+        (ContSet := 𝒵[𝕋])
         (sys.expSquaringFloat s.tEnc.inf s.tEnc.sup η sq) (sys.inputSolutionFloat Δt η Ũ))
         ρ).toSet := by
     intro y hy
@@ -170,7 +170,7 @@ private theorem LinearSys.aux_manualStepFloat_outer (sys : LinearSys 𝕋 n)
   -- the constant's share by `t_{k+1}`, in the box `P^u(t_{k+1})`
   have hPu' : Real.MatExp.expIntegral A (toReal Δt + tk) *ᵥ ũ
       ∈ (s.Pu.zonotope ⊞ Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋])
+        (ContSet := 𝒵[𝕋])
         (sys.expSquaringFloat s.tEnc.inf s.tEnc.sup η sq)
         (sys.inputSolutionFloat Δt η (Interval.point V.c).zonotope)).interval.toSet := by
     rw [Real.MatExp.expIntegral_add_mulVec A ũ hΔt.le htk0, add_comm]
@@ -298,7 +298,7 @@ private theorem LinearSys.aux_isManualInvariantFloat_init (sys : LinearSys 𝕋 
 time of window `k`, in the `k`-th set. -/
 theorem LinearSys.manualReachFloat_outer (sys : LinearSys 𝕋 n)
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 sys.m)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
+    {options : LinearSys.ReachFloatOptions 𝕋} : -- --- CONCL ---
     ∀ Rs ∈ sys.manualReachFloat params options,
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
@@ -310,7 +310,7 @@ theorem LinearSys.manualReachFloat_outer (sys : LinearSys 𝕋 n)
             (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].toSet := by -- --- PROOF ---
   intro Rs (h : sys.manualReachFloat params options = some Rs)
   obtain ⟨X₀, U, tStart, tFinal⟩ := params
-  obtain ⟨Δt, η, ρ⟩ := options
+  obtain ⟨⟨Δt, η⟩, ρ⟩ := options
   dsimp only at h ⊢
   simp only [LinearSys.manualReachFloat, Option.bind_eq_bind, Option.bind_eq_some_iff] at h
   obtain ⟨N, hN, η', hη', h⟩ := h
@@ -322,7 +322,7 @@ theorem LinearSys.manualReachFloat_outer (sys : LinearSys 𝕋 n)
   refine ⟨N, hNΔt, hlen, fun {x u} traj k hk t ht => ?_⟩
   -- the run's inputs `B u + c` are in `B U ⊕ c`'s float enclosure
   have hUV : (fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
-      U.toSet ⊆ ContSet.toSet V :=
+      U.toSet ⊆ ContSetLike.toSet V :=
     sys.inputSetFloat_outer U
   have hkN : (k : ℝ) + 1 ≤ N := by rw [hlen] at hk; exact_mod_cast hk
   refine hsnd traj hUV k hk t ⟨by simpa [LinearSys.step_manualInitFloat] using ht.1,

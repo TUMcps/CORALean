@@ -34,10 +34,10 @@ that `LinearSys`'s exact reachability runs on it; `augmentFloat` is the same in 
 
 namespace CORALean
 
-open Matrix ContSet Scalar
+open Matrix ContSet ContSetLike Scalar
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

@@ -75,7 +75,7 @@ def J : SetIntersection (Zonotope (Vec D 2)) := ⟨[segment, square]⟩
 def sum : SetIntersection (Zonotope (Vec D 2)) := Plus.plus I J
 /-- The image of the first intersection under the identity matrix, member by member. -/
 def image : SetIntersection (Zonotope (Vec D 2)) :=
-  Mtimes.mtimes (S := fun n => SetIntersection (Zonotope (Vec D n))) (𝕄 := Mat D)
+  Mtimes.mtimes (ContSet := fun n => SetIntersection (Zonotope (Vec D n))) (𝕄 := Mat D)
     (identityMat D 2) I
 /-- The first intersection reduced to order `1`, member by member. -/
 def small : SetIntersection (Zonotope (Vec D 2)) := Reduce.reduce I 1
@@ -89,17 +89,17 @@ def small : SetIntersection (Zonotope (Vec D 2)) := Reduce.reduce I 1
 /-! ## What the branch-wise operations guarantee -/
 
 /-- The Minkowski sum of the intersections lies in every pairwise sum. -/
-theorem sum_outer : ContSet.toSet I + ContSet.toSet J ⊆ ContSet.toSet sum :=
+theorem sum_outer : ContSetLike.toSet I + ContSetLike.toSet J ⊆ ContSetLike.toSet sum :=
   SetIntersection.plus_outer I J
 
 /-- The linear image of the intersection lies in the intersection of the images. -/
 theorem image_outer :
-    (⋃ A ∈ ContSet.toSet (identityMat D 2), (A *ᵥ ·) '' ContSet.toSet I) ⊆
-      ContSet.toSet image :=
+    (⋃ A ∈ ContSetLike.toSet (identityMat D 2), (A *ᵥ ·) '' ContSetLike.toSet I) ⊆
+      ContSetLike.toSet image :=
   SetIntersection.mtimes_outer (S := 𝒵[D]) (𝕄 := Mat D) (identityMat D 2) I
 
 /-- The reduced branches still contain the intersection. -/
-theorem small_outer : ContSet.toSet I ⊆ ContSet.toSet small :=
+theorem small_outer : ContSetLike.toSet I ⊆ ContSetLike.toSet small :=
   SetIntersection.reduce_outer I 1
 
 /-- The center of a zonotope with no error is one of its points. -/
@@ -108,7 +108,7 @@ theorem center_mem (Z : Zonotope (Vec D 2)) (h : Z.I_error = box0) : toRealVec Z
 
 /-- The origin is in the square and the diamond, hence in `I`. -/
 theorem origin_mem_I : -- --- CONCL ---
-    toRealVec square.c ∈ ContSet.toSet I := by -- --- PROOF ---
+    toRealVec square.c ∈ ContSetLike.toSet I := by -- --- PROOF ---
   refine SetIntersection.mem_toSet.mpr fun s hs => ?_
   simp only [I, List.mem_cons, List.not_mem_nil, or_false] at hs
   rcases hs with rfl | rfl
@@ -118,7 +118,7 @@ theorem origin_mem_I : -- --- CONCL ---
 
 /-- The origin is in `I` and in `J`, so `0 + 0` is in `I + J`, and by `sum_outer` in `sum`. -/
 theorem origin_add_origin_mem_sum : -- --- CONCL ---
-    toRealVec square.c + toRealVec square.c ∈ ContSet.toSet sum := by -- --- PROOF ---
+    toRealVec square.c + toRealVec square.c ∈ ContSetLike.toSet sum := by -- --- PROOF ---
   refine sum_outer (Set.add_mem_add origin_mem_I ?_)
   refine SetIntersection.mem_toSet.mpr fun s hs => ?_
   simp only [J, List.mem_cons, List.not_mem_nil, or_false] at hs

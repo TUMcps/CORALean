@@ -46,10 +46,10 @@ continuous. The constraint is pointwise, the same in both readings.
 
 namespace CORALean
 
-open ContSet MeasureTheory
+open ContSetLike MeasureTheory
 
 variable {n p m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

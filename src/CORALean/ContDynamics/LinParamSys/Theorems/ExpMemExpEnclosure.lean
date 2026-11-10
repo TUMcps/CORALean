@@ -38,7 +38,7 @@ shrinks `‖(t • sys.A).absMax‖ / (η + 2)`.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet NormedSpace
+open Matrix ContSet ContSetLike NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

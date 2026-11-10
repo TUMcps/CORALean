@@ -39,10 +39,10 @@ dependence of the input on the state; that is sound only for an image that keeps
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 

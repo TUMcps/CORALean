@@ -55,13 +55,13 @@ the boundaries this says nothing; that is `reachSetExact_subset_relinTimeInterva
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace Plus Mtimes OfInterval
+open Matrix ContSet ContSetLike Scalar NormedSpace Plus Mtimes OfInterval
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [OfInterval S]
 

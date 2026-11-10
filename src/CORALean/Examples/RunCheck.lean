@@ -656,7 +656,7 @@ def floatRows : StateT Nat IO Unit := do
   row "I" (ofBox fI)
   row "Z_plus" (ofZono (fZ.plus fZ))
   row "Z_reduce" (ofZono (fZ.reduce 1))
-  row "Z_mtimes" (ofZono (Mtimes.mtimes (S := 𝒵[F]) (identityMat F 2) fZ))
+  row "Z_mtimes" (ofZono (Mtimes.mtimes (ContSet := 𝒵[F]) (identityMat F 2) fZ))
   row "plusBoxRun" (ofBox (Zonotope.plusBox fZ fZ))
   row "mtimesBoxRun" (ofBox (Zonotope.mtimesBox (identityMat F 2) fZ))
   row "reduceGirardBoxRun" (ofZono (Zonotope.reduceGirardBox fZ 1))

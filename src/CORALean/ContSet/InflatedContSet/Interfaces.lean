@@ -36,7 +36,7 @@ open Pointwise FloatOps SoundFloatArithmetic
 /-- A float representation `S` whose stored data describe an exact representation `N` (`nominal`) up
 to a rounding error box `I_error`; it denotes the nominal set plus the box. -/
 class InflatedContSet (S : Type) (N : outParam Type) (α : outParam Type) (β : outParam Type)
-    [RealImage α β] [AddCommGroup β] [Module ℝ β] [ContSet N β] where
+    [RealImage α β] [AddCommGroup β] [Module ℝ β] [ContSetLike N β] where
   /-- The exact-layer representation the stored floats describe, not the set it
   denotes — keeping the representation is what lets a refinement proof reach the
   theorem about it. -/
@@ -48,18 +48,18 @@ class InflatedContSet (S : Type) (N : outParam Type) (α : outParam Type) (β : 
 namespace InflatedContSet
 
 variable {S N α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β] [Entrywise β ι]
-variable [ContSet N β] [InflatedContSet S N α β]
+variable [ContSetLike N β] [InflatedContSet S N α β]
 
 /-- What the nominal part denotes. Generic code cannot write
 `s.nominal.toSet`, since dot notation resolves through a head constant and
 `N` is a variable. -/
-abbrev nominalSet (s : S) : Set β := ContSet.toSet (nominal s)
+abbrev nominalSet (s : S) : Set β := ContSetLike.toSet (nominal s)
 
 /-- The set an inflated representation denotes: the nominal set plus the error box. -/
 def toSet (s : S) : Set β := nominalSet s + (I_error s).toSet
 
 /-- An inflated representation denotes `InflatedContSet.toSet`. -/
-instance : ContSet S β := ⟨toSet⟩
+instance : ContSetLike S β := ⟨toSet⟩
 
 end InflatedContSet
 

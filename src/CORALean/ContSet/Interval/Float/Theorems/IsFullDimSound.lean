@@ -32,7 +32,7 @@ real characterisation `CORALean.Real.Interval.isFullDim_iff`.
 
 namespace CORALean.Float
 
-open FloatOps SoundFloatArithmetic ContSet
+open FloatOps SoundFloatArithmetic ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 

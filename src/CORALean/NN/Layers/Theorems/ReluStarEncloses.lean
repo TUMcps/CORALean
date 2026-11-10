@@ -37,7 +37,7 @@ namespace CORALean
 
 open scoped CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

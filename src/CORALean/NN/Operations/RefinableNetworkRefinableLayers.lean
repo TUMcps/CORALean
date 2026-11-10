@@ -29,9 +29,9 @@ is the predicate `isRefinable` here, which the caller supplies.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

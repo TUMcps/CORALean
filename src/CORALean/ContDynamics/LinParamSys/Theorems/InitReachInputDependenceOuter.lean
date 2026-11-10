@@ -58,7 +58,7 @@ time-interval argument is `timeInterval_outer`'s with an input: the state's curv
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet NormedSpace
+open Matrix ContSet ContSetLike NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -90,14 +90,14 @@ theorem LinParamSys.initReachInputDependence_outer (sys : LinParamSys 𝕄𝒵 n
   set Uconst : Zonotope (Vec ℝ sys.m) := ⟨sys.A.h, Uc, UG⟩ with hUconst
   obtain ⟨β, hβ, hBβ⟩ := hB
   set BΔ : Zonotope (Mat ℝ n sys.m) := ⟨sys.B.h, 0, sys.B.G⟩ with hBΔ
-  set Vdev : Zonotope (Vec ℝ n) := Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) BΔ Uconst with hVdev
+  set Vdev : Zonotope (Vec ℝ n) := Mtimes.mtimes (𝕄 := 𝕄𝒵) (ContSet := 𝒵) BΔ Uconst with hVdev
   set w : Vec ℝ n := (B - sys.B.c) *ᵥ (Uc + ∑ i, p i • UG i) with hw
   have hu0 : Uc + ∑ i, p i • UG i ∈ toSet Uconst := ⟨p, hp, rfl⟩
   have hD : B - sys.B.c ∈ toSet BΔ := ⟨β, hβ, by
     show B - sys.B.c = 0 + ∑ j, β j • sys.B.G j
     rw [hBβ]; abel⟩
   have hwmem : w ∈ toSet Vdev :=
-    Mtimes.mtimes_outer (𝕄 := 𝕄𝒵) (S := 𝒵) BΔ Uconst
+    Mtimes.mtimes_outer (𝕄 := 𝕄𝒵) (ContSet := 𝒵) BΔ Uconst
       (Set.mem_iUnion₂.mpr ⟨_, hD, _, hu0, rfl⟩)
   have hu : u = (Vc + ∑ i, p i • VG i) + w := by
     simp only [u, hw, hVc, hVG, Matrix.sub_mulVec, Matrix.mulVec_add, Matrix.mulVec_sum,

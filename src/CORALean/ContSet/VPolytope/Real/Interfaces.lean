@@ -26,14 +26,14 @@ sampled (an ellipsoid, a capsule).
 
 namespace CORALean.Real
 
-open ContSet
+open ContSetLike
 
 
 -- ========================================  MAIN TYPE  ========================================= --
 
 /-- The vertices of `s`, as a vertex polytope that denotes exactly `s`. -/
 class ExactVertices (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
-    [ContSet S α] where
+    [ContSetLike S α] where
   vertices : S → VPolytope α
   vertices_exact (s : S) : (vertices s).toSet = toSet s
 

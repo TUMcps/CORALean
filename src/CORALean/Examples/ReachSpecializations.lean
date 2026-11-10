@@ -23,7 +23,7 @@ and `𝒞` being notation their own `Instances` file declares, and `ℐ` the int
 
 namespace CORALean.Real
 
-open Matrix ContSet Scalar
+open Matrix ContSet ContSetLike Scalar
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -68,7 +68,8 @@ example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Zonotope (Vec 
     (hr : 0 < r) (hT : Set.Icc 0 r ⊆ T) {m : ℕ}
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) (h0 : (0 : Vec ℝ n) ∈ toSet U) :
-    x t ∈ toSet (Plus.plus (sys.timeInterval (S := 𝒵) r (m + 2) R₀ (sys.timePoint (S := 𝒵) r R₀ 1))
+    x t ∈ toSet (Plus.plus
+      (sys.timeInterval (ContSet := 𝒵) r (m + 2) R₀ (sys.timePoint (ContSet := 𝒵) r R₀ 1))
       (sys.inputSolution (S := 𝒵) r (m + 2) U)) :=
   traj.timeInterval_outer_convexCompact hr hT hε ht0 htr h0
 
@@ -81,7 +82,7 @@ example {n : ℕ} {sys : LinearSys ℝ n} {T : Set ℝ} {R₀ U : Interval (Vec 
     (hε : ‖r • toRealMat sys.A‖ / (((m + 2 : ℕ) : ℝ) + 2) < 1) {t : ℝ}
     (ht0 : 0 ≤ t) (htr : t ≤ r) (h0 : (0 : Vec ℝ n) ∈ toSet U) :
     x t ∈ toSet (Plus.plus
-      (sys.timeInterval (S := ℐ𝒱) r (m + 2) R₀ (sys.timePoint (S := ℐ𝒱) r R₀ 1))
+      (sys.timeInterval (ContSet := ℐ𝒱) r (m + 2) R₀ (sys.timePoint (ContSet := ℐ𝒱) r R₀ 1))
       (sys.inputSolution (S := ℐ𝒱) r (m + 2) U)) :=
   traj.timeInterval_outer_convexCompact hr hT hε ht0 htr h0
 

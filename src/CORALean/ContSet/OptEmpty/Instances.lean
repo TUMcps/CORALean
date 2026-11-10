@@ -28,7 +28,7 @@ namespace CORALean
 
 open Pointwise
 
-variable {S α : Type} [ContSet S α]
+variable {S α : Type} [ContSetLike S α]
 
 
 -- ========================================  INSTANCES  ========================================= --

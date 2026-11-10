@@ -78,27 +78,27 @@ def LinearSys.minBackReachStepFloat (sys : LinearSys 𝕋 n)
   let Φk1 := Ā.expSquaringFloat tk1 tk1 η ν
   -- 9. Ẑ_{W₀}(-t_{k+1})
   let ZW₀ := Plus.plus s.ZW₀
-    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) Φk
+    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) Φk
       (Ā.inputSolutionFloat Δt η W₀))
   -- 12. Ẑ_{U₀}(-t_{k+1})
   let ZU₀ := Plus.plus s.ZU₀
-    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) Φk
+    (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) Φk
       (Ā.inputSolutionFloat Δt η U₀))
   -- 10. Ẑ_W(-τ_k)
   let ZW := Plus.plus ZW₀ (Zw s.t)
   let CZk1 := Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Φk1 CZ
+    (ContSet := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Φk1 CZ
   -- 11. conv(…, …)
   let hull := LinComb.linComb CZk1
     (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-      (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Φk CZ)
+      (ContSet := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Φk CZ)
   -- 11. F e^{-A t_{k+1}} CZ
   let curv := Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := fun k => ConZonotope 𝕋 (Vec 𝕋 k))
+    (ContSet := fun k => ConZonotope 𝕋 (Vec 𝕋 k))
     (MatExp.intervalCorrectionMatrix (Interval.point Ā.A) Δt η) CZk1
   -- 11. ⊕ -Ẑ_W(-τ_k)
   let R := Plus.plus (Plus.plus hull curv)
-    (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) (negIdentityMat 𝕋 n)
+    (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) (negIdentityMat 𝕋 n)
       ZW).conZonotope
   { t := tk1, ZW₀ := ZW₀, ZU₀ := ZU₀, R := R }
 

@@ -51,10 +51,10 @@ interval-matrix family is the discrete recursion run in floats.
 namespace CORALean
 
 open CORALean.Float SoundFloatArithmetic
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 variable {n : ℕ} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes ℐ[𝕋] S]
 

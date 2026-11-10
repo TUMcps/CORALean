@@ -51,10 +51,10 @@ the original network — every `I' = [0, 0]` — being the one [1] means.
 
 namespace CORALean
 
-open ContSet Float
+open ContSet ContSetLike Float
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat 𝕋) S] [IntervalOuter S 𝕋] [OfInterval S 𝕋]
 
 
@@ -64,7 +64,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 original network's exact image of `X`. -/
 theorem holds_of_reduceOnTheFly {le : 𝕋 → 𝕋 → Bool} {tol : 𝕋} {fuel : ℕ} {ρ : 𝕋} {n m : ℕ} {X : S n}
     {Φ : ReducibleNetwork 𝕋 n m} {f : Vec ℝ n → Vec ℝ m} (hΦ : Φ.IsInstance f) {ContSet : Type}
-    [CORALean.ContSet ContSet (Vec ℝ m)] (spec : Specification ContSet) :
+    [ContSetLike ContSet (Vec ℝ m)] (spec : Specification ContSet) :
     ∀ Φhat Y, (Φhat, Y) ∈ reduceOnTheFly le tol fuel X ρ Φ →
       spec.Holds (toSet Y) →
       spec.Holds (f '' toSet X) := fun _ _ hrun hspec =>

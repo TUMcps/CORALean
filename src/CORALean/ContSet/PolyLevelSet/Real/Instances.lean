@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyLevelSet.Real.Theorems.AndExact
 /-!
 # What `PolyLevelSet` instantiates
 
-`ContSet`, which is also what makes it a star set's predicate (`StarSet PolyLevelSet n`), and
+`ContSetLike`, which is also what makes it a star set's predicate (`StarSet PolyLevelSet n`), and
 `Intersection` by stacking the rows, exact although the class asks only for an outer bound. The
 rest is `LevelSet`'s, through `PolyLevelSet.levelSet`.
 -/
@@ -28,7 +28,7 @@ variable {n : ℕ}
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (PolyLevelSet n) (Vec ℝ n) := ⟨PolyLevelSet.toSet⟩
+instance : ContSetLike (PolyLevelSet n) (Vec ℝ n) := ⟨PolyLevelSet.toSet⟩
 
 instance : Intersection (PolyLevelSet n) (Vec ℝ n) where
   intersection := PolyLevelSet.and_

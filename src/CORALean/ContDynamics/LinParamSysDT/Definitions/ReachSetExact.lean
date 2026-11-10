@@ -30,10 +30,10 @@ and nothing an implementation is free to widen.
 
 namespace CORALean
 
-open Matrix Pointwise ContSet
+open Matrix Pointwise ContSetLike
 
-variable {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n : ℕ}
+variable {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSetLike (𝕄 m n) (Mat ℝ m n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

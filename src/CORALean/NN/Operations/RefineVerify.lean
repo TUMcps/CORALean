@@ -45,7 +45,7 @@ goes, the result being sound at every schedule.
 
 namespace CORALean
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable {n m : ℕ}
 
 

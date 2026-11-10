@@ -24,9 +24,9 @@ the network it was reduced from rather than for its own.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
+variable {ContSet : ℕ → Type} [∀ n, ContSetLike (ContSet n) (Vec ℝ n)] {n m k : ℕ}
 
 
 -- ========================================  MAIN TYPE  ========================================= --
@@ -34,12 +34,13 @@ variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
 /-- That the network encloses `f`, as a relation: each layer sound at some function of its
 own, and `f` their composite, whichever functions those are. -/
 inductive NeuralNetwork.Encloses :
-    ∀ {n m : ℕ}, NeuralNetwork S n m → (Vec ℝ n → Vec ℝ m) → Prop where
+    ∀ {n m : ℕ}, NeuralNetwork ContSet n m → (Vec ℝ n → Vec ℝ m) → Prop where
   | output {n : ℕ} {f : Vec ℝ n → Vec ℝ n} (hf : ∀ x, f x = x) :
-      NeuralNetwork.Encloses (.output : NeuralNetwork S n n) f
-  | layer {n m k : ℕ} {L : ℕ → ℕ → Type} [inst : Enclose L S] {curr : L n m}
-      {tail : NeuralNetwork S m k} {g : Vec ℝ n → Vec ℝ m} {h : Vec ℝ m → Vec ℝ k}
-      {f : Vec ℝ n → Vec ℝ k} (hL : (Enclose.toLayer (S := S) curr).Encloses g)
+      NeuralNetwork.Encloses (.output : NeuralNetwork ContSet n n) f
+  | layer {n m k : ℕ} {Layer : ℕ → ℕ → Type} [inst : Enclose Layer ContSet]
+      {curr : Layer n m}
+      {tail : NeuralNetwork ContSet m k} {g : Vec ℝ n → Vec ℝ m} {h : Vec ℝ m → Vec ℝ k}
+      {f : Vec ℝ n → Vec ℝ k} (hL : (Enclose.toLayer (S := ContSet) curr).Encloses g)
       (htail : tail.Encloses h) (hf : ∀ x, f x = h (g x)) :
       NeuralNetwork.Encloses (.layer curr tail) f
 

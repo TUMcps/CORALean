@@ -33,7 +33,7 @@ asked. `γ(⊥) = ∅` is asked.
 
 namespace CORALean
 
-open Matrix ContSet Float Float.SoundFloatArithmetic
+open Matrix ContSetLike Float Float.SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
@@ -48,7 +48,7 @@ structure CatDomain (𝕋 : Type) (S : ℕ → Type) where
   bot (n : ℕ) : S n
 
 /-- The inclusions [1, Thm. 1] assumes, `γ` being `toSet`. -/
-structure CatDomain.IsOuter {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+structure CatDomain.IsOuter {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
     (D : CatDomain 𝕋 S) : Prop where
   aff_outer {m n : ℕ} (a : S m) (W : Mat 𝕋 n m) (b : Vec 𝕋 n) :
     (fun x => toRealMat W *ᵥ x + toRealVec b) '' toSet a ⊆ toSet (D.aff a W b)

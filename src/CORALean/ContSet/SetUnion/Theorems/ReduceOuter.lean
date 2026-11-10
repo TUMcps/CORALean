@@ -33,13 +33,13 @@ covered after every branch is replaced by its own reduction.
 
 namespace CORALean
 
-variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α] [Reduce S α]
+variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSetLike S α] [Reduce S α]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SetUnion.reduce_outer (u : SetUnion S) (o : ℕ) :
-    ContSet.toSet u ⊆ ContSet.toSet (SetUnion.reduce u o) := by
+    ContSetLike.toSet u ⊆ ContSetLike.toSet (SetUnion.reduce u o) := by
   intro x hx
   obtain ⟨s, hs, hx⟩ := SetUnion.mem_toSet.mp hx
   exact SetUnion.mem_toSet.mpr

@@ -54,7 +54,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 theorem LinearSys.reachWrappingFreeFloat_outer (sys : LinearSys 𝕋 n)
     {params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ}
-    {options : LinearSys.ReachOptions 𝕋} : -- --- CONCL ---
+    {options : LinearSys.ReachFloatOptions 𝕋} : -- --- CONCL ---
     ∀ Rs ∈ sys.reachWrappingFreeFloat params options,
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ (k : ℕ) (hk : k < Rs.length), ∀ x₀ ∈ params.X₀.toSet,
@@ -63,7 +63,7 @@ theorem LinearSys.reachWrappingFreeFloat_outer (sys : LinearSys 𝕋 n)
               ∈ Rs[k].toSet := by -- --- PROOF ---
   intro Rs (h : sys.reachWrappingFreeFloat params options = some Rs)
   obtain ⟨X₀, tStart, tFinal⟩ := params
-  obtain ⟨Δt, η, ρ⟩ := options
+  obtain ⟨⟨Δt, η⟩, ρ⟩ := options
   dsimp only at h ⊢
   simp only [LinearSys.reachWrappingFreeFloat, Option.bind_eq_bind, Option.bind_eq_some_iff] at h
   obtain ⟨N, hN, η', hη', hRs⟩ := h

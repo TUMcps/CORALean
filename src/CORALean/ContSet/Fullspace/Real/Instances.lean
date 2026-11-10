@@ -35,7 +35,7 @@ variable {n : ℕ}
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (Fullspace n) (Vec ℝ n) := ⟨Fullspace.toSet⟩
+instance : ContSetLike (Fullspace n) (Vec ℝ n) := ⟨Fullspace.toSet⟩
 
 instance : ConvexSet (Fullspace n) (Vec ℝ n) := ⟨fun _ => convex_univ⟩
 
@@ -76,14 +76,14 @@ instance {𝕋 : Type} [Scalar 𝕋] : Mtimes (Mat 𝕋) (fun n => Fullspace n) 
 
 /-- CORA's `contains_` answers `true` for every operand (and throws at `R^0`, which
 nothing here does): everything is in the whole space. -/
-instance {S : Type} [ContSet S (Vec ℝ n)] : Contains (Fullspace n) S where
+instance {S : Type} [ContSetLike S (Vec ℝ n)] : Contains (Fullspace n) S where
   contains _ _ := true
   contains_sound _ _ _ := Set.subset_univ _
 
 /-- CORA's `isIntersecting_` answers `~isemptyobject(S)`: the whole space meets every nonempty set.
 The wrapper `OptEmpty` is the representation that can say it: disjoint (`true`) exactly at its own
 `empty` member; an `of s` answers `false`, which refutes nothing (`s` may denote `∅`). -/
-instance {S : Type} [ContSet S (Vec ℝ n)] : IsDisjoint (Fullspace n) (OptEmpty S) where
+instance {S : Type} [ContSetLike S (Vec ℝ n)] : IsDisjoint (Fullspace n) (OptEmpty S) where
   isDisjoint _ s := match s with
     | .empty => true
     | .of _ => false

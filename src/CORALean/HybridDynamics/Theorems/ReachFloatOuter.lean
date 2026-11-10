@@ -58,7 +58,7 @@ starts from, with one jump and less time left.
 
 namespace CORALean
 
-open CORALean.Float ContSet
+open CORALean.Float ContSet ContSetLike
 
 variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 
@@ -87,7 +87,8 @@ most `K` jumps and lasting at most `tFinal`, ends in a computed set of its final
 at `reachSetExact` this is `reachSetExact_subset_reachFloat`. -/
 theorem HybridAutomaton.reachFloat_outer
     (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋
-    n) {tFinal : ℚ} {options : LinearSys.ReachOptions 𝕋} {T : ℝ} {k : ℕ} {ℓ ℓ' : L} {x y : Vec ℝ n}
+    n) {tFinal : ℚ} {options : LinearSys.ReachFloatOptions 𝕋} {T : ℝ} {k : ℕ} {ℓ ℓ' : L}
+    {x y : Vec ℝ n}
     (run : HA.IsRunUntil T k ℓ x ℓ' y) (hT : T ≤ tFinal) {K : ℕ} (hk : k ≤ K)
     {X₀ : Zonotope (Vec 𝕋 n)} (hx : x ∈ toSet X₀) : -- --- CONCL ---
     ∀ out ∈ HA.reachFloat tFinal options K ℓ X₀,

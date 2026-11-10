@@ -66,7 +66,7 @@ at `zs`, making `A` and `B` the Jacobian blocks. The parameter box `P` has no co
 namespace CORALean
 
 open CORALean.Real
-open Matrix Set ContSet
+open Matrix Set ContSet ContSetLike
 
 variable {d n m : ℕ}
 

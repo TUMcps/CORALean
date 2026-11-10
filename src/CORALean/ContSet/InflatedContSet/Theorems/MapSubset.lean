@@ -41,7 +41,7 @@ namespace CORALean.Float.InflatedContSet
 open Pointwise
 
 variable {𝕋 S T N M : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m : ℕ}
-variable [ContSet N (Vec ℝ n)] [ContSet M (Vec ℝ m)]
+variable [ContSetLike N (Vec ℝ n)] [ContSetLike M (Vec ℝ m)]
 variable [InflatedContSet S N (Vec 𝕋 n) (Vec ℝ n)] [InflatedContSet T M (Vec 𝕋 m) (Vec ℝ m)]
 
 

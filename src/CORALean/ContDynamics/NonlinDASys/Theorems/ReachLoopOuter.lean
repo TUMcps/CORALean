@@ -66,7 +66,7 @@ steps, which `[1]` does not say.
 
 namespace CORALean
 
-open CORALean.Real Matrix ContSet
+open CORALean.Real Matrix ContSet ContSetLike
 
 variable {n p m : ℕ}
 

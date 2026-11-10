@@ -46,10 +46,10 @@ error. The induction is on the loop's own fuel; nothing here needs the loop to t
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
 variable {n : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

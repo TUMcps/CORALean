@@ -36,7 +36,7 @@ namespace CORALean.Real
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.mem_toSet_iff (P : Polygon) (x : Vec ℝ 2) :
-    x ∈ ContSet.toSet P ↔ ∃ p ∈ P.sets, x ∈ VPolytope.toSet p :=
+    x ∈ ContSetLike.toSet P ↔ ∃ p ∈ P.sets, x ∈ VPolytope.toSet p :=
   SetUnion.mem_toSet
 
 end CORALean.Real

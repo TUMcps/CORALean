@@ -40,9 +40,9 @@ reachable set itself.
 
 namespace CORALean
 
-open ContSet Pointwise
+open ContSetLike Pointwise
 
-variable {n p q : ℕ} {M S : Type} [ContSet S (Vec ℝ q)]
+variable {n p q : ℕ} {M S : Type} [ContSetLike S (Vec ℝ q)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

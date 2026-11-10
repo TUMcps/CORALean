@@ -25,7 +25,7 @@ public import CORALean.Global.Float.NoNaN
 /-!
 # What `Zonotope` instantiates
 
-`ContSet` is supplied by `InflatedContSet`, so an algorithm written against the three operation
+`ContSetLike` is supplied by `InflatedContSet`, so an algorithm written against the three operation
 classes runs here with no float counterpart to write. A zonotope's four fields are function types,
 so the one an operation returns is a closure over the one it was given: a loop that iterates
 operations rebuilds its whole history on every entry read. `Zonotope.materialise` stores them, and

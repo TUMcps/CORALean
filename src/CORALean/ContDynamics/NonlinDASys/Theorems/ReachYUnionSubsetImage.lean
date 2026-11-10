@@ -35,9 +35,9 @@ over it.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
-variable {S Rg : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (Rg n) (Vec ℝ n)]
+variable {S Rg : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (Rg n) (Vec ℝ n)]
 variable {m p n : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [OfInterval S] [Mtimes ℐ S] [∀ n, Contains (Rg n) (S n)]
@@ -47,7 +47,7 @@ variable [∀ n, ConvexSet (S n) (Vec ℝ n)] [∀ n, CompactSet (S n) (Vec ℝ 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NonlinDASys.WithSteps.reachYUnion_subset_image (sys : NonlinDASys.WithSteps S Rg m p n)
-    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachOptions ℝ) : -- --- CONCL ---
+    (params : Reach.Params (S n) ℝ) (options : LinearSys.ReachFloatOptions ℝ) : -- --- CONCL ---
     ∀ R ∈ sys.reachUnion params options,
       sys.reachYUnionExact (params.tFinal - params.tStart) (toSet params.X₀)
         ⊆ (fun xu : Vec ℝ n × Vec ℝ m => sys.red.h xu.1 xu.2) ''

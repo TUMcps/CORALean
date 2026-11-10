@@ -9,8 +9,8 @@ public import CORALean.ContSet.SpectraShadow.Float.Theorems.AbsorbRoundingNomina
 /-!
 # `SpectraShadow.absorbRounding` loses no point
 
-Read back through `ContSet`: the set lies in the nominal set of `absorbRounding`, and that box is
-the origin, so it lies in the whole.
+Read back through `ContSetLike`: the set lies in the nominal set of `absorbRounding`, and that box
+is the origin, so it lies in the whole.
 
 ## Inputs
 * `S` – spectrahedral shadow

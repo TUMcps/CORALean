@@ -56,9 +56,9 @@ def LinParamSys.timeIntervalFloat (sys : LinParamSys ℐ[𝕋] n)
   let eAΔt := sys.expIntervalFloat Δt Δt η                                  -- [e^{AΔt}]
   let F := MatExp.intervalCorrectionMatrix sys.A Δt η                       -- [F]
   LinComb.linComb R (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-    (S := 𝒵[𝕋]) eAΔt R) ⊞
+    (ContSet := 𝒵[𝕋]) eAΔt R) ⊞
     Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- linComb(R, e R) ⊕ F R
-      (S := 𝒵[𝕋]) F R
+      (ContSet := 𝒵[𝕋]) F R
 
 end CORALean
 

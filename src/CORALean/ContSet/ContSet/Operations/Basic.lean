@@ -22,9 +22,9 @@ namespace CORALean
 
 section
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S α : Type} [ContSet S α] [Isequal S]
+variable {S α : Type} [ContSetLike S α] [Isequal S]
 
 
 -- =======================================  `ContSet.eq`  ======================================= --
@@ -51,10 +51,10 @@ end
 
 section
 
-open ContSet Scalar
+open ContSet ContSetLike Scalar
 
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] [Neg 𝕋] [NegScalar 𝕋] {S : ℕ → Type}
-variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
+variable [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
 
 
 -- =====================================  `ContSet.uminus`  ===================================== --
@@ -75,10 +75,10 @@ end
 
 section
 
-open ContSet Scalar
+open ContSet ContSetLike Scalar
 
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] [Neg 𝕋] [NegScalar 𝕋] {S : ℕ → Type}
-variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ} [∀ n, Plus (S n) (Vec ℝ n)]
+variable [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ} [∀ n, Plus (S n) (Vec ℝ n)]
 variable [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 
@@ -99,10 +99,10 @@ end
 
 section
 
-open ContSet Scalar
+open ContSet ContSetLike Scalar
 
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] [Neg 𝕋] [NegScalar 𝕋] {S : ℕ → Type}
-variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ} [∀ n, Plus (S n) (Vec ℝ n)]
+variable [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ} [∀ n, Plus (S n) (Vec ℝ n)]
 variable [OfScalarPoint 𝕋 S]
 
 
@@ -123,9 +123,9 @@ end
 
 section
 
-open ContSet Scalar
+open ContSet ContSetLike Scalar
 
-variable {S α : Type} [ContSet S α]
+variable {S α : Type} [ContSetLike S α]
 
 
 -- =====================================  `ContSet.uplus`  ====================================== --

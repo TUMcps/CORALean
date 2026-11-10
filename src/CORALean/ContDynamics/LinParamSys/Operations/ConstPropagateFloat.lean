@@ -59,7 +59,7 @@ def LinParamSys.constPropagateFloat (sys : LinParamSys ℐ[𝕋] n)
     let eAΔt := sys.expIntervalFloat Δt Δt η                         -- [e^{[A]Δt}]
     let PcRΔt := sys.constInputSolutionFloat Δt η uc                 -- P̃^R(τ_0), ũ over one window
     Reduce.reduce (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) eAΔt Pctk ⊞ PcRΔt) ρ
+      (ContSet := 𝒵[𝕋]) eAΔt Pctk ⊞ PcRΔt) ρ
 
 end CORALean
 

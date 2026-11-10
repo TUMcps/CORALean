@@ -39,9 +39,9 @@ remainder. So `IsRunUntil T` reads as "lasting at most `T`", not "exactly `T`".
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSetLike Scalar
 
-variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, ContSet (G n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, ContSetLike (G n) (Vec ℝ n)]
 variable {L 𝕋 : Type} [Scalar 𝕋] {n : ℕ}
 
 

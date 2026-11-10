@@ -29,9 +29,9 @@ means what it says. Each class then characterises it (`Interval.isFullDim_iff`, 
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {S α : Type} [ContSet S α] [TopologicalSpace α]
+variable {S α : Type} [ContSetLike S α] [TopologicalSpace α]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

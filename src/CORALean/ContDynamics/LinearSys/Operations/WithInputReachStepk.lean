@@ -42,10 +42,10 @@ grow with time, as the proof of [1, Prop. 4] uses, so the right end bounds every
 namespace CORALean
 
 open CORALean.Real
-open ContSet
+open ContSet ContSetLike
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 

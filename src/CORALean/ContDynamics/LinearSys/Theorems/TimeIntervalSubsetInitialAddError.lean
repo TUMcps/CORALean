@@ -56,7 +56,7 @@ order: `ε` reaches only the smaller term, and [1] tunes the correction, not the
 namespace CORALean
 
 open CORALean.Real
-open Matrix Pointwise ContSet Scalar NormedSpace
+open Matrix Pointwise ContSet ContSetLike Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -178,7 +178,7 @@ from: what it computes stays inside `X₀` widened by `timeIntervalStepError`. -
 theorem LinearSys.timeInterval_subset_initial_add_error (sys : LinearSys 𝕋 n) {r : ℝ}
     (hr : 0 < r) (η : ℕ) (hε : ‖r • toRealMat sys.A‖ / ((η : ℝ) + 2) < 1)
     (X₀ : Zonotope (Vec ℝ n)) : -- --- CONCL ---
-    (sys.timeInterval (S := 𝒵) r η X₀ (sys.timePoint (S := 𝒵) r X₀ 1)).toSet
+    (sys.timeInterval (ContSet := 𝒵) r η X₀ (sys.timePoint (ContSet := 𝒵) r X₀ 1)).toSet
       ⊆ X₀.toSet
         + Metric.closedBall (0 : Vec ℝ n)
             (sys.timeIntervalStepError r η X₀) := by -- --- PROOF ---
@@ -247,7 +247,7 @@ theorem LinearSys.timeInterval_subset_initial_add_error (sys : LinearSys 𝕋 n)
     rwa [Metric.mem_closedBall, dist_zero_right] at hmem
   -- the step splits exactly into the hull and the correction
   intro y hy
-  rw [show sys.timeInterval (S := 𝒵) r η X₀ (sys.timePoint (S := 𝒵) r X₀ 1)
+  rw [show sys.timeInterval (ContSet := 𝒵) r η X₀ (sys.timePoint (ContSet := 𝒵) r X₀ 1)
       = (Zonotope.linComb X₀ (Zonotope.mtimes M X₀)).plus
           (Zonotope.mtimesIntervalMat (MatExp.correctionMatrix A r η) X₀) from rfl,
     ← Zonotope.plus_exact] at hy

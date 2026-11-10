@@ -99,7 +99,7 @@ def handleLinearSysReach {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic �
     -- CORA's `params` and `options`, under CORA's own names
     let params : Reach.Params (Zonotope (Vec 𝕋 n)) ℚ :=
       { X₀ := X0, tFinal := (aux_toRat tFinal).1 / (aux_toRat tFinal).2 }
-    let options : LinearSys.ReachOptions 𝕋 :=
+    let options : LinearSys.ReachFloatOptions 𝕋 :=
       { Δt := Δt, η := eta, ρ := rho }
     match LinearSys.reachFloat (𝕋 := 𝕋) (LinearSys.canonicalFloat A) params options with
     | none => throw s!"linearSysReach: reachFloat returned none -- no admissible Taylor order \

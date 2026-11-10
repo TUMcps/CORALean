@@ -52,13 +52,13 @@ their contracts; the corollary fixes `inHullExact` (`0 ∈ P`) and, in `R¹`, th
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Scalar NormedSpace
+open Matrix ContSet ContSetLike Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 variable [∀ n, Recenter (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S] [Mtimes ℐ S]
 
@@ -266,8 +266,8 @@ theorem LinearSys.verifySearch_stall_counterexample (η : ℕ) : -- --- CONCL --
     simp [U₀, w, U, Recenter.recenter, Zonotope.recenter]
   -- the Taylor terms of `P̂_U(Δt)` at `w`
   have hmt : ∀ M : Mat ℝ 1 1,
-      M *ᵥ w ∈ toSet (Mtimes.mtimes (𝕄 := Mat ℝ) (S := 𝒵) M U₀) := fun M =>
-    Mtimes.mtimes_outer (𝕄 := Mat ℝ) (S := 𝒵) M U₀
+      M *ᵥ w ∈ toSet (Mtimes.mtimes (𝕄 := Mat ℝ) (ContSet := 𝒵) M U₀) := fun M =>
+    Mtimes.mtimes_outer (𝕄 := Mat ℝ) (ContSet := 𝒵) M U₀
       (Set.mem_biUnion (x := M) (by simp) ⟨w, hw, rfl⟩)
   have htay : ∀ j : ℕ, (∑ i ∈ Finset.range (j + 1), sys.inputTerm 1 i *ᵥ w) ∈
       toSet (sys.inputTaylorSum (S := 𝒵) 1 U₀ j) := by
@@ -285,7 +285,7 @@ theorem LinearSys.verifySearch_stall_counterexample (η : ℕ) : -- --- CONCL --
     fun p => ⟨by simp only [Entrywise.entry_mat, MatExp.inputRemainder, Mε]; linarith, le_rfl⟩
   have hxp : (∑ i ∈ Finset.range (η + 1), sys.inputTerm 1 i *ᵥ w) + Mε *ᵥ w ∈
       toSet (sys.inputSolution (S := 𝒵) 1 η U₀) :=
-    Plus.plus_outer _ _ (Set.add_mem_add (htay η) (Mtimes.mtimes_outer (𝕄 := ℐ) (S := 𝒵)
+    Plus.plus_outer _ _ (Set.add_mem_add (htay η) (Mtimes.mtimes_outer (𝕄 := ℐ) (ContSet := 𝒵)
       (MatExp.inputRemainder (toRealMat sys.A) 1 η) U₀
       (Set.mem_biUnion (x := Mε) hM ⟨w, hw, rfl⟩)))
   have hxp0 : ((∑ i ∈ Finset.range (η + 1), sys.inputTerm 1 i *ᵥ w) + Mε *ᵥ w) 0 =

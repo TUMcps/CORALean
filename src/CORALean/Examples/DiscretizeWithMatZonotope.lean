@@ -37,7 +37,7 @@ zonotope carries them on shared generators, and the step is tighter for it.
 
 namespace CORALean.Real
 
-open Matrix ContSet NormedSpace Scalar
+open Matrix ContSet ContSetLike NormedSpace Scalar
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

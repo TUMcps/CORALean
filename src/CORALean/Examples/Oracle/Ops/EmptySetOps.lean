@@ -130,7 +130,7 @@ def handleEmptySetOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option 
       let n ← natField req "n"
       let ⟨m, M⟩ ← parseMatColsFixed dops.readExact n (← field req "M")
       -- the instance, which ignores `M`
-      let _ := Mtimes.mtimes (𝕄 := Mat 𝕋) (S := fun k => EmptySet k) M (EmptySet.empty n)
+      let _ := Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := fun k => EmptySet k) M (EmptySet.empty n)
       pure [("E", printTrivialSet m)])
   -- `EmptySet.supportFunc` is `⊥ = -inf`, a noncomputable `EReal`: printed as that constant
   | "supportFunc" => some (do

@@ -35,11 +35,11 @@ act through `mtimes` at an interval matrix and the bias enters as a box.
 
 namespace CORALean
 
-open ContSet Plus Mtimes Float.OfInterval
+open ContSet ContSetLike Plus Mtimes Float.OfInterval
 open scoped CORALean.Float
 
 variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
-  {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+  {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes ℐ[𝕋] S] [Float.OfInterval S 𝕋] {n m : ℕ}
 
 

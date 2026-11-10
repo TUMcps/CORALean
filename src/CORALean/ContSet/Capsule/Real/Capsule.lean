@@ -13,8 +13,8 @@ CORA's `capsule`: a segment thickened by a Euclidean ball, `{c + t g | t ∈ [-1
 
 At `Vec ℝ n`, not a general module: the ball is Euclidean. The distance is written out as
 `Real.sqrt (∑ …)`, because the ambient norm of `Fin n → ℝ` is the supremum norm and `EuclideanSpace`
-would fight the `ContSet` instance at `Vec ℝ n`. A negative `r` denotes `∅`, as `Interval` does for
-a crossed box, which is why the structure has no `0 ≤ r` field.
+would fight the `ContSetLike` instance at `Vec ℝ n`. A negative `r` denotes `∅`, as `Interval` does
+for a crossed box, which is why the structure has no `0 ≤ r` field.
 
 ## References
 

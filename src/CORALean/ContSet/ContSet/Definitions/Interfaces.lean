@@ -27,25 +27,25 @@ conservative test: `false` says only that full dimension was not shown.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
 
 -- ========================================  MAIN TYPE  ========================================= --
 
 /-- Everything this representation denotes is compact. -/
 class CompactSet (S : Type) (α : outParam Type) [NormedAddCommGroup α] [NormedSpace ℝ α]
-    [ContSet S α] where
+    [ContSetLike S α] where
   isCompact_toSet (s : S) : IsCompact (toSet s)
 
 /-- Everything this representation denotes is convex. What an integral valued in
 the set needs, and what makes `linComb` a convex hull. -/
 class ConvexSet (S : Type) (α : outParam Type) [AddCommGroup α] [Module ℝ α]
-    [ContSet S α] where
+    [ContSetLike S α] where
   convex_toSet (s : S) : Convex ℝ (toSet s)
 
 /-- A representation with a sound Boolean test for full dimension: `true` means the denoted set has
 nonempty interior. -/
-class FullDimTest (S : Type) {α : outParam Type} [ContSet S α] [TopologicalSpace α] where
+class FullDimTest (S : Type) {α : outParam Type} [ContSetLike S α] [TopologicalSpace α] where
   isFullDim : S → Bool
   isFullDim_sound (s : S) : isFullDim s = true → ContSet.IsFullDim s
 

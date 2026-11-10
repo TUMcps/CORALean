@@ -13,9 +13,9 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReindexExact
 /-!
 # What `PolyZonotope` instantiates
 
-`ContSet` is supplied by `InflatedContSet`, as for the exact layer. `Reduce` is *computable* here,
-where the exact layer's instance is not: `Tuple.sort` needs a `LinearOrder`, which no float type
-has, while `sortPerm` asks its comparator for nothing. Soundness never depended on the ranking
+`ContSetLike` is supplied by `InflatedContSet`, as for the exact layer. `Reduce` is *computable*
+here, where the exact layer's instance is not: `Tuple.sort` needs a `LinearOrder`, which no float
+type has, while `sortPerm` asks its comparator for nothing. Soundness never depended on the ranking
 (`reduceBy_outer` holds at every partition), so the free comparator costs precision only; `LinComb`
 is computable for the same reason. `compact` runs first, as over ℝ; it is the one operation weaker
 in kind than its exact counterpart: merging two columns adds their entries, so it encloses where the

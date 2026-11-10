@@ -33,10 +33,10 @@ invertible along solutions; the class does not carry it, and `IsIndex1` in `Defi
 
 namespace CORALean
 
-open ContSet MeasureTheory
+open ContSetLike MeasureTheory
 
 variable {n p m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ========================================  MAIN TYPE  ========================================= --

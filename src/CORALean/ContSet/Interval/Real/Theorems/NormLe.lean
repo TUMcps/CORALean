@@ -32,7 +32,7 @@ endpoint magnitude (`aux_abs_le_max_abs`); the Euclidean norm is monotone in mag
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 variable {n : ℕ}
 

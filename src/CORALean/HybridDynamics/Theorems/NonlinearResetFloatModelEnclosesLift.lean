@@ -39,7 +39,7 @@ other keeps its box or is the origin. An outer statement.
 
 namespace CORALean
 
-open CORALean.Float ContSet SoundFloatArithmetic
+open CORALean.Float ContSet ContSetLike SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m N M : ℕ}
 

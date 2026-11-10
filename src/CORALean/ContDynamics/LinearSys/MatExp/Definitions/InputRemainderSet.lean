@@ -39,9 +39,9 @@ The interval matrix `inputRemainder`, multiplied onto an input set: the `E(r)·r
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
-variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes ℐ S]
+variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes ℐ S]
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

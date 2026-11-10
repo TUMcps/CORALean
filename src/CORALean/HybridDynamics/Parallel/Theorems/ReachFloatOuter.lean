@@ -49,7 +49,7 @@ those fit the horizon `tFinal` and the bound `K`, its stacked end state lies in 
 
 namespace CORALean
 
-open CORALean.Float ContSet
+open CORALean.Float ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 variable {k m : ℕ} {n : Fin k → ℕ} {L : Fin k → Type}
@@ -61,7 +61,7 @@ theorem ParallelHybridAutomaton.reachFloat_outer
     {P : ParallelHybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) k L 𝕋 n m}
     (hst : P.HasStateBound) (hself : P.IsSelfBindFree)
     (lift : ParallelHybridAutomaton.Lifting 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) n m) {tFinal : ℚ}
-    {options : LinearSys.ReachOptions 𝕋} {K : ℕ} {ℓ₀ ℓ : ∀ i, L i}
+    {options : LinearSys.ReachFloatOptions 𝕋} {K : ℕ} {ℓ₀ ℓ : ∀ i, L i}
     {X₀ : Zonotope (Vec 𝕋 (∑ i, n i))} {x y : ∀ i, Vec ℝ (n i)} (hx : stack x ∈ toSet X₀)
     (run : P.IsRun ℓ₀ x ℓ y) : -- --- CONCL ---
     ∀ out ∈ P.reachFloat lift tFinal options K ℓ₀ X₀,

@@ -31,9 +31,9 @@ is what `ratio` reads at `𝕋 := ℝ` once the repeated additions are summed.
 
 namespace CORALean.Real
 
-open Matrix ContSet Float Float.FloatOps
+open Matrix ContSet ContSetLike Float Float.FloatOps
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S] {n m : ℕ}
 
 /-- [1, Alg. 1] at ℝ: what `bucketTolerance_approx` says is the fraction of neurons left within

@@ -17,8 +17,8 @@ public import CORALean.ContSet.ContSet.Theorems.Basic
 /-!
 # What `ConPolyZono` instantiates
 
-`ContSet`, `CompactSet`, `Plus`, `LinComb`, `Mtimes`, `Reduce`, `Intersection` and `OfPoint`, each
-obligation a theorem from `Theorems` read in the `⊆` direction.
+`ContSetLike`, `CompactSet`, `Plus`, `LinComb`, `Mtimes`, `Reduce`, `Intersection` and `OfPoint`,
+each obligation a theorem from `Theorems` read in the `⊆` direction.
 
 No `ConvexSet`: the sets are generally not convex. `CompactSet` holds all the same, since a
 constraint row cuts the coefficient cube down to a closed subset. `Reduce` ranks both generator
@@ -48,7 +48,7 @@ scoped notation "𝒞𝒫𝒵" => fun n => ConPolyZono (Vec ℝ n)
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance : ContSet (ConPolyZono α) α := ⟨ConPolyZono.toSet⟩
+instance : ContSetLike (ConPolyZono α) α := ⟨ConPolyZono.toSet⟩
 
 /-- At every ambient type, as the set-level statement is: it is the coefficient
 space that has to be finite-dimensional, and that one is `Fin p × Fin qI`. -/

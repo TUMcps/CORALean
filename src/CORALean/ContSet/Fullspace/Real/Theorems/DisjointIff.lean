@@ -34,15 +34,15 @@ this is the statement the answer would be sound and complete for.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSetLike
 
 variable {n : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-theorem Fullspace.disjoint_iff {S : Type} [ContSet S (Vec ℝ n)] (F : Fullspace n) (s : S) :
-    Disjoint (ContSet.toSet s) F.toSet ↔ ContSet.toSet s = ∅ :=
+theorem Fullspace.disjoint_iff {S : Type} [ContSetLike S (Vec ℝ n)] (F : Fullspace n) (s : S) :
+    Disjoint (ContSetLike.toSet s) F.toSet ↔ ContSetLike.toSet s = ∅ :=
   Set.disjoint_univ
 
 end CORALean.Real

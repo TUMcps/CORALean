@@ -34,7 +34,7 @@ hypothesis-free statement about a network is the relational one read here.
 
 namespace CORALean
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

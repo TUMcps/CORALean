@@ -52,7 +52,7 @@ particular solution due to the *uncertain* part `U₀` of the input, which `P̂^
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet Pointwise Scalar NormedSpace
+open Matrix ContSet ContSetLike Pointwise Scalar NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

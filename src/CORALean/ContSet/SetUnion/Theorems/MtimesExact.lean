@@ -39,23 +39,23 @@ namespace CORALean
 open Matrix
 
 variable {𝕄 : ℕ → ℕ → Type} {S : ℕ → Type}
-  [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes 𝕄 S]
+  [∀ m n, ContSetLike (𝕄 m n) (Mat ℝ m n)] [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes 𝕄 S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SetUnion.mtimes_exact
     (hExact : ∀ {m n : ℕ} (M : 𝕄 m n) (s : S n),
-      (⋃ A ∈ ContSet.toSet M, (A *ᵥ ·) '' ContSet.toSet s) =
-        ContSet.toSet (Mtimes.mtimes M s))
+      (⋃ A ∈ ContSetLike.toSet M, (A *ᵥ ·) '' ContSetLike.toSet s) =
+        ContSetLike.toSet (Mtimes.mtimes M s))
     {m n : ℕ} (M : 𝕄 m n) (u : SetUnion (S n)) : -- --- CONCL ---
-    (⋃ A ∈ ContSet.toSet M, (A *ᵥ ·) '' ContSet.toSet u) =
-      ContSet.toSet (SetUnion.mtimes M u) := by -- --- PROOF ---
+    (⋃ A ∈ ContSetLike.toSet M, (A *ᵥ ·) '' ContSetLike.toSet u) =
+      ContSetLike.toSet (SetUnion.mtimes M u) := by -- --- PROOF ---
   refine Set.Subset.antisymm (SetUnion.mtimes_outer M u) ?_
   intro x hx
   obtain ⟨t, ht, hx⟩ := SetUnion.mem_toSet.mp hx
   obtain ⟨s, hs, rfl⟩ := List.mem_map.mp ht
-  have hx' : x ∈ ⋃ A ∈ ContSet.toSet M, (A *ᵥ ·) '' ContSet.toSet s := by
+  have hx' : x ∈ ⋃ A ∈ ContSetLike.toSet M, (A *ᵥ ·) '' ContSetLike.toSet s := by
     rw [hExact M s]; exact hx
   simp only [Set.mem_iUnion, Set.mem_image] at hx'
   obtain ⟨A, hA, a, ha, rfl⟩ := hx'

@@ -68,7 +68,7 @@ differences are empty and the claim holds. `curv`, `err`, `lagr` are (17), (13),
 
 namespace CORALean
 
-open ContSet Matrix NormedSpace Pointwise Set
+open ContSetLike Matrix NormedSpace Pointwise Set
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra

@@ -34,7 +34,7 @@ reset `x ↦ W x + w` the stored coefficients denote, over any boxes.
 
 namespace CORALean
 
-open Matrix CORALean.Float ContSet SoundFloatArithmetic
+open Matrix CORALean.Float ContSet ContSetLike SoundFloatArithmetic
 
 variable {G : ℕ → Type} {L : Type} {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 

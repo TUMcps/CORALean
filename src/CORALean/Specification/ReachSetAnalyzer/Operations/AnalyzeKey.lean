@@ -43,7 +43,7 @@ CORA throws if the builder rejects the interval (a degenerate one) or a key has 
 namespace CORALean
 
 variable {𝕋 T : Type} [Scalar 𝕋] [ExactScalar 𝕋] [TimeOrder T] [Zero T] {S : ℕ → Type}
-  {n : ℕ} [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
+  {n : ℕ} [∀ k, ContSetLike (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)]
 
 

@@ -31,7 +31,7 @@ at every `n`, the zero vector at `n = 0` included.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 variable {n m : ℕ}
 

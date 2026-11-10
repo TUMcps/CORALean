@@ -8,7 +8,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.ZeroMemAbsorbRounding
 /-!
 # `absorbRounding` loses no point
 
-Read back through `ContSet`, for a caller that only wants the inclusion:
+Read back through `ContSetLike`, for a caller that only wants the inclusion:
 `absorbRounding_nominal` places every point in the nominal set, and the box denotes
 the origin alone.
 

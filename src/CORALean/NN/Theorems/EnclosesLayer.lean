@@ -10,7 +10,7 @@ public import CORALean.NN.Definitions.Encloses
 Composition at `layer`: the constructor read at `f = h ∘ g`.
 
 ## Inputs
-* `L` – family of layer types
+* `Layer` – family of layer types
 * `curr` – first layer
 * `tail` – remaining network
 * `g` – map of the first layer
@@ -34,15 +34,15 @@ Composition at `layer`: the constructor read at `f = h ∘ g`.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m k : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- Composition at `layer`, which is the constructor read at `f = h ∘ g`. -/
-theorem NeuralNetwork.encloses_layer {L : ℕ → ℕ → Type} [Enclose L S] {curr : L n m}
+theorem NeuralNetwork.encloses_layer {Layer : ℕ → ℕ → Type} [Enclose Layer S] {curr : Layer n m}
     {tail : NeuralNetwork S m k} {g : Vec ℝ n → Vec ℝ m} {h : Vec ℝ m → Vec ℝ k}
     (hL : (Enclose.toLayer (S := S) curr).Encloses g) (htail : tail.Encloses h) :
     (NeuralNetwork.layer curr tail).Encloses (h ∘ g) :=

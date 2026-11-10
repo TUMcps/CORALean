@@ -93,7 +93,7 @@ theorem LinearSys.discretizeEnclosureFloat_reach_subset_add_errorFloat (sys : Li
     intro x hx
     obtain ⟨_, ⟨z, hz, d, hd, rfl⟩, i, hi, rfl⟩ := h k hx
     have hdi : d + i ∈ (sys.reachErrorFloat Δt η o ho R₀ U k).toSet := by
-      show _ ∈ ContSet.toSet
+      show _ ∈ ContSetLike.toSet
         (sys.reachExcessFloat Δt η o ho R₀ U k ⊞ sys.reachInputErrorFloat Δt η U k)
       exact Plus.plus_outer _ _ (Set.add_mem_add hd hi)
     exact ⟨z, hz, d + i, hdi, (add_assoc _ _ _).symm⟩
@@ -124,27 +124,27 @@ theorem LinearSys.discretizeEnclosureFloat_reach_subset_add_errorFloat (sys : Li
     obtain ⟨_, ⟨z, hz, d, hd, rfl⟩, i, hi, rfl⟩ := ih hy
     set E := exp (toReal Δt • Scalar.toRealMat sys.A)
     have hEd : E *ᵥ d ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) eA
+      (ContSet := 𝒵[𝕋]) eA
         (sys.reachExcessFloat Δt η o ho R₀ U k)).toSet :=
       Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) eA _
+        (ContSet := 𝒵[𝕋]) eA _
         (Set.mem_biUnion he ⟨d, hd, rfl⟩)
     have hEi : E *ᵥ i ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) eA
+      (ContSet := 𝒵[𝕋]) eA
         (sys.reachInputErrorFloat Δt η U k)).toSet :=
       Mtimes.mtimes_outer (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) eA _
+        (ContSet := 𝒵[𝕋]) eA _
         (Set.mem_biUnion he ⟨i, hi, rfl⟩)
     -- the step's two outputs, each one more application of the same sum
     have hD : E *ᵥ d + b + g ∈ (sys.reachExcessFloat Δt η o ho R₀ U (k + 1)).toSet := by
-      show _ ∈ ContSet.toSet
-        ((Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eA
+      show _ ∈ ContSetLike.toSet
+        ((Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) eA
         (sys.reachExcessFloat Δt η o ho R₀ U k) ⊞ sys.timePointStepExcessFloat Δt η Rk U) ⊞
           Zonotope.reduceGirardBox W o)
       exact Plus.plus_outer _ _ (Set.add_mem_add (Plus.plus_outer _ _ (Set.add_mem_add hEd hb)) hg)
     have hI : E *ᵥ i + t ∈ (sys.reachInputErrorFloat Δt η U (k + 1)).toSet := by
-      show _ ∈ ContSet.toSet
-        (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (S := 𝒵[𝕋]) eA
+      show _ ∈ ContSetLike.toSet
+        (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) eA
         (sys.reachInputErrorFloat Δt η U k) ⊞ sys.timePointStepErrorBoxFloat Δt η U)
       exact Plus.plus_outer _ _ (Set.add_mem_add hEi ht)
     -- the exact part is the exact set's own step

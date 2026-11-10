@@ -35,7 +35,7 @@ input `B u + c + E w` lies in `inputSetFloat`: `B u + c` in `LinearSys.inputSetF
 
 namespace CORALean
 
-open CORALean.Float Matrix ContSet
+open CORALean.Float Matrix ContSet ContSetLike
 
 variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {G : ℕ → Type}
 
@@ -48,7 +48,7 @@ theorem Location.inputSetFloat_outer (ℓ : Location 𝒵[𝕋] G L 𝕋 n) {u :
       Scalar.toRealMat ℓ.dynamics.E *ᵥ w ∈ toSet ℓ.inputSetFloat := by
   exact Plus.plus_outer _ _ (Set.add_mem_add
     (ℓ.dynamics.inputSetFloat_outer ℓ.U ⟨u, hu, rfl⟩)
-    (Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) ℓ.dynamics.E ℓ.W
+    (Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) ℓ.dynamics.E ℓ.W
       (Set.mem_biUnion (Set.mem_singleton _) (Set.mem_image_of_mem _ hw))))
 
 end CORALean

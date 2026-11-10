@@ -46,9 +46,9 @@ disjointness test is sound. `refineVerifyFrom_sound` at line 1's order pattern.
 
 namespace CORALean
 
-open ContSet
+open ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable {n m : ℕ}
 
 

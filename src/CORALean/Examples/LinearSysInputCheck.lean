@@ -31,36 +31,36 @@ cannot be evaluated here; what is shown is that `Reach.holds_of_check` applies a
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 -- Anonymous, since their content is that they elaborate.
 
 /-- With inputs in `[-1/10, 1/10]²`: the same box answers for every run under them. -/
 example :
-    Reach.check (S := 𝒵)
+    Reach.check (ContSet₂ := 𝒵)
       (⟨LinearSys.canonical !![-1, 1; 0, -2], ⟨2, 0, ![![1 / 10, 0], ![0, 1 / 10]]⟩,
         Zonotope.center_mem_toSet _⟩ : LinearSys.WithInput ℝ 𝒵 2)
       ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩ ⟨1 / 10, 4⟩
       (Specification.safeSet (⟨![-1 / 2, -1 / 2], ![5 / 2, 5 / 2]⟩ : Float.Interval (Vec ℝ 2))) →
     ((Specification.safeSet (⟨![-1 / 2, -1 / 2], ![5 / 2, 5 / 2]⟩ : Float.Interval (Vec ℝ 2))).Holds
-      (Reach.reachExact (S := 𝒵)
+      (Reach.reachExact (ContSet := 𝒵)
         (⟨LinearSys.canonical !![-1, 1; 0, -2], ⟨2, 0, ![![1 / 10, 0], ![0, 1 / 10]]⟩,
           Zonotope.center_mem_toSet _⟩ : LinearSys.WithInput ℝ 𝒵 2)
         ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩)) :=
-  Reach.holds_of_check (S := 𝒵) _ _ _ _
+  Reach.holds_of_check (ContSet₂ := 𝒵) _ _ _ _
 
 /-- With inputs in a box off the origin, split at its center: the same answer. -/
 example :
-    Reach.check (S := 𝒵)
+    Reach.check (ContSet₂ := 𝒵)
       (⟨LinearSys.canonical !![-1, 1; 0, -2], ⟨2, ![1 / 5, 0], ![![1 / 10, 0], ![0, 1 / 10]]⟩⟩ :
         LinearSys.WithInputSplit ℝ 𝒵 2)
       ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩ ⟨1 / 10, 4⟩
       (Specification.safeSet (⟨![-1 / 2, -1 / 2], ![5 / 2, 5 / 2]⟩ : Float.Interval (Vec ℝ 2))) →
     ((Specification.safeSet (⟨![-1 / 2, -1 / 2], ![5 / 2, 5 / 2]⟩ : Float.Interval (Vec ℝ 2))).Holds
-      (Reach.reachExact (S := 𝒵)
+      (Reach.reachExact (ContSet := 𝒵)
         (⟨LinearSys.canonical !![-1, 1; 0, -2], ⟨2, ![1 / 5, 0], ![![1 / 10, 0], ![0, 1 / 10]]⟩⟩ :
           LinearSys.WithInputSplit ℝ 𝒵 2)
         ⟨(⟨2, ![1, 1], ![![1, 0], ![0, 1]]⟩ : Zonotope (Vec ℝ 2)), 0, 1⟩)) :=
-  Reach.holds_of_check (S := 𝒵) _ _ _ _
+  Reach.holds_of_check (ContSet₂ := 𝒵) _ _ _ _
 
 end CORALean.Real

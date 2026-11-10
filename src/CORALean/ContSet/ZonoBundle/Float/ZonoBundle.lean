@@ -9,12 +9,12 @@ public import CORALean.ContSet.SetIntersection.SetIntersection
 # Zonotope bundles over a floating-point scalar: the representation
 
 CORA's `zonoBundle` [1, Def. 4] at float zonotopes: the family is stored and the intersection is
-what it denotes, each member already inflated by its own error box. So there is no `InflatedContSet`
-instance and `Instances` gives `ContSet` directly: `⋂ᵢ (Nᵢ + Eᵢ)` can be nonempty where `⋂ᵢ Nᵢ` is
-empty, and no single `E` then makes `(⋂ᵢ Nᵢ) + E` contain it. `ZonoBundle α` is indexed by the
-ambient type its members store, as the exact layer's is, and denotes the general `SetIntersection`
-of its members (`toSetIntersection`), so the facts of every intersection come from that class.
-`k = 0` denotes `univ`, the whole space and not `∅`, exactly as over ℝ.
+what it denotes, each member already inflated by its own error box. So no `InflatedContSet`
+instance exists and `Instances` gives `ContSetLike` directly: `⋂ᵢ (Nᵢ + Eᵢ)` can be nonempty where
+`⋂ᵢ Nᵢ` is empty, and no single `E` then makes `(⋂ᵢ Nᵢ) + E` contain it. `ZonoBundle α` is
+indexed by the ambient type its members store, as the exact layer's is, and denotes the general
+`SetIntersection` of its members (`toSetIntersection`), whose facts it inherits. `k = 0` denotes
+`univ`, not `∅`, as over ℝ.
 There is no `I_error` and no `absorbRounding`: each member carries its own box.
 
 ## References
@@ -53,7 +53,7 @@ def ZonoBundle.toSetIntersection {α : Type} (zB : ZonoBundle α) : SetIntersect
 own inflated sets, so the rounding each has paid for is already inside this. -/
 def ZonoBundle.toSet {α β ι : Type} [RealImage α β] [AddCommGroup β] [Module ℝ β]
     [Entrywise β ι] (zB : ZonoBundle α) : Set β :=
-  ContSet.toSet zB.toSetIntersection
+  ContSetLike.toSet zB.toSetIntersection
 
 end CORALean.Float
 

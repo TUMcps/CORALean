@@ -42,7 +42,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 
 theorem Polygon.splitIntoConvexSets_union (P : Polygon 𝕋) :
     (∀ p ∈ Polygon.splitIntoConvexSets P, Convex ℝ (VPolytope.toSet p)) ∧
-      (⋃ p ∈ Polygon.splitIntoConvexSets P, VPolytope.toSet p) = ContSet.toSet P :=
+      (⋃ p ∈ Polygon.splitIntoConvexSets P, VPolytope.toSet p) = ContSetLike.toSet P :=
   ⟨fun p _ => p.convex_toSet, rfl⟩
 
 end CORALean.Float

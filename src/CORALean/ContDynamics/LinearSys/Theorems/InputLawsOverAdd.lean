@@ -46,13 +46,13 @@ input set is bounded.
 
 namespace CORALean
 
-open Matrix ContSet Scalar NormedSpace MeasureTheory ProbabilityTheory WithLp
+open Matrix ContSet ContSetLike Scalar NormedSpace MeasureTheory ProbabilityTheory WithLp
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
 
 variable {n m : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

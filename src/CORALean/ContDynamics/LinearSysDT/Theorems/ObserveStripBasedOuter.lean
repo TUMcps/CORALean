@@ -58,9 +58,9 @@ and a float type the rounded one, with `A`, `u`, `C`, `y`, `σ` the reals the fl
 
 namespace CORALean
 
-open Matrix ContSet Scalar Reduce IntersectStrip
+open Matrix ContSet ContSetLike Scalar Reduce IntersectStrip
 
-variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 variable [OfScalarPoint 𝕋 S] [IntersectStrip 𝕋 S] {n p : ℕ}
 

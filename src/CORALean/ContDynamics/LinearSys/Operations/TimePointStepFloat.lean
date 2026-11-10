@@ -45,7 +45,7 @@ def LinearSys.timePointStepFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ
     Zonotope (Vec 𝕋 n) :=
   let eAΔt := sys.expIntervalFloat Δt Δt η                                  -- [e^{AΔt}]
   Mtimes.mtimes (𝕄 := ℐ[𝕋])  -- [e^{AΔt}] R
-    (S := 𝒵[𝕋]) eAΔt R
+    (ContSet := 𝒵[𝕋]) eAΔt R
 
 end CORALean
 

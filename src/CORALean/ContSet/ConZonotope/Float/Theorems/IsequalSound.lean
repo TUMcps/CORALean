@@ -76,9 +76,9 @@ theorem ConZonotope.isequal_sound {Z S : ConZonotope 𝕋 (Vec 𝕋 n)}
           CORALean.Real.ConZonotope (Vec ℝ n)) =
         ⟨h₁, toRealVec c₂, fun j => toRealVec (G₂ j), P₂.nominal⟩
       rw [hc, hG, hPn]
-    change ContSet.toSet (nominal (⟨h₁, c₁, G₁, P₁, E₁⟩ : ConZonotope 𝕋 (Vec 𝕋 n))) +
+    change ContSetLike.toSet (nominal (⟨h₁, c₁, G₁, P₁, E₁⟩ : ConZonotope 𝕋 (Vec 𝕋 n))) +
       E₁.toSet =
-      ContSet.toSet (nominal (⟨h₁, c₂, G₂, P₂, E₂⟩ : ConZonotope 𝕋 (Vec 𝕋 n))) + E₂.toSet
+      ContSetLike.toSet (nominal (⟨h₁, c₂, G₂, P₂, E₂⟩ : ConZonotope 𝕋 (Vec 𝕋 n))) + E₂.toSet
     rw [hN, hE]
   · simp at h
 

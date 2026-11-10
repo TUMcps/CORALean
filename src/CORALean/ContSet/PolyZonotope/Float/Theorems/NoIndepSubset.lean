@@ -50,7 +50,7 @@ theorem PolyZonotope.noIndep_subset (pZ : PolyZonotope (Vec 𝕋 n)) : -- --- CO
     ⊆ InflatedContSet.nominalSet pZ + pZ.I_error.toSet
   have h2 : InflatedContSet.nominalSet pZ.noIndep
       = ((InflatedContSet.nominal pZ).noIndep).toSet := by
-    show ContSet.toSet (InflatedContSet.nominal pZ.noIndep) = _
+    show ContSetLike.toSet (InflatedContSet.nominal pZ.noIndep) = _
     rw [h]
     rfl
   rw [h2]

@@ -46,9 +46,9 @@ enclosed set may be spurious, and [1, Alg. 2, l. 9] is exactly that check.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

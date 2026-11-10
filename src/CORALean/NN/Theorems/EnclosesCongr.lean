@@ -32,9 +32,9 @@ What lets a caller name the composite in its own terms.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m k : ℕ}
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

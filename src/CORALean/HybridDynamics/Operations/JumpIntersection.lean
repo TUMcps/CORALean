@@ -31,9 +31,9 @@ family, so the transition is `Transition S L 𝕋 n`, not the general `Transitio
 
 namespace CORALean
 
-open Matrix ContSet Scalar Plus Mtimes Real.OfInterval
+open Matrix ContSet ContSetLike Scalar Plus Mtimes Real.OfInterval
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
 variable {𝕋 : Type} [Scalar 𝕋] [Mtimes (Mat 𝕋) S] [Real.OfInterval S] {L : Type} {n : ℕ}
 
 

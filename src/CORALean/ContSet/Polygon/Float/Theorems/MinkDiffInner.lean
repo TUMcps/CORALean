@@ -44,8 +44,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋]
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Polygon.minkDiff_inner (P Q : Polygon 𝕋) : -- --- CONCL ---
-    ContSet.toSet (Polygon.minkDiff P Q)
-      ⊆ minkowskiDiff (ContSet.toSet P) (ContSet.toSet Q) := by -- --- PROOF ---
+    ContSetLike.toSet (Polygon.minkDiff P Q)
+      ⊆ minkowskiDiff (ContSetLike.toSet P) (ContSetLike.toSet Q) := by -- --- PROOF ---
   intro x hx y hy
   obtain ⟨R, hR, hxR⟩ := SetUnion.mem_toSet.mp hx
   obtain ⟨p, hp, hpR⟩ := List.mem_filterMap.mp hR

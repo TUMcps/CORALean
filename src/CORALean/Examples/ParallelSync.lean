@@ -34,7 +34,7 @@ must not have; `mergeTransitionSetsSync` has exactly one, the synchronized trans
 
 namespace CORALean.Real
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 /-- Component `1`: integrates its global input, and has one transition, back to itself. -/
 def PSY.integrator : HybridAutomaton ℐ𝒱 ℋ𝒫 Unit ℝ 1 where

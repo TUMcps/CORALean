@@ -51,9 +51,9 @@ sidesteps that rather than needing it.
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [∀ n, Plus (S n) (Vec ℝ n)]
   [Mtimes (Mat ℝ) S] [Real.IntervalOuter S] [Real.OfInterval S]
 
 
@@ -65,7 +65,7 @@ specification check on the image of any subset `s' ⊆ toSet s` — no re-deriva
 theorem NeuralNetwork.holds_of_reducesAt_subset {n m : ℕ} {s : S n} {s' : Set (Vec ℝ n)}
     {nn nn' : NeuralNetwork S n m} {f : Vec ℝ n → Vec ℝ m}
     (h : NeuralNetwork.ReducesAt s nn nn' f) (hsub : s' ⊆ toSet s)
-    {ContSet : Type} [CORALean.ContSet ContSet (Vec ℝ m)]
+    {ContSet : Type} [ContSetLike ContSet (Vec ℝ m)]
     (spec : Specification ContSet)
     (hspec : spec.Holds (toSet (nn'.enclose s))) :
     spec.Holds (f '' s') :=

@@ -34,10 +34,10 @@ here, as CORA's `linearSys/reach` runs on the canonical form. Soundness is `inpu
 
 namespace CORALean
 
-open Matrix ContSet Scalar
+open Matrix ContSetLike Scalar
 
 variable {n : ℕ} {L 𝕋 : Type} [Scalar 𝕋]
-variable {S G : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S G : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [Mtimes (Mat ℝ) S] [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 
 

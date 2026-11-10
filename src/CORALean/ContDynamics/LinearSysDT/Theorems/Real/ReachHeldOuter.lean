@@ -40,9 +40,9 @@ names — no `reduce_outer`, since `reachHeld` calls no `reduce`.
 
 namespace CORALean
 
-open Matrix ContSet Scalar Plus Mtimes
+open Matrix ContSetLike Scalar Plus Mtimes
 
-variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {n : ℕ} {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat ℝ) S]
 
 

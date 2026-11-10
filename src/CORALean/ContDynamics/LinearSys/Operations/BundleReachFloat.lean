@@ -69,10 +69,10 @@ def LinearSys.bundleReachFloat (sys : LinearSys 𝕋 n) (Rh₀ : ZonoBundle (Vec
       (ZonoBundle (Vec 𝕋 n))) _ =>
       -- 4. R^h_k = e^{Ar} R^h_{k-1}
       let Rhₖ := Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵ℬ[𝕋]) E S.1.1
+        (ContSet := 𝒵ℬ[𝕋]) E S.1.1
       -- 5. R^i_k = e^{Ar} R^i_{k-1}
       let Riₖ := Mtimes.mtimes (𝕄 := ℐ[𝕋])
-        (S := 𝒵[𝕋]) E S.1.2.1
+        (ContSet := 𝒵[𝕋]) E S.1.2.1
       -- 6. P_k = P_{k-1} ⊕ box(R^i_k)
       let Pₖ := Plus.plus S.1.2.2 Riₖ.interval.zonotope
       -- 7. R_k = R^h_k ⊕ P_k

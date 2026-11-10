@@ -33,9 +33,9 @@ Each `iProp` sums to one, so the transition probabilities add up to the sum of t
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {n m : ℕ} {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] [Real.IntervalOuter S]
+variable {n m : ℕ} {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] [Real.IntervalOuter S]
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --

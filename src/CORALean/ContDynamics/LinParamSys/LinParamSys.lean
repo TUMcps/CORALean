@@ -35,10 +35,10 @@ the canonical form `ẋ = A x + u'`, `u' = B u + c` (CORA's `inputSet`), which t
 
 namespace CORALean
 
-open Matrix ContSet MeasureTheory
+open Matrix ContSetLike MeasureTheory
 
-variable {n : ℕ} {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {n : ℕ} {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSetLike (𝕄 m n) (Mat ℝ m n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- ========================================  MAIN TYPE  ========================================= --

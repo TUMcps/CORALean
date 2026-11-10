@@ -53,7 +53,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m : ℕ}
 if the region check or the linear step fails. -/
 def NonlinearSys.FloatHessModel.orderStepFloat [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
     (fm : NonlinearSys.FloatHessModel 𝕋 n m) (κ : ℕ) (U : Zonotope (Vec 𝕋 m))
-    (options : LinearSys.ReachOptions 𝕋) (R : Zonotope (Vec 𝕋 n)) :
+    (options : LinearSys.ReachFloatOptions 𝕋) (R : Zonotope (Vec 𝕋 n)) :
     Option (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) :=
   if κ = 1 then fm.toFloatModel.relinStepFloat U options R          -- 7. abstrErr, κ = 1
   else fm.linReachFloat .lin U options R                            -- 7. abstrErr, κ = 2

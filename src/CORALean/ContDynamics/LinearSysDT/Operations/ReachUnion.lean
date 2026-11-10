@@ -31,10 +31,10 @@ is: no `reduce`, no new arithmetic, `List.map` over its steps.
 
 namespace CORALean
 
-open ContSet Plus Reduce Mtimes
+open ContSetLike Plus Reduce Mtimes
 
 variable {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
 
 

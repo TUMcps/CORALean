@@ -40,7 +40,7 @@ namespace CORALean
 /-- A `LinearSys` paired with the input set every run draws from, wherever it
 sits. -/
 structure LinearSys.WithInputSplit (𝕋 : Type) [Scalar 𝕋] (S : ℕ → Type)
-    [∀ n, ContSet (S n) (Vec ℝ n)] (n : ℕ) where
+    [∀ n, ContSetLike (S n) (Vec ℝ n)] (n : ℕ) where
   sys : LinearSys 𝕋 n
   U : S n
 

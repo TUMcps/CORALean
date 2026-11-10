@@ -43,10 +43,10 @@ the fixed order admissible for `Δt` alone.
 namespace CORALean
 
 open CORALean.Real
-open ContSet
+open ContSet ContSetLike
 
 variable {n : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, LinComb (S n) (Vec ℝ n)]
 variable [∀ n, OfPoint (S n) (Vec ℝ n)] [Mtimes ℐ S]
 

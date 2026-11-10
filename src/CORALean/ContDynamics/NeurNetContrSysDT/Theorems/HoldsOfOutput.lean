@@ -47,10 +47,10 @@ than the state, and for the same reason there — `C` in general not invertible.
 
 namespace CORALean
 
-open Matrix ContSet Scalar Plus Reduce Mtimes
+open Matrix ContSet ContSetLike Scalar Plus Reduce Mtimes
 
 variable {n : ℕ} {𝕋 : Type} [Scalar 𝕋]
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S]
     [OfScalarPoint 𝕋 S]
 
@@ -58,7 +58,7 @@ variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)] [Mtim
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem NeurNetContrSysDT.holds_of_output (sys : NeurNetContrSysDT (LinearSysDT 𝕋 n) S n)
-    (U_ext : S sys.nExt) {Y : Type} [CORALean.ContSet Y (Vec ℝ sys.plant.q)]
+    (U_ext : S sys.nExt) {Y : Type} [ContSetLike Y (Vec ℝ sys.plant.q)]
     {o : ℕ} (ho : 0 < o) (R₀ : S n) (spec : Specification Y)
     {π : Vec ℝ n → Vec ℝ sys.m} (hπ : sys.contr.Encloses π)
     {W : Set (Vec ℝ sys.plant.r)}

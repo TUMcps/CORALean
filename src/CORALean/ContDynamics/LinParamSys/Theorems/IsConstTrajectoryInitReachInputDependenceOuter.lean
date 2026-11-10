@@ -61,7 +61,7 @@ gives it in closed form, the input integral being the constant's on `[0, t]`.
 namespace CORALean
 
 open CORALean.Real
-open Matrix ContSet NormedSpace
+open Matrix ContSet ContSetLike NormedSpace
 
 attribute [local instance] Matrix.linftyOpNormedAddCommGroup Matrix.linftyOpNormedSpace
   Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
@@ -95,8 +95,8 @@ theorem LinParamSys.IsConstTrajectory.initReachInputDependence_outer {sys : LinP
     show B - sys.B.c = 0 + ∑ j, β j • sys.B.G j
     rw [hBβ]; abel⟩
   have hwmem : (B - sys.B.c) *ᵥ (Uc + ∑ i, p i • UG i)
-      ∈ toSet (Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) BΔ Uconst) :=
-    Mtimes.mtimes_outer (𝕄 := 𝕄𝒵) (S := 𝒵) BΔ Uconst
+      ∈ toSet (Mtimes.mtimes (𝕄 := 𝕄𝒵) (ContSet := 𝒵) BΔ Uconst) :=
+    Mtimes.mtimes_outer (𝕄 := 𝕄𝒵) (ContSet := 𝒵) BΔ Uconst
       (Set.mem_iUnion₂.mpr ⟨_, hD, _, hu0, rfl⟩)
   -- the combined input, split into the shared-parameter part and the deviation
   have hv : ∀ s ∈ T, B *ᵥ u s + sys.c = (sys.B.c *ᵥ Uc + sys.c) + ∑ i, p i • (sys.B.c *ᵥ UG i)
@@ -108,13 +108,13 @@ theorem LinParamSys.IsConstTrajectory.initReachInputDependence_outer {sys : LinP
   -- the run is a run of the canonical form under that input set
   have trajC := traj.canonical (U' := (⟨sys.A.h, sys.B.c *ᵥ Uc + sys.c,
     fun i => sys.B.c *ᵥ UG i⟩ : Zonotope (Vec ℝ n))
-      ⊞ Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) BΔ Uconst) fun s hs => by
+      ⊞ Mtimes.mtimes (𝕄 := 𝕄𝒵) (ContSet := 𝒵) BΔ Uconst) fun s hs => by
     rw [hv s hs]
     exact Plus.plus_outer _ _ (Set.add_mem_add ⟨p, hp, rfl⟩ hwmem)
   have trajL := trajC.toLinearSys
   have hU := CompactSet.isBounded_toSet ((⟨sys.A.h, sys.B.c *ᵥ Uc + sys.c,
     fun i => sys.B.c *ᵥ UG i⟩ : Zonotope (Vec ℝ n))
-      ⊞ Mtimes.mtimes (𝕄 := 𝕄𝒵) (S := 𝒵) BΔ Uconst)
+      ⊞ Mtimes.mtimes (𝕄 := 𝕄𝒵) (ContSet := 𝒵) BΔ Uconst)
   -- each time as variation of constants, the input the constant `B u(p) + c`
   have hclosed : ∀ τ, 0 ≤ τ → τ ≤ r → x τ = exp (τ • A) *ᵥ x 0
       + ∫ s in (0:ℝ)..τ, exp ((τ - s) • A) *ᵥ (B *ᵥ (Uc + ∑ i, p i • UG i) + sys.c) := by

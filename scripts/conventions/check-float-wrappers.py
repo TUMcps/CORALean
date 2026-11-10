@@ -14,7 +14,7 @@ bare forms; a wrapper that adds an argument or a coercion is for the reviewer.
 
 One definition is a bare wrapper on purpose, and recognized by its form: `X.toSet` in the
 main file `ContSet/X/Float/X.lean` of a float set that has no error box. It is the `toSet` the
-`ContSet` instance and every `I.toSet` in a statement resolve through by dot notation, so it
+`ContSetLike` instance and every `I.toSet` in a statement resolve through by dot notation, so it
 must exist under that name; it is the nominal set's, spelt out for the class. There is no list.
 """
 import re

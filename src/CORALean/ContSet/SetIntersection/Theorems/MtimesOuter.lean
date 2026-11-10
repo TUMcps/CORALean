@@ -39,15 +39,15 @@ namespace CORALean
 open Matrix
 
 variable {𝕄 : ℕ → ℕ → Type} {S : ℕ → Type}
-  [∀ m n, ContSet (𝕄 m n) (Mat ℝ m n)] [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes 𝕄 S]
+  [∀ m n, ContSetLike (𝕄 m n) (Mat ℝ m n)] [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes 𝕄 S]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SetIntersection.mtimes_outer {m n : ℕ} (M : 𝕄 m n)
     (I : SetIntersection (S n)) : -- --- CONCL ---
-    (⋃ A ∈ ContSet.toSet M, (A *ᵥ ·) '' ContSet.toSet I) ⊆
-      ContSet.toSet (SetIntersection.mtimes M I) := by -- --- PROOF ---
+    (⋃ A ∈ ContSetLike.toSet M, (A *ᵥ ·) '' ContSetLike.toSet I) ⊆
+      ContSetLike.toSet (SetIntersection.mtimes M I) := by -- --- PROOF ---
   intro x hx
   simp only [Set.mem_iUnion, Set.mem_image] at hx
   obtain ⟨A, hA, a, ha, rfl⟩ := hx

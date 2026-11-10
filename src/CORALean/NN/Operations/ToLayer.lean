@@ -29,9 +29,9 @@ put a network inside another, it is an `Enclose` kind and goes in through `Enclo
 
 namespace CORALean
 
-open ContSet
+open ContSet ContSetLike
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

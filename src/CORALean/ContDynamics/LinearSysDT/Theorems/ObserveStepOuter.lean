@@ -56,9 +56,9 @@ are the reals the floats store. [2, Eq. 4]: the correction keeps `S_p ∩ Ŝ`.
 
 namespace CORALean
 
-open Matrix Pointwise ContSet Scalar Plus Mtimes IntersectStrip
+open Matrix Pointwise ContSet ContSetLike Scalar Plus Mtimes IntersectStrip
 
-variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {𝕋 : Type} [Scalar 𝕋] {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [OfScalarPoint 𝕋 S]
 variable [IntersectStrip 𝕋 S] {n p : ℕ}
 

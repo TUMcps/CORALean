@@ -38,7 +38,7 @@ carries nothing.
 
 namespace CORALean.Float
 
-open CORALean ContSet
+open CORALean ContSet ContSetLike
 open scoped Matrix
 
 /-- Everything below is at binary32's precision; every number used is a small dyadic. -/

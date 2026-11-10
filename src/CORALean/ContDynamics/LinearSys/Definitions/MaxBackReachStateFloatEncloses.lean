@@ -32,7 +32,7 @@ The lines are those of [1, Alg. 3].
 
 namespace CORALean
 
-open CORALean.Float ContSet SoundFloatArithmetic
+open CORALean.Float ContSet ContSetLike SoundFloatArithmetic
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 

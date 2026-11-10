@@ -38,7 +38,7 @@ For a float model that encloses the reset, `evaluate` at any point of the boxes 
 
 namespace CORALean
 
-open CORALean.Float ContSet
+open CORALean.Float ContSet ContSetLike
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n m p : ℕ}
 

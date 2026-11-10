@@ -35,14 +35,14 @@ namespace CORALean
 
 open Pointwise
 
-variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSet S α] [Plus S α]
+variable {S α : Type} [AddCommGroup α] [Module ℝ α] [ContSetLike S α] [Plus S α]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem SetUnion.plus_outer (u v : SetUnion S) : -- --- CONCL ---
-    ContSet.toSet u + ContSet.toSet v ⊆
-      ContSet.toSet (SetUnion.plus u v) := by -- --- PROOF ---
+    ContSetLike.toSet u + ContSetLike.toSet v ⊆
+      ContSetLike.toSet (SetUnion.plus u v) := by -- --- PROOF ---
   rintro _ ⟨a, ha, b, hb, rfl⟩
   obtain ⟨s, hs, ha⟩ := SetUnion.mem_toSet.mp ha
   obtain ⟨t, ht, hb⟩ := SetUnion.mem_toSet.mp hb

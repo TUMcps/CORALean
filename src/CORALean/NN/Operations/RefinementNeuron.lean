@@ -45,7 +45,7 @@ tie-break and the ranking are free.
 
 namespace CORALean
 
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)] {n m k : ℕ}
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)] {n m k : ℕ}
 
 
 -- ------------------------------------------  STEPS  ------------------------------------------- --

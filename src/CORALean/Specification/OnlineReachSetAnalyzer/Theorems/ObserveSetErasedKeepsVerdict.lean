@@ -45,7 +45,7 @@ shift. Its verdict is the exact one only if the exact run never revises a conclu
 namespace CORALean
 
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type} {d : ℕ}
-  [∀ k, ContSet (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
+  [∀ k, ContSetLike (S k) (Vec ℝ k)] [Mtimes (Mat 𝕋) S] [∀ k, Contains (S k) (S k)]
   [∀ k, IsDisjoint (S k) (S k)]
 
 
@@ -71,7 +71,7 @@ private noncomputable def aux_obj (sig : FourValuedSignal ℝ) : OnlineReachSetA
     numObservations := 0, propagated := [false, false] }
 
 
-omit [∀ k, ContSet (S k) (Vec ℝ k)] [∀ k, Contains (S k) (S k)] [∀ k, IsDisjoint (S k) (S k)] in
+omit [∀ k, ContSetLike (S k) (Vec ℝ k)] [∀ k, Contains (S k) (S k)] [∀ k, IsDisjoint (S k) (S k)] in
 /-- Propagating an interval to a child with nothing propagated yet records it. -/
 private theorem aux_setPropagated (eps : ℝ) (sig : FourValuedSignal ℝ)
     (J : STLInterval ℝ) : -- --- CONCL ---
@@ -87,14 +87,14 @@ private theorem aux_setPropagated (eps : ℝ) (sig : FourValuedSignal ℝ)
   simp [OnlineAnalyzerNode.setPropagated, aux_child, hJ]
 
 
-omit [∀ k, ContSet (S k) (Vec ℝ k)] [∀ k, Contains (S k) (S k)] [∀ k, IsDisjoint (S k) (S k)] in
+omit [∀ k, ContSetLike (S k) (Vec ℝ k)] [∀ k, Contains (S k) (S k)] [∀ k, IsDisjoint (S k) (S k)] in
 /-- The child, a leaf with no tentative observation, propagates without change. -/
 private theorem aux_propagate_child (eps : ℝ) (sig : FourValuedSignal ℝ) :
     (aux_child (S := S) (d := d) sig).propagate eps [] .empty = some (aux_child sig, []) := by
   simp [OnlineAnalyzerNode.propagate, aux_child]
 
 
-omit [∀ k, ContSet (S k) (Vec ℝ k)] [∀ k, Contains (S k) (S k)] [∀ k, IsDisjoint (S k) (S k)] in
+omit [∀ k, ContSetLike (S k) (Vec ℝ k)] [∀ k, Contains (S k) (S k)] [∀ k, IsDisjoint (S k) (S k)] in
 /-- The root merges the negated child and records the interval it passes on in the child. -/
 private theorem aux_propagate_root (eps : ℝ) (sig : FourValuedSignal ℝ) : -- --- CONCL ---
     ∃ J, (aux_root (S := S) (d := d)).propagate eps [aux_child sig] .empty =

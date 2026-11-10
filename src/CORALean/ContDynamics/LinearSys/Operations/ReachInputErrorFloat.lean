@@ -51,7 +51,7 @@ def step_reachInputErrorFloat (eAΔt : Interval (Mat 𝕋 n n)) (box : Zonotope 
   | 0 => Zonotope.point fun _ => zero
   | k + 1 =>
     Plus.plus (Mtimes.mtimes (𝕄 := ℐ[𝕋])
-      (S := 𝒵[𝕋]) eAΔt
+      (ContSet := 𝒵[𝕋]) eAΔt
       (step_reachInputErrorFloat eAΔt box k)) box
 
 

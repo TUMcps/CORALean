@@ -30,10 +30,10 @@ public import CORALean.ContSet.ContSet.Theorems.TimesOuter
 
 namespace CORALean
 
-open ContSet Scalar
+open ContSet ContSetLike Scalar
 
 variable {𝕋 : Type} [Scalar 𝕋] [ExactScalar 𝕋] {S : ℕ → Type}
-variable [∀ n, ContSet (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
+variable [∀ n, ContSetLike (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] {n : ℕ}
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, OfPoint (S n) (Vec ℝ n)]
 variable [∀ n, Recenter (S n) (Vec ℝ n)]
 

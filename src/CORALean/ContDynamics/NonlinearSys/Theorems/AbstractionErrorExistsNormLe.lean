@@ -51,10 +51,10 @@ field is bounded along the state. It is what a classical solution needs to be in
 
 namespace CORALean
 
-open Matrix ContSet
+open Matrix ContSetLike
 
 variable {n m : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

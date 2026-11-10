@@ -43,10 +43,10 @@ public import CORALean.ContDynamics.NonlinearSysDT.Theorems.ReachOuter
 
 namespace CORALean
 
-open ContSet Scalar Plus Reduce Mtimes
+open ContSet ContSetLike Scalar Plus Reduce Mtimes
 
 variable {dy du p : ℕ}
-variable {S : ℕ → Type} [∀ n, ContSet (S n) (Vec ℝ n)]
+variable {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
 variable [∀ n, Plus (S n) (Vec ℝ n)] [∀ n, Reduce (S n) (Vec ℝ n)]
 variable {𝕋 : Type} [CORALean.Float.FloatOps 𝕋] [CORALean.Float.SoundFloatArithmetic 𝕋]
 variable [Mtimes (Mat 𝕋) S] [CORALean.Float.OfInterval S 𝕋]

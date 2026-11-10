@@ -46,7 +46,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 theorem ZonoBundle.intersection_exact (zB₁ zB₂ : ZonoBundle (Vec 𝕋 n)) :
     (zB₁.intersection zB₂).toSet = zB₁.toSet ∩ zB₂.toSet := by
-  show ContSet.toSet (⟨List.ofFn (Fin.append zB₁.Z zB₂.Z)⟩ : SetIntersection _) = _
+  show ContSetLike.toSet (⟨List.ofFn (Fin.append zB₁.Z zB₂.Z)⟩ : SetIntersection _) = _
   rw [List.ofFn_fin_append]
   exact SetIntersection.intersection_exact zB₁.toSetIntersection zB₂.toSetIntersection
 

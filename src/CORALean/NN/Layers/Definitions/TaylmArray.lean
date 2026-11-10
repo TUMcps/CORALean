@@ -36,7 +36,7 @@ structure TaylmArray (𝕋 : Type) (d m : ℕ) where
 
 /-- An array of Taylor models denotes the range of the column, so that the shared variables stay
 shared. -/
-noncomputable instance (m : ℕ) : ContSet (TaylmArray 𝕋 d m) (Vec ℝ m) where
+noncomputable instance (m : ℕ) : ContSetLike (TaylmArray 𝕋 d m) (Vec ℝ m) where
   toSet T := Float.Taylm.toSet T.taylm
 
 end CORALean

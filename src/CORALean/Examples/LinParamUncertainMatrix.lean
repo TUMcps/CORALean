@@ -31,7 +31,7 @@ representation, with no line of `reach` itself touched.
 
 namespace CORALean.Real
 
-open Matrix ContSet
+open Matrix ContSet ContSetLike
 
 -- The uncertainty models: an interval matrix and a matrix zonotope, bracketing the identity.
 

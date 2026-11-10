@@ -42,7 +42,7 @@ namespace CORALean
 open CORALean.Float CORALean.Float.FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {G : ℕ → Type}
-  [∀ n, ContSet (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
+  [∀ n, ContSetLike (G n) (Vec ℝ n)] {L : Type} {n : ℕ}
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -61,7 +61,7 @@ def Location.checkFlowFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
       mulUp (c i) (addUp (sumUp fun j => mulUp (ℓ.dynamics.A i j) (m j)) (uc i))
     -- the flow set `A proj ⊞ V`, bounded from above along `c`
     let flowSet := Plus.plus
-      (Mtimes.mtimes (𝕄 := Mat 𝕋) (S := 𝒵[𝕋]) ℓ.dynamics.A Rproj) ℓ.inputSetFloat
+      (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) ℓ.dynamics.A Rproj) ℓ.inputSetFloat
     let flowUp := (flowSet.boundDot (c := Real.HPolytope.rowLin (toRealMat (fun _ : Fin 1 => c)) 0)
         c fun _ => rfl).val
     !le flowC zero || !le flowUp zero

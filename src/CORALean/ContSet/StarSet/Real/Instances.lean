@@ -11,7 +11,7 @@ public import CORALean.ContSet.StarSet.Real.Theorems.Basic
 /-!
 # What `StarSet` instantiates
 
-`ContSet` at every predicate family, `ConvexSet` where the predicate is convex (CORA's polytope
+`ContSetLike` at every predicate family, `ConvexSet` where the predicate is convex (CORA's polytope
 predicate is), and `OfPoint` at CORA's predicate. Nothing else: at `ℋ𝒫` a star set is exactly a
 bounded polytope, so its operations are the polytope's, reached through `Conversion/`, and what a
 layer does to it (the ReLU step) belongs to the layer.
@@ -27,15 +27,16 @@ layer does to it (the ReLU step) belongs to the layer.
 
 namespace CORALean.Real
 
-open ContSet
+open ContSet ContSetLike
 
 
 -- ========================================  INSTANCES  ========================================= --
 
-instance {P : ℕ → Type} [∀ m, ContSet (P m) (Vec ℝ m)] {n : ℕ} :
-    ContSet (StarSet P n) (Vec ℝ n) := ⟨StarSet.toSet⟩
+instance {P : ℕ → Type} [∀ m, ContSetLike (P m) (Vec ℝ m)] {n : ℕ} :
+    ContSetLike (StarSet P n) (Vec ℝ n) := ⟨StarSet.toSet⟩
 
-instance {P : ℕ → Type} [∀ m, ContSet (P m) (Vec ℝ m)] [∀ m, ConvexSet (P m) (Vec ℝ m)] {n : ℕ} :
+instance {P : ℕ → Type} [∀ m, ContSetLike (P m) (Vec ℝ m)] [∀ m, ConvexSet (P m) (Vec ℝ m)]
+    {n : ℕ} :
     ConvexSet (StarSet P n) (Vec ℝ n) := ⟨StarSet.convex_toSet⟩
 
 instance {n : ℕ} : OfPoint (StarSet ℋ𝒫 n) (Vec ℝ n) where
