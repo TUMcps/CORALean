@@ -6,6 +6,7 @@ import CORALean.Examples.Oracle.Ops.FullspaceOps
 import CORALean.Examples.Oracle.Ops.HybridOps
 import CORALean.Examples.Oracle.Ops.ConversionOps
 import CORALean.Examples.Oracle.Ops.IntervalMatrixOps
+import CORALean.Examples.Oracle.Ops.KrylovOps
 import CORALean.Examples.Oracle.Ops.LinParamSysOps
 import CORALean.Examples.Oracle.Ops.LinearSysOps
 import CORALean.Examples.Oracle.Ops.MatZonotopeOps
@@ -52,7 +53,8 @@ def classOpNames : List String :=
   fullspaceOpNames.map ("fullspace." ++ ·) ++ intervalMatrixOpNames.map ("intervalMatrix." ++ ·) ++
   matZonotopeOpNames.map ("matZonotope." ++ ·) ++
   specificationOpNames.map ("specification." ++ ·) ++
-  linearSysOpNames.map ("linearSys." ++ ·) ++ locationOpNames.map ("location." ++ ·) ++
+  linearSysOpNames.map ("linearSys." ++ ·) ++ krylovOpNames.map ("krylov." ++ ·) ++
+  locationOpNames.map ("location." ++ ·) ++
   linParamSysOpNames.map ("linParamSys." ++ ·) ++ nonlinearSysOpNames.map ("nonlinearSys." ++ ·) ++
   transitionOpNames.map ("transition." ++ ·) ++ intervalConversionNames.map ("interval." ++ ·) ++
   zonotopeConversionNames.map ("zonotope." ++ ·)
@@ -76,6 +78,7 @@ def handleClassOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToR
   | "matZonotope" => handleMatZonotopeOp dops name req
   -- the dynamics, flat and hybrid
   | "linearSys" => handleLinearSysOp dops name req
+  | "krylov" => handleKrylovOp dops name req
   | "location" => handleLocationOp dops name req
   | "linParamSys" => handleLinParamSysOp dops name req
   | "nonlinearSys" => handleNonlinearSysOp dops name req

@@ -11,6 +11,17 @@ public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.InterpMemCorrectio
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.MemBoxOfNormLe
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PartialInputSolutionMemBox
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.TimeIntervalSubset
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeResidualIntegral
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeResidual
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorLeColumnResidual
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.QuadLeQuadBoundUp
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ResidualNormFloatBound
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.StartErrorFloatBound
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.DecayProductFloatBound
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorBoundFloatOuter
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ArnoldiFloatHessenberg
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.SubspaceFloatSound
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.WindowsFloatOuter
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.PowMulVecOfHessenberg
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ArnoldiBasisMulVecPow
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.AugmentArnoldiPow
