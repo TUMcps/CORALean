@@ -85,7 +85,7 @@ theorem LinearSys.IsCanonicalTrajectory.oneStepFloat_timeInterval_outer {sys : L
     {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {X U : Zonotope (Vec 𝕋
         n)}
     {W : Set (Vec ℝ n)} {x w : ℝ → Vec ℝ n} {u : Vec 𝕋 n}
-    (traj : sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) X.toSet
+    (traj : sys.IsCanonicalTrajectory (S := ExactSet) (Set.Icc 0 (toReal Δt)) X.toSet
       W x w)
     (h0 : (0 : Vec ℝ n) ∈ U.toSet) {t : ℝ} (ht0 : 0 ≤ t) (htΔ : t ≤ toReal Δt)
     (hWU : ∀ v ∈ W, v - toRealVec u ∈ U.toSet) (hW : Bornology.IsBounded W) : -- --- CONCL ---
@@ -99,7 +99,7 @@ theorem LinearSys.IsCanonicalTrajectory.oneStepFloat_timeInterval_outer {sys : L
   have hl1 : lam ≤ 1 := (div_le_one hΔt).mpr htΔ
   -- the `U`-input's share up to `t`, lifted to `Δt`, in `PU`
   have hU := CompactSet.isBounded_toSet U
-  have hp := traj.sub_mem_inputReach_shift (S := 𝒮) (U := U.toSet) uR
+  have hp := traj.sub_mem_inputReach_shift (S := ExactSet) (U := U.toSet) uR
     hWU hW hU ⟨ht0, htΔ⟩
   have hPU := sys.inputReach_subset_inputSolutionFloat hΔt hη U
     (sys.inputReach_mono (S := 𝒵[𝕋]) hU h0 ht0 htΔ hp)

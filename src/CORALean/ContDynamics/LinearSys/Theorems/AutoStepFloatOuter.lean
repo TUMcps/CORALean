@@ -92,7 +92,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
 /-- A plain matrix's image of a plain set, exactly. -/
-@[reducible] private def aux_setMtimesTail : Mtimes (Mat ℝ) 𝒮 where
+@[reducible] private def aux_setMtimesTail : Mtimes (Mat ℝ) ExactSet where
   mtimes M s := (M *ᵥ ·) '' s
   mtimes_outer M s := by
     simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
@@ -113,7 +113,7 @@ attribute [local instance] aux_setPlusTail aux_setMtimesTail
 private theorem LinearSys.aux_inputTaylorSumTail_subset_float (sys : LinearSys 𝕋 n) {r : 𝕋}
     (hr : 0 ≤ toReal r) (U : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     ∀ i,
-    toSet (sys.inputTaylorSumTail (S := 𝒮) (toReal r) U.toSet i)
+    toSet (sys.inputTaylorSumTail (S := ExactSet) (toReal r) U.toSet i)
       ⊆ (sys.inputTaylorSumTailFloat r U i).toSet := by -- --- PROOF ---
   -- a matrix in a float box maps `U` into the float product
   have hprod : ∀ {B : Interval (Mat 𝕋 n n)} {M : Mat ℝ n n}, M ∈ B.toSet →
@@ -156,7 +156,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
 /-- A plain matrix's image of a plain set, exactly. -/
-@[reducible] private def aux_setMtimesSplit : Mtimes (Mat ℝ) 𝒮 where
+@[reducible] private def aux_setMtimesSplit : Mtimes (Mat ℝ) ExactSet where
   mtimes M s := (M *ᵥ ·) '' s
   mtimes_outer M s := by
     simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
@@ -165,7 +165,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 /-- An interval matrix's images of a plain set, closed and convexified. -/
 @[reducible] private noncomputable def aux_setMtimesIntervalSplit :
-    Mtimes ℐ 𝒮 where
+    Mtimes ℐ ExactSet where
   mtimes I s := closure (convexHull ℝ (⋃ A ∈ toSet I, (A *ᵥ ·) '' s))
   mtimes_outer _ _ := (subset_convexHull ℝ _).trans subset_closure
 
@@ -183,16 +183,16 @@ attribute [local instance] aux_setPlusSplit aux_setMtimesSplit aux_setMtimesInte
 /-- From order `1` on, the exact sum is order `0` and the exact tail. -/
 private theorem LinearSys.aux_inputTaylorSum_eq_term_add_tail (sys : LinearSys 𝕋 n) (r : ℝ)
     (U : Set (Vec ℝ n)) (m : ℕ) : -- --- CONCL ---
-    sys.inputTaylorSum (S := 𝒮) r U (m + 1)
+    sys.inputTaylorSum (S := ExactSet) r U (m + 1)
       = (sys.inputTerm r 0 *ᵥ ·) '' U
-        + sys.inputTaylorSumTail (S := 𝒮) r U (m + 1) := by -- --- PROOF ---
+        + sys.inputTaylorSumTail (S := ExactSet) r U (m + 1) := by -- --- PROOF ---
   induction m with
   | zero => rfl
   | succ m ih =>
-    show sys.inputTaylorSum (S := 𝒮) r U (m + 1)
+    show sys.inputTaylorSum (S := ExactSet) r U (m + 1)
         + (sys.inputTerm r (m + 2) *ᵥ ·) '' U
       = (sys.inputTerm r 0 *ᵥ ·) '' U
-        + (sys.inputTaylorSumTail (S := 𝒮) r U (m + 1)
+        + (sys.inputTaylorSumTail (S := ExactSet) r U (m + 1)
           + (sys.inputTerm r (m + 2) *ᵥ ·) '' U)
     rw [ih, add_assoc]
 
@@ -218,7 +218,7 @@ private theorem LinearSys.aux_inputReach_subset_split_float (sys : LinearSys �
       _ < 1 := by norm_num
   -- the exact theorem at plain sets, its remainder inside the float product
   have hrem := sys.inputRemainder_subset_float hΔt.le hη V
-  have hexact := sys.inputReach_subset_inputSolution (S := 𝒮) hΔt η hε
+  have hexact := sys.inputReach_subset_inputSolution (S := ExactSet) hΔt η hε
     (U := V.toSet) (ConvexSet.convex_toSet V) (CompactSet.isClosed_toSet V)
     (CompactSet.isBounded_toSet V) (convex_convexHull ℝ _).closure isClosed_closure
     ((CompactSet.isBounded_toSet _).subset hrem)
@@ -235,7 +235,7 @@ private theorem LinearSys.aux_inputReach_subset_split_float (sys : LinearSys �
   obtain ⟨m, rfl⟩ : ∃ m, η = m + 1 := ⟨η - 1, by have := hη.1; omega⟩
   refine hexact.trans ?_
   unfold LinearSys.inputSolution
-  show sys.inputTaylorSum (S := 𝒮) (toReal Δt) V.toSet (m + 1) + _ ⊆ _
+  show sys.inputTaylorSum (S := ExactSet) (toReal Δt) V.toSet (m + 1) + _ ⊆ _
   rw [sys.aux_inputTaylorSum_eq_term_add_tail, add_assoc]
   exact Set.add_subset_add hterm0 ((Set.add_subset_add
     (sys.aux_inputTaylorSumTail_subset_float hΔt.le V (m + 1)) hrem).trans
@@ -254,7 +254,7 @@ theorem LinearSys.autoStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonotop
     ∀ s' R, (s', R) ∈ sys.autoStepFloat X₀ V tend εmax ζ ηmax fuel s →
       sys.IsAutoInvariantFloat X₀ V s' ∧ s.t < s'.t ∧
         ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.toSet U x u →
+          sys.IsCanonicalTrajectory (S := ExactSet) (Set.Icc 0 T) X₀.toSet U x u →
           U ⊆ V.toSet → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
             x t ∈ R.toSet := by -- --- PROOF ---
   intro s' R (h : sys.autoStepFloat X₀ V tend εmax ζ ηmax fuel s = some (s', R))

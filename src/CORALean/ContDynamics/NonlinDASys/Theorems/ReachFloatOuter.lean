@@ -52,7 +52,7 @@ theorem NonlinDASys.reachFloat_outer {sys : NonlinDASys n p m} (red : sys.Reduce
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {y : ℝ → Vec ℝ p} {u : ℝ → Vec ℝ m}
         {z : ℝ → Vec ℝ sys.q},
-          sys.IsTrajectory (S := 𝒮)
+          sys.IsTrajectory (S := ExactSet)
             (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.toSet
             params.U.toSet x y u z →
           ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)

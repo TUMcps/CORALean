@@ -3,6 +3,7 @@ module
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Operations.Basic
 public import CORALean.ContSet.Interval.Real.Theorems.PlusExact
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuterRefines
 public import Mathlib.Order.BourbakiWitt
 
 @[expose] public section
@@ -48,20 +49,12 @@ open Pointwise FloatOps SoundFloatArithmetic
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-private theorem Interval.aux_plus_outer_refines (I₁ I₂ : Interval (Vec 𝕋 n)) :
-    (I₁.nominal.plus I₂.nominal).toSet ⊆ (I₁.plus I₂).toSet := by
-  intro x hx i
-  exact ⟨le_trans (addDown_le_add _ _) (hx i).1, le_trans (hx i).2 (add_le_addUp _ _)⟩
-
-
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem Interval.plus_outer (I₁ I₂ : Interval (Vec 𝕋 n)) :
     I₁.toSet + I₂.toSet ⊆ (I₁.plus I₂).toSet :=
-  subset_trans (Real.Interval.plus_outer I₁.nominal I₂.nominal)
-    (Interval.aux_plus_outer_refines I₁ I₂)
+  subset_trans (Real.Interval.plus_outer I₁.toReal I₂.toReal)
+    (Interval.plus_outer_refines I₁ I₂)
 
 end CORALean.Float
 

@@ -68,7 +68,7 @@ theorem NeurNetContrSysDT.isTrajectory_of_map {sys : NeurNetContrSysDT (LinearSy
       step := fun k => by
         rw [hstep k]
         simp [NeurNetContrSysDT.map]
-      output := fun _ => rfl }⟩ : ∃ vn yn, LinearSysDT.IsTrajectory (S := 𝒮)
+      output := fun _ => rfl }⟩ : ∃ vn yn, LinearSysDT.IsTrajectory (S := ExactSet)
         sys.plant (toSet R₀) (sys.inputSet Set.univ U_ext) W Set.univ x
         (fun k => sys.input (π (x k)) (v k)) 0 vn yn)
 

@@ -61,7 +61,7 @@ theorem NonlinearSys.FloatModel.adaptLinPassFloat_outer {fm : NonlinearSys.Float
     {R : Zonotope (Vec 𝕋 n)} : -- --- CONCL ---
     ∀ A Rt Rτ, (A, Rt, Rτ) ∈ fm.adaptLinPassFloat U options R →
       0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
-        sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
+        sys.IsTrajectory (S := ExactSet) (Set.Icc 0 (toReal options.Δt))
           R.toSet U.toSet x u y →
         (∀ t ∈ Set.Icc 0 (toReal options.Δt),
           sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ

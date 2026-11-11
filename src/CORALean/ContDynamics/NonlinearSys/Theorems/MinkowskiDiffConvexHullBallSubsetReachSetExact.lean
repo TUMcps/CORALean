@@ -319,7 +319,7 @@ private theorem NonlinearSys.aux_add_mem_of_continuous_rep (sys : NonlinearSys n
     (hR : ∀ q, ‖q - y‖₂ ≤ μ → θR q ∈ Icc 0 1 ∧ (∃ a ∈ A₀, αR q = θR q • a) ∧
       (∃ k ∈ A₁, βR q = (1 - θR q) • k) ∧ μ / 2 + ‖αR q + βR q - q‖₂ ≤ μ) : -- --- CONCL ---
     y + (2 : ℝ) • c ∈
-      ⋃ t ∈ Icc 0 Δt, sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ U t := by -- --- PROOF ---
+      ⋃ t ∈ Icc 0 Δt, sys.reachSetExact (S := ExactSet) (Icc 0 t) X₀ U t := by -- --- PROOF ---
   classical
   choose sol hsol0 hsol using hex
   set F : Vec ℝ n × ℝ → Vec ℝ n := fun q => if h : q.1 ∈ X₀ then sol q.1 h q.2 else 0
@@ -491,7 +491,7 @@ theorem NonlinearSys.minkowskiDiff_convexHull_ball_subset_reachSetExact (sys : N
     (fun s => s + (2 : ℝ) • c) '' minkowskiDiff (convexHull ℝ
         (minkowskiDiff (minkowskiDiff X₀ C) Rerr ∪ minkowskiDiff (minkowskiDiff Raff Rerr) C))
         {y | ‖y‖₂ ≤ μ}
-      ⊆ ⋃ t ∈ Icc 0 Δt, sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ U t := by -- --- PROOF ---
+      ⊆ ⋃ t ∈ Icc 0 Δt, sys.reachSetExact (S := ExactSet) (Icc 0 t) X₀ U t := by -- --- PROOF ---
   intro Raff μ
   rintro _ ⟨y, hy, rfl⟩
   set E := C + Rerr
@@ -553,8 +553,8 @@ theorem NonlinearSys.minkowskiDiff_convexHull_ball_subset_reachSetExact (sys : N
   · -- `A₀ = ∅`: `y ∈ R_aff ⊖ E`, [1, Prop. 1] at `Δt`
     rw [not_nonempty_iff_eq_empty.mp h₀, empty_union, hA₁c.convexHull_eq, hA₁E] at hy0
     refine mem_iUnion₂.mpr ⟨Δt, ⟨hΔt.le, le_rfl⟩,
-      NonlinearSys.minkowskiDiff_add_subset_reachSetExact (S := 𝒮) sys X₀ U hΔt.le M hM v hE hEc
-        ⟨_, hEne.some_mem⟩ hEs hu₀ hLip hex (fun x₀ hx₀ x hx0 hd => ?_) ⟨y, hy0, rfl⟩⟩
+      NonlinearSys.minkowskiDiff_add_subset_reachSetExact (S := ExactSet) sys X₀ U hΔt.le M hM v hE
+        hEc ⟨_, hEne.some_mem⟩ hEs hu₀ hLip hex (fun x₀ hx₀ x hx0 hd => ?_) ⟨y, hy0, rfl⟩⟩
     have h := herr Δt ⟨hΔt.le, le_rfl⟩ x₀ hx₀ x hx0 hd
     rwa [div_self hΔt.ne', one_smul, add_sub_cancel] at h
 

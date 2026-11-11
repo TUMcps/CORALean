@@ -72,7 +72,7 @@ private theorem LinearSys.aux_autoRunFloat_outer (sys : LinearSys 𝕋 n) {X₀ 
       sys.IsAutoInvariantFloat X₀ V s →
       sys.IsAutoInvariantFloat X₀ V s' ∧ s.t ≤ s'.t ∧
         ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.toSet U x u →
+          sys.IsCanonicalTrajectory (S := ExactSet) (Set.Icc 0 T) X₀.toSet U x u →
           U ⊆ V.toSet → s.t < s'.t → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
             ∃ w ∈ Ws, t ∈ Set.Icc (w.1 : ℝ) w.2.1 ∧ x t ∈ w.2.2.toSet := by -- --- PROOF ---
   intro K
@@ -135,7 +135,7 @@ theorem LinearSys.autoReachFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zonoto
     {εmax ζ : ℚ} {ηmax fuel K : ℕ} : -- --- CONCL ---
     ∀ Rs ∈ sys.autoReachFloat X₀ V tend εmax ζ ηmax fuel K,
       ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-        sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.toSet U x u →
+        sys.IsCanonicalTrajectory (S := ExactSet) (Set.Icc 0 T) X₀.toSet U x u →
         U ⊆ V.toSet → ∀ t ∈ Set.Icc (0 : ℝ) (ToRat.toRat tend), t ≤ T →
           ∃ w ∈ Rs, t ∈ Set.Icc (w.1 : ℝ) w.2.1 ∧ x t ∈ w.2.2.toSet := by -- --- PROOF ---
   intro Rs (h : sys.autoReachFloat X₀ V tend εmax ζ ηmax fuel K = some Rs)

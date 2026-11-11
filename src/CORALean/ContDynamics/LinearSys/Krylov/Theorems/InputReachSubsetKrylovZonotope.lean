@@ -108,7 +108,7 @@ private theorem Krylov.aux_image_krylovTerm (A : Mat ℝ n n) (Z : Zonotope (Vec
 `c_u` and the `g⁽ⁱ⁾_u`, plus [2, Prop. 2]'s remainder `E(δ)·δ·U` closed and convexified. -/
 theorem Krylov.inputReach_subset_krylovZonotope (A : Mat ℝ n n) (Z : Zonotope (Vec ℝ n)) {δ : ℝ}
     (hδ : 0 < δ) (η m : ℕ) (hηm : η + 1 ≤ m) (hε : ‖δ • A‖ / ((η : ℝ) + 2) < 1) : -- --- CONCL ---
-    (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := 𝒮) Z.toSet δ
+    (LinearSys.canonical A : LinearSys ℝ n).inputReach (S := ExactSet) Z.toSet δ
       ⊆ (∑ j ∈ Finset.range (η + 1),
           (⟨Z.h, Krylov.step_krylovTerm A δ m j Z.c,
             fun i => Krylov.step_krylovTerm A δ m j (Z.G i)⟩ : Zonotope (Vec ℝ n)).toSet)

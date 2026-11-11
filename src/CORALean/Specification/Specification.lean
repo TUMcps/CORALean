@@ -51,11 +51,11 @@ structure Specification (ContSet : Type) where
 variable {ContSet α : Type} [ContSetLike ContSet α]
 
 /-- Membership required of every point, or of none. -/
-def Specification.Holds (spec : Specification ContSet) (𝒳 : Set α) : Prop :=
+def Specification.Holds (spec : Specification ContSet) (𝒮 : Set α) : Prop :=
   match spec.kind with
-  | .safeSet => 𝒳 ⊆ toSet spec.set
-  | .unsafeSet => Disjoint 𝒳 (toSet spec.set)
-  | .invariant => 𝒳 ⊆ toSet spec.set
+  | .safeSet => 𝒮 ⊆ toSet spec.set
+  | .unsafeSet => Disjoint 𝒮 (toSet spec.set)
+  | .invariant => 𝒮 ⊆ toSet spec.set
 
 /-- The specification that every point lies in the set `S`. -/
 def Specification.safeSet (S : ContSet) : Specification ContSet := ⟨S, .safeSet⟩
@@ -68,8 +68,8 @@ def Specification.unsafeSet (S : ContSet) : Specification ContSet := ⟨S, .unsa
 def Specification.invariant (S : ContSet) : Specification ContSet := ⟨S, .invariant⟩
 
 /-- A requirement is normally several of these at once, all stored alike. -/
-def Specification.HoldsAll (specs : List (Specification ContSet)) (𝒳 : Set α) : Prop :=
-  ∀ spec ∈ specs, spec.Holds 𝒳
+def Specification.HoldsAll (specs : List (Specification ContSet)) (𝒮 : Set α) : Prop :=
+  ∀ spec ∈ specs, spec.Holds 𝒮
 
 end CORALean
 

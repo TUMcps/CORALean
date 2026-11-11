@@ -71,7 +71,7 @@ theorem NonlinearARX.computeGO_output (sys : NonlinearARX dy du p) (hp : 0 < p)
                 (NonlinearARX.stack p y j) (NonlinearARX.feed p u j))
               : Vec ℝ (p * dy + dy)) := by -- --- PROOF ---
   -- the windows are a run of the converted system
-  have h := NonlinearSysDT.computeGO_output (S := 𝒮)
+  have h := NonlinearSysDT.computeGO_output (S := ExactSet)
     { sys.toNonlinearSysDT with q := dy, g := fun x _ => sys.outputSel (𝕋 := ℝ) *ᵥ x } x0
     (NonlinearARX.feed p u_ref) (R₀ := Set.univ) (U := Set.univ) (x := NonlinearARX.stack p y)
     (u := NonlinearARX.feed p u) (y := fun k => sys.outputSel (𝕋 := ℝ) *ᵥ NonlinearARX.stack p y k)

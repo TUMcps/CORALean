@@ -310,7 +310,7 @@ theorem NonlinearSys.innerMinkDiffStep_center_counterexample
     let sys : NonlinearSys 2 1 := ⟨fun x _ => ![x 1, 1], 2, fun x _ => x⟩
     let X₀ : Set (Vec ℝ 2) := Icc ![-1 / 10, -1 / 10] ![1 / 10, 1 / 10]
     ∃ st, NonlinearSys.innerMinkDiffStep ops (fun x => sys.f x 0) 1 (11 / 10) fuel X₀ = some st ∧
-      ![3 / 8, 1] ∈ st.Rtk1 ∧ ![3 / 8, 1] ∉ sys.reachSetExact (S := 𝒮) (Icc 0 1) X₀ U
+      ![3 / 8, 1] ∈ st.Rtk1 ∧ ![3 / 8, 1] ∉ sys.reachSetExact (S := ExactSet) (Icc 0 1) X₀ U
         1 := by -- --- PROOF ---
   intro sys X₀
   set A : Mat ℝ 2 2 := !![0, 1; 0, 0] with hA
@@ -401,7 +401,7 @@ theorem NonlinearSys.innerMinkDiffStep_center_counterexample_instance
     let X₀ : Set (Vec ℝ 2) := Icc ![-1 / 10, -1 / 10] ![1 / 10, 1 / 10]
     ∃ st, NonlinearSys.innerMinkDiffStep (NonlinearSys.shearDriftOps 1) (fun x => sys.f x 0) 1
         (11 / 10) 1 X₀ = some st ∧
-      ![3 / 8, 1] ∈ st.Rtk1 ∧ ![3 / 8, 1] ∉ sys.reachSetExact (S := 𝒮) (Icc 0 1) X₀ U
+      ![3 / 8, 1] ∈ st.Rtk1 ∧ ![3 / 8, 1] ∉ sys.reachSetExact (S := ExactSet) (Icc 0 1) X₀ U
         1 := by -- --- PROOF ---
   have hle : (![-1 / 10, -1 / 10] : Vec ℝ 2) ≤ ![1 / 10, 1 / 10] := fun i => by
     fin_cases i <;> norm_num

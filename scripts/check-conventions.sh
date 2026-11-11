@@ -1682,7 +1682,7 @@ fi
 out=$(printf '%s\n' "$files" | xargs grep -nE \
   'fun [^=]+ => ((CORALean\.)?(Real|Float)\.)?(Zonotope|Interval|ZonoBundle|VPolytope|PolyZonotope|HPolytope|ConZonotope|ConPolyZono) \((Vec|Mat) |fun [a-z]+ => Set \(Vec (ℝ|Real) ' |
   grep -v 'notation "' |
-  awk -F: '{ print $1 ":" $2 ": a set family written as a lambda — use its notation (`𝒵[𝕋]`, `ℐ`, `𝒮`, …)" }')
+  awk -F: '{ print $1 ":" $2 ": a set family written as a lambda — use its notation (`𝒵[𝕋]`, `ℐ`, `ExactSet`, …)" }')
 report "$out"
 
 # A declaration of at most five code lines is a section of its directory's

@@ -80,7 +80,7 @@ theorem LinearSys.adaptiveStepFloat_outer (sys : LinearSys 𝕋 n) {X₀ V : Zon
       sys.IsAdaptiveInvariant V s' ∧ s.t < s'.t ∧ r.tStart = t₀ + s.t ∧
         r.tEnd = t₀ + min s'.t tf ∧
         ∀ {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (tf : ℝ)) X₀.toSet U x u →
+          sys.IsCanonicalTrajectory (S := ExactSet) (Set.Icc 0 (tf : ℝ)) X₀.toSet U x u →
           U ⊆ V.toSet → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ tf →
             x t ∈ r.R.toSet := by -- --- PROOF ---
   intro r s' (h : sys.adaptiveStepFloat X₀ V t₀ tf options s = some (r, s'))

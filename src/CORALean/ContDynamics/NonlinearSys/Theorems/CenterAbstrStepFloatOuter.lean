@@ -50,7 +50,7 @@ theorem NonlinearSys.FloatModel.Encloses.centerAbstrStepFloat_outer
     {R : Zonotope (Vec 𝕋 n)} :
     ∀ Rτ Rt, (Rτ, Rt) ∈ fm.centerAbstrStepFloat U options R →
       0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
-        sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
+        sys.IsTrajectory (S := ExactSet) (Set.Icc 0 (toReal options.Δt))
           R.toSet U.toSet x u y →
         (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.toSet) ∧
           x (toReal options.Δt) ∈ Rt.toSet := fun _ _ hstep =>

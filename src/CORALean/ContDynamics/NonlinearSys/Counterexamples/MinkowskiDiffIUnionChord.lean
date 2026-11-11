@@ -94,7 +94,7 @@ theorem NonlinearSys.minkowskiDiff_iUnion_chord_counterexample : -- --- CONCL --
         x t - (x₀ + (t / Δt) • (M *ᵥ x₀ + v - x₀)) ∈ C + Rerr) →
       (fun s => s + (2 : ℝ) • c) '' minkowskiDiff (minkowskiDiff
           (⋃ t ∈ Icc 0 Δt, (fun x₀ => x₀ + (t / Δt) • (M *ᵥ x₀ + v - x₀)) '' R₀) C) Rerr
-        ⊆ ⋃ t ∈ Icc 0 Δt, sys.reachSetExact (S := 𝒮) (Icc 0 t) R₀ U t := by -- --- PROOF ---
+        ⊆ ⋃ t ∈ Icc 0 Δt, sys.reachSetExact (S := ExactSet) (Icc 0 t) R₀ U t := by -- --- PROOF ---
   intro h
   -- the instance: `ẋ = w = (1/2, 0)`, chords pushed by `v = (1, 0)`, `E = C` a segment
   set w : Vec ℝ 2 := ![1 / 2, 0]

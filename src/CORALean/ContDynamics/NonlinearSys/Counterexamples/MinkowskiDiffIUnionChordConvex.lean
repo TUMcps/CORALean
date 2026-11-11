@@ -130,7 +130,7 @@ private theorem NonlinearSys.aux_zero_mem_shearDrift : -- --- CONCL ---
 /-- No run of `ẋ = (x₃, 1, 0)` from the box reaches `0` within `[0, 1]`: it would start at
 `(0, -t, 0)`. -/
 private theorem NonlinearSys.aux_zero_not_mem_shearDrift : -- --- CONCL ---
-    (0 : Vec ℝ 3) ∉ ⋃ t ∈ Icc (0 : ℝ) 1, NonlinearSys.reachSetExact (S := 𝒮)
+    (0 : Vec ℝ 3) ∉ ⋃ t ∈ Icc (0 : ℝ) 1, NonlinearSys.reachSetExact (S := ExactSet)
       (⟨fun x _ => ![x 2, 1, 0], 0, fun _ _ => 0⟩ : NonlinearSys 3 1) (Icc 0 t)
       (Icc ![-1 / 2, -1, -1] ![-1 / 4, 0, 1]) univ t := by -- --- PROOF ---
   intro h0
@@ -170,7 +170,7 @@ theorem NonlinearSys.minkowskiDiff_iUnion_chord_convex_counterexample : -- --- C
         x t - (x₀ + (t / Δt) • (M *ᵥ x₀ + v - x₀)) ∈ C + Rerr) →
       (fun s => s + (2 : ℝ) • c) '' minkowskiDiff (minkowskiDiff
           (⋃ t ∈ Icc 0 Δt, (fun x₀ => x₀ + (t / Δt) • (M *ᵥ x₀ + v - x₀)) '' R₀) C) Rerr
-        ⊆ ⋃ t ∈ Icc 0 Δt, sys.reachSetExact (S := 𝒮) (Icc 0 t) R₀ U t := by -- --- PROOF ---
+        ⊆ ⋃ t ∈ Icc 0 Δt, sys.reachSetExact (S := ExactSet) (Icc 0 t) R₀ U t := by -- --- PROOF ---
   intro h
   -- `C = [0, δ]`, `δ = (1/2, 1, 1)`, `R̂_err = {0}`
   have hC : segment ℝ 0 (![1 / 2, 1, 1] : Vec ℝ 3) + {0} = segment ℝ 0 ![1 / 2, 1, 1] :=

@@ -34,7 +34,7 @@ instance LinearARX.contDynamicsDT : ContDynamicsDT (LinearARX 𝕋 dy du p) (p *
   nrOfInputs _ := du
   nrOfDisturbances _ := 0
   IsTrajectory sys X₀ U W x u w := ∃ y,
-    LinearARX.IsTrajectory (S := 𝒮) sys X₀ U y u ∧
+    LinearARX.IsTrajectory (S := ExactSet) sys X₀ U y u ∧
       (∀ k, x k = LinearARX.stack p y k) ∧ ∀ k, w k ∈ W
 
 end CORALean

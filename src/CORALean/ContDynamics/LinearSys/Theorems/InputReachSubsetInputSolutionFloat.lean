@@ -71,7 +71,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
   ⟨fun a b => a + b, fun _ _ => le_rfl⟩
 
 /-- A plain matrix's image of a plain set, exactly. -/
-@[reducible] private def aux_setMtimes : Mtimes (Mat ℝ) 𝒮 where
+@[reducible] private def aux_setMtimes : Mtimes (Mat ℝ) ExactSet where
   mtimes M s := (M *ᵥ ·) '' s
   mtimes_outer M s := by
     simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
@@ -80,7 +80,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- An interval matrix's images of a plain set, closed and convexified, so the
 remainder's product is the closed convex set the exact theorem asks for. -/
 @[reducible] private noncomputable def aux_setMtimesInterval :
-    Mtimes ℐ 𝒮 where
+    Mtimes ℐ ExactSet where
   mtimes I s := closure (convexHull ℝ (⋃ A ∈ toSet I, (A *ᵥ ·) '' s))
   mtimes_outer _ _ := (subset_convexHull ℝ _).trans subset_closure
 
@@ -89,7 +89,7 @@ attribute [local instance] aux_setPlus aux_setMtimes aux_setMtimesInterval
 /-- The exact orders, taken at plain sets, inside the float sum. -/
 private theorem LinearSys.aux_inputTaylorSum_subset (sys : LinearSys 𝕋 n) {r : 𝕋}
     (hr : 0 ≤ toReal r) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
-    ∀ i, toSet (sys.inputTaylorSum (S := 𝒮)
+    ∀ i, toSet (sys.inputTaylorSum (S := ExactSet)
       (toReal r) V.toSet i) ⊆ (sys.inputTaylorSumFloat r V i).toSet := by -- --- PROOF ---
   -- order `i`'s matrix is in its float box, so its image is in the float product
   have hterm : ∀ i, (sys.inputTerm (toReal r) i *ᵥ ·) '' V.toSet
@@ -129,7 +129,7 @@ theorem LinearSys.inputReach_subset_inputSolutionFloat (sys : LinearSys 𝕋 n) 
       _ ≤ 1 / 2 := hη.2
       _ < 1 := by norm_num
   have hrem := sys.inputRemainder_subset_float hΔt.le hη V
-  have hexact := sys.inputReach_subset_inputSolution (S := 𝒮) hΔt η hε
+  have hexact := sys.inputReach_subset_inputSolution (S := ExactSet) hΔt η hε
     (U := V.toSet) (ConvexSet.convex_toSet V) (CompactSet.isClosed_toSet V)
     (CompactSet.isBounded_toSet V) (convex_convexHull ℝ _).closure isClosed_closure
     ((CompactSet.isBounded_toSet _).subset hrem)

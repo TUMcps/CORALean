@@ -146,7 +146,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachAdaptivePassFloat_outer
     {R : Zonotope (Vec 𝕋 n)} {errorAdm : Vec 𝕋 n} : -- --- CONCL ---
     ∀ P ∈ fm.linReachAdaptivePassFloat κ U options enlarge redFactor p fuel R errorAdm,
       0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
-        sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt)) R.toSet U.toSet x u y →
+        sys.IsTrajectory (S := ExactSet) (Set.Icc 0 (toReal options.Δt)) R.toSet U.toSet x u y →
         (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ P.Rti.toSet) ∧
           x (toReal options.Δt) ∈ P.Rtp.toSet := by -- --- PROOF ---
   intro P (hP : fm.linReachAdaptivePassFloat κ U options enlarge redFactor p fuel R errorAdm =
@@ -178,7 +178,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachAdaptivePassFloat_outer
   obtain ⟨hΔt, _⟩ := NonlinearSys.oneStepFloat_outer (sys := sys) _ _ hmax
   have hdom : ∀ (m' : ℕ) (sys' : NonlinearSys n m') (U' : Set (Vec ℝ m')) (x' : ℝ → Vec ℝ n)
       (u' : ℝ → Vec ℝ m') (y' : ℝ → Vec ℝ sys'.q),
-      sys'.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt)) R.toSet U' x' u' y' →
+      sys'.IsTrajectory (S := ExactSet) (Set.Icc 0 (toReal options.Δt)) R.toSet U' x' u' y' →
       (∀ t ∈ Set.Icc 0 (toReal options.Δt), sys'.f (x' t) (u' t)
         - Scalar.toRealMat A *ᵥ (x' t - toRealVec xs) ∈
           (Vbase ⊞ (⟨-e', e'⟩ : Interval (Vec 𝕋 n)).zonotope).toSet) →

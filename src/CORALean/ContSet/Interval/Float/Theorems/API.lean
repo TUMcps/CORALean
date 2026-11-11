@@ -73,6 +73,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 public import CORALean.ContSet.Interval.Float.Theorems.PartitionCover
 public import CORALean.ContSet.Interval.Float.Theorems.PartitionPiece
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.Interval.Float.Theorems.PlusOuterRefines
 public import CORALean.ContSet.Interval.Float.Theorems.PowHiLe
 public import CORALean.ContSet.Interval.Float.Theorems.PowLoLe
 public import CORALean.ContSet.Interval.Float.Theorems.PowerOuter

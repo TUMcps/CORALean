@@ -84,7 +84,7 @@ private theorem aux_picard {fm : NonlinearSys.FloatModel 𝕋 n m} {sys : Nonlin
     (h : fm.Encloses sys) {Δt : 𝕋} {X Ω : Interval (Vec 𝕋 n)}
     {Ub : Interval (Vec 𝕋 m)} {T : Set ℝ} {R₀ : Set (Vec ℝ n)} {U : Set (Vec ℝ m)}
     {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
-    {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒮) T R₀ U x u y)
+    {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := ExactSet) T R₀ U x u y)
     (hU : U ⊆ Ub.toSet) {a : ℝ} (hT : Set.Icc a (a + toReal Δt) ⊆ T)
     (hxa : x a ∈ X.toSet)
     (hΩ : ∀ t ∈ Set.Icc a (a + toReal Δt), x t ∈ Ω.toSet) : -- --- CONCL ---
@@ -155,7 +155,7 @@ theorem NonlinearSys.FloatModel.Encloses.regionFloat_confined {fm : NonlinearSys
     {sys : NonlinearSys n m} (h : fm.Encloses sys) {Δt : 𝕋} {X : Interval (Vec 𝕋 n)}
     {Ub : Interval (Vec 𝕋 m)} (hΔt : 0 ≤ toReal Δt) {T : Set ℝ} {R₀ : Set (Vec ℝ n)}
     {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
-    {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := 𝒮) T R₀ U x u y) (hU : U ⊆ Ub.toSet)
+    {y : ℝ → Vec ℝ sys.q} (traj : sys.IsTrajectory (S := ExactSet) T R₀ U x u y) (hU : U ⊆ Ub.toSet)
     {a : ℝ}
     (hT : Set.Icc a (a + toReal Δt) ⊆ T) (hxa : x a ∈ X.toSet) : -- --- CONCL ---
     ∀ Ω ∈ fm.regionFloat Δt X Ub,

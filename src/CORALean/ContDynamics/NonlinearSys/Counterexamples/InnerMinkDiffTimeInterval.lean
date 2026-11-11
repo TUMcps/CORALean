@@ -93,7 +93,7 @@ theorem NonlinearSys.innerMinkDiff_timeInterval_counterexample
     let X₀ : Set (Vec ℝ 2) := Icc ![-1 / 10, -1] ![1 / 10, 1]
     ∃ Rτ, NonlinearSys.innerMinkDiff ops (fun x => sys.f x 0) X₀ 1 1 fuel = some Rτ ∧
       ![1 / 2, 0] ∈ Rτ ∧ ∀ t ∈ Icc (0 : ℝ) 1,
-        ![1 / 2, 0] ∉ sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ U
+        ![1 / 2, 0] ∉ sys.reachSetExact (S := ExactSet) (Icc 0 t) X₀ U
           t := by -- --- PROOF ---
   intro sys X₀
   let A : Mat ℝ 2 2 := !![0, 1; 0, 0]

@@ -45,7 +45,7 @@ inputs in `U` (input coordinates), is at, at some time of that horizon. -/
 def LinParamSys.reachUnionExact (sys : LinParamSys 𝕄 n) (tFinal : ℝ) (X : Set (Vec ℝ n))
     (U : Set (Vec ℝ sys.m)) : Set (Vec ℝ n) :=
   {y | ∃ (A : Mat ℝ n n) (B : Mat ℝ n sys.m) (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ sys.m),
-    sys.IsConstTrajectory (S := 𝒮) (Set.Icc 0 tFinal) X U x u A B ∧
+    sys.IsConstTrajectory (S := ExactSet) (Set.Icc 0 tFinal) X U x u A B ∧
       ∃ t ∈ Set.Icc (0 : ℝ) tFinal, x t = y}
 
 end CORALean

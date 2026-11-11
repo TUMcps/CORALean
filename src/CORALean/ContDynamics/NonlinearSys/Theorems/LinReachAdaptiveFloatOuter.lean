@@ -156,7 +156,8 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachAdaptiveFloat_outer
     {st : NonlinearSys.LinReachAdaptiveState 𝕋 n} : -- --- CONCL ---
     ∀ s' ∈ fm.linReachAdaptiveFloat U o st,
       st.t < s'.t ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
-        sys.IsTrajectory (S := 𝒮) (Set.Icc 0 ((s'.t - st.t : ℚ) : ℝ)) st.R.toSet U.toSet x u y →
+        sys.IsTrajectory (S := ExactSet) (Set.Icc 0 ((s'.t - st.t : ℚ) : ℝ)) st.R.toSet U.toSet x u
+          y →
         (∀ t ∈ Set.Icc 0 ((s'.t - st.t : ℚ) : ℝ), x t ∈ s'.Rτ.toSet) ∧
           x ((s'.t - st.t : ℚ) : ℝ) ∈ s'.R.toSet := by -- --- PROOF ---
   intro s' (hs : fm.linReachAdaptiveFloat U o st = some s')

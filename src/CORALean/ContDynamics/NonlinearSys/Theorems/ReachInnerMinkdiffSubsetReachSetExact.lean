@@ -70,19 +70,19 @@ theorem NonlinearSys.reachInnerMinkdiff_subset_reachSetExact
     (U : Set (Vec ℝ m)) (hu₀ : u₀ ∈ U) {Δt : ℝ}
     (hΔt : 0 ≤ Δt) (steps fuel : ℕ) (X₀ : Set (Vec ℝ n))
     (hcert : ∀ (T : ℝ) (X : Set (Vec ℝ n)) (e : Vec ℝ n) (st : NonlinearSys.LinReachInnerState n 𝓛),
-      X ⊆ sys.reachSetExact (S := 𝒮) (Icc 0 T) X₀ {u₀} T →
+      X ⊆ sys.reachSetExact (S := ExactSet) (Icc 0 T) X₀ {u₀} T →
       NonlinearSys.linReachInner ops (fun x => sys.f x u₀) Δt fuel X e = some (some st) →
       NonlinearSys.IsLinReachInnerCert sys u₀ Δt X st)
     {timePoint timeInt : ℕ → Set (Vec ℝ n)}
     (h : NonlinearSys.reachInnerMinkdiff ops (fun x => sys.f x u₀) X₀ Δt steps fuel =
       some (timePoint, timeInt)) : -- --- CONCL ---
     (∀ k : ℕ, timePoint k ⊆
-      sys.reachSetExact (S := 𝒮) (Icc 0 (k * Δt)) X₀ U (k * Δt)) ∧
+      sys.reachSetExact (S := ExactSet) (Icc 0 (k * Δt)) X₀ U (k * Δt)) ∧
     (∀ k : ℕ, timeInt k ⊆ ⋃ t ∈ Icc (k * Δt) ((k + 1) * Δt),
-      sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ U t) ∧
+      sys.reachSetExact (S := ExactSet) (Icc 0 t) X₀ U t) ∧
     (∀ k, steps < k → timePoint k = ∅) ∧ (∀ k, steps ≤ k → timeInt k = ∅) := by -- --- PROOF ---
   set RS : ℝ → Set (Vec ℝ n) := fun t =>
-    sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ {u₀} t with hRS
+    sys.reachSetExact (S := ExactSet) (Icc 0 t) X₀ {u₀} t with hRS
   set RSI : ℕ → Set (Vec ℝ n) := fun k => ⋃ t ∈ Icc ((k : ℝ) * Δt) ((k + 1) * Δt), RS t
     with hRSI
   -- the induction over the steps, from step `k`
@@ -155,7 +155,7 @@ theorem NonlinearSys.reachInnerMinkdiff_subset_reachSetExact
     (fun i hi => by rw [Function.update_of_ne (by omega)])
     (fun _ _ => rfl) h
   -- runs under `u₀` are runs with inputs in `U`
-  have mono : ∀ t, RS t ⊆ sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ U t := by
+  have mono : ∀ t, RS t ⊆ sys.reachSetExact (S := ExactSet) (Icc 0 t) X₀ U t := by
     rintro t y ⟨x, u, traj, hx⟩
     refine ⟨x, u, ⟨traj.init, fun s hs => ?_, traj.meas, traj.integrable, traj.cont, traj.flow,
       traj.output⟩, hx⟩

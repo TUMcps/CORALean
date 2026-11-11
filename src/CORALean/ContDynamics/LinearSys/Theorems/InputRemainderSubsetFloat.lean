@@ -65,7 +65,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 remainder's product is the closed convex set the exact theorem asks for. -/
 @[reducible, step_of LinearSys.inputRemainder_subset_float]
 noncomputable def step_setMtimesIntervalRem :
-    Mtimes ℐ 𝒮 where
+    Mtimes ℐ ExactSet where
   mtimes I s := closure (convexHull ℝ (⋃ A ∈ toSet I, (A *ᵥ ·) '' s))
   mtimes_outer _ _ := (subset_convexHull ℝ _).trans subset_closure
 
@@ -78,7 +78,7 @@ attribute [local instance] step_setMtimesIntervalRem
 theorem LinearSys.inputRemainder_subset_float (sys : LinearSys 𝕋 n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {η : ℕ} (hη : sys.IsOrderAdmissibleFloat r r η) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     toSet (Mtimes.mtimes (𝕄 := ℐ)
-      (ContSet := 𝒮)
+      (ContSet := ExactSet)
       (Real.MatExp.inputRemainder (Scalar.toRealMat sys.A) (toReal r) η)
       (V.toSet : Set (Vec ℝ n)))
       ⊆ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])

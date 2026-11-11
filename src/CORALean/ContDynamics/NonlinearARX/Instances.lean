@@ -34,7 +34,7 @@ instance NonlinearARX.contDynamicsDT : ContDynamicsDT (NonlinearARX dy du p) (p 
   nrOfInputs _ := du
   nrOfDisturbances _ := 0
   IsTrajectory sys X₀ U W x u w := ∃ y,
-    NonlinearARX.IsTrajectory (S := 𝒮) sys X₀ U y u ∧
+    NonlinearARX.IsTrajectory (S := ExactSet) sys X₀ U y u ∧
       (∀ k, x k = NonlinearARX.stack p y k) ∧ ∀ k, w k ∈ W
 
 end CORALean

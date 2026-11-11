@@ -136,7 +136,7 @@ theorem IMD.hcert : -- --- CONCL ---
 example : ∃ Rτ ∈ NonlinearSys.innerMinkDiffCorrected IMD.ops (fun _ => IMD.Z)
       (fun x => IMD.sys.f x 0) IMD.X₀ 1 1 1,
     (fun _ => 1 / 2 : Vec ℝ 1) ∈ Rτ ∧
-      Rτ ⊆ ⋃ t ∈ Icc 0 1, IMD.sys.reachSetExact (S := 𝒮) (Icc 0 t) IMD.X₀ {0} t := by
+      Rτ ⊆ ⋃ t ∈ Icc 0 1, IMD.sys.reachSetExact (S := ExactSet) (Icc 0 t) IMD.X₀ {0} t := by
   -- the step's remainder loop stops at its first pass
   obtain ⟨st, hst⟩ : ∃ st, NonlinearSys.innerMinkDiffCorrectedStep IMD.ops (fun _ => IMD.Z)
       (fun x => IMD.sys.f x 0) (1 / (1 : ℕ)) (11 / 10) 1 IMD.X₀ = some st :=

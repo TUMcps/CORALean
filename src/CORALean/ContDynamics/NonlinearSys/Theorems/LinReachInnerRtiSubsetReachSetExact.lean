@@ -68,11 +68,11 @@ theorem NonlinearSys.linReachInner_Rti_subset_reachSetExact
     (X₀ : Set (Vec ℝ n)) {T Δt : ℝ} (hT : 0 ≤ T)
     (hΔt : 0 ≤ Δt) (fuel : ℕ) {X : Set (Vec ℝ n)} {e : Vec ℝ n}
     {st : NonlinearSys.LinReachInnerState n 𝓛}
-    (hX : X ⊆ sys.reachSetExact (S := 𝒮) (Icc 0 T) X₀ {u₀} T)
+    (hX : X ⊆ sys.reachSetExact (S := ExactSet) (Icc 0 T) X₀ {u₀} T)
     (h : NonlinearSys.linReachInner ops (fun x => sys.f x u₀) Δt fuel X e = some (some st))
     (cert : NonlinearSys.IsLinReachInnerCert sys u₀ Δt X st) : -- --- CONCL ---
     st.Rti ⊆ ⋃ t ∈ Icc T (T + Δt),
-      sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ {u₀} t := by -- --- PROOF ---
+      sys.reachSetExact (S := ExactSet) (Icc 0 t) X₀ {u₀} t := by -- --- PROOF ---
   have hRti : st.Rti = X ∪ st.Rtp := by
     unfold NonlinearSys.linReachInner at h
     dsimp only at h
@@ -85,14 +85,14 @@ theorem NonlinearSys.linReachInner_Rti_subset_reachSetExact
   refine union_subset ?_ ?_
   · -- `Rinit` at `T`
     exact hX.trans (subset_biUnion_of_mem (u := fun t =>
-      sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ {u₀} t)
+      sys.reachSetExact (S := ExactSet) (Icc 0 t) X₀ {u₀} t)
       (⟨le_rfl, by linarith⟩ : T ∈ Icc T (T + Δt)))
   · -- `Rtp` at `T + Δt`
     exact ((NonlinearSys.linReachInner_subset_reachSetExact ops sys u₀ hΔt fuel _ h _ rfl
       cert).trans
       (sys.reachSetExact_subset_reachSetExact_add X₀ X u₀ hT hΔt hX)).trans
       (subset_biUnion_of_mem (u := fun t =>
-        sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ {u₀} t)
+        sys.reachSetExact (S := ExactSet) (Icc 0 t) X₀ {u₀} t)
         (⟨by linarith, le_rfl⟩ : T + Δt ∈ Icc T (T + Δt)))
 
 end CORALean

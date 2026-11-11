@@ -70,9 +70,9 @@ instance : Scalar ℝ where
   toRealMat_apply _ _ _ := rfl
   toRealVec_apply _ _ := rfl
 
-/-- The family of sets of real vectors, `(S := 𝒮)`: the denotations every representation's
+/-- The family of sets of real vectors, `(S := ExactSet)`: the denotations every representation's
 `toSet` lands in. -/
-notation "𝒮" => fun n => Set (Vec ℝ n)
+abbrev ExactSet (n : ℕ) : Type := Set (Vec ℝ n)
 
 /-- True by `rfl`, but a proof about the real layer has to rewrite with it. -/
 @[simp] theorem Scalar.toRealMat_real {m n : ℕ} (M : Mat ℝ m n) : toRealMat M = M := rfl

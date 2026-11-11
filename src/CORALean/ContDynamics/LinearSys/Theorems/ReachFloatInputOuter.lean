@@ -56,7 +56,7 @@ theorem LinearSys.reachFloatInput_outer (sys : LinearSys 𝕋 n)
     ∀ Rti Rtp, (Rti, Rtp) ∈ sys.reachFloatInput params options →
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rti.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
-          sys.IsCanonicalTrajectory (S := 𝒮)
+          sys.IsCanonicalTrajectory (S := ExactSet)
             (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.toSet
             ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
               params.U.toSet) x u →
