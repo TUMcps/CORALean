@@ -108,6 +108,43 @@ with `B = [1; 0]`, `R0 = {0}`, `U = zonotope(1)`, `tFinal = timeStep = 3`, `kryl
 `x₂(3) = e³ - 4 > 16`. Formalized: both counterexample theorems. CORALean's `reach` computes no
 Krylov approximation.
 
+**`reach` — the Krylov error bound, repaired.** [`Krylov.error_le_column_residual`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ErrorLeColumnResidual.lean)
+(from [`Krylov.error_le_residual`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ErrorLeResidual.lean) and
+[`Krylov.error_le_residual_integral`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ErrorLeResidualIntegral.lean))
+bounds `‖e^{tA}c - ν V e^{tT}e₁‖₂` by `e^{tμ}(|ν|(|τ|‖w‖|γ|t^k/k! + (Σ_j ε_j)t) + ρ)` for every
+`A`: `μ` bounds the quadratic forms of `A` and of `T`, `ε_j` the column norms of the residual of the
+Krylov identity `A V = V T + τ w e_k* + Δ`, `ρ` the distance of `ν V e₁` from `c`. It needs no
+orthogonality of `V`, and for `μ = 0`, `ε = 0` it is Jawecki's Thm. 3 (the test CORA runs, valid
+for `W(A) ⊆ ℂ⁻` only). The float side computes every factor rounded up: `Krylov.quadBoundUp`
+(Gershgorin's discs of the symmetric part, [`Krylov.quad_le_quadBoundUp`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/QuadLeQuadBoundUp.lean)),
+the residual of the stored basis ([`Krylov.residual_le_residualNormFloat`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ResidualNormFloatBound.lean)),
+the start error ([`Krylov.startError_le_startErrorFloat`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/StartErrorFloatBound.lean)),
+the decay product by ratios, so that no `k!` is formed ([`Krylov.decayProduct_bound`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/DecayProductFloatBound.lean)),
+assembled in [`Krylov.error_le_errorBoundFloat`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ErrorBoundFloatOuter.lean).
+
+[`Krylov.subspaceFloat`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Operations/SubspaceFloat.lean)
+searches the order with it (Arnoldi: [`Krylov.arnoldiFloat`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Operations/ArnoldiFloat.lean),
+upper Hessenberg by [`Krylov.arnoldiFloat_hessenberg`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ArnoldiFloatHessenberg.lean))
+and [`Krylov.subspaceFloat_error_le`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/SubspaceFloatSound.lean)
+says an accepted order meets the tolerance on all of `[0, t_f]`, whatever `A`.
+
+[`Krylov.windowsFloat_outer`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/WindowsFloatOuter.lean)
+encloses `e^{tA}c` at every `t = iΔt + s` by `ν V` of window `i` of the `k`-dimensional system
+`ẏ = T y` (`LinearSys.reachFloat`, whose curvature `[F]` is applied to the set at the start of each
+window) plus a ball of the tolerance. Not formalized: the support-function bookkeeping of
+CORA.cpp's `priv_verify_ra_krylov` (the rows `W = ν V* v`, the hull and the integral of the input),
+and the input solution `priv_inputSolution_Krylov`.
+
+**`reach` — cora-issue, Krylov curvature at the end of the step.** `aux_propagate_HomSol` in
+`priv_reach_krylov.m` forms `c_expMatrix = eAdt * eAtk`, `eAtk = expm(H·time)`, `time = t - Δt`, so
+`c_expMatrix = e^{H(t_k+Δt)}`, and then `hom_tie = |c| C V c_expMatrix F(:,1)`, the curvature of
+the step `[t_k, t_k+Δt]` read at the state at its end. The interpolation of Lemma III.3 gives
+`e^{H(t_k+s)}e₁ = e^{Ht_k}((1-s/Δt) e₁ + (s/Δt) e^{HΔt}e₁ + F e₁)`, the curvature at the state at
+its start, `e^{Ht_k} F e₁`; the two differ by the factor `e^{HΔt}`, which is not near `I` when
+`‖H‖Δt` is large. Read from the source, not run; whether the interval of `F` is wide enough to
+absorb the factor was not decided, so no counterexample is formalized. CORALean's windows apply
+`[F]` at the start, as `Alg2Corrected` does.
+
 **`reach` — cora-issue, the Krylov mode drops the inputs.** CORA's `@linearSys/reach.m` (l. 80-81)
 with `linAlg = 'krylov'` runs `priv_reach_krylov`, which with `priv_initReach_Krylov`,
 `priv_krylov_R_uTrans`, `priv_inputSolution_Krylov` and

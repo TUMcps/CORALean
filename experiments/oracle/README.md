@@ -491,6 +491,36 @@ at the top level of the request; `timeStep`, `taylorTerms`, `zonotopeOrder` CORA
 
 `Pu` is the Taylor form, no `A⁻¹` (CORA's constant input multiplies by `A⁻¹(e^{AΔt} − I)` for invertible `A`; here the singular-`A` branch is used for all `A`). The exponential is the *interval* Taylor sum with directed roundings, not a point sum or Padé.
 
+`krylov.` (`Ops/KrylovOps.lean`) takes `A` a square matrix, `c` a column, `eps` the breakdown threshold,
+`tf` or `tFinal` the final time, `tol` the tolerance, `p` Newton steps per norm and `q` squarings
+of the exponential (default 20 and 10). Scalars are exact, matrices `{"rows","cols","data"}`. `V` is
+the `n × (k+1)` matrix of the Arnoldi vectors `v(1), …, v(k+1)`, `H` the `(k+1) × k` Hessenberg
+matrix:
+
+| op | fields | float definition |
+|---|---|---|
+| `arnoldi` | `A`, `c`, `passes`, `eps`, `p` | `Krylov.arnoldiFloat`; `nu`, `V`, `H` |
+| `errorBound` | `A`, `c`, `order`, `tf`, `tol`, `eps`, `p`, `q` | `Krylov.errorBoundFloat`, `Krylov.orderOkFloat` on the Arnoldi data of `order` passes; `nu`, `residuals` (the column norms `ε_j`), `muA`, `muT`, `bound`, `ok`, `V`, `H` |
+| `subspace` | `A`, `c`, `k0`, `step`, `tf`, `tol`, `eps`, `p`, `q`, `fuel` (default `n + 1`) | `Krylov.subspaceFloat`; `order`, `ok`, `bound`, `nu`, `V`, `H` |
+| `windows` | as `subspace` with `tFinal` for `tf`, and `timeStep`, `taylorTerms`, `zonotopeOrder` | `Krylov.windowsFloat`: `LinearSys.reachFloat` on `ẏ = T y`, `y(0) = e₁`, `T` the first `order` columns of `H`; `timeInterval`, `timePoint` (`null` unless `ok`), plus the `subspace` fields |
+
+`krylov.errorBound` and `krylov.subspace` evaluate, in this order and at every dtype (the accepted
+order meets `tol` for every `A`, `Krylov.subspaceFloat_error_le`):
+
+1. `ν = normUp p c` (`sqrtUp` of the sum of squares, summed from the last entry); `v(1)_r = divUp(c_r, ν)`.
+2. Pass `k` (`arnoldiFloat`). First `w_r = dotUp(A_r, v(k))` (summed from the last entry). Then for `j = 1..k`: `h_j = dotUp(w, v(j))`, then `w_r := subUp(w_r, mulUp(h_j, v(j)_r))` for all `r` (modified Gram–Schmidt, `w` updated before the next `h`); `h_{k+1,k} = normUp p w`; `v(k+1) = divUp(w_r, h_{k+1,k})`, or `0` when `le h_{k+1,k} eps`. Column `k` of `H` is `h_1..h_k, h_{k+1,k}`, zero below.
+3. `ε_j` for `j < k`: entry `r` of the residual of column `j`, `lo = subDown(dotDown(A_r, v(j)), sumUp_i mulUp(h_{i,j}, v(i)_r))`, `hi = subUp(dotUp(A_r, v(j)), sumDown_i mulDown(h_{i,j}, v(i)_r))` over `i = 1..j+1`, `max(|lo|, |hi|)`; `ε_j = normUp p` of the column.
+4. `μ_A = quadBoundUp A`, `μ_T = quadBoundUp T_k`, `T_k` the leading `k × k` block of `H`: `maximumOver_i addUp(M_ii, half(sumUp_{j≠i} addUp(|M_ij|, |M_ji|)))` (the maximum seeded at the last row); `μ = maximum(0, maximum(μ_A, μ_T))`.
+5. The decay product `acc_0 = normUp p v(k+1)`, `acc_j = divUp(mulUp(mulUp(acc_{j-1}, |h_{j+1,j}|), t), maximum(1, nsmulDown(j, 1)))` for `j = 1..k`: no factorial is formed.
+6. `S = sumUp_{j<k} ε_j`; `ρ = normUp p` of `max(|subDown(c_r, mulUp(ν, v(1)_r))|, |subUp(c_r, mulDown(ν, v(1)_r))|)`.
+7. `bound = mulUp(expUp q (mulUp(t, μ)), addUp(mulUp(|ν|, addUp(acc_k, mulUp(S, t))), ρ))`. `ok` holds when `1 ≤ k`, `le(mulUp(t, μ), nsmulDown(2^{q-1}, 1))` and `le(bound, tol)`. At `nearest`, `sqrtUp` and `expUp` are the machine's.
+8. `subspace`: Arnoldi is run for `min(k0, n)` passes; the order is tried, and while it is not accepted and below `n`, grows to `min(k + step, n)` (Arnoldi rerun from scratch, the passes are the same ones), at most `fuel` times. The bound is that of the order returned.
+
+CORA's test is `ν h_{k+1,k} Π_{j<k} h_{j+1,j} t^k/k! ≤ tol` (its `k!` is infinite from `k = 171`): the
+decay product above is the same quantity, and the bound equals it plus `ρ` and the residuals' share
+(both tiny for a stable Arnoldi) when `μ = 0`, the nonexpansive case; a `μ > 0` costs the factor
+`e^{tμ}`, which CORA does not have and the error of a non-dissipative `A` does.
+
 `location.` and `transition.` (`Ops/HybridOps.lean`; the hybrid-automaton steps of CORA.cpp's benchmarks).
 A location's flow is the system's fields `A`, `B`, `c`, `E` at the top level, with the input sets `U`,
 `W` (zonotopes of the input and disturbance spaces, the origin when absent); the invariant and the
