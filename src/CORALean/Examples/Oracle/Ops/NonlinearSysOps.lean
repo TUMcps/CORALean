@@ -3,6 +3,9 @@ import CORALean.ContDynamics.NonlinearSys.Operations.ReachAlgFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachAdaptiveInit
 import CORALean.ContDynamics.NonlinearSys.Operations.ReachAdaptiveFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.AdaptiveOrdersFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPolyAdaptiveInit
+import CORALean.ContDynamics.NonlinearSys.Operations.ReachPolyAdaptiveFloat
+import CORALean.Examples.Oracle.Ops.PolyZonotopeCodec
 import CORALean.ContSet.Interval.Float.Operations.Basic
 import CORALean.ContSet.Interval.Float.Operations.Cos
 import CORALean.ContSet.Interval.Float.Operations.Power
@@ -330,7 +333,7 @@ private def aux_natOr (req : Json) (name : String) (d : Nat) : Except String Nat
 
 /-- The `lin-adaptive` options: the request's, else CORA's (`postProcessing`, the literals of
 `linReach_adaptive`); `redFactor` defaults to CORA's `0.0005`. -/
-private def aux_adaptiveOptions (dops : DtypeOps 𝕋) (req : Json) :
+private def aux_adaptiveOptions (dops : DtypeOps 𝕋) (req : Json) (poly : Bool := false) :
     Except String (NonlinearSys.LinReachAdaptiveOptions 𝕋) := do
   let rat := fun (name : String) (d : ℚ) => match fieldOpt req name with
     | some _ => do pure (aux_ratOf (← scalarField req name))
@@ -340,9 +343,12 @@ private def aux_adaptiveOptions (dops : DtypeOps 𝕋) (req : Json) :
       let v ← parseVecFixed dops.readExact 3 (← field req "zetaphi")
       pure v
     | none => do
-      let z1 ← dops.readExact "zetaphi" (.dy ⟨7656119366529843, -53⟩)
-      let z2 ← dops.readExact "zetaphi" (.dy ⟨3422735716801577, -52⟩)
-      let z3 ← dops.readExact "zetaphi" (.dy ⟨6124895493223875, -53⟩)
+      -- `'lin'`: [0.85; 0.76; 0.68], `'poly'`: [0.80; 0.75; 0.63]
+      let z1 ← dops.readExact "zetaphi" (.dy (if poly then ⟨3602879701896397, -52⟩
+        else ⟨7656119366529843, -53⟩))
+      let z2 ← dops.readExact "zetaphi" (.dy (if poly then ⟨3, -2⟩ else ⟨3422735716801577, -52⟩))
+      let z3 ← dops.readExact "zetaphi" (.dy (if poly then ⟨5674535530486825, -53⟩
+        else ⟨6124895493223875, -53⟩))
       pure ![z1, z2, z3]
   -- every field: the request's, else CORA's double
   pure {
@@ -351,7 +357,8 @@ private def aux_adaptiveOptions (dops : DtypeOps 𝕋) (req : Json) :
     taylorTerms := ← aux_natOr req "taylorTerms" 10,
     zonotopeOrder := ← aux_natOr req "zonotopeOrder" 1000,
     -- the constants of `postProcessing` and the literals of `linReach_adaptive`
-    redFactor := ← aux_scalarOr dops req "redFactor" 1152921504606847 (-61),
+    redFactor := ← aux_scalarOr dops req "redFactor"
+      (if poly then 7378697629483821 else 1152921504606847) (if poly then -66 else -61),
     decrFactor := ← aux_scalarOr dops req "decrFactor" 8106479329266893 (-53),
     zetaphi := zetaphi,
     zetaK := ← aux_scalarOr dops req "zetaK" 8106479329266893 (-53),
@@ -540,6 +547,150 @@ def handleNonlinearLinReachAdaptivePass (dops : DtypeOps 𝕋) (req : Json) : Re
       ("abstrerr", printVec dops.showExact P.abstrerr),
       ("Gzero", Json.arr (Array.ofFn fun i : Fin n => Json.bool (P.Gzero i)))]
 
+/-- The `poly-adaptive` options: the `lin-adaptive` ones at `'poly'`'s defaults, and `dHused`
+(`0.3`), `thirdOrderEmpty` (`false`) and `maxDepGenOrder` (`50`). -/
+private def aux_polyOptions (dops : DtypeOps 𝕋) (req : Json) :
+    Except String (NonlinearSys.LinReachPolyAdaptiveOptions 𝕋) := do
+  pure { toLinReachAdaptiveOptions := ← aux_adaptiveOptions dops req (poly := true),
+         dHused := ← aux_scalarOr dops req "dHused" 5404319552844595 (-54),
+         thirdOrderEmpty := match fieldOpt req "thirdOrderEmpty" with
+           | some j => j.getBool?.toOption.getD false
+           | none => false,
+         maxDepGenOrder := ← aux_natOr req "maxDepGenOrder" 50 }
+
+/-- The option fields every poly-adaptive op accepts. -/
+private def aux_polyFields : List String :=
+  ["tStart", "tFinal", "taylorTerms", "zonotopeOrder", "redFactor", "decrFactor", "zetaphi",
+    "zetaK", "initFactor", "enlarge", "horizonTol", "zeroTol", "varphiTol", "varphiStep",
+    "endTol", "abortRatio", "fuel", "dHused", "thirdOrderEmpty", "maxDepGenOrder",
+    "maxPolyZonoRatio"]
+
+/-- The `poly-adaptive` state of a request: the fields it gives, the rest as at the first step. -/
+private def aux_parsePolyState (dops : DtypeOps 𝕋) (o : NonlinearSys.LinReachPolyAdaptiveOptions 𝕋)
+    (n : Nat) (req : Json) : Except String (NonlinearSys.LinReachPolyAdaptiveState 𝕋 n) := do
+  let R ← parsePolyZonotopeFixed dops.readExact n (← field req "R")
+  let s₀ := NonlinearSys.linReachPolyAdaptiveInit o R
+  -- a scalar or vector of the request, else the first step's value
+  let sc := fun (name : String) (d : 𝕋) => match fieldOpt req name with
+    | some _ => do dops.readExact name (← scalarField req name)
+    | none => pure d
+  let vec := fun (name : String) (d : Vec 𝕋 n) => match fieldOpt req name with
+    | some _ => do parseVecFixed dops.readExact n (← field req name)
+    | none => pure d
+  -- the orders `q_i`, `null` for `Inf`
+  let orders ← match fieldOpt req "orders" with
+    | none => pure s₀.orders
+    | some _ => do
+      let a ← arrField req "orders"
+      if a.size ≠ n then throw s!"`orders` has {a.size} entries, expected {n}"
+      let os ← a.mapM fun j => if j.isNull then pure none else match j.getNat? with
+        | .ok k => pure (some k)
+        | .error _ => throw "`orders` must hold naturals or null (Inf)"
+      pure fun i => os.getD i.val none
+  -- the step sizes so far, latest first
+  let steps ← match fieldOpt req "steps" with
+    | none => pure []
+    | some _ => do
+      (← arrField req "steps").toList.mapM fun j => do
+        match j.getStr? with
+        | .ok _ => dops.readExact "steps" (← scalarField (Json.mkObj [("x", j)]) "x")
+        | .error _ => throw "`steps` must hold scalars"
+  -- the fields the request gives, the rest as at the first step
+  pure { s₀ with
+    i := ← aux_natOr req "i" 1,
+    t := match fieldOpt req "t" with
+      | some _ => match scalarField req "t" with
+        | .ok x => aux_ratOf x
+        | .error _ => o.tStart
+      | none => o.tStart,
+    timeStep := ← sc "timeStep" s₀.timeStep,
+    finitehorizon := ← sc "finitehorizon" s₀.finitehorizon,
+    varphi := ← sc "varphi" s₀.varphi,
+    errAdmHorizon := ← vec "errAdmHorizon" s₀.errAdmHorizon,
+    errAdmDeltatopt := ← vec "errAdmDeltatopt" s₀.errAdmDeltatopt,
+    orders := orders,
+    minorder := ← aux_natOr req "minorder" 0,
+    zeroWidthDim := ← match fieldOpt req "zeroWidthDim" with
+      | some _ => aux_boolsField req "zeroWidthDim" n
+      | none => pure s₀.zeroWidthDim,
+    steps := steps }
+
+/-- `nonlinearSys.linReachPolyAdaptive`: one step `FloatHessModel.linReachPolyAdaptiveFloat`
+from the state of the request, the state after it (sets unreduced). -/
+def handleNonlinearLinReachPolyAdaptive (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  dops.requireUnguaranteed "nonlinearSys.linReachPolyAdaptive"
+  checkFields "linReachPolyAdaptive" req (["n", "m", "f", "p", "U", "R", "i", "t", "timeStep",
+    "finitehorizon", "varphi", "errAdmHorizon", "errAdmDeltatopt", "orders", "minorder",
+    "zeroWidthDim", "steps"] ++ aux_polyFields)
+  let ⟨n, m, fm⟩ ← aux_adaptiveModel dops req
+  let o ← aux_polyOptions dops req
+  let st ← aux_parsePolyState dops o n req
+  match fm.linReachPolyAdaptiveFloat (← aux_input dops req m) o st with
+  | none => throw "linReachPolyAdaptive: the step's loop ran out of fuel"
+  -- the state after the step, its sets unreduced
+  | some s => pure [("i", Lean.toJson s.i), ("t", Json.str (← aux_showRat s.t)),
+      ("timePoint", printPolyZonotope dops.showExact s.R),
+      ("timeInterval", printPolyZonotope dops.showExact s.Rτ),
+      ("timeStep", Json.str (dops.showExact s.timeStep)),
+      ("finitehorizon", Json.str (dops.showExact s.finitehorizon)),
+      ("varphi", Json.str (dops.showExact s.varphi)),
+      ("errAdmHorizon", printVec dops.showExact s.errAdmHorizon),
+      ("errAdmDeltatopt", printVec dops.showExact s.errAdmDeltatopt),
+      ("orders", Json.arr (Array.ofFn fun i : Fin n => match s.orders i with
+        | some k => Lean.toJson k
+        | none => Json.null)),
+      ("minorder", Lean.toJson s.minorder),
+      ("zeroWidthDim", Json.arr (Array.ofFn fun i : Fin n => Json.bool (s.zeroWidthDim i))),
+      ("steps", Json.arr (s.steps.toArray.map fun x => Json.str (dops.showExact x)))]
+
+/-- `nonlinearSys.reachPolyAdaptive`: `FloatHessModel.reachPolyAdaptiveFloat` from `R0` (a
+polynomial zonotope), at most `maxSteps` steps: the step sizes, the last time-point set, and every
+time-interval set when `sets` is true. -/
+def handleNonlinearReachPolyAdaptive (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  dops.requireUnguaranteed "nonlinearSys.reachPolyAdaptive"
+  checkFields "reachPolyAdaptive" req (["n", "m", "f", "p", "R0", "U", "maxSteps", "sets"] ++
+    aux_polyFields)
+  let ⟨n, m, fm⟩ ← aux_adaptiveModel dops req
+  let o ← aux_polyOptions dops req
+  let R0 ← parsePolyZonotopeFixed dops.readExact n (← field req "R0")
+  let U ← aux_input dops req m
+  let ratio ← aux_scalarOr dops req "maxPolyZonoRatio" 3602879701896397 (-56)  -- 0.05
+  let sets := match fieldOpt req "sets" with
+    | some j => j.getBool?.toOption.getD false
+    | none => false
+  match fm.reachPolyAdaptiveFloat U o ratio (← aux_natOr req "maxSteps" 1000000)
+      (NonlinearSys.linReachPolyAdaptiveInit o R0) with
+  | none => throw "reachPolyAdaptive: a step's loop ran out of fuel"
+  | some ss =>
+    let last := (ss.getLast?).getD (NonlinearSys.linReachPolyAdaptiveInit o R0)
+    pure ([("steps", Json.arr (ss.toArray.map fun s => Json.str (dops.showExact s.timeStep))),
+      ("t", Json.str (← aux_showRat last.t)),
+      ("timePoint", printPolyZonotope dops.showExact last.R)] ++
+      (if sets then [("timeInterval", Json.arr (ss.toArray.map fun s =>
+        printPolyZonotope dops.showExact s.Rτ))] else []))
+
+/-- `nonlinearSys.linReachPolyAdaptivePass`: `FloatHessModel.linReachPolyAdaptivePassFloat`, one
+pass at `timeStep` from the polynomial zonotope `R` and `errorAdm`. -/
+def handleNonlinearLinReachPolyAdaptivePass (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  dops.requireUnguaranteed "nonlinearSys.linReachPolyAdaptivePass"
+  checkFields "linReachPolyAdaptivePass" req ["n", "m", "f", "p", "U", "R", "timeStep",
+    "taylorTerms", "zonotopeOrder", "errorAdm", "redFactor", "enlarge", "fuel"]
+  let ⟨n, m, fm⟩ ← aux_adaptiveModel dops req
+  let o ← aux_polyOptions dops req
+  let R ← parsePolyZonotopeFixed dops.readExact n (← field req "R")
+  let opts : LinearSys.ReachFloatOptions 𝕋 :=
+    ⟨⟨← dops.readExact "timeStep" (← scalarField req "timeStep"), o.taylorTerms⟩, o.zonotopeOrder⟩
+  let e ← parseVecFixed dops.readExact n (← field req "errorAdm")
+  match fm.linReachPolyAdaptivePassFloat (← aux_input dops req m) opts o.enlarge o.redFactor
+      o.prec o.fuel R e with
+  | none => throw "linReachPolyAdaptivePass: the abstraction-error loop did not converge"
+  | some P => pure [("timeInterval", printPolyZonotope dops.showExact P.Rti),
+      ("timePoint", printPolyZonotope dops.showExact P.Rtp), ("A", printMat dops.showExact P.A),
+      ("xs", printVec dops.showExact P.xs),
+      ("trueError", printVec dops.showExact P.trueError),
+      ("abstrerr", printVec dops.showExact P.abstrerr),
+      ("Gzero", Json.arr (Array.ofFn fun i : Fin n => Json.bool (P.Gzero i)))]
+
 /-- `nonlinearSys.abstrErrAdaptive`: `FloatHessModel.abstrErrAdaptiveFloat` for `Rmax` at the
 linearization point `xs` (`A`, `B` the model's Jacobians there), and `trueError`. -/
 def handleNonlinearAbstrErrAdaptive (dops : DtypeOps 𝕋) (req : Json) : Resp := do
@@ -609,6 +760,7 @@ def handleNonlinearVarphiEstAdaptive (dops : DtypeOps 𝕋) (req : Json) : Resp 
 
 /-- Every op of this file, without the `nonlinearSys.` prefix. -/
 def nonlinearSysOpNames : List String := [ "linReach", "reach", "reachAdaptive",
+  "reachPolyAdaptive", "linReachPolyAdaptive", "linReachPolyAdaptivePass",
   "linReachAdaptive", "linReachAdaptivePass", "abstrErrAdaptive", "optimalDeltatAdaptive",
   "varphiTotalAdaptive", "varphiEstAdaptive", "ordersAdaptive" ]
 
@@ -619,6 +771,9 @@ def handleNonlinearSysOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opt
   | "linReach" => some (handleNonlinearLinReach dops req)
   | "reach" => some (handleNonlinearReach dops req)
   | "reachAdaptive" => some (handleNonlinearReachAdaptive dops req)
+  | "reachPolyAdaptive" => some (handleNonlinearReachPolyAdaptive dops req)
+  | "linReachPolyAdaptive" => some (handleNonlinearLinReachPolyAdaptive dops req)
+  | "linReachPolyAdaptivePass" => some (handleNonlinearLinReachPolyAdaptivePass dops req)
   | "linReachAdaptive" => some (handleNonlinearLinReachAdaptive dops req)
   | "linReachAdaptivePass" => some (handleNonlinearLinReachAdaptivePass dops req)
   | "abstrErrAdaptive" => some (handleNonlinearAbstrErrAdaptive dops req)

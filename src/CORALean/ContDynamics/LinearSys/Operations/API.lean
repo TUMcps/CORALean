@@ -139,6 +139,8 @@ public import CORALean.ContDynamics.LinearSys.Operations.WithInputReachStepk
 public import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReach
 public import CORALean.ContDynamics.LinearSys.Operations.WithInputSplitReachStepk
 public import CORALean.ContDynamics.LinearSys.Operations.PostDeltaFloat
+public import CORALean.ContDynamics.LinearSys.Operations.PolyPointFloat
+public import CORALean.ContDynamics.LinearSys.Operations.PolyWindowFloat
 public import CORALean.ContDynamics.LinearSys.Operations.AdaptTimeStepFloat
 public import CORALean.ContDynamics.LinearSys.Operations.AdaptiveStepFloat
 public import CORALean.ContDynamics.LinearSys.Operations.AdaptiveRunFloat

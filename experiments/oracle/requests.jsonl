@@ -686,3 +686,6 @@
 {"id": 3065, "op": "krylov.subspace", "A": {"rows": 3, "cols": 3, "data": [-2, 1, 0, 1, -2, 1, 0, 1, -2]}, "c": {"rows": 3, "cols": 1, "data": [1, 0, 0]}, "k0": 1, "step": 1, "tf": 1, "tol": "1*2^-10", "eps": "1*2^-40", "dtype": "ieee:binary32"}
 {"id": 3066, "op": "krylov.subspace", "A": {"rows": 3, "cols": 3, "data": [-1, 30, 0, 0, -1, 30, 0, 0, -1]}, "c": {"rows": 3, "cols": 1, "data": [1, 0, 0]}, "k0": 1, "step": 1, "tf": 1, "tol": "1*2^-10", "eps": "1*2^-40", "dtype": "ieee:binary32"}
 {"id": 3067, "op": "krylov.windows", "A": {"rows": 3, "cols": 3, "data": [-2, 1, 0, 1, -2, 1, 0, 1, -2]}, "c": {"rows": 3, "cols": 1, "data": [1, 0, 0]}, "k0": 1, "step": 1, "tFinal": 1, "tol": "1*2^-10", "eps": "1*2^-40", "timeStep": "1*2^-2", "taylorTerms": 4, "zonotopeOrder": 10, "dtype": "ieee:binary32"}
+{"id": 3068, "op": "nonlinearSys.reachPolyAdaptive", "dtype": "ieee:binary64"}
+{"id": 3069, "op": "nonlinearSys.linReachPolyAdaptive", "dtype": "ieee:binary64"}
+{"id": 3070, "op": "nonlinearSys.linReachPolyAdaptivePass", "dtype": "ieee:binary64"}
