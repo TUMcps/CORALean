@@ -4,6 +4,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionM
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntegral
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegral
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralDiffEqTsum
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpIntegralDiff
 public import CORALean.ContSet.Interval.Real.Theorems.MemMat
 
 @[expose] public section
@@ -61,53 +63,6 @@ variable {n : ℕ}
 
 
 -- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- The interpolation error of the integrated exponential, as one series from
-order `1` up. -/
-private theorem aux_expIntegralDiff_eq_tsum (A : Mat ℝ n n) (t r : ℝ)
-    (hr : r ≠ 0) : -- --- CONCL ---
-    MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r
-      = ∑' i : ℕ, (((Nat.factorial (i + 2) : ℝ))⁻¹
-          * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 1) := by -- --- PROOF ---
-  set g : ℕ → Mat ℝ n n := fun i =>
-    (((Nat.factorial (i + 1) : ℝ))⁻¹ * (t ^ (i + 1) - (t / r) * r ^ (i + 1))) • A ^ i with hg
-  have hst := MatExp.summable_expIntegral A t
-  have hsr : Summable (fun i : ℕ =>
-      (t / r) • ((((Nat.factorial (i + 1) : ℝ))⁻¹ * r ^ (i + 1)) • A ^ i)) :=
-    (MatExp.summable_expIntegral A r).const_smul _
-  have hcongr : ∀ i : ℕ,
-      (((Nat.factorial (i + 1) : ℝ))⁻¹ * t ^ (i + 1)) • A ^ i
-        - (t / r) • ((((Nat.factorial (i + 1) : ℝ))⁻¹ * r ^ (i + 1)) • A ^ i) = g i := by
-    intro i
-    rw [hg]
-    simp only [smul_smul, ← sub_smul]
-    ring_nf
-  -- the two exponential series subtract termwise, which is all `hcongr` says
-  have hgsum : Summable g := (hst.sub hsr).congr hcongr
-  have htsum : ∑' i : ℕ, g i
-      = MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r := by
-    rw [MatExp.expIntegral, MatExp.expIntegral, ← tsum_const_smul'' (t / r),
-      ← Summable.tsum_sub hst hsr]
-    exact tsum_congr fun i => (hcongr i).symm
-  have hshift := hgsum.sum_add_tsum_nat_add 1
-  have hfirst : ∑ i ∈ Finset.range 1, g i = 0 := by
-    have h1 : t - t / r * r = 0 := by rw [div_mul_cancel₀ t hr, sub_self]
-    simp [hg, h1]
-  rw [← htsum, ← hshift, hfirst, zero_add]
-
-/-- The same series, shifted past `η`, is summable. -/
-private theorem aux_summable_expIntegralDiff (A : Mat ℝ n n) (t r : ℝ) : -- --- CONCL ---
-    Summable (fun i : ℕ => (((Nat.factorial (i + 2) : ℝ))⁻¹
-      * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 1)) := by -- --- PROOF ---
-  have hst := MatExp.summable_expIntegral A t
-  have hsr : Summable (fun i : ℕ =>
-      (t / r) • ((((Nat.factorial (i + 1) : ℝ))⁻¹ * r ^ (i + 1)) • A ^ i)) :=
-    (MatExp.summable_expIntegral A r).const_smul _
-  have hg : Summable (fun i : ℕ =>
-      (((Nat.factorial (i + 1) : ℝ))⁻¹ * (t ^ (i + 1) - (t / r) * r ^ (i + 1))) • A ^ i) :=
-    (hst.sub hsr).congr fun i => by simp only [smul_smul, ← sub_smul]; ring_nf
-  exact (summable_nat_add_iff (f := fun i : ℕ =>
-    (((Nat.factorial (i + 1) : ℝ))⁻¹ * (t ^ (i + 1) - (t / r) * r ^ (i + 1))) • A ^ i) 1).mpr hg
 
 /-- Every tail term carries `r^{i+2}` in its scalar factor; pulling one `r` out
 leaves the exponential's own remainder series. -/
@@ -195,11 +150,11 @@ theorem MatExp.expIntegralDiff_mem_constCorrectionMatrix (A : Mat ℝ n n) {r : 
   set f : ℕ → Mat ℝ n n := fun i =>
     (((Nat.factorial (i + 2) : ℝ))⁻¹ * (t ^ (i + 2) - (t / r) * r ^ (i + 2))) • A ^ (i + 1)
     with hf
-  have hsum : Summable f := aux_summable_expIntegralDiff A t r
+  have hsum : Summable f := MatExp.summable_expIntegralDiff A t r
   have hsplit := hsum.sum_add_tsum_nat_add η
   have heq : MatExp.expIntegral A t - (t / r) • MatExp.expIntegral A r
       = (∑ i ∈ Finset.range η, f i) + ∑' i : ℕ, f (i + η) := by
-    rw [aux_expIntegralDiff_eq_tsum A t r hr.ne', ← hsplit]
+    rw [MatExp.expIntegralDiff_eq_tsum A t r hr.ne', ← hsplit]
   have htail : ‖∑' i : ℕ, f (i + η)‖ ≤ r * MatExp.expRemainderBound (r • A) η :=
     aux_norm_constTail_le A hr η hε ht0 htr
   refine Interval.mem_mat_iff.mpr fun j k => ?_

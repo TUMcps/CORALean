@@ -85,10 +85,12 @@ private theorem _root_.CORALean.aux_err_smul_of_nonneg {c : ℝ} (hc : 0 ≤ c) 
 /-- `E_abs(Δt,η)` is entrywise non-negative at every step `Δt ≥ 0`, every term of its series
 being so. -/
 private theorem aux_expRemainderMat_entry_nonneg (A : Mat ℝ n n) {Δt : ℝ} (hΔt : 0 ≤ Δt) (η : ℕ)
-    (j k : Fin n) : 0 ≤ MatExp.expRemainderMat A Δt η j k := by
+    (j k : Fin n) : -- --- CONCL ---
+    0 ≤ MatExp.expRemainderMat A Δt η j k := by -- --- PROOF ---
   refine (MatExp.hasSum_expRemainderMat_entry A Δt η j k).nonneg fun i => ?_
   have hP : 0 ≤ ((MatExp.absMat A) ^ (i + (η + 1))) j k :=
     (abs_nonneg _).trans (abs_pow_entry_le_absMat_pow_entry A (i + (η + 1)) j k)
+  rw [Matrix.smul_apply, smul_eq_mul]
   positivity
 
 /-- `e^{At_i} E(φΔt,η) φΔt U ⊆ φ · e^{At_i} E(Δt,η) Δt U`, [1]'s set inclusion. -/

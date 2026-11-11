@@ -10,8 +10,16 @@ public import CORALean.ContDynamics.LinearSys.Theorems.AutoReachFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.AutoRunBudget
 public import CORALean.ContDynamics.LinearSys.Theorems.AutoStepFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.BundleReachOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpEntrywiseFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionEntrywise
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionEntrywiseFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.InputRemainderSubsetFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.BundleReachFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuterOfRemainder
+public import CORALean.ContDynamics.LinearSys.Theorems.OneStepClosedFormFloatTimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.OneStepClosedFormFloatTimePointOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.OneStepClosedFormTimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.OneStepClosedFormTimePointOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachBoxOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachBoxFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachBoxFloatCheckedEqSome
