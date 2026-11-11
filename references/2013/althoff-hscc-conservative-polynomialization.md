@@ -4,7 +4,7 @@
 @inproceedings{althoff2013reachability,
   author = {Althoff, M.},
   title = {Reachability Analysis of Nonlinear Systems using Conservative Polynomialization and Non-Convex Sets},
-  booktitle = {Proceedings of the 16th international conference on Hybrid systems: computation and control},
+  booktitle = {Proceedings of the International Conference on Hybrid Systems: Computation and Control},
   year = {2013}
 }
 ```

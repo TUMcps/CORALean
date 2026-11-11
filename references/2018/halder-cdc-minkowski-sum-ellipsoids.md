@@ -4,7 +4,7 @@
 @inproceedings{halder2018parameterized,
   author = {Halder, A.},
   title = {On the parameterized computation of minimum volume outer ellipsoid of {Minkowski} sum of ellipsoids},
-  booktitle = {2018 IEEE Conference on Decision and Control (CDC)},
+  booktitle = {Proceedings of the IEEE Conference on Decision and Control},
   year = {2018}
 }
 ```

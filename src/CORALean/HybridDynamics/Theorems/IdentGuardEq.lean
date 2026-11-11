@@ -30,8 +30,8 @@ of `G` is mapped into `Y` is `identGuard_maps_into`, the statement of the propos
 ## References
 
 * [1] [N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of Hybrid
-      Automata from Noisy Data". Proceedings of the 28th ACM International Conference on Hybrid
-      Systems: Computation and Control,
+      Automata from Noisy Data". Proceedings of the International Conference on Hybrid Systems:
+      Computation and Control,
       2025.](../../../../references/2025/kochdumper-hscc-hybrid-automata-identification.md)
 -/
 

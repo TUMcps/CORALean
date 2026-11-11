@@ -4,7 +4,7 @@
 @inproceedings{trombettoni2010box,
   author = {Trombettoni, G. and Papegay, Y. and Chabert, G. and Pourtallier, O.},
   title = {A Box-Consistency Contractor Based on Extremal Functions},
-  booktitle = {Principles and Practice of Constraint Programming – CP 2010},
+  booktitle = {Proceedings of the International Conference on Principles and Practice of Constraint Programming},
   year = {2010}
 }
 ```

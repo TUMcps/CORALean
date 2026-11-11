@@ -31,8 +31,8 @@ stored floats (`Real.ConZonotope.fourierMotzkinBounds_outer`).
 ## References
 
 * [1] [L. Koller, T. Ladner and M. Althoff. "Out of the Shadows: Exploring a Latent Space for Neural
-      Network Verification". International Conference on Learning Representations,
-      2026.](../../../../../../references/2026/koller-iclr-latent-space.md)
+      Network Verification". Proceedings of the International Conference on Learning
+      Representations, 2026.](../../../../../../references/2026/koller-iclr-latent-space.md)
 -/
 
 -- Authors:       Claude Sonnet 5.5

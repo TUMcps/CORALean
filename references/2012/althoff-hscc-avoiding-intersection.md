@@ -4,7 +4,7 @@
 @inproceedings{althoff2012avoiding,
   author = {Althoff, M. and Krogh, B. H.},
   title = {Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems},
-  booktitle = {Proceedings of the 15th ACM international conference on Hybrid Systems: Computation and Control},
+  booktitle = {Proceedings of the International Conference on Hybrid Systems: Computation and Control},
   year = {2012}
 }
 ```

@@ -4,7 +4,7 @@
 @inproceedings{kochdumper2020computing,
   author = {Kochdumper, N. and Althoff, M.},
   title = {Computing Non-Convex Inner-Approximations of Reachable Sets for Nonlinear Continuous Systems},
-  booktitle = {2020 59th IEEE Conference on Decision and Control (CDC)},
+  booktitle = {Proceedings of the IEEE Conference on Decision and Control},
   year = {2020}
 }
 ```

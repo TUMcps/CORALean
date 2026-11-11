@@ -39,8 +39,8 @@ assumed by [4, Lemma 3], is false here.
       Systems: Computation and Control,
       2023.](../../../../../../references/2023/ladner-hscc-abstraction-refinement.md)
 * [2] [M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative Polynomialization
-      and Non-Convex Sets". Proceedings of the 16th international conference on Hybrid systems:
-      computation and control,
+      and Non-Convex Sets". Proceedings of the International Conference on Hybrid Systems:
+      Computation and Control,
       2013.](../../../../../../references/2013/althoff-hscc-conservative-polynomialization.md)
 * [3] [N. Kochdumper and M. Althoff. "Sparse Polynomial Zonotopes: A Novel Set Representation for
       Reachability Analysis". IEEE Transactions on Automatic Control,

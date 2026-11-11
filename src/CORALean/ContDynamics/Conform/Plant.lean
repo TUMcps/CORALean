@@ -21,8 +21,8 @@ and no float layer: CORA hands its programs to a solver (`linprog`, `quadprog`).
 * [1] [S. B. Liu, B. Schürmann and M. Althoff. "Guarantees for Real Robotic Systems: Unifying Formal
       Controller Synthesis and Reachset-Conformant Identification". IEEE Transactions on Robotics,
       2023.](../../../../references/2023/liu-tro-guarantees-real-robotic.md)
-* [2] [M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". Proceedings of
-      10th International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH23),
+* [2] [M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". Proceedings of the
+      International Workshop on Applied Verification for Continuous and Hybrid Systems,
       2023.](../../../../references/2023/althoff-arch-reachset-conformance.md)
 * [3] [L. Lützow and M. Althoff. "Reachset-Conformant System Identification". IEEE Transactions on
       Automatic Control,

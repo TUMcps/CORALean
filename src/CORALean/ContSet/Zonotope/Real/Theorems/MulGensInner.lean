@@ -28,8 +28,8 @@ at `β = 0` (`toSet_subset_of_cert`).
 * [1] [L. Lützow, N. Kochdumper and M. Althoff. "Underapproximative Methods for the Order Reduction
       of Zonotopes". IEEE Control Systems Letters,
       2025.](../../../../../../references/2025/luetzow-lcss-underapprox-order-reduction.md)
-* [2] [S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". 2019 IEEE
-      58th Conference on Decision and Control (CDC),
+* [2] [S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems".
+      Proceedings of the IEEE Conference on Decision and Control,
       2019.](../../../../../../references/2019/sadraddini-cdc-polytope-containment.md)
 -/
 

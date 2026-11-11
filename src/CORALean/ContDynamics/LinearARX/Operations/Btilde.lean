@@ -22,8 +22,9 @@ The index `i` is an integer so that Lemma 3's `B̄_ext,i+1-k` is a term, not a c
 
 ## References
 
-* [1] [L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". 2023 62nd IEEE Conference
-      on Decision and Control (CDC), 2023.](../../../../../references/2023/luetzow-cdc-armax.md)
+* [1] [L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". Proceedings of the IEEE
+      Conference on Decision and Control,
+      2023.](../../../../../references/2023/luetzow-cdc-armax.md)
 -/
 
 -- Authors:       Claude Opus 5.5

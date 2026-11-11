@@ -4,7 +4,7 @@
 @inproceedings{althoff2008reachability,
   author = {Althoff, M. and Stursberg, O. and Buss, M.},
   title = {Reachability Analysis of Nonlinear Systems with Uncertain Parameters using Conservative Linearization},
-  booktitle = {2008 47th IEEE Conference on Decision and Control},
+  booktitle = {Proceedings of the IEEE Conference on Decision and Control},
   year = {2008}
 }
 ```

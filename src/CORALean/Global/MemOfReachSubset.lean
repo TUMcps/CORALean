@@ -35,8 +35,8 @@ as for the input sets of [1, Sec. 3.3]. `R(t) ⊆ S` is stated pointwise.
 
 ## References
 
-* [1] [M. Althoff. "Benchmarks for the Formal Verification of Power Systems". Proceedings of 9th
-      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH22),
+* [1] [M. Althoff. "Benchmarks for the Formal Verification of Power Systems". Proceedings of the
+      International Workshop on Applied Verification for Continuous and Hybrid Systems,
       2022.](../../../references/2022/althoff-arch-power-systems.md)
 -/
 

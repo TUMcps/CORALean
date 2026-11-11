@@ -19,7 +19,8 @@ only, as printed, and the discrete successor is `(m', υ(x))`, where [1, Def. 5]
 ## References
 
 * [1] [S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for Reachability
-      Analysis of Hybrid Automata". Formal Modeling and Analysis of Timed Systems,
+      Analysis of Hybrid Automata". Proceedings of the International Conference on Formal Modeling
+      and Analysis of Timed Systems,
       2017.](../../../../references/2017/bak-formats-time-triggered-conversion.md)
 -/
 

@@ -39,8 +39,8 @@ inverse among them). Without the equality it fails
 
 ## References
 
-* [1] [S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". 2019 IEEE
-      58th Conference on Decision and Control (CDC),
+* [1] [S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems".
+      Proceedings of the IEEE Conference on Decision and Control,
       2019.](../../../../../../references/2019/sadraddini-cdc-polytope-containment.md)
 -/
 

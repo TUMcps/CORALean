@@ -25,8 +25,8 @@ zonotope `{[1, 0]ᵀ α₁ + [0, 2]ᵀ α₁² | α₁ ∈ [-1, 1]}`. The first 
 ## References
 
 * [1] [N. Kochdumper and M. Althoff. "Reachability Analysis for Hybrid Systems with Nonlinear Guard
-      Sets". Proceedings of the 23rd International Conference on Hybrid Systems: Computation and
-      Control, 2020.](../../../../../../references/2020/kochdumper-hscc-nonlinear-guards.md)
+      Sets". Proceedings of the International Conference on Hybrid Systems: Computation and Control,
+      2020.](../../../../../../references/2020/kochdumper-hscc-nonlinear-guards.md)
 -/
 
 -- Authors:       Claude Opus 5.5

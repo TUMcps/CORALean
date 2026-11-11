@@ -27,8 +27,8 @@ extra ones zero and so the same set. `m` outputs rather than the lemma's `n`.
 ## References
 
 * [1] [M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in Reachability
-      Analysis of Hybrid Systems". Proceedings of the 15th ACM international conference on Hybrid
-      Systems: Computation and Control,
+      Analysis of Hybrid Systems". Proceedings of the International Conference on Hybrid Systems:
+      Computation and Control,
       2012.](../../../../../../references/2012/althoff-hscc-avoiding-intersection.md)
 -/
 

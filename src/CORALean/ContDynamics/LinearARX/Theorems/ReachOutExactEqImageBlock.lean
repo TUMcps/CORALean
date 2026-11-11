@@ -28,8 +28,9 @@ the product of these projections; see `reachWindowExact_ne_prod`.
 
 ## References
 
-* [1] [L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". 2023 62nd IEEE Conference
-      on Decision and Control (CDC), 2023.](../../../../../references/2023/luetzow-cdc-armax.md)
+* [1] [L. Lützow and M. Althoff. "Reachability Analysis of ARMAX Models". Proceedings of the IEEE
+      Conference on Decision and Control,
+      2023.](../../../../../references/2023/luetzow-cdc-armax.md)
 -/
 
 -- Authors:       Claude Opus 5.5

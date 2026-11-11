@@ -4,7 +4,7 @@
 @inproceedings{althoff2009safety,
   author = {Althoff, M. and Stursberg, O. and Buss, M.},
   title = {Safety Assessment for Stochastic Linear Systems using Enclosing Hulls of Probability Density Functions},
-  booktitle = {2009 European Control Conference (ECC)},
+  booktitle = {Proceedings of the European Control Conference},
   year = {2009}
 }
 ```

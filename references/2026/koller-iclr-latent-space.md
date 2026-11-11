@@ -4,7 +4,7 @@
 @inproceedings{koller2026out,
   author = {Koller, L. and Ladner, T. and Althoff, M.},
   title = {Out of the Shadows: Exploring a Latent Space for Neural Network Verification},
-  booktitle = {International Conference on Learning Representations},
+  booktitle = {Proceedings of the International Conference on Learning Representations},
   year = {2026}
 }
 ```

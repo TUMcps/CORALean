@@ -4,7 +4,7 @@
 @inproceedings{roehm2016stl,
   author = {Roehm, H. and Oehlerking, J. and Heinz, T. and Althoff, M.},
   title = {{STL} Model Checking of Continuous and Hybrid Systems},
-  booktitle = {Automated Technology for Verification and Analysis},
+  booktitle = {Proceedings of the International Symposium on Automated Technology for Verification and Analysis},
   year = {2016}
 }
 ```

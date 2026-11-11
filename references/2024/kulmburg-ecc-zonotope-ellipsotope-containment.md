@@ -4,7 +4,7 @@
 @inproceedings{kulmburg2024search,
   author = {Kulmburg, A. and Brkan, I. and Althoff, M.},
   title = {Search-based and Stochastic Solutions to the Zonotope and Ellipsotope Containment Problems},
-  booktitle = {2024 European Control Conference (ECC)},
+  booktitle = {Proceedings of the European Control Conference},
   year = {2024}
 }
 ```

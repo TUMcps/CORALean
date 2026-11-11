@@ -34,8 +34,8 @@ hold. Both lines of Eq. 1 are checked: `δ̇ = ω - ω_s` and
 
 ## References
 
-* [1] [M. Althoff. "Benchmarks for the Formal Verification of Power Systems". Proceedings of 9th
-      International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH22),
+* [1] [M. Althoff. "Benchmarks for the Formal Verification of Power Systems". Proceedings of the
+      International Workshop on Applied Verification for Continuous and Hybrid Systems,
       2022.](../../../references/2022/althoff-arch-power-systems.md)
 -/
 

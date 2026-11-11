@@ -25,7 +25,7 @@ makes this noncomputable: no `Decidable` instance for set inclusion exists here 
 ## References
 
 * [1] [M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning for reachability
-      analysis of linear systems". 2020 59th IEEE Conference on Decision and Control (CDC),
+      analysis of linear systems". Proceedings of the IEEE Conference on Decision and Control,
       2020.](../../../../../../references/2020/wetzlinger-cdc-adaptive-tuning.md)
 -/
 

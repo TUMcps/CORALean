@@ -34,8 +34,8 @@ its first right-hand term as `‖⟨[c, G₁]⟩‖`, the `c` there being `c₁`
 
 ## References
 
-* [1] [M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". Proceedings of
-      10th International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH23),
+* [1] [M. Althoff. "Checking and Establishing Reachset Conformance in CORA 2023". Proceedings of the
+      International Workshop on Applied Verification for Continuous and Hybrid Systems,
       2023.](../../../../../references/2023/althoff-arch-reachset-conformance.md)
 -/
 

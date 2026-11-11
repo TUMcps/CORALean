@@ -4,7 +4,7 @@
 @inproceedings{kochdumper2025robust,
   author = {Kochdumper, N. and Foughali, M. A. and Habermehl, P. and Asarin, E.},
   title = {Robust Identification of Hybrid Automata from Noisy Data},
-  booktitle = {Proceedings of the 28th ACM International Conference on Hybrid Systems: Computation and Control},
+  booktitle = {Proceedings of the International Conference on Hybrid Systems: Computation and Control},
   year = {2025}
 }
 ```

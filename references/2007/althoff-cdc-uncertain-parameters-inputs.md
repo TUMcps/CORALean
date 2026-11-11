@@ -4,7 +4,7 @@
 @inproceedings{althoff2007reachability,
   author = {Althoff, M. and Stursberg, O. and Buss, M.},
   title = {Reachability Analysis of Linear Systems with Uncertain Parameters and Inputs},
-  booktitle = {2007 46th IEEE Conference on Decision and Control},
+  booktitle = {Proceedings of the IEEE Conference on Decision and Control},
   year = {2007}
 }
 ```

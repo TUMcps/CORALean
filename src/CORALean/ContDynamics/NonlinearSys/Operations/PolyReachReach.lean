@@ -34,8 +34,8 @@ time-interval sets.
 ## References
 
 * [1] [M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative Polynomialization
-      and Non-Convex Sets". Proceedings of the 16th international conference on Hybrid systems:
-      computation and control,
+      and Non-Convex Sets". Proceedings of the International Conference on Hybrid Systems:
+      Computation and Control,
       2013.](../../../../../references/2013/althoff-hscc-conservative-polynomialization.md)
 -/
 

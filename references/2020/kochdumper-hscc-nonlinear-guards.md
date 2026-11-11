@@ -4,7 +4,7 @@
 @inproceedings{kochdumper2020reachability,
   author = {Kochdumper, N. and Althoff, M.},
   title = {Reachability Analysis for Hybrid Systems with Nonlinear Guard Sets},
-  booktitle = {Proceedings of the 23rd International Conference on Hybrid Systems: Computation and Control},
+  booktitle = {Proceedings of the International Conference on Hybrid Systems: Computation and Control},
   year = {2020}
 }
 ```

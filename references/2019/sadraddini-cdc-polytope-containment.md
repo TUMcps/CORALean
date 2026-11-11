@@ -4,7 +4,7 @@
 @inproceedings{sadraddini2019linear,
   author = {Sadraddini, S. and Tedrake, R.},
   title = {Linear Encodings for Polytope Containment Problems},
-  booktitle = {2019 IEEE 58th Conference on Decision and Control (CDC)},
+  booktitle = {Proceedings of the IEEE Conference on Decision and Control},
   year = {2019}
 }
 ```

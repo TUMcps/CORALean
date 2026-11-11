@@ -40,7 +40,7 @@ compact `X₀` is. Without `α̲ < ᾱ` the statement is false, `innerScaling_co
 ## References
 
 * [1] [N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets
-      for Nonlinear Continuous Systems". 2020 59th IEEE Conference on Decision and Control (CDC),
+      for Nonlinear Continuous Systems". Proceedings of the IEEE Conference on Decision and Control,
       2020.](../../../../../../references/2020/kochdumper-cdc-nonconvex-inner.md)
 -/
 

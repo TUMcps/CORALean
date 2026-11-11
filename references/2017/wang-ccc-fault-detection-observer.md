@@ -4,7 +4,7 @@
 @inproceedings{wang2017zonotopic,
   author = {Wang, Y. and Zhou, M. and Puig, V. and Cembrano, G. and Wang, Z.},
   title = {Zonotopic Fault Detection Observer with H₋ Performance},
-  booktitle = {2017 36th Chinese Control Conference (CCC)},
+  booktitle = {Proceedings of the Chinese Control Conference},
   year = {2017}
 }
 ```

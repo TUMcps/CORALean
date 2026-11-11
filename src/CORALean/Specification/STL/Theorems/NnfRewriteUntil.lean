@@ -37,7 +37,8 @@ Table 1]'s `U` rows in the three contexts, `U[0,0] ≡ ψ` and, for an empty int
 ## References
 
 * [1] [H. Roehm, J. Oehlerking, T. Heinz and M. Althoff. "STL Model Checking of Continuous and
-      Hybrid Systems". Automated Technology for Verification and Analysis,
+      Hybrid Systems". Proceedings of the International Symposium on Automated Technology for
+      Verification and Analysis,
       2016.](../../../../../references/2016/roehm-atva-stl-model-checking.md)
 -/
 

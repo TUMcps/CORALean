@@ -19,6 +19,7 @@ proved, and `Thm. 1` is false: the dwell time in `m_either` does not shrink with
 ## References
 
 * [1] [S. Bak, S. Bogomolov and M. Althoff. "Time-Triggered Conversion of Guards for Reachability
-      Analysis of Hybrid Automata". Formal Modeling and Analysis of Timed Systems,
+      Analysis of Hybrid Automata". Proceedings of the International Conference on Formal Modeling
+      and Analysis of Timed Systems,
       2017.](../../../../references/2017/bak-formats-time-triggered-conversion.md)
 -/
