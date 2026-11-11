@@ -42,7 +42,7 @@ at the dominating matrix of `r • A`. **`hε` is stated at the box, not at `M`*
 ## References
 
 * [1] [M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
-      Parameters and Inputs". 2007 46th IEEE Conference on Decision and Control,
+      Parameters and Inputs". Proceedings of the IEEE Conference on Decision and Control,
       2007.](../../../../../../references/2007/althoff-cdc-uncertain-parameters-inputs.md)
 -/
 

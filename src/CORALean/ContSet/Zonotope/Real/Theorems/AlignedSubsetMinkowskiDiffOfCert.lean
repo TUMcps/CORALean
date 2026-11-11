@@ -40,8 +40,8 @@ maximizes `Σαᵢ` is not used.
 * [1] [L. Yang and N. Ozay. "Scalable zonotopic under-approximation of backward reachable sets for
       uncertain linear systems". IEEE Control Systems Letters,
       2022.](../../../../../../references/2022/yang-lcss-zonotopic-underapproximation.md)
-* [2] [S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems". 2019 IEEE
-      58th Conference on Decision and Control (CDC),
+* [2] [S. Sadraddini and R. Tedrake. "Linear Encodings for Polytope Containment Problems".
+      Proceedings of the IEEE Conference on Decision and Control,
       2019.](../../../../../../references/2019/sadraddini-cdc-polytope-containment.md)
 -/
 

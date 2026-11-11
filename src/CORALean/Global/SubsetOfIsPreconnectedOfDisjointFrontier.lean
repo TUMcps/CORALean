@@ -30,7 +30,7 @@ open, and the point of `C ∩ R` lies in the first.
 ## References
 
 * [1] [N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets
-      for Nonlinear Continuous Systems". 2020 59th IEEE Conference on Decision and Control (CDC),
+      for Nonlinear Continuous Systems". Proceedings of the IEEE Conference on Decision and Control,
       2020.](../../../references/2020/kochdumper-cdc-nonconvex-inner.md)
 -/
 

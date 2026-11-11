@@ -32,7 +32,7 @@ every point. That this is a norm there is `[1, Thm. 1]`, and at any coefficient 
       European Journal of Control,
       2021.](../../../references/2021/kulmburg-ejc-zonotope-containment.md)
 * [2] [A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the Zonotope
-      and Ellipsotope Containment Problems". 2024 European Control Conference (ECC),
+      and Ellipsotope Containment Problems". Proceedings of the European Control Conference,
       2024.](../../../references/2024/kulmburg-ecc-zonotope-ellipsotope-containment.md)
 -/
 

@@ -4,7 +4,7 @@
 @inproceedings{raman2014model,
   author = {Raman, V. and Donzé, A. and Maasoumy, M. and Murray, R. M. and Sangiovanni-Vincentelli, A. and Seshia, S. A.},
   title = {Model Predictive Control with Signal Temporal Logic Specifications},
-  booktitle = {53rd IEEE Conference on Decision and Control},
+  booktitle = {Proceedings of the IEEE Conference on Decision and Control},
   year = {2014}
 }
 ```

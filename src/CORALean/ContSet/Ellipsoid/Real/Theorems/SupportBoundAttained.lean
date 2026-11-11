@@ -29,8 +29,8 @@ the center attains it. This makes [1, Def. 4] an equality here and not merely a 
 ## References
 
 * [1] [M. Wetzlinger, N. Kochdumper, S. Bak and M. Althoff. "Fully-Automated Verification of Linear
-      Systems Using Reachability Analysis with Support Functions". Proceedings of the 26th ACM
-      International Conference on Hybrid Systems: Computation and Control,
+      Systems Using Reachability Analysis with Support Functions". Proceedings of the International
+      Conference on Hybrid Systems: Computation and Control,
       2023.](../../../../../../references/2023/wetzlinger-hscc-support-functions.md)
 -/
 

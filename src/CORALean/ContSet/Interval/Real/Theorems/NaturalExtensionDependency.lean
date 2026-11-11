@@ -30,7 +30,8 @@ interval, which interval arithmetic treats as independent: the dependency proble
 ## References
 
 * [1] [G. Trombettoni, Y. Papegay, G. Chabert and O. Pourtallier. "A Box-Consistency Contractor
-      Based on Extremal Functions". Principles and Practice of Constraint Programming – CP 2010,
+      Based on Extremal Functions". Proceedings of the International Conference on Principles and
+      Practice of Constraint Programming,
       2010.](../../../../../../references/2010/trombettoni-cp-box-consistency.md)
 -/
 

@@ -29,7 +29,7 @@ second half, `Ẑ ⊆ Ê` "with probability at least `P_S(1 - r_vs)`", fails
 ## References
 
 * [1] [A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the Zonotope
-      and Ellipsotope Containment Problems". 2024 European Control Conference (ECC),
+      and Ellipsotope Containment Problems". Proceedings of the European Control Conference,
       2024.](../../../../../../references/2024/kulmburg-ecc-zonotope-ellipsotope-containment.md)
 -/
 

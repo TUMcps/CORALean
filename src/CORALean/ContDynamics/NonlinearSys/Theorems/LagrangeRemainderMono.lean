@@ -34,8 +34,8 @@ is not an added hypothesis: `E` bounds a third derivative entrywise, so
 ## References
 
 * [1] [M. Althoff. "Reachability Analysis of Nonlinear Systems using Conservative Polynomialization
-      and Non-Convex Sets". Proceedings of the 16th international conference on Hybrid systems:
-      computation and control,
+      and Non-Convex Sets". Proceedings of the International Conference on Hybrid Systems:
+      Computation and Control,
       2013.](../../../../../references/2013/althoff-hscc-conservative-polynomialization.md)
 * [2] [N. Kochdumper, B. Schürmann and M. Althoff. "Utilizing Dependencies to Obtain Subsets of
       Reachable Sets". Proceedings of the 23rd International Conference on Hybrid Systems:

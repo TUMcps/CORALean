@@ -4,7 +4,7 @@
 @inproceedings{wetzlinger2020adaptive,
   author = {Wetzlinger, M. and Kochdumper, N. and Althoff, M.},
   title = {Adaptive parameter tuning for reachability analysis of linear systems},
-  booktitle = {2020 59th IEEE Conference on Decision and Control (CDC)},
+  booktitle = {Proceedings of the IEEE Conference on Decision and Control},
   year = {2020}
 }
 ```

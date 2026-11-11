@@ -36,7 +36,7 @@ Equal volume makes every inequality behind `isLeast_volume_superset_parallelotop
 ## References
 
 * [1] [V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean
-      Zonotope Norm". 2020 American Control Conference (ACC),
+      Zonotope Norm". Proceedings of the American Control Conference,
       2020.](../../../../../../references/2020/gassmann-acc-zonotope-ellipsoid.md)
 -/
 

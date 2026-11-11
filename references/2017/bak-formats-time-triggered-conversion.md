@@ -4,7 +4,7 @@
 @inproceedings{bak2017time,
   author = {Bak, S. and Bogomolov, S. and Althoff, M.},
   title = {Time-Triggered Conversion of Guards for Reachability Analysis of Hybrid Automata},
-  booktitle = {Formal Modeling and Analysis of Timed Systems},
+  booktitle = {Proceedings of the International Conference on Formal Modeling and Analysis of Timed Systems},
   year = {2017}
 }
 ```

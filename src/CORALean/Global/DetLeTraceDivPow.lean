@@ -27,7 +27,7 @@ what makes `E(nGGᵀ, z̄)` the ellipsoid of least volume around a parallelotope
 ## References
 
 * [1] [V. Gaßmann and M. Althoff. "Scalable Zonotope-Ellipsoid Conversions using the Euclidean
-      Zonotope Norm". 2020 American Control Conference (ACC),
+      Zonotope Norm". Proceedings of the American Control Conference,
       2020.](../../../references/2020/gassmann-acc-zonotope-ellipsoid.md)
 -/
 

@@ -4,7 +4,7 @@
 @inproceedings{wetzlinger2023fully,
   author = {Wetzlinger, M. and Kochdumper, N. and Bak, S. and Althoff, M.},
   title = {Fully-Automated Verification of Linear Systems Using Reachability Analysis with Support Functions},
-  booktitle = {Proceedings of the 26th ACM International Conference on Hybrid Systems: Computation and Control},
+  booktitle = {Proceedings of the International Conference on Hybrid Systems: Computation and Control},
   year = {2023}
 }
 ```

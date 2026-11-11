@@ -30,7 +30,7 @@ read as the P-radius of `↓_q(H_k)` the bound holds (`Zonotope.faultObserve_pRa
 ## References
 
 * [1] [Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer with
-      H₋ Performance". 2017 36th Chinese Control Conference (CCC),
+      H₋ Performance". Proceedings of the Chinese Control Conference,
       2017.](../../../../../../references/2017/wang-ccc-fault-detection-observer.md)
 -/
 

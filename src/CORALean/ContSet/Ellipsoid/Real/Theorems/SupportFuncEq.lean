@@ -28,7 +28,7 @@ attains (`isGreatest_support`).
 
 ## References
 
-* [1] [A. A. Kurzhanskiy and P. Varaiya. "Ellipsoidal Toolbox (ET)". Proceedings of the 45th IEEE
+* [1] [A. A. Kurzhanskiy and P. Varaiya. "Ellipsoidal Toolbox (ET)". Proceedings of the IEEE
       Conference on Decision and Control,
       2006.](../../../../../../references/2006/kurzhanskiy-cdc-ellipsoidal-toolbox.md)
 -/

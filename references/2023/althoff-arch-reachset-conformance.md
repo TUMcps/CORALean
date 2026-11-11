@@ -3,8 +3,8 @@
 ```bibtex
 @inproceedings{althoff2023checking,
   author = {Althoff, M.},
-  title = {Checking and Establishing Reachset Conformance in CORA 2023},
-  booktitle = {Proceedings of 10th International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH23)},
+  title = {Checking and Establishing Reachset Conformance in {CORA} 2023},
+  booktitle = {Proceedings of the International Workshop on Applied Verification for Continuous and Hybrid Systems},
   year = {2023}
 }
 ```

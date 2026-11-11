@@ -4,7 +4,7 @@
 @inproceedings{kurzhanskiy2006ellipsoidal,
   author = {Kurzhanskiy, A. A. and Varaiya, P.},
   title = {Ellipsoidal Toolbox (ET)},
-  booktitle = {Proceedings of the 45th IEEE Conference on Decision and Control},
+  booktitle = {Proceedings of the IEEE Conference on Decision and Control},
   year = {2006}
 }
 ```

@@ -4,7 +4,7 @@
 @inproceedings{althoff2022benchmarks,
   author = {Althoff, M.},
   title = {Benchmarks for the Formal Verification of Power Systems},
-  booktitle = {Proceedings of 9th International Workshop on Applied Verification of Continuous and Hybrid Systems (ARCH22)},
+  booktitle = {Proceedings of the International Workshop on Applied Verification for Continuous and Hybrid Systems},
   year = {2022}
 }
 ```

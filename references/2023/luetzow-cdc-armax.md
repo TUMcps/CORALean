@@ -3,8 +3,8 @@
 ```bibtex
 @inproceedings{luetzow2023reachability,
   author = {Lützow, L. and Althoff, M.},
-  title = {Reachability Analysis of ARMAX Models},
-  booktitle = {2023 62nd IEEE Conference on Decision and Control (CDC)},
+  title = {Reachability Analysis of {ARMAX} Models},
+  booktitle = {Proceedings of the IEEE Conference on Decision and Control},
   year = {2023}
 }
 ```

@@ -31,8 +31,8 @@ map of a zonotope bundle it is the enclosure `L Z_∩ ⊆ {L Z₁, …, L Z_s}_�
 ## References
 
 * [1] [M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of Reachable
-      Sets". 2011 50th IEEE Conference on Decision and Control and European Control Conference
-      (CDC-ECC 2011), 2011.](../../../../../references/2011/althoff-cdc-zonotope-bundles.md)
+      Sets". Proceedings of the IEEE Conference on Decision and Control and European Control
+      Conference, 2011.](../../../../../references/2011/althoff-cdc-zonotope-bundles.md)
 -/
 
 -- Authors:       Claude Opus 5.5

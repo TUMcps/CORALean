@@ -4,7 +4,7 @@
 @inproceedings{althoff2011zonotope,
   author = {Althoff, M. and Krogh, B. H.},
   title = {Zonotope Bundles for the Efficient Computation of Reachable Sets},
-  booktitle = {2011 50th IEEE Conference on Decision and Control and European Control Conference (CDC-ECC 2011)},
+  booktitle = {Proceedings of the IEEE Conference on Decision and Control and European Control Conference},
   year = {2011}
 }
 ```

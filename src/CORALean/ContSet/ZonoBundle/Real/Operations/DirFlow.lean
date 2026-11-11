@@ -24,8 +24,8 @@ enclosure.
 ## References
 
 * [1] [M. Althoff and B. H. Krogh. "Zonotope Bundles for the Efficient Computation of Reachable
-      Sets". 2011 50th IEEE Conference on Decision and Control and European Control Conference
-      (CDC-ECC 2011), 2011.](../../../../../../references/2011/althoff-cdc-zonotope-bundles.md)
+      Sets". Proceedings of the IEEE Conference on Decision and Control and European Control
+      Conference, 2011.](../../../../../../references/2011/althoff-cdc-zonotope-bundles.md)
 * [2] [M. Althoff, O. Stursberg and M. Buss. "Computing Reachable Sets of Hybrid Systems Using a
       Combination of Zonotopes and Polytopes". Nonlinear Analysis: Hybrid Systems,
       2010.](../../../../../../references/2010/althoff-nahs-zonotopes-polytopes.md)

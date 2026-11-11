@@ -26,10 +26,10 @@ guarantee of `MatExp.intervalCorrectionMatrix` need it.
 ## References
 
 * [1] [M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Linear Systems with Uncertain
-      Parameters and Inputs". 2007 46th IEEE Conference on Decision and Control,
+      Parameters and Inputs". Proceedings of the IEEE Conference on Decision and Control,
       2007.](../../../../../../references/2007/althoff-cdc-uncertain-parameters-inputs.md)
 * [2] [M. Wetzlinger, N. Kochdumper and M. Althoff. "Adaptive parameter tuning for reachability
-      analysis of linear systems". 2020 59th IEEE Conference on Decision and Control (CDC),
+      analysis of linear systems". Proceedings of the IEEE Conference on Decision and Control,
       2020.](../../../../../../references/2020/wetzlinger-cdc-adaptive-tuning.md)
 -/
 

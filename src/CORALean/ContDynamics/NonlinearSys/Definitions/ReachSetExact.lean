@@ -36,13 +36,14 @@ confinement hypothesis: `ReachSetExactOuter` puts every trajectory into it,
       Reachability Analysis". IEEE Transactions on Automatic Control,
       2021.](../../../../../references/2021/kochdumper-tac-sparse-polyzonotopes.md)
 * [3] [M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear Systems with
-      Uncertain Parameters using Conservative Linearization". 2008 47th IEEE Conference on Decision
-      and Control, 2008.](../../../../../references/2008/althoff-cdc-conservative-linearization.md)
+      Uncertain Parameters using Conservative Linearization". Proceedings of the IEEE Conference on
+      Decision and Control,
+      2008.](../../../../../references/2008/althoff-cdc-conservative-linearization.md)
 * [4] [M. Wetzlinger, A. Kulmburg and M. Althoff. "Inner Approximations of Reachable Sets for
       Nonlinear Systems using the Minkowski Difference". IEEE Control Systems Letters,
       2024.](../../../../../references/2024/wetzlinger-lcss-inner-minkowski-difference.md)
 * [5] [N. Kochdumper and M. Althoff. "Computing Non-Convex Inner-Approximations of Reachable Sets
-      for Nonlinear Continuous Systems". 2020 59th IEEE Conference on Decision and Control (CDC),
+      for Nonlinear Continuous Systems". Proceedings of the IEEE Conference on Decision and Control,
       2020.](../../../../../references/2020/kochdumper-cdc-nonconvex-inner.md)
 -/
 

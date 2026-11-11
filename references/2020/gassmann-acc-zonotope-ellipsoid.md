@@ -4,7 +4,7 @@
 @inproceedings{gassmann2020scalable,
   author = {Gaßmann, V. and Althoff, M.},
   title = {Scalable Zonotope-Ellipsoid Conversions using the {Euclidean} Zonotope Norm},
-  booktitle = {2020 American Control Conference (ACC)},
+  booktitle = {Proceedings of the American Control Conference},
   year = {2020}
 }
 ```

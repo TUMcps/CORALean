@@ -37,8 +37,8 @@ same formula is [2, Eq. 7], `A ≈ X' Ṽ Σ̃⁻¹ Ũᵀ`, for the snapshots of
 ## References
 
 * [1] [N. Kochdumper, M. A. Foughali, P. Habermehl and E. Asarin. "Robust Identification of Hybrid
-      Automata from Noisy Data". Proceedings of the 28th ACM International Conference on Hybrid
-      Systems: Computation and Control,
+      Automata from Noisy Data". Proceedings of the International Conference on Hybrid Systems:
+      Computation and Control,
       2025.](../../../references/2025/kochdumper-hscc-hybrid-automata-identification.md)
 * [2] [J. L. Proctor, S. L. Brunton and J. N. Kutz. "Dynamic Mode Decomposition with Control". SIAM
       Journal on Applied Dynamical Systems,

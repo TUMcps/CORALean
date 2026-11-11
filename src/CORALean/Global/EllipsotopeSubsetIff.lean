@@ -29,7 +29,7 @@ is the smallest scaling, nor the degenerate-circumbody convention.
 ## References
 
 * [1] [A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the Zonotope
-      and Ellipsotope Containment Problems". 2024 European Control Conference (ECC),
+      and Ellipsotope Containment Problems". Proceedings of the European Control Conference,
       2024.](../../../references/2024/kulmburg-ecc-zonotope-ellipsotope-containment.md)
 * [2] [A. Kulmburg, L. Schäfer and M. Althoff. "Approximability of the Containment Problem for
       Zonotopes and Ellipsotopes". IEEE Transactions on Automatic Control,

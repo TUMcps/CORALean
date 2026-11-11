@@ -30,7 +30,7 @@ with `‖Mᵀ y‖_q ≤ ‖Mᵀ y‖₂ = ‖y‖₂`, and `‖M β‖₂ ≤ �
 ## References
 
 * [1] [A. Kulmburg, I. Brkan and M. Althoff. "Search-based and Stochastic Solutions to the Zonotope
-      and Ellipsotope Containment Problems". 2024 European Control Conference (ECC),
+      and Ellipsotope Containment Problems". Proceedings of the European Control Conference,
       2024.](../../../references/2024/kulmburg-ecc-zonotope-ellipsotope-containment.md)
 -/
 

@@ -30,8 +30,8 @@ asks for, on the side of the unsafe set `a y ≤ b`. So if any point of `Y` sati
 ## References
 
 * [1] [L. Koller, T. Ladner and M. Althoff. "Out of the Shadows: Exploring a Latent Space for Neural
-      Network Verification". International Conference on Learning Representations,
-      2026.](../../../../../../references/2026/koller-iclr-latent-space.md)
+      Network Verification". Proceedings of the International Conference on Learning
+      Representations, 2026.](../../../../../../references/2026/koller-iclr-latent-space.md)
 -/
 
 -- Authors:       Claude Opus 5.5

@@ -62,8 +62,8 @@ hyperplane at `t = 2`, at `(2, 2, 1)`. CORA's error set is `{0}`
 
 * [1] `hybridDynamics/@location/guardIntersect_hyperplaneMap.m`
 * [2] [M. Althoff and B. H. Krogh. "Avoiding Geometric Intersection Operations in Reachability
-      Analysis of Hybrid Systems". Proceedings of the 15th ACM international conference on Hybrid
-      Systems: Computation and Control,
+      Analysis of Hybrid Systems". Proceedings of the International Conference on Hybrid Systems:
+      Computation and Control,
       2012.](../../../../references/2012/althoff-hscc-avoiding-intersection.md)
 -/
 

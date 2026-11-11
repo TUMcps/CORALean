@@ -31,7 +31,7 @@ it is [1, Eq. 16], and the gain is `L = P⁻¹W`. Stated as its negative being p
 ## References
 
 * [1] [Y. Wang, M. Zhou, V. Puig, G. Cembrano and Z. Wang. "Zonotopic Fault Detection Observer with
-      H₋ Performance". 2017 36th Chinese Control Conference (CCC),
+      H₋ Performance". Proceedings of the Chinese Control Conference,
       2017.](../../../../../references/2017/wang-ccc-fault-detection-observer.md)
 -/
 

@@ -32,8 +32,8 @@ left side is empty and the right is `{1}`); convexity is what the missing step n
 ## References
 
 * [1] [M. Althoff, O. Stursberg and M. Buss. "Reachability Analysis of Nonlinear Systems with
-      Uncertain Parameters using Conservative Linearization". 2008 47th IEEE Conference on Decision
-      and Control,
+      Uncertain Parameters using Conservative Linearization". Proceedings of the IEEE Conference on
+      Decision and Control,
       2008.](../../../../../../references/2008/althoff-cdc-conservative-linearization.md)
 -/
 
