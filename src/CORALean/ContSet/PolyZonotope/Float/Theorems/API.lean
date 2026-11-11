@@ -114,6 +114,19 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitGenCover
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsPointSetSound
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.SumToRealMerge
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.EvalPolyFactorCount
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemFiberIff
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.NominalPointEq
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemToSetIffFiber
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SubDepPointMemIndepZonotope
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.DepPointMemFiberDepPart
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PlusFiber
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberMaterialise
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemFiberOfIndep
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.OfIndepOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberExactPlus
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesIntervalMatFiber
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesPoint
 
 /-!
 # What `PolyZonotope` guarantees

@@ -23,6 +23,7 @@ where CORA multiplies numbers (they differ only where entries cancel exactly). `
 * `Gzero` – zero rows of the abstraction error
 * `H` – Hessian at the linearization point
 * `fuel` – bound on the powers
+* `shift` – added to every `sigma`: `1` at `'poly'` with an empty third-order tensor
 
 ## Output
 * the order per dimension
@@ -93,11 +94,13 @@ def step_ordersLoop (Apat : Fin n → Fin n → Bool) (Gzero : Fin n → Bool) (
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- CORA's `aux_getPowers` at `alg = 'lin'`: the order `q_i` of the abstraction error. -/
+/-- CORA's `aux_getPowers`: the order `q_i` of the abstraction error. `shift = 1` is `'poly'`'s
+`sigma + 1` when the third-order tensor is empty, `0` otherwise and at `'lin'`. -/
 def NonlinearSys.adaptiveOrdersFloat (A : Mat 𝕋 n n) (zeroWidthDim Gzero : Fin n → Bool)
-    (H : Fin n → Interval (Mat 𝕋 (n + m) (n + m))) (fuel : ℕ) : Fin n → Option ℕ :=
+    (H : Fin n → Interval (Mat 𝕋 (n + m) (n + m))) (fuel : ℕ) (shift : ℕ := 0) :
+    Fin n → Option ℕ :=
   let Apat := fun i j => step_nonzero (A i j) (A i j)               -- A(i,j) ~= 0
-  step_ordersLoop Apat Gzero (step_sigma zeroWidthDim H) fuel 0     -- p = 0, Apower = eye(n)
+  step_ordersLoop Apat Gzero (fun i => step_sigma zeroWidthDim H i + shift) fuel 0  -- p = 0, I
     (fun i j => decide (i = j)) fun _ => none
 
 end CORALean

@@ -26,6 +26,7 @@ refuted, by `NonlinearSys.optimalDeltatCora`.
 * `deltat` – finite horizon
 * `varphimin` – gain at the horizon
 * `zetaP` – exponential of the trace of `A Δt`
+* `dHused` – the distance factor of `'poly'`, none for `'lin'`
 
 ## Output
 * the tuned time step size
@@ -61,11 +62,14 @@ def step_rpowFloat (p : ℕ) (x y : 𝕋) : 𝕋 := expUp p (mulUp y (logUp p p 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- CORA's `aux_optimaldeltat` at `alg = 'lin'`: the candidate step size whose estimated set size
-after the finite horizon `deltat` is smallest, the first one on ties. -/
+/-- CORA's `aux_optimaldeltat` at `alg = 'lin'` (`dHused = 0.5`) or `'poly'` (`0.3`): the
+candidate step size whose estimated set size after the finite horizon `deltat` is smallest, the
+first one on ties. -/
 def NonlinearSys.optimalDeltatAdaptiveFloat (p : ℕ)
-    (mu redFactor rR rerr1 deltat varphimin zetaP : 𝕋) : 𝕋 :=
-  let zetaZ := half redFactor                                       -- redFactor * dHused, 0.5
+    (mu redFactor rR rerr1 deltat varphimin zetaP : 𝕋) (dHused : Option 𝕋 := none) : 𝕋 :=
+  let zetaZ := match dHused with                                    -- redFactor * dHused
+    | none => half redFactor                                        -- 'lin': dHused = 0.5
+    | some d => mulUp redFactor d                                   -- 'poly': dHused = 0.3
   let kprimemax := ⌈ToRat.toRat (divUp (neg (logUp p p (nsmulUp 100 one)))  -- ceil(-log(100)
     (logUp p p mu))⌉₊                                               --   / log(mu))
   let k := fun j : ℕ => divUp one (powUp mu j)                      -- k = mu .^ (-kprime)

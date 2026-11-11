@@ -570,6 +570,9 @@ sound dtypes.
 | `nonlinearSys.reachAdaptive` | `n`, `m`, `f`, `p`, `R0`, `U`, `maxSteps`, `sets`, and the options below | `FloatHessModel.reachAdaptiveFloat`, CORA's `lin-adaptive` repaired; `steps`, `tensorOrders`, `t`, the last `timePoint`, every `timeInterval` when `sets` is true |
 | `nonlinearSys.linReachAdaptive` | as `reachAdaptive` with the state `R`, `i`, `t`, `timeStep`, `finitehorizon`, `varphi`, `errAdmHorizon`, `errAdmDeltatopt`, `tensorOrder`, `orders` (`null` for `Inf`), `minorder`, `zeroWidthDim`, `kappaDeltat`, `kappaAbstrerr`, `steps` (latest first); absent fields as `linReachAdaptiveInit` sets them | `FloatHessModel.linReachAdaptiveFloat`, one step with its tuning; the state after it, sets unreduced |
 | `nonlinearSys.linReachAdaptivePass` | `n`, `m`, `f`, `p`, `U`, `R`, `timeStep`, `taylorTerms`, `zonotopeOrder`, `tensorOrder`, `errorAdm`, `redFactor`, `enlarge`, `fuel` | `FloatHessModel.linReachAdaptivePassFloat`, one pass of the error loop; `timeInterval`, `timePoint`, `A`, `xs`, `Rmax`, `trueError`, `abstrerr`, `Gzero` |
+| `nonlinearSys.reachPolyAdaptive` | `n`, `m`, `f`, `p`, `R0` (a polynomial zonotope), `U`, `maxSteps`, `sets`, the options below and `dHused`, `thirdOrderEmpty`, `maxDepGenOrder`, `maxPolyZonoRatio` | `FloatHessModel.reachPolyAdaptiveFloat`, CORA's `poly-adaptive` repaired; `steps`, `t`, the last `timePoint`, every `timeInterval` when `sets` is true |
+| `nonlinearSys.linReachPolyAdaptive` | as `reachPolyAdaptive` with the state `R` (polynomial zonotope), `i`, `t`, `timeStep`, `finitehorizon`, `varphi`, `errAdmHorizon`, `errAdmDeltatopt`, `orders`, `minorder`, `zeroWidthDim`, `steps` | `FloatHessModel.linReachPolyAdaptiveFloat`, one step with its tuning; the state after it, sets unreduced |
+| `nonlinearSys.linReachPolyAdaptivePass` | `n`, `m`, `f`, `p`, `U`, `R` (polynomial zonotope), `timeStep`, `taylorTerms`, `zonotopeOrder`, `errorAdm`, `redFactor`, `enlarge`, `fuel` | `FloatHessModel.linReachPolyAdaptivePassFloat`, one pass of the error loop; `timeInterval`, `timePoint`, `A`, `xs`, `trueError`, `abstrerr`, `Gzero` |
 | `nonlinearSys.abstrErrAdaptive` | `n`, `m`, `f`, `p`, `U`, `xs`, `Rmax`, `tensorOrder`, `redFactor` | `FloatHessModel.abstrErrAdaptiveFloat`, the Hessian over the box of `Rmax` joined with `xs`; `VerrorDyn`, `trueError` |
 | `nonlinearSys.ordersAdaptive` | `n`, `m`, `f`, `p`, `U`, `A`, `xs`, `zeroWidthDim`, `Gzero` | `NonlinearSys.adaptiveOrdersFloat`; `orders` |
 | `nonlinearSys.optimalDeltatAdaptive` | `p`, `decrFactor`, `redFactor`, `rR`, `rerr1`, `deltat`, `varphimin`, `zetaP` | `NonlinearSys.optimalDeltatAdaptiveFloat`; `value` |
@@ -582,6 +585,17 @@ The adaptive options are `tStart`, `tFinal`, `taylorTerms`, `zonotopeOrder`, `re
 doubles read as exact dyadics. Their soundness theorems (`Encloses.reachAdaptiveFloat_outer`,
 `linReachAdaptiveFloat_outer`, `linReachAdaptivePassFloat_outer`) take, besides `Encloses`, the
 hypothesis `HasFixedPointConfinement`, CORA's own fixed-point argument, not proved in Lean.
+
+A polynomial zonotope is `{"c","G","GI","Exp","E"}`: `G` the dependent (`n x h`) and `GI` the
+independent (`n x q`, optional) generators, `Exp` the exponent matrix (`{"rows":p,"cols":h,"data"}`
+of integers, default the identity), `E` the error box. The poly-adaptive defaults are CORA's for
+`'poly'`: `redFactor` 0.0001, `zetaphi` [0.80; 0.75; 0.63], `dHused` 0.3, `maxDepGenOrder` 50,
+`maxPolyZonoRatio` 0.05. Evaluation order a C++ port follows: `reachPolyAdaptiveFloat` is, per step,
+the restructure test on `R`, one `linReachPolyAdaptiveFloat` (its passes in
+`linReachPolyAdaptivePassFloat`: `Rdelta`, the static error `step_precompStatErrorAdaptive`, the error loop of
+`step_abstrErrLoopPolyAdaptive` on `polyWindowFloat`'s differences, then `polyWindowFloat` and
+`polyPointFloat`), and the reductions `reduceAdaptive`, `aux_reduceOnlyDep`. Fixture 3201 (unsound), 3068–3070 (refusals at the guaranteed dtypes).
+Their soundness theorem is not proved (`PolyZonotope.reduceAdaptive_outer` only).
 
 `specification.` (`Ops/SpecificationOps.lean`):
 

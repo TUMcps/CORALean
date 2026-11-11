@@ -301,6 +301,8 @@ public import CORALean.ContDynamics.LinearSys.Theorems.NoiseCovariancePosSemidef
 public import CORALean.ContDynamics.LinearSys.Theorems.SupportUpperOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifySearchLoopSound
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifySearchSound
+public import CORALean.ContDynamics.LinearSys.Theorems.PolyWindowFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.PolyPointFloatOuter
 
 /-!
 # What `LinearSys` guarantees

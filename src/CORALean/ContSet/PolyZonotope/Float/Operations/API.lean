@@ -14,8 +14,10 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.GeneratorError
 public import CORALean.ContSet.PolyZonotope.Float.Operations.CenterResidual
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ExactPlus
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ExactPlusAlign
 public import CORALean.ContSet.PolyZonotope.Float.Operations.MtimesResidual
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
+public import CORALean.ContSet.PolyZonotope.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RepKeep
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SupportBound
 public import CORALean.ContSet.PolyZonotope.Float.Operations.KeepIdx
@@ -63,7 +65,10 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyBoundS
 public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyStep
 public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPolyP
 public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPoly
+public import CORALean.ContSet.PolyZonotope.Float.Operations.DepPart
+public import CORALean.ContSet.PolyZonotope.Float.Operations.IndepZonotope
 public import CORALean.ContSet.PolyZonotope.Float.Operations.DropRadius
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceAdaptive
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceBy
 public import CORALean.ContSet.PolyZonotope.Float.Operations.GirardMetric
 public import CORALean.ContSet.PolyZonotope.Float.Operations.GirardSplit
@@ -81,6 +86,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxWidthMulti
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpMulti
 public import CORALean.ContSet.PolyZonotope.Float.Operations.RelaxExpGreedy
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Origin
+public import CORALean.ContSet.PolyZonotope.Float.Operations.OfZonotope
 public import CORALean.ContSet.PolyZonotope.Float.Operations.PadBack
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Reindex
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Restructure

@@ -8,6 +8,10 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.AdaptState
 public import CORALean.ContDynamics.NonlinearSys.Definitions.HasFixedPointConfinement
 public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachAdaptiveOptions
 public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachAdaptiveState
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachPolyAdaptiveLoop
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachPolyAdaptiveOptions
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachPolyAdaptivePass
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachPolyAdaptiveState
 public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachAdaptivePass
 public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachAdaptiveLoop
 public import CORALean.ContDynamics.NonlinearSys.Definitions.OptStep
@@ -34,6 +38,7 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.IsInnerMinkDiffCorr
 public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerOps
 public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachInnerState
 public import CORALean.ContDynamics.NonlinearSys.Definitions.IsLinReachInnerCert
+public import CORALean.ContDynamics.NonlinearSys.Definitions.HasTrackedStaticError
 
 /-!
 # What `NonlinearSys` means beyond the system itself

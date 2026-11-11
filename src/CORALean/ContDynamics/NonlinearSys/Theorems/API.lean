@@ -127,6 +127,15 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryOfHasDeriv
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeSub
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeWindow
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubEqIntegral
+public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrPolyAdaptiveFloatMem
+public import CORALean.ContDynamics.NonlinearSys.Theorems.HessCenterTableEq
+public import CORALean.ContDynamics.NonlinearSys.Theorems.HessRemainderMem
+public import CORALean.ContDynamics.NonlinearSys.Theorems.HessShiftRemainderMem
+public import CORALean.ContDynamics.NonlinearSys.Theorems.PrecompStatErrorAdaptiveFloatMemStat
+public import CORALean.ContDynamics.NonlinearSys.Theorems.PrecompStatErrorAdaptiveFloatMemZdelta
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachPolyAdaptivePassFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachPolyAdaptiveFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachPolyAdaptiveFloatOuter
 
 /-!
 # What `NonlinearSys` guarantees
