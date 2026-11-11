@@ -90,7 +90,7 @@ private theorem LinearSys.aux_manualStepFloat_outer (sys : LinearSys 𝕋 n)
     ∀ s' R, (s', R) ∈ sys.step_manualStepFloat X₀ V Δt η ρ s →
       sys.IsManualInvariantFloat X₀ V s' ∧ (s'.t : ℝ) = s.t + toReal Δt ∧
         ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.toSet U x u →
+          sys.IsCanonicalTrajectory (S := ExactSet) (Set.Icc 0 T) X₀.toSet U x u →
           U ⊆ V.toSet → ∀ t ∈ Set.Icc (s.t : ℝ) s'.t, t ≤ T →
             x t ∈ R.toSet := by -- --- PROOF ---
   intro s' R (h : sys.step_manualStepFloat X₀ V Δt η ρ s = some (s', R))
@@ -239,7 +239,7 @@ private theorem LinearSys.aux_manualRunFloat_outer (sys : LinearSys 𝕋 n) {X�
     ∀ {K : ℕ} {s : LinearSys.ManualStateFloat 𝕋 n} {Rs : List (Zonotope (Vec 𝕋 n))},
       sys.step_manualRunFloat X₀ V Δt η ρ K s = some Rs → sys.IsManualInvariantFloat X₀ V s →
       Rs.length = K ∧ ∀ {T : ℝ} {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-        sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 T) X₀.toSet U x u →
+        sys.IsCanonicalTrajectory (S := ExactSet) (Set.Icc 0 T) X₀.toSet U x u →
         U ⊆ V.toSet → ∀ (j : ℕ) (hj : j < Rs.length),
           ∀ t ∈ Set.Icc ((s.t : ℝ) + j * toReal Δt) (s.t + (j + 1) * toReal Δt), t ≤ T →
             x t ∈ Rs[j].toSet := by -- --- PROOF ---
@@ -302,7 +302,7 @@ theorem LinearSys.manualReachFloat_outer (sys : LinearSys 𝕋 n)
     ∀ Rs ∈ sys.manualReachFloat params options,
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ {x u : ℝ → Vec ℝ n},
-          sys.IsCanonicalTrajectory (S := 𝒮)
+          sys.IsCanonicalTrajectory (S := ExactSet)
             (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.toSet
             ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
               params.U.toSet) x u →

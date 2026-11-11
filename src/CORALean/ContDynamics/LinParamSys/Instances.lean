@@ -64,7 +64,7 @@ instance LinParamSys.contDynamics {𝕄 : ℕ → ℕ → Type} [∀ m n, ContSe
   nrOfInputs sys := sys.m
   nrOfDisturbances _ := 0
   IsTrajectory sys T X₀ U W x u w :=
-    (∃ A B, LinParamSys.IsTrajectory (S := 𝒮) sys T X₀ U x u A B) ∧
+    (∃ A B, LinParamSys.IsTrajectory (S := ExactSet) sys T X₀ U x u A B) ∧
       ∀ t ∈ T, w t ∈ W
 
 end CORALean

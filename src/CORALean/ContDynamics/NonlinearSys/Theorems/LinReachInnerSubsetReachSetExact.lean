@@ -65,7 +65,7 @@ theorem NonlinearSys.linReachInner_subset_reachSetExact (ops : NonlinearSys.LinR
     {e : Vec ℝ n} : -- --- CONCL ---
     ∀ o ∈ NonlinearSys.linReachInner ops (fun x => sys.f x u₀) Δt fuel X e, ∀ st ∈ o,
       NonlinearSys.IsLinReachInnerCert sys u₀ Δt X st →
-      st.Rtp ⊆ sys.reachSetExact (S := 𝒮) (Icc 0 Δt) X {u₀}
+      st.Rtp ⊆ sys.reachSetExact (S := ExactSet) (Icc 0 Δt) X {u₀}
         Δt := by -- --- PROOF ---
   intro o (h : NonlinearSys.linReachInner ops (fun x => sys.f x u₀) Δt fuel X e = some o) st (hso :
       o = some st) cert
@@ -90,7 +90,7 @@ theorem NonlinearSys.linReachInner_subset_reachSetExact (ops : NonlinearSys.LinR
     abel
   -- `Prop. 1` for the affine map at the center `0`, (21) rewritten about `p`
   obtain ⟨Ω, K, hLip, hex⟩ := cert.flow
-  have key := NonlinearSys.minkowskiDiff_add_subset_reachSetExact (S := 𝒮) sys
+  have key := NonlinearSys.minkowskiDiff_add_subset_reachSetExact (S := ExactSet) sys
     X {u₀} hΔt M ((Matrix.isUnit_iff_isUnit_det _).mp (Matrix.isUnit_exp _)) v cert.compact
     cert.convex cert.nonempty (c := 0)
     (fun e he => by rw [smul_zero, zero_sub]; exact cert.symm e he) (mem_singleton u₀) hLip hex

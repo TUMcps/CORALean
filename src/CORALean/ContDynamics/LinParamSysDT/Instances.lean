@@ -50,7 +50,7 @@ instance LinParamSysDT.contDynamicsDT {n : ℕ} : ContDynamicsDT (LinParamSysDT 
   nrOfInputs sys := sys.m
   nrOfDisturbances _ := 0
   IsTrajectory sys X₀ U W x u w :=
-    (∃ A B, LinParamSysDT.IsTrajectory (S := 𝒮) sys X₀ U x u A B) ∧
+    (∃ A B, LinParamSysDT.IsTrajectory (S := ExactSet) sys X₀ U x u A B) ∧
       ∀ k, w k ∈ W
 
 end CORALean

@@ -70,7 +70,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
   ⟨fun a b => a + b, fun _ _ => le_rfl⟩
 
 /-- A plain matrix's image of a plain set, exactly. -/
-@[reducible] private def aux_paramSetMtimes : Mtimes (Mat ℝ) 𝒮 where
+@[reducible] private def aux_paramSetMtimes : Mtimes (Mat ℝ) ExactSet where
   mtimes M s := (M *ᵥ ·) '' s
   mtimes_outer M s := by
     simp only [ContSet.toSet_mat, Scalar.toRealMat_real, Set.biUnion_singleton]
@@ -79,7 +79,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 /-- An interval matrix's images of a plain set, closed and convexified, so the
 remainder's product is the closed convex set the exact theorem asks for. -/
 @[reducible] private noncomputable def aux_paramSetMtimesInterval :
-    Mtimes ℐ 𝒮 where
+    Mtimes ℐ ExactSet where
   mtimes I s := closure (convexHull ℝ (⋃ A ∈ toSet I, (A *ᵥ ·) '' s))
   mtimes_outer _ _ := (subset_convexHull ℝ _).trans subset_closure
 
@@ -90,7 +90,7 @@ private theorem LinParamSys.aux_inputTaylorSum_subset
     (sys : LinParamSys ℐ[𝕋] n) {r : 𝕋} (hr : 0 ≤ toReal r)
     {A : Mat ℝ n n} (hA : A ∈ sys.A.toSet) (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     ∀ i, toSet ((LinearSys.canonical A : LinearSys ℝ n).inputTaylorSum
-      (S := 𝒮) (toReal r) V.toSet i)
+      (S := ExactSet) (toReal r) V.toSet i)
       ⊆ (sys.inputTaylorSumFloat r V i).toSet := by -- --- PROOF ---
   -- order `i`'s matrix is in its float box, so its image is in the float product
   have hterm : ∀ i, ((LinearSys.canonical A : LinearSys ℝ n).inputTerm (toReal r) i *ᵥ ·) ''
@@ -118,7 +118,7 @@ private theorem LinParamSys.aux_inputRemainder_subset
     {η : ℕ} (hη : sys.IsOrderAdmissibleFloat r r η) {A : Mat ℝ n n} (hA : A ∈ sys.A.toSet)
     (V : Zonotope (Vec 𝕋 n)) : -- --- CONCL ---
     toSet (Mtimes.mtimes (𝕄 := ℐ)
-      (ContSet := 𝒮) (Real.MatExp.inputRemainder A (toReal r) η)
+      (ContSet := ExactSet) (Real.MatExp.inputRemainder A (toReal r) η)
       (V.toSet : Set (Vec ℝ n)))
       ⊆ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋])
         (ContSet := 𝒵[𝕋])
@@ -155,7 +155,7 @@ theorem LinParamSys.inputReach_subset_inputSolutionFloat
       _ < 1 := by norm_num
   have hrem := sys.aux_inputRemainder_subset hΔt.le hη hA V
   have hexact := (LinearSys.canonical A : LinearSys ℝ n).inputReach_subset_inputSolution
-    (S := 𝒮) hΔt η hε
+    (S := ExactSet) hΔt η hε
     (U := V.toSet) (ConvexSet.convex_toSet V) (CompactSet.isClosed_toSet V)
     (CompactSet.isBounded_toSet V) (convex_convexHull ℝ _).closure isClosed_closure
     ((CompactSet.isBounded_toSet _).subset hrem)

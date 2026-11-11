@@ -60,7 +60,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.reachAdaptiveFloat_outer
       fm.reachAdaptiveFloat U o k s = some ss →
       s.t ≤ ((s :: ss).getLast (List.cons_ne_nil _ _)).t ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
-          sys.IsTrajectory (S := 𝒮)
+          sys.IsTrajectory (S := ExactSet)
             (Set.Icc 0 ((((s :: ss).getLast (List.cons_ne_nil _ _)).t - s.t : ℚ) : ℝ))
             s.R.toSet U.toSet x u y →
           ∀ (j : ℕ) (hj : j < ss.length), ∀ t ∈ Set.Icc
@@ -89,7 +89,8 @@ theorem NonlinearSys.FloatHessModel.Encloses.reachAdaptiveFloat_outer
       -- the step, and what the rest of the run guarantees from where it left off
       obtain ⟨hlt, hstep₀⟩ := h.linReachAdaptiveFloat_outer hfix _ hs₀
       have hstep : ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
-          sys.IsTrajectory (S := 𝒮) (Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ)) s.R.toSet U.toSet x u y →
+          sys.IsTrajectory (S := ExactSet) (Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ)) s.R.toSet U.toSet x u
+            y →
           (∀ t ∈ Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ), x t ∈ s'.Rτ.toSet) ∧
             x ((s'.t - s.t : ℚ) : ℝ) ∈ s'.R.toSet := fun traj =>
         ⟨fun t ht => Zonotope.reduceAdaptive_outer _ _ _ ((hstep₀ traj).1 t ht),

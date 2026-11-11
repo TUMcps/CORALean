@@ -154,7 +154,7 @@ at every time of the step, by a point of `postDeltaFloat`. -/
 theorem LinearSys.IsCanonicalTrajectory.postDeltaFloat_outer {sys : LinearSys 𝕋 n} {Δt : 𝕋} {η : ℕ}
     (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {R V : Zonotope (Vec 𝕋 n)}
     {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n}
-    (traj : sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) R.toSet U
+    (traj : sys.IsCanonicalTrajectory (S := ExactSet) (Set.Icc 0 (toReal Δt)) R.toSet U
       x u) (hUV : U ⊆ V.toSet) {t : ℝ} (ht : t ∈ Set.Icc 0 (toReal Δt)) : -- --- CONCL ---
     x t - x 0 ∈ (sys.postDeltaFloat Δt η R V).toSet := by -- --- PROOF ---
   set A := Scalar.toRealMat sys.A with hA

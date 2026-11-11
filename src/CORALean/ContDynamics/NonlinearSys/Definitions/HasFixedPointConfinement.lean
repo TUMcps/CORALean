@@ -47,12 +47,12 @@ def NonlinearSys.HasFixedPointConfinement (sys : NonlinearSys n m) : Prop :=
   ∀ (Δt : ℝ) (R V K : Set (Vec ℝ n)) (U : Set (Vec ℝ m)) (A : Mat ℝ n n) (xs : Vec ℝ n),
     (∀ (m' : ℕ) (sys' : NonlinearSys n m') (U' : Set (Vec ℝ m')) (x' : ℝ → Vec ℝ n)
         (u' : ℝ → Vec ℝ m') (y' : ℝ → Vec ℝ sys'.q),
-        sys'.IsTrajectory (S := 𝒮) (Set.Icc 0 Δt) R U' x' u' y' →
+        sys'.IsTrajectory (S := ExactSet) (Set.Icc 0 Δt) R U' x' u' y' →
         (∀ t ∈ Set.Icc 0 Δt, sys'.f (x' t) (u' t) - A *ᵥ (x' t - xs) ∈ V) →
         ∀ t ∈ Set.Icc 0 Δt, x' t ∈ K) →
     (∀ y ∈ K, ∀ v ∈ U, sys.f y v - A *ᵥ (y - xs) ∈ V) →
     ∀ (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m) (y : ℝ → Vec ℝ sys.q),
-      sys.IsTrajectory (S := 𝒮) (Set.Icc 0 Δt) R U x u y → ∀ t ∈ Set.Icc 0 Δt, x t ∈ K
+      sys.IsTrajectory (S := ExactSet) (Set.Icc 0 Δt) R U x u y → ∀ t ∈ Set.Icc 0 Δt, x t ∈ K
 
 end CORALean
 

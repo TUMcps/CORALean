@@ -75,7 +75,8 @@ theorem NonlinearSys.innerMinkDiffCorrected_subset_reachSetExact
         fuel X = some st →
       NonlinearSys.IsInnerMinkDiffCorrectedCert sys u₀ (tend / ω) ops zono X st) : -- --- CONCL ---
     ∀ Rτ ∈ NonlinearSys.innerMinkDiffCorrected ops zono (fun x => sys.f x u₀) X₀ tend ω fuel,
-      Rτ ⊆ ⋃ t ∈ Icc 0 tend, sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ U t := by -- --- PROOF ---
+      Rτ ⊆ ⋃ t ∈ Icc 0 tend,
+        sys.reachSetExact (S := ExactSet) (Icc 0 t) X₀ U t := by -- --- PROOF ---
   intro Rτ (h : _ = some Rτ)
   -- line 18's union is the second component of the loop's `ω` steps
   unfold NonlinearSys.innerMinkDiffCorrected at h

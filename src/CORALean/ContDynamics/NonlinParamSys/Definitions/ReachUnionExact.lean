@@ -49,7 +49,7 @@ set `X`, under inputs in `aug.U` and a parameter in `P`, is at within that horiz
 def NonlinParamSys.WithSteps.reachUnionExact (sys : NonlinParamSys.WithSteps S Rg m q n)
     (tFinal : ℝ) (X : Set (Vec ℝ n)) : Set (Vec ℝ n) :=
   ⋃ t ∈ Set.Icc 0 tFinal, {y | ∃ (x : ℝ → Vec ℝ n) (u : ℝ → Vec ℝ m)
-    (π : Vec ℝ q), sys.sys.IsConstTrajectory (S := 𝒮)
+    (π : Vec ℝ q), sys.sys.IsConstTrajectory (S := ExactSet)
       (Set.Icc 0 tFinal) X (toSet sys.aug.U) (toSet sys.P) x u π
         (fun t => sys.sys.g (x t) (u t) π) ∧ x t = y}
 

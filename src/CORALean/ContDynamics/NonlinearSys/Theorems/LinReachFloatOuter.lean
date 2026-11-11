@@ -139,7 +139,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
     {R : Zonotope (Vec 𝕋 n)} : -- --- CONCL ---
     ∀ Rτ Rt, (Rτ, Rt) ∈ fm.linReachFloat alg U options R →
       0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
-        sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
+        sys.IsTrajectory (S := ExactSet) (Set.Icc 0 (toReal options.Δt))
           R.toSet U.toSet x u y →
         (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.toSet) ∧
           x (toReal options.Δt) ∈ Rt.toSet := by -- --- PROOF ---
@@ -161,7 +161,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
   have husU' := (aux_linReach_mem_hull U.interval U.c).2
   -- a run stays in `Ω`, so in `X`
   have hconf : 0 < toReal Δt → ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
-      sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) R.toSet
+      sys.IsTrajectory (S := ExactSet) (Set.Icc 0 (toReal Δt)) R.toSet
         U.toSet x u y → ∀ t ∈ Set.Icc 0 (toReal Δt), x t ∈ X.toSet :=
     fun hΔt {x u y} traj t ht => (aux_linReach_mem_hull Ω xs).1
       (h.regionFloat_confined hΔt.le traj (Zonotope.interval_contains U) (a := 0)
@@ -195,7 +195,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
       rwa [← sub_eq_add_neg] at this
     -- `x - x✱` is a run of the `'lin'` linearization, so its differences are in `Rdiff`
     have ltraj : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).IsCanonicalTrajectory
-        (S := 𝒮) (Set.Icc 0 (toReal Δt)) Rdelta.toSet
+        (S := ExactSet) (Set.Icc 0 (toReal Δt)) Rdelta.toSet
         (((fm.f (Interval.point xs) (Interval.point U.c)).zonotope ⊞
           Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B (Recenter.recenter U)) ⊞
             (fm.hessRemainder A B xs U.c X U').zonotope).toSet

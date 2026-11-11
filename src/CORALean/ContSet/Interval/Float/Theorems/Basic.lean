@@ -260,6 +260,17 @@ theorem Interval.times_outer (I J : Interval (Vec 𝕋 n)) :
   exact Interval.mul_between_corners (hx i).1 (hx i).2 (hy i).1 (hy i).2
 
 
+-- ===============================  `Interval.toReal_eq_nominal`  =============================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       11-November-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- A float interval has no error box, so its real interval is its nominal. -/
+theorem Interval.toReal_eq_nominal {α β : Type} [RealImage α β] (I : Interval α) :
+    I.toReal = I.nominal := rfl
+
+
 -- ==================================  `Interval.uplus_exact`  ================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       01-October-2026

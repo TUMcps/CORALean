@@ -70,7 +70,7 @@ private theorem LinearSys.aux_adaptiveRunFloat_outer (sys : LinearSys 𝕋 n)
       ((tf : ℝ) ≤ s.t ∨ ∀ t ∈ Set.Icc ((t₀ : ℝ) + s.t) ((t₀ : ℝ) + tf),
           ∃ r ∈ steps, t ∈ Set.Icc (r.tStart : ℝ) r.tEnd) ∧
         ∀ r ∈ steps, ∀ {U : Set (Vec ℝ n)} {x u : ℝ → Vec ℝ n},
-          sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (tf : ℝ)) X₀.toSet U x u →
+          sys.IsCanonicalTrajectory (S := ExactSet) (Set.Icc 0 (tf : ℝ)) X₀.toSet U x u →
           U ⊆ V.toSet → ∀ t ∈ Set.Icc (r.tStart : ℝ) r.tEnd,
             x (t - t₀) ∈ r.R.toSet := by -- --- PROOF ---
   intro k
@@ -132,7 +132,7 @@ theorem LinearSys.reachAdaptiveFloat_outer (sys : LinearSys 𝕋 n)
       (∀ t ∈ Set.Icc (params.tStart : ℝ) params.tFinal, ∃ (k : ℕ) (hk : k < steps.length),
           t ∈ Set.Icc (steps[k].tStart : ℝ) steps[k].tEnd) ∧
         ∀ {x u : ℝ → Vec ℝ n},
-          sys.IsCanonicalTrajectory (S := 𝒮)
+          sys.IsCanonicalTrajectory (S := ExactSet)
             (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.toSet
             ((fun u => Scalar.toRealMat sys.B *ᵥ u + Scalar.toRealVec sys.c) ''
               params.U.toSet) x u →

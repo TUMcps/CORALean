@@ -88,7 +88,7 @@ theorem LinearSys.IsCanonicalTrajectory.sub_mem_inputReach_shift {sys : LinearSy
     fun s hs => hWU _ (traj.input s (hTt hs))
   have hmeas₀ : AEStronglyMeasurable (fun s => u s - uc) (volume.restrict (Set.Icc 0 t)) :=
     (traj.aestronglyMeasurable_input hTt).sub aestronglyMeasurable_const
-  have hint₁ := intervalIntegrable_expSub_mulVec (A := A) (c := t) (S := 𝒮)
+  have hint₁ := intervalIntegrable_expSub_mulVec (A := A) (c := t) (S := ExactSet)
     (U := ({uc} : Set (Vec ℝ n))) ht.1 Bornology.isBounded_singleton
     (fun _ _ => Set.mem_singleton uc)
     aestronglyMeasurable_const

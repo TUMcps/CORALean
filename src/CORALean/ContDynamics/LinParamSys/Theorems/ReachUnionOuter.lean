@@ -87,7 +87,7 @@ theorem LinParamSys.reachUnion_outer (sys : LinParamSys ℐ n)
   rintro _ ⟨A, B, x, uIn, trajB, t, ht, rfl⟩
   -- the combined input `B u + c` lies in `V = B U ⊕ c`, which makes the run canonical under `V`
   set V := sys.inputSet params.U with hV
-  obtain ⟨u, traj⟩ : ∃ u : ℝ → Vec ℝ n, sys.IsCanonicalConstTrajectory (S := 𝒮)
+  obtain ⟨u, traj⟩ : ∃ u : ℝ → Vec ℝ n, sys.IsCanonicalConstTrajectory (S := ExactSet)
       (Set.Icc 0 (params.tFinal - params.tStart)) (toSet params.X₀) (toSet V) x u A :=
     ⟨_, trajB.canonical fun s hs => sys.mem_inputSet trajB.paramB (trajB.input s hs)⟩
   obtain ⟨k, hk, hkt, htk⟩ := LinearSys.exists_reach_window hΔt ht

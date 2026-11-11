@@ -13,8 +13,8 @@ The float reachability steps propagate `δ = x - x✱` rather than `x`: around t
 a run of `ẋ = A δ + ũ` for any linear system `lsys` with system matrix `A`, under the input
 `ũ(t) = f(x t, u t) - A (x t - x✱)`. The integrand of the linear integral equation is the
 nonlinear one, `ũ` is measurable as the field less a continuous drift, and the sets are plain sets,
-`(S := 𝒮)`: the start and the input set are what the step encloses them in, the run's own sets
-being in whatever representation.
+`(S := ExactSet)`: the start and the input set are what the step encloses them in, the run's own
+sets being in whatever representation.
 
 ## Inputs
 * `sys` – system
@@ -64,7 +64,7 @@ theorem NonlinearSys.IsTrajectory.linearize_sub {sys : NonlinearSys n m} {T : Se
     (traj : sys.IsTrajectory T R₀ U x u y)
     (hTm : MeasurableSet T) (h₀ : x 0 - xs ∈ X₀)
     (hV : ∀ t ∈ T, sys.f (x t) (u t) - toRealMat lsys.A *ᵥ (x t - xs) ∈ V) :
-    lsys.IsCanonicalTrajectory (S := 𝒮) T X₀ V (fun t => x t - xs)
+    lsys.IsCanonicalTrajectory (S := ExactSet) T X₀ V (fun t => x t - xs)
       (fun t => sys.f (x t) (u t) - toRealMat lsys.A *ᵥ (x t - xs)) where
   init := h₀
   input := hV

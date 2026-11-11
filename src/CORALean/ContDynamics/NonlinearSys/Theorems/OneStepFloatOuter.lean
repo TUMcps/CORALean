@@ -74,7 +74,7 @@ theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n
     ∀ Rτ Rt, (Rτ, Rt) ∈ NonlinearSys.oneStepFloat A xs V R options →
       0 < toReal options.Δt ∧ ∀ {U : Set (Vec ℝ m)} {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m}
       {y : ℝ → Vec ℝ sys.q},
-        sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
+        sys.IsTrajectory (S := ExactSet) (Set.Icc 0 (toReal options.Δt))
           R.toSet U x u y →
         (∀ t ∈ Set.Icc 0 (toReal options.Δt),
           sys.f (x t) (u t) - Scalar.toRealMat A *ᵥ (x t - toRealVec xs) ∈ V.toSet) →
@@ -94,7 +94,7 @@ theorem NonlinearSys.oneStepFloat_outer {sys : NonlinearSys n m} {A : Mat 𝕋 n
   have hTf : (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)) = toReal Δt := by
     rw [ToRat.toReal_toRat, Rat.cast_zero, sub_zero]
   -- `δ = x - x✱` is a run of the linearized system from `R - x✱`
-  have ltraj : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).IsCanonicalTrajectory (S := 𝒮)
+  have ltraj : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).IsCanonicalTrajectory (S := ExactSet)
       (Set.Icc 0 (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)))
       (R ⊞ (⟨0, (-xs), fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
         Zonotope (Vec 𝕋 n))).toSet

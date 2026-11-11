@@ -55,7 +55,7 @@ private theorem NonlinearSys.FloatModel.Encloses.aux_relinRunFloat_outer
     ∀ (k : ℕ) {R : Zonotope (Vec 𝕋 n)} {Rs : List (Zonotope (Vec 𝕋 n))},
       fm.step_relinRunFloat U options k R = some Rs → Rs.length = k ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
-          sys.IsTrajectory (S := 𝒮)
+          sys.IsTrajectory (S := ExactSet)
             (Set.Icc 0 ((k : ℝ) * toReal options.Δt)) R.toSet U.toSet x u y →
           ∀ (j : ℕ) (hj : j < Rs.length), ∀ t ∈ Set.Icc ((j : ℝ) * toReal options.Δt)
             (((j : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[j].toSet :=
@@ -73,7 +73,7 @@ theorem NonlinearSys.FloatModel.Encloses.reachFloat_outer {fm : NonlinearSys.Flo
     ∀ Rs ∈ fm.reachFloat params options,
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
-          sys.IsTrajectory (S := 𝒮)
+          sys.IsTrajectory (S := ExactSet)
             (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.toSet
             params.U.toSet x u y →
           ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)

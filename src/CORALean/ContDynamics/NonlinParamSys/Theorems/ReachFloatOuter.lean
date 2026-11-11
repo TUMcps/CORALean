@@ -55,7 +55,7 @@ theorem NonlinParamSys.reachFloat_outer (sys : NonlinParamSys n m q)
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {p : Vec ℝ q}
           {y : ℝ → Vec ℝ sys.r},
-          sys.IsConstTrajectory (S := 𝒮)
+          sys.IsConstTrajectory (S := ExactSet)
             (Set.Icc 0 ((params.tFinal : ℝ) - params.tStart)) params.X₀.toSet
             params.U.toSet P.toSet x u p y →
           ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)

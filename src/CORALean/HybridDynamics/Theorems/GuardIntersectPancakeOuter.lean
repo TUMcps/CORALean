@@ -182,7 +182,7 @@ theorem NonlinearSys.WithSteps.guardIntersectPancake_outer (sys : NonlinearSys.W
     refine h2 ?_
     simp only [NonlinearSys.WithSteps.reachUnionExact, mem_iUnion, NonlinearSys.reachSetExact,
       mem_setOf_eq, sub_zero]
-    have traj' : sys.sys.IsTrajectory (S := 𝒮) (Icc 0 T) (toSet R₀) (toSet sys.U) x u y :=
+    have traj' : sys.sys.IsTrajectory (S := ExactSet) (Icc 0 T) (toSet R₀) (toSet sys.U) x u y :=
       ⟨traj.init, traj.input, traj.meas, traj.integrable, traj.cont, traj.flow, traj.output⟩
     have hxtf : x tf ∈ toSet Ri := by simpa [hσT'] using hxRi
     exact ⟨t - tf, ⟨by linarith [ht.1], by linarith [ht.2]⟩, fun s => x (tf + s),

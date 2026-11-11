@@ -112,7 +112,7 @@ instance LinearSys.contDynamics {n : ℕ} : ContDynamics (LinearSys 𝕋 n) n wh
   nrOfInputs sys := sys.m
   nrOfDisturbances sys := sys.r
   IsTrajectory sys T X₀ U W x u w :=
-    ∃ v y, LinearSys.IsTrajectory (S := 𝒮) sys T X₀ U W Set.univ x u w v y
+    ∃ v y, LinearSys.IsTrajectory (S := ExactSet) sys T X₀ U W Set.univ x u w v y
 
 end CORALean
 

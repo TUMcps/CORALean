@@ -96,7 +96,7 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer {fm : NonlinearS
     {xs : Vec 𝕋 n} : -- --- CONCL ---
     ∀ Rτ Rt, (Rτ, Rt) ∈ fm.relinStepAtFloat U options R xs →
       0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
-        sys.IsTrajectory (S := 𝒮) (Set.Icc 0 (toReal options.Δt))
+        sys.IsTrajectory (S := ExactSet) (Set.Icc 0 (toReal options.Δt))
           R.toSet U.toSet x u y →
         (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.toSet) ∧
           x (toReal options.Δt) ∈ Rt.toSet := by -- --- PROOF ---
@@ -128,7 +128,7 @@ theorem NonlinearSys.FloatModel.Encloses.relinStepAtFloat_outer {fm : NonlinearS
   have hUU' : U.toSet ⊆ U'.toSet :=
     fun v hv => (aux_mem_hull U.interval U.c).1 (Zonotope.interval_contains U hv)
   -- `δ = x - x✱` is a run of the linearized system from `R - x✱`
-  have ltraj : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).IsCanonicalTrajectory (S := 𝒮)
+  have ltraj : (LinearSys.canonicalFloat A : LinearSys 𝕋 n).IsCanonicalTrajectory (S := ExactSet)
       (Set.Icc 0 (((ToRat.toRat Δt : ℚ) : ℝ) - ((0 : ℚ) : ℝ)))
       (R ⊞ (⟨0, (-xs), fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
         Zonotope (Vec 𝕋 n))).toSet

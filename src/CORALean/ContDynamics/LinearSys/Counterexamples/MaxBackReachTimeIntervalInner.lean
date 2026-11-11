@@ -316,7 +316,7 @@ private theorem LinearSys.aux_mem_maxBackReachPoly (X : HPolytope (Vec ℝ 3))
 first coordinate is `5/4 + 128(t - 1/16)² > 1`. -/
 private theorem LinearSys.aux_not_mem_timeIntervalBackReach_shift3 (Xend : HPolytope (Vec ℝ 3))
     (hX : ∀ x ∈ Xend.toSet, x 0 ≤ 1) : -- --- CONCL ---
-    ![7 / 4, -16, 256] ∉ LinearSys.timeIntervalBackReachSetExistsForallExact (S := 𝒮)
+    ![7 / 4, -16, 256] ∉ LinearSys.timeIntervalBackReachSetExistsForallExact (S := ExactSet)
       (LinearSys.canonical (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3))
         (Icc 0 (1 / 8)) {0} {0} Xend.toSet (Icc 0 (1 / 8)) := by -- --- PROOF ---
   rintro ⟨u, hu, humeas, hall⟩
@@ -324,7 +324,7 @@ private theorem LinearSys.aux_not_mem_timeIntervalBackReach_shift3 (Xend : HPoly
     hall (fun _ => 0) (fun _ _ => rfl) aestronglyMeasurable_const
   -- the run restricted to `[0, t]`
   have hsub : Icc (0 : ℝ) t ⊆ Icc 0 (1 / 8) := Icc_subset_Icc le_rfl ht.2
-  have traj' : LinearSys.IsPerturbedTrajectory (S := 𝒮)
+  have traj' : LinearSys.IsPerturbedTrajectory (S := ExactSet)
       (LinearSys.canonical (!![0, 1, 0; 0, 0, 1; 0, 0, 0] : Mat ℝ 3 3))
       (Icc 0 t) {0} {0} x u (fun _ => 0) :=
     { input := fun s hs => traj.input s (hsub hs)
@@ -333,7 +333,7 @@ private theorem LinearSys.aux_not_mem_timeIntervalBackReach_shift3 (Xend : HPoly
       measDisturbance := traj.measDisturbance.mono_measure (Measure.restrict_mono hsub le_rfl)
       cont := traj.cont.mono hsub
       flow := fun s hs => traj.flow s (hsub hs) }
-  have hsup := traj'.superposition (S := 𝒮) ht.1 Bornology.isBounded_singleton
+  have hsup := traj'.superposition (S := ExactSet) ht.1 Bornology.isBounded_singleton
     Bornology.isBounded_singleton
   -- the input is zero on `[0, t]`, so both integrals vanish
   have hu0 : (∫ s in (0 : ℝ)..t, exp ((t - s) • toRealMat
@@ -380,7 +380,7 @@ theorem LinearSys.maxBackReachTimeInterval_inner_counterexample (η : ℕ)
     let R := (exp ((-Δt) • A) *ᵥ ·) ''
       convexHull ℝ (P₁.toSet ∪ P₂.toSet)            -- 11.-12., (54) at k = 0, U = W = {0}
     ![7 / 4, -16, 256] ∈ R ∧
-      ![7 / 4, -16, 256] ∉ sys.timeIntervalBackReachSetExistsForallExact (S := 𝒮)
+      ![7 / 4, -16, 256] ∉ sys.timeIntervalBackReachSetExistsForallExact (S := ExactSet)
         (Icc 0 Δt) {0} {0} Xend.toSet (Icc 0 Δt) := by -- --- PROOF ---
   intro A sys Δt Xend B FB μ Bμ XF₁ P₁ X₂ XF₂ P₂ R
   have hμ := LinearSys.aux_maxBackReachMu_shift3

@@ -84,8 +84,8 @@ private theorem NonlinearSys.aux_innerMinkDiffCorrectedLoop_succ
 private theorem NonlinearSys.aux_reachSetExact_singleton_subset (sys : NonlinearSys n m)
     (X₀ : Set (Vec ℝ n)) {u₀ : Vec ℝ m} {U : Set (Vec ℝ m)} (hu₀ : u₀ ∈ U)
     (t : ℝ) : -- --- CONCL ---
-    sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ {u₀} t ⊆
-      sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ U t := by -- --- PROOF ---
+    sys.reachSetExact (S := ExactSet) (Icc 0 t) X₀ {u₀} t ⊆
+      sys.reachSetExact (S := ExactSet) (Icc 0 t) X₀ U t := by -- --- PROOF ---
   rintro y ⟨x, u, traj, hx⟩
   refine ⟨x, u, ⟨traj.init, fun s hs => ?_, traj.meas, traj.integrable, traj.cont, traj.flow,
       traj.output⟩, hx⟩
@@ -110,20 +110,20 @@ theorem NonlinearSys.innerMinkDiffCorrectedLoop_subset_reachSetExact
         some st →
       NonlinearSys.IsInnerMinkDiffCorrectedCert sys u₀ Δt ops zono X st) : -- --- CONCL ---
     ∀ p ∈ NonlinearSys.innerMinkDiffCorrectedLoop ops zono (fun x => sys.f x u₀) Δt μ fuel k X₀ ∅,
-      p.1 ⊆ sys.reachSetExact (S := 𝒮) (Icc 0 (k * Δt)) X₀ U (k * Δt) ∧
+      p.1 ⊆ sys.reachSetExact (S := ExactSet) (Icc 0 (k * Δt)) X₀ U (k * Δt) ∧
       (∀ st ∈ NonlinearSys.innerMinkDiffCorrectedStep ops zono (fun x => sys.f x u₀) Δt μ fuel p.1,
         NonlinearSys.IsInnerMinkDiffCorrectedCert sys u₀ Δt ops zono p.1 st →
         st.Rtauk ⊆ ⋃ t ∈ Icc (k * Δt) ((k + 1) * Δt),
-          sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ U t) ∧
+          sys.reachSetExact (S := ExactSet) (Icc 0 t) X₀ U t) ∧
       p.2 ⊆ ⋃ t ∈ Icc 0 (k * Δt),
-        sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ U t := by -- --- PROOF ---
+        sys.reachSetExact (S := ExactSet) (Icc 0 t) X₀ U t := by -- --- PROOF ---
   rintro ⟨Rtk, Rτ⟩ (h : _ = some _)
   -- the invariant under `u₀`: both inclusions and the convexity of `R̂(t_j)`
   have inv : ∀ j ≤ k, ∀ X Y : Set (Vec ℝ n),
       NonlinearSys.innerMinkDiffCorrectedLoop ops zono (fun x => sys.f x u₀) Δt μ fuel j X₀ ∅ =
         some (X, Y) →
-      X ⊆ sys.reachSetExact (S := 𝒮) (Icc 0 (j * Δt)) X₀ {u₀} (j * Δt) ∧ Convex ℝ X ∧
-      Y ⊆ ⋃ t ∈ Icc 0 (j * Δt), sys.reachSetExact (S := 𝒮) (Icc 0 t) X₀ {u₀} t := by
+      X ⊆ sys.reachSetExact (S := ExactSet) (Icc 0 (j * Δt)) X₀ {u₀} (j * Δt) ∧ Convex ℝ X ∧
+      Y ⊆ ⋃ t ∈ Icc 0 (j * Δt), sys.reachSetExact (S := ExactSet) (Icc 0 t) X₀ {u₀} t := by
     intro j
     induction j with
     | zero =>

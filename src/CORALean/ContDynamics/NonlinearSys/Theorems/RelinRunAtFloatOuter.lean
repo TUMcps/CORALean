@@ -55,7 +55,7 @@ theorem NonlinearSys.FloatModel.Encloses.relinRunAtFloat_outer
     ∀ (k : ℕ) {R : Zonotope (Vec 𝕋 n)} {Rs : List (Zonotope (Vec 𝕋 n))},
       fm.relinRunAtFloat U options pt k R = some Rs → Rs.length = k ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
-          sys.IsTrajectory (S := 𝒮)
+          sys.IsTrajectory (S := ExactSet)
             (Set.Icc 0 ((k : ℝ) * toReal options.Δt)) R.toSet U.toSet x u y →
           ∀ (j : ℕ) (hj : j < Rs.length), ∀ t ∈ Set.Icc ((j : ℝ) * toReal options.Δt)
             (((j : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[j].toSet := by -- --- PROOF ---

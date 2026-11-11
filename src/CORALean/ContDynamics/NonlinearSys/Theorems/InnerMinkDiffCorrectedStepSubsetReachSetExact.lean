@@ -114,8 +114,8 @@ theorem NonlinearSys.innerMinkDiffCorrectedStep_subset_reachSetExact
     {X : Set (Vec ℝ n)} (hX : Convex ℝ X) : -- --- CONCL ---
     ∀ st ∈ NonlinearSys.innerMinkDiffCorrectedStep ops zono (fun x => sys.f x u₀) Δt μ fuel X,
       NonlinearSys.IsInnerMinkDiffCorrectedCert sys u₀ Δt ops zono X st →
-      st.Rtk1 ⊆ sys.reachSetExact (S := 𝒮) (Icc 0 Δt) X {u₀} Δt ∧
-      st.Rtauk ⊆ ⋃ t ∈ Icc 0 Δt, sys.reachSetExact (S := 𝒮) (Icc 0 t) X {u₀} t ∧
+      st.Rtk1 ⊆ sys.reachSetExact (S := ExactSet) (Icc 0 Δt) X {u₀} Δt ∧
+      st.Rtauk ⊆ ⋃ t ∈ Icc 0 Δt, sys.reachSetExact (S := ExactSet) (Icc 0 t) X {u₀} t ∧
       Convex ℝ st.Rtk1 := by -- --- PROOF ---
   intro st (h : NonlinearSys.innerMinkDiffCorrectedStep ops zono (fun x => sys.f x u₀) Δt μ fuel X
     = some st) cert
@@ -150,7 +150,8 @@ theorem NonlinearSys.innerMinkDiffCorrectedStep_subset_reachSetExact
   refine ⟨?_, ?_, ?_⟩
   · -- line 15 by `Prop. 1`, (21) rewritten about `x*`
     rw [hst.2.2.1, hRaff]
-    refine NonlinearSys.minkowskiDiff_add_subset_reachSetExact (S := 𝒮) sys X {u₀} hΔt.le M hM v
+    refine NonlinearSys.minkowskiDiff_add_subset_reachSetExact (S := ExactSet) sys X {u₀} hΔt.le
+      M hM v
       cert.compact cert.convex cert.nonempty cert.cen (mem_singleton u₀) hLip hex
       fun x₀ hx₀ x hx0 hder => ?_
     rw [hMv]

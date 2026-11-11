@@ -71,7 +71,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.adaptRunFloat_outer
       fm.adaptRunFloat U options ζδ ζh ζZ ζK prec bis fuel tend k s = some ss →
       s.t ≤ ((s :: ss).getLast (List.cons_ne_nil _ _)).t ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
-          sys.IsTrajectory (S := 𝒮)
+          sys.IsTrajectory (S := ExactSet)
             (Set.Icc 0 ((((s :: ss).getLast (List.cons_ne_nil _ _)).t - s.t : ℚ) : ℝ))
             s.R.toSet U.toSet x u y →
           ∀ (j : ℕ) (hj : j < ss.length), ∀ t ∈ Set.Icc

@@ -13,8 +13,8 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 `0`. A step `[t₀, t₀ + τ]` of a longer run is re-anchored at its start first (`shift`): the state
 `x (t₀ + t)` and the input `ũ(t) = f(x(t₀+t), u(t₀+t)) - A x(t₀+t)` are then a run of `ẋ = A x + ũ`
 on `[0, τ]` from the point `x t₀`, with `ũ` in any set `V` holding it over the step. The sets are
-plain sets, `(S := 𝒮)`: the point and `V` are what the step knows, whatever the representation the
-run's own sets are in, and every `LinearSys` guarantee is generic in it.
+plain sets, `(S := ExactSet)`: the point and `V` are what the step knows, whatever the
+representation the run's own sets are in, and every `LinearSys` guarantee is generic in it.
 
 ## Inputs
 * `sys` – system
@@ -65,12 +65,12 @@ theorem NonlinearSys.IsTrajectory.linearize_window {sys : NonlinearSys n m} {T :
     (hτ : 0 ≤ τ)
     (hT : Set.Icc t₀ (t₀ + τ) ⊆ T)
     (hV : ∀ t ∈ Set.Icc t₀ (t₀ + τ), sys.f (x t) (u t) - A *ᵥ x t ∈ V) : -- --- CONCL ---
-    (NonlinearSys.linearize A).IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 τ) {x t₀} V
+    (NonlinearSys.linearize A).IsCanonicalTrajectory (S := ExactSet) (Set.Icc 0 τ) {x t₀} V
       (fun t => x (t₀ + t))
       (fun t => sys.f (x (t₀ + t)) (u (t₀ + t)) - A *ᵥ x (t₀ + t)) := by -- --- PROOF ---
   have hmaps : Set.MapsTo (fun t => t₀ + t) (Set.Icc 0 τ) T :=
     fun t ht => hT ⟨by linarith [ht.1], by linarith [ht.2]⟩
-  have traj' : sys.IsTrajectory (S := 𝒮) T (toSet R₀) (toSet U) x u y :=
+  have traj' : sys.IsTrajectory (S := ExactSet) T (toSet R₀) (toSet U) x u y :=
     ⟨traj.init, traj.input, traj.meas, traj.integrable, traj.cont, traj.flow, traj.output⟩
   have shifted := traj'.shift (R₀' := ({x t₀} : Set (Vec ℝ n))) hmaps
     (hT ⟨le_rfl, by linarith⟩) rfl

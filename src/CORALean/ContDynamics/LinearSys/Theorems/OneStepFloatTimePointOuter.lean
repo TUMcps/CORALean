@@ -75,14 +75,14 @@ theorem LinearSys.IsCanonicalTrajectory.oneStepFloat_timePoint_outer {sys : Line
     {η : ℕ} (hΔt : 0 < toReal Δt) (hη : sys.IsOrderAdmissibleFloat Δt Δt η) {X U : Zonotope (Vec 𝕋
         n)}
     {W : Set (Vec ℝ n)} {x w : ℝ → Vec ℝ n} {u : Vec 𝕋 n}
-    (traj : sys.IsCanonicalTrajectory (S := 𝒮) (Set.Icc 0 (toReal Δt)) X.toSet
+    (traj : sys.IsCanonicalTrajectory (S := ExactSet) (Set.Icc 0 (toReal Δt)) X.toSet
       W x w)
     (hWU : ∀ v ∈ W, v - toRealVec u ∈ U.toSet) (hW : Bornology.IsBounded W) : -- --- CONCL ---
     x (toReal Δt) ∈ (sys.oneStepFloat X U u Δt η).Rtp.toSet := by -- --- PROOF ---
   set A := Scalar.toRealMat sys.A with hA
   set r := toReal Δt with hr
   -- the `U`-input's share, in `PU`
-  have hp := traj.sub_mem_inputReach_shift (S := 𝒮) (U := U.toSet)
+  have hp := traj.sub_mem_inputReach_shift (S := ExactSet) (U := U.toSet)
     (toRealVec u) hWU hW (CompactSet.isBounded_toSet U) ⟨hΔt.le, le_rfl⟩
   have hPU := sys.inputReach_subset_inputSolutionFloat hΔt hη U hp
   -- the constant's share, in `Pu`
