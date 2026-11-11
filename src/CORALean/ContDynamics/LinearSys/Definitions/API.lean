@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContDynamics.LinearSys.Definitions.InputRemainderEntrywiseSet
 public import CORALean.ContDynamics.LinearSys.Definitions.IsAutoInvariantFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.AutoStateFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.MulVecL

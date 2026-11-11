@@ -472,11 +472,24 @@ at the top level of the request; `timeStep`, `taylorTerms`, `zonotopeOrder` CORA
 | `outputSet` | `R`, `U`, `V` (noise, optional) | `OutputEq.outputSet`, `.outputSetNoise` at `Zonotope`; `Z` |
 | `taylorMatrices` | `timeStep`, `taylorTerms` | `LinearSys.expIntervalFloat`, `MatExp.intervalCorrectionMatrix`; `eAdt`, `F` |
 | `oneStep` | `X`, `U`, `u`, `timeStep`, `taylorTerms` | `LinearSys.oneStepFloat`; `timePoint`, `timeInterval` |
+| `oneStepClosedForm` | `X`, `U`, `u`, `timeStep`, `taylorTerms` | `LinearSys.oneStepClosedFormFloat`, CORA's closed form (below); `timePoint`, `timeInterval`, both `null` when no order below `taylorTerms + 4096` admits the enclosure of `e^{\|A\|Δt}` |
 | `homogeneousSolution` | `X`, `timeStep`, `taylorTerms` | `LinearSys.timePointStepFloat`; `Z` |
 | `post` | `X`, `timeStep`, `taylorTerms` | `LinearSys.timePointStepFloat`, `.timeIntervalFloat`; `timePoint`, `timeInterval` |
 | `initReach` | `Rtau`, `timeStep`, `taylorTerms`, `step` | `LinearSys.reachStepkWrappingFreeFloat`; `Z` or `null` |
 | `affineSolution`, `particularSolution_constant`, `particularSolution_timeVarying` | `V`, `r`, `taylorTerms` | `LinearSys.inputSolutionFloat`; `Z` |
 | `errorSolution_adaptive` | `Vdyn`, `Vstat` (optional), `timeStep`, `taylorTerms` | `LinearSys.errorSolutionAdaptiveFloat`; `Z` |
+
+`linearSys.oneStepClosedForm` evaluates, in this order and at every dtype (sound at all of them,
+`oneStepClosedFormFloat_timePoint_outer`, `_timeInterval_outer`; `taylorTerms` ≥ 2 for the latter), with `Δt` the float step and the matrix `A` as stored:
+
+1. `B = [|A|Δt]`: `|A|` entrywise `maximum(absolute(inf), absolute(sup))` of the point box `[A, A]`, scaled by `Interval.smul Δt Δt`; `ν = normUpperBound B` (maximum over rows of the row sums, `radius`, rounded up, at least 0).
+2. `ηe`: the first `η' ∈ [η, η + 4096)` with `le ν (half (nsmulDown (η'+2) one))`; none, no such order: both sets `null`.
+3. `E(Δt,η)` entrywise, `W = fun j k => subUp (X.sup j k) (T.inf j k)` with `T = expIntervalTaylor B η`, `X = expIntervalEnclosure B ηe` (`T` plus `expRemainderBound ν ηe`, rounded outward).
+4. `expIntervalTaylor M η`, `M = [AΔt]` (`Interval.smul Δt Δt [A, A]`): `T₀ = 1`, `T_{k+1} = materialise(matPlus(smul(invFact(k+1)) (matPow M (k+1)), T_k))`, with `matPow M (k+1) = materialise(matMul M (matPow M k))`: the *newest* term added to the *running sum*, powers by left multiplication `M · M^k`, `matMul` entries by `sumDown`/`sumUp` over the inner index in increasing order, every scalar op directed (`Interval.mulLo`/`mulHi`, `mulDown`/`mulUp`). `[e^{AΔt}] = materialise([subDown(T.inf, W), addUp(T.sup, W)])`.
+5. `PU`, `Pu`: `inputSolutionEntrywiseFloat Δt η W V`, `inputTaylorSumFloat` (`Σ_{i≤η} [Aⁱ Δtⁱ⁺¹/(i+1)!] V`, left to right, term `i` the zonotope image under `intervalInputTerm` = `smul(taylorCoeffBounds Δt (i+1)) (matPow [A,A] i)`) `⊞ [-Δt W, Δt W] V`, with `Δt W` = `mulUp`.
+6. `Htp = [e^{AΔt}] X ⊞ Pu` and `Rtp = Htp ⊞ PU`. `[F]` is `intervalCorrectionMatrixEntrywise`: the orders `2..η` summed as `min(T_i.inf,0)` (`sumDown`) and `max(T_i.sup,0)` (`sumUp`), with `T_i = corrCoeffLow(i) · r^i/i! · Aⁱ` (`intervalCorrTerm`), widened by `W` (`subDown`/`addUp`). `[G]` takes the orders `1..η` of `intervalConstCorrTerm`, widened by `Δt W` (`mulUp Δt W`). Then `Hti = linComb(X, Htp) ⊞ [F] X` and `Rti = Hti ⊞ PU ⊞ [G] u`, each product `Zonotope.mtimesIntervalMat`.
+
+`Pu` is the Taylor form, no `A⁻¹` (CORA's constant input multiplies by `A⁻¹(e^{AΔt} − I)` for invertible `A`; here the singular-`A` branch is used for all `A`). The exponential is the *interval* Taylor sum with directed roundings, not a point sum or Padé.
 
 `location.` and `transition.` (`Ops/HybridOps.lean`; the hybrid-automaton steps of CORA.cpp's benchmarks).
 A location's flow is the system's fields `A`, `B`, `c`, `E` at the top level, with the input sets `U`,

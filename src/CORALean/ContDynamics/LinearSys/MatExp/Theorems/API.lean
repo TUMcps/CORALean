@@ -10,6 +10,13 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemSta
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsEntryLeOfMemSum
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsParticularTailEntryLe
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsExpRemainderEntryLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrixEntrywise
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrixEntrywise
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralDiffEqTsum
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderMatLeEntrywiseFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrixEntrywiseFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrixEntrywiseFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpIntegralDiff
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ZeroMemParticularSolutionOuter
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CurvatureEnclosureFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralSubSumMemAdaptiveRemainder

@@ -5,6 +5,7 @@ import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
 import CORALean.ContDynamics.LinearSys.Operations.InputSolutionFloat
 import CORALean.ContDynamics.LinearSys.Operations.IsCanonicalFormFloat
 import CORALean.ContDynamics.LinearSys.Operations.OneStepFloat
+import CORALean.ContDynamics.LinearSys.Operations.OneStepClosedFormFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachFloat
 import CORALean.ContDynamics.LinearSys.Operations.ReachFloatInput
 import CORALean.ContDynamics.LinearSys.Operations.ReachStepkWrappingFreeFloat
@@ -285,6 +286,15 @@ def handleLinearSysStepOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Re
       (← natField req "taylorTerms")
     pure [("timePoint", printZonotope dops.showExact s.Rtp),
       ("timeInterval", printZonotope dops.showExact s.Rti)]
+  -- CORA's closed form of the step: `none` when the exponential cannot be enclosed
+  | "oneStepClosedForm" =>
+    checkFields op req (sysFields ++ ["X", "U", "u", "timeStep", "taylorTerms"])
+    match sys.oneStepClosedFormFloat (← aux_zono dops req "X" n) (← aux_zono dops req "U" n)
+        (← parseVecFixed dops.readExact n (← field req "u")) (← aux_timeStep dops req)
+        (← natField req "taylorTerms") with
+    | none => pure [("timePoint", Json.null), ("timeInterval", Json.null)]
+    | some s => pure [("timePoint", printZonotope dops.showExact s.Rtp),
+        ("timeInterval", printZonotope dops.showExact s.Rti)]
   -- the homogeneous solution at the end of the step, and the whole step
   | "homogeneousSolution" =>
     checkFields op req (sysFields ++ ["X", "timeStep", "taylorTerms"])
@@ -324,6 +334,7 @@ end
 /-- Every op of this file, without the `linearSys.` prefix. -/
 def linearSysOpNames : List String :=
   [ "reach", "canonicalForm", "isCanonicalForm", "outputSet", "taylorMatrices", "oneStep",
+    "oneStepClosedForm",
     "homogeneousSolution", "post", "initReach", "errorSolution_adaptive", "affineSolution",
     "particularSolution_constant", "particularSolution_timeVarying" ]
 
@@ -339,7 +350,8 @@ def handleLinearSysOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] 
       valueBool (LinearSys.isCanonicalFormFloat (← parseLinearSys dops req).sys))
   | "outputSet" => some (handleLinearSysOutputSet dops req)
   | "taylorMatrices" => some (handleLinearSysTaylorMatrices dops req)
-  | "oneStep" | "homogeneousSolution" | "post" | "initReach" | "errorSolution_adaptive"
+  | "oneStep" | "oneStepClosedForm" | "homogeneousSolution" | "post" | "initReach"
+  | "errorSolution_adaptive"
   | "affineSolution" | "particularSolution_constant" | "particularSolution_timeVarying" =>
     some (handleLinearSysStepOp dops op req)
   | _ => none
