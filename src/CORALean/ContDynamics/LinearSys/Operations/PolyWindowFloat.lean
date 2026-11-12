@@ -29,8 +29,8 @@ solutions are zonotopes added as independent generators (CORA's `pZ + zonotope`)
 is time-varying, its center held through `hull(0, ũ)`, so the window covers every time of the step.
 As CORA does, the homogeneous solution and the solutions of the inputs are reduced adaptively at
 `ζ` before they are added, which keeps the independent part small. The input solutions stay term
-by term sums (a summed series matrix bounds only a constant input), of the varying input `Ũ` boxed
-to `n` generators first (`reduce` to order 1), as the series multiplies each generator per order.
+by term sums (a summed series matrix bounds only a constant input), of the varying input `Ũ` itself,
+whose generators the adaptive reduction at `ζ` then keeps in check.
 
 ## Inputs
 * `sys` – linear system
@@ -76,8 +76,7 @@ def LinearSys.polyWindowFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ) (
   let eAΔtI := Interval.matPlus eAΔt (Interval.point (negIdentityMat 𝕋 n))  -- [e^{AΔt}] - I
   let F := MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt η'   -- [F]
   let PuR := (sys.inputSolutionFloat Δt η' seg).reduceAdaptive ζ p  -- reduce(P̃^R(τ_0))
-  let Ũb := Zonotope.reduce Ũ 1                                      -- Ũ boxed to `n` generators
-  let PU := (sys.inputSolutionFloat Δt η' Ũb).reduceAdaptive ζ p    -- reduce(P^R(Δt))
+  let PU := (sys.inputSolutionFloat Δt η' Ũ).reduceAdaptive ζ p    -- reduce(P^R(Δt))
   let FX := PolyZonotope.mtimesIntervalMat F X₀                     -- [F] X₀
   let O := (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.ofIndep    -- the origin
   let hom := (LinComb.linComb X₀ (PolyZonotope.mtimesIntervalMat eAΔt X₀) ⊞ FX).reduceAdaptive

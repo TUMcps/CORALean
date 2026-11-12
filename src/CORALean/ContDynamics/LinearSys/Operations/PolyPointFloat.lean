@@ -78,8 +78,7 @@ def LinearSys.polyPointFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ) (�
   let Ũ := Recenter.recenter Vt                                 -- Ũ = Vt - ũ, holding 0
   let Pu := (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])       -- eAtInt * ũ, the summed series
     (MatExp.adaptiveIntegral (Interval.point sys.A) Δt η') ũ).ofIndep   -- applied to the constant
-  let Ũb := Zonotope.reduce Ũ 1                                 -- Ũ boxed to `n` generators
-  let PU := ((sys.inputSolutionFloat Δt η' Ũb).reduceAdaptive ζ p).ofIndep  -- reduce(P^R(Δt))
+  let PU := ((sys.inputSolutionFloat Δt η' Ũ).reduceAdaptive ζ p).ofIndep  -- reduce(P^R(Δt))
   let eA := (PolyZonotope.mtimesIntervalMat (sys.expSquaringFloat Δt Δt 16 s) X₀).reduceAdaptive
     ζ p                                                             -- reduce([e^{AΔt}] X₀)
   let Ps := PolyZonotope.mtimesIntervalMat                      -- eAtInt * Vstat, the part
