@@ -94,6 +94,7 @@ public import CORALean.ContSet.HPolytope.Real.Theorems.ToSetEqEmptyOfDual
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemHalfScaledIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemSlabIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemSlabSelfIff
+public import CORALean.ContSet.HPolytope.Real.Theorems.RegularPolygonSubsetBall
 public import CORALean.ContSet.HPolytope.Real.Theorems.MemUnitBoxIff
 public import CORALean.ContSet.HPolytope.Real.Theorems.SubsetOfBoundsOpt
 public import CORALean.ContSet.HPolytope.Real.Theorems.ToSetFullspace

@@ -659,6 +659,59 @@ def mat_exp(M, terms=40):
     return total
 
 
+def decimal_pi() -> Decimal:
+    """pi by Machin's formula, 60 digits."""
+    def atan_inv(k):
+        x = Decimal(1) / k
+        s = t = x
+        i = 1
+        while abs(t) > Decimal(10) ** -58:
+            t = -t / (k * k)
+            i += 2
+            s += t / i
+        return s
+    return 4 * (4 * atan_inv(5) - atan_inv(239))
+
+
+def decimal_trig(x: Decimal, sine: bool) -> Decimal:
+    """sin or cos of x by the Taylor series, 60 digits."""
+    x = x % (2 * decimal_pi())
+    t = x if sine else Decimal(1)
+    s = t
+    i = 1 if sine else 0
+    while abs(t) > Decimal(10) ** -58:
+        i += 2
+        t = -t * x * x / (i * (i - 1))
+        s += t
+    return s
+
+
+def check_docking_polytope(req, resp, fails):
+    """The hypotheses of `dockingPolytope_subset_safe`, re-derived with the measured coefficient
+    error: rows `(-w, -w, a_j, b_j) <= beta`, `eps` the largest distance of `(a_j, b_j)` from
+    `(cos, sin)(2 pi j / N)`, `kappa = cos(pi / N) - sqrt 2 eps`; then `kappa > 0`,
+    `0 <= w <= kappa 2n / sqrt 2` and `beta <= kappa / 5` put the polytope inside the safe set
+    `|v| <= 0.2 + 2n |s|`. The empty fallback (one row `0 <= -1`) is inside it trivially."""
+    rid = req.get("id")
+    P = resp["P"]
+    r, _, A = parse_mat(P["A"])
+    b = parse_vec(P["b"])
+    if r == 1 and all(x == 0 for x in A[0]) and b[0] < 0:
+        return
+    N = req["N"]
+    pi = decimal_pi()
+    n = dec(parse_scalar(req["n"]))
+    if len(A) != N or any(A[j][0] != A[0][0] or A[j][1] != A[0][0] or b[j] != b[0] for j in range(N)):
+        fails.append(f"id {rid}: dockingPolytope: rows are not (-w, -w, a, b) <= beta")
+        return
+    w, beta = -dec(A[0][0]), dec(b[0])
+    eps = max(max(abs(dec(A[j][2]) - decimal_trig(2 * pi * j / N, False)),
+                  abs(dec(A[j][3]) - decimal_trig(2 * pi * j / N, True))) for j in range(N))
+    kappa = decimal_trig(pi / N, False) - Decimal(2).sqrt() * eps
+    if not (kappa > 0 and 0 <= w <= kappa * 2 * n / Decimal(2).sqrt() and beta <= kappa / 5):
+        fails.append(f"id {rid}: dockingPolytope: the polytope is not shown inside the safe set")
+
+
 def check_class_op(op, req, resp, fails):
     """The ops of the further classes this batch added."""
     rid = req.get("id")
@@ -697,6 +750,8 @@ def check_class_op(op, req, resp, fails):
                 ok = hull_subset(ilo, ihi, slo, shi)
             if not ok:
                 fails.append(f"id {rid}: specification.check: true, but the boxes disagree")
+    elif op == "specification.dockingPolytope":
+        check_docking_polytope(req, resp, fails)
     elif op.startswith(("emptySet.representsa", "fullspace.representsa")):
         want = {"emptySet": op.startswith("emptySet"), "fullspace": op.startswith("fullspace")}
         t = req["type"]

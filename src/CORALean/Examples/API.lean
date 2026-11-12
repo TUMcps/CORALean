@@ -20,6 +20,10 @@ import CORALean.Examples.ConversionRoundTrip
 import CORALean.Examples.ConvNet
 import CORALean.Examples.ConvNetFloat
 import CORALean.Examples.DependencyPreservation
+import CORALean.Examples.DockingPolytope
+import CORALean.Examples.DockingPolytopeFloat
+import CORALean.Examples.DockingPolytopeFloatSubsetSafe
+import CORALean.Examples.DockingPolytopeSubsetSafe
 import CORALean.Examples.DiscretizeWithEnclosedExp
 import CORALean.Examples.DiscretizeWithMatZonotope
 import CORALean.Examples.EllipsoidPlus
