@@ -1,3 +1,6 @@
+import CORALean.ContDynamics.LinearSys.Krylov.Operations.LyapunovCertificateFloat
+import CORALean.ContDynamics.LinearSys.Krylov.Operations.RestartedErrorBoundFloat
+import CORALean.ContDynamics.LinearSys.Krylov.Operations.RestartedErrorOkFloat
 import CORALean.ContDynamics.LinearSys.Krylov.Operations.SubspaceFloat
 import CORALean.ContDynamics.LinearSys.Krylov.Operations.WindowsFloat
 import CORALean.Examples.Oracle.Ops.OpCommon
@@ -7,12 +10,13 @@ import CORALean.Examples.Oracle.Ops.SetCodec
 # The Krylov ops: the float Arnoldi iteration and its certified order
 
 `krylov.arnoldi` runs `Krylov.arnoldiFloat` for `passes` passes on `A` and the start vector `c`
-(`nu` its norm); `krylov.errorBound` evaluates, for the Arnoldi data of `order` passes, the bound
-`Krylov.errorBoundFloat` with its factors and the test `Krylov.orderOkFloat`; `krylov.subspace`
-runs `Krylov.subspaceFloat`, the order search from `k0` in steps of `step`; `krylov.windows` adds
-the windows of the subspace's small system (`Krylov.windowsFloat`). `A` is square, `c` a column,
-`eps` the breakdown threshold, `tf` the final time, `tol` the tolerance; `p` and `q` default to 20
-and 10. Bases and Hessenberg matrices come back as matrices, `V` of `n` rows.
+(`nu` its norm); `errorBound` evaluates `Krylov.errorBoundFloat` with its factors and the test
+`Krylov.orderOkFloat`; `subspace` runs the order search `Krylov.subspaceFloat`, `windows` adds the
+windows of its small system (`Krylov.windowsFloat`). `lyapunovCertificate` checks a weight `P`
+with factor `L` of `P - aI` (`Krylov.lyapunovCertificateFloat`), `restartedBound` adds the
+windows' errors `eps` of lengths `dt` (`Krylov.restartedErrorBoundFloat`). `A` is square, `c` a
+column, `eps` the breakdown threshold, `tf` the final time, `tol` the tolerance; `p`, `q` default to
+20 and 10.
 
 ## Inputs
 * `dops` – dtype operations
@@ -64,6 +68,28 @@ private def aux_problem (dops : DtypeOps 𝕋) (req : Json) :
 private def aux_ratOf : ExactScalar → ℚ
   | .dy ⟨m, e⟩ => if e ≥ 0 then (m * 2 ^ e.toNat : ℤ) else (m : ℚ) / (2 ^ (-e).toNat : ℕ)
   | .decNeg m d => (m : ℚ) / (10 ^ d : ℕ)
+
+/-- A square matrix of the already-known order `n`. -/
+private def aux_square (dops : DtypeOps 𝕋) (n : Nat) (req : Json) (name : String) :
+    Except String (Mat 𝕋 n n) := do
+  let ⟨r, M⟩ ← parseMatColsFixed dops.readExact n (← field req name)
+  if h : r = n then pure (h ▸ M) else throw s!"`{name}` must be {n}×{n}, not {r}×{n}"
+
+/-- The checked weight of the request: `A`, `P`, `L` of one order and the shift `a`. -/
+private def aux_certificate (dops : DtypeOps 𝕋) (req : Json) :
+    Except String (Krylov.LyapunovCertificateFloat 𝕋) := do
+  let dA ← parseMatDyn dops.readExact (← field req "A")
+  if hA : dA.r = dA.c then
+    let A : Mat 𝕋 dA.r dA.r := cast (congrArg (Mat 𝕋 dA.r) hA.symm) dA.M
+    pure (Krylov.lyapunovCertificateFloat A (← aux_square dops dA.r req "P")
+      (← aux_square dops dA.r req "L") (← aux_scalar dops req "a"))
+  else throw s!"`A` must be square, not {dA.r}×{dA.c}"
+
+/-- The fields of a checked weight. -/
+private def aux_certFields (dops : DtypeOps 𝕋) (c : Krylov.LyapunovCertificateFloat 𝕋) :
+    List (String × Json) :=
+  [("ok", Json.bool c.ok), ("lower", Json.str (dops.showExact c.lower)),
+    ("upper", Json.str (dops.showExact c.upper)), ("rate", Json.str (dops.showExact c.rate))]
 
 /-- The basis `V(0), …, V(k)` as the `n × (k + 1)` matrix. -/
 private def aux_basis {n : Nat} (V : Nat → Vector 𝕋 n) (k : Nat) : Mat 𝕋 n (k + 1) :=
@@ -156,10 +182,28 @@ def handleKrylovOp (dops : DtypeOps 𝕋) (name : String) (req : Json) : Option 
       | some (Rti, Rtp) =>
         pure (head ++ [("timeInterval", Json.arr (Rti.toArray.map (printZonotope dops.showExact))),
           ("timePoint", Json.arr (Rtp.toArray.map (printZonotope dops.showExact)))]))
+  -- the check of a Lyapunov weight
+  | "lyapunovCertificate" => some (do
+    checkFields "krylov.lyapunovCertificate" req ["A", "P", "L", "a"]
+    pure (aux_certFields dops (← aux_certificate dops req)))
+  -- the weighted accumulation of the windows' errors
+  | "restartedBound" => some (do
+    checkFields "krylov.restartedBound" req ["A", "P", "L", "a", "dt", "eps", "p", "q"]
+    let c ← aux_certificate dops req
+    let p ← aux_natOr req "p" 20
+    let q ← aux_natOr req "q" 10
+    let ⟨N, dt⟩ ← parseVecDyn dops.readExact (← field req "dt")
+    let eps ← parseVecFixed dops.readExact N (← field req "eps")
+    let Δt : Nat → 𝕋 := fun j => if h : j < N then dt ⟨j, h⟩ else Float.FloatOps.zero
+    let ε : Nat → 𝕋 := fun j => if h : j < N then eps ⟨j, h⟩ else Float.FloatOps.zero
+    pure ([("windowsOk", Json.bool (Krylov.restartedErrorOkFloat q c Δt N)),
+      ("bound", Json.str (dops.showExact (Krylov.restartedErrorBoundFloat p q c Δt ε N)))] ++
+      aux_certFields dops c))
   | _ => none
 
 /-- Every op of this file, without the `krylov.` prefix. -/
-def krylovOpNames : List String := ["arnoldi", "errorBound", "subspace", "windows"]
+def krylovOpNames : List String :=
+  ["arnoldi", "errorBound", "subspace", "windows", "lyapunovCertificate", "restartedBound"]
 
 end CORALean.Oracle
 

@@ -502,6 +502,8 @@ matrix:
 | `arnoldi` | `A`, `c`, `passes`, `eps`, `p` | `Krylov.arnoldiFloat`; `nu`, `V`, `H` |
 | `errorBound` | `A`, `c`, `order`, `tf`, `tol`, `eps`, `p`, `q` | `Krylov.errorBoundFloat`, `Krylov.orderOkFloat` on the Arnoldi data of `order` passes; `nu`, `residuals` (the column norms `ε_j`), `muA`, `muT`, `bound`, `ok`, `V`, `H` |
 | `subspace` | `A`, `c`, `k0`, `step`, `tf`, `tol`, `eps`, `p`, `q`, `fuel` (default `n + 1`) | `Krylov.subspaceFloat`; `order`, `ok`, `bound`, `nu`, `V`, `H` |
+| `lyapunovCertificate` | `A`, `P`, `L` (`n × n`), `a` | `Krylov.lyapunovCertificateFloat`; `ok`, `lower`, `upper`, `rate` |
+| `restartedBound` | `A`, `P`, `L`, `a`, `dt`, `eps` (columns of one length `N`), `p`, `q` | `Krylov.restartedErrorBoundFloat`, `Krylov.restartedErrorOkFloat`; `bound`, `windowsOk`, plus the `lyapunovCertificate` fields |
 | `windows` | as `subspace` with `tFinal` for `tf`, and `timeStep`, `taylorTerms`, `zonotopeOrder` | `Krylov.windowsFloat`: `LinearSys.reachFloat` on `ẏ = T y`, `y(0) = e₁`, `T` the first `order` columns of `H`; `timeInterval`, `timePoint` (`null` unless `ok`), plus the `subspace` fields |
 
 `krylov.errorBound` and `krylov.subspace` evaluate, in this order and at every dtype (the accepted
@@ -515,6 +517,20 @@ order meets `tol` for every `A`, `Krylov.subspaceFloat_error_le`):
 6. `S = sumUp_{j<k} ε_j`; `ρ = normUp p` of `max(|subDown(c_r, mulUp(ν, v(1)_r))|, |subUp(c_r, mulDown(ν, v(1)_r))|)`.
 7. `bound = mulUp(expUp q (mulUp(t, μ)), addUp(mulUp(|ν|, addUp(acc_k, mulUp(S, t))), ρ))`. `ok` holds when `1 ≤ k`, `le(mulUp(t, μ), nsmulDown(2^{q-1}, 1))` and `le(bound, tol)`. At `nearest`, `sqrtUp` and `expUp` are the machine's.
 8. `subspace`: Arnoldi is run for `min(k0, n)` passes; the order is tried, and while it is not accepted and below `n`, grows to `min(k + step, n)` (Arnoldi rerun from scratch, the passes are the same ones), at most `fuel` times. The bound is that of the order returned.
+
+`krylov.lyapunovCertificate` and `krylov.restartedBound` bound the growth of `e^{tA}` in a Lyapunov weight `P`
+(symmetric, e.g. the solution of `A*P + PA = -I`, from anywhere: it is checked, not trusted), for a stable
+non-normal `A` whose Gershgorin bound `μ_A` is large; `L` is a factor of `P - aI` (a Cholesky factor of `P`
+shifted by `a`, `0 < a`). They evaluate, in this order and at every dtype (an accepted weight has
+`a' x*x ≤ x*Px ≤ b x*x` and `x*PAx ≤ μ x*Px`, so `‖e^{tA}‖₂ ≤ √(b/a') e^{μt}`,
+`Krylov.lyapunovCertificateFloat_norm_exp_le`):
+
+1. `LL↓ = matMulDown(Lᵀ, L)`, `LL↑ = matMulUp(Lᵀ, L)` (`dotDown`/`dotUp`, summed from the last entry); `C_E,ij = maximum(|subDown(subDown(P_ij, d), LL↑_ij)|, |subUp(subUp(P_ij, d), LL↓_ij)|)`, `d = a` on the diagonal and `0` off it.
+2. `ρ_E = quadBoundUp C_E`; `lower = subDown(a, ρ_E)`; `upper = quadBoundUp P`.
+3. `PA↓ = matMulDown(P, A)`, `PA↑ = matMulUp(P, A)`; `C_W,ij = maximum(|addDown(addDown(PA↓_ij, PA↓_ji), d)|, |addUp(addUp(PA↑_ij, PA↑_ji), d)|)`, `d = 1` on the diagonal and `0` off it.
+4. `ρ_W = quadBoundUp C_W`; `gap = subDown(1, ρ_W)`; `rate = neg(divDown(gap, addUp(upper, upper)))`.
+5. `ok` holds when `P_ij ≤ P_ji` and `P_ji ≤ P_ij` for all `i, j` (`le`), and `ltStrict(0, lower)`, `ltStrict(0, gap)`, `ltStrict(0, upper)`. Cost: the two products, `O(n³)` once per system (`PA` in `O(n nnz(A))` for a sparse `A`, `L*L` needs the dense factor); the rest `O(n²)`.
+6. `restartedBound`: `root = sqrtUp(p, upper)`, `β_0 = 0`, `β_{j+1} = addUp(mulUp(expUp(q, mulUp(rate, Δt_j)), β_j), mulUp(root, ε_j))`, `bound = mulUp(β_N, sqrtUp(p, divUp(1, lower)))`: the 2-norm error of `N` restarted windows of lengths `Δt_j` and local 2-norm errors `ε_j` (`Krylov.restartedErrorBoundFloat_sound`). `windowsOk` holds when `ok`, `q ≥ 1` and, for every `j < N`, `le(0, Δt_j)` and `le(mulUp(rate, Δt_j), nsmulDown(2^{q-1}, 1))`; the bound is a certificate only then.
 
 CORA's test is `ν h_{k+1,k} Π_{j<k} h_{j+1,j} t^k/k! ≤ tol` (its `k!` is infinite from `k = 171`): the
 decay product above is the same quantity, and the bound equals it plus `ρ` and the residuals' share

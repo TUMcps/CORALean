@@ -16,6 +16,9 @@ public import CORALean.ContDynamics.LinearSys.Krylov.Operations.ErrorBoundFloat
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.OrderOkFloat
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.SubspaceFloat
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.WindowsFloat
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.LyapunovCertificateFloat
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.RestartedErrorBoundFloat
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.RestartedErrorOkFloat
 
 /-!
 # The Arnoldi iteration
@@ -30,5 +33,8 @@ the quadratic form, `ErrorBoundFloat` the computable error bound for every matri
 them,
 `OrderOkFloat` its test and `SubspaceFloat` the order search that uses it; `WindowsFloat` the
 time-interval sets of the subspace.
+`LyapunovCertificateFloat` checks a weight `P` for which `e^{tA}` decays in the weighted norm and
+`RestartedErrorBoundFloat` accumulates the windows' errors in it (`RestartedErrorOkFloat` tests it),
+for a stable non-normal `A` whose Gershgorin bound `QuadBoundUp` is large.
 `ReachKrylovCora1D` is CORA's first `'krylov'` time-point set in 1D, as printed.
 -/
