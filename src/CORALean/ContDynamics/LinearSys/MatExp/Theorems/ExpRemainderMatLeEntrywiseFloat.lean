@@ -21,7 +21,7 @@ series' lower end is over `E(Δt,η)`.
 * `A` – float system matrix
 * `Δt` – float step length
 * `η` – Taylor order of the step
-* `ηe` – Taylor order of the enclosure
+* `ηe` – Taylor order of the admissible enclosure; the enclosure runs at `ηe + 8`
 * `j` – row index
 * `k` – column index
 
@@ -34,7 +34,7 @@ series' lower end is over `E(Δt,η)`.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       11-November-2026
--- Last update:   ---
+-- Last update:   12-November-2026
 -- Reviewed:      ---
 
 
@@ -71,14 +71,25 @@ theorem MatExp.expRemainderMat_le_expRemainderEntrywise (A : Mat 𝕋 n n) {Δt 
       simp only [RealImage.realImage, toRealMat, Interval.magnitudeMat, toReal_maximum,
         toReal_absolute, Real.MatExp.absMat, Interval.point, max_self]
     rwa [e] at h
+  -- the scaled matrix is in the box
   have hmem : toReal Δt • Real.MatExp.absMat (toRealMat A) ∈ B.toSet :=
     Interval.smul_outer le_rfl le_rfl _ hAbs
-  have henc := Real.Interval.mem_mat_iff.mp (MatExp.exp_mem_expIntervalEnclosure B ηe hmem hε) j k
+  -- the norm condition at `ηe` is the same at `ηe + 8`
+  have hε8 : toReal (MatExp.normUpperBound B) / (((ηe + 8 : ℕ) : ℝ) + 2) ≤ 1 / 2 := by
+    rcases le_or_gt 0 (toReal (MatExp.normUpperBound B)) with h0 | h0
+    · refine le_trans (div_le_div_of_nonneg_left h0 (by positivity) ?_) hε
+      push_cast; linarith
+    · have : toReal (MatExp.normUpperBound B) / (((ηe + 8 : ℕ) : ℝ) + 2) < 0 :=
+        div_neg_of_neg_of_pos h0 (by positivity)
+      linarith
+  -- the enclosure at `ηe + 8` holds the exponential, the Taylor box the series
+  have henc := Real.Interval.mem_mat_iff.mp
+    (MatExp.exp_mem_expIntervalEnclosure B (ηe + 8) hmem hε8) j k
   have htay := Real.Interval.mem_mat_iff.mp (MatExp.expTaylor_mem_expIntervalTaylor B hmem η) j k
   simp only [Interval.nominal, RealImage.realImage, toRealMat] at henc htay
-  have hsub := sub_le_subUp ((MatExp.expIntervalEnclosure B ηe).sup j k)
+  have hsub := sub_le_subUp ((MatExp.expIntervalEnclosure B (ηe + 8)).sup j k)
     ((MatExp.expIntervalTaylor B η).inf j k)
-  simp only [MatExp.expRemainderEntrywise, ← hB]
+  simp only [MatExp.expRemainderEntrywise, ← hB, Interval.materialiseMat_eq]
   simp only [Real.MatExp.expRemainderMat, Matrix.sub_apply]
   linarith [henc.2, htay.1]
 
