@@ -141,8 +141,9 @@ private theorem aux_ppass_loop {fm : NonlinearSys.FloatHessModel 𝕋 n m} {A : 
       fm.step_abstrErrLoopPolyAdaptive A B xs Vbase Rdelta Vstat Zdelta U options enlarge
         redFactor p fuel c perf e = some res →
       ∃ (e' : Vec 𝕋 n) (Wd Rdiff : PolyZonotope (Vec 𝕋 n)),
-        (LinearSys.canonicalFloat A : LinearSys 𝕋 n).polyWindowFloat options.Δt options.η
-          (Vbase ⊞ (⟨-e', e'⟩ : Interval (Vec 𝕋 n)).zonotope) Rdelta = some (Wd, Rdiff) ∧
+        (LinearSys.canonicalFloat A : LinearSys 𝕋 n).polyWindowFloat options.Δt
+          options.η redFactor p (Vbase ⊞ (⟨-e', e'⟩ : Interval (Vec 𝕋 n)).zonotope) Rdelta
+            = some (Wd, Rdiff) ∧
         res.1 = fm.abstrErrPolyAdaptiveFloat A B xs ((Rdelta.zonotopeEven.materialise ⊞
           Rdiff.zonotopeEven.materialise) ⊞ (⟨0, xs, fun j => j.elim0,
             ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n))).materialise Zdelta Rdiff U

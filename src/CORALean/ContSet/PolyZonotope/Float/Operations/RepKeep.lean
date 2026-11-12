@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.Rep
 
 Split out of `Compact.lean` (issue #62): read again by `keepIdx` in this
 directory, by `Theorems/FiberEqZeroOfNotMem.lean` and
-`Theorems/CompactGensOuter.lean`, and by `ConPolyZono`'s own compaction, all
+`Theorems/CompactGensFiber.lean`, and by `ConPolyZono`'s own compaction, all
 outside this file.
 
 ## Inputs

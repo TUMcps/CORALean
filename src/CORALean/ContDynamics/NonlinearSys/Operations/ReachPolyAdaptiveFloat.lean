@@ -68,12 +68,13 @@ def step_volumeRatioExceeds (R : PolyZonotope (Vec 𝕋 n)) (ratio : 𝕋) : Boo
     let vol := fun (r : Vec 𝕋 n) => ind.foldl (fun acc i => mulUp acc (addUp (r i) (r i))) one
     !(le (vol radInd) (mulUp (powUp ratio n) (vol radDep)))         -- (Vind/Vdep)^(1/n) > ratio
 
-/-- `aux_reduceOnlyDep`: past `order` times `n` dependent generators, the shortest boxed. -/
+/-- `aux_reduceOnlyDep`: past `order` times `n` dependent generators, the shortest boxed, then
+equal exponent columns added. -/
 @[step_of NonlinearSys.FloatHessModel.reachPolyAdaptiveFloat]
 def step_reduceOnlyDep (R : PolyZonotope (Vec 𝕋 n)) (order p : ℕ) : PolyZonotope (Vec 𝕋 n) :=
   if R.h < (order + 1) * n then R                                   -- Gsize/n < order+1
-  else R.reduceBy (PolyZonotope.girardSplit (fun l => normUp p (R.G l)) (order * n))
-    ((Partition.split R.q 0).reindex (finCongr (Nat.add_zero R.q).symm))
+  else (R.reduceBy (PolyZonotope.girardSplit (fun l => normUp p (R.G l)) (order * n))
+    ((Partition.split R.q 0).reindex (finCongr (Nat.add_zero R.q).symm))).compactGens
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

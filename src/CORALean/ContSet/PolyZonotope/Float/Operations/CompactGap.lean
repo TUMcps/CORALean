@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.MergedColUp
 # What a merged column can be off by
 
 Split out of `Compact.lean` (issue #62): read again by
-`Theorems/CompactGensOuter.lean`, outside this file.
+`Theorems/CompactGensFiber.lean`, outside this file.
 
 ## Inputs
 * `pZ` – polynomial zonotope

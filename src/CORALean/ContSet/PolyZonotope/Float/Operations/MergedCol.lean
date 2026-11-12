@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.KeepIdx
 # The merged column, as stored
 
 Split out of `Compact.lean` (issue #62): read again by `compactGap` and
-`compactGens` in this directory and by `Theorems/CompactGensOuter.lean`, all
+`compactGens` in this directory and by `Theorems/CompactGensFiber.lean`, all
 outside this file.
 
 ## Inputs

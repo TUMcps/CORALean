@@ -12,6 +12,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.BoxOutOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CartProdExact
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CenterMemToSet
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactFactorsNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactGensFiber
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactGensOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsPointApproxSound
@@ -69,8 +70,10 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.ProjectOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadDownLe
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapMixedOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceAdaptiveFiber
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByH
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByPoint
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceDependentOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardDependentOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceGirardOrderLe

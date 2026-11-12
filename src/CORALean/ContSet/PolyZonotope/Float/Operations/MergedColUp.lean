@@ -9,7 +9,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.KeepIdx
 # The merged column rounded the other way
 
 Split out of `Compact.lean` (issue #62): read again by `compactGap` in this
-directory and by `Theorems/CompactGensOuter.lean`, both outside this file.
+directory and by `Theorems/CompactGensFiber.lean`, both outside this file.
 
 ## Inputs
 * `pZ` – polynomial zonotope

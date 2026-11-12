@@ -2,7 +2,8 @@ module
 
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrixFloat
 public import CORALean.ContDynamics.LinearSys.Operations.PolyWindowFloat
-public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.HalvingsFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachRecenter
@@ -12,7 +13,9 @@ public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContain
 public import CORALean.ContSet.Conversion.Float.Theorems.NegIdentityMatMulVec
 public import CORALean.ContSet.Interval.Float.Theorems.MatPlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceAdaptiveOuter
 
 @[expose] public section
 
@@ -30,6 +33,8 @@ in place of `e^{At} x₀` gives the difference.
 * `sys` – linear system
 * `Δt` – step size
 * `η` – Taylor terms
+* `ζ` – reduction factor
+* `p` – square root precision
 * `V` – input zonotope
 * `X₀` – start polynomial zonotope
 * `U` – input set
@@ -49,7 +54,7 @@ in place of `e^{At} x₀` gives the difference.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       11-November-2026
--- Last update:   ---
+-- Last update:   12-November-2026
 -- Reviewed:      ---
 
 
@@ -93,18 +98,21 @@ private theorem aux_pw_zero_mem_origin :
 /-- Every run on `[0, Δt]` from `X₀` under inputs in `U ⊆ V` is, at every time of the step, in the
 window, and differs from its start by a point of the differences. -/
 theorem LinearSys.IsCanonicalTrajectory.polyWindowFloat_outer {sys : LinearSys 𝕋 n} {Δt : 𝕋}
-    {η : ℕ} {V : Zonotope (Vec 𝕋 n)} {X₀ : PolyZonotope (Vec 𝕋 n)} {U : Set (Vec ℝ n)}
+    {η : ℕ} {ζ : 𝕋} {p : ℕ} {V : Zonotope (Vec 𝕋 n)} {X₀ : PolyZonotope (Vec 𝕋 n)}
+    {U : Set (Vec ℝ n)}
     {x u : ℝ → Vec ℝ n} (hΔt : 0 < toReal Δt)
     (traj : sys.IsCanonicalTrajectory (S := ExactSet) (Set.Icc 0 (toReal Δt)) X₀.toSet U x u)
     (hUV : U ⊆ V.toSet) {t : ℝ} (ht : t ∈ Set.Icc 0 (toReal Δt)) : -- --- CONCL ---
-    ∀ WD ∈ sys.polyWindowFloat Δt η V X₀,
+    ∀ WD ∈ sys.polyWindowFloat Δt η ζ p V X₀,
       x t ∈ WD.1.toSet ∧ x t - x 0 ∈ WD.2.toSet := by -- --- PROOF ---
   rintro ⟨W, D⟩ h
   rw [Option.mem_def] at h
   unfold LinearSys.polyWindowFloat at h
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff, Option.pure_def, Option.some.injEq,
     Prod.mk.injEq] at h
-  obtain ⟨η', hη', rfl, rfl⟩ := h
+  obtain ⟨η', hη', s, hs, rfl, rfl⟩ := h
+  have hexp := sys.exp_mem_expSquaringFloat (η := 16) (t := toReal Δt)
+    (LinearSys.halvingsFloat_spec (by norm_num) s hs) le_rfl le_rfl
   have hη := (LinearSys.reachOrderFloat_spec _ hη').1
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hη.1
   set A := Scalar.toRealMat sys.A with hA
@@ -135,8 +143,10 @@ theorem LinearSys.IsCanonicalTrajectory.polyWindowFloat_outer {sys : LinearSys �
   have hrest := sys.inputReach_subset_inputSolutionFloat hΔt hη _
     (sys.inputReach_mono (CompactSet.isBounded_toSet _) (Recenter.zero_mem_recenter V) ht.1
       ht.2 (traj.sub_mem_inputReach_recenter hUV ht))
-  have hPuR := Zonotope.ofIndep_outer _ hconst
-  have hPU := Zonotope.ofIndep_outer _ hrest
+  have hPuRz := Zonotope.reduceAdaptive_outer _ ζ p hconst
+  have hPUz := Zonotope.reduceAdaptive_outer _ ζ p hrest
+  have hPuR := Zonotope.ofIndep_outer _ hPuRz
+  have hPU := Zonotope.ofIndep_outer _ hPUz
   -- the free motion's products with `X₀`
   have hl0 : 0 ≤ t / r := div_nonneg ht.1 hΔt.le
   have hl1 : t / r ≤ 1 := (div_le_one hΔt).mpr ht.2
@@ -144,12 +154,12 @@ theorem LinearSys.IsCanonicalTrajectory.polyWindowFloat_outer {sys : LinearSys �
       M *ᵥ x 0 ∈ (PolyZonotope.mtimesIntervalMat IM X₀).toSet := fun {IM M} hM =>
     PolyZonotope.mtimesIntervalMat_outer IM X₀ (Set.mem_biUnion hM (Set.mem_image_of_mem _ hx0))
   have hE : exp (r • A) *ᵥ x 0 ∈ (PolyZonotope.mtimesIntervalMat
-      (sys.expIntervalFloat Δt Δt (m + 2)) X₀).toSet :=
-    hmt (sys.exp_mem_expIntervalFloat hη le_rfl le_rfl)
+      (sys.expSquaringFloat Δt Δt 16 s) X₀).toSet :=
+    hmt (hexp)
   have hEI : (exp (r • A) - 1) *ᵥ x 0 ∈ (PolyZonotope.mtimesIntervalMat
-      (Interval.matPlus (sys.expIntervalFloat Δt Δt (m + 2))
+      (Interval.matPlus (sys.expSquaringFloat Δt Δt 16 s)
         (Interval.point (negIdentityMat 𝕋 n))) X₀).toSet := by
-    have hM := Interval.matPlus_outer _ _ (sys.exp_mem_expIntervalFloat hη le_rfl le_rfl)
+    have hM := Interval.matPlus_outer _ _ (hexp)
       aux_pw_negOne_mem_point
     rw [← sub_eq_add_neg] at hM
     exact hmt hM
@@ -161,7 +171,7 @@ theorem LinearSys.IsCanonicalTrajectory.polyWindowFloat_outer {sys : LinearSys �
   -- the run is its free motion, the constant's share and the rest
   obtain ⟨y, hy⟩ : ∃ y, y = x t - (exp (t • A) *ᵥ x 0 + Real.MatExp.expIntegral A t *ᵥ ũ) :=
     ⟨_, rfl⟩
-  rw [← hy] at hPU
+  rw [← hy] at hPU hPUz
   -- the run, as a split into the pieces
   have hsplit : x t = (exp (t • A) *ᵥ x 0) + Real.MatExp.expIntegral A t *ᵥ ũ + y := by
     rw [hy]; abel
@@ -182,12 +192,12 @@ theorem LinearSys.IsCanonicalTrajectory.polyWindowFloat_outer {sys : LinearSys �
     abel
   -- the line is in the combination of the start set and its image
   have hcomb : ((1 - t / r) • x 0 + (t / r) • (exp (r • A) *ᵥ x 0)) ∈ (LinComb.linComb X₀
-      (PolyZonotope.mtimesIntervalMat (sys.expIntervalFloat Δt Δt (m + 2)) X₀)).toSet := by
+      (PolyZonotope.mtimesIntervalMat (sys.expSquaringFloat Δt Δt 16 s) X₀)).toSet := by
     refine LinComb.linComb_outer (S := PolyZonotope (Vec 𝕋 n)) _ _ ?_
     exact ⟨x 0, hx0, _, hE, 1 - t / r, ⟨by linarith, by linarith⟩, by rw [sub_sub_cancel]⟩
   have hdcomb : ((1 - t / r) • (0 : Vec ℝ n) + (t / r) • ((exp (r • A) - 1) *ᵥ x 0)) ∈
       (LinComb.linComb (Interval.point fun _ : Fin n => (FloatOps.zero : 𝕋)).zonotope.ofIndep
-        (PolyZonotope.mtimesIntervalMat (Interval.matPlus (sys.expIntervalFloat Δt Δt (m + 2))
+        (PolyZonotope.mtimesIntervalMat (Interval.matPlus (sys.expSquaringFloat Δt Δt 16 s)
           (Interval.point (negIdentityMat 𝕋 n))) X₀)).toSet := by
     refine LinComb.linComb_outer (S := PolyZonotope (Vec 𝕋 n)) _ _ ?_
     exact ⟨0, Zonotope.ofIndep_outer _ aux_pw_zero_mem_origin, _, hEI,
@@ -197,11 +207,15 @@ theorem LinearSys.IsCanonicalTrajectory.polyWindowFloat_outer {sys : LinearSys �
   · rw [hsplit, hdecomp]
     exact Plus.plus_outer (S := PolyZonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add
       (Plus.plus_outer (S := PolyZonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add
-        (Plus.plus_outer (S := PolyZonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add hcomb hF)) hPuR)) hPU)
+        (PolyZonotope.reduceAdaptive_outer _ ζ p
+          (Plus.plus_outer (S := PolyZonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add hcomb hF)))
+        hPuR)) hPU)
   · rw [hsplit', hddecomp]
     exact Plus.plus_outer (S := PolyZonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add
-      (Plus.plus_outer (S := PolyZonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add hdcomb hF))
-      (Plus.plus_outer (S := PolyZonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add hPuR hPU)))
+      (PolyZonotope.reduceAdaptive_outer _ ζ p
+        (Plus.plus_outer (S := PolyZonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add hdcomb hF)))
+      (Zonotope.ofIndep_outer _ (Plus.plus_outer (S := Zonotope (Vec 𝕋 n)) _ _
+        (Set.add_mem_add hPuRz hPUz))))
 
 end CORALean
 

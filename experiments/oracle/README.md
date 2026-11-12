@@ -603,8 +603,45 @@ of integers, default the identity), `E` the error box. The poly-adaptive default
 the restructure test on `R`, one `linReachPolyAdaptiveFloat` (its passes in
 `linReachPolyAdaptivePassFloat`: `Rdelta`, the static error `step_precompStatErrorAdaptive`, the error loop of
 `step_abstrErrLoopPolyAdaptive` on `polyWindowFloat`'s differences, then `polyWindowFloat` and
-`polyPointFloat`), and the reductions `reduceAdaptive`, `aux_reduceOnlyDep`. Fixture 3201 (unsound), 3068–3070 (refusals at the guaranteed dtypes).
+`polyPointFloat`), and the reductions `reduceAdaptive`, `aux_reduceOnlyDep`. Fixtures 3201, 3150, 3151 (unsound; the last two a scalar system, 1 s together), 3068–3070 (refusals at the guaranteed dtypes).
 Their soundness theorem is not proved (`PolyZonotope.reduceAdaptive_outer` only).
+
+The linear step of the passes (`LinearSys.polyWindowFloat`, `polyPointFloat`) in the order the float
+definition evaluates it. `ζ` is the pass's `redFactor` (CORA's `zeta_z`) and `p` its square root
+precision. A port that follows this order is bit-exact in the `nearest` dtype.
+
+* **Merging.** `PolyZonotope.reduceAdaptive` ends in `compactGens`. The dependent columns of equal
+  exponent column are added into the column of least index, as a masked sum over the columns in
+  index order. The exponent columns and the factors keep their positions. No factor and no zero column
+  is dropped, and a column with all exponents `0` stays a generator, not folded into the center.
+  `polyPointFloat` follows `exactPlusAlign` by `compactGens`, and `aux_reduceOnlyDep` ends in
+  `compactGens` after its `reduceBy`. Nothing else merges.
+* **`polyWindowFloat(A, Δt, η, ζ, p, V, X₀)`.** `η'` is `reachOrderFloat Δt Δt η`, none if there is
+  none. `ũ` is the stored center of `V`, and `Ũ` is `V` at center `0`.
+  1. `seg` is `linComb({0}, {ũ})`, the zonotope of `[0, ũ]`. The interval matrices are
+     `s = halvingsFloat Δt` (none if there is none), `eA = expSquaringFloat Δt Δt 16 s`, `eAI = eA + (-I)` and `F = intervalCorrectionMatrix` at `η'`.
+  2. `PuR = reduceAdaptive_Z(inputSolutionFloat η' seg, ζ, p)` and
+     `PU = reduceAdaptive_Z(inputSolutionFloat η' Ũ, ζ, p)`. `inputSolutionFloat` is the zonotope sum,
+     from the term `i = 0` up, of `intervalInputTerm i` applied to the set, then the remainder matrix
+     applied to it. The terms stay apart because the input varies in time.
+  3. `FX = F X₀`, `hom = reduceAdaptive_P(linComb(X₀, eA X₀) ⊞ FX, ζ, p)` and
+     `dhom = reduceAdaptive_P(linComb({0}, eAI X₀) ⊞ FX, ζ, p)`. A product of an interval matrix with
+     a polynomial zonotope is `mtimesIntervalMat`.
+  4. The window is `(hom ⊞ PuR) ⊞ PU` and the differences are `dhom ⊞ (PuR ⊞ PU)`. `PuR` and `PU` are
+     added as independent generators (`ofIndep`), and `PuR ⊞ PU` is the zonotope sum.
+* **`polyPointFloat(A, Δt, η, ζ, p, V, X₀, Vs)`.** `Vt = V ⊞ indepZonotope(Vs)`, `ũ` is its stored
+  center and `Ũ = Vt - ũ`. `Pu = adaptiveIntegral(A, Δt, η') ũ` is the interval matrix
+  `[∫₀^Δt e^{As} ds]` of `errorSolution_adaptive` applied to the point `ũ`.
+  `PU = reduceAdaptive_Z(inputSolutionFloat η' Ũ, ζ, p)`, `s = halvingsFloat Δt`, `eA' = reduceAdaptive_P(expSquaringFloat Δt Δt 16 s · X₀, ζ, p)` and
+  `Ps = adaptiveIntegral(A, Δt, η') depPart(Vs)`. The end set is
+  `(compactGens(exactPlusAlign(eA', Ps)) ⊞ Pu) ⊞ PU`, with `Pu` and `PU` as independent generators.
+* **Where it departs from a port of CORA.** The reductions at `ζ` and the merging are CORA's
+  (`initReach_adaptive`, `exactPlus`, `compact`). The enclosure `eA` of `e^{AΔt}` is the tight `expSquaringFloat` of !913 at order 16 with `halvingsFloat` halvings, an interval matrix of very small width; `mtimesIntervalMat` still adds a box generator per coordinate for it.
+* **Why `PuR` and `PU` stay term by term.** A summed series matrix applied to a set bounds only a
+  constant input. The input of `PU` varies in time, and `PuR` covers the constant `ũ` at every time
+  `t` of the step, not only at `Δt`. So only `Pu` and `Ps`, which are taken at the end of the step,
+  use the summed matrix. CORA's `particularSolution_timeVarying` is a term by term sum as well.
+  `third_order_empty` is the option `thirdOrderEmpty` and stays a field of the request.
 
 `specification.` (`Ops/SpecificationOps.lean`):
 

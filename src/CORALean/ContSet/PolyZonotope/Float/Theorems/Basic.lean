@@ -15,6 +15,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.RepTab
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Restructure
 public import CORALean.ContSet.PolyZonotope.Float.PolyZonotope
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactFactorsNominal
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactGensOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.AbsorbRoundingOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByOuter
 public import CORALean.ContSet.PolyZonotope.Real.Instances
@@ -258,14 +259,14 @@ theorem PolyZonotope.nominal_q [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope (V
 -- ===========================  `PolyZonotope.reduceAdaptive_outer`  ============================ --
 -- Authors:       Claude Sonnet 5.5
 -- Written:       11-November-2026
--- Last update:   ---
+-- Last update:   12-November-2026
 -- Reviewed:      ---
 
-/-- Boxing the generators the adaptive rule selects only grows the set, as at every partition. -/
+/-- Boxing the selected generators and adding equal exponent columns only grow the set. -/
 theorem PolyZonotope.reduceAdaptive_outer [SoundFloatArithmetic 𝕋] (pZ : PolyZonotope (Vec 𝕋 n))
     (diagpercent : 𝕋) (p : ℕ) : pZ.toSet ⊆ (pZ.reduceAdaptive diagpercent p).toSet := by
   rw [PolyZonotope.reduceAdaptive, PolyZonotope.materialise_eq]
-  exact PolyZonotope.reduceBy_outer pZ _ _
+  exact (PolyZonotope.reduceBy_outer pZ _ _).trans (PolyZonotope.compactGens_outer _)
 
 end
 
