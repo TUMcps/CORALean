@@ -712,6 +712,58 @@ dtypes carry the widths, and `check_sound.py` re-derives the theorem's hypothese
 (`NearestUnsound`); the real libm error (about `6e-16` for `N = 16, 32, 64`, measured with the same check) is far below the `10^-9`
 margin, which is why CORA.cpp needs no change.
 
+`nnLayer.` and `neuralNetwork.` (`Ops/NnOps.lean`):
+
+| op | fields | float definition |
+|---|---|---|
+| `nnLayer.evaluateZonotope` | `layer`, `Z` (zonotope), `poly_method` | `Layer.linear`, `Layer.relu`, `Layer.leakyRelu`, `Layer.sigmoidSingh`, `Layer.tanhSingh` (or `Layer.sigmoid`, `Layer.tanh`) at the zonotope; `Z` |
+| `nnLayer.evaluatePolyZonotope` | `layer`, `P` (polynomial zonotope), `poly_method` | the same layers at the polynomial zonotope; `P` |
+| `neuralNetwork.evaluate` | `layers`, `Z` or `P`, `poly_method` | the layers in order, each as above |
+
+A layer is `{"kind":"linear","W","b"}`, `{"kind":"relu"}`, `{"kind":"leakyRelu","alpha"}`, `{"kind":"sigmoid","k"}`
+or `{"kind":"tanh","k"}` (`k`, the depth of the exponential's reduction, is ignored at `nearest`). `poly_method`
+is `singh` (the default) or `curvature`; `regression` is refused (no float definition yet). The proofs
+are `Layer.sigmoidSingh_encloses`, `Layer.tanhSingh_encloses` (`Relaxation.ofSlopeMonotone_encloses`: the
+slope is below the derivative on the box, so `sigma(t) - lambda t` does not fall), `Layer.relu_encloses`,
+`Layer.sigmoid_encloses`, `Layer.tanh_encloses`; `check_sound.py` re-evaluates the network at points of the input set in
+60-digit decimals and requires them in the hull of the output.
+
+An activation layer on a zonotope `(c, G, E)` of dimension `n` computes, in this order:
+
+1. The box of the set: `lo_i = (c_i - r_i) + E.inf_i`, `hi_i = (c_i + r_i) + E.sup_i` with `r_i = sum_j |G_ij|` summed up
+   (`Zonotope.interval`); at `nearest` all roundings are to nearest and `E = 0`.
+2. The relaxation per neuron over `[lo_i, hi_i]`: `lambda`, `offset` and `error` (below).
+3. The map `diag(lambda) * Z`: `c' = lambda c`, `G' = lambda G` (`Zonotope.mtimes` of a diagonal matrix; the
+   products with the zero entries are exact), `E' = 0` at `nearest`.
+4. The box `[offset - error, offset + error]` (`Relaxation.box`: `subDown`, `addUp`), as the zonotope of a box: center
+   `m = half(lo + hi)`, one diagonal generator per neuron of radius `max(hi - m, m - lo)` rounded up
+   (`Interval.zonotope`), also for `error = 0`.
+5. `plus`: `c'' = c' + m` (`addDown`), the generators appended after the `h` generators of `G'`, the
+   diagonal block last (`Zonotope.plus`).
+
+A linear layer is `mtimes W Z` (`c' = W c`, `G' = W G`, each entry a left-to-right dot product, the products and
+sums rounded down) and `plus b` (`c'' = c' + b`). A polynomial zonotope runs the same layers through its own
+`mtimes` and `plus`: `c`, `G`, `GI` scale and the box of step 4 goes to the error box `E` of the polynomial zonotope
+instead of to generators, which the next linear layer wraps (`Interval.mtimes`). It is the weaker form;
+CORA's `add_approx_error_to_GI` has no CORALean definition yet.
+
+The relaxations, with `f` the activation, `l`, `u` the box, `sig(x) = 1 - 1/(1 + exp x)` (lower) and `1/(1 + exp(-x))` (upper):
+
+* **ReLU** (`reluRelaxation reluSlope`): `lambda = 0` if `u <= 0`, `1` if `0 <= l`, else `u / (u - l)` (`divUp`, `subDown`);
+  `gap = max(u - lambda u, -(lambda l))` and `offset = error = gap / 2`.
+* **Leaky ReLU** (`leakyReluRelaxation`): `lambda = alpha` if `u <= 0`, `1` if `0 <= l`, else `(u - alpha l) / (u - l)`;
+  `gap = max(e(l), e(u))`, `e(a) = max(alpha a, a) - lambda a`; `offset = error = gap / 2`.
+* **Sigmoid, `singh`** (`sigmoidSinghRelaxation`, CORA's `computeApproxPoly` with `'singh'` at order 1):
+  `d(x) = sig_lo(x) * sig_lo(-x)` with both factors floored at zero and the product rounded down;
+  `lambda = min(d(l), d(u))`. Then `lo = f_lo(l) - lambda l` rounded down and `hi = f_hi(u) - lambda u` rounded up.
+  The offset is `(lo + hi) / 2` (`addUp`) and the error `max(hi - offset, offset - lo)` (`subUp`).
+* **Tanh, `singh`** (`tanhSinghRelaxation`): the sigmoid one at the doubled box `(l + l, u + u)` through `tanh t = 2 sigmoid(2 t) - 1`
+  (`Relaxation.ofAffineConj`, doubling by `x + x`), so `lambda = 4 min(d(2 l), d(2 u))`.
+* **Sigmoid, `curvature`** (`sigmoidRelaxation`): the smaller error of the derivative-bracket line and the slope-zero line; tanh through the conjugation.
+
+`singh` is CORA's relaxation, bar the rounding: CORA's `mu1 = (f(u) + f(l) - lambda (u + l)) / 2`, `mu2 = (f(u) - f(l) - lambda (u - l)) / 2`
+are the middle and half-width of the same range of `f(t) - lambda t`. `curvature` is CORALean's tighter one and not CORA's.
+
 Conversions `interval.<class>` and `zonotope.<class>` (`Ops/ConversionOps.lean`):
 
 | op | fields | float definition |

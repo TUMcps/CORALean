@@ -10,6 +10,7 @@ import CORALean.Examples.Oracle.Ops.KrylovOps
 import CORALean.Examples.Oracle.Ops.LinParamSysOps
 import CORALean.Examples.Oracle.Ops.LinearSysOps
 import CORALean.Examples.Oracle.Ops.MatZonotopeOps
+import CORALean.Examples.Oracle.Ops.NnOps
 import CORALean.Examples.Oracle.Ops.NonlinearSysOps
 import CORALean.Examples.Oracle.Ops.PolytopeOps
 import CORALean.Examples.Oracle.Ops.SpecificationOps
@@ -57,7 +58,8 @@ def classOpNames : List String :=
   locationOpNames.map ("location." ++ ·) ++
   linParamSysOpNames.map ("linParamSys." ++ ·) ++ nonlinearSysOpNames.map ("nonlinearSys." ++ ·) ++
   transitionOpNames.map ("transition." ++ ·) ++ intervalConversionNames.map ("interval." ++ ·) ++
-  zonotopeConversionNames.map ("zonotope." ++ ·)
+  zonotopeConversionNames.map ("zonotope." ++ ·) ++ nnLayerOpNames.map ("nnLayer." ++ ·) ++
+  neuralNetworkOpNames.map ("neuralNetwork." ++ ·)
 
 /-- `"<cls>.<name>"` at the scalar `dops` names; `none` if the class does not serve it. -/
 @[noinline, nospecialize]
@@ -84,6 +86,9 @@ def handleClassOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToR
   | "nonlinearSys" => handleNonlinearSysOp dops name req
   | "transition" => handleTransitionOp dops name req
   | "specification" => handleSpecificationOp dops name req
+  -- the networks
+  | "nnLayer" => handleNnLayerOp dops name req
+  | "neuralNetwork" => handleNeuralNetworkOp dops name req
   | _ => none
 
 end CORALean.Oracle
