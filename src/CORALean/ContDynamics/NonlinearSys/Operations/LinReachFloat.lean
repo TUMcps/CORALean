@@ -35,6 +35,7 @@ holds, so CORA's `while perfIndCurr > 1` loop is a single pass that cannot fail 
 * `U` – input zonotope
 * `options` – reachability options
 * `R` – start zonotope
+* `step` – linear step
 
 ## Output
 * the time-interval and end sets of the step, or none
@@ -49,7 +50,7 @@ holds, so CORA's `while perfIndCurr > 1` loop is a single pass that cannot fail 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   11-November-2026
 -- Reviewed:      ---
 
 
@@ -69,7 +70,8 @@ or `none` if the region check, the order search or the linear step fails. -/
 def NonlinearSys.FloatHessModel.linReachFloat (fm : NonlinearSys.FloatHessModel 𝕋 n m)
     (alg : NonlinearSys.LinReachAlg) (U : Zonotope (Vec 𝕋 m))
     (options : LinearSys.ReachFloatOptions 𝕋)
-    (R : Zonotope (Vec 𝕋 n)) : Option (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) := do
+    (R : Zonotope (Vec 𝕋 n)) (step : NonlinearSys.LinearStep := .reachFloatInput) :
+    Option (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n)) := do
   let Δt := options.Δt                                        -- the paper's symbols
   let Ub := U.interval                                              -- U's box
   let Ω ← fm.regionFloat Δt R.interval Ub                           -- where the step stays
@@ -87,7 +89,7 @@ def NonlinearSys.FloatHessModel.linReachFloat (fm : NonlinearSys.FloatHessModel 
       (Recenter.recenter U)) ⊞ L
   let Vlin := V (fm.hessRemainder A B xs us X U').zonotope          -- priv_abstrerr_lin
   match alg with
-  | .lin => NonlinearSys.oneStepFloat A xs Vlin R options
+  | .lin => NonlinearSys.oneStepFloat A xs Vlin R options step
   | .poly errorOrder => do
     let lin : LinearSys 𝕋 n := LinearSys.canonicalFloat A                              -- linsys
     let η ← lin.reachOrderFloat Δt Δt options.η           -- η, admissible
@@ -96,7 +98,7 @@ def NonlinearSys.FloatHessModel.linReachFloat (fm : NonlinearSys.FloatHessModel 
     let Rdiff := lin.postDeltaFloat Δt η Rdelta Vlin                -- aux_deltaReach
     let Zdelta := Reduce.reduce Rdelta errorOrder                   -- reduce(Rdelta, errorOrder)
     let Vpoly := V (fm.abstrErrPolyFloat A B xs us X U' Zdelta Rdiff)  -- priv_abstrerr_poly
-    NonlinearSys.oneStepFloat A xs Vpoly R options
+    NonlinearSys.oneStepFloat A xs Vpoly R options step
 
 end CORALean
 

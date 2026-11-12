@@ -472,7 +472,7 @@ at the top level of the request; `timeStep`, `taylorTerms`, `zonotopeOrder` CORA
 | `outputSet` | `R`, `U`, `V` (noise, optional) | `OutputEq.outputSet`, `.outputSetNoise` at `Zonotope`; `Z` |
 | `taylorMatrices` | `timeStep`, `taylorTerms` | `LinearSys.expIntervalFloat`, `MatExp.intervalCorrectionMatrix`; `eAdt`, `F` |
 | `oneStep` | `X`, `U`, `u`, `timeStep`, `taylorTerms` | `LinearSys.oneStepFloat`; `timePoint`, `timeInterval` |
-| `oneStepClosedForm` | `X`, `U`, `u`, `timeStep`, `taylorTerms` | `LinearSys.oneStepClosedFormFloat`, CORA's closed form (below); `timePoint`, `timeInterval`, both `null` when no order below `taylorTerms + 4096` admits the enclosure of `e^{\|A\|Δt}` |
+| `oneStepClosedForm` | `X`, `U`, `u`, `timeStep`, `taylorTerms` | `LinearSys.oneStepClosedFormFloat`, CORA's closed form (below); `timePoint`, `timeInterval`, both `null` when no order below `taylorTerms + 4096` admits the enclosure of `e^{\|A\|Δt}`, or no `s < 128` has `‖AΔt‖ / 2^s ≤ 1/2` |
 | `homogeneousSolution` | `X`, `timeStep`, `taylorTerms` | `LinearSys.timePointStepFloat`; `Z` |
 | `post` | `X`, `timeStep`, `taylorTerms` | `LinearSys.timePointStepFloat`, `.timeIntervalFloat`; `timePoint`, `timeInterval` |
 | `initReach` | `Rtau`, `timeStep`, `taylorTerms`, `step` | `LinearSys.reachStepkWrappingFreeFloat`; `Z` or `null` |
@@ -484,10 +484,10 @@ at the top level of the request; `timeStep`, `taylorTerms`, `zonotopeOrder` CORA
 
 1. `B = [|A|Δt]`: `|A|` entrywise `maximum(absolute(inf), absolute(sup))` of the point box `[A, A]`, scaled by `Interval.smul Δt Δt`; `ν = normUpperBound B` (maximum over rows of the row sums, `radius`, rounded up, at least 0).
 2. `ηe`: the first `η' ∈ [η, η + 4096)` with `le ν (half (nsmulDown (η'+2) one))`; none, no such order: both sets `null`.
-3. `E(Δt,η)` entrywise, `W = fun j k => subUp (X.sup j k) (T.inf j k)` with `T = expIntervalTaylor B η`, `X = expIntervalEnclosure B ηe` (`T` plus `expRemainderBound ν ηe`, rounded outward).
-4. `expIntervalTaylor M η`, `M = [AΔt]` (`Interval.smul Δt Δt [A, A]`): `T₀ = 1`, `T_{k+1} = materialise(matPlus(smul(invFact(k+1)) (matPow M (k+1)), T_k))`, with `matPow M (k+1) = materialise(matMul M (matPow M k))`: the *newest* term added to the *running sum*, powers by left multiplication `M · M^k`, `matMul` entries by `sumDown`/`sumUp` over the inner index in increasing order, every scalar op directed (`Interval.mulLo`/`mulHi`, `mulDown`/`mulUp`). `[e^{AΔt}] = materialise([subDown(T.inf, W), addUp(T.sup, W)])`.
+3. `E(Δt,ηe)` entrywise (since !913 every sum below runs to `ηe`, not to `taylorTerms`: `η` below means `ηe`), `W = fun j k => subUp (X.sup j k) (T.inf j k)` with `T = expIntervalTaylor B ηe`, `X = expIntervalEnclosure B ηe` (`T` plus `expRemainderBound ν ηe`, rounded outward). `W` enters `[F]`, `[G]` and the input solutions (steps 5 and 6), not `[e^{AΔt}]`.
+4. `[e^{AΔt}]` by scaling and squaring (`expSquaringFloat Δt Δt 16 s`; before this change, the series of order `taylorTerms` widened by `[-W, W]`, which for a stiff `A` is as wide as `e^{|A|Δt}`): `s` is the first count in `[0, 128)` with `le ν_s (half one)`, `ν_s = normUpperBound (Interval.smul (half^[s] Δt) (half^[s] Δt) [A, A])` (`half` is exact, so this is `‖AΔt‖ / 2^s ≤ 1/2`, the norm bound as in step 1 but of `A`, not `|A|`; none: both sets `null`). Then `M_s = [A·Δt/2^s]` (`Interval.smul (half^[s] Δt) (half^[s] Δt) [A, A]`), `B_0 = expIntervalEnclosure M_s 16 = [subDown(T.inf, R), addUp(T.sup, R)]` with `T = expIntervalTaylor M_s 16` as before (`T₀ = 1`, `T_{k+1} = materialise(matPlus(smul(invFact(k+1)) (matPow M (k+1)), T_k))`, `matPow M (k+1) = materialise(matMul M (matPow M k))`, `matMul` entries by `sumDown`/`sumUp` over the inner index in increasing order, every scalar op directed) and the scalar `R = expRemainderBound (normUpperBound M_s) 16`, then `B_{i+1} = materialise(matMul B_i B_i)` for `i < s`, and `[e^{AΔt}] = B_s`.
 5. `PU`, `Pu`: `inputSolutionEntrywiseFloat Δt η W V`, `inputTaylorSumFloat` (`Σ_{i≤η} [Aⁱ Δtⁱ⁺¹/(i+1)!] V`, left to right, term `i` the zonotope image under `intervalInputTerm` = `smul(taylorCoeffBounds Δt (i+1)) (matPow [A,A] i)`) `⊞ [-Δt W, Δt W] V`, with `Δt W` = `mulUp`.
-6. `Htp = [e^{AΔt}] X ⊞ Pu` and `Rtp = Htp ⊞ PU`. `[F]` is `intervalCorrectionMatrixEntrywise`: the orders `2..η` summed as `min(T_i.inf,0)` (`sumDown`) and `max(T_i.sup,0)` (`sumUp`), with `T_i = corrCoeffLow(i) · r^i/i! · Aⁱ` (`intervalCorrTerm`), widened by `W` (`subDown`/`addUp`). `[G]` takes the orders `1..η` of `intervalConstCorrTerm`, widened by `Δt W` (`mulUp Δt W`). Then `Hti = linComb(X, Htp) ⊞ [F] X` and `Rti = Hti ⊞ PU ⊞ [G] u`, each product `Zonotope.mtimesIntervalMat`.
+6. `Htp = [e^{AΔt}] X ⊞ Pu` (`[e^{AΔt}]` of step 4) and `Rtp = Htp ⊞ PU`. `[F]` is `intervalCorrectionMatrixEntrywise`: the orders `2..η` summed as `min(T_i.inf,0)` (`sumDown`) and `max(T_i.sup,0)` (`sumUp`), with `T_i = corrCoeffLow(i) · r^i/i! · Aⁱ` (`intervalCorrTerm`), widened by `W` (`subDown`/`addUp`). `[G]` takes the orders `1..η` of `intervalConstCorrTerm`, widened by `Δt W` (`mulUp Δt W`). Then `Hti = linComb(X, Htp) ⊞ [F] X` and `Rti = Hti ⊞ PU ⊞ [G] u`, each product `Zonotope.mtimesIntervalMat`.
 
 `Pu` is the Taylor form, no `A⁻¹` (CORA's constant input multiplies by `A⁻¹(e^{AΔt} − I)` for invertible `A`; here the singular-`A` branch is used for all `A`). The exponential is the *interval* Taylor sum with directed roundings, not a point sum or Padé.
 
@@ -566,10 +566,10 @@ sound dtypes.
 | op | fields | float definition |
 |---|---|---|
 | `nonlinearSys.reach` | `n`, `m`, `f`, `p`, `X0`, `U` (zonotope of the inputs, optional), `tStart`, `tFinal`, `timeStep`, `taylorTerms`, `zonotopeOrder`, `alg` (`lin`, `poly`), `errorOrder` (`poly`) | `NonlinearSys.FloatHessModel.reachAlgFloat`; `timeInterval`, the windows `R(tau_k)` |
-| `nonlinearSys.linReach` | as `reach` with `R` in place of `X0`, `tStart`, `tFinal` | `FloatHessModel.linReachFloat`, one step: the region check, the linearization at the centre, the Hessian remainder over the region; `timeInterval`, `timePoint` |
+| `nonlinearSys.linReach` | as `reach` with `R` in place of `X0`, `tStart`, `tFinal`, and `linearStep` (below) | `FloatHessModel.linReachFloat`, one step: the region check, the linearization at the centre, the Hessian remainder over the region; `timeInterval`, `timePoint` |
 | `nonlinearSys.reachAdaptive` | `n`, `m`, `f`, `p`, `R0`, `U`, `maxSteps`, `sets`, and the options below | `FloatHessModel.reachAdaptiveFloat`, CORA's `lin-adaptive` repaired; `steps`, `tensorOrders`, `t`, the last `timePoint`, every `timeInterval` when `sets` is true |
 | `nonlinearSys.linReachAdaptive` | as `reachAdaptive` with the state `R`, `i`, `t`, `timeStep`, `finitehorizon`, `varphi`, `errAdmHorizon`, `errAdmDeltatopt`, `tensorOrder`, `orders` (`null` for `Inf`), `minorder`, `zeroWidthDim`, `kappaDeltat`, `kappaAbstrerr`, `steps` (latest first); absent fields as `linReachAdaptiveInit` sets them | `FloatHessModel.linReachAdaptiveFloat`, one step with its tuning; the state after it, sets unreduced |
-| `nonlinearSys.linReachAdaptivePass` | `n`, `m`, `f`, `p`, `U`, `R`, `timeStep`, `taylorTerms`, `zonotopeOrder`, `tensorOrder`, `errorAdm`, `redFactor`, `enlarge`, `fuel` | `FloatHessModel.linReachAdaptivePassFloat`, one pass of the error loop; `timeInterval`, `timePoint`, `A`, `xs`, `Rmax`, `trueError`, `abstrerr`, `Gzero` |
+| `nonlinearSys.linReachAdaptivePass` | `n`, `m`, `f`, `p`, `U`, `R`, `timeStep`, `taylorTerms`, `zonotopeOrder`, `tensorOrder`, `errorAdm`, `redFactor`, `enlarge`, `fuel`, `linearStep` | `FloatHessModel.linReachAdaptivePassFloat`, one pass of the error loop; `timeInterval`, `timePoint`, `A`, `xs`, `Rmax`, `trueError`, `abstrerr`, `Gzero` |
 | `nonlinearSys.reachPolyAdaptive` | `n`, `m`, `f`, `p`, `R0` (a polynomial zonotope), `U`, `maxSteps`, `sets`, the options below and `dHused`, `thirdOrderEmpty`, `maxDepGenOrder`, `maxPolyZonoRatio` | `FloatHessModel.reachPolyAdaptiveFloat`, CORA's `poly-adaptive` repaired; `steps`, `t`, the last `timePoint`, every `timeInterval` when `sets` is true |
 | `nonlinearSys.linReachPolyAdaptive` | as `reachPolyAdaptive` with the state `R` (polynomial zonotope), `i`, `t`, `timeStep`, `finitehorizon`, `varphi`, `errAdmHorizon`, `errAdmDeltatopt`, `orders`, `minorder`, `zeroWidthDim`, `steps` | `FloatHessModel.linReachPolyAdaptiveFloat`, one step with its tuning; the state after it, sets unreduced |
 | `nonlinearSys.linReachPolyAdaptivePass` | `n`, `m`, `f`, `p`, `U`, `R` (polynomial zonotope), `timeStep`, `taylorTerms`, `zonotopeOrder`, `errorAdm`, `redFactor`, `enlarge`, `fuel` | `FloatHessModel.linReachPolyAdaptivePassFloat`, one pass of the error loop; `timeInterval`, `timePoint`, `A`, `xs`, `trueError`, `abstrerr`, `Gzero` |
@@ -581,8 +581,17 @@ sound dtypes.
 
 The adaptive options are `tStart`, `tFinal`, `taylorTerms`, `zonotopeOrder`, `redFactor`,
 `decrFactor`, `zetaphi` (three entries), `zetaK`, `initFactor`, `enlarge`, `horizonTol`, `zeroTol`,
-`varphiTol`, `varphiStep`, `endTol`, `abortRatio` and `fuel`; absent ones are CORA's defaults, its
-doubles read as exact dyadics. Their soundness theorems (`Encloses.reachAdaptiveFloat_outer`,
+`varphiTol`, `varphiStep`, `endTol`, `abortRatio`, `fuel` and `linearStep`; absent ones are CORA's
+defaults, its doubles read as exact dyadics. `linearStep` (also of `nonlinearSys.linReach`) is `reachFloatInput`, the default, or `closedForm`.
+`reachFloatInput` is one step of `LinearSys.reachFloatInput` of the linearized system
+(`NonlinearSys.oneStepFloat`). `closedForm` is `LinearSys.oneStepClosedFormFloat` (CORA's closed
+form above) from `R - x✱` at the order `max 2 taylorTerms`.
+Its constant input is `ũ = V.c`, the center of the step's input set `V`, and its input set is
+`V - ũ` (`Recenter`), the split `reachFloatInput` makes; both sets are shifted back by `x✱`, `Rti`
+being `R(τ)` and `Rtp` being `R(t_{k+1})`.
+It needs `Δt > 0` (`ltStrict zero Δt`), else the step fails as `reachFloatInput` does for a step count of zero.
+The soundness theorem is `oneStepFloat_outer`
+at either `step`. Their soundness theorems (`Encloses.reachAdaptiveFloat_outer`,
 `linReachAdaptiveFloat_outer`, `linReachAdaptivePassFloat_outer`) take, besides `Encloses`, the
 hypothesis `HasFixedPointConfinement`, CORA's own fixed-point argument, not proved in Lean.
 

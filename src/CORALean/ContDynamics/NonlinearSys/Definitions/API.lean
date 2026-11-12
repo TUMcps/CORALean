@@ -29,6 +29,7 @@ public import CORALean.ContDynamics.NonlinearSys.Definitions.WithSteps
 public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatModel
 public import CORALean.ContDynamics.NonlinearSys.Definitions.FloatHessModel
 public import CORALean.ContDynamics.NonlinearSys.Definitions.LinReachAlg
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinearStep
 public import CORALean.ContDynamics.NonlinearSys.Definitions.AdmissibleLinError
 public import CORALean.ContDynamics.NonlinearSys.Definitions.CancelRedundant
 public import CORALean.ContDynamics.NonlinearSys.Definitions.InnerMinkDiffOps

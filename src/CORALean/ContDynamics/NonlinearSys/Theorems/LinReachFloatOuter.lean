@@ -46,6 +46,7 @@ the `'lin'` membership makes `x - x✱` a run of the linearized system with inpu
 * `U` – input zonotope
 * `options` – reachability options
 * `R` – start zonotope
+* `step` – linear step
 
 ## Hypotheses
 * `h` – model encloses system
@@ -56,7 +57,7 @@ the `'lin'` membership makes `x - x✱` a run of the linearized system with inpu
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   11-November-2026
 -- Reviewed:      ---
 
 
@@ -136,14 +137,14 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {alg : NonlinearSys.LinReachAlg} {U : Zonotope (Vec 𝕋 m)}
     {options : LinearSys.ReachFloatOptions 𝕋}
-    {R : Zonotope (Vec 𝕋 n)} : -- --- CONCL ---
-    ∀ Rτ Rt, (Rτ, Rt) ∈ fm.linReachFloat alg U options R →
+    {R : Zonotope (Vec 𝕋 n)} {step : NonlinearSys.LinearStep} : -- --- CONCL ---
+    ∀ Rτ Rt, (Rτ, Rt) ∈ fm.linReachFloat alg U options R step →
       0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
         sys.IsTrajectory (S := ExactSet) (Set.Icc 0 (toReal options.Δt))
           R.toSet U.toSet x u y →
         (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ Rτ.toSet) ∧
           x (toReal options.Δt) ∈ Rt.toSet := by -- --- PROOF ---
-  intro Rτ Rt (hstep : fm.linReachFloat alg U options R = some (Rτ, Rt))
+  intro Rτ Rt (hstep : fm.linReachFloat alg U options R step = some (Rτ, Rt))
   unfold NonlinearSys.FloatHessModel.linReachFloat at hstep
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hstep
   obtain ⟨Ω, hΩ, hrest⟩ := hstep

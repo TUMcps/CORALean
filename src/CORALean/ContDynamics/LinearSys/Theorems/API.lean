@@ -10,7 +10,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.AutoReachFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.AutoRunBudget
 public import CORALean.ContDynamics.LinearSys.Theorems.AutoStepFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.BundleReachOuter
-public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpEntrywiseFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.HalvingsFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionEntrywise
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionEntrywiseFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.InputRemainderSubsetFloat

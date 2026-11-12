@@ -52,7 +52,7 @@ private def aux_isPass (fm : NonlinearSys.FloatHessModel 𝕋 n m) (U : Zonotope
     (o : NonlinearSys.LinReachAdaptiveOptions 𝕋) (R : Zonotope (Vec 𝕋 n)) (Δt : 𝕋)
     (P : NonlinearSys.LinReachAdaptivePass 𝕋 n) : Prop :=
   ∃ κ e, fm.linReachAdaptivePassFloat κ U ⟨⟨Δt, o.taylorTerms⟩, o.zonotopeOrder⟩ o.enlarge
-    o.redFactor o.prec o.fuel R e = some P
+    o.redFactor o.prec o.fuel R e o.linearStep = some P
 
 /-- The order switch leaves the start set alone. -/
 private theorem aux_nextTensorOrder_R (fm : NonlinearSys.FloatHessModel 𝕋 n m)

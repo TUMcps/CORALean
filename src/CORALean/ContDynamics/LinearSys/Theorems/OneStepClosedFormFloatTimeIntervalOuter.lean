@@ -6,7 +6,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdmissibleOrderFlo
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrixEntrywiseFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrixEntrywiseFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpEntrywiseFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.HalvingsFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionEntrywiseFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachShift
@@ -105,8 +106,16 @@ theorem LinearSys.IsCanonicalTrajectory.oneStepClosedFormFloat_timeInterval_oute
   | some ηe =>
   rw [hop] at h
   have hε := (MatExp.admissibleOrder_spec ηe hop).1
-  have hWle := fun j k => MatExp.expRemainderMat_le_expRemainderEntrywise sys.A (m + 2) ηe hε j k
-  simp only [Bind.bind, Option.bind, Pure.pure, Option.some.injEq] at h
+  have hη2 : 2 ≤ ηe := le_trans (by omega) (MatExp.admissibleOrder_spec ηe hop).2
+  obtain ⟨m', rfl⟩ := Nat.exists_eq_add_of_le' hη2
+  have hWle := fun j k =>
+    MatExp.expRemainderMat_le_expRemainderEntrywise sys.A (m' + 2) (m' + 2) hε j k
+  -- the count of halvings, at which the squared enclosure of `e^{AΔt}` is admissible
+  cases hs : sys.halvingsFloat Δt with
+  | none => simp only [hs, Bind.bind, Option.bind] at h; exact absurd h (by simp)
+  | some s =>
+  have hs16 := sys.halvingsFloat_spec (η := 16) (by norm_num) s (Option.mem_def.mpr hs)
+  simp only [hs, Bind.bind, Option.bind, Pure.pure, Option.some.injEq] at h
   subst h
   -- the `U`-input's share up to `t`, lifted to `Δt`, in `PU`
   have hU := CompactSet.isBounded_toSet U
@@ -122,34 +131,34 @@ theorem LinearSys.IsCanonicalTrajectory.oneStepClosedFormFloat_timeInterval_oute
       (Real.MatExp.expIntegral_constInput A uR hΔt.le).symm⟩
   -- the free motion, in `[e^{AΔt}] X`
   have hex : exp (r • A) *ᵥ x 0 ∈ toSet (Mtimes.mtimes (ContSet := 𝒵[𝕋])
-      (𝕄 := ℐ[𝕋]) (sys.expEntrywiseFloat Δt (m + 2) _) X) :=
+      (𝕄 := ℐ[𝕋]) (sys.expSquaringFloat Δt Δt 16 s) X) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) _ X
-      (Set.mem_biUnion (sys.exp_mem_expEntrywiseFloat (m + 2) _ hΔt.le hWle)
+      (Set.mem_biUnion (sys.exp_mem_expSquaringFloat hs16 le_rfl le_rfl)
         (Set.mem_image_of_mem _ traj.init))
   -- the `linComb` of `X` and `Htp` holds the interpolated point
   have hHtp : exp (r • A) *ᵥ x 0 + Real.MatExp.expIntegral A r *ᵥ uR
       ∈ toSet (Plus.plus (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
-        (sys.expEntrywiseFloat Δt (m + 2) _) X)
-        (sys.inputSolutionEntrywiseFloat Δt (m + 2) _ (Zonotope.point u))) :=
+        (sys.expSquaringFloat Δt Δt 16 s) X)
+        (sys.inputSolutionEntrywiseFloat Δt (m' + 2) _ (Zonotope.point u))) :=
     Plus.plus_outer _ _ (Set.add_mem_add hex hPu)
   have hlin := LinComb.linComb_outer X (Plus.plus (Mtimes.mtimes (ContSet := 𝒵[𝕋])
-    (𝕄 := ℐ[𝕋]) (sys.expEntrywiseFloat Δt (m + 2) _) X)
-    (sys.inputSolutionEntrywiseFloat Δt (m + 2) _ (Zonotope.point u)))
+    (𝕄 := ℐ[𝕋]) (sys.expSquaringFloat Δt Δt 16 s) X)
+    (sys.inputSolutionEntrywiseFloat Δt (m' + 2) _ (Zonotope.point u)))
     ⟨x 0, traj.init, _, hHtp, 1 - lam, ⟨by linarith, by linarith⟩, by rw [sub_sub_cancel]⟩
   -- the two interpolation errors
   have hF : (exp (t • A) - 1 - lam • (exp (r • A) - 1)) *ᵥ x 0
       ∈ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
-        (MatExp.intervalCorrectionMatrixEntrywise (Interval.point sys.A) Δt (m + 2) _) X) :=
+        (MatExp.intervalCorrectionMatrixEntrywise (Interval.point sys.A) Δt (m' + 2) _) X) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) _ X
       (Set.mem_biUnion (MatExp.expDiff_mem_intervalCorrectionMatrixEntrywise _ hΔt _
         (Interval.mem_point sys.A) hWle ht0 htΔ) (Set.mem_image_of_mem _ traj.init))
   have hG : (Real.MatExp.expIntegral A t - lam • Real.MatExp.expIntegral A r) *ᵥ uR
       ∈ toSet (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
-        (MatExp.intervalConstCorrectionMatrixEntrywise (Interval.point sys.A) Δt (m + 2) _)
+        (MatExp.intervalConstCorrectionMatrixEntrywise (Interval.point sys.A) Δt (m' + 2) _)
         (Zonotope.point u)) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) _ _
       (Set.mem_biUnion (MatExp.expIntegralDiff_mem_intervalConstCorrectionMatrixEntrywise _ hΔt
-        (m + 2) _ (Interval.mem_point sys.A) hWle ht0 htΔ) (Set.mem_image_of_mem _ hpt))
+        (m' + 2) _ (Interval.mem_point sys.A) hWle ht0 htΔ) (Set.mem_image_of_mem _ hpt))
   -- the state is the interpolated point, the two errors, and the input's share
   have hx : x t = ((((1 - lam) • x 0 + lam • (exp (r • A) *ᵥ x 0
         + Real.MatExp.expIntegral A r *ᵥ uR))
