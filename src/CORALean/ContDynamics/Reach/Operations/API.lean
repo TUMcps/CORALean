@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.Reach.Operations.Check
+public import CORALean.ContDynamics.Reach.Operations.StepCount
 public import CORALean.ContDynamics.Reach.Operations.Steps
 
 /-!

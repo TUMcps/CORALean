@@ -574,6 +574,19 @@ and `R` are lists:
 | `location.reach` | `X0`, `tFinal`, `timeStep`, `taylorTerms`, `zonotopeOrder` | `Location.reachFloat`: one stay, the windows of `reachFloatInput` over the whole horizon, no invariant exit; `timeInterval` |
 | `transition.jump` | `W`, `w`, `Rg` | `Transition.jumpFloat`, `W Rg + w`; `Z` |
 
+`hybridAutomaton.reach` (`Ops/HybridOps.lean`): CORA's loop of `hybridAutomaton/reach`, `HybridAutomaton.reachQueueFloat`.
+Fields: `locations` (a list; each has the flow `A`, `B`, `c`, `E`, the sets `U`, `W`, `timeStep`, the `invariant` polytope
+and `transitions`, a list of `{"guard" (polytope), "W", "w", "target"}`, the reset `x -> W x + w`), `startLoc`, `R0`,
+`tStart`, `tFinal`, `taylorTerms`, `zonotopeOrder`, and optionally `finalLoc` (default: none) and `fuel` (default 1000).
+`guardIntersect` must be `"zonoGirard"` and `enclose` `["box"]`, the only ones with a float definition; a guard must be a
+bare hyperplane (one equality row, no inequality rows, no slack), else the op fails, as it does where the queue is not
+empty after `fuel` entries. `branches`: per analysed stay `loc`, `parent` (the branch that produced it, null for the
+first), `timeInterval` (the sets, up to and including the first certified disjoint from the invariant) and `tStart`
+(lower and upper end of the start time, exact). A stay of `floor((tFinal - lower)/timeStep + 1e-9)` steps, as MATLAB's
+`tStart:timeStep:tFinal`; the jump time of a crossing is `[lower + first*dt, upper + (last+1)*dt]`. Not modelled, so
+different from CORA: `checkFlow` (it can drop a hit), the swap of a lone hyperplane hit for the time-point set, the
+specifications. Enclosure: `HybridAutomaton.reachQueueFloat_outer`, for runs that end one step before `tFinal`.
+
 `linParamSys.` (`Ops/LinParamSysOps.lean`). `A` is an interval matrix `{"inf","sup"}`, a plain matrix is the point
 interval, and a matrix zonotope is not read. `B` is likewise optional, and so is `c`:
 
@@ -834,7 +847,8 @@ Rows of the further classes not served, by reason:
 * `linearSys`: `reachBackward`, `reachInner`, `verify` (`LinearSys.verifyFloat` takes the reachable-set
   function and the distance routines as arguments), `initReach_adaptive`, `trajectoryError` and
   `linearSysDT`. `nonlinearSys`: the inner algorithms, and tensor order 3 of `reach`.
-* Hybrid automata: `pca` and `flow` bases, `guardIntersect` (grouping the hits by guard), `hybridAutomaton.reach`.
+* Hybrid automata: `pca` and `flow` bases, and `hybridAutomaton.reach` with another guard intersection than `zonoGirard`
+  or another basis than `box`.
   `linParamSys`: `initReach` and `post` of CORA (mapping matrices), a matrix-zonotope `A` after the first window. They take witnesses or tuning records, or return a real-valued
   field (`LinParamSysDT.c`).
 

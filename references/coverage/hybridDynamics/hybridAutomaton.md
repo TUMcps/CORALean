@@ -24,6 +24,43 @@ CORA methods of `hybridDynamics/@hybridAutomaton/`, one row each, and where CORA
 
 ## Details
 
+**`reach` — the queue.** `HybridAutomaton.reachQueueFloat` is CORA's loop of `reach.m`, with its queue of
+sets waiting for a location, its time bookkeeping and its branches
+([`ReachQueueFloat`](../../../src/CORALean/HybridDynamics/Operations/ReachQueueFloat.lean),
+[`ReachQueueLoopFloat`](../../../src/CORALean/HybridDynamics/Operations/ReachQueueLoopFloat.lean),
+[`ReachQueueStepFloat`](../../../src/CORALean/HybridDynamics/Operations/ReachQueueStepFloat.lean)).
+
+A pass takes `Reach.stepCount` steps of `Location.stayFloat` (stopped at the first set certified
+disjoint from the invariant), lists the hits with `Location.potInt`, groups them with
+`Location.guardGroups` and makes one entry per crossing with `Location.queueJumpFloat` (the box of
+`zonoGirard` with the `'box'` basis, a hyperplane guard, the reset).
+
+Outer:
+[`HybridAutomaton.reachQueueFloat_outer`](../../../src/CORALean/HybridDynamics/Theorems/ReachQueueFloatOuter.lean),
+from the loop
+([`reachQueueLoopFloat_encloses`](../../../src/CORALean/HybridDynamics/Theorems/ReachQueueLoopFloatEncloses.lean)),
+the pass
+([`reachQueueStepFloat_encloses`](../../../src/CORALean/HybridDynamics/Theorems/ReachQueueStepFloatEncloses.lean)),
+the stay and its window
+([`stayFloat_outer_window`](../../../src/CORALean/HybridDynamics/Theorems/LocationStayFloatOuter.lean),
+[`takeThrough`](../../../src/CORALean/Global/TakeThrough.lean)),
+the groups
+([`guardGroups_mem`](../../../src/CORALean/HybridDynamics/Theorems/GuardGroupsMem.lean)), the crossing
+([`queueJumpFloat_encloses`](../../../src/CORALean/HybridDynamics/Theorems/LocationQueueJumpFloatEncloses.lean),
+[`dotProduct_of_hyperplane`](../../../src/CORALean/ContSet/HPolytope/Float/Theorems/HyperplaneSound.lean))
+and the step count
+([`stepCount_real`](../../../src/CORALean/ContDynamics/Reach/Theorems/StepCountReal.lean)).
+
+Every run that
+starts at `tStart` in the initial set and ends one step before `tFinal` ends in a time-interval set of
+a branch of its end location, for the orthogonal basis `eye(n)` and no transition into `finalLoc`
+(a stay is cut at whole steps, as CORA's `tStart:timeStep:tFinal`).
+
+Not modelled: `checkFlow`, which can drop a hit (see `location.md`), and the swap of a lone
+hyperplane hit for the next time-point set (sound only for a flow that crosses the hyperplane at
+that instant). Also not modelled: the specifications, the `pca` and `flow` bases, the guard methods
+other than `zonoGirard`, and guards that are not a bare hyperplane (the pass then fails).
+
 **`reach` — cora-issue account.** CORA's `aux_set_HA_inputs` (`postProcessing.m` l. 603-617) writes,
 for a numeric `params.u`, `uloc{i} = repmat({params.u},numLoc,1);` where `uloc = repmat(...)` was
 meant (the `params.U` branch and the simulate variants at l. 721-727 do it right). `i` is the

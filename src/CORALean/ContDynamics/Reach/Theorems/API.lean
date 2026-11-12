@@ -1,6 +1,8 @@
 module
 
 public import CORALean.ContDynamics.Reach.Theorems.HoldsOfCheck
+public import CORALean.ContDynamics.Reach.Theorems.StepCountLower
+public import CORALean.ContDynamics.Reach.Theorems.StepCountReal
 public import CORALean.ContDynamics.Reach.Theorems.StepsSpec
 public import CORALean.ContDynamics.Reach.Theorems.StepsSpecToReal
 

@@ -33,6 +33,7 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.LiftErrorBox
 public import CORALean.ContSet.HPolytope.Float.Theorems.LiftExact
 public import CORALean.ContSet.HPolytope.Float.Theorems.LinCombOfOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemToSet
+public import CORALean.ContSet.HPolytope.Float.Theorems.HyperplaneSound
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIff
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemNominalIffExact
 public import CORALean.ContSet.HPolytope.Float.Theorems.MemRestrictIff

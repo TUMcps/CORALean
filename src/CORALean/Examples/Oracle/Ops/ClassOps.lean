@@ -57,7 +57,9 @@ def classOpNames : List String :=
   linearSysOpNames.map ("linearSys." ++ ·) ++ krylovOpNames.map ("krylov." ++ ·) ++
   locationOpNames.map ("location." ++ ·) ++
   linParamSysOpNames.map ("linParamSys." ++ ·) ++ nonlinearSysOpNames.map ("nonlinearSys." ++ ·) ++
-  transitionOpNames.map ("transition." ++ ·) ++ intervalConversionNames.map ("interval." ++ ·) ++
+  transitionOpNames.map ("transition." ++ ·) ++
+  hybridAutomatonOpNames.map ("hybridAutomaton." ++ ·) ++
+  intervalConversionNames.map ("interval." ++ ·) ++
   zonotopeConversionNames.map ("zonotope." ++ ·) ++ nnLayerOpNames.map ("nnLayer." ++ ·) ++
   neuralNetworkOpNames.map ("neuralNetwork." ++ ·)
 
@@ -85,6 +87,7 @@ def handleClassOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToR
   | "linParamSys" => handleLinParamSysOp dops name req
   | "nonlinearSys" => handleNonlinearSysOp dops name req
   | "transition" => handleTransitionOp dops name req
+  | "hybridAutomaton" => handleHybridAutomatonOp dops name req
   | "specification" => handleSpecificationOp dops name req
   -- the networks
   | "nnLayer" => handleNnLayerOp dops name req

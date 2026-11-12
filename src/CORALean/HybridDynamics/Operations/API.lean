@@ -21,6 +21,11 @@ public import CORALean.HybridDynamics.Operations.JumpFloat
 public import CORALean.HybridDynamics.Operations.LocationReachFloat
 public import CORALean.HybridDynamics.Operations.LocationReachFloatChecked
 public import CORALean.HybridDynamics.Operations.ReachFloat
+public import CORALean.HybridDynamics.Operations.ReachQueueFloat
+public import CORALean.HybridDynamics.Operations.ReachQueueLoopFloat
+public import CORALean.HybridDynamics.Operations.ReachQueueStepFloat
+public import CORALean.HybridDynamics.Operations.LocationQueueJumpFloat
+public import CORALean.HybridDynamics.Operations.LocationStayFloat
 public import CORALean.HybridDynamics.Operations.ReachFloatChecked
 public import CORALean.HybridDynamics.Operations.NonlinearResetEvaluate
 public import CORALean.HybridDynamics.Operations.NonlinearResetEvaluateFloat
@@ -43,6 +48,7 @@ public import CORALean.HybridDynamics.Operations.GuardIntersectPolytopeFloat
 public import CORALean.HybridDynamics.Operations.GuardIntersectPolytopeHFloat
 public import CORALean.HybridDynamics.Operations.GuardIntersectZonoGirardFloat
 public import CORALean.HybridDynamics.Operations.ZonoGirardUpperFloat
+public import CORALean.HybridDynamics.Operations.ZonoGirardBoxFloat
 public import CORALean.HybridDynamics.Operations.CheckFlowFloat
 public import CORALean.HybridDynamics.Operations.TransitionConvGuard
 public import CORALean.HybridDynamics.Operations.TrajectoryError

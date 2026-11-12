@@ -6,6 +6,8 @@ public import CORALean.HybridDynamics.Definitions.IsInvariant
 public import CORALean.HybridDynamics.Definitions.IsInvariantOn
 public import CORALean.HybridDynamics.Definitions.ReachSetExact
 public import CORALean.HybridDynamics.Definitions.IsRunUntil
+public import CORALean.HybridDynamics.Definitions.ReachQueue
+public import CORALean.HybridDynamics.Definitions.Encloses
 public import CORALean.HybridDynamics.Definitions.IsUrgentRun
 public import CORALean.HybridDynamics.Definitions.UrgentReachSetAtExact
 public import CORALean.HybridDynamics.Definitions.NonlinearResetArg
