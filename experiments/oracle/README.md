@@ -633,11 +633,11 @@ precision. A port that follows this order is bit-exact in the `nearest` dtype.
   `polyPointFloat` follows `exactPlusAlign` by `compactGens`, and `aux_reduceOnlyDep` ends in
   `compactGens` after its `reduceBy`. Nothing else merges.
 * **`polyWindowFloat(A, Δt, η, ζ, p, V, X₀)`.** `η'` is `reachOrderFloat Δt Δt η`, none if there is
-  none. `ũ` is the stored center of `V`, and `Ũ` is `V` at center `0`.
+  none. `ũ` is the stored center of `V`, and `Ũ` is `V` at center `0`. `Ũb = Zonotope.reduce Ũ 1` (Girard's rule to order 1, which leaves `Ũ` unchanged when it has at most `n` generators and otherwise keeps `n` axis-aligned ones, the interval hull, center `0` kept), as CORA.cpp's `aux_cap`; it is a superset of `Ũ`. The segment `seg` is not boxed.
   1. `seg` is `linComb({0}, {ũ})`, the zonotope of `[0, ũ]`. The interval matrices are
      `s = halvingsFloat Δt` (none if there is none), `eA = expSquaringFloat Δt Δt 16 s`, `eAI = eA + (-I)` and `F = intervalCorrectionMatrix` at `η'`.
   2. `PuR = reduceAdaptive_Z(inputSolutionFloat η' seg, ζ, p)` and
-     `PU = reduceAdaptive_Z(inputSolutionFloat η' Ũ, ζ, p)`. `inputSolutionFloat` is the zonotope sum,
+     `PU = reduceAdaptive_Z(inputSolutionFloat η' Ũb, ζ, p)` (before this change `Ũ` in place of `Ũb`). `inputSolutionFloat` is the zonotope sum,
      from the term `i = 0` up, of `intervalInputTerm i` applied to the set, then the remainder matrix
      applied to it. The terms stay apart because the input varies in time.
   3. `FX = F X₀`, `hom = reduceAdaptive_P(linComb(X₀, eA X₀) ⊞ FX, ζ, p)` and
@@ -648,7 +648,7 @@ precision. A port that follows this order is bit-exact in the `nearest` dtype.
 * **`polyPointFloat(A, Δt, η, ζ, p, V, X₀, Vs)`.** `Vt = V ⊞ indepZonotope(Vs)`, `ũ` is its stored
   center and `Ũ = Vt - ũ`. `Pu = adaptiveIntegral(A, Δt, η') ũ` is the interval matrix
   `[∫₀^Δt e^{As} ds]` of `errorSolution_adaptive` applied to the point `ũ`.
-  `PU = reduceAdaptive_Z(inputSolutionFloat η' Ũ, ζ, p)`, `s = halvingsFloat Δt`, `eA' = reduceAdaptive_P(expSquaringFloat Δt Δt 16 s · X₀, ζ, p)` and
+  `PU = reduceAdaptive_Z(inputSolutionFloat η' Ũb, ζ, p)` with `Ũb = Zonotope.reduce Ũ 1` (as in `polyWindowFloat`; before this change `Ũ`), `s = halvingsFloat Δt`, `eA' = reduceAdaptive_P(expSquaringFloat Δt Δt 16 s · X₀, ζ, p)` and
   `Ps = adaptiveIntegral(A, Δt, η') depPart(Vs)`. The end set is
   `(compactGens(exactPlusAlign(eA', Ps)) ⊞ Pu) ⊞ PU`, with `Pu` and `PU` as independent generators.
 * **Where it departs from a port of CORA.** The reductions at `ζ` and the merging are CORA's
