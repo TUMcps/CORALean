@@ -63,7 +63,7 @@ theorem Layer.linearWithError_zero (W : Mat ℝ m n) (b : Vec ℝ m) : -- --- CO
     show (⟨fun i => b i + 0, fun i => b i + 0⟩ : Float.Interval (Vec ℝ m)) = ⟨b, b⟩
     simp only [add_zero]
   -- a layer is its `enclose` and nothing else
-  unfold Layer.linearWithError Layer.linear
+  unfold Layer.linearWithError Layer.linear Float.OfInterval.ofVec
   rw [hbox]
 
 end CORALean.Real

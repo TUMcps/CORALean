@@ -24,6 +24,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Ellipsoid
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_PolyZonotope
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
+public import CORALean.ContSet.Conversion.Float.Operations.Vec_to_ContSet
 public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_ConPolyZono
 public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_ConZonotope
 public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval

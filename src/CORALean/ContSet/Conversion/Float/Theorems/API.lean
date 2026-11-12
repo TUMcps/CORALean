@@ -49,6 +49,7 @@ public import CORALean.ContSet.Conversion.Float.Theorems.IntervalTaylmContains
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalVPolytopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.NegIdentityMatMulVec
+public import CORALean.ContSet.Conversion.Float.Theorems.PlusOfVecOuter
 public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeConPolyZonoContains
 public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeConZonotopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeEllipsoidContains
