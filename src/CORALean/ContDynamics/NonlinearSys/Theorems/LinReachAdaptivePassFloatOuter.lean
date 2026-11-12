@@ -32,6 +32,7 @@ confinement of every run of `sys` in `Rmax`. There the field less its linear par
 * `fuel` – iteration bound
 * `R` – start zonotope
 * `errorAdm` – initial admissible error
+* `step` – linear step
 
 ## Hypotheses
 * `h` – model encloses system
@@ -43,7 +44,7 @@ confinement of every run of `sys` in `Rmax`. There the field less its linear par
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-November-2026
--- Last update:   ---
+-- Last update:   11-November-2026
 -- Reviewed:      ---
 
 
@@ -109,12 +110,13 @@ omit [ToRat 𝕋] in
 private theorem aux_pass_loop {fm : NonlinearSys.FloatHessModel 𝕋 n m} [ToRat 𝕋] {κ : ℕ}
     {A : Mat 𝕋 n n} {B : Mat 𝕋 n m} {xs : Vec 𝕋 n} {Vbase R : Zonotope (Vec 𝕋 n)}
     {U : Zonotope (Vec 𝕋 m)} {options : LinearSys.ReachFloatOptions 𝕋} {enlarge redFactor : 𝕋}
-    {p : ℕ} : -- --- CONCL ---
+    {p : ℕ} {step : NonlinearSys.LinearStep} : -- --- CONCL ---
     ∀ (fuel c : ℕ) (perf : 𝕋) (e : Vec 𝕋 n) (res : Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) ×
-      Vec 𝕋 n), fm.step_abstrErrLoopAdaptive κ A B xs Vbase R U options enlarge redFactor p
+      Vec 𝕋 n), fm.step_abstrErrLoopAdaptive κ A B xs Vbase R U options enlarge redFactor p step
         fuel c perf e = some res →
       ∃ (e' : Vec 𝕋 n) (Rt : Zonotope (Vec 𝕋 n)), NonlinearSys.oneStepFloat A xs
-          (Vbase ⊞ (⟨-e', e'⟩ : Interval (Vec 𝕋 n)).zonotope) R options = some (res.1, Rt) ∧
+          (Vbase ⊞ (⟨-e', e'⟩ : Interval (Vec 𝕋 n)).zonotope) R options step =
+            some (res.1, Rt) ∧
         res.2.1 = fm.abstrErrAdaptiveFloat κ A B xs res.1 U redFactor p ∧
         ∀ i, le (res.2.1.interval.normMag i) (e' i) = true := by -- --- PROOF ---
   intro fuel
@@ -143,14 +145,15 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachAdaptivePassFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     (hfix : sys.HasFixedPointConfinement) {κ : ℕ} {U : Zonotope (Vec 𝕋 m)}
     {options : LinearSys.ReachFloatOptions 𝕋} {enlarge redFactor : 𝕋} {p fuel : ℕ}
-    {R : Zonotope (Vec 𝕋 n)} {errorAdm : Vec 𝕋 n} : -- --- CONCL ---
-    ∀ P ∈ fm.linReachAdaptivePassFloat κ U options enlarge redFactor p fuel R errorAdm,
+    {R : Zonotope (Vec 𝕋 n)} {errorAdm : Vec 𝕋 n}
+    {step : NonlinearSys.LinearStep} : -- --- CONCL ---
+    ∀ P ∈ fm.linReachAdaptivePassFloat κ U options enlarge redFactor p fuel R errorAdm step,
       0 < toReal options.Δt ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
         sys.IsTrajectory (S := ExactSet) (Set.Icc 0 (toReal options.Δt)) R.toSet U.toSet x u y →
         (∀ t ∈ Set.Icc 0 (toReal options.Δt), x t ∈ P.Rti.toSet) ∧
           x (toReal options.Δt) ∈ P.Rtp.toSet := by -- --- PROOF ---
-  intro P (hP : fm.linReachAdaptivePassFloat κ U options enlarge redFactor p fuel R errorAdm =
-    some P)
+  intro P (hP : fm.linReachAdaptivePassFloat κ U options enlarge redFactor p fuel R errorAdm
+    step = some P)
   unfold NonlinearSys.FloatHessModel.linReachAdaptivePassFloat at hP
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hP
   obtain ⟨E, hE, S, hS, hpure⟩ := hP

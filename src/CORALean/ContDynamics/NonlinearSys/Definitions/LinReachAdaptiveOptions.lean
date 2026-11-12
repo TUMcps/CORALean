@@ -1,6 +1,7 @@
 module
 
 public import CORALean.Global.Interfaces
+public import CORALean.ContDynamics.NonlinearSys.Definitions.LinearStep
 
 @[expose] public section
 
@@ -17,7 +18,7 @@ of `errorSolution_adaptive`, fixed where CORA tunes it by `zetaTlin`, `zetaTabs`
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-November-2026
--- Last update:   ---
+-- Last update:   11-November-2026
 -- Reviewed:      ---
 
 
@@ -67,6 +68,8 @@ structure NonlinearSys.LinReachAdaptiveOptions (τ : Type) where
   prec : ℕ
   /-- Bound on every loop CORA writes as `while true`. -/
   fuel : ℕ
+  /-- The linear step of every pass: `reachFloatInput`, or CORA's `oneStep` in closed form. -/
+  linearStep : NonlinearSys.LinearStep := .reachFloatInput
 
 end CORALean
 

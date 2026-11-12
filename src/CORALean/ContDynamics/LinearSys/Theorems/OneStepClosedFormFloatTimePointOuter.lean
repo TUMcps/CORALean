@@ -6,7 +6,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AdmissibleOrderFlo
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrixEntrywiseFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrixEntrywiseFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
-public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpEntrywiseFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.HalvingsFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionEntrywiseFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputReachShift
@@ -19,10 +20,11 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 # `oneStepClosedFormFloat` holds the state at the end of the step
 
 `oneStepClosedForm_timePoint_outer` [1] at the float sets: `x(Δt)` is `e^{AΔt} x₀ + Γ(Δt) u + p`,
-with `e^{AΔt}` in `expEntrywiseFloat`, `Γ(Δt) u` in `Pu` and `p` in `PU`, both by
-`inputReach_subset_inputSolutionEntrywiseFloat`. The remainder bound `W` the step computes holds
-`E(Δt,η)` for the order `admissibleOrder` found, by `expRemainderMat_le_expRemainderEntrywise`. No
-condition is asked of `η`: the step computes its own enclosure or returns `none`.
+with `e^{AΔt}` in `expSquaringFloat` by `exp_mem_expSquaringFloat`, `Γ(Δt) u` in `Pu` and `p` in
+`PU`, both by `inputReach_subset_inputSolutionEntrywiseFloat`. The remainder bound `W` the step
+computes holds `E(Δt,ηe)` for the order `admissibleOrder` found, by
+`expRemainderMat_le_expRemainderEntrywise`. No condition is asked of `η`: the step computes its own
+enclosure or returns `none`.
 
 ## Inputs
 * `sys` – linear system
@@ -98,8 +100,13 @@ theorem LinearSys.IsCanonicalTrajectory.oneStepClosedFormFloat_timePoint_outer
   | some ηe =>
   rw [hop] at h
   have hε := (MatExp.admissibleOrder_spec ηe hop).1
-  have hWle := fun j k => MatExp.expRemainderMat_le_expRemainderEntrywise sys.A η ηe hε j k
-  simp only [Bind.bind, Option.bind, Pure.pure, Option.some.injEq] at h
+  have hWle := fun j k => MatExp.expRemainderMat_le_expRemainderEntrywise sys.A ηe ηe hε j k
+  -- the count of halvings, at which the squared enclosure of `e^{AΔt}` is admissible
+  cases hs : sys.halvingsFloat Δt with
+  | none => simp only [hs, Bind.bind, Option.bind] at h; exact absurd h (by simp)
+  | some s =>
+  have hs16 := sys.halvingsFloat_spec (η := 16) (by norm_num) s (Option.mem_def.mpr hs)
+  simp only [hs, Bind.bind, Option.bind, Pure.pure, Option.some.injEq] at h
   subst h
   -- the `U`-input's share, in `PU`
   have hU := CompactSet.isBounded_toSet U
@@ -113,9 +120,9 @@ theorem LinearSys.IsCanonicalTrajectory.oneStepClosedFormFloat_timePoint_outer
       (Real.MatExp.expIntegral_constInput A uR hΔt.le).symm⟩
   -- the free motion, in `[e^{AΔt}] X`
   have hex : exp (r • A) *ᵥ x 0 ∈ toSet (Mtimes.mtimes (ContSet := 𝒵[𝕋])
-      (𝕄 := ℐ[𝕋]) (sys.expEntrywiseFloat Δt η _) X) :=
+      (𝕄 := ℐ[𝕋]) (sys.expSquaringFloat Δt Δt 16 s) X) :=
     Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋]) _ X
-      (Set.mem_biUnion (sys.exp_mem_expEntrywiseFloat η _ hΔt.le hWle)
+      (Set.mem_biUnion (sys.exp_mem_expSquaringFloat hs16 le_rfl le_rfl)
         (Set.mem_image_of_mem _ traj.init))
   have hPU := sys.inputReach_subset_inputSolutionEntrywiseFloat hΔt _ hWle U hpPU
   -- the state is the free motion, the constant's share and the `U`-input's share

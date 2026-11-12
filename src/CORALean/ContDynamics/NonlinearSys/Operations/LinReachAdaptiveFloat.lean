@@ -39,7 +39,7 @@ Every set returned is a pass's at its own step size; CORA's caches (`gredIdx`, `
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-November-2026
--- Last update:   ---
+-- Last update:   11-November-2026
 -- Reviewed:      ---
 
 
@@ -235,7 +235,7 @@ def NonlinearSys.FloatHessModel.step_linReachAdaptiveLoop (fm : NonlinearSys.Flo
   | 0, _ => none
   | fuel + 1, L =>
     match fm.linReachAdaptivePassFloat L.st.tensorOrder U ⟨⟨L.timeStep, o.taylorTerms⟩,
-      o.zonotopeOrder⟩ o.enlarge o.redFactor o.prec o.fuel L.st.R L.errAdm with
+      o.zonotopeOrder⟩ o.enlarge o.redFactor o.prec o.fuel L.st.R L.errAdm o.linearStep with
     | none =>                                                       -- ~Lconverged: halve
       fm.step_linReachAdaptiveLoop U o fuel { L with
         timeStep := half L.timeStep, finitehorizon := half L.timeStep,

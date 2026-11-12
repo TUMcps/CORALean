@@ -270,6 +270,15 @@ private def aux_setup (dops : DtypeOps 𝕋) (req : Json) :
       { Δt := Δt, η := ← natField req "taylorTerms", ρ := ← natField req "zonotopeOrder" }⟩
   else throw s!"`f` has {fs.size} components, expected n = {n}"
 
+/-- The linear step of the request's `linearStep`, `reachFloatInput` when absent. -/
+private def aux_linearStep (req : Json) : Except String NonlinearSys.LinearStep :=
+  match fieldOpt req "linearStep" with
+  | none => pure .reachFloatInput
+  | some j => match j.getStr?.toOption with
+    | some "reachFloatInput" => pure .reachFloatInput
+    | some "closedForm" => pure .closedForm
+    | _ => throw "`linearStep` must be `reachFloatInput` or `closedForm`"
+
 /-- The error for a result holding a NaN: only `tan`'s poison can put one there. -/
 private def aux_tanMsg : String :=
   "the enclosure of `tan` is unbounded on a box of the run (a pole may lie in it)"
@@ -285,10 +294,10 @@ private def aux_input (dops : DtypeOps 𝕋) (req : Json) (m : Nat) :
 def handleNonlinearLinReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   dops.requireUnguaranteed "nonlinearSys.linReach"
   checkFields "linReach" req ["n", "m", "f", "p", "alg", "errorOrder", "R", "U", "timeStep",
-    "taylorTerms", "zonotopeOrder"]
+    "taylorTerms", "zonotopeOrder", "linearStep"]
   let ⟨n, m, fm, alg, options⟩ ← aux_setup dops req
   let R ← parseZonotopeFixed dops.readExact n (← field req "R")
-  match fm.linReachFloat alg (← aux_input dops req m) options R with
+  match fm.linReachFloat alg (← aux_input dops req m) options R (← aux_linearStep req) with
   | none => throw "linReach: the region check, the order search or the linear step failed"
   | some (Rti, Rtp) =>
     if !noNaN (𝕋 := 𝕋) (Rti, Rtp) then throw aux_tanMsg
@@ -371,13 +380,14 @@ private def aux_adaptiveOptions (dops : DtypeOps 𝕋) (req : Json) (poly : Bool
     endTol := ← aux_scalarOr dops req "endTol" 4951760157141521 (-92),
     abortRatio := ← aux_scalarOr dops req "abortRatio" 1000000000 0,
     prec := ← natField req "p",
-    fuel := ← aux_natOr req "fuel" 10000 }
+    fuel := ← aux_natOr req "fuel" 10000,
+    linearStep := ← aux_linearStep req }
 
 /-- The option fields every adaptive op accepts. -/
 private def aux_adaptiveFields : List String :=
   ["tStart", "tFinal", "taylorTerms", "zonotopeOrder", "redFactor", "decrFactor", "zetaphi",
     "zetaK", "initFactor", "enlarge", "horizonTol", "zeroTol", "varphiTol", "varphiStep",
-    "endTol", "abortRatio", "fuel"]
+    "endTol", "abortRatio", "fuel", "linearStep"]
 
 /-- The model of the request's dynamics tree. -/
 private def aux_adaptiveModel (dops : DtypeOps 𝕋) (req : Json) :
@@ -529,7 +539,7 @@ def handleNonlinearLinReachAdaptive (dops : DtypeOps 𝕋) (req : Json) : Resp :
 def handleNonlinearLinReachAdaptivePass (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   dops.requireUnguaranteed "nonlinearSys.linReachAdaptivePass"
   checkFields "linReachAdaptivePass" req ["n", "m", "f", "p", "U", "R", "timeStep", "taylorTerms",
-    "zonotopeOrder", "tensorOrder", "errorAdm", "redFactor", "enlarge", "fuel"]
+    "zonotopeOrder", "tensorOrder", "errorAdm", "redFactor", "enlarge", "fuel", "linearStep"]
   let ⟨n, m, fm⟩ ← aux_adaptiveModel dops req
   let o ← aux_adaptiveOptions dops req
   let R ← parseZonotopeFixed dops.readExact n (← field req "R")
@@ -538,7 +548,7 @@ def handleNonlinearLinReachAdaptivePass (dops : DtypeOps 𝕋) (req : Json) : Re
   let e ← parseVecFixed dops.readExact n (← field req "errorAdm")
   -- one pass, and what the tuning reads of it
   match fm.linReachAdaptivePassFloat (← aux_natOr req "tensorOrder" 2) (← aux_input dops req m)
-      opts o.enlarge o.redFactor o.prec o.fuel R e with
+      opts o.enlarge o.redFactor o.prec o.fuel R e o.linearStep with
   | none => throw "linReachAdaptivePass: the abstraction-error loop did not converge"
   | some P => pure [("timeInterval", printZonotope dops.showExact P.Rti),
       ("timePoint", printZonotope dops.showExact P.Rtp), ("A", printMat dops.showExact P.A),

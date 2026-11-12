@@ -19,7 +19,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.AutoTuneDeltaTFloat
 public import CORALean.ContDynamics.LinearSys.Operations.AutoTuneOrder
 public import CORALean.ContDynamics.LinearSys.Operations.AutoTuneSearch
 public import CORALean.ContDynamics.LinearSys.Operations.BundleReach
-public import CORALean.ContDynamics.LinearSys.Operations.ExpEntrywiseFloat
+public import CORALean.ContDynamics.LinearSys.Operations.HalvingsFloat
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionEntrywise
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionEntrywiseFloat
 public import CORALean.ContDynamics.LinearSys.Operations.OneStepClosedForm

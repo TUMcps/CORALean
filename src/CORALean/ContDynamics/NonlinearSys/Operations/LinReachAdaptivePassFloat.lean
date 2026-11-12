@@ -36,6 +36,7 @@ origin (tensor order 3). `errorSolution_adaptive` still gives `abstrerr`, read b
 * `fuel` – iteration bound
 * `R` – start zonotope
 * `errorAdm` – initial admissible error
+* `step` – linear step
 
 ## Output
 * the sets of the pass and what the tuning reads, or none
@@ -43,7 +44,7 @@ origin (tensor order 3). `errorSolution_adaptive` still gives `abstrerr`, read b
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-November-2026
--- Last update:   ---
+-- Last update:   11-November-2026
 -- Reviewed:      ---
 
 
@@ -64,12 +65,13 @@ at most its `error_adm`, or none once it gives up or `fuel` runs out. -/
 def NonlinearSys.FloatHessModel.step_abstrErrLoopAdaptive (fm : NonlinearSys.FloatHessModel 𝕋 n m)
     (κ : ℕ) (A : Mat 𝕋 n n) (B : Mat 𝕋 n m) (xs : Vec 𝕋 n) (Vbase R : Zonotope (Vec 𝕋 n))
     (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachFloatOptions 𝕋) (enlarge redFactor : 𝕋)
-    (p : ℕ) : ℕ → ℕ → 𝕋 → Vec 𝕋 n →
+    (p : ℕ) (step : NonlinearSys.LinearStep) : ℕ → ℕ → 𝕋 → Vec 𝕋 n →
       Option (Zonotope (Vec 𝕋 n) × Zonotope (Vec 𝕋 n) × Vec 𝕋 n)
   | 0, _, _, _ => none
   | fuel + 1, perfIndCounter, perfIndPrev, errorAdm =>
     let Verror := (⟨-errorAdm, errorAdm⟩ : Interval (Vec 𝕋 n)).zonotope  -- zonotope(0,diag(..))
-    match NonlinearSys.oneStepFloat A xs (Vbase ⊞ Verror) R options with -- Rmax = Rlinti+RallError
+    match NonlinearSys.oneStepFloat A xs (Vbase ⊞ Verror) R options  -- Rmax = Rlinti+RallError
+        step with
     | none => none
     | some (Rmax, _) =>
       let VerrorDyn := fm.abstrErrAdaptiveFloat κ A B xs Rmax U redFactor p  -- priv_abstr...
@@ -78,7 +80,7 @@ def NonlinearSys.FloatHessModel.step_abstrErrLoopAdaptive (fm : NonlinearSys.Flo
         if le (trueError i) zero then zero else divUp (trueError i) (errorAdm i)  -- error_adm)
       if ∀ i, le (trueError i) (errorAdm i) = true then some (Rmax, VerrorDyn, trueError)
       else if 2 < perfIndCounter ∧ le perfIndCurr perfIndPrev = false then none  -- diverging
-      else fm.step_abstrErrLoopAdaptive κ A B xs Vbase R U options enlarge redFactor p fuel
+      else fm.step_abstrErrLoopAdaptive κ A B xs Vbase R U options enlarge redFactor p step fuel
         (perfIndCounter + 1) perfIndCurr fun i => mulUp enlarge (trueError i)  -- 1.1*trueError
 
 
@@ -88,7 +90,8 @@ def NonlinearSys.FloatHessModel.step_abstrErrLoopAdaptive (fm : NonlinearSys.Flo
 sets with the error it accepted, or none if the loop or a linear step fails. -/
 def NonlinearSys.FloatHessModel.linReachAdaptivePassFloat (fm : NonlinearSys.FloatHessModel 𝕋 n m)
     (κ : ℕ) (U : Zonotope (Vec 𝕋 m)) (options : LinearSys.ReachFloatOptions 𝕋)
-    (enlarge redFactor : 𝕋) (p fuel : ℕ) (R : Zonotope (Vec 𝕋 n)) (errorAdm : Vec 𝕋 n) :
+    (enlarge redFactor : 𝕋) (p fuel : ℕ) (R : Zonotope (Vec 𝕋 n)) (errorAdm : Vec 𝕋 n)
+    (step : NonlinearSys.LinearStep := .reachFloatInput) :
     Option (NonlinearSys.LinReachAdaptivePass 𝕋 n) := do
   let Δt := options.Δt                                              -- options.timeStep
   let xs := (fm.toFloatModel.linPointFloat Δt R U).1                -- p.x
@@ -98,9 +101,9 @@ def NonlinearSys.FloatHessModel.linReachAdaptivePassFloat (fm : NonlinearSys.Flo
   let f₀ := fm.f (Interval.point xs) (Interval.point us)            -- f0
   let Vbase := f₀.zonotope ⊞                                        -- uTrans ⊕ B(U - p.u)
     Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B (Recenter.recenter U)
-  let E ← fm.step_abstrErrLoopAdaptive κ A B xs Vbase R U options enlarge redFactor p  -- the loop
-    fuel 1 zero errorAdm
-  let S ← NonlinearSys.oneStepFloat A xs (Vbase ⊞ E.2.1) R options  -- Rti, Rtp with Rerror
+  let E ← fm.step_abstrErrLoopAdaptive κ A B xs Vbase R U options enlarge redFactor p step
+    fuel 1 zero errorAdm                                            -- the loop
+  let S ← NonlinearSys.oneStepFloat A xs (Vbase ⊞ E.2.1) R options step  -- Rti, Rtp with Rerror
   let Rerror := (LinearSys.canonicalFloat A : LinearSys 𝕋 n).errorSolutionAdaptiveFloat Δt
     options.η E.2.1 none                                            -- errorSolution_adaptive
   pure { Rti := S.1, Rtp := S.2, A := A, xs := xs, Rmax := E.1, trueError := E.2.2,
