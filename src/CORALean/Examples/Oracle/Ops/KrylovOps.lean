@@ -1,7 +1,10 @@
+import CORALean.ContDynamics.LinearSys.Krylov.Operations.CarryMinFloat
 import CORALean.ContDynamics.LinearSys.Krylov.Operations.LyapunovCertificateFloat
 import CORALean.ContDynamics.LinearSys.Krylov.Operations.RestartedErrorBoundFloat
 import CORALean.ContDynamics.LinearSys.Krylov.Operations.RestartedErrorOkFloat
 import CORALean.ContDynamics.LinearSys.Krylov.Operations.SubspaceFloat
+import CORALean.ContDynamics.LinearSys.Krylov.Operations.WindowErrorBoundFloat
+import CORALean.ContDynamics.LinearSys.Krylov.Operations.WindowErrorOkFloat
 import CORALean.ContDynamics.LinearSys.Krylov.Operations.WindowsFloat
 import CORALean.Examples.Oracle.Ops.OpCommon
 import CORALean.Examples.Oracle.Ops.SetCodec
@@ -9,14 +12,12 @@ import CORALean.Examples.Oracle.Ops.SetCodec
 /-!
 # The Krylov ops: the float Arnoldi iteration and its certified order
 
-`krylov.arnoldi` runs `Krylov.arnoldiFloat` for `passes` passes on `A` and the start vector `c`
-(`nu` its norm); `errorBound` evaluates `Krylov.errorBoundFloat` with its factors and the test
-`Krylov.orderOkFloat`; `subspace` runs the order search `Krylov.subspaceFloat`, `windows` adds the
-windows of its small system (`Krylov.windowsFloat`). `lyapunovCertificate` checks a weight `P`
-with factor `L` of `P - aI` (`Krylov.lyapunovCertificateFloat`), `restartedBound` adds the
-windows' errors `eps` of lengths `dt` (`Krylov.restartedErrorBoundFloat`). `A` is square, `c` a
-column, `eps` the breakdown threshold, `tf` the final time, `tol` the tolerance; `p`, `q` default to
-20 and 10.
+`krylov.arnoldi` runs `Krylov.arnoldiFloat` on `A` and the start vector `c` (`nu` its norm);
+`errorBound` evaluates `Krylov.errorBoundFloat` and the test `Krylov.orderOkFloat`; `subspace` runs
+the order search `Krylov.subspaceFloat`, `windows` adds the windows of its small system. The
+Lyapunov ops: `lyapunovCertificate` checks a weight `P` with factor `L` of `P - aI`,
+`restartedBound` adds the windows' errors `eps` of lengths `dt`, `windowBound` the error inside the
+next window and the smaller of it and a Gershgorin carry `g`. `p`, `q` default to 20 and 10.
 
 ## Inputs
 * `dops` – dtype operations
@@ -199,11 +200,28 @@ def handleKrylovOp (dops : DtypeOps 𝕋) (name : String) (req : Json) : Option 
     pure ([("windowsOk", Json.bool (Krylov.restartedErrorOkFloat q c Δt N)),
       ("bound", Json.str (dops.showExact (Krylov.restartedErrorBoundFloat p q c Δt ε N)))] ++
       aux_certFields dops c))
+  -- the error at every time of the next window, and the smaller of it and the Gershgorin carry
+  | "windowBound" => some (do
+    checkFields "krylov.windowBound" req ["A", "P", "L", "a", "dt", "eps", "g", "p", "q"]
+    let c ← aux_certificate dops req
+    let p ← aux_natOr req "p" 20
+    let q ← aux_natOr req "q" 10
+    let g ← aux_scalar dops req "g"
+    let ⟨N, dt⟩ ← parseVecDyn dops.readExact (← field req "dt")
+    let eps ← parseVecFixed dops.readExact (N + 1) (← field req "eps")
+    let Δt : Nat → 𝕋 := fun j => if h : j < N then dt ⟨j, h⟩ else Float.FloatOps.zero
+    let ε : Nat → 𝕋 := fun j => if h : j < N + 1 then eps ⟨j, h⟩ else Float.FloatOps.zero
+    let inside := Krylov.windowErrorBoundFloat p q c Δt ε N
+    pure ([("windowsOk", Json.bool (Krylov.windowErrorOkFloat q c Δt N)),
+      ("bound", Json.str (dops.showExact inside)),
+      ("carry", Json.str (dops.showExact (Krylov.carryMinFloat g inside)))] ++
+      aux_certFields dops c))
   | _ => none
 
 /-- Every op of this file, without the `krylov.` prefix. -/
 def krylovOpNames : List String :=
-  ["arnoldi", "errorBound", "subspace", "windows", "lyapunovCertificate", "restartedBound"]
+  ["arnoldi", "errorBound", "subspace", "windows", "lyapunovCertificate", "restartedBound",
+    "windowBound"]
 
 end CORALean.Oracle
 

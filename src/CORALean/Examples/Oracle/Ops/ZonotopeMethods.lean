@@ -30,6 +30,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.Polygon
 import CORALean.ContSet.Zonotope.Float.Operations.Project
 import CORALean.ContSet.Zonotope.Float.Operations.ProjectHighDim
 import CORALean.ContSet.Zonotope.Float.Operations.QuadMap
+import CORALean.ContSet.Zonotope.Float.Operations.QuadMapTri
 import CORALean.ContSet.Zonotope.Float.Operations.Radius
 import CORALean.ContSet.Zonotope.Float.Operations.Reindex
 import CORALean.ContSet.Zonotope.Float.Operations.RepresentsaOrigin
@@ -311,6 +312,15 @@ def handleZonoQuadMap (dops : DtypeOps 𝕋) (req : Json) : Resp := do
     let ⟨r, M⟩ ← parseMatColsFixed dops.readExact dz.n j
     if h : r = dz.n then pure (h ▸ M) else throw s!"quadMap: expected {dz.n}×{dz.n} matrices"
   pure [aux_zField dops "Z" (Zonotope.quadMap (m := qs.size) (fun k => qs[k]) dz.Z)]
+
+/-- `zonotope.quadMapTri`: `Q` as for `quadMap`; CORA's generators, `N + N(N + 1)/2` of them. -/
+def handleZonoQuadMapTri (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "quadMapTri" req ["Z", "Q"]
+  let dz ← parseZonotope dops.readExact (← field req "Z")
+  let qs ← (← arrField req "Q").mapM fun j => do
+    let ⟨r, M⟩ ← parseMatColsFixed dops.readExact dz.n j
+    if h : r = dz.n then pure (h ▸ M) else throw s!"quadMapTri: expected {dz.n}×{dz.n} matrices"
+  pure [aux_zField dops "Z" (Zonotope.quadMapTri (m := qs.size) (fun k => qs[k]) dz.Z)]
 
 /-- `zonotope.cubMap`: `T` an array of `m` arrays of `n` matrices of `n × n`. -/
 def handleZonoCubMap (dops : DtypeOps 𝕋) (req : Json) : Resp := do
@@ -629,6 +639,7 @@ def zonotopeOpNames : List String :=
     "projectOnHyperplane", "enclosePoints", "exactPlus",
     "filterOut", "generatorLength", "intersectStrip", "isBounded", "isFullDim", "isIntersecting",
     "isequal", "lift", "minnorm", "norm", "origin", "project", "projectHighDim", "quadMap",
+    "quadMapTri",
     "radius", "representsa", "rotate", "split", "splitFirstGen", "splitLongestGen",
     "supportFunc", "tensorMultiplication", "tensorMultiplication_zono", "underapproximate",
     "vertices", "zonotopeNorm", "or", "minkDiff", "reduceUnderApprox" ]
@@ -699,12 +710,14 @@ def handleZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option 
           throw "norm: `mode` must be `ub`, the float definition is an upper bound"
       let dz ← parseZonotope dops.readExact (← field req "Z")
       pure [("normSq", Json.str (dops.showExact (Zonotope.normSq dz.Z)))])
+  -- the origin and the maps of zonotopes
   | "origin" => some (do
       checkFields op req ["n"]
       pure [aux_zField dops "Z" (Zonotope.origin (𝕋 := 𝕋) (← natField req "n"))])
   | "project" => some (handleZonoProject dops req)
   | "projectHighDim" => some (handleZonoProjectHighDim dops req)
   | "quadMap" => some (handleZonoQuadMap dops req)
+  | "quadMapTri" => some (handleZonoQuadMapTri dops req)
   -- the splits and the bounds
   | "radius" => some (handleZonoRadius dops req)
   | "representsa" => some (handleZonoRepresentsa dops req)

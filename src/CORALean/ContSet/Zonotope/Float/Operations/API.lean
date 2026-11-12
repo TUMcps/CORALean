@@ -52,6 +52,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.SplitFirstGen
 public import CORALean.ContSet.Zonotope.Float.Operations.LongestGen
 public import CORALean.ContSet.Zonotope.Float.Operations.SplitLongestGen
 public import CORALean.ContSet.Zonotope.Float.Operations.QuadMap
+public import CORALean.ContSet.Zonotope.Float.Operations.QuadMapTri
 public import CORALean.ContSet.Zonotope.Float.Operations.ErrOp
 public import CORALean.ContSet.Zonotope.Float.Operations.AdaptSetOrderLoop
 public import CORALean.ContSet.Zonotope.Float.Operations.AdaptSetOrder

@@ -17,8 +17,12 @@ public import CORALean.ContDynamics.LinearSys.Krylov.Operations.OrderOkFloat
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.SubspaceFloat
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.WindowsFloat
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.LyapunovCertificateFloat
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.RestartedBetaFloat
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.RestartedErrorBoundFloat
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.RestartedErrorOkFloat
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.WindowErrorBoundFloat
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.WindowErrorOkFloat
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.CarryMinFloat
 
 /-!
 # The Arnoldi iteration
@@ -35,6 +39,8 @@ them,
 time-interval sets of the subspace.
 `LyapunovCertificateFloat` checks a weight `P` for which `e^{tA}` decays in the weighted norm and
 `RestartedErrorBoundFloat` accumulates the windows' errors in it (`RestartedErrorOkFloat` tests it),
-for a stable non-normal `A` whose Gershgorin bound `QuadBoundUp` is large.
+for a stable non-normal `A` whose Gershgorin bound `QuadBoundUp` is large; `WindowErrorBoundFloat`
+(`WindowErrorOkFloat`) is the same error at every time inside a window, and `CarryMinFloat` the
+smaller of it and the Gershgorin carry.
 `ReachKrylovCora1D` is CORA's first `'krylov'` time-point set in 1D, as printed.
 -/

@@ -154,6 +154,17 @@ makes `P` symmetric with `x*Px ≥ (a - ρ)x*x`, bounded above by Gershgorin, wi
 rounds the recursion up ([`Krylov.restartedErrorBoundFloat_sound`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/RestartedErrorBoundFloatSound.lean)).
 Cost: `O(n³)` once per system for the two products (`PA` in `O(n nnz(A))` for a sparse `A`).
 
+Inside a window the error is bounded at every time, not only at its end:
+[`Krylov.restarted_error_le_weighted_inside`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/RestartedErrorLeWeightedInside.lean)
+shows that for a nonpositive rate `μ` and a local error `ε_N` valid at every time `s ∈ [0, T]` of window
+`N`, `‖e^{sA} v^{[N]} - W(s)‖₂ ≤ (β_N + √b ε_N)/√a` (the decay of `β_N` inside the window is not
+counted). [`Krylov.windowErrorBoundFloat`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Operations/WindowErrorBoundFloat.lean) rounds it up
+([`Krylov.windowErrorBoundFloat_sound`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/WindowErrorBoundFloatSound.lean), tested by
+[`Krylov.windowErrorOkFloat`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Operations/WindowErrorOkFloat.lean), which adds `rate ≤ 0` to the
+test of the finished windows). The smaller of this and the Gershgorin carry is a bound
+([`Krylov.carryMinFloat_sound`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/CarryMinFloatSound.lean)); CORA.cpp's `KrylovWindows` reports it.
+The hypothesis is that the local error is within `ε_N` at every time of the window; the Krylov bound of a window is nondecreasing in `t` (every factor is), so its value at the window's end serves. That monotonicity is not a theorem here.
+
 [`Krylov.windowsFloat_outer`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/WindowsFloatOuter.lean)
 encloses `e^{tA}c` at every `t = iΔt + s` by `ν V` of window `i` of the `k`-dimensional system
 `ẏ = T y` (`LinearSys.reachFloat`, whose curvature `[F]` is applied to the set at the start of each
