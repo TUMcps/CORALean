@@ -120,6 +120,14 @@ integral of a varying input is not the integral of the matrix times one value. T
 takes `f0 ⊕ B(U - p.u) ⊕ [-error_adm, error_adm]` alone, `error_adm` bounding `VerrorDyn` and the
 static error together, as `trueError` checks. A pass needs `options.Δt > 0`.
 
+**`poly-adaptive` — the window.** As CORA's `initReach_adaptive`, the homogeneous solution and the
+input solutions are reduced adaptively at `zeta_z` before they are added, and `reduceAdaptive` adds
+the columns of equal exponent (`compact`), as does the `exactPlus` of the end set. The solution of
+the constant input at the end of the step is one summed series matrix applied to it; the solutions
+of the inputs that vary in time, and of `[0, ũ]` over all times of the step, stay term by term
+sums, since a summed matrix applied to the set bounds only a constant input. The end set keeps the
+dependency on the start set through the reduction ([`PolyZonotope.reduceAdaptive_fiber`](../../../src/CORALean/ContSet/PolyZonotope/Float/Theorems/ReduceAdaptiveFiber.lean)) and the merging ([`PolyZonotope.compactGens_fiber`](../../../src/CORALean/ContSet/PolyZonotope/Float/Theorems/CompactGensFiber.lean)).
+
 **`poly-adaptive` — departures and gaps.** `reduceAdaptive` boxes an even-exponent generator at its
 full radius (CORA halves it and moves the center). `restructure` stands in for CORA's `reducePca`,
 which fires at 5 of 1193 steps of LALO20 W = 0.1. Every run of the real system is in the sets the

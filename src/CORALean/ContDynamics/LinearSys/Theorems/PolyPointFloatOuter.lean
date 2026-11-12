@@ -3,7 +3,8 @@ module
 public import CORALean.ContDynamics.LinearSys.Operations.PolyPointFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralConstInput
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemAdaptiveIntegralFloat
-public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.HalvingsFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMono
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.IntervalIntegrableExpSubMulVec
@@ -11,8 +12,12 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ReachOrderFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.Basic
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactGensOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberExactPlus
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesIntervalMatOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceAdaptiveFiber
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceAdaptiveOuter
 
 @[expose] public section
 
@@ -30,6 +35,8 @@ their sum is in the fiber of `exactPlusAlign`; the others are in `P̃(Δt)` and 
 * `sys` – linear system
 * `Δt` – step size
 * `η` – Taylor terms
+* `ζ` – reduction factor
+* `p` – square root precision
 * `V` – input zonotope
 * `X₀` – start polynomial zonotope
 * `Vs` – constant input, over `X₀`'s factors
@@ -55,7 +62,7 @@ their sum is in the fiber of `exactPlusAlign`; the others are in `P̃(Δt)` and 
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       11-November-2026
--- Last update:   ---
+-- Last update:   12-November-2026
 -- Reviewed:      ---
 
 
@@ -85,20 +92,23 @@ private theorem aux_pp_zero_mem_origin :
 
 /-- The state at the end of the step is in the end set. -/
 theorem LinearSys.IsCanonicalTrajectory.polyPointFloat_outer {sys : LinearSys 𝕋 n} {Δt : 𝕋}
-    {η : ℕ} {V : Zonotope (Vec 𝕋 n)} {X₀ Vs : PolyZonotope (Vec 𝕋 n)} {R₀ U : Set (Vec ℝ n)}
+    {η : ℕ} {ζ : 𝕋} {p : ℕ} {V : Zonotope (Vec 𝕋 n)} {X₀ Vs : PolyZonotope (Vec 𝕋 n)}
+    {R₀ U : Set (Vec ℝ n)}
     {x u : ℝ → Vec ℝ n} (hΔt : 0 < toReal Δt)
     (traj : sys.IsCanonicalTrajectory (S := ExactSet) (Set.Icc 0 (toReal Δt)) R₀ U x u)
     {α : ℕ → ℝ} (hα : ∀ k, |α k| ≤ 1) {vd : Vec ℝ n}
     (hx : x 0 ∈ X₀.fiber (fun k => α k)) (hvd : vd ∈ Vs.depPart.fiber (fun k => α k))
     (hUb : Bornology.IsBounded U)
     (hUV : ∀ z ∈ U, z - vd ∈ (V ⊞ Vs.indepZonotope).toSet) : -- --- CONCL ---
-    ∀ R ∈ sys.polyPointFloat Δt η V X₀ Vs, x (toReal Δt) ∈ R.toSet := by -- --- PROOF ---
+    ∀ R ∈ sys.polyPointFloat Δt η ζ p V X₀ Vs, x (toReal Δt) ∈ R.toSet := by -- --- PROOF ---
   intro R h
   rw [Option.mem_def] at h
   unfold LinearSys.polyPointFloat at h
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff, Option.pure_def,
     Option.some.injEq] at h
-  obtain ⟨η', hη', rfl⟩ := h
+  obtain ⟨η', hη', s, hs, rfl⟩ := h
+  have hexp := sys.exp_mem_expSquaringFloat (η := 16) (t := toReal Δt)
+    (LinearSys.halvingsFloat_spec (by norm_num) s hs) le_rfl le_rfl
   have hη := (LinearSys.reachOrderFloat_spec _ hη').1
   set A := Scalar.toRealMat sys.A with hA
   set r := toReal Δt with hr
@@ -140,36 +150,44 @@ theorem LinearSys.IsCanonicalTrajectory.polyPointFloat_outer {sys : LinearSys �
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' hadm.1
   have hpt : ũ ∈ (Interval.point Vt.c).zonotope.toSet :=
     Interval.zonotope_contains _ (Interval.mem_point Vt.c)
-  have hPu : Real.MatExp.expIntegral A r *ᵥ ũ ∈
-      (sys.inputSolutionFloat Δt (m + 2) (Interval.point Vt.c).zonotope).toSet :=
-    sys.inputReach_subset_inputSolutionFloat hΔt hadm _
-      ⟨fun _ => ũ, fun _ _ => hpt, aestronglyMeasurable_const,
-        (Real.MatExp.expIntegral_constInput A ũ hr0).symm⟩
-  have hPU := sys.inputReach_subset_inputSolutionFloat hΔt hadm _ hrest
+  have hPu : Real.MatExp.expIntegral A r *ᵥ ũ ∈ (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
+      (MatExp.adaptiveIntegral (Interval.point sys.A) Δt (m + 2))
+      (Interval.point Vt.c).zonotope).toSet :=
+    (Set.subset_biUnion_of_mem (u := fun M => (M *ᵥ ·) '' (Interval.point Vt.c).zonotope.toSet)
+      (sys.expIntegral_mem_adaptiveIntegralFloat hr0 hadm)).trans
+      (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
+        (MatExp.adaptiveIntegral (Interval.point sys.A) Δt (m + 2))
+        (Interval.point Vt.c).zonotope) ⟨ũ, hpt, rfl⟩
+  have hPU := Zonotope.reduceAdaptive_outer _ ζ p
+    (sys.inputReach_subset_inputSolutionFloat hΔt hadm _ hrest)
   -- the free motion and the constant `vd` at the one set of factors
   have ha : ∀ k : Fin X₀.p, |(fun k : Fin X₀.p => α k) k| ≤ 1 := fun k => hα k
   have heA := PolyZonotope.mtimesIntervalMat_fiber
-    (sys.expIntervalFloat Δt Δt (m + 2)) X₀ (sys.exp_mem_expIntervalFloat hadm le_rfl le_rfl) ha hx
+    (sys.expSquaringFloat Δt Δt 16 s) X₀ (hexp) ha hx
   have hPs := PolyZonotope.mtimesIntervalMat_fiber
     (MatExp.adaptiveIntegral (Interval.point sys.A) Δt (m + 2)) Vs.depPart
     (sys.expIntegral_mem_adaptiveIntegralFloat hr0 hadm) (fun k => hα k) hvd
-  have hex := PolyZonotope.exactPlusAlign_fiber _ _ α heA hPs
+  have heR := PolyZonotope.reduceAdaptive_fiber _ ζ p (fun k => hα k) heA
+  have hex := PolyZonotope.exactPlusAlign_fiber _ _ α heR hPs
   have hex' : exp (r • A) *ᵥ x 0 + Real.MatExp.expIntegral A r *ᵥ vd ∈
       (PolyZonotope.exactPlusAlign
-        (PolyZonotope.mtimesIntervalMat (sys.expIntervalFloat Δt Δt (m + 2)) X₀)
+        ((PolyZonotope.mtimesIntervalMat (sys.expSquaringFloat Δt Δt 16 s) X₀).reduceAdaptive
+          ζ p)
         (PolyZonotope.mtimesIntervalMat
-          (MatExp.adaptiveIntegral (Interval.point sys.A) Δt (m + 2)) Vs.depPart)).toSet :=
-    (PolyZonotope.mem_toSet_iff_fiber _ _).mpr ⟨_, fun k => hα k, hex⟩
+          (MatExp.adaptiveIntegral (Interval.point sys.A) Δt (m + 2)) Vs.depPart)
+        ).compactGens.toSet :=
+    PolyZonotope.compactGens_outer _
+      ((PolyZonotope.mem_toSet_iff_fiber _ _).mpr ⟨_, fun k => hα k, hex⟩)
   -- the end state is their sum with the two input shares
-  have hend : x r = (exp (r • A) *ᵥ x 0 + Real.MatExp.expIntegral A r *ᵥ vd)
-      + (Real.MatExp.expIntegral A r *ᵥ ũ
-        + ∫ s in (0 : ℝ)..r, exp ((r - s) • A) *ᵥ (u s - vd - ũ)) := by
+  have hend : x r = ((exp (r • A) *ᵥ x 0 + Real.MatExp.expIntegral A r *ᵥ vd)
+      + Real.MatExp.expIntegral A r *ᵥ ũ)
+        + ∫ s in (0 : ℝ)..r, exp ((r - s) • A) *ᵥ (u s - vd - ũ) := by
     rw [hvoc, hsum, hconst, Matrix.mulVec_add]
     abel
   rw [hend]
-  exact Plus.plus_outer (S := PolyZonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add hex'
-    (Plus.plus_outer (S := PolyZonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add
-      (Zonotope.ofIndep_outer _ hPu) (Zonotope.ofIndep_outer _ hPU))))
+  exact Plus.plus_outer (S := PolyZonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add
+    (Plus.plus_outer (S := PolyZonotope (Vec 𝕋 n)) _ _ (Set.add_mem_add hex'
+      (Zonotope.ofIndep_outer _ hPu))) (Zonotope.ofIndep_outer _ hPU))
 
 end CORALean
 

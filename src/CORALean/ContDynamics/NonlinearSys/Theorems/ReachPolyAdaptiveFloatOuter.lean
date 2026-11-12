@@ -5,6 +5,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachPolyAdaptiveFl
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Restrict
 public import CORALean.ContDynamics.NonlinearSys.Theorems.Shift
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.Basic
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactGensOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceByOuter
 
 @[expose] public section
@@ -67,7 +68,7 @@ private theorem aux_prfa_reduceOnlyDep_outer (R : PolyZonotope (Vec 𝕋 n)) (or
   unfold step_reduceOnlyDep
   split_ifs
   · exact subset_rfl
-  · exact PolyZonotope.reduceBy_outer R _ _
+  · exact (PolyZonotope.reduceBy_outer R _ _).trans (PolyZonotope.compactGens_outer _)
 
 
 -- =======================================  MAIN THEOREM  ======================================= --

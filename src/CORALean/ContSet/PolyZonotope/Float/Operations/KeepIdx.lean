@@ -9,7 +9,7 @@ public import Mathlib.Data.Finset.Sort
 # The kept columns, indexed by a plain count, over a floating-point scalar
 
 Split out of `Compact.lean` (issue #62): read again by `mergedCol` and
-`mergedColUp` in this directory, and by `Theorems/CompactGensOuter.lean` and
+`mergedColUp` in this directory, and by `Theorems/CompactGensFiber.lean` and
 `ConPolyZono`'s own compaction, all outside this file.
 
 ## Inputs

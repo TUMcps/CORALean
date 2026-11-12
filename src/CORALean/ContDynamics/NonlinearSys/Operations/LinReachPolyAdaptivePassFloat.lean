@@ -81,7 +81,7 @@ def NonlinearSys.FloatHessModel.step_abstrErrLoopPolyAdaptive
       (⟨0, v, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n))
     let Vsz := Vstat.zonotopeEven.materialise                       -- zonotope(Vstat)
     -- Rdiff: the differences over the step, with RallError (total error within error_adm) as input
-    (LinearSys.canonicalFloat A : LinearSys 𝕋 n).polyWindowFloat options.Δt options.η
+    (LinearSys.canonicalFloat A : LinearSys 𝕋 n).polyWindowFloat options.Δt options.η redFactor p
         (Vbase ⊞ Verror) Rdelta |>.bind fun W =>
       let Rdiff := W.2
       let Rmax := ((Rdelta.zonotopeEven.materialise ⊞ Rdiff.zonotopeEven.materialise) ⊞
@@ -123,8 +123,8 @@ def NonlinearSys.FloatHessModel.linReachPolyAdaptivePassFloat
     redFactor p fuel 1 zero errorAdm                                -- the loop
   let Vdyn := E.1                                                   -- VerrorDyn
   let Vsz := S.1.zonotopeEven.materialise                           -- zonotope(Vstat)
-  let W ← lin.polyWindowFloat Δt options.η ((Vbase ⊞ Vdyn) ⊞ Vsz) Rdelta  -- Rti
-  let Rtp ← lin.polyPointFloat Δt options.η (Vbase ⊞ Vdyn) Rdelta S.1  -- Rtp, exactPlus
+  let W ← lin.polyWindowFloat Δt options.η redFactor p ((Vbase ⊞ Vdyn) ⊞ Vsz) Rdelta  -- Rti
+  let Rtp ← lin.polyPointFloat Δt options.η redFactor p (Vbase ⊞ Vdyn) Rdelta S.1  -- Rtp, exactPlus
   let pt := (Interval.point xs).zonotope.ofIndep                    -- + p.x
   let Rerror := (lin.errorSolutionAdaptiveFloat Δt options.η Vdyn none).ofIndep ⊞   -- Rerror
     PolyZonotope.mtimesIntervalMat (MatExp.adaptiveIntegral (Interval.point A) Δt options.η) S.1

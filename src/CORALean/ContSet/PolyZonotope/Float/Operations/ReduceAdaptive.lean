@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.PolyZonotope.Float.Operations.CompactGens
 public import CORALean.ContSet.PolyZonotope.Float.Operations.GirardMetric
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Materialise
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceBy
@@ -19,7 +20,8 @@ smallest first in one stable ranking. Along it the box distance grows by `½‖�
 dependent and by `2‖Σ(|g| with its largest entry zeroed)‖₂` over the independent generators; the
 longest prefix within `dHmax = ½ · diagpercent · ‖Σ|g|‖₂` is boxed by `reduceBy`, sound at every
 partition. CORA halves the box of an even-exponent generator and moves its center; here the box is
-the full radius, sound and a little wider.
+the full radius, sound and a little wider. CORA's `reduce` ends in `compact`: equal exponent
+columns are added (`compactGens`; the factors keep their positions, so a shared set stays aligned).
 
 ## Inputs
 * `pZ` – polynomial zonotope
@@ -126,7 +128,7 @@ def PolyZonotope.step_adaptiveRed (pZ : PolyZonotope (Vec 𝕋 n))
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- CORA's `reduce(pZ, 'adaptive', diagpercent)`: the generators the rule selects boxed into the
-independent block, the others kept in their order. -/
+independent block, the others kept in their order, equal exponent columns then added. -/
 def PolyZonotope.reduceAdaptive (pZ : PolyZonotope (Vec 𝕋 n)) (diagpercent : 𝕋) (p : ℕ) :
     PolyZonotope (Vec 𝕋 n) :=
   let rank := pZ.step_adaptiveRank                                  -- idx, ascending
@@ -135,7 +137,7 @@ def PolyZonotope.reduceAdaptive (pZ : PolyZonotope (Vec 𝕋 n)) (diagpercent : 
   (pZ.reduceBy
     (Partition.ofPred fun j : Fin pZ.h => pZ.step_adaptiveRed rank r (Fin.castAdd pZ.q j) = true)
     (Partition.ofPred fun j : Fin pZ.q =>
-      pZ.step_adaptiveRed rank r (Fin.natAdd pZ.h j) = true)).materialise
+      pZ.step_adaptiveRed rank r (Fin.natAdd pZ.h j) = true)).materialise.compactGens
 
 end CORALean.Float
 
