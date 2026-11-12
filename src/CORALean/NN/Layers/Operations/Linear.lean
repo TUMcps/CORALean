@@ -1,7 +1,7 @@
 module
 
 public import CORALean.ContSet.Conversion.Float.Instances
-public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Conversion.Float.Operations.Vec_to_ContSet
 public import CORALean.NN.Layers.Layer
 
 @[expose] public section
@@ -12,7 +12,8 @@ public import CORALean.NN.Layers.Layer
 CORA's `nnLinearLayer`: `x ↦ W x + b`, with `W` and `b` stored in the scalar. The only layer whose
 propagation is a set operation and nothing else — `mtimes` for the weights, `plus` with the bias —
 so the only standard one that loses nothing at a representation closed under both. The bias enters
-as a box of zero width, which is why `OfInterval` is asked for and not a translation. Nothing rounds
+as a box of zero width (`OfInterval.ofVec`, the scoped coercion that lets `b` stand for its
+one-point set), which is why `OfInterval` is asked for and not a translation. Nothing rounds
 here: both operations already pay their own rounding, and what the layer encloses is the exact
 affine map the stored weights denote; reading a network off a file is exact.
 
@@ -44,7 +45,7 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Layer.linear (W : Mat 𝕋 m n) (b : Vec 𝕋 m) : Layer S n m where
-  enclose s := plus (mtimes W s) (ofInterval (Float.Interval.point b))
+  enclose s := plus (mtimes W s) b
 
 end CORALean
 
