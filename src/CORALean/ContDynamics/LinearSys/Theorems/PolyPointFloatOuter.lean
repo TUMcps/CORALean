@@ -29,7 +29,8 @@ A run of `ẋ = Ax + w`, from `x₀` at the factors `α` of `X₀`, whose input 
 the free motion `e^{AΔt} x₀`, the constant `vd`'s share `∫₀^Δt e^{As} ds vd`, the share of `ũ`, the
 center of the rest, and the remainder, which is in `Ũ`'s input reach. The first two are the fibers
 of `[e^{AΔt}] X₀` and `[∫₀^Δt e^{As} ds] Vs_dep` at the one `α` (`mtimesIntervalMat_fiber`), so
-their sum is in the fiber of `exactPlusAlign`; the others are in `P̃(Δt)` and `P^R(Δt)`.
+their sum is in the fiber of `exactPlusAlign`; the others are in `P̃(Δt)` and `P^R(Δt)`, the latter
+with `Ũ` boxed to `n` generators (`reduce_outer`).
 
 ## Inputs
 * `sys` – linear system
@@ -158,8 +159,13 @@ theorem LinearSys.IsCanonicalTrajectory.polyPointFloat_outer {sys : LinearSys �
       (Mtimes.mtimes_outer (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])
         (MatExp.adaptiveIntegral (Interval.point sys.A) Δt (m + 2))
         (Interval.point Vt.c).zonotope) ⟨ũ, hpt, rfl⟩
+  -- (the series runs on `Ũ` boxed to `n` generators, a superset of `Ũ`)
+  have hbox : (∫ s in (0 : ℝ)..r, exp ((r - s) • A) *ᵥ (u s - vd - ũ))
+      ∈ sys.inputReach (S := 𝒵[𝕋]) (Zonotope.reduce (Recenter.recenter Vt) 1) r := by
+    obtain ⟨w, hw, hm, he⟩ := hrest
+    exact ⟨w, fun s hs => Zonotope.reduce_outer _ 1 (hw s hs), hm, he⟩
   have hPU := Zonotope.reduceAdaptive_outer _ ζ p
-    (sys.inputReach_subset_inputSolutionFloat hΔt hadm _ hrest)
+    (sys.inputReach_subset_inputSolutionFloat hΔt hadm _ hbox)
   -- the free motion and the constant `vd` at the one set of factors
   have ha : ∀ k : Fin X₀.p, |(fun k : Fin X₀.p => α k) k| ≤ 1 := fun k => hα k
   have heA := PolyZonotope.mtimesIntervalMat_fiber

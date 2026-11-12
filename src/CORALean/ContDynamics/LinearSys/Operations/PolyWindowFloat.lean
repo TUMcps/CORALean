@@ -14,6 +14,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.PolyZonotope.Float.Operations.OfZonotope
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceAdaptive
 public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContSet.Zonotope.Float.Operations.Reduce
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceAdaptive
 public import CORALean.Global.StepOf
 
@@ -27,9 +28,9 @@ polynomial zonotope: `[e^{AΔt}] X₀` keeps the dependency of `X₀` on its fac
 solutions are zonotopes added as independent generators (CORA's `pZ + zonotope`). The input `V`
 is time-varying, its center held through `hull(0, ũ)`, so the window covers every time of the step.
 As CORA does, the homogeneous solution and the solutions of the inputs are reduced adaptively at
-`ζ` before they are added, which keeps the independent part small. The input solutions stay
-term by term sums: the input varies in time, and a summed series matrix applied to the set
-bounds only a constant one.
+`ζ` before they are added, which keeps the independent part small. The input solutions stay term
+by term sums (a summed series matrix bounds only a constant input), of the varying input `Ũ` boxed
+to `n` generators first (`reduce` to order 1), as the series multiplies each generator per order.
 
 ## Inputs
 * `sys` – linear system
@@ -75,7 +76,8 @@ def LinearSys.polyWindowFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ) (
   let eAΔtI := Interval.matPlus eAΔt (Interval.point (negIdentityMat 𝕋 n))  -- [e^{AΔt}] - I
   let F := MatExp.intervalCorrectionMatrix (Interval.point sys.A) Δt η'   -- [F]
   let PuR := (sys.inputSolutionFloat Δt η' seg).reduceAdaptive ζ p  -- reduce(P̃^R(τ_0))
-  let PU := (sys.inputSolutionFloat Δt η' Ũ).reduceAdaptive ζ p     -- reduce(P^R(Δt))
+  let Ũb := Zonotope.reduce Ũ 1                                      -- Ũ boxed to `n` generators
+  let PU := (sys.inputSolutionFloat Δt η' Ũb).reduceAdaptive ζ p    -- reduce(P^R(Δt))
   let FX := PolyZonotope.mtimesIntervalMat F X₀                     -- [F] X₀
   let O := (Interval.point fun _ : Fin n => (zero : 𝕋)).zonotope.ofIndep    -- the origin
   let hom := (LinComb.linComb X₀ (PolyZonotope.mtimesIntervalMat eAΔt X₀) ⊞ FX).reduceAdaptive

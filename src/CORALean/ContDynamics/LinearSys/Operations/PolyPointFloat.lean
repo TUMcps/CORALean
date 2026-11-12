@@ -16,6 +16,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.PolyZonotope.Float.Operations.OfZonotope
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceAdaptive
 public import CORALean.ContSet.Zonotope.Float.Instances
+public import CORALean.ContSet.Zonotope.Float.Operations.Reduce
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceAdaptive
 public import CORALean.Global.StepOf
 
@@ -29,9 +30,9 @@ zonotope over `X₀`'s factors (`priv_precompStatError_adaptive`). Its dependent
 the step and is added by `exactPlus` through `[∫₀^Δt e^{As} ds]` as CORA's `errorSolution_adaptive`
 does, so that its dependency on `X₀` stays. Its independent part varies with the state's input,
 which that matrix does not bound; it joins the input `V`, whose solution bounds every input in time.
-As in CORA, the homogeneous solution and the varying input's solution are reduced at `ζ` first.
-The constant input `ũ` is one summed series matrix applied to it; the varying input's solution
-stays a term by term sum, as a summed matrix bounds only a constant one.
+As in CORA, the homogeneous solution and the varying input's solution are reduced at `ζ` first, the
+input after being boxed to `n` generators (`reduce` to order 1). The constant input `ũ` is one
+summed series matrix applied to it; the varying input's solution stays a term by term sum.
 
 ## Inputs
 * `sys` – linear system
@@ -77,7 +78,8 @@ def LinearSys.polyPointFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : ℕ) (�
   let Ũ := Recenter.recenter Vt                                 -- Ũ = Vt - ũ, holding 0
   let Pu := (Mtimes.mtimes (𝕄 := ℐ[𝕋]) (ContSet := 𝒵[𝕋])       -- eAtInt * ũ, the summed series
     (MatExp.adaptiveIntegral (Interval.point sys.A) Δt η') ũ).ofIndep   -- applied to the constant
-  let PU := ((sys.inputSolutionFloat Δt η' Ũ).reduceAdaptive ζ p).ofIndep  -- reduce(P^R(Δt))
+  let Ũb := Zonotope.reduce Ũ 1                                 -- Ũ boxed to `n` generators
+  let PU := ((sys.inputSolutionFloat Δt η' Ũb).reduceAdaptive ζ p).ofIndep  -- reduce(P^R(Δt))
   let eA := (PolyZonotope.mtimesIntervalMat (sys.expSquaringFloat Δt Δt 16 s) X₀).reduceAdaptive
     ζ p                                                             -- reduce([e^{AΔt}] X₀)
   let Ps := PolyZonotope.mtimesIntervalMat                      -- eAtInt * Vstat, the part
