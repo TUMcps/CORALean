@@ -128,6 +128,32 @@ upper Hessenberg by [`Krylov.arnoldiFloat_hessenberg`](../../../src/CORALean/Con
 and [`Krylov.subspaceFloat_error_le`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/SubspaceFloatSound.lean)
 says an accepted order meets the tolerance on all of `[0, t_f]`, whatever `A`.
 
+**`reach` — the Krylov error of earlier windows, in a Lyapunov weight.** The bound above carries the error of
+a restarted window with `e^{tμ}`, `μ` Gershgorin's bound of the symmetric part, which for a stable but
+non-normal `A` (ARCH26 AFF `RND02`, `RND04`-`RND06`: `μ_A ≈ 551`, eigenvalues in `[-5, -1] ± 0.5i`) is
+astronomically above the true decay. [`Krylov.quad_exp_le_weighted`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/QuadExpLeWeighted.lean)
+shows `(e^{tA}x)* P (e^{tA}x) ≤ e^{2μt} x* P x` for a symmetric `P` with `x* P A x ≤ μ x* P x`
+(`A*P + PA ≼ 2μP`, `μ` negative for a Lyapunov solution), and
+[`Krylov.norm_exp_le_weighted`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/NormExpLeWeighted.lean)
+turns it into `‖e^{tA}x‖₂ ≤ √(b/a) e^{μt}‖x‖₂` for `a x*x ≤ x* P x ≤ b x*x`.
+[`Krylov.restarted_error_le_growth`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/RestartedErrorLeGrowth.lean)
+accumulates local errors for exact steps that grow by `g_j` in a gauge, and
+[`Krylov.restarted_error_le_weighted`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/RestartedErrorLeWeighted.lean)
+applies it to the gauge `√(x* P x)`: with the windows' local 2-norm errors `ε'_j` and
+`β_{j+1} ≥ e^{μΔt_j} β_j + √b ε'_j`, the 2-norm error after `N` windows is at most `β_N/√a`, the
+condition number paid once. The Krylov window bound itself keeps its 2-norm `μ` (`Δt_j` is short).
+
+The float side, [`Krylov.lyapunovCertificateFloat`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Operations/LyapunovCertificateFloat.lean),
+checks a given float `P` and a factor `L` of `P - aI` (a Cholesky factor, from anywhere): the rounded
+products `L*L` and `PA` leave `P - aI - L*L` and `PA + (PA)* + I` small in Gershgorin's sense, which
+makes `P` symmetric with `x*Px ≥ (a - ρ)x*x`, bounded above by Gershgorin, with a rate
+([`Krylov.lyapunovCertificateFloat_sound`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/LyapunovCertificateFloatSound.lean),
+[`Krylov.lyapunovCertificateFloat_norm_exp_le`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/LyapunovCertificateFloatNormExpLe.lean)).
+
+[`Krylov.restartedErrorBoundFloat`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Operations/RestartedErrorBoundFloat.lean)
+rounds the recursion up ([`Krylov.restartedErrorBoundFloat_sound`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/RestartedErrorBoundFloatSound.lean)).
+Cost: `O(n³)` once per system for the two products (`PA` in `O(n nnz(A))` for a sparse `A`).
+
 [`Krylov.windowsFloat_outer`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/WindowsFloatOuter.lean)
 encloses `e^{tA}c` at every `t = iΔt + s` by `ν V` of window `i` of the `k`-dimensional system
 `ẏ = T y` (`LinearSys.reachFloat`, whose curvature `[F]` is applied to the set at the start of each
