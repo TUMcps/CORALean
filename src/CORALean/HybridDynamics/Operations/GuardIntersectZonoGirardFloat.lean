@@ -3,7 +3,7 @@ module
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
-public import CORALean.HybridDynamics.Operations.ZonoGirardUpperFloat
+public import CORALean.HybridDynamics.Operations.ZonoGirardBoxFloat
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 
 @[expose] public section
@@ -58,14 +58,8 @@ def Location.guardIntersectZonoGirardFloat (Bs : List (Mat 𝕋 n n)) (R₀ : Zo
     (Rs : List (Zonotope (Vec 𝕋 n))) (nv : Vec 𝕋 n) (γ : 𝕋) : ZonoBundle (Vec 𝕋 n) where
   k := Bs.length
   Z := fun i =>
-    let B := Bs[i]
-    -- the cut of one reach set along each column `ℓ` of `B`, `[-U(-ℓ), U(ℓ)]`
-    let cut : Zonotope (Vec 𝕋 n) → Interval (Vec 𝕋 n) := fun R =>
-      ⟨fun k => neg (Location.zonoGirardUpperFloat R nv γ (-(Bᵀ k))),
-        fun k => Location.zonoGirardUpperFloat R nv γ (Bᵀ k)⟩
-    -- `I`, the cuts joined
-    let I := (Rs.map cut).foldl Interval.or (cut R₀)
-    Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B I.zonotope
+    Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) Bs[i]
+      (Location.zonoGirardBoxFloat Bs[i] R₀ Rs nv γ).zonotope
 
 end CORALean
 

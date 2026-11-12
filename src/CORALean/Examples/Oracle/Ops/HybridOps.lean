@@ -14,10 +14,11 @@ import CORALean.HybridDynamics.Operations.InputSetFloat
 import CORALean.HybridDynamics.Operations.JumpFloat
 import CORALean.HybridDynamics.Operations.LocationPotInt
 import CORALean.HybridDynamics.Operations.LocationReachFloat
+import CORALean.HybridDynamics.Operations.ReachQueueFloat
 import CORALean.Specification.Instances
 
 /-!
-# The hybrid-automaton ops: CORA's `location` and `transition` steps
+# The hybrid-automaton ops: CORA's `location` and `transition` steps, and `hybridAutomaton.reach`
 
 Thin adapters over the float definitions `references/coverage/hybridDynamics/location.md` links;
 the wire shapes are in `experiments/oracle/README.md`. A location is the flow `A`, `B`, `c`, `E` of
@@ -107,6 +108,32 @@ private def aux_ratOf : ExactScalar → ℚ
 /-- The zonotope reduced to `order`, `Reduce.reduce`. -/
 private def aux_reduce {n : Nat} (order : Nat) (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
   Reduce.reduce Z order
+
+/-- The time `q` as the exact scalar of the wire, `q` being dyadic. -/
+private def aux_showTime (q : ℚ) : Except String Json :=
+  if 2 ^ Nat.log2 q.den = q.den then
+    pure (Json.str (showExactDyadic ⟨q.num, -(Nat.log2 q.den : Int)⟩))
+  else throw "reach: a time is not dyadic"
+
+/-- A location of the automaton: the flow and input sets of the request's object, its invariant,
+and its transitions `guard`, `W`, `w`, `target` (reset `x ↦ W x + w`). -/
+private def aux_hybridLocation (dops : DtypeOps 𝕋) (n : Nat) (j : Json) :
+    Except String (Location 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) Nat 𝕋 n) := do
+  let ⟨n', ℓ'⟩ ← aux_flowLocation dops j
+  if h : n' = n then
+    let ℓ : Location 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) Nat 𝕋 n := h ▸ ℓ'
+    let inv ← parseHPolytopeFixed dops.readExact n (← field j "invariant")
+    let trs ← (← arrField j "transitions").mapM fun t => do
+      let guard ← parseHPolytopeFixed dops.readExact n (← field t "guard")
+      let ⟨r, W⟩ ← parseMatColsFixed dops.readExact n (← field t "W")
+      let w ← parseVecFixed dops.readExact r (← field t "w")
+      let target ← natField t "target"
+      if hr : r = n then
+        pure (⟨guard, hr ▸ W, hr ▸ w, target⟩ :
+          Transition (fun k => HPolytope 𝕋 (Vec 𝕋 k)) Nat 𝕋 n)
+      else throw s!"a reset `W` has {r} rows, expected {n}"
+    pure { ℓ with inv := inv, trans := trs.toList }
+  else throw s!"a location has {n'} states, expected {n}"
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -306,6 +333,64 @@ def transitionOpNames : List String := [ "jump" ]
 def handleTransitionOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option Resp :=
   match op with
   | "jump" => some (handleTransitionJump dops req)
+  | _ => none
+
+/-- `hybridAutomaton.reach`: `HybridAutomaton.reachQueueFloat`, CORA's `hybridAutomaton/reach` loop
+with the `zonoGirard` guard intersection in the `'box'` basis; `branches`, per stay the location,
+the producing branch, the time-interval sets and the two ends of the start time. -/
+def handleHybridAutomatonReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "reach" req ["locations", "startLoc", "R0", "tStart", "tFinal", "taylorTerms",
+    "zonotopeOrder", "finalLoc", "guardIntersect", "enclose", "fuel"]
+  -- the one guard intersection and basis that have a float definition
+  if (← strField req "guardIntersect") ≠ "zonoGirard" then
+    throw "reach: `guardIntersect` is served as \"zonoGirard\" only"
+  let enclose := (← arrField req "enclose").toList.map fun e => e.getStr?.toOption
+  if enclose ≠ [some "box"] then
+    throw "reach: `enclose` is served as [\"box\"] only (`pca`, `flow`: no float definition)"
+  let locs ← arrField req "locations"
+  let n ← match locs[0]? with
+    | some j => natField (← field j "A") "cols"
+    | none => throw "reach: no location"
+  -- every location with its own time step
+  let ls ← locs.mapM fun j => do
+    pure (← aux_hybridLocation dops n j, ← dops.readExact "timeStep" (← scalarField j "timeStep"))
+  match ls.toList with
+  | [] => throw "reach: no location"
+  | (ℓ₀, Δ₀) :: _ =>
+    -- the automaton, the options of the loop and the start
+    let HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) Nat 𝕋 n :=
+      ⟨fun i => (ls[i]?.map (·.1)).getD ℓ₀⟩
+    let finalLoc ← if (fieldOpt req "finalLoc").isSome then natField req "finalLoc"
+      else pure ls.size
+    let fuel ← if (fieldOpt req "fuel").isSome then natField req "fuel" else pure 1000
+    let options : HybridReachOptions Nat 𝕋 :=
+      { Δt := fun i => (ls[i]?.map (·.2)).getD Δ₀, η := ← natField req "taylorTerms",
+        ρ := ← natField req "zonotopeOrder", tFinal := aux_ratOf (← scalarField req "tFinal"),
+        finalLoc := finalLoc, fuel := fuel }
+    let X₀ ← parseZonotopeFixed dops.readExact n (← field req "R0")
+    let tStart := aux_ratOf (← scalarField req "tStart")
+    -- the queue of CORA's loop, from the start set
+    match HA.reachQueueFloat (Location.calcBasisBox 𝕋 n) options tStart (← natField req "startLoc")
+        X₀ with
+    | none => throw "reach: a pass failed (a guard that is not a bare hyperplane, no admissible \
+        Taylor order, a step that is not positive) or the queue did not empty in `fuel` passes"
+    | some bs =>
+      -- one object per branch
+      let out ← bs.mapM fun b => do
+        pure (Json.mkObj [("loc", Lean.toJson b.loc),
+          ("parent", match b.parent with | some i => Lean.toJson i | none => Json.null),
+          ("timeInterval", Json.arr (b.sets.toArray.map (printZonotope dops.showExact))),
+          ("tStart", Json.arr #[← aux_showTime b.tlo, ← aux_showTime b.thi])])
+      pure [("branches", Json.arr out.toArray)]
+
+/-- Every op of `hybridAutomaton.`. -/
+def hybridAutomatonOpNames : List String := [ "reach" ]
+
+/-- `op` of `hybridAutomaton.`, run; `none` for a name this file does not serve. -/
+@[noinline, nospecialize]
+def handleHybridAutomatonOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option Resp :=
+  match op with
+  | "reach" => some (handleHybridAutomatonReach dops req)
   | _ => none
 
 end CORALean.Oracle

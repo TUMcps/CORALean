@@ -2,8 +2,7 @@ module
 
 public import CORALean.ContSet.SetIntersection.Theorems.Basic
 public import CORALean.HybridDynamics.Operations.GuardIntersectZonoGirardFloat
-public import CORALean.HybridDynamics.Theorems.ZonoGirardUpperFloatLe
-public import CORALean.ContSet.Interval.Float.Theorems.OrOuter
+public import CORALean.HybridDynamics.Theorems.ZonoGirardBoxFloatMem
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalZonotopeContains
@@ -63,20 +62,6 @@ theorem Location.guardIntersectZonoGirardFloat_outer (Bs : List (Mat 𝕋 n n))
     {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ R₀ :: Rs) {x : Vec ℝ n} (hx : x ∈ R.toSet)
     (hg : x ⬝ᵥ toRealVec nv = toReal γ) : -- --- CONCL ---
     x ∈ (Location.guardIntersectZonoGirardFloat Bs R₀ Rs nv γ).toSet := by -- --- PROOF ---
-  have hfold : ∀ (Is : List (Interval (Vec 𝕋 n))) (J : Interval (Vec 𝕋 n)) (y : Vec ℝ n),
-      (y ∈ J.toSet ∨ ∃ I ∈ Is, y ∈ I.toSet) → y ∈ (Is.foldl Interval.or J).toSet := by
-    intro Is
-    induction Is with
-    | nil => exact fun J y h => h.resolve_right (by simp)
-    | cons I Is ih =>
-      intro J y h
-      rw [List.foldl_cons]
-      refine ih _ y ?_
-      rcases h with hJ | ⟨I', hI', hy⟩
-      · exact Or.inl (Interval.or_outer J I (Or.inl hJ))
-      · rcases List.mem_cons.mp hI' with rfl | hI'
-        · exact Or.inl (Interval.or_outer J I' (Or.inr hy))
-        · exact Or.inr ⟨I', hI', hy⟩
   -- member `i` of the bundle, whose basis is orthogonal
   refine SetIntersection.mem_toSet_ofFn.mpr fun i => ?_
   have hB : Scalar.toRealMat Bs[i] * (Scalar.toRealMat Bs[i])ᵀ = 1 :=
@@ -90,47 +75,9 @@ theorem Location.guardIntersectZonoGirardFloat_outer (Bs : List (Mat 𝕋 n n))
     simp [Scalar.toRealMat_apply]
   have hBB : ∀ y : Vec ℝ n, Scalar.toRealMat B *ᵥ (Scalar.toRealMat Bᵀ *ᵥ y) = y := fun y => by
     rw [Matrix.mulVec_mulVec, hT, hB, Matrix.one_mulVec]
-  -- the box around the cut of `R'`, from the Girard bounds along the basis
-  set boxOf : Zonotope (Vec 𝕋 n) → Interval (Vec 𝕋 n) := fun R' =>
-    ⟨fun k => neg (Location.zonoGirardUpperFloat R' nv γ (-(Bᵀ k))),
-      fun k => Location.zonoGirardUpperFloat R' nv γ (Bᵀ k)⟩ with hboxOf
-  -- the state's coordinates lie in the cut of a set holding it
-  have hcut : ∀ R' : Zonotope (Vec 𝕋 n), x ∈ R'.toSet →
-      Scalar.toRealMat Bᵀ *ᵥ x ∈ (boxOf R').toSet :=
-    fun R' hx' => by
-    -- the coordinate `k` of `Bᵀ x` is `x·ℓ` for the column `ℓ` of `B`
-    intro k
-    have hk : (Scalar.toRealMat Bᵀ *ᵥ x) k = x ⬝ᵥ toRealVec (Bᵀ k) := by
-      rw [Matrix.mulVec, dotProduct_comm]
-      rfl
-    have hu := Location.zonoGirardUpperFloat_le R' nv γ (Bᵀ k) hx' hg
-    have hl := Location.zonoGirardUpperFloat_le R' nv γ (-(Bᵀ k)) hx' hg
-    have hneg : toRealVec (-(Bᵀ k)) = -toRealVec (Bᵀ k) := toRealVec_neg _
-    -- the lower end is the upper end of `-ℓ`, negated
-    rw [hneg, dotProduct_neg] at hl
-    refine ⟨?_, ?_⟩
-    · -- the lower end
-      show toReal (neg (Location.zonoGirardUpperFloat R' nv γ (-(Bᵀ k)))) ≤
-        (Scalar.toRealMat Bᵀ *ᵥ x) k
-      rw [toReal_neg, hk]
-      linarith
-    · -- the upper end
-      show (Scalar.toRealMat Bᵀ *ᵥ x) k ≤ toReal (Location.zonoGirardUpperFloat R' nv γ (Bᵀ k))
-      rw [hk]
-      exact hu
-  -- the state is in the joined interval
-  have h2 := hfold (Rs.map fun R' => (boxOf R'))
-    ⟨fun k => neg (Location.zonoGirardUpperFloat R₀ nv γ (-(Bᵀ k))),
-        fun k => Location.zonoGirardUpperFloat R₀ nv γ (Bᵀ k)⟩
-    (Scalar.toRealMat Bᵀ *ᵥ x) (by
-      rcases List.mem_cons.mp hR with rfl | hR'
-      · exact Or.inl (hcut _ hx)
-      · exact Or.inr ⟨_, List.mem_map.mpr ⟨R, hR', rfl⟩, hcut _ hx⟩)
-  generalize List.foldl Interval.or
-    (⟨fun k => neg (Location.zonoGirardUpperFloat R₀ nv γ (-(Bᵀ k))),
-        fun k => Location.zonoGirardUpperFloat R₀ nv γ (Bᵀ k)⟩ : Interval (Vec 𝕋 n))
-    (Rs.map fun R' => (boxOf R')) = box
-    at h2 ⊢
+  -- the state's coordinates are in the joined box
+  have h2 := Location.zonoGirardBoxFloat_mem B R₀ Rs nv γ hR hx hg
+  generalize Location.zonoGirardBoxFloat B R₀ Rs nv γ = box at h2 ⊢
   -- and back through the basis
   have h3 := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B box.zonotope
     (Set.mem_biUnion rfl (Set.mem_image_of_mem (fun v => Scalar.toRealMat B *ᵥ v)

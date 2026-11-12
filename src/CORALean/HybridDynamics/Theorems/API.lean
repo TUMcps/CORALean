@@ -8,6 +8,7 @@ public import CORALean.HybridDynamics.Theorems.FlowOuterFloat
 public import CORALean.HybridDynamics.Theorems.FlowOuterSplitFloat
 public import CORALean.HybridDynamics.Theorems.GuardIntersectFloatOuter
 public import CORALean.HybridDynamics.Theorems.GuardGroupsChain
+public import CORALean.HybridDynamics.Theorems.GuardGroupsMem
 public import CORALean.HybridDynamics.Theorems.GuardIntersectGroupedOuter
 public import CORALean.HybridDynamics.Theorems.HitHessianNumMemHitHessianMatZono
 public import CORALean.HybridDynamics.Theorems.HitPointMemTaylor
@@ -28,8 +29,14 @@ public import CORALean.HybridDynamics.Theorems.InputSetOuter
 public import CORALean.HybridDynamics.Theorems.InputSetFloatOuter
 public import CORALean.HybridDynamics.Theorems.LinearEmbedding
 public import CORALean.HybridDynamics.Theorems.LocationReachFloatOuter
+public import CORALean.HybridDynamics.Theorems.LocationReachFloatOuterWindow
+public import CORALean.HybridDynamics.Theorems.LocationStayFloatOuter
+public import CORALean.HybridDynamics.Theorems.LocationQueueJumpFloatEncloses
 public import CORALean.HybridDynamics.Theorems.LocationReachFloatCheckedEqSome
 public import CORALean.HybridDynamics.Theorems.ReachFloatOuter
+public import CORALean.HybridDynamics.Theorems.ReachQueueStepFloatEncloses
+public import CORALean.HybridDynamics.Theorems.ReachQueueLoopFloatEncloses
+public import CORALean.HybridDynamics.Theorems.ReachQueueFloatOuter
 public import CORALean.HybridDynamics.Theorems.ReachFloatCheckedEqSome
 public import CORALean.HybridDynamics.Theorems.ReachLocationsExactOuter
 public import CORALean.HybridDynamics.Theorems.ReachSetExactOuter
@@ -77,6 +84,7 @@ public import CORALean.HybridDynamics.Theorems.GuardIntersectZonoGirardOuter
 public import CORALean.HybridDynamics.Theorems.GuardIntersectZonoGirardFloatOuter
 public import CORALean.HybridDynamics.Theorems.ZonoGirardUpperLe
 public import CORALean.HybridDynamics.Theorems.ZonoGirardUpperFloatLe
+public import CORALean.HybridDynamics.Theorems.ZonoGirardBoxFloatMem
 public import CORALean.HybridDynamics.Theorems.CheckFlowDropped
 public import CORALean.HybridDynamics.Theorems.CheckFlowFloatDropped
 public import CORALean.HybridDynamics.Theorems.TransitionConvGuardExact
