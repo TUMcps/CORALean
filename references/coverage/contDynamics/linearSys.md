@@ -163,7 +163,11 @@ counted). [`Krylov.windowErrorBoundFloat`](../../../src/CORALean/ContDynamics/Li
 [`Krylov.windowErrorOkFloat`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Operations/WindowErrorOkFloat.lean), which adds `rate ≤ 0` to the
 test of the finished windows). The smaller of this and the Gershgorin carry is a bound
 ([`Krylov.carryMinFloat_sound`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/CarryMinFloatSound.lean)); CORA.cpp's `KrylovWindows` reports it.
-The hypothesis is that the local error is within `ε_N` at every time of the window; the Krylov bound of a window is nondecreasing in `t` (every factor is), so its value at the window's end serves. That monotonicity is not a theorem here.
+The hypothesis is that the local error is within `ε_N` at every time of the window. For a Krylov step it is discharged:
+[`Krylov.error_le_errorBoundFloat`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/ErrorBoundFloatOuter.lean)
+bounds the Krylov error at every `s ∈ [0, t]` by the float `Krylov.errorBoundFloat` of `t` (every factor of the real bound is nondecreasing in `s`), and
+[`Krylov.windowErrorBoundFloat_sound_of_errorBoundFloat`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/WindowErrorBoundFloatKrylov.lean)
+takes only `ε_N = errorBoundFloat(T)`, as CORA.cpp forms it.
 
 [`Krylov.windowsFloat_outer`](../../../src/CORALean/ContDynamics/LinearSys/Krylov/Theorems/WindowsFloatOuter.lean)
 encloses `e^{tA}c` at every `t = iΔt + s` by `ν V` of window `i` of the `k`-dimensional system
