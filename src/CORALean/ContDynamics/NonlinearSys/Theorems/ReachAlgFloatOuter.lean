@@ -22,6 +22,7 @@ input signal in `U`. `Reach.steps` makes the horizon `N` steps exactly, and
 * `alg` – abstraction algorithm
 * `params` – reachability parameters
 * `options` – reachability options
+* `step` – linear step
 
 ## Hypotheses
 * `h` – model encloses system
@@ -52,9 +53,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 private theorem NonlinearSys.FloatHessModel.Encloses.aux_linReachRunFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {alg : NonlinearSys.LinReachAlg} {U : Zonotope (Vec 𝕋 m)}
-    {options : LinearSys.ReachFloatOptions 𝕋} : -- --- CONCL ---
+    {options : LinearSys.ReachFloatOptions 𝕋}
+    {lstep : NonlinearSys.LinearStep} : -- --- CONCL ---
     ∀ (k : ℕ) {R : Zonotope (Vec 𝕋 n)} {Rs : List (Zonotope (Vec 𝕋 n))},
-      fm.step_linReachRunFloat alg U options k R = some Rs → Rs.length = k ∧
+      fm.step_linReachRunFloat alg U options lstep k R = some Rs → Rs.length = k ∧
         ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
           sys.IsTrajectory (S := ExactSet)
             (Set.Icc 0 ((k : ℝ) * toReal options.Δt)) R.toSet U.toSet x u y →
@@ -105,8 +107,9 @@ theorem NonlinearSys.FloatHessModel.Encloses.reachAlgFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
     {alg : NonlinearSys.LinReachAlg}
     {params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ}
-    {options : LinearSys.ReachFloatOptions 𝕋} : -- --- CONCL ---
-    ∀ Rs ∈ fm.reachAlgFloat alg params options,
+    {options : LinearSys.ReachFloatOptions 𝕋}
+    {step : NonlinearSys.LinearStep} : -- --- CONCL ---
+    ∀ Rs ∈ fm.reachAlgFloat alg params options step,
       ∃ N : ℕ, (N : ℝ) * toReal options.Δt = (params.tFinal : ℝ) - params.tStart ∧
         Rs.length = N ∧ ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
           sys.IsTrajectory (S := ExactSet)
@@ -114,7 +117,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.reachAlgFloat_outer
             params.U.toSet x u y →
           ∀ (k : ℕ) (hk : k < Rs.length), ∀ t ∈ Set.Icc ((k : ℝ) * toReal options.Δt)
             (((k : ℝ) + 1) * toReal options.Δt), x t ∈ Rs[k].toSet := by -- --- PROOF ---
-  intro Rs (hR : fm.reachAlgFloat alg params options = some Rs)
+  intro Rs (hR : fm.reachAlgFloat alg params options step = some Rs)
   unfold NonlinearSys.FloatHessModel.reachAlgFloat at hR
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff] at hR
   obtain ⟨N, hN, hrun⟩ := hR

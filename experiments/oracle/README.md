@@ -624,8 +624,8 @@ sound dtypes.
 
 | op | fields | float definition |
 |---|---|---|
-| `nonlinearSys.reach` | `n`, `m`, `f`, `p`, `X0`, `U` (zonotope of the inputs, optional), `tStart`, `tFinal`, `timeStep`, `taylorTerms`, `zonotopeOrder`, `alg` (`lin`, `poly`), `errorOrder` (`poly`) | `NonlinearSys.FloatHessModel.reachAlgFloat`; `timeInterval`, the windows `R(tau_k)` |
-| `nonlinearSys.linReach` | as `reach` with `R` in place of `X0`, `tStart`, `tFinal`, and `linearStep` (below) | `FloatHessModel.linReachFloat`, one step: the region check, the linearization at the centre, the Hessian remainder over the region; `timeInterval`, `timePoint` |
+| `nonlinearSys.reach` | `n`, `m`, `f`, `p`, `X0`, `U` (zonotope of the inputs, optional), `tStart`, `tFinal`, `timeStep`, `taylorTerms`, `zonotopeOrder`, `alg` (`lin`, `poly`), `errorOrder` (`poly`), `linearStep` (below), `errorBound` (below) | `NonlinearSys.FloatHessModel.reachAlgFloat`, at `errorBound: "loop"` `reachLoopFloat`; `timeInterval`, the windows `R(tau_k)` |
+| `nonlinearSys.linReach` | as `reach` with `R` in place of `X0`, `tStart`, `tFinal`, and `abstrerr` (below) | `FloatHessModel.linReachFloat`, one step: the region check, the linearization at the centre, the Hessian remainder over the region; `timeInterval`, `timePoint`. At `errorBound: "loop"` `linReachLoopFloat`, with `abstrerr` besides |
 | `nonlinearSys.reachAdaptive` | `n`, `m`, `f`, `p`, `R0`, `U`, `maxSteps`, `sets`, and the options below | `FloatHessModel.reachAdaptiveFloat`, CORA's `lin-adaptive` repaired; `steps`, `tensorOrders`, `t`, the last `timePoint`, every `timeInterval` when `sets` is true |
 | `nonlinearSys.linReachAdaptive` | as `reachAdaptive` with the state `R`, `i`, `t`, `timeStep`, `finitehorizon`, `varphi`, `errAdmHorizon`, `errAdmDeltatopt`, `tensorOrder`, `orders` (`null` for `Inf`), `minorder`, `zeroWidthDim`, `kappaDeltat`, `kappaAbstrerr`, `steps` (latest first); absent fields as `linReachAdaptiveInit` sets them | `FloatHessModel.linReachAdaptiveFloat`, one step with its tuning; the state after it, sets unreduced |
 | `nonlinearSys.linReachAdaptivePass` | `n`, `m`, `f`, `p`, `U`, `R`, `timeStep`, `taylorTerms`, `zonotopeOrder`, `tensorOrder`, `errorAdm`, `redFactor`, `enlarge`, `fuel`, `linearStep` | `FloatHessModel.linReachAdaptivePassFloat`, one pass of the error loop; `timeInterval`, `timePoint`, `A`, `xs`, `Rmax`, `trueError`, `abstrerr`, `Gzero` |
@@ -637,6 +637,28 @@ sound dtypes.
 | `nonlinearSys.optimalDeltatAdaptive` | `p`, `decrFactor`, `redFactor`, `rR`, `rerr1`, `deltat`, `varphimin`, `zetaP` | `NonlinearSys.optimalDeltatAdaptiveFloat`; `value` |
 | `nonlinearSys.varphiTotalAdaptive` | `p`, `varphi`, `varphiLim`, `prev`, `curr`, `decrFactor` | `NonlinearSys.varphiTotalFloat`; `value` |
 | `nonlinearSys.varphiEstAdaptive` | `n`, `p`, `horizon`, `deltat`, `abstrerrH`, `abstrerr`, `decrFactor`, `mask`, `minorder`, `varphiTol`, `varphiStep`, `fuel` | `NonlinearSys.varphiEstFloat`; `value` |
+
+`errorBound` (of `nonlinearSys.reach` and `nonlinearSys.linReach`, `alg: lin` only) is `region`, the
+default, or `loop`, CORA's `while perfIndCurr > 1 && perfInd <= 1` of `linReach.m` (`FloatHessModel.linReachLoopFloat`).
+`loop` takes `enlarge` (CORA's `1.1`), `fuel` (default 10000, the loop's iteration bound), `maxError` (a vector,
+absent: none) and, of `linReach`, `abstrerr` (the last step's error, default zero: the first step's `Rstart.error`),
+and `linReach` also answers `abstrerr`, the `trueError` the next step starts from. `reach` carries it from step to
+step (`reachLoopFloat`). Its evaluation order, one named step per line of CORA:
+1. `xs = linPointFloat(Δt, R, U).1`, `us = U.c`, `A, B = linearizeFloat(xs, us)`, `f0 = f([xs], [us])`
+   (point boxes) and `Vbase = zonotope(f0) ⊞ B · recenter(U)`;
+2. each pass applies `applied = enlarge · abstrerr` (`mulUp`, entrywise) as `Verror = zonotope([-applied, applied])`
+   and runs `oneStepFloat(A, xs, Vbase ⊞ Verror, R)` (the `linearStep` of the request): `Rmax` is its time-interval
+   set, already shifted back by `xs` (CORA's `Rti + RallError`); the step failing fails the op;
+3. `Ω = interval(Rmax)`, `X = [min(Ω.inf, xs), max(Ω.sup, xs)]`, `U' = [min(Ub.inf, us), max(Ub.sup, us)]` with
+   `Ub = interval(U)`, `VerrorDyn = zonotope(hessRemainder(A, B, xs, us, X, U'))` (the Lagrange remainder over `X × U'`,
+   `priv_abstrerr_lin`) and `trueError = max(|inf|, |sup|)` of `interval(VerrorDyn)`;
+4. with `maxError`, a `trueError_i > maxError_i` fails the op (`perfInd > 1`, where CORA splits). Otherwise
+   `trueError_i ≤ applied_i` for every `i` accepts (a comparison of the floats, not of `trueError ./ applied`).
+   If not, the pass repeats with `abstrerr = trueError`, and `fuel` passes without acceptance fail the op;
+5. the sets are `oneStepFloat(A, xs, Vbase ⊞ VerrorDyn, R)`: `timeInterval`, `timePoint`; `abstrerr = trueError`.
+
+The soundness theorems are `Encloses.linReachLoopFloat_outer` and `reachLoopFloat_outer`, on `Encloses` alone
+(`IsTrajectory.mem_of_fixedPoint`). Like the other `Encloses` ops they are served at `nearest` only.
 
 The adaptive options are `tStart`, `tFinal`, `taylorTerms`, `zonotopeOrder`, `redFactor`,
 `decrFactor`, `zetaphi` (three entries), `zetaK`, `initFactor`, `enlarge`, `horizonTol`, `zeroTol`,

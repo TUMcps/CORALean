@@ -70,8 +70,10 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrPolyFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.HessRemainderAbstractionError
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachLoopFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.OneStepFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachAlgFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachLoopFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachAlgFloatCheckedEqSome
 public import CORALean.ContDynamics.NonlinearSys.Theorems.AdmissibleLinErrorNotSufficient
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ErrReachSubsetOfAbsLe
@@ -124,6 +126,7 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstractionErrorExists
 public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryHasDerivWithinAt
 public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryOfHasDerivWithinAt
 public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryOfHasDerivWithinAtOfNormLe
+public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryMemOfFixedPoint
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeSub
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeWindow
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubEqIntegral

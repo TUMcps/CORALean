@@ -20,6 +20,7 @@ real system's runs through `FloatHessModel.Encloses`, with no certificate and no
 * `alg` – abstraction algorithm
 * `params` – reachability parameters
 * `options` – reachability options
+* `step` – linear step
 
 ## Output
 * the time-interval sets of all steps, or none
@@ -54,12 +55,12 @@ one of them fails. -/
 @[step_of NonlinearSys.FloatHessModel.reachAlgFloat]
 def NonlinearSys.FloatHessModel.step_linReachRunFloat (fm : NonlinearSys.FloatHessModel 𝕋 n m)
     (alg : NonlinearSys.LinReachAlg) (U : Zonotope (Vec 𝕋 m))
-    (options : LinearSys.ReachFloatOptions 𝕋) :
+    (options : LinearSys.ReachFloatOptions 𝕋) (lstep : NonlinearSys.LinearStep) :
     ℕ → Zonotope (Vec 𝕋 n) → Option (List (Zonotope (Vec 𝕋 n)))
   | 0, _ => some []
   | k + 1, R => do
-    let step ← fm.linReachFloat alg U options R                    -- (R(τ), R(t + Δt))
-    let rest ← fm.step_linReachRunFloat alg U options k step.2          -- the steps after it
+    let step ← fm.linReachFloat alg U options R lstep              -- (R(τ), R(t + Δt))
+    let rest ← fm.step_linReachRunFloat alg U options lstep k step.2    -- the steps after it
     pure (step.1 :: rest)
 
 
@@ -70,13 +71,14 @@ def NonlinearSys.FloatHessModel.step_linReachRunFloat (fm : NonlinearSys.FloatHe
 def NonlinearSys.FloatHessModel.reachAlgFloat (fm : NonlinearSys.FloatHessModel 𝕋 n m)
     (alg : NonlinearSys.LinReachAlg)
     (params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ)
-    (options : LinearSys.ReachFloatOptions 𝕋) : Option (List (Zonotope (Vec 𝕋 n))) := do
+    (options : LinearSys.ReachFloatOptions 𝕋)
+    (step : NonlinearSys.LinearStep := .reachFloatInput) : Option (List (Zonotope (Vec 𝕋 n))) := do
   let X₀ := params.X₀                                               -- the paper's symbols
   let Δt := options.Δt
   -- 2. the loop runs while `t_k < t_end`: `N = (tFinal - tStart) / Δt` iterations
   let N ← Reach.steps params.tStart params.tFinal (ToRat.toRat Δt)  -- (tFinal - tStart) / Δt ∈ ℕ
   -- 3.-17. the iterations; 18. their `R(τ_k)`, `⋃_{k < N} R(τ_k)`
-  fm.step_linReachRunFloat alg params.U options N X₀                     -- ⋃_{k < N} R(τ_k)
+  fm.step_linReachRunFloat alg params.U options step N X₀                     -- ⋃_{k < N} R(τ_k)
 
 end CORALean
 
