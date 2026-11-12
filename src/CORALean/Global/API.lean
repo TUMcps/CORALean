@@ -77,6 +77,8 @@ public import CORALean.Global.CoeffNorm
 public import CORALean.Global.CubeSubsetHalfspaceIff
 public import CORALean.Global.L1CircumradiusEqInvInradiusPolar
 public import CORALean.Global.L1NormLeCardMulNorm
+public import CORALean.Global.AddDivSqrtTwoLeSqrt
+public import CORALean.Global.ExistsRegularPolygonDotGe
 public import CORALean.Global.SliceEqSmulConvexHull
 public import CORALean.Global.ChooseLeExpMulDivPow
 public import CORALean.Global.Chunks

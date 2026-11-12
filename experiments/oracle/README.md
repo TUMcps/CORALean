@@ -682,6 +682,35 @@ precision. A port that follows this order is bit-exact in the `nearest` dtype.
 | op | fields | float definition |
 |---|---|---|
 | `check` | `kind` (`safeSet`, `unsafeSet`, `invariant`), `set` (a box `{"inf","sup"}` or a halfspace polytope `{"A","b",...}`), `I` (box) or `Z` (zonotope) | `Specification.check` of `{set, kind}` against `I` or `Z`; `value`, `true` proves the set contained (`safeSet`, `invariant`) or disjoint from the specification's set (`unsafeSet`) |
+| `dockingPolytope` | `N` (sides, at most 4096), `n` (mean motion, a scalar), `p`, `k` (tuning of the enclosures and the square root; ignored at `nearest`) | `dockingPolytopeFloat`: a polytope `P` in `(sx, sy, vx, vy)` inside the ARCH-COMP 2026 Docking safe set `‖v‖₂ ≤ 0.2 + 2n ‖s‖₂` (`dockingPolytopeFloat_subset_safe`); see below |
+
+`specification.dockingPolytope` evaluates, in this order (CORA.cpp's `aux_docking_polytope(n, sides)` of
+`benchmark_neur_net_contr_reach_arch26_ainncs_b.cpp` in brackets; at `nearest` the result is bit for bit its
+output, for `N = 16, 32, 64` and `n = 0.001027` checked against the compiled C++ at `-O0` and `-O3`):
+
+1. `pi = 4 atan(1)`: `piDown`, `piUp` with `atanDown`, `atanUp` at one, quadrupled by two doublings
+   (`pi = 3.14159265358979323846`; `4 atan 1` is the same double).
+2. `phi_j = (2 pi j) / N` with `2 pi` the sum `pi + pi`, the product with `j`, then the quotient by `N`,
+   all rounded up (`2 * pi * k / sides`); `angleDown` is the same from below. `pi / N` is `halfUp`,
+   `halfDown`; `j` and `N` as `intUp`, `intDown` (exact up to `2^53`).
+3. `shrink = max 0 (min 1 (1 - ratUp(1/10^9)))` (`shrink = 1.0 - 1e-9`).
+4. `a_j = cosDown(phi_j)`, `b_j = sinDown(phi_j)`; at `nearest` the machine's `cos`, `sin` (`std::cos(phi)`, `std::sin(phi)`).
+   Their error against the exact `cos`, `sin` of `2 pi j / N` is at most the width `cosUp - cosDown`
+   plus the width `phi_j - angleDown` of the angle (`cosErr`, `sinErr`); `eps` is the largest, at least `0`.
+5. `kappa0 = cosDown(halfUp) - ((halfUp - halfDown) + (eps + eps))`, rounded down; `c = kappa0 shrink` rounded down (`std::cos(pi / sides) * shrink`).
+6. `w = max 0 (((c 2) n / sqrtUp 2) shrink)` with the products and the quotient rounded down
+   (`c * 2 * n / std::sqrt(2.0) * shrink`).
+7. `beta = (1/5) c` rounded down, `1/5` as `divDown(1, 5)` (`0.2 * c`).
+8. Row `j` is `(-w, -w, a_j, b_j) <= beta`.
+
+The polytope is certified before it is returned: `0 < N`, `0 < c` and `0 <= n` are tested by the scalar's strict and
+exact comparison. If one fails, `P` is the single row `0 <= -1` (empty, so inside the safe set); this is
+what `N <= 2` gives, as `c` is then not positive. At `nearest` the widths of 2 and 4 are `0`
+(directed and nearest roundings coincide), so `eps = 0` and the margin is CORA.cpp's `10^-9`; the sound
+dtypes carry the widths, and `check_sound.py` re-derives the theorem's hypotheses (`kappa = cos(pi/N) - sqrt 2 eps_measured`, `0 <= w <= kappa 2n/sqrt 2`,
+`beta <= kappa/5`) in 60-digit decimals from the response. The library's `nearest` takes libm's `cos` as exact
+(`NearestUnsound`); the real libm error (about `6e-16` for `N = 16, 32, 64`, measured with the same check) is far below the `10^-9`
+margin, which is why CORA.cpp needs no change.
 
 Conversions `interval.<class>` and `zonotope.<class>` (`Ops/ConversionOps.lean`):
 

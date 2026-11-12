@@ -2,16 +2,17 @@ import CORALean.Examples.Oracle.Ops.IntervalOps
 import CORALean.Examples.Oracle.Ops.SetCodec
 import CORALean.Specification.Instances
 import CORALean.Specification.Operations.Check
+import CORALean.Examples.DockingPolytopeFloatSubsetSafe
 
 /-!
-# The specification op: CORA's `specification/check`
+# The specification ops: CORA's `specification/check` and the Docking polytope
 
 `specification.check` is `Specification.check`: a specification is a `set` and a `kind`
-(`safeSet`, `unsafeSet`, `invariant`), checked against the computed set `S`. The set of the
-specification is a box `{"inf","sup"}` or a halfspace polytope `{"A","b",...}` (the forms
-`Specification.Instances` has `Contains` and `IsDisjoint` for), the checked set a box `I` or a
-zonotope `Z`. `value` is `true` where `Contains` (safe set, invariant) or `IsDisjoint` (unsafe set)
-proves the requirement; `false` says only that it was not shown.
+(`safeSet`, `unsafeSet`, `invariant`) checked against the computed set `S`, a box `{"inf","sup"}`
+or a halfspace polytope `{"A","b",...}`; `S` is a box `I` or a zonotope `Z`. `value` is `true`
+where `Contains` (safe set, invariant) or `IsDisjoint` (unsafe set) proves the requirement.
+`specification.dockingPolytope` is `dockingPolytopeFloat`: for `N` sides, the mean motion `n` and
+the tuning `p`, `k` (ignored at `nearest`) the polytope `P` inside the Docking safe set.
 
 ## Inputs
 * `req` – request
@@ -76,14 +77,31 @@ def handleSpecificationCheck (dops : DtypeOps 𝕋) (req : Json) : Resp := do
       valueBool (Specification.check (⟨b.I, kind⟩ : Specification _) I)
     | .inr Z => valueBool (Specification.check (⟨b.I, kind⟩ : Specification _) Z)
 
+/-- The largest number of sides `specification.dockingPolytope` serves: the rows' angles cost a
+number of additions that grows with the row. -/
+def dockingMaxSides : Nat := 4096
+
+/-- `specification.dockingPolytope`: `dockingPolytopeFloat p k N n`, the polytope `P` inside the
+safe set of the Docking instance. -/
+def handleSpecificationDockingPolytope (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "dockingPolytope" req ["N", "n", "p", "k"]
+  let N ← natField req "N"
+  if dockingMaxSides < N then
+    throw s!"dockingPolytope: `N` is at most {dockingMaxSides}, not {N}"
+  let n ← dops.readExact "n" (← scalarField req "n")
+  let p ← natField req "p"
+  let k ← natField req "k"
+  pure [("P", printHPolytope dops.showExact (dockingPolytopeFloat p k N n))]
+
 /-- Every op of this file, without the `specification.` prefix. -/
-def specificationOpNames : List String := [ "check" ]
+def specificationOpNames : List String := [ "check", "dockingPolytope" ]
 
 /-- `op` of `specification.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
 def handleSpecificationOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option Resp :=
   match op with
   | "check" => some (handleSpecificationCheck dops req)
+  | "dockingPolytope" => some (handleSpecificationDockingPolytope dops req)
   | _ => none
 
 end CORALean.Oracle

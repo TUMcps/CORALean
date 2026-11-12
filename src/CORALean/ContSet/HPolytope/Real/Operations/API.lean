@@ -20,6 +20,7 @@ public import CORALean.ContSet.HPolytope.Real.Operations.Eqs
 public import CORALean.ContSet.HPolytope.Real.Operations.Plus
 public import CORALean.ContSet.HPolytope.Real.Operations.MinkDiffOf
 public import CORALean.ContSet.HPolytope.Real.Operations.Slab
+public import CORALean.ContSet.HPolytope.Real.Operations.RegularPolygon
 public import CORALean.ContSet.HPolytope.Real.Operations.Translate
 public import CORALean.ContSet.HPolytope.Real.Operations.UnitBox
 public import CORALean.ContSet.HPolytope.Real.Operations.HalfScaled
