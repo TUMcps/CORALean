@@ -13,11 +13,12 @@ public import CORALean.HybridDynamics.Operations.InputSetFloat
 
 CORA's `checkFlow` for a linear flow `ẋ = A x + B u + c₀ + E w` at float zonotopes, its combined
 input `inputSetFloat = B U ⊕ c₀ ⊕ E W` written `V`. Each reach set is projected onto the guard
-hyperplane `{x | c·x = d}` (`projectOnHyperplaneFloat`, `c` the outward unit normal) and kept if
-the flow at the projection's center points out, or else if the rounded-up support function of
-`A·proj ⊞ V` along `c` is not certified `≤ 0`: only a set certified to have no outward flow is
-dropped. CORA bounds the flow over a `'pca'` box of the projection, so it keeps at least what this
-keeps. The normal's orientation by the invariant (`aux_adaptGuard`) is the caller's.
+hyperplane `{x | c·x = d}` (`projectOnHyperplaneFloat`, `c` the outward normal) and kept if the
+flow at the projection's center points out, or else if the rounded-up support function of
+`A·proj ⊞ V` along `c` is not certified `< 0`. CORA drops at `≤ 0`; a run that stays on the
+hyperplane tangentially and jumps would be lost (`Location.mem_checkFlowFloat_of_jump`, from
+`Location.IsTrajectory.not_strictly_inward`), so only a strict certificate drops. CORA's `'pca'`
+box is not used, so this keeps at least what CORA keeps.
 
 ## Inputs
 * `ℓ` – location
@@ -31,7 +32,7 @@ keeps. The normal's orientation by the invariant (`aux_adaptGuard`) is the calle
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       09-October-2026
--- Last update:   14-October-2026
+-- Last update:   12-November-2026
 -- Reviewed:      ---
 
 
@@ -47,7 +48,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {G : ℕ → 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The reach sets `Rs` that are not certified to have no outward flow on their projection. -/
+/-- The reach sets `Rs` that are not certified to have strictly inward flow on their projection. -/
 def Location.checkFlowFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
     (c : Vec 𝕋 n) (d : 𝕋)
     (Rs : List (Zonotope (Vec 𝕋 n))) : List (Zonotope (Vec 𝕋 n)) :=
@@ -64,7 +65,7 @@ def Location.checkFlowFloat (ℓ : Location 𝒵[𝕋] G L 𝕋 n)
       (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) ℓ.dynamics.A Rproj) ℓ.inputSetFloat
     let flowUp := (flowSet.boundDot (c := Real.HPolytope.rowLin (toRealMat (fun _ : Fin 1 => c)) 0)
         c fun _ => rfl).val
-    !le flowC zero || !le flowUp zero
+    !le flowC zero || !ltStrict flowUp zero
 
 end CORALean
 

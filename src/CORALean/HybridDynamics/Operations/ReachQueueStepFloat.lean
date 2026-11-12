@@ -15,9 +15,9 @@ One pass of the loop of CORA's `hybridAutomaton/reach`: the entry at the front o
 analysed in its location. The stay takes `Reach.stepCount` steps from the lower start time,
 `Location.stayFloat`; `Location.potInt` lists the guards the sets may meet (the transitions into
 `finalLoc` skipped), `Location.guardGroups` groups the hits into crossings and
-`Location.queueJumpFloat` makes the entry of each. Not modelled: `checkFlow`, which can drop a
-hit (`Location.checkFlowCora_drops_hit_counterexample`), the swap of a lone hyperplane hit for the
-time-point set, and the specifications.
+`Location.queueJumpFloat` makes the entry of each, after `checkFlow` (`options.checkFlow`) has
+dropped the sets of the group whose flow points strictly into the invariant. Not modelled: the swap
+of a lone hyperplane hit for the time-point set, and the specifications.
 
 ## Inputs
 * `HA` – hybrid automaton
@@ -58,7 +58,7 @@ def HybridAutomaton.reachQueueStepFloat
   let Rs ← ℓ.stayFloat N { Δt := options.Δt p.loc, η := options.η, ρ := options.ρ } p.set
   let hits := ℓ.potInt Rs options.finalLoc                          -- which guards may be met
   let jumps ← (Location.guardGroups hits).mapM                       -- one entry per crossing
-    (ℓ.queueJumpFloat B Δ idx p.tlo p.thi Rs)
+    (ℓ.queueJumpFloat options.checkFlow B Δ idx p.tlo p.thi Rs)
   pure (⟨p.loc, p.parent, Rs, p.tlo, p.thi⟩, jumps.filterMap id)
 
 end CORALean

@@ -37,6 +37,11 @@ public import CORALean.HybridDynamics.Theorems.ReachFloatOuter
 public import CORALean.HybridDynamics.Theorems.ReachQueueStepFloatEncloses
 public import CORALean.HybridDynamics.Theorems.ReachQueueLoopFloatEncloses
 public import CORALean.HybridDynamics.Theorems.ReachQueueFloatOuter
+public import CORALean.HybridDynamics.Theorems.IsRunUntilDwellOfIsRunUntil
+public import CORALean.HybridDynamics.Theorems.LocationIsTrajectoryNotStrictlyInward
+public import CORALean.HybridDynamics.Theorems.LocationMemCheckFlowFloatOfJump
+public import CORALean.HybridDynamics.Theorems.LocationGuardOrientFloatSound
+public import CORALean.HybridDynamics.Theorems.LocationMemQueueSetsFloatOfJump
 public import CORALean.HybridDynamics.Theorems.ReachFloatCheckedEqSome
 public import CORALean.HybridDynamics.Theorems.ReachLocationsExactOuter
 public import CORALean.HybridDynamics.Theorems.ReachSetExactOuter

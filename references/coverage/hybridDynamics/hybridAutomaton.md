@@ -45,9 +45,14 @@ the stay and its window
 ([`stayFloat_outer_window`](../../../src/CORALean/HybridDynamics/Theorems/LocationStayFloatOuter.lean),
 [`takeThrough`](../../../src/CORALean/Global/TakeThrough.lean)),
 the groups
-([`guardGroups_mem`](../../../src/CORALean/HybridDynamics/Theorems/GuardGroupsMem.lean)), the crossing
+([`guardGroups_mem`](../../../src/CORALean/HybridDynamics/Theorems/GuardGroupsMem.lean)).
+
+The crossing
 ([`queueJumpFloat_encloses`](../../../src/CORALean/HybridDynamics/Theorems/LocationQueueJumpFloatEncloses.lean),
-[`dotProduct_of_hyperplane`](../../../src/CORALean/ContSet/HPolytope/Float/Theorems/HyperplaneSound.lean))
+[`dotProduct_of_hyperplane`](../../../src/CORALean/ContSet/HPolytope/Float/Theorems/HyperplaneSound.lean),
+[`mem_queueSetsFloat_of_jump`](../../../src/CORALean/HybridDynamics/Theorems/LocationMemQueueSetsFloatOfJump.lean),
+[`guardOrientFloat?_sound`](../../../src/CORALean/HybridDynamics/Theorems/LocationGuardOrientFloatSound.lean),
+[`inHalfspace_sound`](../../../src/CORALean/ContSet/HPolytope/Float/Theorems/InHalfspaceSound.lean))
 and the step count
 ([`stepCount_real`](../../../src/CORALean/ContDynamics/Reach/Theorems/StepCountReal.lean)).
 
@@ -56,7 +61,16 @@ starts at `tStart` in the initial set and ends one step before `tFinal` ends in 
 a branch of its end location, for the orthogonal basis `eye(n)` and no transition into `finalLoc`
 (a stay is cut at whole steps, as CORA's `tStart:timeStep:tFinal`).
 
-Not modelled: `checkFlow`, which can drop a hit (see `location.md`), and the swap of a lone
+**`reach` — `checkFlow` in the queue.** `options.checkFlow`, default true as CORA: before the intersection
+`Location.queueSetsFloat` filters the sets of a crossing with `Location.checkFlowFloat`, the normal
+turned out of the invariant by `Location.guardOrientFloat?`, and the crossing is dropped when no set
+is kept; the jump times keep the group's first and last set before the filter, as CORA's `minInd`,
+`maxInd`. With it on, the runs of the theorem are those with positive dwell time at every jump
+(`IsRunUntilDwell`): a set whose flow points strictly into the invariant is dropped, and a run that
+jumps at once from a state on the guard is where it would go (the crossing lemma, `location.md`).
+With it off, every run, as before.
+
+Not modelled: the swap of a lone
 hyperplane hit for the next time-point set (sound only for a flow that crosses the hyperplane at
 that instant). Also not modelled: the specifications, the `pca` and `flow` bases, the guard methods
 other than `zonoGirard`, and guards that are not a bare hyperplane (the pass then fails).

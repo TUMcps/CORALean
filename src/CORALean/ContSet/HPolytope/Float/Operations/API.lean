@@ -12,6 +12,7 @@ public import CORALean.ContSet.HPolytope.Float.Operations.StackRows
 public import CORALean.ContSet.HPolytope.Float.Operations.Basic
 public import CORALean.ContSet.HPolytope.Float.Operations.Slab
 public import CORALean.ContSet.HPolytope.Float.Operations.Hyperplane
+public import CORALean.ContSet.HPolytope.Float.Operations.InHalfspace
 public import CORALean.ContSet.HPolytope.Float.Operations.PlusOf
 public import CORALean.ContSet.HPolytope.Float.Operations.LinCombOf
 public import CORALean.ContSet.HPolytope.Float.Operations.MtimesOf
