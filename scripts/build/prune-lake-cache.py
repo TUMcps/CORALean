@@ -8,9 +8,12 @@ touches, Mathlib's included (2.4 GB of the 3.8 GB a full build left, measured
 2026-10-13), although `lake exe cache get` already supplies those; and it never
 removes an artifact, so the cache of a branch that changes every week grows
 without bound. This keeps exactly the artifacts the traces under BUILD_DIR
-(default `.lake/build`) name, and only the mappings of PACKAGE (default
-`CORALean`) that are wholly made of them: the cache then holds the tree that was
-just built and nothing else.
+(default `.lake/build`) and the dependencies' `.lake/packages/*/.lake/build`
+name: the mappings of PACKAGE (default `CORALean`) wholly made of them, and the
+dependencies' emitted C and objects, which `cache get` does not supply and which
+linking an executable would otherwise recompile (2026-11-12: about 150 MB, 778
+Mathlib objects for `hardwarecheck` alone). The cache then holds the tree that
+was just built, and the native code of its dependencies, and nothing else.
 """
 import json
 import re
@@ -34,8 +37,11 @@ def names(x):
             yield from names(y)
 
 
+# The traces of the dependencies too: their emitted C and objects, which `lake exe cache get`
+# does not supply, are kept (below), so that linking an executable does not recompile them.
+builds = [build] + sorted(Path(".lake/packages").glob("*/.lake/build"))
 live = set()
-for trace in build.rglob("*.trace"):
+for trace in (t for b in builds for t in b.rglob("*.trace")):
     try:
         live.update(names(json.loads(trace.read_text(encoding="utf-8")).get("outputs", {})))
     except (ValueError, OSError):
@@ -47,7 +53,8 @@ keep = set()
 for pkg in (cache / "outputs").iterdir():
     for mapping in pkg.glob("*.json"):
         used = set(names(json.loads(mapping.read_text(encoding="utf-8"))["data"]))
-        if pkg.name == package and used <= live:
+        native = all(n.endswith((".c", ".o")) for n in used)
+        if used <= live and (pkg.name == package or native):
             keep |= used
         else:
             mapping.unlink()
