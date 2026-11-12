@@ -26,8 +26,7 @@ A run of `ẋ = Ax + u`, `u(t) ∈ V`, from a point of the polynomial zonotope `
 free motion `e^{At} x₀`, the constant `ũ`'s share, and the rest, which `sub_mem_inputReach_recenter`
 places in `Ũ`'s input reach. The free motion is the straight line `(1 - t/Δt) x₀ + (t/Δt) e^{AΔt}
 x₀` and `[F] x₀` (the correction matrix), each in its summand by `mtimesIntervalMat_outer`; the
-constant's share is in `P̃^R([0, ũ])` and the rest in `P^R(Ũ)`, with `Ũ` boxed to `n` generators by
-`reduce_outer`, a superset. The same split with `e^{At} x₀ - x₀`
+constant's share is in `P̃^R([0, ũ])` and the rest in `P^R(Ũ)`. The same split with `e^{At} x₀ - x₀`
 in place of `e^{At} x₀` gives the difference.
 
 ## Inputs
@@ -140,14 +139,10 @@ theorem LinearSys.IsCanonicalTrajectory.polyWindowFloat_outer {sys : LinearSys �
       (sys.inputReach_mono (CompactSet.isBounded_toSet seg) h0seg ht.1 ht.2
         ⟨fun _ => ũ, fun _ _ => hũseg, MeasureTheory.aestronglyMeasurable_const,
           (Real.MatExp.expIntegral_constInput A ũ ht.1).symm⟩)
-  -- the rest of the input's share by `t`, inside `P^R(Ũ)` run on `Ũ` boxed to `n` generators
-  have hbox : ∀ {y}, y ∈ sys.inputReach (S := 𝒵[𝕋]) (Recenter.recenter V) t →
-      y ∈ sys.inputReach (S := 𝒵[𝕋]) (Zonotope.reduce (Recenter.recenter V) 1) t :=
-    fun ⟨w, hw, hm, he⟩ => ⟨w, fun s hs => Zonotope.reduce_outer _ 1 (hw s hs), hm, he⟩
+  -- the rest of the input's share by `t`, inside `P^R(Ũ)`
   have hrest := sys.inputReach_subset_inputSolutionFloat hΔt hη _
-    (sys.inputReach_mono (CompactSet.isBounded_toSet _)
-      (Zonotope.reduce_outer _ 1 (Recenter.zero_mem_recenter V)) ht.1 ht.2
-      (hbox (traj.sub_mem_inputReach_recenter hUV ht)))
+    (sys.inputReach_mono (CompactSet.isBounded_toSet _) (Recenter.zero_mem_recenter V) ht.1 ht.2
+      (traj.sub_mem_inputReach_recenter hUV ht))
   have hPuRz := Zonotope.reduceAdaptive_outer _ ζ p hconst
   have hPUz := Zonotope.reduceAdaptive_outer _ ζ p hrest
   have hPuR := Zonotope.ofIndep_outer _ hPuRz
