@@ -9,9 +9,10 @@ public import CORALean.Global.Float.Interfaces
 # The records of `HybridAutomaton.reachQueueFloat`
 
 The options of CORA's `hybridAutomaton/reach` that the float definition reads (`Δt` per location,
-`η`, `ρ`, the horizon, the location whose entry is not followed, the fuel), a set waiting in the
-queue (CORA's `list`: `set`, `loc`, `time` as its two ends, `parent`), and a branch of the
-reachable set (CORA's `reachSet` of one location, with the times its stay started at).
+`η`, `ρ`, the horizon, the location whose entry is not followed, `checkFlow`, the fuel), a set
+waiting in the queue (CORA's `list`: `set`, `loc`, `time` as its two ends, `parent`), and a branch
+of the reachable set (CORA's `reachSet` of one location, with the times its stay started at).
+`checkFlow` drops the sets of a crossing whose flow points strictly into the invariant.
 
 ## Inputs
 * `L` – location type
@@ -37,15 +38,16 @@ open CORALean.Float
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- The time step `Δt` of each location, the Taylor order `η`, the zonotope order `ρ`, the final
-time, the location whose entry is not followed (`params.finalLoc`), and the number of queue
-entries `reachQueueFloat` analyses at most. -/
+/-- The step `Δt` of each location, the orders `η` and `ρ`, the final time, the location whose
+entry is not followed (`params.finalLoc`), CORA's `checkFlow`, and the number of queue entries
+`reachQueueFloat` analyses at most. -/
 structure HybridReachOptions (L 𝕋 : Type) where
   Δt : L → 𝕋
   η : ℕ
   ρ : ℕ
   tFinal : ℚ
   finalLoc : L
+  checkFlow : Bool
   fuel : ℕ
 
 /-- A set waiting for its location: the set, the location, the lower and upper end of the time it

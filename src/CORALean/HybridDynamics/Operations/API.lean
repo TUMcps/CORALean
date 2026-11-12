@@ -24,6 +24,8 @@ public import CORALean.HybridDynamics.Operations.ReachFloat
 public import CORALean.HybridDynamics.Operations.ReachQueueFloat
 public import CORALean.HybridDynamics.Operations.ReachQueueLoopFloat
 public import CORALean.HybridDynamics.Operations.ReachQueueStepFloat
+public import CORALean.HybridDynamics.Operations.LocationGuardOrientFloat
+public import CORALean.HybridDynamics.Operations.LocationQueueSetsFloat
 public import CORALean.HybridDynamics.Operations.LocationQueueJumpFloat
 public import CORALean.HybridDynamics.Operations.LocationStayFloat
 public import CORALean.HybridDynamics.Operations.ReachFloatChecked

@@ -9063,11 +9063,11 @@
     },
     "theorems": {
       "paper": 1892,
-      "float": 2421,
+      "float": 2425,
       "float_conditional": 50,
-      "helper": 2281,
-      "lemma": 3388,
-      "total": 10032,
+      "helper": 2282,
+      "lemma": 3390,
+      "total": 10039,
       "examples": 150
     }
   }

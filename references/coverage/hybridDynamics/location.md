@@ -8,7 +8,7 @@ CORA methods of `hybridDynamics/@location/`, one row each, and where CORALean an
 |---|---|---|---|
 | `adaptOptions` | out-of-scope | n/a — matlab-runtime | struct-field plumbing over `options` and the `config_<class>_reach` lists |
 | `calcBasis` | float | [`Location.calcBasisBox`](../../../src/CORALean/HybridDynamics/Operations/CalcBasisBox.lean), [`Location.calcBasisBox_orthogonal`](../../../src/CORALean/HybridDynamics/Theorems/CalcBasisBoxOrthogonal.lean) | route b — `Location.calcBasisBox` is generic over `Scalar 𝕋` with `ExactScalar 𝕋` (it places `0` and `1` only, which every float format holds exactly), computable, and the theorem is stated for it: the real value is the identity, orthogonal. Method `'box'` only (`eye(sys.nrOfDims)`); `'pca'` (SVD of the reachable set's generators, projected on a hyperplane guard) and `'flow'` (Gram-Schmidt of the flow direction) are not covered, and CORA returns one basis per entry of `options.enclose`. |
-| `checkFlow` | float | [`Location.checkFlow`](../../../src/CORALean/HybridDynamics/Definitions/CheckFlow.lean), [`Location.checkFlow_dropped`](../../../src/CORALean/HybridDynamics/Theorems/CheckFlowDropped.lean), [`Location.checkFlowCora`](../../../src/CORALean/HybridDynamics/Counterexamples/CheckFlowCora.lean), [`Location.checkFlowCora_drops_hit_counterexample`](../../../src/CORALean/HybridDynamics/Counterexamples/CheckFlowCora.lean) · float: [`Location.checkFlowFloat`](../../../src/CORALean/HybridDynamics/Operations/CheckFlowFloat.lean), [`Location.checkFlowFloat_dropped`](../../../src/CORALean/HybridDynamics/Theorems/CheckFlowFloatDropped.lean) | Not an enclosure: a filter. Linear flow `ẋ = A x + B u + c₀ + E w` over zonotopes, its combined input bounded over `inputSet` (`inputSetFloat`), the supremum exactly by the support function (real) or rounded up by `Zonotope.boundDot` (float). cora-issue — CORA's `@location/checkFlow.m` adds the offset `sys.c` of a `linearSys` as an `n×1` vector where `c*sys.c` is meant, so a set whose flow points out can be dropped and a jump missed (`Location.checkFlowCora_drops_hit_counterexample`). For the bouncing ball `ẋ = (x₂, -g)`, `g ≥ 1`, guard `x₁ = 0`, it drops the box `[0, 1] × [-1, 1]`, which a run stays in while reaching the guard at `t = 1/g`, and `Location.checkFlow` keeps it (`Location.checkFlowCora_drops_hit_counterexample`). Details below. |
+| `checkFlow` | float | [`Location.checkFlow`](../../../src/CORALean/HybridDynamics/Definitions/CheckFlow.lean), [`Location.checkFlow_dropped`](../../../src/CORALean/HybridDynamics/Theorems/CheckFlowDropped.lean), [`Location.checkFlowCora`](../../../src/CORALean/HybridDynamics/Counterexamples/CheckFlowCora.lean), [`Location.checkFlowCora_drops_hit_counterexample`](../../../src/CORALean/HybridDynamics/Counterexamples/CheckFlowCora.lean) · float: [`Location.checkFlowFloat`](../../../src/CORALean/HybridDynamics/Operations/CheckFlowFloat.lean), [`Location.checkFlowFloat_dropped`](../../../src/CORALean/HybridDynamics/Theorems/CheckFlowFloatDropped.lean), [`Location.IsTrajectory.not_strictly_inward`](../../../src/CORALean/HybridDynamics/Theorems/LocationIsTrajectoryNotStrictlyInward.lean), [`Location.mem_checkFlowFloat_of_jump`](../../../src/CORALean/HybridDynamics/Theorems/LocationMemCheckFlowFloatOfJump.lean) | Not an enclosure: a filter. Linear flow `ẋ = A x + B u + c₀ + E w` over zonotopes, its combined input bounded over `inputSet` (`inputSetFloat`), the supremum exactly by the support function (real) or rounded up by `Zonotope.boundDot` (float). cora-issue — CORA's `@location/checkFlow.m` adds the offset `sys.c` of a `linearSys` as an `n×1` vector where `c*sys.c` is meant, so a set whose flow points out can be dropped and a jump missed (`Location.checkFlowCora_drops_hit_counterexample`). For the bouncing ball `ẋ = (x₂, -g)`, `g ≥ 1`, guard `x₁ = 0`, it drops the box `[0, 1] × [-1, 1]`, which a run stays in while reaching the guard at `t = 1/g`, and `Location.checkFlow` keeps it (`Location.checkFlowCora_drops_hit_counterexample`). Float: drops only at a certified `< 0` (CORA: `≤ 0`). Details below. |
 | `derivatives` | out-of-scope | n/a — matlab-runtime |  |
 | `display` | out-of-scope | n/a — plotting/display |  |
 | `eq` | out-of-scope | n/a — matlab-runtime |  |
@@ -50,6 +50,19 @@ its projection onto the hyperplane (`c·(A p + B u + c₀ + E w) ≤ 0` for the 
 state, every input `u ∈ U` and every disturbance `w ∈ W`), a statement about the projection, not
 about the set. A kept set is only one the test did not certify.
 
+**`checkFlow` — the crossing lemma and the strict test.** `Location.IsTrajectory.not_strictly_inward`:
+a stay of length `τ > 0` inside `{y | c·y ≤ d}` that ends on `{y | c·y = d}` has no `b < 0` with
+`c·(A x(τ) + B u(s) + c₀ + E w(s)) ≤ b` for all `s ≤ τ` (inputs and disturbances only measurable, so
+the proof integrates over a short interval before `τ` instead of differentiating). The end state is
+its own projection, so a dropped set (`Location.checkFlowFloat_dropped`: one `b < 0` bounds the flow
+at the projection of every state for every input) cannot hold it: `Location.mem_checkFlowFloat_of_jump`.
+CORA's drop at `sup ≤ 0` is not sound for a tangential touch: for `ẋ₁ = 0`, invariant `x₁ ≤ 0`,
+guard `x₁ = 0`, the run that stays at `x₁ = 0` and jumps at `t > 0` has `sup = 0`, the set is dropped
+and the jump missed. So CORA.cpp must drop only when the rounded-up supremum is certified `< 0`
+(`ltStrict`), keeping a set at `sup ≥ 0`; for any other value the two agree. A run that jumps at
+once, from a state on the guard, is not covered when `checkFlow` is on: the lemma needs `τ > 0`
+(the queue's runs are `IsRunUntilDwell`, positive dwell time at every jump).
+
 **`checkFlow` — cora-issue account.** CORA's `@location/checkFlow.m`, subfunction
 `aux_flowInDirection`, bounds the flow component along the guard normal `c` (a row vector) of a
 `linearSys` by `flow = cA*cen + (cA*G)*I + (c*sys.B)*interval(params.U) + sys.c` and tests
@@ -72,8 +85,12 @@ the tree's `checkFlow` keeps it. Here the offset enters through the combined inp
 `inputSet = B U ⊕ c ⊕ E W`, projected on `c` with the rest.
 
 **`checkFlow` — not modelled.** CORA's `'pca'` box reduction before the supremum is omitted (it only
-loosens the test), the orientation of the normal by the invariant (`aux_adaptGuard`) is the
-caller's, and the level-set guard and the `taylm` nonlinear flow are not modelled.
+loosens the test). The orientation of the normal by the invariant (`aux_adaptGuard`) is the
+caller's for `checkFlowFloat`. In the queue it is `Location.guardOrientFloat?`: the side is read off
+a row of the invariant equal to `±` the guard normal with a bound certified (`HPolytope.inHalfspace`,
+sound by `HPolytope.inHalfspace_sound` and `Location.guardOrientFloat?_sound`), where CORA tests
+the center of the first reach set; with no such row the group is not filtered. The normal is not
+normalised (a unit one agrees with CORA). The level-set guard and the `taylm` nonlinear flow are not modelled.
 
 **`checkFlow` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup).
 

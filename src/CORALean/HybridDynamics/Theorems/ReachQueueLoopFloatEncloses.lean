@@ -57,7 +57,7 @@ theorem HybridAutomaton.reachQueueLoopFloat_encloses
     (q : List (HybridPending L 𝕋 n)) (acc : List (HybridBranch L 𝕋 n)) : -- --- CONCL ---
     ∀ out ∈ HA.reachQueueLoopFloat B options f q acc,
       (∃ rest, out = acc ++ rest) ∧
-        ∀ p ∈ q, HA.Encloses options.tFinal δ out p := by -- --- PROOF ---
+        ∀ p ∈ q, HA.Encloses options.checkFlow options.tFinal δ out p := by -- --- PROOF ---
   induction f generalizing q acc with
   | zero => intro out h; simp [HybridAutomaton.reachQueueLoopFloat] at h
   | succ f ih =>

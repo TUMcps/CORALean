@@ -336,11 +336,11 @@ def handleTransitionOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Optio
   | _ => none
 
 /-- `hybridAutomaton.reach`: `HybridAutomaton.reachQueueFloat`, CORA's `hybridAutomaton/reach` loop
-with the `zonoGirard` guard intersection in the `'box'` basis; `branches`, per stay the location,
-the producing branch, the time-interval sets and the two ends of the start time. -/
+with `zonoGirard` in the `'box'` basis and `checkFlow` (default true); `branches`, per stay the
+location, the producing branch, the sets and the two ends of the start time. -/
 def handleHybridAutomatonReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   checkFields "reach" req ["locations", "startLoc", "R0", "tStart", "tFinal", "taylorTerms",
-    "zonotopeOrder", "finalLoc", "guardIntersect", "enclose", "fuel"]
+    "zonotopeOrder", "finalLoc", "guardIntersect", "enclose", "checkFlow", "fuel"]
   -- the one guard intersection and basis that have a float definition
   if (← strField req "guardIntersect") ≠ "zonoGirard" then
     throw "reach: `guardIntersect` is served as \"zonoGirard\" only"
@@ -363,10 +363,16 @@ def handleHybridAutomatonReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
     let finalLoc ← if (fieldOpt req "finalLoc").isSome then natField req "finalLoc"
       else pure ls.size
     let fuel ← if (fieldOpt req "fuel").isSome then natField req "fuel" else pure 1000
+    -- CORA's `checkFlow` filter of the crossings, on unless asked off
+    let checkFlow ← match fieldOpt req "checkFlow" with
+      | none => pure true
+      | some j => match j.getBool? with
+        | .ok b => pure b
+        | .error _ => throw "reach: `checkFlow` must be true or false"
     let options : HybridReachOptions Nat 𝕋 :=
       { Δt := fun i => (ls[i]?.map (·.2)).getD Δ₀, η := ← natField req "taylorTerms",
         ρ := ← natField req "zonotopeOrder", tFinal := aux_ratOf (← scalarField req "tFinal"),
-        finalLoc := finalLoc, fuel := fuel }
+        finalLoc := finalLoc, checkFlow := checkFlow, fuel := fuel }
     let X₀ ← parseZonotopeFixed dops.readExact n (← field req "R0")
     let tStart := aux_ratOf (← scalarField req "tStart")
     -- the queue of CORA's loop, from the start set

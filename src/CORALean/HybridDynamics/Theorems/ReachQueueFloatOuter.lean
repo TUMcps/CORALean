@@ -12,7 +12,9 @@ horizon, `δ` at least the step of every location, ends in a time-interval set o
 location. A run is a stay or a stay and a jump, and a pass of the queue encloses both
 (`reachQueueLoopFloat_encloses`, from the entry `X₀`). The margin is the last whole step: a stay
 is cut at `Reach.stepCount` steps. No transition may lead to `finalLoc`, whose entry the algorithm
-does not follow.
+does not follow. With `options.checkFlow` (CORA's filter, on by default) the runs are those whose
+stays before a jump are positive, and only a guard whose invariant side a row of the invariant
+certifies is filtered (`Location.guardOrientFloat?`); without it, every run.
 
 ## Inputs
 * `HA` – hybrid automaton
@@ -33,7 +35,7 @@ does not follow.
 * `hΔ` – the steps are positive
 * `hδ` – the margin is at least every step
 * `hfin` – no transition leads to `finalLoc`
-* `run` – run of duration `T` with `k` jumps
+* `run` – run of duration `T` with `k` jumps, every dwell time positive if `options.checkFlow`
 * `hx` – start state lies in the initial zonotope
 * `hT` – the run ends `δ` before the horizon
 
@@ -64,7 +66,7 @@ theorem HybridAutomaton.reachQueueFloat_outer
     (hΔ : ∀ ℓ, 0 < toReal (options.Δt ℓ)) {δ : ℝ} (hδ : ∀ ℓ, toReal (options.Δt ℓ) ≤ δ)
     (hfin : ∀ ℓ, ∀ e ∈ (HA.loc ℓ).trans, e.target ≠ options.finalLoc) (tStart : ℚ) (ℓ₀ : L)
     (X₀ : Zonotope (Vec 𝕋 n)) {T : ℝ} {k : ℕ} {ℓ' : L} {x y : Vec ℝ n}
-    (run : HA.IsRunUntil T k ℓ₀ x ℓ' y) (hx : x ∈ toSet X₀)
+    (run : HA.IsRunUntilDwell options.checkFlow T k ℓ₀ x ℓ' y) (hx : x ∈ toSet X₀)
     (hT : (tStart : ℝ) + T + δ ≤ options.tFinal) : -- --- CONCL ---
     ∀ out ∈ HA.reachQueueFloat B options tStart ℓ₀ X₀,
       ∃ b ∈ out, b.loc = ℓ' ∧ ∃ R ∈ b.sets, y ∈ toSet R := by -- --- PROOF ---

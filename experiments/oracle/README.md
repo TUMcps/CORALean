@@ -577,15 +577,27 @@ and `R` are lists:
 `hybridAutomaton.reach` (`Ops/HybridOps.lean`): CORA's loop of `hybridAutomaton/reach`, `HybridAutomaton.reachQueueFloat`.
 Fields: `locations` (a list; each has the flow `A`, `B`, `c`, `E`, the sets `U`, `W`, `timeStep`, the `invariant` polytope
 and `transitions`, a list of `{"guard" (polytope), "W", "w", "target"}`, the reset `x -> W x + w`), `startLoc`, `R0`,
-`tStart`, `tFinal`, `taylorTerms`, `zonotopeOrder`, and optionally `finalLoc` (default: none) and `fuel` (default 1000).
+`tStart`, `tFinal`, `taylorTerms`, `zonotopeOrder`, and optionally `finalLoc` (default: none), `fuel` (default 1000) and
+`checkFlow` (default `true`, as CORA).
 `guardIntersect` must be `"zonoGirard"` and `enclose` `["box"]`, the only ones with a float definition; a guard must be a
 bare hyperplane (one equality row, no inequality rows, no slack), else the op fails, as it does where the queue is not
 empty after `fuel` entries. `branches`: per analysed stay `loc`, `parent` (the branch that produced it, null for the
 first), `timeInterval` (the sets, up to and including the first certified disjoint from the invariant) and `tStart`
 (lower and upper end of the start time, exact). A stay of `floor((tFinal - lower)/timeStep + 1e-9)` steps, as MATLAB's
-`tStart:timeStep:tFinal`; the jump time of a crossing is `[lower + first*dt, upper + (last+1)*dt]`. Not modelled, so
-different from CORA: `checkFlow` (it can drop a hit), the swap of a lone hyperplane hit for the time-point set, the
-specifications. Enclosure: `HybridAutomaton.reachQueueFloat_outer`, for runs that end one step before `tFinal`.
+`tStart:timeStep:tFinal`; the jump time of a crossing is `[lower + first*dt, upper + (last+1)*dt]`, the first and last set
+of the group before `checkFlow`, as CORA's `minInd`, `maxInd`.
+
+Evaluation order of a pass, as CORA's `guardIntersect.m`: the stay (`Location.stayFloat`), the hits (`Location.potInt`),
+the crossings (`Location.guardGroups`), and per crossing, with `checkFlow` on, the filter of its sets (`Location.queueSetsFloat`:
+the normal of the guard turned out of the invariant, `Location.guardOrientFloat?`, then `Location.checkFlowFloat`; the crossing
+is dropped when no set is kept), then the cut (`zonoGirard`, `'box'` basis) and the reset. Differences from CORA. `checkFlow`
+drops a set only when its flow component along the normal is certified `< 0` (CORA: `<= 0`, which loses a run tangential to the
+guard). The side of the invariant is read from an invariant row equal to the guard normal or its negation with a bound at most
+the guard's offset (CORA: the center of the first set); a crossing without such a row is not filtered. The normal is not
+normalised (identical for a unit normal). Not modelled: the swap of a lone hyperplane hit for the time-point set, the
+specifications. Enclosure: `HybridAutomaton.reachQueueFloat_outer`, for runs that end one step before `tFinal`; with `checkFlow` on
+for runs with positive dwell time at every jump (a run that jumps at once from a state on the guard is not claimed), with it off
+for every run.
 
 `linParamSys.` (`Ops/LinParamSysOps.lean`). `A` is an interval matrix `{"inf","sup"}`, a plain matrix is the point
 interval, and a matrix zonotope is not read. `B` is likewise optional, and so is `c`:
