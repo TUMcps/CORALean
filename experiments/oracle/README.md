@@ -548,7 +548,7 @@ shifted by `a`, `0 < a`). They evaluate, in this order and at every dtype (an ac
 6. `β_0 = 0`, `β_{j+1} = addUp(mulUp(expUp(q, mulUp(rate, Δt_j)), β_j), mulUp(root, ε_j))`, `root = sqrtUp(p, upper)`, as in `restartedBound`, for `j < N`.
 7. `bound = mulUp(addUp(β_N, mulUp(root, ε_N)), sqrtUp(p, divUp(1, lower)))`: the decay of `β_N` inside the window is not counted (`e^{μ s} ≤ 1` for `μ ≤ 0`), the local error enters once through `√b`, and `1/√a` is applied last.
 8. `carry = minimum(g, bound)` (`Krylov.carryMinFloat_sound`: both are bounds of the same error, so is the smaller). In CORA.cpp the choice is `if (!(error <= inside)) error = inside`, which differs from `minimum` only for a NaN `g`.
-9. `windowsOk` holds when `restartedBound`'s does and `le(rate, 0)`; `bound` and `carry` are certificates only then, and `carry` only if `g` bounds the error too. The local error of the window must be within `ε_N` at every time of the window (the Krylov bound is nondecreasing in `t`).
+9. `windowsOk` holds when `restartedBound`'s does and `le(rate, 0)`; `bound` and `carry` are certificates only then, and `carry` only if `g` bounds the error too. The local error of the window is within `ε_N = errorBoundFloat(T)` at every time of the window, with no further hypothesis (`Krylov.windowErrorBoundFloat_sound_of_errorBoundFloat`, from `Krylov.error_le_errorBoundFloat`, which bounds the error at every `s ≤ t`).
 
 CORA's test is `ν h_{k+1,k} Π_{j<k} h_{j+1,j} t^k/k! ≤ tol` (its `k!` is infinite from `k = 171`): the
 decay product above is the same quantity, and the bound equals it plus `ρ` and the residuals' share
