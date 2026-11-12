@@ -96,6 +96,8 @@ public import CORALean.NN.Layers.Operations.SigmoidEnclosure
 public import CORALean.NN.Layers.Operations.SigmoidPoly
 public import CORALean.NN.Layers.Operations.SigmoidPolyRelaxation
 public import CORALean.NN.Layers.Operations.SigmoidRelaxation
+public import CORALean.NN.Layers.Operations.SigmoidSingh
+public import CORALean.NN.Layers.Operations.SigmoidSinghRelaxation
 public import CORALean.NN.Layers.Operations.SigmoidSlope
 public import CORALean.NN.Layers.Operations.Softmax
 public import CORALean.NN.Layers.Operations.SoftmaxBox
@@ -114,6 +116,7 @@ public import CORALean.NN.Layers.Operations.SumOffUp
 public import CORALean.NN.Layers.Operations.Tanh
 public import CORALean.NN.Layers.Operations.TanhPolyRelaxation
 public import CORALean.NN.Layers.Operations.TanhRelaxation
+public import CORALean.NN.Layers.Operations.TanhSingh
 public import CORALean.NN.Layers.Operations.TapEntry
 public import CORALean.NN.Layers.Operations.TapMat
 public import CORALean.NN.Layers.Operations.TransposeEquiv
@@ -130,9 +133,10 @@ rather than summed so that nothing rounds. `LinearWithError` carries an error bo
 **Relaxations.** `Activation` at a `Relaxation`, whose `RelaxationBox` is the one place it
 rounds and `RelaxationSlopeMat` the affine part. The constructors: `RelaxationOfMonotone` and
 `RelaxationOfAntitone` from an enclosure's ends (`EnclosureMid`), `RelaxationOfDeriv` from a
-derivative bracket (`CurvLo`, `CurvHi`, `CurvMid`), `RelaxationTighter` keeping the better of
-two, and `RelaxationOfAffineConj` transporting one through `t ↦ a f (b t) + c` (the `Conj*`
-pieces). `Relu`, `Sigmoid` and `Tanh` are layers built from them; `Softmax` needs its own box.
+derivative bracket (`CurvLo`, `CurvHi`, `CurvMid`), `RelaxationTighter` keeping the better of two,
+and `RelaxationOfAffineConj` transporting one through `t ↦ a f (b t) + c` (the `Conj*` pieces).
+`Relu`, `Sigmoid` and `Tanh` are layers built from them, `SigmoidSingh` and `TanhSingh` at Singh's
+slope; `Softmax` needs its own box.
 
 **Polynomials.** `ActivationPoly` evaluates a fit per neuron on a polynomial zonotope and
 `ActivationPolyRefinable` is it with an order still to choose. A fit comes from

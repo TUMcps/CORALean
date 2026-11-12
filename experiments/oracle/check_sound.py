@@ -31,6 +31,9 @@ arithmetic -- never floats:
   projections, the support function, the norm, `exp`/`log`/`sqrt`/`sinh`/`tanh` through
   `decimal` at 60 digits -- the response must contain it (`CHECKS_INTERVAL`,
   `CHECKS_ZONOTOPE`); `minkDiff` is an inner approximation and is checked the other way round.
+* `nnLayer.*` and `neuralNetwork.evaluate`: the exact network (`Fraction` for the linear and
+  ReLU layers, `decimal` at 60 digits for sigmoid and tanh) at points of the input set lies in
+  the hull of the output set (`check_nn_op`).
 * Every op `ping` lists occurs in the requests, so none is served without a test.
 
 Every check names the request `id` and the violated bound on failure. Uses
@@ -712,6 +715,86 @@ def check_docking_polytope(req, resp, fails):
         fails.append(f"id {rid}: dockingPolytope: the polytope is not shown inside the safe set")
 
 
+def nn_points(req):
+    """Points of the input set of an `nnLayer`/`neuralNetwork` op: the center, the corners of the
+    first four factors, and half the others; a polynomial zonotope's factors enter through its
+    exponent matrix and its independent generators at `+-1`."""
+    import itertools
+    if "Z" in req:
+        c = parse_vec(req["Z"]["c"])
+        _, h, G = parse_mat(req["Z"]["G"])
+        for s in itertools.product([F(-1), F(0), F(1)], repeat=min(h, 4)):
+            s = list(s) + [F(1, 2)] * (h - len(s))
+            yield [c[i] + sum(G[i][j] * s[j] for j in range(h)) for i in range(len(c))]
+        return
+    P = req["P"]
+    c = parse_vec(P["c"])
+    _, h, G = parse_mat(P["G"])
+    _, q, GI = parse_mat(P["GI"]) if "GI" in P else (0, 0, [[] for _ in c])
+    if "Exp" in P:
+        p, E = P["Exp"]["rows"], P["Exp"]["data"]
+        exps = [[E[k * h + j] for k in range(p)] for j in range(h)]
+    else:
+        p, exps = h, [[1 if k == j else 0 for k in range(h)] for j in range(h)]
+    for a in itertools.product([F(-1), F(0), F(1, 2)], repeat=min(p, 4)):
+        a = list(a) + [F(1, 2)] * (p - len(a))
+        for b in ([F(-1)] * q, [F(1)] * q):
+            mono = [F(1)] * h
+            for j in range(h):
+                for k in range(p):
+                    mono[j] *= a[k] ** exps[j][k]
+            yield [c[i] + sum(G[i][j] * mono[j] for j in range(h))
+                   + sum(GI[i][j] * b[j] for j in range(q)) for i in range(len(c))]
+
+
+def nn_apply(layer, x):
+    """The exact layer on a point: `Fraction` where it is rational, else `Decimal`."""
+    kind = layer["kind"]
+    if kind == "linear":
+        _, _, W = parse_mat(layer["W"])
+        b = parse_vec(layer["b"])
+        if any(isinstance(v, Decimal) for v in x):
+            W, b = [[dec(w) for w in row] for row in W], [dec(v) for v in b]
+        return [sum(W[i][j] * x[j] for j in range(len(x))) + b[i] for i in range(len(W))]
+    if kind == "relu":
+        return [max(v, F(0)) for v in x]
+    if kind == "leakyRelu":
+        a = parse_scalar(layer["alpha"])
+        return [max(a * v, v) for v in x]
+    d = [dec(F(v)) if not isinstance(v, Decimal) else v for v in x]
+    if kind == "sigmoid":
+        return [1 / (1 + (-v).exp()) for v in d]
+    if kind == "tanh":
+        return [(v.exp() - (-v).exp()) / (v.exp() + (-v).exp()) for v in d]
+    raise ValueError(kind)
+
+
+def check_nn_op(op, req, resp, fails):
+    """`nnLayer.*` and `neuralNetwork.evaluate`: the exact network's outputs at points of the input
+    set lie in the output set's hull (`c +- sum |G| +- sum |GI| +- E`)."""
+    layers = [req["layer"]] if "layer" in req else req["layers"]
+    out = resp["Z"] if "Z" in resp else resp["P"]
+    c = parse_vec(out["c"])
+    _, h, G = parse_mat(out["G"])
+    gi = parse_mat(out["GI"])[2] if "GI" in out else [[] for _ in c]
+    einf, esup = parse_vec(out["E"]["inf"]), parse_vec(out["E"]["sup"])
+    n = len(c)
+    lo = [dec(c[i] - sum(abs(g) for g in G[i]) - sum(abs(g) for g in gi[i]) + einf[i])
+          for i in range(n)]
+    hi = [dec(c[i] + sum(abs(g) for g in G[i]) + sum(abs(g) for g in gi[i]) + esup[i])
+          for i in range(n)]
+    slack = Decimal(10) ** -40
+    for x in nn_points(req):
+        for layer in layers:
+            x = nn_apply(layer, x)
+        for i in range(n):
+            y = dec(x[i]) if isinstance(x[i], F) else x[i]
+            if y < lo[i] - slack or y > hi[i] + slack:
+                fails.append(f"id {req.get('id')}: {op}: output {i} = {float(y)} leaves "
+                             f"[{float(lo[i])}, {float(hi[i])}]")
+                return
+
+
 def check_class_op(op, req, resp, fails):
     """The ops of the further classes this batch added."""
     rid = req.get("id")
@@ -807,6 +890,8 @@ def main() -> int:
             elif op.startswith(("intervalMatrix.", "matZonotope.", "specification.",
                                 "emptySet.", "fullspace.")):
                 check_class_op(op, req, resp, fails)
+            elif op.startswith(("nnLayer.", "neuralNetwork.")):
+                check_nn_op(op, req, resp, fails)
             elif op == "from":
                 check_from(req, resp, fails)
             elif op == "interval":

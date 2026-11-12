@@ -67,6 +67,8 @@ public import CORALean.NN.Layers.Theorems.SampleDevLoLe
 public import CORALean.NN.Layers.Theorems.SelectMatMulVec
 public import CORALean.NN.Layers.Theorems.SelectMatMulVecAddZero
 public import CORALean.NN.Layers.Theorems.SigmoidRelaxationEncloses
+public import CORALean.NN.Layers.Theorems.SigmoidSinghRelaxationEncloses
+public import CORALean.NN.Layers.Theorems.TanhSinghEncloses
 public import CORALean.NN.Layers.Theorems.SigmoidDerivLoLe
 public import CORALean.NN.Layers.Theorems.SigmoidEnclosureEncloses
 public import CORALean.NN.Layers.Theorems.SigmoidPolyRelaxationEncloses
