@@ -15,7 +15,8 @@ on `[0, Δt]` from `R` of *any* system whose field less `A (x - x✱)` stays in 
 `sys` less `A (x - x✱)` lies in `V` on `K`, then every run of `sys` stays in `K`. For a field
 locally Lipschitz in the state it follows from Picard's iteration (each iterate is a run of the
 linear system with input in `V`, so in `K`, and they converge to the run); without regularity it can
-fail (`ẋ = 3|x|^{2/3}`, `K = {0}`). Not proved here: the adaptive theorems take it as a hypothesis.
+fail (`ẋ = 3|x|^{2/3}`, `K = {0}`). `IsTrajectory.mem_of_fixedPoint` proves it for a closed
+`K` and a field Lipschitz in the state near it; the adaptive theorems still take it as a hypothesis.
 
 ## Inputs
 * `sys` – system

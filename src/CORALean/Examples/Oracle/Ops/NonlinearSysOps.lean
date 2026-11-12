@@ -1,5 +1,7 @@
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.ReachAlgFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.LinReachLoopFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.ReachLoopFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachAdaptiveInit
 import CORALean.ContDynamics.NonlinearSys.Operations.ReachAdaptiveFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.AdaptiveOrdersFloat
@@ -290,43 +292,6 @@ private def aux_input (dops : DtypeOps 𝕋) (req : Json) (m : Nat) :
   | some j => parseZonotopeFixed dops.readExact m j
   | none => pure (Zonotope.origin m)
 
-/-- `nonlinearSys.linReach`: one step of `FloatHessModel.linReachFloat` from `R`. -/
-def handleNonlinearLinReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
-  dops.requireUnguaranteed "nonlinearSys.linReach"
-  checkFields "linReach" req ["n", "m", "f", "p", "alg", "errorOrder", "R", "U", "timeStep",
-    "taylorTerms", "zonotopeOrder", "linearStep"]
-  let ⟨n, m, fm, alg, options⟩ ← aux_setup dops req
-  let R ← parseZonotopeFixed dops.readExact n (← field req "R")
-  match fm.linReachFloat alg (← aux_input dops req m) options R (← aux_linearStep req) with
-  | none => throw "linReach: the region check, the order search or the linear step failed"
-  | some (Rti, Rtp) =>
-    if !noNaN (𝕋 := 𝕋) (Rti, Rtp) then throw aux_tanMsg
-    else pure [("timeInterval", printZonotope dops.showExact Rti),
-      ("timePoint", printZonotope dops.showExact Rtp)]
-
-/-- `nonlinearSys.reach`: `FloatHessModel.reachAlgFloat`, the windows of every step. -/
-def handleNonlinearReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
-  dops.requireUnguaranteed "nonlinearSys.reach"
-  checkFields "reach" req ["n", "m", "f", "p", "alg", "errorOrder", "X0", "U", "tStart", "tFinal",
-    "timeStep", "taylorTerms", "zonotopeOrder"]
-  let ⟨n, m, fm, alg, options⟩ ← aux_setup dops req
-  let X0 ← parseZonotopeFixed dops.readExact n (← field req "X0")
-  let tStart := match fieldOpt req "tStart" with
-    | none => (0 : ℚ)
-    | some _ => 0
-  let tStart ← match fieldOpt req "tStart" with
-    | none => pure tStart
-    | some _ => pure (aux_ratOf (← scalarField req "tStart"))
-  let params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ :=
-    { X₀ := X0, U := ← aux_input dops req m, tStart := tStart,
-      tFinal := aux_ratOf (← scalarField req "tFinal") }
-  match fm.reachAlgFloat alg params options with
-  | none => throw "reach: a step failed, or (tFinal - tStart)/timeStep is not a natural number"
-  | some Rs =>
-    if !noNaN (𝕋 := 𝕋) Rs then throw aux_tanMsg
-    else pure [("timeInterval", Json.arr (Rs.toArray.map (printZonotope dops.showExact)))]
-
-
 /-- A scalar of the request, or the exact dyadic `m·2^e` (CORA's double) when absent. -/
 private def aux_scalarOr (dops : DtypeOps 𝕋) (req : Json) (name : String) (m e : Int) :
     Except String 𝕋 :=
@@ -339,6 +304,92 @@ private def aux_natOr (req : Json) (name : String) (d : Nat) : Except String Nat
   match fieldOpt req name with
   | some _ => natField req name
   | none => pure d
+
+/-- Whether the request bounds the abstraction error by CORA's loop (`errorBound: "loop"`) rather
+than by a checked region (`"region"`, the default). -/
+private def aux_errorLoop (req : Json) : Except String Bool :=
+  match fieldOpt req "errorBound" with
+  | none => pure false
+  | some j => match j.getStr?.toOption with
+    | some "region" => pure false
+    | some "loop" => pure true
+    | _ => throw "`errorBound` must be `region` or `loop`"
+
+/-- The loop's options: `enlarge` (CORA's `1.1`), `fuel` and the optional `maxError`. -/
+private def aux_loopOptions (dops : DtypeOps 𝕋) (req : Json) (n : Nat) :
+    Except String (𝕋 × Nat × Option (Vec 𝕋 n)) := do
+  let maxError ← match fieldOpt req "maxError" with
+    | some j => do pure (some (← parseVecFixed dops.readExact n j))
+    | none => pure none
+  pure (← aux_scalarOr dops req "enlarge" 2476979795053773 (-51), ← aux_natOr req "fuel" 10000,
+    maxError)
+
+/-- The fields the `errorBound: "loop"` form adds. -/
+private def aux_loopFields : List String := ["errorBound", "enlarge", "fuel", "maxError"]
+
+/-- `nonlinearSys.linReach`: one step of `FloatHessModel.linReachFloat` from `R`, or at
+`errorBound: "loop"` of `linReachLoopFloat` from the last step's `abstrerr`. -/
+def handleNonlinearLinReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  dops.requireUnguaranteed "nonlinearSys.linReach"
+  checkFields "linReach" req (["n", "m", "f", "p", "alg", "errorOrder", "R", "U", "timeStep",
+    "taylorTerms", "zonotopeOrder", "linearStep", "abstrerr"] ++ aux_loopFields)
+  let ⟨n, m, fm, alg, options⟩ ← aux_setup dops req
+  let R ← parseZonotopeFixed dops.readExact n (← field req "R")
+  -- the loop form, from the last step's error; else the region form
+  if ← aux_errorLoop req then
+    match alg with
+    | .poly _ => throw "linReach: `errorBound: loop` is served at `alg: lin` only"
+    | .lin =>
+      let ⟨enlarge, fuel, maxError⟩ ← aux_loopOptions dops req n
+      let err ← match fieldOpt req "abstrerr" with
+        | some j => parseVecFixed dops.readExact n j
+        | none => pure fun _ => FloatOps.zero
+      -- one step with the loop, answering the error the next step starts from
+      match fm.linReachLoopFloat (← aux_input dops req m) options enlarge fuel R err maxError
+          (← aux_linearStep req) with
+      | none => throw "linReach: the error loop failed, or the step, or `maxError` was exceeded"
+      | some (Rti, Rtp, abstrerr) =>
+        if !noNaN (𝕋 := 𝕋) (Rti, Rtp, abstrerr) then throw aux_tanMsg
+        else pure [("timeInterval", printZonotope dops.showExact Rti),
+          ("timePoint", printZonotope dops.showExact Rtp),
+          ("abstrerr", printVec dops.showExact abstrerr)]
+  else
+    match fm.linReachFloat alg (← aux_input dops req m) options R (← aux_linearStep req) with
+    | none => throw "linReach: the region check, the order search or the linear step failed"
+    | some (Rti, Rtp) =>
+      if !noNaN (𝕋 := 𝕋) (Rti, Rtp) then throw aux_tanMsg
+      else pure [("timeInterval", printZonotope dops.showExact Rti),
+        ("timePoint", printZonotope dops.showExact Rtp)]
+
+/-- `nonlinearSys.reach`: `FloatHessModel.reachAlgFloat`, the windows of every step, or at
+`errorBound: "loop"` `reachLoopFloat`. -/
+def handleNonlinearReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  dops.requireUnguaranteed "nonlinearSys.reach"
+  checkFields "reach" req (["n", "m", "f", "p", "alg", "errorOrder", "X0", "U", "tStart", "tFinal",
+    "timeStep", "taylorTerms", "zonotopeOrder", "linearStep"] ++ aux_loopFields)
+  let ⟨n, m, fm, alg, options⟩ ← aux_setup dops req
+  let X0 ← parseZonotopeFixed dops.readExact n (← field req "X0")
+  let tStart ← match fieldOpt req "tStart" with
+    | none => pure (0 : ℚ)
+    | some _ => pure (aux_ratOf (← scalarField req "tStart"))
+  let params : Reach.InputParams (Zonotope (Vec 𝕋 n)) (Zonotope (Vec 𝕋 m)) ℚ :=
+    { X₀ := X0, U := ← aux_input dops req m, tStart := tStart,
+      tFinal := aux_ratOf (← scalarField req "tFinal") }
+  let step ← aux_linearStep req
+  -- the windows by the loop, or by the checked region
+  let res ← if ← aux_errorLoop req then
+      match alg with
+      | .poly _ => throw "reach: `errorBound: loop` is served at `alg: lin` only"
+      | .lin =>
+        let ⟨enlarge, fuel, maxError⟩ ← aux_loopOptions dops req n
+        pure (fm.reachLoopFloat params options enlarge fuel maxError step)
+    else pure (fm.reachAlgFloat alg params options step)
+  -- every window, unless a step failed
+  match res with
+  | none => throw "reach: a step failed, or (tFinal - tStart)/timeStep is not a natural number"
+  | some Rs =>
+    if !noNaN (𝕋 := 𝕋) Rs then throw aux_tanMsg
+    else pure [("timeInterval", Json.arr (Rs.toArray.map (printZonotope dops.showExact)))]
 
 /-- The `lin-adaptive` options: the request's, else CORA's (`postProcessing`, the literals of
 `linReach_adaptive`); `redFactor` defaults to CORA's `0.0005`. -/

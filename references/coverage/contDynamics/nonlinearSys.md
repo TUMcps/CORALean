@@ -56,9 +56,10 @@ misses the window's start once `VerrorDyn` does not hold the origin (tensor orde
 `f0 ⊕ B(U - u*) ⊕ VerrorDyn`, sound for time-varying inputs.
 
 **`linReach_adaptive` — the remaining gap.** That `trueError ≤ error_adm` confines the run to `Rmax`
-is CORA's fixed-point argument; it holds for a field locally Lipschitz in the state (Picard's
-iterates are runs of the linear system with input in the admissible box) but is not proved here, so
-the theorems take it as the hypothesis `HasFixedPointConfinement`.
+is CORA's fixed-point argument; it holds for a field Lipschitz in the state, and
+[`NonlinearSys.IsTrajectory.mem_of_fixedPoint`](../../../src/CORALean/ContDynamics/NonlinearSys/Theorems/IsTrajectoryMemOfFixedPoint.lean)
+proves it for a closed `Rmax` (the error loop of `linReachLoopFloat` uses it, with `Encloses` giving the
+Lipschitz bound). The adaptive theorems still take it as the hypothesis `HasFixedPointConfinement`.
 
 **`linReach_adaptive` and `reach_adaptive` at `'poly-adaptive'` — float layer.** [`NonlinearSys.FloatHessModel.reachPolyAdaptiveFloat`](../../../src/CORALean/ContDynamics/NonlinearSys/Operations/ReachPolyAdaptiveFloat.lean),
 [`NonlinearSys.FloatHessModel.linReachPolyAdaptiveFloat`](../../../src/CORALean/ContDynamics/NonlinearSys/Operations/LinReachPolyAdaptiveFloat.lean) and
