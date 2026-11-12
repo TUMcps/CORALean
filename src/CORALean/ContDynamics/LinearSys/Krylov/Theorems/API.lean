@@ -46,7 +46,11 @@ public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.RestartedErrorLeGr
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.RestartedErrorLeWeighted
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.LyapunovCertificateFloatSound
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.LyapunovCertificateFloatNormExpLe
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.RestartedBetaFloatSpec
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.RestartedErrorBoundFloatSound
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.RestartedErrorLeWeightedInside
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.WindowErrorBoundFloatSound
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.CarryMinFloatSound
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.HasDerivAtExpSmulMulVec
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.NormExpSmulMulVecLe
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.ErrorEqIntegralDefect

@@ -1,9 +1,9 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Krylov.Definitions.LyapunovCertificateFloat
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.RestartedBetaFloat
 public import CORALean.Global.Float.Exp
 public import CORALean.Global.Float.Sqrt
-public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -51,17 +51,6 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋]
 
 
--- ------------------------------------------  STEPS  ------------------------------------------- --
-
-/-- The bound `β_j` of the error in the weight: `β_0 = 0`, `β_{j+1} = e^{μΔt_j} β_j + √b ε'_j`. -/
-@[step_of Krylov.restartedErrorBoundFloat]
-def Krylov.step_restartedBeta (q : ℕ) (root rate : 𝕋) (Δt ε : ℕ → 𝕋) : ℕ → 𝕋
-  | 0 => zero
-  | j + 1 =>
-    addUp (mulUp (expUp q (mulUp rate (Δt j))) (Krylov.step_restartedBeta q root rate Δt ε j))
-      (mulUp root (ε j))
-
-
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `β_N/√a`, rounded up: `β_N` times the root of `1/a` rounded up. -/
@@ -69,7 +58,7 @@ def Krylov.restartedErrorBoundFloat (p q : ℕ) (c : Krylov.LyapunovCertificateF
     (Δt ε : ℕ → 𝕋) (N : ℕ) : 𝕋 :=
   -- `√b` and the accumulated bound `β_N`
   let root := sqrtUp p c.upper
-  let β := Krylov.step_restartedBeta q root c.rate Δt ε N
+  let β := Krylov.restartedBetaFloat q root c.rate Δt ε N
   -- `1/√a`
   mulUp β (sqrtUp p (divUp one c.lower))
 

@@ -3,6 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.RestartedErrorBoundFloat
 public import CORALean.ContDynamics.LinearSys.Krylov.Operations.RestartedErrorOkFloat
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.LyapunovCertificateFloatSound
+public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.RestartedBetaFloatSpec
 public import CORALean.ContDynamics.LinearSys.Krylov.Theorems.RestartedErrorLeWeighted
 public import CORALean.Global.Float.Exp
 public import CORALean.Global.Float.Sqrt
@@ -84,62 +85,20 @@ theorem Krylov.restartedErrorBoundFloat_sound (p q : ℕ) (A P L : Mat 𝕋 n n)
       toReal (Krylov.restartedErrorBoundFloat p q (Krylov.lyapunovCertificateFloat A P L a) Δt ε
         N) := by -- --- PROOF ---
   set c := Krylov.lyapunovCertificateFloat A P L a with hc
-  unfold Krylov.restartedErrorOkFloat at hok
-  simp only [Bool.and_eq_true, decide_eq_true_eq, List.all_eq_true, List.mem_range] at hok
-  obtain ⟨⟨hcok, hq⟩, hall⟩ := hok
-  have hΔt : ∀ j < N, 0 ≤ toReal (Δt j) := fun j hj => by
-    have := toReal_le_of_le (hall j hj).1
-    rwa [toReal_zero] at this
-  have hcap := fun j hj => (hall j hj).2
+  have hcok : c.ok = true := by
+    unfold Krylov.restartedErrorOkFloat at hok
+    simp only [Bool.and_eq_true, decide_eq_true_eq] at hok
+    exact hok.1.1
+  have hε0 : ∀ j < N, 0 ≤ toReal (ε j) := fun j hj => (norm₂_nonneg _).trans (hloc j hj)
+  obtain ⟨hΔt, hnn, hstep⟩ := Krylov.restartedBetaFloat_spec p q c Δt ε N _ rfl hok hε0
   obtain ⟨hS, ha0, hb0, ha, hb, hPA⟩ := Krylov.lyapunovCertificateFloat_sound A P L a hcok
   set root := sqrtUp p c.upper with hroot
-  set β : ℕ → ℝ := fun j => toReal (Krylov.step_restartedBeta q root c.rate Δt ε j) with hβ
-  have hε0 : ∀ j < N, 0 ≤ toReal (ε j) := fun j hj => (norm₂_nonneg _).trans (hloc j hj)
-  have hrootle : Real.sqrt (toReal c.upper) ≤ toReal root := le_sqrtUp p c.upper
-  have hroot0 : 0 ≤ toReal root := sqrtUp_nonneg p c.upper
-  -- the exponential's argument is in range, so `expUp` is above `e^{μΔt}`
-  have hexp : ∀ j < N, Real.exp (toReal c.rate * toReal (Δt j)) ≤
-      toReal (expUp q (mulUp c.rate (Δt j))) := by
-    intro j hj
-    have hcapR : toReal (mulUp c.rate (Δt j)) ≤ 2 ^ q / 2 := by
-      have h1 := toReal_le_of_le (hcap j hj)
-      have h2 := nsmulDown_le (2 ^ (q - 1)) (FloatOps.one : 𝕋)
-      rw [toReal_one, mul_one] at h2
-      refine h1.trans (h2.trans (le_of_eq ?_))
-      obtain ⟨q', rfl⟩ : ∃ q', q = q' + 1 := ⟨q - 1, by omega⟩
-      simp [pow_succ]
-    exact (Real.exp_le_exp.2 (mul_le_mulUp c.rate (Δt j))).trans (le_expUp q _ hcapR)
-  -- one step of the bound, with its nonnegativity
-  have hstep : ∀ j < N, 0 ≤ β j → Real.exp (toReal c.rate * toReal (Δt j)) * β j +
-      Real.sqrt (toReal c.upper) * toReal (ε j) ≤ β (j + 1) := by
-    intro j hj hβj
-    -- the sum, the product and the root's share, each above the real one
-    have h1 := add_le_addUp (mulUp (expUp q (mulUp c.rate (Δt j)))
-      (Krylov.step_restartedBeta q root c.rate Δt ε j)) (mulUp root (ε j))
-    have h2 := mul_le_mulUp (expUp q (mulUp c.rate (Δt j)))
-      (Krylov.step_restartedBeta q root c.rate Δt ε j)
-    have h3 := mul_le_mulUp root (ε j)
-    have h4 := mul_le_mul_of_nonneg_right (hexp j hj) hβj
-    have h5 := mul_le_mul_of_nonneg_right hrootle (hε0 j hj)
-    simp only [hβ, Krylov.step_restartedBeta] at hβj ⊢
-    linarith
-  -- the bounds are nonnegative, by induction
-  have hnn : ∀ j ≤ N, 0 ≤ β j := by
-    intro j
-    induction j with
-    | zero => intro _; simp [hβ, Krylov.step_restartedBeta, toReal_zero]
-    | succ j ih =>
-      intro hj
-      have h := hstep j (by omega) (ih (by omega))
-      have := hexp j (by omega)
-      have h6 := mul_nonneg (Real.exp_pos (toReal c.rate * toReal (Δt j))).le (ih (by omega))
-      have h7 := mul_nonneg (Real.sqrt_nonneg (toReal c.upper)) (hε0 j (by omega))
-      linarith
+  set β : ℕ → ℝ := fun j => toReal (Krylov.restartedBetaFloat q root c.rate Δt ε j) with hβ
   -- the real theorem, then the final factor `1/√a`
   have hmain := Krylov.restarted_error_le_weighted (toRealMat A) (toRealMat P) (toReal c.rate)
     (toReal c.lower) (toReal c.upper) hS hPA ha hb ha0 N (fun j => toReal (Δt j)) hΔt v w S
     (fun j => toReal (ε j)) β hv hw h0 hloc (hnn 0 (Nat.zero_le _))
-    (fun j hj => hstep j hj (hnn j hj.le))
+    hstep
   refine hmain.trans ?_
   have hsa : 0 < Real.sqrt (toReal c.lower) := Real.sqrt_pos.2 ha0
   have hinv : (Real.sqrt (toReal c.lower))⁻¹ ≤ toReal (sqrtUp p (divUp FloatOps.one c.lower)) := by

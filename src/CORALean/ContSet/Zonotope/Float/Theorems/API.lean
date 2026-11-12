@@ -74,6 +74,12 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.PlusSubsetAddBox
 public import CORALean.ContSet.Zonotope.Float.Theorems.ProjectHighDimOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ProjectOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapTriBracket
+public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapTriSumSqSplit
+public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapTriPairsSplit
+public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapTriExpand
+public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapTriCoeff
+public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapTriOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.RadiusLe
 public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterSubMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterZeroMem

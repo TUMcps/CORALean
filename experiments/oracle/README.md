@@ -232,6 +232,7 @@ Zonotope ops (fields besides `Z`; result `Z` unless said):
 | `isIntersecting` | `Z2`, `tol` | `IsDisjoint` (`isDisjointBoxBoxOuter`); `disjoint` |
 | `cubMap` | `T` (array of arrays of `n x n` matrices) | `Zonotope.cubMap` |
 | `quadMap` | `Q` | `Zonotope.quadMap` |
+| `quadMapTri` | `Q` | `Zonotope.quadMapTri` (CORA's `quadMap.m`: `N + N(N+1)/2` generators; below) |
 | `dominantDirections` | `filterLength1`, `filterLength2` | `Zonotope.dominantDirections`; `value` (`n x n` matrix or `null`) |
 | `encloseMany` | `Zs`, `direction` (vector, no `Z`), `p` | `Zonotope.encloseMany`; `Z` or `null` |
 | `enclosePoints` | `points`, `U`, `method` (`stursberg`), no `Z` | `Zonotope.enclosePointsStursberg` |
@@ -258,6 +259,16 @@ Zonotope ops (fields besides `Z`; result `Z` unless said):
 | `splitFirstGen`, `splitLongestGen` | | `Zonotope.splitFirstGen`, `.splitLongestGen`; `Z1`, `Z2` |
 | `supportFunc` | `dir`, `type` (`upper`) | `Zonotope.boundDot`; `value` |
 | `vertices` | | `Zonotope.polygon` (plane), `Zonotope.vPolytope` (up to `2^20` corners); `V`, `E` |
+
+`zonotope.quadMapTri` is CORA's `quadMap(Z, Q)` of one zonotope, `N` generators `g_1..g_N`, center `g_0 := c`, `Z = [g_0 .. g_N]` (columns), with the generators of CORA's `aux_quadMapSingle` and not the `(N + m + 1)²` of `zonotope.quadMap` (polynomial zonotopes). The result is the same for every dtype; at `nearest` every `Down` and `Up` below is the machine's rounding and the result's `E` is the zero box. Per output `i` (`Q_i` the `n x n` matrix `Q[i]`), in this order (`Zonotope.quadMapTri_outer`):
+
+1. The operand. If `le(sup_k, 0)` and `le(0, inf_k)` for every `k` of `Z`'s `E` (the box is zero; always so for a CORA zonotope), `Z` itself; else `absorbRounding Z` (the `n` generators `diag(errorBound E)` appended, `E := 0`). `N` is its generator count.
+2. The entry `M_ab = g_aᵀ Q_i g_b`, `a, b = 0..N`, as `(g_aᵀ Q_i) g_b` like MATLAB's `Zmat' * Q{i} * Zmat`: the row `w_k = dotDown(column k of Q_i, g_a)` (`dotDown(x, y) = sumDown_r mulDown(x_r, y_r)`, summed from the last entry; `dotUp` for the upper bound), then `M_ab = sumDown_k min(mulDown(w↓_k, g_b,k), mulDown(w↑_k, g_b,k))` (summed from the last entry; `max` and `Up` for the upper bound). At `nearest` `w↓ = w↑` and this is the plain dot product.
+3. The center `c_i = addDown(M_00, sumDown_s half(M_ss))`, `s = 1..N` (the sum from the last `s`; `half` exact).
+4. The generators, `h = N + N(N+1)/2` of them: first `half(M_ss)` for `s = 1..N`; then, for the columns `j = 0..N-1` in this order and in each the rows `r = j+1..N` in this order (the strict lower triangle of `M + Mᵀ` read down its columns, which is `quadMatoffdiag(kInd(:))` of MATLAB), `addDown(M_rj, M_jr)` (the lower entry first). The pairs with `j = 0` are the linear terms `c ᵀQ g_r + g_rᵀ Q c`.
+5. The same with `Up` for `c↑` and the generators `G↑`; the result's center and generators are the `Down` ones, and the box is `E = residual(c↓, c↑, c↓) + [-ρ, ρ]`, `ρ_i = sumUp_l subUp(G↑_il, G↓_il)` (`generatorError`; `residual` is `[subDown(c↓, c↓), subUp(c↑, c↓)]`).
+
+CORA's `nonzeroFilter` and, for one nonzero `Q_i`, its single box generator `sum(abs(G), 2)` are exact operations on this zonotope and are applied by the caller. The output order is the one above; a column of zeros is not removed.
 
 ### The further classes
 
@@ -531,6 +542,13 @@ shifted by `a`, `0 < a`). They evaluate, in this order and at every dtype (an ac
 4. `ρ_W = quadBoundUp C_W`; `gap = subDown(1, ρ_W)`; `rate = neg(divDown(gap, addUp(upper, upper)))`.
 5. `ok` holds when `P_ij ≤ P_ji` and `P_ji ≤ P_ij` for all `i, j` (`le`), and `ltStrict(0, lower)`, `ltStrict(0, gap)`, `ltStrict(0, upper)`. Cost: the two products, `O(n³)` once per system (`PA` in `O(n nnz(A))` for a sparse `A`, `L*L` needs the dense factor); the rest `O(n²)`.
 6. `restartedBound`: `root = sqrtUp(p, upper)`, `β_0 = 0`, `β_{j+1} = addUp(mulUp(expUp(q, mulUp(rate, Δt_j)), β_j), mulUp(root, ε_j))`, `bound = mulUp(β_N, sqrtUp(p, divUp(1, lower)))`: the 2-norm error of `N` restarted windows of lengths `Δt_j` and local 2-norm errors `ε_j` (`Krylov.restartedErrorBoundFloat_sound`). `windowsOk` holds when `ok`, `q ≥ 1` and, for every `j < N`, `le(0, Δt_j)` and `le(mulUp(rate, Δt_j), nsmulDown(2^{q-1}, 1))`; the bound is a certificate only then.
+
+`krylov.windowBound` is the error at every time of the next restart window, in the same weight (`Krylov.windowErrorBoundFloat_sound`, from `Krylov.restarted_error_le_weighted_inside`), and the carry CORA.cpp's `KrylovWindows` reports. Its fields are those of `restartedBound` with `dt` the lengths of the `N` finished windows, `eps` the `N + 1` local 2-norm errors (the last one that of the window in question) and `g` the Gershgorin carry of the same window, `e^{Δt μ_A} E_prev + ε_N` as CORA.cpp forms it (the oracle takes it as given). Steps 1-5 are those of `lyapunovCertificate`, then:
+
+6. `β_0 = 0`, `β_{j+1} = addUp(mulUp(expUp(q, mulUp(rate, Δt_j)), β_j), mulUp(root, ε_j))`, `root = sqrtUp(p, upper)`, as in `restartedBound`, for `j < N`.
+7. `bound = mulUp(addUp(β_N, mulUp(root, ε_N)), sqrtUp(p, divUp(1, lower)))`: the decay of `β_N` inside the window is not counted (`e^{μ s} ≤ 1` for `μ ≤ 0`), the local error enters once through `√b`, and `1/√a` is applied last.
+8. `carry = minimum(g, bound)` (`Krylov.carryMinFloat_sound`: both are bounds of the same error, so is the smaller). In CORA.cpp the choice is `if (!(error <= inside)) error = inside`, which differs from `minimum` only for a NaN `g`.
+9. `windowsOk` holds when `restartedBound`'s does and `le(rate, 0)`; `bound` and `carry` are certificates only then, and `carry` only if `g` bounds the error too. The local error of the window must be within `ε_N` at every time of the window (the Krylov bound is nondecreasing in `t`).
 
 CORA's test is `ν h_{k+1,k} Π_{j<k} h_{j+1,j} t^k/k! ≤ tol` (its `k!` is infinite from `k = 171`): the
 decay product above is the same quantity, and the bound equals it plus `ρ` and the residuals' share
