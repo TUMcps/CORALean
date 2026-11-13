@@ -146,6 +146,11 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongestIndepGe
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitGen
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ContainsPointSet
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Materialise
+public import CORALean.ContSet.PolyZonotope.Float.Operations.EvenShift
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Pick
+public import CORALean.ContSet.PolyZonotope.Float.Operations.Construct
+public import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceSplit
+public import CORALean.ContSet.PolyZonotope.Float.Operations.EncloseShared
 
 /-!
 # What `PolyZonotope` computes

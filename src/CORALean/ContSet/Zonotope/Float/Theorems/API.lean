@@ -143,6 +143,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.VecExact
 public import CORALean.ContSet.Zonotope.Float.Theorems.VecRepresentsaPointSound
 public import CORALean.ContSet.Zonotope.Float.Theorems.VecRepresentsaOriginSound
 public import CORALean.ContSet.Zonotope.Float.Theorems.CenterMemNominalSet
+public import CORALean.ContSet.Zonotope.Float.Theorems.PickOuter
 
 /-!
 # What `Zonotope` guarantees

@@ -759,6 +759,30 @@ dtypes carry the widths, and `check_sound.py` re-derives the theorem's hypothese
 (`NearestUnsound`); the real libm error (about `6e-16` for `N = 16, 32, 64`, measured with the same check) is far below the `10^-9`
 margin, which is why CORA.cpp needs no change.
 
+`polyZonotope.` (`Ops/PolyZonotopeOps.lean`; `zonotope.polyZonotope` and `interval.polyZonotope` in `Ops/ConversionOps.lean`).
+A set is `{"c","G","GI","Exp","E","id"}` (`G` is `n x h`, `Exp` is `p x h`, `E` the error box, `id` the identifiers, `1..p` where
+absent):
+
+| op | fields | float definition and theorem |
+|---|---|---|
+| `polyZonotope.constructor` | `P` | `PolyZonotope.construct` (`construct_outer`): zero generators go, equal exponent columns are added, in the order of CORA's `removeRedundantExponents` (the columns sorted by a hash drawn from MATLAB's `RandStream('mt19937ar','Seed',0)`, singles first) |
+| `polyZonotope.plus` | `P` and one of `Q`, `Z`, `I`, `v` | `PolyZonotope.plus` (`plus_outer`) with `Zonotope.ofIndep` for `Z`, `I`, `v` |
+| `polyZonotope.mtimes` | `M`, `P` | `PolyZonotope.mtimes` (`mtimes_outer`) |
+| `polyZonotope.zonotope` | `P` | `PolyZonotope.zonotopeFold` (`zonotopeFold_contains`): CORA's order `[G(:, ~isEvenColumn), 0.5 * Gquad, GI]` |
+| `polyZonotope.interval` | `P` | `zonotopeFold` then `Zonotope.interval` |
+| `polyZonotope.reduce` | `P`, `order`, `method` (`girard`) | `PolyZonotope.reduceSplit` (`reduceSplit_outer`), the ranking and the choice of the kept generators outside it |
+| `polyZonotope.enclose` | `P`, `Q` | `PolyZonotope.encloseShared` (`encloseShared_outer`) after padding both sets to the union of the identifiers |
+| `polyZonotope.dim` | `P` | the length of `c` |
+| `zonotope.polyZonotope`, `interval.polyZonotope` | `Z`, `I` | `Zonotope.polyZonotope` (identity exponents) then the constructor |
+
+Deviations are listed in `references/coverage/contSet/polyZonotope.md`. A constant (all-zero exponent) column goes whole into the
+center, where CORA halves it; this is the only mismatch of `zonotope`, `interval` and `reduce` against MATLAB on integer data.
+A merged sum of three or more equal columns is added from the right.
+
+`enclose` of sets with equal numbers of independent generators lays them out as CORA does (the center column in the middle); with unequal numbers it uses `Zonotope.linComb`'s layout, not CORA's `Gadd`.
+With other identifiers and a constant dependent generator it is refused. `check_sound.py` samples points of the input sets and
+requires them in the output (`check_polyzono_op`).
+
 `nnLayer.` and `neuralNetwork.` (`Ops/NnOps.lean`):
 
 | op | fields | float definition |

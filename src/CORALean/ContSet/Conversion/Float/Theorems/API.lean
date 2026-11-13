@@ -91,6 +91,7 @@ public import CORALean.ContSet.Conversion.Float.Theorems.IntervalMatPolytopeExac
 public import CORALean.ContSet.Conversion.Float.Theorems.IntervalMatPolytopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.ZonotopeMatPolytopeContains
 public import CORALean.ContSet.Conversion.Float.Theorems.VPolytopeIntervalMatrixContains
+public import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeZonotopeFoldContains
 
 /-!
 # The guarantees of the Float conversions, collected

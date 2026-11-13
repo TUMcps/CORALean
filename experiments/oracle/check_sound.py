@@ -34,6 +34,10 @@ arithmetic -- never floats:
 * `nnLayer.*` and `neuralNetwork.evaluate`: the exact network (`Fraction` for the linear and
   ReLU layers, `decimal` at 60 digits for sigmoid and tanh) at points of the input set lies in
   the hull of the output set (`check_nn_op`).
+* `polyZonotope.*`, `interval.polyZonotope` and `zonotope.polyZonotope`: points of the input set (the
+  center, the corners of the first four factors, half the others, the independent generators at
+  `+-1`) lie in the hull of the output (`check_polyzono_op`); `plus` and `mtimes` map the points
+  first, `enclose` takes the points of both operands.
 * Every op `ping` lists occurs in the requests, so none is served without a test.
 
 Every check names the request `id` and the violated bound on failure. Uses
@@ -795,6 +799,110 @@ def check_nn_op(op, req, resp, fails):
                 return
 
 
+
+def pz_points(P):
+    """Points of the polynomial zonotope `P` (`{"c","G","GI","Exp"}`): the center, the corners of
+    the first four factors, half the others, the independent generators at `+-1`."""
+    import itertools
+    c = parse_vec(P["c"])
+    _, h, G = parse_mat(P["G"])
+    _, q, GI = parse_mat(P["GI"]) if "GI" in P else (0, 0, [[] for _ in c])
+    if "Exp" in P:
+        p, E = P["Exp"]["rows"], P["Exp"]["data"]
+        exps = [[E[k * h + j] for k in range(p)] for j in range(h)]
+    else:
+        p, exps = h, [[1 if k == j else 0 for k in range(h)] for j in range(h)]
+    for a in itertools.product([F(-1), F(0), F(1, 2), F(1)], repeat=min(p, 3)):
+        a = list(a) + [F(1, 2)] * (p - len(a))
+        for b in ([F(-1)] * q, [F(1)] * q):
+            mono = [F(1)] * h
+            for j in range(h):
+                for k in range(p):
+                    mono[j] *= a[k] ** exps[j][k]
+            yield [c[i] + sum(G[i][j] * mono[j] for j in range(h))
+                   + sum(GI[i][j] * b[j] for j in range(q)) for i in range(len(c))]
+
+
+def pz_hull(out):
+    """The hull of a polynomial zonotope or zonotope response: `c +- sum |G| +- sum |GI| +- E`."""
+    c = parse_vec(out["c"])
+    _, h, G = parse_mat(out["G"])
+    gi = parse_mat(out["GI"])[2] if "GI" in out else [[] for _ in c]
+    einf, esup = parse_vec(out["E"]["inf"]), parse_vec(out["E"]["sup"])
+    n = len(c)
+    lo = [dec(c[i] - sum(abs(g) for g in G[i]) - sum(abs(g) for g in gi[i]) + einf[i])
+          for i in range(n)]
+    hi = [dec(c[i] + sum(abs(g) for g in G[i]) + sum(abs(g) for g in gi[i]) + esup[i])
+          for i in range(n)]
+    return lo, hi
+
+
+def check_polyzono_op(op, req, resp, fails):
+    """The `polyZonotope.*` ops and the two conversions: the exact image of the points of the
+    operands lies in the hull of the response (a necessary condition, not an exact one)."""
+    name = op.split(".", 1)[1] if op.startswith("polyZonotope.") else op
+    rid = req.get("id")
+    if name == "dim":
+        if resp["value"] != len(parse_vec(req["P"]["c"])):
+            fails.append(f"id {rid}: {op}: wrong dimension {resp['value']}")
+        return
+    if name == "interval":
+        lo = [dec(x) for x in parse_vec(resp["I"]["inf"])]
+        hi = [dec(x) for x in parse_vec(resp["I"]["sup"])]
+    elif name == "zonotope" and op.startswith("polyZonotope."):
+        lo, hi = pz_hull(resp["Z"])
+    else:
+        lo, hi = pz_hull(resp["P"])
+    n = len(lo)
+    # the points of every operand, through the op
+    if op == "zonotope.polyZonotope":
+        c, _, G = parse_vec(req["Z"]["c"]), None, parse_mat(req["Z"]["G"])[2]
+        h = len(G[0]) if G and G[0] else 0
+        pts = [[c[i] + sum(G[i][j] * s[j] for j in range(h)) for i in range(n)]
+               for s in itertools_product(h)]
+    elif op == "interval.polyZonotope":
+        a, b = parse_vec(req["I"]["inf"]), parse_vec(req["I"]["sup"])
+        pts = [[a[i] for i in range(n)], [b[i] for i in range(n)],
+                [(a[i] + b[i]) / 2 for i in range(n)]]
+    else:
+        pts = list(pz_points(req["P"]))
+        if name == "plus":
+            if "Q" in req:
+                qs = list(pz_points(req["Q"]))
+            elif "Z" in req:
+                zc, zG = parse_vec(req["Z"]["c"]), parse_mat(req["Z"]["G"])[2]
+                zh = len(zG[0]) if zG and zG[0] else 0
+                qs = [[zc[i] + sum(zG[i][j] * s[j] for j in range(zh)) for i in range(n)]
+                      for s in itertools_product(zh)]
+            elif "I" in req:
+                a, b = parse_vec(req["I"]["inf"]), parse_vec(req["I"]["sup"])
+                qs = [a, b, [(a[i] + b[i]) / 2 for i in range(n)]]
+            else:
+                qs = [parse_vec(req["v"])]
+            pts = [[x[i] + y[i] for i in range(n)] for x in pts[::3] for y in qs[::2] or qs]
+        elif name == "mtimes":
+            _, _, M = parse_mat(req["M"])
+            pts = [mat_vec(M, x) for x in pts]
+            n = len(M)
+        elif name == "enclose":
+            pts = pts + list(pz_points(req["Q"]))
+    slack = Decimal(10) ** -40
+    for x in pts:
+        for i in range(n):
+            y = dec(x[i]) if isinstance(x[i], F) else x[i]
+            if y < lo[i] - slack or y > hi[i] + slack:
+                fails.append(f"id {rid}: {op}: coordinate {i} = {float(y)} leaves "
+                             f"[{float(lo[i])}, {float(hi[i])}]")
+                return
+
+
+def itertools_product(h):
+    """The corners of the unit box of dimension `min(h, 6)`, the other coefficients 1/2."""
+    import itertools
+    for s in itertools.product([F(-1), F(1)], repeat=min(h, 6)):
+        yield list(s) + [F(1, 2)] * (h - len(s))
+
+
 def check_class_op(op, req, resp, fails):
     """The ops of the further classes this batch added."""
     rid = req.get("id")
@@ -875,7 +983,10 @@ def main() -> int:
             ping_ops = resp.get("ops", [])
             continue
         try:
-            if op.startswith("interval."):
+            if op.startswith("polyZonotope.") or op in ("interval.polyZonotope",
+                                                          "zonotope.polyZonotope"):
+                check_polyzono_op(op, req, resp, fails)
+            elif op.startswith("interval."):
                 check_interval_op(op[len("interval."):], req, resp, fails)
             elif op.startswith("zonotope."):
                 name = op[len("zonotope."):]

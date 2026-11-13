@@ -130,6 +130,10 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.FiberExactPlus
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesIntervalMatFiber
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MtimesPoint
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.PickOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ConstructOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceSplitOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.EncloseSharedOuter
 
 /-!
 # What `PolyZonotope` guarantees
