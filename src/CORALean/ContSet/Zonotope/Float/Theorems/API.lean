@@ -14,6 +14,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.BoxSubset
 public import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
 public import CORALean.ContSet.Zonotope.Float.Theorems.CenterMemToSet
 public import CORALean.ContSet.Zonotope.Float.Theorems.CompactZerosExact
+public import CORALean.ContSet.Zonotope.Float.Theorems.CompactZerosFromTracks
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConstrSatSound
 public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsPointSound
@@ -46,6 +47,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.MatZonotopeContains
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemGeneratorError
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemInterior
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
+public import CORALean.ContSet.Zonotope.Float.Theorems.MemToSetIffContainsAt
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemPointMat
 public import CORALean.ContSet.Zonotope.Float.Theorems.MidpointMemResidual
 public import CORALean.ContSet.Zonotope.Float.Theorems.MinkDiffAlignedInner
@@ -137,6 +139,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.BoundaryRatioGe
 public import CORALean.ContSet.Zonotope.Float.Theorems.BoundaryPointOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.MpowerOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.PowersOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.TracksMtimesPlus
 public import CORALean.ContSet.Zonotope.Float.Theorems.TransposeExact
 public import CORALean.ContSet.Zonotope.Float.Theorems.MatNormLe
 public import CORALean.ContSet.Zonotope.Float.Theorems.VecExact

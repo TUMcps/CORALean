@@ -14,6 +14,7 @@ import CORALean.Examples.Oracle.Ops.NnOps
 import CORALean.Examples.Oracle.Ops.NonlinearSysOps
 import CORALean.Examples.Oracle.Ops.PolyZonotopeOps
 import CORALean.Examples.Oracle.Ops.PolytopeOps
+import CORALean.Examples.Oracle.Ops.NeurNetContrSysOps
 import CORALean.Examples.Oracle.Ops.SpecificationOps
 import CORALean.Examples.Oracle.Ops.ZonoBundleOps
 
@@ -63,7 +64,8 @@ def classOpNames : List String :=
   hybridAutomatonOpNames.map ("hybridAutomaton." ++ ·) ++
   intervalConversionNames.map ("interval." ++ ·) ++
   zonotopeConversionNames.map ("zonotope." ++ ·) ++ nnLayerOpNames.map ("nnLayer." ++ ·) ++
-  neuralNetworkOpNames.map ("neuralNetwork." ++ ·)
+  neuralNetworkOpNames.map ("neuralNetwork." ++ ·) ++
+  neurNetContrSysOpNames.map ("neurNetContrSys." ++ ·)
 
 /-- `"<cls>.<name>"` at the scalar `dops` names; `none` if the class does not serve it. -/
 @[noinline, nospecialize]
@@ -95,6 +97,7 @@ def handleClassOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToR
   -- the networks
   | "nnLayer" => handleNnLayerOp dops name req
   | "neuralNetwork" => handleNeuralNetworkOp dops name req
+  | "neurNetContrSys" => handleNeurNetContrSysOp dops name req
   | _ => none
 
 end CORALean.Oracle

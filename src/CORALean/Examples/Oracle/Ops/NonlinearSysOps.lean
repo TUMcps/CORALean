@@ -819,6 +819,35 @@ def handleNonlinearVarphiEstAdaptive (dops : DtypeOps 𝕋) (req : Json) : Resp 
     (← parseVecFixed dops.readExact n (← field req "abstrerr")) o.decrFactor
     (← aux_boolsField req "mask" n) (← natField req "minorder") o.varphiTol o.varphiStep o.fuel)
 
+/-- The model of the dynamics tree `f`, for the ops that take the plant of a larger system. -/
+def dynModel (p n m : Nat) (f : Fin n → DynExpr 𝕋) : NonlinearSys.FloatHessModel 𝕋 n m :=
+  aux_model p n m f
+
+/-- A tree from its JSON: the states `x_i`, `i < n`, and the inputs `u_j`, `j < m`. -/
+def parseDynExpr (dops : DtypeOps 𝕋) (n m : Nat) (j : Json) : Except String (DynExpr 𝕋) :=
+  aux_parse dops n m j
+
+/-- Whether the tree has a `tan` node. -/
+def dynHasTan (e : DynExpr 𝕋) : Bool := aux_hasTan e
+
+/-- A wire scalar as an exact fraction. -/
+def ratOfScalar (x : ExactScalar) : ℚ := aux_ratOf x
+
+/-- The request's `linearStep`. -/
+def parseLinearStep (req : Json) : Except String NonlinearSys.LinearStep := aux_linearStep req
+
+/-- The error for a result holding a NaN. -/
+def tanPoisonMsg : String := aux_tanMsg
+
+/-- A scalar of the request, or the exact dyadic `m·2^e` when absent. -/
+def scalarOrDefault (dops : DtypeOps 𝕋) (req : Json) (name : String) (m e : Int) :
+    Except String 𝕋 :=
+  aux_scalarOr dops req name m e
+
+/-- A natural number of the request, or `d` when absent. -/
+def natOrDefault (req : Json) (name : String) (d : Nat) : Except String Nat :=
+  aux_natOr req name d
+
 /-- Every op of this file, without the `nonlinearSys.` prefix. -/
 def nonlinearSysOpNames : List String := [ "linReach", "reach", "reachAdaptive",
   "reachPolyAdaptive", "linReachPolyAdaptive", "linReachPolyAdaptivePass",

@@ -43,6 +43,7 @@ public import CORALean.NN.Layers.Definitions.Softplus
 public import CORALean.NN.Layers.Definitions.IsSoftplusBox
 public import CORALean.NN.Layers.Definitions.SoundLayer
 public import CORALean.NN.Layers.Definitions.TanhLayer
+public import CORALean.NN.Layers.Definitions.Tracks
 public import CORALean.NN.Layers.Definitions.TanhRelaxation
 public import CORALean.NN.Layers.Definitions.RootRelaxation
 public import CORALean.NN.Layers.Definitions.TaylmArray

@@ -1,4 +1,10 @@
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdmissibleOrderFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpEnclosureFuelFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderEntrywiseFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixEntrywiseFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixEntrywiseFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.NormUpperBoundFloat
 import CORALean.ContDynamics.LinearSys.Operations.CanonicalFormFloat
 import CORALean.ContDynamics.LinearSys.Operations.ErrorSolutionAdaptiveFloat
 import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
@@ -260,16 +266,34 @@ def handleLinearSysOutputSet (dops : DtypeOps 𝕋) (req : Json) : Resp := do
     pure [("Z", printZonotope dops.showExact
       (sys.outputEq.outputSetNoise (S := 𝒵[𝕋]) sys.F R U V))]
 
-/-- `linearSys.taylorMatrices`: `[e^{AΔt}]` and the correction matrix `[F]` at order `η`. -/
+/-- `linearSys.taylorMatrices`: `[e^{AΔt}]` and the correction matrix `[F]` at order `η`, and
+CORA's entrywise matrices at the admissible order `ηe`: the remainder `W`, `[F]` and `[G]`;
+`null` when no order below `η + expEnclosureFuel` admits the enclosure of `e^{|A|Δt}`. -/
 def handleLinearSysTaylorMatrices (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   checkFields "taylorMatrices" req
     ["A", "B", "c", "C", "D", "k", "E", "F", "timeStep", "taylorTerms"]
   let d ← parseLinearSys dops req
   let Δt ← aux_timeStep dops req
   let η ← natField req "taylorTerms"
-  pure [("eAdt", printIntervalMat dops.showExact (d.sys.expIntervalFloat Δt Δt η)),
+  let A := Interval.point d.sys.A
+  -- the admissible order `ηe` of the enclosure of `e^{|A|Δt}`, as `oneStepClosedFormFloat`
+  let B := Interval.smul Δt Δt (Interval.point (Interval.magnitudeMat A))
+  let entrywise : List (String × Json) :=
+    match MatExp.admissibleOrder (MatExp.normUpperBound B) η MatExp.expEnclosureFuel with
+    | none => [("order", Json.null), ("W", Json.null), ("FEntrywise", Json.null),
+        ("GEntrywise", Json.null)]
+    | some ηe =>
+      -- CORA's `E`, `F`, `G` entry by entry at `ηe`
+      let W := MatExp.expRemainderEntrywise d.sys.A Δt ηe ηe
+      [("order", Lean.toJson ηe), ("W", printMat dops.showExact W),
+        ("FEntrywise", printIntervalMat dops.showExact
+          (MatExp.intervalCorrectionMatrixEntrywise A Δt ηe W)),
+        ("GEntrywise", printIntervalMat dops.showExact
+          (MatExp.intervalConstCorrectionMatrixEntrywise A Δt ηe W))]
+  -- the norm-based `F` of `intervalCorrectionMatrix` and the entrywise matrices
+  pure ([("eAdt", printIntervalMat dops.showExact (d.sys.expIntervalFloat Δt Δt η)),
     ("F", printIntervalMat dops.showExact
-      (MatExp.intervalCorrectionMatrix (Interval.point d.sys.A) Δt η))]
+      (MatExp.intervalCorrectionMatrix (Interval.point d.sys.A) Δt η))] ++ entrywise)
 
 /-- The one-set ops: a step's sets, solutions of the input and error terms. -/
 def handleLinearSysStepOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Resp := do

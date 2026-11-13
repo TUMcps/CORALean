@@ -1,11 +1,13 @@
 module
 
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.AppendU2XMem
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.AugmentFlow
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.CartProdOuter
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfCheck
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfCheckFloat
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.HoldsOfReach
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.JoinInputInj
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.JointMem
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.MulVecJoinInput
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.OfFullIsTrajectoryIff
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ProjectOuter
@@ -18,6 +20,8 @@ public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachSetExactSubset
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachUnionFloatOuter
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachUnionOuter
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachWithOuter
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.AugmentNonlinFlow
+public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachNonlinFloatOuter
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ReachWithTimePointOuter
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ToRealMatAugmentFloat
 public import CORALean.ContDynamics.NeurNetContrSys.Theorems.ToRealMatLeftCols
@@ -35,6 +39,10 @@ plant's input vector, `MulVecJoinInput` splits `B` over its two parts, `ToRealMa
 `ToRealMatRightCols` read the split in the plant's scalar), `ReachOuter` is the result for `reach`,
 `HoldsOfReach` says what checking a specification on it buys; `CartProdOuter`/`ProjectOuter`
 are the product and projection it runs with.
+
+At a nonlinear plant `AugmentNonlinFlow` reads a period as a run of the augmented system and
+`ReachNonlinFloatOuter` chains the periods with CORA's loop in each, the network's joint set held
+to the state and the controller's output by `JointMem` and `AppendU2XMem`.
 
 `ReachSetExactOuter`/`ReachSetExactSubsetReach` restate `ReachOuter` on the reachable set
 rather than on one run — every run is in it, and it, in turn, is inside `reach`.

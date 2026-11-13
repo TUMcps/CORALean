@@ -29,7 +29,11 @@ polynomial zonotope, `neuralNetwork.evaluate` a list of layers to either: `linea
 `experiments/oracle/README.md`.
 
 ## Inputs
-* none
+* `dops` – dtype operations
+* `name` – op name
+* `req` – request
+* `n` – dimension
+* `X` – zonotope
 
 ## Output
 * the names of the ops served, or the response fields of an op
@@ -156,6 +160,12 @@ private def aux_errorForm (name : String) (req : Json) : Except String Bool :=
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
+
+/-- The layers of the request's `layers`, at its `poly_method`, on the zonotope `X`: the network's
+image, of whatever dimension the last layer gives. -/
+def networkOnZonotope (dops : DtypeOps 𝕋) (name : String) (req : Json) (n : ℕ)
+    (X : Zonotope (Vec 𝕋 n)) : Except String (Σ k, Zonotope (Vec 𝕋 k)) := do
+  aux_runLayers dops (S := 𝒵[𝕋]) (← aux_method name req) (← arrField req "layers").toList ⟨n, X⟩
 
 /-- Every op of `nnLayer.`, without the prefix. -/
 def nnLayerOpNames : List String := [ "evaluateZonotope", "evaluatePolyZonotope" ]

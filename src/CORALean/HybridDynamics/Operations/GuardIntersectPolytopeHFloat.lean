@@ -9,6 +9,8 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
 public import CORALean.HybridDynamics.Definitions.Location
+public import CORALean.HybridDynamics.Operations.OrthDefectFloat
+public import CORALean.HybridDynamics.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
@@ -27,7 +29,8 @@ zonotopes: as `Location.guardIntersectPolytopeFloat`, each reach set is cut to t
 `ConZonotope.box` (`k` contraction passes, dual certificates, or both), which keeps the
 constraints as CORA's linear programs do. A hyperplane or halfspace guard is an `HPolytope` with
 an equality or an inequality row. Left out as there: CORA's enclosure of each `R_j` by a polytope
-and its vertices. The sets are `R₀ :: Rs`, never empty.
+and its vertices. The sets are `R₀ :: Rs`, never empty. The member is widened by
+`Location.orthDefectFloat` for a basis that is orthogonal only up to rounding.
 
 ## Inputs
 * `m` – method of the box of a cut: Fourier-Motzkin passes, simplex certificates or both
@@ -42,7 +45,7 @@ and its vertices. The sets are `R₀ :: Rs`, never empty.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-November-2026
--- Last update:   ---
+-- Last update:   12-November-2026
 -- Reviewed:      ---
 
 
@@ -70,7 +73,8 @@ def Location.guardIntersectPolytopeHFloat (m : ConZonotope.BoxMethod) (Bs : List
         (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ
           ((Zonotope.conZonotope R).intersectHPolytope guard))
     let box := (Rs.map cut).foldl Interval.or (cut R₀)   -- boxes of the cuts R_j ∩ guard, joined
-    Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B box.zonotope
+    Location.orthDefectFloat B (Location.joinedBoxFloat R₀ Rs)
+      (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B box.zonotope)
 
 end CORALean
 

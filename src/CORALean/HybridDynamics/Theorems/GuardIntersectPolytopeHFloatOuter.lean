@@ -1,5 +1,7 @@
 module
 
+public import CORALean.HybridDynamics.Theorems.OrthDefectFloatMem
+public import CORALean.HybridDynamics.Theorems.JoinedBoxFloatContains
 public import CORALean.ContSet.ConZonotope.Float.Theorems.IntersectHPolytopeOuter
 public import CORALean.ContSet.Conversion.Float.Theorems.ConZonotope_to_IntervalBoxContains
 public import CORALean.ContSet.SetIntersection.Theorems.Basic
@@ -29,8 +31,8 @@ public import CORALean.ContSet.Conversion.Real.Theorems.ZonotopeIntervalContains
 # `Location.guardIntersectPolytopeHFloat` holds every state that meets the guard
 
 A state of one of the reach sets that lies in the guard lies in the cut, so in the box of the
-cut in each basis, so in every member of the bundle, so in the bundle. The bases satisfy
-`B Bᵀ = 1` over ℝ, so `B (Bᵀ x) = x` carries the state through the basis and back. Outer only.
+cut in each basis, so in every member of the bundle, so in the bundle. The bases need not be
+orthogonal: `Location.orthDefectFloat` adds the defect `(I - B Bᵀ) x`. Outer only.
 
 ## Inputs
 * `m` – method of the box of a cut
@@ -42,7 +44,6 @@ cut in each basis, so in every member of the bundle, so in the bundle. The bases
 * `x` – trajectory of the stay
 
 ## Hypotheses
-* `horth` – bases orthogonal
 * `hR` – the reach set is among the given ones
 * `hx` – state lies in the reach set
 * `hg` – state lies on the guard
@@ -53,7 +54,7 @@ cut in each basis, so in every member of the bundle, so in the bundle. The bases
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-November-2026
--- Last update:   ---
+-- Last update:   12-November-2026
 -- Reviewed:      ---
 
 
@@ -68,11 +69,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 
 -- =======================================  MAIN THEOREM  ======================================= --
 
-/-- A state in a reach set and in the guard lies in the bundle, for orthogonal bases. -/
+/-- A state in a reach set and in the guard lies in the bundle, for any bases. -/
 theorem Location.guardIntersectPolytopeHFloat_outer (m : ConZonotope.BoxMethod)
     (Bs : List (Mat 𝕋 n n))
     (R₀ : Zonotope (Vec 𝕋 n)) (Rs : List (Zonotope (Vec 𝕋 n))) (guard : HPolytope 𝕋 (Vec 𝕋 n))
-    (horth : ∀ B ∈ Bs, Scalar.toRealMat B * (Scalar.toRealMat B)ᵀ = 1)
     {R : Zonotope (Vec 𝕋 n)} (hR : R ∈ R₀ :: Rs) {x : Vec ℝ n} (hx : x ∈ R.toSet)
     (hg : x ∈ guard.toSet) : -- --- CONCL ---
     x ∈ (Location.guardIntersectPolytopeHFloat m Bs R₀ Rs guard).toSet := by -- --- PROOF ---
@@ -90,18 +90,11 @@ theorem Location.guardIntersectPolytopeHFloat_outer (m : ConZonotope.BoxMethod)
       · rcases List.mem_cons.mp hI' with rfl | hI'
         · exact Or.inl (Interval.or_outer J I' (Or.inr hy))
         · exact Or.inr ⟨I', hI', hy⟩
-  -- member `i` of the bundle, whose basis is orthogonal
+  -- member `i` of the bundle, any basis
   refine SetIntersection.mem_toSet_ofFn.mpr fun i => ?_
-  have hB := horth Bs[i] (List.getElem_mem i.isLt)
   unfold Location.guardIntersectPolytopeHFloat
   dsimp only
-  generalize Bs[i] = B at hB
-  -- the basis maps back: `B (Bᵀ y) = y`
-  have hT : Scalar.toRealMat Bᵀ = (Scalar.toRealMat B)ᵀ := by
-    ext a b
-    simp [Scalar.toRealMat_apply]
-  have hBB : ∀ y : Vec ℝ n, Scalar.toRealMat B *ᵥ (Scalar.toRealMat Bᵀ *ᵥ y) = y := fun y => by
-    rw [Matrix.mulVec_mulVec, hT, hB, Matrix.one_mulVec]
+  generalize Bs[i] = B
   -- the box of the cut of `R'` with the guard, in the basis
   set cutOf : Zonotope (Vec 𝕋 n) → Interval (Vec 𝕋 n) := fun R' =>
     ConZonotope.box m
@@ -128,7 +121,7 @@ theorem Location.guardIntersectPolytopeHFloat_outer (m : ConZonotope.BoxMethod)
   have h3 := Mtimes.mtimes_outer (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B box.zonotope
     (Set.mem_biUnion rfl (Set.mem_image_of_mem (fun v => Scalar.toRealMat B *ᵥ v)
       (Interval.zonotope_contains _ h2)))
-  rwa [hBB] at h3
+  exact Location.orthDefectFloat_mem B _ _ (Location.joinedBoxFloat_contains R₀ Rs hR hx) h3
 
 end CORALean
 

@@ -10,6 +10,8 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
 public import CORALean.HybridDynamics.Definitions.Location
+public import CORALean.HybridDynamics.Operations.OrthDefectFloat
+public import CORALean.HybridDynamics.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
 public import CORALean.ContSet.Conversion.Real.Operations.PolyZonotope_to_Zonotope
@@ -27,7 +29,8 @@ CORA's `guardIntersect_nondetGuard` with a polytope guard, at float zonotopes: a
 `ConZonotope.box` (`k` contraction passes, dual certificates, or both), which keeps the
 constraints as CORA's linear programs do. A hyperplane or halfspace guard is an `HPolytope` with
 an equality or an inequality row. The sets are `R₀ :: Rs`, never empty; a bundle of one member is
-kept a bundle.
+kept a bundle. As in `Location.guardIntersectNondetFloat`, the parallelotope and the member are
+widened by `Location.orthDefectFloat` for a basis that is orthogonal only up to rounding.
 
 ## Inputs
 * `m` – method of the box of a cut: Fourier-Motzkin passes, simplex certificates or both
@@ -42,7 +45,7 @@ kept a bundle.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       10-November-2026
--- Last update:   ---
+-- Last update:   12-November-2026
 -- Reviewed:      ---
 
 
@@ -68,11 +71,14 @@ def Location.guardIntersectNondetHFloat (m : ConZonotope.BoxMethod)
       R).interval).foldl Interval.or
       (Mtimes.mtimes (𝕄 := Mat 𝕋)  -- I_i, the sets boxed in the basis
         (ContSet := 𝒵[𝕋]) Bᵀ R₀).interval
-    let cZ := (Zonotope.conZonotope (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B
-      box.zonotope)).intersectHPolytope guard          -- the parallelotope cut to the guard
-    Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B
+    let X := Location.joinedBoxFloat R₀ Rs                -- the sets' boxes, for the defect
+    let cZ := (Zonotope.conZonotope (Location.orthDefectFloat B X
+      (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B
+      box.zonotope))).intersectHPolytope guard           -- the parallelotope cut to the guard
+    Location.orthDefectFloat B X (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B
       (ConZonotope.box m
-        (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ cZ)).zonotope
+        (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ
+          cZ)).zonotope)
 
 end CORALean
 

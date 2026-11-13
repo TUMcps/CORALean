@@ -7,6 +7,8 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Zonotope.Float.Instances
 public import CORALean.ContSet.ZonoBundle.Float.ZonoBundle
 public import CORALean.HybridDynamics.Definitions.Location
+public import CORALean.HybridDynamics.Operations.OrthDefectFloat
+public import CORALean.HybridDynamics.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Conversion.Real.Operations.Basic
 public import CORALean.ContSet.Conversion.Real.Operations.Interval_to_Zonotope
@@ -24,7 +26,8 @@ CORA's `guardIntersect_polytope`, at float zonotopes. The reach sets are first c
 the cuts in its own basis `B_i` (`box`, `pca` or `flow` differ only there, a parameter here, as in
 `guardIntersectNondetFloat`); the boxes form a zonoBundle. Left out: CORA's enclosure of each `R_j`
 by a polytope (`aux_conv2polytope`) and its vertices; here the box is of the cut. A bundle of one
-member is kept a bundle. The sets are `R₀ :: Rs`, never empty.
+member is kept a bundle. For a basis orthogonal only up to rounding the member is widened by
+`Location.orthDefectFloat`. The sets are `R₀ :: Rs`, never empty.
 
 ## Inputs
 * `Bs` – bases
@@ -38,7 +41,7 @@ member is kept a bundle. The sets are `R₀ :: Rs`, never empty.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   12-November-2026
 -- Reviewed:      ---
 
 
@@ -64,7 +67,8 @@ def Location.guardIntersectPolytopeFloat (Bs : List (Mat 𝕋 n n)) (R₀ : Zono
       (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := fun k => ConZonotope 𝕋 (Vec 𝕋 k)) Bᵀ
         (ConZonotope.intersection (Zonotope.conZonotope R) guard)).interval
     let box := (Rs.map cut).foldl Interval.or (cut R₀)   -- boxes of the cuts R_j ∩ guard, joined
-    Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B box.zonotope
+    Location.orthDefectFloat B (Location.joinedBoxFloat R₀ Rs)
+      (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B box.zonotope)
 
 end CORALean
 
