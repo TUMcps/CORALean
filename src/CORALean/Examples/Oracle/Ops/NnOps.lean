@@ -1,7 +1,9 @@
 import CORALean.NN.Layers.Operations.Relu
 import CORALean.NN.Layers.Operations.Sigmoid
 import CORALean.NN.Layers.Operations.SigmoidRegression
+import CORALean.NN.Layers.Operations.SigmoidRegressionExact
 import CORALean.NN.Layers.Operations.TanhRegression
+import CORALean.NN.Layers.Operations.TanhRegressionExact
 import CORALean.NN.Layers.Operations.PolyBoxIndep
 import CORALean.NN.Layers.Operations.SigmoidSingh
 import CORALean.NN.Layers.Operations.TanhSingh
@@ -20,10 +22,11 @@ import CORALean.Examples.Oracle.Ops.SetCodec
 `nnLayer.evaluateZonotope` and `nnLayer.evaluatePolyZonotope` apply one layer to a zonotope or a
 polynomial zonotope, `neuralNetwork.evaluate` a list of layers to either: `linear` (`W`, `b`),
 `relu`, `leakyRelu` (`alpha`), `sigmoid` and `tanh` (`k`). `poly_method` is `singh` (CORA's
-`'singh'`, the default), `regression` (CORA's default `'regression'`, with a sound error) or
-`curvature` (CORALean's tighter one). `errorForm` of a polynomial zonotope is `box` (the error in
-the error box, the default) or `GI` (CORA's `add_approx_error_to_GI`: independent generators). The
-order of operations is in `experiments/oracle/README.md`.
+`'singh'`, the default), `regression` (CORA's `'regression'`, with a sound error) or `curvature`
+(CORALean's tighter one). `regression_error` of `regression` is `bracket` (the default) or
+`extremum` (CORA's exact error). `errorForm` of a polynomial zonotope is `box` (the default) or
+`GI` (CORA's `add_approx_error_to_GI`). The order of operations is in
+`experiments/oracle/README.md`.
 
 ## Inputs
 * none
@@ -52,7 +55,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋]
 
 /-- The relaxation of sigmoid and tanh the request asks for. -/
 private inductive PolyMethod where
-  | singh | curvature | regression
+  | singh | curvature | regression | regressionExtremum
   deriving DecidableEq
 
 /-- One layer of the request on a set of the family `S`, of dimension `n`; the set of the new
@@ -82,14 +85,16 @@ private def aux_runLayer (dops : DtypeOps 𝕋) {S : ℕ → Type} [∀ n, ContS
     pure ⟨n, (match method with
       | .curvature => (Layer.sigmoid (S := S) (n := n) k).enclose X
       | .singh => (Layer.sigmoidSingh (S := S) (n := n) k).enclose X
-      | .regression => (Layer.sigmoidRegression (S := S) (n := n) k).enclose X)⟩
+      | .regression => (Layer.sigmoidRegression (S := S) (n := n) k).enclose X
+      | .regressionExtremum => (Layer.sigmoidRegressionExact (S := S) (n := n) k).enclose X)⟩
   | "tanh" =>
     checkFields "tanh" layer ["kind", "k"]
     let k ← natField layer "k"
     pure ⟨n, (match method with
       | .curvature => (Layer.tanh (S := S) (n := n) k).enclose X
       | .singh => (Layer.tanhSingh (S := S) (n := n) k).enclose X
-      | .regression => (Layer.tanhRegression (S := S) (n := n) k).enclose X)⟩
+      | .regression => (Layer.tanhRegression (S := S) (n := n) k).enclose X
+      | .regressionExtremum => (Layer.tanhRegressionExact (S := S) (n := n) k).enclose X)⟩
   | k => throw s!"a layer's `kind` must be linear, relu, leakyRelu, sigmoid or tanh, not `{k}`"
 
 /-- The layers of the list, in order, on the set. -/
@@ -125,13 +130,22 @@ private def aux_run (dops : DtypeOps 𝕋) (name : String) (req : Json) (method 
     pure [("P", printPolyZonotope dops.showExact Y)]
   | _, _ => throw s!"{name}: needs exactly one of `Z` (a zonotope) and `P` (a polynomial zonotope)"
 
-/-- The `poly_method`: `singh` (or none), `curvature` or `regression`. -/
-private def aux_method (name : String) (req : Json) : Except String PolyMethod :=
-  match (fieldOpt req "poly_method").bind (·.getStr?.toOption) with
-  | none | some "singh" => pure .singh
-  | some "curvature" => pure .curvature
-  | some "regression" => pure .regression
-  | some m => throw s!"{name}: `poly_method` must be singh, regression or curvature, not `{m}`"
+/-- The `poly_method`: `singh` (or none), `curvature` or `regression`, the last with its
+`regression_error`: `bracket` (or none) or `extremum`, which only `regression` takes. -/
+private def aux_method (name : String) (req : Json) : Except String PolyMethod := do
+  let err := (fieldOpt req "regression_error").bind (·.getStr?.toOption)
+  if (fieldOpt req "regression_error").isSome && err.isNone then
+    throw s!"{name}: `regression_error` must be a string"
+  match (fieldOpt req "poly_method").bind (·.getStr?.toOption), err with
+  | some "regression", none | some "regression", some "bracket" => pure .regression
+  | some "regression", some "extremum" => pure .regressionExtremum
+  | some "regression", some e =>
+    throw s!"{name}: `regression_error` must be bracket or extremum, not `{e}`"
+  | _, some _ => throw s!"{name}: `regression_error` is for `poly_method` regression"
+  | none, none | some "singh", none => pure .singh
+  | some "curvature", none => pure .curvature
+  | some m, none =>
+    throw s!"{name}: `poly_method` must be singh, regression or curvature, not `{m}`"
 
 /-- The `errorForm`: `true` for `GI`, `false` for `box` or none. -/
 private def aux_errorForm (name : String) (req : Json) : Except String Bool :=
@@ -154,7 +168,7 @@ def neuralNetworkOpNames : List String := [ "evaluate" ]
 def handleNnLayerOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option Resp :=
   match op with
   | "evaluateZonotope" | "evaluatePolyZonotope" => some (do
-    checkFields op req ["layer", "Z", "P", "poly_method", "errorForm"]
+    checkFields op req ["layer", "Z", "P", "poly_method", "regression_error", "errorForm"]
     aux_run dops op req (← aux_method op req) (← aux_errorForm op req) [← field req "layer"])
   | _ => none
 
@@ -163,7 +177,7 @@ def handleNnLayerOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option R
 def handleNeuralNetworkOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option Resp :=
   match op with
   | "evaluate" => some (do
-    checkFields op req ["layers", "Z", "P", "poly_method", "errorForm"]
+    checkFields op req ["layers", "Z", "P", "poly_method", "regression_error", "errorForm"]
     aux_run dops op req (← aux_method op req) (← aux_errorForm op req)
       (← arrField req "layers").toList)
   | _ => none

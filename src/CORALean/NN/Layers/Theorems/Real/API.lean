@@ -70,6 +70,7 @@ public import CORALean.NN.Layers.Theorems.Real.ApproxErrorRelu
 public import CORALean.NN.Layers.Theorems.Real.ApproxErrorSigmoid
 public import CORALean.NN.Layers.Theorems.Real.ApproxErrorTanh
 public import CORALean.NN.Layers.Theorems.Real.ExistsCriticalExtreme
+public import CORALean.NN.Layers.Theorems.Real.EqPmArtanhOfSigmoidDeriv
 public import CORALean.NN.Layers.Theorems.Real.EqPmArtanhOfTanh
 
 /-!
