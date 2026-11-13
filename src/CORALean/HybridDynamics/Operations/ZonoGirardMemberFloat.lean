@@ -1,6 +1,8 @@
 module
 
 public import CORALean.HybridDynamics.Operations.ZonoGirardBoxFloat
+public import CORALean.HybridDynamics.Operations.OrthDefectFloat
+public import CORALean.HybridDynamics.Operations.Basic
 public import CORALean.Global.StepOf
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Zonotope.Float.Operations.Plus
@@ -45,33 +47,14 @@ open CORALean.Float CORALean.Float.FloatOps Matrix
 variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
 
 
--- ------------------------------------------  STEPS  ------------------------------------------- --
-
-/-- The box of `I - B Bᵀ`: the identity minus the product rounded up for the lower end, rounded
-down for the upper. -/
-@[step_of Location.zonoGirardMemberFloat]
-def Location.step_orthDefect (B : Mat 𝕋 n n) : Interval (Mat 𝕋 n n) :=
-  let e : Fin n → Fin n → 𝕋 := fun i j => if i = j then one else zero  -- the identity
-  ⟨fun i j => subDown (e i j) (dotUp (B i) (B j)),                  -- `B Bᵀ` rounded up
-   fun i j => subUp (e i j) (dotDown (B i) (B j))⟩                  -- and down
-
-
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `B zonotope(I)`, plus the box `[-r, r]` where the defect box is not the zero matrix. -/
 def Location.zonoGirardMemberFloat (B : Mat 𝕋 n n) (R₀ : Zonotope (Vec 𝕋 n))
     (Rs : List (Zonotope (Vec 𝕋 n))) (nv : Vec 𝕋 n) (γ : 𝕋) : Zonotope (Vec 𝕋 n) :=
-  let main := Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B
-    (Location.zonoGirardBoxFloat B R₀ Rs nv γ).zonotope              -- `B zonotope(I)`
-  let E := Location.step_orthDefect B                                -- `[I - B Bᵀ]`
-  let X := (Rs.map Zonotope.interval).foldl Interval.or R₀.interval  -- the sets' boxes, joined
-  let mag := fun (a b : 𝕋) => maximum (absolute a) (absolute b)      -- largest absolute value
-  let r : Vec 𝕋 n := fun i => sumUp fun j =>                         -- bound of `(I - B Bᵀ) x`
-    mulUp (mag (E.inf i j) (E.sup i j)) (mag (X.inf j) (X.sup j))
-  let isZero := (List.finRange n).all fun i => (List.finRange n).all fun j =>
-    FloatOps.le (E.sup i j) FloatOps.zero && FloatOps.le FloatOps.zero (E.inf i j)
-  if isZero then main
-  else main.plus (Interval.zonotope (⟨-r, r⟩ : Interval (Vec 𝕋 n)))
+  Location.orthDefectFloat B (Location.joinedBoxFloat R₀ Rs)         -- the defect, for the states
+    (Mtimes.mtimes (𝕄 := Mat 𝕋) (ContSet := 𝒵[𝕋]) B                 -- of the sets' joined boxes
+      (Location.zonoGirardBoxFloat B R₀ Rs nv γ).zonotope)           -- `B zonotope(I)`
 
 end CORALean
 

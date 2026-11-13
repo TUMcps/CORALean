@@ -3,6 +3,8 @@ module
 public import CORALean.HybridDynamics.Definitions.NonlinearReset
 public import CORALean.HybridDynamics.Definitions.ResolveSource
 public import CORALean.HybridDynamics.Definitions.Transition
+public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
+public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import Mathlib.Algebra.BigOperators.Fin
 public import Mathlib.Data.Finset.Card
 public import Mathlib.Data.Real.Basic
@@ -38,6 +40,31 @@ variable {N g k : ℕ} {n m p : Fin k → ℕ}
 `uloc = repmat({params.u},numLoc,1)`: every location `l < numLoc` gets `u` itself. -/
 def HybridAutomaton.uloc {α : Type} (numLoc : Nat) (u : α) (l : Nat) : Option α :=
   if l < numLoc then some u else none
+
+
+end
+
+section
+open CORALean.Float Matrix
+
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] {n : ℕ}
+
+
+-- ================================  `Location.joinedBoxFloat`  ================================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       12-November-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The boxes of the zonotopes `R₀ :: Rs`, joined: a box that holds every state of each of them. -/
+def Location.joinedBoxFloat (R₀ : Zonotope (Vec 𝕋 n)) (Rs : List (Zonotope (Vec 𝕋 n))) :
+    Interval (Vec 𝕋 n) :=
+  (Rs.map Zonotope.interval).foldl Interval.or R₀.interval
+
+end
+
+section
+variable {N g k : ℕ} {n m p : Fin k → ℕ}
 
 
 -- ==============================  `NonlinearReset.globalColumns`  ============================== --

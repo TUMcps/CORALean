@@ -1,8 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Operations.TanhSingh
-public import CORALean.NN.Layers.Theorems.SigmoidSinghRelaxationEncloses
-public import CORALean.NN.Layers.Theorems.OfAffineConjEncloses
+public import CORALean.NN.Layers.Theorems.TanhSinghRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.Basic
 
 @[expose] public section
@@ -40,22 +39,12 @@ variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋]
   [Mtimes (Mat 𝕋) S] [Float.IntervalOuter S 𝕋] [Float.OfInterval S 𝕋] {n : ℕ}
 
 
--- ----------------------------------------  AUXILIARY  ----------------------------------------- --
-
-/-- The sigmoid relaxation's soundness, transported along the conjugation identity. -/
-private theorem aux_step_tanhSinghRelaxation_encloses (k : ℕ) :
-    (step_tanhSinghRelaxation (𝕋 := 𝕋) k).Encloses Real.tanh :=
-  Relaxation.ofAffineConj_encloses (sigmoidSinghRelaxation_encloses k) doubleRounding_encloses
-    doubleRounding_encloses (by norm_num) (by norm_num)
-    (fun t => by rw [toReal_neg, toReal_one, Real.tanh_eq_sigmoid]; ring)
-
-
 -- =======================================  MAIN THEOREM  ======================================= --
 
 /-- `Real.tanh` coordinatewise, at every reduction depth. -/
 theorem Layer.tanhSingh_encloses (k : ℕ) :
     (Layer.tanhSingh (𝕋 := 𝕋) (S := S) (n := n) k).Encloses fun x i => Real.tanh (x i) :=
-  Layer.activation_encloses (aux_step_tanhSinghRelaxation_encloses k)
+  Layer.activation_encloses (tanhSinghRelaxation_encloses k)
 
 end CORALean
 

@@ -481,7 +481,7 @@ at the top level of the request; `timeStep`, `taylorTerms`, `zonotopeOrder` CORA
 | `canonicalForm` | `U`, `uVec`, `W`, `V`, `vVec` | `LinearSys.canonicalFormFloat`; `sys`, `U`, `u` (box), `V`, `v` (box) |
 | `isCanonicalForm` | | `LinearSys.isCanonicalFormFloat`; `value` |
 | `outputSet` | `R`, `U`, `V` (noise, optional) | `OutputEq.outputSet`, `.outputSetNoise` at `Zonotope`; `Z` |
-| `taylorMatrices` | `timeStep`, `taylorTerms` | `LinearSys.expIntervalFloat`, `MatExp.intervalCorrectionMatrix`; `eAdt`, `F` |
+| `taylorMatrices` | `timeStep`, `taylorTerms` | `LinearSys.expIntervalFloat`, `MatExp.intervalCorrectionMatrix`; `eAdt`, `F`. CORA's entrywise matrices at the admissible order `ηe` of `oneStepClosedForm` (`MatExp.expRemainderEntrywise` at `ηe + 8`, `intervalCorrectionMatrixEntrywise`, `intervalConstCorrectionMatrixEntrywise`): `order` (`ηe`), `W`, `FEntrywise`, `GEntrywise`, all `null` when no order below `taylorTerms + 4096` admits the enclosure of `e^{\|A\|Δt}` |
 | `oneStep` | `X`, `U`, `u`, `timeStep`, `taylorTerms` | `LinearSys.oneStepFloat`; `timePoint`, `timeInterval` |
 | `oneStepClosedForm` | `X`, `U`, `u`, `timeStep`, `taylorTerms` | `LinearSys.oneStepClosedFormFloat`, CORA's closed form (below); `timePoint`, `timeInterval`, both `null` when no order below `taylorTerms + 4096` admits the enclosure of `e^{\|A\|Δt}`, or no `s < 128` has `‖AΔt‖ / 2^s ≤ 1/2` |
 | `homogeneousSolution` | `X`, `timeStep`, `taylorTerms` | `LinearSys.timePointStepFloat`; `Z` |
@@ -569,8 +569,8 @@ and `R` are lists:
 | `location.guardGroups` | `hits`, `[transition, set]` pairs as `location.potInt` returns them | `Location.guardGroups`: CORA's `aux_groupSets` and `aux_removeGaps`; `groups`, one `{"transition","sets","minInd","maxInd"}` per crossing, in CORA's order (split-off parts to the front, newest first) |
 | `location.checkFlow` | `hyperplane` (`{"normal","d"}`), `R` | `Location.checkFlowFloat`; `keep`, the indices of the sets the flow may carry through |
 | `location.guardIntersect_zonoGirard` | `Bs`, `R0`, `R`, `normal`, `gamma` | `Location.guardIntersectZonoGirardFloat` (a dual bound, not Girard's dichotomic search); any bases, not only orthogonal ones: member `i` is `Bs[i] zonotope(I)` plus `[I - B Bᵀ] zonotope(X)` (`Location.zonoGirardMemberFloat`) unless the defect box is exactly zero; `zB` |
-| `location.guardIntersect_nondetGuard` | `Bs`, `R0`, `R`, `guard` (constrained zonotope, or a polytope `{"A","b","Ae","be"}`), `fmPasses`, `box` (polytope guard only) | `Location.guardIntersectNondetFloat`; for a polytope guard `Location.guardIntersectNondetHFloat`: the parallelotope cut by `ConZonotope.intersectHPolytope`, the cut boxed by `ConZonotope.box`: `box` `"fm"` (default) is `intervalTight` with `fmPasses` passes, `"cert"` is `intervalCert` (no `fmPasses`), `"both"` the intersection of the two; `zB` |
-| `location.guardIntersect_conZonotope` | `Bs`, `R0`, `R`, `guard` (as above), `guardOrder`, `fmPasses`, `box` (polytope guard only) | `Location.guardIntersectPolytopeFloat` on the sets reduced to `guardOrder` (`Reduce.reduce`); for a polytope guard `Location.guardIntersectPolytopeHFloat`, the cuts boxed by `ConZonotope.box` (`box` as above); `zB` |
+| `location.guardIntersect_nondetGuard` | `Bs`, `R0`, `R`, `guard` (constrained zonotope, or a polytope `{"A","b","Ae","be"}`), `fmPasses`, `box` (polytope guard only) | `Location.guardIntersectNondetFloat`; for a polytope guard `Location.guardIntersectNondetHFloat`: the parallelotope cut by `ConZonotope.intersectHPolytope`, the cut boxed by `ConZonotope.box`. Any bases, not only orthogonal ones, as `location.guardIntersect_zonoGirard`. Evaluation order per basis `B`, with `X` the joined boxes of the sets `R0 :: R`: the box `I` of the sets in `B`, the parallelotope `P = orthDefect(B zonotope(I))`, the cut `P ∩ guard`, its box `I'` in `B`, the member `orthDefect(B zonotope(I'))`, where `orthDefect(Z)` is `Z` plus `[-r, r]` (`Location.orthDefectFloat`, `r_i = Σ_j max\|E_ij\| · max\|X_j\|`, `E = I - B Bᵀ` rounded outward) unless `E` is exactly zero. The box modes: `box` `"fm"` (default) is `intervalTight` with `fmPasses` passes, `"cert"` is `intervalCert` (no `fmPasses`), `"both"` the intersection of the two; `zB` |
+| `location.guardIntersect_conZonotope` | `Bs`, `R0`, `R`, `guard` (as above), `guardOrder`, `fmPasses`, `box` (polytope guard only) | `Location.guardIntersectPolytopeFloat` on the sets reduced to `guardOrder` (`Reduce.reduce`); for a polytope guard `Location.guardIntersectPolytopeHFloat`, the cuts boxed by `ConZonotope.box` (`box` as above). Any bases: member `i` is `orthDefect(B_i zonotope(I_i))` for the joined box `I_i` of the cuts in `B_i`, as in `location.guardIntersect_nondetGuard` with `X` the joined boxes of `R0 :: R` (after the reduction to `guardOrder`); `zB` |
 | `location.reach` | `X0`, `tFinal`, `timeStep`, `taylorTerms`, `zonotopeOrder` | `Location.reachFloat`: one stay, the windows of `reachFloatInput` over the whole horizon, no invariant exit; `timeInterval` |
 | `transition.jump` | `W`, `w`, `Rg` | `Transition.jumpFloat`, `W Rg + w`; `Z` |
 
@@ -828,6 +828,25 @@ and step 5 is `Zonotope.ofIndep` of it summed in. So `GI' = [GI scaled by diag(l
 `D` has one column per neuron, also where the radius is zero, where CORA drops the column.
 The next linear layer then maps the generators and not a box. A zonotope has no error box: `errorForm` on `Z` is an error.
 
+`neurNetContrSys.` (`Ops/NeurNetContrSysOps.lean`), served at `nearest` only:
+
+| op | fields | float definition |
+|---|---|---|
+| `neurNetContrSys.reach` | `n`, `m` (network outputs), `mExt` (external inputs, default 0), `f` (the plant's tree over `x_i`, `u_j`, `j < m + mExt`, the first `m` driven by the network), `p`, `layers`, `poly_method`, `X0`, `U` (optional), `dt`, `tFinal`, `timeStep`, `taylorTerms`, `zonotopeOrder`, `linearStep`, `enlarge`, `fuel` | `FloatHessModel.reachClosedLoopFloat`; `timePoint`, the state sets at the ends of the periods `1 ... tFinal / dt` |
+
+A period is `N = dt / timeStep` steps, and there are `tFinal / dt` periods; both quotients are natural numbers. Per period:
+
+1. The network on the state set `X` without its all-zero generators (as CORA.cpp's `evaluate_with_input` sees it), the layers
+   as `neuralNetwork.evaluate`, every all-zero generator of the image beyond those of `X` dropped.
+2. The joint set `[X.c; U.c]` with the generators `[X.G 0; U.G]` (`NeurNetContrSys.appendU2X`, CORA's `aux_appendU2X`),
+   `none` if `U` has fewer generators than `X`.
+3. `N` steps of `nonlinearSys.linReach` at `errorBound: "loop"` on the plant extended by the network's output (derivative zero).
+   The first step starts from error 0, the others from the error of the step before; each end set is reduced to order
+   `zonotopeOrder` (Girard, as `post`).
+4. The projection of the last set to the first `n` coordinates.
+
+The joint set holding `[x; N(x)]` is proved of the layers the op serves (`NeurNetContrSys.joint_mem`: the linear and the activation layers keep the generators of their argument in front, `Layer.Tracks`); `reachClosedLoopFloat_outer` holds for `NeurNetContrSys.joint`, the joint set this op uses (the state set's zero generators dropped by `compactZeros`, the image's past the state set's by `compactZerosFrom`).
+
 The relaxations, with `f` the activation, `l`, `u` the box, `sig(x) = 1 - 1/(1 + exp x)` (lower) and `1/(1 + exp(-x))` (upper):
 
 * **ReLU** (`reluRelaxation reluSlope`): `lambda = 0` if `u <= 0`, `1` if `0 <= l`, else `u / (u - l)` (`divUp`, `subDown`);
@@ -943,6 +962,7 @@ Rows of the further classes not served, by reason:
 * `linearSys`: `reachBackward`, `reachInner`, `verify` (`LinearSys.verifyFloat` takes the reachable-set
   function and the distance routines as arguments), `initReach_adaptive`, `trajectoryError` and
   `linearSysDT`. `nonlinearSys`: the inner algorithms, and tensor order 3 of `reach`.
+  `neurNetContrSys.reach`: polynomial zonotopes and `alg: poly` (no float step of the plant on them).
 * Hybrid automata: the `flow` basis, a list of several bases (a zonoBundle start of the next stay) and `hybridAutomaton.reach` with another guard intersection than `zonoGirard`
   or another basis than `box` and `pca`.
   `linParamSys`: `initReach` and `post` of CORA (mapping matrices), a matrix-zonotope `A` after the first window. They take witnesses or tuning records, or return a real-valued

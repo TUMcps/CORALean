@@ -1,6 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Operations.Activation
+public import CORALean.NN.Layers.Theorems.ActivationDeviationMem
 public import CORALean.ContSet.Conversion.Float.Operations.Basic
 public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_Interval
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
@@ -64,13 +65,6 @@ theorem Layer.activation_outer_where {R : Relaxation 𝕋} {P : 𝕋 → 𝕋 �
   have hbox := interval_outer s hx
   set J := interval s with hJ
   set A : Mat ℝ n n := Scalar.toRealMat (R.step_slopeMat J) with hA
-  have hslope : ∀ i, (A *ᵥ x) i = toReal (R.slope (J.inf i) (J.sup i)) * x i := by
-    intro i
-    have hdiag : A = Matrix.diagonal (toRealVec fun i => R.slope (J.inf i) (J.sup i)) := by
-      funext p q
-      exact toReal_diagonalBlock _ p q
-    rw [hdiag]
-    exact Matrix.mulVec_diagonal _ _ i
   -- the deviation from the chosen affine map, which is what the box holds
   set d : Vec ℝ n := fun i => σ (x i) - (A *ᵥ x) i with hd
   have hsplit : (fun i => σ (x i)) = A *ᵥ x + d := by
@@ -78,27 +72,7 @@ theorem Layer.activation_outer_where {R : Relaxation 𝕋} {P : 𝕋 → 𝕋 �
     show σ (x i) = (A *ᵥ x) i + d i
     rw [hd]
     ring
-  -- and the deviation is inside the box, `sound` bounding it and the rounding widening it
-  have hmem : d ∈ Interval.toSet (R.box J) := by
-    intro i
-    have hlo : toReal (J.inf i) ≤ x i := (hbox i).1
-    have hhi : x i ≤ toReal (J.sup i) := (hbox i).2
-    have hrel := abs_le.mp (hR.sound (hP i) hlo hhi)
-    have hval : d i = σ (x i) - toReal (R.slope (J.inf i) (J.sup i)) * x i := by
-      show σ (x i) - (A *ᵥ x) i = _
-      rw [hslope i]
-    -- `sound` is an absolute value, and `subDown`/`addUp` widen its two ends outward
-    have hlow : toReal (subDown (R.offset (J.inf i) (J.sup i))
-        (R.error (J.inf i) (J.sup i))) ≤ d i := by
-      have h := subDown_le_sub (R.offset (J.inf i) (J.sup i)) (R.error (J.inf i) (J.sup i))
-      rw [hval]
-      linarith [hrel.1]
-    have hhigh : d i ≤ toReal (addUp (R.offset (J.inf i) (J.sup i))
-        (R.error (J.inf i) (J.sup i))) := by
-      have h := add_le_addUp (R.offset (J.inf i) (J.sup i)) (R.error (J.inf i) (J.sup i))
-      rw [hval]
-      linarith [hrel.2]
-    exact ⟨hlow, hhigh⟩
+  have hmem : d ∈ Interval.toSet (R.box J) := Relaxation.deviation_mem_box hR hbox hP
   rw [hsplit]
   exact plus_outer _ _ (Set.add_mem_add
     (mtimes_outer _ s (Set.mem_biUnion rfl (Set.mem_image_of_mem _ hx)))

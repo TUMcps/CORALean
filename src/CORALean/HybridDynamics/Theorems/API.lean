@@ -91,6 +91,8 @@ public import CORALean.HybridDynamics.Theorems.ZonoGirardUpperLe
 public import CORALean.HybridDynamics.Theorems.ZonoGirardUpperFloatLe
 public import CORALean.HybridDynamics.Theorems.ZonoGirardBoxFloatMem
 public import CORALean.HybridDynamics.Theorems.ZonoGirardMemberFloatMem
+public import CORALean.HybridDynamics.Theorems.OrthDefectFloatMem
+public import CORALean.HybridDynamics.Theorems.JoinedBoxFloatContains
 public import CORALean.HybridDynamics.Theorems.CheckFlowDropped
 public import CORALean.HybridDynamics.Theorems.CheckFlowFloatDropped
 public import CORALean.HybridDynamics.Theorems.TransitionConvGuardExact

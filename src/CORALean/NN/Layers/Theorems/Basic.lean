@@ -22,6 +22,7 @@ public import CORALean.NN.Layers.Operations.Tanh
 public import CORALean.NN.Layers.Operations.TanhRelaxation
 public import CORALean.NN.Layers.Theorems.ActivationPolyEncloses
 public import CORALean.NN.Layers.Theorems.ActivationEncloses
+public import CORALean.NN.Layers.Theorems.ActivationTracks
 public import CORALean.NN.Layers.Theorems.InvSqrtRootRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.LeakyReluRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.OfAffineConjEncloses
@@ -411,6 +412,79 @@ theorem Layer.tanh_encloses (k : ℕ) :
   Layer.activation_encloses (tanhRelaxation_encloses k)
 
 end
+
+
+section
+
+open CORALean.Float Float.SoundFloatArithmetic
+open scoped CORALean.Float
+
+variable {𝕋 : Type} [Float.FloatOps 𝕋] [Float.SoundFloatArithmetic 𝕋] {n m k : ℕ}
+
+
+-- =================================  `Layer.leakyRelu_tracks`  ================================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       13-November-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `Real.leakyRelu` at the stored `α`, coordinatewise, at every slope, for `α ≤ 1`. -/
+theorem Layer.leakyRelu_tracks (α : 𝕋) (hα : toReal α ≤ 1) (lam : 𝕋 → 𝕋 → 𝕋) :
+    (Layer.leakyRelu (S := 𝒵[𝕋]) (n := n) α lam).Tracks
+      fun x i => Real.leakyRelu (toReal α) (x i) :=
+  Layer.activation_tracks (leakyReluRelaxation_encloses α hα lam)
+
+
+-- ==================================  `Layer.sigmoid_tracks`  ================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       13-November-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `Real.sigmoid` coordinatewise, at every reduction depth. -/
+theorem Layer.sigmoid_tracks (k : ℕ) :
+    (Layer.sigmoid (𝕋 := 𝕋) (S := 𝒵[𝕋]) (n := n) k).Tracks fun x i => Real.sigmoid (x i) :=
+  Layer.activation_tracks (sigmoidRelaxation_encloses k)
+
+
+-- =============================  `Layer.sigmoidRegression_tracks`  ============================= --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       13-November-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `Real.sigmoid` coordinatewise at the regression line, at every reduction depth. -/
+theorem Layer.sigmoidRegression_tracks (k : ℕ) :
+    (Layer.sigmoidRegression (𝕋 := 𝕋) (S := 𝒵[𝕋]) (n := n) k).Tracks
+      fun x i => Real.sigmoid (x i) :=
+  Layer.activation_tracks (sigmoidRegressionRelaxation_encloses k)
+
+
+-- ===============================  `Layer.sigmoidSingh_tracks`  ================================ --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       13-November-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `Real.sigmoid` coordinatewise at Singh's slope, at every reduction depth. -/
+theorem Layer.sigmoidSingh_tracks (k : ℕ) :
+    (Layer.sigmoidSingh (𝕋 := 𝕋) (S := 𝒵[𝕋]) (n := n) k).Tracks fun x i => Real.sigmoid (x i) :=
+  Layer.activation_tracks (sigmoidSinghRelaxation_encloses k)
+
+
+-- ===================================  `Layer.tanh_tracks`  ==================================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       13-November-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `Real.tanh` coordinatewise, at every reduction depth. -/
+theorem Layer.tanh_tracks (k : ℕ) :
+    (Layer.tanh (𝕋 := 𝕋) (S := 𝒵[𝕋]) (n := n) k).Tracks fun x i => Real.tanh (x i) :=
+  Layer.activation_tracks (tanhRelaxation_encloses k)
+
+end
+
 
 end CORALean
 

@@ -6,8 +6,11 @@ public import CORALean.NN.Layers.Theorems.ActivationLayerOfEncloses
 public import CORALean.NN.Layers.Theorems.ActivationOuterWhere
 public import CORALean.NN.Layers.Theorems.ActivationPolyEncloses
 public import CORALean.NN.Layers.Theorems.ActivationEncloses
+public import CORALean.NN.Layers.Theorems.ActivationDeviationMem
 public import CORALean.NN.Layers.Theorems.ActivationGIEncloses
 public import CORALean.NN.Layers.Theorems.ActivationTaylmEncloses
+public import CORALean.NN.Layers.Theorems.ActivationTracks
+public import CORALean.NN.Layers.Theorems.CompTracks
 public import CORALean.NN.Layers.Theorems.Basic
 public import CORALean.NN.Layers.Theorems.AvgPoolEncloses
 public import CORALean.NN.Layers.Theorems.BatchNormEncloses
@@ -33,6 +36,7 @@ public import CORALean.NN.Layers.Theorems.LeMulRangeUp
 public import CORALean.NN.Layers.Theorems.LeSigmoidDerivHi
 public import CORALean.NN.Layers.Theorems.LeakyReluRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.LinearEncloses
+public import CORALean.NN.Layers.Theorems.LinearTracks
 public import CORALean.NN.Layers.Theorems.LinearWithErrorMem
 public import CORALean.NN.Layers.Theorems.LinearWithErrorEncloses
 public import CORALean.NN.Layers.Theorems.LipConstrLinearFloatEncloses
@@ -55,6 +59,7 @@ public import CORALean.NN.Layers.Theorems.Real.API
 public import CORALean.NN.Layers.Theorems.ReluGapOfSlopeLe
 public import CORALean.NN.Layers.Theorems.ReluRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.ReluEncloses
+public import CORALean.NN.Layers.Theorems.ReluTracks
 public import CORALean.NN.Layers.Theorems.ReluStarFloatEncloses
 public import CORALean.NN.Layers.Theorems.ReluStarEncloses
 public import CORALean.NN.Layers.Theorems.ReshapeExact
@@ -68,12 +73,18 @@ public import CORALean.NN.Layers.Theorems.SampleDevLoLe
 public import CORALean.NN.Layers.Theorems.SelectMatMulVec
 public import CORALean.NN.Layers.Theorems.SelectMatMulVecAddZero
 public import CORALean.NN.Layers.Theorems.SigmoidRegressionExactRelaxationEncloses
+public import CORALean.NN.Layers.Theorems.SigmoidRegressionExactTracks
 public import CORALean.NN.Layers.Theorems.SigmoidRegressionRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.SigmoidRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.SigmoidSinghRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.TanhRegressionEncloses
 public import CORALean.NN.Layers.Theorems.TanhRegressionExactEncloses
+public import CORALean.NN.Layers.Theorems.TanhRegressionExactTracks
+public import CORALean.NN.Layers.Theorems.TanhRegressionRelaxationEncloses
+public import CORALean.NN.Layers.Theorems.TanhRegressionTracks
 public import CORALean.NN.Layers.Theorems.TanhSinghEncloses
+public import CORALean.NN.Layers.Theorems.TanhSinghRelaxationEncloses
+public import CORALean.NN.Layers.Theorems.TanhSinghTracks
 public import CORALean.NN.Layers.Theorems.SigmoidDerivLoLe
 public import CORALean.NN.Layers.Theorems.SigmoidEnclosureEncloses
 public import CORALean.NN.Layers.Theorems.SigmoidPolyRelaxationEncloses

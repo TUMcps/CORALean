@@ -52,6 +52,7 @@ public import CORALean.HybridDynamics.Operations.GuardIntersectZonoGirardFloat
 public import CORALean.HybridDynamics.Operations.ZonoGirardUpperFloat
 public import CORALean.HybridDynamics.Operations.ZonoGirardBoxFloat
 public import CORALean.HybridDynamics.Operations.ZonoGirardMemberFloat
+public import CORALean.HybridDynamics.Operations.OrthDefectFloat
 public import CORALean.HybridDynamics.Operations.CalcBasisPcaFloat
 public import CORALean.HybridDynamics.Operations.CheckFlowFloat
 public import CORALean.HybridDynamics.Operations.TransitionConvGuard
