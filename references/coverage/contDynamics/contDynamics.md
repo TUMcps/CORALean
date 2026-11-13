@@ -71,7 +71,7 @@ and the sets are `oneStepFloat` with the error in the input, not `Rti + particul
 `trueError ≤ appliedError` is tested as it stands, where CORA's `max(trueError./appliedError) ≤ 1`
 can accept by an ulp what exceeds it. `Encloses.linReachLoopFloat_outer` and `reachLoopFloat_outer`
 (`reachLoopFloat` carries the error from step to step) place every run of the real system in the sets,
-under `Encloses` alone: `HasFixedPointConfinement` is replaced by `mem_of_fixedPoint`.
+under `Encloses` alone: the fixed-point confinement is `mem_of_fixedPoint`. So are the adaptive theorems of `linReach_adaptive`.
 
 **`linReach` — cora-issue, the Hessian region, continued.** The linearized run drifts away from `p`,
 the box is about `[-1/500, 2·10⁻⁵]`, `f''` there is below `2·10⁻⁵` while it reaches `4` on `[0, 1]`,

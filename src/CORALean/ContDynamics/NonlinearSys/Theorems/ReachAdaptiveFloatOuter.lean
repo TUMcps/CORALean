@@ -26,7 +26,6 @@ set; the tuning, the tensor orders and the reductions do not enter. The time nev
 
 ## Hypotheses
 * `h` – model encloses system
-* `hfix` – the abstraction error's fixed point confines the runs
 
 ## Conclusion
 * every run of the real system lies in the time-interval set of the step whose window holds it
@@ -34,7 +33,7 @@ set; the tuning, the tensor orders and the reductions do not enter. The time nev
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-November-2026
--- Last update:   ---
+-- Last update:   12-November-2026
 -- Reviewed:      ---
 
 
@@ -53,7 +52,7 @@ variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] 
 time-interval set of each step at the times of its window. -/
 theorem NonlinearSys.FloatHessModel.Encloses.reachAdaptiveFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
-    (hfix : sys.HasFixedPointConfinement) {U : Zonotope (Vec 𝕋 m)}
+    {U : Zonotope (Vec 𝕋 m)}
     {o : NonlinearSys.LinReachAdaptiveOptions 𝕋} : -- --- CONCL ---
     ∀ (k : ℕ) {s : NonlinearSys.LinReachAdaptiveState 𝕋 n}
       {ss : List (NonlinearSys.LinReachAdaptiveState 𝕋 n)},
@@ -87,7 +86,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.reachAdaptiveFloat_outer
         R := s₀.R.reduceAdaptive o.redFactor o.prec,
         Rτ := s₀.Rτ.reduceAdaptive (mulUp o.redFactor (nsmulUp 5 one)) o.prec }
       -- the step, and what the rest of the run guarantees from where it left off
-      obtain ⟨hlt, hstep₀⟩ := h.linReachAdaptiveFloat_outer hfix _ hs₀
+      obtain ⟨hlt, hstep₀⟩ := h.linReachAdaptiveFloat_outer _ hs₀
       have hstep : ∀ {x : ℝ → Vec ℝ n} {u : ℝ → Vec ℝ m} {y : ℝ → Vec ℝ sys.q},
           sys.IsTrajectory (S := ExactSet) (Set.Icc 0 ((s'.t - s.t : ℚ) : ℝ)) s.R.toSet U.toSet x u
             y →

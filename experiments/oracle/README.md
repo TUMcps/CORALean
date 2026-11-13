@@ -673,8 +673,8 @@ being `R(τ)` and `Rtp` being `R(t_{k+1})`.
 It needs `Δt > 0` (`ltStrict zero Δt`), else the step fails as `reachFloatInput` does for a step count of zero.
 The soundness theorem is `oneStepFloat_outer`
 at either `step`. Their soundness theorems (`Encloses.reachAdaptiveFloat_outer`,
-`linReachAdaptiveFloat_outer`, `linReachAdaptivePassFloat_outer`) take, besides `Encloses`, the
-hypothesis `HasFixedPointConfinement`, CORA's own fixed-point argument, not proved in Lean.
+`linReachAdaptiveFloat_outer`, `linReachAdaptivePassFloat_outer`) take `Encloses` alone: CORA's fixed-point argument is proved
+(`Encloses.mem_of_fixedPoint`).
 
 A polynomial zonotope is `{"c","G","GI","Exp","E"}`: `G` the dependent (`n x h`) and `GI` the
 independent (`n x q`, optional) generators, `Exp` the exponent matrix (`{"rows":p,"cols":h,"data"}`
