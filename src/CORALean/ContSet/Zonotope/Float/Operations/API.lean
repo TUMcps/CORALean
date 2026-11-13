@@ -142,6 +142,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Powers
 public import CORALean.ContSet.Zonotope.Float.Operations.Transpose
 public import CORALean.ContSet.Zonotope.Float.Operations.MatNorm
 public import CORALean.ContSet.Zonotope.Float.Operations.Vec
+public import CORALean.ContSet.Zonotope.Float.Operations.Pick
 
 /-!
 # What `Zonotope` computes

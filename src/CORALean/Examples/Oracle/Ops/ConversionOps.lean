@@ -5,6 +5,7 @@ import CORALean.ContSet.Conversion.Float.Operations.Interval_to_HPolytope
 import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Ellipsoid
 import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_HPolytope
 import CORALean.ContSet.Zonotope.Float.Operations.MatZonotope
+import CORALean.Examples.Oracle.Ops.PolyZonotopeOps
 import CORALean.Examples.Oracle.Ops.SetCodec
 
 /-!
@@ -53,14 +54,16 @@ private def aux_scalar (dops : DtypeOps 𝕋) (req : Json) (name : String) : Exc
 
 /-- The conversions of the box, without the `interval.` prefix. -/
 def intervalConversionNames : List String :=
-  [ "polytope", "conZonotope", "zonoBundle", "capsule", "ellipsoid" ]
+  [ "polytope", "conZonotope", "zonoBundle", "capsule", "ellipsoid", "polyZonotope" ]
 
 /-- The conversions of the zonotope, without the `zonotope.` prefix. -/
 def zonotopeConversionNames : List String :=
-  [ "polytope", "conZonotope", "zonoBundle", "capsule", "ellipsoid", "matZonotope" ]
+  [ "polytope", "conZonotope", "zonoBundle", "capsule", "ellipsoid", "matZonotope",
+    "polyZonotope" ]
 
 /-- `interval.<class>`: `I` converted. -/
 def handleIntervalConversion (dops : DtypeOps 𝕋) (op : String) (req : Json) : Resp := do
+  if op = "polyZonotope" then return ← handleIntervalPolyZonotope dops req
   let tuning := match op with
     | "capsule" => ["k"]
     | "ellipsoid" => ["sigma"]
@@ -79,6 +82,7 @@ def handleIntervalConversion (dops : DtypeOps 𝕋) (op : String) (req : Json) :
 
 /-- `zonotope.<class>`: `Z` converted. -/
 def handleZonotopeConversion (dops : DtypeOps 𝕋) (op : String) (req : Json) : Resp := do
+  if op = "polyZonotope" then return ← handleZonotopePolyZonotope dops req
   let tuning := match op with
     | "capsule" => ["k"]
     | "ellipsoid" => ["sigma"]

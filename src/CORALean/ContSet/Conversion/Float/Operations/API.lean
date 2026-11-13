@@ -45,6 +45,7 @@ public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_VPolytope
 public import CORALean.ContSet.Conversion.Float.Operations.Interval_to_MatPolytope
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_MatPolytope
 public import CORALean.ContSet.Conversion.Float.Operations.VPolytope_to_IntervalMatrix
+public import CORALean.ContSet.Conversion.Float.Operations.PolyZonotope_to_ZonotopeFold
 
 /-!
 # The constructions of the Float conversions, collected
