@@ -76,6 +76,26 @@ def printPolyZonotope {n : Nat} (pZ : PolyZonotope (Vec 𝕋 n)) : Json :=
           Array.ofFn fun l : Fin pZ.h => Lean.toJson (pZ.E k l)).flatten))]),
       ("E", printIntervalVec showD pZ.I_error) ]
 
+/-- The identifiers of the factors of a wire polynomial zonotope: `id`, else `1..p`. -/
+def parsePolyZonotopeIds {n : Nat} (pZ : PolyZonotope (Vec 𝕋 n)) (j : Json) :
+    Except String (Array Nat) := do
+  let ids ← match fieldOpt j "id" with
+    | some _ => natArrField j "id"
+    | none => pure ((Array.range pZ.p).map (· + 1))
+  if ids.size ≠ pZ.p then throw s!"`id` has {ids.size} entries, the exponent matrix {pZ.p} rows"
+  pure ids
+
+/-- `pZ` as the wire polynomial zonotope, with the identifiers of its factors. -/
+def printPolyZonotopeIds {n : Nat} (pZ : PolyZonotope (Vec 𝕋 n)) (ids : Array Nat) : Json :=
+  (printPolyZonotope showD pZ).setObjVal! "id" (Json.arr (ids.map Lean.toJson))
+
+/-- The identifiers some kept dependent generator still reads. -/
+def usedPolyZonotopeIds {n : Nat} (pZ : PolyZonotope (Vec 𝕋 n)) (kept : List Nat)
+    (ids : Array Nat) : Array Nat :=
+  (Array.ofFn fun k : Fin pZ.p => k).filterMap fun k =>
+    if kept.any (fun l => if hl : l < pZ.h then pZ.E k ⟨l, hl⟩ != 0 else false) then ids[k.val]?
+    else none
+
 end codec
 
 end CORALean.Oracle

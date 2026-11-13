@@ -18,6 +18,8 @@ public import CORALean.ContDynamics.LinearSys.Theorems.BundleReachFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.InputSolutionOuterOfRemainder
 public import CORALean.ContDynamics.LinearSys.Theorems.OneStepClosedFormFloatTimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.OneStepClosedFormFloatTimePointOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.PolyOneStepClosedFormFloatTimeIntervalOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.PolyOneStepClosedFormFloatTimePointOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.OneStepClosedFormTimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.OneStepClosedFormTimePointOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.ReachBoxOuter
@@ -80,6 +82,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemErrorSoluti
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMemInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormMatricesFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.GirardExampleSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.GirardReachEq

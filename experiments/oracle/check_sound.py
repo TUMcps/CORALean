@@ -38,6 +38,8 @@ arithmetic -- never floats:
   center, the corners of the first four factors, half the others, the independent generators at
   `+-1`) lie in the hull of the output (`check_polyzono_op`); `plus` and `mtimes` map the points
   first, `enclose` takes the points of both operands.
+* `nonlinearSys.linReachPoly`: constant-input runs of the system, by RK4 in 60 digits from points of
+  `R`, lie in the hulls of the response (`check_pz_lin_reach`).
 * Every op `ping` lists occurs in the requests, so none is served without a test.
 
 Every check names the request `id` and the violated bound on failure. Uses
@@ -896,6 +898,81 @@ def check_polyzono_op(op, req, resp, fails):
                 return
 
 
+def eval_field(node, x, u):
+    """The expression tree of a `nonlinearSys.*` request at the state `x` and the input `u`, in
+    `Decimal` (60 digits)."""
+    if "x" in node:
+        return x[node["x"]]
+    if "u" in node:
+        return u[node["u"]]
+    if "const" in node:
+        return dec(parse_scalar(node["const"]))
+    a = [eval_field(t, x, u) for t in node["args"]]
+    o = node["op"]
+    if o == "add":
+        return a[0] + a[1]
+    if o == "sub":
+        return a[0] - a[1]
+    if o == "mul":
+        return a[0] * a[1]
+    if o == "div":
+        return a[0] / a[1]
+    if o == "neg":
+        return -a[0]
+    if o == "pow":
+        return a[0] ** node["exponent"]
+    if o == "sin":
+        return decimal_trig(a[0], True)
+    if o == "cos":
+        return decimal_trig(a[0], False)
+    if o == "exp":
+        return a[0].exp()
+    if o == "sqrt":
+        return a[0].sqrt()
+    if o == "log":
+        return a[0].ln()
+    raise ValueError(f"no reference evaluation of `{o}`")
+
+
+def check_pz_lin_reach(req, resp, fails):
+    """`nonlinearSys.linReachPoly`: constant-input runs of the system from points of `R`, by RK4
+    in 60 digits at 16 steps, lie in the hull of `timeInterval` at every step and of `timePoint`
+    at the end (a necessary condition: the sets are outer approximations of the reach set)."""
+    import itertools
+    rid = req.get("id")
+    n, m = req["n"], req["m"]
+    dt = dec(parse_scalar(req["timeStep"]))
+    lo_i, hi_i = pz_hull(resp["timeInterval"])
+    lo_p, hi_p = pz_hull(resp["timePoint"])
+    inputs = [[]]
+    if m > 0:
+        uc = parse_vec(req["U"]["c"])
+        _, h, UG = parse_mat(req["U"]["G"])
+        inputs = [[dec(uc[i] + sum(UG[i][j] * (s[j] if j < len(s) else 0) for j in range(h)))
+                   for i in range(m)]
+                  for s in itertools.product([F(-1), F(1)], repeat=min(h, 2))]
+    steps = 16
+    hh = dt / steps
+    slack = Decimal(10) ** -9
+    for x0 in itertools.islice(pz_points(req["R"]), 0, None, 3):
+        for u in inputs:
+            x = [dec(v) for v in x0]
+            for k in range(steps):
+                f = lambda y: [eval_field(t, y, u) for t in req["f"]]
+                k1 = f(x)
+                k2 = f([x[i] + hh / 2 * k1[i] for i in range(n)])
+                k3 = f([x[i] + hh / 2 * k2[i] for i in range(n)])
+                k4 = f([x[i] + hh * k3[i] for i in range(n)])
+                x = [x[i] + hh / 6 * (k1[i] + 2 * k2[i] + 2 * k3[i] + k4[i]) for i in range(n)]
+                last = k == steps - 1
+                for i in range(n):
+                    if x[i] < lo_i[i] - slack or x[i] > hi_i[i] + slack or \
+                            (last and (x[i] < lo_p[i] - slack or x[i] > hi_p[i] + slack)):
+                        fails.append(f"id {rid}: linReachPoly: coordinate {i} of a run at step "
+                                     f"{k + 1} = {float(x[i])} leaves the sets")
+                        return
+
+
 def itertools_product(h):
     """The corners of the unit box of dimension `min(h, 6)`, the other coefficients 1/2."""
     import itertools
@@ -986,6 +1063,8 @@ def main() -> int:
             if op.startswith("polyZonotope.") or op in ("interval.polyZonotope",
                                                           "zonotope.polyZonotope"):
                 check_polyzono_op(op, req, resp, fails)
+            elif op == "nonlinearSys.linReachPoly":
+                check_pz_lin_reach(req, resp, fails)
             elif op.startswith("interval."):
                 check_interval_op(op[len("interval."):], req, resp, fails)
             elif op.startswith("zonotope."):

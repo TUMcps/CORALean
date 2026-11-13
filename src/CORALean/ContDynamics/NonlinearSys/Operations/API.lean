@@ -49,6 +49,8 @@ public import CORALean.ContDynamics.NonlinearSys.Operations.VarInputsFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.HessRemainder
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachLoopFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPolyLoopFloat
+public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPolyFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.OneStepFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.ReachAlgFloat
 public import CORALean.ContDynamics.NonlinearSys.Operations.ReachAlgFloatChecked

@@ -166,6 +166,7 @@ src/CORALean/ContSet/Interval/Real/Interval.lean | 8
 COUNTEREXAMPLE_EXCEPTIONS="
 src/CORALean/ContSet/ConPolyZono/Real/Operations/IsFullDimCora.lean | IsFullDimRank proves CORA's rank test necessary for a set with an interior point (the same test, via the polynomial zonotope's): a theorem about CORA's own test, on purpose, so no other version can take its place
 src/CORALean/ContSet/PolyZonotope/Real/Operations/IsFullDimCora.lean | IsFullDimRank proves CORA's rank test necessary for a set with an interior point (the test is necessary): a theorem about CORA's own test, on purpose, so no other version can take its place
+src/CORALean/ContSet/PolyZonotope/Float/Operations/ReduceCora.lean | CORA's reduce(pZ, 'girard', o) on a polynomial zonotope, not a refutation: the name says whose algorithm it is, as the other CORA-named operations
 src/CORALean/ContDynamics/LinearSys/Operations/SupportCounterexample.lean | the corrected counterexample of [1, Sec. 4.2], which the verification search extracts a run from; a repair, not a refutation
 src/CORALean/ContDynamics/LinearSys/Theorems/HeldSimSupportCounterexample.lean | the corrected counterexample reaches the lower bound exactly; a repair that other theorems use
 src/CORALean/ContDynamics/LinearSys/Theorems/HeldSimLeSupportCounterexample.lean | the corrected counterexample is a support vector; a repair that other theorems use

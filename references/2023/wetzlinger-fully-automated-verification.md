@@ -596,5 +596,6 @@ These name the paper as a whole. A locator would put each in a row above.
 * [`InputReachSubsetInputSolutionEntrywiseFloat.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/InputReachSubsetInputSolutionEntrywiseFloat.lean)
 * [`OneStepClosedFormFloatTimeIntervalOuter.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/OneStepClosedFormFloatTimeIntervalOuter.lean)
 * [`OneStepClosedFormFloatTimePointOuter.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/OneStepClosedFormFloatTimePointOuter.lean)
+* [`PolyOneStepClosedFormFloatTimeIntervalOuter.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/PolyOneStepClosedFormFloatTimeIntervalOuter.lean)
 * [`OneStepClosedFormTimeIntervalOuter.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/OneStepClosedFormTimeIntervalOuter.lean)
 * [`OneStepClosedFormTimePointOuter.lean`](../../src/CORALean/ContDynamics/LinearSys/Theorems/OneStepClosedFormTimePointOuter.lean)

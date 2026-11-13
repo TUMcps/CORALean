@@ -7,10 +7,8 @@ import CORALean.ContSet.PolyZonotope.Float.Instances
 import CORALean.ContSet.PolyZonotope.Float.Operations.Construct
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ConstructOuter
 import CORALean.ContSet.PolyZonotope.Float.Operations.EncloseShared
-import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceSplit
+import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceCora
 import CORALean.ContSet.PolyZonotope.Float.Theorems.EncloseSharedOuter
-import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceSplitOuter
-import CORALean.Global.Sort
 import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
 import CORALean.ContSet.PolyZonotope.Float.Operations.OfZonotope
 import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
@@ -66,16 +64,7 @@ private structure DynPolyZonotope (𝕋 : Type) [FloatOps 𝕋] where
 private def aux_parse (dops : DtypeOps 𝕋) (j : Json) : Except String (DynPolyZonotope 𝕋) := do
   let ⟨n, _⟩ ← parseVecDyn dops.readExact (← field j "c")
   let pZ ← parsePolyZonotopeFixed dops.readExact n j
-  let ids ← match fieldOpt j "id" with
-    | some _ => natArrField j "id"
-    | none => pure ((Array.range pZ.p).map (· + 1))
-  if ids.size ≠ pZ.p then throw s!"`id` has {ids.size} entries, the exponent matrix {pZ.p} rows"
-  pure ⟨n, pZ, ids⟩
-
-/-- `pZ` as the wire set, with its identifiers. -/
-private def aux_print (dops : DtypeOps 𝕋) {n : Nat} (pZ : PolyZonotope (Vec 𝕋 n))
-    (ids : Array Nat) : Json :=
-  (printPolyZonotope dops.showExact pZ).setObjVal! "id" (Json.arr (ids.map Lean.toJson))
+  pure ⟨n, pZ, ← parsePolyZonotopeIds pZ j⟩
 
 /-- The generators of `Z` that are not zero (CORA's `zonotope(I)` drops the zero radii). -/
 private def aux_zonoDropZero {n : Nat} (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
@@ -90,41 +79,10 @@ private def aux_ofZonotope {n : Nat} (Z : Zonotope (Vec 𝕋 n)) : PolyZonotope 
   Z.polyZonotope.construct (hashedColumnOrder #[])
 
 
-/-- CORA's `reduce(pZ, 'girard', order)` (`PolyZonotope.reduceSplit`, `reduceSplit_outer`), with
-the indices of the dependent generators kept. -/
-private def aux_reduce {n : Nat} (pZ : PolyZonotope (Vec 𝕋 n)) (o : Nat) :
-    PolyZonotope (Vec 𝕋 n) × List Nat :=
-  if o * n < pZ.h + pZ.q then
-    -- the squared length of generator `r` of `[G, GI]` (CORA ranks longest first, keeps `order`)
-    let len : Fin (pZ.h + pZ.q) → 𝕋 := fun r =>
-      let x : Fin n → 𝕋 := fun i =>
-        Fin.addCases (motive := fun _ => 𝕋)
-          (fun l => if ∀ k, pZ.E k l % 2 = 0 then FloatOps.half (pZ.G l i) else pZ.G l i)
-          (fun j => pZ.GI j i) r
-      sumDown fun i : Fin n => FloatOps.mulDown (x (Fin.rev i)) (x (Fin.rev i))
-    let perm := sortPerm fun a b : Fin (pZ.h + pZ.q) => FloatOps.le (len b) (len a)
-    let K := (o - 1) * n
-    let removed : List (Fin (pZ.h + pZ.q)) :=
-      ((List.finRange (pZ.h + pZ.q)).filter (fun t => K ≤ t.val)).map perm
-    let rD := (removed.filter (fun r => r.val < pZ.h)).map Fin.val
-    let rI := (removed.filter (fun r => pZ.h ≤ r.val)).map (fun r => r.val - pZ.h)
-    let kD := (List.range pZ.h).filter (fun l => !rD.contains l)
-    (pZ.reduceSplit kD.toArray rD.toArray
-      ((List.range pZ.q).filter (fun j => !rI.contains j)).toArray rI.toArray
-      (hashedColumnOrder #[]), kD)
-  else (pZ.compactFactors, List.range pZ.h)
-
-/-- The identifiers some kept dependent generator still reads. -/
-private def aux_usedIds {n : Nat} (pZ : PolyZonotope (Vec 𝕋 n)) (kept : List Nat)
-    (ids : Array Nat) : Array Nat :=
-  (Array.ofFn fun k : Fin pZ.p => k).filterMap fun k =>
-    if kept.any (fun l => if hl : l < pZ.h then pZ.E k ⟨l, hl⟩ != 0 else false) then ids[k.val]?
-    else none
-
 /-- `P + Z` for a zonotope `Z` (independent generators), as the response. -/
 private def aux_plusZ (dops : DtypeOps 𝕋) (d : DynPolyZonotope 𝕋) (z : Zonotope (Vec 𝕋 d.n)) :
     List (String × Json) :=
-  [("P", aux_print dops (d.pZ.plus (Zonotope.ofIndep z)).materialise d.id)]
+  [("P", printPolyZonotopeIds dops.showExact (d.pZ.plus (Zonotope.ofIndep z)).materialise d.id)]
 
 /-- The exponent matrix as rows of columns. -/
 private def aux_rows {n : Nat} (P : PolyZonotope (Vec 𝕋 n)) : Array (Array Nat) :=
@@ -188,7 +146,8 @@ def handlePolyZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opt
   | "constructor" => some (do
     checkFields op req ["P"]
     let d ← aux_parse dops (← field req "P")
-    pure [("P", aux_print dops (d.pZ.construct (hashedColumnOrder #[])).materialise d.id)])
+    let R := (d.pZ.construct (hashedColumnOrder #[])).materialise
+    pure [("P", printPolyZonotopeIds dops.showExact R d.id)])
   | "dim" => some (do
     checkFields op req ["P"]
     let d ← aux_parse dops (← field req "P")
@@ -210,10 +169,10 @@ def handlePolyZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opt
     let d ← aux_parse dops (← field req "P")
     let o ← natField req "order"
     if o = 0 then throw "reduce: the order must be at least 1"
-    let (R, kept) := aux_reduce d.pZ o
-    let ids := aux_usedIds d.pZ kept d.id
+    let (R, kept) := d.pZ.reduceCora o (hashedColumnOrder #[])
+    let ids := usedPolyZonotopeIds d.pZ kept d.id
     if R.p ≠ ids.size then throw "reduce: the factors kept do not match the result (internal)"
-    pure [("P", aux_print dops R.materialise ids)])
+    pure [("P", printPolyZonotopeIds dops.showExact R.materialise ids)])
   -- `enclose(pZ, pZ2)`
   | "enclose" => some (do
     checkFields op req ["P", "Q"]
@@ -223,13 +182,14 @@ def handlePolyZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opt
       let Q : PolyZonotope (Vec 𝕋 d.n) := h ▸ e.pZ
       let (R, ids) ← aux_enclose d.pZ Q d.id e.id
       if R.p ≠ ids.size then throw "enclose: the identifiers do not match the factors (internal)"
-      pure [("P", aux_print dops R.materialise ids)]
+      pure [("P", printPolyZonotopeIds dops.showExact R.materialise ids)]
     else throw s!"enclose: the sets differ in dimension, {d.n} and {e.n}")
   | "mtimes" => some (do
     checkFields op req ["M", "P"]
     let d ← aux_parse dops (← field req "P")
     let ⟨_, M⟩ ← parseMatColsFixed dops.readExact d.n (← field req "M")
-    pure [("P", aux_print dops (PolyZonotope.mtimes M d.pZ).materialise d.id)])
+    let R := (PolyZonotope.mtimes M d.pZ).materialise
+    pure [("P", printPolyZonotopeIds dops.showExact R d.id)])
   -- `pZ + (Q | Z | I | v)`
   | "plus" => some (do
     checkFields op req ["P", "Q", "Z", "I", "v"]
@@ -241,7 +201,8 @@ def handlePolyZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opt
       if h : e.n = d.n then
         let Q : PolyZonotope (Vec 𝕋 d.n) := h ▸ e.pZ
         let shift := d.id.foldl max 0
-        pure [("P", aux_print dops (d.pZ.plus Q).materialise (d.id ++ e.id.map (shift + ·)))]
+        pure [("P", printPolyZonotopeIds dops.showExact (d.pZ.plus Q).materialise
+          (d.id ++ e.id.map (shift + ·)))]
       else throw s!"plus: the sets differ in dimension, {d.n} and {e.n}"
     | none, some zj, none, none =>
       let z ← parseZonotopeFixed dops.readExact d.n zj
@@ -251,6 +212,7 @@ def handlePolyZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opt
       let z := aux_zonoDropZero (Interval.zonotope b)
       pure (aux_plusZ dops d z)
     | none, none, none, some vj =>
+      -- a point is a zonotope without generators
       let v ← parseVecFixed dops.readExact d.n vj
       let z : Zonotope (Vec 𝕋 d.n) :=
         ⟨0, v, Fin.elim0, ⟨fun _ => FloatOps.zero, fun _ => FloatOps.zero⟩⟩
@@ -263,14 +225,16 @@ def handleZonotopePolyZonotope (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   checkFields "polyZonotope" req ["Z"]
   let d ← parseZonotope dops.readExact (← field req "Z")
   let P := aux_ofZonotope d.Z
-  pure [("P", aux_print dops P.materialise ((Array.range d.Z.h).map (· + 1)))]
+  pure [("P", printPolyZonotopeIds dops.showExact P.materialise
+    ((Array.range d.Z.h).map (· + 1)))]
 
 /-- `interval.polyZonotope`: `I` as a polynomial zonotope (CORA's `polyZonotope(I)`). -/
 def handleIntervalPolyZonotope (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   checkFields "polyZonotope" req ["I"]
   let b ← parseBox dops.readExact (← field req "I")
   let P := aux_ofZonotope (Interval.zonotope b.I)
-  pure [("P", aux_print dops P.materialise ((Array.range b.n).map (· + 1)))]
+  pure [("P", printPolyZonotopeIds dops.showExact P.materialise
+    ((Array.range b.n).map (· + 1)))]
 
 end CORALean.Oracle
 

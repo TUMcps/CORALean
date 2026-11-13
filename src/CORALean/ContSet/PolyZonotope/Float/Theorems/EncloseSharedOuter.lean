@@ -4,6 +4,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.LinCombOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Interval.Float.Theorems.OriginExact
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
+public import CORALean.ContSet.PolyZonotope.Float.Definitions.Fiber
 public import CORALean.ContSet.PolyZonotope.Float.Operations.EncloseShared
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemGeneratorErrorMonomial
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.MemNominalSet
@@ -263,9 +264,8 @@ private theorem PolyZonotope.aux_zero_mem {q : ℕ} (GI : Fin q → Vec 𝕋 n) 
   exact h
 
 
--- =======================================  MAIN THEOREM  ======================================= --
-
-theorem PolyZonotope.encloseShared_outer (A B : PolyZonotope (Vec 𝕋 n)) (hp : B.p = A.p)
+/-- Both sets lie in the enclosure. -/
+private theorem PolyZonotope.aux_union_outer (A B : PolyZonotope (Vec 𝕋 n)) (hp : B.p = A.p)
     (hh : B.h = A.h) (hE : HEq B.E A.E) (hA : A.I_error.toSet.Nonempty)
     (hB : B.I_error.toSet.Nonempty) : -- --- CONCL ---
     A.toSet ∪ B.toSet ⊆ (A.encloseShared B hh).toSet := by -- --- PROOF ---
@@ -333,6 +333,69 @@ theorem PolyZonotope.encloseShared_outer (A B : PolyZonotope (Vec 𝕋 n)) (hp :
     funext i
     simp only [Pi.add_apply]
     rw [hzeq i]
+
+
+/-- Two points at one value of the shared factors, combined by `lam`, are in the enclosure: the new
+factor is `2 lam - 1`. -/
+private theorem PolyZonotope.aux_comb_outer (A B : PolyZonotope (Vec 𝕋 n)) (hp : B.p = A.p)
+    (hh : B.h = A.h) (hE : HEq B.E A.E) {a : Fin A.p → ℝ} (ha : ∀ k, |a k| ≤ 1)
+    {x y : Vec ℝ n} (hx : x ∈ A.fiber a) (hy : y ∈ B.fiber fun k => a (Fin.cast hp k))
+    {lam : ℝ} (hlam : lam ∈ Set.Icc (0 : ℝ) 1) : -- --- CONCL ---
+    lam • x + (1 - lam) • y ∈ (A.encloseShared B hh).toSet := by -- --- PROOF ---
+  obtain ⟨p₂, h₂, q₂, c₂, G₂, E₂, GI₂, I₂⟩ := B
+  simp only at hp hh hE hy
+  subst hp
+  subst hh
+  have hE' := eq_of_heq hE
+  subst hE'
+  obtain ⟨β, hβ, e, he, rfl⟩ := hx
+  obtain ⟨β', hβ', e', he', rfl⟩ := hy
+  have hσ : |2 * lam - 1| ≤ 1 := abs_le.mpr ⟨by linarith [hlam.1], by linarith [hlam.2]⟩
+  -- the independent parts combine in the enclosure of the independent parts
+  have hzi : lam • (fun i => ∑ j, toReal (A.GI j i) * β j)
+      + (1 - lam) • (fun i => ∑ j, toReal (GI₂ j i) * β' j) ∈ (PolyZonotope.step_encloseIndep
+      (⟨A.q, fun _ => zero, A.GI, Interval.origin n⟩ : Zonotope (Vec 𝕋 n))
+      ⟨q₂, fun _ => zero, GI₂, Interval.origin n⟩).toSet :=
+    PolyZonotope.aux_indep_outer _ _ (Zonotope.linComb_outer _ _ ⟨_,
+      PolyZonotope.aux_ind_mem A.GI hβ, _, PolyZonotope.aux_ind_mem GI₂ hβ', lam, hlam, rfl⟩)
+  -- the error boxes combine in the linear combination of the two boxes
+  have hee : lam • e + (1 - lam) • e' ∈ (A.I_error.linComb I₂).toSet :=
+    Interval.linComb_outer _ _ ⟨e, he, e', he', lam, hlam, rfl⟩
+  -- assemble the enclosure from the combined parts
+  have := PolyZonotope.aux_assemble A ⟨A.p, A.h, q₂, c₂, G₂, A.E, GI₂, I₂⟩ rfl ha
+    (σ := 2 * lam - 1) hσ hzi hee (z0 := lam • (fun i => toReal (A.c i)
+      + ∑ l, toReal (A.G l i) * Real.PolyZonotope.monomial A.E a l)
+      + (1 - lam) • (fun i => toReal (c₂ i)
+      + ∑ l, toReal (G₂ l i) * Real.PolyZonotope.monomial A.E a l)) (fun i => by
+        simp only [Fin.cast_eq_self, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
+        have hs : ∀ l : Fin A.h, ((toReal (A.G l i) + toReal (G₂ l i)) / 2
+            + (2 * lam - 1) * ((toReal (A.G l i) - toReal (G₂ l i)) / 2))
+            * Real.PolyZonotope.monomial A.E a l
+            = lam * (toReal (A.G l i) * Real.PolyZonotope.monomial A.E a l)
+              + (1 - lam) * (toReal (G₂ l i) * Real.PolyZonotope.monomial A.E a l) :=
+          fun l => by ring
+        rw [Finset.sum_congr rfl fun l _ => hs l, Finset.sum_add_distrib, ← Finset.mul_sum,
+          ← Finset.mul_sum]
+        ring)
+  convert this using 1
+  funext i
+  simp only [Fin.cast_eq_self, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
+  ring
+
+
+-- =======================================  MAIN THEOREM  ======================================= --
+
+/-- The enclosure holds both sets, and the points of the two on one value of the shared factors
+combined by any `lam`. -/
+theorem PolyZonotope.encloseShared_outer (A B : PolyZonotope (Vec 𝕋 n)) (hp : B.p = A.p)
+    (hh : B.h = A.h) (hE : HEq B.E A.E) (hA : A.I_error.toSet.Nonempty)
+    (hB : B.I_error.toSet.Nonempty) : -- --- CONCL ---
+    A.toSet ∪ B.toSet ⊆ (A.encloseShared B hh).toSet ∧
+    ∀ {a : Fin A.p → ℝ}, (∀ k, |a k| ≤ 1) → ∀ {x y : Vec ℝ n}, x ∈ A.fiber a →
+      y ∈ B.fiber (fun k => a (Fin.cast hp k)) → ∀ {lam : ℝ}, lam ∈ Set.Icc (0 : ℝ) 1 →
+        lam • x + (1 - lam) • y ∈ (A.encloseShared B hh).toSet := by -- --- PROOF ---
+  exact ⟨PolyZonotope.aux_union_outer A B hp hh hE hA hB, fun {a} ha {x y} hx hy {lam} hlam =>
+    PolyZonotope.aux_comb_outer A B hp hh hE ha hx hy hlam⟩
 
 end CORALean.Float
 

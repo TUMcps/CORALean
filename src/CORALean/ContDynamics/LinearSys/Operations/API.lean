@@ -24,9 +24,11 @@ public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionEntrywise
 public import CORALean.ContDynamics.LinearSys.Operations.InputSolutionEntrywiseFloat
 public import CORALean.ContDynamics.LinearSys.Operations.OneStepClosedForm
 public import CORALean.ContDynamics.LinearSys.Operations.OneStepClosedFormFloat
+public import CORALean.ContDynamics.LinearSys.Operations.PolyOneStepClosedFormFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionErrorFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ParticularSolutionTauErrorFloat
 public import CORALean.ContDynamics.LinearSys.Operations.BundleReachFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ClosedFormMatricesFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachBox
 public import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ReachBoxFloatChecked
