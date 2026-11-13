@@ -21,7 +21,7 @@ of a lone hyperplane hit for the time-point set, and the specifications.
 
 ## Inputs
 * `HA` – hybrid automaton
-* `B` – basis
+* `Bf` – the basis of a crossing, from the guard normal and offset and the sets that meet the guard
 * `options` – reach options
 * `idx` – number of the branch
 * `p` – queue entry
@@ -49,7 +49,7 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [
 
 /-- The branch of the stay of the entry `p`, and the entries of its crossings of guards. -/
 def HybridAutomaton.reachQueueStepFloat
-    (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n) (B : Mat 𝕋 n n)
+    (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n) (Bf : BasisRule 𝕋 n)
     (options : HybridReachOptions L 𝕋) (idx : ℕ) (p : HybridPending L 𝕋 n) :
     Option (HybridBranch L 𝕋 n × List (HybridPending L 𝕋 n)) := do
   let ℓ := HA.loc p.loc
@@ -58,7 +58,7 @@ def HybridAutomaton.reachQueueStepFloat
   let Rs ← ℓ.stayFloat N { Δt := options.Δt p.loc, η := options.η, ρ := options.ρ } p.set
   let hits := ℓ.potInt Rs options.finalLoc                          -- which guards may be met
   let jumps ← (Location.guardGroups hits).mapM                       -- one entry per crossing
-    (ℓ.queueJumpFloat options.checkFlow B Δ idx p.tlo p.thi Rs)
+    (ℓ.queueJumpFloat options.checkFlow Bf Δ idx p.tlo p.thi Rs)
   pure (⟨p.loc, p.parent, Rs, p.tlo, p.thi⟩, jumps.filterMap id)
 
 end CORALean

@@ -3,6 +3,7 @@ import CORALean.ContSet.ZonoBundle.Float.Instances
 import CORALean.Examples.Oracle.Ops.LinearSysOps
 import CORALean.Examples.Oracle.Ops.SetCodec
 import CORALean.HybridDynamics.Operations.CalcBasisBox
+import CORALean.HybridDynamics.Operations.CalcBasisPcaFloat
 import CORALean.HybridDynamics.Operations.GuardGroups
 import CORALean.HybridDynamics.Operations.CheckFlowFloat
 import CORALean.HybridDynamics.Operations.GuardIntersectNondetFloat
@@ -164,9 +165,11 @@ def handleLocationPotInt (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   pure [("hits", Json.arr (hits.toArray.map fun (i, j) =>
     Json.arr #[Lean.toJson i, Lean.toJson j]))]
 
-/-- `location.calcBasis`: `Location.calcBasisBox`, the `box` basis `eye(n)`. -/
+/-- `location.calcBasis`: `Location.calcBasisBox`, the `box` basis `eye(n)`, and
+`Location.calcBasisPcaFloat` for `pca` (the sets `R` and the guard's hyperplane `normal`; `k` steps
+of the square root where the format has no root of its own, default 8). -/
 def handleLocationCalcBasis (dops : DtypeOps 𝕋) (req : Json) : Resp := do
-  checkFields "calcBasis" req ["n", "enclose"]
+  checkFields "calcBasis" req ["n", "enclose", "R", "hyperplane", "k"]
   let n ← natField req "n"
   let names ← match ← field req "enclose" with
     | .arr a => a.mapM fun j => match j.getStr? with
@@ -174,9 +177,16 @@ def handleLocationCalcBasis (dops : DtypeOps 𝕋) (req : Json) : Resp := do
       | .error _ => throw "calcBasis: `enclose` must hold strings"
     | .str s => pure #[s]
     | _ => throw "calcBasis: `enclose` must be a string or a list of strings"
+  let k ← if (fieldOpt req "k").isSome then natField req "k" else pure 8
   let Bs ← names.mapM fun s =>
     if s = "box" then pure (printMat dops.showExact (Location.calcBasisBox 𝕋 n))
-    else throw s!"calcBasis: `{s}` has no float definition, only `box`"
+    else if s = "pca" then do
+      let Rs ← aux_zonos dops req "R" n
+      let hyp ← match fieldOpt req "hyperplane" with
+        | some hp => pure (some (← parseVecFixed dops.readExact n (← field hp "normal")))
+        | none => pure none
+      pure (printMat dops.showExact (Location.calcBasisPcaFloat k Rs hyp))
+    else throw s!"calcBasis: `{s}` has no float definition, only `box` and `pca`"
   pure [("B", Json.arr Bs)]
 
 /-- `location.checkFlow`: `Location.checkFlowFloat`, per set. -/
@@ -336,17 +346,19 @@ def handleTransitionOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Optio
   | _ => none
 
 /-- `hybridAutomaton.reach`: `HybridAutomaton.reachQueueFloat`, CORA's `hybridAutomaton/reach` loop
-with `zonoGirard` in the `'box'` basis and `checkFlow` (default true); `branches`, per stay the
-location, the producing branch, the sets and the two ends of the start time. -/
+with `zonoGirard` in the `'box'` or `'pca'` basis and `checkFlow` (default true); `branches`, per
+stay the location, the producing branch, the sets and the two ends of the start time. -/
 def handleHybridAutomatonReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   checkFields "reach" req ["locations", "startLoc", "R0", "tStart", "tFinal", "taylorTerms",
-    "zonotopeOrder", "finalLoc", "guardIntersect", "enclose", "checkFlow", "fuel"]
+    "zonotopeOrder", "finalLoc", "guardIntersect", "enclose", "checkFlow", "fuel", "k"]
   -- the one guard intersection and basis that have a float definition
   if (← strField req "guardIntersect") ≠ "zonoGirard" then
     throw "reach: `guardIntersect` is served as \"zonoGirard\" only"
   let enclose := (← arrField req "enclose").toList.map fun e => e.getStr?.toOption
-  if enclose ≠ [some "box"] then
-    throw "reach: `enclose` is served as [\"box\"] only (`pca`, `flow`: no float definition)"
+  if enclose ≠ [some "box"] ∧ enclose ≠ [some "pca"] then
+    throw "reach: `enclose` is served as [\"box\"] or [\"pca\"] only (a bundle of several bases \
+      starts a stay from a zonoBundle, `flow`: no float definition)"
+  let k ← if (fieldOpt req "k").isSome then natField req "k" else pure 8
   let locs ← arrField req "locations"
   let n ← match locs[0]? with
     | some j => natField (← field j "A") "cols"
@@ -376,8 +388,10 @@ def handleHybridAutomatonReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
     let X₀ ← parseZonotopeFixed dops.readExact n (← field req "R0")
     let tStart := aux_ratOf (← scalarField req "tStart")
     -- the queue of CORA's loop, from the start set
-    match HA.reachQueueFloat (Location.calcBasisBox 𝕋 n) options tStart (← natField req "startLoc")
-        X₀ with
+    let basis : BasisRule 𝕋 n := fun nv _ Rs =>
+      if enclose = [some "pca"] then Location.calcBasisPcaFloat k Rs (some nv)
+      else Location.calcBasisBox 𝕋 n
+    match HA.reachQueueFloat basis options tStart (← natField req "startLoc") X₀ with
     | none => throw "reach: a pass failed (a guard that is not a bare hyperplane, no admissible \
         Taylor order, a step that is not positive) or the queue did not empty in `fuel` passes"
     | some bs =>

@@ -90,6 +90,7 @@ public import CORALean.HybridDynamics.Theorems.GuardIntersectZonoGirardFloatOute
 public import CORALean.HybridDynamics.Theorems.ZonoGirardUpperLe
 public import CORALean.HybridDynamics.Theorems.ZonoGirardUpperFloatLe
 public import CORALean.HybridDynamics.Theorems.ZonoGirardBoxFloatMem
+public import CORALean.HybridDynamics.Theorems.ZonoGirardMemberFloatMem
 public import CORALean.HybridDynamics.Theorems.CheckFlowDropped
 public import CORALean.HybridDynamics.Theorems.CheckFlowFloatDropped
 public import CORALean.HybridDynamics.Theorems.TransitionConvGuardExact

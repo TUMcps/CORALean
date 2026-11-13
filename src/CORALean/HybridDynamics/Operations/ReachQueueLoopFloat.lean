@@ -13,7 +13,7 @@ join the end, until the queue is empty. `none` where a step fails or the fuel is
 
 ## Inputs
 * `HA` – hybrid automaton
-* `B` – basis
+* `Bf` – the basis of a crossing, from the guard normal and offset and the sets that meet the guard
 * `options` – reach options
 * `f` – fuel
 * `q` – queue
@@ -42,15 +42,15 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [
 
 /-- The branches after `f` more entries are analysed from the queue `q`, after `acc`. -/
 def HybridAutomaton.reachQueueLoopFloat
-    (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n) (B : Mat 𝕋 n n)
+    (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n) (Bf : BasisRule 𝕋 n)
     (options : HybridReachOptions L 𝕋) (f : ℕ) (q : List (HybridPending L 𝕋 n))
     (acc : List (HybridBranch L 𝕋 n)) : Option (List (HybridBranch L 𝕋 n)) :=
   match f, q with
   | 0, _ => none                                                    -- the fuel is spent
   | _ + 1, [] => some acc                                           -- nothing left to analyse
   | f + 1, p :: q => do
-    let (br, js) ← HA.reachQueueStepFloat B options acc.length p     -- the front of the queue
-    HybridAutomaton.reachQueueLoopFloat HA B options f (q ++ js) (acc ++ [br])   -- its jumps join
+    let (br, js) ← HA.reachQueueStepFloat Bf options acc.length p     -- the front of the queue
+    HybridAutomaton.reachQueueLoopFloat HA Bf options f (q ++ js) (acc ++ [br])   -- its jumps join
 
 end CORALean
 

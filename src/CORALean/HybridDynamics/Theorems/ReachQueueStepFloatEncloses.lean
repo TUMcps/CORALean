@@ -25,7 +25,7 @@ are those with positive dwell time (`IsRunUntilDwell`).
 
 ## Inputs
 * `HA` – hybrid automaton
-* `B` – basis
+* `Bf` – the basis of a crossing, from the guard normal and offset and the sets that meet the guard
 * `options` – reach options
 * `δ` – margin to the horizon
 * `out` – branches
@@ -33,7 +33,6 @@ are those with positive dwell time (`IsRunUntilDwell`).
 * `p` – queue entry
 
 ## Hypotheses
-* `horth` – the basis is orthogonal
 * `hΔ` – the steps are positive
 * `hδ` – the margin is at least every step
 * `hfin` – no transition leads to `finalLoc`
@@ -77,15 +76,15 @@ private theorem aux_mapM_some {α β : Type} {f : α → Option β} :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HybridAutomaton.reachQueueStepFloat_encloses
-    (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n) {B : Mat 𝕋 n n}
-    (horth : Scalar.toRealMat B * (Scalar.toRealMat B)ᵀ = 1) {options : HybridReachOptions L 𝕋}
+    (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n) {Bf : BasisRule 𝕋 n}
+    {options : HybridReachOptions L 𝕋}
     (hΔ : ∀ ℓ, 0 < toReal (options.Δt ℓ)) {δ : ℝ} (hδ : ∀ ℓ, toReal (options.Δt ℓ) ≤ δ)
     (hfin : ∀ ℓ, ∀ e ∈ (HA.loc ℓ).trans, e.target ≠ options.finalLoc)
     (out : List (HybridBranch L 𝕋 n)) (idx : ℕ) (p : HybridPending L 𝕋 n) : -- --- CONCL ---
-    ∀ r ∈ HA.reachQueueStepFloat B options idx p, r.1 ∈ out →
+    ∀ r ∈ HA.reachQueueStepFloat Bf options idx p, r.1 ∈ out →
       (∀ c ∈ r.2, HA.Encloses options.checkFlow options.tFinal δ out c) →
         HA.Encloses options.checkFlow options.tFinal δ out p := by -- --- PROOF ---
-  rintro ⟨br, js⟩ (hstep : HA.reachQueueStepFloat B options idx p = some (br, js)) hbr hjs
+  rintro ⟨br, js⟩ (hstep : HA.reachQueueStepFloat Bf options idx p = some (br, js)) hbr hjs
   unfold HybridAutomaton.reachQueueStepFloat at hstep
   dsimp only at hstep
   obtain ⟨Rs, hRs, hstep⟩ := Option.bind_eq_some_iff.mp hstep
@@ -136,7 +135,7 @@ theorem HybridAutomaton.reachQueueStepFloat_encloses
         (List.getElem?_eq_getElem hk₁) traj hdw hxk
         (HPolytope.dotProduct_of_hyperplane _ hguard (nv, γ) hhp)
     obtain ⟨c, rfl, hcloc, hcmem, hctlo⟩ := Location.queueJumpFloat_encloses (HA.loc p.loc)
-      options.checkFlow B horth _ idx p.tlo p.thi Rs (List.getElem?_eq_getElem hg) hkept hxk
+      options.checkFlow Bf _ idx p.tlo p.thi Rs (List.getElem?_eq_getElem hg) hkept hxk
       hguard _ (Option.mem_def.mpr hfo)
     have hc : c ∈ jumps.filterMap id := List.mem_filterMap.mpr ⟨some c, ho, rfl⟩
     -- the entry starts no later than the jump

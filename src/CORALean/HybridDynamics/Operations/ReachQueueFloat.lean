@@ -15,7 +15,7 @@ not empty the queue.
 
 ## Inputs
 * `HA` – hybrid automaton
-* `B` – basis
+* `Bf` – the basis of a crossing, from the guard normal and offset and the sets that meet the guard
 * `options` – reach options
 * `tStart` – start time
 * `ℓ₀` – initial location
@@ -44,10 +44,10 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [
 
 /-- The branches of the stays from `X₀` at `ℓ₀` at the time `tStart`, in the order of analysis. -/
 def HybridAutomaton.reachQueueFloat
-    (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n) (B : Mat 𝕋 n n)
+    (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n) (Bf : BasisRule 𝕋 n)
     (options : HybridReachOptions L 𝕋) (tStart : ℚ) (ℓ₀ : L) (X₀ : Zonotope (Vec 𝕋 n)) :
     Option (List (HybridBranch L 𝕋 n)) :=
-  HA.reachQueueLoopFloat B options options.fuel [⟨ℓ₀, X₀, tStart, tStart, none⟩] []
+  HA.reachQueueLoopFloat Bf options options.fuel [⟨ℓ₀, X₀, tStart, tStart, none⟩] []
 
 end CORALean
 
