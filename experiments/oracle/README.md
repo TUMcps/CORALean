@@ -632,6 +632,7 @@ sound dtypes.
 | `nonlinearSys.reachPolyAdaptive` | `n`, `m`, `f`, `p`, `R0` (a polynomial zonotope), `U`, `maxSteps`, `sets`, the options below and `dHused`, `thirdOrderEmpty`, `maxDepGenOrder`, `maxPolyZonoRatio` | `FloatHessModel.reachPolyAdaptiveFloat`, CORA's `poly-adaptive` repaired; `steps`, `t`, the last `timePoint`, every `timeInterval` when `sets` is true |
 | `nonlinearSys.linReachPolyAdaptive` | as `reachPolyAdaptive` with the state `R` (polynomial zonotope), `i`, `t`, `timeStep`, `finitehorizon`, `varphi`, `errAdmHorizon`, `errAdmDeltatopt`, `orders`, `minorder`, `zeroWidthDim`, `steps` | `FloatHessModel.linReachPolyAdaptiveFloat`, one step with its tuning; the state after it, sets unreduced |
 | `nonlinearSys.linReachPolyAdaptivePass` | `n`, `m`, `f`, `p`, `U`, `R` (polynomial zonotope), `timeStep`, `taylorTerms`, `zonotopeOrder`, `errorAdm`, `redFactor`, `enlarge`, `fuel` | `FloatHessModel.linReachPolyAdaptivePassFloat`, one pass of the error loop; `timeInterval`, `timePoint`, `A`, `xs`, `trueError`, `abstrerr`, `Gzero` |
+| `nonlinearSys.linReachPoly` | `n`, `m`, `f`, `p`, `U`, `R` (polynomial zonotope, with `id`), `timeStep`, `taylorTerms`, `zonotopeOrder`, `abstrerr`, `enlarge`, `fuel`, `maxError`, `reduce` | `FloatHessModel.linReachPolyLoopFloat`, one step of `lin` from a polynomial zonotope; at `reduce: true` the sets `post` leaves, reduced to `zonotopeOrder` (`linReachPolyFloat`); `timeInterval`, `timePoint` (with `id`), `abstrerr` |
 | `nonlinearSys.abstrErrAdaptive` | `n`, `m`, `f`, `p`, `U`, `xs`, `Rmax`, `tensorOrder`, `redFactor` | `FloatHessModel.abstrErrAdaptiveFloat`, the Hessian over the box of `Rmax` joined with `xs`; `VerrorDyn`, `trueError` |
 | `nonlinearSys.ordersAdaptive` | `n`, `m`, `f`, `p`, `U`, `A`, `xs`, `zeroWidthDim`, `Gzero` | `NonlinearSys.adaptiveOrdersFloat`; `orders` |
 | `nonlinearSys.optimalDeltatAdaptive` | `p`, `decrFactor`, `redFactor`, `rR`, `rerr1`, `deltat`, `varphimin`, `zetaP` | `NonlinearSys.optimalDeltatAdaptiveFloat`; `value` |
@@ -659,6 +660,28 @@ step (`reachLoopFloat`). Its evaluation order, one named step per line of CORA:
 
 The soundness theorems are `Encloses.linReachLoopFloat_outer` and `reachLoopFloat_outer`, on `Encloses` alone
 (`IsTrajectory.mem_of_fixedPoint`). Like the other `Encloses` ops they are served at `nearest` only.
+
+`nonlinearSys.linReachPoly` is the loop of `linReachLoopFloat` with the start set a polynomial zonotope, `lin` only,
+at the closed-form linear step (`LinearSys.polyOneStepClosedFormFloat`, from `[e^{AΔt}]`, `[F]`, `[G]` and the
+input solutions of `oneStepClosedFormFloat`). Its evaluation order, one named step per line of CORA's `linReach`:
+1. `xs = linPointFloat(Δt, center(R), U).1` (the centre of `R` as a generator-free zonotope), `us`, `A`, `B`, `f0`,
+   `Vbase` as above, and `Rdelta = R + (-xs)` (`PolyZonotope.plus` of a point);
+2. `Htp = [e^{AΔt}] Rdelta + Pu`: the interval matrix times the dependent part, its width as independent
+   generators (`PolyZonotope.mtimesIntervalMat`), `Pu` the solution of the constant input `V.c`.
+   `Hti = enclose(Rdelta, Htp) + [F] Rdelta`: CORA's `enclose` (`encloseShared`, the second constructor pass in
+   `hashedColumnOrder`, the new factor `max(id) + 1`), summed block-diagonally with `[F] Rdelta` (its factors
+   get the identifiers above). `Rtp = Htp + PU` and `Rti = (Hti + PU) + [G] u`, `PU` the solution of `V - V.c`,
+   all added as independent generators;
+3. each pass of the loop applies `applied = enlarge · abstrerr` as `Verror` in `V = Vbase ⊞ Verror`, and the
+   Hessian is read over `X = [min, max](interval(zonotope(Rti + xs)), xs)` with `zonotope(·) =
+   PolyZonotope.zonotopeFold`, CORA's order (a constant column whole into the centre, an even one halved);
+4. accept, fail and `maxError` as above; the sets are the step with `V = Vbase ⊞ VerrorDyn`, shifted back by `xs`;
+5. at `reduce: true` both sets go through `PolyZonotope.reduceCora` at order `zonotopeOrder` (`post`).
+The identifiers of `Rti` are those of `R`, then the new factor, then those of `R` shifted above it; those of
+`Rtp` are `R`'s; a reduction keeps the factors the kept dependent generators read. `Encloses.linReachPolyLoopFloat_outer`
+and `linReachPolyFloat_outer` are the soundness theorems, under `Encloses` alone, as `linReachLoopFloat_outer`; the
+enclosure keeps the factors (`encloseShared_outer`, second conjunct). `check_sound.py` integrates the system from points of `R` by RK4
+in 60 digits and checks both hulls (`check_pz_lin_reach`).
 
 The adaptive options are `tStart`, `tFinal`, `taylorTerms`, `zonotopeOrder`, `redFactor`,
 `decrFactor`, `zetaphi` (three entries), `zetaK`, `initFactor`, `enlarge`, `horizonTol`, `zeroTol`,
@@ -770,7 +793,7 @@ absent):
 | `polyZonotope.mtimes` | `M`, `P` | `PolyZonotope.mtimes` (`mtimes_outer`) |
 | `polyZonotope.zonotope` | `P` | `PolyZonotope.zonotopeFold` (`zonotopeFold_contains`): CORA's order `[G(:, ~isEvenColumn), 0.5 * Gquad, GI]` |
 | `polyZonotope.interval` | `P` | `zonotopeFold` then `Zonotope.interval` |
-| `polyZonotope.reduce` | `P`, `order`, `method` (`girard`) | `PolyZonotope.reduceSplit` (`reduceSplit_outer`), the ranking and the choice of the kept generators outside it |
+| `polyZonotope.reduce` | `P`, `order`, `method` (`girard`) | `PolyZonotope.reduceCora` (`reduceCora_outer`): the ranking of CORA's `reduce`, then `reduceSplit` (`reduceSplit_outer`) |
 | `polyZonotope.enclose` | `P`, `Q` | `PolyZonotope.encloseShared` (`encloseShared_outer`) after padding both sets to the union of the identifiers |
 | `polyZonotope.dim` | `P` | the length of `c` |
 | `zonotope.polyZonotope`, `interval.polyZonotope` | `Z`, `I` | `Zonotope.polyZonotope` (identity exponents) then the constructor |

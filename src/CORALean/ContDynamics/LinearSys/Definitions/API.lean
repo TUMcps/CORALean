@@ -33,6 +33,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifySpecFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifySoundFloat
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachExact
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachExactAt
+public import CORALean.ContDynamics.LinearSys.Definitions.ClosedFormMatrices
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachFloatOptions
 public import CORALean.ContDynamics.LinearSys.Definitions.ReachOptions
 public import CORALean.ContDynamics.LinearSys.Definitions.WithInput

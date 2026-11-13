@@ -1,6 +1,8 @@
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.ReachAlgFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachLoopFloat
+import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPolyFloat
+import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachPolyFloatOuter
 import CORALean.ContDynamics.NonlinearSys.Operations.ReachLoopFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachAdaptiveInit
 import CORALean.ContDynamics.NonlinearSys.Operations.ReachAdaptiveFloat
@@ -8,6 +10,7 @@ import CORALean.ContDynamics.NonlinearSys.Operations.AdaptiveOrdersFloat
 import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPolyAdaptiveInit
 import CORALean.ContDynamics.NonlinearSys.Operations.ReachPolyAdaptiveFloat
 import CORALean.Examples.Oracle.Ops.PolyZonotopeCodec
+import CORALean.Examples.Oracle.Ops.PolyZonotopeHash
 import CORALean.ContSet.Interval.Float.Operations.Basic
 import CORALean.ContSet.Interval.Float.Operations.Cos
 import CORALean.ContSet.Interval.Float.Operations.Power
@@ -360,6 +363,39 @@ def handleNonlinearLinReach (dops : DtypeOps 𝕋) (req : Json) : Resp := do
       if !noNaN (𝕋 := 𝕋) (Rti, Rtp) then throw aux_tanMsg
       else pure [("timeInterval", printZonotope dops.showExact Rti),
         ("timePoint", printZonotope dops.showExact Rtp)]
+
+/-- `nonlinearSys.linReachPoly`: one step of `linReachPolyLoopFloat` from the polynomial zonotope
+`R`, or at `reduce: true` the sets of `linReachPolyFloat`. The identifiers of the sets are
+CORA's, as the README of the oracle describes. -/
+def handleNonlinearLinReachPoly (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  dops.requireUnguaranteed "nonlinearSys.linReachPoly"
+  checkFields "linReachPoly" req ["n", "m", "f", "p", "R", "U", "timeStep", "taylorTerms",
+    "zonotopeOrder", "abstrerr", "reduce", "enlarge", "fuel", "maxError"]
+  let ⟨n, m, fm, _, options⟩ ← aux_setup dops req
+  let R ← parsePolyZonotopeFixed dops.readExact n (← field req "R")
+  let ids ← parsePolyZonotopeIds R (← field req "R")
+  let ⟨enlarge, fuel, maxError⟩ ← aux_loopOptions dops req n
+  let err ← match fieldOpt req "abstrerr" with
+    | some j => parseVecFixed dops.readExact n j
+    | none => pure fun _ => FloatOps.zero
+  let reduce := ((fieldOpt req "reduce").bind (·.getBool?.toOption)).getD false
+  let U ← aux_input dops req m
+  -- the identifiers of the sets: the enclosure's new factor above `R`'s, then `[F] R`'s factors
+  let top := ids.foldl max 0 + 1
+  let idsTi := (ids.push top) ++ ids.map (top + ·)
+  match fm.linReachPolyFloat U options enlarge fuel R err maxError (hashedColumnOrder #[]) with
+  | none => throw "linReachPoly: the error loop or the step failed, or `maxError` was exceeded"
+  | some (S, Ti, Tp) =>
+    if reduce then
+      pure [("timeInterval", printPolyZonotopeIds dops.showExact Ti.1.materialise
+          (usedPolyZonotopeIds S.1 Ti.2 idsTi)),
+        ("timePoint", printPolyZonotopeIds dops.showExact Tp.1.materialise
+          (usedPolyZonotopeIds S.2.1 Tp.2 ids)),
+        ("abstrerr", printVec dops.showExact S.2.2)]
+    else
+      pure [("timeInterval", printPolyZonotopeIds dops.showExact S.1.materialise idsTi),
+        ("timePoint", printPolyZonotopeIds dops.showExact S.2.1.materialise ids),
+        ("abstrerr", printVec dops.showExact S.2.2)]
 
 /-- `nonlinearSys.reach`: `FloatHessModel.reachAlgFloat`, the windows of every step, or at
 `errorBound: "loop"` `reachLoopFloat`. -/
@@ -849,7 +885,7 @@ def natOrDefault (req : Json) (name : String) (d : Nat) : Except String Nat :=
   aux_natOr req name d
 
 /-- Every op of this file, without the `nonlinearSys.` prefix. -/
-def nonlinearSysOpNames : List String := [ "linReach", "reach", "reachAdaptive",
+def nonlinearSysOpNames : List String := [ "linReach", "linReachPoly", "reach", "reachAdaptive",
   "reachPolyAdaptive", "linReachPolyAdaptive", "linReachPolyAdaptivePass",
   "linReachAdaptive", "linReachAdaptivePass", "abstrErrAdaptive", "optimalDeltatAdaptive",
   "varphiTotalAdaptive", "varphiEstAdaptive", "ordersAdaptive" ]
@@ -859,6 +895,7 @@ def nonlinearSysOpNames : List String := [ "linReach", "reach", "reachAdaptive",
 def handleNonlinearSysOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option Resp :=
   match op with
   | "linReach" => some (handleNonlinearLinReach dops req)
+  | "linReachPoly" => some (handleNonlinearLinReachPoly dops req)
   | "reach" => some (handleNonlinearReach dops req)
   | "reachAdaptive" => some (handleNonlinearReachAdaptive dops req)
   | "reachPolyAdaptive" => some (handleNonlinearReachPolyAdaptive dops req)

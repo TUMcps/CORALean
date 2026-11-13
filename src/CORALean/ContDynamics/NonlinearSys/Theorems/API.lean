@@ -71,6 +71,8 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.VarInputsFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.HessRemainderAbstractionError
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachLoopFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachPolyLoopFloatOuter
+public import CORALean.ContDynamics.NonlinearSys.Theorems.LinReachPolyFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.OneStepFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachAlgFloatOuter
 public import CORALean.ContDynamics.NonlinearSys.Theorems.ReachLoopFloatOuter
