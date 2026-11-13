@@ -24,7 +24,6 @@ by that step size, exactly.
 
 ## Hypotheses
 * `h` – model encloses system
-* `hfix` – the abstraction error's fixed point confines the runs
 * `htrack` – the static error follows the factors of the start set, at every step size
 
 ## Conclusion
@@ -33,7 +32,7 @@ by that step size, exactly.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-November-2026
--- Last update:   ---
+-- Last update:   12-November-2026
 -- Reviewed:      ---
 
 
@@ -143,7 +142,7 @@ private theorem aux_loop (fm : NonlinearSys.FloatHessModel 𝕋 n m) (U : Zonoto
 inputs in `U` is in `Rτ` over the step and in `R` at its end. -/
 theorem NonlinearSys.FloatHessModel.Encloses.linReachPolyAdaptiveFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
-    (hfix : sys.HasFixedPointConfinement) {U : Zonotope (Vec 𝕋 m)}
+    {U : Zonotope (Vec 𝕋 m)}
     {o : NonlinearSys.LinReachPolyAdaptiveOptions 𝕋}
     (htrack : ∀ (R : PolyZonotope (Vec 𝕋 n)) (Δt : 𝕋),
       fm.HasTrackedPassStaticError U ⟨⟨Δt, o.taylorTerms⟩, o.zonotopeOrder⟩ o.redFactor o.prec R)
@@ -173,7 +172,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachPolyAdaptiveFloat_outer
     · exact hP
   -- the pass's guarantee, and its step size as the time advanced
   obtain ⟨e, hpass⟩ := hF
-  obtain ⟨hpos, hout⟩ := h.linReachPolyAdaptivePassFloat_outer hfix (htrack _ _) _ hpass
+  obtain ⟨hpos, hout⟩ := h.linReachPolyAdaptivePassFloat_outer (htrack _ _) _ hpass
   have hΔ : ((st.t + ToRat.toRat F.1 - st.t : ℚ) : ℝ) = toReal F.1 := by
     rw [add_sub_cancel_left, ToRat.toReal_toRat]
   refine ⟨?_, fun {x u y} traj => ?_⟩

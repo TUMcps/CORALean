@@ -127,6 +127,8 @@ public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryHasDerivWi
 public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryOfHasDerivWithinAt
 public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryOfHasDerivWithinAtOfNormLe
 public import CORALean.ContDynamics.NonlinearSys.Theorems.IsTrajectoryMemOfFixedPoint
+public import CORALean.ContDynamics.NonlinearSys.Theorems.FloatModelEnclosesBaseMem
+public import CORALean.ContDynamics.NonlinearSys.Theorems.FloatModelEnclosesMemOfFixedPoint
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeSub
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeWindow
 public import CORALean.ContDynamics.NonlinearSys.Theorems.SubEqIntegral

@@ -24,7 +24,6 @@ advances by that step size, exactly.
 
 ## Hypotheses
 * `h` – model encloses system
-* `hfix` – the abstraction error's fixed point confines the runs
 
 ## Conclusion
 * a successful step advances the time and encloses every run over the step and at its end
@@ -32,7 +31,7 @@ advances by that step size, exactly.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-November-2026
--- Last update:   ---
+-- Last update:   12-November-2026
 -- Reviewed:      ---
 
 
@@ -151,7 +150,7 @@ private theorem aux_loop (fm : NonlinearSys.FloatHessModel 𝕋 n m) (U : Zonoto
 inputs in `U` is in `Rτ` over the step and in `R` at its end. -/
 theorem NonlinearSys.FloatHessModel.Encloses.linReachAdaptiveFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
-    (hfix : sys.HasFixedPointConfinement) {U : Zonotope (Vec 𝕋 m)}
+    {U : Zonotope (Vec 𝕋 m)}
     {o : NonlinearSys.LinReachAdaptiveOptions 𝕋}
     {st : NonlinearSys.LinReachAdaptiveState 𝕋 n} : -- --- CONCL ---
     ∀ s' ∈ fm.linReachAdaptiveFloat U o st,
@@ -179,7 +178,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachAdaptiveFloat_outer
     · exact hP
   -- the pass's guarantee, and its step size as the time advanced
   obtain ⟨κ, e, hpass⟩ := hF
-  obtain ⟨hpos, hout⟩ := h.linReachAdaptivePassFloat_outer hfix _ hpass
+  obtain ⟨hpos, hout⟩ := h.linReachAdaptivePassFloat_outer _ hpass
   have hΔ : ((st.t + ToRat.toRat F.1 - st.t : ℚ) : ℝ) = toReal F.1 := by
     rw [add_sub_cancel_left, ToRat.toReal_toRat]
   refine ⟨?_, fun {x u y} traj => ?_⟩

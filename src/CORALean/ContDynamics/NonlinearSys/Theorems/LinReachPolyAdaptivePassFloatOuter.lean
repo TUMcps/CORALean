@@ -3,10 +3,11 @@ module
 public import CORALean.ContDynamics.LinearSys.Theorems.CanonicalFloatInput
 public import CORALean.ContDynamics.LinearSys.Theorems.PolyPointFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.PolyWindowFloatOuter
-public import CORALean.ContDynamics.NonlinearSys.Definitions.HasFixedPointConfinement
 public import CORALean.ContDynamics.NonlinearSys.Definitions.HasTrackedStaticError
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachPolyAdaptivePassFloat
 public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrPolyAdaptiveFloatMem
+public import CORALean.ContDynamics.NonlinearSys.Theorems.FloatModelEnclosesBaseMem
+public import CORALean.ContDynamics.NonlinearSys.Theorems.FloatModelEnclosesMemOfFixedPoint
 public import CORALean.ContDynamics.NonlinearSys.Theorems.LinearizeSub
 public import CORALean.ContDynamics.NonlinearSys.Theorems.PrecompStatErrorAdaptiveFloatMemStat
 public import CORALean.ContDynamics.NonlinearSys.Theorems.PrecompStatErrorAdaptiveFloatMemZdelta
@@ -31,10 +32,11 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterSubMem
 The loop of `linReachPolyAdaptivePassFloat` stops at an `error_adm` whose box holds
 `VerrorDyn ⊕ Vstat`, the remainder over `Rmax` (`abstrErrPolyAdaptiveFloat_mem`). So the field less
 `A (x - x✱)` lies in the window's input on `x✱ + Rdelta + Rdiff`, and every run dominated by it
-stays there (`polyWindowFloat_outer`): this is the fixed point, which `HasFixedPointConfinement`
-turns into confinement of every run of `sys`. The run's differences are then in `Rdiff`, its
-static error is a point of `Vstat` at the factors of its start point (`HasTrackedStaticError`),
-and `polyPointFloat_outer` puts the run's end in the end set.
+stays there (`polyWindowFloat_outer`): this is the fixed point, which
+`Encloses.mem_of_fixedPoint` turns into confinement of every run of `sys` in `x✱ + Rdelta + Rdiff`,
+a compact set inside the zonotope `Rmax`, over which the field is Lipschitz by `Encloses`. The
+run's differences are then in `Rdiff`, its static error is a point of `Vstat` at the factors of its
+start point (`HasTrackedStaticError`), and `polyPointFloat_outer` puts the run's end in the end set.
 
 ## Inputs
 * `fm` – float Hessian model
@@ -50,7 +52,6 @@ and `polyPointFloat_outer` puts the run's end in the end set.
 
 ## Hypotheses
 * `h` – model encloses system
-* `hfix` – the abstraction error's fixed point confines the runs
 * `htrack` – the static error follows the factors of the start set
 
 ## Conclusion
@@ -59,7 +60,7 @@ and `polyPointFloat_outer` puts the run's end in the end set.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       11-November-2026
--- Last update:   ---
+-- Last update:   12-November-2026
 -- Reviewed:      ---
 
 
@@ -174,7 +175,7 @@ private theorem aux_ppass_loop {fm : NonlinearSys.FloatHessModel 𝕋 n m} {A : 
 inputs in `U` is in `Rti` over the pass and in `Rtp` at its end. -/
 theorem NonlinearSys.FloatHessModel.Encloses.linReachPolyAdaptivePassFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
-    (hfix : sys.HasFixedPointConfinement) {U : Zonotope (Vec 𝕋 m)}
+    {U : Zonotope (Vec 𝕋 m)}
     {options : LinearSys.ReachFloatOptions 𝕋} {enlarge redFactor : 𝕋} {p fuel : ℕ}
     {R : PolyZonotope (Vec 𝕋 n)} {errorAdm : Vec 𝕋 n}
     (htrack : fm.HasTrackedPassStaticError U options redFactor p R) : -- --- CONCL ---
@@ -297,9 +298,40 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachPolyAdaptivePassFloat_outer
       subset_rfl ht _ hwin
     refine ⟨x' 0 - toRealVec xs, hRd _ traj'.init, _, hd, ?_⟩
     abel
+  -- the set `K` is compact, so closed, and inside the zonotope `Rmax`
+  have hKc : IsClosed K := by
+    have : K = (fun p : Vec ℝ n × Vec ℝ n => toRealVec xs + p.1 + p.2) '' (Rdelta.toSet ×ˢ
+        Rdiff.toSet) := by
+      ext y
+      simp only [hKdef, Set.mem_setOf_eq, Set.mem_image, Set.mem_prod, Prod.exists]
+      constructor
+      · rintro ⟨a, ha, d, hd, rfl⟩
+        exact ⟨a, d, ⟨ha, hd⟩, rfl⟩
+      · rintro ⟨a, d, ⟨ha, hd⟩, rfl⟩
+        exact ⟨a, ha, d, hd, rfl⟩
+    rw [this]
+    exact ((PolyZonotope.isCompact_toSet Rdelta).prod (PolyZonotope.isCompact_toSet Rdiff)).image
+      (by fun_prop) |>.isClosed
+  have hKR : K ⊆ Rmax.toSet := by
+    rintro _ ⟨a, ha, d, hd, rfl⟩
+    exact hK ha hd
+  -- the loop's input set is bounded and nonempty
+  have hVb : Bornology.IsBounded (Vbase ⊞ Verror).toSet := (Zonotope.isCompact_toSet _).isBounded
+  have hVne : (Vbase ⊞ Verror).toSet.Nonempty := by
+    have h0 : (0 : Vec ℝ n) ∈ (⟨-e', e'⟩ : Interval (Vec 𝕋 n)).toSet := fun i => by
+      have h1 := toReal_le_of_le (hle i)
+      have h2 : 0 ≤ toReal ((E.1 ⊞ Vsz).interval.normMag i) := by
+        rw [Interval.normMag, toReal_maximum, toReal_absolute]
+        exact le_max_of_le_left (abs_nonneg _)
+      show toReal ((-e') i) ≤ 0 ∧ 0 ≤ toReal (e' i)
+      rw [show (-e') i = neg (e' i) from rfl, toReal_neg]
+      constructor <;> linarith
+    exact ⟨_, Plus.plus_outer Vbase _ (Set.add_mem_add
+      (h.toEncloses.base_mem B xs (traj.input 0 ⟨le_rfl, hΔt.le⟩))
+      (Interval.zonotope_contains _ h0))⟩
   -- the fixed point confines the run
-  have hconf := hfix (toReal options.Δt) R.toSet (Vbase ⊞ Verror).toSet K U.toSet
-    (Scalar.toRealMat A) (toRealVec xs) hdom hlinK x u y traj
+  have hconf := h.toEncloses.mem_of_fixedPoint (sys := sys) hΔt.le (K := K) Rmax
+    (Scalar.toRealMat A) xs hVb hVne hKc hKR hdom hlinK traj
   have hw : ∀ t ∈ Set.Icc 0 (toReal options.Δt), sys.f (x t) (u t)
       - Scalar.toRealMat A *ᵥ (x t - toRealVec xs) ∈ (Vbase ⊞ Verror).toSet :=
     fun t ht => hlinK _ (hconf t ht) _ (traj.input t ht)

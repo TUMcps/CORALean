@@ -1,9 +1,11 @@
 module
 
-public import CORALean.ContDynamics.NonlinearSys.Definitions.HasFixedPointConfinement
 public import CORALean.ContDynamics.NonlinearSys.Operations.LinReachAdaptivePassFloat
 public import CORALean.ContDynamics.NonlinearSys.Theorems.AbstrErrAdaptiveFloatMem
+public import CORALean.ContDynamics.NonlinearSys.Theorems.FloatModelEnclosesBaseMem
+public import CORALean.ContDynamics.NonlinearSys.Theorems.FloatModelEnclosesMemOfFixedPoint
 public import CORALean.ContDynamics.NonlinearSys.Theorems.OneStepFloatOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 public import CORALean.ContSet.Zonotope.Float.Theorems.MemNominalSet
 
 @[expose] public section
@@ -15,10 +17,10 @@ The abstraction-error loop of `linReachAdaptivePassFloat` stops at an `error_adm
 `VerrorDyn`, the remainder over `Rmax` (`abstrErrAdaptiveFloat_mem`), where `Rmax` is the window
 of the linearized system with input `f(z✱) ⊕ B(U - u✱) ⊕ [-error_adm, error_adm]`. So on `Rmax`
 the field less `A (x - x✱)` lies in that input, and every run dominated by it stays in `Rmax`
-(`oneStepFloat_outer`): that is the fixed point, and `HasFixedPointConfinement` turns it into
-confinement of every run of `sys` in `Rmax`. There the field less its linear part lies in
-`f(z✱) ⊕ B(U - u✱) ⊕ VerrorDyn`, the input of the pass's final linear step, and
-`oneStepFloat_outer` places the run in its window and at its end.
+(`oneStepFloat_outer`): that is the fixed point, and `Encloses.mem_of_fixedPoint` turns it
+into confinement of every run of `sys` in `Rmax`, the field being Lipschitz there by `Encloses`.
+There the field less its linear part lies in `f(z✱) ⊕ B(U - u✱) ⊕ VerrorDyn`, the input of the
+pass's final linear step, and `oneStepFloat_outer` places the run in its window and at its end.
 
 ## Inputs
 * `fm` – float Hessian model
@@ -36,7 +38,6 @@ confinement of every run of `sys` in `Rmax`. There the field less its linear par
 
 ## Hypotheses
 * `h` – model encloses system
-* `hfix` – the abstraction error's fixed point confines the runs
 
 ## Conclusion
 * a successful pass encloses every run over its window and at its end
@@ -44,7 +45,7 @@ confinement of every run of `sys` in `Rmax`. There the field less its linear par
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-November-2026
--- Last update:   11-November-2026
+-- Last update:   12-November-2026
 -- Reviewed:      ---
 
 
@@ -143,7 +144,7 @@ private theorem aux_pass_loop {fm : NonlinearSys.FloatHessModel 𝕋 n m} [ToRat
 inputs in `U` is in `Rti` over the pass and in `Rtp` at its end. -/
 theorem NonlinearSys.FloatHessModel.Encloses.linReachAdaptivePassFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
-    (hfix : sys.HasFixedPointConfinement) {κ : ℕ} {U : Zonotope (Vec 𝕋 m)}
+    {κ : ℕ} {U : Zonotope (Vec 𝕋 m)}
     {options : LinearSys.ReachFloatOptions 𝕋} {enlarge redFactor : 𝕋} {p fuel : ℕ}
     {R : Zonotope (Vec 𝕋 n)} {errorAdm : Vec 𝕋 n}
     {step : NonlinearSys.LinearStep} : -- --- CONCL ---
@@ -190,9 +191,25 @@ theorem NonlinearSys.FloatHessModel.Encloses.linReachAdaptivePassFloat_outer
       ((NonlinearSys.oneStepFloat_outer (sys := sys') _ _ hmax).2 traj' hin).1
   obtain ⟨hΔt', hout⟩ := NonlinearSys.oneStepFloat_outer (sys := sys) _ _ hS
   refine ⟨hΔt, fun {x u y} traj => ?_⟩
+  -- the loop's input set is bounded and nonempty
+  have hVb : Bornology.IsBounded (Vbase ⊞ (⟨-e', e'⟩ : Interval (Vec 𝕋 n)).zonotope).toSet :=
+    (Zonotope.isCompact_toSet _).isBounded
+  have hVne : (Vbase ⊞ (⟨-e', e'⟩ : Interval (Vec 𝕋 n)).zonotope).toSet.Nonempty := by
+    have h0 : (0 : Vec ℝ n) ∈ (⟨-e', e'⟩ : Interval (Vec 𝕋 n)).toSet := fun i => by
+      have h1 := toReal_le_of_le (hle i)
+      have h2 : 0 ≤ toReal (E.2.1.interval.normMag i) := by
+        rw [Interval.normMag, toReal_maximum, toReal_absolute]
+        exact le_max_of_le_left (abs_nonneg _)
+      show toReal ((-e') i) ≤ 0 ∧ 0 ≤ toReal (e' i)
+      rw [show (-e') i = neg (e' i) from rfl, toReal_neg]
+      constructor <;> linarith
+    exact ⟨_, Plus.plus_outer Vbase _ (Set.add_mem_add
+      (h.toEncloses.base_mem B xs (traj.input 0 ⟨le_rfl, hΔt.le⟩))
+      (Interval.zonotope_contains _ h0))⟩
   -- the fixed point confines the run, and the final step holds it
-  have hconf := hfix (toReal options.Δt) R.toSet _ E.1.toSet U.toSet (Scalar.toRealMat A)
-    (toRealVec xs) hdom hlin' x u y traj
+  have hconf := h.toEncloses.mem_of_fixedPoint (sys := sys) hΔt.le (K := E.1.toSet) E.1
+    (Scalar.toRealMat A) xs hVb hVne (Zonotope.isCompact_toSet E.1).isClosed subset_rfl
+    hdom hlin' traj
   exact hout traj fun t ht => hlin (hconf t ht) (traj.input t ht)
 
 end CORALean

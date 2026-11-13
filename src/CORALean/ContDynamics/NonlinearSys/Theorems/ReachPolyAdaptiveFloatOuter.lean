@@ -30,7 +30,6 @@ reductions do not enter. The time never decreases.
 
 ## Hypotheses
 * `h` – model encloses system
-* `hfix` – the abstraction error's fixed point confines the runs
 * `htrack` – the static error follows the factors of the start set, at every step size
 
 ## Conclusion
@@ -39,7 +38,7 @@ reductions do not enter. The time never decreases.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       10-November-2026
--- Last update:   ---
+-- Last update:   12-November-2026
 -- Reviewed:      ---
 
 
@@ -77,7 +76,7 @@ private theorem aux_prfa_reduceOnlyDep_outer (R : PolyZonotope (Vec 𝕋 n)) (or
 time-interval set of each step at the times of its window. -/
 theorem NonlinearSys.FloatHessModel.Encloses.reachPolyAdaptiveFloat_outer
     {fm : NonlinearSys.FloatHessModel 𝕋 n m} {sys : NonlinearSys n m} (h : fm.Encloses sys)
-    (hfix : sys.HasFixedPointConfinement) {U : Zonotope (Vec 𝕋 m)}
+    {U : Zonotope (Vec 𝕋 m)}
     {o : NonlinearSys.LinReachPolyAdaptiveOptions 𝕋} {maxPolyZonoRatio : 𝕋}
     (htrack : ∀ (R : PolyZonotope (Vec 𝕋 n)) (Δt : 𝕋),
       fm.HasTrackedPassStaticError U ⟨⟨Δt, o.taylorTerms⟩, o.zonotopeOrder⟩ o.redFactor o.prec
@@ -124,7 +123,7 @@ theorem NonlinearSys.FloatHessModel.Encloses.reachPolyAdaptiveFloat_outer
         R := step_reduceOnlyDep (s'.R.reduceAdaptive o.redFactor o.prec) o.maxDepGenOrder o.prec,
         Rτ := s'.Rτ.reduceAdaptive (mulUp o.redFactor (nsmulUp 5 one)) o.prec } with hs''
       -- the step, and what the rest of the run guarantees from where it left off
-      obtain ⟨hlt, hstep₀⟩ := h.linReachPolyAdaptiveFloat_outer hfix htrack _ hs'
+      obtain ⟨hlt, hstep₀⟩ := h.linReachPolyAdaptiveFloat_outer htrack _ hs'
       -- the times line up, and the step's guarantee is stated at the original start set
       have hs₀t : s₀.t = s.t := by
         rw [← hs₀def]
