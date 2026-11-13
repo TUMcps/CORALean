@@ -763,16 +763,18 @@ margin, which is why CORA.cpp needs no change.
 
 | op | fields | float definition |
 |---|---|---|
-| `nnLayer.evaluateZonotope` | `layer`, `Z` (zonotope), `poly_method` | `Layer.linear`, `Layer.relu`, `Layer.leakyRelu`, `Layer.sigmoidSingh`, `Layer.tanhSingh` (or `Layer.sigmoid`, `Layer.tanh`) at the zonotope; `Z` |
-| `nnLayer.evaluatePolyZonotope` | `layer`, `P` (polynomial zonotope), `poly_method` | the same layers at the polynomial zonotope; `P` |
-| `neuralNetwork.evaluate` | `layers`, `Z` or `P`, `poly_method` | the layers in order, each as above |
+| `nnLayer.evaluateZonotope` | `layer`, `Z` (zonotope), `poly_method` | `Layer.linear`, `Layer.relu`, `Layer.leakyRelu`, `Layer.sigmoidSingh`, `Layer.tanhSingh` (or `Layer.sigmoidRegression`, `Layer.tanhRegression`, or `Layer.sigmoid`, `Layer.tanh`) at the zonotope; `Z` |
+| `nnLayer.evaluatePolyZonotope` | `layer`, `P` (polynomial zonotope), `poly_method`, `errorForm` | the same layers at the polynomial zonotope; `P` |
+| `neuralNetwork.evaluate` | `layers`, `Z` or `P`, `poly_method`, `errorForm` | the layers in order, each as above |
 
 A layer is `{"kind":"linear","W","b"}`, `{"kind":"relu"}`, `{"kind":"leakyRelu","alpha"}`, `{"kind":"sigmoid","k"}`
 or `{"kind":"tanh","k"}` (`k`, the depth of the exponential's reduction, is ignored at `nearest`). `poly_method`
-is `singh` (the default) or `curvature`; `regression` is refused (no float definition yet). The proofs
+is `singh` (the default), `regression` (CORA's default `'regression'`) or `curvature`; anything else is refused.
+`errorForm` (a polynomial zonotope only) is `box` (the default) or `GI`. The proofs
 are `Layer.sigmoidSingh_encloses`, `Layer.tanhSingh_encloses` (`Relaxation.ofSlopeMonotone_encloses`: the
-slope is below the derivative on the box, so `sigma(t) - lambda t` does not fall), `Layer.relu_encloses`,
-`Layer.sigmoid_encloses`, `Layer.tanh_encloses`; `check_sound.py` re-evaluates the network at points of the input set in
+slope is below the derivative on the box, so `sigma(t) - lambda t` does not fall), `Layer.sigmoidRegression_encloses`,
+`Layer.tanhRegression_encloses` (the slope is clamped into the derivative bracket, whatever the regression gave),
+`Layer.activationGI_encloses`, `Layer.relu_encloses`, `Layer.sigmoid_encloses`, `Layer.tanh_encloses`; `check_sound.py` re-evaluates the network at points of the input set in
 60-digit decimals and requires them in the hull of the output.
 
 An activation layer on a zonotope `(c, G, E)` of dimension `n` computes, in this order:
@@ -791,8 +793,13 @@ An activation layer on a zonotope `(c, G, E)` of dimension `n` computes, in this
 A linear layer is `mtimes W Z` (`c' = W c`, `G' = W G`, each entry a left-to-right dot product, the products and
 sums rounded down) and `plus b` (`c'' = c' + b`). A polynomial zonotope runs the same layers through its own
 `mtimes` and `plus`: `c`, `G`, `GI` scale and the box of step 4 goes to the error box `E` of the polynomial zonotope
-instead of to generators, which the next linear layer wraps (`Interval.mtimes`). It is the weaker form;
-CORA's `add_approx_error_to_GI` has no CORALean definition yet.
+instead of to generators, which the next linear layer wraps (`Interval.mtimes`).
+
+`errorForm: "GI"` is CORA's `add_approx_error_to_GI`. Step 4 gives the box as a zonotope (center `m`, one diagonal generator per neuron),
+and step 5 is `Zonotope.ofIndep` of it summed in. So `GI' = [GI scaled by diag(lambda), D]` with the diagonal `D` of the radii,
+`c'' = c' + m`, and the error box `E` of the input scaled by `diag(lambda)` stays in `E`.
+`D` has one column per neuron, also where the radius is zero, where CORA drops the column.
+The next linear layer then maps the generators and not a box. A zonotope has no error box: `errorForm` on `Z` is an error.
 
 The relaxations, with `f` the activation, `l`, `u` the box, `sig(x) = 1 - 1/(1 + exp x)` (lower) and `1/(1 + exp(-x))` (upper):
 
@@ -806,7 +813,21 @@ The relaxations, with `f` the activation, `l`, `u` the box, `sig(x) = 1 - 1/(1 +
   The offset is `(lo + hi) / 2` (`addUp`) and the error `max(hi - offset, offset - lo)` (`subUp`).
 * **Tanh, `singh`** (`tanhSinghRelaxation`): the sigmoid one at the doubled box `(l + l, u + u)` through `tanh t = 2 sigmoid(2 t) - 1`
   (`Relaxation.ofAffineConj`, doubling by `x + x`), so `lambda = 4 min(d(2 l), d(2 u))`.
+* **Sigmoid, `regression`** (`sigmoidRegressionRelaxation`, CORA's `computeApproxPoly` with `'regression'` at order 1):
+  `lambda = max(d_lo, min(d_hi, m))`, with `m` the least-squares slope below, `d_lo = sig_lo(l) sig_lo(-u)` (floored at zero,
+  rounded down) and `d_hi = sig_hi(u) sig_hi(-l)` (rounded up). The error is the derivative bracket's
+  (`Relaxation.ofDeriv`): `lo = f_lo(l) - lambda l + (d_lo - lambda)(u - l)` rounded down, `hi = f_hi(l) - lambda l + (d_hi - lambda)(u - l)`
+  rounded up, offset `(lo + hi)/2`, error `max(hi - offset, offset - lo)`.
+* **Tanh, `regression`** (`step_tanhRegressionRelaxation`): the same at the doubled box through the conjugation.
 * **Sigmoid, `curvature`** (`sigmoidRelaxation`): the smaller error of the derivative-bracket line and the slope-zero line; tanh through the conjugation.
+
+The slope `m` of `regression` (`step_regressionSlope`) is the least-squares slope through the 20 points `x_i = l + i h`, `h = (u - l)/19`.
+Here `x_i` is `addDown l (mulDown i h)` and `y_i` the `half` of `addUp` of the two ends of the enclosure at `x_i`.
+With `w_i = 2 i - 19`, each an integer formed by repeated `addDown` of `1`, `S` is `addDown(t_0, addDown(t_1, ... addDown(t_19, 0)))` with `t_i = mulDown(w_i, y_i)`.
+Then `m = divDown(S, 70 (u - l))`, and `0` where `u <= l`; `lambda` clamps it, so no rounding of `m` matters for soundness.
+
+`Relaxation.tighter` takes the bracket relaxation if `le(error, error_0)`, else the slope-zero one: `lambda = 0`, offset `half(addUp(f_lo(l), f_hi(u)))`, error `max(subUp(f_hi(u), offset), subUp(offset, f_lo(l)))`.
+CORA's error is the exact extremum of `sigma(t) - m t` at `l`, `u` and `+-2 artanh(sqrt(1 - 4 m))`, which is smaller; CORA.cpp follows the bracket.
 
 `singh` is CORA's relaxation, bar the rounding: CORA's `mu1 = (f(u) + f(l) - lambda (u + l)) / 2`, `mu2 = (f(u) - f(l) - lambda (u - l)) / 2`
 are the middle and half-width of the same range of `f(t) - lambda t`. `curvature` is CORALean's tighter one and not CORA's.

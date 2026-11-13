@@ -6,6 +6,7 @@ public import CORALean.NN.Layers.Theorems.ActivationLayerOfEncloses
 public import CORALean.NN.Layers.Theorems.ActivationOuterWhere
 public import CORALean.NN.Layers.Theorems.ActivationPolyEncloses
 public import CORALean.NN.Layers.Theorems.ActivationEncloses
+public import CORALean.NN.Layers.Theorems.ActivationGIEncloses
 public import CORALean.NN.Layers.Theorems.ActivationTaylmEncloses
 public import CORALean.NN.Layers.Theorems.Basic
 public import CORALean.NN.Layers.Theorems.AvgPoolEncloses
@@ -66,8 +67,10 @@ public import CORALean.NN.Layers.Theorems.SampleBoundsOfDeriv
 public import CORALean.NN.Layers.Theorems.SampleDevLoLe
 public import CORALean.NN.Layers.Theorems.SelectMatMulVec
 public import CORALean.NN.Layers.Theorems.SelectMatMulVecAddZero
+public import CORALean.NN.Layers.Theorems.SigmoidRegressionRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.SigmoidRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.SigmoidSinghRelaxationEncloses
+public import CORALean.NN.Layers.Theorems.TanhRegressionEncloses
 public import CORALean.NN.Layers.Theorems.TanhSinghEncloses
 public import CORALean.NN.Layers.Theorems.SigmoidDerivLoLe
 public import CORALean.NN.Layers.Theorems.SigmoidEnclosureEncloses
