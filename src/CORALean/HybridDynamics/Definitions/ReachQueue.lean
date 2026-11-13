@@ -11,7 +11,8 @@ public import CORALean.Global.Float.Interfaces
 The options of CORA's `hybridAutomaton/reach` that the float definition reads (`Δt` per location,
 `η`, `ρ`, the horizon, the location whose entry is not followed, `checkFlow`, the fuel), a set
 waiting in the queue (CORA's `list`: `set`, `loc`, `time` as its two ends, `parent`), and a branch
-of the reachable set (CORA's `reachSet` of one location, with the times its stay started at).
+of the reachable set (CORA's `reachSet` of one location, with the times its stay started at), and
+the rule that gives a crossing its basis.
 `checkFlow` drops the sets of a crossing whose flow points strictly into the invariant.
 
 ## Inputs
@@ -58,6 +59,11 @@ structure HybridPending (L 𝕋 : Type) (n : ℕ) where
   tlo : ℚ
   thi : ℚ
   parent : Option ℕ
+
+/-- How a crossing gets its basis (CORA's `calcBasis`): from the guard's normal and offset and the
+sets that meet the guard. -/
+abbrev BasisRule (𝕋 : Type) (n : ℕ) :=
+  Vec 𝕋 n → 𝕋 → List (Zonotope (Vec 𝕋 n)) → Mat 𝕋 n n
 
 /-- The time-interval sets of one stay, with the location, the producing branch and the times the
 stay started at. -/

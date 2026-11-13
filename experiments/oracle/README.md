@@ -565,10 +565,10 @@ and `R` are lists:
 | op | fields besides the system | float definition |
 |---|---|---|
 | `location.potInt` | `guards` (polytopes), `targets` (target location of each guard), `finalLoc`, `R` (zonotopes) | `Location.potInt`; `hits`, `[transition, set]` pairs, 0-based. A guard's equality rows `Ae x = be` separate a set from either side, as the inequality rows do (batch 11; before, only `A x <= b` were tested, so a hyperplane guard listed every set) |
-| `location.calcBasis` | `n`, `enclose` (`"box"`, or a list) | `Location.calcBasisBox`; `B`, one matrix per entry. `pca`, `flow`: error, no float definition |
+| `location.calcBasis` | `n`, `enclose` (`"box"`, `"pca"`, or a list), for `pca` the sets `R` (zonotopes) and, for a hyperplane guard, `hyperplane` (`{"normal"}`), optionally `k` (square-root steps where the format has no root of its own, default 8) | `Location.calcBasisBox`; `Location.calcBasisPcaFloat` (ten cyclic Jacobi sweeps on `G Gᵀ`, columns by decreasing eigenvalue, orthogonal up to rounding only); `B`, one matrix per entry. `flow`: error, no float definition |
 | `location.guardGroups` | `hits`, `[transition, set]` pairs as `location.potInt` returns them | `Location.guardGroups`: CORA's `aux_groupSets` and `aux_removeGaps`; `groups`, one `{"transition","sets","minInd","maxInd"}` per crossing, in CORA's order (split-off parts to the front, newest first) |
 | `location.checkFlow` | `hyperplane` (`{"normal","d"}`), `R` | `Location.checkFlowFloat`; `keep`, the indices of the sets the flow may carry through |
-| `location.guardIntersect_zonoGirard` | `Bs`, `R0`, `R`, `normal`, `gamma` | `Location.guardIntersectZonoGirardFloat` (a dual bound, not Girard's dichotomic search); `zB` |
+| `location.guardIntersect_zonoGirard` | `Bs`, `R0`, `R`, `normal`, `gamma` | `Location.guardIntersectZonoGirardFloat` (a dual bound, not Girard's dichotomic search); any bases, not only orthogonal ones: member `i` is `Bs[i] zonotope(I)` plus `[I - B Bᵀ] zonotope(X)` (`Location.zonoGirardMemberFloat`) unless the defect box is exactly zero; `zB` |
 | `location.guardIntersect_nondetGuard` | `Bs`, `R0`, `R`, `guard` (constrained zonotope, or a polytope `{"A","b","Ae","be"}`), `fmPasses`, `box` (polytope guard only) | `Location.guardIntersectNondetFloat`; for a polytope guard `Location.guardIntersectNondetHFloat`: the parallelotope cut by `ConZonotope.intersectHPolytope`, the cut boxed by `ConZonotope.box`: `box` `"fm"` (default) is `intervalTight` with `fmPasses` passes, `"cert"` is `intervalCert` (no `fmPasses`), `"both"` the intersection of the two; `zB` |
 | `location.guardIntersect_conZonotope` | `Bs`, `R0`, `R`, `guard` (as above), `guardOrder`, `fmPasses`, `box` (polytope guard only) | `Location.guardIntersectPolytopeFloat` on the sets reduced to `guardOrder` (`Reduce.reduce`); for a polytope guard `Location.guardIntersectPolytopeHFloat`, the cuts boxed by `ConZonotope.box` (`box` as above); `zB` |
 | `location.reach` | `X0`, `tFinal`, `timeStep`, `taylorTerms`, `zonotopeOrder` | `Location.reachFloat`: one stay, the windows of `reachFloatInput` over the whole horizon, no invariant exit; `timeInterval` |
@@ -579,7 +579,7 @@ Fields: `locations` (a list; each has the flow `A`, `B`, `c`, `E`, the sets `U`,
 and `transitions`, a list of `{"guard" (polytope), "W", "w", "target"}`, the reset `x -> W x + w`), `startLoc`, `R0`,
 `tStart`, `tFinal`, `taylorTerms`, `zonotopeOrder`, and optionally `finalLoc` (default: none), `fuel` (default 1000) and
 `checkFlow` (default `true`, as CORA).
-`guardIntersect` must be `"zonoGirard"` and `enclose` `["box"]`, the only ones with a float definition; a guard must be a
+`guardIntersect` must be `"zonoGirard"`. `enclose` must be `["box"]` or `["pca"]`, the two with a float definition: `pca` takes a basis per crossing from the sets the cut keeps, `Location.calcBasisPcaFloat` with the guard's normal, and the optional `k` of `location.calcBasis`. A list of several bases would start the next stay from a zonoBundle, which the stay does not take. a guard must be a
 bare hyperplane (one equality row, no inequality rows, no slack), else the op fails, as it does where the queue is not
 empty after `fuel` entries. `branches`: per analysed stay `loc`, `parent` (the branch that produced it, null for the
 first), `timeInterval` (the sets, up to and including the first certified disjoint from the invariant) and `tStart`
@@ -902,8 +902,8 @@ Rows of the further classes not served, by reason:
 * `linearSys`: `reachBackward`, `reachInner`, `verify` (`LinearSys.verifyFloat` takes the reachable-set
   function and the distance routines as arguments), `initReach_adaptive`, `trajectoryError` and
   `linearSysDT`. `nonlinearSys`: the inner algorithms, and tensor order 3 of `reach`.
-* Hybrid automata: `pca` and `flow` bases, and `hybridAutomaton.reach` with another guard intersection than `zonoGirard`
-  or another basis than `box`.
+* Hybrid automata: the `flow` basis, a list of several bases (a zonoBundle start of the next stay) and `hybridAutomaton.reach` with another guard intersection than `zonoGirard`
+  or another basis than `box` and `pca`.
   `linParamSys`: `initReach` and `post` of CORA (mapping matrices), a matrix-zonotope `A` after the first window. They take witnesses or tuning records, or return a real-valued
   field (`LinParamSysDT.c`).
 

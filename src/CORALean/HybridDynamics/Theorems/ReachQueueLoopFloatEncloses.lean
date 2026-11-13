@@ -15,7 +15,7 @@ adds, which are at the end of the queue for the next call, and its own branch ar
 
 ## Inputs
 * `HA` – hybrid automaton
-* `B` – basis
+* `Bf` – the basis of a crossing, from the guard normal and offset and the sets that meet the guard
 * `options` – reach options
 * `δ` – margin to the horizon
 * `f` – fuel
@@ -23,7 +23,6 @@ adds, which are at the end of the queue for the next call, and its own branch ar
 * `acc` – branches so far
 
 ## Hypotheses
-* `horth` – the basis is orthogonal
 * `hΔ` – the steps are positive
 * `hδ` – the margin is at least every step
 * `hfin` – no transition leads to `finalLoc`
@@ -50,18 +49,18 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HybridAutomaton.reachQueueLoopFloat_encloses
-    (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n) {B : Mat 𝕋 n n}
-    (horth : Scalar.toRealMat B * (Scalar.toRealMat B)ᵀ = 1) {options : HybridReachOptions L 𝕋}
+    (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n) {Bf : BasisRule 𝕋 n}
+    {options : HybridReachOptions L 𝕋}
     (hΔ : ∀ ℓ, 0 < toReal (options.Δt ℓ)) {δ : ℝ} (hδ : ∀ ℓ, toReal (options.Δt ℓ) ≤ δ)
     (hfin : ∀ ℓ, ∀ e ∈ (HA.loc ℓ).trans, e.target ≠ options.finalLoc) (f : ℕ)
     (q : List (HybridPending L 𝕋 n)) (acc : List (HybridBranch L 𝕋 n)) : -- --- CONCL ---
-    ∀ out ∈ HA.reachQueueLoopFloat B options f q acc,
+    ∀ out ∈ HA.reachQueueLoopFloat Bf options f q acc,
       (∃ rest, out = acc ++ rest) ∧
         ∀ p ∈ q, HA.Encloses options.checkFlow options.tFinal δ out p := by -- --- PROOF ---
   induction f generalizing q acc with
   | zero => intro out h; simp [HybridAutomaton.reachQueueLoopFloat] at h
   | succ f ih =>
-    intro out (h : HA.reachQueueLoopFloat B options (f + 1) q acc = some out)
+    intro out (h : HA.reachQueueLoopFloat Bf options (f + 1) q acc = some out)
     -- the empty queue returns the branches, a first entry is analysed and its jumps queued
     cases q with
     | nil =>
@@ -75,7 +74,7 @@ theorem HybridAutomaton.reachQueueLoopFloat_encloses
       refine ⟨⟨br :: rest, by simpa using hout⟩, ?_⟩
       intro p' hp'
       rcases List.mem_cons.mp hp' with rfl | hq
-      · refine HA.reachQueueStepFloat_encloses horth hΔ hδ hfin out acc.length _ _ hstep
+      · refine HA.reachQueueStepFloat_encloses hΔ hδ hfin out acc.length _ _ hstep
           (by simp [hout]) ?_
         exact fun c hc => hcov c (List.mem_append_right _ hc)
       · exact hcov p' (List.mem_append_left _ hq)

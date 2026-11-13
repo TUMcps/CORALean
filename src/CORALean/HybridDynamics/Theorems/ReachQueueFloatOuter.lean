@@ -18,7 +18,7 @@ certifies is filtered (`Location.guardOrientFloat?`); without it, every run.
 
 ## Inputs
 * `HA` – hybrid automaton
-* `B` – basis
+* `Bf` – the basis of a crossing, from the guard normal and offset and the sets that meet the guard
 * `options` – reach options
 * `δ` – margin to the horizon
 * `tStart` – start time
@@ -31,7 +31,6 @@ certifies is filtered (`Location.guardOrientFloat?`); without it, every run.
 * `y` – end state
 
 ## Hypotheses
-* `horth` – the basis is orthogonal
 * `hΔ` – the steps are positive
 * `hδ` – the margin is at least every step
 * `hfin` – no transition leads to `finalLoc`
@@ -61,17 +60,17 @@ variable {n : ℕ} {L 𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem HybridAutomaton.reachQueueFloat_outer
-    (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n) {B : Mat 𝕋 n n}
-    (horth : Scalar.toRealMat B * (Scalar.toRealMat B)ᵀ = 1) {options : HybridReachOptions L 𝕋}
+    (HA : HybridAutomaton 𝒵[𝕋] (fun k => HPolytope 𝕋 (Vec 𝕋 k)) L 𝕋 n) {Bf : BasisRule 𝕋 n}
+    {options : HybridReachOptions L 𝕋}
     (hΔ : ∀ ℓ, 0 < toReal (options.Δt ℓ)) {δ : ℝ} (hδ : ∀ ℓ, toReal (options.Δt ℓ) ≤ δ)
     (hfin : ∀ ℓ, ∀ e ∈ (HA.loc ℓ).trans, e.target ≠ options.finalLoc) (tStart : ℚ) (ℓ₀ : L)
     (X₀ : Zonotope (Vec 𝕋 n)) {T : ℝ} {k : ℕ} {ℓ' : L} {x y : Vec ℝ n}
     (run : HA.IsRunUntilDwell options.checkFlow T k ℓ₀ x ℓ' y) (hx : x ∈ toSet X₀)
     (hT : (tStart : ℝ) + T + δ ≤ options.tFinal) : -- --- CONCL ---
-    ∀ out ∈ HA.reachQueueFloat B options tStart ℓ₀ X₀,
+    ∀ out ∈ HA.reachQueueFloat Bf options tStart ℓ₀ X₀,
       ∃ b ∈ out, b.loc = ℓ' ∧ ∃ R ∈ b.sets, y ∈ toSet R := by -- --- PROOF ---
   intro out h
-  obtain ⟨-, hcov⟩ := HA.reachQueueLoopFloat_encloses horth hΔ hδ hfin _ _ _ out h
+  obtain ⟨-, hcov⟩ := HA.reachQueueLoopFloat_encloses hΔ hδ hfin _ _ _ out h
   exact hcov _ (List.mem_singleton_self _) run hx tStart le_rfl hT
 
 end CORALean
