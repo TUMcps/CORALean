@@ -1,6 +1,7 @@
 module
 
 public import CORALean.NN.Layers.Theorems.Real.ApproxErrorTanh
+public import CORALean.NN.Layers.Theorems.Real.EqPmArtanhOfSigmoidDeriv
 public import CORALean.NN.Layers.Theorems.Real.HasDerivAtSigmoid
 public import CORALean.NN.Layers.Theorems.Real.SigmoidNeg
 public import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
@@ -63,21 +64,7 @@ theorem approxError_sigmoid (m l u : ℝ) (hlu : l ≤ u) : -- --- CONCL ---
   -- a critical point is one of the two `±2 artanh √(1 - 4m)`
   have hcrit : ∀ q, sigmoidDeriv q = m →
       q = 2 * Real.artanh (√(1 - 4 * m)) ∨ q = -(2 * Real.artanh (√(1 - 4 * m))) :=
-    fun q hq => by
-      have hT : Real.tanh (q / 2) = 2 * sigmoid q - 1 := by
-        rw [tanh_eq_sigmoid, show 2 * (q / 2) = q by ring]
-      -- `σ' = σ (1 - σ) = (1 - tanh(q/2)²) / 4`
-      have hd : sigmoidDeriv q = (1 - Real.tanh (q / 2) ^ 2) / 4 := by
-        rw [sigmoidDeriv, sigmoid_neg, hT]; ring
-      have h1 : 0 ≤ 1 - 4 * m := by nlinarith [sq_nonneg (Real.tanh (q / 2))]
-      have h2 : Real.tanh (q / 2) ^ 2 = √(1 - 4 * m) ^ 2 := by
-        rw [Real.sq_sqrt h1]; linarith
-      have h3 : √(1 - 4 * m) < 1 := by
-        rw [Real.sqrt_lt' one_pos]; nlinarith [Real.tanh_sq_lt_one (q / 2)]
-      -- so `tanh(q/2) = ±√(1 - 4m)`
-      rcases eq_pm_artanh_of_tanh (q / 2) (√(1 - 4 * m)) (Real.sqrt_nonneg _) h3 h2 with h | h
-      · left; linarith
-      · right; linarith
+    fun q hq => (eq_pm_artanh_of_sigmoidDeriv hq).2.2
   -- the bounds and the critical points are the candidates
   have hmem : ∀ q ∈ Set.Icc l u, (q = l ∨ q = u ∨ sigmoidDeriv q = m) →
       q ∈ cand :=

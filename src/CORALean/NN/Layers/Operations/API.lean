@@ -76,6 +76,7 @@ public import CORALean.NN.Layers.Operations.RelaxationOfDeriv
 public import CORALean.NN.Layers.Operations.RelaxationOfMonotone
 public import CORALean.NN.Layers.Operations.RelaxationTighter
 public import CORALean.NN.Layers.Operations.RelaxationToPoly
+public import CORALean.NN.Layers.Operations.RegressionSlope
 public import CORALean.NN.Layers.Operations.Relu
 public import CORALean.NN.Layers.Operations.ReluGapUp
 public import CORALean.NN.Layers.Operations.ReluRelaxation
@@ -98,6 +99,8 @@ public import CORALean.NN.Layers.Operations.SigmoidEnclosure
 public import CORALean.NN.Layers.Operations.SigmoidPoly
 public import CORALean.NN.Layers.Operations.SigmoidPolyRelaxation
 public import CORALean.NN.Layers.Operations.SigmoidRegression
+public import CORALean.NN.Layers.Operations.SigmoidRegressionExact
+public import CORALean.NN.Layers.Operations.SigmoidRegressionExactRelaxation
 public import CORALean.NN.Layers.Operations.SigmoidRegressionRelaxation
 public import CORALean.NN.Layers.Operations.SigmoidRelaxation
 public import CORALean.NN.Layers.Operations.SigmoidSingh
@@ -121,6 +124,7 @@ public import CORALean.NN.Layers.Operations.Tanh
 public import CORALean.NN.Layers.Operations.TanhPolyRelaxation
 public import CORALean.NN.Layers.Operations.TanhRelaxation
 public import CORALean.NN.Layers.Operations.TanhRegression
+public import CORALean.NN.Layers.Operations.TanhRegressionExact
 public import CORALean.NN.Layers.Operations.TanhSingh
 public import CORALean.NN.Layers.Operations.TapEntry
 public import CORALean.NN.Layers.Operations.TapMat

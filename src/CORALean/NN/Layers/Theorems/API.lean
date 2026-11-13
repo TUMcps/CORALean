@@ -67,10 +67,12 @@ public import CORALean.NN.Layers.Theorems.SampleBoundsOfDeriv
 public import CORALean.NN.Layers.Theorems.SampleDevLoLe
 public import CORALean.NN.Layers.Theorems.SelectMatMulVec
 public import CORALean.NN.Layers.Theorems.SelectMatMulVecAddZero
+public import CORALean.NN.Layers.Theorems.SigmoidRegressionExactRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.SigmoidRegressionRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.SigmoidRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.SigmoidSinghRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.TanhRegressionEncloses
+public import CORALean.NN.Layers.Theorems.TanhRegressionExactEncloses
 public import CORALean.NN.Layers.Theorems.TanhSinghEncloses
 public import CORALean.NN.Layers.Theorems.SigmoidDerivLoLe
 public import CORALean.NN.Layers.Theorems.SigmoidEnclosureEncloses

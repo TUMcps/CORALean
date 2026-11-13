@@ -15,6 +15,7 @@ public import CORALean.NN.Layers.Operations.Sigmoid
 public import CORALean.NN.Layers.Operations.SigmoidPoly
 public import CORALean.NN.Layers.Operations.SigmoidRelaxation
 public import CORALean.NN.Layers.Operations.SigmoidRegression
+public import CORALean.NN.Layers.Operations.SigmoidRegressionExact
 public import CORALean.NN.Layers.Operations.SigmoidSingh
 public import CORALean.NN.Layers.Operations.Square
 public import CORALean.NN.Layers.Operations.Tanh
@@ -31,6 +32,7 @@ public import CORALean.NN.Layers.Theorems.Real.TanhEqSigmoid
 public import CORALean.NN.Layers.Theorems.SigmoidRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.SigmoidEnclosureEncloses
 public import CORALean.NN.Layers.Theorems.SigmoidPolyRelaxationEncloses
+public import CORALean.NN.Layers.Theorems.SigmoidRegressionExactRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.SigmoidRegressionRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.SigmoidSinghRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.SquareRelaxationEncloses
@@ -358,6 +360,19 @@ theorem Layer.sigmoidRegression_encloses (k : ℕ) :
     (Layer.sigmoidRegression (𝕋 := 𝕋) (S := S) (n := n) k).Encloses
       fun x i => Real.sigmoid (x i) :=
   Layer.activation_encloses (sigmoidRegressionRelaxation_encloses k)
+
+
+-- =========================  `Layer.sigmoidRegressionExact_encloses`  ========================== --
+-- Authors:       Claude Sonnet 5.5
+-- Written:       13-November-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- `Real.sigmoid` coordinatewise at the regression line with the exact error. -/
+theorem Layer.sigmoidRegressionExact_encloses (k : ℕ) :
+    (Layer.sigmoidRegressionExact (𝕋 := 𝕋) (S := S) (n := n) k).Encloses
+      fun x i => Real.sigmoid (x i) :=
+  Layer.activation_encloses (sigmoidRegressionExactRelaxation_encloses k)
 
 
 -- ==============================  `Layer.sigmoidSingh_encloses`  =============================== --

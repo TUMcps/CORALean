@@ -770,11 +770,14 @@ margin, which is why CORA.cpp needs no change.
 A layer is `{"kind":"linear","W","b"}`, `{"kind":"relu"}`, `{"kind":"leakyRelu","alpha"}`, `{"kind":"sigmoid","k"}`
 or `{"kind":"tanh","k"}` (`k`, the depth of the exponential's reduction, is ignored at `nearest`). `poly_method`
 is `singh` (the default), `regression` (CORA's default `'regression'`) or `curvature`; anything else is refused.
+`regression_error`, for `regression` only (anything else refuses it), is `bracket` (the default) or `extremum`; the layers are then
+`Layer.sigmoidRegression`, `Layer.tanhRegression` or `Layer.sigmoidRegressionExact`, `Layer.tanhRegressionExact`.
 `errorForm` (a polynomial zonotope only) is `box` (the default) or `GI`. The proofs
 are `Layer.sigmoidSingh_encloses`, `Layer.tanhSingh_encloses` (`Relaxation.ofSlopeMonotone_encloses`: the
-slope is below the derivative on the box, so `sigma(t) - lambda t` does not fall), `Layer.sigmoidRegression_encloses`,
-`Layer.tanhRegression_encloses` (the slope is clamped into the derivative bracket, whatever the regression gave),
-`Layer.activationGI_encloses`, `Layer.relu_encloses`, `Layer.sigmoid_encloses`, `Layer.tanh_encloses`; `check_sound.py` re-evaluates the network at points of the input set in
+slope is below the derivative on the box, so `sigma(t) - lambda t` does not fall),
+`Layer.sigmoidRegression_encloses`, `Layer.tanhRegression_encloses` (the slope is clamped into the derivative bracket, whatever the regression gave),
+`Layer.sigmoidRegressionExact_encloses`, `Layer.tanhRegressionExact_encloses` (any slope: the extremum is at an end or a stationary point, which is enclosed),
+`Layer.activationGI_encloses`, `Layer.relu_encloses`, `Layer.sigmoid_encloses`, `Layer.tanh_encloses`. `check_sound.py` re-evaluates the network at points of the input set in
 60-digit decimals and requires them in the hull of the output.
 
 An activation layer on a zonotope `(c, G, E)` of dimension `n` computes, in this order:
@@ -819,15 +822,29 @@ The relaxations, with `f` the activation, `l`, `u` the box, `sig(x) = 1 - 1/(1 +
   (`Relaxation.ofDeriv`): `lo = f_lo(l) - lambda l + (d_lo - lambda)(u - l)` rounded down, `hi = f_hi(l) - lambda l + (d_hi - lambda)(u - l)`
   rounded up, offset `(lo + hi)/2`, error `max(hi - offset, offset - lo)`.
 * **Tanh, `regression`** (`step_tanhRegressionRelaxation`): the same at the doubled box through the conjugation.
+* **Sigmoid, `regression` with `regression_error: "extremum"`** (`sigmoidRegressionExactRelaxation`, CORA's
+  `nnSigmoidLayer.computeApproxError`): the slope is `m` of `regressionSlope`, unclamped, `E` the sigmoid enclosure. For a box `[a, b]` let
+  `U(a, b) = subUp(sig_hi(b), min(mulDown(m, a), mulDown(m, b)))` and `L(a, b) = subDown(sig_lo(a), max(mulUp(m, a), mulUp(m, b)))`: bounds of
+  `sigma(t) - m t` on `[a, b]`. The candidate boxes are `[l, l]`, `[u, u]` and then the boxes of the stationary points `t0` and `-t0`, none
+  where `le(m, 0)` or `ltStrict(1, nsmulDown(4, m))` (`m <= 0` or `m > 1/4`). `hi` is the `maximum` of `U` over the candidates in this order,
+  `lo` the `minimum` of `L`; the offset is `half(addUp(lo, hi))` and the error `max(subUp(hi, offset), subUp(offset, lo))`.
+* **The box of the stationary point** `t0 = 2 artanh sqrt(1 - 4 m)` in `[l, u]`. `4m` is the rounded repeated sum `nsmulUp(4, m) = addUp(m, addUp(m, addUp(m, addUp(m, 0))))`
+  (`nsmulDown` with `addDown`), not an exact product. `sqrtDown(k, a) = divDown(max(0, a), r)` with `r = sqrtUp(k, a)` (machine root at `nearest`) if `ltStrict(0, r)`, else `0`.
+  `tLo = 0` if not `ltStrict(0, subDown(1, neg s))`, else `addDown(A, A)`, `A = atanhDown(64, k, s)`, `s = min(cap, max(0, sqrtDown(k, subDown(1, nsmulUp(4, m)))))`,
+  `cap = subDown(1, 2^-52)`. `tHi` is none if not `ltStrict(0, subDown(1, s'))`, else `addUp(B, B)`, `B = atanhUp(64, k, s')`, `s' = sqrtUp(k, subUp(1, nsmulDown(4, m)))`.
+  The two ends are taken in either order, as `nearest` can put `tLo` an ulp above `tHi`: with `tHi`, `a = max(l, min(tLo, tHi))` and `b = min(u, max(tLo, tHi))`;
+  without it `a = max(l, tLo)` and `b = u`. The box is `(a, b)`, none if `ltStrict(b, a)`. That of `-t0` is the same at `(-u, -l)`, negated and swapped.
+  `atanhUp` and `atanhDown` are `half` of `logUp` and `logDown` of `(1 + x)/(1 - x)` rounded the same way; at `nearest` the log is the machine's, elsewhere `k` steps.
+* **Tanh, `regression_error: "extremum"`** (`step_tanhRegressionExactRelaxation`): the same at the doubled box through the conjugation.
 * **Sigmoid, `curvature`** (`sigmoidRelaxation`): the smaller error of the derivative-bracket line and the slope-zero line; tanh through the conjugation.
 
-The slope `m` of `regression` (`step_regressionSlope`) is the least-squares slope through the 20 points `x_i = l + i h`, `h = (u - l)/19`.
+The slope `m` of `regression` (`regressionSlope`) is the least-squares slope through the 20 points `x_i = l + i h`, `h = (u - l)/19`.
 Here `x_i` is `addDown l (mulDown i h)` and `y_i` the `half` of `addUp` of the two ends of the enclosure at `x_i`.
 With `w_i = 2 i - 19`, each an integer formed by repeated `addDown` of `1`, `S` is `addDown(t_0, addDown(t_1, ... addDown(t_19, 0)))` with `t_i = mulDown(w_i, y_i)`.
 Then `m = divDown(S, 70 (u - l))`, and `0` where `u <= l`; `lambda` clamps it, so no rounding of `m` matters for soundness.
 
 `Relaxation.tighter` takes the bracket relaxation if `le(error, error_0)`, else the slope-zero one: `lambda = 0`, offset `half(addUp(f_lo(l), f_hi(u)))`, error `max(subUp(f_hi(u), offset), subUp(offset, f_lo(l)))`.
-CORA's error is the exact extremum of `sigma(t) - m t` at `l`, `u` and `+-2 artanh(sqrt(1 - 4 m))`, which is smaller; CORA.cpp follows the bracket.
+CORA's error is the exact extremum of `sigma(t) - m t` at `l`, `u` and `+-2 artanh(sqrt(1 - 4 m))`, which is smaller: `regression_error: "extremum"`.
 
 `singh` is CORA's relaxation, bar the rounding: CORA's `mu1 = (f(u) + f(l) - lambda (u + l)) / 2`, `mu2 = (f(u) - f(l) - lambda (u - l)) / 2`
 are the middle and half-width of the same range of `f(t) - lambda t`. `curvature` is CORALean's tighter one and not CORA's.
