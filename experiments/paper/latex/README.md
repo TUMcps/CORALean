@@ -1,35 +1,19 @@
 # Paper figures and tables
 
-Renders the evaluation floats of the paper (Fig. 4-5, Tab. 2-4) from the generated results,
-with the paper's own TikZ files, table headers and captions (verbatim copies).
+Generated files for the paper, and nothing else: the plot code (TikZ files, floats, macros) lives
+only in the paper repository. Repeatability is regenerating the experiments' data.
 
 ```
-sh experiments/paper/latex/collect.sh experiments/results-paper   # results -> figures/evaluation/{data,tables}
-cd experiments/paper/latex && latexmk -pdf paper_floats.tex      # -> paper_floats.pdf
+sh experiments/paper/latex/collect.sh experiments/results-paper <out-dir>   # -> <out-dir>/figures/evaluation/{data,tables}
 ```
 
-`collect.sh` lays the generated files out exactly as in the paper repository
-(`figures/evaluation/data`, `figures/evaluation/tables`); `floats.tex` and the TikZ files read them from there.
-The headline figure's CORA set (`cora-paper-ti-union.dat`) is CORALean's round-to-nearest run
-(`nearest-binary64`), so no MATLAB data is needed for it.
-Requires a TeX Live with `llncs`, `pgfplots`, `siunitx`, `nicefrac`, `booktabs`, `cleveref`; `cora-macs.sty` is included.
-
-## Via `make_paper.sh`
-
-`experiments/paper/make_paper.sh [RESULTS_DIR] [--no-latex]` runs this
-bundle for you, as its own last step: it copies this directory into
-`<RESULTS_DIR>/paper-latex/`, runs `collect.sh` there, compiles
-`paper_floats.tex` (local `latexmk -pdf`, else 3x local `pdflatex`, else a
-pinned, dated `docker run texlive/texlive:...` image, else it fails with a
-clear message rather than skipping or faking the PDF), and copies the result
-to `<RESULTS_DIR>/paper/paper_floats.pdf`. `--no-latex` skips this whole
-step (the figure `.dat`s and table `.tex`s above are still written). If
-`<RESULTS_DIR>/paper-tree-expected/` exists (the committed snapshot of this
-collected `figures/evaluation/` tree, at `results/paper`), it also
-`diff -r`s it against the freshly collected tree and fails on any
-difference. See `experiments/README.md`'s "`experiments/paper/make_paper.sh`"
-section for the full command sequence from a results directory to
-`paper_floats.pdf`.
+`collect.sh` lays the generated figure data and table bodies of the evaluation (Fig. 4-5, Tab. 2-4)
+out exactly as in the paper repository (`figures/evaluation/data`, `figures/evaluation/tables`), so
+the tree can be copied there. `experiments/paper/make_paper.sh` runs it as its last step, into
+`<RESULTS_DIR>/paper-figures/`, and compares the tree with the committed snapshot
+`<RESULTS_DIR>/paper-tree-expected/` when that exists. The headline figure's CORA set
+(`cora-paper-ti-union.dat`) is CORALean's round-to-nearest run (`nearest-binary64`), so no MATLAB
+data is needed for it.
 
 ## The formalization figure and appendix
 
@@ -37,8 +21,8 @@ section for the full command sequence from a results directory to
 `figures/formalization/formalization-classes-{sets,contdynamics,others}.tikz` and `appendix-formalization.tex` are not made
 from a results directory: `scripts/formalization-stats.py` writes them, and
 `experiments/paper/formalization-stats.json` beside the paper's scripts, from the tables under
-`references/` and the Lean sources. `floats.tex` includes the first as `fig:formalization`;
-`paper_floats.tex` inputs the appendix after the floats. Regenerate after any change to a table:
+`references/` and the Lean sources. The paper repository takes them as they
+are. Regenerate after any change to a table:
 
 ```
 python3 scripts/formalization-stats.py          # JSON, .tikz, .svg, appendix and errors table

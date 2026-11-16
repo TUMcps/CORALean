@@ -1,10 +1,11 @@
 #!/bin/sh
 # Copies the generated figure data and table bodies from a results directory into the
-# paper's layout (figures/evaluation/{data,tables}), which the TikZ files and floats.tex read.
-# Usage: sh collect.sh <results-dir> [<out-dir>]   (default out-dir: this directory)
+# paper repository's layout (figures/evaluation/{data,tables}), which the paper's TikZ files and
+# floats read; the plot code lives only in the paper repository.
+# Usage: sh collect.sh <results-dir> <out-dir>
 set -eu
 R=${1:?results directory, e.g. experiments/results-paper}
-O=${2:-$(dirname "$0")}
+O=${2:?output directory, e.g. experiments/results-paper/paper-figures}
 H=$R/headline_5turns
 D=$O/figures/evaluation/data
 T=$O/figures/evaluation/tables

@@ -93,7 +93,7 @@ ERRORS = LATEX / "appendix-errors.tex"  # see scripts/paper/errors-table.py
 ERRORS_BIB = LATEX / "appendix-errors.bib"  # its entries, from the pages (#265)
 CORA_BUGS = LATEX / "appendix-cora-bugs.tex"  # see scripts/paper/cora-bugs-table.py
 
-# The colours of `experiments/paper/latex/cora-macs.sty`, as (name, rgb): the TikZ files name
+# The colours of the paper's `cora-macs.sty`, as (name, rgb): the TikZ files name
 # them, the SVG preview needs the numbers.
 CORA = {
     "CORAcolorReachSet": (0.2706, 0.5882, 1.0000),

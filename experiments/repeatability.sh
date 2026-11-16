@@ -3,18 +3,18 @@
 # (numbers as in the paper of 28-September-2026):
 #   lake exe cache get && lake build     # build CORALean (once)
 #   sh experiments/repeatability.sh      # ~75 min; --smoke: Fig. 4 only, ~3 min; --dyadic: + ablation
-# Output: experiments/results (or --out DIR); all floats in <out>/paper/paper_floats.pdf.
+# Output: experiments/results (or --out DIR); figure data and tables in <out>/paper/, laid out for
+# the paper repository in <out>/paper-figures/figures/evaluation/.
 [ -n "${BASH_VERSION:-}" ] || exec bash "$0" "$@"  # `sh` may be dash; the rest is bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-USAGE="usage: sh experiments/repeatability.sh [--out DIR] [--smoke] [--no-latex] [--dyadic]"
-OUT=experiments/results; SMOKE=0; NO_LATEX=""; DYADIC=0
+USAGE="usage: sh experiments/repeatability.sh [--out DIR] [--smoke] [--dyadic]"
+OUT=experiments/results; SMOKE=0; DYADIC=0
 while [ $# -gt 0 ]; do
   case "$1" in
     --out) OUT=$2; shift ;;
     --smoke) SMOKE=1 ;;
-    --no-latex) NO_LATEX=--no-latex ;;
     --dyadic) DYADIC=1 ;;
     --help) echo "$USAGE"; exit 0 ;;
     *) echo "$USAGE" >&2; exit 1 ;;
@@ -34,8 +34,8 @@ for scheme in headline-b headline-a; do
   bench $scheme --config $C --type nearest --format binary64
 done
 if [ $SMOKE = 1 ]; then
-  bash experiments/paper/make_paper.sh "$OUT" --no-latex
-  echo "repeatability.sh: done (--smoke): headline figure data in $OUT/headline_5turns; the PDF needs the full run"
+  bash experiments/paper/make_paper.sh "$OUT"
+  echo "repeatability.sh: done (--smoke): headline figure data in $OUT/headline_5turns; the other floats need the full run"
   exit 0
 fi
 
@@ -90,8 +90,8 @@ section "formalization-stats"  # reads references/, needs no build and no result
 python3 scripts/check-references.py
 python3 scripts/formalization-stats.py
 
-# ===== All figures and tables -> paper_floats.pdf =====
-section paper_floats.pdf
-bash experiments/paper/make_paper.sh "$OUT" $NO_LATEX
-echo "repeatability.sh: done: tables in $OUT/paper/*.tex, all floats in $OUT/paper/paper_floats.pdf"
+# ===== All figure data and tables =====
+section "figure data and tables"
+bash experiments/paper/make_paper.sh "$OUT"
+echo "repeatability.sh: done: tables in $OUT/paper/*.tex, the paper's figures/evaluation tree in $OUT/paper-figures"
 echo "  (the figure's CORA set is CORALean's round-to-nearest run, within 2e-5 of CORA's MATLAB result)"
