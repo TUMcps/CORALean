@@ -82,6 +82,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapTriPairsSplit
 public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapTriExpand
 public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapTriCoeff
 public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapTriOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapTriFilteredOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.RadiusLe
 public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterSubMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterZeroMem
