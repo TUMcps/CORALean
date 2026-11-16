@@ -1,7 +1,7 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrixEntrywiseFloat
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrixEntrywiseFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrixTightFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrixTightFloat
 public import CORALean.ContDynamics.LinearSys.Operations.TaylorMatricesFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Definitions.ExpRemainderMat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalTaylorFloat
@@ -111,8 +111,8 @@ theorem LinearSys.taylorMatricesFloat_outer (sys : LinearSys 𝕋 n) {Δt : 𝕋
   have hadm := LinearSys.halvingsFloat_spec (η := 16) (by norm_num) s hs
   have hW := LinearSys.aux_expRemainderMat_le_expRemainderSquaringFloat sys (m + 2) s hadm
   have hA : toRealMat sys.A ∈ (Interval.point sys.A).toSet := Interval.mem_point sys.A
-  exact ⟨MatExp.expDiff_mem_intervalCorrectionMatrixEntrywise _ hΔt _ hA hW ht0 htΔt,
-    MatExp.expIntegralDiff_mem_intervalConstCorrectionMatrixEntrywise _ hΔt _ _ hA hW ht0 htΔt⟩
+  exact ⟨MatExp.expDiff_mem_intervalCorrectionMatrixTight _ hΔt _ hA hW ht0 htΔt,
+    MatExp.expIntegralDiff_mem_intervalConstCorrectionMatrixTight _ hΔt _ _ hA hW ht0 htΔt⟩
 
 end CORALean
 

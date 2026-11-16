@@ -1,8 +1,8 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Definitions.TaylorMatrices
-public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixEntrywiseFloat
-public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixEntrywiseFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixTightFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixTightFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ExpRemainderSquaringFloat
 public import CORALean.ContDynamics.LinearSys.Operations.HalvingsFloat
 
@@ -16,7 +16,8 @@ CORA's `taylorMatrices` [1]: the remainder `E(Δt,η)` of `priv_expmRemainder`, 
 step. CORA's `E` is `expm(|A|Δt)` less the series, which no float guarantees; here it is
 `expRemainderSquaringFloat`, the exponential of `|A|Δt` enclosed by scaling and squaring with the
 halvings `halvingsFloat` gives for `|A|`. `F` and `G` are the entrywise correction matrices with
-that bound. `none` if no count of halvings below `128` brings `‖|A|Δt‖ / 2^s` to `1/2`.
+that bound and CORA's coefficient (`corrCoeffLowTight`). `none` if no count of halvings below
+`128` brings `‖|A|Δt‖ / 2^s` to `1/2`.
 
 ## Inputs
 * `sys` – linear system
@@ -58,8 +59,8 @@ def LinearSys.taylorMatricesFloat (sys : LinearSys 𝕋 n) (Δt : 𝕋) (η : �
   let sysM : LinearSys 𝕋 n := { sys with A := Interval.magnitudeMat A }  -- the system of `|A|`
   let s ← sysM.halvingsFloat Δt                                           -- halvings of `|A|Δt`
   let W := sys.expRemainderSquaringFloat Δt η s                           -- `E(Δt,η)`
-  let F := MatExp.intervalCorrectionMatrixEntrywise A Δt η W              -- state correction
-  let G := MatExp.intervalConstCorrectionMatrixEntrywise A Δt η W         -- input correction
+  let F := MatExp.intervalCorrectionMatrixTight A Δt η W                   -- state correction
+  let G := MatExp.intervalConstCorrectionMatrixTight A Δt η W              -- input correction
   pure ⟨W, F, G⟩
 
 end CORALean
