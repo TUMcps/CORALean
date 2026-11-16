@@ -129,6 +129,7 @@ public import CORALean.NN.Layers.Operations.TanhSingh
 public import CORALean.NN.Layers.Operations.TapEntry
 public import CORALean.NN.Layers.Operations.TapMat
 public import CORALean.NN.Layers.Operations.TransposeEquiv
+public import CORALean.NN.Layers.Operations.ActivationPowers
 
 /-!
 # The standard layers, collected

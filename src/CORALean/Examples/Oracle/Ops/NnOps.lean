@@ -10,6 +10,8 @@ import CORALean.NN.Layers.Operations.TanhSingh
 import CORALean.NN.Layers.Operations.Tanh
 import CORALean.NN.Layers.Operations.LeakyRelu
 import CORALean.NN.Layers.Operations.Linear
+import CORALean.NN.Layers.Operations.ActivationPowers
+import CORALean.NN.Layers.Theorems.ActivationPowersEncloses
 import CORALean.ContSet.Zonotope.Float.Instances
 import CORALean.ContSet.PolyZonotope.Float.Instances
 import CORALean.ContSet.Conversion.Float.Instances
@@ -25,8 +27,8 @@ polynomial zonotope, `neuralNetwork.evaluate` a list of layers to either: `linea
 `'singh'`, the default), `regression` (CORA's `'regression'`, with a sound error) or `curvature`
 (CORALean's tighter one). `regression_error` of `regression` is `bracket` (the default) or
 `extremum` (CORA's exact error). `errorForm` of a polynomial zonotope is `box` (the default) or
-`GI` (CORA's `add_approx_error_to_GI`). The order of operations is in
-`experiments/oracle/README.md`.
+`GI` (CORA's `add_approx_error_to_GI`). `poly` (`coeffs` per neuron, lowest degree first, error
+`d`): order `k`, fit given (`Layer.activationPowers`, `P`, error in `GI`). Order: oracle README.
 
 ## Inputs
 * `dops` – dtype operations
@@ -99,7 +101,21 @@ private def aux_runLayer (dops : DtypeOps 𝕋) {S : ℕ → Type} [∀ n, ContS
       | .singh => (Layer.tanhSingh (S := S) (n := n) k).enclose X
       | .regression => (Layer.tanhRegression (S := S) (n := n) k).enclose X
       | .regressionExtremum => (Layer.tanhRegressionExact (S := S) (n := n) k).enclose X)⟩
-  | k => throw s!"a layer's `kind` must be linear, relu, leakyRelu, sigmoid or tanh, not `{k}`"
+  | k => throw s!"a layer's `kind` must be linear, relu, leakyRelu, sigmoid or tanh, not `{k}` \
+      (`poly` only as the one layer of `nnLayer.evaluatePolyZonotope`)"
+
+/-- The layer `poly` on the polynomial zonotope: the fits `coeffs` (a row per neuron) and their
+errors `d` as a relaxation that does not depend on the box. -/
+private def aux_runPowers (dops : DtypeOps 𝕋) (layer : Json) (n : ℕ) (X : 𝒫𝒵[𝕋] n) :
+    Except String (𝒫𝒵[𝕋] n) := do
+  checkFields "poly" layer ["kind", "coeffs", "d"]
+  let ⟨K, C⟩ ← parseMatRowsFixed dops.readExact n (← field layer "coeffs")
+  let d ← parseVecFixed dops.readExact n (← field layer "d")
+  if hK : K = 0 then throw "poly: `coeffs` needs at least one column"
+  else
+    let P : LayerRelaxation 𝕋 n (K - 1) :=
+      fun i => ⟨fun _ _ k => C i ⟨k, by omega⟩, fun _ _ => d i⟩
+    pure ((Layer.activationPowers P).enclose X)
 
 /-- The layers of the list, in order, on the set. -/
 private def aux_runLayers (dops : DtypeOps 𝕋) {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
@@ -179,7 +195,20 @@ def handleNnLayerOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option R
   match op with
   | "evaluateZonotope" | "evaluatePolyZonotope" => some (do
     checkFields op req ["layer", "Z", "P", "poly_method", "regression_error", "errorForm"]
-    aux_run dops op req (← aux_method op req) (← aux_errorForm op req) [← field req "layer"])
+    let layer ← field req "layer"
+    if (← strField layer "kind") = "poly" then
+      -- order `k` with the fit given: a polynomial zonotope, the error in `GI`
+      if op ≠ "evaluatePolyZonotope" then throw s!"{op}: the layer `poly` needs `P`"
+      if (← aux_errorForm op req) = false ∧ (fieldOpt req "errorForm").isSome then
+        throw s!"{op}: the layer `poly` puts its error in `GI`"
+      let pj ← field req "P"
+      let ⟨n, _⟩ ← parseVecDyn dops.readExact (← field pj "c")
+      let X ← parsePolyZonotopeFixed dops.readExact n pj
+      let ids ← parsePolyZonotopeIds X pj
+      pure [("P", printPolyZonotopeIds dops.showExact (← aux_runPowers dops layer n X).materialise
+        ids)]
+    else
+      aux_run dops op req (← aux_method op req) (← aux_errorForm op req) [layer])
   | _ => none
 
 /-- `op` of `neuralNetwork.`, run; `none` for a name this file does not serve. -/

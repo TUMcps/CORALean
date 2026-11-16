@@ -6,6 +6,7 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.API
 public import CORALean.ContSet.PolyZonotope.Real.Counterexamples.API
 public import CORALean.ContSet.PolyZonotope.Real.Complexity.API
 public import CORALean.ContSet.PolyZonotope.Real.Instances
+public import CORALean.ContSet.PolyZonotope.Real.Definitions.API
 
 /-!
 # Sparse polynomial zonotopes, collected

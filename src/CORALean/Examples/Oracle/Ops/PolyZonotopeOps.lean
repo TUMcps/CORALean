@@ -7,6 +7,8 @@ import CORALean.ContSet.PolyZonotope.Float.Instances
 import CORALean.ContSet.PolyZonotope.Float.Operations.Construct
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ConstructOuter
 import CORALean.ContSet.PolyZonotope.Float.Operations.EncloseShared
+import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPowers
+import CORALean.ContSet.PolyZonotope.Float.Theorems.EvalPowersOuter
 import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceCora
 import CORALean.ContSet.PolyZonotope.Float.Theorems.EncloseSharedOuter
 import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
@@ -24,9 +26,9 @@ Adapters over the float definitions `references/coverage/contSet/polyZonotope.md
 request has none); the exponent matrix `Exp` is `p × h`. Served: `constructor` (CORA's
 `polyZonotope(c, G, GI, E, id)`: the zero generators go, equal exponent columns are added, in the
 order of CORA's hash), `plus` (a polynomial zonotope `Q`, a zonotope `Z`, a box `I` or a point `v`),
-`mtimes` (`M`), `zonotope` and `interval` (CORA's `zonotope(pZ)` and `interval(pZ)`), `dim`, and
-`zonotope.polyZonotope` and `interval.polyZonotope` of the conversions. Indices of the sets are
-as CORA's, the identifiers are CORA's integers.
+`mtimes` (`M`), `zonotope` and `interval` (CORA's `zonotope(pZ)` and `interval(pZ)`), `dim`,
+`evalPowers` (`coeffs` a row per coordinate, lowest degree first: `evaluatePolyZonotopeNeuron`),
+and `zonotope.polyZonotope` and `interval.polyZonotope`. Indices and identifiers are CORA's.
 
 ## Inputs
 * none
@@ -136,7 +138,8 @@ private def aux_enclose {n : Nat} (P Q : PolyZonotope (Vec 𝕋 n)) (idP idQ : A
 
 /-- Every op of `polyZonotope.`, without the prefix. -/
 def polyZonotopeOpNames : List String :=
-  [ "constructor", "plus", "mtimes", "zonotope", "interval", "reduce", "enclose", "dim" ]
+  [ "constructor", "plus", "mtimes", "zonotope", "interval", "reduce", "enclose", "dim",
+    "evalPowers" ]
 
 /-- `op` of `polyZonotope.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -184,6 +187,14 @@ def handlePolyZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opt
       if R.p ≠ ids.size then throw "enclose: the identifiers do not match the factors (internal)"
       pure [("P", printPolyZonotopeIds dops.showExact R.materialise ids)]
     else throw s!"enclose: the sets differ in dimension, {d.n} and {e.n}")
+  -- the polynomials `coeffs` (a row per coordinate) by the powers of each row
+  | "evalPowers" => some (do
+    checkFields op req ["P", "coeffs"]
+    let d ← aux_parse dops (← field req "P")
+    let ⟨K, C⟩ ← parseMatRowsFixed dops.readExact d.n (← field req "coeffs")
+    if K = 0 then throw "evalPowers: `coeffs` needs at least one column"
+    let R := (d.pZ.evalPowers (List.ofFn fun k i => C i k)).materialise
+    pure [("P", printPolyZonotopeIds dops.showExact R d.id)])
   | "mtimes" => some (do
     checkFields op req ["M", "P"]
     let d ← aux_parse dops (← field req "P")
