@@ -3,11 +3,10 @@
 *.log
 __pycache__/
 experiments/results/
-# make_paper.sh's own paper_floats.pdf build dir, written inside whichever
-# results directory it is pointed at (including experiments/results-paper/,
-# which is otherwise committed on the results/paper-vN branches) --
-# paper_floats.pdf itself is copied out to <results>/paper/ and IS committed.
-**/paper-latex/
+# make_paper.sh's collected figures/evaluation tree for the paper repository, written inside
+# whichever results directory it is pointed at (including experiments/results-paper/, which is
+# otherwise committed on the results/paper branches); paper-tree-expected/ is its committed snapshot.
+**/paper-figures/
 
 # experiments/matlab-ops: the large inputs and per-tool results (45 MB) live on the
 # data branch results/matlab-ops; regenerate or fetch them, see experiments/README.md.
