@@ -9,6 +9,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionM
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrixEntrywise
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeffLowFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeffLowTightFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCritical
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrTerm
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrectionMatrix
@@ -59,11 +60,13 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCor
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrTermFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixEntrywiseFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixTightFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrTerm
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrTermFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixEntrywiseFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixTightFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainder
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalInputRemainderEntrywiseFloat
