@@ -1,6 +1,7 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdmissibleOrderFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpEnclosureFuelFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderEntrywiseFloat
+import CORALean.ContDynamics.LinearSys.Operations.TaylorMatricesFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixEntrywiseFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixEntrywiseFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
@@ -290,10 +291,17 @@ def handleLinearSysTaylorMatrices (dops : DtypeOps 𝕋) (req : Json) : Resp := 
           (MatExp.intervalCorrectionMatrixEntrywise A Δt ηe W)),
         ("GEntrywise", printIntervalMat dops.showExact
           (MatExp.intervalConstCorrectionMatrixEntrywise A Δt ηe W))]
+  -- CORA's `E`, `F`, `G` at `η`, `E` from `e^{|A|Δt}` by scaling and squaring
+  let cora : List (String × Json) :=
+    match d.sys.taylorMatricesFloat Δt η with
+    | none => [("WCora", Json.null), ("FCora", Json.null), ("GCora", Json.null)]
+    | some T => [("WCora", printMat dops.showExact T.W),
+        ("FCora", printIntervalMat dops.showExact T.F),
+        ("GCora", printIntervalMat dops.showExact T.G)]
   -- the norm-based `F` of `intervalCorrectionMatrix` and the entrywise matrices
   pure ([("eAdt", printIntervalMat dops.showExact (d.sys.expIntervalFloat Δt Δt η)),
     ("F", printIntervalMat dops.showExact
-      (MatExp.intervalCorrectionMatrix (Interval.point d.sys.A) Δt η))] ++ entrywise)
+      (MatExp.intervalCorrectionMatrix (Interval.point d.sys.A) Δt η))] ++ entrywise ++ cora)
 
 /-- The one-set ops: a step's sets, solutions of the input and error terms. -/
 def handleLinearSysStepOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Resp := do
