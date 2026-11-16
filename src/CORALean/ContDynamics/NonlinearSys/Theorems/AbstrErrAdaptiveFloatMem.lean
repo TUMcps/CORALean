@@ -12,7 +12,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
 public import CORALean.ContSet.Interval.Float.Theorems.MtimesIntervalMatOuter
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
-public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapTriFilteredOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterSubMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceAdaptiveOuter
 
@@ -137,7 +137,8 @@ theorem NonlinearSys.FloatHessModel.Encloses.abstrErrAdaptiveFloat_mem
     rw [hrem fun i => Scalar.toRealMat (Hp i)]
     -- `z ∈ Z`, and `quadMap` at `½ H✱`
     have hsec : (fun i => dz ⬝ᵥ (Scalar.toRealMat (Hp i) *ᵥ dz) / 2) ∈
-        (Zonotope.quadMap (fun i a b => half (Hp i a b)) ((((Rmax ⊞ (⟨0, -xs, fun j => j.elim0,
+        (Zonotope.quadMapTriFiltered (fun i a b => half (Hp i a b))
+          ((((Rmax ⊞ (⟨0, -xs, fun j => j.elim0,
           ⟨fun _ => zero, fun _ => zero⟩⟩ : Zonotope (Vec 𝕋 n))).reduceAdaptive
             (sqrtUp p redFactor) p).cartProd (Recenter.recenter U)))).toSet := by
       have hz : dz ∈ ((((Rmax ⊞ (⟨0, -xs, fun j => j.elim0, ⟨fun _ => zero, fun _ => zero⟩⟩ :
@@ -153,7 +154,8 @@ theorem NonlinearSys.FloatHessModel.Encloses.abstrErrAdaptiveFloat_mem
           rwa [← sub_eq_add_neg] at this
         · exact Zonotope.sub_center_mem_recenter hu
       -- `quadMap`'s guarantee at `z`, its matrices halved exactly
-      have hq := Zonotope.quadMap_outer (fun i a b => half (Hp i a b)) _ (Set.mem_image_of_mem _ hz)
+      have hq := Zonotope.quadMapTriFiltered_outer (fun i a b => half (Hp i a b)) _
+        (Set.mem_image_of_mem _ hz)
       convert hq using 1
       funext i
       simp only [Real.PolyZonotope.quadEval]
