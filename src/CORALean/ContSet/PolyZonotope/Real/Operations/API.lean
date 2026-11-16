@@ -159,6 +159,9 @@ public import CORALean.ContSet.PolyZonotope.Real.Operations.GreedyTarget
 public import CORALean.ContSet.PolyZonotope.Real.Operations.LeafNode
 public import CORALean.ContSet.PolyZonotope.Real.Operations.RelaxGreedy
 public import CORALean.ContSet.PolyZonotope.Real.Operations.InnerScaling
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PowerExt
+public import CORALean.ContSet.PolyZonotope.Real.Operations.PowerOut
+public import CORALean.ContSet.PolyZonotope.Real.Operations.EvalPowersList
 
 /-!
 # What `PolyZonotope` computes

@@ -32,12 +32,12 @@ arithmetic -- never floats:
   `decimal` at 60 digits -- the response must contain it (`CHECKS_INTERVAL`,
   `CHECKS_ZONOTOPE`); `minkDiff` is an inner approximation and is checked the other way round.
 * `nnLayer.*` and `neuralNetwork.evaluate`: the exact network (`Fraction` for the linear and
-  ReLU layers, `decimal` at 60 digits for sigmoid and tanh) at points of the input set lies in
-  the hull of the output set (`check_nn_op`).
+  ReLU layers, `decimal` at 60 digits for sigmoid and tanh, the fit plus its error `d` for
+  `poly`) at points of the input set lies in the hull of the output set (`check_nn_op`).
 * `polyZonotope.*`, `interval.polyZonotope` and `zonotope.polyZonotope`: points of the input set (the
   center, the corners of the first four factors, half the others, the independent generators at
-  `+-1`) lie in the hull of the output (`check_polyzono_op`); `plus` and `mtimes` map the points
-  first, `enclose` takes the points of both operands.
+  `+-1`) lie in the hull of the output (`check_polyzono_op`); `plus`, `mtimes` and `evalPowers`
+  map the points first, `enclose` takes the points of both operands.
 * `nonlinearSys.linReachPoly`: constant-input runs of the system, by RK4 in 60 digits from points of
   `R`, lie in the hulls of the response (`check_pz_lin_reach`).
 * Every op `ping` lists occurs in the requests, so none is served without a test.
@@ -767,6 +767,11 @@ def nn_apply(layer, x):
     if kind == "leakyRelu":
         a = parse_scalar(layer["alpha"])
         return [max(a * v, v) for v in x]
+    if kind == "poly":
+        # the fit given, at the edge `+d` of its error (the set holds every deviation up to `d`)
+        _, _, C = parse_mat(layer["coeffs"])
+        d = parse_vec(layer["d"])
+        return [sum(C[i][k] * x[i] ** k for k in range(len(C[i]))) + d[i] for i in range(len(x))]
     d = [dec(F(v)) if not isinstance(v, Decimal) else v for v in x]
     if kind == "sigmoid":
         return [1 / (1 + (-v).exp()) for v in d]
@@ -888,6 +893,11 @@ def check_polyzono_op(op, req, resp, fails):
             n = len(M)
         elif name == "enclose":
             pts = pts + list(pz_points(req["Q"]))
+        elif name == "evalPowers":
+            # every coordinate through its polynomial, lowest degree first
+            _, _, C = parse_mat(req["coeffs"])
+            pts = [[sum(C[i][k] * x[i] ** k for k in range(len(C[i]))) for i in range(n)]
+                   for x in pts]
     slack = Decimal(10) ** -40
     for x in pts:
         for i in range(n):

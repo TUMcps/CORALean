@@ -152,6 +152,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.Construct
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceSplit
 public import CORALean.ContSet.PolyZonotope.Float.Operations.EncloseShared
 public import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceCora
+public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPowers
 
 /-!
 # What `PolyZonotope` computes

@@ -196,6 +196,8 @@ public import CORALean.ContSet.PolyZonotope.Real.Theorems.RepCongr
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumCompactKeep
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.SumMonomialMerge
 public import CORALean.ContSet.PolyZonotope.Real.Theorems.FiberSumEqZeroOfNotMem
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPowersListRel
+public import CORALean.ContSet.PolyZonotope.Real.Theorems.EvalPowersListValue
 
 /-!
 # What `PolyZonotope` guarantees

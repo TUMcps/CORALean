@@ -34,6 +34,7 @@ public import CORALean.Global.Float.RatUp
 public import CORALean.Global.Float.IntRound
 public import CORALean.Global.Float.HalfPow
 public import CORALean.Global.Float.InvSqrtOneSub
+public import CORALean.Global.Float.MidRad
 
 /-!
 # The floating-point scalar, collected

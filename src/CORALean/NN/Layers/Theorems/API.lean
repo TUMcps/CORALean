@@ -108,6 +108,7 @@ public import CORALean.NN.Layers.Theorems.ToRealMatTapMat
 public import CORALean.NN.Layers.Theorems.ToRealTapEntry
 public import CORALean.NN.Layers.Theorems.ToRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.AllOverEqImpl
+public import CORALean.NN.Layers.Theorems.ActivationPowersEncloses
 
 /-!
 # What the standard layers enclose, collected
