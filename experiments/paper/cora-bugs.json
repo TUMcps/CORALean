@@ -68,7 +68,7 @@
       "matlab": "not run"
     },
     "verify": {
-      "description": "STL union keeps last set; RA accepts touching unsafe set",
+      "description": "STL union keeps last set; RA touching, curvature, linear indices",
       "kind": "unsound",
       "cex": "VerifySTLKochdumperGloballyCora.lean",
       "matlab": "not run"

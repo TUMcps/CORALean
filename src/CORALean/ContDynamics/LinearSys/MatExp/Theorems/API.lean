@@ -14,11 +14,17 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrixEntrywise
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralDiffEqTsum
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderMatLeEntrywiseFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderMatLeScaled
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrixEntrywiseFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalConstCorrectionMatrixTightFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrixEntrywiseFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.IntervalCorrectionMatrixTightFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ScaledRemainderFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.SummableExpIntegralDiff
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.VerifyCorrectionInputFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.VerifyCorrectionStateFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.VerifyCorrSumsFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.VerifyPowerFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ZeroMemParticularSolutionOuter
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CurvatureEnclosureFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntegralSubSumMemAdaptiveRemainder

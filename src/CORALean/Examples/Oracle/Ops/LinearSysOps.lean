@@ -2,6 +2,9 @@ import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdmissibleOrderFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpEnclosureFuelFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpRemainderEntrywiseFloat
 import CORALean.ContDynamics.LinearSys.Operations.TaylorMatricesFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.BalanceScalesFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyCorrectionInputFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyCorrectionStateFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixEntrywiseFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixEntrywiseFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
@@ -303,6 +306,22 @@ def handleLinearSysTaylorMatrices (dops : DtypeOps 𝕋) (req : Json) : Resp := 
     ("F", printIntervalMat dops.showExact
       (MatExp.intervalCorrectionMatrix (Interval.point d.sys.A) Δt η))] ++ entrywise ++ cora)
 
+/-- `linearSys.verifyCorrection`: the balancing scales of `A` and the matrices `F` and `G` of
+`priv_verifyRA_supportFunc`'s `aux_intmat` at `Δt`, with the orders their sums stopped at; `null`
+for a matrix whose sum does not stop by order `74` or whose remainder is not admissible. -/
+def handleLinearSysVerifyCorrection (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "verifyCorrection" req ["A", "B", "c", "C", "D", "k", "E", "F", "timeStep"]
+  let d ← parseLinearSys dops req
+  let Δt ← aux_timeStep dops req
+  let s := MatExp.balanceScalesFloat d.sys.A
+  let out := fun (name : String) (r : Option (ℕ × Interval (Mat 𝕋 d.n d.n))) =>
+    match r with
+    | none => [(name ++ "Order", Json.null), (name, Json.null)]
+    | some (η, M) => [(name ++ "Order", Lean.toJson η), (name, printIntervalMat dops.showExact M)]
+  pure ([("scales", printVec dops.showExact s)]
+    ++ out "F" (MatExp.verifyCorrectionStateFloat d.sys.A s Δt)
+    ++ out "G" (MatExp.verifyCorrectionInputFloat d.sys.A s Δt))
+
 /-- The one-set ops: a step's sets, solutions of the input and error terms. -/
 def handleLinearSysStepOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Resp := do
   let sysFields := ["A", "B", "c", "C", "D", "k", "E", "F"]
@@ -366,7 +385,7 @@ end
 /-- Every op of this file, without the `linearSys.` prefix. -/
 def linearSysOpNames : List String :=
   [ "reach", "canonicalForm", "isCanonicalForm", "outputSet", "taylorMatrices", "oneStep",
-    "oneStepClosedForm",
+    "oneStepClosedForm", "verifyCorrection",
     "homogeneousSolution", "post", "initReach", "errorSolution_adaptive", "affineSolution",
     "particularSolution_constant", "particularSolution_timeVarying" ]
 
@@ -382,6 +401,7 @@ def handleLinearSysOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] 
       valueBool (LinearSys.isCanonicalFormFloat (← parseLinearSys dops req).sys))
   | "outputSet" => some (handleLinearSysOutputSet dops req)
   | "taylorMatrices" => some (handleLinearSysTaylorMatrices dops req)
+  | "verifyCorrection" => some (handleLinearSysVerifyCorrection dops req)
   | "oneStep" | "oneStepClosedForm" | "homogeneousSolution" | "post" | "initReach"
   | "errorSolution_adaptive"
   | "affineSolution" | "particularSolution_constant" | "particularSolution_timeVarying" =>

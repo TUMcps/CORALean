@@ -111,7 +111,7 @@ contDynamics/linParamSys:simulate	confirmed	simulate(linParamSys(intervalMatrix(
 contDynamics/linProbSys:initReach	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
 contDynamics/linearSys:isCanonicalForm	confirmed	canonicalForm(linearSys(-1,1,[],2),...) returns a system with C=2 and isCanonicalForm = 0
 contDynamics/linearSys:reach	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
-contDynamics/linearSys:verify	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
+contDynamics/linearSys:verify	not run	the witnesses are Lean models of the code as printed (supportFunc curvature term and linear indices, zonotope touch); none run in MATLAB
 contDynamics/linearSysDT:executeObserver	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
 contDynamics/linearSysDT:reach	confirmed	reach(linearSysDT({1,1,1},{0,1,1},[],{1,1,1},{0,0,0},1),...) with R0={0}, U={1}, tFinal=2 has time-point sets [0,0], [0,0], [0,0]; x(2)=1 under u=1 is missed
 contDynamics/nonlinDASys:initReach	not run	witness not constructed in this pass (needs a reach, DAE, observer or hybrid-automaton setup)
