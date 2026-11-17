@@ -2,6 +2,7 @@ module
 
 public import CORALean.ContDynamics.LinearSys.Definitions.VerifySupportResult
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.BalanceScalesFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.EnergyGrowthFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.LogNormUpFloat
 public import CORALean.ContDynamics.LinearSys.Operations.VerifySupportPassFloat
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyTimeSetdiff
@@ -62,17 +63,26 @@ def LinearSys.step_verifySupportUnsat (Δt : ℚ) (flags : List (Fin r → Bool)
     if f.1 q then LinearSys.verifyTimeSetdiff W (f.2 * Δt) ((f.2 + 1) * Δt) else W) (U q)
   fun q => V[q.val]'q.isLt
 
+/-- The growth bound `‖S⁻¹e^{tA}S‖ ≤ κ e^{tμ}`: the energy weight's at the rate `1/t_f` if it is
+accepted (`MatExp.energyGrowthFloat`), else `κ = 1` and the log norm. -/
+@[step_of LinearSys.verifySupportFuncFloat]
+def LinearSys.step_verifySupportGrowth (A : Mat 𝕋 n n) (s : Vec 𝕋 n) (tFinal : 𝕋) : 𝕋 × 𝕋 :=
+  let ρ := divUp one tFinal
+  match MatExp.energyGrowthFloat A s ρ with
+  | some κ => (κ, ρ)
+  | none => (one, MatExp.logNormUpFloat A s)
+
 /-- The passes from `Δt` while `fuel` lasts, with the unverified times `U` up to `tf`. -/
 @[step_of LinearSys.verifySupportFuncFloat]
 def LinearSys.step_verifySupportLoop (A : Mat 𝕋 n n) (s c : Vec 𝕋 n) (G : Mat 𝕋 n m)
-    (v : Vec 𝕋 n) (βX μ : 𝕋) (ℓ₀ : Mat 𝕋 r n) (E₀ d : Vec 𝕋 r) (T : ℚ) (minStep : 𝕋) :
+    (v : Vec 𝕋 n) (βX κ μ : 𝕋) (ℓ₀ : Mat 𝕋 r n) (E₀ d : Vec 𝕋 r) (T : ℚ) (minStep : 𝕋) :
     ℕ → 𝕋 → (Fin r → List (ℚ × ℚ)) → ℚ → ℕ → LinearSys.VerifySupportResult 𝕋 r
   | 0, Δt, _, _, it => ⟨none, it, Δt, 0, none⟩
   | fuel + 1, Δt, U, tf, it =>
     let shrink := divUp one (nsmulUp 5 one)                              -- 0.2
     let N := ⌈tf / ToRat.toRat Δt⌉₊                                      -- the steps to tf
-    match LinearSys.verifySupportPassFloat A s c G v βX μ ℓ₀ E₀ d Δt N T with
-    | .notConverged => LinearSys.step_verifySupportLoop A s c G v βX μ ℓ₀ E₀ d T minStep fuel
+    match LinearSys.verifySupportPassFloat A s c G v βX κ μ ℓ₀ E₀ d Δt N T with
+    | .notConverged => LinearSys.step_verifySupportLoop A s c G v βX κ μ ℓ₀ E₀ d T minStep fuel
         (mulUp Δt shrink) U tf (it + 1)
     | .noBound => ⟨none, it + 1, Δt, N, none⟩
     | .falsified k q => ⟨some false, it + 1, Δt, N, some ((k : ℚ) * ToRat.toRat Δt, q)⟩
@@ -83,7 +93,7 @@ def LinearSys.step_verifySupportLoop (A : Mat 𝕋 n n) (s c : Vec 𝕋 n) (G : 
         let tf' := (List.finRange r).foldl (fun t q => (U' q).foldl (fun t iv => max t iv.2) t) 0
         let Δt' := mulUp Δt shrink
         if ltStrict Δt' minStep then ⟨none, it + 1, Δt, N, none⟩
-        else LinearSys.step_verifySupportLoop A s c G v βX μ ℓ₀ E₀ d T minStep fuel Δt' U' tf'
+        else LinearSys.step_verifySupportLoop A s c G v βX κ μ ℓ₀ E₀ d T minStep fuel Δt' U' tf'
           (it + 1)
 
 
@@ -95,7 +105,7 @@ def LinearSys.verifySupportFuncFloat (A : Mat 𝕋 n n) (c : Vec 𝕋 n) (G : Ma
     (Cs : Mat 𝕋 r p) (Cm : Mat 𝕋 p n) (d : Vec 𝕋 r) (tFinal minStep : 𝕋) (fuel : ℕ) :
     LinearSys.VerifySupportResult 𝕋 r :=
   let s := MatExp.balanceScalesFloat A                                   -- the scales
-  let μ := MatExp.logNormUpFloat A s                                     -- the growth rate
+  let g := LinearSys.step_verifySupportGrowth A s tFinal                 -- κ e^{tμ}
   let v := (Interval.point fun i =>                                      -- ≥ |c| + Σⱼ |gⱼ|
     addUp (absolute (c i)) (sumUp fun j => absolute (G i j))).materialise.sup
   let βX := maximum zero (maximumOver fun i => divUp (v i) (s i))      -- ≥ |xᵢ|/sᵢ over X₀
@@ -111,8 +121,8 @@ def LinearSys.verifySupportFuncFloat (A : Mat 𝕋 n n) (c : Vec 𝕋 n) (G : Ma
   | none =>
     let Δt₀ := divUp tFinal (nsmulUp 100 one)                            -- t_f / 100
     let Δt := divUp tFinal (intUp ⌈ToRat.toRat (divUp tFinal Δt₀)⌉)      -- t_f / ⌈t_f / Δt₀⌉
-    LinearSys.step_verifySupportLoop A s c G v βX μ ℓ₀ E₀ d T minStep fuel Δt (fun _ => [(0, T)])
-      T 0
+    LinearSys.step_verifySupportLoop A s c G v βX g.1 g.2 ℓ₀ E₀ d T minStep fuel Δt
+      (fun _ => [(0, T)]) T 0
 
 end CORALean
 

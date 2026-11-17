@@ -6,6 +6,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Operations.BalanceScalesFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyCorrectionInputFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyCorrectionStateFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpBallFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.EnergyGrowthFloat
 import CORALean.ContDynamics.LinearSys.Operations.VerifySupportFuncFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixEntrywiseFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixEntrywiseFloat
@@ -337,6 +338,24 @@ def handleLinearSysExpBall (dops : DtypeOps 𝕋) (req : Json) : Resp := do
     | some (D, r) => pure [("D", printMat dops.showExact D), ("r", Json.str (dops.showExact r))]
   else throw s!"`A` must be square, not {dA.r}×{dA.c}"
 
+/-- `linearSys.energyGrowth`: `MatExp.energyWeightFloat` of `A` at the rate `1/t_f` (`P`, `null`
+if `A` has not the form) and `MatExp.energyGrowthFloat`'s factor `kappa` with the balancing scales
+of `A` (`null` if the weight is not accepted). -/
+def handleLinearSysEnergyGrowth (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "energyGrowth" req ["A", "tFinal"]
+  let dA ← parseMatDyn dops.readExact (← field req "A")
+  if hA : dA.r = dA.c then
+    let A : Mat 𝕋 dA.r dA.r := cast (congrArg (Mat 𝕋 dA.r) hA.symm) dA.M
+    let ρ := FloatOps.divUp FloatOps.one (← aux_scalar dops req "tFinal")
+    let P := match MatExp.energyWeightFloat A ρ with
+      | none => Json.null
+      | some P => printMat dops.showExact P.2
+    let κ := match MatExp.energyGrowthFloat A (MatExp.balanceScalesFloat A) ρ with
+      | none => Json.null
+      | some κ => Json.str (dops.showExact κ)
+    pure [("P", P), ("kappa", κ)]
+  else throw s!"`A` must be square, not {dA.r}×{dA.c}"
+
 /-- `linearSys.verifySupportFunc`: `LinearSys.verifySupportFuncFloat` of `ẋ = Ax` from `⟨x0, G0⟩`
 against `(Cs C x)_q ≤ d_q`; the verdict, CORA's statistics, a falsification's step and row. -/
 def handleLinearSysVerifySupportFunc (dops : DtypeOps 𝕋) (req : Json) : Resp := do
@@ -429,7 +448,7 @@ end
 /-- Every op of this file, without the `linearSys.` prefix. -/
 def linearSysOpNames : List String :=
   [ "reach", "canonicalForm", "isCanonicalForm", "outputSet", "taylorMatrices", "oneStep",
-    "oneStepClosedForm", "verifyCorrection", "expBall", "verifySupportFunc",
+    "oneStepClosedForm", "verifyCorrection", "expBall", "energyGrowth", "verifySupportFunc",
     "homogeneousSolution", "post", "initReach", "errorSolution_adaptive", "affineSolution",
     "particularSolution_constant", "particularSolution_timeVarying" ]
 
@@ -445,8 +464,10 @@ def handleLinearSysOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] 
       valueBool (LinearSys.isCanonicalFormFloat (← parseLinearSys dops req).sys))
   | "outputSet" => some (handleLinearSysOutputSet dops req)
   | "taylorMatrices" => some (handleLinearSysTaylorMatrices dops req)
+  -- the support-function verification and its matrices
   | "verifyCorrection" => some (handleLinearSysVerifyCorrection dops req)
   | "expBall" => some (handleLinearSysExpBall dops req)
+  | "energyGrowth" => some (handleLinearSysEnergyGrowth dops req)
   | "verifySupportFunc" => some (handleLinearSysVerifySupportFunc dops req)
   | "oneStep" | "oneStepClosedForm" | "homogeneousSolution" | "post" | "initReach"
   | "errorSolution_adaptive"

@@ -29,6 +29,7 @@ there. A falsifying time point has a point of `X₀` above `d_q`.
 * `G` – float generators of the initial set
 * `v` – float bound of the initial set's magnitudes
 * `βX` – float scaled bound of `v`
+* `κ` – float growth factor
 * `μ` – float growth rate
 * `ℓ₀` – float rows
 * `E₀` – float errors of the rows
@@ -43,7 +44,7 @@ there. A falsifying time point has a point of `X₀` above `d_q`.
 * `hv` – `v` bounds `|c| + Σⱼ |gⱼ|`
 * `hβX0` – `βX` is nonnegative
 * `hβX` – `βX` bounds every `vᵢ / sᵢ`
-* `hμ` – `‖S⁻¹ e^{tA} S‖ ≤ e^{tμ}` for `t ≥ 0`
+* `hμ` – `‖S⁻¹ e^{tA} S‖ ≤ κ e^{tμ}` for `t ≥ 0`
 * `hE₀` – the weighted error of each row is at most `E₀`
 
 ## Conclusion
@@ -102,16 +103,17 @@ private theorem LinearSys.aux_doublings_le (σ : ℕ) : -- --- CONCL ---
     linarith
 
 omit [ToRat 𝕋] in
-/-- `Y = e↑(a)` is at least `1` and bounds the weighted norm of `D^p` for every `p ≤ N`. -/
-private theorem LinearSys.aux_growth (A : Mat 𝕋 n n) {s : Vec 𝕋 n} {μ Δt a : 𝕋} {N : ℕ}
+/-- `Y = max(1, κ e↑(a))` is at least `1` and bounds the weighted norm of `D^p` for every
+`p ≤ N`. -/
+private theorem LinearSys.aux_growth (A : Mat 𝕋 n n) {s : Vec 𝕋 n} {κ μ Δt a : 𝕋} {N : ℕ}
     (hΔt : 0 < toReal Δt)
-    (hμ : ∀ t : ℝ, 0 ≤ t →
-      ‖Real.MatExp.scaleConj (toRealVec s) (exp (t • toRealMat A))‖ ≤ Real.exp (t * toReal μ))
+    (hμ : ∀ t : ℝ, 0 ≤ t → ‖Real.MatExp.scaleConj (toRealVec s) (exp (t • toRealMat A))‖ ≤
+      toReal κ * Real.exp (t * toReal μ))
     (hadef : a = mulUp (maximum μ FloatOps.zero) (mulUp (nsmulUp N FloatOps.one) Δt))
     (ha : le a (Nat.iterate (fun x => addDown x x) 29 FloatOps.one) = true) : -- --- CONCL ---
-    1 ≤ toReal (expUp 30 a) ∧ ∀ p ≤ N,
+    1 ≤ toReal (maximum FloatOps.one (mulUp κ (expUp 30 a))) ∧ ∀ p ≤ N,
       ‖Real.MatExp.scaleConj (toRealVec s) (exp (toReal Δt • toRealMat A) ^ p)‖
-        ≤ toReal (expUp 30 a) := by -- --- PROOF ---
+        ≤ toReal (maximum FloatOps.one (mulUp κ (expUp 30 a))) := by -- --- PROOF ---
   have hμ0 : 0 ≤ toReal (maximum μ FloatOps.zero) := by
     rw [toReal_maximum, toReal_zero]; exact le_max_right _ _
   have hNt : (N : ℝ) * toReal Δt ≤ toReal (mulUp (nsmulUp N FloatOps.one) Δt) := by
@@ -124,10 +126,16 @@ private theorem LinearSys.aux_growth (A : Mat 𝕋 n n) {s : Vec 𝕋 n} {μ Δt
     refine le_expUp 30 a (le_trans (toReal_le_of_le ha) ?_)
     refine le_trans (LinearSys.aux_doublings_le 29) (le_of_eq ?_)
     norm_num
-  have ha0 : 0 ≤ toReal a := le_trans (mul_nonneg hμ0 (by positivity)) ha'
-  refine ⟨le_trans (Real.one_le_exp ha0) hexp, fun p hp => ?_⟩
-  rw [← LinearSys.aux_exp_pow]
-  refine le_trans (hμ _ (by positivity)) (le_trans (Real.exp_le_exp.mpr ?_) hexp)
+  -- `κ ≥ ‖I‖ ≥ 0` at `t = 0`
+  have hκ : 0 ≤ toReal κ := by
+    have h := hμ 0 le_rfl
+    rw [zero_mul, Real.exp_zero, mul_one] at h
+    exact (norm_nonneg _).trans h
+  refine ⟨by rw [toReal_maximum, toReal_one]; exact le_max_left _ _, fun p hp => ?_⟩
+  rw [← LinearSys.aux_exp_pow, toReal_maximum]
+  refine le_trans (hμ _ (by positivity)) (le_trans ?_ (le_max_right _ _))
+  refine le_trans (mul_le_mul_of_nonneg_left (le_trans (Real.exp_le_exp.mpr ?_) hexp) hκ)
+    (mul_le_mulUp _ _)
   have hpN : (p : ℝ) * toReal Δt ≤ (N : ℝ) * toReal Δt :=
     mul_le_mul_of_nonneg_right (by exact_mod_cast hp) hΔt.le
   have hμle : toReal μ ≤ toReal (maximum μ FloatOps.zero) := by
@@ -384,18 +392,18 @@ private theorem LinearSys.aux_steps {s c : Vec 𝕋 n} {G : Mat 𝕋 n m} {βX :
 -- =======================================  MAIN THEOREM  ======================================= --
 
 theorem LinearSys.verifySupportPassFloat_sound (A : Mat 𝕋 n n) {s c : Vec 𝕋 n} {G : Mat 𝕋 n m}
-    {v : Vec 𝕋 n} {βX μ : 𝕋} {ℓ₀ : Mat 𝕋 r n} {E₀ d : Vec 𝕋 r} {Δt : 𝕋} {N : ℕ} {T : ℚ}
+    {v : Vec 𝕋 n} {βX κ μ : 𝕋} {ℓ₀ : Mat 𝕋 r n} {E₀ d : Vec 𝕋 r} {Δt : 𝕋} {N : ℕ} {T : ℚ}
     {Lr : Fin r → Vec ℝ n} (hs : ∀ i, 0 < toReal (s i))
     (hv : ∀ i, |toReal (c i)| + ∑ j, |toReal (G i j)| ≤ toReal (v i)) (hβX0 : 0 ≤ toReal βX)
     (hβX : ∀ i, toReal (v i) ≤ toReal βX * toReal (s i))
-    (hμ : ∀ t : ℝ, 0 ≤ t →
-      ‖Real.MatExp.scaleConj (toRealVec s) (exp (t • toRealMat A))‖ ≤ Real.exp (t * toReal μ))
+    (hμ : ∀ t : ℝ, 0 ≤ t → ‖Real.MatExp.scaleConj (toRealVec s) (exp (t • toRealMat A))‖ ≤
+      toReal κ * Real.exp (t * toReal μ))
     (hE₀ : ∀ q, ∑ i, |Lr q i - toReal (ℓ₀ q i)| * toReal (s i) ≤ toReal (E₀ q)) : -- --- CONCL ---
-    (∀ fl, LinearSys.verifySupportPassFloat A s c G v βX μ ℓ₀ E₀ d Δt N T = .decided fl →
+    (∀ fl, LinearSys.verifySupportPassFloat A s c G v βX κ μ ℓ₀ E₀ d Δt N T = .decided fl →
       fl.length = N ∧ ∀ i (hi : i < fl.length) q, fl[i] q = true → ∀ t : ℝ,
         i * toReal Δt ≤ t → t ≤ (i + 1) * toReal Δt → ∀ b : Fin m → ℝ, (∀ j, |b j| ≤ 1) →
         Lr q ⬝ᵥ (exp (t • toRealMat A) *ᵥ (toRealVec c + toRealMat G *ᵥ b)) < toReal (d q))
-    ∧ (∀ k q, LinearSys.verifySupportPassFloat A s c G v βX μ ℓ₀ E₀ d Δt N T = .falsified k q →
+    ∧ (∀ k q, LinearSys.verifySupportPassFloat A s c G v βX κ μ ℓ₀ E₀ d Δt N T = .falsified k q →
       (k : ℚ) * ToRat.toRat Δt ≤ T ∧ 0 ≤ (k : ℚ) * ToRat.toRat Δt ∧
       ∃ b : Fin m → ℝ, (∀ j, |b j| ≤ 1) ∧ toReal (d q)
         < Lr q ⬝ᵥ (exp (((k : ℝ) * toReal Δt) • toRealMat A) *ᵥ (toRealVec c + toRealMat G *ᵥ b)))
@@ -421,7 +429,8 @@ theorem LinearSys.verifySupportPassFloat_sound (A : Mat 𝕋 n n) {s c : Vec �
   have hΔt := toReal_lt_of_ltStrict hpos
   rw [toReal_zero] at hΔt
   obtain ⟨hY1, hY⟩ := LinearSys.aux_growth A hΔt hμ rfl hle
-  set Y := expUp 30 (mulUp (maximum μ FloatOps.zero) (mulUp (nsmulUp N FloatOps.one) Δt))
+  set Y := maximum FloatOps.one
+    (mulUp κ (expUp 30 (mulUp (maximum μ FloatOps.zero) (mulUp (nsmulUp N FloatOps.one) Δt))))
   -- `F`'s center, radius and magnitude bound, as the definition names them
   set Fc : Mat 𝕋 n n := fun j k => addUp (F.inf j k) (half (subUp (F.sup j k) (F.inf j k)))
     with hFc

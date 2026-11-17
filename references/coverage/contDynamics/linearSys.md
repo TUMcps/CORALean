@@ -432,8 +432,22 @@ row is verified or a time point falsified. `e^{AΔt}` is a float matrix `D̃` wi
 The rows `ℓ̃_k = ℓ̃_{k−1} D̃` are kept as computed; the weighted error of each against
 `ℓ e^{kΔtA}` grows by its step's error
 ([`MatExp.weightedSum_vecMul_le`](../../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/WeightedSumVecMulLe.lean))
-times `Y ≥ e^{μ⁺NΔt}`, `μ` the balanced log norm
-([`MatExp.logNormUpFloat`](../../../src/CORALean/ContDynamics/LinearSys/MatExp/Operations/LogNormUpFloat.lean)).
+times `Y ≥ κ e^{μ⁺NΔt}`, a bound of `‖S⁻¹e^{tA}S‖`: `κ = 1` and `μ` the balanced log norm
+([`MatExp.logNormUpFloat`](../../../src/CORALean/ContDynamics/LinearSys/MatExp/Operations/LogNormUpFloat.lean)),
+or an energy weight's where it is accepted.
+
+**`verify` — the support-function variant, the energy weight.** A second-order system
+`A = [[0, I, 0], [−K, −C, F], [0, 0, 0]]` (the beams, the space station) grows in no log norm, but
+its energy does not grow:
+[`MatExp.energyWeightFloat`](../../../src/CORALean/ContDynamics/LinearSys/MatExp/Operations/EnergyWeightFloat.lean)
+recognises the form exactly (anything else falls back to the log norm) and proposes
+`P = blockdiag(DK, D, βI)`, `D` a diagonal mass that symmetrizes `K`.
+[`MatExp.energyGrowthFloat`](../../../src/CORALean/ContDynamics/LinearSys/MatExp/Operations/EnergyGrowthFloat.lean)
+checks it in powers of two `σ ≈ 1/√P_ii`: `P̃ − aI` and `2rP̃ − P̃Ã − (P̃Ã)ᵀ`, `r = 1/t_f`, are
+certified positive semi-definite by a Cholesky factor (`Ellipsoid.psdCheck`), which gives
+`‖S⁻¹e^{tA}S‖ ≤ κ e^{rt}` with `κ = √(b/a) maxᵢ σᵢ/sᵢ √(Σⱼ (sⱼ/σⱼ)²)`
+([`MatExp.norm_scaleConj_exp_le_energyGrowthFloat`](../../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/EnergyGrowthFloat.lean)).
+Once per run; the passes keep the balanced scales `s`.
 
 **`verify` — the support-function variant without inputs, its verdicts.** A time point's distance
 is bounded from above
@@ -444,7 +458,7 @@ is below `0`. The times are exact rationals, and no unverified interval is dropp
 ([`LinearSys.mem_Icc_of_not_mem_verifyTimeSetdiff`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyTimeSetdiff.lean)).
 [`LinearSys.verifySupportFuncFloat_sound`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifySupportFuncFloat.lean):
 `true` holds every row over `[0, t_f]` for all of `X₀`, `false` names a time and a row that a point
-of `X₀` violates. `Y` overflows where `μ⁺ t_f` is large (the beams, the space station): those
+of `X₀` violates. Without an accepted energy weight, `Y` overflows where `μ⁺ t_f` is large: those
 runs return no verdict.
 
 **`verify` — cora-issue, `priv_verifyRA_supportFunc`, the short intervals.** `aux_removeFromUnsat`
