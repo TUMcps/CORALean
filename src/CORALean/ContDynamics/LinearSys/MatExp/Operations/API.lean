@@ -123,6 +123,9 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyCorrection
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyCorrectionStateFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyCorrSumsFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyPowerFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.Basic
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpBallFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.LogNormUpFloat
 
 /-!
 # What enclosing a matrix exponential computes

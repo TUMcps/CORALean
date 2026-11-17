@@ -20,6 +20,7 @@ public import CORALean.ContDynamics.LinearSys.Counterexamples.VerifySupportFuncF
 public import CORALean.ContDynamics.LinearSys.Counterexamples.VerifySupportFuncIntervalColumnCora
 public import CORALean.ContDynamics.LinearSys.Counterexamples.VerifySearchStall
 public import CORALean.ContDynamics.LinearSys.Counterexamples.VerifySearchStallExactNonvacuous
+public import CORALean.ContDynamics.LinearSys.Counterexamples.VerifyTimeSetdiffCora
 
 /-!
 # Counterexamples of `LinearSys`, collected
