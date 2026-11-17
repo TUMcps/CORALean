@@ -204,6 +204,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpmMixedMatZonoOu
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.DependentTermsFloatOuter
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsDotProductLeWeightedSum
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpBallFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.EnergyGrowthFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.LogNormUpFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfSumAbsLe
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ScaleConjExp

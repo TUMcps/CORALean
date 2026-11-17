@@ -125,6 +125,8 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyCorrSumsFl
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyPowerFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.Basic
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpBallFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.EnergyGrowthFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.EnergyWeightFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.LogNormUpFloat
 
 /-!

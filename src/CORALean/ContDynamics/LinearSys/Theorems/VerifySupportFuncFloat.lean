@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Operations.VerifySupportFuncFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.EnergyGrowthFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.LogNormUpFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifySupportPassFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifyTimeSetdiff
@@ -17,7 +18,8 @@ A verdict `true` holds `(C_s C e^{tA} x)_q < d_q` for every row `q`, time `t ∈
 that a point of `X₀` violates there. The passes keep the unverified times `U`: every time of
 `[0, t_f]` outside them holds every row (`LinearSys.mem_Icc_of_not_mem_verifyTimeSetdiff`), and a
 pass removes only steps it verified (`LinearSys.verifySupportPassFloat_sound`, whose hypotheses the
-run constants meet: the balanced scales, the log norm `μ`
+run constants meet: the balanced scales, the growth bound `κ e^{tμ}` of the energy weight
+(`MatExp.norm_scaleConj_exp_le_energyGrowthFloat`) or of the log norm
 (`MatExp.norm_scaleConj_exp_le_logNormUpFloat`), and the bracket of `C_s C`).
 
 ## Inputs
@@ -86,18 +88,18 @@ private theorem LinearSys.aux_fold (Δt : ℚ) (q : Fin r) (t : ℝ) : -- --- CO
 
 /-- The passes: what a verdict claims holds as long as every time outside `U` holds every row. -/
 private theorem LinearSys.aux_loop (A : Mat 𝕋 n n) {s c : Vec 𝕋 n} {G : Mat 𝕋 n m}
-    {v : Vec 𝕋 n} {βX μ : 𝕋} {ℓ₀ : Mat 𝕋 r n} {E₀ d : Vec 𝕋 r} {T : ℚ} {minStep : 𝕋}
+    {v : Vec 𝕋 n} {βX κ μ : 𝕋} {ℓ₀ : Mat 𝕋 r n} {E₀ d : Vec 𝕋 r} {T : ℚ} {minStep : 𝕋}
     {Lr : Fin r → Vec ℝ n} (hs : ∀ i, 0 < toReal (s i))
     (hv : ∀ i, |toReal (c i)| + ∑ j, |toReal (G i j)| ≤ toReal (v i)) (hβX0 : 0 ≤ toReal βX)
     (hβX : ∀ i, toReal (v i) ≤ toReal βX * toReal (s i))
-    (hμ : ∀ t : ℝ, 0 ≤ t →
-      ‖Real.MatExp.scaleConj (toRealVec s) (exp (t • toRealMat A))‖ ≤ Real.exp (t * toReal μ))
+    (hμ : ∀ t : ℝ, 0 ≤ t → ‖Real.MatExp.scaleConj (toRealVec s) (exp (t • toRealMat A))‖ ≤
+      toReal κ * Real.exp (t * toReal μ))
     (hE₀ : ∀ q, ∑ i, |Lr q i - toReal (ℓ₀ q i)| * toReal (s i) ≤ toReal (E₀ q)) : -- --- CONCL ---
     ∀ fuel Δt (U : Fin r → List (ℚ × ℚ)) tf it,
     (∀ q (t : ℝ), 0 ≤ t → t ≤ T → (∀ iv ∈ U q, ¬((iv.1 : ℝ) ≤ t ∧ t ≤ iv.2)) →
       ∀ b : Fin m → ℝ, (∀ j, |b j| ≤ 1) →
       Lr q ⬝ᵥ (exp (t • toRealMat A) *ᵥ (toRealVec c + toRealMat G *ᵥ b)) < toReal (d q)) →
-    ∀ R, R = LinearSys.step_verifySupportLoop A s c G v βX μ ℓ₀ E₀ d T minStep fuel Δt U tf it →
+    ∀ R, R = LinearSys.step_verifySupportLoop A s c G v βX κ μ ℓ₀ E₀ d T minStep fuel Δt U tf it →
     (R.verdict = some true → ∀ q (t : ℝ), 0 ≤ t → t ≤ T → ∀ b : Fin m → ℝ, (∀ j, |b j| ≤ 1) →
       Lr q ⬝ᵥ (exp (t • toRealMat A) *ᵥ (toRealVec c + toRealMat G *ᵥ b)) < toReal (d q))
     ∧ (R.verdict = some false → ∃ t q, R.falsification = some (t, q) ∧ 0 ≤ t ∧ t ≤ T ∧
@@ -211,7 +213,17 @@ theorem LinearSys.verifySupportFuncFloat_sound (A : Mat 𝕋 n n) (c : Vec 𝕋 
     rw [toReal_maximum]
     exact le_trans (le_maximumOver (fun i => divUp (v i) (s i)) i) (le_max_right _ _)
   -- the growth rate, and the rows' bracket with its error
-  have hμ := fun t (ht : (0 : ℝ) ≤ t) => MatExp.norm_scaleConj_exp_le_logNormUpFloat A hs ht
+  have hμ : ∀ t : ℝ, 0 ≤ t → ‖Real.MatExp.scaleConj (toRealVec s) (exp (t • toRealMat A))‖ ≤
+      toReal (LinearSys.step_verifySupportGrowth A s tFinal).1 *
+        Real.exp (t * toReal (LinearSys.step_verifySupportGrowth A s tFinal).2) := by
+    intro t ht
+    unfold LinearSys.step_verifySupportGrowth
+    dsimp only
+    -- the log norm, or an accepted energy weight
+    rcases hκ : MatExp.energyGrowthFloat A s (divUp FloatOps.one tFinal) with _ | κ
+    · rw [toReal_one, one_mul]
+      exact MatExp.norm_scaleConj_exp_le_logNormUpFloat A hs ht
+    · exact MatExp.norm_scaleConj_exp_le_energyGrowthFloat A _ hs κ (Option.mem_def.mpr hκ) t ht
   have hL : toRealMat Cs * toRealMat Cm ∈ L.toSet :=
     Interval.matMul_outer _ _ (Interval.mem_point Cs) (Interval.mem_point Cm)
   have hE₀ : ∀ q, ∑ i, |Lr q i - toReal (L.sup q i)| * toReal (s i) ≤ toReal (E₀ q) := by

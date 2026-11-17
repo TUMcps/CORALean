@@ -18,7 +18,7 @@ public import CORALean.Global.StepOf
 `N` steps of `Δt` for `ẋ = Ax` from `X₀ = ⟨c, G⟩` against `ℓ_q x ≤ d_q`. CORA propagates
 `ℓ_{k+1} = ℓ_k e^{AΔt}` with a point `expm`; here `e^{AΔt}` is `MatExp.expBallFloat`'s `D̃`
 within a balanced radius `r`, the rows `ℓ̃_{k+1} = ℓ̃_k D̃` are rounded up, and with
-`Y ≥ e^{μ⁺NΔt}` the weighted error of `ℓ̃_k` is at most `Y (E₀ + Σ_{j<k} δ_j)`,
+`Y ≥ κ e^{μ⁺NΔt}` the weighted error of `ℓ̃_k` is at most `Y (E₀ + Σ_{j<k} δ_j)`,
 `δ_j = ‖ℓ̃_j‖_s r` plus the row's rounding gap (`0` at `nearest`). Each time point gets CORA's
 distance from above and below (`LinearSys.verifySupportUpFloat`, `...DownFloat`), each step the
 larger end plus the curvature term (`LinearSys.verifyCurvatureUpFloat`). A step below `0` is
@@ -31,7 +31,8 @@ verified; a time point within `T` above `0` falsifies, the first in CORA's scan 
 * `G` – float generators of the initial set
 * `v` – float upper bound of `|c| + Σⱼ |gⱼ|`
 * `βX` – float bound of the scaled entries of the initial set
-* `μ` – float upper bound of the balanced logarithmic norm of `A`
+* `κ` – float factor of the balanced growth bound `κ e^{tμ}` of `e^{tA}`
+* `μ` – float rate of that bound
 * `ℓ₀` – float rows of the halfspaces
 * `E₀` – float bounds of the weighted errors of the rows
 * `d` – float offsets of the halfspaces
@@ -95,7 +96,7 @@ def LinearSys.step_verifySupportStepsFloat (s c : Vec 𝕋 n) (G : Mat 𝕋 n m)
 /-- One pass: the correction matrix and the exponential at `Δt`, the growth bound `Y` over `N Δt`,
 the curvature data, then the `N` steps from `ℓ₀`. -/
 def LinearSys.verifySupportPassFloat (A : Mat 𝕋 n n) (s c : Vec 𝕋 n) (G : Mat 𝕋 n m)
-    (v : Vec 𝕋 n) (βX μ : 𝕋) (ℓ₀ : Mat 𝕋 r n) (E₀ d : Vec 𝕋 r) (Δt : 𝕋) (N : ℕ) (T : ℚ) :
+    (v : Vec 𝕋 n) (βX κ μ : 𝕋) (ℓ₀ : Mat 𝕋 r n) (E₀ d : Vec 𝕋 r) (Δt : 𝕋) (N : ℕ) (T : ℚ) :
     LinearSys.VerifySupportOutcome r :=
   match MatExp.verifyCorrectionStateFloat A s Δt with
   | none => .notConverged
@@ -114,7 +115,7 @@ def LinearSys.verifySupportPassFloat (A : Mat 𝕋 n n) (s c : Vec 𝕋 n) (G : 
   let βF := maximum zero (maximumOver fun i => divUp (mulVecUp Fm v i) (s i))
   let a := mulUp (maximum μ zero) (mulUp (nsmulUp N one) Δt)            -- ≥ μ⁺ N Δt
   if ltStrict zero Δt && le a ((fun x => addDown x x)^[29] one) then
-    let Y := expUp 30 a                                                  -- ≥ e^{μ⁺ N Δt}
+    let Y := maximum one (mulUp κ (expUp 30 a))                          -- ≥ κ e^{μ⁺ N Δt}
     let aff₀ := (Interval.point fun q =>                                 -- the distances at t_0
       subUp (LinearSys.verifySupportUpFloat c G βX (ℓ₀ q) (mulUp Y (E₀ q))) (d q)).materialise.sup
     LinearSys.step_verifySupportStepsFloat s c G βX wc WG wr βF D rD Y d Δt T 0 N ℓ₀ E₀ aff₀ []
