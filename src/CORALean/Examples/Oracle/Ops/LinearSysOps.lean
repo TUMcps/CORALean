@@ -5,6 +5,8 @@ import CORALean.ContDynamics.LinearSys.Operations.TaylorMatricesFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.BalanceScalesFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyCorrectionInputFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyCorrectionStateFloat
+import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpBallFloat
+import CORALean.ContDynamics.LinearSys.Operations.VerifySupportFuncFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixEntrywiseFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixEntrywiseFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
@@ -322,6 +324,48 @@ def handleLinearSysVerifyCorrection (dops : DtypeOps 𝕋) (req : Json) : Resp :
     ++ out "F" (MatExp.verifyCorrectionStateFloat d.sys.A s Δt)
     ++ out "G" (MatExp.verifyCorrectionInputFloat d.sys.A s Δt))
 
+/-- `linearSys.expBall`: `MatExp.expBallFloat` of `A` at `Δt` with the balancing scales of `A`,
+the matrix `D` and the balanced radius `r` with `‖S⁻¹(e^{AΔt} − D)S‖ ≤ r`; `null` for none. -/
+def handleLinearSysExpBall (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "expBall" req ["A", "timeStep"]
+  let dA ← parseMatDyn dops.readExact (← field req "A")
+  if hA : dA.r = dA.c then
+    let A : Mat 𝕋 dA.r dA.r := cast (congrArg (Mat 𝕋 dA.r) hA.symm) dA.M
+    let Δt ← aux_timeStep dops req
+    match MatExp.expBallFloat A (MatExp.balanceScalesFloat A) Δt with
+    | none => pure [("D", Json.null), ("r", Json.null)]
+    | some (D, r) => pure [("D", printMat dops.showExact D), ("r", Json.str (dops.showExact r))]
+  else throw s!"`A` must be square, not {dA.r}×{dA.c}"
+
+/-- `linearSys.verifySupportFunc`: `LinearSys.verifySupportFuncFloat` of `ẋ = Ax` from `⟨x0, G0⟩`
+against `(Cs C x)_q ≤ d_q`; the verdict, CORA's statistics, a falsification's step and row. -/
+def handleLinearSysVerifySupportFunc (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "verifySupportFunc" req
+    ["A", "x0", "G0", "Cs", "C", "d", "tFinal", "minStep", "fuel"]
+  let dA ← parseMatDyn dops.readExact (← field req "A")
+  if hA : dA.r = dA.c then
+    let n := dA.r
+    let A : Mat 𝕋 n n := cast (congrArg (Mat 𝕋 dA.r) hA.symm) dA.M
+    -- the initial set, the output matrix, the rows and their offsets
+    let x0 ← parseVecFixed dops.readExact n (← field req "x0")
+    let G0 ← parseMatRowsFixed dops.readExact n (← field req "G0")
+    let C ← parseMatColsFixed dops.readExact n (← field req "C")
+    let Cs ← parseMatColsFixed dops.readExact C.1 (← field req "Cs")
+    let d ← parseVecFixed dops.readExact Cs.1 (← field req "d")
+    let res := LinearSys.verifySupportFuncFloat A x0 G0.2 Cs.2 C.2 d
+      (← aux_scalar dops req "tFinal") (← aux_scalar dops req "minStep") (← natField req "fuel")
+    -- the falsifying time as a count of the last step size
+    let fals := match res.falsification with
+      | none => [("falsStep", Json.null), ("falsSpec", Json.null)]
+      | some (t, q) => [("falsStep", Lean.toJson (t / ToRat.toRat res.timeStep).num),
+          ("falsSpec", Lean.toJson q.val)]
+    pure ([("verified", Lean.toJson (res.verdict == some true)),
+      ("falsified", Lean.toJson (res.verdict == some false)),
+      ("iterations", Lean.toJson res.iterations),
+      ("timeStep", Json.str (dops.showExact res.timeStep)), ("nrSteps", Lean.toJson res.nrSteps)]
+      ++ fals)
+  else throw s!"`A` must be square, not {dA.r}×{dA.c}"
+
 /-- The one-set ops: a step's sets, solutions of the input and error terms. -/
 def handleLinearSysStepOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Resp := do
   let sysFields := ["A", "B", "c", "C", "D", "k", "E", "F"]
@@ -385,7 +429,7 @@ end
 /-- Every op of this file, without the `linearSys.` prefix. -/
 def linearSysOpNames : List String :=
   [ "reach", "canonicalForm", "isCanonicalForm", "outputSet", "taylorMatrices", "oneStep",
-    "oneStepClosedForm", "verifyCorrection",
+    "oneStepClosedForm", "verifyCorrection", "expBall", "verifySupportFunc",
     "homogeneousSolution", "post", "initReach", "errorSolution_adaptive", "affineSolution",
     "particularSolution_constant", "particularSolution_timeVarying" ]
 
@@ -402,6 +446,8 @@ def handleLinearSysOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] 
   | "outputSet" => some (handleLinearSysOutputSet dops req)
   | "taylorMatrices" => some (handleLinearSysTaylorMatrices dops req)
   | "verifyCorrection" => some (handleLinearSysVerifyCorrection dops req)
+  | "expBall" => some (handleLinearSysExpBall dops req)
+  | "verifySupportFunc" => some (handleLinearSysVerifySupportFunc dops req)
   | "oneStep" | "oneStepClosedForm" | "homogeneousSolution" | "post" | "initReach"
   | "errorSolution_adaptive"
   | "affineSolution" | "particularSolution_constant" | "particularSolution_timeVarying" =>

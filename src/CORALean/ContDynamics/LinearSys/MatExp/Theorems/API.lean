@@ -202,6 +202,12 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.DependentTermsMatZ
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpmIndPolytopeOuter
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpmMixedMatZonoOuter
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.DependentTermsFloatOuter
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsDotProductLeWeightedSum
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpBallFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.LogNormUpFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.NormLeOfSumAbsLe
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ScaleConjExp
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.WeightedSumVecMulLe
 
 /-!
 # What the exponential enclosures guarantee

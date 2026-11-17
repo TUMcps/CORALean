@@ -68,10 +68,10 @@
       "matlab": "not run"
     },
     "verify": {
-      "description": "STL union keeps last set; RA touching, curvature, linear indices",
+      "description": "STL union last set; RA touching, curvature, indices, slivers",
       "kind": "unsound",
       "cex": "VerifySTLKochdumperGloballyCora.lean",
-      "matlab": "not run"
+      "matlab": "partly confirmed"
     }
   },
   "contDynamics/linearSysDT": {

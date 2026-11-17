@@ -63,6 +63,8 @@ public import CORALean.ContDynamics.LinearSys.Definitions.InputLawsOver
 public import CORALean.ContDynamics.LinearSys.Definitions.SupportUpperState
 public import CORALean.ContDynamics.LinearSys.Definitions.VerifySearchState
 public import CORALean.ContDynamics.LinearSys.Definitions.InputRemainderSet
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifySupportOutcome
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifySupportResult
 
 /-!
 # What a continuous-time linear system means

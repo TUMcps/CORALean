@@ -307,6 +307,12 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VerifySearchLoopSound
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifySearchSound
 public import CORALean.ContDynamics.LinearSys.Theorems.PolyWindowFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.PolyPointFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyCurvatureUpFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifySupportDownFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifySupportFuncFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifySupportPassFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifySupportUpFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyTimeSetdiff
 
 /-!
 # What `LinearSys` guarantees
