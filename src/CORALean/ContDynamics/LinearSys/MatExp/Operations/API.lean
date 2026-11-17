@@ -4,6 +4,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AdmissibleOrderF
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineDynamicsError
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineTimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.AffineTimePointNext
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.BalanceScalesFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrTerm
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrixEntrywise
@@ -91,6 +92,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHi
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermHiFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLo
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.QuadTermLoFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ScaledRemainderFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBoundsFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.OrderTestFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.StepTestFloat
@@ -116,6 +118,11 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.DependentTermsMa
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpmIndPolytope
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpmMixedMatZono
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.DependentTermsFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyCorrConvergedFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyCorrectionInputFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyCorrectionStateFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyCorrSumsFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyPowerFloat
 
 /-!
 # What enclosing a matrix exponential computes
