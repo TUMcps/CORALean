@@ -356,23 +356,33 @@ def handleLinearSysEnergyGrowth (dops : DtypeOps 𝕋) (req : Json) : Resp := do
     pure [("P", P), ("kappa", κ)]
   else throw s!"`A` must be square, not {dA.r}×{dA.c}"
 
-/-- `linearSys.verifySupportFunc`: `LinearSys.verifySupportFuncFloat` of `ẋ = Ax` from `⟨x0, G0⟩`
-against `(Cs C x)_q ≤ d_q`; the verdict, CORA's statistics, a falsification's step and row. -/
+/-- `linearSys.verifySupportFunc`: `LinearSys.verifySupportFuncFloat` of `ẋ = Ax + Bu`,
+`u ∈ ⟨uc, GU⟩` (no input without `B`), from `⟨x0, G0⟩` against `(Cs C x)_q ≤ d_q`; the verdict,
+CORA's statistics, a falsification's step and row. -/
 def handleLinearSysVerifySupportFunc (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   checkFields "verifySupportFunc" req
-    ["A", "x0", "G0", "Cs", "C", "d", "tFinal", "minStep", "fuel"]
+    ["A", "x0", "G0", "B", "uc", "GU", "Cs", "C", "d", "tFinal", "minStep", "fuel"]
   let dA ← parseMatDyn dops.readExact (← field req "A")
   if hA : dA.r = dA.c then
     let n := dA.r
     let A : Mat 𝕋 n n := cast (congrArg (Mat 𝕋 dA.r) hA.symm) dA.M
-    -- the initial set, the output matrix, the rows and their offsets
+    -- the initial set, the input, the output matrix, the rows and their offsets
     let x0 ← parseVecFixed dops.readExact n (← field req "x0")
     let G0 ← parseMatRowsFixed dops.readExact n (← field req "G0")
+    let inp : Σ q : Nat, Mat 𝕋 n q × Vec 𝕋 q × (Σ k : Nat, Mat 𝕋 q k) ←
+      match fieldOpt req "B" with
+      | none => pure ⟨0, fun _ j => j.elim0, fun j => j.elim0, ⟨0, fun j => j.elim0⟩⟩
+      | some jB => do
+        let B ← parseMatRowsFixed dops.readExact n jB
+        let uc ← parseVecFixed dops.readExact B.1 (← field req "uc")
+        let GU ← parseMatRowsFixed dops.readExact B.1 (← field req "GU")
+        pure ⟨B.1, B.2, uc, GU⟩
     let C ← parseMatColsFixed dops.readExact n (← field req "C")
     let Cs ← parseMatColsFixed dops.readExact C.1 (← field req "Cs")
     let d ← parseVecFixed dops.readExact Cs.1 (← field req "d")
-    let res := LinearSys.verifySupportFuncFloat A x0 G0.2 Cs.2 C.2 d
-      (← aux_scalar dops req "tFinal") (← aux_scalar dops req "minStep") (← natField req "fuel")
+    let res := LinearSys.verifySupportFuncFloat A x0 G0.2 inp.2.1 inp.2.2.1 inp.2.2.2.2 Cs.2
+      C.2 d (← aux_scalar dops req "tFinal") (← aux_scalar dops req "minStep")
+      (← natField req "fuel")
     -- the falsifying time as a count of the last step size
     let fals := match res.falsification with
       | none => [("falsStep", Json.null), ("falsSpec", Json.null)]

@@ -421,11 +421,11 @@ same terms rounded outward and add the remainder past the last order through a d
 small where `‖AΔt‖` is in the thousands. Their enclosures are
 [`MatExp.expDiff_mem_verifyCorrectionStateFloat`](../../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/VerifyCorrectionStateFloat.lean) and
 [`MatExp.expIntegralDiff_mem_verifyCorrectionInputFloat`](../../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/VerifyCorrectionInputFloat.lean).
-The particular solutions of an input are not yet formalized here.
+The particular solutions of an input are in the input's step below.
 
-**`verify` — the support-function variant without inputs, sound.**
+**`verify` — the support-function variant, sound.**
 [`LinearSys.verifySupportFuncFloat`](../../../src/CORALean/ContDynamics/LinearSys/Operations/VerifySupportFuncFloat.lean)
-runs CORA's passes for `ẋ = Ax`: the step `t_f / ⌈t_f / (t_f/100)⌉`, shrunk by `0.2` until every
+runs CORA's passes for `ẋ = Ax + Bu`, `u ∈ u_c + G_U[-1, 1]^k`: the step `t_f / ⌈t_f / (t_f/100)⌉`, shrunk by `0.2` until every
 row is verified or a time point falsified. `e^{AΔt}` is a float matrix `D̃` with a bound `r` on
 `‖S⁻¹(e^{AΔt} − D̃)S‖` in the balanced scales `S`
 ([`MatExp.expBallFloat`](../../../src/CORALean/ContDynamics/LinearSys/MatExp/Operations/ExpBallFloat.lean)).
@@ -449,7 +449,30 @@ certified positive semi-definite by a Cholesky factor (`Ellipsoid.psdCheck`), wh
 ([`MatExp.norm_scaleConj_exp_le_energyGrowthFloat`](../../../src/CORALean/ContDynamics/LinearSys/MatExp/Theorems/EnergyGrowthFloat.lean)).
 Once per run; the passes keep the balanced scales `s`.
 
-**`verify` — the support-function variant without inputs, its verdicts.** A time point's distance
+**`verify` — the support-function variant, the input.** One step's input is CORA's
+`aux_Pu`/`aux_overPU`/`aux_underPU` for `u₀ = Bu_c` and `M = BG_U`:
+[`LinearSys.verifyInputSolutionFloat`](../../../src/CORALean/ContDynamics/LinearSys/Operations/VerifyInputSolutionFloat.lean)
+sums the orders `[Δt^{i+1}/(i+1)!] Aⁱ` on the boxes of `u₀` and `M` until CORA's test stops them,
+and bounds the rest by the scaled remainder; its enclosure is
+[`LinearSys.verifyInputSolutionFloat_mem`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyInputSolutionFloat.lean),
+from the Taylor form of an input's contribution
+([`LinearSys.exists_eq_taylor_add_of_mem_inputReach`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/ExistsEqTaylorAddOfMemInputReach.lean)).
+The constant part splits off
+([`LinearSys.inputReach_image_add`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/InputReachImageAdd.lean)),
+and over `k` steps an input contributes one step's part per step, carried by `e^{jΔtA}`
+([`LinearSys.mem_inputReach_iff_sum`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/MemInputReachIffSum.lean)).
+
+**`verify` — the support-function variant, the input along a row.** The pass adds `ℓ̃'w` from above and below
+([`LinearSys.dotProduct_le_verifyBoxDotUpFloat`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyBoxDotUpFloat.lean),
+[`LinearSys.verifyBoxDotDownFloat_le_dotProduct`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyBoxDotDownFloat.lean)),
+the outer support of the varying part
+([`LinearSys.dotProduct_le_verifyInputOuterFloat`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyInputOuterFloat.lean)),
+the inner one for falsification
+([`LinearSys.verifyInputInnerFloat_le`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyInputInnerFloat.lean)),
+and `ℓ̃'G u₀` to a step's curvature term. Without an input no series is computed, and without a
+constant input no `G`. Unlike CORA, the horizon of a pass also shrinks with an input set.
+
+**`verify` — the support-function variant, its verdicts.** A time point's distance
 is bounded from above
 ([`LinearSys.dotProduct_le_verifySupportUpFloat`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifySupportUpFloat.lean))
 and below; a step is verified when the larger end plus the curvature term `ℓ̃'F_c X₀ + |ℓ̃|'F_r v`
@@ -457,8 +480,8 @@ and below; a step is verified when the larger end plus the curvature term `ℓ̃
 is below `0`. The times are exact rationals, and no unverified interval is dropped
 ([`LinearSys.mem_Icc_of_not_mem_verifyTimeSetdiff`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyTimeSetdiff.lean)).
 [`LinearSys.verifySupportFuncFloat_sound`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifySupportFuncFloat.lean):
-`true` holds every row over `[0, t_f]` for all of `X₀`, `false` names a time and a row that a point
-of `X₀` violates. Without an accepted energy weight, `Y` overflows where `μ⁺ t_f` is large: those
+`true` holds every row over `[0, t_f]` for all of `X₀` and every input, `false` names a time and a
+row that a point of `X₀` and an input violate. Without an accepted energy weight, `Y` overflows where `μ⁺ t_f` is large: those
 runs return no verdict.
 
 **`verify` — cora-issue, `priv_verifyRA_supportFunc`, the short intervals.** `aux_removeFromUnsat`

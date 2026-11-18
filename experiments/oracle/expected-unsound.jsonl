@@ -527,3 +527,10 @@
 {"P":{"cols":7,"data":["25*2^3","-25*2^2","0*2^0","0*2^0","0*2^0","0*2^0","0*2^0","-25*2^2","25*2^3","-25*2^2","0*2^0","0*2^0","0*2^0","0*2^0","0*2^0","-25*2^2","25*2^3","0*2^0","0*2^0","0*2^0","0*2^0","0*2^0","0*2^0","0*2^0","1*2^0","0*2^0","0*2^0","0*2^0","0*2^0","0*2^0","0*2^0","0*2^0","1*2^1","0*2^0","0*2^0","0*2^0","0*2^0","0*2^0","0*2^0","0*2^0","1*2^0","0*2^0","0*2^0","0*2^0","0*2^0","0*2^0","0*2^0","0*2^0","1*2^-1"],"rows":7},"id":9311,"kappa":"124395540479019*2^-43","ok":true}
 {"P":null,"id":9312,"kappa":null,"ok":true}
 {"falsSpec":null,"falsStep":null,"falsified":false,"id":9313,"iterations":1,"nrSteps":100,"ok":true,"timeStep":"5764607523034235*2^-59","verified":true}
+{"falsSpec":null,"falsStep":null,"falsified":false,"id":9314,"iterations":1,"nrSteps":100,"ok":true,"timeStep":"5764607523034235*2^-59","verified":true}
+{"falsSpec":0,"falsStep":77,"falsified":true,"id":9315,"iterations":1,"nrSteps":100,"ok":true,"timeStep":"5764607523034235*2^-59","verified":false}
+{"falsSpec":1,"falsStep":2499,"falsified":true,"id":9316,"iterations":3,"nrSteps":2500,"ok":true,"timeStep":"7378697629483821*2^-64","verified":false}
+{"falsSpec":1,"falsStep":98,"falsified":true,"id":9317,"iterations":1,"nrSteps":100,"ok":true,"timeStep":"5764607523034235*2^-59","verified":false}
+{"falsSpec":null,"falsStep":null,"falsified":false,"id":9318,"iterations":1,"nrSteps":100,"ok":true,"timeStep":"5764607523034235*2^-59","verified":true}
+{"falsSpec":null,"falsStep":null,"falsified":false,"id":9319,"iterations":1,"nrSteps":100,"ok":true,"timeStep":"5764607523034235*2^-59","verified":true}
+{"falsSpec":0,"falsStep":12499,"falsified":true,"id":9320,"iterations":4,"nrSteps":12500,"ok":true,"timeStep":"5902958103587057*2^-66","verified":false}

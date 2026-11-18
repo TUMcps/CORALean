@@ -25,6 +25,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.TimePointBound
 public import CORALean.ContDynamics.LinearSys.Definitions.TimePointBoundOfInputReach
 public import CORALean.ContDynamics.LinearSys.Definitions.TimePointWitness
 public import CORALean.ContDynamics.LinearSys.Definitions.TunedState
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifyInputSolution
 public import CORALean.ContDynamics.LinearSys.Definitions.VerifyIter
 public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifySpec
 public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifySound

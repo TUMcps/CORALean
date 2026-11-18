@@ -133,6 +133,9 @@ public import CORALean.ContDynamics.LinearSys.Operations.TimePointStepRemainderE
 public import CORALean.ContDynamics.LinearSys.Operations.TunedReach
 public import CORALean.ContDynamics.LinearSys.Operations.TunedRun
 public import CORALean.ContDynamics.LinearSys.Operations.Verify
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyInputInnerFloat
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyInputOuterFloat
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyRun
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyStep
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyFloat
@@ -178,6 +181,8 @@ public import CORALean.ContDynamics.LinearSys.Operations.SupportCounterexample
 public import CORALean.ContDynamics.LinearSys.Operations.SupportUpper
 public import CORALean.ContDynamics.LinearSys.Operations.VerifySearchLoop
 public import CORALean.ContDynamics.LinearSys.Operations.VerifySearch
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyBoxDotDownFloat
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyBoxDotUpFloat
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyCurvatureUpFloat
 public import CORALean.ContDynamics.LinearSys.Operations.VerifySupportDownFloat
 public import CORALean.ContDynamics.LinearSys.Operations.VerifySupportFuncFloat
