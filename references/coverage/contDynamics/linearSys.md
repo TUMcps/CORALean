@@ -419,6 +419,30 @@ constant input whose enclosed output violates the specification
 Verified means every specification holds on `[0, t_f]`; undecided claims nothing
 ([`LinearSys.verifyZonotopeRunFloat_sound`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyZonotopeRunFloat.lean)).
 
+**`verify` — CORA.cpp's Krylov variant, the windows.** CORA.cpp only: the AFF scripts RND02 and
+RND04–06 call `reachSuppFuncsKrylov`, which CORA v2026.1.0 lacks.
+[`LinearSys.verifyKrylovWindowsFloat`](../../../src/CORALean/ContDynamics/LinearSys/Operations/VerifyKrylovWindowsFloat.lean)
+builds CORA.cpp's restart windows of `e^{tA'} w` on a given plan (order, steps). Each window
+restarts Arnoldi from its float start and carries the start's error by `e^{L μ_A⁺}`; the next
+start adds the ball of `e^{LH}` and its rounding
+([`LinearSys.verifyKrylovWindowsFloat_sound`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyKrylovWindowsFloat.lean)).
+The plan search and the Lyapunov carry are CORA.cpp's tuning and are not used.
+
+**`verify` — CORA.cpp's Krylov variant, the bounds.**
+[`LinearSys.verifyKrylovBoundsFloat`](../../../src/CORALean/ContDynamics/LinearSys/Operations/VerifyKrylovBoundsFloat.lean)
+is CORA.cpp's `Stepper::next_margin`: per step the support of `w' x(t)` from the window's rows.
+The point `expm(HΔt)` becomes a ball whose iterates carry a scaled error. A window's first step
+starts from its own `W e₁`; CORA.cpp's `previous_` keeps the last window's value, in another
+basis. The bounds hold for every initial point and input
+([`LinearSys.verifyKrylovBoundsFloat_sound`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyKrylovBoundsFloat.lean),
+the input by [`LinearSys.dotProduct_le_of_mem_inputReach`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/DotProductLeOfMemInputReach.lean)).
+
+**`verify` — CORA.cpp's Krylov variant, one pass.**
+[`LinearSys.verifyKrylovPassFloat`](../../../src/CORALean/ContDynamics/LinearSys/Operations/VerifyKrylovPassFloat.lean)
+is one pass of `aux_pass` for a given step size. `true` means every group holds on every step
+([`LinearSys.verifyKrylovPassFloat_sound`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyKrylovPassFloat.lean));
+`false` is undecided. The halving loop and `hopeless` are tuning and are not formalized.
+
 **`verify` — cora-issue, `priv_verifyRA_supportFunc`.** CORA's
 `@linearSys/private/priv_verifyRA_supportFunc.m` bounds the support of the curvature set `F X₀`
 along `ℓ` by `ℓ'(F_c c) + Σ|ℓ'(F_c G)| + |ℓ'v|`, `v = F_r Σ|[c G]|` (`dist.Cbloat`, ll. 257-258 and

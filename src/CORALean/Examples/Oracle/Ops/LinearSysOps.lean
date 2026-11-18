@@ -10,6 +10,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Operations.EnergyGrowthFloat
 import CORALean.ContDynamics.LinearSys.Operations.VerifySupportFuncFloat
 import CORALean.ContDynamics.LinearSys.Operations.VerifyZonotopePassFloat
 import CORALean.ContDynamics.LinearSys.Operations.VerifyZonotopeRunFloat
+import CORALean.ContDynamics.LinearSys.Operations.VerifyKrylovPassFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixEntrywiseFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixEntrywiseFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
@@ -41,8 +42,9 @@ A system is `{"A","B","c","C","D","k","E","F"}`, `A` square and the rest optiona
 default to no columns, `C` to the identity, `c`, `k` to zero (`ẋ = Ax + Bu + c + Ew`, `y = Cx +
 Du + k + Fv`). Sets are zonotopes `{"c","G","E"}`, `timeStep`, `taylorTerms`, `zonotopeOrder`
 CORA's names. `reach` takes `linAlg` `standard` or `wrapping-free`; with `U` or `c` it runs the
-input variant. Not served: `reachBackward`, `reachInner`, `verify`, `initReach_adaptive`,
-`trajectoryError`, `linearSysDT`, `nonlinearSys` (witness arguments, or a real-valued result).
+input variant; `verifyKrylovPass` takes CORA.cpp's tuning (per direction a `plan`, `halvings`).
+Not served: `reachBackward`, `reachInner`, `verify`, `initReach_adaptive`, `trajectoryError`,
+`linearSysDT`, `nonlinearSys` (witness arguments, or a real-valued result).
 
 ## Inputs
 * `dops` – dtype operations
@@ -508,6 +510,71 @@ def handleLinearSysVerifyZonotopeRun (dops : DtypeOps 𝕋) (req : Json) : Resp 
       | none => Json.null)]
   else throw s!"`A` must be square, not {dA.r}×{dA.c}"
 
+/-- `linearSys.verifyKrylovPass`: `LinearSys.verifyKrylovPassFloat`, the input `⟨uc, GU⟩` in the
+state space, directions `{w, plan, limit, strict, group}`; the verdict (`false`: undecided) and per
+direction its windows' `{order, nu, err}` and bounds (`null` where none). -/
+def handleLinearSysVerifyKrylovPass (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "verifyKrylovPass" req
+    ["A", "x0", "G0", "uc", "GU", "dirs", "groups", "timeStep", "halvings", "steps", "eps", "p",
+      "q"]
+  let dA ← parseMatDyn dops.readExact (← field req "A")
+  if hA : dA.r = dA.c then
+    let n := dA.r
+    let A : Mat 𝕋 n n := cast (congrArg (Mat 𝕋 dA.r) hA.symm) dA.M
+    let x0 ← parseVecFixed dops.readExact n (← field req "x0")
+    let G0 ← parseMatRowsFixed dops.readExact n (← field req "G0")
+    -- the input, in the state space
+    let inp : Vec 𝕋 n × (Σ k : Nat, Mat 𝕋 n k) ← match fieldOpt req "uc" with
+      | none => pure (fun _ => FloatOps.zero, ⟨0, fun _ j => j.elim0⟩)
+      | some ju => do
+        let uc ← parseVecFixed dops.readExact n ju
+        let GU ← parseMatRowsFixed dops.readExact n (← field req "GU")
+        pure (uc, GU)
+    -- the directions
+    let jdirs ← match (← field req "dirs").getArr? with
+      | .ok a => pure a
+      | .error _ => throw "`dirs` must be an array"
+    let dirs ← jdirs.toList.mapM fun jd => do
+      let w ← parseVecFixed dops.readExact n (← field jd "w")
+      let jplan ← match (← field jd "plan").getArr? with
+        | .ok a => pure a
+        | .error _ => throw "`plan` must be an array"
+      let plan : List (ℕ × ℕ) ← jplan.toList.mapM fun jp => match jp.getArr? with
+        | .ok #[jk, jm] => match jk.getNat?, jm.getNat? with
+          | .ok k, .ok m => pure (k, m)
+          | _, _ => throw "a `plan` entry must be two naturals"
+        | _ => throw "a `plan` entry must be `[order, steps]`"
+      let strict ← match (← field jd "strict").getBool? with
+        | .ok b => pure b
+        | .error _ => throw "`strict` must be a boolean"
+      let limit ← aux_scalar dops jd "limit"
+      let group ← natField jd "group"
+      pure ({ w := w, plan := plan, limit := limit, strict := strict, group := group } :
+        LinearSys.VerifyKrylovDirection 𝕋 n)
+    -- the options and the pass
+    let p := match fieldOpt req "p" with | none => 20 | some j => (j.getNat?).toOption.getD 20
+    let q := match fieldOpt req "q" with | none => 10 | some j => (j.getNat?).toOption.getD 10
+    let εb ← aux_scalar dops req "eps"
+    let Δt₀ ← aux_scalar dops req "timeStep"
+    let h ← natField req "halvings"
+    let N ← natField req "steps"
+    let verified := LinearSys.verifyKrylovPassFloat p q εb A x0 G0.2 inp.1 inp.2.2 dirs
+      (← natField req "groups") Δt₀ h N
+    -- per direction its windows and bounds
+    let per := dirs.map fun d =>
+      match LinearSys.verifyKrylovWindowsFloat p q εb A d.w Δt₀ d.plan with
+      | none => Json.mkObj [("windows", Json.null), ("bounds", Json.null)]
+      | some wins =>
+        let jw := Json.arr (wins.map fun W => Json.mkObj [("order", Lean.toJson W.k),
+          ("nu", Json.str (dops.showExact W.ν)), ("err", Json.str (dops.showExact W.err))]).toArray
+        match LinearSys.verifyKrylovBoundsFloat x0 G0.2 inp.1 inp.2.2 d.w wins (2 ^ h)
+            (FloatOps.half^[h] Δt₀) N with
+        | none => Json.mkObj [("windows", jw), ("bounds", Json.null)]
+        | some B => Json.mkObj [("windows", jw),
+            ("bounds", Json.arr (B.map fun b => Json.str (dops.showExact b)).toArray)]
+    pure [("verified", Json.bool verified), ("dirs", Json.arr per.toArray)]
+  else throw s!"`A` must be square, not {dA.r}×{dA.c}"
+
 /-- The one-set ops: a step's sets, solutions of the input and error terms. -/
 def handleLinearSysStepOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Resp := do
   let sysFields := ["A", "B", "c", "C", "D", "k", "E", "F"]
@@ -572,7 +639,7 @@ end
 def linearSysOpNames : List String :=
   [ "reach", "canonicalForm", "isCanonicalForm", "outputSet", "taylorMatrices", "oneStep",
     "oneStepClosedForm", "verifyCorrection", "expBall", "energyGrowth", "verifySupportFunc",
-    "verifyZonotopePass", "verifyZonotopeRun",
+    "verifyZonotopePass", "verifyZonotopeRun", "verifyKrylovPass",
     "homogeneousSolution", "post", "initReach", "errorSolution_adaptive", "affineSolution",
     "particularSolution_constant", "particularSolution_timeVarying" ]
 
@@ -595,6 +662,7 @@ def handleLinearSysOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] 
   | "verifySupportFunc" => some (handleLinearSysVerifySupportFunc dops req)
   | "verifyZonotopePass" => some (handleLinearSysVerifyZonotopePass dops req)
   | "verifyZonotopeRun" => some (handleLinearSysVerifyZonotopeRun dops req)
+  | "verifyKrylovPass" => some (handleLinearSysVerifyKrylovPass dops req)
   | "oneStep" | "oneStepClosedForm" | "homogeneousSolution" | "post" | "initReach"
   | "errorSolution_adaptive"
   | "affineSolution" | "particularSolution_constant" | "particularSolution_timeVarying" =>
