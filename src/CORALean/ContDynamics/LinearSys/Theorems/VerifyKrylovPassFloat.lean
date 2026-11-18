@@ -27,6 +27,7 @@ all its rows `-a' y < -b`. Verified-only: a pass that does not hold decides noth
 * `uc` – float center of the input set
 * `GU` – float generators of the input set
 * `dirs` – the directions
+* `cert` – Lyapunov certificate `(P, L, a)` of `A'`, if any
 * `groups` – the number of groups
 * `Δt₀` – float step size of the windows
 * `h` – halvings of the step size
@@ -94,8 +95,9 @@ private theorem LinearSys.aux_half_iterate (x : 𝕋) (h : ℕ) :
 
 theorem LinearSys.verifyKrylovPassFloat_sound (sys : LinearSys 𝕋 n) (p q : ℕ) (hq : 1 ≤ q)
     (εb : 𝕋) {c : Vec 𝕋 n} {G : Mat 𝕋 n m} {uc : Vec 𝕋 n} {GU : Mat 𝕋 n p'}
-    {dirs : List (LinearSys.VerifyKrylovDirection 𝕋 n)} {groups : ℕ} {Δt₀ : 𝕋} {h N : ℕ}
-    (hP : LinearSys.verifyKrylovPassFloat p q εb sys.A c G uc GU dirs groups Δt₀ h N =
+    {dirs : List (LinearSys.VerifyKrylovDirection 𝕋 n)} {cert : Option (Mat 𝕋 n n × Mat 𝕋 n n × 𝕋)}
+    {groups : ℕ} {Δt₀ : 𝕋} {h N : ℕ}
+    (hP : LinearSys.verifyKrylovPassFloat p q εb sys.A c G uc GU dirs cert groups Δt₀ h N =
       true) : -- --- CONCL ---
     ∀ g < groups, ∀ j < N, ∀ t : ℝ, (j : ℝ) * (toReal Δt₀ / 2 ^ h) ≤ t →
       t ≤ ((j : ℝ) + 1) * (toReal Δt₀ / 2 ^ h) → ∀ β : Fin m → ℝ, (∀ i, |β i| ≤ 1) →
@@ -122,14 +124,16 @@ theorem LinearSys.verifyKrylovPassFloat_sound (sys : LinearSys 𝕋 n) (p q : �
   refine ⟨pr.1, (List.of_mem_zip hpr).1, beq_iff_eq.mp hgrp, ?_⟩
   -- its windows and bounds
   have hf := hpair pr hpr
-  rcases hw : LinearSys.verifyKrylovWindowsFloat p q εb sys.A pr.1.w Δt₀ pr.1.plan with _ | wins
+  rcases hw : LinearSys.verifyKrylovWindowsFloat p q εb sys.A pr.1.w Δt₀ pr.1.plan cert with
+    _ | wins
   · rw [hw] at hf; cases hf
   rw [hw, Option.bind_some] at hf
-  have hwin := LinearSys.verifyKrylovWindowsFloat_sound p q hq εb sys.A pr.1.w Δt₀ pr.1.plan wins
-    (Option.mem_def.mpr hw)
+  have hwin := LinearSys.verifyKrylovWindowsFloat_sound p q hq εb sys.A pr.1.w Δt₀ pr.1.plan cert
+    wins (Option.mem_def.mpr hw)
   have hΔ : ((2 ^ h : ℕ) : ℝ) * toReal (half^[h] Δt₀) = toReal Δt₀ := by
     rw [LinearSys.aux_half_iterate]; push_cast; field_simp
   rw [← hΔ] at hwin
+  -- the bounds of the windows on the halved grid
   obtain ⟨hlen, hclaim⟩ :=
     LinearSys.verifyKrylovBoundsFloat_sound sys hwin _ (Option.mem_def.mpr hf)
   have hjB : j < pr.2.length := by rw [hlen]; exact hj

@@ -510,13 +510,13 @@ def handleLinearSysVerifyZonotopeRun (dops : DtypeOps 𝕋) (req : Json) : Resp 
       | none => Json.null)]
   else throw s!"`A` must be square, not {dA.r}×{dA.c}"
 
-/-- `linearSys.verifyKrylovPass`: `LinearSys.verifyKrylovPassFloat`, the input `⟨uc, GU⟩` in the
-state space, directions `{w, plan, limit, strict, group}`; the verdict (`false`: undecided) and per
-direction its windows' `{order, nu, err}` and bounds (`null` where none). -/
+/-- `linearSys.verifyKrylovPass`: `LinearSys.verifyKrylovPassFloat` (input in the state space,
+directions `{w, plan, limit, strict, group}`, optional certificate `P`, `L`, `a` of `A'`); the
+verdict (`false`: undecided), per direction its windows' `{order, nu, err}` and bounds. -/
 def handleLinearSysVerifyKrylovPass (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   checkFields "verifyKrylovPass" req
     ["A", "x0", "G0", "uc", "GU", "dirs", "groups", "timeStep", "halvings", "steps", "eps", "p",
-      "q"]
+      "q", "P", "L", "a"]
   let dA ← parseMatDyn dops.readExact (← field req "A")
   if hA : dA.r = dA.c then
     let n := dA.r
@@ -551,6 +551,13 @@ def handleLinearSysVerifyKrylovPass (dops : DtypeOps 𝕋) (req : Json) : Resp :
       let group ← natField jd "group"
       pure ({ w := w, plan := plan, limit := limit, strict := strict, group := group } :
         LinearSys.VerifyKrylovDirection 𝕋 n)
+    -- the certificate of `A'`, if given: `P`, `L` (both n×n) and `a`
+    let square := fun (name : String) => do
+      let ⟨r, M⟩ ← parseMatColsFixed dops.readExact n (← field req name)
+      if h : r = n then pure (h ▸ M : Mat 𝕋 n n) else throw s!"`{name}` must be {n}×{n}"
+    let cert : Option (Mat 𝕋 n n × Mat 𝕋 n n × 𝕋) ← match fieldOpt req "P" with
+      | none => pure none
+      | some _ => pure (some (← square "P", ← square "L", ← aux_scalar dops req "a"))
     -- the options and the pass
     let p := match fieldOpt req "p" with | none => 20 | some j => (j.getNat?).toOption.getD 20
     let q := match fieldOpt req "q" with | none => 10 | some j => (j.getNat?).toOption.getD 10
@@ -558,11 +565,11 @@ def handleLinearSysVerifyKrylovPass (dops : DtypeOps 𝕋) (req : Json) : Resp :
     let Δt₀ ← aux_scalar dops req "timeStep"
     let h ← natField req "halvings"
     let N ← natField req "steps"
-    let verified := LinearSys.verifyKrylovPassFloat p q εb A x0 G0.2 inp.1 inp.2.2 dirs
+    let verified := LinearSys.verifyKrylovPassFloat p q εb A x0 G0.2 inp.1 inp.2.2 dirs cert
       (← natField req "groups") Δt₀ h N
     -- per direction its windows and bounds
     let per := dirs.map fun d =>
-      match LinearSys.verifyKrylovWindowsFloat p q εb A d.w Δt₀ d.plan with
+      match LinearSys.verifyKrylovWindowsFloat p q εb A d.w Δt₀ d.plan cert with
       | none => Json.mkObj [("windows", Json.null), ("bounds", Json.null)]
       | some wins =>
         let jw := Json.arr (wins.map fun W => Json.mkObj [("order", Lean.toJson W.k),
