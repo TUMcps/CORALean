@@ -66,6 +66,13 @@ public import CORALean.ContDynamics.LinearSys.Definitions.VerifySearchState
 public import CORALean.ContDynamics.LinearSys.Definitions.InputRemainderSet
 public import CORALean.ContDynamics.LinearSys.Definitions.VerifySupportOutcome
 public import CORALean.ContDynamics.LinearSys.Definitions.VerifySupportResult
+public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifyZonoInvariant
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifyGridStep
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifySpecSet
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifyZono
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifyZonoGenSet
+public import CORALean.ContDynamics.LinearSys.Definitions.VerifyZonoState
+public import CORALean.ContDynamics.LinearSys.Definitions.Basic
 
 /-!
 # What a continuous-time linear system means

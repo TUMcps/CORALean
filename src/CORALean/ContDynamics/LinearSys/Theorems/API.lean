@@ -321,6 +321,13 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VerifySupportFuncFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifySupportPassFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifySupportUpFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifyTimeSetdiff
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyBoxOutFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyGirardReduceFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifySpecHoldsFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyZonoGenSetAppend
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyZonoSupportUpFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyZonotopePassFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyZonotopePassFloatStep
 
 /-!
 # What `LinearSys` guarantees
