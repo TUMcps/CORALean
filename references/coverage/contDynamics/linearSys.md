@@ -388,6 +388,27 @@ alone). Modelled as printed for one outer set, one unsafe set and no safe set in
 modelled, the loop ends whatever they give.
 
 
+**`verify` — the zonotope variant, one pass, sound.**
+[`LinearSys.verifyZonotopePassFloat`](../../../src/CORALean/ContDynamics/LinearSys/Operations/VerifyZonotopePassFloat.lean)
+runs the steps of `priv_reach_adaptive` on a given grid of step sizes, full steps and reduction
+budgets. The grid is CORA's tuning and is not checked. CORA's point `expm(AΔt)` becomes a ball
+(`MatExp.expBallFloat`), and `e^{At_k}` a product with a scaled error. The varying input keeps
+the remainder that CORA drops. The time-interval set is CORA's `linComb` plus `F` and `G u_c` as
+boxes. A flag `false` is undecided, never read as disjoint
+([`LinearSys.verifyZonotopePassFloat_sound`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyZonotopePassFloat.lean),
+from the step
+[`LinearSys.verifyZonotopePassFloat_step`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyZonotopePassFloatStep.lean)).
+
+**`verify` — the zonotope variant, its checks.** A safe set holds where an upper bound of the
+support along each row is below the offset
+([`LinearSys.dotProduct_le_verifyZonoSupportUpFloat`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyZonoSupportUpFloat.lean)).
+CORA decides an unsafe set by a linear program with a tolerance; here a Farkas certificate does,
+from each row alone or, in the plane, from two rows by Cramer's rule
+([`LinearSys.verifySpecHoldsFloat_sound`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifySpecHoldsFloat.lean)).
+CORA's Girard reduction moves the smallest generators into the box
+([`LinearSys.mem_verifyBoxOutFloat`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyBoxOutFloat.lean),
+[`LinearSys.mem_verifyGirardReduceFloat`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyGirardReduceFloat.lean)).
+
 **`verify` — cora-issue, `priv_verifyRA_supportFunc`.** CORA's
 `@linearSys/private/priv_verifyRA_supportFunc.m` bounds the support of the curvature set `F X₀`
 along `ℓ` by `ℓ'(F_c c) + Σ|ℓ'(F_c G)| + |ℓ'v|`, `v = F_r Σ|[c G]|` (`dist.Cbloat`, ll. 257-258 and
