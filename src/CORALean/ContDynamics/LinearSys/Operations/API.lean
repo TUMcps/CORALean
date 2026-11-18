@@ -194,6 +194,8 @@ public import CORALean.ContDynamics.LinearSys.Operations.VerifyGirardReduceFloat
 public import CORALean.ContDynamics.LinearSys.Operations.VerifySpecHoldsFloat
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyZonoSupportUpFloat
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyZonotopePassFloat
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyZonotopeWitnessFloat
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyZonotopeRunFloat
 
 /-!
 # What a continuous-time linear system computes

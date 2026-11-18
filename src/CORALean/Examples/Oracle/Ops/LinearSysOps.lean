@@ -9,6 +9,7 @@ import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpBallFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.EnergyGrowthFloat
 import CORALean.ContDynamics.LinearSys.Operations.VerifySupportFuncFloat
 import CORALean.ContDynamics.LinearSys.Operations.VerifyZonotopePassFloat
+import CORALean.ContDynamics.LinearSys.Operations.VerifyZonotopeRunFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixEntrywiseFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixEntrywiseFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
@@ -396,6 +397,34 @@ def handleLinearSysVerifySupportFunc (dops : DtypeOps 𝕋) (req : Json) : Resp 
       ++ fals)
   else throw s!"`A` must be square, not {dA.r}×{dA.c}"
 
+/-- The specifications of the zonotope verification: safe or unsafe, rows `a` with offsets `b`. -/
+private def aux_verifySpecs (dops : DtypeOps 𝕋) (q : Nat) (j : Json) :
+    Except String (List (LinearSys.VerifySpecSet 𝕋 q)) := do
+  let jspecs ← match j.getArr? with
+    | .ok a => pure a
+    | .error _ => throw "`specs` must be an array"
+  jspecs.toList.mapM fun js => do
+    let safe ← match (← field js "safe").getBool? with
+      | .ok b => pure b
+      | .error _ => throw "`safe` must be a boolean"
+    let H ← parseMatColsFixed dops.readExact q (← field js "A")
+    let b ← parseVecFixed dops.readExact H.1 (← field js "b")
+    pure { safe := safe, rows := (List.finRange H.1).map fun i => (H.2 i, b i) }
+
+/-- A grid of CORA's tuning: `{timeStep, full, budget}` per step. -/
+private def aux_verifyGrid (dops : DtypeOps 𝕋) (j : Json) :
+    Except String (List (LinearSys.VerifyGridStep 𝕋)) := do
+  let jgrid ← match j.getArr? with
+    | .ok a => pure a
+    | .error _ => throw "`grid` must be an array"
+  jgrid.toList.mapM fun jg => do
+    let full ← match (← field jg "full").getBool? with
+      | .ok b => pure b
+      | .error _ => throw "`full` must be a boolean"
+    let Δt ← aux_scalar dops jg "timeStep"
+    let budget ← aux_scalar dops jg "budget"
+    pure { Δt := Δt, full := full, budget := budget }
+
 /-- `linearSys.verifyZonotopePass`: `LinearSys.verifyZonotopePassFloat` on the grid `{timeStep,
 full, budget}` (CORA's tuning, not checked) with specs `{safe, A, b}` (`A y ≤ b`); per step `null`
 (propagated) or the output set `{c, G, r}` and the flags; `steps` `null` with no enclosure. -/
@@ -417,29 +446,8 @@ def handleLinearSysVerifyZonotopePass (dops : DtypeOps 𝕋) (req : Json) : Resp
         pure ⟨B.1, B.2, uc, GU⟩
     let C ← parseMatColsFixed dops.readExact n (← field req "C")
     let q := C.1
-    -- the specifications: safe or unsafe, rows `a` with offsets `b`
-    let jspecs ← match (← field req "specs").getArr? with
-      | .ok a => pure a
-      | .error _ => throw "`specs` must be an array"
-    let specs ← jspecs.toList.mapM fun js => do
-      let safe ← match (← field js "safe").getBool? with
-        | .ok b => pure b
-        | .error _ => throw "`safe` must be a boolean"
-      let H ← parseMatColsFixed dops.readExact q (← field js "A")
-      let b ← parseVecFixed dops.readExact H.1 (← field js "b")
-      pure ({ safe := safe, rows := (List.finRange H.1).map fun i => (H.2 i, b i) } :
-        LinearSys.VerifySpecSet 𝕋 q)
-    -- the grid of CORA's tuning
-    let jgrid ← match (← field req "grid").getArr? with
-      | .ok a => pure a
-      | .error _ => throw "`grid` must be an array"
-    let grid ← jgrid.toList.mapM fun jg => do
-      let full ← match (← field jg "full").getBool? with
-        | .ok b => pure b
-        | .error _ => throw "`full` must be a boolean"
-      let Δt ← aux_scalar dops jg "timeStep"
-      let budget ← aux_scalar dops jg "budget"
-      pure ({ Δt := Δt, full := full, budget := budget } : LinearSys.VerifyGridStep 𝕋)
+    let specs ← aux_verifySpecs dops q (← field req "specs")
+    let grid ← aux_verifyGrid dops (← field req "grid")
     -- the pass, then per step its output set and flags
     let res := LinearSys.verifyZonotopePassFloat A x0 G0.2 inp.2.1 inp.2.2.1 inp.2.2.2.2 C.2
       specs grid
@@ -453,6 +461,51 @@ def handleLinearSysVerifyZonotopePass (dops : DtypeOps 𝕋) (req : Json) : Resp
         | none => Json.null
         | some (Y, fl) => Json.mkObj [("set", showSet Y),
             ("flags", Json.arr (fl.map Lean.toJson).toArray)]).toArray)]
+  else throw s!"`A` must be square, not {dA.r}×{dA.c}"
+
+/-- `linearSys.verifyZonotopeRun`: `LinearSys.verifyZonotopeRunFloat` on the passes' grids, the
+witnesses `{spec, t, b, beta}` and `tFinal`, the fields otherwise as `linearSys.verifyZonotopePass`;
+`verdict` `true` (verified), `false` (a witness holds) or `null` (undecided). -/
+def handleLinearSysVerifyZonotopeRun (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "verifyZonotopeRun" req
+    ["A", "x0", "G0", "B", "uc", "GU", "C", "specs", "passes", "witnesses", "tFinal"]
+  let dA ← parseMatDyn dops.readExact (← field req "A")
+  if hA : dA.r = dA.c then
+    let n := dA.r
+    let A : Mat 𝕋 n n := cast (congrArg (Mat 𝕋 dA.r) hA.symm) dA.M
+    let x0 ← parseVecFixed dops.readExact n (← field req "x0")
+    let G0 ← parseMatRowsFixed dops.readExact n (← field req "G0")
+    let inp : Σ q : Nat, Mat 𝕋 n q × Vec 𝕋 q × (Σ k : Nat, Mat 𝕋 q k) ←
+      match fieldOpt req "B" with
+      | none => pure ⟨0, fun _ j => j.elim0, fun j => j.elim0, ⟨0, fun j => j.elim0⟩⟩
+      | some jB => do
+        let B ← parseMatRowsFixed dops.readExact n jB
+        let uc ← parseVecFixed dops.readExact B.1 (← field req "uc")
+        let GU ← parseMatRowsFixed dops.readExact B.1 (← field req "GU")
+        pure ⟨B.1, B.2, uc, GU⟩
+    let C ← parseMatColsFixed dops.readExact n (← field req "C")
+    let q := C.1
+    -- the specifications and the passes' grids
+    let specs ← aux_verifySpecs dops q (← field req "specs")
+    let jpasses ← match (← field req "passes").getArr? with
+      | .ok a => pure a
+      | .error _ => throw "`passes` must be an array"
+    let passes ← jpasses.toList.mapM (aux_verifyGrid dops)
+    -- the witnesses: a specification's index, a time and the coefficients `b`, `β`
+    let jwit ← match (← field req "witnesses").getArr? with
+      | .ok a => pure a
+      | .error _ => throw "`witnesses` must be an array"
+    let witnesses ← jwit.toList.mapM fun jw => do
+      let i ← natField jw "spec"
+      let tw ← aux_scalar dops jw "t"
+      let b ← parseVecFixed dops.readExact G0.1 (← field jw "b")
+      let β ← parseVecFixed dops.readExact inp.2.2.2.1 (← field jw "beta")
+      pure (i, tw, b, β)
+    let res := LinearSys.verifyZonotopeRunFloat A x0 G0.2 inp.2.1 inp.2.2.1 inp.2.2.2.2 C.2
+      specs passes witnesses (← aux_scalar dops req "tFinal")
+    pure [("verdict", match res with
+      | some v => Lean.toJson v
+      | none => Json.null)]
   else throw s!"`A` must be square, not {dA.r}×{dA.c}"
 
 /-- The one-set ops: a step's sets, solutions of the input and error terms. -/
@@ -519,7 +572,7 @@ end
 def linearSysOpNames : List String :=
   [ "reach", "canonicalForm", "isCanonicalForm", "outputSet", "taylorMatrices", "oneStep",
     "oneStepClosedForm", "verifyCorrection", "expBall", "energyGrowth", "verifySupportFunc",
-    "verifyZonotopePass",
+    "verifyZonotopePass", "verifyZonotopeRun",
     "homogeneousSolution", "post", "initReach", "errorSolution_adaptive", "affineSolution",
     "particularSolution_constant", "particularSolution_timeVarying" ]
 
@@ -541,6 +594,7 @@ def handleLinearSysOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] 
   | "energyGrowth" => some (handleLinearSysEnergyGrowth dops req)
   | "verifySupportFunc" => some (handleLinearSysVerifySupportFunc dops req)
   | "verifyZonotopePass" => some (handleLinearSysVerifyZonotopePass dops req)
+  | "verifyZonotopeRun" => some (handleLinearSysVerifyZonotopeRun dops req)
   | "oneStep" | "oneStepClosedForm" | "homogeneousSolution" | "post" | "initReach"
   | "errorSolution_adaptive"
   | "affineSolution" | "particularSolution_constant" | "particularSolution_timeVarying" =>
