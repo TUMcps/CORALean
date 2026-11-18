@@ -9,7 +9,6 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrTerm
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ConstCorrectionMatrixEntrywise
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeff
-public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeffLowFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeffLowTightFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCritical
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrTerm

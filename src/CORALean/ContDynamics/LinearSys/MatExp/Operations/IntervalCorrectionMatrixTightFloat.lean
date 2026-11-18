@@ -14,8 +14,8 @@ public import CORALean.Global.StepOf
 `Real.MatExp.correctionMatrixEntrywise` over a float box, the `F` of [1]: orders `2` through `η`
 from `intervalCorrTermTight`, as `intervalCorrectionMatrix` has them, and the tail in the entry's
 own bound `W` where `intervalCorrectionMatrix` takes one scalar bound. The coefficient is
-`corrCoeffLowTight`, CORA's to within rounding, where `intervalCorrectionMatrixEntrywise` and its
-constant counterpart take `corrCoeffLow`.
+`corrCoeffLowTight`, CORA's to within rounding, as `intervalCorrectionMatrixEntrywise` and its
+constant counterpart take it.
 
 ## Inputs
 * `A` – float interval matrix

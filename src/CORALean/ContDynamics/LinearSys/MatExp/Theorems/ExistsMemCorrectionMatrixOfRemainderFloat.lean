@@ -3,7 +3,7 @@ module
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalCorrectionMatrixFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffLowFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffLowTightFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExistsMulVecEqOfNormLe
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpIntervalEnclosureFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundFloat
@@ -57,7 +57,7 @@ remainder `ρ` is a matrix within the float remainder bound.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   14-October-2026
+-- Last update:   18-November-2026
 -- Reviewed:      ---
 
 
@@ -253,11 +253,11 @@ theorem MatExp.exists_mem_intervalCorrectionMatrix_of_remainder (A : Interval (M
     obtain ⟨-, hhi⟩ := MatExp.taylorCoeffBounds_mem hr.le (i + 2)
     set ρk := rr ^ (i + 2) / (Nat.factorial (i + 2) : ℝ) with hρk
     have hρ0 : 0 ≤ ρk := by positivity
-    have hκ := MatExp.corrCoeffLow_le (𝕋 := 𝕋) hi
+    have hκ := MatExp.corrCoeffLowTight_le (𝕋 := 𝕋) hi
     have hc := Real.MatExp.corrCoeff_le_sub hi hlam0
     have hc0 : lam ^ (i + 2) - lam ≤ 0 := sub_nonpos.mpr (pow_le_of_le_one hlam0 hlam1 (by omega))
     -- the weight times `r^k/k!` lies in `[cLo, 0]`
-    have hlo : toReal (mulDown (MatExp.corrCoeffLow (𝕋 := 𝕋) (i + 2))
+    have hlo : toReal (mulDown (MatExp.corrCoeffLowTight (𝕋 := 𝕋) (i + 2))
         (MatExp.taylorCoeffBounds r (i + 2)).sup) ≤ (lam ^ (i + 2) - lam) * ρk :=
       le_trans (mulDown_le_mul _ _) (le_trans
         (mul_le_mul_of_nonpos_left hhi (le_trans hκ (hc.trans hc0)))

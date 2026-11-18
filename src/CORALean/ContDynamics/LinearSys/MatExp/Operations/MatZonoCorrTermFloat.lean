@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeffLowFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrCoeffLowTightFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.TaylorCoeffBoundsFloat
 public import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 public import CORALean.ContSet.Interval.Float.Operations.Smul
@@ -27,7 +27,7 @@ does at a box. CORA boxes the powers before the correction, and so does this.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
--- Last update:   14-October-2026
+-- Last update:   18-November-2026
 -- Reviewed:      ---
 
 
@@ -45,8 +45,8 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 /-- `corrCoeff i · r^i/i!` times the box of the `i`-th power, for a nonnegative `r`. -/
 def MatExp.matZonoCorrTerm (M : Zonotope (Mat 𝕋 n n)) (r : 𝕋) (i : ℕ) :
     Interval (Mat 𝕋 n n) :=
-  let cLo := mulDown (MatExp.corrCoeffLow i) (MatExp.taylorCoeffBounds r i).sup  -- κ · r^i/i!
-  (Interval.smul cLo zero (M.matPow i).matInterval).materialiseMat               -- [κ r^i/i!, 0] Mᵢ
+  let cLo := mulDown (MatExp.corrCoeffLowTight i) (MatExp.taylorCoeffBounds r i).sup  -- κ · r^i/i!
+  (Interval.smul cLo zero (M.matPow i).matInterval).materialiseMat  -- [κ r^i/i!, 0] Mᵢ
 
 end CORALean.Float
 
