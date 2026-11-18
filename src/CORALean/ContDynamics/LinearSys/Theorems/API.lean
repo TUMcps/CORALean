@@ -55,6 +55,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoStep
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoStepAutoInit
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoStepAutoRun
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsAutoTuneDeltaT
+public import CORALean.ContDynamics.LinearSys.Theorems.ExistsEqTaylorAddOfMemInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsLtHausdorffDistGirardReach
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsLtHausdorffDistIUnionReachSetExact
 public import CORALean.ContDynamics.LinearSys.Theorems.ExistsMemIUnionReachSetExactDistLe
@@ -90,6 +91,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.GirardReachEq
 public import CORALean.ContDynamics.LinearSys.Theorems.GirardReachOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.HasDerivWithinAtExpNegMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.HausdorffDist2InputReachLe
+public import CORALean.ContDynamics.LinearSys.Theorems.InputReachImageAdd
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachMemAddClosureConvexHull
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetClosureConvexHull
 public import CORALean.ContDynamics.LinearSys.Theorems.InputReachSubsetParticularSolutionOuterOfDominant
@@ -146,6 +148,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.MaxBackReachPolyFloatInne
 public import CORALean.ContDynamics.LinearSys.Theorems.MemExpNegImageIff
 public import CORALean.ContDynamics.LinearSys.Theorems.MinBackReachTimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.MinBackReachTimeIntervalFloatOuter
+public import CORALean.ContDynamics.LinearSys.Theorems.MemInputReachIffSum
 public import CORALean.ContDynamics.LinearSys.Theorems.MinBackReachSupportFloatGe
 public import CORALean.ContDynamics.LinearSys.Theorems.NormLeOfMemInputReach
 public import CORALean.ContDynamics.LinearSys.Theorems.OneStepFloatTimeIntervalOuter
@@ -244,8 +247,13 @@ public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectorySubMemInputRe
 public import CORALean.ContDynamics.LinearSys.Theorems.IsTrajectoryTimeIntervalOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TunedRunErrorBudget
 public import CORALean.ContDynamics.LinearSys.Theorems.VariationOfConstants
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyBoxDotDownFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyBoxDotUpFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifyConvexUnsafe
 public import CORALean.ContDynamics.LinearSys.Theorems.NotVerifySpecOfVerifyRun
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyInputInnerFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyInputOuterFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyInputSolutionFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifySafe
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifyViolated
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifyFloatSafe

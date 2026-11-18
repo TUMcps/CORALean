@@ -14,19 +14,22 @@ public import CORALean.Global.Float.IntRound
 /-!
 # `LinearSys.verifySupportFuncFloat`, CORA's `priv_verifyRA_supportFunc`, made sound
 
-Reach-avoid verification of `ẋ = Ax`, `y = C x` from `X₀ = ⟨c, G⟩` against `(C_s y)_q ≤ d_q`
-over `[0, t_f]`. CORA's loop: the step starts at `t_f / ⌈t_f / (t_f/100)⌉`; a pass
-(`LinearSys.verifySupportPassFloat`) that cannot enclose its matrices shrinks it by `0.2`; one
-that falsifies stops; otherwise the verified steps leave the unverified times, the horizon
-shrinks to the last of them and the step by `0.2`, until none is left or the step is below
-`minStep`. Departures for soundness: the rows `C_s C` are not normalized and come from a
-bracket (their error is `E₀`); the times are exact, and no unverified time is dropped
-(`LinearSys.verifyTimeSetdiff`); the initial set is checked from below.
+Reach-avoid verification of `ẋ = Ax + B u`, `u(t) ∈ ⟨u_c, G_U⟩`, `y = C x` from `X₀ = ⟨c, G⟩`
+against `(C_s y)_q ≤ d_q` over `[0, t_f]`. CORA's loop: the step starts at
+`t_f / ⌈t_f / (t_f/100)⌉`; a pass (`LinearSys.verifySupportPassFloat`) that cannot enclose its
+matrices shrinks it by `0.2`; one that falsifies stops; otherwise the horizon shrinks to the last
+unverified time and the step by `0.2`, until none is left or the step is below `minStep`.
+Departures for soundness: `C_s C`, `B u_c` and `B G_U` come from brackets (the rows' error is
+`E₀`); the times are exact, no unverified time is dropped (`LinearSys.verifyTimeSetdiff`), the
+initial set is checked from below, and with an input set the horizon shrinks as without one.
 
 ## Inputs
 * `A` – float system matrix
 * `c` – float center of the initial set
 * `G` – float generators of the initial set
+* `Bm` – float input matrix
+* `uc` – float center of the input set
+* `GU` – float generators of the input set
 * `Cs` – float rows of the halfspaces in the output
 * `Cm` – float output matrix
 * `d` – float offsets of the halfspaces
@@ -50,7 +53,7 @@ namespace CORALean
 
 open CORALean.Float FloatOps
 
-variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n m p r : ℕ}
+variable {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToRat 𝕋] {n m p r q k : ℕ}
 
 
 -- ------------------------------------------  STEPS  ------------------------------------------- --
@@ -75,14 +78,16 @@ def LinearSys.step_verifySupportGrowth (A : Mat 𝕋 n n) (s : Vec 𝕋 n) (tFin
 /-- The passes from `Δt` while `fuel` lasts, with the unverified times `U` up to `tf`. -/
 @[step_of LinearSys.verifySupportFuncFloat]
 def LinearSys.step_verifySupportLoop (A : Mat 𝕋 n n) (s c : Vec 𝕋 n) (G : Mat 𝕋 n m)
-    (v : Vec 𝕋 n) (βX κ μ : 𝕋) (ℓ₀ : Mat 𝕋 r n) (E₀ d : Vec 𝕋 r) (T : ℚ) (minStep : 𝕋) :
+    (v : Vec 𝕋 n) (βX κ μ : 𝕋) (u₀ : Interval (Mat 𝕋 n 1)) (MU : Interval (Mat 𝕋 n k))
+    (ℓ₀ : Mat 𝕋 r n) (E₀ d : Vec 𝕋 r) (T : ℚ) (minStep : 𝕋) :
     ℕ → 𝕋 → (Fin r → List (ℚ × ℚ)) → ℚ → ℕ → LinearSys.VerifySupportResult 𝕋 r
   | 0, Δt, _, _, it => ⟨none, it, Δt, 0, none⟩
   | fuel + 1, Δt, U, tf, it =>
     let shrink := divUp one (nsmulUp 5 one)                              -- 0.2
     let N := ⌈tf / ToRat.toRat Δt⌉₊                                      -- the steps to tf
-    match LinearSys.verifySupportPassFloat A s c G v βX κ μ ℓ₀ E₀ d Δt N T with
-    | .notConverged => LinearSys.step_verifySupportLoop A s c G v βX κ μ ℓ₀ E₀ d T minStep fuel
+    match LinearSys.verifySupportPassFloat A s c G v βX κ μ u₀ MU ℓ₀ E₀ d Δt N T with
+    | .notConverged => LinearSys.step_verifySupportLoop A s c G v βX κ μ u₀ MU ℓ₀ E₀ d T minStep
+        fuel
         (mulUp Δt shrink) U tf (it + 1)
     | .noBound => ⟨none, it + 1, Δt, N, none⟩
     | .falsified k q => ⟨some false, it + 1, Δt, N, some ((k : ℚ) * ToRat.toRat Δt, q)⟩
@@ -93,16 +98,17 @@ def LinearSys.step_verifySupportLoop (A : Mat 𝕋 n n) (s c : Vec 𝕋 n) (G : 
         let tf' := (List.finRange r).foldl (fun t q => (U' q).foldl (fun t iv => max t iv.2) t) 0
         let Δt' := mulUp Δt shrink
         if ltStrict Δt' minStep then ⟨none, it + 1, Δt, N, none⟩
-        else LinearSys.step_verifySupportLoop A s c G v βX κ μ ℓ₀ E₀ d T minStep fuel Δt' U' tf'
-          (it + 1)
+        else LinearSys.step_verifySupportLoop A s c G v βX κ μ u₀ MU ℓ₀ E₀ d T minStep fuel Δt' U'
+          tf' (it + 1)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- CORA's `priv_verifyRA_supportFunc` for `ẋ = Ax`: the run constants, the initial set's check,
-the first step size, then the passes. -/
+/-- CORA's `priv_verifyRA_supportFunc` for `ẋ = Ax + Bu`: the run constants, the initial set's
+check, the first step size, then the passes. -/
 def LinearSys.verifySupportFuncFloat (A : Mat 𝕋 n n) (c : Vec 𝕋 n) (G : Mat 𝕋 n m)
-    (Cs : Mat 𝕋 r p) (Cm : Mat 𝕋 p n) (d : Vec 𝕋 r) (tFinal minStep : 𝕋) (fuel : ℕ) :
+    (Bm : Mat 𝕋 n q) (uc : Vec 𝕋 q) (GU : Mat 𝕋 q k) (Cs : Mat 𝕋 r p) (Cm : Mat 𝕋 p n) (d : Vec 𝕋
+        r) (tFinal minStep : 𝕋) (fuel : ℕ) :
     LinearSys.VerifySupportResult 𝕋 r :=
   let s := MatExp.balanceScalesFloat A                                   -- the scales
   let g := LinearSys.step_verifySupportGrowth A s tFinal                 -- κ e^{tμ}
@@ -113,6 +119,9 @@ def LinearSys.verifySupportFuncFloat (A : Mat 𝕋 n n) (c : Vec 𝕋 n) (G : Ma
   let ℓ₀ := L.sup                                                        -- the rows
   let E₀ := (Interval.point fun q =>                                     -- their errors
     sumUp fun j => mulUp (subUp (L.sup q j) (L.inf q j)) (s j)).materialise.sup
+  let u₀ : Interval (Mat 𝕋 n 1) :=                                       -- [B u_c]
+    (⟨matMulDown Bm fun j _ => uc j, matMulUp Bm fun j _ => uc j⟩ : Interval _).materialiseMat
+  let MU : Interval (Mat 𝕋 n k) := (⟨matMulDown Bm GU, matMulUp Bm GU⟩ : Interval _).materialiseMat
   let T := ToRat.toRat tFinal
   if !(List.finRange n).all fun i => ltStrict zero (s i) then ⟨none, 0, zero, 0, none⟩ else
   match (List.finRange r).find? fun q =>                                 -- X₀ itself
@@ -121,7 +130,7 @@ def LinearSys.verifySupportFuncFloat (A : Mat 𝕋 n n) (c : Vec 𝕋 n) (G : Ma
   | none =>
     let Δt₀ := divUp tFinal (nsmulUp 100 one)                            -- t_f / 100
     let Δt := divUp tFinal (intUp ⌈ToRat.toRat (divUp tFinal Δt₀)⌉)      -- t_f / ⌈t_f / Δt₀⌉
-    LinearSys.step_verifySupportLoop A s c G v βX g.1 g.2 ℓ₀ E₀ d T minStep fuel Δt
+    LinearSys.step_verifySupportLoop A s c G v βX g.1 g.2 u₀ MU ℓ₀ E₀ d T minStep fuel Δt
       (fun _ => [(0, T)]) T 0
 
 end CORALean
