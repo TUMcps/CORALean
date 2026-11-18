@@ -409,6 +409,16 @@ CORA's Girard reduction moves the smallest generators into the box
 ([`LinearSys.mem_verifyBoxOutFloat`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyBoxOutFloat.lean),
 [`LinearSys.mem_verifyGirardReduceFloat`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyGirardReduceFloat.lean)).
 
+**`verify` — the zonotope variant, the run.**
+[`LinearSys.verifyZonotopeRunFloat`](../../../src/CORALean/ContDynamics/LinearSys/Operations/VerifyZonotopeRunFloat.lean)
+runs CORA's passes on their given grids. Each specification keeps its unverified times, and a
+step whose output set holds it removes the step's interval. CORA falsifies through an inner
+approximation and a tolerance; here a falsification is a witness: an initial point and a
+constant input whose enclosed output violates the specification
+([`LinearSys.verifyZonotopeWitnessFloat_violated`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyZonotopeWitnessFloat.lean)).
+Verified means every specification holds on `[0, t_f]`; undecided claims nothing
+([`LinearSys.verifyZonotopeRunFloat_sound`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyZonotopeRunFloat.lean)).
+
 **`verify` — cora-issue, `priv_verifyRA_supportFunc`.** CORA's
 `@linearSys/private/priv_verifyRA_supportFunc.m` bounds the support of the curvature set `F X₀`
 along `ℓ` by `ℓ'(F_c c) + Σ|ℓ'(F_c G)| + |ℓ'v|`, `v = F_r Σ|[c G]|` (`dist.Cbloat`, ll. 257-258 and
