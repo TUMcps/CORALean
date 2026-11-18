@@ -11,9 +11,10 @@ public import CORALean.ContDynamics.LinearSys.Operations.VerifyKrylovWindowsFloa
 
 CORA.cpp's `aux_pass` (`priv_verify_ra_krylov.cpp`) for `ẋ = Ax + u`, `u(t) ∈ ⟨u_c, G_U⟩`, from
 `X₀ = ⟨c, G⟩`: every direction gets its windows on the grid `Δt₀`
-(`LinearSys.verifyKrylovWindowsFloat`, its plan CORA.cpp's tuning) and its bounds on the `N` steps
-of `Δt = Δt₀ / 2^h` (`LinearSys.verifyKrylovBoundsFloat`); the pass holds if on every step every
-group has a direction whose bound stays below its limit (strictly, for an unsafe set's row).
+(`LinearSys.verifyKrylovWindowsFloat`, its plan and certificate CORA.cpp's tuning) and its bounds
+on the `N` steps of `Δt = Δt₀ / 2^h` (`LinearSys.verifyKrylovBoundsFloat`); the pass holds if on
+every step every group has a direction whose bound stays below its limit (strictly, for an unsafe
+set's row).
 CORA.cpp's loop that halves the step, and its `hopeless` stop, are tuning and are not formalized:
 this is one pass for a given `h`. A pass that does not hold is undecided, never a falsification.
 
@@ -27,6 +28,7 @@ this is one pass for a given `h`. A pass that does not hold is undecided, never 
 * `uc` – float center of the input set, in the state space
 * `GU` – float generators of the input set, in the state space
 * `dirs` – the directions
+* `cert` – Lyapunov certificate `(P, L, a)` of `A'`, if any
 * `groups` – the number of groups
 * `Δt₀` – float step size of the windows
 * `h` – halvings of the step size
@@ -56,9 +58,10 @@ variable {𝕋 : Type} [FloatOps 𝕋] {n m p' : ℕ}
 /-- The bounds of every direction, then every group on every step. -/
 def LinearSys.verifyKrylovPassFloat (p q : ℕ) (εb : 𝕋) (A : Mat 𝕋 n n) (c : Vec 𝕋 n)
     (G : Mat 𝕋 n m) (uc : Vec 𝕋 n) (GU : Mat 𝕋 n p')
-    (dirs : List (LinearSys.VerifyKrylovDirection 𝕋 n)) (groups : ℕ) (Δt₀ : 𝕋) (h N : ℕ) : Bool :=
+    (dirs : List (LinearSys.VerifyKrylovDirection 𝕋 n))
+    (cert : Option (Mat 𝕋 n n × Mat 𝕋 n n × 𝕋)) (groups : ℕ) (Δt₀ : 𝕋) (h N : ℕ) : Bool :=
   let Δt := half^[h] Δt₀                                                  -- Δt₀ / 2^h
-  match dirs.mapM fun d => (LinearSys.verifyKrylovWindowsFloat p q εb A d.w Δt₀ d.plan).bind
+  match dirs.mapM fun d => (LinearSys.verifyKrylovWindowsFloat p q εb A d.w Δt₀ d.plan cert).bind
       fun wins => LinearSys.verifyKrylovBoundsFloat c G uc GU d.w wins (2 ^ h) Δt N with
   | none => false
   | some Bs =>

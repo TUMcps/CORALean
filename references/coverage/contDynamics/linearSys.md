@@ -424,9 +424,12 @@ RND04–06 call `reachSuppFuncsKrylov`, which CORA v2026.1.0 lacks.
 [`LinearSys.verifyKrylovWindowsFloat`](../../../src/CORALean/ContDynamics/LinearSys/Operations/VerifyKrylovWindowsFloat.lean)
 builds CORA.cpp's restart windows of `e^{tA'} w` on a given plan (order, steps). Each window
 restarts Arnoldi from its float start and carries the start's error by `e^{L μ_A⁺}`; the next
-start adds the ball of `e^{LH}` and its rounding
+start adds the ball of `e^{LH}` and its rounding. With a certificate `(P, L, a)` of `A'`, the
+window's error is the smaller of that and the Lyapunov carry (`Krylov.windowErrorBoundFloat`)
+of the earlier windows' transition errors, as CORA.cpp's `carry_min`
 ([`LinearSys.verifyKrylovWindowsFloat_sound`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyKrylovWindowsFloat.lean)).
-The plan search and the Lyapunov carry are CORA.cpp's tuning and are not used.
+On RND02 and RND04–06 the Gershgorin carry alone overflows. The plan search and the solve of the
+certificate are CORA.cpp's tuning; the certificate is checked.
 
 **`verify` — CORA.cpp's Krylov variant, the bounds.**
 [`LinearSys.verifyKrylovBoundsFloat`](../../../src/CORALean/ContDynamics/LinearSys/Operations/VerifyKrylovBoundsFloat.lean)
