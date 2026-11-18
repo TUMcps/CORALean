@@ -37,7 +37,6 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrixSubsetFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ContinuousExpDiff
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffBound
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffLowFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffLowTightFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrectionMatrix
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ErrorConvergesToZeroHomogeneousRemainderError

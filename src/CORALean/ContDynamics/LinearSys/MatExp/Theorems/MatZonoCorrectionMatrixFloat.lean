@@ -7,7 +7,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpRemainderBoundF
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.CorrTerm
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.MatZonoCorrTermFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrCoeffLeOne
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffLowFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffLowTightFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TaylorCoeffBoundsFloat
 public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.MatPowOuter
@@ -47,7 +47,7 @@ remainder is taken. `hε` asks `1/2`, as the float remainder bound does.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       09-October-2026
--- Last update:   ---
+-- Last update:   18-November-2026
 -- Reviewed:      ---
 
 
@@ -75,13 +75,13 @@ private theorem MatExp.aux_corrTerm_mem_matZonoCorrTerm (M : Zonotope (Mat 𝕋 
   obtain ⟨-, hhi⟩ := MatExp.taylorCoeffBounds_mem hr i
   set ρ := toReal r ^ i / (Nat.factorial i : ℝ)
   have hρ : 0 ≤ ρ := by positivity
-  have hκ := MatExp.corrCoeffLow_le (𝕋 := 𝕋) hi
+  have hκ := MatExp.corrCoeffLowTight_le (𝕋 := 𝕋) hi
   -- `corrCoeff i ≤ 0`: the bound `corrCoeff_le_sub` at `s = 0`
   have hc0 : Real.MatExp.corrCoeff i ≤ 0 := by
     have h := Real.MatExp.corrCoeff_le_sub hi (le_refl (0:ℝ))
     rwa [zero_pow (by omega : i ≠ 0), sub_zero] at h
-  have hlo : toReal (mulDown (MatExp.corrCoeffLow (𝕋 := 𝕋) i) (MatExp.taylorCoeffBounds r i).sup)
-      ≤ Real.MatExp.corrCoeff i * ρ :=
+  have hlo : toReal (mulDown (MatExp.corrCoeffLowTight (𝕋 := 𝕋) i)
+      (MatExp.taylorCoeffBounds r i).sup) ≤ Real.MatExp.corrCoeff i * ρ :=
     le_trans (mulDown_le_mul _ _) (le_trans
       (mul_le_mul_of_nonpos_left hhi (le_trans hκ hc0))
       (mul_le_mul_of_nonneg_right hκ hρ))

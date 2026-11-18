@@ -5,7 +5,7 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCor
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.IntervalConstCorrectionMatrixEntrywiseFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.AbsCorrCoeffLeOne
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ConstCorrectionMatrixEntrywise
-public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffLowFloat
+public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.CorrCoeffLowTightFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.TaylorCoeffBoundsFloat
 public import CORALean.ContSet.Interval.Float.Theorems.MatPowOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
@@ -47,7 +47,7 @@ float box: the kept orders by `sum_constCorrTerm_bracket`, the tail by `r` times
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       11-November-2026
--- Last update:   ---
+-- Last update:   18-November-2026
 -- Reviewed:      ---
 
 
@@ -76,12 +76,12 @@ private theorem MatExp.aux_constCorrTerm_mem_intervalConstCorrTerm (A : Interval
   obtain ⟨-, hhi⟩ := MatExp.taylorCoeffBounds_mem hr (i + 2)
   set ρ := toReal r ^ (i + 2) / (Nat.factorial (i + 2) : ℝ)
   have hρ : 0 ≤ ρ := by positivity
-  have hκ := MatExp.corrCoeffLow_le (𝕋 := 𝕋) (show 2 ≤ i + 2 by omega)
+  have hκ := MatExp.corrCoeffLowTight_le (𝕋 := 𝕋) (show 2 ≤ i + 2 by omega)
   have hc0 : Real.MatExp.corrCoeff (i + 2) ≤ 0 := by
     have h := Real.MatExp.corrCoeff_le_sub (show 2 ≤ i + 2 by omega) (le_refl (0:ℝ))
     rwa [zero_pow (by omega : i + 2 ≠ 0), sub_zero] at h
   -- the lower end: a nonpositive `κ` against the upper end of the nonnegative scalar
-  have hlo : toReal (mulDown (MatExp.corrCoeffLow (𝕋 := 𝕋) (i + 2))
+  have hlo : toReal (mulDown (MatExp.corrCoeffLowTight (𝕋 := 𝕋) (i + 2))
         (MatExp.taylorCoeffBounds r (i + 2)).sup)
       ≤ Real.MatExp.corrCoeff (i + 2) * ρ :=
     le_trans (mulDown_le_mul _ _) (le_trans

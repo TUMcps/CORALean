@@ -14,8 +14,7 @@ public import CORALean.Global.StepOf
 `Real.MatExp.constCorrectionMatrixEntrywise` over a float box, the `G` of [1]: orders `1` through
 `η` from `intervalConstCorrTermTight`, as `intervalConstCorrectionMatrix` has them, and the tail in
 `r` times the entry's own bound `W`. The coefficient is `corrCoeffLowTight`, CORA's to within
-rounding, where `intervalCorrectionMatrixEntrywise` and its constant counterpart take
-`corrCoeffLow`.
+rounding, as `intervalCorrectionMatrixEntrywise` and its constant counterpart take it.
 
 ## Inputs
 * `A` – float interval matrix
