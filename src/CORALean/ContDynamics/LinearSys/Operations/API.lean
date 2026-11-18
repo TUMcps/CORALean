@@ -196,6 +196,9 @@ public import CORALean.ContDynamics.LinearSys.Operations.VerifyZonoSupportUpFloa
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyZonotopePassFloat
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyZonotopeWitnessFloat
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyZonotopeRunFloat
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyKrylovBoundsFloat
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyKrylovWindowsFloat
+public import CORALean.ContDynamics.LinearSys.Operations.VerifyKrylovPassFloat
 
 /-!
 # What a continuous-time linear system computes

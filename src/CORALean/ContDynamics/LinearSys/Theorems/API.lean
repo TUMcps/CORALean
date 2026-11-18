@@ -330,6 +330,10 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VerifyZonotopePassFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifyZonotopePassFloatStep
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifyZonotopeWitnessFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifyZonotopeRunFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.DotProductLeOfMemInputReach
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyKrylovBoundsFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyKrylovWindowsFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyKrylovPassFloat
 
 /-!
 # What `LinearSys` guarantees
