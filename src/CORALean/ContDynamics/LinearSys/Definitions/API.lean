@@ -67,6 +67,7 @@ public import CORALean.ContDynamics.LinearSys.Definitions.InputRemainderSet
 public import CORALean.ContDynamics.LinearSys.Definitions.VerifySupportOutcome
 public import CORALean.ContDynamics.LinearSys.Definitions.VerifySupportResult
 public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifyZonoInvariant
+public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifyZonoWeighted
 public import CORALean.ContDynamics.LinearSys.Definitions.VerifyKrylovWindow
 public import CORALean.ContDynamics.LinearSys.Definitions.VerifyKrylovDirection
 public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifyKrylovWindows

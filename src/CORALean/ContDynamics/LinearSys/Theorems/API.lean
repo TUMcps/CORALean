@@ -328,6 +328,7 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VerifyZonoGenSetAppend
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifyZonoSupportUpFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifyZonotopePassFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifyZonotopePassFloatStep
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyZonotopePassFloatWeight
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifyZonotopeWitnessFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.VerifyZonotopeRunFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.DotProductLeOfMemInputReach

@@ -26,6 +26,7 @@ it is undecided (`none`). A pass that is not computed removes nothing.
 * `GU` – float generators of the input set
 * `C` – float output matrix
 * `specs` – float safe and unsafe sets in the output space
+* `cert` – Lyapunov certificate `(P, L, a)` of `A`, if any
 * `passes` – the grids of the passes, from CORA's tuning
 * `witnesses` – candidate falsifications: a specification's index, a time, `b` and `β`
 * `tFinal` – horizon
@@ -36,7 +37,7 @@ it is undecided (`none`). A pass that is not computed removes nothing.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-November-2026
--- Last update:   ---
+-- Last update:   19-November-2026
 -- Reviewed:      ---
 
 
@@ -70,10 +71,11 @@ def LinearSys.step_verifyRunTimesFloat (S : LinearSys.VerifySpecSet 𝕋 q) :
 undecided. -/
 def LinearSys.verifyZonotopeRunFloat (A : Mat 𝕋 n n) (c : Vec 𝕋 n) (G : Mat 𝕋 n m)
     (Bm : Mat 𝕋 n k) (uc : Vec 𝕋 k) (GU : Mat 𝕋 k p) (C : Mat 𝕋 q n)
-    (specs : List (LinearSys.VerifySpecSet 𝕋 q)) (passes : List (List (LinearSys.VerifyGridStep 𝕋)))
+    (specs : List (LinearSys.VerifySpecSet 𝕋 q)) (cert : Option (Mat 𝕋 n n × Mat 𝕋 n n × 𝕋))
+    (passes : List (List (LinearSys.VerifyGridStep 𝕋)))
     (witnesses : List (ℕ × 𝕋 × Vec 𝕋 m × Vec 𝕋 p)) (tFinal : 𝕋) : Option Bool :=
   let outs := passes.filterMap fun grid =>                               -- the computed passes
-    (LinearSys.verifyZonotopePassFloat A c G Bm uc GU C specs grid).map (grid, ·)
+    (LinearSys.verifyZonotopePassFloat A c G Bm uc GU C specs cert grid).map (grid, ·)
   let unverified := fun S => (outs.flatMap fun go =>                     -- the times left for `S`
     LinearSys.step_verifyRunTimesFloat S go.1 go.2 0).foldl
       (fun U iv => LinearSys.verifyTimeSetdiff U iv.1 iv.2) [(0, ToRat.toRat tFinal)]

@@ -399,6 +399,13 @@ boxes. A flag `false` is undecided, never read as disjoint
 from the step
 [`LinearSys.verifyZonotopePassFloat_step`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyZonotopePassFloatStep.lean)).
 
+**`verify` — the zonotope variant, the weighted carry.** The scaled errors grow by the balanced
+norm of `e^{AΔt}` per step, which explodes for a non-normal `A`. An optional Lyapunov certificate
+`P` of `A`, checked by `Krylov.lyapunovCertificateFloat`, carries the errors in the gauge
+`√(x'Px)` as well, and each step keeps the smaller of the two bounds. Without a certificate, or with
+a rejected one, the pass computes the same bits as before
+([`LinearSys.verifyZonotopePassFloat_weight`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyZonotopePassFloatWeight.lean)).
+
 **`verify` — the zonotope variant, its checks.** A safe set holds where an upper bound of the
 support along each row is below the offset
 ([`LinearSys.dotProduct_le_verifyZonoSupportUpFloat`](../../../src/CORALean/ContDynamics/LinearSys/Theorems/VerifyZonoSupportUpFloat.lean)).

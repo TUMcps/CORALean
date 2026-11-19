@@ -9,12 +9,13 @@ public import CORALean.ContSet.Interval.Float.Interval
 
 At `t_k`: the zonotope `⟨c, G⟩` of the initial set and the constant input carried to `t_k`, within
 the scaled error `h`; the float `Φ` of `e^{A t_k}` within the scaled error `φ`; the generators and
-the box of the varying input's solution up to `t_k`, within the scaled error `ρ`.
+the box of the varying input's solution up to `t_k`, within the scaled error `ρ`. With a Lyapunov
+weight of `A`, the errors of the zonotope and of `Φ` are also bounded in it, by `β` and `ψ`.
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-November-2026
--- Last update:   ---
+-- Last update:   19-November-2026
 -- Reviewed:      ---
 
 
@@ -45,6 +46,10 @@ structure LinearSys.VerifyZonoState (𝕋 : Type) (n m : ℕ) where
   b : Vec 𝕋 n
   /-- The bound of its scaled error. -/
   ρ : 𝕋
+  /-- The bound of the carried zonotope's error in a Lyapunov weight (`0` without one). -/
+  β : 𝕋
+  /-- The bound of `Φ`'s error in the weight, per unit of the scaled input (`0` without one). -/
+  ψ : 𝕋
 
 end CORALean
 
