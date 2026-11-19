@@ -112,8 +112,9 @@ def LinearSys.step_verifyZonoMapFloat (C : Mat 𝕋 q n) (T : LinearSys.VerifyZo
 def LinearSys.step_verifyScaledNormFloat (s : Vec 𝕋 n) (M : Mat 𝕋 n n) : 𝕋 :=
   maximum zero (maximumOver fun j => sumUp fun k => divUp (mulUp (absolute (M j k)) (s k)) (s j))
 
-/-- The input's boxes at `Δt`: none without an input, else `LinearSys.verifyInputSolutionFloat`,
-and the box of `G u₀` (none without a constant input). -/
+/-- The input's boxes at `Δt`: none without an input, else `LinearSys.verifyInputSolutionFloat`
+with its remainder at the level of `eps` (`tight`), and the box of `G u₀` (none without a constant
+input). -/
 @[step_of LinearSys.verifyZonotopePassFloat]
 def LinearSys.step_verifyZonoInputFloat (A : Mat 𝕋 n n) (s : Vec 𝕋 n) (Δt : 𝕋)
     (u₀ : Interval (Mat 𝕋 n 1)) (MU : Interval (Mat 𝕋 n p)) :
@@ -122,7 +123,7 @@ def LinearSys.step_verifyZonoInputFloat (A : Mat 𝕋 n n) (s : Vec 𝕋 n) (Δt
   let hasU := !(List.finRange n).all fun l => isZero (u₀.inf l 0) && isZero (u₀.sup l 0)
   let hasM := !(List.finRange n).all fun l => (List.finRange p).all fun c =>
     isZero (MU.inf l c) && isZero (MU.sup l c)
-  let I := if hasU || hasM then LinearSys.verifyInputSolutionFloat A s Δt u₀ MU
+  let I := if hasU || hasM then LinearSys.verifyInputSolutionFloat A s Δt u₀ MU true
     else some ⟨Interval.point fun _ _ => zero, [], Interval.point fun _ _ => zero, fun _ => zero⟩
   let g := if hasU then (MatExp.verifyCorrectionInputFloat A s Δt).map fun G =>
       (Interval.matMul G.2 u₀).materialiseMat
