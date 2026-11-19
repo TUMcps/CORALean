@@ -11,19 +11,24 @@ public import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyCorrection
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.VerifyCorrectionStateFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Operations.BalanceScalesFloat
 public import CORALean.ContSet.Interval.Float.Operations.MagnitudeMat
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.CarryMinFloat
+public import CORALean.ContDynamics.LinearSys.Krylov.Operations.LyapunovCertificateFloat
+public import CORALean.Global.Float.Exp
+public import CORALean.Global.Float.Sqrt
 
 @[expose] public section
 
 /-!
 # `LinearSys.verifyZonotopePassFloat`, one pass of CORA's `priv_verifyRA_zonotope`, made sound
 
-The steps of `priv_reach_adaptive` for `ẋ = Ax + Bu` on a given grid (step sizes, full steps,
-reduction budgets): CORA's tuning, an input that decides nothing about soundness, and what the
-oracle takes. CORA's point `expm(AΔt)` becomes a ball (`MatExp.expBallFloat`), `e^{A t_k}` a
-product `Φ` with a scaled error `φ`, and the carried zonotope gets a scaled error `h`. The varying
-input keeps the remainder CORA drops. A full step's set is CORA's `linComb` with `F ⟨c, G⟩` and
-`G u_c` as boxes and the ball `h_{k+1} + γ h_k + ρ_{k+1}`, mapped by `C`; then each specification
-is checked on it. Products are formed rounded down and up, the widths boxed: `0` at `nearest`.
+The steps of `priv_reach_adaptive` for `ẋ = Ax + Bu` on a given grid (CORA's tuning, not
+checked). CORA's point `expm(AΔt)` becomes a ball (`MatExp.expBallFloat`), `e^{A t_k}` a product
+`Φ` with a scaled error `φ`, the carried zonotope gets a scaled error `h`, and the varying input
+keeps the remainder CORA drops. A full step's set is CORA's `linComb` with `F ⟨c, G⟩` and `G u_c`
+as boxes plus the error ball, mapped by `C`, and each specification is checked on it. The
+Gershgorin carry grows like `e^{t μ_S}` (`μ_S` the balanced log norm, large for a non-normal `A`);
+with a Lyapunov certificate `(P, L, a)` of `A` the errors are also carried in its weight, by
+`e^{μΔt}` per step, and `h`, `φ` are the smaller of the two carries.
 
 ## Inputs
 * `A` – float system matrix
@@ -34,17 +39,18 @@ is checked on it. Products are formed rounded down and up, the widths boxed: `0`
 * `GU` – float generators of the input set
 * `C` – float output matrix
 * `specs` – float safe and unsafe sets in the output space
+* `cert` – Lyapunov certificate `(P, L, a)` of `A`, if any
 * `grid` – the steps, from CORA's tuning
 
 ## Output
 * per step, for a step computed in full, its output set and which specifications hold on it (a
   flag `false` is undecided: no certificate, never read as disjoint); none if a step's enclosures
-  are not computed or the scales are not positive
+  are not computed, the scales are not positive or a step leaves the weight's range
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-November-2026
--- Last update:   ---
+-- Last update:   19-November-2026
 -- Reviewed:      ---
 
 
@@ -154,6 +160,55 @@ def LinearSys.step_verifyZonoCarryFloat (s : Vec 𝕋 n) (D : Mat 𝕋 n n) (r :
     (norm fun j l => subUp (Φ'.sup j l) (Φ'.inf j l))
   { st with c := c'.sup, G := G'.sup, h := h', Φ := Φ'.sup, φ := φ' }
 
+/-- The local errors of a carried step in the scales: `r ‖S⁻¹ z‖ + gap` of the zonotope and
+`r ‖S⁻¹ Φ S‖ + width` of `Φ`, the terms of `step_verifyZonoCarryFloat` that do not carry. -/
+@[step_of LinearSys.verifyZonotopePassFloat]
+def LinearSys.step_verifyZonoLocalFloat (s : Vec 𝕋 n) (D : Mat 𝕋 n n) (r : 𝕋)
+    (w : Interval (Mat 𝕋 n 1)) (st : LinearSys.VerifyZonoState 𝕋 n m) : 𝕋 × 𝕋 :=
+  let scaled := LinearSys.step_verifyScaledVecFloat s
+  let norm := LinearSys.step_verifyScaledNormFloat s
+  let wm := LinearSys.step_verifyMidFloat ⟨fun l => w.inf l 0, fun l => w.sup l 0⟩
+  let Dc := Interval.matMul (Interval.point D) (Interval.point fun l (_ : Fin 1) => st.c l)
+  let c' := (⟨fun l => addDown (Dc.inf l 0) (wm.1 l), fun l => addUp (Dc.sup l 0) (wm.1 l)⟩ :
+    Interval (Vec 𝕋 n)).materialise
+  let G' := (Interval.matMul (Interval.point D) (Interval.point st.G)).materialiseMat
+  let gap := scaled fun l => addUp (addUp (subUp (c'.sup l) (c'.inf l))
+    (sumUp fun j => subUp (G'.sup l j) (G'.inf l j))) (wm.2 l)
+  let Φ' := (Interval.matMul (Interval.point D) (Interval.point st.Φ)).materialiseMat
+  (addUp (mulUp r (scaled (LinearSys.step_verifyZonoMagFloat st))) gap,       -- the zonotope's
+    addUp (mulUp r (norm st.Φ)) (norm fun j l => subUp (Φ'.sup j l) (Φ'.inf j l)))  -- `Φ`'s
+
+/-- The errors carried in the Lyapunov weight `c` of `A` from `st` to `st'` over `Δt`: `β' = e^{μΔt}
+β + √b √n max s · loc` (the same for `ψ`), back in the scales by `1/(√a min s)`; `h` and `φ` the
+smaller of these and the Gershgorin carry (`Krylov.carryMinFloat`). -/
+@[step_of LinearSys.verifyZonotopePassFloat]
+def LinearSys.step_verifyZonoWeightFloat (c : Krylov.LyapunovCertificateFloat 𝕋) (s : Vec 𝕋 n)
+    (Δt : 𝕋) (loc : 𝕋 × 𝕋) (st st' : LinearSys.VerifyZonoState 𝕋 n m) :
+    LinearSys.VerifyZonoState 𝕋 n m :=
+  let g := expUp 30 (mulUp c.rate Δt)                                     -- ≥ e^{μΔt}
+  let kn := mulUp (mulUp (sqrtUp 30 c.upper) (sqrtUp 30 (nsmulUp n one)))  -- ≥ √b √n max s
+    (maximumOver s)
+  let back := mulUp (sqrtUp 30 (divUp one c.lower))                       -- ≥ 1/(√a min s)
+    (maximumOver fun i => divUp one (s i))
+  let β' := addUp (mulUp g st.β) (mulUp kn loc.1)
+  let ψ' := addUp (mulUp g st.ψ) (mulUp kn loc.2)
+  let hL := Krylov.carryMinFloat st'.h (mulUp β' back)
+  let φL := Krylov.carryMinFloat st'.φ (mulUp ψ' back)
+  { st' with h := hL, φ := φL, β := β', ψ := ψ' }
+
+/-- The state at `t_{k+1}` with an accepted weight's carry, if any: none if `μΔt` leaves the range
+of the exponential. -/
+@[step_of LinearSys.verifyZonotopePassFloat]
+def LinearSys.step_verifyZonoWeightedFloat (cert : Option (Krylov.LyapunovCertificateFloat 𝕋))
+    (s : Vec 𝕋 n) (Δt : 𝕋) (D : Mat 𝕋 n n) (r : 𝕋) (w : Interval (Mat 𝕋 n 1))
+    (st st₁ : LinearSys.VerifyZonoState 𝕋 n m) : Option (LinearSys.VerifyZonoState 𝕋 n m) :=
+  match cert.filter fun c => c.ok with
+  | none => some st₁
+  | some c => if le (mulUp c.rate Δt) ((fun x => addDown x x)^[29] one) then
+      some (LinearSys.step_verifyZonoWeightFloat c s Δt
+        (LinearSys.step_verifyZonoLocalFloat s D r w st) st st₁)
+    else none
+
 /-- The orders of the input's solution carried by `Φ`: the first order's columns as generators,
 its widths and the later orders' magnitudes as a box. -/
 @[step_of LinearSys.verifyZonotopePassFloat]
@@ -215,6 +270,7 @@ flags of the specifications. -/
 @[step_of LinearSys.verifyZonotopePassFloat]
 def LinearSys.step_verifyZonoStepFloat (A : Mat 𝕋 n n) (s : Vec 𝕋 n) (u₀ : Interval (Mat 𝕋 n 1))
     (MU : Interval (Mat 𝕋 n p)) (C : Mat 𝕋 q n) (specs : List (LinearSys.VerifySpecSet 𝕋 q))
+    (cert : Option (Krylov.LyapunovCertificateFloat 𝕋))
     (st : LinearSys.VerifyZonoState 𝕋 n m) (g : LinearSys.VerifyGridStep 𝕋) :
     Option (Option (LinearSys.VerifyZono 𝕋 q × List Bool) × LinearSys.VerifyZonoState 𝕋 n m) :=
   if !ltStrict zero g.Δt then none else
@@ -225,8 +281,11 @@ def LinearSys.step_verifyZonoStepFloat (A : Mat 𝕋 n n) (s : Vec 𝕋 n) (u₀
   | none => none
   | some (I, gu) =>
   let inp := LinearSys.step_verifyZonoInputStepFloat s I g.budget st    -- the varying input
-  let st' := { LinearSys.step_verifyZonoCarryFloat s D r I.w st with
+  let st₁ := { LinearSys.step_verifyZonoCarryFloat s D r I.w st with
     P := inp.1, b := inp.2.1, ρ := inp.2.2 }
+  match LinearSys.step_verifyZonoWeightedFloat cert s g.Δt D r I.w st st₁ with  -- the weight
+  | none => none
+  | some st' =>
   if !g.full then some (none, st') else
   match MatExp.verifyCorrectionStateFloat A s g.Δt with                 -- F
   | none => none
@@ -239,15 +298,16 @@ def LinearSys.step_verifyZonoStepFloat (A : Mat 𝕋 n n) (s : Vec 𝕋 n) (u₀
 @[step_of LinearSys.verifyZonotopePassFloat]
 def LinearSys.step_verifyZonoStepsFloat (A : Mat 𝕋 n n) (s : Vec 𝕋 n)
     (u₀ : Interval (Mat 𝕋 n 1)) (MU : Interval (Mat 𝕋 n p)) (C : Mat 𝕋 q n)
-    (specs : List (LinearSys.VerifySpecSet 𝕋 q)) :
+    (specs : List (LinearSys.VerifySpecSet 𝕋 q))
+    (cert : Option (Krylov.LyapunovCertificateFloat 𝕋)) :
     LinearSys.VerifyZonoState 𝕋 n m → List (LinearSys.VerifyGridStep 𝕋) →
       List (Option (LinearSys.VerifyZono 𝕋 q × List Bool)) →
       Option (List (Option (LinearSys.VerifyZono 𝕋 q × List Bool)))
   | _, [], acc => some acc.reverse
   | st, g :: gs, acc =>
-    match LinearSys.step_verifyZonoStepFloat A s u₀ MU C specs st g with
+    match LinearSys.step_verifyZonoStepFloat A s u₀ MU C specs cert st g with
     | none => none
-    | some (o, st') => LinearSys.step_verifyZonoStepsFloat A s u₀ MU C specs st' gs (o :: acc)
+    | some (o, st') => LinearSys.step_verifyZonoStepsFloat A s u₀ MU C specs cert st' gs (o :: acc)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
@@ -256,15 +316,18 @@ def LinearSys.step_verifyZonoStepsFloat (A : Mat 𝕋 n n) (s : Vec 𝕋 n)
 `⟨c, G⟩` at `t = 0` with `Φ = I`. -/
 def LinearSys.verifyZonotopePassFloat (A : Mat 𝕋 n n) (c : Vec 𝕋 n) (G : Mat 𝕋 n m)
     (Bm : Mat 𝕋 n k) (uc : Vec 𝕋 k) (GU : Mat 𝕋 k p) (C : Mat 𝕋 q n)
-    (specs : List (LinearSys.VerifySpecSet 𝕋 q)) (grid : List (LinearSys.VerifyGridStep 𝕋)) :
+    (specs : List (LinearSys.VerifySpecSet 𝕋 q)) (cert : Option (Mat 𝕋 n n × Mat 𝕋 n n × 𝕋))
+    (grid : List (LinearSys.VerifyGridStep 𝕋)) :
     Option (List (Option (LinearSys.VerifyZono 𝕋 q × List Bool))) :=
   let s := MatExp.balanceScalesFloat A                                   -- the scales
+  let wt := cert.map fun (P, L, a) => Krylov.lyapunovCertificateFloat A P L a  -- `A`'s weight
   let u₀ : Interval (Mat 𝕋 n 1) :=                                       -- [B u_c]
     (⟨matMulDown Bm fun j _ => uc j, matMulUp Bm fun j _ => uc j⟩ : Interval _).materialiseMat
   let MU : Interval (Mat 𝕋 n p) := (⟨matMulDown Bm GU, matMulUp Bm GU⟩ : Interval _).materialiseMat
   if !(List.finRange n).all fun i => ltStrict zero (s i) then none else
-  LinearSys.step_verifyZonoStepsFloat A s u₀ MU C specs
-    ⟨c, G, zero, fun i j => if i = j then one else zero, zero, [], fun _ => zero, zero⟩ grid []
+  LinearSys.step_verifyZonoStepsFloat A s u₀ MU C specs wt
+    ⟨c, G, zero, fun i j => if i = j then one else zero, zero, [], fun _ => zero, zero, zero,
+      zero⟩ grid []
 
 end CORALean
 

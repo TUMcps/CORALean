@@ -1,6 +1,8 @@
 module
 
 public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifyZonoInvariant
+public import CORALean.ContDynamics.LinearSys.Definitions.IsVerifyZonoWeighted
+public import CORALean.ContDynamics.LinearSys.Theorems.VerifyZonotopePassFloatWeight
 public import CORALean.ContDynamics.LinearSys.Definitions.Basic
 public import CORALean.ContDynamics.LinearSys.Operations.VerifyZonotopePassFloat
 public import CORALean.ContDynamics.LinearSys.MatExp.Theorems.ExpBallFloat
@@ -28,7 +30,9 @@ From a state enclosing the system at `t` (`LinearSys.IsVerifyZonoInvariant`), a 
 `(e^{AΔt} − D) z + e^{AΔt} ε` and the widths; `P^V(t + Δt) = e^{tA} P^V(Δt) + P^V(t)`
 (`inputReach_separation_eq`), carried by `Φ` within `φ βU`. With `λ = τ/Δt`, `x(t + τ) =
 (1 − λ) z + λ (z' + R) + F_τ z + G_τ u₀ + ((1 − λ) I + F_τ) ε`, `F_τ ∈ F` and `R` the carried
-residual: CORA's `linComb` plus boxes; the input at `t + τ` lies in its set at `t + Δt`.
+residual: CORA's `linComb` plus boxes; the input at `t + τ` lies in its set at `t + Δt`. With an
+accepted certificate the errors split as `e^{AΔt} ε + δ` (`LinearSys.aux_local`) and are carried in
+its weight too (`LinearSys.verifyZonotopePassFloat_weight`).
 
 ## Inputs
 * `sys` – linear system
@@ -38,6 +42,7 @@ residual: CORA's `linComb` plus boxes; the input at `t + τ` lies in its set at 
 * `C` – float output matrix
 * `specs` – float specifications
 * `st` – float state at `t`
+* `cert` – Lyapunov certificate `(P, L, a)` of `A`, if any
 * `g` – step of the grid
 
 ## Hypotheses
@@ -45,15 +50,16 @@ residual: CORA's `linComb` plus boxes; the input at `t + τ` lies in its set at 
 * `hu` – the constant input lies in its box
 * `hM` – the input's generators lie in their box
 * `hinv` – the state encloses the system at `t`
+* `hwt` – with an accepted certificate, its weighted bounds hold at `t`
 
 ## Conclusion
-* for a returned step, `Δt > 0`, its state encloses the system at `t + Δt`, and its output set
-  holds every output over the step
+* for a returned step, `Δt > 0`, its state encloses the system at `t + Δt` (in the weight too),
+  and its output set holds every output over the step
 -/
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-November-2026
--- Last update:   ---
+-- Last update:   19-November-2026
 -- Reviewed:      ---
 
 
@@ -756,6 +762,178 @@ private theorem LinearSys.aux_carry {s : Vec 𝕋 n} (hs : ∀ i, 0 < toReal (s 
     linarith
 
 omit [ToRat 𝕋] in
+set_option maxHeartbeats 1000000 in -- the local errors are unfolded with their `let`s
+/-- The carried errors split as `e^{AΔt} ε + δ`: the zonotope's `δ = (e^{AΔt} − D) z + widths`
+within the first local error, `Φ`'s `Δ = (e^{AΔt} − D) Φ + width` within the second. -/
+private theorem LinearSys.aux_local {s : Vec 𝕋 n} (hs : ∀ i, 0 < toReal (s i)) {E : Mat ℝ n n}
+    {D : Mat 𝕋 n n} {r : 𝕋}
+    (hD : ‖Real.MatExp.scaleConj (toRealVec s) (E - toRealMat D)‖ ≤ toReal r)
+    {w : Interval (Mat 𝕋 n 1)} {wr : Vec ℝ n}
+    (hw : ∀ l, toReal (w.inf l 0) ≤ wr l ∧ wr l ≤ toReal (w.sup l 0))
+    (st : LinearSys.VerifyZonoState 𝕋 n m) : -- --- CONCL ---
+    let st' := LinearSys.step_verifyZonoCarryFloat s D r w st
+    let loc := LinearSys.step_verifyZonoLocalFloat s D r w st
+    0 ≤ toReal loc.1 ∧ 0 ≤ toReal loc.2 ∧
+    (∀ b : Fin m → ℝ, (∀ j, |b j| ≤ 1) → ∃ δ : Vec ℝ n,
+      (∀ i, |δ i| ≤ toReal loc.1 * 1 * toReal (s i)) ∧ ∀ ε : Vec ℝ n,
+        E *ᵥ (toRealVec st.c + toRealMat st.G *ᵥ b + ε) + wr
+          - (toRealVec st'.c + toRealMat st'.G *ᵥ b) = E *ᵥ ε + δ) ∧
+    (∀ X : Mat ℝ n n, ∀ a : ℝ, 0 ≤ a → ∀ x : Vec ℝ n, (∀ k, |x k| ≤ a * toReal (s k)) →
+      ∃ δ : Vec ℝ n, (∀ i, |δ i| ≤ toReal loc.2 * a * toReal (s i)) ∧
+        (E * X - toRealMat st'.Φ) *ᵥ x
+          = E *ᵥ ((X - toRealMat st.Φ) *ᵥ x) + δ) := by -- --- PROOF ---
+  intro st' loc
+  have hsr : ∀ i, 0 < toRealVec s i := hs
+  have hr0 : 0 ≤ toReal r := le_trans (norm_nonneg _) hD
+  -- the parts of the local errors, as the step computes them
+  set v := LinearSys.step_verifyZonoMagFloat st with hv
+  set wm := LinearSys.step_verifyMidFloat
+    (⟨fun l => w.inf l 0, fun l => w.sup l 0⟩ : Interval (Vec 𝕋 n)) with hwm
+  set Dc := Interval.matMul (Interval.point D) (Interval.point fun l (_ : Fin 1) => st.c l)
+  set c' : Interval (Vec 𝕋 n) := (⟨fun l => addDown (Dc.inf l 0) (wm.1 l),
+    fun l => addUp (Dc.sup l 0) (wm.1 l)⟩ : Interval (Vec 𝕋 n)).materialise with hc'
+  set G' := (Interval.matMul (Interval.point D) (Interval.point st.G)).materialiseMat with hG'
+  set gapv : Vec 𝕋 n := fun l => addUp (addUp (subUp (c'.sup l) (c'.inf l))
+    (sumUp fun j => subUp (G'.sup l j) (G'.inf l j))) (wm.2 l) with hgapv
+  set gap := LinearSys.step_verifyScaledVecFloat s gapv with hgap
+  set Φ' := (Interval.matMul (Interval.point D) (Interval.point st.Φ)).materialiseMat with hΦ'
+  set sv := LinearSys.step_verifyScaledVecFloat s v with hsv
+  set nΦ := LinearSys.step_verifyScaledNormFloat s st.Φ with hnΦ
+  set nW := LinearSys.step_verifyScaledNormFloat s fun j l => subUp (Φ'.sup j l) (Φ'.inf j l)
+    with hnW
+  have hl1 : loc.1 = addUp (mulUp r sv) gap := rfl
+  have hl2 : loc.2 = addUp (mulUp r nΦ) nW := rfl
+  have hst'c : st'.c = c'.sup := rfl
+  have hst'G : st'.G = G'.sup := rfl
+  have hst'Φ : st'.Φ = Φ'.sup := rfl
+  -- the local errors bound their parts
+  have hsv0 := LinearSys.aux_scaledVec_nonneg s v
+  have hgap0 := LinearSys.aux_scaledVec_nonneg s gapv
+  have hnΦ0 := LinearSys.aux_norm_nonneg s st.Φ
+  have hnW0 := LinearSys.aux_norm_nonneg s fun j l => subUp (Φ'.sup j l) (Φ'.inf j l)
+  have hloc1 : toReal r * toReal sv + toReal gap ≤ toReal loc.1 := by
+    rw [hl1]
+    have := add_le_addUp (mulUp r sv) gap
+    have := mul_le_mulUp r sv
+    linarith
+  have hloc2 : toReal r * toReal nΦ + toReal nW ≤ toReal loc.2 := by
+    rw [hl2]
+    have := add_le_addUp (mulUp r nΦ) nW
+    have := mul_le_mulUp r nΦ
+    linarith
+  -- both local errors are nonnegative; the zonotope's residual, then `Φ`'s
+  refine ⟨by nlinarith [mul_nonneg hr0 hsv0], by nlinarith [mul_nonneg hr0 hnΦ0],
+    fun b hb => ?_, fun X a ha x hx => ?_⟩
+  · set z := toRealVec st.c + toRealMat st.G *ᵥ b with hz
+    have hzv : ∀ k, |z k| ≤ toReal sv * toReal (s k) :=
+      LinearSys.aux_scaledVec hs v (LinearSys.aux_mag st hb)
+    set gv : Vec ℝ n := (wr - toRealVec wm.1) + (toRealMat D *ᵥ toRealVec st.c + toRealVec wm.1
+      - toRealVec c'.sup) + (toRealMat D * toRealMat st.G - toRealMat G'.sup) *ᵥ b with hgv
+    -- the gap: the half-width of `w`, the roundings of `D c + w` and of `D G`
+    have hgw : ∀ l, |gv l| ≤ toReal (gapv l) := by
+      intro l
+      have hm := LinearSys.aux_mid (I := ⟨fun l => w.inf l 0, fun l => w.sup l 0⟩) (x := wr)
+        (fun l => hw l) l
+      obtain ⟨hdc1, hdc2⟩ := LinearSys.aux_mulVec_mem D st.c l
+      have hcl : toReal (c'.inf l) = toReal (addDown (Dc.inf l 0) (wm.1 l)) := by
+        rw [hc', Interval.materialise_eq]
+      have hcu : toReal (c'.sup l) = toReal (addUp (Dc.sup l 0) (wm.1 l)) := by
+        rw [hc', Interval.materialise_eq]
+      have ad := addDown_le_add (Dc.inf l 0) (wm.1 l)
+      have au := add_le_addUp (Dc.sup l 0) (wm.1 l)
+      have hsc := sub_le_subUp (c'.sup l) (c'.inf l)
+      -- the rounding of `D G`, summed over the coefficients
+      have hGm : toRealMat D * toRealMat st.G ∈ G'.toSet := by
+        rw [hG', Interval.materialiseMat_eq]
+        exact Interval.matMul_outer _ _ (Interval.mem_point D) (Interval.mem_point st.G)
+      have hGb : |((toRealMat D * toRealMat st.G - toRealMat G'.sup) *ᵥ b) l|
+          ≤ toReal (sumUp fun j => subUp (G'.sup l j) (G'.inf l j)) := by
+        rw [show ((toRealMat D * toRealMat st.G - toRealMat G'.sup) *ᵥ b) l = ∑ j,
+          (toRealMat D * toRealMat st.G - toRealMat G'.sup) l j * b j from rfl]
+        refine le_trans (Finset.abs_sum_le_sum_abs _ _) (le_trans (Finset.sum_le_sum fun j _ => ?_)
+          (sum_le_sumUp _))
+        obtain ⟨g1, g2⟩ := (Interval.mem_mat_iff.mp hGm) l j
+        have := sub_le_subUp (G'.sup l j) (G'.inf l j)
+        rw [abs_mul]
+        refine le_trans (mul_le_mul_of_nonneg_left (hb j) (abs_nonneg _)) ?_
+        rw [mul_one, Matrix.sub_apply, abs_le]
+        simp only [toRealMat]
+        constructor <;> linarith
+      -- the three widths summed, rounded up
+      have e1 := add_le_addUp (addUp (subUp (c'.sup l) (c'.inf l))
+        (sumUp fun j => subUp (G'.sup l j) (G'.inf l j))) (wm.2 l)
+      have e2 := add_le_addUp (subUp (c'.sup l) (c'.inf l))
+        (sumUp fun j => subUp (G'.sup l j) (G'.inf l j))
+      have hdc : |(toRealMat D *ᵥ toRealVec st.c + toRealVec wm.1 - toRealVec c'.sup) l|
+          ≤ toReal (subUp (c'.sup l) (c'.inf l)) := by
+        simp only [Pi.add_apply, Pi.sub_apply, toRealVec]
+        rw [abs_le]; constructor <;> linarith
+      simp only [hgapv, hgv]
+      have := abs_add_le ((wr - toRealVec wm.1) l + (toRealMat D *ᵥ toRealVec st.c
+        + toRealVec wm.1 - toRealVec c'.sup) l)
+        (((toRealMat D * toRealMat st.G - toRealMat G'.sup) *ᵥ b) l)
+      have := abs_add_le ((wr - toRealVec wm.1) l) ((toRealMat D *ᵥ toRealVec st.c
+        + toRealVec wm.1 - toRealVec c'.sup) l)
+      have hm' : |(wr - toRealVec wm.1) l| ≤ toReal (wm.2 l) := hm
+      simp only [Pi.add_apply] at *
+      linarith
+    -- `δ = (e^{AΔt} − D) z + gap`, within the first local error
+    refine ⟨(E - toRealMat D) *ᵥ z + gv, fun i => ?_, fun ε => ?_⟩
+    · have h1 := LinearSys.aux_scaled hsr hD hsv0 hzv i
+      have h3 := LinearSys.aux_scaledVec hs gapv hgw i
+      have := abs_add_le (((E - toRealMat D) *ᵥ z) i) (gv i)
+      have e1 : toRealVec s i = toReal (s i) := rfl
+      rw [e1] at h1
+      simp only [Pi.add_apply]
+      have key := mul_le_mul_of_nonneg_right hloc1 (hs i).le
+      nlinarith
+    · rw [hst'c, hst'G, hgv, hz, Matrix.sub_mulVec, Matrix.sub_mulVec, ← Matrix.mulVec_mulVec,
+        Matrix.mulVec_add, Matrix.mulVec_add]
+      simp only [Matrix.mulVec_add]
+      abel
+  · -- `E (X − Φ) + (E − D) Φ + (D Φ − Φ')`
+    refine ⟨(E - toRealMat D) *ᵥ (toRealMat st.Φ *ᵥ x)
+      + (toRealMat D * toRealMat st.Φ - toRealMat Φ'.sup) *ᵥ x, fun i => ?_, ?_⟩
+    · have hΦx := LinearSys.aux_scaled hsr (LinearSys.aux_norm hs st.Φ (X := toRealMat st.Φ)
+        fun j k => le_rfl) ha hx
+      have hna := mul_nonneg hnΦ0 ha
+      have h2 := LinearSys.aux_scaled hsr hD hna (fun k => hΦx k) i
+      -- the rounding of `D Φ`, within its width
+      have hPm : toRealMat D * toRealMat st.Φ ∈ Φ'.toSet := by
+        rw [hΦ', Interval.materialiseMat_eq]
+        exact Interval.matMul_outer _ _ (Interval.mem_point D) (Interval.mem_point st.Φ)
+      have h3 := LinearSys.aux_scaled hsr (LinearSys.aux_norm hs (fun j l => subUp (Φ'.sup j l)
+        (Φ'.inf j l)) (X := toRealMat D * toRealMat st.Φ - toRealMat Φ'.sup) fun j k => by
+          obtain ⟨g1, g2⟩ := (Interval.mem_mat_iff.mp hPm) j k
+          have := sub_le_subUp (Φ'.sup j k) (Φ'.inf j k)
+          rw [Matrix.sub_apply]
+          refine le_trans ?_ (le_abs_self _)
+          simp only [toRealMat] at g1 g2 ⊢
+          rw [abs_le]; constructor <;> linarith) ha hx i
+      -- both parts within the second local error
+      have := abs_add_le (((E - toRealMat D) *ᵥ (toRealMat st.Φ *ᵥ x)) i)
+        (((toRealMat D * toRealMat st.Φ - toRealMat Φ'.sup) *ᵥ x) i)
+      -- the sum, in the scales
+      have e1 : toRealVec s i = toReal (s i) := rfl
+      rw [e1] at h2 h3
+      simp only [Pi.add_apply]
+      have hai := mul_nonneg ha (hs i).le
+      have key := mul_le_mul_of_nonneg_right hloc2 hai
+      have k2 : toReal r * (toReal nΦ * a) * toReal (s i)
+          = toReal r * toReal nΦ * (a * toReal (s i)) := by ring
+      have k3 : toReal nW * a * toReal (s i) = toReal nW * (a * toReal (s i)) := by ring
+      have k4 : toReal loc.2 * a * toReal (s i) = toReal loc.2 * (a * toReal (s i)) := by ring
+      rw [k2] at h2
+      rw [k3] at h3
+      rw [k4]
+      nlinarith
+    · have hm : E * X - toRealMat Φ'.sup = E * (X - toRealMat st.Φ)
+          + (E - toRealMat D) * toRealMat st.Φ + (toRealMat D * toRealMat st.Φ - toRealMat Φ'.sup)
+          := by noncomm_ring
+      rw [hst'Φ, hm, Matrix.add_mulVec, Matrix.add_mulVec, ← Matrix.mulVec_mulVec,
+        ← Matrix.mulVec_mulVec, add_assoc]
+
+omit [ToRat 𝕋] in
 /-- The orders carried by `Φ`: the first order's columns span the generators, within the first
 order's widths and the magnitudes of the later orders. -/
 private theorem LinearSys.aux_orders (Φ : Mat 𝕋 n n) : -- --- CONCL ---
@@ -1261,10 +1439,15 @@ theorem LinearSys.verifyZonotopePassFloat_step (sys : LinearSys 𝕋 n) {s : Vec
     {t : ℝ} {st : LinearSys.VerifyZonoState 𝕋 n m}
     (hinv : sys.IsVerifyZonoInvariant (toRealVec s) c₀ G₀ (fun l => u0r l 0)
       ((fun β => Mr *ᵥ β) '' Set.Icc (-1) 1) t st)
+    (cert : Option (Mat 𝕋 n n × Mat 𝕋 n n × 𝕋))
+    (hwt : sys.IsVerifyZonoWeighted cert (toRealVec s) c₀ G₀ (fun l => u0r l 0) t st)
     (g : LinearSys.VerifyGridStep 𝕋) : -- --- CONCL ---
-    ∀ r ∈ LinearSys.step_verifyZonoStepFloat sys.A s u₀ MU C specs st g, 0 < toReal g.Δt ∧
+    ∀ r ∈ LinearSys.step_verifyZonoStepFloat sys.A s u₀ MU C specs
+      (cert.map fun (P, L, a) => Krylov.lyapunovCertificateFloat sys.A P L a) st g,
+    0 < toReal g.Δt ∧
     sys.IsVerifyZonoInvariant (toRealVec s) c₀ G₀ (fun l => u0r l 0)
       ((fun β => Mr *ᵥ β) '' Set.Icc (-1) 1) (t + toReal g.Δt) r.2 ∧
+    sys.IsVerifyZonoWeighted cert (toRealVec s) c₀ G₀ (fun l => u0r l 0) (t + toReal g.Δt) r.2 ∧
     ∀ Y fl, r.1 = some (Y, fl) → fl = specs.map (LinearSys.verifySpecHoldsFloat Y) ∧
       ∀ b : Fin m → ℝ, (∀ j, |b j| ≤ 1) → ∀ τ : ℝ, 0 ≤ τ → τ ≤ toReal g.Δt →
       ∀ y ∈ sys.inputReach (S := ExactSet) ((fun β => Mr *ᵥ β) '' Set.Icc (-1) 1) (t + τ),
@@ -1272,7 +1455,9 @@ theorem LinearSys.verifyZonotopePassFloat_step (sys : LinearSys 𝕋 n) {s : Vec
           + Real.MatExp.expIntegral (toRealMat sys.A) (t + τ) *ᵥ (fun l => u0r l 0) + y)
           ∈ Y.toSet := by -- --- PROOF ---
   rintro ⟨o, st'⟩ h
-  replace h : LinearSys.step_verifyZonoStepFloat sys.A s u₀ MU C specs st g = some (o, st') := h
+  replace h : LinearSys.step_verifyZonoStepFloat sys.A s u₀ MU C specs
+    (cert.map fun (P, L, a) => Krylov.lyapunovCertificateFloat sys.A P L a) st g = some (o, st') :=
+    h
   obtain ⟨ht, hh, hφ, hρ, hz, hΦ, hP⟩ := hinv
   set A := toRealMat sys.A with hA
   set u0v : Vec ℝ n := fun l => u0r l 0 with hu0v
@@ -1299,6 +1484,7 @@ theorem LinearSys.verifyZonotopePassFloat_step (sys : LinearSys 𝕋 n) {s : Vec
   split at h
   · simp at h
   rename_i I gu hIg
+  dsimp only at h
   obtain ⟨hfacts, hgu⟩ := LinearSys.aux_inputBoxes_mem sys hs hΔt hu hM hIg
   -- the carried zonotope and the varying input at `t + Δt`
   set E := exp (toReal g.Δt • A) with hE
@@ -1306,6 +1492,7 @@ theorem LinearSys.verifyZonotopePassFloat_step (sys : LinearSys 𝕋 n) {s : Vec
   have hw : ∀ l, toReal (I.w.inf l 0) ≤ wr l ∧ wr l ≤ toReal (I.w.sup l 0) :=
     fun l => (Interval.mem_mat_iff.mp hfacts.1) l 0
   obtain ⟨hh', hφ', -, -, -, hres, hΦ'⟩ := LinearSys.aux_carry hs hD hw st hh hφ
+  obtain ⟨hl10, hl20, hδz, hδΦ⟩ := LinearSys.aux_local hs hD hw st
   obtain ⟨hρ', hP'⟩ := LinearSys.aux_inputStep sys hs hΔt hfacts g.budget st ht hφ hρ hΦ hP
   -- the state at `t + Δt`
   set inp := LinearSys.step_verifyZonoInputStepFloat s I g.budget st with hinp
@@ -1324,35 +1511,144 @@ theorem LinearSys.verifyZonotopePassFloat_step (sys : LinearSys 𝕋 n) {s : Vec
       ← Matrix.mulVec_mulVec, ← Matrix.mulVec_mulVec, Matrix.mulVec_add, Matrix.mulVec_add]
     simp only [Matrix.mulVec_add]
     abel
+  -- the errors at `t`, of the zonotope and of `e^{tA}`
+  set err : (Fin m → ℝ) → Vec ℝ n := fun b => exp (t • A) *ᵥ (c₀ + G₀ *ᵥ b)
+    + Real.MatExp.expIntegral A t *ᵥ u0v - (toRealVec st.c + toRealMat st.G *ᵥ b) with herr
+  have hres₁ : ∀ b, (∀ j, |b j| ≤ 1) → ∀ i,
+      |(E *ᵥ (toRealVec st.c + toRealMat st.G *ᵥ b + err b) + wr
+        - (toRealVec st₁.c + toRealMat st₁.G *ᵥ b)) i| ≤ toReal st₁.h * toReal (s i) :=
+    fun b hb i => hres b hb (err b) (hz b hb) i
+  have hΦ₁ : ∀ a : ℝ, 0 ≤ a → ∀ x : Vec ℝ n, (∀ k, |x k| ≤ a * toReal (s k)) → ∀ i,
+      |((E * exp (t • A) - toRealMat st₁.Φ) *ᵥ x) i| ≤ toReal st₁.φ * a * toReal (s i) :=
+    fun a ha x hx i => hΦ' (exp (t • A)) hΦ a ha x hx i
+  -- the weight: the state at `t + Δt` with the smaller carries
+  split at h
+  · simp at h
+  rename_i st₂ hW
+  -- what the weighted state keeps, and its bounds in both carries
+  have hfacts₂ : st₂.c = st₁.c ∧ st₂.G = st₁.G ∧ st₂.Φ = st₁.Φ ∧ st₂.P = st₁.P ∧
+      st₂.b = st₁.b ∧ st₂.ρ = st₁.ρ ∧ 0 ≤ toReal st₂.h ∧ 0 ≤ toReal st₂.φ ∧
+      (∀ b, (∀ j, |b j| ≤ 1) → ∀ i,
+        |(E *ᵥ (toRealVec st.c + toRealMat st.G *ᵥ b + err b) + wr
+          - (toRealVec st₂.c + toRealMat st₂.G *ᵥ b)) i| ≤ toReal st₂.h * toReal (s i)) ∧
+      (∀ a : ℝ, 0 ≤ a → ∀ x : Vec ℝ n, (∀ k, |x k| ≤ a * toReal (s k)) → ∀ i,
+        |((E * exp (t • A) - toRealMat st₂.Φ) *ᵥ x) i| ≤ toReal st₂.φ * a * toReal (s i)) ∧
+      (∀ P L a, (P, L, a) ∈ cert → (Krylov.lyapunovCertificateFloat sys.A P L a).ok = true →
+        0 ≤ toReal st₂.β ∧ 0 ≤ toReal st₂.ψ ∧
+        (∀ b, (∀ j, |b j| ≤ 1) →
+          let e := E *ᵥ (toRealVec st.c + toRealMat st.G *ᵥ b + err b) + wr
+            - (toRealVec st₂.c + toRealMat st₂.G *ᵥ b)
+          Real.sqrt (e ⬝ᵥ (toRealMat P *ᵥ e)) ≤ toReal st₂.β) ∧
+        ∀ a : ℝ, 0 ≤ a → ∀ x : Vec ℝ n, (∀ k, |x k| ≤ a * toReal (s k)) →
+          let y := (E * exp (t • A) - toRealMat st₂.Φ) *ᵥ x
+          Real.sqrt (y ⬝ᵥ (toRealMat P *ᵥ y)) ≤ toReal st₂.ψ * a) := by
+    unfold LinearSys.step_verifyZonoWeightedFloat at hW
+    split at hW
+    · -- no accepted weight: the Gershgorin state
+      rename_i hnone
+      simp only [Option.some.injEq] at hW
+      subst hW
+      refine ⟨rfl, rfl, rfl, rfl, rfl, rfl, hh', hφ', hres₁, hΦ₁, fun P L a hc hok => ?_⟩
+      exfalso
+      rw [Option.filter_eq_none_iff] at hnone
+      exact absurd hok (by simpa using hnone _ (Option.mem_map_of_mem _ hc))
+    · rename_i cw hsome
+      split at hW
+      · rename_i hcap
+        simp only [Option.some.injEq] at hW
+        subst hW
+        obtain ⟨hcm, hcok⟩ := Option.mem_filter_iff.mp hsome
+        obtain ⟨⟨P, L, a₀⟩, hPLa, rfl⟩ := Option.mem_map.mp hcm
+        -- the weighted bounds at `t`, then the step's weighted carry
+        obtain ⟨hβ0, hψ0, hνz, hνΦ⟩ := hwt P L a₀ hPLa hcok
+        obtain ⟨-, -, -, -, -, -, h2h, h2φ, h2β, h2ψ, hwz, hwΦ⟩ :=
+          LinearSys.verifyZonotopePassFloat_weight sys.A P L a₀ rfl hcok hs hΔt.le hcap
+            (LinearSys.step_verifyZonoLocalFloat s D r I.w st) st st₁ hβ0 hψ0 hl10 hl20 hh' hφ'
+        set stW := LinearSys.step_verifyZonoWeightFloat
+          (Krylov.lyapunovCertificateFloat sys.A P L a₀) s g.Δt
+          (LinearSys.step_verifyZonoLocalFloat s D r I.w st) st st₁ with hstW
+        -- the zonotope: `e^{AΔt} ε + δ`
+        have hz₂ : ∀ b, (∀ j, |b j| ≤ 1) →
+            let e := E *ᵥ (toRealVec st.c + toRealMat st.G *ᵥ b + err b) + wr
+              - (toRealVec st₁.c + toRealMat st₁.G *ᵥ b)
+            Real.sqrt (e ⬝ᵥ (toRealMat P *ᵥ e)) ≤ toReal stW.β * 1 ∧
+              ∀ i, |e i| ≤ toReal stW.h * 1 * toReal (s i) := by
+          intro b hb
+          dsimp only
+          obtain ⟨δ, hδ, hδe⟩ := hδz b hb
+          rw [hδe (err b)]
+          refine hwz 1 (err b) δ zero_le_one (by rw [mul_one]; exact hνz b hb) hδ fun i => ?_
+          rw [← hδe (err b), mul_one]
+          exact hres₁ b hb i
+        -- `Φ`: `e^{AΔt} (e^{tA} − Φ) x + δ`
+        have hΦ₂ : ∀ a : ℝ, 0 ≤ a → ∀ x : Vec ℝ n, (∀ k, |x k| ≤ a * toReal (s k)) →
+            let y := (E * exp (t • A) - toRealMat st₁.Φ) *ᵥ x
+            Real.sqrt (y ⬝ᵥ (toRealMat P *ᵥ y)) ≤ toReal stW.ψ * a ∧
+              ∀ i, |y i| ≤ toReal stW.φ * a * toReal (s i) := by
+          intro a ha x hx
+          dsimp only
+          obtain ⟨δ, hδ, hδe⟩ := hδΦ (exp (t • A)) a ha x hx
+          rw [hδe]
+          refine hwΦ a _ δ ha (hνΦ a ha x hx) hδ fun i => ?_
+          rw [← hδe]
+          exact hΦ₁ a ha x hx i
+        refine ⟨rfl, rfl, rfl, rfl, rfl, rfl, h2h, h2φ, fun b hb i => ?_, fun a ha x hx i => ?_,
+          fun P' L' a' hc' _ => ?_⟩
+        · have := (hz₂ b hb).2 i
+          rw [mul_one] at this
+          exact this
+        · exact (hΦ₂ a ha x hx).2 i
+        · -- the certificate is the one of `cert`
+          have hPLa' : (P', L', a') = (P, L, a₀) := by
+            rw [Option.mem_def] at hc' hPLa; rw [hc'] at hPLa; exact Option.some.inj hPLa
+          simp only [Prod.mk.injEq] at hPLa'
+          obtain ⟨rfl, rfl, rfl⟩ := hPLa'
+          exact ⟨h2β, h2ψ, fun b hb => by have := (hz₂ b hb).1; rw [mul_one] at this; exact this,
+            fun a ha x hx => (hΦ₂ a ha x hx).1⟩
+      · simp at hW
+  obtain ⟨hc₂, hG₂, hΦe₂, hP₂, hb₂, hρ₂, hh₂, hφ₂, hres₂, hΦ₂', hwt₂⟩ := hfacts₂
   -- the invariant at `t + Δt`: the carried zonotope, `e^{A(t + Δt)}`, the input
-  have hinv' : sys.IsVerifyZonoInvariant (toRealVec s) c₀ G₀ u0v V (t + toReal g.Δt) st₁ := by
-    refine ⟨by linarith, hh', hφ', hρ', fun b hb i => ?_, fun a ha x hx i => ?_, hP'⟩
-    · rw [hflow _ hΔt.le b]
-      set ε := exp (t • A) *ᵥ (c₀ + G₀ *ᵥ b) + Real.MatExp.expIntegral A t *ᵥ u0v
-        - (toRealVec st.c + toRealMat st.G *ᵥ b) with hε
-      have := hres b hb ε (hz b hb) i
-      rw [show toRealVec st.c + toRealMat st.G *ᵥ b + ε
-        = exp (t • A) *ᵥ (c₀ + G₀ *ᵥ b) + Real.MatExp.expIntegral A t *ᵥ u0v by
-        rw [hε]; abel] at this
-      exact this
-    · have := hΦ' (exp (t • A)) hΦ a ha x hx i
-      rwa [show E * exp (t • A) = exp ((t + toReal g.Δt) • A) by
-        rw [hE, ← Matrix.exp_add_of_commute _ _ (((Commute.refl A).smul_left _).smul_right t),
-          ← add_smul, add_comm]] at this
+  have hEt : E * exp (t • A) = exp ((t + toReal g.Δt) • A) := by
+    rw [hE, ← Matrix.exp_add_of_commute _ _ (((Commute.refl A).smul_left _).smul_right t),
+      ← add_smul, add_comm]
+  -- `x(t + Δt)` from the carried point plus its error
+  have hflowε : ∀ b, (∀ j, |b j| ≤ 1) →
+      exp ((t + toReal g.Δt) • A) *ᵥ (c₀ + G₀ *ᵥ b)
+        + Real.MatExp.expIntegral A (t + toReal g.Δt) *ᵥ u0v
+        = E *ᵥ (toRealVec st.c + toRealMat st.G *ᵥ b + err b) + wr := by
+    intro b _
+    have hx : toRealVec st.c + toRealMat st.G *ᵥ b + err b
+        = exp (t • A) *ᵥ (c₀ + G₀ *ᵥ b) + Real.MatExp.expIntegral A t *ᵥ u0v := by
+      simp only [herr]; abel
+    rw [hflow _ hΔt.le b, hx]
+  have hinv' : sys.IsVerifyZonoInvariant (toRealVec s) c₀ G₀ u0v V (t + toReal g.Δt) st₂ := by
+    refine ⟨by linarith, hh₂, hφ₂, by rw [hρ₂]; exact hρ', fun b hb i => ?_,
+      fun a ha x hx i => ?_, by rw [hP₂, hb₂, hρ₂]; exact hP'⟩
+    · rw [hflowε b hb]; exact hres₂ b hb i
+    · rw [← hEt]; exact hΦ₂' a ha x hx i
+  -- the weighted invariant at `t + Δt`
+  have hwt' : sys.IsVerifyZonoWeighted cert (toRealVec s) c₀ G₀ u0v (t + toReal g.Δt) st₂ := by
+    intro P L a hc hok
+    obtain ⟨hβ2, hψ2, hz2, hΦ2⟩ := hwt₂ P L a hc hok
+    refine ⟨hβ2, hψ2, fun b hb => ?_, fun a' ha x hx => ?_⟩
+    · show Real.sqrt _ ≤ _
+      rw [hflowε b hb]; exact hz2 b hb
+    · show Real.sqrt _ ≤ _
+      rw [← hEt]; exact hΦ2 a' ha x hx
   -- a step only propagated has no output
   by_cases hfull : g.full = true
   rotate_left
   · rw [if_pos (by simpa using hfull)] at h
     simp only [Option.some.injEq, Prod.mk.injEq] at h
     obtain ⟨rfl, rfl⟩ := h
-    exact ⟨hΔt, hinv', fun Y fl hY => by simp at hY⟩
+    exact ⟨hΔt, hinv', hwt', fun Y fl hY => by simp at hY⟩
   rw [if_neg (by simpa using hfull)] at h
   split at h
   · simp at h
   rename_i Fp F hF
   simp only [Option.some.injEq, Prod.mk.injEq] at h
   obtain ⟨rfl, rfl⟩ := h
-  refine ⟨hΔt, hinv', fun Y fl hY => ?_⟩
+  refine ⟨hΔt, hinv', hwt', fun Y fl hY => ?_⟩
   simp only [Option.some.injEq, Prod.mk.injEq] at hY
   obtain ⟨rfl, rfl⟩ := hY
   refine ⟨rfl, fun b hb τ hτ0 hτ1 y hy => ?_⟩
@@ -1360,6 +1656,9 @@ theorem LinearSys.verifyZonotopePassFloat_step (sys : LinearSys 𝕋 n) {s : Vec
   have hy' := sys.inputReach_mono (S := ExactSet) (U := V) hbdd hV0 (by linarith)
     (by linarith : t + τ ≤ t + toReal g.Δt) hy
   obtain ⟨y₂, hy₂, e₁, e₂, he₁, he₂, rfl⟩ := hP' y hy'
+  replace hy₂ : y₂ ∈ verifyZonoGenSet (List.map toRealVec st₂.P) := by rw [hP₂]; exact hy₂
+  replace he₁ : ∀ i, |e₁ i| ≤ toReal (st₂.b i) := by rw [hb₂]; exact he₁
+  replace he₂ : ∀ i, |e₂ i| ≤ toReal st₂.ρ * toReal (s i) := by rw [hρ₂]; exact he₂
   -- the decomposition of `x(t + τ)`
   set lam := τ / toReal g.Δt with hlam
   have hlam0 : 0 ≤ lam := div_nonneg hτ0 hΔt.le
@@ -1374,11 +1673,11 @@ theorem LinearSys.verifyZonotopePassFloat_step (sys : LinearSys 𝕋 n) {s : Vec
   have hgτm : ∀ l, toReal (gu.inf l 0) ≤ gτ l ∧ gτ l ≤ toReal (gu.sup l 0) :=
     fun l => (Interval.mem_mat_iff.mp (hgu τ hτ0 hτ1)) l 0
   set z := toRealVec st.c + toRealMat st.G *ᵥ b with hzdef
-  set z' := toRealVec st₁.c + toRealMat st₁.G *ᵥ b with hz'def
+  set z' := toRealVec st₂.c + toRealMat st₂.G *ᵥ b with hz'def
   set ε := exp (t • A) *ᵥ (c₀ + G₀ *ᵥ b) + Real.MatExp.expIntegral A t *ᵥ u0v - z with hε
   set R := E *ᵥ (z + ε) + wr - z' with hR
-  have hRb : ∀ k, |R k| ≤ toReal st₁.h * toReal (s k) := fun k => hres b hb ε (hz b hb) k
-  have hmem := LinearSys.aux_interval hs st st₁ hh hh' hlam0 hlam1 hb (hz b hb) hRb hFτm hgτm
+  have hRb : ∀ k, |R k| ≤ toReal st₂.h * toReal (s k) := fun k => hres₂ b hb k
+  have hmem := LinearSys.aux_interval hs st st₂ hh hh₂ hlam0 hlam1 hb (hz b hb) hRb hFτm hgτm
     hy₂ he₁ he₂
   -- `x(t + τ)` as the set's center, spans and box
   have heq : exp ((t + τ) • A) *ᵥ (c₀ + G₀ *ᵥ b) + Real.MatExp.expIntegral A (t + τ) *ᵥ u0v

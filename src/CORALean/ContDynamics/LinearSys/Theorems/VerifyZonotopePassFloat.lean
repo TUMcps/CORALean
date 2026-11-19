@@ -12,7 +12,8 @@ public import CORALean.ContDynamics.LinearSys.Theorems.VerifySpecHoldsFloat
 A step computed in full returns an output set holding `C x(t)` over the step, for every
 `x₀ ∈ ⟨c, G⟩` and every input `u(s) ∈ B(u_c + G_U [-1, 1]^k)`: the invariant
 `LinearSys.IsVerifyZonoInvariant` holds at `t = 0` and each step keeps it
-(`LinearSys.verifyZonotopePassFloat_step`). A flag `true` proves its specification over the step
+(`LinearSys.verifyZonotopePassFloat_step`), as does its weighted counterpart
+`LinearSys.IsVerifyZonoWeighted`. A flag `true` proves its specification over the step
 (`LinearSys.verifySpecHoldsFloat_sound`); a flag `false` claims nothing: no certificate, the step
 is undecided and refined, never read as disjoint. The grid is CORA's tuning, an unchecked input.
 
@@ -25,6 +26,7 @@ is undecided and refined, never read as disjoint. The grid is CORA's tuning, an 
 * `GU` – float generators of the input set
 * `C` – float output matrix
 * `specs` – float specifications
+* `cert` – Lyapunov certificate `(P, L, a)` of `A`, if any
 * `grid` – the steps
 
 ## Hypotheses
@@ -37,7 +39,7 @@ is undecided and refined, never read as disjoint. The grid is CORA's tuning, an 
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-November-2026
--- Last update:   ---
+-- Last update:   19-November-2026
 -- Reviewed:      ---
 
 
@@ -72,13 +74,16 @@ private theorem LinearSys.aux_steps (sys : LinearSys 𝕋 n) {s : Vec 𝕋 n}
     (hs : ∀ i, 0 < toReal (s i)) {u₀ : Interval (Mat 𝕋 n 1)} {MU : Interval (Mat 𝕋 n p)}
     {u0r : Mat ℝ n 1} (hu : u0r ∈ u₀.toSet) {Mr : Mat ℝ n p} (hM : Mr ∈ MU.toSet)
     (C : Mat 𝕋 q n) (specs : List (LinearSys.VerifySpecSet 𝕋 q)) (c₀ : Vec ℝ n)
-    (G₀ : Mat ℝ n m) : -- --- CONCL ---
+    (G₀ : Mat ℝ n m) (cert : Option (Mat 𝕋 n n × Mat 𝕋 n n × 𝕋)) : -- --- CONCL ---
     ∀ (grid : List (LinearSys.VerifyGridStep 𝕋)) (st : LinearSys.VerifyZonoState 𝕋 n m)
       (acc : List (Option (LinearSys.VerifyZono 𝕋 q × List Bool))) (t : ℝ)
       (out : List (Option (LinearSys.VerifyZono 𝕋 q × List Bool))),
       sys.IsVerifyZonoInvariant (toRealVec s) c₀ G₀ (fun l => u0r l 0)
         ((fun β => Mr *ᵥ β) '' Set.Icc (-1) 1) t st →
-      LinearSys.step_verifyZonoStepsFloat sys.A s u₀ MU C specs st grid acc = some out →
+      sys.IsVerifyZonoWeighted cert (toRealVec s) c₀ G₀ (fun l => u0r l 0) t st →
+      LinearSys.step_verifyZonoStepsFloat sys.A s u₀ MU C specs
+        (cert.map fun (P, L, a) => Krylov.lyapunovCertificateFloat sys.A P L a) st grid acc
+        = some out →
       ∃ outs, out = acc.reverse ++ outs ∧ outs.length = grid.length ∧
         ∀ j g o, grid[j]? = some g → outs[j]? = some o →
           sys.aux_stepOk c₀ G₀ (fun l => u0r l 0) ((fun β => Mr *ᵥ β) '' Set.Icc (-1) 1) C specs
@@ -86,19 +91,19 @@ private theorem LinearSys.aux_steps (sys : LinearSys 𝕋 n) {s : Vec 𝕋 n}
   intro grid
   induction grid with
   | nil =>
-    intro st acc t out _ h
+    intro st acc t out _ _ h
     simp only [LinearSys.step_verifyZonoStepsFloat, Option.some.injEq] at h
     exact ⟨[], by simp [h], rfl, fun j g o hg => by simp at hg⟩
   | cons g gs ih =>
-    intro st acc t out hinv h
+    intro st acc t out hinv hwt h
     simp only [LinearSys.step_verifyZonoStepsFloat] at h
     split at h
     · simp at h
     rename_i o st' hstep
     -- the step keeps the invariant, the rest of the grid gives the later outputs
-    obtain ⟨-, hinv', hok⟩ := LinearSys.verifyZonotopePassFloat_step sys hs hu hM C specs hinv g
-      (o, st') hstep
-    obtain ⟨outs, rfl, hlen, hall⟩ := ih st' (o :: acc) (t + toReal g.Δt) out hinv' h
+    obtain ⟨-, hinv', hwt', hok⟩ := LinearSys.verifyZonotopePassFloat_step sys hs hu hM C specs
+      hinv cert hwt g (o, st') hstep
+    obtain ⟨outs, rfl, hlen, hall⟩ := ih st' (o :: acc) (t + toReal g.Δt) out hinv' hwt' h
     refine ⟨o :: outs, by simp, by simp [hlen], fun j g' o' hg ho => ?_⟩
     -- this step's output, then the later ones from `t + Δt`
     cases j with
@@ -126,10 +131,10 @@ private theorem LinearSys.aux_inputReach_zero (sys : LinearSys 𝕋 n) {V : Set 
 step is undecided and refined, never read as disjoint). The grid is CORA's tuning, not checked. -/
 theorem LinearSys.verifyZonotopePassFloat_sound (sys : LinearSys 𝕋 n) (c : Vec 𝕋 n)
     (G : Mat 𝕋 n m) (Bm : Mat 𝕋 n k) (uc : Vec 𝕋 k) (GU : Mat 𝕋 k p) (C : Mat 𝕋 q n)
-    (specs : List (LinearSys.VerifySpecSet 𝕋 q))
+    (specs : List (LinearSys.VerifySpecSet 𝕋 q)) (cert : Option (Mat 𝕋 n n × Mat 𝕋 n n × 𝕋))
     (grid : List (LinearSys.VerifyGridStep 𝕋)) : -- --- CONCL ---
     let U := (fun β => toRealMat Bm *ᵥ (toRealVec uc + toRealMat GU *ᵥ β)) '' Set.Icc (-1) 1
-    ∀ out ∈ LinearSys.verifyZonotopePassFloat sys.A c G Bm uc GU C specs grid,
+    ∀ out ∈ LinearSys.verifyZonotopePassFloat sys.A c G Bm uc GU C specs cert grid,
     out.length = grid.length ∧
     ∀ j g Y fl, grid[j]? = some g → out[j]? = some (some (Y, fl)) →
       let t₀ := ((grid.take j).map fun g => toReal g.Δt).sum
@@ -142,7 +147,8 @@ theorem LinearSys.verifyZonotopePassFloat_sound (sys : LinearSys 𝕋 n) (c : Ve
           (S.safe = false → ∃ ab ∈ S.rows, toReal ab.2 < toRealVec ab.1 ⬝ᵥ (toRealMat C *ᵥ x))
     := by -- --- PROOF ---
   intro U out h
-  replace h : LinearSys.verifyZonotopePassFloat sys.A c G Bm uc GU C specs grid = some out := h
+  replace h : LinearSys.verifyZonotopePassFloat sys.A c G Bm uc GU C specs cert grid = some out :=
+    h
   -- the input in state space: `B u_c` and `B G_U`, each in its bracket
   set u0r : Mat ℝ n 1 := fun l _ => (toRealMat Bm *ᵥ toRealVec uc) l with hu0r
   set Mr : Mat ℝ n p := toRealMat Bm * toRealMat GU with hMr
@@ -175,7 +181,7 @@ theorem LinearSys.verifyZonotopePassFloat_sound (sys : LinearSys 𝕋 n) (c : Ve
     rwa [toReal_zero] at this
   have hinv0 : sys.IsVerifyZonoInvariant (toRealVec s) (toRealVec c) (toRealMat G)
       (fun l => u0r l 0) V 0 ⟨c, G, zero, fun i j => if i = j then one else zero, zero, [],
-        fun _ => zero, zero⟩ := by
+        fun _ => zero, zero, zero, zero⟩ := by
     have hI : toRealMat (fun (i j : Fin n) => if i = j then (one : 𝕋) else zero) = 1 := by
       ext p q
       simp only [toRealMat, Matrix.one_apply]
@@ -191,9 +197,23 @@ theorem LinearSys.verifyZonotopePassFloat_sound (sys : LinearSys 𝕋 n) (c : Ve
     · rw [LinearSys.aux_inputReach_zero sys hy]
       exact ⟨0, rfl, 0, 0, fun i => by simp [toReal_zero], fun i => by simp [toReal_zero],
         by simp⟩
+  -- in the weight too: no error at `t = 0`
+  have hwt0 : sys.IsVerifyZonoWeighted cert (toRealVec s) (toRealVec c) (toRealMat G)
+        (fun l => u0r l 0) 0 ⟨c, G, zero, fun i j => if i = j then one else zero, zero, [],
+          fun _ => zero, zero, zero, zero⟩ := by
+    intro P L a _ _
+    have hI : toRealMat (fun (i j : Fin n) => if i = j then (one : 𝕋) else zero) = 1 := by
+      ext p q
+      simp only [toRealMat, Matrix.one_apply]
+      split_ifs <;> simp [toReal_zero, toReal_one]
+    have hΓ0 : Real.MatExp.expIntegral (toRealMat sys.A) 0 = 0 := by
+      simp [Real.MatExp.expIntegral]
+    refine ⟨by simp [toReal_zero], by simp [toReal_zero], fun b _ => ?_, fun a' _ x _ => ?_⟩
+    · simp [hΓ0, toReal_zero]
+    · simp [hI, toReal_zero]
   -- every step of the grid as promised, from its start
   obtain ⟨outs, hout, hlen, hall⟩ := LinearSys.aux_steps sys hs hu hM C specs (toRealVec c)
-    (toRealMat G) grid _ [] 0 out hinv0 h
+    (toRealMat G) cert grid _ [] 0 out hinv0 hwt0 h
   simp only [List.reverse_nil, List.nil_append] at hout
   subst hout
   refine ⟨hlen, fun j g Y fl hg ho => ?_⟩

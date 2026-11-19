@@ -38,13 +38,13 @@ import CORALean.Specification.Instances
 # The linear-system ops: CORA's `linearSys` methods
 
 Thin adapters over the float definitions `references/coverage/contDynamics/linearSys.md` links.
-A system is `{"A","B","c","C","D","k","E","F"}`, `A` square and the rest optional: `B`, `E`
-default to no columns, `C` to the identity, `c`, `k` to zero (`ẋ = Ax + Bu + c + Ew`, `y = Cx +
-Du + k + Fv`). Sets are zonotopes `{"c","G","E"}`, `timeStep`, `taylorTerms`, `zonotopeOrder`
-CORA's names. `reach` takes `linAlg` `standard` or `wrapping-free`; with `U` or `c` it runs the
-input variant; `verifyKrylovPass` takes CORA.cpp's tuning (per direction a `plan`, `halvings`).
-Not served: `reachBackward`, `reachInner`, `verify`, `initReach_adaptive`, `trajectoryError`,
-`linearSysDT`, `nonlinearSys` (witness arguments, or a real-valued result).
+A system is `{"A","B","c","C","D","k","E","F"}` (`ẋ = Ax + Bu + c + Ew`, `y = Cx + Du + k +
+Fv`), `A` square and the rest optional: `B`, `E` no columns, `C` the identity, `c`, `k` zero.
+Sets are zonotopes `{"c","G","E"}`, `timeStep`, `taylorTerms`, `zonotopeOrder` CORA's names.
+`reach` takes `linAlg` `standard` or `wrapping-free`; with `U` or `c` it runs the input variant;
+`verifyKrylovPass` takes CORA.cpp's tuning and a certificate `P`, `L`, `a` of `A'`, the
+`verifyZonotope` ops one of `A`. Not served: `reachBackward`, `reachInner`, `verify`,
+`initReach_adaptive`, `trajectoryError`, `linearSysDT`, `nonlinearSys`.
 
 ## Inputs
 * `dops` – dtype operations
@@ -427,11 +427,22 @@ private def aux_verifyGrid (dops : DtypeOps 𝕋) (j : Json) :
     let budget ← aux_scalar dops jg "budget"
     pure { Δt := Δt, full := full, budget := budget }
 
+/-- The optional Lyapunov certificate `P`, `L` (both n×n) and `a` of a verify request. -/
+private def aux_verifyZonoCert (dops : DtypeOps 𝕋) (n : Nat) (req : Json) :
+    Except String (Option (Mat 𝕋 n n × Mat 𝕋 n n × 𝕋)) := do
+  let square := fun (name : String) => do
+    let ⟨r, M⟩ ← parseMatColsFixed dops.readExact n (← field req name)
+    if h : r = n then pure (h ▸ M : Mat 𝕋 n n) else throw s!"`{name}` must be {n}×{n}"
+  match fieldOpt req "P" with
+  | none => pure none
+  | some _ => pure (some (← square "P", ← square "L", ← aux_scalar dops req "a"))
+
 /-- `linearSys.verifyZonotopePass`: `LinearSys.verifyZonotopePassFloat` on the grid `{timeStep,
 full, budget}` (CORA's tuning, not checked) with specs `{safe, A, b}` (`A y ≤ b`); per step `null`
 (propagated) or the output set `{c, G, r}` and the flags; `steps` `null` with no enclosure. -/
 def handleLinearSysVerifyZonotopePass (dops : DtypeOps 𝕋) (req : Json) : Resp := do
-  checkFields "verifyZonotopePass" req ["A", "x0", "G0", "B", "uc", "GU", "C", "specs", "grid"]
+  checkFields "verifyZonotopePass" req
+    ["A", "x0", "G0", "B", "uc", "GU", "C", "specs", "grid", "P", "L", "a"]
   let dA ← parseMatDyn dops.readExact (← field req "A")
   if hA : dA.r = dA.c then
     let n := dA.r
@@ -448,11 +459,13 @@ def handleLinearSysVerifyZonotopePass (dops : DtypeOps 𝕋) (req : Json) : Resp
         pure ⟨B.1, B.2, uc, GU⟩
     let C ← parseMatColsFixed dops.readExact n (← field req "C")
     let q := C.1
+    -- the certificate, the specifications and the grid
+    let cert ← aux_verifyZonoCert dops n req
     let specs ← aux_verifySpecs dops q (← field req "specs")
     let grid ← aux_verifyGrid dops (← field req "grid")
     -- the pass, then per step its output set and flags
     let res := LinearSys.verifyZonotopePassFloat A x0 G0.2 inp.2.1 inp.2.2.1 inp.2.2.2.2 C.2
-      specs grid
+      specs cert grid
     let showSet : LinearSys.VerifyZono 𝕋 q → Json := fun Y =>
       Json.mkObj [("c", printVec dops.showExact Y.c),
         ("G", Json.arr (Y.G.map (printVec dops.showExact)).toArray),
@@ -470,7 +483,7 @@ witnesses `{spec, t, b, beta}` and `tFinal`, the fields otherwise as `linearSys.
 `verdict` `true` (verified), `false` (a witness holds) or `null` (undecided). -/
 def handleLinearSysVerifyZonotopeRun (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   checkFields "verifyZonotopeRun" req
-    ["A", "x0", "G0", "B", "uc", "GU", "C", "specs", "passes", "witnesses", "tFinal"]
+    ["A", "x0", "G0", "B", "uc", "GU", "C", "specs", "passes", "witnesses", "tFinal", "P", "L", "a"]
   let dA ← parseMatDyn dops.readExact (← field req "A")
   if hA : dA.r = dA.c then
     let n := dA.r
@@ -487,6 +500,7 @@ def handleLinearSysVerifyZonotopeRun (dops : DtypeOps 𝕋) (req : Json) : Resp 
         pure ⟨B.1, B.2, uc, GU⟩
     let C ← parseMatColsFixed dops.readExact n (← field req "C")
     let q := C.1
+    let cert ← aux_verifyZonoCert dops n req
     -- the specifications and the passes' grids
     let specs ← aux_verifySpecs dops q (← field req "specs")
     let jpasses ← match (← field req "passes").getArr? with
@@ -504,7 +518,7 @@ def handleLinearSysVerifyZonotopeRun (dops : DtypeOps 𝕋) (req : Json) : Resp 
       let β ← parseVecFixed dops.readExact inp.2.2.2.1 (← field jw "beta")
       pure (i, tw, b, β)
     let res := LinearSys.verifyZonotopeRunFloat A x0 G0.2 inp.2.1 inp.2.2.1 inp.2.2.2.2 C.2
-      specs passes witnesses (← aux_scalar dops req "tFinal")
+      specs cert passes witnesses (← aux_scalar dops req "tFinal")
     pure [("verdict", match res with
       | some v => Lean.toJson v
       | none => Json.null)]

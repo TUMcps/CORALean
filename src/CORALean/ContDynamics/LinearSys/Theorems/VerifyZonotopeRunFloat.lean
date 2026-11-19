@@ -26,6 +26,7 @@ nothing.
 * `GU` – float generators of the input set
 * `C` – float output matrix
 * `specs` – float specifications
+* `cert` – Lyapunov certificate `(P, L, a)` of `A`, if any
 * `passes` – the grids of the passes
 * `witnesses` – candidate falsifications
 * `tFinal` – horizon
@@ -40,7 +41,7 @@ nothing.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-November-2026
--- Last update:   ---
+-- Last update:   19-November-2026
 -- Reviewed:      ---
 
 
@@ -121,13 +122,13 @@ private theorem LinearSys.aux_times (S : LinearSys.VerifySpecSet 𝕋 q) : -- --
 set_option maxHeartbeats 400000 in -- the run is unfolded with its `let`s
 theorem LinearSys.verifyZonotopeRunFloat_sound (sys : LinearSys 𝕋 n) (c : Vec 𝕋 n)
     (G : Mat 𝕋 n m) (Bm : Mat 𝕋 n k) (uc : Vec 𝕋 k) (GU : Mat 𝕋 k p) (C : Mat 𝕋 q n)
-    (specs : List (LinearSys.VerifySpecSet 𝕋 q))
+    (specs : List (LinearSys.VerifySpecSet 𝕋 q)) (cert : Option (Mat 𝕋 n n × Mat 𝕋 n n × 𝕋))
     (passes : List (List (LinearSys.VerifyGridStep 𝕋)))
     (witnesses : List (ℕ × 𝕋 × Vec 𝕋 m × Vec 𝕋 p)) (tFinal : 𝕋) : -- --- CONCL ---
     let U := (fun β => toRealMat Bm *ᵥ (toRealVec uc + toRealMat GU *ᵥ β)) '' Set.Icc (-1) 1
     let x := fun (t : ℝ) (b : Fin m → ℝ) (y : Vec ℝ n) =>
       toRealMat C *ᵥ (exp (t • toRealMat sys.A) *ᵥ (toRealVec c + toRealMat G *ᵥ b) + y)
-    ∀ v ∈ LinearSys.verifyZonotopeRunFloat sys.A c G Bm uc GU C specs passes witnesses tFinal,
+    ∀ v ∈ LinearSys.verifyZonotopeRunFloat sys.A c G Bm uc GU C specs cert passes witnesses tFinal,
     (v = true → ∀ S ∈ specs, ∀ t : ℝ, 0 ≤ t → t ≤ toReal tFinal → ∀ b : Fin m → ℝ,
       (∀ j, |b j| ≤ 1) → ∀ y ∈ sys.inputReach (S := ExactSet) U t,
       (S.safe = true → ∀ ab ∈ S.rows, toRealVec ab.1 ⬝ᵥ x t b y < toReal ab.2) ∧
@@ -138,8 +139,8 @@ theorem LinearSys.verifyZonotopeRunFloat_sound (sys : LinearSys 𝕋 n) (c : Vec
       (S.safe = false → ∀ ab ∈ S.rows, toRealVec ab.1 ⬝ᵥ x t b y ≤ toReal ab.2))
     := by -- --- PROOF ---
   intro U x v hv
-  replace hv : LinearSys.verifyZonotopeRunFloat sys.A c G Bm uc GU C specs passes witnesses tFinal
-    = some v := hv
+  replace hv : LinearSys.verifyZonotopeRunFloat sys.A c G Bm uc GU C specs cert passes witnesses
+    tFinal = some v := hv
   unfold LinearSys.verifyZonotopeRunFloat at hv
   dsimp only at hv
   split_ifs at hv with hf hall
@@ -168,7 +169,7 @@ theorem LinearSys.verifyZonotopeRunFloat_sound (sys : LinearSys 𝕋 n) (c : Vec
     obtain ⟨grid, -, hgrid⟩ := List.mem_filterMap.mp hgo
     obtain ⟨out, hout, rfl⟩ := Option.map_eq_some_iff.mp hgrid
     obtain ⟨j, g, Y, fl, hg, ho, hSY, h1, h2⟩ := LinearSys.aux_times S grid out 0 op hop'
-    obtain ⟨-, hpass⟩ := LinearSys.verifyZonotopePassFloat_sound sys c G Bm uc GU C specs grid
+    obtain ⟨-, hpass⟩ := LinearSys.verifyZonotopePassFloat_sound sys c G Bm uc GU C specs cert grid
       out hout
     obtain ⟨-, hY⟩ := hpass j g Y fl hg ho
     simp only [Rat.cast_zero, zero_add] at h1
