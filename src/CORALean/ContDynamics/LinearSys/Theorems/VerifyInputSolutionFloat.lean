@@ -33,6 +33,7 @@ constant input's solution `(∫₀^Δt e^{sA} ds) u₀` is in `w`. The search re
 * `M` – float box of the generators
 * `u0r` – constant input
 * `Mr` – generator matrix
+* `tight` – whether the order search waits for the remainder (any value)
 
 ## Hypotheses
 * `hs` – scales positive
@@ -47,7 +48,7 @@ constant input's solution `(∫₀^Δt e^{sA} ds) u₀` is in `w`. The search re
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-November-2026
--- Last update:   ---
+-- Last update:   19-November-2026
 -- Reviewed:      ---
 
 
@@ -173,9 +174,10 @@ private theorem LinearSys.aux_order_mem (A : Mat 𝕋 n n) {Δt : 𝕋} (hΔt : 
 
 omit [SoundFloatArithmetic 𝕋] in
 /-- The search returns the orders `0, …, η - 1`, `η ≥ 1`, from orders `0, …, i - 1` so far. -/
-private theorem LinearSys.aux_search (A : Mat 𝕋 n n) (Δt : 𝕋) (u₀ : Interval (Mat 𝕋 n 1))
-    (M : Interval (Mat 𝕋 n m)) : -- --- CONCL ---
-    ∀ fuel i acc S η O, LinearSys.step_verifyInputSearchFloat A Δt u₀ M fuel i acc S = some (η, O) →
+private theorem LinearSys.aux_search (A : Mat 𝕋 n n) (s : Vec 𝕋 n) (Δt : 𝕋)
+    (u₀ : Interval (Mat 𝕋 n 1)) (M : Interval (Mat 𝕋 n m)) (tight : Bool) : -- --- CONCL ---
+    ∀ fuel i acc S η O,
+      LinearSys.step_verifyInputSearchFloat A s Δt u₀ M tight fuel i acc S = some (η, O) →
       acc.reverse = (List.range i).map (LinearSys.step_verifyInputOrderFloat A Δt u₀ M) →
       O = (List.range η).map (LinearSys.step_verifyInputOrderFloat A Δt u₀ M) ∧ 1
           ≤ η := by -- --- PROOF ---
@@ -190,7 +192,7 @@ private theorem LinearSys.aux_search (A : Mat 𝕋 n n) (Δt : 𝕋) (u₀ : Int
       obtain ⟨rfl, rfl⟩ := h
       refine ⟨hacc, ?_⟩
       simp only [Bool.and_eq_true, decide_eq_true_eq] at hstop
-      exact hstop.1
+      exact hstop.1.1
     · refine ih _ _ _ η O h ?_
       rw [List.reverse_cons, hacc, List.range_succ, List.map_append, List.map_singleton]
 
@@ -200,8 +202,8 @@ private theorem LinearSys.aux_search (A : Mat 𝕋 n n) (Δt : 𝕋) (u₀ : Int
 theorem LinearSys.verifyInputSolutionFloat_mem (sys : LinearSys 𝕋 n) {s : Vec 𝕋 n}
     (hs : ∀ i, 0 < toReal (s i)) {Δt : 𝕋} (hΔt : 0 < toReal Δt) {u₀ : Interval (Mat 𝕋 n 1)}
     {M : Interval (Mat 𝕋 n m)} {u0r : Mat ℝ n 1} (hu : u0r ∈ u₀.toSet) {Mr : Mat ℝ n m}
-    (hM : Mr ∈ M.toSet) : -- --- CONCL ---
-    ∀ sol ∈ LinearSys.verifyInputSolutionFloat sys.A s Δt u₀ M,
+    (hM : Mr ∈ M.toSet) {tight : Bool} : -- --- CONCL ---
+    ∀ sol ∈ LinearSys.verifyInputSolutionFloat sys.A s Δt u₀ M tight,
       Real.MatExp.expIntegral (toRealMat sys.A) (toReal Δt) * u0r ∈ sol.w.toSet ∧
       ∃ X : Fin sol.V.length → Mat ℝ n m, (∀ i, X i ∈ (sol.V[i.1]).toSet) ∧
         (∑ i, X i) ∈ sol.Vs.toSet ∧
@@ -218,7 +220,7 @@ theorem LinearSys.verifyInputSolutionFloat_mem (sys : LinearSys 𝕋 n) {s : Vec
   simp only [Option.bind_eq_bind, Option.bind_eq_some_iff, Option.pure_def,
     Option.some.injEq] at hsol
   obtain ⟨⟨η, O⟩, hsearch, W, hW, rfl⟩ := hsol
-  obtain ⟨hO, hη⟩ := LinearSys.aux_search sys.A Δt u₀ M 75 0 [] _ η O hsearch (by simp)
+  obtain ⟨hO, hη⟩ := LinearSys.aux_search sys.A s Δt u₀ M tight 75 0 [] _ η O hsearch (by simp)
   simp only at hW
   simp only [Interval.materialiseMat_eq, Interval.materialise_eq, Interval.point]
   -- the remainder: `|R_lk| ≤ Δt W_lk`, `R` the tail of `∫₀^Δt e^{sA} ds` past the orders `i < η`

@@ -19,13 +19,13 @@ public import CORALean.Global.StepOf
 # `LinearSys.verifyInputSolutionFloat`, one step's input in CORA's `priv_verifyRA_supportFunc`
 
 CORA's `aux_Pu`, `aux_underPU` and `aux_overPU` for `u(t) ∈ u₀ + M [-1, 1]^m`: the constant
-input's solution `A⁻¹(e^{AΔt} - I) u₀`, the same matrix on `M`, and the outer generators
-`Δt^{i+1}/(i+1)! Aⁱ M`, each series summed until its term no longer changes it, no remainder.
-Here order `i` is the box `[Δt^{i+1}/(i+1)] Aⁱ/i!` (`MatExp.verifyPowerFloat`) on the boxes of
-`u₀` and `M`; the series stops at the first `η ∈ [1, 74]` whose row sums of magnitudes are at most
-`eps` times those before it (CORA's test of `overPU`, on `u₀` and `M` together), and the rest is
-`Δt` times the scaled remainder at `η - 1`, at most `Δt Σₖ W_lk |x_k|` in row `l` for an input
-`x`. `none` if no `η ≤ 74` passes or the remainder is not admissible.
+input's solution, the same on `M`, and the outer generators `Δt^{i+1}/(i+1)! Aⁱ M`. Order `i` is
+the box `[Δt^{i+1}/(i+1)] Aⁱ/i!` (`MatExp.verifyPowerFloat`) on the boxes of `u₀` and `M`; the
+series stops at the first `η ∈ [1, 74]` whose row sums are at most `eps` times those before it
+(CORA's test of `overPU`), the rest is `Δt` times the scaled remainder `W` at `η - 1`. With `tight`
+(the zonotope pass) it also waits until that remainder is at the level of `eps` in the scales, or
+`η = 60`. The order is tuning: any `η` is sound. `none` if no `η ≤ 74` passes or `W` is not
+admissible.
 
 ## Inputs
 * `A` – float system matrix
@@ -33,6 +33,7 @@ Here order `i` is the box `[Δt^{i+1}/(i+1)] Aⁱ/i!` (`MatExp.verifyPowerFloat`
 * `Δt` – float step length
 * `u₀` – float box of the constant input, as a column
 * `M` – float box of the generators of the input
+* `tight` – whether the remainder must also be at the level of `eps` (default `false`)
 
 ## Output
 * the boxes of the constant input's solution, of the orders and their sum, and the remainder
@@ -40,7 +41,7 @@ Here order `i` is the box `[Δt^{i+1}/(i+1)] Aⁱ/i!` (`MatExp.verifyPowerFloat`
 
 -- Authors:       Claude Opus 5.5
 -- Written:       18-November-2026
--- Last update:   ---
+-- Last update:   19-November-2026
 -- Reviewed:      ---
 
 
@@ -70,11 +71,25 @@ def LinearSys.step_verifyInputRowSumFloat (o : Interval (Mat 𝕋 n 1) × Interv
     (l : Fin n) : 𝕋 :=
   addUp (o.1.magnitudeMat l 0) (sumUp fun c => o.2.magnitudeMat l c)
 
-/-- The orders from `i` while `fuel` lasts: the first `i ≥ 1` whose row sums are at most `eps`
-times the sums `S` of the orders before it stops, with those orders (in their order). -/
+/-- Whether the remainder past order `i - 1` is at most `eps` times the orders `S` before it, in the
+scales `s`: `max_l Δt Σₖ W_lk (|u₀_k| + Σ_c |M_kc|) / s_l ≤ eps max_l S_l / s_l` (tuning). -/
 @[step_of LinearSys.verifyInputSolutionFloat]
-def LinearSys.step_verifyInputSearchFloat (A : Mat 𝕋 n n) (Δt : 𝕋) (u₀ : Interval (Mat 𝕋 n 1))
-    (M : Interval (Mat 𝕋 n m)) :
+def LinearSys.step_verifyInputRemainderOkFloat (A : Mat 𝕋 n n) (s : Vec 𝕋 n) (Δt : 𝕋)
+    (u₀ : Interval (Mat 𝕋 n 1)) (M : Interval (Mat 𝕋 n m)) (i : ℕ) (S : Vec 𝕋 n) (eps : 𝕋) :
+    Bool :=
+  match MatExp.scaledRemainderFloat A s Δt (i - 1) with
+  | none => false
+  | some W =>
+    let x := fun k => addUp (u₀.magnitudeMat k 0) (sumUp fun c => M.magnitudeMat k c)
+    let r := maximumOver fun l => divUp (mulUp Δt (sumUp fun k => mulUp (W l k) (x k))) (s l)
+    le r (mulUp eps (maximumOver fun l => divDown (S l) (s l)))
+
+/-- The orders from `i` while `fuel` lasts: the first `i ≥ 1` whose row sums are at most `eps`
+times the sums `S` of the orders before it (and, with `tight`, whose remainder is at that level or
+which is at least 60) stops, with those orders (in their order). -/
+@[step_of LinearSys.verifyInputSolutionFloat]
+def LinearSys.step_verifyInputSearchFloat (A : Mat 𝕋 n n) (s : Vec 𝕋 n) (Δt : 𝕋)
+    (u₀ : Interval (Mat 𝕋 n 1)) (M : Interval (Mat 𝕋 n m)) (tight : Bool) :
     ℕ → ℕ → List (Interval (Mat 𝕋 n 1) × Interval (Mat 𝕋 n m)) → Vec 𝕋 n →
       Option (ℕ × List (Interval (Mat 𝕋 n 1) × Interval (Mat 𝕋 n m)))
   | 0, _, _, _ => none
@@ -82,9 +97,11 @@ def LinearSys.step_verifyInputSearchFloat (A : Mat 𝕋 n n) (Δt : 𝕋) (u₀ 
     let eps : 𝕋 := Nat.iterate half 52 one                                       -- eps = 2^-52
     let o := LinearSys.step_verifyInputOrderFloat A Δt u₀ M i
     let a := (Interval.point fun l => LinearSys.step_verifyInputRowSumFloat o l).materialise.sup
-    if decide (1 ≤ i) && (List.finRange n).all fun l => le (a l) (mulUp eps (S l)) then
+    if decide (1 ≤ i) && ((List.finRange n).all fun l => le (a l) (mulUp eps (S l))) &&
+        (!tight || Nat.ble 60 i ||
+          LinearSys.step_verifyInputRemainderOkFloat A s Δt u₀ M i S eps) then
       some (i, acc.reverse)
-    else LinearSys.step_verifyInputSearchFloat A Δt u₀ M fuel (i + 1) (o :: acc)
+    else LinearSys.step_verifyInputSearchFloat A s Δt u₀ M tight fuel (i + 1) (o :: acc)
       (Interval.point fun l => addUp (S l) (a l)).materialise.sup
 
 
@@ -93,9 +110,9 @@ def LinearSys.step_verifyInputSearchFloat (A : Mat 𝕋 n n) (Δt : 𝕋) (u₀ 
 /-- The orders `i < η` and the remainder past them: the constant input's box `Σᵢ [Pᵢ u₀]` widened
 by `Δt W |u₀|`, the boxes `[Pᵢ M]`, their sum, and `Δt W Σ_c |M_c|`. -/
 def LinearSys.verifyInputSolutionFloat (A : Mat 𝕋 n n) (s : Vec 𝕋 n) (Δt : 𝕋)
-    (u₀ : Interval (Mat 𝕋 n 1)) (M : Interval (Mat 𝕋 n m)) :
+    (u₀ : Interval (Mat 𝕋 n 1)) (M : Interval (Mat 𝕋 n m)) (tight : Bool := false) :
     Option (LinearSys.VerifyInputSolution 𝕋 n m) := do
-  let (η, O) ← LinearSys.step_verifyInputSearchFloat A Δt u₀ M 75 0 [] fun _ => zero
+  let (η, O) ← LinearSys.step_verifyInputSearchFloat A s Δt u₀ M tight 75 0 [] fun _ => zero
   let W ← MatExp.scaledRemainderFloat A s Δt (η - 1)                          -- E(Δt, η-1)
   let mu := fun k => u₀.magnitudeMat k 0                                       -- |u₀|
   let mM := fun k => sumUp fun c => M.magnitudeMat k c                         -- Σ_c |M_c|
