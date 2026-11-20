@@ -7,6 +7,8 @@ import CORALean.ContSet.PolyZonotope.Float.Instances
 import CORALean.ContSet.PolyZonotope.Float.Operations.CartProd
 import CORALean.ContSet.PolyZonotope.Float.Operations.Construct
 import CORALean.ContSet.PolyZonotope.Float.Operations.ExactPlus
+import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongest
+import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.CartProdExact
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ExactPlusOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ConstructOuter
@@ -32,7 +34,8 @@ Adapters over the float definitions `references/coverage/contSet/polyZonotope.md
 exponent columns are added in the order of CORA's hash), `plus` (`Q`, `Z`, a box `I` or a point
 `v`), `mtimes` (`M`), `zonotope`, `interval`, `dim`, `evalPowers` (`coeffs` a row per coordinate,
 lowest degree first), `center`, `cartProd` (`Z`), `exactPlus`, `isIntersecting` (`S`, CORA's
-`'approx'`), `zonotope.polyZonotope`, `interval.polyZonotope`; indices and identifiers are CORA's.
+`'approx'`), `splitDepFactor` (`factor`, an identifier), `splitLongestGen`,
+`zonotope.polyZonotope`, `interval.polyZonotope`; indices and identifiers are CORA's.
 
 ## Inputs
 * none
@@ -109,6 +112,15 @@ private def aux_dropZero {n : Nat} (P : PolyZonotope (Vec 𝕋 n)) : PolyZonotop
     !(List.finRange n).all fun i => FloatOps.le (P.G l i) FloatOps.zero &&
       FloatOps.le FloatOps.zero (P.G l i)).toArray.map Fin.val
   aux_dropZeroIndep (P.pick live.size fun t => live[t.val]!)
+
+/-- The two halves of a split through CORA's constructor, the zero independent generators
+dropped. -/
+private def aux_halves (dops : DtypeOps 𝕋) {n : Nat}
+    (H : PolyZonotope (Vec 𝕋 n) × PolyZonotope (Vec 𝕋 n)) (ids : Array Nat) :
+    List (String × Json) :=
+  let out := fun P : PolyZonotope (Vec 𝕋 n) => printPolyZonotopeIds dops.showExact
+    (aux_dropZeroIndep (P.construct (hashedColumnOrder #[]))).materialise ids
+  [("P1", out H.1), ("P2", out H.2)]
 
 /-- Two sets over the union of their identifiers, sorted (CORA's `mergeExpMatrix`): the
 exponent rows of each set placed at its identifiers, zero at the others. -/
@@ -187,7 +199,7 @@ private def aux_enclose {n : Nat} (P Q : PolyZonotope (Vec 𝕋 n)) (idP idQ : A
 def polyZonotopeOpNames : List String :=
   [ "constructor", "plus", "mtimes", "zonotope", "interval", "reduce", "enclose", "dim",
     "evalPowers", "center", "cartProd", "exactPlus",
-    "isIntersecting" ]
+    "isIntersecting", "splitDepFactor", "splitLongestGen" ]
 
 /-- `op` of `polyZonotope.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -317,6 +329,23 @@ def handlePolyZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opt
       FloatOps.ltStrict (H.be i) (subDown (Be.inf i) tol) ||
         FloatOps.ltStrict (FloatOps.addUp (Be.sup i) tol) (H.be i)
     pure [("value", Lean.toJson !(below || outside))])
+  -- `splitDepFactor(pZ, factor)` and `splitLongestGen(pZ)`: the halves `[0, 1]` and `[-1, 0]`
+  | "splitDepFactor" => some (do
+    checkFields op req ["P", "factor"]
+    let d ← aux_parse dops (← field req "P")
+    let id ← natField req "factor"
+    match d.id.findIdx? (· == id) with
+    | some r =>
+      if h : r < d.pZ.p then
+        pure (aux_halves dops (d.pZ.splitFactor ⟨r, h⟩) d.id)
+      else throw "splitDepFactor: internal, the identifiers do not match the factors"
+    | none => throw s!"splitDepFactor: {id} is not an identifier of the set")
+  | "splitLongestGen" => some (do
+    checkFields op req ["P"]
+    let d ← aux_parse dops (← field req "P")
+    match d.pZ.splitLongest with
+    | some H => pure (aux_halves dops H d.id)
+    | none => throw "splitLongestGen: the set has no dependent generator")
   | _ => none
 
 /-- `zonotope.polyZonotope`: `Z` as a polynomial zonotope of the identity exponents. -/
