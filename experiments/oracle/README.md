@@ -796,6 +796,7 @@ absent):
 | `polyZonotope.reduce` | `P`, `order`, `method` (`girard`) | `PolyZonotope.reduceCora` (`reduceCora_outer`): the ranking of CORA's `reduce`, then `reduceSplit` (`reduceSplit_outer`) |
 | `polyZonotope.enclose` | `P`, `Q` | `PolyZonotope.encloseShared` (`encloseShared_outer`) after padding both sets to the union of the identifiers |
 | `polyZonotope.dim` | `P` | the length of `c` |
+| `polyZonotope.quadMap` | `P`, `Q` (array of `n x n` matrices) | `PolyZonotope.quadMapCora` (`quadMapCora_outer`), CORA's `quadMap` as CORA.cpp computes it. The products `j <= k` of the columns of `[c G]` (`j` outer) are `M_jj` and `M_jk + M_kj` of `M = [c G]' Q [c G]`, with the exponents `E_j + E_k`. The independent part is `Zonotope.quadMapTriFiltered` of `(0, GI)` (the box with it) plus `Zonotope.quadMapMixed` of `zonotope(c, G, E)` against it and of it against that zonotope, added left to right; `quadMapMixed` (`quadMapMixed_outer`) takes the entries of `[c1 G1]' Q [c2 G2]` column-major, the first as the center, then CORA's filter. Then CORA's constructor, the constant column into the center (`foldConstants`), and the zero independent generators dropped. Without dependent generators it is `quadMapTriFiltered` of `(c, GI)` |
 | `zonotope.polyZonotope`, `interval.polyZonotope` | `Z`, `I` | `Zonotope.polyZonotope` (identity exponents) then the constructor |
 
 Deviations are listed in `references/coverage/contSet/polyZonotope.md`. A constant (all-zero exponent) column goes whole into the

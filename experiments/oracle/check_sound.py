@@ -36,8 +36,8 @@ arithmetic -- never floats:
   `poly`) at points of the input set lies in the hull of the output set (`check_nn_op`).
 * `polyZonotope.*`, `interval.polyZonotope` and `zonotope.polyZonotope`: points of the input set (the
   center, the corners of the first four factors, half the others, the independent generators at
-  `+-1`) lie in the hull of the output (`check_polyzono_op`); `plus`, `mtimes` and `evalPowers`
-  map the points first, `enclose` takes the points of both operands, `exactPlus` adds points of
+  `+-1`) lie in the hull of the output (`check_polyzono_op`); `plus`, `mtimes`, `evalPowers` and
+  `quadMap` map the points first, `enclose` takes the points of both operands, `exactPlus` adds points of
   both at equal factor values, `cartProd` joins them with points of `Z`; a split puts every point
   in the hull of a half, `center` must be `c`, and a `false` of `isIntersecting` needs every point
   outside the polytope.
@@ -970,6 +970,12 @@ def check_polyzono_op(op, req, resp, fails):
             zs = [[zc[i] + sum(zG[i][j] * s[j] for j in range(zh)) for i in range(len(zc))]
                   for s in itertools_product(zh)]
             pts = [x + z for x in pts[::3] for z in zs[::2] or zs]
+        elif name == "quadMap":
+            # every output x' Q_k x, exact
+            Qs = [parse_mat(Qk)[2] for Qk in req["Q"]]
+            pts = [[sum(x[a] * Qk[a][b] * x[b] for a in range(len(x)) for b in range(len(x)))
+                    for Qk in Qs] for x in pts]
+            n = len(Qs)
         elif name == "evalPowers":
             # every coordinate through its polynomial, lowest degree first
             _, _, C = parse_mat(req["coeffs"])

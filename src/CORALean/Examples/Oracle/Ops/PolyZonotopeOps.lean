@@ -7,6 +7,8 @@ import CORALean.ContSet.PolyZonotope.Float.Instances
 import CORALean.ContSet.PolyZonotope.Float.Operations.CartProd
 import CORALean.ContSet.PolyZonotope.Float.Operations.Construct
 import CORALean.ContSet.PolyZonotope.Float.Operations.ExactPlus
+import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapCora
+import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapCoraOuter
 import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongest
 import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.CartProdExact
@@ -33,8 +35,8 @@ Adapters over the float definitions `references/coverage/contSet/polyZonotope.md
 `p × h`). Served: `constructor` (CORA's `polyZonotope(c, G, GI, E, id)`: zero generators go, equal
 exponent columns are added in the order of CORA's hash), `plus` (`Q`, `Z`, a box `I` or a point
 `v`), `mtimes` (`M`), `zonotope`, `interval`, `dim`, `evalPowers` (`coeffs` a row per coordinate,
-lowest degree first), `center`, `cartProd` (`Z`), `exactPlus`, `isIntersecting` (`S`, CORA's
-`'approx'`), `splitDepFactor` (`factor`, an identifier), `splitLongestGen`,
+lowest degree first), `center`, `cartProd` (`Z`), `exactPlus`, `isIntersecting` (`S`, `'approx'`),
+`splitDepFactor` (`factor`, an identifier), `splitLongestGen`, `quadMap` (`Q`, matrices),
 `zonotope.polyZonotope`, `interval.polyZonotope`; indices and identifiers are CORA's.
 
 ## Inputs
@@ -44,9 +46,9 @@ lowest degree first), `center`, `cartProd` (`Z`), `exactPlus`, `isIntersecting` 
 * the names of the ops served, or the response fields of an op
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       13-November-2026
--- Last update:   ---
+-- Last update:   20-November-2026
 -- Reviewed:      ---
 
 
@@ -199,7 +201,7 @@ private def aux_enclose {n : Nat} (P Q : PolyZonotope (Vec 𝕋 n)) (idP idQ : A
 def polyZonotopeOpNames : List String :=
   [ "constructor", "plus", "mtimes", "zonotope", "interval", "reduce", "enclose", "dim",
     "evalPowers", "center", "cartProd", "exactPlus",
-    "isIntersecting", "splitDepFactor", "splitLongestGen" ]
+    "isIntersecting", "splitDepFactor", "splitLongestGen", "quadMap" ]
 
 /-- `op` of `polyZonotope.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -346,6 +348,16 @@ def handlePolyZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opt
     match d.pZ.splitLongest with
     | some H => pure (aux_halves dops H d.id)
     | none => throw "splitLongestGen: the set has no dependent generator")
+  -- `quadMap(pZ, Q)` as CORA.cpp computes it, the zero independent generators dropped
+  | "quadMap" => some (do
+    checkFields op req ["P", "Q"]
+    let d ← aux_parse dops (← field req "P")
+    let qs ← (← arrField req "Q").mapM fun j => do
+      let ⟨r, M⟩ ← parseMatColsFixed dops.readExact d.n j
+      if h : r = d.n then pure (h ▸ M) else throw s!"quadMap: expected {d.n}×{d.n} matrices"
+    let R := aux_dropZeroIndep
+      (d.pZ.quadMapCora (m := qs.size) (fun k => qs[k]) (hashedColumnOrder #[]))
+    pure [("P", printPolyZonotopeIds dops.showExact R.materialise d.id)])
   | _ => none
 
 /-- `zonotope.polyZonotope`: `Z` as a polynomial zonotope of the identity exponents. -/

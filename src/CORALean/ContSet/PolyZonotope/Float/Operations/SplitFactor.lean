@@ -2,7 +2,7 @@ module
 
 public import CORALean.ContSet.PolyZonotope.Float.Operations.GetSubset
 public import CORALean.ContSet.PolyZonotope.Float.Operations.Pick
-public import CORALean.Global.StepOf
+public import CORALean.ContSet.PolyZonotope.Float.Operations.FoldConstants
 
 @[expose] public section
 
@@ -13,7 +13,7 @@ CORA's `splitDepFactor` as CORA.cpp computes it: the factor `k` restricted to `[
 `[-1, 0]`, each half the substitution `αₖ = ±1/2 + β/2` (`PolyZonotope.getSubset`). The columns of
 a half are taken in CORA.cpp's order (first the generators without the factor, then for each
 exponent `i` of it and each `m ≤ i` the generators of that exponent), the columns without any
-factor go into the center (`PolyZonotope.step_foldConstants`). CORA's constructor, which merges
+factor go into the center (`PolyZonotope.foldConstants`). CORA's constructor, which merges
 equal exponent columns, is left to the caller (`PolyZonotope.construct`).
 
 ## Inputs
@@ -39,30 +39,6 @@ open FloatOps
 variable {𝕋 : Type} [FloatOps 𝕋] {n : ℕ}
 
 
--- ------------------------------------------  STEPS  ------------------------------------------- --
-
-/-- The dependent generators with no factor (their monomial is one) added into the center in
-their order, each sum stored rounded up and its width added to the error box; the other
-generators kept in their order. CORA.cpp's assembly of a half. -/
-@[step_of PolyZonotope.splitFactor]
-def PolyZonotope.step_foldConstants (pZ : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) :=
-  -- the generators without a factor, and the others
-  let isConst : Fin pZ.h → Bool := fun l => (List.finRange pZ.p).all fun k => pZ.E k l == 0
-  let K := (List.finRange pZ.h).filter isConst
-  let keep : Array (Fin pZ.h) := (Array.ofFn id).filter fun l => !isConst l
-  -- the constants added to the center in order, with the widths of the sums
-  let S : Fin n → 𝕋 × 𝕋 := fun i => K.foldl (fun acc l =>
-    (addUp acc.1 (pZ.G l i), addUp acc.2 (subUp (addUp acc.1 (pZ.G l i))
-      (addDown acc.1 (pZ.G l i))))) (pZ.c i, zero)
-  { pZ with
-    c := fun i => (S i).1
-    h := keep.size
-    G := fun t => pZ.G (keep[t.val]'t.isLt)
-    E := fun k t => pZ.E k (keep[t.val]'t.isLt)
-    I_error := ⟨fun i => subDown (pZ.I_error.inf i) (S i).2,
-      fun i => addUp (pZ.I_error.sup i) (S i).2⟩ }
-
-
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def PolyZonotope.splitFactor (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) :
@@ -75,7 +51,7 @@ def PolyZonotope.splitFactor (pZ : PolyZonotope (Vec 𝕋 n)) (k : Fin pZ.p) :
       (gens (i + 1)).map fun j => m + (N + 1) * j.val
   -- each half: its columns in that order, the constants in the center
   let piece := fun cen : 𝕋 =>
-    ((pZ.getSubset k cen (half one)).pick cols.length fun t => cols[t.val]!).step_foldConstants
+    ((pZ.getSubset k cen (half one)).pick cols.length fun t => cols[t.val]!).foldConstants
   (piece (half one), piece (neg (half one)))
 
 end CORALean.Float

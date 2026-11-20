@@ -55,6 +55,10 @@ public import CORALean.ContSet.Zonotope.Float.Operations.SplitLongestGen
 public import CORALean.ContSet.Zonotope.Float.Operations.QuadMap
 public import CORALean.ContSet.Zonotope.Float.Operations.QuadMapTri
 public import CORALean.ContSet.Zonotope.Float.Operations.QuadMapTriFiltered
+public import CORALean.ContSet.Zonotope.Float.Operations.QuadMapFilter
+public import CORALean.ContSet.Zonotope.Float.Operations.QuadMapMixed
+public import CORALean.ContSet.Zonotope.Float.Operations.QuadEntryDown
+public import CORALean.ContSet.Zonotope.Float.Operations.QuadEntryUp
 public import CORALean.ContSet.Zonotope.Float.Operations.ErrOp
 public import CORALean.ContSet.Zonotope.Float.Operations.AdaptSetOrderLoop
 public import CORALean.ContSet.Zonotope.Float.Operations.AdaptSetOrder
@@ -129,6 +133,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.CubMapGDown
 public import CORALean.ContSet.Zonotope.Float.Operations.CubMapGUp
 public import CORALean.ContSet.Zonotope.Float.Operations.CubMapGDiff
 public import CORALean.ContSet.Zonotope.Float.Operations.AbsorbRounding
+public import CORALean.ContSet.Zonotope.Float.Operations.AbsorbRoundingIfAny
 public import CORALean.ContSet.Zonotope.Float.Operations.CubMapDep
 public import CORALean.ContSet.Zonotope.Float.Operations.CubMap
 public import CORALean.ContSet.Zonotope.Float.Operations.TensorHDown

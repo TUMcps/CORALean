@@ -84,6 +84,9 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapTriExpand
 public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapTriCoeff
 public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapTriOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapTriFilteredOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapFilterOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.QuadMapMixedOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.QuadEntryBracket
 public import CORALean.ContSet.Zonotope.Float.Theorems.RadiusLe
 public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterSubMem
 public import CORALean.ContSet.Zonotope.Float.Theorems.RecenterZeroMem
@@ -129,6 +132,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.CubMapCBetween
 public import CORALean.ContSet.Zonotope.Float.Theorems.CubMapGClose
 public import CORALean.ContSet.Zonotope.Float.Theorems.AbsorbRoundingNominal
 public import CORALean.ContSet.Zonotope.Float.Theorems.AbsorbRoundingOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.AbsorbRoundingIfAnyNominal
 public import CORALean.ContSet.Zonotope.Float.Theorems.CubMapDepCoeff
 public import CORALean.ContSet.Zonotope.Float.Theorems.CubMapOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.TensorHBracket
