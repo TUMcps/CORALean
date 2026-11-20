@@ -74,6 +74,19 @@ public import CORALean.ContSet.Taylm.Float.Theorems.UminusOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.UnitRemainderLe
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfCons
 public import CORALean.ContSet.Taylm.Real.Theorems.PolyOfNil
+public import CORALean.ContSet.Taylm.Float.Theorems.TimesZeroInfMem
+public import CORALean.ContSet.Taylm.Float.Theorems.MonomialRangeMem
+public import CORALean.ContSet.Taylm.Float.Theorems.SumRangesMem
+public import CORALean.ContSet.Taylm.Float.Theorems.AccumTermLe
+public import CORALean.ContSet.Taylm.Float.Theorems.AccumTermsLe
+public import CORALean.ContSet.Taylm.Float.Theorems.PolyBoundsMonoMem
+public import CORALean.ContSet.Taylm.Float.Theorems.BoundsMonoMem
+public import CORALean.ContSet.Taylm.Float.Theorems.PlusMergedOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.PlusScalarOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.MinusMergedOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.ScaleOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.TimesMergedOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.PowBinaryOuter
 
 /-!
 # Float Taylor model guarantees, collected

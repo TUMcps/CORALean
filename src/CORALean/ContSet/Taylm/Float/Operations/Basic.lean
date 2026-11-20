@@ -1,6 +1,7 @@
 module
 
 public import CORALean.ContSet.Taylm.Float.Operations.BernsteinStep
+public import CORALean.ContSet.Taylm.Float.Operations.PlusMerged
 public import CORALean.ContSet.Taylm.Float.Operations.ProdBounds
 public import CORALean.ContSet.Taylm.Float.Operations.Smul
 public import CORALean.ContSet.Taylm.Float.Operations.TermBounds
@@ -221,6 +222,19 @@ def Taylm.mtimes {k m : ℕ} (M : Mat 𝕋 k m) (T : Fin m → Taylm 𝕋 n) : F
   fun i => Taylm.sum fun j => (T j).smul (M i j) (M i j)
 
 
+-- ====================================  `Taylm.sumRanges`  ===================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       20-November-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The intervals of a list added to a start interval from the left, the lower ends rounded down
+and the upper ones up, as CORA.cpp's `sum = sum + b` adds them. -/
+def Taylm.sumRanges {α : Type} (f : α → Interval 𝕋) (I : Interval 𝕋) (L : List α) :
+    Interval 𝕋 :=
+  L.foldl (fun acc a => ⟨addDown acc.inf (f a).inf, addUp acc.sup (f a).sup⟩) I
+
+
 -- ==================================  `Taylm.termBoxBounds`  =================================== --
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
@@ -277,6 +291,17 @@ def Taylm.uminus (T : Taylm 𝕋 n) : Taylm 𝕋 n :=
 
 /-- `Taylm.minus` -/
 def Taylm.minus (T₁ T₂ : Taylm 𝕋 n) : Taylm 𝕋 n := T₁.plus T₂.uminus
+
+
+-- ===================================  `Taylm.minusMerged`  ==================================== --
+-- Authors:       Claude Opus 5.5
+-- Written:       20-November-2026
+-- Last update:   ---
+-- Reviewed:      ---
+
+/-- The difference of two Taylor models as CORA.cpp's `Taylm::minus` computes it: the first plus the
+negated second (`Taylm.plusMerged`, `Taylm.uminus`). -/
+def Taylm.minusMerged (T₁ T₂ : Taylm 𝕋 n) : Taylm 𝕋 n := T₁.plusMerged T₂.uminus
 
 
 -- ======================================  `Taylm.uplus`  ======================================= --
