@@ -38,8 +38,9 @@ arithmetic -- never floats:
   center, the corners of the first four factors, half the others, the independent generators at
   `+-1`) lie in the hull of the output (`check_polyzono_op`); `plus`, `mtimes` and `evalPowers`
   map the points first, `enclose` takes the points of both operands, `exactPlus` adds points of
-  both at equal factor values, `cartProd` joins them with points of `Z`; `center` must be `c`, and a
-  `false` of `isIntersecting` needs every point outside the polytope.
+  both at equal factor values, `cartProd` joins them with points of `Z`; a split puts every point
+  in the hull of a half, `center` must be `c`, and a `false` of `isIntersecting` needs every point
+  outside the polytope.
 * `intervalMatrix.exponentialRemainder`: the exact remainder of the center matrix lies in the answer;
   `matZonotope.reduce`: the box of the set lies in the box of the answer; `matZonotope.contains`:
   a `true` has every matrix in the box of the set (`check_class_op`).
@@ -896,6 +897,16 @@ def check_polyzono_op(op, req, resp, fails):
                 if inside:
                     fails.append(f"id {rid}: {op}: false, but {x} lies in both")
                     return
+        return
+    if name in ("splitDepFactor", "splitLongestGen"):
+        # every point of the set lies in the hull of one of the two halves
+        halves = [pz_hull(resp["P1"]), pz_hull(resp["P2"])]
+        slack = Decimal(10) ** -40
+        for x in pz_points(req["P"]):
+            if not any(all(lo[i] - slack <= dec(x[i]) <= hi[i] + slack for i in range(len(x)))
+                       for lo, hi in halves):
+                fails.append(f"id {rid}: {op}: the point {[float(v) for v in x]} is in no half")
+                return
         return
     if name == "interval":
         lo = [dec(x) for x in parse_vec(resp["I"]["inf"])]

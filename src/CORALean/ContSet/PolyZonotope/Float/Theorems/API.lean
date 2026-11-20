@@ -135,6 +135,8 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.ConstructOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ReduceSplitOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.EncloseSharedOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.EvalPowersOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitFactorOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.SplitLongestOuter
 
 /-!
 # What `PolyZonotope` guarantees
