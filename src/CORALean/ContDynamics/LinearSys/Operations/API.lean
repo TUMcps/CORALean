@@ -42,6 +42,7 @@ public import CORALean.ContDynamics.LinearSys.Operations.DiscretizeMatZonotopeFl
 public import CORALean.ContDynamics.LinearSys.Operations.ExpIntervalFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ExpSquaringFloat
 public import CORALean.ContDynamics.LinearSys.Operations.ExpRemainderSquaringFloat
+public import CORALean.ContDynamics.LinearSys.Operations.ExponentialRemainderFloat
 public import CORALean.ContDynamics.LinearSys.Operations.TaylorMatricesFloat
 public import CORALean.ContDynamics.LinearSys.Operations.GirardReach
 public import CORALean.ContDynamics.LinearSys.Operations.InputReach

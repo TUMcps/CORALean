@@ -38,6 +38,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.GirardSplit
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBy
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceByBox
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirard
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceMat
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceAdaptive
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceGirardBox
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceCombastel
@@ -73,6 +74,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.ReduceMethC
 public import CORALean.ContSet.Zonotope.Float.Operations.BallB
 public import CORALean.ContSet.Zonotope.Float.Operations.BallCert
 public import CORALean.ContSet.Zonotope.Float.Operations.ContainsPoint
+public import CORALean.ContSet.Zonotope.Float.Operations.ContainsMat
 public import CORALean.ContSet.Zonotope.Float.Operations.Deviation
 public import CORALean.ContSet.Zonotope.Float.Operations.InteriorPoint
 public import CORALean.ContSet.Zonotope.Float.Operations.IsFullDim
@@ -144,6 +146,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Powers
 public import CORALean.ContSet.Zonotope.Float.Operations.Transpose
 public import CORALean.ContSet.Zonotope.Float.Operations.MatNorm
 public import CORALean.ContSet.Zonotope.Float.Operations.Vec
+public import CORALean.ContSet.Zonotope.Float.Operations.Unvec
 public import CORALean.ContSet.Zonotope.Float.Operations.Pick
 
 /-!

@@ -38,6 +38,9 @@ arithmetic -- never floats:
   center, the corners of the first four factors, half the others, the independent generators at
   `+-1`) lie in the hull of the output (`check_polyzono_op`); `plus`, `mtimes` and `evalPowers`
   map the points first, `enclose` takes the points of both operands.
+* `intervalMatrix.exponentialRemainder`: the exact remainder of the center matrix lies in the answer;
+  `matZonotope.reduce`: the box of the set lies in the box of the answer; `matZonotope.contains`:
+  a `true` has every matrix in the box of the set (`check_class_op`).
 * `nonlinearSys.linReachPoly`: constant-input runs of the system, by RK4 in 60 digits from points of
   `R`, lie in the hulls of the response (`check_pz_lin_reach`).
 * Every op `ping` lists occurs in the requests, so none is served without a test.
@@ -1016,6 +1019,46 @@ def check_class_op(op, req, resp, fails):
                 r = sum(abs(g[i][j]) for g in gs)
                 if not (rc[i][j] - r + einf[i][j] <= E[i][j] <= rc[i][j] + r + esup[i][j]):
                     fails.append(f"id {rid}: {op}: exp(center)[{i}][{j}] leaves the hull")
+    elif op == "intervalMatrix.exponentialRemainder":
+        # the Taylor remainder of the center matrix, a member, lies in the answer
+        if resp["IM"] is None:
+            return
+        _, _, lo = parse_mat(req["IM"]["inf"])
+        _, _, hi = parse_mat(req["IM"]["sup"])
+        n = len(lo)
+        Mc = [[(lo[i][j] + hi[i][j]) / 2 for j in range(n)] for i in range(n)]
+        R = mat_exp(Mc, 60)
+        T = mat_exp(Mc, req["maxOrder"] + 1)
+        _, _, rlo = parse_mat(resp["IM"]["inf"])
+        _, _, rhi = parse_mat(resp["IM"]["sup"])
+        if not all(rlo[i][j] <= R[i][j] - T[i][j] <= rhi[i][j]
+                   for i in range(n) for j in range(n)):
+            fails.append(f"id {rid}: exponentialRemainder: the center's remainder leaves it")
+    elif op in ("matZonotope.reduce", "matZonotope.contains"):
+        # the box of the set: `c ± Σ |G| + [E.inf, E.sup]`, entry by entry
+        def box(z):
+            _, _, c = parse_mat(z["c"])
+            gs = [parse_mat(g)[2] for g in z["G"]]
+            _, _, einf = parse_mat(z["E"]["inf"])
+            _, _, esup = parse_mat(z["E"]["sup"])
+            rows, cols = range(len(c)), range(len(c[0]))
+            r = [[sum(abs(g[i][j]) for g in gs) for j in cols] for i in rows]
+            return ([[c[i][j] - r[i][j] + einf[i][j] for j in cols] for i in rows],
+                    [[c[i][j] + r[i][j] + esup[i][j] for j in cols] for i in rows])
+        lo, hi = box(req["mZ"])
+        if op == "matZonotope.reduce":
+            # the reduction encloses the set, so its box encloses the set's box
+            rlo, rhi = box(resp["mZ"])
+            if not all(rlo[i][j] <= lo[i][j] and hi[i][j] <= rhi[i][j]
+                       for i in range(len(lo)) for j in range(len(lo[0]))):
+                fails.append(f"id {rid}: matZonotope.reduce: the set's box leaves the answer's")
+        elif resp["value"]:
+            # a member lies in the box of the set
+            for m in req["M"]:
+                _, _, x = parse_mat(m)
+                if not all(lo[i][j] <= x[i][j] <= hi[i][j]
+                           for i in range(len(lo)) for j in range(len(lo[0]))):
+                    fails.append(f"id {rid}: matZonotope.contains: a matrix outside the box")
     elif op == "specification.check":
         # a `true` on a box against a box is a containment (safe set, invariant) or a
         # disjointness (unsafe set), checked exactly

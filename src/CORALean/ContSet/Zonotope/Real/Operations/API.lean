@@ -62,6 +62,7 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceCoOptDir
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceCoOptSVD
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceCombastel
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceGirard
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceMat
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceHybridPC
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceLineCl
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceMethC

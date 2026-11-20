@@ -117,6 +117,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceCombastelOrderLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceCombastelOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOrderLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceGirardOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceMatOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceHybridPCOrderLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceHybridPCOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceLineClOrderLe

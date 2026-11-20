@@ -85,6 +85,8 @@ public import CORALean.ContDynamics.LinearSys.Theorems.ExpIntegralMulVec
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpIntervalFloat
 public import CORALean.ContDynamics.LinearSys.Theorems.ClosedFormMatricesFloatSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.ExpMemExpSquaringFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExpRemainderMatLeExpRemainderSquaringFloat
+public import CORALean.ContDynamics.LinearSys.Theorems.ExponentialRemainderFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.TaylorMatricesFloatOuter
 public import CORALean.ContDynamics.LinearSys.Theorems.GirardExampleSpec
 public import CORALean.ContDynamics.LinearSys.Theorems.GirardReachEq

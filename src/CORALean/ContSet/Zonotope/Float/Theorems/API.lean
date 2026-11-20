@@ -18,6 +18,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.CompactZerosFromTracks
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConstrSatSound
 public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsPointSound
+public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsMatSound
 public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsZonotopeSound
 public import CORALean.ContSet.Zonotope.Float.Theorems.Convex
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConvexHullSubsetLinComb
@@ -92,6 +93,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceByOuterRefines
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceBySubsetAddBox
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceCombastelOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceGirardOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceMatOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceAdaptiveOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceMethCOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceOrder
@@ -144,6 +146,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.TracksMtimesPlus
 public import CORALean.ContSet.Zonotope.Float.Theorems.TransposeExact
 public import CORALean.ContSet.Zonotope.Float.Theorems.MatNormLe
 public import CORALean.ContSet.Zonotope.Float.Theorems.VecExact
+public import CORALean.ContSet.Zonotope.Float.Theorems.UnvecExact
 public import CORALean.ContSet.Zonotope.Float.Theorems.VecRepresentsaPointSound
 public import CORALean.ContSet.Zonotope.Float.Theorems.VecRepresentsaOriginSound
 public import CORALean.ContSet.Zonotope.Float.Theorems.CenterMemNominalSet
