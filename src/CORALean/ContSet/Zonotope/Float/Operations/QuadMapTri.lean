@@ -1,6 +1,6 @@
 module
 
-public import CORALean.ContSet.Zonotope.Float.Operations.AbsorbRounding
+public import CORALean.ContSet.Zonotope.Float.Operations.AbsorbRoundingIfAny
 public import CORALean.ContSet.Zonotope.Float.Operations.Basic
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadDown
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadUp
@@ -29,7 +29,7 @@ and left to the caller.
 * zonotope enclosing the quadratic image, with CORA's generators
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       12-November-2026
 -- Last update:   ---
 -- Reviewed:      ---
@@ -122,12 +122,6 @@ def Zonotope.step_quadMapTriGUp (Q : Fin m → Mat 𝕋 n n) (Z : Zonotope (Vec 
       (Zonotope.step_quadMapTriEntryUp (Q i) Zext (Zonotope.step_quadMapTriCol Z.h u)
         (Zonotope.step_quadMapTriRow Z.h u)))
 
-/-- `Z` with its box made into generators, unless the box is already zero (`sup ≤ 0 ≤ inf`). -/
-@[step_of Zonotope.quadMapTri]
-def Zonotope.step_quadMapTriOperand (Z : Zonotope (Vec 𝕋 n)) : Zonotope (Vec 𝕋 n) :=
-  if decide (∀ i, le (Z.I_error.sup i) zero = true ∧ le zero (Z.I_error.inf i) = true) then Z
-  else Z.absorbRounding
-
 /-- The enclosure of the quadratic image of an operand whose box is zero: rounded-down center and
 generators, and in the box what the rounding left. -/
 @[step_of Zonotope.quadMapTri]
@@ -148,7 +142,7 @@ def Zonotope.step_quadMapTriCore (Q : Fin m → Mat 𝕋 n n) (Z : Zonotope (Vec
 triangle of `M + Mᵀ` by columns. -/
 def Zonotope.quadMapTri (Q : Fin m → Mat 𝕋 n n) (Z : Zonotope (Vec 𝕋 n)) :
     Zonotope (Vec 𝕋 m) :=
-  Zonotope.step_quadMapTriCore Q (Zonotope.step_quadMapTriOperand Z)
+  Zonotope.step_quadMapTriCore Q Z.absorbRoundingIfAny
 
 end CORALean.Float
 
