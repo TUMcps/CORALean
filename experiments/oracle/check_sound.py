@@ -107,8 +107,9 @@ def parse_vec(m):
 def parse_zonotope(z):
     c = parse_vec(z["c"])
     _, h, G = parse_mat(z["G"])
-    einf = parse_vec(z["E"]["inf"])
-    esup = parse_vec(z["E"]["sup"])
+    # no error box: zero
+    einf = parse_vec(z["E"]["inf"]) if "E" in z else [F(0)] * len(c)
+    esup = parse_vec(z["E"]["sup"]) if "E" in z else [F(0)] * len(c)
     return c, h, G, einf, esup
 
 
@@ -609,6 +610,17 @@ def check_zonotope_op(op, req, resp, fails):
         elif parse_scalar(resp["value"]) > max([abs(g) for g in gamma] + [F(0)]):
             fails.append(f"id {rid}: zonotopeNorm: {resp['value']} above the norm of gamma = "
                          f"{gamma}")
+    elif op == "isIntersectingApprox":
+        # a `false` is a proof: in a coordinate the exact boxes are apart by more than `tol`
+        if not resp["value"]:
+            lo, hi = hull_of_zonotope_json(req["Z"])
+            if "Z2" in req:
+                slo, shi = hull_of_zonotope_json(req["Z2"])
+            else:
+                slo, shi = parse_vec(req["I"]["inf"]), parse_vec(req["I"]["sup"])
+            tol = parse_scalar(req["tol"])
+            if not any(lo[i] > shi[i] + tol or hi[i] < slo[i] - tol for i in range(len(lo))):
+                fails.append(f"id {rid}: isIntersectingApprox: false, but the boxes meet")
     elif op == "cartProd":
         a = hull_of_zonotope_json(req["Z"])
         b = hull_of_zonotope_json(req["Z2"])

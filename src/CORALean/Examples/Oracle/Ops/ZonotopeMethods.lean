@@ -220,6 +220,23 @@ def handleZonoIsIntersecting (dops : DtypeOps 𝕋) (req : Json) : Resp := do
     isDisjointBoxBoxOuter (T := 𝒵[𝕋]) (S := 𝒵[𝕋])
   pure [("disjoint", Json.bool (IsDisjoint.isDisjoint Z Z2))]
 
+/-- `zonotope.isIntersectingApprox`: CORA's `isIntersecting_(Z, S, 'approx', tol)` for a zonotope
+`Z2` or a box `I`: `false` (disjoint, certain) if in a coordinate the box of `Z` lies strictly
+beyond the box of `S` widened by `tol` (`Zonotope.interval_contains`, `toReal_lt_of_ltStrict`). -/
+def handleZonoIsIntersectingApprox (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "isIntersectingApprox" req ["Z", "Z2", "I", "tol"]
+  let dz ← parseZonotope dops.readExact (← field req "Z")
+  let tol ← dops.readExact "tol" (← scalarField req "tol")
+  let S ← match fieldOpt req "Z2" with
+    | some j => pure (Zonotope.interval (← parseZonotopeFixed dops.readExact dz.n j))
+    | none => parseIntervalVecFixed dops.readExact dz.n (← field req "I")
+  let B := Zonotope.interval dz.Z
+  -- a coordinate where the boxes are apart by more than `tol`
+  let apart := (List.finRange dz.n).any fun i =>
+    FloatOps.ltStrict (FloatOps.addUp (S.sup i) tol) (B.inf i) ||
+      FloatOps.ltStrict (B.sup i) (subDown (S.inf i) tol)
+  aux_bool !apart
+
 /-- `zonotope.representsa`: `type` one of `point`, `origin`. -/
 def handleZonoRepresentsa (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   checkFields "representsa" req ["Z", "type", "tol"]
@@ -638,6 +655,7 @@ def zonotopeOpNames : List String :=
     "cubMap", "dominantDirections", "enclose", "encloseMany", "enlarge", "boundaryPoint", "minus",
     "projectOnHyperplane", "enclosePoints", "exactPlus",
     "filterOut", "generatorLength", "intersectStrip", "isBounded", "isFullDim", "isIntersecting",
+    "isIntersectingApprox",
     "isequal", "lift", "minnorm", "norm", "origin", "project", "projectHighDim", "quadMap",
     "quadMapTri",
     "radius", "representsa", "rotate", "split", "splitFirstGen", "splitLongestGen",
@@ -687,6 +705,7 @@ def handleZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option 
   | "isBounded" => some (aux_test op dops req [] fun _ => true)
   | "isFullDim" => some (handleZonoIsFullDim dops req)
   | "isIntersecting" => some (handleZonoIsIntersecting dops req)
+  | "isIntersectingApprox" => some (handleZonoIsIntersectingApprox dops req)
   | "isequal" => some (do
       checkFields op req ["Z", "Z2", "tol"]
       checkTol op req

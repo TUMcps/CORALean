@@ -255,7 +255,13 @@ the claimed optimality is lost.
 
 **`isIntersecting_` — not covered.** CORA's default `'exact'` branch (constrained-zonotope
 intersection and an emptiness test) is not covered: this row is `'approx'` only. Not covered: a
-point argument, `tol`.
+point argument.
+
+**`isIntersecting_` — the oracle's form.** The oracle op `zonotope.isIntersectingApprox` is this
+box test as CORA.cpp computes it, with CORA's `tol`: the box of `S` (a zonotope or an interval) is
+widened by `tol` (`addUp`, `subDown`), and the answer is `false` only if, in some coordinate, one
+box lies strictly beyond the other (`ltStrict`). `Zonotope.interval_contains` and
+`toReal_lt_of_ltStrict` make a `false` a proof of disjointness.
 
 **`isIntersecting_` — cora-issue account.** `scalingToggle` is then undefined where `contains_` uses
 it, l. 176 (interval-shaped `Z`, rethrown at l. 187-192) and l. 215 (every other `Z` that is not a
