@@ -60,6 +60,17 @@ public import CORALean.ContSet.Taylm.Float.Operations.BernsteinIdx
 public import CORALean.ContSet.Taylm.Float.Operations.OptBernstein
 public import CORALean.ContSet.Taylm.Float.Operations.ReexpandAt
 public import CORALean.ContSet.Taylm.Float.Operations.Reexpand
+public import CORALean.ContSet.Taylm.Float.Operations.TimesZeroInf
+public import CORALean.ContSet.Taylm.Float.Operations.MonomialRange
+public import CORALean.ContSet.Taylm.Float.Operations.AccumTerm
+public import CORALean.ContSet.Taylm.Float.Operations.AccumTerms
+public import CORALean.ContSet.Taylm.Float.Operations.PolyBoundsMono
+public import CORALean.ContSet.Taylm.Float.Operations.BoundsMono
+public import CORALean.ContSet.Taylm.Float.Operations.PlusMerged
+public import CORALean.ContSet.Taylm.Float.Operations.PlusScalar
+public import CORALean.ContSet.Taylm.Float.Operations.Scale
+public import CORALean.ContSet.Taylm.Float.Operations.TimesMerged
+public import CORALean.ContSet.Taylm.Float.Operations.PowBinary
 
 /-!
 # Float Taylor model operations, collected

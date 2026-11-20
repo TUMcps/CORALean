@@ -37,10 +37,15 @@ arithmetic -- never floats:
 * `polyZonotope.*`, `interval.polyZonotope` and `zonotope.polyZonotope`: points of the input set (the
   center, the corners of the first four factors, half the others, the independent generators at
   `+-1`) lie in the hull of the output (`check_polyzono_op`); `plus`, `mtimes` and `evalPowers`
-  map the points first, `enclose` takes the points of both operands.
+  map the points first, `enclose` takes the points of both operands, `exactPlus` adds points of
+  both at equal factor values, `cartProd` joins them with points of `Z`; `center` must be `c`, and a
+  `false` of `isIntersecting` needs every point outside the polytope.
 * `intervalMatrix.exponentialRemainder`: the exact remainder of the center matrix lies in the answer;
   `matZonotope.reduce`: the box of the set lies in the box of the answer; `matZonotope.contains`:
   a `true` has every matrix in the box of the set (`check_class_op`).
+* `taylm.*`: at grid points `t` of the box `[-1, 1]^k` and at both ends of each operand's remainder,
+  the exact value of the operation on the functions `poly + r` lies in the output model, its
+  polynomial at `t` plus `[rem + Ierr]`; `interval` must hold the value (`check_taylm_op`).
 * `nonlinearSys.linReachPoly`: constant-input runs of the system, by RK4 in 60 digits from points of
   `R`, lie in the hulls of the response (`check_pz_lin_reach`).
 * Every op `ping` lists occurs in the requests, so none is served without a test.
@@ -833,6 +838,21 @@ def pz_points(P):
                    + sum(GI[i][j] * b[j] for j in range(q)) for i in range(len(c))]
 
 
+def pz_points_uniform(P):
+    """Points of `P` with every factor at one value of `-1, 0, 1/2, 1` and the independent
+    generators at `+-1`: two sets with shared factors give corresponding points."""
+    c = parse_vec(P["c"])
+    _, h, G = parse_mat(P["G"])
+    _, q, GI = parse_mat(P["GI"]) if "GI" in P else (0, 0, [[] for _ in c])
+    p, E = P["Exp"]["rows"], P["Exp"]["data"]
+    exps = [[E[k * h + j] for k in range(p)] for j in range(h)]
+    for v in [F(-1), F(0), F(1, 2), F(1)]:
+        for b in ([F(-1)] * q, [F(1)] * q):
+            mono = [v ** sum(exps[j]) for j in range(h)]
+            yield [c[i] + sum(G[i][j] * mono[j] for j in range(h))
+                   + sum(GI[i][j] * b[j] for j in range(q)) for i in range(len(c))]
+
+
 def pz_hull(out):
     """The hull of a polynomial zonotope or zonotope response: `c +- sum |G| +- sum |GI| +- E`."""
     c = parse_vec(out["c"])
@@ -855,6 +875,27 @@ def check_polyzono_op(op, req, resp, fails):
     if name == "dim":
         if resp["value"] != len(parse_vec(req["P"]["c"])):
             fails.append(f"id {rid}: {op}: wrong dimension {resp['value']}")
+        return
+    if name == "center":
+        if parse_vec(resp["c"]) != parse_vec(req["P"]["c"]):
+            fails.append(f"id {rid}: {op}: not the center of the set")
+        return
+    if name == "isIntersecting":
+        if not resp["value"]:
+            # a `false` is a proof: every point of the set violates a row of the polytope
+            S = req["S"]
+            _, _, A = parse_mat(S["A"])
+            b = parse_vec(S["b"])
+            Ae = parse_mat(S["Ae"])[2] if "Ae" in S else []
+            be = parse_vec(S["be"]) if "be" in S else []
+            for x in pz_points(req["P"]):
+                inside = all(sum(r[j] * x[j] for j in range(len(x))) <= b[i]
+                             for i, r in enumerate(A)) and \
+                    all(sum(r[j] * x[j] for j in range(len(x))) == be[i]
+                        for i, r in enumerate(Ae))
+                if inside:
+                    fails.append(f"id {rid}: {op}: false, but {x} lies in both")
+                    return
         return
     if name == "interval":
         lo = [dec(x) for x in parse_vec(resp["I"]["inf"])]
@@ -896,6 +937,16 @@ def check_polyzono_op(op, req, resp, fails):
             n = len(M)
         elif name == "enclose":
             pts = pts + list(pz_points(req["Q"]))
+        elif name == "exactPlus":
+            # every factor at the same value in both sets, so that shared factors agree
+            pts = [[x[i] + y[i] for i in range(n)]
+                   for x, y in zip(pz_points_uniform(req["P"]), pz_points_uniform(req["Q"]))]
+        elif name == "cartProd":
+            zc, zG = parse_vec(req["Z"]["c"]), parse_mat(req["Z"]["G"])[2]
+            zh = len(zG[0]) if zG and zG[0] else 0
+            zs = [[zc[i] + sum(zG[i][j] * s[j] for j in range(zh)) for i in range(len(zc))]
+                  for s in itertools_product(zh)]
+            pts = [x + z for x in pts[::3] for z in zs[::2] or zs]
         elif name == "evalPowers":
             # every coordinate through its polynomial, lowest degree first
             _, _, C = parse_mat(req["coeffs"])
@@ -1087,6 +1138,74 @@ def check_class_op(op, req, resp, fails):
             fails.append(f"id {rid}: fullspace.vertices: not the 2^{n} distinct corners")
 
 
+def taylm_eval(T, t):
+    """The polynomial of the request or response model `T` at the point `t`, exactly."""
+    total = F(0)
+    for term in T["terms"]:
+        v = parse_scalar(term["c"])
+        for x, e in zip(t, term["e"]):
+            v *= x ** e
+        total += v
+    return total
+
+
+def taylm_rem(T):
+    lo, hi = parse_scalar(T["rem"]["inf"]), parse_scalar(T["rem"]["sup"])
+    if "Ierr" in T:
+        lo += parse_scalar(T["Ierr"]["inf"])
+        hi += parse_scalar(T["Ierr"]["sup"])
+    return lo, hi
+
+
+def check_taylm_op(op, req, resp, fails):
+    """The output model holds the operation on every function `poly + r` the inputs hold, at
+    grid points of the box and the ends of the remainders."""
+    rid = req.get("id")
+    name = op[len("taylm."):]
+    T = req["T"]
+    k = T["vars"]
+    grid = [F(-1), F(-1, 3), F(0), F(1, 2), F(1)]
+    points = [[]]
+    for _ in range(k):
+        points = [p + [g] for p in points for g in grid][:200]
+    tlo, thi = taylm_rem(T)
+    Q = req.get("Q")
+    for t in points:
+        fs = [taylm_eval(T, t) + r for r in (tlo, thi)]
+        if Q is not None:
+            qlo, qhi = taylm_rem(Q)
+            gs = [taylm_eval(Q, t) + r for r in (qlo, qhi)]
+        s_ = parse_scalar(req["s"]) if "s" in req else None
+        for f in fs:
+            if name == "interval":
+                lo = parse_scalar(resp["I"]["inf"]["data"][0])
+                hi = parse_scalar(resp["I"]["sup"]["data"][0])
+                if not lo <= f <= hi:
+                    fails.append(f"id {rid}: taylm.interval: f({t}) = {f} leaves [{lo}, {hi}]")
+                continue
+            if name in ("plus", "minus", "times") and Q is not None:
+                op2 = {"plus": lambda a, b: a + b, "minus": lambda a, b: a - b,
+                       "times": lambda a, b: a * b}[name]
+                values = [op2(f, g) for g in gs]
+            elif name in ("plus", "minus", "times"):
+                values = [{"plus": f + s_, "minus": f - s_, "times": f * s_}[name]]
+            elif name == "uminus":
+                values = [-f]
+            elif name == "uplus":
+                values = [f]
+            elif name == "power":
+                values = [f ** req["k"]]
+            else:
+                return
+            out = resp["T"]
+            lo, hi = taylm_rem(out)
+            p = taylm_eval(out, t)
+            for v in values:
+                if not lo <= v - p <= hi:
+                    fails.append(f"id {rid}: {op}: the value at {t} leaves the model")
+                    return
+
+
 def main() -> int:
     if len(sys.argv) != 3:
         print("usage: check_sound.py requests.jsonl output.jsonl", file=sys.stderr)
@@ -1116,6 +1235,8 @@ def main() -> int:
             if op.startswith("polyZonotope.") or op in ("interval.polyZonotope",
                                                           "zonotope.polyZonotope"):
                 check_polyzono_op(op, req, resp, fails)
+            elif op.startswith("taylm."):
+                check_taylm_op(op, req, resp, fails)
             elif op == "nonlinearSys.linReachPoly":
                 check_pz_lin_reach(req, resp, fails)
             elif op.startswith("interval."):

@@ -4,7 +4,11 @@ import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_PolyZonotope
 import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeZonotopeFoldContains
 import CORALean.ContSet.PolyZonotope.Float.Instances
+import CORALean.ContSet.PolyZonotope.Float.Operations.CartProd
 import CORALean.ContSet.PolyZonotope.Float.Operations.Construct
+import CORALean.ContSet.PolyZonotope.Float.Operations.ExactPlus
+import CORALean.ContSet.PolyZonotope.Float.Theorems.CartProdExact
+import CORALean.ContSet.PolyZonotope.Float.Theorems.ExactPlusOuter
 import CORALean.ContSet.PolyZonotope.Float.Theorems.ConstructOuter
 import CORALean.ContSet.PolyZonotope.Float.Operations.EncloseShared
 import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPowers
@@ -17,18 +21,18 @@ import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
 import CORALean.Examples.Oracle.Ops.PolyZonotopeCodec
 import CORALean.Examples.Oracle.Ops.PolyZonotopeHash
 import CORALean.Examples.Oracle.Ops.SetCodec
+import CORALean.ContSet.Zonotope.Float.Instances
 
 /-!
 # The polynomial-zonotope ops: CORA's `polyZonotope` methods
 
 Adapters over the float definitions `references/coverage/contSet/polyZonotope.md` links. A set is
-`{"c","G","GI","Exp","E","id"}` (`PolyZonotopeCodec.lean`, and the identifiers, `1..p` where the
-request has none); the exponent matrix `Exp` is `p × h`. Served: `constructor` (CORA's
-`polyZonotope(c, G, GI, E, id)`: the zero generators go, equal exponent columns are added, in the
-order of CORA's hash), `plus` (a polynomial zonotope `Q`, a zonotope `Z`, a box `I` or a point `v`),
-`mtimes` (`M`), `zonotope` and `interval` (CORA's `zonotope(pZ)` and `interval(pZ)`), `dim`,
-`evalPowers` (`coeffs` a row per coordinate, lowest degree first: `evaluatePolyZonotopeNeuron`),
-and `zonotope.polyZonotope` and `interval.polyZonotope`. Indices and identifiers are CORA's.
+`{"c","G","GI","Exp","E","id"}` (`PolyZonotopeCodec.lean`; identifiers `1..p` where none; `Exp` is
+`p × h`). Served: `constructor` (CORA's `polyZonotope(c, G, GI, E, id)`: zero generators go, equal
+exponent columns are added in the order of CORA's hash), `plus` (`Q`, `Z`, a box `I` or a point
+`v`), `mtimes` (`M`), `zonotope`, `interval`, `dim`, `evalPowers` (`coeffs` a row per coordinate,
+lowest degree first), `center`, `cartProd` (`Z`), `exactPlus`, `isIntersecting` (`S`, CORA's
+`'approx'`), `zonotope.polyZonotope`, `interval.polyZonotope`; indices and identifiers are CORA's.
 
 ## Inputs
 * none
@@ -90,6 +94,49 @@ private def aux_plusZ (dops : DtypeOps 𝕋) (d : DynPolyZonotope 𝕋) (z : Zon
 private def aux_rows {n : Nat} (P : PolyZonotope (Vec 𝕋 n)) : Array (Array Nat) :=
   Array.ofFn fun k : Fin P.p => Array.ofFn fun l : Fin P.h => P.E k l
 
+/-- The independent generators that are not zero, in their order (CORA.cpp's constructor drops the
+zero ones; they add nothing to the set). -/
+private def aux_dropZeroIndep {n : Nat} (P : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) :=
+  let ks : Array (Fin P.q) := (Array.ofFn id).filter fun j =>
+    !((List.finRange n).all fun i => FloatOps.le (P.GI j i) FloatOps.zero &&
+      FloatOps.le FloatOps.zero (P.GI j i))
+  { P with q := ks.size, GI := fun j => P.GI (ks[j.val]'j.isLt) }
+
+/-- The dependent and independent generators that are not zero, in their order, the exponents
+kept (CORA.cpp's constructor on columns it does not merge). -/
+private def aux_dropZero {n : Nat} (P : PolyZonotope (Vec 𝕋 n)) : PolyZonotope (Vec 𝕋 n) :=
+  let live : Array ℕ := ((List.finRange P.h).filter fun l =>
+    !(List.finRange n).all fun i => FloatOps.le (P.G l i) FloatOps.zero &&
+      FloatOps.le FloatOps.zero (P.G l i)).toArray.map Fin.val
+  aux_dropZeroIndep (P.pick live.size fun t => live[t.val]!)
+
+/-- Two sets over the union of their identifiers, sorted (CORA's `mergeExpMatrix`): the
+exponent rows of each set placed at its identifiers, zero at the others. -/
+private structure Aligned (𝕋 : Type) [FloatOps 𝕋] (n : Nat) where
+  ids : Array Nat
+  P : PolyZonotope (Vec 𝕋 n)
+  Q : PolyZonotope (Vec 𝕋 n)
+  hp : P.p = Q.p
+
+/-- `P` and `Q` over the sorted union of the identifiers `idP` and `idQ`. -/
+private def aux_align {n : Nat} (P Q : PolyZonotope (Vec 𝕋 n)) (idP idQ : Array Nat) :
+    Aligned 𝕋 n :=
+  let ids := (idP ++ idQ).qsort (· < ·) |>.toList.eraseDups.toArray
+  let rowsP := aux_rows P
+  let rowsQ := aux_rows Q
+  let at' (rows : Array (Array Nat)) (idv : Array Nat) (id : Nat) (l : Nat) : Nat :=
+    match idv.findIdx? (· == id) with
+    | some r => (rows.getD r #[]).getD l 0
+    | none => 0
+  ⟨ids, { P with p := ids.size, E := fun k l => at' rowsP idP (ids[k.val]!) l.val },
+    { Q with p := ids.size, E := fun k l => at' rowsQ idQ (ids[k.val]!) l.val }, rfl⟩
+
+/-- The box of the image of `Z` under the rows `A` (CORA.cpp's `Z.linear_map(A).interval()`). -/
+private def aux_rowBox {m n : Nat} (A : Fin m → Vec 𝕋 n) (Z : Zonotope (Vec 𝕋 n)) :
+    Interval (Vec 𝕋 m) :=
+  let M : Mat 𝕋 m n := fun i j => A i j
+  (Mtimes.mtimes (ContSet := 𝒵[𝕋]) M Z).interval
+
 /-- CORA's `enclose(pZ, pZ2)` (`PolyZonotope.encloseShared`, `encloseShared_outer`), with the
 identifiers of the result. -/
 private def aux_enclose {n : Nat} (P Q : PolyZonotope (Vec 𝕋 n)) (idP idQ : Array Nat) :
@@ -139,7 +186,8 @@ private def aux_enclose {n : Nat} (P Q : PolyZonotope (Vec 𝕋 n)) (idP idQ : A
 /-- Every op of `polyZonotope.`, without the prefix. -/
 def polyZonotopeOpNames : List String :=
   [ "constructor", "plus", "mtimes", "zonotope", "interval", "reduce", "enclose", "dim",
-    "evalPowers" ]
+    "evalPowers", "center", "cartProd", "exactPlus",
+    "isIntersecting" ]
 
 /-- `op` of `polyZonotope.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -229,6 +277,46 @@ def handlePolyZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opt
         ⟨0, v, Fin.elim0, ⟨fun _ => FloatOps.zero, fun _ => FloatOps.zero⟩⟩
       pure (aux_plusZ dops d z)
     | _, _, _, _ => throw "plus: needs exactly one of `Q`, `Z`, `I` and `v`")
+  -- `center(pZ)`, the field `c`
+  | "center" => some (do
+    checkFields op req ["P"]
+    let d ← aux_parse dops (← field req "P")
+    pure [("c", printVec dops.showExact d.pZ.center)])
+  -- `cartProd(pZ, Z)`: the zonotope's generators independent, the factors the set's
+  | "cartProd" => some (do
+    checkFields op req ["P", "Z"]
+    let d ← aux_parse dops (← field req "P")
+    let z ← parseZonotope dops.readExact (← field req "Z")
+    let R := aux_dropZero (d.pZ.cartProd (Zonotope.ofIndep z.Z))
+    pure [("P", printPolyZonotopeIds dops.showExact R.materialise d.id)])
+  -- `exactPlus(pZ, pZ2)`: both over the union of the identifiers, then CORA's constructor
+  | "exactPlus" => some (do
+    checkFields op req ["P", "Q"]
+    let d ← aux_parse dops (← field req "P")
+    let e ← aux_parse dops (← field req "Q")
+    if h : e.n = d.n then
+      let Q : PolyZonotope (Vec 𝕋 d.n) := h ▸ e.pZ
+      let A := aux_align d.pZ Q d.id e.id
+      let R := aux_dropZeroIndep ((A.P.exactPlus A.Q A.hp).construct (hashedColumnOrder #[]))
+      pure [("P", printPolyZonotopeIds dops.showExact R.materialise A.ids)]
+    else throw s!"exactPlus: the sets differ in dimension, {d.n} and {e.n}")
+  -- `isIntersecting_(pZ, S, 'approx')`: `false` (certain) if the box of `A zonotope(pZ)` misses
+  | "isIntersecting" => some (do
+    checkFields op req ["P", "S", "tol"]
+    let d ← aux_parse dops (← field req "P")
+    let H ← parseHPolytopeFixed dops.readExact d.n (← field req "S")
+    let tol ← match fieldOpt req "tol" with
+      | none => pure FloatOps.zero
+      | some _ => dops.readExact "tol" (← scalarField req "tol")
+    let Z := d.pZ.zonotopeFold
+    -- the boxes of the images of the zonotope under the rows
+    let B := aux_rowBox H.A Z
+    let Be := aux_rowBox H.Ae Z
+    let below := (List.finRange H.m).any fun i => FloatOps.ltStrict (H.b i) (B.inf i)
+    let outside := (List.finRange H.me).any fun i =>
+      FloatOps.ltStrict (H.be i) (subDown (Be.inf i) tol) ||
+        FloatOps.ltStrict (FloatOps.addUp (Be.sup i) tol) (H.be i)
+    pure [("value", Lean.toJson !(below || outside))])
   | _ => none
 
 /-- `zonotope.polyZonotope`: `Z` as a polynomial zonotope of the identity exponents. -/
