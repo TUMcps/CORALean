@@ -1,5 +1,6 @@
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.DependentTermsFloat
 import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpIntervalEnclosureFloat
+import CORALean.ContDynamics.LinearSys.Operations.ExponentialRemainderFloat
 import CORALean.ContSet.Conversion.Float.Operations.Interval_to_MatPolytope
 import CORALean.ContSet.Interval.Float.Operations.Basic
 import CORALean.ContSet.Interval.Float.Operations.CenterBoxMat
@@ -26,8 +27,9 @@ An interval matrix is `Interval (Mat 𝕋 m n)`, so these are adapters over the 
 `references/coverage/others/intervalMatrix.md` links. Operands are `IM`, `IM2` (`{"inf","sup"}`,
 two matrices); a set result is `IM`, a matrix zonotope `mZ`, a matrix or scalar `value`, `V` the
 list of vertex matrices with the error box `E`. `norm` takes `steps` (Newton steps of the
-Frobenius root) and `type` (`1`, `inf`, `fro`). `expmInd` takes `maxOrder`. Not served: the
-constructor, which is `interval.intervalMatrix`.
+Frobenius root) and `type` (`1`, `inf`, `fro`). `expmInd` and `exponentialRemainder` take
+`maxOrder`; `exponentialRemainder` answers `IM` null where no halving count below `128` exists.
+Not served: the constructor, which is `interval.intervalMatrix`.
 
 ## Inputs
 * `dops` – dtype operations
@@ -102,7 +104,8 @@ def handleIntervalMatrixRepresentsa (dops : DtypeOps 𝕋) (req : Json) : Resp :
 
 /-- Every op of this file, without the `intervalMatrix.` prefix. -/
 def intervalMatrixOpNames : List String :=
-  [ "abs", "center", "contains", "dependentTerms", "exactSquare", "expmInd", "infNorm", "infimum",
+  [ "abs", "center", "contains", "dependentTerms", "exactSquare", "expmInd", "exponentialRemainder",
+    "infNorm", "infimum",
     "matZonotope", "mpower", "mtimes", "norm", "plus", "powers", "rad", "representsa", "supremum",
     "vertices", "volume" ]
 
@@ -144,6 +147,13 @@ def handleIntervalMatrixOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : O
       checkFields op req ["IM", "maxOrder"]
       let ⟨_, A⟩ ← aux_square dops req "IM"
       pure [aux_set dops "IM" (MatExp.expIntervalEnclosure A (← natField req "maxOrder"))])
+  -- `exponentialRemainder`: `MatExp.exponentialRemainder`, `e^M` by scaling and squaring
+  | "exponentialRemainder" => some (do
+      checkFields op req ["IM", "maxOrder"]
+      let ⟨_, A⟩ ← aux_square dops req "IM"
+      match MatExp.exponentialRemainder A (← natField req "maxOrder") with
+      | none => pure [("IM", Json.null)]
+      | some E => pure [aux_set dops "IM" E])
   | "infNorm" => some (do
       checkFields op req ["IM"]
       let b ← parseBoxMat dops.readExact (← field req "IM")

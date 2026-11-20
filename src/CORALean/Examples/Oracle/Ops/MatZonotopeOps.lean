@@ -2,11 +2,14 @@ import CORALean.ContDynamics.LinearSys.MatExp.Operations.ExpMatZonoEnclosureFloa
 import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_Interval
 import CORALean.ContSet.Conversion.Float.Operations.Zonotope_to_MatPolytope
 import CORALean.ContSet.Interval.Float.Operations.MatNorm
+import CORALean.ContSet.Zonotope.Float.Operations.ContainsMat
 import CORALean.ContSet.Zonotope.Float.Operations.MatMul
 import CORALean.ContSet.Zonotope.Float.Operations.MatNorm
 import CORALean.ContSet.Zonotope.Float.Operations.MatPlus
 import CORALean.ContSet.Zonotope.Float.Operations.Mpower
 import CORALean.ContSet.Zonotope.Float.Operations.Powers
+import CORALean.ContSet.Zonotope.Float.Operations.ReduceMat
+import CORALean.ContSet.Zonotope.Float.Operations.RightInvCandidate
 import CORALean.ContSet.Zonotope.Float.Operations.Transpose
 import CORALean.ContSet.Zonotope.Float.Operations.Vec
 import CORALean.ContSet.Zonotope.Float.Operations.RepresentsaOrigin
@@ -21,9 +24,9 @@ adapters over the float definitions `references/coverage/others/matZonotope.md` 
 are `mZ`, `mZ2` (`{"c","G":[matrix, ...],"E"}`, `E` an interval matrix, see `SetCodec.lean`); a
 set result is `mZ`, an interval matrix `IM`, a vector zonotope `Z`, a matrix or a scalar `value`,
 `V` the list of vertex matrices with the error box `E`. `steps` is the tuning of `norm`, `type`
-is `1`, `inf` or `fro`. Indices are 0-based; a field an op does not list is refused by name.
-`expm` and `expmInd` take `maxOrder`. Not served (no float definition): `contains`,
-`dependentTerms`, `expmMixed`, `expmOneParam`, the constructor.
+is `1`, `inf` or `fro`; `expm`, `expmInd` take `maxOrder`, `reduce` `order` and `method` (`girard`),
+`contains` the list `M` (`false` refutes nothing). A field an op does not list is refused by name.
+Not served (no float definition): `dependentTerms`, `expmMixed`, `expmOneParam`, the constructor.
 
 ## Inputs
 * `dops` – dtype operations
@@ -69,6 +72,12 @@ private def aux_square (dops : DtypeOps 𝕋) (req : Json) (name : String) :
   else throw s!"`{name}` must be square, not {d.r}×{d.c}"
 
 
+/-- A matrix of the shape `r × c` (rows of numbers). -/
+private def aux_matrix (dops : DtypeOps 𝕋) (r c : Nat) (j : Json) : Except String (Mat 𝕋 r c) := do
+  let ⟨r', M⟩ ← parseMatColsFixed dops.readExact c j
+  if h : r' = r then pure (h ▸ M) else throw s!"expected a {r}×{c} matrix, got {r'} rows"
+
+
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 /-- `matZonotope.vertices`: the corner matrices, `Zonotope.matPolytope`, at most `2^20`. -/
@@ -91,10 +100,24 @@ def handleMatZonotopeRepresentsa (dops : DtypeOps 𝕋) (req : Json) : Resp := d
   | "origin" => valueBool (Zonotope.representsa_origin (Zonotope.vec d.Z))
   | t => throw s!"representsa: `type` must be point or origin, not `{t}`"
 
+/-- `matZonotope.contains`: every matrix of `M` certified in the set. -/
+def handleMatZonotopeContains (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "contains" req ["mZ", "M", "tol"]
+  checkTol "contains" req
+  let d ← parseMatZonotope dops.readExact (← field req "mZ")
+  let Ms ← match ← field req "M" with
+    | Json.arr a => a.toList.mapM (aux_matrix dops d.r d.c)
+    | _ => throw "contains: `M` must be a list of matrices"
+  -- the candidate right inverse of the stacked generators, tabulated once
+  let V := Zonotope.vec d.Z
+  let tab := tableOf (Zonotope.rightInvCandidate fun i k => V.G k i)
+  let H : Mat 𝕋 d.Z.h _ := fun j i => tableGet FloatOps.zero tab j i
+  valueBool (Zonotope.containsMat d.Z H fun k : Fin Ms.length => Ms.get k)
+
 /-- Every op of this file, without the `matZonotope.` prefix. -/
 def matZonotopeOpNames : List String :=
-  [ "center", "expm", "expmInd", "intervalMatrix", "mpower", "mtimes", "norm", "plus", "powers",
-    "representsa",
+  [ "center", "contains", "expm", "expmInd", "intervalMatrix", "mpower", "mtimes", "norm", "plus",
+    "powers", "reduce", "representsa",
     "transpose", "vertices", "zonotope" ]
 
 /-- `op` of `matZonotope.`, run; `none` for a name this file does not serve. -/
@@ -105,6 +128,7 @@ def handleMatZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opti
       checkFields op req ["mZ"]
       let d ← parseMatZonotope dops.readExact (← field req "mZ")
       pure [("value", printMat dops.showExact d.Z.c)])
+  | "contains" => some (handleMatZonotopeContains dops req)
   | "expm" | "expmInd" => some (do
       checkFields op req ["mZ", "maxOrder"]
       let ⟨_, Z⟩ ← aux_square dops req "mZ"
@@ -141,6 +165,12 @@ def handleMatZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opti
       let ⟨n, Z⟩ ← aux_square dops req "mZ"
       let P ← aux_fixed dops n n (← field req "mZ2")
       pure [aux_set dops (Zonotope.powers Z P (← natField req "k"))])
+  | "reduce" => some (do
+      checkFields op req ["mZ", "order", "method"]
+      let d ← parseMatZonotope dops.readExact (← field req "mZ")
+      match ← strField req "method" with
+      | "girard" => pure [aux_set dops (Zonotope.reduceMat d.Z (← natField req "order"))]
+      | m => throw s!"reduce: `method` must be `girard`, not `{m}`")
   | "representsa" => some (handleMatZonotopeRepresentsa dops req)
   | "transpose" => some (do
       checkFields op req ["mZ"]
