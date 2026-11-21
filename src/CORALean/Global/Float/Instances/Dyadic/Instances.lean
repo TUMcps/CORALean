@@ -26,9 +26,9 @@ arrives already directed. `le` is exact and needs no rounding at all. No bound
 on the mantissa is needed: leaving the grid costs precision, never soundness.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       16-August-2026
--- Last update:   30-September-2026
+-- Last update:   21-November-2026
 -- Reviewed:      ---
 
 
@@ -78,6 +78,7 @@ instance {p : ℕ} : SoundFloatArithmetic (Dyadic p) where
   toReal_half := Dyadic.toReal_half
   -- the default `ltStrict` is strict, by the fields above
   le_sqrtUpOverride hf := by cases hf
+  sqrtDownOverride_le hf := by cases hf
   elemOverride_exact he := by cases he
   toReal_lt_of_ltStrict h := toReal_lt_of_default_ltStrict Dyadic.toReal
     (by

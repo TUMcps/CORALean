@@ -6,12 +6,12 @@ import CORALean.Examples.Bench.NearestUnsound.NearestFloat
 
 One property: FALSE conjuncts, the six rounding laws `SoundFloatArithmetic` asks of a scalar,
 stated of `NearestFloat`'s operations and of `NearestDyadic p`'s at every `p`, the machine's square
-root and elementary functions (`float_le_sqrt`, `float_elem_exact`), and `float_lt_of_lt`,
-the one true one (the machine's `<`). Rounding to nearest lands on the closer side of the exact
-result, so the twelve rounding laws fail, at `NearestDyadic` refutably. `Axioms` assumes the
-property anyway, once, so that the unchanged library runs on the arithmetic CORA uses, the paper's
-baseline and nothing else. Bundled like `Binary64.IsTrustedHardware`: one name in every
-`#print axioms` that reaches either scalar. All else it gets right is proved in `Instances`.
+root from both sides and elementary functions (`float_le_sqrt`, `float_sqrt_le`,
+`float_elem_exact`), and `float_lt_of_lt`, the one true one (the machine's `<`). Rounding to
+nearest lands on the closer side of the exact result, so the twelve rounding laws fail, at
+`NearestDyadic` refutably. `Axioms` assumes the property anyway, once, so that the unchanged library
+runs on the arithmetic CORA uses, the paper's baseline and nothing else. Bundled like
+`Binary64.IsTrustedHardware`: one name in every `#print axioms` that reaches either scalar.
 
 ## References
 
@@ -19,9 +19,9 @@ None: a CORALean statement, a false property of its round-to-nearest baseline; i
 file or publication.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       27-September-2026
--- Last update:   20-November-2026
+-- Last update:   21-November-2026
 -- Reviewed:      ---
 
 
@@ -74,6 +74,10 @@ structure IsNearestUnsound : Prop where
   below the exact root (`sqrtUp` here is the machine's `sqrt`, rounded to nearest). -/
   float_le_sqrt : ∀ (p : ℕ) (a : NearestFloat) (r : ℝ), 0 ≤ r → r * r ≤ max a.toReal 0 →
     r ≤ (NearestFloat.sqrt p a).toReal
+  /-- FALSE as well: the same correctly rounded `√a` lies above the exact root for other radicands
+  (`sqrtDownOverride`, used only by `Interval.sqrtCora`'s lower end). -/
+  float_sqrt_le : ∀ (p : ℕ) (a : NearestFloat) (r : ℝ), 0 ≤ r → max a.toReal 0 ≤ r * r →
+    (NearestFloat.sqrt p a).toReal ≤ r
   /-- FALSE: the machine's `sin` is correctly rounded, not exact (`sin 1` is no binary64 number),
   and so its other twelve; stated of every reference `R` only because the interface layer cannot
   name `Real.sin`, the library spends it at Mathlib's. -/

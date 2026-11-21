@@ -22,9 +22,9 @@ instances are `scoped` in `CORALean.Bench.NearestUnsound`, which only the bench'
 branch opens; a result obtained through them carries no guarantee whatsoever.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       27-September-2026
--- Last update:   07-November-2026
+-- Last update:   21-November-2026
 -- Reviewed:      ---
 
 
@@ -56,11 +56,14 @@ scoped instance : FloatOps NearestFloat where
   ltStrict a b := decide (a.val < b.val)
   -- the machine's correctly rounded `sqrt`; the issue-274 witness is Newton stopping 1 ulp short
   sqrtUpOverride := some NearestFloat.sqrt
+  -- and the same root as a lower value, for the interval root of CORA
+  sqrtDownOverride := some NearestFloat.sqrt
   -- the machine's `sin`, `cos`, `exp`, `log`, `tan` and `atan`, the same value in both directions
   elemOverride := some NearestFloat.elem
 
 /-- The six rounding laws from the false `nearestUnsound`; the rest are `Float`'s own. -/
 scoped instance : SoundFloatArithmetic NearestFloat where
+  -- the reading, then the sign and rounding laws, then the order and halving ones
   toReal := NearestFloat.toReal
   toReal_neg a := Binary64.trustedHardware.toReal_neg a.val
   toReal_zero := Binary64.trustedHardware.toReal_zero
@@ -71,6 +74,7 @@ scoped instance : SoundFloatArithmetic NearestFloat where
   mulDown_le_mul := nearestUnsound.float_mulDown_le_mul
   div_le_divUp := nearestUnsound.float_div_le_divUp
   divDown_le_div := nearestUnsound.float_divDown_le_div
+  -- the order and halving laws are the hardware's own
   toReal_minimum a b := Binary64.trustedHardware.toReal_min a.val b.val
   toReal_maximum a b := Binary64.trustedHardware.toReal_max a.val b.val
   toReal_le_of_le h := Binary64.trustedHardware.toReal_le_of_le _ _ (of_decide_eq_true h)
@@ -79,6 +83,9 @@ scoped instance : SoundFloatArithmetic NearestFloat where
   le_sqrtUpOverride hf p a := by
     cases hf
     exact nearestUnsound.float_le_sqrt p a
+  sqrtDownOverride_le hf p a := by
+    cases hf
+    exact nearestUnsound.float_sqrt_le p a
   -- the machine's elementary functions are exact, by the false axiom, at any reference
   elemOverride_exact he R := by
     cases he
@@ -128,6 +135,7 @@ scoped instance {p : ℕ} : SoundFloatArithmetic (NearestDyadic p) where
     exact lt_of_le_not_ge (Dyadic.toReal_le_of_le h₁)
       fun h₃ => by simp [(Dyadic.le_iff b.val a.val).mpr h₃] at h₂
   le_sqrtUpOverride hf := by cases hf
+  sqrtDownOverride_le hf := by cases hf
   elemOverride_exact he := by cases he
 
 /-- The bits, decoded exactly, as for `Float`: no `nearestUnsound` involved. -/

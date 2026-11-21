@@ -22,9 +22,9 @@ the operation classes runs at `Float` as it runs at `Dyadic`. What separates the
 one assumption, not what can be evaluated.
 -/
 
--- Authors:       Claude Opus 5
+-- Authors:       Claude Opus 5, Claude Sonnet 5.5
 -- Written:       22-September-2026
--- Last update:   30-September-2026
+-- Last update:   21-November-2026
 -- Reviewed:      ---
 
 
@@ -69,6 +69,7 @@ instance : SoundFloatArithmetic Float where
   toReal_le_of_le h := Binary64.trustedHardware.toReal_le_of_le _ _ (of_decide_eq_true h)
   toReal_half := Binary64.trustedHardware.toReal_half
   le_sqrtUpOverride hf := by cases hf
+  sqrtDownOverride_le hf := by cases hf
   -- (no elementary functions of its own)
   elemOverride_exact he := by cases he
   toReal_lt_of_ltStrict h := toReal_lt_of_default_ltStrict Binary64.toReal

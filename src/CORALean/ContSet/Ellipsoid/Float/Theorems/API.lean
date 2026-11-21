@@ -29,6 +29,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.IsPsdSound
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.IsequalSound
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MemNominalSet
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MinkDiffPointOuter
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesCoraOuter
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.MtimesOuter
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.NominalCenterEq
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.NominalDominated

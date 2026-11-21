@@ -96,6 +96,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.SinOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SinhOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SmulOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SplitAtCover
+public import CORALean.ContSet.Interval.Float.Theorems.SqrtCoraOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SqrtOuter
 public import CORALean.ContSet.Interval.Float.Theorems.StlIntervalExact
 public import CORALean.ContSet.Interval.Float.Theorems.SubMemMatResidual

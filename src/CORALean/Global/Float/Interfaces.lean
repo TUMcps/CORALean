@@ -20,7 +20,7 @@ and MATLAB's `withinTol` of them, which every format with `ToRat` has and ℝ de
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       16-August-2026
--- Last update:   20-November-2026
+-- Last update:   21-November-2026
 -- Reviewed:      ---
 
 
@@ -129,6 +129,10 @@ class FloatOps (𝕋 : Type) where
   default there is none and `sqrtUp` is the Newton iteration of `Sqrt.lean`; the round-to-nearest
   bench baseline supplies the machine's square root. `SoundFloatArithmetic` constrains it. -/
   sqrtUpOverride : Option (ℕ → 𝕋 → 𝕋) := none
+  /-- The same machine root as a lower value, for `Interval.sqrtCora`'s lower end only: CORA takes
+  the machine's root at both ends of the box. By default there is none, and `sqrtDown` is the
+  quotient of `sqrtUp`. `SoundFloatArithmetic` constrains it. -/
+  sqrtDownOverride : Option (ℕ → 𝕋 → 𝕋) := none
   /-- The elementary functions the format computes itself, one value for both directions; none by
   default, then the bracketing algorithms of `SinCos.lean` and its siblings. See the module
   docstring. -/
@@ -179,6 +183,10 @@ class SoundFloatArithmetic (𝕋 : Type) [FloatOps 𝕋] where
   which has none (`by cases hf`); `sqrtUp` is then the Newton iteration, sound by `le_sqrtUp`. -/
   le_sqrtUpOverride {f : ℕ → 𝕋 → 𝕋} (hf : sqrtUpOverride = some f) (p : ℕ) (a : 𝕋) :
       ∀ r : ℝ, 0 ≤ r → r * r ≤ max (toReal a) 0 → r ≤ toReal (f p a)
+  /-- A square root the format supplies as a lower value is below the real one: below every
+  nonnegative `r` whose square is at least the clamped radicand. Vacuous for the default. -/
+  sqrtDownOverride_le {f : ℕ → 𝕋 → 𝕋} (hf : sqrtDownOverride = some f) (p : ℕ) (a : 𝕋) :
+      ∀ r : ℝ, 0 ≤ r → max (toReal a) 0 ≤ r * r → toReal (f p a) ≤ r
   /-- A format's own elementary functions are exact at every reference `R` (`ElemOverride.lean`
   says why `R` is quantified); vacuous for the default, which has none. -/
   elemOverride_exact {e : ElemOverride 𝕋} (he : elemOverride = some e) (R : RealElem) :

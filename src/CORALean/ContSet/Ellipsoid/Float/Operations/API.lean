@@ -26,6 +26,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Operations.Isequal
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Materialise
 public import CORALean.ContSet.Ellipsoid.Float.Operations.MinkDiffPoint
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Mtimes
+public import CORALean.ContSet.Ellipsoid.Float.Operations.MtimesCora
 public import CORALean.ContSet.Ellipsoid.Float.Operations.MtimesResidual
 public import CORALean.ContSet.Ellipsoid.Float.Operations.NominalBoundDot
 public import CORALean.ContSet.Ellipsoid.Float.Operations.NormUb

@@ -16,6 +16,7 @@ import CORALean.ContSet.Ellipsoid.Float.Operations.IsBigger
 import CORALean.ContSet.Ellipsoid.Float.Operations.IsFullDim
 import CORALean.ContSet.Ellipsoid.Float.Operations.Isequal
 import CORALean.ContSet.Ellipsoid.Float.Operations.Mtimes
+import CORALean.ContSet.Ellipsoid.Float.Operations.MtimesCora
 import CORALean.ContSet.Ellipsoid.Float.Operations.NormUb
 import CORALean.ContSet.Ellipsoid.Float.Operations.Origin
 import CORALean.ContSet.Ellipsoid.Float.Operations.Project
@@ -46,7 +47,7 @@ SDP hull), `generators`, `empty`, `isIntersecting`, `supportFunc`, `volume`, `pl
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-November-2026
--- Last update:   ---
+-- Last update:   21-November-2026
 -- Reviewed:      ---
 
 
@@ -219,8 +220,8 @@ def handleEllipsoidVertices (dops : DtypeOps 𝕋) (req : Json) : Resp := do
 def ellipsoidOpNames : List String :=
   [ "and", "cartProd", "center", "construct", "contains", "ellipsoidNorm", "enclosePoints",
     "interval", "intersectStrip", "isBadDir", "isBigger", "isBounded", "isFullDim", "isequal",
-    "lift", "mtimes", "norm", "origin", "project", "radius", "representsa", "vertices",
-    "zonotope" ]
+    "lift", "mtimes", "mtimesCora", "norm", "origin", "project", "radius", "representsa",
+    "vertices", "zonotope" ]
 
 /-- `op` of `ellipsoid.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -276,6 +277,11 @@ def handleEllipsoidOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option
       let d ← parseEllipsoid dops.readExact (← field req "E")
       let ⟨_, M⟩ ← parseMatColsFixed dops.readExact d.n (← field req "M")
       pure [aux_set dops (Ellipsoid.mtimes M d.E)])
+  | "mtimesCora" => some (do
+      checkFields op req ["E", "M"]
+      let d ← parseEllipsoid dops.readExact (← field req "E")
+      let ⟨_, M⟩ ← parseMatColsFixed dops.readExact d.n (← field req "M")
+      pure [aux_set dops (Ellipsoid.mtimesCora M d.E)])
   -- the arms from `norm` on
   | "norm" => some (do
       checkFields op req ["E", "k", "type"]

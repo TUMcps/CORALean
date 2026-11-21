@@ -19,6 +19,7 @@ import CORALean.ContSet.HPolytope.Float.Operations.ProjectHighDim
 import CORALean.ContSet.HPolytope.Float.Operations.ReduceOverDomain
 import CORALean.ContSet.HPolytope.Float.Operations.RepresentsaFullspace
 import CORALean.ContSet.Interval.Float.Operations.BoundDot
+import CORALean.ContSet.Interval.Float.Operations.BoundDotCora
 import CORALean.ContSet.VPolytope.Float.Operations.CenterBox
 import CORALean.ContSet.VPolytope.Float.Operations.ConvHull
 import CORALean.ContSet.VPolytope.Float.Operations.EnclosePoints
@@ -54,7 +55,7 @@ has no argument for (`compact_` `redundant`, `constraints`, `vertices`, the othe
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-November-2026
--- Last update:   07-November-2026
+-- Last update:   21-November-2026
 -- Reviewed:      ---
 
 
@@ -251,13 +252,25 @@ def handlePolyMinkDiff (dops : DtypeOps 𝕋) (req : Json) : Resp := do
     pure [aux_hSet dops (d.P.minkDiffOf Z.toSet fun i =>
       Z.boundDot (c := Real.HPolytope.rowLin (toRealMat d.P.A) i) (d.P.A i) fun _ => rfl)]
 
+/-- `polytope.minkDiffCora`: `P` minus a box `I`, each row lowered by CORA's support function of the
+box, `d' c + |d|' r` (`Interval.boundDotCora`), which is `polytope.minkDiff`'s at `nearest` up to
+the order of the sum. -/
+def handlePolyMinkDiffBoxRad (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "minkDiffCora" req ["P", "I"]
+  let d ← aux_h "minkDiffCora" dops req "P"
+  match ← aux_probe "minkDiffCora" dops req d.n with
+  | .box I =>
+    pure [aux_hSet dops (d.P.minkDiffOf I.toSet fun i =>
+      I.boundDotCora (c := Real.HPolytope.rowLin (toRealMat d.P.A) i) (d.P.A i) fun _ => rfl)]
+  | .zono _ => throw "minkDiffCora: the subtrahend is a box `I`"
+
 /-- Every op of this file, without the `polytope.` prefix. -/
 def polytopeOpNames : List String :=
   [ "Inf", "and", "box", "cartProd", "center", "compact", "conZonotope", "contains", "convHull",
     "empty", "enclosePoints", "interval", "isBounded", "isFullDim", "isIntersecting", "isequal",
     "lift", "minus", "mtimes", "or", "origin", "plus", "project", "projectHighDim", "representsa",
     "supportFunc", "zonotope", "ellipsoid", "zonoBundle", "not", "normalizeConstraints",
-    "reduceOverDomain", "minkDiff" ]
+    "reduceOverDomain", "minkDiff", "minkDiffCora" ]
 
 /-- `op` of `polytope.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -317,6 +330,7 @@ def handlePolytopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option 
   | "normalizeConstraints" => some (handlePolyNormalizeConstraints dops req)
   | "reduceOverDomain" => some (handlePolyReduceOverDomain dops req)
   | "minkDiff" => some (handlePolyMinkDiff dops req)
+  | "minkDiffCora" => some (handlePolyMinkDiffBoxRad dops req)
   | "isequal" => some (do
       checkFields op req ["P", "P2", "tol"]
       checkTol op req
