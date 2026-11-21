@@ -90,6 +90,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaEmptySetSound
 public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaOriginSound
 public import CORALean.ContSet.Interval.Float.Theorems.RepresentsaPointSound
 public import CORALean.ContSet.Interval.Float.Theorems.RoundOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SignCoraOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SignOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SinOuter
 public import CORALean.ContSet.Interval.Float.Theorems.SinhOuter

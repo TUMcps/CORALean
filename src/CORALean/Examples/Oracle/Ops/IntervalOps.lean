@@ -9,6 +9,7 @@ import CORALean.ContSet.Interval.Float.Operations.Atan2
 import CORALean.ContSet.ContSet.Operations.ProjectOnHyperplaneFloat
 import CORALean.ContSet.Interval.Float.Operations.Basic
 import CORALean.ContSet.Interval.Float.Operations.BoundDot
+import CORALean.ContSet.Interval.Float.Operations.BoundDotCora
 import CORALean.ContSet.Interval.Float.Operations.BoundaryPoint
 import CORALean.ContSet.Interval.Float.Operations.Center
 import CORALean.ContSet.Interval.Float.Operations.Cos
@@ -40,6 +41,7 @@ import CORALean.ContSet.Interval.Float.Operations.RadiusSq
 import CORALean.ContSet.Interval.Float.Operations.Recip
 import CORALean.ContSet.Interval.Float.Operations.Round
 import CORALean.ContSet.Interval.Float.Operations.Sign
+import CORALean.ContSet.Interval.Float.Operations.SignCora
 import CORALean.ContSet.Interval.Float.Operations.Sin
 import CORALean.ContSet.Interval.Float.Operations.SplitAt
 import CORALean.ContSet.Interval.Float.Operations.Sqrt
@@ -68,9 +70,9 @@ transcendental enclosures and are required. `true` of `contains`/`disjoint` is a
 * response fields or an error message
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       02-November-2026
--- Last update:   03-November-2026
+-- Last update:   20-November-2026
 -- Reviewed:      ---
 
 
@@ -298,6 +300,14 @@ def handleIntervalSupportFunc (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   let c : Vec ℝ b.n →ₗ[ℝ] ℝ := Real.HPolytope.rowLin (toRealMat (fun (_ : Fin 1) => a)) 0
   aux_value dops (Interval.boundDot b.I (c := c) a fun _ => rfl).val
 
+/-- `interval.supportFuncCora`: CORA's `d' c + |d|' r` over the box, `Interval.boundDotCora`. -/
+def handleIntervalSupportFuncMidRad (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "supportFuncCora" req ["I", "dir"]
+  let b ← parseBox dops.readExact (← field req "I")
+  let a ← parseVecFixed dops.readExact b.n (← field req "dir")
+  let c : Vec ℝ b.n →ₗ[ℝ] ℝ := Real.HPolytope.rowLin (toRealMat (fun (_ : Fin 1) => a)) 0
+  aux_value dops (Interval.boundDotCora b.I (c := c) a fun _ => rfl).val
+
 /-- `interval.project`: the coordinates `dims`, 0-based. -/
 def handleIntervalProject (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   checkFields "project" req ["I", "dims"]
@@ -493,16 +503,16 @@ def handleIntervalReduce (dops : DtypeOps 𝕋) (req : Json) : Resp := do
 
 /-- Every op of this file, without the `interval.` prefix. -/
 def intervalOpNames : List String :=
-  [ "abs", "uminus", "uplus", "sign", "round", "sqrt", "exp", "log", "sin", "cos", "tan", "sinh",
-    "cosh", "tanh", "asin", "acos", "atan", "asinh", "acosh", "atanh", "atan2", "enlarge", "power",
-    "rdivide", "mrdivide", "plus", "minus", "times", "and", "or", "convHull", "minkDiff", "min",
-    "max", "enclose", "le", "lt", "isequal", "isFullDim", "isBounded", "representsa", "contains",
-    "isIntersecting", "center", "rad", "radius", "norm", "volume", "supportFunc", "infimum",
-    "supremum", "project", "lift", "projectHighDim", "split", "partition", "boundaryPoint",
-    "cartProd", "projectOnHyperplane", "enclosePoints", "quadMap", "mtimes", "transpose",
-    "ctranspose", "sum", "prod",
-    "diag", "mpower", "tril", "triu", "kron", "horzcat", "vertcat", "cat", "empty", "origin", "Inf",
-    "dirac", "intervalMatrix", "zonotope", "vertices", "reduce" ]
+  [ "abs", "uminus", "uplus", "sign", "signCora", "round", "sqrt", "exp", "log", "sin", "cos",
+    "tan", "sinh", "cosh", "tanh", "asin", "acos", "atan", "asinh", "acosh", "atanh", "atan2",
+    "enlarge", "power", "rdivide", "mrdivide", "plus", "minus", "times", "and", "or", "convHull",
+    "minkDiff", "min", "max", "enclose", "le", "lt", "isequal", "isFullDim", "isBounded",
+    "representsa", "contains", "isIntersecting", "center", "rad", "radius", "norm", "volume",
+    "supportFunc", "supportFuncCora", "infimum", "supremum", "project", "lift", "projectHighDim",
+    "split", "partition", "boundaryPoint", "cartProd", "projectOnHyperplane", "enclosePoints",
+    "quadMap", "mtimes", "transpose", "ctranspose", "sum", "prod", "diag", "mpower", "tril",
+    "triu", "kron", "horzcat", "vertcat", "cat", "empty", "origin", "Inf", "dirac",
+    "intervalMatrix", "zonotope", "vertices", "reduce" ]
 
 /-- `op` of `interval.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -512,6 +522,7 @@ def handleIntervalOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option 
   | "uminus" => some (aux_unary op dops req [] fun I => Interval.uminus I)
   | "uplus" => some (aux_unary op dops req [] fun I => Interval.uplus I)
   | "sign" => some (aux_unary op dops req [] fun I => Interval.sign I)
+  | "signCora" => some (aux_unary op dops req [] fun I => Interval.signCora I)
   | "round" => some (aux_unary op dops req [] fun I => Interval.round I)
   -- the elementary functions, `p` (and `k`) the enclosure tuning
   | "sqrt" => some (aux_unaryP op dops req fun p I => Interval.sqrt p I)
@@ -594,6 +605,7 @@ def handleIntervalOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option 
       pure [("normSq", Json.str (dops.showExact (Interval.normSq b.I)))])
   | "volume" => some (aux_scalarOut op dops req fun I => Interval.volume I)
   | "supportFunc" => some (handleIntervalSupportFunc dops req)
+  | "supportFuncCora" => some (handleIntervalSupportFuncMidRad dops req)
   -- changing the dimension
   | "project" => some (handleIntervalProject dops req)
   | "lift" | "projectHighDim" => some (handleIntervalHighDim op dops req)

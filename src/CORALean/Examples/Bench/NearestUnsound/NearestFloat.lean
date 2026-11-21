@@ -15,7 +15,7 @@ false axiom in `Axioms` (see `scripts/check-axioms.sh`).
 
 -- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
--- Last update:   07-November-2026
+-- Last update:   20-November-2026
 -- Reviewed:      ---
 
 
@@ -52,8 +52,8 @@ steps is ignored. -/
 def sqrt (_p : ℕ) (a : NearestFloat) : NearestFloat := ⟨Float.sqrt a.val⟩
 
 /-- The machine's (libm's) elementary functions, used as the lower and the upper bound alike:
-`sinDown`, `sinUp`, `expUp`, `logDown`, `atanUp` and the others; the number of halvings, of
-bisection steps and of Newton steps is ignored. -/
+`sinDown`, `sinUp`, `expUp`, `logDown`, `atanUp`, `sinhUp`, `acosDown` and the others; the number
+of halvings, of bisection steps and of Newton steps is ignored. -/
 def elem : ElemOverride NearestFloat where
   sin a := ⟨Float.sin a.val⟩
   cos a := ⟨Float.cos a.val⟩
@@ -61,6 +61,13 @@ def elem : ElemOverride NearestFloat where
   log a := ⟨Float.log a.val⟩
   tan a := ⟨Float.tan a.val⟩
   atan a := ⟨Float.atan a.val⟩
+  sinh a := ⟨Float.sinh a.val⟩
+  cosh a := ⟨Float.cosh a.val⟩
+  tanh a := ⟨Float.tanh a.val⟩
+  asin a := ⟨Float.asin a.val⟩
+  acos a := ⟨Float.acos a.val⟩
+  asinh a := ⟨Float.asinh a.val⟩
+  acosh a := ⟨Float.acosh a.val⟩
 
 end NearestFloat
 
