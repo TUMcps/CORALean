@@ -55,9 +55,9 @@ Every check names the request `id` and the violated bound on failure. Uses
 only the standard library.
 """
 
-# Authors:       Tobias Ladner
+# Authors:       Tobias Ladner, Claude Opus 5.5
 # Written:       30-September-2026
-# Last update:   01-October-2026
+# Last update:   20-November-2026
 # Last revision: ---
 
 
@@ -469,6 +469,10 @@ def check_interval_op(op, req, resp, fails):
         a = box("I")
         contained(([F(0) if l >= 0 else F(-1) for l in a[0]],
                    [F(0) if h <= 0 else F(1) for h in a[1]]), out(), op, req, fails)
+    elif op == "signCora":
+        a = box("I")
+        sgn = lambda x: F(1) if x > 0 else F(-1) if x < 0 else F(0)
+        contained(([sgn(l) for l in a[0]], [sgn(h) for h in a[1]]), out(), op, req, fails)
     elif op == "project":
         a = box("I")
         contained(([a[0][d] for d in req["dims"]], [a[1][d] for d in req["dims"]]), out(), op,
@@ -540,12 +544,12 @@ def check_interval_op(op, req, resp, fails):
             key = "radiusSq"
         if parse_scalar(resp[key]) < exact:
             fails.append(f"id {rid}: {op}: {resp[key]} below the exact {exact}")
-    elif op == "supportFunc":
+    elif op in ("supportFunc", "supportFuncCora"):
         a = box("I")
         d = parse_vec(req["dir"])
         exact = sum(max(x * l, x * h) for x, l, h in zip(d, *a))
         if parse_scalar(resp["value"]) < exact:
-            fails.append(f"id {rid}: supportFunc: {resp['value']} below the exact {exact}")
+            fails.append(f"id {rid}: {op}: {resp['value']} below the exact {exact}")
     elif op in ("transpose", "ctranspose"):
         lo, hi = parse_box_mat(req["I"])
         olo, ohi = parse_box_mat(resp["I"])

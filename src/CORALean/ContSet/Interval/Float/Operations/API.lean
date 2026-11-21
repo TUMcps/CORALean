@@ -10,6 +10,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Lift
 public import CORALean.ContSet.Interval.Float.Operations.Dirac
 public import CORALean.ContSet.Interval.Float.Operations.BoundDot
+public import CORALean.ContSet.Interval.Float.Operations.BoundDotCora
 public import CORALean.ContSet.Interval.Float.Operations.BoundNegProj
 public import CORALean.ContSet.Interval.Float.Operations.BoundProj
 public import CORALean.ContSet.Interval.Float.Operations.CenterMat
@@ -40,6 +41,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Acosh
 public import CORALean.ContSet.Interval.Float.Operations.CoshHi
 public import CORALean.ContSet.Interval.Float.Operations.Kron
 public import CORALean.ContSet.Interval.Float.Operations.Sign
+public import CORALean.ContSet.Interval.Float.Operations.SignCora
 public import CORALean.ContSet.Interval.Float.Operations.Lt
 public import CORALean.ContSet.Interval.Float.Operations.ProjectHighDim
 public import CORALean.ContSet.Interval.Float.Operations.Times

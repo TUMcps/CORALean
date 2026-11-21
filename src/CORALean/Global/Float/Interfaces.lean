@@ -20,7 +20,7 @@ and MATLAB's `withinTol` of them, which every format with `ToRat` has and ℝ de
 
 -- Authors:       Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       16-August-2026
--- Last update:   07-November-2026
+-- Last update:   20-November-2026
 -- Reviewed:      ---
 
 
@@ -50,8 +50,9 @@ namespace CORALean.Float
 
 -- ========================================  MAIN TYPE  ========================================= --
 
-/-- The six elementary functions a format may compute itself: each one value, standing for the
-lower and the upper bound alike (so `sinDown n a = sinUp n a = sin a`, the machine's). -/
+-- No `atanh`: CORA.cpp's sigmoid relaxation follows its bracket bit for bit at `nearest`.
+/-- The thirteen elementary functions a format may compute itself: each one value, standing for
+the lower and the upper bound alike (so `sinDown n a = sinUp n a = sin a`, the machine's). -/
 structure ElemOverride (𝕋 : Type) where
   sin : 𝕋 → 𝕋
   cos : 𝕋 → 𝕋
@@ -59,8 +60,15 @@ structure ElemOverride (𝕋 : Type) where
   log : 𝕋 → 𝕋
   tan : 𝕋 → 𝕋
   atan : 𝕋 → 𝕋
+  sinh : 𝕋 → 𝕋
+  cosh : 𝕋 → 𝕋
+  tanh : 𝕋 → 𝕋
+  asin : 𝕋 → 𝕋
+  acos : 𝕋 → 𝕋
+  asinh : 𝕋 → 𝕋
+  acosh : 𝕋 → 𝕋
 
-/-- A reference for the six elementary functions, over the reals; the standard one is in
+/-- A reference for the thirteen elementary functions, over the reals; the standard one is in
 `ElemOverride.lean`. Data only, so that the interface layer need not name `Real.sin`. -/
 structure RealElem where
   sin : ℝ → ℝ
@@ -69,13 +77,25 @@ structure RealElem where
   log : ℝ → ℝ
   tan : ℝ → ℝ
   atan : ℝ → ℝ
+  sinh : ℝ → ℝ
+  cosh : ℝ → ℝ
+  tanh : ℝ → ℝ
+  asin : ℝ → ℝ
+  acos : ℝ → ℝ
+  asinh : ℝ → ℝ
+  acosh : ℝ → ℝ
 
-/-- `e` computes `R`'s functions exactly, read through `toReal` (`log` where positive). -/
+/-- `e` computes `R`'s functions exactly, read through `toReal` (`log` where positive, `acosh`
+from `1` on). -/
 def ElemOverride.IsExact {𝕋 : Type} (toReal : 𝕋 → ℝ) (e : ElemOverride 𝕋) (R : RealElem) : Prop :=
   (∀ a, toReal (e.sin a) = R.sin (toReal a)) ∧ (∀ a, toReal (e.cos a) = R.cos (toReal a))
   ∧ (∀ a, toReal (e.exp a) = R.exp (toReal a))
   ∧ (∀ a, 0 < toReal a → toReal (e.log a) = R.log (toReal a))
   ∧ (∀ a, toReal (e.tan a) = R.tan (toReal a)) ∧ (∀ a, toReal (e.atan a) = R.atan (toReal a))
+  ∧ (∀ a, toReal (e.sinh a) = R.sinh (toReal a)) ∧ (∀ a, toReal (e.cosh a) = R.cosh (toReal a))
+  ∧ (∀ a, toReal (e.tanh a) = R.tanh (toReal a)) ∧ (∀ a, toReal (e.asin a) = R.asin (toReal a))
+  ∧ (∀ a, toReal (e.acos a) = R.acos (toReal a)) ∧ (∀ a, toReal (e.asinh a) = R.asinh (toReal a))
+  ∧ (∀ a, 1 ≤ toReal a → toReal (e.acosh a) = R.acosh (toReal a))
 
 /-- The operations a machine float offers: each rounding direction, and the exact ones. -/
 class FloatOps (𝕋 : Type) where

@@ -36,7 +36,7 @@ result is sound for any fuel. `arcsin` and `arccos` clamp their argument to `[-1
 
 -- Authors:       Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   14-October-2026
+-- Last update:   20-November-2026
 -- Reviewed:      ---
 
 
@@ -111,33 +111,47 @@ def atanUp (n k : ℕ) (y : 𝕋) : 𝕋 :=
   | some e => e.atan y
   | none => atanUpAlg n k y
 
-/-- `arcsin x` from below, at every `x` (`Real.arcsin` is constant outside `[-1, 1]`). -/
+/-- `arcsin x` from below, at every `x` (`Real.arcsin` is constant outside `[-1, 1]`), or the
+format's own `arcsin` if it supplies one. -/
 def asinDown (n k : ℕ) (x : 𝕋) : 𝕋 :=
-  let x' := clampOne x
-  let z := quotLo x' (asinDenLo k x') (asinDenHi k x')
-  let b := atanBracket n k z
-  addDown b.inf b.inf
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.asin x
+  | none =>
+    let x' := clampOne x
+    let z := quotLo x' (asinDenLo k x') (asinDenHi k x')
+    let b := atanBracket n k z
+    addDown b.inf b.inf
 
-/-- `arcsin x` from above, at every `x`. -/
+/-- `arcsin x` from above, at every `x`, or the format's own `arcsin`. -/
 def asinUp (n k : ℕ) (x : 𝕋) : 𝕋 :=
-  let x' := clampOne x
-  let z := quotHi x' (asinDenLo k x') (asinDenHi k x')
-  let b := atanBracket n k z
-  addUp b.sup b.sup
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.asin x
+  | none =>
+    let x' := clampOne x
+    let z := quotHi x' (asinDenLo k x') (asinDenHi k x')
+    let b := atanBracket n k z
+    addUp b.sup b.sup
 
-/-- `arccos x` from below, at every `x`: twice `arcsin √((1 - x)/2)`. -/
+/-- `arccos x` from below, at every `x`: twice `arcsin √((1 - x)/2)`, or the format's own
+`arccos`. -/
 def acosDown (n k : ℕ) (x : 𝕋) : 𝕋 :=
-  let x' := clampOne x
-  let w := sqrtDown k (half (subDown one x'))
-  let a := asinDown n k w
-  addDown a a
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.acos x
+  | none =>
+    let x' := clampOne x
+    let w := sqrtDown k (half (subDown one x'))
+    let a := asinDown n k w
+    addDown a a
 
-/-- `arccos x` from above, at every `x`. -/
+/-- `arccos x` from above, at every `x`, or the format's own `arccos`. -/
 def acosUp (n k : ℕ) (x : 𝕋) : 𝕋 :=
-  let x' := clampOne x
-  let w := sqrtUp k (half (subUp one x'))
-  let a := asinUp n k w
-  addUp a a
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.acos x
+  | none =>
+    let x' := clampOne x
+    let w := sqrtUp k (half (subUp one x'))
+    let a := asinUp n k w
+    addUp a a
 
 open SoundFloatArithmetic
 
@@ -417,69 +431,81 @@ theorem le_atanUpAlg (n k : ℕ) (y : 𝕋) :
 theorem atanDown_le (n k : ℕ) (y : 𝕋) : toReal (atanDown n k y) ≤ Real.arctan (toReal y) := by
   unfold atanDown
   split
-  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.2 y).le
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.2.1 y).le
   · exact atanDownAlg_le n k y
 
 /-- `atanUp` is an upper bound of `arctan`. -/
 theorem le_atanUp (n k : ℕ) (y : 𝕋) : Real.arctan (toReal y) ≤ toReal (atanUp n k y) := by
   unfold atanUp
   split
-  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.2 y).ge
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.2.1 y).ge
   · exact le_atanUpAlg n k y
 
 /-- `asinDown` is a lower bound of `arcsin`. -/
 theorem asinDown_le (n k : ℕ) (x : 𝕋) : -- --- CONCL ---
     toReal (asinDown n k x) ≤ Real.arcsin (toReal x) := by -- --- PROOF ---
-  have hc := clampOne_mem x
-  have hd := asinDen_mem k (clampOne x)
-  rw [← arcsin_clampOne, arcsin_eq_two_mul hc.1 hc.2]
-  exact twice_lower (quot_mem hd.1 hd.2.1 hd.2.2).1
-    (abs_div_one_add_le (abs_le_one_add_sqrt_one_sub hc.1 hc.2) (Real.sqrt_nonneg _)) n k
+  unfold asinDown
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.2.2.2.2.2.1 x).le
+  · have hc := clampOne_mem x
+    have hd := asinDen_mem k (clampOne x)
+    rw [← arcsin_clampOne, arcsin_eq_two_mul hc.1 hc.2]
+    exact twice_lower (quot_mem hd.1 hd.2.1 hd.2.2).1
+      (abs_div_one_add_le (abs_le_one_add_sqrt_one_sub hc.1 hc.2) (Real.sqrt_nonneg _)) n k
 
 /-- `asinUp` is an upper bound of `arcsin`. -/
 theorem le_asinUp (n k : ℕ) (x : 𝕋) : -- --- CONCL ---
     Real.arcsin (toReal x) ≤ toReal (asinUp n k x) := by -- --- PROOF ---
-  have hc := clampOne_mem x
-  have hd := asinDen_mem k (clampOne x)
-  rw [← arcsin_clampOne, arcsin_eq_two_mul hc.1 hc.2]
-  exact twice_upper (quot_mem hd.1 hd.2.1 hd.2.2).2
-    (abs_div_one_add_le (abs_le_one_add_sqrt_one_sub hc.1 hc.2) (Real.sqrt_nonneg _)) n k
+  unfold asinUp
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.2.2.2.2.2.1 x).ge
+  · have hc := clampOne_mem x
+    have hd := asinDen_mem k (clampOne x)
+    rw [← arcsin_clampOne, arcsin_eq_two_mul hc.1 hc.2]
+    exact twice_upper (quot_mem hd.1 hd.2.1 hd.2.2).2
+      (abs_div_one_add_le (abs_le_one_add_sqrt_one_sub hc.1 hc.2) (Real.sqrt_nonneg _)) n k
 
 /-- `acosDown` is a lower bound of `arccos`. -/
 theorem acosDown_le (n k : ℕ) (x : 𝕋) : -- --- CONCL ---
     toReal (acosDown n k x) ≤ Real.arccos (toReal x) := by -- --- PROOF ---
-  have hc := clampOne_mem x
-  have hac : Real.arccos (toReal x) = Real.arccos (toReal (clampOne x)) := by
-    rw [Real.arccos_eq_pi_div_two_sub_arcsin, Real.arccos_eq_pi_div_two_sub_arcsin,
-      arcsin_clampOne]
-  rw [hac, arccos_eq_two_mul hc.1 hc.2]
-  have hw : toReal (half (subDown one (clampOne x))) ≤ (1 - toReal (clampOne x)) / 2 := by
-    have := subDown_le_sub (one : 𝕋) (clampOne x)
-    rw [toReal_one] at this; rw [toReal_half]; linarith
-  have hs := le_trans (sqrtDown_le k _) (Real.sqrt_le_sqrt hw)
-  have ha := le_trans (asinDown_le n k _) (Real.arcsin_le_arcsin hs)
-  have := addDown_le_add (asinDown n k (sqrtDown k (half (subDown one (clampOne x)))))
-    (asinDown n k (sqrtDown k (half (subDown one (clampOne x)))))
-  simp only [acosDown]
-  linarith
+  unfold acosDown
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.2.2.2.2.2.2.1 x).le
+  · have hc := clampOne_mem x
+    have hac : Real.arccos (toReal x) = Real.arccos (toReal (clampOne x)) := by
+      rw [Real.arccos_eq_pi_div_two_sub_arcsin, Real.arccos_eq_pi_div_two_sub_arcsin,
+        arcsin_clampOne]
+    rw [hac, arccos_eq_two_mul hc.1 hc.2]
+    have hw : toReal (half (subDown one (clampOne x))) ≤ (1 - toReal (clampOne x)) / 2 := by
+      have := subDown_le_sub (one : 𝕋) (clampOne x)
+      rw [toReal_one] at this; rw [toReal_half]; linarith
+    have hs := le_trans (sqrtDown_le k _) (Real.sqrt_le_sqrt hw)
+    have ha := le_trans (asinDown_le n k _) (Real.arcsin_le_arcsin hs)
+    have := addDown_le_add (asinDown n k (sqrtDown k (half (subDown one (clampOne x)))))
+      (asinDown n k (sqrtDown k (half (subDown one (clampOne x)))))
+    dsimp only
+    linarith
 
 /-- `acosUp` is an upper bound of `arccos`. -/
 theorem le_acosUp (n k : ℕ) (x : 𝕋) : -- --- CONCL ---
     Real.arccos (toReal x) ≤ toReal (acosUp n k x) := by -- --- PROOF ---
-  have hc := clampOne_mem x
-  have hac : Real.arccos (toReal x) = Real.arccos (toReal (clampOne x)) := by
-    rw [Real.arccos_eq_pi_div_two_sub_arcsin, Real.arccos_eq_pi_div_two_sub_arcsin,
-      arcsin_clampOne]
-  rw [hac, arccos_eq_two_mul hc.1 hc.2]
-  have hw : (1 - toReal (clampOne x)) / 2 ≤ toReal (half (subUp one (clampOne x))) := by
-    have := sub_le_subUp (one : 𝕋) (clampOne x)
-    rw [toReal_one] at this; rw [toReal_half]; linarith
-  have hs := le_trans (Real.sqrt_le_sqrt hw) (le_sqrtUp k _)
-  have ha := le_trans (Real.arcsin_le_arcsin hs) (le_asinUp n k _)
-  have := add_le_addUp (asinUp n k (sqrtUp k (half (subUp one (clampOne x)))))
-    (asinUp n k (sqrtUp k (half (subUp one (clampOne x)))))
-  simp only [acosUp]
-  linarith
+  unfold acosUp
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.2.2.2.2.2.2.1 x).ge
+  · have hc := clampOne_mem x
+    have hac : Real.arccos (toReal x) = Real.arccos (toReal (clampOne x)) := by
+      rw [Real.arccos_eq_pi_div_two_sub_arcsin, Real.arccos_eq_pi_div_two_sub_arcsin,
+        arcsin_clampOne]
+    rw [hac, arccos_eq_two_mul hc.1 hc.2]
+    have hw : (1 - toReal (clampOne x)) / 2 ≤ toReal (half (subUp one (clampOne x))) := by
+      have := sub_le_subUp (one : 𝕋) (clampOne x)
+      rw [toReal_one] at this; rw [toReal_half]; linarith
+    have hs := le_trans (Real.sqrt_le_sqrt hw) (le_sqrtUp k _)
+    have ha := le_trans (Real.arcsin_le_arcsin hs) (le_asinUp n k _)
+    have := add_le_addUp (asinUp n k (sqrtUp k (half (subUp one (clampOne x)))))
+      (asinUp n k (sqrtUp k (half (subUp one (clampOne x)))))
+    dsimp only
+    linarith
 
 end CORALean.Float
 

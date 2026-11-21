@@ -21,7 +21,7 @@ file or publication.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       27-September-2026
--- Last update:   07-November-2026
+-- Last update:   20-November-2026
 -- Reviewed:      ---
 
 
@@ -75,8 +75,8 @@ structure IsNearestUnsound : Prop where
   float_le_sqrt : ∀ (p : ℕ) (a : NearestFloat) (r : ℝ), 0 ≤ r → r * r ≤ max a.toReal 0 →
     r ≤ (NearestFloat.sqrt p a).toReal
   /-- FALSE: the machine's `sin` is correctly rounded, not exact (`sin 1` is no binary64 number),
-  and so its `cos`, `exp`, `log`, `tan` and `atan`; stated of every reference `R` only because
-  the interface layer cannot name `Real.sin`, the library spends it at Mathlib's. -/
+  and so its other twelve; stated of every reference `R` only because the interface layer cannot
+  name `Real.sin`, the library spends it at Mathlib's. -/
   float_elem_exact : ∀ R : CORALean.Float.RealElem,
     CORALean.Float.ElemOverride.IsExact NearestFloat.toReal NearestFloat.elem R
   /-- The one conjunct that is TRUE of the machine, assumed because `Float` is opaque: the native

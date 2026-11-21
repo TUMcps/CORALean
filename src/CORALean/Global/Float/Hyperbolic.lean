@@ -26,9 +26,9 @@ All three are built on `expUp`/`expDown` and exact halving, with no division but
 * the hyperbolic tangent is one minus two over the squared exponential plus one
 -/
 
--- Authors:       Claude Sonnet 5.5
+-- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       02-October-2026
--- Last update:   ---
+-- Last update:   20-November-2026
 -- Reviewed:      ---
 
 
@@ -42,27 +42,45 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 
 /-- `sinh x` from above: `(eˣ - e⁻ˣ)/2`, the first exponential up and the second down. -/
-def sinhUp (p : ℕ) (x : 𝕋) : 𝕋 := half (subUp (expUp p x) (expDown p (neg x)))
+def sinhUp (p : ℕ) (x : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.sinh x
+  | none => half (subUp (expUp p x) (expDown p (neg x)))
 
 /-- `sinh x` from below. -/
-def sinhDown (p : ℕ) (x : 𝕋) : 𝕋 := half (subDown (expDown p x) (expUp p (neg x)))
+def sinhDown (p : ℕ) (x : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.sinh x
+  | none => half (subDown (expDown p x) (expUp p (neg x)))
 
 /-- `cosh x` from above: `(eˣ + e⁻ˣ)/2`, both exponentials up. -/
-def coshUp (p : ℕ) (x : 𝕋) : 𝕋 := half (addUp (expUp p x) (expUp p (neg x)))
+def coshUp (p : ℕ) (x : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.cosh x
+  | none => half (addUp (expUp p x) (expUp p (neg x)))
 
 /-- `cosh x` from below. -/
-def coshDown (p : ℕ) (x : 𝕋) : 𝕋 := half (addDown (expDown p x) (expDown p (neg x)))
+def coshDown (p : ℕ) (x : 𝕋) : 𝕋 :=
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.cosh x
+  | none => half (addDown (expDown p x) (expDown p (neg x)))
 
 /-- `tanh x` from above: `1 - 2/(E + 1)` with `E ≥ e²ˣ`, the square of `expUp`. -/
 def tanhUp (p : ℕ) (x : 𝕋) : 𝕋 :=
-  let E := mulUp (expUp p x) (expUp p x)
-  subUp one (divDown one (half (addUp E one)))
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.tanh x
+  | none =>
+    let E := mulUp (expUp p x) (expUp p x)
+    subUp one (divDown one (half (addUp E one)))
 
 /-- `tanh x` from below: `E ≤ e²ˣ` is the square of `expDown`, and the divisor is floored at `1/2`
 (its true value is at least that), so the reciprocal is defined. -/
 def tanhDown (p : ℕ) (x : 𝕋) : 𝕋 :=
-  let E := mulDown (expDown p x) (expDown p x)
-  subDown one (divUp one (half (maximum one (addDown E one))))
+  match elemOverride (𝕋 := 𝕋) with
+  | some e => e.tanh x
+  | none =>
+    let E := mulDown (expDown p x) (expDown p x)
+    subDown one (divUp one (half (maximum one (addDown E one))))
 
 variable [SoundFloatArithmetic 𝕋]
 
@@ -110,105 +128,123 @@ private theorem tanh_eq_one_sub (x : ℝ) :
 /-- `sinhUp` is an upper bound of `sinh` for `x ≤ 2^p / 2`. -/
 theorem sinhUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2) : -- --- CONCL ---
     Real.sinh (toReal x) ≤ toReal (sinhUp p x) := by -- --- PROOF ---
-  have h1 := le_expUp p x hx
-  have h2 := expDown_le p (neg x)
-  have h3 := sub_le_subUp (expUp p x) (expDown p (neg x))
-  rw [toReal_neg] at h2
-  rw [sinhUp, toReal_half, Real.sinh_eq]
-  linarith
+  unfold sinhUp
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.2.2.1 x).ge
+  · have h1 := le_expUp p x hx
+    have h2 := expDown_le p (neg x)
+    have h3 := sub_le_subUp (expUp p x) (expDown p (neg x))
+    rw [toReal_neg] at h2
+    rw [toReal_half, Real.sinh_eq]
+    linarith
 
 /-- `sinhDown` is a lower bound of `sinh` for `-x ≤ 2^p / 2`. -/
 theorem sinhDown_le (p : ℕ) (x : 𝕋) (hx : -toReal x ≤ 2 ^ p / 2) : -- --- CONCL ---
     toReal (sinhDown p x) ≤ Real.sinh (toReal x) := by -- --- PROOF ---
-  have h1 := expDown_le p x
-  have h2 := le_expUp p (neg x) (by rwa [toReal_neg])
-  have h3 := subDown_le_sub (expDown p x) (expUp p (neg x))
-  rw [toReal_neg] at h2
-  rw [sinhDown, toReal_half, Real.sinh_eq]
-  linarith
+  unfold sinhDown
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.2.2.1 x).le
+  · have h1 := expDown_le p x
+    have h2 := le_expUp p (neg x) (by rwa [toReal_neg])
+    have h3 := subDown_le_sub (expDown p x) (expUp p (neg x))
+    rw [toReal_neg] at h2
+    rw [toReal_half, Real.sinh_eq]
+    linarith
 
 /-- `coshUp` is an upper bound of `cosh` for `|x| ≤ 2^p / 2`. -/
 theorem coshUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2)
     (hnx : -toReal x ≤ 2 ^ p / 2) : -- --- CONCL ---
     Real.cosh (toReal x) ≤ toReal (coshUp p x) := by -- --- PROOF ---
-  have h1 := le_expUp p x hx
-  have h2 := le_expUp p (neg x) (by rwa [toReal_neg])
-  have h3 := add_le_addUp (expUp p x) (expUp p (neg x))
-  rw [toReal_neg] at h2
-  rw [coshUp, toReal_half, Real.cosh_eq]
-  linarith
+  unfold coshUp
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.2.2.2.1 x).ge
+  · have h1 := le_expUp p x hx
+    have h2 := le_expUp p (neg x) (by rwa [toReal_neg])
+    have h3 := add_le_addUp (expUp p x) (expUp p (neg x))
+    rw [toReal_neg] at h2
+    rw [toReal_half, Real.cosh_eq]
+    linarith
 
 /-- `coshDown` is a lower bound of `cosh`. -/
 theorem coshDown_le (p : ℕ) (x : 𝕋) : -- --- CONCL ---
     toReal (coshDown p x) ≤ Real.cosh (toReal x) := by -- --- PROOF ---
-  have h1 := expDown_le p x
-  have h2 := expDown_le p (neg x)
-  have h3 := addDown_le_add (expDown p x) (expDown p (neg x))
-  rw [toReal_neg] at h2
-  rw [coshDown, toReal_half, Real.cosh_eq]
-  linarith
+  unfold coshDown
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.2.2.2.1 x).le
+  · have h1 := expDown_le p x
+    have h2 := expDown_le p (neg x)
+    have h3 := addDown_le_add (expDown p x) (expDown p (neg x))
+    rw [toReal_neg] at h2
+    rw [toReal_half, Real.cosh_eq]
+    linarith
 
 /-- `tanhUp` is an upper bound of `tanh` for `x ≤ 2^p / 2`. -/
 theorem tanhUp_ge (p : ℕ) (x : 𝕋) (hx : toReal x ≤ 2 ^ p / 2) : -- --- CONCL ---
     Real.tanh (toReal x) ≤ toReal (tanhUp p x) := by -- --- PROOF ---
-  have hu := Real.exp_pos (toReal x)
-  have h1 := le_expUp p x hx
-  have h2 := mul_le_mulUp (expUp p x) (expUp p x)
-  -- `E` is the square of an upper bound, so above `(eˣ)²`
-  have hE : Real.exp (toReal x) ^ 2 ≤ toReal (mulUp (expUp p x) (expUp p x)) := by
-    nlinarith
-  have h3 := add_le_addUp (mulUp (expUp p x) (expUp p x)) (one : 𝕋)
-  rw [toReal_one] at h3
-  -- the halved denominator is positive
-  have hd : 0 < toReal (half (addUp (mulUp (expUp p x) (expUp p x)) one)) := by
-    rw [toReal_half]; nlinarith [sq_nonneg (Real.exp (toReal x))]
-  have h4 := divDown_le_div (one : 𝕋) _ hd
-  have h5 := sub_le_subUp (one : 𝕋)
-    (divDown one (half (addUp (mulUp (expUp p x) (expUp p x)) one)))
-  rw [toReal_half] at hd h4
-  rw [toReal_one] at h4 h5
-  -- the reciprocal of the halved denominator is below `2 / ((eˣ)² + 1)`
-  have h6 : 1 / ((toReal (addUp (mulUp (expUp p x) (expUp p x)) one)) / 2) ≤
-      2 / (Real.exp (toReal x) ^ 2 + 1) := by
-    rw [one_div_div]
-    exact div_le_div_of_nonneg_left (by norm_num) (by positivity) (by linarith)
-  rw [tanhUp, tanh_eq_one_sub]
-  linarith
+  unfold tanhUp
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.2.2.2.2.1 x).ge
+  · have hu := Real.exp_pos (toReal x)
+    have h1 := le_expUp p x hx
+    have h2 := mul_le_mulUp (expUp p x) (expUp p x)
+    -- `E` is the square of an upper bound, so above `(eˣ)²`
+    have hE : Real.exp (toReal x) ^ 2 ≤ toReal (mulUp (expUp p x) (expUp p x)) := by
+      nlinarith
+    have h3 := add_le_addUp (mulUp (expUp p x) (expUp p x)) (one : 𝕋)
+    rw [toReal_one] at h3
+    -- the halved denominator is positive
+    have hd : 0 < toReal (half (addUp (mulUp (expUp p x) (expUp p x)) one)) := by
+      rw [toReal_half]; nlinarith [sq_nonneg (Real.exp (toReal x))]
+    have h4 := divDown_le_div (one : 𝕋) _ hd
+    have h5 := sub_le_subUp (one : 𝕋)
+      (divDown one (half (addUp (mulUp (expUp p x) (expUp p x)) one)))
+    rw [toReal_half] at hd h4
+    rw [toReal_one] at h4 h5
+    -- the reciprocal of the halved denominator is below `2 / ((eˣ)² + 1)`
+    have h6 : 1 / ((toReal (addUp (mulUp (expUp p x) (expUp p x)) one)) / 2) ≤
+        2 / (Real.exp (toReal x) ^ 2 + 1) := by
+      rw [one_div_div]
+      exact div_le_div_of_nonneg_left (by norm_num) (by positivity) (by linarith)
+    rw [tanh_eq_one_sub]
+    linarith
 
 /-- `tanhDown` is a lower bound of `tanh`. -/
 theorem tanhDown_le (p : ℕ) (x : 𝕋) : -- --- CONCL ---
     toReal (tanhDown p x) ≤ Real.tanh (toReal x) := by -- --- PROOF ---
-  have hu := Real.exp_pos (toReal x)
-  have h0 := aux_expDown_nonneg p x
-  have h1 := expDown_le p x
-  have h2 := mulDown_le_mul (expDown p x) (expDown p x)
-  -- `E` is the square of a lower bound, so below `(eˣ)²`
-  have hE : toReal (mulDown (expDown p x) (expDown p x)) ≤ Real.exp (toReal x) ^ 2 := by
-    nlinarith
-  have h3 := addDown_le_add (mulDown (expDown p x) (expDown p x)) (one : 𝕋)
-  rw [toReal_one] at h3
-  -- the floored denominator is between `1` and the true one
-  have hm : toReal (maximum one (addDown (mulDown (expDown p x) (expDown p x)) one)) ≤
-      Real.exp (toReal x) ^ 2 + 1 := by
-    rw [toReal_maximum, toReal_one]
-    exact max_le (by nlinarith [sq_nonneg (Real.exp (toReal x))]) (by linarith)
-  have hm1 : 1 ≤ toReal (maximum one (addDown (mulDown (expDown p x) (expDown p x)) one)) := by
-    rw [toReal_maximum, toReal_one]; exact le_max_left _ _
-  have hd : 0 <
-      toReal (half (maximum one (addDown (mulDown (expDown p x) (expDown p x)) one))) := by
-    rw [toReal_half]; linarith
-  have h4 := div_le_divUp (one : 𝕋) _ hd
-  have h5 := subDown_le_sub (one : 𝕋)
-    (divUp one (half (maximum one (addDown (mulDown (expDown p x) (expDown p x)) one))))
-  rw [toReal_half] at hd h4
-  rw [toReal_one] at h4 h5
-  -- the reciprocal of the halved floored denominator is above `2 / ((eˣ)² + 1)`
-  have h6 : 2 / (Real.exp (toReal x) ^ 2 + 1) ≤
-      1 / (toReal (maximum one (addDown (mulDown (expDown p x) (expDown p x)) one)) / 2) := by
-    rw [one_div_div]
-    exact div_le_div_of_nonneg_left (by norm_num) (by linarith) hm
-  rw [tanhDown, tanh_eq_one_sub]
-  linarith
+  unfold tanhDown
+  split
+  · next e he => exact ((SoundFloatArithmetic.elemOverride_std e he).2.2.2.2.2.2.2.2.1 x).le
+  · have hu := Real.exp_pos (toReal x)
+    have h0 := aux_expDown_nonneg p x
+    have h1 := expDown_le p x
+    have h2 := mulDown_le_mul (expDown p x) (expDown p x)
+    -- `E` is the square of a lower bound, so below `(eˣ)²`
+    have hE : toReal (mulDown (expDown p x) (expDown p x)) ≤ Real.exp (toReal x) ^ 2 := by
+      nlinarith
+    have h3 := addDown_le_add (mulDown (expDown p x) (expDown p x)) (one : 𝕋)
+    rw [toReal_one] at h3
+    -- the floored denominator is between `1` and the true one
+    have hm : toReal (maximum one (addDown (mulDown (expDown p x) (expDown p x)) one)) ≤
+        Real.exp (toReal x) ^ 2 + 1 := by
+      rw [toReal_maximum, toReal_one]
+      exact max_le (by nlinarith [sq_nonneg (Real.exp (toReal x))]) (by linarith)
+    have hm1 : 1 ≤ toReal (maximum one (addDown (mulDown (expDown p x) (expDown p x)) one)) := by
+      rw [toReal_maximum, toReal_one]; exact le_max_left _ _
+    have hd : 0 <
+        toReal (half (maximum one (addDown (mulDown (expDown p x) (expDown p x)) one))) := by
+      rw [toReal_half]; linarith
+    have h4 := div_le_divUp (one : 𝕋) _ hd
+    have h5 := subDown_le_sub (one : 𝕋)
+      (divUp one (half (maximum one (addDown (mulDown (expDown p x) (expDown p x)) one))))
+    rw [toReal_half] at hd h4
+    rw [toReal_one] at h4 h5
+    -- the reciprocal of the halved floored denominator is above `2 / ((eˣ)² + 1)`
+    have h6 : 2 / (Real.exp (toReal x) ^ 2 + 1) ≤
+        1 / (toReal (maximum one (addDown (mulDown (expDown p x) (expDown p x)) one)) / 2) := by
+      rw [one_div_div]
+      exact div_le_div_of_nonneg_left (by norm_num) (by linarith) hm
+    rw [tanh_eq_one_sub]
+    linarith
 
 end CORALean.Float
 
