@@ -55,9 +55,9 @@ Every check names the request `id` and the violated bound on failure. Uses
 only the standard library.
 """
 
-# Authors:       Tobias Ladner, Claude Opus 5.5
+# Authors:       Tobias Ladner, Claude Opus 5.5, Claude Sonnet 5.5
 # Written:       30-September-2026
-# Last update:   20-November-2026
+# Last update:   21-November-2026
 # Last revision: ---
 
 
@@ -490,10 +490,11 @@ def check_interval_op(op, req, resp, fails):
         a = box("I")
         zlo, zhi = hull_of_zonotope_json(resp["Z"])
         contained(a, (zlo, zhi), op, req, fails)
-    elif op in ("exp", "sqrt", "log", "sinh", "tanh"):
+    elif op in ("exp", "sqrt", "sqrtCora", "log", "sinh", "tanh"):
         f = {"exp": lambda x: dec(x).exp(), "sinh": lambda x: (dec(x).exp() - (-dec(x)).exp()) / 2,
              "tanh": lambda x: (dec(x).exp() - (-dec(x)).exp()) / (dec(x).exp() + (-dec(x)).exp()),
              "sqrt": lambda x: dec(x).sqrt() if x >= 0 else Decimal(0),
+             "sqrtCora": lambda x: dec(x).sqrt() if x >= 0 else Decimal(0),
              "log": lambda x: dec(x).ln()}[op]
         a = box("I")
         if op == "log" and any(l <= 0 for l in a[0]):

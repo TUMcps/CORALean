@@ -32,6 +32,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.ProjectHighDim
 import CORALean.ContSet.Zonotope.Float.Operations.QuadMap
 import CORALean.ContSet.Zonotope.Float.Operations.QuadMapTri
 import CORALean.ContSet.Zonotope.Float.Operations.Radius
+import CORALean.ContSet.Zonotope.Float.Operations.RadiusCora
 import CORALean.ContSet.Zonotope.Float.Operations.Reindex
 import CORALean.ContSet.Zonotope.Float.Operations.RepresentsaOrigin
 import CORALean.ContSet.Zonotope.Float.Operations.RepresentsaPoint
@@ -72,7 +73,7 @@ and `C`. `minkDiff` and `reduceUnderApprox` take the certificate as fields (READ
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-November-2026
--- Last update:   03-November-2026
+-- Last update:   21-November-2026
 -- Reviewed:      ---
 
 
@@ -386,6 +387,12 @@ def handleZonoRadius (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   let dz ← parseZonotope dops.readExact (← field req "Z")
   aux_value dops (Zonotope.radius (← natField req "k") dz.Z)
 
+/-- `zonotope.radiusCora`: CORA.cpp's radius, the half-widths of its box, `Zonotope.radiusCora`. -/
+def handleZonoRadiusHalfWidth (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "radiusCora" req ["Z", "k"]
+  let dz ← parseZonotope dops.readExact (← field req "Z")
+  aux_value dops (Zonotope.radiusCora (← natField req "k") dz.Z)
+
 /-- `zonotope.generatorLength`: the Euclidean length of every generator, `k` Newton steps. -/
 def handleZonoGeneratorLength (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   checkFields "generatorLength" req ["Z", "k"]
@@ -658,7 +665,7 @@ def zonotopeOpNames : List String :=
     "isIntersectingApprox",
     "isequal", "lift", "minnorm", "norm", "origin", "project", "projectHighDim", "quadMap",
     "quadMapTri",
-    "radius", "representsa", "rotate", "split", "splitFirstGen", "splitLongestGen",
+    "radius", "radiusCora", "representsa", "rotate", "split", "splitFirstGen", "splitLongestGen",
     "supportFunc", "tensorMultiplication", "tensorMultiplication_zono", "underapproximate",
     "vertices", "zonotopeNorm", "or", "minkDiff", "reduceUnderApprox" ]
 
@@ -739,6 +746,7 @@ def handleZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option 
   | "quadMapTri" => some (handleZonoQuadMapTri dops req)
   -- the splits and the bounds
   | "radius" => some (handleZonoRadius dops req)
+  | "radiusCora" => some (handleZonoRadiusHalfWidth dops req)
   | "representsa" => some (handleZonoRepresentsa dops req)
   | "rotate" => some (handleZonoRotate dops req)
   | "split" => some (handleZonoSplit dops req)

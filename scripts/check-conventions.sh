@@ -172,6 +172,16 @@ src/CORALean/ContSet/PolyZonotope/Float/Theorems/QuadMapCoraOuter.lean | the enc
 src/CORALean/ContSet/Interval/Float/Operations/SignCora.lean | CORA's sign(I) of a box, not a refutation: the name says whose algorithm it is, as ReduceCora
 src/CORALean/ContSet/Interval/Float/Theorems/SignCoraOuter.lean | the enclosure theorem of SignCora, not a refutation
 src/CORALean/ContSet/Interval/Float/Operations/BoundDotCora.lean | CORA's supportFunc(I, d) of a box in its center-radius order, not a refutation: the name says whose algorithm it is
+src/CORALean/ContSet/Interval/Float/Operations/SymmCora.lean | CORA's (X + X')/2 of an interval matrix, not a refutation: the name says whose algorithm it is
+src/CORALean/ContSet/Ellipsoid/Float/Operations/MtimesCora.lean | CORA.cpp's ellipsoid mtimes in its own order (symmetrized product), not a refutation: the name says whose algorithm it is
+src/CORALean/ContSet/Ellipsoid/Float/Theorems/MtimesCoraOuter.lean | the enclosure theorem of MtimesCora, not a refutation
+src/CORALean/ContSet/ZonoBundle/Float/Operations/QuadMapCora.lean | CORA's quadMap of a zonotope bundle through quadMapTri, not a refutation: the name says whose algorithm it is
+src/CORALean/ContSet/ZonoBundle/Float/Theorems/QuadMapCoraOuter.lean | the enclosure theorem of QuadMapCora, not a refutation
+src/CORALean/ContSet/Zonotope/Float/Operations/RadiusCora.lean | CORA.cpp's zonotope radius through the half-widths of its box, not a refutation: the name says whose algorithm it is
+src/CORALean/ContSet/Zonotope/Float/Theorems/RadiusCoraLe.lean | the bound theorem of RadiusCora, not a refutation
+src/CORALean/Global/Float/SqrtDownCora.lean | the machine root CORA takes at the lower end of a box, not a refutation: the name says whose algorithm it is
+src/CORALean/ContSet/Interval/Float/Operations/SqrtCora.lean | CORA's sqrt(I) of a box, the machine root at both ends, not a refutation: the name says whose algorithm it is
+src/CORALean/ContSet/Interval/Float/Theorems/SqrtCoraOuter.lean | the enclosure theorem of SqrtCora, not a refutation
 src/CORALean/ContDynamics/LinearSys/Operations/SupportCounterexample.lean | the corrected counterexample of [1, Sec. 4.2], which the verification search extracts a run from; a repair, not a refutation
 src/CORALean/ContDynamics/LinearSys/Theorems/HeldSimSupportCounterexample.lean | the corrected counterexample reaches the lower bound exactly; a repair that other theorems use
 src/CORALean/ContDynamics/LinearSys/Theorems/HeldSimLeSupportCounterexample.lean | the corrected counterexample is a support vector; a repair that other theorems use

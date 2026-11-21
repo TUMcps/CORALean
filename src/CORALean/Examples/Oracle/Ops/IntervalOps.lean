@@ -45,6 +45,7 @@ import CORALean.ContSet.Interval.Float.Operations.SignCora
 import CORALean.ContSet.Interval.Float.Operations.Sin
 import CORALean.ContSet.Interval.Float.Operations.SplitAt
 import CORALean.ContSet.Interval.Float.Operations.Sqrt
+import CORALean.ContSet.Interval.Float.Operations.SqrtCora
 import CORALean.ContSet.Interval.Float.Operations.Sum1
 import CORALean.ContSet.Interval.Float.Operations.Tan
 import CORALean.ContSet.Interval.Float.Operations.Times
@@ -72,7 +73,7 @@ transcendental enclosures and are required. `true` of `contains`/`disjoint` is a
 
 -- Authors:       Claude Sonnet 5.5, Claude Opus 5.5
 -- Written:       02-November-2026
--- Last update:   20-November-2026
+-- Last update:   21-November-2026
 -- Reviewed:      ---
 
 
@@ -503,8 +504,9 @@ def handleIntervalReduce (dops : DtypeOps 𝕋) (req : Json) : Resp := do
 
 /-- Every op of this file, without the `interval.` prefix. -/
 def intervalOpNames : List String :=
-  [ "abs", "uminus", "uplus", "sign", "signCora", "round", "sqrt", "exp", "log", "sin", "cos",
-    "tan", "sinh", "cosh", "tanh", "asin", "acos", "atan", "asinh", "acosh", "atanh", "atan2",
+  [ "abs", "uminus", "uplus", "sign", "signCora", "round", "sqrt", "sqrtCora", "exp", "log", "sin",
+    "cos", "tan", "sinh", "cosh", "tanh", "asin", "acos", "atan", "asinh", "acosh", "atanh",
+    "atan2",
     "enlarge", "power", "rdivide", "mrdivide", "plus", "minus", "times", "and", "or", "convHull",
     "minkDiff", "min", "max", "enclose", "le", "lt", "isequal", "isFullDim", "isBounded",
     "representsa", "contains", "isIntersecting", "center", "rad", "radius", "norm", "volume",
@@ -526,6 +528,7 @@ def handleIntervalOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option 
   | "round" => some (aux_unary op dops req [] fun I => Interval.round I)
   -- the elementary functions, `p` (and `k`) the enclosure tuning
   | "sqrt" => some (aux_unaryP op dops req fun p I => Interval.sqrt p I)
+  | "sqrtCora" => some (aux_unaryP op dops req fun p I => Interval.sqrtCora p I)
   | "exp" => some (aux_unaryP op dops req fun p I => Interval.exp p I)
   | "sin" => some (aux_unaryP op dops req fun p I => Interval.sin p I)
   | "cos" => some (aux_unaryP op dops req fun p I => Interval.cos p I)

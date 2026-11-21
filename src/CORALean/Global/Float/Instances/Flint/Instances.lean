@@ -20,9 +20,9 @@ six conjuncts of `trustedFlint`; the exact ones are pure Lean, and theirs are
 operation classes runs here once the executable links FLINT.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       28-September-2026
--- Last update:   30-September-2026
+-- Last update:   21-November-2026
 -- Reviewed:      ---
 
 
@@ -70,6 +70,7 @@ instance {p : ℕ} : SoundFloatArithmetic (Flint p) where
   toReal_half := Flint.toReal_half
   -- the default `ltStrict` is strict, by the fields above
   le_sqrtUpOverride hf := by cases hf
+  sqrtDownOverride_le hf := by cases hf
   elemOverride_exact he := by cases he
   toReal_lt_of_ltStrict h := toReal_lt_of_default_ltStrict Flint.toReal
     (by

@@ -15,6 +15,7 @@ import CORALean.ContSet.ZonoBundle.Float.Operations.Mtimes
 import CORALean.ContSet.ZonoBundle.Float.Operations.Plus
 import CORALean.ContSet.ZonoBundle.Float.Operations.Project
 import CORALean.ContSet.ZonoBundle.Float.Operations.QuadMap
+import CORALean.ContSet.ZonoBundle.Float.Operations.QuadMapCora
 import CORALean.ContSet.ZonoBundle.Float.Operations.Reduce
 import CORALean.ContSet.ZonoBundle.Float.Operations.ReduceCombined
 import CORALean.ContSet.ZonoBundle.Float.Operations.Reindex
@@ -46,7 +47,7 @@ not take), `vertices` (CORALean's is one member's), the classes without a wire f
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-November-2026
--- Last update:   07-November-2026
+-- Last update:   21-November-2026
 -- Reviewed:      ---
 
 
@@ -134,7 +135,8 @@ def handleBundleSplit (dops : DtypeOps 𝕋) (req : Json) : Resp := do
 def zonoBundleOpNames : List String :=
   [ "and", "cartProd", "conZonotope", "empty", "enclose", "enlarge", "interval", "isBounded",
     "isIntersecting", "isequal", "lift", "mtimes", "origin", "plus", "project", "quadMap",
-    "reduce", "reduceCombined", "replace", "representsa", "shrink", "supportFunc", "zonotope",
+    "quadMapCora", "reduce", "reduceCombined", "replace", "representsa", "shrink", "supportFunc",
+    "zonotope",
     "convHull", "polytope", "split" ]
 
 /-- `op` of `zonoBundle.`, run; `none` for a name this file does not serve. -/
@@ -213,6 +215,11 @@ def handleZonoBundleOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Optio
       let d ← parseZonoBundle dops.readExact (← field req "zB")
       let ⟨_, Q⟩ ← parseSquareList dops.readExact d.n (← field req "Q")
       pure [aux_set dops "zB" (ZonoBundle.quadMap Q d.zB)])
+  | "quadMapCora" => some (do
+      checkFields op req ["zB", "Q"]
+      let d ← parseZonoBundle dops.readExact (← field req "zB")
+      let ⟨_, Q⟩ ← parseSquareList dops.readExact d.n (← field req "Q")
+      pure [aux_set dops "zB" (ZonoBundle.quadMapCora Q d.zB)])
   | "reduce" => some (do
       checkFields op req ["zB", "order", "method"]
       checkStrOption op req "method" "girard"

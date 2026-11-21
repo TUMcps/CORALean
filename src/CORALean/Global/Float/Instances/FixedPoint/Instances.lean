@@ -27,9 +27,9 @@ No bound on the mantissa is needed: leaving `f` digits costs precision, never
 soundness.
 -/
 
--- Authors:       Claude Opus 5.5
+-- Authors:       Claude Opus 5.5, Claude Sonnet 5.5
 -- Written:       28-September-2026
--- Last update:   30-September-2026
+-- Last update:   21-November-2026
 -- Reviewed:      ---
 
 
@@ -79,6 +79,7 @@ instance {f : ℕ} : SoundFloatArithmetic (FixedPoint f) where
   toReal_half := FixedPoint.toReal_half
   -- the default `ltStrict` is strict, by the fields above
   le_sqrtUpOverride hf := by cases hf
+  sqrtDownOverride_le hf := by cases hf
   elemOverride_exact he := by cases he
   toReal_lt_of_ltStrict h := toReal_lt_of_default_ltStrict FixedPoint.toReal
     (by

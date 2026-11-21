@@ -5,6 +5,7 @@ public import CORALean.ContSet.ZonoBundle.Float.Operations.Plus
 public import CORALean.ContSet.ZonoBundle.Float.Operations.LinComb
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Mtimes
 public import CORALean.ContSet.ZonoBundle.Float.Operations.MtimesIntervalMat
+public import CORALean.ContSet.ZonoBundle.Float.Operations.QuadMapCora
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Reindex
 public import CORALean.ContSet.ZonoBundle.Float.Operations.Reduce
 public import CORALean.ContSet.ZonoBundle.Float.Operations.SupportBound
