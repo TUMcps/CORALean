@@ -873,6 +873,13 @@
       "kind": "other",
       "cex": null,
       "matlab": "not run"
+    },
+    "verify": {
+      "description": "dummy splits verified; interval-center split bounds; unlocated interval-center step",
+      "kind": "unsound",
+      "cex": null,
+      "fix": "IsVerifySound.lean",
+      "matlab": "partly confirmed"
     }
   },
   "hybridDynamics/hybridAutomaton": {
