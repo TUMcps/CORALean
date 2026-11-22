@@ -150,6 +150,7 @@ nn/layers:nnRootLayer	confirmed	nnRootLayer().df(4) = 1 (derivative of sqrt at 4
 nn/layers:nnSoftPlusLayer	not run	no run: the batch error bound of nnSoftPlusLayer was not constructed
 nn/neuralNetwork:nonlinearSysDT	not run	no run: needs an elementwise affine network converted by nonlinearSysDT
 nn/neuralNetwork:reduceGNNForNode	not run	no run: needs a GNN with a graph
+nn/neuralNetwork:verify	partly confirmed	run18: verify(nn,[0;0],[1;1],[1 -1],t,false,o) with the VNN-COMP defaults, falsification_method='center', one neuron split, eight ReLU rows returns VERIFIED on witness networks where evaluate puts a sampled input in y1-y2<=t; dummy splits confirmed (networks 10, 31: COUNTEREXAMPLE with the dummy repair, 13 of 300 wrong, all removed), split bounds under an interval center confirmed (5, 40, 53: COUNTEREXAMPLE without the memory), stale rows not reproduced (the repair removes no wrong verdict in 360 runs; CORA.cpp's witness options error in nnLinearLayer/backpropZonotopeBatch l. 207); 7, 25, 43 with an interval center and input splits only return VERIFIED with all three repairs (not attributed)
 specification/reachSetAnalyzer:analyze	not run	no run: the reachSetAnalyzer tree was not constructed
 specification/specification:check	partly confirmed	check(specification(@(S) ...,'custom'),{Sok,Sbad}) returns 1 where func(Sok)=1, func(Sbad)=0 and check(spec,Sbad) returns 0
 specification/specification:robustness	confirmed	robustness(specification(unit cube [0,1]^3,'safeSet'),[2;2;0.5]) = -2 and at [2;2;2] = -1.73205

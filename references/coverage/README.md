@@ -213,7 +213,7 @@ Rulings on borderline cases:
 | [parallelHybridAutomaton](hybridDynamics/parallelHybridAutomaton.md) | hybridDynamics | 13 | 0 | 6 | 0 | 0 | 1 | 6 | 3 |
 | [transition](hybridDynamics/transition.md) | hybridDynamics | 12 | 0 | 5 | 0 | 0 | 0 | 7 | 1 |
 | [layers](nn/layers.md) | nn | 43 | 0 | 39 | 0 | 0 | 0 | 4 | 10 |
-| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 2 | 18 | 0 | 0 | 0 | 41 | 2 |
+| [neuralNetwork](nn/neuralNetwork.md) | nn | 61 | 2 | 18 | 0 | 0 | 0 | 41 | 3 |
 | [atomicProposition](specification/atomicProposition.md) | specification | 5 | 0 | 5 | 0 | 0 | 0 | 0 | 0 |
 | [finiteKleeneSignalBuilder](specification/finiteKleeneSignalBuilder.md) | specification | 4 | 0 | 4 | 0 | 0 | 0 | 0 | 0 |
 | [finiteSignal](specification/finiteSignal.md) | specification | 10 | 0 | 9 | 0 | 0 | 0 | 1 | 0 |

@@ -14,6 +14,12 @@ the scripts that produced it and the record.
   one undefined variable repaired (`Z2` to `Z`, l. 86), to see what it computes once it runs. `run16.m`
   re-runs the eight rows the first batches did not reproduce, at the entry points that reach their
   code; all eight are `confirmed` now, five of them with a different claim than the note first made.
+* `runs/run18.m` — `neuralNetwork/verify` (`'zonotack'`) on random 2-input ReLU networks of CORA.cpp's
+  witness search, run four times (`repair = {}`, then `{'dummy'}`, `{'stale'}`, `{'center'}`).
+  `nn/witnessNets.py SEED...` writes `nn/witnessNet.m` (weights, the bound `t` of the unsafe set,
+  a sampled unsafe input), `nn/runWitness.m` runs one network, `nn/patchVerify.m` applies one of
+  CORA.cpp's repairs to a temporary copy of `@neuralNetwork`, and `nn/CHECKS_ENABLED.m` shadows CORA's
+  macro to `false`.
 * `results.tsv` — the record: coverage row, status (`confirmed`, `partly confirmed`, `not reproduced`,
   `not run`) and the observed output, as written into the notes. The status is also the `matlab` field
   of `cora-bugs.json`.
