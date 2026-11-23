@@ -815,6 +815,12 @@
       "fix": "ReluStarEncloses.lean",
       "matlab": "partly confirmed"
     },
+    "evaluateZonotopeBatch": {
+      "description": "interval center shifted by error midpoint for errors without generator",
+      "kind": "unsound",
+      "fix": null,
+      "matlab": "confirmed"
+    },
     "computeApproxPoly": {
       "description": "DeepZ S-shape unsound at $x^3$; reaches network output",
       "kind": "unsound",
@@ -875,7 +881,7 @@
       "matlab": "not run"
     },
     "verify": {
-      "description": "dummy splits verified; interval-center split bounds; unlocated interval-center step",
+      "description": "dummy splits verified; interval-center split bounds remembered",
       "kind": "unsound",
       "cex": null,
       "fix": "IsVerifySound.lean",

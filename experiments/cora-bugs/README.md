@@ -20,6 +20,11 @@ the scripts that produced it and the record.
   a sampled unsafe input), `nn/runWitness.m` runs one network, `nn/patchVerify.m` applies one of
   CORA.cpp's repairs to a temporary copy of `@neuralNetwork`, and `nn/CHECKS_ENABLED.m` shadows CORA's
   macro to `false`.
+* `runs/run19.m` — `@nnActivationLayer/evaluateZonotopeBatch` under an interval center: a one-layer
+  example whose output set misses the image of `x = 0`, then `verify` on networks 7, 25, 43
+  (`'v2-input'`) and 5, 40, 53 (`'v2'`), run with `repair = {}`, `{'offset'}` and
+  `{'dummy', 'stale', 'center', 'offset'}`. `nn/patchOffset.m` puts a copy of `@nnActivationLayer`
+  first on the path whose `notdDimsIdx` is taken before `dDimsIdx` is cut to its first `dn` rows.
 * `results.tsv` — the record: coverage row, status (`confirmed`, `partly confirmed`, `not reproduced`,
   `not run`) and the observed output, as written into the notes. The status is also the `matlab` field
   of `cora-bugs.json`.

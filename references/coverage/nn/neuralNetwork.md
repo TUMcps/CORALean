@@ -65,7 +65,7 @@ CORA methods of `nn/@neuralNetwork/`, one row each, and where CORALean answers t
 | `resetGNN` | out-of-scope | n/a — matlab-runtime |  |
 | `setInputSize` | out-of-scope | n/a — matlab-runtime |  |
 | `train` | out-of-scope | n/a — solver-dependent | result determined by a training loop |
-| `verify` | proved | [`NeuralNetwork.verifySplit`](../../../src/CORALean/NN/Operations/VerifySplit.lean), [`NeuralNetwork.verifySplit_sound`](../../../src/CORALean/NN/Theorems/VerifySplitSound.lean), [`SetBasedNet.verify`](../../../src/CORALean/NN/Operations/Verify.lean), [`SetBasedNet.verify_sound`](../../../src/CORALean/NN/Theorems/IsVerifySound.lean), [`SetBasedNet.encloseUnsafeInputs`](../../../src/CORALean/NN/Operations/EncloseUnsafeInputs.lean), [`SetBasedNet.encloseUnsafeInputs_outer`](../../../src/CORALean/NN/Theorems/EncloseUnsafeInputsOuter.lean), [`Zonotope.zonotackFactors`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/ZonotackFactors.lean), [`Zonotope.zonotackFactors_isLeast`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/ZonotackFactorsIsLeast.lean), [`Zonotope.inter_ineqs_eq_empty_of_row`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/InterIneqsEqEmptyOfRow.lean) | two of CORA's `options.nn.refinement_method`s. `'naive'`, the default: `verifySplit`, verification by input splitting, a `true` verdict sound whatever the splitter, stated for any set representation and run at float by route b (`Examples/RunnableFloat.lean`). Details below. cora-issue — CORA's `@neuralNetwork/verify.m` (`'zonotack'`) returns `VERIFIED` with an unsafe input in MATLAB: the children of a dummy split (`isDummySplit`) count as verified; a neuron split remembers `l = 0` or `u = 0` under an interval center; and a fourth step under an interval center, not yet located. A third candidate from CORA.cpp's port, split and ReLU rows that keep the error factors of the first propagation, was not reproduced (see Details). No Lean witness: `SetBasedNet.verify` takes the split as a parameter and has neither the re-propagation nor the interval center. |
+| `verify` | proved | [`NeuralNetwork.verifySplit`](../../../src/CORALean/NN/Operations/VerifySplit.lean), [`NeuralNetwork.verifySplit_sound`](../../../src/CORALean/NN/Theorems/VerifySplitSound.lean), [`SetBasedNet.verify`](../../../src/CORALean/NN/Operations/Verify.lean), [`SetBasedNet.verify_sound`](../../../src/CORALean/NN/Theorems/IsVerifySound.lean), [`SetBasedNet.encloseUnsafeInputs`](../../../src/CORALean/NN/Operations/EncloseUnsafeInputs.lean), [`SetBasedNet.encloseUnsafeInputs_outer`](../../../src/CORALean/NN/Theorems/EncloseUnsafeInputsOuter.lean), [`Zonotope.zonotackFactors`](../../../src/CORALean/ContSet/Zonotope/Real/Operations/ZonotackFactors.lean), [`Zonotope.zonotackFactors_isLeast`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/ZonotackFactorsIsLeast.lean), [`Zonotope.inter_ineqs_eq_empty_of_row`](../../../src/CORALean/ContSet/Zonotope/Real/Theorems/InterIneqsEqEmptyOfRow.lean) | two of CORA's `options.nn.refinement_method`s. `'naive'`, the default: `verifySplit`, verification by input splitting, a `true` verdict sound whatever the splitter, stated for any set representation and run at float by route b (`Examples/RunnableFloat.lean`). Details below. cora-issue — CORA's `@neuralNetwork/verify.m` (`'zonotack'`) returns `VERIFIED` with an unsafe input in MATLAB: the children of a dummy split (`isDummySplit`) count as verified; a neuron split remembers `l = 0` or `u = 0` under an interval center; and the activation layer's interval-center offset (`evaluateZonotopeBatch`, [layers.md](layers.md)). A third candidate from CORA.cpp's port, split and ReLU rows that keep the error factors of the first propagation, was not reproduced (see Details). No Lean witness: `SetBasedNet.verify` takes the split as a parameter and has neither the re-propagation nor the interval center. |
 | `visLossLandscape` | out-of-scope | n/a — plotting/display |  |
 
 ## Details
@@ -184,12 +184,25 @@ Stale rows (not reproduced): the row repair removes no wrong verdict in 360 runs
 (gradient heuristics with three error generators) stop with an error in
 `nnLinearLayer/backpropZonotopeBatch` (l. 207), which reads `c(:,2,:)` of a point center.
 
-**`verify` — MATLAB run, not attributed.** Networks 7, 25 and 43 with an interval center and input
+**`verify` — MATLAB run, the fourth step.** Networks 7, 25 and 43 with an interval center and input
 splits only (no neuron split, no ReLU row) return `VERIFIED` too (with the splits, these and 1, 14
 and 38 are the other 6 of the 9), e.g. 7 at
 `x = (-0.349041, -0.102572)`, `y1 - y2 = -0.921342 <= -0.92027`, with all three repairs and in
-double precision. The first refinement drops `x`: the output zonotope of the interval-center
-propagation does not hold `evaluate(x)` at the factors of `x`. This is a fourth unsound step, not
-yet located.
+double precision. The first refinement drops `x`: at the factors of `x` the unsafe row is violated
+by `0.0349`, because the output zonotope of the interval-center propagation does not hold
+`evaluate(x)` there.
+
+**`verify` — the fourth step located.** Traced in network 7 (`experiments/cora-bugs/runs/run19.m`),
+the first ReLU layer loses `x`: of its 8 neurons, 1, 7 and 8 get error generators, and neuron 5
+(input `[-0.90266, 0.66757]`, slope `0.42514`, errors `[0, 0.38376]`, input `0.00007` at `x`) gets
+`[0.19191, 0.57566]` at the factors of `x`, where `[0.00003, 0.38376]` is right. That is the shift
+by `(el + eu)/2` of `@nnActivationLayer/evaluateZonotopeBatch` (row `evaluateZonotopeBatch` of
+[layers.md](layers.md)); neurons 2 and 3 lose `x` the same way.
+
+**`verify` — MATLAB run, with the offset repaired.** With `nn/patchOffset.m` alone, networks 7, 25
+and 43 (`'v2-input'`) and 5, 40 and 53 (`'v2'`) return `COUNTEREXAMPLE`, and with it and all three
+repairs as well. With the split-bound repair alone 5, 40 and 53 return `COUNTEREXAMPLE` and 7, 25,
+43 `VERIFIED`. So the verdicts of 5, 40 and 53 do not separate the split bounds from the offset;
+the split bounds stay confirmed by the remembered `u = 0` at a neuron input of `0.47`.
 
 **`nonlinearSysDT` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): not run: no run: needs an elementwise affine network converted by nonlinearSysDT.
