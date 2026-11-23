@@ -117,6 +117,7 @@ public import CORALean.NN.Layers.Theorems.ExpChordRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.ReciprocalRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.ProductLineEncloses
 public import CORALean.NN.Layers.Theorems.SoftmaxSumBoundsEncloses
+public import CORALean.NN.Layers.Theorems.CrownReluLinesHold
 
 /-!
 # What the standard layers enclose, collected
