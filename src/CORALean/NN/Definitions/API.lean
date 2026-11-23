@@ -39,6 +39,9 @@ public import CORALean.NN.Definitions.WeightAccEnclosesFloat
 public import CORALean.NN.Definitions.WeightNetworkEnclosesFloat
 public import CORALean.NN.Definitions.CrownNet
 public import CORALean.NN.Definitions.CrownNetFloat
+public import CORALean.NN.Definitions.GraphEnv
+public import CORALean.NN.Definitions.GraphNet
+public import CORALean.NN.Definitions.GraphNetFloat
 
 /-!
 # What a network means, collected

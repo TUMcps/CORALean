@@ -826,6 +826,7 @@ requires them in the output (`check_polyzono_op`).
 | `nnLayer.productLine` | `Z` (dimension `2 n`), `dr`, `p`, `tiny` | `productLine` (`productLine_encloses`; CORA.cpp's `priv_product_line`) per pair `a_i`, `b_i` (rows `i` and `n + i`); `slope` (`2 n`: `c_b`, then `c_a`), `offset`, `error` (`n`) |
 | `nnLayer.softmaxSumBounds` | `W`, `b`, `l`, `u`, `k` | `softmaxSumBounds` (`softmaxSumBounds_encloses`; CORA.cpp's `aux_box_image` of a softmax's sums); `inf`, `sup` |
 | `neuralNetwork.backwardBound` | `layers` (`linear`; `relu` with `l`, `u`, `alpha`), `x`, `r`, `C` | `Float.CrownNet.backwardBound` (`Float.CrownNet.backwardBound_le`, `crownReluLines_holds`; CROWN, below); `lower`, one per row of `C` |
+| `neuralNetwork.evaluateGraph` | `layers` (`W`, `b`, `source`, `residuals`, `activation`, `slots`, `p`, `tiny`), `Z` | `Float.GraphNet.evaluateGraph` (`GraphNet.evaluateGraph_encloses`; CORA.cpp's `ZonoNet::forward`, below); `Z`, the last output |
 
 A layer is `{"kind":"linear","W","b"}`, `{"kind":"conv","kernel","kshape","input","stride","dilation","pads","groups","b"}`, `{"kind":"relu"}`, `{"kind":"leakyRelu","alpha"}`, `{"kind":"sign"}`, `{"kind":"square"}`, `{"kind":"sigmoid","k"}`
 or `{"kind":"tanh","k"}` (`k`, the depth of the exponential's reduction, is ignored at `nearest`). `poly_method`
@@ -915,6 +916,25 @@ The linear layers of CORA.cpp's NN port (CORA.cpp#290) are layer kinds too, each
 * `lipLinear` (`W`, `b`, `lambda`): row `i` of `W` and `b` divided by `max(|W_i| 1 / lambda, 1)` (rounded up), then `linear`.
 
 The last three enclose the folded map, not the exact one; `check_sound.py` compares with the exact map to a relative `2^-40`.
+
+`neuralNetwork.evaluateGraph` (fields `layers`, `Z`; reply `Z`) is CORA.cpp's `ZonoNet::forward` on a graph network: one
+zonotope per output, whose generators are a prefix of one list of factors, and the radii of an interval center as its error box
+`E`. Layer `k` reads its `source` (CORA.cpp's index: `-1` the input, `j` the output of layer `j`; by default `k - 1`), and in order:
+
+1. `mtimes W` of the source's zonotope, `plus` the bias (`Zonotope.point b`, no generators), then zero generators up to the
+   generators of the output before (`aux_rows_to`).
+2. Each residual (`source`, `R`, the identity without `R`): `mtimes R` of its zonotope, its generators added to the first ones
+   (`addDown`, the gaps in `E`; `aux_add_rows`, `Zonotope.exactPlus` at the residual's count) and its `E` to `E`.
+3. The `activation`: `identity`; `relu`, `sign` or `square` as an activation layer (the box, the diagonal slope map, the box
+   `[offset - error, offset + error]` centered: `m = half(lo + hi)`, `r = max(hi - m, m - lo)`); or `product` of the halves
+   `[a; b] -> [a b; 0]` (`p`, `tiny`): the slope map `[diag c_b, diag c_a; 0, 0]` and `nnLayer.productLine` per pair on the set
+   itself, with `rho = max(E.sup, -E.inf)` the radii and the margin `(2 (q + 2) + 16) 2^-52` at `q` generators.
+   With `slots` `all` (the default) the box becomes one generator per neuron after the others (`Interval.zonotope`); with
+   `none` its center goes to `c` and `[-r, r]` to `E` (CORA.cpp's `num_approx_err` at `inf` and at `0`).
+
+The first cut of CORA.cpp's options: no splits, alpha slopes or source ranges, and slots all or none. At `nearest` every
+rounding gap is `+0`, `E` stays zero without an interval center, and the result is CORA.cpp's. A dot product `a . b` is a
+`product` layer followed by a sum, MaxPool `max(a, b)` the layer `relu(a - b)` with `b` as a residual of the next.
 
 `neuralNetwork.backwardBound` (fields `layers`, `x`, `r`, `C`; reply `lower`, a column) is CROWN's backward bound, CORA.cpp's
 `priv_backward_lower`: a lower bound of every row `C_q` on the outputs over the input box `|x' - x| <= r`. A layer is

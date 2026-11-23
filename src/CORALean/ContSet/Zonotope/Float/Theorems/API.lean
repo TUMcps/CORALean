@@ -15,6 +15,8 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.CartProdExact
 public import CORALean.ContSet.Zonotope.Float.Theorems.CenterMemToSet
 public import CORALean.ContSet.Zonotope.Float.Theorems.CompactZerosExact
 public import CORALean.ContSet.Zonotope.Float.Theorems.CompactZerosFromTracks
+public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsAtMtimes
+public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsAtPlus
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConstrSatSound
 public import CORALean.ContSet.Zonotope.Float.Theorems.RadiusCoraLe
 public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
