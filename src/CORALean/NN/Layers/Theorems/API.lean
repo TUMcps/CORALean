@@ -112,6 +112,11 @@ public import CORALean.NN.Layers.Theorems.ActivationPowersEncloses
 public import CORALean.NN.Layers.Theorems.SignEnclosureEncloses
 public import CORALean.NN.Layers.Theorems.SignRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.SquareChordTangentRelaxationEncloses
+public import CORALean.NN.Layers.Theorems.OfBandEnclosesWhere
+public import CORALean.NN.Layers.Theorems.ExpChordRelaxationEncloses
+public import CORALean.NN.Layers.Theorems.ReciprocalRelaxationEncloses
+public import CORALean.NN.Layers.Theorems.ProductLineEncloses
+public import CORALean.NN.Layers.Theorems.SoftmaxSumBoundsEncloses
 
 /-!
 # What the standard layers enclose, collected

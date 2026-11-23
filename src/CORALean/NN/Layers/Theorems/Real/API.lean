@@ -41,6 +41,13 @@ public import CORALean.NN.Layers.Theorems.Real.SigmoidPolyFamilyEncloses
 public import CORALean.NN.Layers.Theorems.Real.SigmoidPolyRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.Real.SigmoidRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.Real.SoftmaxEqInv
+public import CORALean.NN.Layers.Theorems.Real.SoftmaxLeIff
+public import CORALean.NN.Layers.Theorems.Real.MaxEqAddReluSub
+public import CORALean.NN.Layers.Theorems.Real.MulEqSqSubSq
+public import CORALean.NN.Layers.Theorems.Real.DotEqSumSqSubSq
+public import CORALean.NN.Layers.Theorems.Real.CrownActivationStep
+public import CORALean.NN.Layers.Theorems.Real.CrownAffineStep
+public import CORALean.NN.Layers.Theorems.Real.CrownBoxLe
 public import CORALean.NN.Layers.Theorems.Real.SoftmaxLeRaw
 public import CORALean.NN.Layers.Theorems.Real.SoftmaxMemTightened
 public import CORALean.NN.Layers.Theorems.Real.SoftmaxEncloses

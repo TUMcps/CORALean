@@ -180,6 +180,7 @@ src/CORALean/ContSet/ZonoBundle/Float/Theorems/QuadMapCoraOuter.lean | the enclo
 src/CORALean/ContSet/Zonotope/Float/Operations/RadiusCora.lean | CORA.cpp's zonotope radius through the half-widths of its box, not a refutation: the name says whose algorithm it is
 src/CORALean/ContSet/Zonotope/Float/Theorems/RadiusCoraLe.lean | the bound theorem of RadiusCora, not a refutation
 src/CORALean/Global/Float/SqrtDownCora.lean | the machine root CORA takes at the lower end of a box, not a refutation: the name says whose algorithm it is
+src/CORALean/Global/Float/SqrtDownCoraLe.lean | the bound of the machine root CORA takes, not a refutation: the name says whose algorithm it is
 src/CORALean/ContSet/Interval/Float/Operations/SqrtCora.lean | CORA's sqrt(I) of a box, the machine root at both ends, not a refutation: the name says whose algorithm it is
 src/CORALean/ContSet/Interval/Float/Theorems/SqrtCoraOuter.lean | the enclosure theorem of SqrtCora, not a refutation
 src/CORALean/ContSet/ZonoBundle/Float/Operations/EncloseCora.lean | CORA's enclose of two zonotope bundles member by member, not a refutation: the name says whose algorithm it is
