@@ -11,6 +11,11 @@ import CORALean.NN.Layers.Operations.Tanh
 import CORALean.NN.Layers.Operations.LeakyRelu
 import CORALean.NN.Layers.Operations.Linear
 import CORALean.NN.Layers.Operations.ActivationPowers
+import CORALean.NN.Layers.Operations.Activation
+import CORALean.NN.Layers.Operations.SignRelaxation
+import CORALean.NN.Layers.Operations.SquareChordTangentRelaxation
+import CORALean.NN.Layers.Operations.ReluRelaxation
+import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Layers.Theorems.ActivationPowersEncloses
 import CORALean.ContSet.Zonotope.Float.Instances
 import CORALean.ContSet.PolyZonotope.Float.Instances
@@ -64,6 +69,9 @@ private inductive PolyMethod where
   | singh | curvature | regression | regressionExtremum
   deriving DecidableEq
 
+/-- CORA.cpp's rounding margin of the square's band, `8 eps` of binary64, `2⁻⁴⁹` (exact). -/
+private def aux_squareMargin : 𝕋 := FloatOps.half^[49] FloatOps.one
+
 /-- One layer of the request on a set of the family `S`, of dimension `n`; the set of the new
 dimension. `method` picks the relaxation for sigmoid and tanh. -/
 private def aux_runLayer (dops : DtypeOps 𝕋) {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
@@ -101,8 +109,16 @@ private def aux_runLayer (dops : DtypeOps 𝕋) {S : ℕ → Type} [∀ n, ContS
       | .singh => (Layer.tanhSingh (S := S) (n := n) k).enclose X
       | .regression => (Layer.tanhRegression (S := S) (n := n) k).enclose X
       | .regressionExtremum => (Layer.tanhRegressionExact (S := S) (n := n) k).enclose X)⟩
-  | k => throw s!"a layer's `kind` must be linear, relu, leakyRelu, sigmoid or tanh, not `{k}` \
-      (`poly` only as the one layer of `nnLayer.evaluatePolyZonotope`)"
+  -- CORA.cpp's layers without a CORA counterpart: the sign and the square's chord-tangent band
+  | "sign" =>
+    checkFields "sign" layer ["kind"]
+    pure ⟨n, (Layer.activation (S := S) (n := n) signRelaxation).enclose X⟩
+  | "square" =>
+    checkFields "square" layer ["kind"]
+    pure ⟨n, (Layer.activation (S := S) (n := n)
+      (squareChordTangentRelaxation aux_squareMargin)).enclose X⟩
+  | k => throw s!"a layer's `kind` must be linear, relu, leakyRelu, sigmoid, tanh, sign or \
+      square, not `{k}` (`poly` only as the one layer of `nnLayer.evaluatePolyZonotope`)"
 
 /-- The layer `poly` on the polynomial zonotope: the fits `coeffs` (a row per neuron) and their
 errors `d` as a relaxation that does not depend on the box. -/
@@ -116,6 +132,32 @@ private def aux_runPowers (dops : DtypeOps 𝕋) (layer : Json) (n : ℕ) (X : �
     let P : LayerRelaxation 𝕋 n (K - 1) :=
       fun i => ⟨fun _ _ k => C i ⟨k, by omega⟩, fun _ _ => d i⟩
     pure ((Layer.activationPowers P).enclose X)
+
+/-- The relaxation of `kind` at every neuron's box `[l i, u i]`: `sign`, `square` (the chord-tangent
+band) or `relu` (CORALean's slope, or `alpha i` where the neuron crosses zero). -/
+private def aux_relaxation (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "relaxation" req ["kind", "l", "u", "alpha"]
+  let ⟨n, l⟩ ← parseVecDyn dops.readExact (← field req "l")
+  let u ← parseVecFixed dops.readExact n (← field req "u")
+  let kind ← strField req "kind"
+  if kind ≠ "relu" ∧ (fieldOpt req "alpha").isSome then
+    throw s!"relaxation: `alpha` is for `relu`, not `{kind}`"
+  -- one relaxation per neuron: the ReLU's slope may differ from neuron to neuron
+  let R : Fin n → Relaxation 𝕋 ← match kind with
+    | "sign" => pure fun _ => signRelaxation
+    | "square" => pure fun _ => squareChordTangentRelaxation aux_squareMargin
+    | "relu" => match fieldOpt req "alpha" with
+      | none => pure fun _ => reluRelaxation reluSlope
+      | some aj => do
+        let a ← parseVecFixed dops.readExact n aj
+        -- the stable neurons keep CORALean's exact slope, the crossing ones take `alpha`
+        pure fun i => reluRelaxation fun lo hi =>
+          if FloatOps.le hi FloatOps.zero then FloatOps.zero
+          else if FloatOps.le FloatOps.zero lo then FloatOps.one else a i
+    | k => throw s!"relaxation: `kind` must be sign, square or relu, not `{k}`"
+  pure [("slope", printVec dops.showExact fun i => (R i).slope (l i) (u i)),
+    ("offset", printVec dops.showExact fun i => (R i).offset (l i) (u i)),
+    ("error", printVec dops.showExact fun i => (R i).error (l i) (u i))]
 
 /-- The layers of the list, in order, on the set. -/
 private def aux_runLayers (dops : DtypeOps 𝕋) {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
@@ -184,7 +226,7 @@ def networkOnZonotope (dops : DtypeOps 𝕋) (name : String) (req : Json) (n : �
   aux_runLayers dops (S := 𝒵[𝕋]) (← aux_method name req) (← arrField req "layers").toList ⟨n, X⟩
 
 /-- Every op of `nnLayer.`, without the prefix. -/
-def nnLayerOpNames : List String := [ "evaluateZonotope", "evaluatePolyZonotope" ]
+def nnLayerOpNames : List String := [ "evaluateZonotope", "evaluatePolyZonotope", "relaxation" ]
 
 /-- Every op of `neuralNetwork.`, without the prefix. -/
 def neuralNetworkOpNames : List String := [ "evaluate" ]
@@ -193,6 +235,7 @@ def neuralNetworkOpNames : List String := [ "evaluate" ]
 @[noinline, nospecialize]
 def handleNnLayerOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option Resp :=
   match op with
+  | "relaxation" => some (aux_relaxation dops req)
   | "evaluateZonotope" | "evaluatePolyZonotope" => some (do
     checkFields op req ["layer", "Z", "P", "poly_method", "regression_error", "errorForm"]
     let layer ← field req "layer"

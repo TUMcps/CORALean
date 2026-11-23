@@ -49,6 +49,7 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.MtimesNominalErr
 public import CORALean.ContSet.ConZonotope.Float.Operations.ZeroFeasible
 public import CORALean.ContSet.ConZonotope.Float.Operations.CubMap
 public import CORALean.ContSet.ConZonotope.Float.Operations.Materialise
+public import CORALean.ContSet.ConZonotope.Float.Operations.DualBound
 
 /-!
 # What the float `ConZonotope` computes
