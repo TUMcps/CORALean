@@ -109,6 +109,9 @@ public import CORALean.NN.Layers.Theorems.ToRealTapEntry
 public import CORALean.NN.Layers.Theorems.ToRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.AllOverEqImpl
 public import CORALean.NN.Layers.Theorems.ActivationPowersEncloses
+public import CORALean.NN.Layers.Theorems.SignEnclosureEncloses
+public import CORALean.NN.Layers.Theorems.SignRelaxationEncloses
+public import CORALean.NN.Layers.Theorems.SquareChordTangentRelaxationEncloses
 
 /-!
 # What the standard layers enclose, collected

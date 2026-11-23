@@ -61,6 +61,7 @@ public import CORALean.ContSet.ConZonotope.Real.Operations.Constrain
 public import CORALean.ContSet.ConZonotope.Real.Operations.FourierMotzkinBounds
 public import CORALean.ContSet.ConZonotope.Real.Operations.FourierMotzkinIter
 public import CORALean.ContSet.ConZonotope.Real.Operations.IntervalOfFactorBounds
+public import CORALean.ContSet.ConZonotope.Real.Operations.DualBound
 
 /-!
 # What `ConZonotope` computes

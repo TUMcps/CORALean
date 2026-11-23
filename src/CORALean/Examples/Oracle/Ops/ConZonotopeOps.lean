@@ -4,6 +4,7 @@ import CORALean.ContSet.ConZonotope.Float.Operations.Compact
 import CORALean.ContSet.ConZonotope.Float.Operations.FourierMotzkinIter
 import CORALean.ContSet.ConZonotope.Float.Operations.ConIntersect
 import CORALean.ContSet.ConZonotope.Float.Operations.CubMap
+import CORALean.ContSet.ConZonotope.Float.Operations.DualBound
 import CORALean.ContSet.ConZonotope.Float.Operations.Empty
 import CORALean.ContSet.ConZonotope.Float.Operations.IntersectStrip
 import CORALean.ContSet.ConZonotope.Float.Operations.ContainsPoint
@@ -238,6 +239,17 @@ def handleConZonoFourierMotzkin (dops : DtypeOps 𝕋) (req : Json) : Resp := do
     | _, _ => throw "fourierMotzkinBounds: give exactly one of `B` (one pass) and `k` (passes)"
   pure [("I", printIntervalVec dops.showExact I)]
 
+/-- `conZonotope.dualBound`: `ConZonotope.dualBound`, the weak-duality lower bound of `w' beta` over
+`beta` in `[-1, 1]^q` with `C beta <= d` at the multipliers `lambda` (clamped at zero), at least the
+box's `-|w|_1`; `h`. CORA.cpp's dual certificate (`priv_dual_lower`). -/
+def handleConZonoDualBound (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "dualBound" req ["C", "d", "w", "lambda"]
+  let dm ← parseMatDyn dops.readExact (← field req "C")
+  let d ← parseVecFixed dops.readExact dm.r (← field req "d")
+  let w ← parseVecFixed dops.readExact dm.c (← field req "w")
+  let lam ← parseVecFixed dops.readExact dm.r (← field req "lambda")
+  pure [("h", Json.str (dops.showExact (ConZonotope.dualBound dm.M d w lam)))]
+
 /-- `conZonotope.intervalTight`: `ConZonotope.intervalTight`, the box of `c + G beta + E` with the
 factors bounded by `k` Fourier-Motzkin passes on the constraint; `I`. CORA's `interval` bounds
 them by linear programs. -/
@@ -295,11 +307,11 @@ def handleConZonoIntervalCert (dops : DtypeOps 𝕋) (req : Json) : Resp := do
 
 /-- Every op of this file, without the `conZonotope.` prefix. -/
 def conZonotopeOpNames : List String :=
-  [ "and", "cartProd", "compact", "conIntersect", "contains", "convHull", "cubMap", "empty",
-    "enclose", "fourierMotzkinBounds", "intersectStrip", "isBounded", "isFullDim", "isIntersecting",
-    "isequal", "lift", "mtimes", "origin", "plus", "project", "quadMap", "reduce", "representsa",
-    "split", "supportFunc", "vertices", "zonotope", "interval", "intervalCert", "intervalTight",
-    "zonoBundle" ]
+  [ "and", "cartProd", "compact", "conIntersect", "contains", "convHull", "cubMap", "dualBound",
+    "empty", "enclose", "fourierMotzkinBounds", "intersectStrip", "isBounded", "isFullDim",
+    "isIntersecting", "isequal", "lift", "mtimes", "origin", "plus", "project", "quadMap", "reduce",
+    "representsa", "split", "supportFunc", "vertices", "zonotope", "interval", "intervalCert",
+    "intervalTight", "zonoBundle" ]
 
 /-- `op` of `conZonotope.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -316,6 +328,7 @@ def handleConZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opti
   | "convHull" => some (aux_binary op dops req fun a b => ConZonotope.linComb a b)
   -- the arms from `cubMap` on
   | "cubMap" => some (handleConZonoCubMap dops req)
+  | "dualBound" => some (handleConZonoDualBound dops req)
   | "empty" => some (do
       checkFields op req ["n"]
       pure [aux_set dops "cZ" (ConZonotope.empty (𝕋 := 𝕋) (← natField req "n"))])

@@ -31,6 +31,8 @@ arithmetic -- never floats:
   projections, the support function, the norm, `exp`/`log`/`sqrt`/`sinh`/`tanh` through
   `decimal` at 60 digits -- the response must contain it (`CHECKS_INTERVAL`,
   `CHECKS_ZONOTOPE`); `minkDiff` is an inner approximation and is checked the other way round.
+* `nnLayer.relaxation`: the exact activation at a grid of every box lies within the error of the
+  line; `conZonotope.dualBound`: `h <= w' beta` at the feasible points of a grid of the box.
 * `nnLayer.*` and `neuralNetwork.evaluate`: the exact network (`Fraction` for the linear and
   ReLU layers, `decimal` at 60 digits for sigmoid and tanh, the fit plus its error `d` for
   `poly`) at points of the input set lies in the hull of the output set (`check_nn_op`).
@@ -793,6 +795,10 @@ def nn_apply(layer, x):
     if kind == "leakyRelu":
         a = parse_scalar(layer["alpha"])
         return [max(a * v, v) for v in x]
+    if kind == "sign":
+        return [F((v > 0) - (v < 0)) for v in x]
+    if kind == "square":
+        return [v * v for v in x]
     if kind == "poly":
         # the fit given, at the edge `+d` of its error (the set holds every deviation up to `d`)
         _, _, C = parse_mat(layer["coeffs"])
@@ -806,9 +812,45 @@ def nn_apply(layer, x):
     raise ValueError(kind)
 
 
+def check_nn_relaxation(req, resp, fails):
+    """`nnLayer.relaxation`: at the ends, the middle, the stationary point of the square and a grid of
+    every box, `|f(t) - (slope t + offset)| <= error` exactly (`Fraction`)."""
+    f = {"sign": lambda t: F((t > 0) - (t < 0)), "square": lambda t: t * t,
+         "relu": lambda t: max(t, F(0))}[req["kind"]]
+    lo, hi = parse_vec(req["l"]), parse_vec(req["u"])
+    m, o, e = parse_vec(resp["slope"]), parse_vec(resp["offset"]), parse_vec(resp["error"])
+    for i, (a, b) in enumerate(zip(lo, hi)):
+        ts = [a + (b - a) * F(k, 16) for k in range(17)]
+        ts += [t for t in (F(0), m[i] / 2) if a <= t <= b]
+        for t in ts:
+            if abs(f(t) - (m[i] * t + o[i])) > e[i]:
+                fails.append(f"id {req.get('id')}: nnLayer.relaxation: neuron {i} at {float(t)} "
+                             f"leaves the band by {float(abs(f(t) - (m[i] * t + o[i])) - e[i])}")
+                return
+
+
+def check_dual_bound(req, resp, fails):
+    """`conZonotope.dualBound`: `h <= w' beta` at every feasible point of the grid `{-1, 0, 1}^q`
+    (and halves of it) with `C beta <= d`."""
+    import itertools
+    p, q, C = parse_mat(req["C"])
+    d, w = parse_vec(req["d"]), parse_vec(req["w"])
+    h = parse_scalar(resp["h"])
+    for beta in itertools.product([F(-1), F(-1, 2), F(0), F(1, 2), F(1)], repeat=q):
+        if all(sum(C[i][j] * beta[j] for j in range(q)) <= d[i] for i in range(p)):
+            v = sum(w[j] * beta[j] for j in range(q))
+            if h > v:
+                fails.append(f"id {req.get('id')}: conZonotope.dualBound: h = {float(h)} above "
+                             f"w' beta = {float(v)} at a feasible beta")
+                return
+
+
 def check_nn_op(op, req, resp, fails):
     """`nnLayer.*` and `neuralNetwork.evaluate`: the exact network's outputs at points of the input
     set lie in the output set's hull (`c +- sum |G| +- sum |GI| +- E`)."""
+    if op == "nnLayer.relaxation":
+        check_nn_relaxation(req, resp, fails)
+        return
     layers = [req["layer"]] if "layer" in req else req["layers"]
     out = resp["Z"] if "Z" in resp else resp["P"]
     c = parse_vec(out["c"])
@@ -1295,6 +1337,8 @@ def main() -> int:
                 check_class_op(op, req, resp, fails)
             elif op.startswith(("nnLayer.", "neuralNetwork.")):
                 check_nn_op(op, req, resp, fails)
+            elif op == "conZonotope.dualBound":
+                check_dual_bound(req, resp, fails)
             elif op == "from":
                 check_from(req, resp, fails)
             elif op == "interval":

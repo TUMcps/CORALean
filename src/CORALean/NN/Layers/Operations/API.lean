@@ -130,6 +130,9 @@ public import CORALean.NN.Layers.Operations.TapEntry
 public import CORALean.NN.Layers.Operations.TapMat
 public import CORALean.NN.Layers.Operations.TransposeEquiv
 public import CORALean.NN.Layers.Operations.ActivationPowers
+public import CORALean.NN.Layers.Operations.SignEnclosure
+public import CORALean.NN.Layers.Operations.SignRelaxation
+public import CORALean.NN.Layers.Operations.SquareChordTangentRelaxation
 
 /-!
 # The standard layers, collected

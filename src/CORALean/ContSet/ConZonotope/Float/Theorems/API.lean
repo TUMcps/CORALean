@@ -42,6 +42,7 @@ public import CORALean.ContSet.ConZonotope.Float.Theorems.RescaleOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.SplitOuter
 public import CORALean.ContSet.ConZonotope.Float.Theorems.UnionSubsetLinComb
 public import CORALean.ContSet.ConZonotope.Float.Theorems.ZeroFeasibleNonempty
+public import CORALean.ContSet.ConZonotope.Float.Theorems.DualBoundLe
 
 /-!
 # What the float `ConZonotope` guarantees

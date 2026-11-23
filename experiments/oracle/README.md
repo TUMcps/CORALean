@@ -313,6 +313,7 @@ Tuning CORA has no argument for is a required field: `k`, `p` (Newton steps, tri
 | `empty`, `origin` | `n` | `ConZonotope.empty`, `.origin` |
 | `enclose` | `M`, `cZ2` | `ContSet.enclose` |
 | `intersectStrip` | `C`, `phi`, `y`, `Lambda` | `ConZonotope.intersectStrip` |
+| `dualBound` | `C` (`p x q`), `d`, `w` (`q`), `lambda` (`p`); no `cZ` | `ConZonotope.dualBound` (`ConZonotope.dualBound_le`; CORA.cpp's dual certificate, `priv_dual_lower`): `h`, a lower bound of `w' beta` over `beta` in `[-1, 1]^q` with `C beta <= d`. In order: `mu = max(lambda, 0)`, then `s_j = w_j + sum_i mu_i C_ij` (the sum nested to the right, rounded up, and again rounded down). The bound at `mu` is `-(sum_j max(abs(s_up_j), abs(s_down_j))) - sum_i mu_i d_i` (sums up, the difference down), and the answer the larger of that and `-(sum_j abs(w_j))`. At `nearest` both roundings agree. The rows of a split and of the ReLU faces are rows of this kind (`ConZonotope.phaseRow_holds`) |
 | `fourierMotzkinBounds` | `C` (`p x q`), `d`, and `B` (a box `{"inf","sup"}`, one pass) or `k` (passes from the unit box); no `cZ` | `ConZonotope.fourierMotzkinBounds`, `.fourierMotzkinIter` (new, Koller et al. ICLR 2026, Prop. 3); `I`, the bounds of `C x <= d` in `B`. The first step of `approximateBoundsWithGPU`; the box `c + G beta` of the factor bounds is `conZonotope.intervalTight` |
 | `isBounded`, `isequal`, `representsa` (`emptySet`) | `cZ2`, `tol` | constant `true`; `ConZonotope.isequal`, `.representsa_emptySet`; `value` |
 | `isIntersecting` | `cZ2`, `tol` | `ConZonotope.isDisjointLP`; `disjoint` |
@@ -821,8 +822,9 @@ requires them in the output (`check_polyzono_op`).
 | `nnLayer.evaluateZonotope` | `layer`, `Z` (zonotope), `poly_method` | `Layer.linear`, `Layer.relu`, `Layer.leakyRelu`, `Layer.sigmoidSingh`, `Layer.tanhSingh` (or `Layer.sigmoidRegression`, `Layer.tanhRegression`, or `Layer.sigmoid`, `Layer.tanh`) at the zonotope; `Z` |
 | `nnLayer.evaluatePolyZonotope` | `layer`, `P` (polynomial zonotope), `poly_method`, `errorForm` | the same layers at the polynomial zonotope; `P` |
 | `neuralNetwork.evaluate` | `layers`, `Z` or `P`, `poly_method`, `errorForm` | the layers in order, each as above |
+| `nnLayer.relaxation` | `kind`, `l`, `u`, `alpha` | `signRelaxation`, `squareChordTangentRelaxation` or `reluRelaxation` per neuron (below); `slope`, `offset`, `error` |
 
-A layer is `{"kind":"linear","W","b"}`, `{"kind":"relu"}`, `{"kind":"leakyRelu","alpha"}`, `{"kind":"sigmoid","k"}`
+A layer is `{"kind":"linear","W","b"}`, `{"kind":"relu"}`, `{"kind":"leakyRelu","alpha"}`, `{"kind":"sign"}`, `{"kind":"square"}`, `{"kind":"sigmoid","k"}`
 or `{"kind":"tanh","k"}` (`k`, the depth of the exponential's reduction, is ignored at `nearest`). `poly_method`
 is `singh` (the default), `regression` (CORA's default `'regression'`) or `curvature`; anything else is refused.
 `regression_error`, for `regression` only (anything else refuses it), is `bracket` (the default) or `extremum`; the layers are then
@@ -834,6 +836,22 @@ slope is below the derivative on the box, so `sigma(t) - lambda t` does not fall
 `Layer.sigmoidRegressionExact_encloses`, `Layer.tanhRegressionExact_encloses` (any slope: the extremum is at an end or a stationary point, which is enclosed),
 `Layer.activationGI_encloses`, `Layer.relu_encloses`, `Layer.sigmoid_encloses`, `Layer.tanh_encloses`. `check_sound.py` re-evaluates the network at points of the input set in
 60-digit decimals and requires them in the hull of the output.
+
+`nnLayer.relaxation` (fields `kind`, `l`, `u`, `alpha`; reply `slope`, `offset`, `error`, a column each) is one relaxation
+per neuron at the box `[l_i, u_i]`, the lines of CORA.cpp's `NeuralNetwork::verify`. `kind` is `sign` (`signRelaxation`,
+`signRelaxation_encloses`), `square` (`squareChordTangentRelaxation`, `squareChordTangentRelaxation_encloses`) or `relu`
+(`reluRelaxation`, `reluRelaxation_encloses`): at `reluSlope`, or with `alpha` the slope `alpha_i` where the neuron crosses
+zero (`u > 0`, `l < 0`; CORA.cpp's optimized slopes) and CORALean's elsewhere. The layer kinds `sign` and `square` of
+`nnLayer.evaluateZonotope` and `neuralNetwork.evaluate` apply the same relaxations as activation layers.
+
+* **Sign**: `sd(a)`, `su(a)` the sign from below and above (`ltStrict`, `le` against 0; at `nearest` both the machine's sign);
+  slope 0, offset `half(sd(l) + su(u))`, error `max(su(u) - offset, offset - sd(l))`. Every value is a half, so all are exact.
+* **Square** (the chord-tangent band): slope `s = l + u` and `m = half(s)`. `P_up = l u + m m` is rounded up, `P_down` the same
+  rounded down, and the offset is `half(-P_up)`. The error adds, left to right: `((u - l)(u - l)) / 8`, `max(l l, u u) * 2^-49`
+  (CORA.cpp's margin `8 eps`), `(s_up - s_down)(2 max(|l|, |u|) + (s_up - s_down))` and `half(-P_down) - offset`. The last two
+  are zero at `nearest`, where this is CORA.cpp's `priv_square_line`.
+* **ReLU with `alpha`**: the ReLU's line below at the slope `alpha_i` (clamped into `[0, 1]`): `gap = max(u - alpha u, -(alpha l))`,
+  `offset = error = gap / 2`.
 
 An activation layer on a zonotope `(c, G, E)` of dimension `n` computes, in this order:
 
