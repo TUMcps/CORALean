@@ -825,6 +825,7 @@ requires them in the output (`check_polyzono_op`).
 | `nnLayer.relaxation` | `kind`, `l`, `u`, `alpha`, `k`, `p`, `tiny` | `signRelaxation`, `squareChordTangentRelaxation`, `expChordRelaxation`, `reciprocalRelaxation` or `reluRelaxation` per neuron (below); `slope`, `offset`, `error` |
 | `nnLayer.productLine` | `Z` (dimension `2 n`), `dr`, `p`, `tiny` | `productLine` (`productLine_encloses`; CORA.cpp's `priv_product_line`) per pair `a_i`, `b_i` (rows `i` and `n + i`); `slope` (`2 n`: `c_b`, then `c_a`), `offset`, `error` (`n`) |
 | `nnLayer.softmaxSumBounds` | `W`, `b`, `l`, `u`, `k` | `softmaxSumBounds` (`softmaxSumBounds_encloses`; CORA.cpp's `aux_box_image` of a softmax's sums); `inf`, `sup` |
+| `neuralNetwork.backwardBound` | `layers` (`linear`; `relu` with `l`, `u`, `alpha`), `x`, `r`, `C` | `Float.CrownNet.backwardBound` (`Float.CrownNet.backwardBound_le`, `crownReluLines_holds`; CROWN, below); `lower`, one per row of `C` |
 
 A layer is `{"kind":"linear","W","b"}`, `{"kind":"conv","kernel","kshape","input","stride","dilation","pads","groups","b"}`, `{"kind":"relu"}`, `{"kind":"leakyRelu","alpha"}`, `{"kind":"sign"}`, `{"kind":"square"}`, `{"kind":"sigmoid","k"}`
 or `{"kind":"tanh","k"}` (`k`, the depth of the exponential's reduction, is ignored at `nearest`). `poly_method`
@@ -886,6 +887,28 @@ The layer kind `conv` is ONNX's Conv of the input `(C, H, W)` in C order (CORA.c
 `(out, Ho, Wo)`). It is `Layer.linear` at the stencil matrix (`Layer.conv`'s `tapMat`, the taps on a pad dropped): each entry a
 stored weight or zero. A residual Add of two branches with shared factors (CORA.cpp's `AddLayer`) is `zonotope.exactPlus` with `k`
 the earlier branch's generator count.
+
+`neuralNetwork.backwardBound` (fields `layers`, `x`, `r`, `C`; reply `lower`, a column) is CROWN's backward bound, CORA.cpp's
+`priv_backward_lower`: a lower bound of every row `C_q` on the outputs over the input box `|x' - x| <= r`. A layer is
+`{"kind":"linear","W","b"}` or `{"kind":"relu","l","u","alpha"}`, a ReLU with the box `[l, u]` of its inputs (the forward pass's
+record; the bound is sound when every input lies in its box) and, optionally, the slopes `alpha` of its crossing neurons.
+
+* **The ReLU's lines** (`crownReluLines`, `crownReluLines_holds`): the identity where `le(0, l)`, zero where `le(u, 0)`. Otherwise the
+  line `a t` below, with `a = alpha_i` clamped into `[0, 1]` (without `alpha`: 1 where `ltStrict(-l, u)`, else 0). Above, the slope
+  `s = divDown(u, subUp(u, l))` at the offset `max(subUp(max(l, 0), mulDown(s, l)), subUp(max(u, 0), mulDown(s, u)))`.
+* **CORA.cpp's offset** is the first of the two alone. On about a third of random boxes the second is larger by an ulp, and there
+  CORA.cpp's line passes below `relu(u)` (fixture 9529).
+* **The pass**, from the last layer to the first, with `nu` the row and `c` the constant (from `0`):
+  1. a ReLU, with `p = max(nu, 0)` and `q = min(nu, 0)`: `c = (c + p . b_l) + q . b_u`, then the row `p_i s_l,i + q_i s_u,i`;
+  2. a linear layer: `c = c + nu . b`, then the row `W' nu` (entry `j` the sum over `i` of `nu_i W_ij`);
+  3. at the box: `(nu . x - |nu| . r) + c`.
+
+  Every sum nests to the right; the row and the constant round down.
+* **The rounding's slack**: beside the row the pass carries its gap, the row rounded up less the row rounded down. A ReLU charges
+  its own gap at `max(|l|, |u|)` and the gap it receives at the bound of `|relu|` between its lines; a linear layer passes the gap
+  through `|W|` and charges it at `|b|`; the box charges it at `|x| + r`. The answer is the value less the slack (`subDown`).
+  At `nearest` every gap is `+0`, and the answer is CORA.cpp's bit for bit (`Float.CrownNet.backwardBound_le` is the theorem).
+* `check_sound.py` evaluates the exact network at the corners and the center of the box.
 
 An activation layer on a zonotope `(c, G, E)` of dimension `n` computes, in this order:
 

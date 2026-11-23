@@ -96,6 +96,10 @@ public import CORALean.NN.Operations.WeightAccLayerFloat
 public import CORALean.NN.Operations.WeightNetworkNormalFormAuxFloat
 public import CORALean.NN.Operations.WeightNetworkNormalFormFloat
 public import CORALean.NN.Operations.InputNeuronOrderFloat
+public import CORALean.NN.Operations.CrownBackward
+public import CORALean.NN.Operations.CrownBackwardBound
+public import CORALean.NN.Operations.CrownBackwardFloat
+public import CORALean.NN.Operations.CrownBackwardBoundFloat
 
 /-!
 # What a network does, collected

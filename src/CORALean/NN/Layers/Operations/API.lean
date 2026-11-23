@@ -138,6 +138,7 @@ public import CORALean.NN.Layers.Operations.ExpChordRelaxation
 public import CORALean.NN.Layers.Operations.ReciprocalRelaxation
 public import CORALean.NN.Layers.Operations.ProductLine
 public import CORALean.NN.Layers.Operations.SoftmaxSumBounds
+public import CORALean.NN.Layers.Operations.CrownReluLines
 
 /-!
 # The standard layers, collected

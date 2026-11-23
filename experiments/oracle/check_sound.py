@@ -34,7 +34,9 @@ arithmetic -- never floats:
 * `nnLayer.relaxation`: the exact activation at a grid of every box lies within the error of the
   line (`exp` in 60-digit `decimal`); `nnLayer.productLine`: the products at the factors' corners
   lie within the error of the line; `nnLayer.softmaxSumBounds`: the sums of the exponentials at a
-  grid of the box lie in the box; `conZonotope.dualBound`: `h <= w' beta` at the feasible points of a grid of the box.
+  grid of the box lie in the box; `conZonotope.dualBound`: `h <= w' beta` at the feasible points of a grid of the box;
+  `neuralNetwork.backwardBound`: `lower <= C N(x)` at the corners and the center of the input box,
+  where every ReLU's input lies in its box `[l, u]` (else the fixture itself is wrong).
 * `nnLayer.*` and `neuralNetwork.evaluate`: the exact network (`Fraction` for the linear and
   ReLU layers, `decimal` at 60 digits for sigmoid and tanh, the fit plus its error `d` for
   `poly`) at points of the input set lies in the hull of the output set (`check_nn_op`).
@@ -929,6 +931,36 @@ def check_dual_bound(req, resp, fails):
                 return
 
 
+def check_backward_bound(req, resp, fails):
+    """`neuralNetwork.backwardBound`: at the corners and the center of the box `|x - x0| <= r`, the
+    exact network (`Fraction`) keeps every ReLU's input in its box and `lower <= C N(x)`."""
+    import itertools
+    x0, r = parse_vec(req["x"]), parse_vec(req["r"])
+    _, _, C = parse_mat(req["C"])
+    lower = parse_vec(resp["lower"])
+    pts = [list(x0)] + [[x0[j] + s_ * r[j] for j, s_ in enumerate(sg)]
+                        for sg in itertools.product([-1, 1], repeat=len(x0))]
+    for x in pts:
+        for layer in req["layers"]:
+            if layer["kind"] == "linear":
+                _, _, W = parse_mat(layer["W"])
+                b = parse_vec(layer["b"])
+                x = [sum(W[i][j] * x[j] for j in range(len(x))) + b[i] for i in range(len(W))]
+            else:
+                lo, hi = parse_vec(layer["l"]), parse_vec(layer["u"])
+                if any(not (lo[i] <= x[i] <= hi[i]) for i in range(len(x))):
+                    fails.append(f"id {req.get('id')}: neuralNetwork.backwardBound: a ReLU input "
+                                 f"leaves its box [l, u] (the fixture is wrong)")
+                    return
+                x = [max(v, F(0)) for v in x]
+        for q, row in enumerate(C):
+            v = sum(row[i] * x[i] for i in range(len(x)))
+            if lower[q] > v:
+                fails.append(f"id {req.get('id')}: neuralNetwork.backwardBound: row {q}'s lower "
+                             f"bound {float(lower[q])} above C N(x) = {float(v)}")
+                return
+
+
 def check_nn_op(op, req, resp, fails):
     """`nnLayer.*` and `neuralNetwork.evaluate`: the exact network's outputs at points of the input
     set lie in the output set's hull (`c +- sum |G| +- sum |GI| +- E`)."""
@@ -940,6 +972,9 @@ def check_nn_op(op, req, resp, fails):
         return
     if op == "nnLayer.softmaxSumBounds":
         check_softmax_sums(req, resp, fails)
+        return
+    if op == "neuralNetwork.backwardBound":
+        check_backward_bound(req, resp, fails)
         return
     layers = [req["layer"]] if "layer" in req else req["layers"]
     out = resp["Z"] if "Z" in resp else resp["P"]

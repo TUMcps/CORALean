@@ -129,6 +129,10 @@ public import CORALean.NN.Theorems.PgdAttackFloatOuter
 public import CORALean.NN.Theorems.WeightNetworkNormalFormAuxFloatEncloses
 public import CORALean.NN.Theorems.WeightNetworkNormalFormFloatEncloses
 public import CORALean.NN.Theorems.InputNeuronOrderFloatEq
+public import CORALean.NN.Theorems.CrownNetBackwardLe
+public import CORALean.NN.Theorems.CrownNetBackwardBoundLe
+public import CORALean.NN.Theorems.CrownNetBackwardLeFloat
+public import CORALean.NN.Theorems.CrownNetBackwardBoundLeFloat
 
 /-!
 # What a network's enclosure guarantees, collected
