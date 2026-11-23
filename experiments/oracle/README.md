@@ -822,7 +822,7 @@ requires them in the output (`check_polyzono_op`).
 | `nnLayer.evaluateZonotope` | `layer`, `Z` (zonotope), `poly_method` | `Layer.linear`, `Layer.relu`, `Layer.leakyRelu`, `Layer.sigmoidSingh`, `Layer.tanhSingh` (or `Layer.sigmoidRegression`, `Layer.tanhRegression`, or `Layer.sigmoid`, `Layer.tanh`) at the zonotope; `Z` |
 | `nnLayer.evaluatePolyZonotope` | `layer`, `P` (polynomial zonotope), `poly_method`, `errorForm` | the same layers at the polynomial zonotope; `P` |
 | `neuralNetwork.evaluate` | `layers`, `Z` or `P`, `poly_method`, `errorForm` | the layers in order, each as above |
-| `nnLayer.relaxation` | `kind`, `l`, `u`, `alpha`, `k`, `p`, `tiny` | `signRelaxation`, `squareChordTangentRelaxation`, `expChordRelaxation`, `reciprocalRelaxation` or `reluRelaxation` per neuron (below); `slope`, `offset`, `error` |
+| `nnLayer.relaxation` | `kind`, `l`, `u`, `alpha`, `k`, `p`, `tiny` | `signRelaxation`, `squareChordTangentRelaxation`, `expChordRelaxation`, `reciprocalRelaxation`, `cubeRelaxation`, `inverseRelaxation`, `trigRelaxation` or `reluRelaxation` per neuron (below); `slope`, `offset`, `error` |
 | `nnLayer.productLine` | `Z` (dimension `2 n`), `dr`, `p`, `tiny` | `productLine` (`productLine_encloses`; CORA.cpp's `priv_product_line`) per pair `a_i`, `b_i` (rows `i` and `n + i`); `slope` (`2 n`: `c_b`, then `c_a`), `offset`, `error` (`n`) |
 | `nnLayer.softmaxSumBounds` | `W`, `b`, `l`, `u`, `k` | `softmaxSumBounds` (`softmaxSumBounds_encloses`; CORA.cpp's `aux_box_image` of a softmax's sums); `inf`, `sup` |
 | `neuralNetwork.backwardBound` | `layers` (`linear`; `relu` with `l`, `u`, `alpha`), `x`, `r`, `C` | `Float.CrownNet.backwardBound` (`Float.CrownNet.backwardBound_le`, `crownReluLines_holds`; CROWN, below); `lower`, one per row of `C` |
@@ -867,6 +867,25 @@ zero (`u > 0`, `l < 0`; CORA.cpp's optimized slopes) and CORALean's elsewhere. T
   `g(x) = 1 / max(x, 1) - m x`; `hi = max(max(g(l), g(u)), g(min(max(1, l), u)))` (up), `lo = min(g(l), s + s)` (down) with
   `s = sqrt(-m)` (CORA's root from below, `sqrtDownCora`). The margin is `(1 + |m| max(|l|, |u|)) * 2^-48`
   (`reciprocalRelaxation_encloses`).
+* **Cube** `x^3` (`cubeRelaxation`; field `p`; CORA.cpp's `priv_cube_line`): `m = (l l + l u) + u u`, `g(x) = x x x - m x`.
+  The stationary point `s = sqrt(m (1/3))` is taken from below (`sqrtDownCora` of `m * (1/3)` down) and from above (`sqrtUp`
+  of `m * (1/3)` up), and `g` at `s` and at `-s` clamped into `[l, u]` is bounded over the clamped pair; at `nearest` each
+  pair is one point. `hi = max(max(g(l), g(u)), max(g(s'), g(-s')))` (up), `lo` the same with `min` (down); the margin is
+  `max(|l|, |u|)^3 * 2^-46` (CORA.cpp's `64 eps`; `cubeRelaxation_encloses`).
+* **Inverse** `1 / x` for `0 < l` (`inverseRelaxation`, field `p`, CORA.cpp's `priv_inverse_line`). An `l` not above zero is
+  an error. `m = -((1 / l)(1 / u))` (quotients up) and `hi = max(g(l), g(u))` (up). `lo = s + s` with `s = sqrt(-m)` (down),
+  the closed-form minimum `2 sqrt(-m)` of `1 / x - m x`, which CORA.cpp's line takes too. The margin is `(1 / l) * 2^-47`
+  (CORA.cpp's `32 eps`); `inverseRelaxation_encloses` holds on boxes with `0 < l`.
+* **Sin, cos** (`trigRelaxation`, field `k` the halvings of `sin` and `cos`, CORA.cpp's `priv_trig_line` and `priv_trig_box`).
+  The box `[lo, hi]` holds the end values `-+ 2^-48`, and `1` (`-1`) where a maximum `a + 2 pi k` (a minimum `a + pi + 2 pi k`)
+  may lie in `[l, u]`, with `a = pi / 2` for `sin` and `0` for `cos`. That is decided as
+  `ceil(t_l - (|t_l| + 1) 2^-48) <= floor(t_u + (|t_u| + 1) 2^-48)` for `t = (x - a) (1 / (2 pi))`, with binary64's `pi`
+  from below and from above (one value at `nearest`). Otherwise the ends are clamped to `[-1, 1]`, and the band of slope 0
+  has the margin `(|hi| + |lo|) 2^-52`. The tangent is taken where its radius is below the band's error
+  (`trigRelaxation_encloses`).
+* **The tangent of sin, cos** at `c = l / 2 + u / 2` has `d = max(u - c, c - l)(1 + 2^-50)`, slope `m = f'(c)` and offset
+  `f(c) - m c`. Its radius is `d d / 2 + (1 + |m| max(|l|, |u|) + d) 2^-48`, plus the roundings' cost of `f(c)`, `f'(c)`
+  (times `d`) and the offset, zero at `nearest`.
 
 `nnLayer.productLine` (fields `Z`, `dr`, `p`, `tiny`) is the line of `a_i b_i` on a zonotope with an interval center of radii `dr`:
 `a b = c_b a + c_a b + (x y - c_a c_b)`. In order, with `Ga`, `Gb` the generator rows and `ra`, `rb` the radii: `A = sum |Ga| + ra`,
@@ -887,6 +906,15 @@ The layer kind `conv` is ONNX's Conv of the input `(C, H, W)` in C order (CORA.c
 `(out, Ho, Wo)`). It is `Layer.linear` at the stencil matrix (`Layer.conv`'s `tapMat`, the taps on a pad dropped): each entry a
 stored weight or zero. A residual Add of two branches with shared factors (CORA.cpp's `AddLayer`) is `zonotope.exactPlus` with `k`
 the earlier branch's generator count.
+
+The linear layers of CORA.cpp's NN port (CORA.cpp#290) are layer kinds too, each the map CORA.cpp builds:
+* `elementwiseAffine` (`scale`, `offset`, one entry or one per input): `Layer.elementwiseAffine`.
+* `batchNorm` (`scale`, `offset`, `mean`, `var` per channel, `epsilon`, `input` `(C, H, W)`, `p`): CORA.cpp's fold
+  `factor = scale / sqrt(var + epsilon)`, `bias = offset - mean factor` (rounded up), then `Layer.batchNorm`.
+* `avgPool` (`pool`, `input`, `stride` (default the pool), `pads`): the depthwise `conv` of `1 / (kh kw)` (rounded up).
+* `lipLinear` (`W`, `b`, `lambda`): row `i` of `W` and `b` divided by `max(|W_i| 1 / lambda, 1)` (rounded up), then `linear`.
+
+The last three enclose the folded map, not the exact one; `check_sound.py` compares with the exact map to a relative `2^-40`.
 
 `neuralNetwork.backwardBound` (fields `layers`, `x`, `r`, `C`; reply `lower`, a column) is CROWN's backward bound, CORA.cpp's
 `priv_backward_lower`: a lower bound of every row `C_q` on the outputs over the input box `|x' - x| <= r`. A layer is

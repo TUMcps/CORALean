@@ -115,6 +115,9 @@ public import CORALean.NN.Layers.Theorems.SquareChordTangentRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.OfBandEnclosesWhere
 public import CORALean.NN.Layers.Theorems.ExpChordRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.ReciprocalRelaxationEncloses
+public import CORALean.NN.Layers.Theorems.CubeRelaxationEncloses
+public import CORALean.NN.Layers.Theorems.InverseRelaxationEncloses
+public import CORALean.NN.Layers.Theorems.TrigRelaxationEncloses
 public import CORALean.NN.Layers.Theorems.ProductLineEncloses
 public import CORALean.NN.Layers.Theorems.SoftmaxSumBoundsEncloses
 public import CORALean.NN.Layers.Theorems.CrownReluLinesHold
