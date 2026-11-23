@@ -10,10 +10,15 @@ import CORALean.NN.Layers.Operations.TanhSingh
 import CORALean.NN.Layers.Operations.Tanh
 import CORALean.NN.Layers.Operations.LeakyRelu
 import CORALean.NN.Layers.Operations.Linear
+import CORALean.NN.Layers.Operations.Conv
 import CORALean.NN.Layers.Operations.ActivationPowers
 import CORALean.NN.Layers.Operations.Activation
 import CORALean.NN.Layers.Operations.SignRelaxation
 import CORALean.NN.Layers.Operations.SquareChordTangentRelaxation
+import CORALean.NN.Layers.Operations.ExpChordRelaxation
+import CORALean.NN.Layers.Operations.ReciprocalRelaxation
+import CORALean.NN.Layers.Operations.ProductLine
+import CORALean.NN.Layers.Operations.SoftmaxSumBounds
 import CORALean.NN.Layers.Operations.ReluRelaxation
 import CORALean.NN.Layers.Operations.ReluSlope
 import CORALean.NN.Layers.Theorems.ActivationPowersEncloses
@@ -32,8 +37,8 @@ polynomial zonotope, `neuralNetwork.evaluate` a list of layers to either: `linea
 `'singh'`, the default), `regression` (CORA's `'regression'`, with a sound error) or `curvature`
 (CORALean's tighter one). `regression_error` of `regression` is `bracket` (the default) or
 `extremum` (CORA's exact error). `errorForm` of a polynomial zonotope is `box` (the default) or
-`GI` (CORA's `add_approx_error_to_GI`). `poly` (`coeffs` per neuron, lowest degree first, error
-`d`): order `k`, fit given (`Layer.activationPowers`, `P`, error in `GI`). Order: oracle README.
+`GI` (CORA's `add_approx_error_to_GI`). `poly`: order `k`, fit given. `conv` is ONNX's Conv at its
+stencil; `relaxation`, `productLine`, `softmaxSumBounds` are CORA.cpp's lines. See oracle README.
 
 ## Inputs
 * `dops` – dtype operations
@@ -71,6 +76,77 @@ private inductive PolyMethod where
 
 /-- CORA.cpp's rounding margin of the square's band, `8 eps` of binary64, `2⁻⁴⁹` (exact). -/
 private def aux_squareMargin : 𝕋 := FloatOps.half^[49] FloatOps.one
+
+/-- CORA.cpp's rounding margin of the exponential's and the reciprocal's bands, `16 eps` of
+binary64, `2⁻⁴⁸` (exact). -/
+private def aux_bandMargin : 𝕋 := FloatOps.half^[48] FloatOps.one
+
+/-- CORA.cpp's `kTiny`, `1e-300` in binary64, the least width its exponential's chord divides by:
+the request's `tiny`, or that one (exact only at binary64). -/
+private def aux_tiny (dops : DtypeOps 𝕋) (req : Json) : Except String 𝕋 := do
+  let tj := (fieldOpt req "tiny").getD (Json.str "6032057205060441*2^-1049")
+  dops.readExact "tiny" (← scalarField (Json.mkObj [("tiny", tj)]) "tiny")
+
+/-- The natural numbers of the array `name` of `j`, exactly `len` of them, or `dflt` if absent. -/
+private def aux_nats (j : Json) (name : String) (len : ℕ) (dflt : List ℕ) :
+    Except String (List ℕ) := do
+  match fieldOpt j name with
+  | none => pure dflt
+  | some _ =>
+    let a ← arrField j name
+    if a.size ≠ len then throw s!"conv: `{name}` needs {len} entries, not {a.size}"
+    a.toList.mapM fun v => match v.getNat? with
+      | .ok k => pure k
+      | .error _ => throw s!"conv: `{name}` holds nonnegative integers"
+
+/-- The convolution `layer` (CORA.cpp's `Layer::conv2d`) on a set of dimension `n`: `Layer.linear`
+at the stencil matrix, `Layer.conv`'s `tapMat` with the taps on a pad dropped (they read zero), so
+every entry is a stored weight or zero. -/
+private def aux_convLayer (dops : DtypeOps 𝕋) {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
+    [∀ n, Plus (S n) (Vec ℝ n)] [Mtimes (Mat 𝕋) S] [IntervalOuter S 𝕋] [OfInterval S 𝕋]
+    (layer : Json) (n : ℕ) (X : S n) : Except String (Σ m, S m) := do
+  checkFields "conv" layer
+    ["kind", "kernel", "kshape", "input", "stride", "dilation", "pads", "groups", "b"]
+  -- the geometry
+  let dims ← aux_nats layer "input" 3 []
+  let ks ← aux_nats layer "kshape" 2 []
+  let st ← aux_nats layer "stride" 2 [1, 1]
+  let dl ← aux_nats layer "dilation" 2 [1, 1]
+  let pd ← aux_nats layer "pads" 4 [0, 0, 0, 0]
+  let groups := ((fieldOpt layer "groups").bind (·.getNat?.toOption)).getD 1
+  let (C, H, Wd) := (dims.getD 0 0, dims.getD 1 0, dims.getD 2 0)
+  let (kh, kw) := (ks.getD 0 0, ks.getD 1 0)
+  let (sh, sw, dh, dw) := (st.getD 0 1, st.getD 1 1, dl.getD 0 1, dl.getD 1 1)
+  let (pt, pl, pb, pr) := (pd.getD 0 0, pd.getD 1 0, pd.getD 2 0, pd.getD 3 0)
+  if C * H * Wd ≠ n then throw s!"conv: the input {C}x{H}x{Wd} is not the set's dimension {n}"
+  if groups = 0 ∨ C % groups ≠ 0 then throw s!"conv: `groups` {groups} must divide {C}"
+  if sh = 0 ∨ sw = 0 ∨ dh = 0 ∨ dw = 0 ∨ kh = 0 ∨ kw = 0 then
+    throw "conv: the kernel, the stride and the dilation must be positive"
+  -- the kernel, the padded input and the output
+  let cg := C / groups
+  let k := cg * kh * kw
+  let ⟨co, K⟩ ← parseMatColsFixed dops.readExact k (← field layer "kernel")
+  if co % groups ≠ 0 then throw s!"conv: `groups` {groups} must divide the {co} outputs"
+  if co = 0 then throw "conv: no outputs"
+  let (Hp, Wp) := (H + pt + pb, Wd + pl + pr)
+  let (eh, ew) := (dh * (kh - 1) + 1, dw * (kw - 1) + 1)
+  if Hp < eh ∨ Wp < ew then throw "conv: the kernel is larger than the padded input"
+  let (Ho, Wo) := ((Hp - eh) / sh + 1, (Wp - ew) / sw + 1)
+  let m := co * Ho * Wo
+  let b ← parseVecFixed dops.readExact m (← field layer "b")
+  -- tap `l = (ci, ky, kx)` of output `j = (o, y, x)`: the input it reads, none on a pad
+  let tap : ℕ → ℕ → Option ℕ := fun j l =>
+    let (o, y, x) := (j / (Ho * Wo), j / Wo % Ho, j % Wo)
+    let (ci, ky, kx) := (l / (kh * kw), l / kw % kh, l % kw)
+    let (py, px) := (y * sh + ky * dh, x * sw + kx * dw)
+    if pt ≤ py ∧ py < pt + H ∧ pl ≤ px ∧ px < pl + Wd then
+      some (((o / (co / groups) * cg + ci) * H + (py - pt)) * Wd + (px - pl))
+    else none
+  -- the stencil: the weight of the first tap reading the input, else zero (`tapEntry`'s scan)
+  let W : Mat 𝕋 m n := fun j i =>
+    Fin.foldr k (fun l acc => if tap j.1 l.1 = some i.1 then
+      (if h : j.1 / (Ho * Wo) < co then K ⟨_, h⟩ l else FloatOps.zero) else acc) FloatOps.zero
+  pure ⟨m, (Layer.linear (S := S) W b).enclose X⟩
 
 /-- One layer of the request on a set of the family `S`, of dimension `n`; the set of the new
 dimension. `method` picks the relaxation for sigmoid and tanh. -/
@@ -117,8 +193,9 @@ private def aux_runLayer (dops : DtypeOps 𝕋) {S : ℕ → Type} [∀ n, ContS
     checkFields "square" layer ["kind"]
     pure ⟨n, (Layer.activation (S := S) (n := n)
       (squareChordTangentRelaxation aux_squareMargin)).enclose X⟩
-  | k => throw s!"a layer's `kind` must be linear, relu, leakyRelu, sigmoid, tanh, sign or \
-      square, not `{k}` (`poly` only as the one layer of `nnLayer.evaluatePolyZonotope`)"
+  | "conv" => aux_convLayer dops layer n X
+  | k => throw s!"a layer's `kind` must be linear, conv, relu, leakyRelu, sigmoid, tanh, sign \
+      or square, not `{k}` (`poly` only as the one layer of `nnLayer.evaluatePolyZonotope`)"
 
 /-- The layer `poly` on the polynomial zonotope: the fits `coeffs` (a row per neuron) and their
 errors `d` as a relaxation that does not depend on the box. -/
@@ -134,18 +211,31 @@ private def aux_runPowers (dops : DtypeOps 𝕋) (layer : Json) (n : ℕ) (X : �
     pure ((Layer.activationPowers P).enclose X)
 
 /-- The relaxation of `kind` at every neuron's box `[l i, u i]`: `sign`, `square` (the chord-tangent
-band) or `relu` (CORALean's slope, or `alpha i` where the neuron crosses zero). -/
+band), `exp` and `reciprocal` (the chord bands, `k`, `p`, `tiny`) or `relu` (CORALean's slope, or
+`alpha i` where the neuron crosses zero). -/
 private def aux_relaxation (dops : DtypeOps 𝕋) (req : Json) : Resp := do
-  checkFields "relaxation" req ["kind", "l", "u", "alpha"]
+  checkFields "relaxation" req ["kind", "l", "u", "alpha", "k", "p", "tiny"]
   let ⟨n, l⟩ ← parseVecDyn dops.readExact (← field req "l")
   let u ← parseVecFixed dops.readExact n (← field req "u")
   let kind ← strField req "kind"
   if kind ≠ "relu" ∧ (fieldOpt req "alpha").isSome then
     throw s!"relaxation: `alpha` is for `relu`, not `{kind}`"
+  if kind ≠ "exp" ∧ ((fieldOpt req "k").isSome ∨ (fieldOpt req "tiny").isSome) then
+    throw s!"relaxation: `k` and `tiny` are for `exp`, not `{kind}`"
+  if kind ≠ "exp" ∧ kind ≠ "reciprocal" ∧ (fieldOpt req "p").isSome then
+    throw s!"relaxation: `p` is for `exp` and `reciprocal`, not `{kind}`"
   -- one relaxation per neuron: the ReLU's slope may differ from neuron to neuron
   let R : Fin n → Relaxation 𝕋 ← match kind with
     | "sign" => pure fun _ => signRelaxation
     | "square" => pure fun _ => squareChordTangentRelaxation aux_squareMargin
+    | "exp" => do
+      let k ← natField req "k"
+      let p ← natField req "p"
+      let τ ← aux_tiny dops req
+      pure fun _ => expChordRelaxation k p τ aux_bandMargin
+    | "reciprocal" => do
+      let p ← natField req "p"
+      pure fun _ => reciprocalRelaxation p aux_bandMargin
     | "relu" => match fieldOpt req "alpha" with
       | none => pure fun _ => reluRelaxation reluSlope
       | some aj => do
@@ -154,10 +244,55 @@ private def aux_relaxation (dops : DtypeOps 𝕋) (req : Json) : Resp := do
         pure fun i => reluRelaxation fun lo hi =>
           if FloatOps.le hi FloatOps.zero then FloatOps.zero
           else if FloatOps.le FloatOps.zero lo then FloatOps.one else a i
-    | k => throw s!"relaxation: `kind` must be sign, square or relu, not `{k}`"
+    | k => throw s!"relaxation: `kind` must be sign, square, exp, reciprocal or relu, not `{k}`"
   pure [("slope", printVec dops.showExact fun i => (R i).slope (l i) (u i)),
     ("offset", printVec dops.showExact fun i => (R i).offset (l i) (u i)),
     ("error", printVec dops.showExact fun i => (R i).error (l i) (u i))]
+
+/-- `N * 2⁻⁵²`, CORA.cpp's `N eps` of binary64 (exact for `N < 2⁵³`). -/
+private def aux_epsTimes (dops : DtypeOps 𝕋) (N : ℕ) : Except String 𝕋 := do
+  dops.readExact "eps" (← scalarField (Json.mkObj [("eps", Json.str s!"{N}*2^-52")]) "eps")
+
+/-- `nnLayer.productLine`: the lines of `a_i b_i`, `a` the first `n` rows of `Z` and `b` the rest,
+with the interval center's radii `dr` (none: zero; `E` is not read), at CORA.cpp's margins. -/
+private def aux_productLine (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "productLine" req ["Z", "dr", "p", "tiny"]
+  let dz ← parseZonotope dops.readExact (← field req "Z")
+  let p ← natField req "p"
+  let τ ← aux_tiny dops req
+  let m := dz.n
+  if m % 2 ≠ 0 then throw s!"productLine: `Z` needs an even dimension, not {m}"
+  let n := m / 2
+  let dr : Vec 𝕋 m ← match fieldOpt req "dr" with
+    | none => pure fun _ => FloatOps.zero
+    | some j => parseVecFixed dops.readExact m j
+  let q := dz.Z.h
+  let w₁ ← aux_epsTimes dops (2 * (q + 2) + 16)
+  let w₂ := aux_bandMargin (𝕋 := 𝕋)
+  if hm : 0 < m then
+    -- coordinate `i` of `a` is row `i`, of `b` row `n + i`
+    let row : ℕ → Fin m := fun i => ⟨i % m, Nat.mod_lt _ hm⟩
+    let line : Fin n → 𝕋 × 𝕋 := fun i =>
+      let (a, b) := (row i.1, row (n + i.1))
+      productLine p τ w₁ w₂ (dz.Z.c a) (dz.Z.c b) (fun j => dz.Z.G j a) (fun j => dz.Z.G j b)
+        (dr a) (dr b)
+    pure [("slope", printVec dops.showExact fun k : Fin m =>
+        if k.1 < n then dz.Z.c (row (n + k.1)) else dz.Z.c (row (k.1 - n))),
+      ("offset", printVec dops.showExact fun i => (line i).1),
+      ("error", printVec dops.showExact fun i => (line i).2)]
+  else throw "productLine: `Z` has no rows"
+
+/-- `nnLayer.softmaxSumBounds`: the box of `W e + b` for the exponentials `e` of `[l, u]`, at
+CORA.cpp's margin `(n + 4) eps`. -/
+private def aux_softmaxSumBounds (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "softmaxSumBounds" req ["W", "b", "l", "u", "k"]
+  let ⟨n, l⟩ ← parseVecDyn dops.readExact (← field req "l")
+  let u ← parseVecFixed dops.readExact n (← field req "u")
+  let ⟨m, W⟩ ← parseMatColsFixed dops.readExact n (← field req "W")
+  let b ← parseVecFixed dops.readExact m (← field req "b")
+  let k ← natField req "k"
+  let I := softmaxSumBounds k (← aux_epsTimes dops (n + 4)) W b l u
+  pure [("inf", printVec dops.showExact I.inf), ("sup", printVec dops.showExact I.sup)]
 
 /-- The layers of the list, in order, on the set. -/
 private def aux_runLayers (dops : DtypeOps 𝕋) {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
@@ -226,7 +361,8 @@ def networkOnZonotope (dops : DtypeOps 𝕋) (name : String) (req : Json) (n : �
   aux_runLayers dops (S := 𝒵[𝕋]) (← aux_method name req) (← arrField req "layers").toList ⟨n, X⟩
 
 /-- Every op of `nnLayer.`, without the prefix. -/
-def nnLayerOpNames : List String := [ "evaluateZonotope", "evaluatePolyZonotope", "relaxation" ]
+def nnLayerOpNames : List String :=
+  [ "evaluateZonotope", "evaluatePolyZonotope", "relaxation", "productLine", "softmaxSumBounds" ]
 
 /-- Every op of `neuralNetwork.`, without the prefix. -/
 def neuralNetworkOpNames : List String := [ "evaluate" ]
@@ -236,6 +372,8 @@ def neuralNetworkOpNames : List String := [ "evaluate" ]
 def handleNnLayerOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option Resp :=
   match op with
   | "relaxation" => some (aux_relaxation dops req)
+  | "productLine" => some (aux_productLine dops req)
+  | "softmaxSumBounds" => some (aux_softmaxSumBounds dops req)
   | "evaluateZonotope" | "evaluatePolyZonotope" => some (do
     checkFields op req ["layer", "Z", "P", "poly_method", "regression_error", "errorForm"]
     let layer ← field req "layer"

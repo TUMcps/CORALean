@@ -14,6 +14,7 @@ public import CORALean.Global.Float.ElemOverride
 public import CORALean.Global.Float.Log
 public import CORALean.Global.Float.Sqrt
 public import CORALean.Global.Float.SqrtDownCora
+public import CORALean.Global.Float.SqrtDownCoraLe
 public import CORALean.Global.Float.InverseHyperbolic
 public import CORALean.Global.Float.SinCos
 public import CORALean.Global.Float.TrigRange

@@ -32,7 +32,9 @@ arithmetic -- never floats:
   `decimal` at 60 digits -- the response must contain it (`CHECKS_INTERVAL`,
   `CHECKS_ZONOTOPE`); `minkDiff` is an inner approximation and is checked the other way round.
 * `nnLayer.relaxation`: the exact activation at a grid of every box lies within the error of the
-  line; `conZonotope.dualBound`: `h <= w' beta` at the feasible points of a grid of the box.
+  line (`exp` in 60-digit `decimal`); `nnLayer.productLine`: the products at the factors' corners
+  lie within the error of the line; `nnLayer.softmaxSumBounds`: the sums of the exponentials at a
+  grid of the box lie in the box; `conZonotope.dualBound`: `h <= w' beta` at the feasible points of a grid of the box.
 * `nnLayer.*` and `neuralNetwork.evaluate`: the exact network (`Fraction` for the linear and
   ReLU layers, `decimal` at 60 digits for sigmoid and tanh, the fit plus its error `d` for
   `poly`) at points of the input set lies in the hull of the output set (`check_nn_op`).
@@ -799,6 +801,8 @@ def nn_apply(layer, x):
         return [F((v > 0) - (v < 0)) for v in x]
     if kind == "square":
         return [v * v for v in x]
+    if kind == "conv":
+        return conv_apply(layer, x)
     if kind == "poly":
         # the fit given, at the edge `+d` of its error (the set holds every deviation up to `d`)
         _, _, C = parse_mat(layer["coeffs"])
@@ -812,20 +816,100 @@ def nn_apply(layer, x):
     raise ValueError(kind)
 
 
+def conv_apply(layer, x):
+    """ONNX's Conv of the point `x` (`input` `(C, H, W)` in C order): the kernel `(out, C / groups,
+    kh, kw)` as rows, `stride`, `dilation`, `pads` (top, left, bottom, right), `groups`, bias `b`."""
+    C, H, W = layer["input"]
+    kh, kw = layer["kshape"]
+    sh, sw = layer.get("stride", [1, 1])
+    dh, dw = layer.get("dilation", [1, 1])
+    pt, pl, pb, pr = layer.get("pads", [0, 0, 0, 0])
+    groups = layer.get("groups", 1)
+    co, _, K = parse_mat(layer["kernel"])
+    b = parse_vec(layer["b"])
+    cg = C // groups
+    Ho = (H + pt + pb - dh * (kh - 1) - 1) // sh + 1
+    Wo = (W + pl + pr - dw * (kw - 1) - 1) // sw + 1
+    out = []
+    for o in range(co):
+        g = o // (co // groups)
+        for y in range(Ho):
+            for xo in range(Wo):
+                acc = F(0)
+                for ci in range(cg):
+                    for ky in range(kh):
+                        for kx in range(kw):
+                            py, px = y * sh + ky * dh - pt, xo * sw + kx * dw - pl
+                            if 0 <= py < H and 0 <= px < W:
+                                acc += K[o][(ci * kh + ky) * kw + kx] * x[((g * cg + ci) * H + py) * W + px]
+                out.append(acc + b[(o * Ho + y) * Wo + xo])
+    return out
+
+
 def check_nn_relaxation(req, resp, fails):
-    """`nnLayer.relaxation`: at the ends, the middle, the stationary point of the square and a grid of
-    every box, `|f(t) - (slope t + offset)| <= error` exactly (`Fraction`)."""
+    """`nnLayer.relaxation`: at the ends, the middle, the stationary points (of the square, `log m`
+    of the exponential, `1` and `1 / sqrt(-m)` of the reciprocal) and a grid of every box,
+    `|f(t) - (slope t + offset)| <= error`, exactly (`Fraction`) or in 60-digit `Decimal` (`exp`)."""
+    kind = req["kind"]
     f = {"sign": lambda t: F((t > 0) - (t < 0)), "square": lambda t: t * t,
-         "relu": lambda t: max(t, F(0))}[req["kind"]]
+         "relu": lambda t: max(t, F(0)), "reciprocal": lambda t: 1 / max(t, F(1)),
+         "exp": lambda t: dec(t).exp()}[kind]
     lo, hi = parse_vec(req["l"]), parse_vec(req["u"])
     m, o, e = parse_vec(resp["slope"]), parse_vec(resp["offset"]), parse_vec(resp["error"])
     for i, (a, b) in enumerate(zip(lo, hi)):
         ts = [a + (b - a) * F(k, 16) for k in range(17)]
-        ts += [t for t in (F(0), m[i] / 2) if a <= t <= b]
+        ts += [t for t in (F(0), F(1), m[i] / 2) if a <= t <= b]
+        if kind == "exp" and m[i] > 0:
+            ts += [t for t in (F(dec(m[i]).ln()),) if a <= t <= b]
+        if kind == "reciprocal" and m[i] < 0:
+            ts += [t for t in (F(1 / dec(-m[i]).sqrt()),) if a <= t <= b]
         for t in ts:
-            if abs(f(t) - (m[i] * t + o[i])) > e[i]:
+            line = m[i] * t + o[i]
+            if kind == "exp":
+                dev, err = abs(f(t) - dec(line)), dec(e[i])
+            else:
+                dev, err = abs(f(t) - line), e[i]
+            if dev > err:
                 fails.append(f"id {req.get('id')}: nnLayer.relaxation: neuron {i} at {float(t)} "
-                             f"leaves the band by {float(abs(f(t) - (m[i] * t + o[i])) - e[i])}")
+                             f"leaves the band by {float(dev - err)}")
+                return
+
+
+def check_product_line(req, resp, fails):
+    """`nnLayer.productLine`: at the corners and the center of the factors and of the interval
+    center, `|a_i b_i - (c_b a_i + c_a b_i + offset_i)| <= error_i` exactly (`Fraction`)."""
+    import itertools
+    c, q, G, _, _ = parse_zonotope(req["Z"])
+    m = len(c)
+    n = m // 2
+    dr = parse_vec(req["dr"]) if "dr" in req else [F(0)] * m
+    o, e = parse_vec(resp["offset"]), parse_vec(resp["error"])
+    for beta in itertools.product([F(-1), F(0), F(1)], repeat=min(q, 6)):
+        beta = list(beta) + [F(0)] * (q - len(beta))
+        for i in range(n):
+            for sa, sb in itertools.product((-dr[i], F(0), dr[i]), (-dr[n + i], F(0), dr[n + i])):
+                a = c[i] + sum(G[i][j] * beta[j] for j in range(q)) + sa
+                b = c[n + i] + sum(G[n + i][j] * beta[j] for j in range(q)) + sb
+                if abs(a * b - (c[n + i] * a + c[i] * b + o[i])) > e[i]:
+                    fails.append(f"id {req.get('id')}: nnLayer.productLine: neuron {i} leaves the "
+                                 "band")
+                    return
+
+
+def check_softmax_sums(req, resp, fails):
+    """`nnLayer.softmaxSumBounds`: `W exp(d) + b` at a grid of the box `[l, u]` lies in
+    `[inf, sup]` (60-digit `Decimal`)."""
+    import itertools
+    m, n, W = parse_mat(req["W"])
+    b, lo, hi = parse_vec(req["b"]), parse_vec(req["l"]), parse_vec(req["u"])
+    inf, sup = parse_vec(resp["inf"]), parse_vec(resp["sup"])
+    for t in itertools.product(range(3), repeat=n):
+        d = [lo[j] + (hi[j] - lo[j]) * F(t[j], 2) for j in range(n)]
+        e = [dec(v).exp() for v in d]
+        for i in range(m):
+            v = sum(dec(W[i][j]) * e[j] for j in range(n)) + dec(b[i])
+            if not dec(inf[i]) <= v <= dec(sup[i]):
+                fails.append(f"id {req.get('id')}: nnLayer.softmaxSumBounds: row {i} leaves the box")
                 return
 
 
@@ -850,6 +934,12 @@ def check_nn_op(op, req, resp, fails):
     set lie in the output set's hull (`c +- sum |G| +- sum |GI| +- E`)."""
     if op == "nnLayer.relaxation":
         check_nn_relaxation(req, resp, fails)
+        return
+    if op == "nnLayer.productLine":
+        check_product_line(req, resp, fails)
+        return
+    if op == "nnLayer.softmaxSumBounds":
+        check_softmax_sums(req, resp, fails)
         return
     layers = [req["layer"]] if "layer" in req else req["layers"]
     out = resp["Z"] if "Z" in resp else resp["P"]

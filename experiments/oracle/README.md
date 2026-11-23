@@ -822,9 +822,11 @@ requires them in the output (`check_polyzono_op`).
 | `nnLayer.evaluateZonotope` | `layer`, `Z` (zonotope), `poly_method` | `Layer.linear`, `Layer.relu`, `Layer.leakyRelu`, `Layer.sigmoidSingh`, `Layer.tanhSingh` (or `Layer.sigmoidRegression`, `Layer.tanhRegression`, or `Layer.sigmoid`, `Layer.tanh`) at the zonotope; `Z` |
 | `nnLayer.evaluatePolyZonotope` | `layer`, `P` (polynomial zonotope), `poly_method`, `errorForm` | the same layers at the polynomial zonotope; `P` |
 | `neuralNetwork.evaluate` | `layers`, `Z` or `P`, `poly_method`, `errorForm` | the layers in order, each as above |
-| `nnLayer.relaxation` | `kind`, `l`, `u`, `alpha` | `signRelaxation`, `squareChordTangentRelaxation` or `reluRelaxation` per neuron (below); `slope`, `offset`, `error` |
+| `nnLayer.relaxation` | `kind`, `l`, `u`, `alpha`, `k`, `p`, `tiny` | `signRelaxation`, `squareChordTangentRelaxation`, `expChordRelaxation`, `reciprocalRelaxation` or `reluRelaxation` per neuron (below); `slope`, `offset`, `error` |
+| `nnLayer.productLine` | `Z` (dimension `2 n`), `dr`, `p`, `tiny` | `productLine` (`productLine_encloses`; CORA.cpp's `priv_product_line`) per pair `a_i`, `b_i` (rows `i` and `n + i`); `slope` (`2 n`: `c_b`, then `c_a`), `offset`, `error` (`n`) |
+| `nnLayer.softmaxSumBounds` | `W`, `b`, `l`, `u`, `k` | `softmaxSumBounds` (`softmaxSumBounds_encloses`; CORA.cpp's `aux_box_image` of a softmax's sums); `inf`, `sup` |
 
-A layer is `{"kind":"linear","W","b"}`, `{"kind":"relu"}`, `{"kind":"leakyRelu","alpha"}`, `{"kind":"sign"}`, `{"kind":"square"}`, `{"kind":"sigmoid","k"}`
+A layer is `{"kind":"linear","W","b"}`, `{"kind":"conv","kernel","kshape","input","stride","dilation","pads","groups","b"}`, `{"kind":"relu"}`, `{"kind":"leakyRelu","alpha"}`, `{"kind":"sign"}`, `{"kind":"square"}`, `{"kind":"sigmoid","k"}`
 or `{"kind":"tanh","k"}` (`k`, the depth of the exponential's reduction, is ignored at `nearest`). `poly_method`
 is `singh` (the default), `regression` (CORA's default `'regression'`) or `curvature`; anything else is refused.
 `regression_error`, for `regression` only (anything else refuses it), is `bracket` (the default) or `extremum`; the layers are then
@@ -852,6 +854,38 @@ zero (`u > 0`, `l < 0`; CORA.cpp's optimized slopes) and CORALean's elsewhere. T
   are zero at `nearest`, where this is CORA.cpp's `priv_square_line`.
 * **ReLU with `alpha`**: the ReLU's line below at the slope `alpha_i` (clamped into `[0, 1]`): `gap = max(u - alpha u, -(alpha l))`,
   `offset = error = gap / 2`.
+* **The bands** (`exp`, `reciprocal`; `Relaxation.ofBand`): a slope `m`, ends `lo <= f(x) - m x <= hi` on the box and a margin `b`.
+  The offset is `half(lo + hi)` (rounded down), the error `(half(hi - lo) + half((hi + lo)_up - (hi + lo)_down)) + b`, rounded
+  up; the middle term is zero at `nearest`.
+* **Exp** (`expChordRelaxation`; fields `k`, `p`, and `tiny`, CORA.cpp's `kTiny`, `1e-300` by default): `el = exp(l)` (down),
+  `eu = exp(u)` (up), `w = u - l`; `m = max(w > 0 ? (eu - el) / max(w, tiny) : el, 0)`. `hi = max(exp(l) - m l, exp(u) - m u)`
+  (up). `lo = m - m log(m)` if `m > 0` (the closed-form minimum, down), else `exp(l) - m l` if `m <= 0`, else `-(m u)` (a sound
+  format that decides neither). The margin is `(eu + m max(|l|, |u|)) * 2^-48` (CORA.cpp's `16 eps`). Sound on boxes with
+  `u <= 2^k / 2` (`expChordRelaxation_enclosesWhere`).
+* **Reciprocal** `1 / max(x, 1)` (`reciprocalRelaxation`; field `p`): `m = -((1 / max(l, 1)) (1 / max(u, 1)))` (quotients up),
+  `g(x) = 1 / max(x, 1) - m x`; `hi = max(max(g(l), g(u)), g(min(max(1, l), u)))` (up), `lo = min(g(l), s + s)` (down) with
+  `s = sqrt(-m)` (CORA's root from below, `sqrtDownCora`). The margin is `(1 + |m| max(|l|, |u|)) * 2^-48`
+  (`reciprocalRelaxation_encloses`).
+
+`nnLayer.productLine` (fields `Z`, `dr`, `p`, `tiny`) is the line of `a_i b_i` on a zonotope with an interval center of radii `dr`:
+`a b = c_b a + c_a b + (x y - c_a c_b)`. In order, with `Ga`, `Gb` the generator rows and `ra`, `rb` the radii: `A = sum |Ga| + ra`,
+`B = sum |Gb| + rb` (up), `lam = max(A > 0 and B > 0 ? sqrt(B / A) : 1, tiny)`. For `k` in `1`, `lam`: `S(k) = sum_j max(|(Ga_j k +
+Gb_j / k)_up|, |(...)_down|) + (ra k + rb (1 / k))`, `D(k)` the same with `-` (up). `lo = max(-(D(1)^2 / 4), -(D(lam)^2 / 4))`,
+`hi = min(S(1)^2 / 4, S(lam)^2 / 4)`. The offset is `half(lo + hi) - c_a c_b` (down), the error `(half(hi - lo) + (offset_up -
+offset)) + (max(hi, -lo) (2 (q + 2) + 16) 2^-52 + |c_a c_b| 2^-48)` (up): CORA.cpp's margin, and the offset's rounding, zero at
+`nearest`. The box `E` of `Z` is not read.
+
+`nnLayer.softmaxSumBounds` (fields `W`, `b`, `l`, `u`, `k`) bounds `W exp(d) + b` for `l <= d <= u`: `lo = exp(l)` (down),
+`hi = exp(u)` (up), `mid = half(lo + hi)` (down), `rad = half(hi - lo) + half((lo + hi)_up - (lo + hi)_down)` (up),
+`c = W mid + b` (down), `r = |W| rad`, `w = (r + (|W| |mid| + |b| + r) (n + 4) 2^-52) + (c_up - c)` (up); `inf = c - w`,
+`sup = c + w`. At `nearest` it is CORA.cpp's `aux_box_image`.
+
+The layer kind `conv` is ONNX's Conv of the input `(C, H, W)` in C order (CORA.cpp's `Layer::conv2d`): `kernel` is the
+`(out, C / groups, kh, kw)` kernel as an `out` by `C / groups * kh * kw` matrix, `kshape` is `[kh, kw]`, `stride`, `dilation`
+(default `[1, 1]`), `pads` (top, left, bottom, right; default zero), `groups` (default 1) and `b` (one entry per output
+`(out, Ho, Wo)`). It is `Layer.linear` at the stencil matrix (`Layer.conv`'s `tapMat`, the taps on a pad dropped): each entry a
+stored weight or zero. A residual Add of two branches with shared factors (CORA.cpp's `AddLayer`) is `zonotope.exactPlus` with `k`
+the earlier branch's generator count.
 
 An activation layer on a zonotope `(c, G, E)` of dimension `n` computes, in this order:
 
