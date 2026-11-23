@@ -133,6 +133,11 @@ public import CORALean.NN.Theorems.CrownNetBackwardLe
 public import CORALean.NN.Theorems.CrownNetBackwardBoundLe
 public import CORALean.NN.Theorems.CrownNetBackwardLeFloat
 public import CORALean.NN.Theorems.CrownNetBackwardBoundLeFloat
+public import CORALean.NN.Theorems.EvaluateGraphEncloses
+public import CORALean.NN.Theorems.GraphNetMaxPoolEval
+public import CORALean.NN.Theorems.GraphNetMaxPoolEncloses
+public import CORALean.NN.Theorems.GraphNetProductSumEval
+public import CORALean.NN.Theorems.GraphNetProductSumEncloses
 
 /-!
 # What a network's enclosure guarantees, collected

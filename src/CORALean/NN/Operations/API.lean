@@ -98,6 +98,12 @@ public import CORALean.NN.Operations.WeightNetworkNormalFormFloat
 public import CORALean.NN.Operations.InputNeuronOrderFloat
 public import CORALean.NN.Operations.CrownBackward
 public import CORALean.NN.Operations.CrownBackwardBound
+public import CORALean.NN.Operations.EvaluateGraph
+public import CORALean.NN.Operations.GraphEnvCons
+public import CORALean.NN.Operations.GraphNetMaxPool
+public import CORALean.NN.Operations.GraphNetMaxPoolFloat
+public import CORALean.NN.Operations.GraphNetProductSum
+public import CORALean.NN.Operations.GraphNetProductSumFloat
 public import CORALean.NN.Operations.CrownBackwardFloat
 public import CORALean.NN.Operations.CrownBackwardBoundFloat
 

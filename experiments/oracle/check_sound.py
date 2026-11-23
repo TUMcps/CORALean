@@ -37,9 +37,10 @@ arithmetic -- never floats:
   grid of the box lie in the box; `conZonotope.dualBound`: `h <= w' beta` at the feasible points of a grid of the box;
   `neuralNetwork.backwardBound`: `lower <= C N(x)` at the corners and the center of the input box,
   where every ReLU's input lies in its box `[l, u]` (else the fixture itself is wrong).
-* `nnLayer.*` and `neuralNetwork.evaluate`: the exact network (`Fraction` for the linear and
-  ReLU layers, `decimal` at 60 digits for sigmoid and tanh, the fit plus its error `d` for
-  `poly`) at points of the input set lies in the hull of the output set (`check_nn_op`).
+* `nnLayer.*`, `neuralNetwork.evaluate` and `neuralNetwork.evaluateGraph`: the exact network
+  (`Fraction` for the linear and ReLU layers, `decimal` at 60 digits for sigmoid and tanh, the fit
+  plus its error `d` for `poly`) at points of the input set lies in the hull of the output set
+  (`check_nn_op`).
 * `polyZonotope.*`, `interval.polyZonotope` and `zonotope.polyZonotope`: points of the input set (the
   center, the corners of the first four factors, half the others, the independent generators at
   `+-1`) lie in the hull of the output (`check_polyzono_op`); `plus`, `mtimes`, `evalPowers` and
@@ -788,6 +789,35 @@ def nn_points(req):
 FOLDED_KINDS = ("batchNorm", "avgPool", "lipLinear")
 
 
+def graph_apply(layers, x):
+    """The exact graph network of `neuralNetwork.evaluateGraph` on a point: layer `k` reads its
+    `source` (`-1` the input, by default `k - 1`) through `W`, adds `b` and each residual's source
+    through `R` (the identity without one), then its activation; the last output."""
+    outs = {-1: x}
+    for k, layer in enumerate(layers):
+        _, _, W = parse_mat(layer["W"])
+        b = parse_vec(layer["b"])
+        v = outs[layer.get("source", k - 1)]
+        z = [sum(W[i][j] * v[j] for j in range(len(v))) + b[i] for i in range(len(W))]
+        for r in layer.get("residuals", []):
+            u = outs[r["source"]]
+            R = parse_mat(r["R"])[2] if "R" in r else [[F(int(i == j)) for j in range(len(u))]
+                                                        for i in range(len(u))]
+            z = [z[i] + sum(R[i][j] * u[j] for j in range(len(u))) for i in range(len(z))]
+        act = layer.get("activation", "identity")
+        if act == "relu":
+            z = [max(v, F(0)) for v in z]
+        elif act == "sign":
+            z = [F((v > 0) - (v < 0)) for v in z]
+        elif act == "square":
+            z = [v * v for v in z]
+        elif act == "product":
+            h = len(z) // 2
+            z = [z[i] * z[h + i] for i in range(h)] + [F(0)] * h
+        outs[k] = z
+    return outs[len(layers) - 1]
+
+
 def nn_apply(layer, x):
     """The exact layer on a point: `Fraction` where it is rational, else `Decimal`."""
     kind = layer["kind"]
@@ -1029,7 +1059,8 @@ def check_nn_op(op, req, resp, fails):
     if op == "neuralNetwork.backwardBound":
         check_backward_bound(req, resp, fails)
         return
-    layers = [req["layer"]] if "layer" in req else req["layers"]
+    graph = op == "neuralNetwork.evaluateGraph"
+    layers = [] if graph else [req["layer"]] if "layer" in req else req["layers"]
     out = resp["Z"] if "Z" in resp else resp["P"]
     c = parse_vec(out["c"])
     _, h, G = parse_mat(out["G"])
@@ -1045,6 +1076,8 @@ def check_nn_op(op, req, resp, fails):
     # against the exact one to a relative 2^-40
     folded = any(layer["kind"] in FOLDED_KINDS for layer in layers)
     for x in nn_points(req):
+        if graph:
+            x = graph_apply(req["layers"], x)
         for layer in layers:
             x = nn_apply(layer, x)
         for i in range(n):
