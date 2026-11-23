@@ -136,6 +136,9 @@ public import CORALean.NN.Layers.Operations.SquareChordTangentRelaxation
 public import CORALean.NN.Layers.Operations.RelaxationOfBand
 public import CORALean.NN.Layers.Operations.ExpChordRelaxation
 public import CORALean.NN.Layers.Operations.ReciprocalRelaxation
+public import CORALean.NN.Layers.Operations.CubeRelaxation
+public import CORALean.NN.Layers.Operations.InverseRelaxation
+public import CORALean.NN.Layers.Operations.TrigRelaxation
 public import CORALean.NN.Layers.Operations.ProductLine
 public import CORALean.NN.Layers.Operations.SoftmaxSumBounds
 public import CORALean.NN.Layers.Operations.CrownReluLines

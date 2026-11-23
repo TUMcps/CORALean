@@ -785,6 +785,9 @@ def nn_points(req):
                    + sum(GI[i][j] * b[j] for j in range(q)) for i in range(len(c))]
 
 
+FOLDED_KINDS = ("batchNorm", "avgPool", "lipLinear")
+
+
 def nn_apply(layer, x):
     """The exact layer on a point: `Fraction` where it is rational, else `Decimal`."""
     kind = layer["kind"]
@@ -805,6 +808,43 @@ def nn_apply(layer, x):
         return [v * v for v in x]
     if kind == "conv":
         return conv_apply(layer, x)
+    if kind == "elementwiseAffine":
+        sc, of = parse_vec(layer["scale"]), parse_vec(layer["offset"])
+        sc, of = (sc * len(x) if len(sc) == 1 else sc), (of * len(x) if len(of) == 1 else of)
+        return [sc[i] * x[i] + of[i] for i in range(len(x))]
+    if kind == "batchNorm":
+        # the exact map; the oracle encloses CORA.cpp's map folded in floats (FOLDED_SLACK)
+        C, H, W = layer["input"]
+        per = {k: parse_vec(layer[k]) for k in ("scale", "offset", "mean", "var")}
+        per = {k: (v * C if len(v) == 1 else v) for k, v in per.items()}
+        eps = parse_scalar(layer["epsilon"])
+        d = [dec(F(v)) if not isinstance(v, Decimal) else v for v in x]
+        out = []
+        for i, v in enumerate(d):
+            ch = i // (H * W)
+            sd = (dec(per["var"][ch] + eps)).sqrt()
+            out.append(dec(per["scale"][ch]) * (v - dec(per["mean"][ch])) / sd + dec(per["offset"][ch]))
+        return out
+    if kind == "avgPool":
+        C, H, W = layer["input"]
+        kh, kw = layer["pool"]
+        k = F(1, kh * kw)
+        conv = {"kernel": {"rows": C, "cols": kh * kw, "data": [f"{1}*2^0"] * (C * kh * kw)},
+                "kshape": [kh, kw], "input": layer["input"], "stride": layer.get("stride", [kh, kw]),
+                "pads": layer.get("pads", [0, 0, 0, 0]), "groups": C}
+        Ho = (H + conv["pads"][0] + conv["pads"][2] - kh) // conv["stride"][0] + 1
+        Wo = (W + conv["pads"][1] + conv["pads"][3] - kw) // conv["stride"][1] + 1
+        conv["b"] = {"rows": C * Ho * Wo, "cols": 1, "data": ["0*2^0"] * (C * Ho * Wo)}
+        return [k * v for v in conv_apply(conv, x)]
+    if kind == "lipLinear":
+        _, _, W = parse_mat(layer["W"])
+        b = parse_vec(layer["b"])
+        lam = parse_scalar(layer["lambda"])
+        out = []
+        for i in range(len(W)):
+            nrm = max(sum(abs(w) for w in W[i]) / lam, F(1))
+            out.append((sum(W[i][j] * x[j] for j in range(len(x))) + b[i]) / nrm)
+        return out
     if kind == "poly":
         # the fit given, at the edge `+d` of its error (the set holds every deviation up to `d`)
         _, _, C = parse_mat(layer["coeffs"])
@@ -850,12 +890,16 @@ def conv_apply(layer, x):
 
 def check_nn_relaxation(req, resp, fails):
     """`nnLayer.relaxation`: at the ends, the middle, the stationary points (of the square, `log m`
-    of the exponential, `1` and `1 / sqrt(-m)` of the reciprocal) and a grid of every box,
-    `|f(t) - (slope t + offset)| <= error`, exactly (`Fraction`) or in 60-digit `Decimal` (`exp`)."""
+    of the exponential, `1` and `1 / sqrt(-m)` of the reciprocal and the inverse, `+-sqrt(m / 3)` of
+    the cube, the multiples of `pi / 2` for sin and cos) and a grid of every box,
+    `|f(t) - (slope t + offset)| <= error`, exactly (`Fraction`) or in 60-digit `Decimal` (`exp`,
+    `sin`, `cos`)."""
     kind = req["kind"]
     f = {"sign": lambda t: F((t > 0) - (t < 0)), "square": lambda t: t * t,
          "relu": lambda t: max(t, F(0)), "reciprocal": lambda t: 1 / max(t, F(1)),
-         "exp": lambda t: dec(t).exp()}[kind]
+         "exp": lambda t: dec(t).exp(), "cube": lambda t: t ** 3, "inverse": lambda t: 1 / t,
+         "sin": lambda t: decimal_trig(dec(t), True), "cos": lambda t: decimal_trig(dec(t), False)}[kind]
+    decimal_kind = kind in ("exp", "sin", "cos")
     lo, hi = parse_vec(req["l"]), parse_vec(req["u"])
     m, o, e = parse_vec(resp["slope"]), parse_vec(resp["offset"]), parse_vec(resp["error"])
     for i, (a, b) in enumerate(zip(lo, hi)):
@@ -863,11 +907,20 @@ def check_nn_relaxation(req, resp, fails):
         ts += [t for t in (F(0), F(1), m[i] / 2) if a <= t <= b]
         if kind == "exp" and m[i] > 0:
             ts += [t for t in (F(dec(m[i]).ln()),) if a <= t <= b]
-        if kind == "reciprocal" and m[i] < 0:
+        if kind in ("reciprocal", "inverse") and m[i] < 0:
             ts += [t for t in (F(1 / dec(-m[i]).sqrt()),) if a <= t <= b]
+        if kind == "cube" and m[i] > 0:
+            r = F((dec(m[i]) / 3).sqrt())
+            ts += [t for t in (r, -r) if a <= t <= b]
+        if kind in ("sin", "cos"):
+            # the extrema: the multiples of pi / 2 in the box
+            half_pi = F(decimal_pi() / 2)
+            j0 = int(a / half_pi) - 1
+            ts += [j * half_pi for j in range(j0, j0 + int((b - a) / half_pi) + 3)
+                   if a <= j * half_pi <= b]
         for t in ts:
             line = m[i] * t + o[i]
-            if kind == "exp":
+            if decimal_kind:
                 dev, err = abs(f(t) - dec(line)), dec(e[i])
             else:
                 dev, err = abs(f(t) - line), e[i]
@@ -988,12 +1041,16 @@ def check_nn_op(op, req, resp, fails):
     hi = [dec(c[i] + sum(abs(g) for g in G[i]) + sum(abs(g) for g in gi[i]) + esup[i])
           for i in range(n)]
     slack = Decimal(10) ** -40
+    # a layer CORA.cpp folds in floats (FOLDED_KINDS): the map enclosed is the folded one, checked
+    # against the exact one to a relative 2^-40
+    folded = any(layer["kind"] in FOLDED_KINDS for layer in layers)
     for x in nn_points(req):
         for layer in layers:
             x = nn_apply(layer, x)
         for i in range(n):
             y = dec(x[i]) if isinstance(x[i], F) else x[i]
-            if y < lo[i] - slack or y > hi[i] + slack:
+            tol = slack + (Decimal(2) ** -40 * (1 + abs(y)) if folded else 0)
+            if y < lo[i] - tol or y > hi[i] + tol:
                 fails.append(f"id {req.get('id')}: {op}: output {i} = {float(y)} leaves "
                              f"[{float(lo[i])}, {float(hi[i])}]")
                 return
