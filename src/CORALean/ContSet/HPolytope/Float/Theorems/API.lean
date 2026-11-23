@@ -42,6 +42,8 @@ public import CORALean.ContSet.HPolytope.Float.Theorems.MinkDiffOfInner
 public import CORALean.ContSet.HPolytope.Float.Theorems.MinusOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.MtimesOfOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeConstraintsOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeConstraintsCoraOuter
+public import CORALean.ContSet.HPolytope.Float.Theorems.ScaleRowsDivOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.NormalizeRowsOuter
 public import CORALean.ContSet.HPolytope.Float.Theorems.NotInner
 public import CORALean.ContSet.HPolytope.Float.Theorems.OriginExact

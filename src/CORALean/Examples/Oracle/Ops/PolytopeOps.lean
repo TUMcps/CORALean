@@ -13,6 +13,7 @@ import CORALean.ContSet.HPolytope.Float.Operations.Isequal
 import CORALean.ContSet.HPolytope.Float.Operations.Lift
 import CORALean.ContSet.HPolytope.Float.Operations.MinkDiffOf
 import CORALean.ContSet.HPolytope.Float.Operations.NormalizeConstraints
+import CORALean.ContSet.HPolytope.Float.Operations.NormalizeConstraintsCora
 import CORALean.ContSet.HPolytope.Float.Operations.Not
 import CORALean.ContSet.HPolytope.Float.Operations.Origin
 import CORALean.ContSet.HPolytope.Float.Operations.ProjectHighDim
@@ -224,6 +225,16 @@ def handlePolyNormalizeConstraints (dops : DtypeOps 𝕋) (req : Json) : Resp :=
   let dom ← parseIntervalVecFixed dops.readExact d.n (← field req "dom")
   pure [aux_hSet dops (HPolytope.normalizeConstraints d.P dom)]
 
+/-- `polytope.normalizeConstraintsCora`: CORA.cpp's order, every row divided (not multiplied by the
+reciprocal) by its right-hand side's magnitude, an equality by the right-hand side itself,
+`HPolytope.normalizeConstraintsCora`, over the box `dom`. -/
+def handlePolyNormalizeConstraintsDivide (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "normalizeConstraintsCora" req ["P", "dom", "type"]
+  checkStrOption "normalizeConstraintsCora" req "type" "b"
+  let d ← aux_h "normalizeConstraintsCora" dops req "P"
+  let dom ← parseIntervalVecFixed dops.readExact d.n (← field req "dom")
+  pure [aux_hSet dops (HPolytope.normalizeConstraintsCora d.P dom)]
+
 /-- `polytope.reduceOverDomain`: the single halfspace over the box `dom` (`p` Newton steps),
 `type` `outer` or `inner`, `HPolytope.reduceOverDomain`. -/
 def handlePolyReduceOverDomain (dops : DtypeOps 𝕋) (req : Json) : Resp := do
@@ -270,7 +281,7 @@ def polytopeOpNames : List String :=
     "empty", "enclosePoints", "interval", "isBounded", "isFullDim", "isIntersecting", "isequal",
     "lift", "minus", "mtimes", "or", "origin", "plus", "project", "projectHighDim", "representsa",
     "supportFunc", "zonotope", "ellipsoid", "zonoBundle", "not", "normalizeConstraints",
-    "reduceOverDomain", "minkDiff", "minkDiffCora" ]
+    "normalizeConstraintsCora", "reduceOverDomain", "minkDiff", "minkDiffCora" ]
 
 /-- `op` of `polytope.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -328,6 +339,7 @@ def handlePolytopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option 
   | "isIntersecting" => some (handlePolyIsIntersecting dops req)
   | "not" => some (handlePolyNot dops req)
   | "normalizeConstraints" => some (handlePolyNormalizeConstraints dops req)
+  | "normalizeConstraintsCora" => some (handlePolyNormalizeConstraintsDivide dops req)
   | "reduceOverDomain" => some (handlePolyReduceOverDomain dops req)
   | "minkDiff" => some (handlePolyMinkDiff dops req)
   | "minkDiffCora" => some (handlePolyMinkDiffBoxRad dops req)

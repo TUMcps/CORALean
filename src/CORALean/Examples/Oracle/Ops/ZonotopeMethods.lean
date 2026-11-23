@@ -21,6 +21,7 @@ import CORALean.ContSet.Zonotope.Float.Operations.ExactPlus
 import CORALean.ContSet.Zonotope.Float.Operations.FilterOut
 import CORALean.ContSet.Zonotope.Float.Operations.GeneratorLength
 import CORALean.ContSet.Zonotope.Float.Operations.IntersectStrip
+import CORALean.ContSet.Zonotope.Float.Operations.IntersectStripCora
 import CORALean.ContSet.Zonotope.Float.Operations.IsFullDim
 import CORALean.ContSet.Zonotope.Float.Operations.Isequal
 import CORALean.ContSet.Zonotope.Float.Operations.LinComb
@@ -372,6 +373,18 @@ def handleZonoIntersectStrip (dops : DtypeOps 𝕋) (req : Json) : Resp := do
     pure [aux_zField dops "Z" (Zonotope.intersectStrip C φ y (h ▸ Λ) dz.Z)]
   else throw s!"intersectStrip: `Lambda` has {r} rows, the dimension of `Z` is {dz.n}"
 
+/-- `zonotope.intersectStripCora`: the same strips with CORA.cpp's center `c + Lambda (y - C c)`. -/
+def handleZonoIntersectStripShifted (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "intersectStripCora" req ["Z", "C", "phi", "y", "Lambda"]
+  let dz ← parseZonotope dops.readExact (← field req "Z")
+  let ⟨p, C⟩ ← parseMatColsFixed dops.readExact dz.n (← field req "C")
+  let φ ← parseVecFixed dops.readExact p (← field req "phi")
+  let y ← parseVecFixed dops.readExact p (← field req "y")
+  let ⟨r, Λ⟩ ← parseMatColsFixed dops.readExact p (← field req "Lambda")
+  if h : r = dz.n then
+    pure [aux_zField dops "Z" (Zonotope.intersectStripCora C φ y (h ▸ Λ) dz.Z)]
+  else throw s!"intersectStripCora: `Lambda` has {r} rows, the dimension of `Z` is {dz.n}"
+
 /-- `zonotope.rotate`: the rotation by `angle` in the plane of axes `i`, `j`, `p` Newton steps. -/
 def handleZonoRotate (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   checkFields "rotate" req ["Z", "p", "i", "j", "angle"]
@@ -661,8 +674,8 @@ def zonotopeOpNames : List String :=
   [ "abs", "and", "box", "cartProd", "center", "compact", "constrSat", "contains", "convHull",
     "cubMap", "dominantDirections", "enclose", "encloseMany", "enlarge", "boundaryPoint", "minus",
     "projectOnHyperplane", "enclosePoints", "exactPlus",
-    "filterOut", "generatorLength", "intersectStrip", "isBounded", "isFullDim", "isIntersecting",
-    "isIntersectingApprox",
+    "filterOut", "generatorLength", "intersectStrip", "intersectStripCora", "isBounded",
+    "isFullDim", "isIntersecting", "isIntersectingApprox",
     "isequal", "lift", "minnorm", "norm", "origin", "project", "projectHighDim", "quadMap",
     "quadMapTri",
     "radius", "radiusCora", "representsa", "rotate", "split", "splitFirstGen", "splitLongestGen",
@@ -709,6 +722,8 @@ def handleZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option 
   | "filterOut" => some (handleZonoFilterOut dops req)
   | "generatorLength" => some (handleZonoGeneratorLength dops req)
   | "intersectStrip" => some (handleZonoIntersectStrip dops req)
+  -- the same strips with CORA.cpp's center
+  | "intersectStripCora" => some (handleZonoIntersectStripShifted dops req)
   | "isBounded" => some (aux_test op dops req [] fun _ => true)
   | "isFullDim" => some (handleZonoIsFullDim dops req)
   | "isIntersecting" => some (handleZonoIsIntersecting dops req)

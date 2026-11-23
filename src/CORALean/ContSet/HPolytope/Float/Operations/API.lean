@@ -51,6 +51,8 @@ public import CORALean.ContSet.HPolytope.Float.Operations.RecipUp
 public import CORALean.ContSet.HPolytope.Float.Operations.ScaleRows
 public import CORALean.ContSet.HPolytope.Float.Operations.NormalizeRows
 public import CORALean.ContSet.HPolytope.Float.Operations.NormalizeConstraints
+public import CORALean.ContSet.HPolytope.Float.Operations.NormalizeConstraintsCora
+public import CORALean.ContSet.HPolytope.Float.Operations.ScaleRowsDiv
 public import CORALean.ContSet.HPolytope.Float.Operations.EqScalar
 public import CORALean.ContSet.HPolytope.Float.Operations.Restrict
 public import CORALean.ContSet.HPolytope.Float.Operations.DropZeros

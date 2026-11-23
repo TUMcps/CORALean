@@ -37,6 +37,7 @@ import CORALean.ContSet.Interval.Float.Operations.Power
 import CORALean.ContSet.Interval.Float.Operations.Prod1
 import CORALean.ContSet.Interval.Float.Operations.ProjectHighDim
 import CORALean.ContSet.Interval.Float.Operations.QuadMap
+import CORALean.ContSet.Interval.Float.Operations.QuadMapCora
 import CORALean.ContSet.Interval.Float.Operations.RadiusSq
 import CORALean.ContSet.Interval.Float.Operations.Recip
 import CORALean.ContSet.Interval.Float.Operations.Round
@@ -512,8 +513,8 @@ def intervalOpNames : List String :=
     "representsa", "contains", "isIntersecting", "center", "rad", "radius", "norm", "volume",
     "supportFunc", "supportFuncCora", "infimum", "supremum", "project", "lift", "projectHighDim",
     "split", "partition", "boundaryPoint", "cartProd", "projectOnHyperplane", "enclosePoints",
-    "quadMap", "mtimes", "transpose", "ctranspose", "sum", "prod", "diag", "mpower", "tril",
-    "triu", "kron", "horzcat", "vertcat", "cat", "empty", "origin", "Inf", "dirac",
+    "quadMap", "quadMapCora", "mtimes", "transpose", "ctranspose", "sum", "prod", "diag", "mpower",
+    "tril", "triu", "kron", "horzcat", "vertcat", "cat", "empty", "origin", "Inf", "dirac",
     "intervalMatrix", "zonotope", "vertices", "reduce" ]
 
 /-- `op` of `interval.`, run; `none` for a name this file does not serve. -/
@@ -619,6 +620,11 @@ def handleIntervalOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option 
   | "projectOnHyperplane" => some (handleIntervalProjectOnHyperplane dops req)
   | "enclosePoints" => some (handleIntervalEnclosePoints dops req)
   | "quadMap" => some (handleIntervalQuadMap dops req)
+  | "quadMapCora" => some (do
+      checkFields op req ["I", "Q"]
+      let b ← parseBox dops.readExact (← field req "I")
+      let qs ← (← arrField req "Q").mapM (aux_square dops b.n)
+      pure [aux_boxField dops "I" (Interval.quadMapCora (m := qs.size) (fun k => qs[k]) b.I)])
   -- interval matrices
   | "mtimes" => some (handleIntervalMtimes dops req)
   | "transpose" => some (aux_matUnary op dops req [] fun I =>

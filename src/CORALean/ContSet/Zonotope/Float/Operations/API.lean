@@ -72,6 +72,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Isequal
 public import CORALean.ContSet.Zonotope.Float.Operations.CompactZeros
 public import CORALean.ContSet.Zonotope.Float.Operations.CompactZerosFrom
 public import CORALean.ContSet.Zonotope.Float.Operations.IntersectStrip
+public import CORALean.ContSet.Zonotope.Float.Operations.IntersectStripCora
 public import CORALean.ContSet.Zonotope.Float.Operations.Abs
 public import CORALean.ContSet.Zonotope.Float.Operations.MethCBasis
 public import CORALean.ContSet.Zonotope.Float.Operations.BasisInverse

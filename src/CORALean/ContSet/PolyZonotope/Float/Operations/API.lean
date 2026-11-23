@@ -155,6 +155,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Operations.ReduceCora
 public import CORALean.ContSet.PolyZonotope.Float.Operations.EvalPowers
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitFactor
 public import CORALean.ContSet.PolyZonotope.Float.Operations.FoldConstants
+public import CORALean.ContSet.PolyZonotope.Float.Operations.CompactCora
 public import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapCora
 public import CORALean.ContSet.PolyZonotope.Float.Operations.SplitLongest
 

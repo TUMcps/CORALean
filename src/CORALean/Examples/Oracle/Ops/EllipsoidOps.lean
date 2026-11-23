@@ -1,4 +1,5 @@
 import CORALean.ContSet.Conversion.Float.Operations.Ellipsoid_to_Zonotope
+import CORALean.ContSet.Ellipsoid.Float.Instances
 import CORALean.ContSet.Ellipsoid.Float.Operations.AndPoint
 import CORALean.ContSet.Ellipsoid.Float.Operations.Basic
 import CORALean.ContSet.Ellipsoid.Float.Operations.CartProd
@@ -220,7 +221,7 @@ def handleEllipsoidVertices (dops : DtypeOps 𝕋) (req : Json) : Resp := do
 def ellipsoidOpNames : List String :=
   [ "and", "cartProd", "center", "construct", "contains", "ellipsoidNorm", "enclosePoints",
     "interval", "intersectStrip", "isBadDir", "isBigger", "isBounded", "isFullDim", "isequal",
-    "lift", "mtimes", "mtimesCora", "norm", "origin", "project", "radius", "representsa",
+    "lift", "mtimes", "mtimesCora", "norm", "origin", "project", "radius", "reduce", "representsa",
     "vertices", "zonotope" ]
 
 /-- `op` of `ellipsoid.`, run; `none` for a name this file does not serve. -/
@@ -295,6 +296,11 @@ def handleEllipsoidOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option
   | "origin" => some (do
       checkFields op req ["n"]
       pure [aux_set dops (Ellipsoid.origin (𝕋 := 𝕋) (← natField req "n"))])
+  -- CORA's `reduce` has an empty body: an ellipsoid stays itself
+  | "reduce" => some (do
+      checkFields op req ["E", "order", "method"]
+      let d ← parseEllipsoid dops.readExact (← field req "E")
+      pure [aux_set dops (Reduce.reduce d.E (← natField req "order"))])
   -- the arms from `project` on
   | "project" => some (do
       checkFields op req ["E", "dims"]

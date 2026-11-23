@@ -6,6 +6,8 @@ import CORALean.ContSet.Conversion.Float.Theorems.PolyZonotopeZonotopeFoldContai
 import CORALean.ContSet.PolyZonotope.Float.Instances
 import CORALean.ContSet.PolyZonotope.Float.Operations.CartProd
 import CORALean.ContSet.PolyZonotope.Float.Operations.Construct
+import CORALean.ContSet.PolyZonotope.Float.Operations.CompactCora
+import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactCoraOuter
 import CORALean.ContSet.PolyZonotope.Float.Operations.ExactPlus
 import CORALean.ContSet.PolyZonotope.Float.Operations.QuadMapCora
 import CORALean.ContSet.PolyZonotope.Float.Theorems.QuadMapCoraOuter
@@ -22,6 +24,7 @@ import CORALean.ContSet.PolyZonotope.Float.Theorems.EncloseSharedOuter
 import CORALean.ContSet.PolyZonotope.Float.Operations.Mtimes
 import CORALean.ContSet.PolyZonotope.Float.Operations.OfZonotope
 import CORALean.ContSet.PolyZonotope.Float.Operations.Plus
+import CORALean.ContSet.PolyZonotope.Float.Operations.Project
 import CORALean.Examples.Oracle.Ops.PolyZonotopeCodec
 import CORALean.Examples.Oracle.Ops.PolyZonotopeHash
 import CORALean.Examples.Oracle.Ops.SetCodec
@@ -201,7 +204,7 @@ private def aux_enclose {n : Nat} (P Q : PolyZonotope (Vec 𝕋 n)) (idP idQ : A
 def polyZonotopeOpNames : List String :=
   [ "constructor", "plus", "mtimes", "zonotope", "interval", "reduce", "enclose", "dim",
     "evalPowers", "center", "cartProd", "exactPlus",
-    "isIntersecting", "splitDepFactor", "splitLongestGen", "quadMap" ]
+    "isIntersecting", "splitDepFactor", "splitLongestGen", "quadMap", "project", "compact" ]
 
 /-- `op` of `polyZonotope.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -262,6 +265,25 @@ def handlePolyZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opt
     let d ← aux_parse dops (← field req "P")
     let ⟨_, M⟩ ← parseMatColsFixed dops.readExact d.n (← field req "M")
     let R := (PolyZonotope.mtimes M d.pZ).materialise
+    pure [("P", printPolyZonotopeIds dops.showExact R d.id)])
+  -- CORA.cpp's `compact`: constants into the center, unused factors dropped, the constructor
+  | "compact" => some (do
+    checkFields op req ["P"]
+    let d ← aux_parse dops (← field req "P")
+    let F := d.pZ.foldConstants
+    -- the identifiers of the factors some column still reads, in order
+    let used := (Array.range F.p).filter fun k =>
+      (List.range F.h).any fun l => if hk : k < F.p then
+        if hl : l < F.h then F.E ⟨k, hk⟩ ⟨l, hl⟩ != 0 else false else false
+    let ids := used.map fun k => d.id.getD k 0
+    let R := (d.pZ.compactCora (hashedColumnOrder #[])).materialise
+    pure [("P", printPolyZonotopeIds dops.showExact R ids)])
+  -- the coordinates `dims`, selected without arithmetic
+  | "project" => some (do
+    checkFields op req ["P", "dims"]
+    let d ← aux_parse dops (← field req "P")
+    let ⟨_, dims⟩ ← indexArrField req "dims" d.n
+    let R := (PolyZonotope.project d.pZ dims).materialise
     pure [("P", printPolyZonotopeIds dops.showExact R d.id)])
   -- `pZ + (Q | Z | I | v)`
   | "plus" => some (do
