@@ -197,6 +197,7 @@ Interval ops (fields besides `I`; result `I` unless said):
 | `projectOnHyperplane` | `c` (unit normal column), `d` (scalar) | `ContSet.projectOnHyperplaneFloat` at `ℐ𝒱` |
 | `enclosePoints` | `points` (columns), no `I` | `Interval.enclosePoints` |
 | `quadMap` | `Q` (array of `n x n` matrices) | `Interval.quadMap` |
+| `quadMapCora` | `Q` (array of `n x n` matrices) | `Interval.quadMapCora` (`quadMapCora_outer`): the box of `Zonotope.quadMapTri` of the box's zonotope, CORA.cpp's order |
 | `mtimes` | `M` (matrix or interval matrix), `I` (box or interval matrix) | `Interval.mtimes`, `.mtimesIntervalMat`, `.matMul` |
 | `transpose`, `ctranspose`, `prod`, `diag`, `kron`, `horzcat`, `vertcat` | `I2` (`kron`, `horzcat`, `vertcat`) | `Interval.transpose`, `.ctranspose`, `.prod₁` (result a `1 x n` row, as CORA's), `.diag`/`.diagVec`, `.kron`, `.horzcat`, `.vertcat` |
 | `sum` | `dim` | `Interval.sum₁`, `.sum₂` |
@@ -240,6 +241,7 @@ Zonotope ops (fields besides `Z`; result `Z` unless said):
 | `filterOut` | `Zs`, no `Z` | `Zonotope.filterOut`; `value` (indices kept) |
 | `generatorLength` | `k` | `Zonotope.generatorLength`; `value` (vector) |
 | `intersectStrip` | `C`, `phi`, `y`, `Lambda` | `Zonotope.intersectStrip` |
+| `intersectStripCora` | `C`, `phi`, `y`, `Lambda` | `Zonotope.intersectStripCora` (`intersectStripCora_outer`): the center `c + Lambda (y - C c)`, CORA.cpp's order |
 | `isBounded`, `isFullDim` | `tol` | constant `true`; `Zonotope.isFullDim`; `value` |
 | `isequal` | `Z2`, `tol` | `Zonotope.isequal`; `value` |
 | `lift` | `N`, `dims` (a permutation, `N` the dimension) | `Zonotope.reindex` |
@@ -338,6 +340,7 @@ Tuning CORA has no argument for is a required field: `k`, `p` (Newton steps, tri
 | `isIntersecting` | `zB2`, `tol` | `IsDisjoint` (`isDisjointZonoBundleZonoBundle`); `disjoint` |
 | `lift`, `project` | `N`, `dims` | `ZonoBundle.reindex`, `.project` |
 | `mtimes`, `quadMap` | `M`, `Q` | `ZonoBundle.mtimes`, `.quadMap` |
+| `encloseCora` | `zB2` (as many members as `zB`) | `ZonoBundle.encloseCora` (`encloseCora_outer`): member `i` is `Zonotope.linComb` of member `i` of each, CORA's `enclose` |
 | `polytope` | `p` | `ZonoBundle.hPolytopeAll`; `P` |
 | `reduce` | `order`, `method` (`girard`) | `ZonoBundle.reduce` |
 | `reduceCombined` | `method` (`methC`) | `ZonoBundle.reduceCombined`; `Z` |
@@ -359,6 +362,7 @@ Tuning CORA has no argument for is a required field: `k`, `p` (Newton steps, tri
 | `isequal` | `P2`, `tol` | `HPolytope.isequal` (halfspace form only; `VPolytope` has no float `isequal`, a vertex operand is refused) |
 | `not` | `eps` | `HPolytope.not`; `P`, only for a polytope of one inequality and no equality (the other cases are an error) |
 | `normalizeConstraints` | `dom`, `type` (`b`) | `HPolytope.normalizeConstraints`; `P` |
+| `normalizeConstraintsCora` | `dom`, `type` (`b`) | `HPolytope.normalizeConstraintsCora` (`normalizeConstraintsCora_outer`): rows divided, an equality by its offset, CORA.cpp's order; `P` |
 | `reduceOverDomain` | `dom`, `p` (Newton steps), `type` (`outer`, `inner`) | `HPolytope.reduceOverDomain`; `P` |
 | `minkDiff` | `I` (a box) or `Z` (a zonotope), the subtrahend | `HPolytope.minkDiffOf` with `Interval.boundDot`, `Zonotope.boundDot` as the row certificates; `P` |
 | `lift`, `projectHighDim` | `N`, `dims` (`projectHighDim`: both forms) | `HPolytope.lift_`, `.projectHighDim`, `VPolytope.projectHighDim` |
@@ -392,6 +396,7 @@ Tuning CORA has no argument for is a required field: `k`, `p` (Newton steps, tri
 | `representsa` | `type` (`point`, `origin`), `tol` | `Ellipsoid.representsa_point`, `.representsa_origin`; `value` |
 | `lift`, `project` | `N`, `dims` | `Ellipsoid.reindex`, `.project` |
 | `mtimes` | `M` | `Ellipsoid.mtimes` |
+| `reduce` | `order`, `method` (`girard`) | `Reduce.reduce`: CORA's `reduce` has an empty body, the ellipsoid stays itself; `E` |
 | `norm`, `radius` | `k` (`radius`: `p`), `type` (2) | `Ellipsoid.normUb`, `.radius`; `value`. `p` of `radius` is the number of Newton steps of the square roots, not CORA's index of the semi-axis: the result is an upper bound of CORA's largest radius (`sqrt(max(eig(Q)))`), the Euclidean ball about the center that contains `E`. CORALean has no float definition of the `i`-th semi-axis (it needs an eigendecomposition), so CORA's `radius(E, i)` is not served |
 | `origin` | `n` | `Ellipsoid.origin` |
 | `vertices` | `k`, one dimension | `Ellipsoid.vertices`; `V` |
@@ -796,6 +801,8 @@ absent):
 | `polyZonotope.reduce` | `P`, `order`, `method` (`girard`) | `PolyZonotope.reduceCora` (`reduceCora_outer`): the ranking of CORA's `reduce`, then `reduceSplit` (`reduceSplit_outer`) |
 | `polyZonotope.enclose` | `P`, `Q` | `PolyZonotope.encloseShared` (`encloseShared_outer`) after padding both sets to the union of the identifiers |
 | `polyZonotope.dim` | `P` | the length of `c` |
+| `polyZonotope.project` | `P`, `dims` (0-based) | `PolyZonotope.project` (`project_outer`): the center and both blocks of generators at `dims`, exponents and identifiers kept |
+| `polyZonotope.compact` | `P` | `PolyZonotope.compactCora` (`compactCora_outer`): `foldConstants`, `compactFactors`, then `construct`, CORA.cpp's `compact`; the identifiers of the dropped factors go |
 | `polyZonotope.quadMap` | `P`, `Q` (array of `n x n` matrices) | `PolyZonotope.quadMapCora` (`quadMapCora_outer`), CORA's `quadMap` as CORA.cpp computes it. The products `j <= k` of the columns of `[c G]` (`j` outer) are `M_jj` and `M_jk + M_kj` of `M = [c G]' Q [c G]`, with the exponents `E_j + E_k`. The independent part is `Zonotope.quadMapTriFiltered` of `(0, GI)` (the box with it) plus `Zonotope.quadMapMixed` of `zonotope(c, G, E)` against it and of it against that zonotope, added left to right; `quadMapMixed` (`quadMapMixed_outer`) takes the entries of `[c1 G1]' Q [c2 G2]` column-major, the first as the center, then CORA's filter. Then CORA's constructor, the constant column into the center (`foldConstants`), and the zero independent generators dropped. Without dependent generators it is `quadMapTriFiltered` of `(c, GI)` |
 | `zonotope.polyZonotope`, `interval.polyZonotope` | `Z`, `I` | `Zonotope.polyZonotope` (identity exponents) then the constructor |
 

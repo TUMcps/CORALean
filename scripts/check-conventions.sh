@@ -182,6 +182,16 @@ src/CORALean/ContSet/Zonotope/Float/Theorems/RadiusCoraLe.lean | the bound theor
 src/CORALean/Global/Float/SqrtDownCora.lean | the machine root CORA takes at the lower end of a box, not a refutation: the name says whose algorithm it is
 src/CORALean/ContSet/Interval/Float/Operations/SqrtCora.lean | CORA's sqrt(I) of a box, the machine root at both ends, not a refutation: the name says whose algorithm it is
 src/CORALean/ContSet/Interval/Float/Theorems/SqrtCoraOuter.lean | the enclosure theorem of SqrtCora, not a refutation
+src/CORALean/ContSet/ZonoBundle/Float/Operations/EncloseCora.lean | CORA's enclose of two zonotope bundles member by member, not a refutation: the name says whose algorithm it is
+src/CORALean/ContSet/ZonoBundle/Float/Theorems/EncloseCoraOuter.lean | the enclosure theorem of EncloseCora, not a refutation
+src/CORALean/ContSet/PolyZonotope/Float/Operations/CompactCora.lean | CORA.cpp's compact of a polynomial zonotope (constants into the center, unused factors dropped, the constructor), not a refutation: the name says whose algorithm it is
+src/CORALean/ContSet/PolyZonotope/Float/Theorems/CompactCoraOuter.lean | the enclosure theorem of CompactCora, not a refutation
+src/CORALean/ContSet/Interval/Float/Operations/QuadMapCora.lean | CORA.cpp's quadMap of a box through the quadMap of its zonotope in CORA's order, not a refutation: the name says whose algorithm it is
+src/CORALean/ContSet/Interval/Float/Theorems/QuadMapCoraOuter.lean | the enclosure theorem of QuadMapCora, not a refutation
+src/CORALean/ContSet/Zonotope/Float/Operations/IntersectStripCora.lean | CORA.cpp's intersectStrip at a given gain in its own center order, not a refutation: the name says whose algorithm it is
+src/CORALean/ContSet/Zonotope/Float/Theorems/IntersectStripCoraOuter.lean | the enclosure theorem of IntersectStripCora, not a refutation
+src/CORALean/ContSet/HPolytope/Float/Operations/NormalizeConstraintsCora.lean | CORA.cpp's normalizeConstraints by division, not a refutation: the name says whose algorithm it is
+src/CORALean/ContSet/HPolytope/Float/Theorems/NormalizeConstraintsCoraOuter.lean | the enclosure theorem of NormalizeConstraintsCora, not a refutation
 src/CORALean/ContDynamics/LinearSys/Operations/SupportCounterexample.lean | the corrected counterexample of [1, Sec. 4.2], which the verification search extracts a run from; a repair, not a refutation
 src/CORALean/ContDynamics/LinearSys/Theorems/HeldSimSupportCounterexample.lean | the corrected counterexample reaches the lower bound exactly; a repair that other theorems use
 src/CORALean/ContDynamics/LinearSys/Theorems/HeldSimLeSupportCounterexample.lean | the corrected counterexample is a support vector; a repair that other theorems use

@@ -4,6 +4,7 @@ public import CORALean.ContSet.ZonoBundle.Float.Theorems.Basic
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.BoundDotLPLe
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.CartProdExact
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.QuadMapCoraOuter
+public import CORALean.ContSet.ZonoBundle.Float.Theorems.EncloseCoraOuter
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.ToSetEnlarge
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.ToSetEqIInter
 public import CORALean.ContSet.ZonoBundle.Float.Theorems.ContainsPointSound

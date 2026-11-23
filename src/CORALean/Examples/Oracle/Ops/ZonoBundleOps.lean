@@ -16,6 +16,7 @@ import CORALean.ContSet.ZonoBundle.Float.Operations.Plus
 import CORALean.ContSet.ZonoBundle.Float.Operations.Project
 import CORALean.ContSet.ZonoBundle.Float.Operations.QuadMap
 import CORALean.ContSet.ZonoBundle.Float.Operations.QuadMapCora
+import CORALean.ContSet.ZonoBundle.Float.Operations.EncloseCora
 import CORALean.ContSet.ZonoBundle.Float.Operations.Reduce
 import CORALean.ContSet.ZonoBundle.Float.Operations.ReduceCombined
 import CORALean.ContSet.ZonoBundle.Float.Operations.Reindex
@@ -135,8 +136,8 @@ def handleBundleSplit (dops : DtypeOps 𝕋) (req : Json) : Resp := do
 def zonoBundleOpNames : List String :=
   [ "and", "cartProd", "conZonotope", "empty", "enclose", "enlarge", "interval", "isBounded",
     "isIntersecting", "isequal", "lift", "mtimes", "origin", "plus", "project", "quadMap",
-    "quadMapCora", "reduce", "reduceCombined", "replace", "representsa", "shrink", "supportFunc",
-    "zonotope",
+    "quadMapCora", "encloseCora", "reduce", "reduceCombined", "replace", "representsa", "shrink",
+    "supportFunc", "zonotope",
     "convHull", "polytope", "split" ]
 
 /-- `op` of `zonoBundle.`, run; `none` for a name this file does not serve. -/
@@ -163,6 +164,11 @@ def handleZonoBundleOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Optio
       if hn : 0 < n then pure [aux_set dops "zB" (ZonoBundle.empty (𝕋 := 𝕋) n hn)]
       else throw "empty: `n` must be positive, CORALean's empty bundle is two points of R^n")
   | "enclose" => some (handleBundleEnclose dops req)
+  | "encloseCora" => some (do
+      checkFields op req ["zB", "zB2"]
+      let ⟨_, a, b⟩ ← aux_pair dops req
+      if h : b.k = a.k then pure [aux_set dops "zB" (ZonoBundle.encloseCora a b h)]
+      else throw s!"encloseCora: the bundles have {a.k} and {b.k} members, CORA pairs them up")
   | "enlarge" => some (do
       checkFields op req ["zB", "factor"]
       let d ← parseZonoBundle dops.readExact (← field req "zB")

@@ -15,6 +15,7 @@ public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactFactorsNominal
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactGensFiber
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactGensOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactOuter
+public import CORALean.ContSet.PolyZonotope.Float.Theorems.CompactCoraOuter
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsPointApproxSound
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ContainsSetApproxSound
 public import CORALean.ContSet.PolyZonotope.Float.Theorems.ConvHullOuter

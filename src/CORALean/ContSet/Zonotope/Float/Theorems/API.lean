@@ -35,6 +35,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.FilterOutCovered
 public import CORALean.ContSet.Zonotope.Float.Theorems.FilterOutKeeps
 public import CORALean.ContSet.Zonotope.Float.Theorems.GeneratorLengthLe
 public import CORALean.ContSet.Zonotope.Float.Theorems.IntersectStripOuter
+public import CORALean.ContSet.Zonotope.Float.Theorems.IntersectStripCoraOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsClosed
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsCompact
 public import CORALean.ContSet.Zonotope.Float.Theorems.IsFullDimSound

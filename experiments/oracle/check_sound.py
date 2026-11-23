@@ -975,6 +975,11 @@ def check_polyzono_op(op, req, resp, fails):
             zs = [[zc[i] + sum(zG[i][j] * s[j] for j in range(zh)) for i in range(len(zc))]
                   for s in itertools_product(zh)]
             pts = [x + z for x in pts[::3] for z in zs[::2] or zs]
+        elif name == "project":
+            # the chosen coordinates of every point
+            dims = req["dims"]
+            pts = [[x[d] for d in dims] for x in pts]
+            n = len(dims)
         elif name == "quadMap":
             # every output x' Q_k x, exact
             Qs = [parse_mat(Qk)[2] for Qk in req["Q"]]

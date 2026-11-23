@@ -66,6 +66,7 @@ public import CORALean.ContSet.Interval.Float.Operations.Enlarge
 public import CORALean.ContSet.Interval.Float.Operations.Recip
 public import CORALean.ContSet.Interval.Float.Operations.Mrdivide
 public import CORALean.ContSet.Interval.Float.Operations.QuadMap
+public import CORALean.ContSet.Interval.Float.Operations.QuadMapCora
 public import CORALean.ContSet.Interval.Float.Operations.EvalPolyCoeffs
 public import CORALean.ContSet.Interval.Float.Operations.PowHi
 public import CORALean.ContSet.Interval.Float.Operations.PowLo

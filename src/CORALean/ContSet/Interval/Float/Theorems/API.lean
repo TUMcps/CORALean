@@ -81,6 +81,7 @@ public import CORALean.ContSet.Interval.Float.Theorems.Prod1Outer
 public import CORALean.ContSet.Interval.Float.Theorems.ProjectHighDimOuter
 public import CORALean.ContSet.Interval.Float.Theorems.ProjectOuter
 public import CORALean.ContSet.Interval.Float.Theorems.QuadMapOuter
+public import CORALean.ContSet.Interval.Float.Theorems.QuadMapCoraOuter
 public import CORALean.ContSet.Interval.Float.Theorems.Radius2NominalLe
 public import CORALean.ContSet.Interval.Float.Theorems.RadiusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.RdivideOuter
