@@ -8257,7 +8257,7 @@
           "matlab-runtime": 3,
           "deprecated": 0
         },
-        "cora_issues": 2,
+        "cora_issues": 3,
         "findings": {
           "correct": 18,
           "underspecified": 13,
@@ -8286,7 +8286,7 @@
           "matlab-runtime": 2,
           "deprecated": 0
         },
-        "cora_issues": 4,
+        "cora_issues": 5,
         "findings": {
           "correct": 24,
           "underspecified": 10,
@@ -8966,7 +8966,7 @@
         "not_yet": 21,
         "out_of_scope": 35,
         "needs_float": 3,
-        "cora_issues": 11,
+        "cora_issues": 13,
         "out_of_scope_by_reason": {
           "plotting/display": 16,
           "random/sampling": 1,
@@ -9021,7 +9021,7 @@
       "not_yet": 81,
       "out_of_scope": 527,
       "needs_float": 74,
-      "cora_issues": 177,
+      "cora_issues": 179,
       "out_of_scope_by_reason": {
         "plotting/display": 129,
         "random/sampling": 51,

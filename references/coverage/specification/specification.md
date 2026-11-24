@@ -11,13 +11,13 @@ CORA methods of `specification/@specification/` (a class of `specification/` or 
 | `eq` | out-of-scope | n/a — matlab-runtime | compares MATLAB objects field by field |
 | `inverse` | — | — |  |
 | `isempty` | — | — |  |
-| `isequal` | out-of-scope | n/a — matlab-runtime | compares MATLAB objects field by field |
+| `isequal` | out-of-scope | n/a — matlab-runtime | compares MATLAB objects field by field. cora-issue — CORA's `@specification/isequal.m` compares the type with `'costum'` (l. 129), so two custom specifications with different functions are equal, and compares parallel locations by `all(a,b)`, a dimension (l. 106), so `{1,2}` and `{1,3}` are equal (no Lean witness: a function handle is outside the model). Details below. |
 | `ne` | out-of-scope | n/a — matlab-runtime | compares MATLAB objects field by field |
 | `plot` | out-of-scope | n/a — plotting/display |  |
 | `plotOverTime` | out-of-scope | n/a — plotting/display |  |
 | `printSpec` | out-of-scope | n/a — plotting/display |  |
 | `project` | — | — |  |
-| `robustness` | — | — | definition only, no theorem: [`Specification.distancePolyPointCora`](../../../src/CORALean/Specification/Counterexamples/DistancePolyPointCora.lean) models `aux_distancePolyPoint` as printed, not the whole method. cora-issue — CORA's `specification/@specification/robustness.m`, `aux_distancePolyPoint` (l. 189-224, comment "compute the norm 1 distance"), values a point outside a safe or unsafe set (halfspace directions normalized) in three ways by the number of violated rows `ind`: one row gives `halfspaceVals(ind(1))`, the Euclidean distance to that hyperplane ([`Specification.distancePolyPointCora_norm_counterexample`](../../../src/CORALean/Specification/Counterexamples/DistancePolyPointCora.lean)). Details below. |
+| `robustness` | — | — | definition only, no theorem: [`Specification.distancePolyPointCora`](../../../src/CORALean/Specification/Counterexamples/DistancePolyPointCora.lean) models `aux_distancePolyPoint` as printed, not the whole method. cora-issue — CORA's `specification/@specification/robustness.m`, `aux_distancePolyPoint` (l. 189-224, comment "compute the norm 1 distance"), values a point outside a safe or unsafe set (halfspace directions normalized) in three ways by the number of violated rows `ind`: one row gives `halfspaceVals(ind(1))`, the Euclidean distance to that hyperplane ([`Specification.distancePolyPointCora_norm_counterexample`](../../../src/CORALean/Specification/Counterexamples/DistancePolyPointCora.lean)). Details below. cora-issue — CORA's `robustness.m` ignores `Ae, be` of the polytope, so a point off a set of lower dimension gets `0` as on the boundary (no Lean witness: the model stops at `aux_distancePolyPoint`). Details below. |
 | `specification` | float | [`Specification`](../../../src/CORALean/Specification/Specification.lean), [`Specification.holds_of_outer`](../../../src/CORALean/Specification/Theorems/HoldsOfOuter.lean), [`Specification.holds_safeSet_of_bounds`](../../../src/CORALean/Specification/Theorems/Containment.lean) | route b (scalar-free) — the structure holds a set of any representation and a kind, no scalar of its own, and is computable. `holds_of_outer` is stated for every representation: the structure (a set in any representation and a kind: `safeSet`, `unsafeSet`, `invariant`) and its denotation `Specification.Holds`, with the theorem that a verdict on an outer approximation carries over to the exact set (`holds_of_outer`). `custom` is a plain `Set`, `logic` (STL) is not a `Specification` (see the `stl` table); the argument parsing, the `time` and `location` fields and the `'logic'` type are not modelled |
 | `splitLogic` | — | — |  |
 
@@ -44,7 +44,17 @@ discrete-time `reach` evaluates `[].set` and stops with a MATLAB error for every
 without a time (with a time, `find(S,'time',..)` comes first and the loop is the same). The
 `timePoint` sets are there and not checked. A MATLAB error, not a wrong value.
 
-**`check` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): check(specification(@(S) ...,'custom'),{Sok,Sbad}) returns 1 where func(Sok)=1, func(Sbad)=0 and check(spec,Sbad) returns 0 (partly confirmed).
+**`check` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): check(specification(@(S) ...,'custom'),{Sok,Sbad}) returns 1 where func(Sok)=1, func(Sbad)=0 and check(spec,Sbad) returns 0. check(specification(interval([0;0],[5;5]),'safeSet'),reachSet(tp)) for two `timePoint` sets and an empty `timeInterval` errors in check line 192: Dot indexing is not supported for variables of this type (confirmed).
+
+**`isequal` — cora-issue account.** `@specification/isequal.m` ends with two guards that are meant
+to refuse the types it cannot compare: `'logic'` (throws) and `'costum'` (l. 129, throws). The type
+is spelled `'custom'` everywhere else, so the second guard never fires and the function returns the
+`true` it has reached by then: two custom specifications with different functions are equal. The
+locations of a parallel automaton (a cell) are compared with `all(spec1.location{i},spec2.location{i})`
+(l. 106), the dimension form `all(A,dim)` and not `all(a == b)`: `all(1,3)` is true, so the cells
+`{1,2}` and `{1,3}` are equal.
+
+**`isequal` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): isequal(specification(@(S) true,'custom'),specification(@(S) false,'custom')) = 1. isequal(specification(interval(0,1),'safeSet',{1,2}),specification(interval(0,1),'safeSet',{1,3})) = 1 (confirmed).
 
 **`robustness` — the other branches.** Exactly `n` rows give `sqrt(sum((v-p).^2))` for the vertex
 `v = linsolve(C(ind,:),d(ind))`, the Euclidean distance to `v`. Any other count solves the linear
@@ -64,4 +74,10 @@ lie in the set or be its nearest point.
 program as the infimum of `‖p-x‖₁`) and the cube example.
 
 
-**`robustness` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): robustness(specification(unit cube [0,1]^3,'safeSet'),`[2;2;0.5]`) = -2 and at `[2;2;2]` = -1.73205 (confirmed).
+**`robustness` — the equality constraints.** `robustness.m` takes `A = P.A, b = P.b` of the set's polytope
+and ignores `Ae, be`. For the safe set `0 <= x1 <= 1, x2 = 0` a point off the line `x2 = 0` violates no
+row of `A x <= b`, so it gets `0` as a point on the boundary does; the distance to the set, `1` for
+`(0.5, 1)`, is not seen. The sign is wrong (a violation reads as the boundary), where the metric
+mismatch above is a wrong magnitude.
+
+**`robustness` — MATLAB run.** MATLAB R2024b, CORA v2026.1.0 (904a444): robustness(specification(unit cube [0,1]^3,'safeSet'),`[2;2;0.5]`) = -2 and at `[2;2;2]` = -1.73205. robustness of the safe set 0<=x1<=1, x2=0 (a polytope with `Ae = [0 1]`) at (0.5, 1) = -0, where the distance to the set is 1 (confirmed).
