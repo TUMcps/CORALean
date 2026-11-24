@@ -928,10 +928,16 @@
     "check": {
       "description": "custom check on cell passes if any; reachSet check errors",
       "kind": "unsound",
-      "matlab": "partly confirmed"
+      "matlab": "confirmed"
+    },
+    "isequal": {
+      "description": "misspelled custom type; different functions compare equal",
+      "fix": null,
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "robustness": {
-      "description": "distance outside mixes Euclidean and norm 1",
+      "description": "distance mixes Euclidean and norm 1; equalities ignored",
       "kind": "other",
       "matlab": "confirmed"
     }
@@ -942,6 +948,12 @@
       "kind": "other",
       "cex": "TreeEliminateTrueFalseCora.lean",
       "matlab": "partly confirmed"
+    },
+    "modelCheckTrace": {
+      "description": "power node evaluated as syntax-error eval; formula crashes",
+      "fix": null,
+      "kind": "other",
+      "matlab": "confirmed"
     },
     "negationNormalForm": {
       "description": "negated comparison keeps strictness; boundary case changes",

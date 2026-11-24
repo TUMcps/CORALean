@@ -227,8 +227,8 @@ Rulings on borderline cases:
 | [pointSegmentSignal](specification/pointSegmentSignal.md) | specification | 11 | 0 | 10 | 0 | 0 | 0 | 1 | 0 |
 | [reachSetAnalyzer](specification/reachSetAnalyzer.md) | specification | 5 | 0 | 5 | 0 | 0 | 0 | 0 | 1 |
 | [rtl](specification/rtl.md) | specification | 5 | 0 | 4 | 0 | 0 | 0 | 1 | 0 |
-| [specification](specification/specification.md) | specification | 14 | 0 | 2 | 0 | 0 | 6 | 6 | 2 |
-| [stl](specification/stl.md) | specification | 52 | 2 | 30 | 0 | 0 | 15 | 5 | 4 |
+| [specification](specification/specification.md) | specification | 14 | 0 | 2 | 0 | 0 | 6 | 6 | 3 |
+| [stl](specification/stl.md) | specification | 52 | 2 | 30 | 0 | 0 | 15 | 5 | 5 |
 | [stlInterval](specification/stlInterval.md) | specification | 19 | 1 | 16 | 0 | 0 | 0 | 2 | 1 |
 | [syntaxTree](specification/syntaxTree.md) | specification | 27 | 0 | 27 | 0 | 0 | 0 | 0 | 3 |
 | [tentativeKleeneSignal](specification/tentativeKleeneSignal.md) | specification | 6 | 0 | 5 | 0 | 0 | 0 | 1 | 0 |
