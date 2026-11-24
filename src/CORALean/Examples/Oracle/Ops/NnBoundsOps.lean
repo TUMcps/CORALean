@@ -1,6 +1,12 @@
 import CORALean.NN.Operations.IntervalChainFwdFloat
 import CORALean.NN.Operations.IntervalChainBackpropFloat
 import CORALean.NN.Operations.IntervalChainSensitivityFloat
+import CORALean.NN.Operations.FgsmAttackFloat
+import CORALean.NN.Operations.SoftmaxLossDer
+import CORALean.NN.Operations.InputNeuronOrderFloat
+import CORALean.NN.Theorems.IntervalChainFwdFloatEqImpl
+import CORALean.NN.Theorems.IntervalChainBackpropFloatEqImpl
+import CORALean.NN.Theorems.IntervalChainSensitivityFloatEqImpl
 import CORALean.ContSet.Interval.Float.Operations.Point
 import CORALean.Examples.Oracle.Ops.OpCommon
 import CORALean.Examples.Oracle.Codec
@@ -11,8 +17,10 @@ import CORALean.Examples.Oracle.Codec
 A network is CORA.cpp's list of layers `{W, b, activation}` (`relu` or `identity`), read as a
 `Float.IntervalChain`: `linear W b`, then the ReLU's box image and derivative. `propagateBounds` is
 `IntervalChain.fwd` from layer `i`'s ReLU to the next ReLU, met with the bounds stored there;
-`backpropIntervalBatch` and `backprop` (at a point) are `IntervalChain.backprop`; `sensitivity` is
-`IntervalChain.sensitivity`. The theorems are `fwd_outer`, `backprop_outer`, `sensitivity_outer`.
+`backpropIntervalBatch`, `backprop` (at a point) and `computeFGSMAttack` (CORA's loss
+`softmax(y) - t`, `softmaxLossDer`) run `IntervalChain.backprop`; `sensitivity` and
+`getInputNeuronOrder` run `IntervalChain.sensitivity`. The theorems are `fwd_outer`,
+`backprop_outer`, `sensitivity_outer`, `fgsmAttack_outer` and `getInputNeuronOrder_eq`.
 
 ## Inputs
 * `dops` – dtype operations
@@ -149,6 +157,55 @@ def sensitivityOp (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   let ⟨n, x⟩ ← parseVecDyn dops.readExact (← field req "x")
   let ⟨_, c⟩ ← aux_chain dops n (← arrField req "layers").toList
   pure [("J", printIntervalMat dops.showExact (c.sensitivity (Interval.point x)))]
+
+/-- `neuralNetwork.computeFGSMAttack`: the point `x` moved by `epsilon` along the sign of the
+gradient of CORA's loss `softmax(y) - t` (`k`, the exponential's depth, 10 by default). -/
+def fgsmAttackOp (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "computeFGSMAttack" req ["layers", "x", "t", "epsilon", "k"]
+  let ⟨n, x⟩ ← parseVecDyn dops.readExact (← field req "x")
+  let ⟨m, c⟩ ← aux_chain dops n (← arrField req "layers").toList
+  let t ← parseVecFixed dops.readExact m (← field req "t")
+  -- the step and the exponential's depth
+  let ε ← dops.readExact "epsilon" (← scalarField req "epsilon")
+  let k := (natField req "k").toOption.getD 10
+  let z := c.fgsmAttack (Interval.point x) t (Interval.point ε) (softmaxLossDer k)
+  pure [("z", printIntervalVec dops.showExact z)]
+
+/-- `neuralNetwork.getInputNeuronOrder`: the pixels (0-based) `in-order`, along CORA.cpp's `snake`
+of an `inputSize` `[C, H, W]` image (a pixel is `y W + x`), or by the mean absolute sensitivity at
+`x`, the least first (`null` where a sound box cannot rank two). -/
+def inputNeuronOrderOp (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  let op := "getInputNeuronOrder"
+  checkFields op req ["layers", "method", "x", "inputSize"]
+  let layers := (← arrField req "layers").toList
+  -- the network's width, from the first layer's `W`
+  let n ← match layers with
+    | [] => throw s!"{op}: the network has no layer"
+    | L :: _ => do pure (← natField (← field L "W") "cols")
+  let size ← match fieldOpt req "inputSize" with
+    | none => pure none
+    | some _ => do
+      match (← natArrField req "inputSize").toList with
+      | [C, H, W] =>
+        if C * H * W = n then pure (some (C, H, W))
+        else throw s!"{op}: the input size [C, H, W] must have the network's {n} inputs"
+      | _ => throw s!"{op}: `inputSize` is [C, H, W]"
+  -- the order of the method
+  let out (L : List ℕ) : Resp := pure [("order", Lean.toJson L)]
+  match ← strField req "method" with
+  | "in-order" => out (List.range (match size with | none => n | some (_, H, W) => H * W))
+  | "snake" =>
+    match size with
+    | none => throw s!"{op}: a snake needs the input size"
+    | some (_, H, W) => out (snakeOrder H W fun i j => (i : ℕ) * W + j)
+  | "sensitivity" =>
+    let x ← parseVecFixed dops.readExact n (← field req "x")
+    let ⟨_, c⟩ ← aux_chain dops n layers
+    match c.getInputNeuronOrder .sensitivity (Interval.point x)
+        (size.map fun (C, H, W) => (H, W, C)) with
+    | some L => out L
+    | none => pure [("order", Json.null)]
+  | m => throw s!"{op}: the method is in-order, snake or sensitivity, not `{m}`"
 
 end CORALean.Oracle
 

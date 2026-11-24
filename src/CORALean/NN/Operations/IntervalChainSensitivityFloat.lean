@@ -4,6 +4,9 @@ public import CORALean.NN.Definitions.IntervalChainFloat
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.MatMul
 public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.ContSet.Interval.Float.Operations.Materialise
+public import CORALean.ContSet.Interval.Float.Operations.MaterialiseMat
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -25,7 +28,7 @@ layer received. The forward box of a layer is the image of the box under the lay
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       26-October-2026
--- Last update:   ---
+-- Last update:   24-November-2026
 -- Reviewed:      ---
 
 
@@ -36,6 +39,27 @@ namespace CORALean.Float
 open Matrix FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋]
+
+
+-- ------------------------------------------  STEPS  ------------------------------------------- --
+
+/-- The pass with each layer's boxes and products stored, which the compiled code runs: a layer
+reads the boxes around it once per entry rather than once per path
+(`IntervalChain.sensitivity_eq_impl`). -/
+@[step_of IntervalChain.sensitivity]
+def IntervalChain.step_sensitivityImpl : ∀ {n k : ℕ}, IntervalChain 𝕋 n k →
+    Interval (Vec 𝕋 n) → Interval (Mat 𝕋 k n)
+  | _, _, .nil, _ => Interval.point (diagonalBlock fun _ => one)
+  | _, _, .linear W b rest, X =>
+    (Interval.matMul
+      (rest.step_sensitivityImpl (Interval.plus (Interval.mtimes W X) ⟨b, b⟩).materialise)
+      (Interval.point W)).materialiseMat
+  | _, _, .act σE σ'E rest, X =>
+    (Interval.matMul
+      (rest.step_sensitivityImpl
+        ⟨fun i => (σE ⟨X.inf i, X.sup i⟩).inf, fun i => (σE ⟨X.inf i, X.sup i⟩).sup⟩)
+      ⟨diagonalBlock fun i => (σ'E ⟨X.inf i, X.sup i⟩).inf,
+        diagonalBlock fun i => (σ'E ⟨X.inf i, X.sup i⟩).sup⟩).materialiseMat
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

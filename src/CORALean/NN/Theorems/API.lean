@@ -124,6 +124,11 @@ public import CORALean.NN.Theorems.IsVerifySound
 public import CORALean.NN.Theorems.IntervalChainBackpropDegenerate
 public import CORALean.NN.Theorems.IntervalChainBackpropAtFloatOuter
 public import CORALean.NN.Theorems.IntervalChainSensitivityFloatOuter
+public import CORALean.NN.Theorems.IntervalChainFwdFloatEqImpl
+public import CORALean.NN.Theorems.IntervalChainBackpropFloatEqImpl
+public import CORALean.NN.Theorems.IntervalChainSensitivityFloatEqImpl
+public import CORALean.NN.Theorems.HeldChainBackpropFloatOuter
+public import CORALean.NN.Theorems.SoftmaxLossDerEncloses
 public import CORALean.NN.Theorems.FgsmAttackFloatOuter
 public import CORALean.NN.Theorems.PgdAttackFloatOuter
 public import CORALean.NN.Theorems.WeightNetworkNormalFormAuxFloatEncloses

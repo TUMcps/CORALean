@@ -851,6 +851,13 @@ requires them in the output (`check_polyzono_op`).
 | `neuralNetwork.backpropIntervalBatch` | `layers` (as above), `l`, `u`, `gl`, `gu` | `Float.IntervalChain.backprop` (`IntervalChain.backprop_outer`; CORA's `backpropIntervalBatch`); `gl`, `gu` as boxes |
 | `neuralNetwork.backprop` | `layers` (as above), `x`, `g` | the same at the point `x` and the gradient `g` (CORA's `backprop`); `g` as a box |
 | `neuralNetwork.sensitivity` | `layers` (as above), `x` | `Float.IntervalChain.sensitivity` (`IntervalChain.sensitivity_outer`; CORA's `calcSensitivity`); `J` as a box |
+| `neuralNetwork.backpropZonotopeBatch` | `layers` (as above), `Z` (`c`, `G`; no `E`), `gc`, `gG` (`k x q`, one column per generator of the output), `exact` (absent or `false`) | `Float.HeldChain.backprop` of `W` and the forward pass's slopes (`HeldChain.backprop_outer`; CORA's `backpropZonotopeBatch` without `exact_backprop`); `gc` as a box, `gG` (`n x h`, the input's generators) as a box, `slopes` (per layer, `null` without a ReLU) |
+| `nnLayer.backpropZonotopeBatch` | `layer` (`{"kind":"linear","W","b"}` or `{"kind":"relu"}`), `Z` (the ReLU's input set), `gc`, `gG`, `exact` | the same for one layer: `W' gc`, `W' gG`; or `m .* gc`, `m .* gG` at the input's `h` generators, `m` the slopes at the bounds of `Z`; `gc`, `gG` as boxes, `slopes` for a ReLU |
+| `neuralNetwork.computeFGSMAttack` | `layers` (as above), `x`, `t`, `epsilon`, `k` (the exponential's depth, default 10; ignored at `nearest`) | `Float.IntervalChain.fgsmAttack` with `softmaxLossDer` (`IntervalChain.fgsmAttack_outer`, `softmaxLossDer_encloses`; CORA's `computeFGSMAttack` with its default loss); `z` as a box |
+| `neuralNetwork.getInputNeuronOrder` | `layers` (as above), `method` (`in-order`, `snake`, `sensitivity`), `x` (for `sensitivity`), `inputSize` (`[C, H, W]`) | the pixels in order, `snakeOrder` of CORA.cpp's row-major `H x W` image, or `Float.IntervalChain.getInputNeuronOrder` at `sensitivity` (`IntervalChain.getInputNeuronOrder_eq`; CORA's `getInputNeuronOrder`); `order` (0-based, `null` where a sound box cannot rank two pixels) |
+| `neuralNetwork.getNumNeurons`, `getNumParams`, `getRefinableLayers` | `layers` (as above) | the input width of every layer and the output width of the last (`numNeurons`); the entries of every `W` and `b` (`numParams`); the 0-based layers whose activation is not the identity (`layers`) |
+| `neuralNetwork.getOrderPattern` | `layers`, `orders` (per layer, a list of naturals; optional) | the order of every neuron of the refinable layers, CORA.cpp's `aux_expand`; `pattern` |
+| `neuralNetwork.prepareForZonoBatchEval` | `layers`, `numInitGens`, `numApproxErr` (naturals or `"inf"`, the default) | CORA's count: `numGen` after the last layer and, per layer, `[first, count]` of its approximation errors' generators (0-based; `null` without an activation); `approxErrGens` |
 
 A layer is `{"kind":"linear","W","b"}`, `{"kind":"conv","kernel","kshape","input","stride","dilation","pads","groups","b"}`, `{"kind":"relu"}`, `{"kind":"leakyRelu","alpha"}`, `{"kind":"sign"}`, `{"kind":"square"}`, `{"kind":"sigmoid","k"}`
 or `{"kind":"tanh","k"}` (`k`, the depth of the exponential's reduction, is ignored at `nearest`).
@@ -1028,8 +1035,40 @@ The network forms of CORA.cpp's port:
 * Not served:
   * sigmoid and tanh. CORALean's sigmoid enclosure takes its two ends from two different formulas,
     so neither end is CORA.cpp's value at `nearest`.
-  * `computeFGSMAttack`. Its loss derivative `softmax(y) - t` has no float definition in CORA.cpp's
-    order.
+  * sigmoid and tanh in `computeFGSMAttack` and `backpropZonotopeBatch`, for the same reason.
+
+The zonotope batch backpropagation, FGSM and the structure ops (batch 9):
+
+* `backpropZonotopeBatch` runs `neuralNetwork.evaluateGraph`'s forward pass on the chain, every
+  approximation error a generator (CORA.cpp's `ZonoNet::forward` without an interval center). The
+  slopes of each ReLU are the line's at the bounds of its input set (`reluRelaxation reluSlope`).
+* Its backward pass, as CORA.cpp's `aux_reverse` with the lines held: `m .* g` at a ReLU, then
+  `W' g`, each sum nested to the right. The center's gradient and every input generator's are one
+  pass each. The error generators' columns of `gG` stop at their layer, so only the first `h`
+  columns of the input are returned. Not served: `exact` (CORA's `exact_backprop`, the lines'
+  derivatives in their bounds and the clamps), the interval center (`num_approx_err` below the
+  widest layer, the radius gradient `grad_dr`), and sigmoid or tanh.
+* `computeFGSMAttack` is `x + epsilon sign(g)`, MATLAB's `sign` (`Interval.signCora`, `0` at `0`).
+  `g` is the point backpropagation of `softmax(y) - t`. The softmax is CORA.cpp's
+  `Tensor::softmax`: `e = exp(y - max(y))`, then `e ./ sum(e)` (`softmaxLossDer`). At `nearest` `exp`
+  is libm's, so `z` is one point. Not served: CORA's other loss derivatives (an arbitrary function
+  handle) and CORA.cpp's `mask`. A batch is one request per row.
+* `getInputNeuronOrder` follows CORA.cpp: `inputSize` is `[C, H, W]`, a pixel is `y W + x`, and a
+  channel's pixels follow the previous channel's. The snake differs from MATLAB's column-major one.
+  CORA.cpp ranks by the mean absolute sensitivity, CORALean by the sum. The two orders agree except
+  where two sums differ but their quotients by the output count round equal; the fixtures avoid it.
+* `getNumNeurons` counts CORA.cpp's fused layers, `{W, b, activation}`. CORA counts its activation
+  layers as layers of their own, so its list repeats each hidden width.
+* `prepareForZonoBatchEval` follows CORA: a finite `numInitGens` is the input's generator count as
+  given. CORA.cpp's `ZonoNet` caps it at the input width, so the two agree for `numInitGens` at
+  most `n` or `inf`. Generator reduction layers are not served.
+* `IntervalChain.fwd`, `backprop` and `sensitivity` run their stored passes (`step_fwdImpl` and
+  its siblings, `@[csimp]` by `IntervalChain.fwd_eq_impl` and its siblings): every layer's boxes
+  are materialised, so the time no longer grows exponentially with the depth. The values are the
+  same bit for bit.
+* Not served: `computeReducedNetwork` (random dynamic buckets, the tolerance's bisection, the
+  regression lines of the reduced layers on a set); `nnLayer.evaluateConZonotope` (the null space of
+  the constraints and linear programs for the bounds, neither in CORA.cpp's order).
 
 `neuralNetwork.backwardBound` (fields `layers`, `x`, `r`, `C`; reply `lower`, a column) is CROWN's backward bound, CORA.cpp's
 `priv_backward_lower`: a lower bound of every row `C_q` on the outputs over the input box `|x' - x| <= r`. A layer is

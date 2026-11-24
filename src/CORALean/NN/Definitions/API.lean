@@ -29,6 +29,9 @@ public import CORALean.NN.Definitions.CatDomain
 public import CORALean.NN.Definitions.SetBasedLoss
 public import CORALean.NN.Definitions.IntervalChainFloat
 public import CORALean.NN.Definitions.IntervalChainFloatEncloses
+public import CORALean.NN.Definitions.HeldChain
+public import CORALean.NN.Definitions.HeldChainFloat
+public import CORALean.NN.Definitions.HeldChainFloatEncloses
 public import CORALean.NN.Definitions.IsRelaxationOf
 public import CORALean.NN.Definitions.VerifyResult
 public import CORALean.NN.Definitions.WeightLayerFloat

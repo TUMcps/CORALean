@@ -88,6 +88,9 @@ public import CORALean.NN.Operations.Verify
 public import CORALean.NN.Operations.IntervalChainToChain
 public import CORALean.NN.Operations.IntervalChainBackpropAtFloat
 public import CORALean.NN.Operations.IntervalChainSensitivityFloat
+public import CORALean.NN.Operations.HeldChainBackprop
+public import CORALean.NN.Operations.HeldChainBackpropFloat
+public import CORALean.NN.Operations.SoftmaxLossDer
 public import CORALean.NN.Operations.FgsmAttackFloat
 public import CORALean.NN.Operations.PgdAttackFloat
 public import CORALean.NN.Operations.WeightAccPushLinearFloat
