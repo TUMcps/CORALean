@@ -22,6 +22,9 @@ import CORALean.NN.Layers.Operations.ReciprocalRelaxation
 import CORALean.NN.Layers.Operations.CubeRelaxation
 import CORALean.NN.Layers.Operations.InverseRelaxation
 import CORALean.NN.Layers.Operations.TrigRelaxation
+import CORALean.NN.Layers.Operations.SoftplusLineRelaxation
+import CORALean.NN.Layers.Operations.RootLineRelaxation
+import CORALean.NN.Layers.Operations.InvSqrtRootLineRelaxation
 import CORALean.NN.Layers.Operations.ProductLine
 import CORALean.NN.Layers.Operations.SoftmaxSumBounds
 import CORALean.NN.Layers.Operations.ReluRelaxation
@@ -199,6 +202,53 @@ private def aux_avgPoolLayer (dops : DtypeOps 𝕋) {S : ℕ → Type} [∀ n, C
     ("kshape", Lean.toJson [kh, kw]), ("input", ← field layer "input"),
     ("stride", Lean.toJson [sh, sw]), ("pads", pads), ("groups", Lean.toJson C), ("b", b)]) n X
 
+/-- `2ᵏ⁻¹` from below by doublings, the bound `expUp k` asks of its argument. -/
+private def aux_expBound (k : ℕ) : 𝕋 := (fun x => FloatOps.addDown x x)^[k - 1] FloatOps.one
+
+/-- CORA.cpp's line of the activation `kind` (exp, reciprocal, cube, inverse, softplus, root or
+invSqrt) as a layer, after a check of the domain its theorem asks of the boxes `[lo, hi]`. -/
+private def aux_lineRelaxation (dops : DtypeOps 𝕋) (method : PolyMethod) (layer : Json)
+    (kind : String) {n : ℕ} (lo hi : Vec 𝕋 n) : Except String (Relaxation 𝕋) := do
+  if method = .curvature then throw s!"{kind}: the poly_method curvature has no line of `{kind}`"
+  -- CORA.cpp's evaluate: the least-squares slope for `regression`, Singh's otherwise
+  let regression := method = .regression ∨ method = .regressionExtremum
+  let below (B : 𝕋) := (List.finRange n).all fun i => FloatOps.le (hi i) B
+  let atLeastZero := (List.finRange n).all fun i => FloatOps.le FloatOps.zero (lo i)
+  let aboveZero := (List.finRange n).all fun i => FloatOps.ltStrict FloatOps.zero (lo i)
+  match kind with
+  | "exp" =>
+    checkFields "exp" layer ["kind", "k", "p", "tiny"]
+    let k ← natField layer "k"
+    let p ← natField layer "p"
+    let τ ← aux_tiny dops layer
+    if !below (aux_expBound k) then throw "exp: every neuron's `u` must be at most 2^k / 2"
+    pure (expChordRelaxation k p τ aux_bandMargin)
+  -- the chord bands at CORA.cpp's margins
+  | "reciprocal" =>
+    checkFields "reciprocal" layer ["kind", "p"]
+    pure (reciprocalRelaxation (← natField layer "p") aux_bandMargin)
+  | "cube" =>
+    checkFields "cube" layer ["kind", "p"]
+    pure (cubeRelaxation (← natField layer "p") (aux_pow2 46))
+  | "inverse" =>
+    checkFields "inverse" layer ["kind", "p"]
+    if !aboveZero then throw "inverse: every neuron's `l` must be above zero"
+    pure (inverseRelaxation (← natField layer "p") (aux_pow2 47))
+  -- the monotone lines, at no margin
+  | "softplus" =>
+    checkFields "softplus" layer ["kind", "k", "p"]
+    let k ← natField layer "k"
+    if !below (aux_expBound k) then throw "softplus: every neuron's `u` must be at most 2^k / 2"
+    pure (softplusLineRelaxation regression k (← natField layer "p"))
+  | "root" =>
+    checkFields "root" layer ["kind", "p"]
+    if !atLeastZero then throw "root: every neuron's `l` must be at least zero"
+    pure (rootLineRelaxation regression (← natField layer "p"))
+  | _ =>
+    checkFields "invSqrt" layer ["kind", "k", "p"]
+    if !aboveZero then throw "invSqrt: every neuron's `l` must be above zero"
+    pure (invSqrtRootLineRelaxation regression (← natField layer "k") (← natField layer "p"))
+
 /-- One layer of the request on a set of the family `S`, of dimension `n`; the set of the new
 dimension. `method` picks the relaxation for sigmoid and tanh. -/
 private def aux_runLayer (dops : DtypeOps 𝕋) {S : ℕ → Type} [∀ n, ContSetLike (S n) (Vec ℝ n)]
@@ -244,6 +294,11 @@ private def aux_runLayer (dops : DtypeOps 𝕋) {S : ℕ → Type} [∀ n, ContS
     checkFields "square" layer ["kind"]
     pure ⟨n, (Layer.activation (S := S) (n := n)
       (squareChordTangentRelaxation aux_squareMargin)).enclose X⟩
+  -- CORA.cpp's lines of the activations it adds, a softmax's exp and reciprocal among them
+  | "exp" | "reciprocal" | "cube" | "inverse" | "softplus" | "root" | "invSqrt" =>
+    let J := IntervalOuter.interval X
+    let R ← aux_lineRelaxation dops method layer (← strField layer "kind") J.inf J.sup
+    pure ⟨n, (Layer.activation (S := S) (n := n) R).enclose X⟩
   | "conv" => aux_convLayer dops layer n X
   -- the linear layers of CORA.cpp's port, each as the map CORA.cpp folds it to
   | "elementwiseAffine" =>
@@ -284,8 +339,9 @@ private def aux_runLayer (dops : DtypeOps 𝕋) {S : ℕ → Type} [∀ n, ContS
     pure ⟨m, (Layer.linear (S := S) (fun i j => FloatOps.divUp (W i j) (norm i))
       fun i => FloatOps.divUp (b i) (norm i)).enclose X⟩
   | k => throw s!"a layer's `kind` must be linear, conv, relu, leakyRelu, sigmoid, tanh, sign, \
-      square, elementwiseAffine, batchNorm, avgPool or lipLinear, not `{k}` (`poly` only as the \
-      one layer of `nnLayer.evaluatePolyZonotope`)"
+      square, exp, reciprocal, cube, inverse, softplus, root, invSqrt, elementwiseAffine, \
+      batchNorm, avgPool or lipLinear, not `{k}` (`poly` only as the one layer of \
+      `nnLayer.evaluatePolyZonotope`)"
 
 /-- The layer `poly` on the polynomial zonotope: the fits `coeffs` (a row per neuron) and their
 errors `d` as a relaxation that does not depend on the box. -/
@@ -300,11 +356,11 @@ private def aux_runPowers (dops : DtypeOps 𝕋) (layer : Json) (n : ℕ) (X : �
       fun i => ⟨fun _ _ k => C i ⟨k, by omega⟩, fun _ _ => d i⟩
     pure ((Layer.activationPowers P).enclose X)
 
-/-- The relaxation of `kind` at every neuron's box `[l i, u i]`: `sign`, `square`, the chord bands
-(`exp`, `reciprocal`, `cube`, `inverse` for `0 < l`), `sin`, `cos`, or `relu` (CORALean's slope, or
-`alpha i` where the neuron crosses zero); the fields per kind are in the oracle README. -/
+/-- The relaxation of `kind` at every neuron's box `[l i, u i]`: sign, square, the chord bands, the
+monotone lines (softplus, root, invSqrt), sin, cos, or relu (CORALean's slope, or `alpha i` where
+the neuron crosses zero); the kinds and their fields are in the oracle README. -/
 private def aux_relaxation (dops : DtypeOps 𝕋) (req : Json) : Resp := do
-  checkFields "relaxation" req ["kind", "l", "u", "alpha", "k", "p", "tiny"]
+  checkFields "relaxation" req ["kind", "l", "u", "alpha", "k", "p", "tiny", "method"]
   let ⟨n, l⟩ ← parseVecDyn dops.readExact (← field req "l")
   let u ← parseVecFixed dops.readExact n (← field req "u")
   let kind ← strField req "kind"
@@ -312,10 +368,21 @@ private def aux_relaxation (dops : DtypeOps 𝕋) (req : Json) : Resp := do
     throw s!"relaxation: `alpha` is for `relu`, not `{kind}`"
   if kind ≠ "exp" ∧ (fieldOpt req "tiny").isSome then
     throw s!"relaxation: `tiny` is for `exp`, not `{kind}`"
-  if kind ≠ "exp" ∧ kind ≠ "sin" ∧ kind ≠ "cos" ∧ (fieldOpt req "k").isSome then
-    throw s!"relaxation: `k` is for `exp`, `sin` and `cos`, not `{kind}`"
-  if kind ∉ ["exp", "reciprocal", "cube", "inverse"] ∧ (fieldOpt req "p").isSome then
-    throw s!"relaxation: `p` is for `exp`, `reciprocal`, `cube` and `inverse`, not `{kind}`"
+  if kind ∉ ["exp", "sin", "cos", "softplus", "invSqrt"] ∧ (fieldOpt req "k").isSome then
+    throw s!"relaxation: `k` is for `exp`, `sin`, `cos`, `softplus` and `invSqrt`, not `{kind}`"
+  if kind ∉ ["exp", "reciprocal", "cube", "inverse", "softplus", "root", "invSqrt"] ∧
+      (fieldOpt req "p").isSome then
+    throw s!"relaxation: `p` is for `exp`, `reciprocal`, `cube`, `inverse`, `softplus`, `root` \
+      and `invSqrt`, not `{kind}`"
+  if kind ∉ ["softplus", "root", "invSqrt"] ∧ (fieldOpt req "method").isSome then
+    throw s!"relaxation: `method` is for `softplus`, `root` and `invSqrt`, not `{kind}`"
+  -- CORA.cpp's `priv_monotone_line`: the least-squares slope (the default) or Singh's
+  let regression ← match fieldOpt req "method" with
+    | none => pure true
+    | some _ => match ← strField req "method" with
+      | "regression" => pure true
+      | "singh" => pure false
+      | m => throw s!"relaxation: `method` must be singh or regression, not `{m}`"
   -- one relaxation per neuron: the ReLU's slope may differ from neuron to neuron
   let R : Fin n → Relaxation 𝕋 ← match kind with
     | "sign" => pure fun _ => signRelaxation
@@ -337,6 +404,23 @@ private def aux_relaxation (dops : DtypeOps 𝕋) (req : Json) : Resp := do
       if (List.finRange n).any fun i => !FloatOps.ltStrict FloatOps.zero (l i) then
         throw "relaxation: `inverse` needs every `l` above zero"
       pure fun _ => inverseRelaxation p (aux_pow2 47)
+    | "softplus" => do
+      let k ← natField req "k"
+      let p ← natField req "p"
+      pure fun _ => softplusLineRelaxation regression k p
+    | "root" => do
+      let p ← natField req "p"
+      -- CORA.cpp's line exists for `0 <= l` only (`out_of_domain` otherwise)
+      if (List.finRange n).any fun i => !FloatOps.le FloatOps.zero (l i) then
+        throw "relaxation: `root` needs every `l` at least zero"
+      pure fun _ => rootLineRelaxation regression p
+    | "invSqrt" => do
+      let k ← natField req "k"
+      let p ← natField req "p"
+      -- CORA.cpp's line exists for `0 < l` only (`out_of_domain` otherwise)
+      if (List.finRange n).any fun i => !FloatOps.ltStrict FloatOps.zero (l i) then
+        throw "relaxation: `invSqrt` needs every `l` above zero"
+      pure fun _ => invSqrtRootLineRelaxation regression k p
     | "sin" | "cos" => do
       let k ← natField req "k"
       pure fun _ => trigRelaxation (kind == "cos") k (aux_pow2 48) (aux_pow2 52) (aux_pow2 50)
@@ -348,8 +432,8 @@ private def aux_relaxation (dops : DtypeOps 𝕋) (req : Json) : Resp := do
         pure fun i => reluRelaxation fun lo hi =>
           if FloatOps.le hi FloatOps.zero then FloatOps.zero
           else if FloatOps.le FloatOps.zero lo then FloatOps.one else a i
-    | k => throw s!"relaxation: `kind` must be sign, square, exp, reciprocal, cube, inverse, sin, \
-      cos or relu, not `{k}`"
+    | k => throw s!"relaxation: `kind` must be sign, square, exp, reciprocal, cube, inverse, \
+      softplus, root, invSqrt, sin, cos or relu, not `{k}`"
   pure [("slope", printVec dops.showExact fun i => (R i).slope (l i) (u i)),
     ("offset", printVec dops.showExact fun i => (R i).offset (l i) (u i)),
     ("error", printVec dops.showExact fun i => (R i).error (l i) (u i))]

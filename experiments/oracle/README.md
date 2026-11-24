@@ -837,14 +837,23 @@ requires them in the output (`check_polyzono_op`).
 | `nnLayer.evaluateZonotope` | `layer`, `Z` (zonotope), `poly_method` | `Layer.linear`, `Layer.relu`, `Layer.leakyRelu`, `Layer.sigmoidSingh`, `Layer.tanhSingh` (or `Layer.sigmoidRegression`, `Layer.tanhRegression`, or `Layer.sigmoid`, `Layer.tanh`) at the zonotope; `Z` |
 | `nnLayer.evaluatePolyZonotope` | `layer`, `P` (polynomial zonotope), `poly_method`, `errorForm` | the same layers at the polynomial zonotope; `P` |
 | `neuralNetwork.evaluate` | `layers`, `Z` or `P`, `poly_method`, `errorForm` | the layers in order, each as above |
-| `nnLayer.relaxation` | `kind`, `l`, `u`, `alpha`, `k`, `p`, `tiny` | `signRelaxation`, `squareChordTangentRelaxation`, `expChordRelaxation`, `reciprocalRelaxation`, `cubeRelaxation`, `inverseRelaxation`, `trigRelaxation` or `reluRelaxation` per neuron (below); `slope`, `offset`, `error` |
+| `nnLayer.relaxation` | `kind`, `l`, `u`, `alpha`, `k`, `p`, `tiny`, `method` | `signRelaxation`, `squareChordTangentRelaxation`, `expChordRelaxation`, `reciprocalRelaxation`, `cubeRelaxation`, `inverseRelaxation`, `softplusLineRelaxation`, `rootLineRelaxation`, `invSqrtRootLineRelaxation`, `trigRelaxation` or `reluRelaxation` per neuron (below); `slope`, `offset`, `error` |
 | `nnLayer.productLine` | `Z` (dimension `2 n`), `dr`, `p`, `tiny` | `productLine` (`productLine_encloses`; CORA.cpp's `priv_product_line`) per pair `a_i`, `b_i` (rows `i` and `n + i`); `slope` (`2 n`: `c_b`, then `c_a`), `offset`, `error` (`n`) |
 | `nnLayer.softmaxSumBounds` | `W`, `b`, `l`, `u`, `k` | `softmaxSumBounds` (`softmaxSumBounds_encloses`; CORA.cpp's `aux_box_image` of a softmax's sums); `inf`, `sup` |
 | `neuralNetwork.backwardBound` | `layers` (`linear`; `relu` with `l`, `u`, `alpha`), `x`, `r`, `C` | `Float.CrownNet.backwardBound` (`Float.CrownNet.backwardBound_le`, `crownReluLines_holds`; CROWN, below); `lower`, one per row of `C` |
 | `neuralNetwork.evaluateGraph` | `layers` (`W`, `b`, `source`, `residuals`, `activation`, `slots`, `p`, `tiny`), `Z` | `Float.GraphNet.evaluateGraph` (`GraphNet.evaluateGraph_encloses`; CORA.cpp's `ZonoNet::forward`, below); `Z`, the last output |
 
 A layer is `{"kind":"linear","W","b"}`, `{"kind":"conv","kernel","kshape","input","stride","dilation","pads","groups","b"}`, `{"kind":"relu"}`, `{"kind":"leakyRelu","alpha"}`, `{"kind":"sign"}`, `{"kind":"square"}`, `{"kind":"sigmoid","k"}`
-or `{"kind":"tanh","k"}` (`k`, the depth of the exponential's reduction, is ignored at `nearest`). `poly_method`
+or `{"kind":"tanh","k"}` (`k`, the depth of the exponential's reduction, is ignored at `nearest`).
+
+CORA.cpp's activations with
+a line of their own are layers too, each the relaxation of `nnLayer.relaxation` at every neuron's box (`Layer.activation_outer_where`):
+`{"kind":"exp","k","p","tiny"}`, `{"kind":"reciprocal","p"}`, `{"kind":"cube","p"}`, `{"kind":"inverse","p"}`,
+`{"kind":"softplus","k","p"}`, `{"kind":"root","p"}` and `{"kind":"invSqrt","k","p"}`. A box outside the line's domain is an
+error. The monotone lines take the least-squares slope at `poly_method` `regression`, Singh's at `singh`. A softmax as CORA.cpp's
+`evaluate` lowers it is `linear` (the differences `x_j - x_i`), `exp`, `linear` (the sums) and `reciprocal`.
+
+`poly_method`
 is `singh` (the default), `regression` (CORA's default `'regression'`) or `curvature`; anything else is refused.
 `regression_error`, for `regression` only (anything else refuses it), is `bracket` (the default) or `extremum`; the layers are then
 `Layer.sigmoidRegression`, `Layer.tanhRegression` or `Layer.sigmoidRegressionExact`, `Layer.tanhRegressionExact`.
@@ -892,6 +901,19 @@ zero (`u > 0`, `l < 0`; CORA.cpp's optimized slopes) and CORALean's elsewhere. T
   an error. `m = -((1 / l)(1 / u))` (quotients up) and `hi = max(g(l), g(u))` (up). `lo = s + s` with `s = sqrt(-m)` (down),
   the closed-form minimum `2 sqrt(-m)` of `1 / x - m x`, which CORA.cpp's line takes too. The margin is `(1 / l) * 2^-47`
   (CORA.cpp's `32 eps`); `inverseRelaxation_encloses` holds on boxes with `0 < l`.
+* **The monotone lines** (`softplus`, `root`, `invSqrt`, CORA.cpp's `priv_monotone_line`): `softplusLineRelaxation`,
+  `rootLineRelaxation`, `invSqrtRootLineRelaxation`, with the fields `method`, `p`, and `k` for `softplus` and `invSqrt`.
+  `f` is `log(1 + exp(x))`, `sqrt(x)` (every `l` at least `0`, else an error) or `sqrt(1 / x)` (every `l` above `0`, else
+  an error). `method` is `regression` (the default, `regressionSlope` of `f`) or `singh`, the slope `1 / (exp(-l) + 1)`,
+  `(1 / sqrt(u)) * 0.5` (`0` unless `u > 0`) or `-(1 / sqrt((u u) u)) * 0.5`.
+* **Their bands**: with `g(x) = f(x) - m x`, `lo = min(g(l), g(u))` and `hi = max(g(l), g(u))`, then the closed-form extremum
+  over the line where it exists. Softplus takes `lo = min(lo, -(m log m) - t log t)` for `0 < m < 1`, `t = 1 - m`. Root takes
+  `hi = max(hi, (1 / m) * 0.5 * 0.5)` for `m > 0`. InvSqrt takes `lo = min(lo, c + c * 0.5)` for `m < 0`, with
+  `c = exp(log(-m + -m) / 3)`. The offset is `(hi + lo) * 0.5`, the error `(hi - lo) * 0.5` (`Relaxation.ofBand`, no margin).
+* **Their soundness**, at every slope: on the boxes of the domain (`rootLineRelaxation_enclosesWhere`,
+  `invSqrtRootLineRelaxation_enclosesWhere`), and for softplus on the boxes with `u <= 2^k / 2`
+  (`softplusLineRelaxation_enclosesWhere`). A sound format that decides neither branch takes `min(-m l, -m u)` for a lower
+  end, `sqrt(u) + max(-m l, -m u)` for the root's upper end.
 * **Sin, cos** (`trigRelaxation`, field `k` the halvings of `sin` and `cos`, CORA.cpp's `priv_trig_line` and `priv_trig_box`).
   The box `[lo, hi]` holds the end values `-+ 2^-48`, and `1` (`-1`) where a maximum `a + 2 pi k` (a minimum `a + pi + 2 pi k`)
   may lie in `[l, u]`, with `a = pi / 2` for `sin` and `0` for `cos`. That is decided as

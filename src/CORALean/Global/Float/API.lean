@@ -12,6 +12,8 @@ public import CORALean.Global.Float.EuclideanNorm
 public import CORALean.Global.Float.Exp
 public import CORALean.Global.Float.ElemOverride
 public import CORALean.Global.Float.Log
+public import CORALean.Global.Float.LogDownPos
+public import CORALean.Global.Float.LogDownPosLe
 public import CORALean.Global.Float.Sqrt
 public import CORALean.Global.Float.SqrtDownCora
 public import CORALean.Global.Float.SqrtDownCoraLe
