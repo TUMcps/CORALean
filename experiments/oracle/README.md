@@ -843,6 +843,14 @@ requires them in the output (`check_polyzono_op`).
 | `neuralNetwork.backwardBound` | `layers` (`linear`; `relu` with `l`, `u`, `alpha`), `x`, `r`, `C` | `Float.CrownNet.backwardBound` (`Float.CrownNet.backwardBound_le`, `crownReluLines_holds`; CROWN, below); `lower`, one per row of `C` |
 | `neuralNetwork.evaluateGraph` | `layers` (`W`, `b`, `source`, `residuals`, `activation`, `slots`, `p`, `tiny`), `Z` | `Float.GraphNet.evaluateGraph` (`GraphNet.evaluateGraph_encloses`; CORA.cpp's `ZonoNet::forward`, below); `Z`, the last output |
 | `neuralNetwork.evaluateTaylm` | `layers` (`linear`; `relu`, `sigmoid`, `tanh` with `k`; `order`), `x` (Taylor models), `poly_method`, `regression_error` | `SoundLayer.affineTaylm`, `SoundLayer.activationTaylmFit` in turn (`Layer.affineTaylm_encloses`, `Layer.activationTaylmFit_encloses`, `reluSinghQuadRelaxation_encloses`; CORA.cpp's `NeuralNetwork::evaluate_taylm`, below); `Y`, the output models |
+| `nnLayer.mergeBuckets` | `kind` (`relu`, `sigmoid`, `tanh`) | `ActivationKind.mergeValues` (`ActivationKind.mergeValues_iff`; CORA's `getMergeBuckets`); `buckets`, the finite limits of the activation |
+| `nnLayer.groupSort` | `groupSize`, `x` | `groupSortFloat` (`groupSortFloat_perm`, `groupSortFloat_sorted`; CORA's `nnGroupSortLayer`); `y`, each group of `groupSize` consecutive entries sorted ascending (stable), the last one possibly shorter |
+| `nnLayer.generatorReduction` | `maxGens`, `Z` | `Zonotope.reduceShortest` at `maxGens - n` (`Zonotope.reduceShortest_outer`; CORA's `nnGeneratorReductionLayer`); `Z` |
+| `neuralNetwork.normalForm` | `n` (inputs), `layers` (`linear`, `elementwiseAffine` with `scale` and `offset`, `identity`, or an activation of any other `kind`) | `Float.WeightNetwork.normalForm` (`WeightNetwork.normalForm_encloses`; CORA's `getNormalForm`); `layers`, the fused `linear` layers (`W`, `b` as boxes `inf`, `sup`) and the activations in order |
+| `neuralNetwork.propagateBounds` | `layers` (`W`, `b`, `activation` `relu` or `identity`), `bounds` (`{l, u}` or `null`, one per layer), `i` | `Float.IntervalChain.fwd` from layer `i`'s ReLU to the next ReLU layer, met with its stored bounds (`IntervalChain.fwd_outer`; CORA's `propagateBounds`); `bounds` |
+| `neuralNetwork.backpropIntervalBatch` | `layers` (as above), `l`, `u`, `gl`, `gu` | `Float.IntervalChain.backprop` (`IntervalChain.backprop_outer`; CORA's `backpropIntervalBatch`); `gl`, `gu` as boxes |
+| `neuralNetwork.backprop` | `layers` (as above), `x`, `g` | the same at the point `x` and the gradient `g` (CORA's `backprop`); `g` as a box |
+| `neuralNetwork.sensitivity` | `layers` (as above), `x` | `Float.IntervalChain.sensitivity` (`IntervalChain.sensitivity_outer`; CORA's `calcSensitivity`); `J` as a box |
 
 A layer is `{"kind":"linear","W","b"}`, `{"kind":"conv","kernel","kshape","input","stride","dilation","pads","groups","b"}`, `{"kind":"relu"}`, `{"kind":"leakyRelu","alpha"}`, `{"kind":"sign"}`, `{"kind":"square"}`, `{"kind":"sigmoid","k"}`
 or `{"kind":"tanh","k"}` (`k`, the depth of the exponential's reduction, is ignored at `nearest`).
@@ -993,6 +1001,35 @@ Sound by `Layer.affineTaylm_encloses`, `Layer.activationTaylmFit_encloses` and `
 compose (`NeuralNetwork.enclose_outer`). At `nearest` the error boxes stay zero and the result is CORA.cpp's once it takes the
 order-1 line from `aux_line` and the closed-form order-2 error (CORA.cpp request note of batch 7). Not served: sigmoid or tanh
 at orders of 2 and more, ReLU at 3 and more, the other activations and poly methods.
+
+The network forms of CORA.cpp's port:
+
+* `nnLayer.generatorReduction` is CORA's `nnGeneratorReductionLayer`. Each generator's length is
+  `sum_i |g_i|`, summed in order and rounded up. The generators are ranked by it ascending, ties in
+  index order (a stable sort, CORA.cpp's `argsort`). The first `maxGens - n` stay, and the rest become
+  the diagonal box of their absolute row sums, summed in rank order (`Zonotope.reduceBy`), after the
+  kept ones. The center and `E` are kept. With at most `maxGens - n` generators the set is returned
+  unchanged; `maxGens < n` is an error. CORA keeps the shortest generators, not the longest.
+* `neuralNetwork.normalForm` fuses each run of linear layers between two activations, as CORA.cpp's
+  `normal_form` does: `W_k W` and `W_k b + b_k` (`WeightAcc.pushLinear`, sums nested to the left).
+  An elementwise affine layer scales the rows, and an identity layer is dropped. The boxes are the
+  products' enclosures, one point at `nearest`.
+* `nnLayer.groupSort` compares with `le`, so two zeros of different sign keep their order.
+* The bound and gradient passes read a network as CORA.cpp's list of layers, each `W`, `b` and its
+  activation. They support ReLU and the identity only. A layer is `linear W b`, then the ReLU's box
+  `[max(l, 0), max(u, 0)]` and its derivative `[l > 0, u > 0]` (an `IntervalChain`).
+* A linear map takes the midpoint through `W` and the radius through `|W|`, as CORA.cpp's interval
+  passes do. `propagateBounds` returns `bounds` unchanged when layer `i` is no ReLU, has no bounds,
+  or no ReLU follows it.
+* `backprop` multiplies each lower (upper) gradient bound by the derivative at the lower (upper)
+  pre-activation, then applies `W'` at the midpoint and `|W|'` at the radius.
+* `sensitivity` builds the Jacobian from the output back, `((D_K W_K) D_(K-1)) ...` times `W_1`
+  (left-nested products).
+* Not served:
+  * sigmoid and tanh. CORALean's sigmoid enclosure takes its two ends from two different formulas,
+    so neither end is CORA.cpp's value at `nearest`.
+  * `computeFGSMAttack`. Its loss derivative `softmax(y) - t` has no float definition in CORA.cpp's
+    order.
 
 `neuralNetwork.backwardBound` (fields `layers`, `x`, `r`, `C`; reply `lower`, a column) is CROWN's backward bound, CORA.cpp's
 `priv_backward_lower`: a lower bound of every row `C_q` on the outputs over the input box `|x' - x| <= r`. A layer is

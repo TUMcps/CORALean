@@ -28,6 +28,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMat
 public import CORALean.ContSet.Zonotope.Float.Operations.ReduceBoxError
 public import CORALean.ContSet.Zonotope.Float.Operations.LowerDot
 public import CORALean.ContSet.Zonotope.Float.Operations.MtimesIntervalMatBox
+public import CORALean.ContSet.Zonotope.Float.Operations.ReduceShortest
 public import CORALean.ContSet.Zonotope.Float.Operations.RotMat
 public import CORALean.ContSet.Zonotope.Float.Operations.Rotate
 public import CORALean.ContSet.Zonotope.Float.Operations.ShiftDown
@@ -49,6 +50,7 @@ public import CORALean.ContSet.Zonotope.Float.Operations.Reindex
 public import CORALean.ContSet.Zonotope.Float.Operations.ConstrSat
 public import CORALean.ContSet.Zonotope.Float.Operations.Point
 public import CORALean.ContSet.Zonotope.Float.Operations.NormSq
+public import CORALean.ContSet.Zonotope.Float.Operations.ShortestSplit
 public import CORALean.ContSet.Zonotope.Float.Operations.Split
 public import CORALean.ContSet.Zonotope.Float.Operations.SplitFirstGen
 public import CORALean.ContSet.Zonotope.Float.Operations.LongestGen

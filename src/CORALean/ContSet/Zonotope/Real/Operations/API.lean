@@ -67,7 +67,9 @@ public import CORALean.ContSet.Zonotope.Real.Operations.ReduceHybridPC
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceLineCl
 public import CORALean.ContSet.Zonotope.Real.Operations.ReduceMethC
 public import CORALean.ContSet.Zonotope.Real.Operations.ReducePCA
+public import CORALean.ContSet.Zonotope.Real.Operations.ReduceShortest
 public import CORALean.ContSet.Zonotope.Real.Operations.Shift
+public import CORALean.ContSet.Zonotope.Real.Operations.ShortestSplit
 public import CORALean.ContSet.Zonotope.Real.Operations.Split
 public import CORALean.ContSet.Zonotope.Real.Operations.LongestGen
 public import CORALean.ContSet.Zonotope.Real.Operations.SplitLongestGen
