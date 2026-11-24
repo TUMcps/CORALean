@@ -145,6 +145,11 @@ public import CORALean.NN.Layers.Operations.TrigRelaxation
 public import CORALean.NN.Layers.Operations.ProductLine
 public import CORALean.NN.Layers.Operations.SoftmaxSumBounds
 public import CORALean.NN.Layers.Operations.CrownReluLines
+public import CORALean.NN.Layers.Operations.ActivationTaylmFit
+public import CORALean.NN.Layers.Operations.AffineTaylm
+public import CORALean.NN.Layers.Operations.ReluSinghQuadRelaxation
+public import CORALean.NN.Layers.Operations.SoundLayerActivationTaylmFit
+public import CORALean.NN.Layers.Operations.SoundLayerAffineTaylm
 
 /-!
 # The standard layers, collected

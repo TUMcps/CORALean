@@ -87,6 +87,8 @@ public import CORALean.ContSet.Taylm.Float.Theorems.MinusMergedOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.ScaleOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.TimesMergedOuter
 public import CORALean.ContSet.Taylm.Float.Theorems.PowBinaryOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.ConstSparseOuter
+public import CORALean.ContSet.Taylm.Float.Theorems.FromRangeOuter
 
 /-!
 # Float Taylor model guarantees, collected

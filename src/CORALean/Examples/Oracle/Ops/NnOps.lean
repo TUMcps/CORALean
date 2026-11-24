@@ -37,6 +37,7 @@ import CORALean.Examples.Oracle.Ops.PolyZonotopeCodec
 import CORALean.Examples.Oracle.Ops.SetCodec
 import CORALean.Examples.Oracle.Ops.CrownOps
 import CORALean.Examples.Oracle.Ops.GraphNetOps
+import CORALean.Examples.Oracle.Ops.TaylmNetOps
 
 /-!
 # The network ops: CORA's `nnLayer` and `neuralNetwork` evaluation on a set
@@ -554,7 +555,8 @@ def nnLayerOpNames : List String :=
   [ "evaluateZonotope", "evaluatePolyZonotope", "relaxation", "productLine", "softmaxSumBounds" ]
 
 /-- Every op of `neuralNetwork.`, without the prefix. -/
-def neuralNetworkOpNames : List String := [ "evaluate", "backwardBound", "evaluateGraph" ]
+def neuralNetworkOpNames : List String :=
+  [ "evaluate", "backwardBound", "evaluateGraph", "evaluateTaylm" ]
 
 /-- `op` of `nnLayer.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -591,6 +593,7 @@ def handleNeuralNetworkOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Op
       (← arrField req "layers").toList)
   | "backwardBound" => some (crownBackwardBoundOp dops req)
   | "evaluateGraph" => some (evaluateGraphOp dops req)
+  | "evaluateTaylm" => some (evaluateTaylmOp dops req)
   | _ => none
 
 end CORALean.Oracle

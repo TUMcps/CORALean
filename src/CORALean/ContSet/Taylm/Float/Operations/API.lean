@@ -71,6 +71,8 @@ public import CORALean.ContSet.Taylm.Float.Operations.PlusScalar
 public import CORALean.ContSet.Taylm.Float.Operations.Scale
 public import CORALean.ContSet.Taylm.Float.Operations.TimesMerged
 public import CORALean.ContSet.Taylm.Float.Operations.PowBinary
+public import CORALean.ContSet.Taylm.Float.Operations.ConstSparse
+public import CORALean.ContSet.Taylm.Float.Operations.FromRange
 
 /-!
 # Float Taylor model operations, collected
