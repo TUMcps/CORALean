@@ -9,8 +9,8 @@ public import Mathlib.Data.List.Dedup
 /-!
 # `PolyZonotope.partPatterns`
 
-The distinct exponent patterns in the factors `V`, in order of first appearance
-(`unique(eM_v','rows','stable')`).
+The distinct exponent patterns in the factors `V`, each at the place of its last occurrence
+(`List.dedup`; CORA's `unique(eM_v','rows','stable')` keeps the first).
 
 ## Inputs
 * `pZ` – polynomial zonotope
@@ -35,7 +35,8 @@ variable {α : Type} [AddCommGroup α] [Module ℝ α]
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
-/-- The distinct patterns of the generators, first appearance first. -/
+/-- The distinct patterns of the generators, each at the place of its last occurrence
+(`List.dedup`; CORA's `unique(..., 'stable')` keeps the first). -/
 def PolyZonotope.partPatterns (pZ : PolyZonotope α) (V : Finset (Fin pZ.p)) :
     List (Fin pZ.p → ℕ) :=
   (List.ofFn (pZ.partPattern V)).dedup

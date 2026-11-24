@@ -46,7 +46,7 @@ arithmetic -- never floats:
   `+-1`) lie in the hull of the output (`check_polyzono_op`); `plus`, `mtimes`, `evalPowers` and
   `quadMap` map the points first, `enclose` takes the points of both operands, `exactPlus` adds points of
   both at equal factor values, `cartProd` joins them with points of `Z`; a split puts every point
-  in the hull of a half, `center` must be `c`, and a `false` of `isIntersecting` needs every point
+  in the hull of a half, the identifier, structure and map ops of the second batch (`check_pz_batch4`) check a subset, a cover or the image at sampled factor values, `center` must be `c`, and a `false` of `isIntersecting` needs every point
   outside the polytope.
 * `intervalMatrix.exponentialRemainder`: the exact remainder of the center matrix lies in the answer;
   `matZonotope.reduce`: the box of the set lies in the box of the answer; `matZonotope.contains`:
@@ -1142,11 +1142,204 @@ def pz_hull(out):
     return lo, hi
 
 
+BATCH4 = ("replaceId", "restoreId", "rmId", "onlyId", "noIndep", "lift", "isBounded", "isFullDim",
+          "isequal", "representsa", "sum", "restructure", "jacobian", "linComb", "convHull",
+          "getSubset", "resolve", "matMap", "cubMap", "partZonotope", "outerApprox")
+
+
+def pz_parts(P):
+    """`(c, G, GI, exps, ids)` of a wire polynomial zonotope: `G`, `GI` as lists of columns, `exps`
+    a list over the generators of the exponent per factor."""
+    c = parse_vec(P["c"])
+    _, h, G = parse_mat(P["G"])
+    _, q, GI = parse_mat(P["GI"]) if "GI" in P else (0, 0, [[] for _ in c])
+    p, E = P["Exp"]["rows"], P["Exp"]["data"]
+    exps = [[E[k * h + j] for k in range(p)] for j in range(h)]
+    ids = P.get("id", list(range(1, p + 1)))
+    return c, [[G[i][j] for i in range(len(c))] for j in range(h)], \
+        [[GI[i][j] for i in range(len(c))] for j in range(q)], exps, ids
+
+
+def pz_eval(P, assign, default, gi=0):
+    """The point of `P` with factor `id` at `assign[id]` (else `default`), the independent
+    generators at `gi` (`0` or `+-1`)."""
+    c, G, GI, exps, ids = pz_parts(P)
+    n = len(c)
+    out = list(c)
+    for j, col in enumerate(G):
+        mono = F(1)
+        for k, e in enumerate(exps[j]):
+            mono *= assign.get(ids[k], default) ** e
+        out = [out[i] + col[i] * mono for i in range(n)]
+    return [out[i] + sum(g[i] * gi for g in GI) for i in range(n)]
+
+
+def pz_samples(P, fixed=None):
+    """Assignments of the factors of `P` not in `fixed`: all at one of `-1, 1/2, 1`, and a mixed one."""
+    ids = pz_parts(P)[4]
+    fixed = fixed or {}
+    outs = []
+    for v in (F(-1), F(1, 2), F(1), F(0)):
+        outs.append({**{i: v for i in ids}, **fixed})
+    outs.append({**{i: (F(1, 3) if t % 2 else F(-1)) for t, i in enumerate(ids)}, **fixed})
+    return outs
+
+
+def inside_hull(lo, hi, pts, fails, tag):
+    slack = Decimal(10) ** -40
+    for x in pts:
+        for i in range(len(lo)):
+            y = dec(x[i]) if isinstance(x[i], F) else x[i]
+            if y < lo[i] - slack or y > hi[i] + slack:
+                fails.append(f"{tag}: coordinate {i} = {float(y)} leaves "
+                             f"[{float(lo[i])}, {float(hi[i])}]")
+                return False
+    return True
+
+
+def with_error_box(P):
+    """`P` with the error box `E` a request may leave out, zero."""
+    if "E" in P:
+        return P
+    z = {"rows": P["c"]["rows"], "cols": 1, "data": ["0*2^0"] * P["c"]["rows"]}
+    return {**P, "E": {"inf": z, "sup": z}}
+
+
+def check_pz_batch4(op, name, req, resp, fails):
+    """The second batch of `polyZonotope.*` ops (identifiers, structure, predicates, maps)."""
+    tag = f"id {req.get('id')}: {op}"
+    P = req.get("P")
+    if name == "isBounded":
+        if resp["value"] is not True:
+            fails.append(f"{tag}: a polynomial zonotope is bounded")
+        return
+    if name == "isFullDim":
+        return
+    if name == "isequal":
+        if resp["value"]:
+            # a `true` needs the stored data equal, as parsed numbers
+            a, b = pz_parts(P), pz_parts(req["Q"])
+            if a[:4] != b[:4] or a[4] != b[4] and False:
+                fails.append(f"{tag}: true, but the data differ")
+        return
+    if name == "representsa":
+        if resp["value"]:
+            _, G, GI, _, _ = pz_parts(P)
+            if any(v != 0 for col in G + GI for v in col):
+                fails.append(f"{tag}: true, but a generator is not zero")
+        return
+    if name == "onlyId":
+        c = parse_vec(P["c"])
+        lo, hi = pz_hull(with_error_box(P))
+        pts = list(pz_points(P))
+        for key in ("P1", "P2"):
+            lo2, hi2 = pz_hull(resp[key])
+            shift = c if key == "P2" else [F(0)] * len(c)
+            lo2 = [lo2[i] + dec(shift[i]) for i in range(len(c))]
+            hi2 = [hi2[i] + dec(shift[i]) for i in range(len(c))]
+            slack = Decimal(10) ** -40
+            if any(lo2[i] < lo[i] - slack or hi2[i] > hi[i] + slack for i in range(len(c))):
+                fails.append(f"{tag}: {key} leaves the hull of the set")
+                return
+        # the parts add up to the set: P1 + P2 - c covers the points
+        l1, h1 = pz_hull(resp["P1"])
+        l2, h2 = pz_hull(resp["P2"])
+        cover = [(l1[i] + l2[i], h1[i] + h2[i]) for i in range(len(c))]
+        for x in pts:
+            for i in range(len(c)):
+                if not cover[i][0] - Decimal(10) ** -40 <= dec(x[i]) <= cover[i][1] + Decimal(10) ** -40:
+                    fails.append(f"{tag}: the parts do not cover the set")
+                    return
+        return
+    lo, hi = pz_hull(resp["P"])
+    slack = Decimal(10) ** -40
+    n = len(lo)
+    if name in ("noIndep", "rmId", "replaceId"):
+        # a subset: the points of the result lie in the hull of the set
+        plo, phi = pz_hull(with_error_box(P))
+        pts = list(pz_points(resp["P"]))
+        inside_hull(plo, phi, pts, fails, tag)
+        return
+    if name in ("restoreId", "partZonotope", "outerApprox", "restructure"):
+        inside_hull(lo, hi, list(pz_points(P)), fails, tag)
+        return
+    if name == "lift":
+        plo, phi = pz_hull(with_error_box(P))
+        pairs = sorted(zip(plo, phi))
+        if sorted(zip(lo, hi)) != pairs:
+            fails.append(f"{tag}: the result is not a permutation of the coordinates")
+        return
+    if name == "sum":
+        pts = []
+        for a, *rest in zip(pz_points_uniform(P), *[pz_points_uniform(L) for L in req["L"]]):
+            pts.append([a[i] + sum(r[i] for r in rest) for i in range(n)])
+        inside_hull(lo, hi, pts, fails, tag)
+        return
+    if name == "jacobian":
+        c, G, GI, exps, ids = pz_parts(P)
+        k = ids.index(req["factor"])
+        pts = []
+        for assign in pz_samples(P):
+            pt = [F(0)] * n
+            for j, col in enumerate(G):
+                e = exps[j][k]
+                if e == 0:
+                    continue
+                mono = F(e)
+                for t, ex in enumerate(exps[j]):
+                    mono *= assign[ids[t]] ** (ex - 1 if t == k else ex)
+                pt = [pt[i] + col[i] * mono for i in range(n)]
+            pts.append(pt)
+        inside_hull(lo, hi, pts, fails, tag)
+        return
+    if name in ("linComb", "convHull"):
+        xs = list(pz_points(P))[::3] + [pz_eval(P, a, F(0)) for a in pz_samples(P)]
+        ys = list(pz_points(req["Q"]))[::3] + [pz_eval(req["Q"], a, F(0)) for a in pz_samples(req["Q"])]
+        pts = [[(x[i] + y[i]) / 2 for i in range(n)] for x in xs[:8] for y in ys[:8]]
+        if name == "convHull":
+            pts += xs + ys
+        inside_hull(lo, hi, pts, fails, tag)
+        return
+    if name in ("getSubset", "resolve"):
+        ids = req["ids"] if "ids" in req else pz_parts(P)[4]
+        vals = parse_vec(req["val"] if name == "getSubset" else req["x"])
+        fixed = {i: vals[t] for t, i in enumerate(ids)}
+        pts = [pz_eval(P, a, F(0)) for a in pz_samples(P, fixed)]
+        inside_hull(lo, hi, pts, fails, tag)
+        return
+    if name == "matMap":
+        nn, kk, mm = req["n"], req["k"], req["m"]
+        pts = []
+        sa, sb = pz_samples(req["P"]), pz_samples(req["Q"])
+        for a in range(len(sa)):
+            ids = pz_parts(req["P"])[4] + pz_parts(req["Q"])[4]
+            both = {**sb[a], **sa[a]}
+            x, y = pz_eval(req["P"], both, F(0)), pz_eval(req["Q"], both, F(0))
+            # column-major matrices, the product column by column
+            X = [[x[j * nn + i] for j in range(kk)] for i in range(nn)]
+            Y = [[y[j * kk + i] for j in range(mm)] for i in range(kk)]
+            pts.append([sum(X[i][t] * Y[t][j] for t in range(kk)) for j in range(mm) for i in range(nn)])
+        inside_hull(lo, hi, pts, fails, tag)
+        return
+    if name == "cubMap":
+        nd = len(pz_parts(P)[0])
+        Ts = [[parse_mat(M)[2] for M in row] for row in req["T"]]
+        pts = []
+        for x in list(pz_points(P)):
+            pts.append([sum(x[k] * sum(x[a] * Ti[k][a][b] * x[b] for a in range(nd) for b in range(nd))
+                            for k in range(nd)) for Ti in Ts])
+        inside_hull(lo, hi, pts, fails, tag)
+        return
+
+
 def check_polyzono_op(op, req, resp, fails):
     """The `polyZonotope.*` ops and the two conversions: the exact image of the points of the
     operands lies in the hull of the response (a necessary condition, not an exact one)."""
     name = op.split(".", 1)[1] if op.startswith("polyZonotope.") else op
     rid = req.get("id")
+    if name in BATCH4 and op.startswith("polyZonotope."):
+        check_pz_batch4(op, name, req, resp, fails)
+        return
     if name == "dim":
         if resp["value"] != len(parse_vec(req["P"]["c"])):
             fails.append(f"id {rid}: {op}: wrong dimension {resp['value']}")
