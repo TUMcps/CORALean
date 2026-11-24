@@ -7,7 +7,7 @@ public import CORALean.NN.Operations.IntervalChainToChain
 public import CORALean.NN.Operations.IntervalChainFwd
 public import CORALean.NN.Operations.ChainEval
 public import CORALean.NN.Theorems.IntervalChainFwdFloatOuter
-public import CORALean.ContSet.Interval.Float.Theorems.SignOuter
+public import CORALean.ContSet.Interval.Float.Theorems.SignCoraOuter
 public import CORALean.ContSet.Interval.Float.Theorems.Basic
 public import CORALean.ContSet.Interval.Float.Theorems.PlusOuter
 public import CORALean.ContSet.Interval.Float.Theorems.MemPoint
@@ -22,7 +22,7 @@ loss derivative enclosing the real one, the real `Chain.fgsmAttack` of the chain
 point `x` of the box `X`, the real value of the float `t` and a step `ε` in its box lies in the box
 `IntervalChain.fgsmAttack` returns.
 The output of the network lies in the forward box, the loss derivative at the two lies in its
-enclosure, the gradient in `IntervalChain.backpropAt`'s box, the sign in `Interval.sign`'s and
+enclosure, the gradient in `IntervalChain.backpropAt`'s box, the sign in `Interval.signCora`'s and
 the step in the sum of the box products.
 
 ## Inputs
@@ -51,7 +51,7 @@ the step in the sum of the box products.
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       26-October-2026
--- Last update:   ---
+-- Last update:   24-November-2026
 -- Reviewed:      ---
 
 
@@ -105,11 +105,11 @@ theorem IntervalChain.fgsmAttack_outer {n m : ℕ} {c : IntervalChain 𝕋 n m}
   -- so does the gradient of the loss in the box of the backpropagation
   have hg := IntervalChain.backpropAt_outer hc hs X hx _
     (hl (Interval.point t) _ (toRealVec t) _ (Interval.mem_point t) hy)
-  have hsign := Interval.sign_outer _ ⟨_, hg, rfl⟩
+  have hsign := Interval.signCora_outer _ ⟨_, hg, rfl⟩
   have hstep : (fun i => ε * Real.sign (r.toChain.backprop x
       (lossDer (toRealVec t) (r.toChain.eval x)) i)) ∈
       (Interval.times (⟨fun _ => E.inf, fun _ => E.sup⟩ : Interval (Vec 𝕋 n))
-        (c.backpropAt X (lossDerF (Interval.point t) (c.fwd (X, X)).1)).sign).toSet :=
+        (c.backpropAt X (lossDerF (Interval.point t) (c.fwd (X, X)).1)).signCora).toSet :=
     Interval.times_outer _ _ ⟨fun _ => ε, fun _ => hε, _, hsign, rfl⟩
   exact Interval.plus_outer _ _ (Set.add_mem_add hx hstep)
 

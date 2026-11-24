@@ -3,6 +3,8 @@ module
 public import CORALean.NN.Definitions.IntervalChainFloat
 public import CORALean.ContSet.Interval.Float.Operations.Basic
 public import CORALean.ContSet.Interval.Float.Operations.Times
+public import CORALean.ContSet.Interval.Float.Operations.Materialise
+public import CORALean.Global.StepOf
 
 @[expose] public section
 
@@ -12,7 +14,9 @@ public import CORALean.ContSet.Interval.Float.Operations.Times
 range over is carried through each layer by outward-rounded interval arithmetic. The linear layer's
 `mu = W (l + u)/2 + b`, `r = |W| (u - l)/2` are `Interval.mtimes` of the float `W` and `|W|`
 (`absolute` entrywise, exact) against the halved sum and difference, read back as
-`[mu - r, mu + r]`; the activation's is the stored scalar enclosure `σE`, entrywise.
+`[mu - r, mu + r]`; the activation's is the stored scalar enclosure `σE`, entrywise. The code runs
+`step_fwdImpl`, the same pass with every linear layer's boxes stored (`materialise`), so a layer
+reads the boxes before it once per entry rather than once per path (`IntervalChain.fwd_eq_impl`).
 
 ## Inputs
 * none
@@ -23,7 +27,7 @@ range over is carried through each layer by outward-rounded interval arithmetic.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       12-October-2026
--- Last update:   ---
+-- Last update:   24-November-2026
 -- Reviewed:      ---
 
 
@@ -34,6 +38,25 @@ namespace CORALean.Float
 open Matrix FloatOps
 
 variable {𝕋 : Type} [FloatOps 𝕋]
+
+
+-- ------------------------------------------  STEPS  ------------------------------------------- --
+
+/-- The pass with each linear layer's boxes stored, which the compiled code runs. -/
+@[step_of IntervalChain.fwd]
+def IntervalChain.step_fwdImpl : ∀ {n k : ℕ}, IntervalChain 𝕋 n k →
+    Interval (Vec 𝕋 n) × Interval (Vec 𝕋 n) → Interval (Vec 𝕋 k) × Interval (Vec 𝕋 k)
+  | _, _, .nil, p => p
+  | _, _, .linear W b rest, p =>
+    let mu := (Interval.plus (Interval.mtimes W (Interval.halve (Interval.plus p.1 p.2)))
+      ⟨b, b⟩).materialise
+    let r :=
+      (Interval.mtimes (W.map absolute) (Interval.halve (Interval.minus p.2 p.1))).materialise
+    rest.step_fwdImpl ((Interval.minus mu r).materialise, (Interval.plus mu r).materialise)
+  | _, _, .act σE _ rest, p =>
+    rest.step_fwdImpl
+      (⟨fun i => (σE ⟨p.1.inf i, p.1.sup i⟩).inf, fun i => (σE ⟨p.1.inf i, p.1.sup i⟩).sup⟩,
+        ⟨fun i => (σE ⟨p.2.inf i, p.2.sup i⟩).inf, fun i => (σE ⟨p.2.inf i, p.2.sup i⟩).sup⟩)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --

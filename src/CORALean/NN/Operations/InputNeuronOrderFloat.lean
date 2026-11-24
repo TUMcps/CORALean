@@ -1,6 +1,7 @@
 module
 
 public import CORALean.NN.Operations.IntervalChainSensitivityFloat
+public import CORALean.NN.Theorems.IntervalChainSensitivityFloatEqImpl
 public import CORALean.NN.Operations.SnakeOrder
 public import CORALean.NN.Definitions.Basic
 public import CORALean.Global.Float.FloatOps

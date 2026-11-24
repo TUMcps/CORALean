@@ -44,6 +44,14 @@ arithmetic -- never floats:
 * `neuralNetwork.propagateBounds`, `backpropIntervalBatch`, `backprop` (ReLU networks): the same
   midpoint-radius passes over ℚ (`Real.IntervalChain`) lie in the reply's bounds;
   `neuralNetwork.sensitivity`: the exact Jacobian at the point lies in the reply (`check_nn_bounds`).
+* `neuralNetwork.backpropZonotopeBatch` and `nnLayer.backpropZonotopeBatch`: the reply's slopes
+  lie in `[0, 1]`, and the exact backward pass over ℚ with them (`W'` and `m .*`) of the center's
+  and every input generator's gradient lies in the reply; `neuralNetwork.computeFGSMAttack`: `x`
+  plus `epsilon` times the sign of the exact gradient of `softmax(y) - t` (`exp` in 60-digit
+  `decimal`) lies in the reply; `neuralNetwork.getInputNeuronOrder`: the pixels in order, along
+  the snake, or ascending by the exact mean absolute sensitivity; the integer structure ops
+  (`getNumNeurons`, `getNumParams`, `getRefinableLayers`, `getOrderPattern`,
+  `prepareForZonoBatchEval`) recomputed (`check_nn_batch9`).
 * `nnLayer.*`, `neuralNetwork.evaluate` and `neuralNetwork.evaluateGraph`: the exact network
   (`Fraction` for the linear and ReLU layers, `decimal` at 60 digits for sigmoid and tanh, the fit
   plus its error `d` for `poly`) at points of the input set lies in the hull of the output set
@@ -1234,6 +1242,140 @@ def check_nn_bounds(op, req, resp, fails):
         inside("upper gradient", gu, resp["gu"])
 
 
+def check_nn_batch9(op, req, resp, fails):
+    """The zonotope batch backpropagation, FGSM, the input order and the structure ops of a
+    network of `{W, b, activation}` layers (see the module docstring)."""
+    rid = req.get("id")
+
+    def fail(what):
+        fails.append(f"id {rid}: {op}: {what}")
+
+    def layers_of(req):
+        return [(parse_mat(L["W"])[2], parse_vec(L["b"]), L["activation"] == "relu")
+                for L in req["layers"]]
+
+    def transpose_times(W, g):
+        return [sum(W[i][j] * g[i] for i in range(len(W))) for j in range(len(W[0]))]
+
+    if op.endswith("backpropZonotopeBatch"):
+        slopes = [parse_vec(v) if v is not None else None for v in resp.get("slopes", [])]
+        if any(v is not None and not all(F(0) <= m <= F(1) for m in v) for v in slopes):
+            fail("a slope leaves [0, 1]")
+            return
+        # the backward steps: ("W", W) or ("m", slopes), from the output back
+        if op.startswith("nnLayer."):
+            layer = req["layer"]
+            steps = [("W", parse_mat(layer["W"])[2])] if layer["kind"] == "linear" \
+                else [("m", slopes[0])]
+        else:
+            steps, it = [], iter(slopes)
+            for W, _, relu in layers_of(req):
+                steps.append(("W", W))
+                m = next(it)
+                if relu:
+                    steps.append(("m", m))
+        def back(g):
+            for kind, v in reversed(steps):
+                g = transpose_times(v, g) if kind == "W" else [a * b for a, b in zip(v, g)]
+            return g
+        lo, hi = parse_box(resp["gc"])
+        gc = back(parse_vec(req["gc"]))
+        if not all(a <= x <= b for a, x, b in zip(lo, gc, hi)):
+            fail("the exact center gradient leaves the reply")
+        _, q, gG = parse_mat(req["gG"])
+        Glo, Ghi = parse_box_mat(resp["gG"])
+        h = len(Glo[0]) if Glo else 0
+        for j in range(h):
+            g = back([row[j] for row in gG])
+            if not all(Glo[i][j] <= g[i] <= Ghi[i][j] for i in range(len(g))):
+                fail(f"the exact gradient of generator {j} leaves the reply")
+                return
+        return
+    if op == "neuralNetwork.computeFGSMAttack":
+        x, t, eps = parse_vec(req["x"]), parse_vec(req["t"]), parse_scalar(req["epsilon"])
+        h, pre = x, []
+        L = layers_of(req)
+        for W, b, relu in L:
+            z = [u + v for u, v in zip(mat_vec(W, h), b)]
+            pre.append(z)
+            h = [max(u, F(0)) for u in z] if relu else z
+        e = [dec(v).exp() for v in h]
+        g = [ei / sum(e) - dec(ti) for ei, ti in zip(e, t)]
+        for (W, _, relu), z in reversed(list(zip(L, pre))):
+            if relu:
+                g = [gi if zi > 0 else Decimal(0) for gi, zi in zip(g, z)]
+            g = [sum(dec(W[i][j]) * g[i] for i in range(len(W))) for j in range(len(W[0]))]
+        want = [xi + eps * (1 if gi > 0 else -1 if gi < 0 else 0) for xi, gi in zip(x, g)]
+        lo, hi = parse_box(resp["z"])
+        if not all(a <= w <= b for a, w, b in zip(lo, want, hi)):
+            fail("the exact signed step leaves the reply")
+        return
+    if op == "neuralNetwork.getInputNeuronOrder":
+        order, method = resp["order"], req["method"]
+        n = len(req["layers"][0]["W"]["data"]) // req["layers"][0]["W"]["rows"]
+        size = req.get("inputSize")
+        pixels = n if size is None else size[1] * size[2]
+        if method == "in-order":
+            want = list(range(pixels))
+        elif method == "snake":
+            A = [[y * size[2] + x for x in range(size[2])] for y in range(size[1])]
+            want = []
+            while A and A[0]:
+                want += A[0]
+                A = [list(r) for r in zip(*[row[::-1] for row in A[1:]])]
+        else:
+            if order is None:
+                return
+            # the exact Jacobian at x, then the mean absolute entry per pixel
+            hx, J = parse_vec(req["x"]), None
+            J = [[F(int(i == j)) for j in range(n)] for i in range(n)]
+            for W, b, relu in layers_of(req):
+                z = [u + v for u, v in zip(mat_vec(W, hx), b)]
+                J = [[sum(W[i][k] * J[k][j] for k in range(len(J))) for j in range(n)]
+                     for i in range(len(W))]
+                if relu:
+                    J = [J[i] if z[i] > 0 else [F(0)] * n for i in range(len(J))]
+                    z = [max(u, F(0)) for u in z]
+                hx = z
+            key = [sum(abs(J[i][j]) for i in range(len(J))) for j in range(n)]
+            if size is not None:
+                key = [sum(key[p + pixels * c] for c in range(size[0])) for p in range(pixels)]
+            if sorted(order) != list(range(pixels)) or \
+                    any(key[a] > key[b] for a, b in zip(order, order[1:])):
+                fail("the order is not ascending in the exact sensitivity")
+            return
+        if order != want:
+            fail(f"the order is not {want}")
+        return
+    shapes = [(L["W"]["rows"], L["W"]["cols"], L["activation"] != "identity") for L in req["layers"]]
+    refinable = [k for k, (_, _, a) in enumerate(shapes) if a]
+    if op == "neuralNetwork.getNumNeurons":
+        want, got = [n for _, n, _ in shapes] + [shapes[-1][0]], resp["numNeurons"]
+    elif op == "neuralNetwork.getNumParams":
+        want, got = sum(m * n + m for m, n, _ in shapes), resp["numParams"]
+    elif op == "neuralNetwork.getRefinableLayers":
+        want, got = refinable, resp["layers"]
+    elif op == "neuralNetwork.getOrderPattern":
+        orders = req.get("orders", [])
+        def expand(o, n):
+            return [1] * n if not o else o if len(o) == n else [max(o)] * n
+        want = [expand(orders[k] if k < len(orders) else [], shapes[k][0]) for k in refinable]
+        got = resp["pattern"]
+    else:
+        def count(name):
+            v = req.get(name, "inf")
+            return None if v == "inf" else v
+        q, e, added = count("numInitGens"), count("numApproxErr"), []
+        q = shapes[0][1] if q is None else q
+        for m, _, a in shapes:
+            d = (m if e is None else min(e, m)) if a else 0
+            added.append([q, d] if a else None)
+            q += d
+        want, got = (q, added), (resp["numGen"], resp["approxErrGens"])
+    if got != want:
+        fail(f"{got} is not {want}")
+
+
 def check_nn_op(op, req, resp, fails):
     """`nnLayer.*` and `neuralNetwork.evaluate`: the exact network's outputs at points of the input
     set lie in the output set's hull (`c +- sum |G| +- sum |GI| +- E`)."""
@@ -1256,6 +1398,13 @@ def check_nn_op(op, req, resp, fails):
     if op in ("neuralNetwork.propagateBounds", "neuralNetwork.backpropIntervalBatch",
               "neuralNetwork.backprop", "neuralNetwork.sensitivity"):
         check_nn_bounds(op, req, resp, fails)
+        return
+    if op in ("neuralNetwork.backpropZonotopeBatch", "nnLayer.backpropZonotopeBatch",
+              "neuralNetwork.computeFGSMAttack", "neuralNetwork.getInputNeuronOrder",
+              "neuralNetwork.getNumNeurons", "neuralNetwork.getNumParams",
+              "neuralNetwork.getRefinableLayers", "neuralNetwork.getOrderPattern",
+              "neuralNetwork.prepareForZonoBatchEval"):
+        check_nn_batch9(op, req, resp, fails)
         return
     graph = op == "neuralNetwork.evaluateGraph"
     layers = [] if graph else [req["layer"]] if "layer" in req else req["layers"]

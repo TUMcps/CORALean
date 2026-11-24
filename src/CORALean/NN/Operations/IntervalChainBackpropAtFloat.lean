@@ -2,6 +2,7 @@ module
 
 public import CORALean.NN.Operations.IntervalChainBackpropFloat
 public import CORALean.ContSet.Interval.Float.Operations.Point
+public import CORALean.NN.Theorems.IntervalChainBackpropFloatEqImpl
 
 @[expose] public section
 
