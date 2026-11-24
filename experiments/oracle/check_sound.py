@@ -838,6 +838,14 @@ def nn_apply(layer, x):
         return [v * v for v in x]
     if kind == "conv":
         return conv_apply(layer, x)
+    # CORA.cpp's activations with a line of their own, in 60-digit decimals
+    if kind in ("exp", "reciprocal", "cube", "inverse", "softplus", "root", "invSqrt"):
+        d = [dec(v) if isinstance(v, F) else v for v in x]
+        f = {"exp": lambda t: t.exp(), "reciprocal": lambda t: 1 / max(t, Decimal(1)),
+             "cube": lambda t: t ** 3, "inverse": lambda t: 1 / t,
+             "softplus": lambda t: (1 + t.exp()).ln(), "root": lambda t: t.sqrt(),
+             "invSqrt": lambda t: 1 / t.sqrt()}[kind]
+        return [f(v) for v in d]
     if kind == "elementwiseAffine":
         sc, of = parse_vec(layer["scale"]), parse_vec(layer["offset"])
         sc, of = (sc * len(x) if len(sc) == 1 else sc), (of * len(x) if len(of) == 1 else of)
@@ -921,15 +929,17 @@ def conv_apply(layer, x):
 def check_nn_relaxation(req, resp, fails):
     """`nnLayer.relaxation`: at the ends, the middle, the stationary points (of the square, `log m`
     of the exponential, `1` and `1 / sqrt(-m)` of the reciprocal and the inverse, `+-sqrt(m / 3)` of
-    the cube, the multiples of `pi / 2` for sin and cos) and a grid of every box,
-    `|f(t) - (slope t + offset)| <= error`, exactly (`Fraction`) or in 60-digit `Decimal` (`exp`,
-    `sin`, `cos`)."""
+    the cube, the multiples of `pi / 2` for sin and cos, where `f' = m` for softplus, root and
+    invSqrt) and a grid of every box, `|f(t) - (slope t + offset)| <= error`, exactly (`Fraction`)
+    or in 60-digit `Decimal` (`exp`, `sin`, `cos`, `softplus`, `root`, `invSqrt`)."""
     kind = req["kind"]
     f = {"sign": lambda t: F((t > 0) - (t < 0)), "square": lambda t: t * t,
          "relu": lambda t: max(t, F(0)), "reciprocal": lambda t: 1 / max(t, F(1)),
          "exp": lambda t: dec(t).exp(), "cube": lambda t: t ** 3, "inverse": lambda t: 1 / t,
-         "sin": lambda t: decimal_trig(dec(t), True), "cos": lambda t: decimal_trig(dec(t), False)}[kind]
-    decimal_kind = kind in ("exp", "sin", "cos")
+         "sin": lambda t: decimal_trig(dec(t), True), "cos": lambda t: decimal_trig(dec(t), False),
+         "softplus": lambda t: (1 + dec(t).exp()).ln(), "root": lambda t: dec(t).sqrt(),
+         "invSqrt": lambda t: 1 / dec(t).sqrt()}[kind]
+    decimal_kind = kind in ("exp", "sin", "cos", "softplus", "root", "invSqrt")
     lo, hi = parse_vec(req["l"]), parse_vec(req["u"])
     m, o, e = parse_vec(resp["slope"]), parse_vec(resp["offset"]), parse_vec(resp["error"])
     for i, (a, b) in enumerate(zip(lo, hi)):
@@ -942,6 +952,13 @@ def check_nn_relaxation(req, resp, fails):
         if kind == "cube" and m[i] > 0:
             r = F((dec(m[i]) / 3).sqrt())
             ts += [t for t in (r, -r) if a <= t <= b]
+        # the stationary points of f(x) - m x of the monotone lines
+        if kind == "softplus" and 0 < m[i] < 1:
+            ts += [t for t in (F((dec(m[i]) / (1 - dec(m[i]))).ln()),) if a <= t <= b]
+        if kind == "root" and m[i] > 0:
+            ts += [t for t in (1 / (4 * m[i] * m[i]),) if a <= t <= b]
+        if kind == "invSqrt" and m[i] < 0:
+            ts += [t for t in (F((1 / (-2 * dec(m[i]))) ** (dec(2) / 3)),) if a <= t <= b]
         if kind in ("sin", "cos"):
             # the extrema: the multiples of pi / 2 in the box
             half_pi = F(decimal_pi() / 2)
