@@ -858,6 +858,15 @@ requires them in the output (`check_polyzono_op`).
 | `neuralNetwork.getNumNeurons`, `getNumParams`, `getRefinableLayers` | `layers` (as above) | the input width of every layer and the output width of the last (`numNeurons`); the entries of every `W` and `b` (`numParams`); the 0-based layers whose activation is not the identity (`layers`) |
 | `neuralNetwork.getOrderPattern` | `layers`, `orders` (per layer, a list of naturals; optional) | the order of every neuron of the refinable layers, CORA.cpp's `aux_expand`; `pattern` |
 | `neuralNetwork.prepareForZonoBatchEval` | `layers`, `numInitGens`, `numApproxErr` (naturals or `"inf"`, the default) | CORA's count: `numGen` after the last layer and, per layer, `[first, count]` of its approximation errors' generators (0-based; `null` without an activation); `approxErrGens` |
+| `neuralNetwork.castWeights` | `layers` (as above), at the dtype of the cast (`ieee:binary32`, CORA's `single`) | every `W` and `b` rounded to nearest, ties to even (`roundToScalar`); `layers` |
+| `neuralNetwork.resetApproxOrder` | `layers` | the order 1 of every neuron of the refinable layers; `pattern` |
+| `neuralNetwork.refine` | `layers`, `orders` (as `getOrderPattern`), `heuristic` (per layer a list of scalars, or `null`), `type` (`all`, `layer`, `neuron`), `heuristicKind` (`approx_error`, `layer_bias`, `all`), `maxOrder` (5), `gamma` (0.1) | CORA.cpp's `refine`: the orders of every neuron after one step; `orders`. At `nearest` only |
+| `neuralNetwork.generateRandom` | `inputs`, `outputs`, `layers`, `hidden` (0 or absent: drawn), `sizeDraws` (the units of the sizes drawn, in that order), `draws` (per layer `{W, b}` of units in `(0, 1]`) | CORA.cpp's `randi` `min(hi, lo + floor(u (hi - lo + 1)))` for each size drawn and `2 u - 1` for every weight; the sizes and `network` (`W`, `b` as boxes) |
+| `neuralNetwork.initWeights` | `layers`, `method` (`glorot`, `shi`), `which` (0-based, default all), `draws` (per layer drawn again a column of units: `m n` for glorot, `m n` rounded up to even for shi) | glorot `u (2 a) - a`, `a = 1 / sqrt(n)`; shi Box-Muller as CORA.cpp's `Rng::normal`, `sqrt(c) / n sqrt(-2 log u1) cos(c u2)` (and `sin` for the second of a pair), `c` the double nearest `2 pi`; `layers` (`W` as boxes, `b` zero) |
+| `neuralNetwork.nonlinearSysDT` | `layers` (as above), `x`, `u` (one offset per neuron of every layer, stacked) | CORA.cpp's `NetworkSystemDT`: `y` of `(W h + b) + u_k`, `C` (`IntervalChain.sensitivity` at `x`) and per layer the block `D_k` (the sensitivity of the rest at layer `k`'s pre-activation, every later offset an identity layer); boxes |
+| `neuralNetwork.explain` | `layers` (the kinds of `evaluate`), `x`, `label`, `epsilon`, `featOrder` (0-based), `inputSize` (`[C, H, W]`), `outputThreshold` (0) | CORA's method `standard`: the logit differences as a last layer, `normalForm`, each trial a zonotope through `evaluate` at `regression` (extremum), the box test; `freed`. At `nearest` only |
+| `neuralNetwork.computeReducedNetwork` | `layers` (ReLU, the last may be `identity`), `Z`, `bucketTol` (one or one per layer, 0.01), `reductionRate` (optional), `minSearches` (10) | CORA.cpp's static buckets: the reduced `layers`, `d` (`{c, r}` or `null` per layer), `merged` (0/1 per neuron, `null` for the last), `reductionRate`, `Z` the output set. At `nearest` only |
+| `neuralNetwork.evaluateConZonotope` | `layers` (ReLU or identity), `c`, `G` (a zonotope, no constraints), `boundApprox` (absent or `true`) | CORA.cpp's star set and its conversion back, loop by loop; `empty`, or `c`, `G` (`n x m`), `A`, `b`. At `nearest` only |
 
 A layer is `{"kind":"linear","W","b"}`, `{"kind":"conv","kernel","kshape","input","stride","dilation","pads","groups","b"}`, `{"kind":"relu"}`, `{"kind":"leakyRelu","alpha"}`, `{"kind":"sign"}`, `{"kind":"square"}`, `{"kind":"sigmoid","k"}`
 or `{"kind":"tanh","k"}` (`k`, the depth of the exponential's reduction, is ignored at `nearest`).
@@ -1066,9 +1075,33 @@ The zonotope batch backpropagation, FGSM and the structure ops (batch 9):
   its siblings, `@[csimp]` by `IntervalChain.fwd_eq_impl` and its siblings): every layer's boxes
   are materialised, so the time no longer grows exponentially with the depth. The values are the
   same bit for bit.
-* Not served: `computeReducedNetwork` (random dynamic buckets, the tolerance's bisection, the
-  regression lines of the reduced layers on a set); `nnLayer.evaluateConZonotope` (the null space of
-  the constraints and linear programs for the bounds, neither in CORA.cpp's order).
+* Not served in batch 9: `computeReducedNetwork` and `evaluateConZonotope` (served in batch 10
+  below, in part).
+
+The weights, the orders, the system and the explanation of a network (batch 10):
+
+* `castWeights` is `roundToScalar` at `nearest` of the request's dtype: the dtype is the target
+  of the cast, so the inputs are read exact and off-grid, as `roundTo` reads them.
+* `generateRandom` and `initWeights` take CORA.cpp's draws as inputs: `Rng::uniform` is
+  `u (hi - lo) + lo` of a unit `u` in `(0, 1]`, so a caller draws the units at `[0, 1)` (the same
+  stream) and sends them. `Rng::normal` takes two units per pair (and two for an odd last one), so
+  the units of `n` normals are `n` rounded up to even. The scale of shi multiplies the radius
+  before the cosine, as CORA.cpp's does. The draws of MATLAB's `rand` and `randn` are not modeled.
+* `refine` ranks the layers by the rounded 2-norm (`sqrtUp`, the machine's at `nearest`) and the
+  neurons by the heuristic, the earlier layer and neuron on ties, as CORA.cpp's sort does.
+* `nonlinearSysDT` serves ReLU and identity layers; sigmoid and tanh are not served (as in the
+  other passes).
+* `explain` serves CORA's `standard` method with the order given (`getInputNeuronOrder` serves the
+  orders). The linear layers' zero generators of the bias are dropped before the box test, as
+  CORA.cpp has none. Not served: `abstract+refine` (the FGSM `mask` and the random rates) and
+  the timeout (a wall clock).
+* `computeReducedNetwork` serves ReLU chains with static buckets: the bucket `0`, CORA.cpp's
+  interval arithmetic, its bisection of the tolerance (`2000` rounds at most) and the reduced
+  layers' sets at the regression line. Not served: dynamic buckets (a shuffle by `mt19937_64`),
+  input compression, and the other activations.
+* `evaluateConZonotope` serves a zonotope without constraints and the box bounds. Not served: a set
+  with constraints (`pinv` and the null space of `A`, linear programs for the factors' ranges) and
+  `boundApprox` false (two linear programs per neuron); neither is in CORA.cpp's order.
 
 `neuralNetwork.backwardBound` (fields `layers`, `x`, `r`, `C`; reply `lower`, a column) is CROWN's backward bound, CORA.cpp's
 `priv_backward_lower`: a lower bound of every row `C_q` on the outputs over the input box `|x' - x| <= r`. A layer is
