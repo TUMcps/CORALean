@@ -53,7 +53,10 @@ arithmetic -- never floats:
   a `true` has every matrix in the box of the set (`check_class_op`).
 * `taylm.*`: at grid points `t` of the box `[-1, 1]^k` and at both ends of each operand's remainder,
   the exact value of the operation on the functions `poly + r` lies in the output model, its
-  polynomial at `t` plus `[rem + Ierr]`; `interval` must hold the value (`check_taylm_op`).
+  polynomial at `t` plus `[rem + Ierr]`; `interval` must hold the value (`check_taylm_op`);
+  `constant` and `fromRange` hold their numbers. `neuralNetwork.evaluateTaylm`: the network's value
+  at grid points and remainder ends, in 60 digits, lies in each output model at the same `t`
+  (`check_nn_taylm`).
 * `nonlinearSys.linReachPoly`: constant-input runs of the system, by RK4 in 60 digits from points of
   `R`, lie in the hulls of the response (`check_pz_lin_reach`).
 * Every op `ping` lists occurs in the requests, so none is served without a test.
@@ -1668,6 +1671,19 @@ def check_taylm_op(op, req, resp, fails):
     grid points of the box and the ends of the remainders."""
     rid = req.get("id")
     name = op[len("taylm."):]
+    if name in ("constant", "fromRange"):
+        # the constructors: every number they claim, at every point of the box
+        vals = ([parse_scalar(req["c"])] if name == "constant" else
+                [parse_scalar(req["lo"]), parse_scalar(req["hi"]),
+                 (parse_scalar(req["lo"]) + parse_scalar(req["hi"])) / 2])
+        out = resp["T"]
+        lo, hi = taylm_rem(out)
+        for t in ([[F(-1)] * out["vars"], [F(1, 2)] * out["vars"]] if out["vars"] else [[]]):
+            p = taylm_eval(out, t)
+            if any(not lo <= v - p <= hi for v in vals):
+                fails.append(f"id {rid}: {op}: a number of the box leaves the model")
+                return
+        return
     T = req["T"]
     k = T["vars"]
     grid = [F(-1), F(-1, 3), F(0), F(1, 2), F(1)]
@@ -1712,6 +1728,44 @@ def check_taylm_op(op, req, resp, fails):
                     return
 
 
+def check_nn_taylm(req, resp, fails):
+    """`neuralNetwork.evaluateTaylm`: at grid points `t` of the box and at the ends of the input
+    remainders, the network's value (60-digit decimals) lies in each output model at the same
+    `t`, its polynomial plus `[rem + Ierr]`."""
+    rid = req.get("id")
+    xs = req["x"]
+    k = xs[0]["vars"]
+    grid = [F(-1), F(-1, 3), F(0), F(1, 2), F(1)]
+    points = [[]]
+    for _ in range(k):
+        points = [p + [g] for p in points for g in grid][:60]
+    ends = [taylm_rem(x) for x in xs]
+    acts = {"relu": lambda v: max(v, Decimal(0)),
+            "sigmoid": lambda v: Decimal(1) / (Decimal(1) + (-v).exp()),
+            "tanh": lambda v: (Decimal(2) / (Decimal(1) + (-2 * v).exp())) - Decimal(1)}
+    for t in points:
+        for side in range(2 ** min(len(xs), 4)):
+            vals = [dec(taylm_eval(x, t) + (ends[j][1] if (side >> j) & 1 else ends[j][0]))
+                    for j, x in enumerate(xs)]
+            for layer in req["layers"]:
+                if layer["kind"] == "linear":
+                    W, b = layer["W"], layer["b"]
+                    r, c = W["rows"], W["cols"]
+                    w = [dec(parse_scalar(v)) for v in W["data"]]
+                    bb = [dec(parse_scalar(v)) for v in b["data"]]
+                    vals = [sum(w[i * c + j] * vals[j] for j in range(c)) + bb[i]
+                            for i in range(r)]
+                else:
+                    vals = [acts[layer["kind"]](v) for v in vals]
+            for i, out in enumerate(resp["Y"]):
+                lo, hi = taylm_rem(out)
+                p = taylm_eval(out, t)
+                if not dec(lo) - Decimal("1e-40") <= vals[i] - dec(p) <= dec(hi) + Decimal("1e-40"):
+                    fails.append(f"id {rid}: neuralNetwork.evaluateTaylm: output {i} at {t} leaves "
+                                 f"its model")
+                    return
+
+
 def main() -> int:
     if len(sys.argv) != 3:
         print("usage: check_sound.py requests.jsonl output.jsonl", file=sys.stderr)
@@ -1741,6 +1795,8 @@ def main() -> int:
             if op.startswith("polyZonotope.") or op in ("interval.polyZonotope",
                                                           "zonotope.polyZonotope"):
                 check_polyzono_op(op, req, resp, fails)
+            elif op == "neuralNetwork.evaluateTaylm":
+                check_nn_taylm(req, resp, fails)
             elif op.startswith("taylm."):
                 check_taylm_op(op, req, resp, fails)
             elif op == "nonlinearSys.linReachPoly":

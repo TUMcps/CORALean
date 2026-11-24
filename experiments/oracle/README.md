@@ -842,6 +842,7 @@ requires them in the output (`check_polyzono_op`).
 | `nnLayer.softmaxSumBounds` | `W`, `b`, `l`, `u`, `k` | `softmaxSumBounds` (`softmaxSumBounds_encloses`; CORA.cpp's `aux_box_image` of a softmax's sums); `inf`, `sup` |
 | `neuralNetwork.backwardBound` | `layers` (`linear`; `relu` with `l`, `u`, `alpha`), `x`, `r`, `C` | `Float.CrownNet.backwardBound` (`Float.CrownNet.backwardBound_le`, `crownReluLines_holds`; CROWN, below); `lower`, one per row of `C` |
 | `neuralNetwork.evaluateGraph` | `layers` (`W`, `b`, `source`, `residuals`, `activation`, `slots`, `p`, `tiny`), `Z` | `Float.GraphNet.evaluateGraph` (`GraphNet.evaluateGraph_encloses`; CORA.cpp's `ZonoNet::forward`, below); `Z`, the last output |
+| `neuralNetwork.evaluateTaylm` | `layers` (`linear`; `relu`, `sigmoid`, `tanh` with `k`; `order`), `x` (Taylor models), `poly_method`, `regression_error` | `SoundLayer.affineTaylm`, `SoundLayer.activationTaylmFit` in turn (`Layer.affineTaylm_encloses`, `Layer.activationTaylmFit_encloses`, `reluSinghQuadRelaxation_encloses`; CORA.cpp's `NeuralNetwork::evaluate_taylm`, below); `Y`, the output models |
 
 A layer is `{"kind":"linear","W","b"}`, `{"kind":"conv","kernel","kshape","input","stride","dilation","pads","groups","b"}`, `{"kind":"relu"}`, `{"kind":"leakyRelu","alpha"}`, `{"kind":"sign"}`, `{"kind":"square"}`, `{"kind":"sigmoid","k"}`
 or `{"kind":"tanh","k"}` (`k`, the depth of the exponential's reduction, is ignored at `nearest`).
@@ -972,6 +973,26 @@ zonotope per output, whose generators are a prefix of one list of factors, and t
 The first cut of CORA.cpp's options: no splits, alpha slopes or source ranges, and slots all or none. At `nearest` every
 rounding gap is `+0`, `E` stays zero without an interval center, and the result is CORA.cpp's. A dot product `a . b` is a
 `product` layer followed by a sum, MaxPool `max(a, b)` the layer `relu(a - b)` with `b` as a residual of the next.
+
+`neuralNetwork.evaluateTaylm` (fields `layers`, `x`, `poly_method`, `regression_error`; reply `Y`) is CORA.cpp's
+`NeuralNetwork::evaluate_taylm`: the network on one Taylor model per input (`x`, each in the `T` form of `taylm.*`, all over the
+same variables), each layer a `SoundLayer` applied in turn:
+
+1. `linear` (`W`, `b`), `Layer.affineTaylm`: output `i` is `x_0.times(W_i0)`, then `.plus(x_j.times(W_ij))` for `j = 1, ...`,
+   then `.plus(b_i)` (`Taylm.scale`, `Taylm.plusMerged`, `Taylm.plusScalar`; CORA.cpp's `aux_affine`).
+2. `relu`, `sigmoid` or `tanh` (`k`), `Layer.activationTaylmFit`, per neuron (CORA.cpp's `aux_neuron`): the bounds `[l, u]` of
+   its model (`Taylm.boundsMono`, `taylm.interval`), the fit `c` and its error `d` on them, then
+   `constant(c_0).plus(fromRange(-d, d))` and `.plus(x.power(k).times(c_k))` for `k = 1, ..., top` (`Taylm.constSparse`, no term
+   for a zero; `Taylm.fromRange`; `Taylm.powBinary`). At order 1 (the default) the fit is the line of `neuralNetwork.evaluate` at
+   the `poly_method` (`singh`; `regression` with `regression_error` `bracket` or, for the sigmoid, `extremum`):
+   `c = [offset, slope]`, `d = error`. At order 2, for `relu` at `singh` only, it is `reluSinghQuadRelaxation`, the parabola
+   `a (x - l)^2` with the error from the closed-form vertex value, and `top` is 1 where its `x^2` coefficient is a certified zero
+   (ReLU linear on the box). `order` is a number or one per neuron, read as CORA.cpp's `aux_orders` reads it.
+
+Sound by `Layer.affineTaylm_encloses`, `Layer.activationTaylmFit_encloses` and `reluSinghQuadRelaxation_encloses`, which
+compose (`NeuralNetwork.enclose_outer`). At `nearest` the error boxes stay zero and the result is CORA.cpp's once it takes the
+order-1 line from `aux_line` and the closed-form order-2 error (CORA.cpp request note of batch 7). Not served: sigmoid or tanh
+at orders of 2 and more, ReLU at 3 and more, the other activations and poly methods.
 
 `neuralNetwork.backwardBound` (fields `layers`, `x`, `r`, `C`; reply `lower`, a column) is CROWN's backward bound, CORA.cpp's
 `priv_backward_lower`: a lower bound of every row `C_q` on the outputs over the input box `|x' - x| <= r`. A layer is

@@ -1,5 +1,6 @@
 import CORALean.ContSet.Taylm.Float.Operations.BoundsMono
 import CORALean.ContSet.Taylm.Float.Operations.Basic
+import CORALean.ContSet.Taylm.Float.Operations.FromRange
 import CORALean.ContSet.Taylm.Float.Operations.PlusScalar
 import CORALean.ContSet.Taylm.Float.Operations.PowBinary
 import CORALean.ContSet.Taylm.Float.Operations.Scale
@@ -14,7 +15,8 @@ CORA.cpp's `Taylm` method: the terms sorted by their exponents with equal monomi
 ordered map keeps them. A model is `{"vars", "maxOrder", "terms": [{"c", "e"}], "rem"}`, its terms
 taken in the order given; a response adds the error box `"Ierr"` (zero at nearest). Served: `plus`,
 `minus` (a model `Q` or a number `s`), `uminus`, `uplus`, `times` (`Q` at the request's `maxOrder`,
-or `s`), `power` (`k`) and `interval` (CORA's method `'int'`).
+or `s`), `power` (`k`), `interval` (CORA's method `'int'`, CORA.cpp's `bounds`), and the
+constructors `constant` (`c`) and `fromRange` (`lo`, `hi`), each at `vars` and `maxOrder`.
 
 ## Inputs
 * none
@@ -94,7 +96,7 @@ private def aux_operand (dops : DtypeOps 𝕋) (op : String) (n : Nat) (req : Js
 
 /-- Every op of `taylm.`, without the prefix. -/
 def taylmOpNames : List String :=
-  ["plus", "minus", "uminus", "uplus", "times", "power", "interval"]
+  ["plus", "minus", "uminus", "uplus", "times", "power", "interval", "constant", "fromRange"]
 
 /-- `op` of `taylm.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -140,6 +142,19 @@ def handleTaylmOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option Res
     let B := d.T.boundsMono
     let I : Interval (Vec 𝕋 1) := ⟨fun _ => B.inf, fun _ => B.sup⟩
     pure [("I", printIntervalVec dops.showExact I)])
+  -- the constructors CORA.cpp's network evaluation builds a neuron from
+  | "constant" => some (do
+    checkFields op req ["c", "vars", "maxOrder"]
+    let c ← dops.readExact "c" (← scalarField req "c")
+    let N ← natField req "maxOrder"
+    pure (aux_print dops (Taylm.constSparse (← natField req "vars") c N)))
+  | "fromRange" => some (do
+    checkFields op req ["lo", "hi", "vars", "maxOrder"]
+    let lo ← dops.readExact "lo" (← scalarField req "lo")
+    let hi ← dops.readExact "hi" (← scalarField req "hi")
+    if !(FloatOps.le lo hi) then throw "fromRange: needs lo <= hi"
+    pure (aux_print dops
+      (Taylm.fromRange (← natField req "vars") lo hi (← natField req "maxOrder"))))
   | _ => none
 
 end CORALean.Oracle
