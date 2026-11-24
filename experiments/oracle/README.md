@@ -805,6 +805,21 @@ absent):
 | `polyZonotope.project` | `P`, `dims` (0-based) | `PolyZonotope.project` (`project_outer`): the center and both blocks of generators at `dims`, exponents and identifiers kept |
 | `polyZonotope.compact` | `P` | `PolyZonotope.compactCora` (`compactCora_outer`): `foldConstants`, `compactFactors`, then `construct`, CORA.cpp's `compact`; the identifiers of the dropped factors go |
 | `polyZonotope.quadMap` | `P`, `Q` (array of `n x n` matrices) | `PolyZonotope.quadMapCora` (`quadMapCora_outer`), CORA's `quadMap` as CORA.cpp computes it. The products `j <= k` of the columns of `[c G]` (`j` outer) are `M_jj` and `M_jk + M_kj` of `M = [c G]' Q [c G]`, with the exponents `E_j + E_k`. The independent part is `Zonotope.quadMapTriFiltered` of `(0, GI)` (the box with it) plus `Zonotope.quadMapMixed` of `zonotope(c, G, E)` against it and of it against that zonotope, added left to right; `quadMapMixed` (`quadMapMixed_outer`) takes the entries of `[c1 G1]' Q [c2 G2]` column-major, the first as the center, then CORA's filter. Then CORA's constructor, the constant column into the center (`foldConstants`), and the zero independent generators dropped. Without dependent generators it is `quadMapTriFiltered` of `(c, GI)` |
+| `polyZonotope.replaceId` | `P`, `idNew`, `idOld` (absent: every identifier is renamed) | `PolyZonotope.replaceId`: factors with a common new identifier merge, their exponent rows added; the distinct identifiers in order of first occurrence; nothing rounds |
+| `polyZonotope.restoreId` | `P`, `ids` | `PolyZonotope.padBack`: the identifiers the set lacks appended at exponent 0 |
+| `polyZonotope.rmId` | `P`, `ids` | `PolyZonotope.rmId` (the factors fixed at 1), then `construct` (equal columns added in CORA's hash order, zero ones dropped) |
+| `polyZonotope.onlyId` | `P`, `ids` | `PolyZonotope.onlyId`, each part through `construct`; `P1` (the factors `id`, with the center), `P2` (the rest, center 0, the independent block) |
+| `polyZonotope.noIndep`, `lift` (`N`, `dims`) | `P` | `PolyZonotope.noIndep`, `PolyZonotope.reindex` |
+| `polyZonotope.isBounded`, `isFullDim`, `isequal` (`Q`, `tol` 0), `representsa` (`type` `point`) | `P` | `value`: constant `true`, `PolyZonotope.isFullDim`, `PolyZonotope.isequal` (structural and in order: a `true` is a proof, CORA.cpp's compares after `compact` and up to order), `PolyZonotope.representsa_point` |
+| `polyZonotope.sum` | `P`, `L` (sets with the identifiers of `P`) | `PolyZonotope.sum`, then `construct`; the center `c + (L0.c + (L1.c + ...))` |
+| `polyZonotope.restructure` | `P` | `PolyZonotope.restructure`; the fresh factors get the identifiers above the set's |
+| `polyZonotope.jacobian` | `P`, `factor` (an identifier) | `PolyZonotope.jacobian` along the factor `id`: every column kept, `E k i` copies added from the right |
+| `polyZonotope.linComb`, `convHull` | `P`, `Q` | `PolyZonotope.linComb`, `PolyZonotope.convHull`; the identifiers `1 .. p` |
+| `polyZonotope.getSubset`, `resolve` | `P`, `ids`, `val` (`getSubset`) or `x` (`resolve`, in ascending identifier order), numbers only | `PolyZonotope.getSubset` at `(value, 0)` one factor after the other, then CORA's ending: `construct`, `foldConstants`, `compactFactors`; the box form of `getSubset` is not served |
+| `polyZonotope.matMap` | `P`, `Q`, `n`, `k`, `m` | `PolyZonotope.matMap` of the matrices stored column by column, both sets over the sorted union of the identifiers |
+| `polyZonotope.cubMap` | `P`, `T` (`m` blocks of `n` matrices) | `PolyZonotope.cubMap` (`absorbRounding` first; the fresh factors get the identifiers above the set's) |
+| `polyZonotope.partZonotope` | `P`, `ids` | `PolyZonotope.partZonotope` (the groups in the order of `List.dedup`); fresh identifiers above the set's |
+| `polyZonotope.outerApprox` | `P`, `tol`, `ids` | `PolyZonotope.outerApprox` with `boxOut` |
 | `zonotope.polyZonotope`, `interval.polyZonotope` | `Z`, `I` | `Zonotope.polyZonotope` (identity exponents) then the constructor |
 
 Deviations are listed in `references/coverage/contSet/polyZonotope.md`. A constant (all-zero exponent) column goes whole into the
