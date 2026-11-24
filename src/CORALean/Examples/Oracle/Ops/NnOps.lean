@@ -42,6 +42,7 @@ import CORALean.Examples.Oracle.Ops.NnFormOps
 import CORALean.Examples.Oracle.Ops.NnBoundsOps
 import CORALean.Examples.Oracle.Ops.NnZonoBackpropOps
 import CORALean.Examples.Oracle.Ops.NnInfoOps
+import CORALean.Examples.Oracle.Ops.NnWeightOps
 
 /-!
 # The network ops: CORA's `nnLayer` and `neuralNetwork` evaluation on a set
@@ -563,7 +564,7 @@ def nnLayerOpNames : List String :=
 def neuralNetworkOpNames : List String :=
   [ "evaluate", "backwardBound", "evaluateGraph", "evaluateTaylm", "normalForm",
     "propagateBounds", "backpropIntervalBatch", "backprop", "sensitivity", "backpropZonotopeBatch",
-    "computeFGSMAttack", "getInputNeuronOrder" ] ++ nnInfoOpNames
+    "computeFGSMAttack", "getInputNeuronOrder" ] ++ nnInfoOpNames ++ nnWeightOpNames
 
 /-- `op` of `nnLayer.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -610,7 +611,7 @@ def handleNeuralNetworkOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Op
   | "backpropZonotopeBatch" => some (backpropZonotopeBatchOp dops req)
   | "computeFGSMAttack" => some (fgsmAttackOp dops req)
   | "getInputNeuronOrder" => some (inputNeuronOrderOp dops req)
-  | _ => handleNnInfoOp op req
+  | _ => (handleNnInfoOp op req).orElse fun _ => handleNnWeightOp dops op req
 
 end CORALean.Oracle
 

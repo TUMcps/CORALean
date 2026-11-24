@@ -52,6 +52,14 @@ arithmetic -- never floats:
   the snake, or ascending by the exact mean absolute sensitivity; the integer structure ops
   (`getNumNeurons`, `getNumParams`, `getRefinableLayers`, `getOrderPattern`,
   `prepareForZonoBatchEval`) recomputed (`check_nn_batch9`).
+* `neuralNetwork.castWeights`: every entry is the input rounded to nearest, ties to even, in the
+  dtype (Python's `struct` for binary32, the exact grid for binary16);
+  `neuralNetwork.resetApproxOrder`: the all-1 pattern recomputed; `neuralNetwork.generateRandom`:
+  the sizes by `floor(u N)` over ℚ and `2 u - 1` of every draw in the reply; `initWeights`:
+  `u (2 a) - a`, `a = 1 / sqrt(n)` in 60-digit `decimal` (glorot), Box-Muller's
+  `sqrt(c) / n sqrt(-2 log u1) cos(c u2)` with CORA.cpp's double `c` of `2 pi` (shi); and
+  `neuralNetwork.nonlinearSysDT`: the exact `y`, `C` and the blocks of `D` over ℚ
+  (`check_nn_batch10`).
 * `nnLayer.*`, `neuralNetwork.evaluate` and `neuralNetwork.evaluateGraph`: the exact network
   (`Fraction` for the linear and ReLU layers, `decimal` at 60 digits for sigmoid and tanh, the fit
   plus its error `d` for `poly`) at points of the input set lies in the hull of the output set
@@ -1376,6 +1384,133 @@ def check_nn_batch9(op, req, resp, fails):
         fail(f"{got} is not {want}")
 
 
+def check_nn_batch10(op, req, resp, fails):
+    """The weights, the orders and the system of a network of `{W, b, activation}` layers (see the
+    module docstring)."""
+    rid = req.get("id")
+
+    def fail(what):
+        fails.append(f"id {rid}: {op}: {what}")
+
+    def inside(label, exact, box):
+        lo, hi = box
+        for i, x in enumerate(exact):
+            if not dec(lo[i]) - Decimal(10) ** -40 <= (x if isinstance(x, Decimal) else dec(x)) \
+                    <= dec(hi[i]) + Decimal(10) ** -40:
+                fail(f"{label}: entry {i} leaves the reply")
+                return False
+        return True
+
+    def flat(box_mat):
+        lo, hi = parse_box_mat(box_mat)
+        return [v for r in lo for v in r], [v for r in hi for v in r]
+
+    if op == "neuralNetwork.castWeights":
+        import struct
+        def nearest(x):
+            if req["dtype"] == "ieee:binary32":
+                return F(struct.unpack("f", struct.pack("f", float(x)))[0])
+            # binary16: 11 significand bits, ties to even (normal range only)
+            if x == 0:
+                return F(0)
+            e = 0
+            while abs(x) >= 2 ** (e + 1):
+                e += 1
+            while abs(x) < 2 ** e:
+                e -= 1
+            q = x / F(2) ** (e - 10)
+            r = round(q)  # Python rounds ties to even
+            return F(r) * F(2) ** (e - 10)
+        for L, R in zip(req["layers"], resp["layers"]):
+            for key in ("W", "b"):
+                _, _, a = parse_mat(L[key])
+                _, _, b = parse_mat(R[key])
+                if [[nearest(x) for x in row] for row in a] != b:
+                    fail(f"`{key}` is not the input rounded to nearest")
+        return
+    if op == "neuralNetwork.resetApproxOrder":
+        want = [[1] * L["W"]["rows"] for L in req["layers"] if L["activation"] != "identity"]
+        if resp["pattern"] != want:
+            fail(f"{resp['pattern']} is not {want}")
+        return
+    if op == "neuralNetwork.generateRandom":
+        draws = parse_vec(req["sizeDraws"]) if "sizeDraws" in req else []
+        sizes, it = [], iter(draws)
+        for name, lo, hi in (("inputs", 1, 5), ("outputs", 1, 5), ("layers", 1, 5),
+                             ("hidden", 2, 20)):
+            sizes.append(req[name] if req.get(name) else
+                         min(hi, lo + int((next(it) * (hi - lo + 1)).__floor__())))
+        if sizes != [resp["inputs"], resp["outputs"], resp["layers"], resp["hidden"]]:
+            fail(f"the sizes are not {sizes}")
+            return
+        for d, R in zip(req["draws"], resp["network"]):
+            for key in ("W", "b"):
+                _, _, u = parse_mat(d[key])
+                if not inside(key, [2 * x - 1 for r in u for x in r], flat(R[key])):
+                    return
+        return
+    if op == "neuralNetwork.initWeights":
+        layers, method = req["layers"], req.get("method", "glorot")
+        which = req.get("which", list(range(len(layers))))
+        c = parse_scalar("7074237752028440*2^-50")
+        it = iter(req["draws"])
+        for k, (L, R) in enumerate(zip(layers, resp["layers"])):
+            if k not in which:
+                if R != L:
+                    fail(f"layer {k} is not kept")
+                continue
+            u = [dec(x) for x in parse_vec(next(it))]
+            n = L["W"]["cols"]
+            if method == "glorot":
+                a = 1 / Decimal(n).sqrt()
+                want = [x * 2 * a - a for x in u]
+            else:
+                scale = dec(c).sqrt() / n
+                want = []
+                for i in range(L["W"]["rows"] * n):
+                    j = i // 2 * 2
+                    r = scale * (-2 * u[j].ln()).sqrt()
+                    want.append(r * decimal_trig(dec(c) * u[j + 1], i % 2 == 1))
+            if not inside(f"layer {k}", want, flat(R["W"])):
+                return
+            if any(parse_scalar(v) != 0 for v in R["b"]["data"]):
+                fail(f"layer {k}: the biases are not 0")
+        return
+    # nonlinearSysDT: the exact pass with the offsets, and the blocks from the output back
+    x, u = parse_vec(req["x"]), parse_vec(req["u"])
+    L = [(parse_mat(l["W"])[2], parse_vec(l["b"]), l["activation"] == "relu") for l in req["layers"]]
+    h, first, slopes = x, 0, []
+    for W, b, relu in L:
+        z = [p + q + u[first + i] for i, (p, q) in enumerate(zip(mat_vec(W, h), b))]
+        first += len(b)
+        slopes.append([F(1) if (not relu or v > 0) else F(0) for v in z])
+        h = [max(v, F(0)) for v in z] if relu else z
+    if not inside("y", h, parse_box(resp["y"])):
+        return
+    m = len(h)
+    B = [[F(int(i == j)) for j in range(m)] for i in range(m)]
+    blocks = [None] * len(L)
+    for k in reversed(range(len(L))):
+        blocks[k] = [[B[i][j] * slopes[k][j] for j in range(len(slopes[k]))] for i in range(m)]
+        W = L[k][0]
+        B = [[sum(blocks[k][i][q] * W[q][j] for q in range(len(W))) for j in range(len(W[0]))]
+             for i in range(m)]
+    for k, (want, got) in enumerate(zip(blocks, resp["D"])):
+        if not inside(f"D block {k}", [v for r in want for v in r], flat(got)):
+            return
+    # C: the same chain without the offsets
+    h, J = x, [[F(int(i == j)) for j in range(len(x))] for i in range(len(x))]
+    for W, b, relu in L:
+        z = [p + q for p, q in zip(mat_vec(W, h), b)]
+        J = [[sum(W[i][q] * J[q][j] for q in range(len(J))) for j in range(len(x))]
+             for i in range(len(W))]
+        if relu:
+            J = [J[i] if z[i] > 0 else [F(0)] * len(x) for i in range(len(J))]
+            z = [max(v, F(0)) for v in z]
+        h = z
+    inside("C", [v for r in J for v in r], flat(resp["C"]))
+
+
 def check_nn_op(op, req, resp, fails):
     """`nnLayer.*` and `neuralNetwork.evaluate`: the exact network's outputs at points of the input
     set lie in the output set's hull (`c +- sum |G| +- sum |GI| +- E`)."""
@@ -1405,6 +1540,11 @@ def check_nn_op(op, req, resp, fails):
               "neuralNetwork.getRefinableLayers", "neuralNetwork.getOrderPattern",
               "neuralNetwork.prepareForZonoBatchEval"):
         check_nn_batch9(op, req, resp, fails)
+        return
+    if op in ("neuralNetwork.castWeights", "neuralNetwork.resetApproxOrder",
+              "neuralNetwork.generateRandom", "neuralNetwork.initWeights",
+              "neuralNetwork.nonlinearSysDT"):
+        check_nn_batch10(op, req, resp, fails)
         return
     graph = op == "neuralNetwork.evaluateGraph"
     layers = [] if graph else [req["layer"]] if "layer" in req else req["layers"]
