@@ -38,6 +38,8 @@ import CORALean.Examples.Oracle.Ops.SetCodec
 import CORALean.Examples.Oracle.Ops.CrownOps
 import CORALean.Examples.Oracle.Ops.GraphNetOps
 import CORALean.Examples.Oracle.Ops.TaylmNetOps
+import CORALean.Examples.Oracle.Ops.NnFormOps
+import CORALean.Examples.Oracle.Ops.NnBoundsOps
 
 /-!
 # The network ops: CORA's `nnLayer` and `neuralNetwork` evaluation on a set
@@ -552,11 +554,13 @@ def networkOnZonotope (dops : DtypeOps 𝕋) (name : String) (req : Json) (n : �
 
 /-- Every op of `nnLayer.`, without the prefix. -/
 def nnLayerOpNames : List String :=
-  [ "evaluateZonotope", "evaluatePolyZonotope", "relaxation", "productLine", "softmaxSumBounds" ]
+  [ "evaluateZonotope", "evaluatePolyZonotope", "relaxation", "productLine", "softmaxSumBounds" ] ++
+    nnFormLayerOpNames
 
 /-- Every op of `neuralNetwork.`, without the prefix. -/
 def neuralNetworkOpNames : List String :=
-  [ "evaluate", "backwardBound", "evaluateGraph", "evaluateTaylm" ]
+  [ "evaluate", "backwardBound", "evaluateGraph", "evaluateTaylm", "normalForm",
+    "propagateBounds", "backpropIntervalBatch", "backprop", "sensitivity" ]
 
 /-- `op` of `nnLayer.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -581,7 +585,7 @@ def handleNnLayerOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option R
         ids)]
     else
       aux_run dops op req (← aux_method op req) (← aux_errorForm op req) [layer])
-  | _ => none
+  | _ => handleNnFormLayerOp dops op req
 
 /-- `op` of `neuralNetwork.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -594,6 +598,11 @@ def handleNeuralNetworkOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Op
   | "backwardBound" => some (crownBackwardBoundOp dops req)
   | "evaluateGraph" => some (evaluateGraphOp dops req)
   | "evaluateTaylm" => some (evaluateTaylmOp dops req)
+  | "normalForm" => some (normalFormOp dops req)
+  | "propagateBounds" => some (propagateBoundsOp dops req)
+  | "backpropIntervalBatch" => some (backpropOp dops false req)
+  | "backprop" => some (backpropOp dops true req)
+  | "sensitivity" => some (sensitivityOp dops req)
   | _ => none
 
 end CORALean.Oracle

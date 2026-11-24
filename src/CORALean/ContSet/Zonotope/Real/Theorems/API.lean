@@ -128,6 +128,7 @@ public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOrder
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReducePCAOrderLe
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReducePCAOuter
+public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceShortestOuter
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSignedInner
 public import CORALean.ContSet.Zonotope.Real.Theorems.ReduceSubsetAddBox
 public import CORALean.ContSet.Zonotope.Real.Theorems.ScaledRPI

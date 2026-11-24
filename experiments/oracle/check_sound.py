@@ -37,6 +37,13 @@ arithmetic -- never floats:
   grid of the box lie in the box; `conZonotope.dualBound`: `h <= w' beta` at the feasible points of a grid of the box;
   `neuralNetwork.backwardBound`: `lower <= C N(x)` at the corners and the center of the input box,
   where every ReLU's input lies in its box `[l, u]` (else the fixture itself is wrong).
+* `nnLayer.mergeBuckets`: the activation's finite limits; `nnLayer.groupSort`: every group of `y`
+  is its group of `x` sorted; `nnLayer.generatorReduction`: the center is kept and the input's
+  hull lies in the output's; `neuralNetwork.normalForm`: the exact product of every fused run of
+  linear layers lies in its boxes `W`, `b`, the activations in order (`check_nn_forms`).
+* `neuralNetwork.propagateBounds`, `backpropIntervalBatch`, `backprop` (ReLU networks): the same
+  midpoint-radius passes over ℚ (`Real.IntervalChain`) lie in the reply's bounds;
+  `neuralNetwork.sensitivity`: the exact Jacobian at the point lies in the reply (`check_nn_bounds`).
 * `nnLayer.*`, `neuralNetwork.evaluate` and `neuralNetwork.evaluateGraph`: the exact network
   (`Fraction` for the linear and ReLU layers, `decimal` at 60 digits for sigmoid and tanh, the fit
   plus its error `d` for `poly`) at points of the input set lies in the hull of the output set
@@ -67,7 +74,7 @@ only the standard library.
 
 # Authors:       Tobias Ladner, Claude Opus 5.5, Claude Sonnet 5.5
 # Written:       30-September-2026
-# Last update:   21-November-2026
+# Last update:   24-November-2026
 # Last revision: ---
 
 
@@ -1064,6 +1071,169 @@ def check_backward_bound(req, resp, fails):
                 return
 
 
+def check_nn_forms(op, req, resp, fails):
+    """The network forms: `nnLayer.mergeBuckets`, `nnLayer.groupSort`, `nnLayer.generatorReduction`
+    and `neuralNetwork.normalForm` (see the module docstring)."""
+    rid = req.get("id")
+    if op == "nnLayer.mergeBuckets":
+        want = {"relu": [F(0)], "sigmoid": [F(0), F(1)], "tanh": [F(-1), F(1)]}[req["kind"]]
+        if parse_vec(resp["buckets"]) != want:
+            fails.append(f"id {rid}: {op}: the buckets are not {want}")
+        return
+    if op == "nnLayer.groupSort":
+        x, y, g = parse_vec(req["x"]), parse_vec(resp["y"]), req["groupSize"]
+        for k in range(0, len(x), g):
+            if sorted(x[k:k + g]) != y[k:k + g]:
+                fails.append(f"id {rid}: {op}: group {k // g} is not sorted")
+                return
+        return
+    if op == "nnLayer.generatorReduction":
+        c_in = parse_vec(req["Z"]["c"])
+        if parse_vec(resp["Z"]["c"]) != c_in:
+            fails.append(f"id {rid}: {op}: the center changed")
+        lo1, hi1 = hull_of_zonotope_json(req["Z"])
+        lo2, hi2 = hull_of_zonotope_json(resp["Z"])
+        if not hull_subset(lo1, hi1, lo2, hi2):
+            fails.append(f"id {rid}: {op}: the input's hull leaves the output's")
+        return
+    # normalForm: the runs of linear layers fused exactly, then compared with the boxes
+    out = list(resp["layers"])
+    acc = None
+    n = req["n"]
+
+    def flush():
+        if acc is None:
+            return True
+        layer = out.pop(0) if out else None
+        if layer is None or layer["kind"] != "linear":
+            fails.append(f"id {rid}: {op}: a fused linear layer is missing")
+            return False
+        W, b = acc
+        _, _, Wlo = parse_mat(layer["W"]["inf"])
+        _, _, Whi = parse_mat(layer["W"]["sup"])
+        blo, bhi = parse_vec(layer["b"]["inf"]), parse_vec(layer["b"]["sup"])
+        ok = all(Wlo[i][j] <= W[i][j] <= Whi[i][j] for i in range(len(W)) for j in range(len(W[0])))
+        ok = ok and all(blo[i] <= b[i] <= bhi[i] for i in range(len(b)))
+        if not ok:
+            fails.append(f"id {rid}: {op}: the exact fused map leaves the boxes")
+        return ok
+
+    for layer in req["layers"]:
+        kind = layer["kind"]
+        if kind in ("linear", "elementwiseAffine", "identity"):
+            if kind == "linear":
+                _, _, M = parse_mat(layer["W"])
+                v = parse_vec(layer["b"])
+            elif kind == "elementwiseAffine":
+                sc, of = parse_vec(layer["scale"]), parse_vec(layer["offset"])
+                M = [[sc[i] if i == j else F(0) for j in range(len(sc))] for i in range(len(sc))]
+                v = of
+            else:
+                M = [[F(int(i == j)) for j in range(n)] for i in range(n)]
+                v = [F(0)] * n
+            if acc is None:
+                acc = (M, v)
+            else:
+                W, b = acc
+                acc = ([[sum(M[i][k] * W[k][j] for k in range(len(W))) for j in range(len(W[0]))]
+                        for i in range(len(M))], [x + y for x, y in zip(mat_vec(M, b), v)])
+            n = len(v)
+            continue
+        if not flush():
+            return
+        acc = None
+        layer_out = out.pop(0) if out else None
+        if layer_out is None or layer_out["kind"] != kind:
+            fails.append(f"id {rid}: {op}: the activation {kind} is missing")
+            return
+    if not flush():
+        return
+    if out:
+        fails.append(f"id {rid}: {op}: {len(out)} layers too many")
+
+
+def check_nn_bounds(op, req, resp, fails):
+    """The interval passes of a ReLU network over ℚ, against the reply (see the module docstring)."""
+    rid = req.get("id")
+    layers = [(parse_mat(L["W"])[2], parse_vec(L["b"]), L["activation"] == "relu")
+              for L in req["layers"]]
+    half = F(1, 2)
+
+    def affine(W, b, lo, hi):
+        mid = [(x + y) * half for x, y in zip(lo, hi)]
+        rad = [(y - x) * half for x, y in zip(lo, hi)]
+        c = [m + bi for m, bi in zip(mat_vec(W, mid), b)]
+        r = mat_vec([[abs(w) for w in row] for row in W], rad)
+        return [x - y for x, y in zip(c, r)], [x + y for x, y in zip(c, r)]
+
+    def relu(v):
+        return [max(x, F(0)) for x in v]
+
+    def inside(name, exact, box):
+        lo, hi = parse_vec(box["inf"]), parse_vec(box["sup"])
+        if not all(a <= x <= b for a, x, b in zip(lo, exact, hi)):
+            fails.append(f"id {rid}: {op}: the exact {name} leaves the reply")
+
+    if op == "neuralNetwork.propagateBounds":
+        i, bounds = req["i"], req["bounds"]
+        if not layers[i][2] or bounds[i] is None:
+            return
+        lo, hi = relu(parse_vec(bounds[i]["l"])), relu(parse_vec(bounds[i]["u"]))
+        for j in range(i + 1, len(layers)):
+            lo, hi = affine(layers[j][0], layers[j][1], lo, hi)
+            if layers[j][2]:
+                if bounds[j] is not None:
+                    lo = [max(x, y) for x, y in zip(lo, parse_vec(bounds[j]["l"]))]
+                    hi = [min(x, y) for x, y in zip(hi, parse_vec(bounds[j]["u"]))]
+                out = resp["bounds"][j]
+                if not (all(a <= x for a, x in zip(parse_vec(out["l"]), lo))
+                        and all(x <= b for x, b in zip(hi, parse_vec(out["u"])))):
+                    fails.append(f"id {rid}: {op}: the exact bounds of layer {j} leave the reply")
+                return
+        return
+    if op == "neuralNetwork.sensitivity":
+        # the Jacobian diag(relu'(z_K)) W_K ... diag(relu'(z_1)) W_1 at the exact point
+        h = parse_vec(req["x"])
+        J = [[F(int(i == j)) for j in range(len(h))] for i in range(len(h))]
+        for W, b, act in layers:
+            z = [x + y for x, y in zip(mat_vec(W, h), b)]
+            J = [[sum(W[i][k] * J[k][j] for k in range(len(J))) for j in range(len(J[0]))]
+                 for i in range(len(W))]
+            if act:
+                J = [[x if z[i] > 0 else F(0) for x in J[i]] for i in range(len(J))]
+                z = relu(z)
+            h = z
+        _, _, Jlo = parse_mat(resp["J"]["inf"])
+        _, _, Jhi = parse_mat(resp["J"]["sup"])
+        if not all(Jlo[i][j] <= J[i][j] <= Jhi[i][j] for i in range(len(J)) for j in range(len(J[0]))):
+            fails.append(f"id {rid}: {op}: the exact Jacobian leaves the reply")
+        return
+    point = op == "neuralNetwork.backprop"
+    lo = parse_vec(req["x"] if point else req["l"])
+    hi = parse_vec(req["x"] if point else req["u"])
+    pre = []
+    for W, b, act in layers:
+        lo, hi = affine(W, b, lo, hi)
+        pre.append((lo, hi))
+        if act:
+            lo, hi = relu(lo), relu(hi)
+    gl = parse_vec(req["g"] if point else req["gl"])
+    gu = parse_vec(req["g"] if point else req["gu"])
+    for (W, _, act), (zl, zu) in reversed(list(zip(layers, pre))):
+        if act:
+            gl = [g * (1 if z > 0 else 0) for g, z in zip(gl, zl)]
+            gu = [g * (1 if z > 0 else 0) for g, z in zip(gu, zu)]
+        Wt = [list(col) for col in zip(*W)]
+        mid = mat_vec(Wt, [(x + y) * half for x, y in zip(gu, gl)])
+        rad = mat_vec([[abs(w) for w in row] for row in Wt], [(y - x) * half for x, y in zip(gl, gu)])
+        gl, gu = [m - r for m, r in zip(mid, rad)], [m + r for m, r in zip(mid, rad)]
+    if point:
+        inside("gradient", gl, resp["g"])
+    else:
+        inside("lower gradient", gl, resp["gl"])
+        inside("upper gradient", gu, resp["gu"])
+
+
 def check_nn_op(op, req, resp, fails):
     """`nnLayer.*` and `neuralNetwork.evaluate`: the exact network's outputs at points of the input
     set lie in the output set's hull (`c +- sum |G| +- sum |GI| +- E`)."""
@@ -1078,6 +1248,14 @@ def check_nn_op(op, req, resp, fails):
         return
     if op == "neuralNetwork.backwardBound":
         check_backward_bound(req, resp, fails)
+        return
+    if op in ("nnLayer.mergeBuckets", "nnLayer.groupSort", "nnLayer.generatorReduction",
+              "neuralNetwork.normalForm"):
+        check_nn_forms(op, req, resp, fails)
+        return
+    if op in ("neuralNetwork.propagateBounds", "neuralNetwork.backpropIntervalBatch",
+              "neuralNetwork.backprop", "neuralNetwork.sensitivity"):
+        check_nn_bounds(op, req, resp, fails)
         return
     graph = op == "neuralNetwork.evaluateGraph"
     layers = [] if graph else [req["layer"]] if "layer" in req else req["layers"]

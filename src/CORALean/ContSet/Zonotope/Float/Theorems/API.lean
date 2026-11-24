@@ -19,6 +19,7 @@ public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsAtMtimes
 public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsAtPlus
 public import CORALean.ContSet.Zonotope.Float.Theorems.ConstrSatSound
 public import CORALean.ContSet.Zonotope.Float.Theorems.RadiusCoraLe
+public import CORALean.ContSet.Zonotope.Float.Theorems.ReduceShortestOuter
 public import CORALean.ContSet.Zonotope.Float.Theorems.ToSetPoint
 public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsPointSound
 public import CORALean.ContSet.Zonotope.Float.Theorems.ContainsMatSound
