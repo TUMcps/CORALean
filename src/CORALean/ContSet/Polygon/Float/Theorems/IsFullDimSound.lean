@@ -75,7 +75,8 @@ private theorem Polygon.aux_cross_ne_zero {p : VPolytope (Vec 𝕋 2)} {a b c : 
     (toReal (p.V b 0) - toReal (p.V a 0)) * (toReal (p.V c 1) - toReal (p.V a 1))
       - (toReal (p.V b 1) - toReal (p.V a 1)) * (toReal (p.V c 0) - toReal (p.V a 0))
       ≠ 0 := by -- --- PROOF ---
-  simp only [Polygon.step_crossCertified, Bool.or_eq_true] at h
+  simp only [Polygon.step_crossCertified, Bool.and_eq_true, Bool.or_eq_true] at h
+  obtain ⟨-, h⟩ := h
   have hb := Polygon.orientBounds_le (p.V a) (p.V b) (p.V c)
   -- one certified side of zero, read as reals
   rcases h with h | h

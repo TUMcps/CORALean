@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Polygon.Float.Operations.DistinctPoints
 public import CORALean.ContSet.Polygon.Float.Operations.OrientBounds
 public import CORALean.ContSet.Polygon.Float.Polygon
 public import CORALean.Global.StepOf
@@ -24,7 +25,7 @@ of `0`; the box's `inf ≤ sup` by `le`. Only `true` is certain; CORA's count of
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   ---
+-- Last update:   25-November-2026
 -- Reviewed:      15-October-2026 (Tobias Ladner)
 
 
@@ -39,11 +40,12 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 
 -- ------------------------------------------  STEPS  ------------------------------------------- --
 
-/-- The cross product of `(b - a, c - a)`, certified on one side of zero. -/
+/-- The cross product of `(b - a, c - a)` of three distinct points, certified on one side of
+zero. -/
 @[step_of Polygon.isFullDim]
 def Polygon.step_crossCertified (p : VPolytope (Vec 𝕋 2)) (a b c : Fin p.k) : Bool :=
   let D := Polygon.orientBounds (p.V a) (p.V b) (p.V c)
-  ltStrict zero D.inf || ltStrict D.sup zero
+  Polygon.distinctPoints (p.V a) (p.V b) (p.V c) && (ltStrict zero D.inf || ltStrict D.sup zero)
 
 
 -- =====================================  MAIN DEFINITION  ====================================== --
