@@ -380,6 +380,25 @@ Tuning CORA has no argument for is a required field: `k`, `p` (Newton steps, tri
 | `supportFunc` (vertex form) | `dir`, `type` (`upper`) | `VPolytope.boundDot`; `value` |
 | `conZonotope`, `zonotope`, `zonoBundle`, `ellipsoid` (vertex form) | `sigma` for `ellipsoid` | `VPolytope.conZonotope`, `.zonotope`, `.zonoBundle`, `.ellipsoid`; `cZ`, `Z`, `zB`, `E`. `ellipsoid` is not CORA's covariance or minimum-volume method: it is the bounding box of the hull as a zonotope, enclosed by `Zonotope.ellipsoid` with the scaling `sigma` |
 
+`polygon.` (`Ops/PolygonOps.lean`; operands `pgon`, `pgon2`, `{"pieces":[{"V","E"}, ...]}`, the union of
+convex vertex polytopes of the plane; result `pgon`):
+
+| op | fields | float definition |
+|---|---|---|
+| `contains` | `point`, `tol` | `Polygon.containsPoint` (a vertex triangle of some piece holds the point); `value` |
+| `convHull`, `polytope` | | `Polygon.convHull`, the pieces' vertex lists joined; `P` (vertex form) |
+| `empty` | | `Polygon.empty`, no piece |
+| `interval` | | `Polygon.interval`; `I` |
+| `isBounded`, `isConvex`, `isFullDim` | | constant `true`; `Polygon.isConvex`, `.isFullDim` (sufficient only); `value` |
+| `isIntersecting` | `pgon2`, `tol` | `Polygon.isDisjoint` (a separating edge normal for every pair of pieces); `disjoint` |
+| `isequal`, `representsa` (`emptySet`) | `pgon2`, `tol` | `Polygon.isequalPieces` (sufficient only), `.representsaEmptySet`; `value` |
+| `linComb`, `or`, `plus` | `pgon2` | `Polygon.linComb`, `.or`, `.plus` (every pair of pieces) |
+| `minus`, `mtimes`, `times` | `point`, `M` (`2 x 2`), `factor` | `Polygon.minus`, `.mtimes`, `.times` |
+| `project` | `dims` (two indices) | `Polygon.project` |
+| `splitIntoConvexSets` | | `Polygon.splitIntoConvexSets`, the stored pieces; `pieces` |
+| `supportFunc` | `dir`, `type` (`upper`) | `Polygon.boundDot` (a polygon without a piece is refused, CORA's `-Inf`); `value` |
+| `vertices` | | `Polygon.vertices`, the pieces' vertices in order; `V` |
+
 `ellipsoid.` (`Ops/EllipsoidOps.lean`; result `E`):
 
 | op | fields | float definition |
@@ -1358,6 +1377,11 @@ Rows of the further classes not served, by reason:
   `isIntersecting`, `volume`, `plus`, `minkDiff` of two ellipsoids, `polygon`.
 * `ellipsoid.enclose`: the outer hull of two ellipsoids is an SDP, an argument of `Ellipsoid.enclose`.
   `ellipsoid.generators` has only the real eigendecomposition, and `empty` no float definition.
+* `polygon`: `and` (`Polygon.and` is the box of each pair of boxes), `volume` (the box's area),
+  `triangulation` (every vertex triple), `subtract`, `mldivide` (pieces cut to boxes): CORALean's float
+  definitions are outer sets, not CORA's polyshape results; `center` (no float centroid), `minkDiff` and
+  `quadMap` (not yet), and the boundary methods (`compact`, `removeCollinearPoints`, the `polyshape`
+  constructor), which CORALean does not formalize.
 * A class without a wire format: `conPolyZono`, `spectraShadow`, `levelSet`, `matPolytope`, and
   every constructor, which CORALean states as a `Set`.
 * `linearSys`: `reachBackward`, `reachInner`, `verify` (`LinearSys.verifyFloat` takes the reachable-set
