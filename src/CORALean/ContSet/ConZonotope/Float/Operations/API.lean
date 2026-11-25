@@ -12,6 +12,7 @@ public import CORALean.ContSet.ConZonotope.Float.Operations.Intersection
 public import CORALean.ContSet.ConZonotope.Float.Operations.FourierMotzkinBounds
 public import CORALean.ContSet.ConZonotope.Float.Operations.FourierMotzkinIter
 public import CORALean.ContSet.ConZonotope.Float.Operations.Split
+public import CORALean.ContSet.ConZonotope.Float.Operations.SplitWith
 public import CORALean.ContSet.ConZonotope.Float.Operations.Project
 public import CORALean.ContSet.ConZonotope.Float.Operations.Basic
 public import CORALean.ContSet.ConZonotope.Float.Operations.LiftEq
