@@ -862,7 +862,8 @@ requires them in the output (`check_polyzono_op`).
 | `neuralNetwork.resetApproxOrder` | `layers` | the order 1 of every neuron of the refinable layers; `pattern` |
 | `neuralNetwork.refine` | `layers`, `orders` (as `getOrderPattern`), `heuristic` (per layer a list of scalars, or `null`), `type` (`all`, `layer`, `neuron`), `heuristicKind` (`approx_error`, `layer_bias`, `all`), `maxOrder` (5), `gamma` (0.1) | CORA.cpp's `refine`: the orders of every neuron after one step; `orders`. At `nearest` only |
 | `neuralNetwork.generateRandom` | `inputs`, `outputs`, `layers`, `hidden` (0 or absent: drawn), `sizeDraws` (the units of the sizes drawn, in that order), `draws` (per layer `{W, b}` of units in `(0, 1]`) | CORA.cpp's `randi` `min(hi, lo + floor(u (hi - lo + 1)))` for each size drawn and `2 u - 1` for every weight; the sizes and `network` (`W`, `b` as boxes) |
-| `neuralNetwork.initWeights` | `layers`, `method` (`glorot`, `shi`), `which` (0-based, default all), `draws` (per layer drawn again a column of units: `m n` for glorot, `m n` rounded up to even for shi) | glorot `u (2 a) - a`, `a = 1 / sqrt(n)`; shi Box-Muller as CORA.cpp's `Rng::normal`, `sqrt(c) / n sqrt(-2 log u1) cos(c u2)` (and `sin` for the second of a pair), `c` the double nearest `2 pi`; `layers` (`W` as boxes, `b` zero) |
+| `neuralNetwork.initWeights` | `layers`, `method` (`glorot`, `shi`), `which` (0-based, default all), `draws` (per layer drawn again a column of units: `m n` for glorot, `m n` rounded up to even for shi) or, for shi, `normals` (per layer the `m n` standard normals) | glorot `u (2 a) - a`, `a = 1 / sqrt(n)`; shi Box-Muller as CORA.cpp's `Rng::normal`, `sqrt(c) / n sqrt(-2 log u1) cos(c u2)` (and `sin` for the second of a pair), `c` the double nearest `2 pi`, and with `normals` `z sqrt(c) / n` of each (CORA's `normrnd`, `randn .* sigma`); `layers` (`W` as boxes, `b` zero) |
+| `nnLayer.findRegionPolys` | `activation` (`relu`), `tol`, `order` (at least 1), `lMax`, `uMax` | CORA.cpp's `find_region_polys` between the two outer regions: per region the regression fit (`10 (k + 1)` points, the Vandermonde matrix by repeated products, Householder least squares) and the ReLU's error, lower orders down to `0` while below `tol`; `regions` (`l`, `u`, `p` highest power first, `d`), sorted by `l`. At `nearest` only |
 | `neuralNetwork.nonlinearSysDT` | `layers` (as above), `x`, `u` (one offset per neuron of every layer, stacked) | CORA.cpp's `NetworkSystemDT`: `y` of `(W h + b) + u_k`, `C` (`IntervalChain.sensitivity` at `x`) and per layer the block `D_k` (the sensitivity of the rest at layer `k`'s pre-activation, every later offset an identity layer); boxes |
 | `neuralNetwork.explain` | `layers` (the kinds of `evaluate`), `x`, `label`, `epsilon`, `featOrder` (0-based), `inputSize` (`[C, H, W]`), `outputThreshold` (0) | CORA's method `standard`: the logit differences as a last layer, `normalForm`, each trial a zonotope through `evaluate` at `regression` (extremum), the box test; `freed`. At `nearest` only |
 | `neuralNetwork.computeReducedNetwork` | `layers` (ReLU, the last may be `identity`), `Z`, `bucketTol` (one or one per layer, 0.01), `reductionRate` (optional), `minSearches` (10) | CORA.cpp's static buckets: the reduced `layers`, `d` (`{c, r}` or `null` per layer), `merged` (0/1 per neuron, `null` for the last), `reductionRate`, `Z` the output set. At `nearest` only |
@@ -1102,6 +1103,18 @@ The weights, the orders, the system and the explanation of a network (batch 10):
 * `evaluateConZonotope` serves a zonotope without constraints and the box bounds. Not served: a set
   with constraints (`pinv` and the null space of `A`, linear programs for the factors' ranges) and
   `boundApprox` false (two linear programs per neuron); neither is in CORA.cpp's order.
+
+The shi weights from normals and the regions of a ReLU's polynomials (batch 11):
+
+* `initWeights` at shi takes CORA.cpp's standard normals (`normals`) and scales them afterwards, as
+  CORA's `normrnd` does: only a product by `sqrt(c) / n` is left, no `log`, `cos` or `sin` of a
+  platform's libm. `draws` (Box-Muller with the scale inside the radius) stays served.
+* `findRegionPolys` serves the ReLU, whose fit and error take only arithmetic and `sqrt`. Every
+  step is CORA.cpp's, in its order: the halving of the region's upper end from below and of its
+  lower end from above (the error computed again on the fit there, as CORA calls
+  `computeApproxError`), the orders `k - 1` down to `0` from below. A region that cannot be
+  closed is CORA's `notConverged`. Not served: sigmoid and tanh (`exp` and `tanh` at every sample
+  point of the error) and the outer regions, which are the request's own.
 
 `neuralNetwork.backwardBound` (fields `layers`, `x`, `r`, `C`; reply `lower`, a column) is CROWN's backward bound, CORA.cpp's
 `priv_backward_lower`: a lower bound of every row `C_q` on the outputs over the input box `|x' - x| <= r`. A layer is

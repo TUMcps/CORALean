@@ -12,7 +12,8 @@ A network is CORA.cpp's list of layers `{W, b, activation}`. `castWeights` round
 bias to nearest in the request's dtype (CORA casts them to `single`). `generateRandom` and
 `initWeights` take CORA.cpp's uniform draws in `(0, 1]` as inputs, in the order its `Rng` makes
 them, and do the arithmetic on them: CORA.cpp's `randi` for a size not given, `u (hi - lo) + lo`
-for a uniform weight, Box-Muller for `shi`'s normal ones. `resetApproxOrder` is the order 1 of every
+for a uniform weight, Box-Muller for `shi`'s normal ones, or (`normals`) the standard normals
+themselves, scaled afterwards as CORA's `normrnd` does. `resetApproxOrder` is the order 1 of every
 neuron of the refinable layers. `refine` raises the orders by a heuristic given per neuron (CORA's
 types `all`, `layer` and `neuron`), at `nearest` only: its replies are decisions on rounded values.
 
@@ -27,7 +28,7 @@ types `all`, `layer` and `neuron`), at `nearest` only: its replies are decisions
 
 -- Authors:       Claude Opus 5.5
 -- Written:       24-November-2026
--- Last update:   ---
+-- Last update:   25-November-2026
 -- Reviewed:      ---
 
 
@@ -281,14 +282,18 @@ private def aux_generateRandom (dops : DtypeOps 𝕋) (op : String) (req : Json)
 
 /-- CORA.cpp's `init_weights` on the draws: the weights of the layers `which` again, biases 0. -/
 private def aux_initWeights (dops : DtypeOps 𝕋) (op : String) (req : Json) : Resp := do
-  checkFields op req ["layers", "method", "which", "draws"]
+  checkFields op req ["layers", "method", "which", "draws", "normals"]
   let L ← aux_shapes op req
   let method := (strField req "method").toOption.getD "glorot"
   if method ∉ ["glorot", "shi"] then throw s!"{op}: `method` is glorot or shi, not `{method}`"
   let which ← match fieldOpt req "which" with
     | none => pure (List.range L.length)
     | some _ => do pure (← natArrField req "which").toList
-  let draws ← arrField req "draws"
+  -- shi's standard normals given (CORA's `randn .* sigma`), or the units of Box-Muller
+  let normals := (fieldOpt req "normals").isSome
+  if normals ∧ (method ≠ "shi" ∨ (fieldOpt req "draws").isSome) then
+    throw s!"{op}: `normals` replaces `draws`, for shi only"
+  let draws ← arrField req (if normals then "normals" else "draws")
   let redrawn := (List.range L.length).filter which.contains
   if draws.size ≠ redrawn.length then
     throw s!"{op}: `draws` has one entry per layer drawn again, {redrawn.length}"
@@ -309,6 +314,12 @@ private def aux_initWeights (dops : DtypeOps 𝕋) (op : String) (req : Json) : 
           let a : 𝕋 × 𝕋 := (divDown one (sqrtUp p N), divUp one (sqrtDownCora p N))
           let span := (addDown a.1 a.1, addUp a.2 a.2)
           pure (u.map (aux_uniform span (neg a.2, neg a.1)))
+        else if normals then do
+          -- `sqrt(2 pi) / n` times each standard normal given
+          if u.size ≠ m * n then throw s!"{op}: layer {k} takes {m * n} normals"
+          let r := (sqrtDownCora p twoPi, sqrtUp p twoPi)
+          let scale := (divDown r.1 N, divUp r.2 N)
+          pure (u.map fun z => aux_mulBox (z, z) scale)
         else do
           -- `sqrt(2 pi) / n`, the normals of Box-Muller at that scale
           if u.size ≠ m * n + (m * n) % 2 then
