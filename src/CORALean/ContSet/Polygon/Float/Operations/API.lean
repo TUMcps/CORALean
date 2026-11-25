@@ -12,6 +12,7 @@ public import CORALean.ContSet.Polygon.Float.Operations.Minus
 public import CORALean.ContSet.Polygon.Float.Operations.SplitIntoConvexSets
 public import CORALean.ContSet.Polygon.Float.Operations.IsFullDim
 public import CORALean.ContSet.Polygon.Float.Operations.ContainsPoint
+public import CORALean.ContSet.Polygon.Float.Operations.DistinctPoints
 public import CORALean.ContSet.Polygon.Float.Operations.InTriangle
 public import CORALean.ContSet.Polygon.Float.Operations.IsDisjoint
 public import CORALean.ContSet.Polygon.Float.Operations.IsequalPieces

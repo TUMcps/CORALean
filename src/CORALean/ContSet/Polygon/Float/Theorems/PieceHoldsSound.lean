@@ -47,7 +47,7 @@ private theorem Polygon.aux_inTriangle_sound {a b c x : Vec 𝕋 2}
     ∃ α β γ : ℝ, 0 ≤ α ∧ 0 ≤ β ∧ 0 ≤ γ ∧ α + β + γ = 1 ∧
       toRealVec x = α • toRealVec a + β • toRealVec b + γ • toRealVec c := by -- --- PROOF ---
   simp only [Polygon.inTriangle, Bool.and_eq_true] at h
-  obtain ⟨⟨⟨hD, ha⟩, hb⟩, hc⟩ := h
+  obtain ⟨⟨⟨⟨-, hD⟩, ha⟩, hb⟩, hc⟩ := h
   -- the four orientations, read as reals, on their certified sides of zero
   have eD := lt_of_lt_of_le (toReal_zero.symm.trans_lt (toReal_lt_of_ltStrict hD))
     (Polygon.orientBounds_le a b c).1

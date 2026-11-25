@@ -406,7 +406,7 @@ convex vertex polytopes of the plane; result `pgon`):
 
 | op | fields | float definition |
 |---|---|---|
-| `contains` | `point`, `tol` | `Polygon.containsPoint` (a vertex triangle of some piece holds the point); `value` |
+| `contains` | `point`, `tol` | `Polygon.containsPoint` (a vertex triangle of some piece, of three distinct corners, holds the point); `value` |
 | `convHull`, `polytope` | | `Polygon.convHull`, the pieces' vertex lists joined; `P` (vertex form) |
 | `empty` | | `Polygon.empty`, no piece |
 | `interval` | | `Polygon.interval`; `I` |

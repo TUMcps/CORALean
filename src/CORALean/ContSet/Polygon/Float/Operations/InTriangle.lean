@@ -1,5 +1,6 @@
 module
 
+public import CORALean.ContSet.Polygon.Float.Operations.DistinctPoints
 public import CORALean.ContSet.Polygon.Float.Operations.OrientBounds
 
 @[expose] public section
@@ -11,7 +12,8 @@ A point lies in the triangle `a b c`: the triangle's orientation is certified po
 `ltStrict`, and the three orientations of the point against its edges (`b c x`, `c a x`,
 `a b x`) are certified nonnegative by `le`. These are the barycentric coordinates times the
 triangle's orientation, so `true` is certain; a triangle of the other orientation is the same
-triangle with two corners swapped, which a search over corners also tries.
+triangle with two corners swapped, which a search over corners also tries. A triangle with a
+repeated corner is skipped (`Polygon.distinctPoints`).
 
 ## Inputs
 * `a` – vector of length `2`
@@ -25,7 +27,7 @@ triangle with two corners swapped, which a search over corners also tries.
 
 -- Authors:       Claude Opus 5.5
 -- Written:       04-October-2026
--- Last update:   14-October-2026
+-- Last update:   25-November-2026
 -- Reviewed:      ---
 
 
@@ -41,7 +43,7 @@ variable {𝕋 : Type} [FloatOps 𝕋]
 -- =====================================  MAIN DEFINITION  ====================================== --
 
 def Polygon.inTriangle (a b c x : Vec 𝕋 2) : Bool :=
-  ltStrict zero (Polygon.orientBounds a b c).inf &&
+  Polygon.distinctPoints a b c && ltStrict zero (Polygon.orientBounds a b c).inf &&
     le zero (Polygon.orientBounds b c x).inf && le zero (Polygon.orientBounds c a x).inf &&
       le zero (Polygon.orientBounds a b x).inf
 
