@@ -21,6 +21,7 @@ import CORALean.ContSet.ConZonotope.Float.Operations.QuadMap
 import CORALean.ContSet.ConZonotope.Float.Operations.Reduce
 import CORALean.ContSet.ConZonotope.Float.Operations.Reindex
 import CORALean.ContSet.ConZonotope.Float.Operations.RepresentsaEmptySet
+import CORALean.ContSet.ConZonotope.Float.Operations.Rescale
 import CORALean.ContSet.ConZonotope.Float.Operations.Split
 import CORALean.ContSet.ConZonotope.Float.Operations.SupportBound
 import CORALean.ContSet.Conversion.Float.Operations.Basic
@@ -37,11 +38,11 @@ import CORALean.Specification.Instances
 Thin adapters over the float definitions `references/coverage/contSet/conZonotope.md` links.
 Operands are `cZ`, `cZ2` (`{"c","G","P","E"}`, or `{"c","G","A","b","E"}` with `A ξ = b`; see
 `SetCodec.lean`); a set result is `cZ` (`cZ1`, `cZ2` for a split), a Boolean `value`, a bound
-`value`. Indices are 0-based; a field an op does not list is refused by name. `contains` (a point)
-and `isFullDim` take the certificate as the optional `H` (default `Zonotope.rightInvCandidate`) and
-`beta0` (default `0`), and answer `false` for an equality row `A ξ = b`. `intervalCert` takes the
-optional dual multipliers `y`, per coordinate and end (README). Not served: `minkDiff`, `rescale`,
-`polytope`, the constructor (README).
+`value`; 0-based indices. `contains` (a point) and `isFullDim` take the certificate as the optional
+`H` (default `Zonotope.rightInvCandidate`) and `beta0` (default `0`), and answer `false` for an
+equality row `A ξ = b`. `intervalCert` takes the optional dual multipliers `y` (README), `rescale`
+the factor ranges `xiL`, `xiU`, `split` an optional box `I`. Not served: `minkDiff`, `polytope`,
+the constructor (README).
 
 ## Inputs
 * `dops` – dtype operations
@@ -53,7 +54,7 @@ optional dual multipliers `y`, per coordinate and end (README). Not served: `min
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-November-2026
--- Last update:   ---
+-- Last update:   25-November-2026
 -- Reviewed:      ---
 
 
@@ -161,13 +162,26 @@ def handleConZonoReduce (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   let d ← parseConZonotope dops.readExact (← field req "cZ")
   pure [aux_set dops "cZ" (ConZonotope.reduce d.cZ (← natField req "order"))]
 
-/-- `conZonotope.split`: halves along coordinate `dim`. -/
+/-- `conZonotope.split`: halves along coordinate `dim`, of the set's box or of the box `I`. -/
 def handleConZonoSplit (dops : DtypeOps 𝕋) (req : Json) : Resp := do
-  checkFields "split" req ["cZ", "dim"]
+  checkFields "split" req ["cZ", "dim", "I"]
   let d ← parseConZonotope dops.readExact (← field req "cZ")
   let j ← indexField req "dim" d.n
-  let (a, b) := ConZonotope.split d.cZ j
+  let (a, b) ← match fieldOpt req "I" with
+    | none => pure (ConZonotope.split d.cZ j)
+    | some ij => do
+      let I ← parseIntervalVecFixed dops.readExact d.n ij
+      pure (ConZonotope.splitWith d.cZ I j)
   pure [aux_set dops "cZ1" a, aux_set dops "cZ2" b]
+
+/-- `conZonotope.rescale`: `ConZonotope.rescale` at the factor ranges `[xiL, xiU]` (CORA's linear
+programs or Gauss-Jordan find them; `h` entries each). -/
+def handleConZonoRescale (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  checkFields "rescale" req ["cZ", "xiL", "xiU"]
+  let d ← parseConZonotope dops.readExact (← field req "cZ")
+  let ξL ← parseVecFixed dops.readExact d.cZ.h (← field req "xiL")
+  let ξU ← parseVecFixed dops.readExact d.cZ.h (← field req "xiU")
+  pure [aux_set dops "cZ" (ConZonotope.rescale d.cZ ξL ξU)]
 
 /-- `conZonotope.enclose`: CORA's `enclose(cZ, M, cZ2)`, `ContSet.enclose` at the float
 instances. -/
@@ -307,11 +321,11 @@ def handleConZonoIntervalCert (dops : DtypeOps 𝕋) (req : Json) : Resp := do
 
 /-- Every op of this file, without the `conZonotope.` prefix. -/
 def conZonotopeOpNames : List String :=
-  [ "and", "cartProd", "compact", "conIntersect", "contains", "convHull", "cubMap", "dualBound",
-    "empty", "enclose", "fourierMotzkinBounds", "intersectStrip", "isBounded", "isFullDim",
-    "isIntersecting", "isequal", "lift", "mtimes", "origin", "plus", "project", "quadMap", "reduce",
-    "representsa", "split", "supportFunc", "vertices", "zonotope", "interval", "intervalCert",
-    "intervalTight", "zonoBundle" ]
+  [ "and", "cartProd", "compact", "conIntersect", "contains", "convHull", "cubMap", "dim",
+    "dualBound", "empty", "enclose", "fourierMotzkinBounds", "intersectStrip", "isBounded",
+    "isFullDim", "isIntersecting", "isequal", "lift", "mtimes", "origin", "plus", "project",
+    "quadMap", "reduce", "representsa", "rescale", "split", "supportFunc", "vertices", "zonotope",
+    "interval", "intervalCert", "intervalTight", "zonoBundle" ]
 
 /-- `op` of `conZonotope.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -328,6 +342,10 @@ def handleConZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opti
   | "convHull" => some (aux_binary op dops req fun a b => ConZonotope.linComb a b)
   -- the arms from `cubMap` on
   | "cubMap" => some (handleConZonoCubMap dops req)
+  | "dim" => some (do
+      checkFields op req ["cZ"]
+      let d ← parseConZonotope dops.readExact (← field req "cZ")
+      pure [("value", Lean.toJson d.n)])
   | "dualBound" => some (handleConZonoDualBound dops req)
   | "empty" => some (do
       checkFields op req ["n"]
@@ -370,6 +388,7 @@ def handleConZonotopeOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Opti
       pure [aux_set dops "cZ" (ConZonotope.project d.cZ dims)])
   | "quadMap" => some (handleConZonoQuadMap dops req)
   | "reduce" => some (handleConZonoReduce dops req)
+  | "rescale" => some (handleConZonoRescale dops req)
   | "representsa" => some (do
       checkFields op req ["cZ", "type", "tol"]
       checkTol op req

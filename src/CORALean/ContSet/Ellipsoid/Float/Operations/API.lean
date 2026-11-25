@@ -43,6 +43,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Operations.Reindex
 public import CORALean.ContSet.Ellipsoid.Float.Operations.RepresentsaOrigin
 public import CORALean.ContSet.Ellipsoid.Float.Operations.RepresentsaPoint
 public import CORALean.ContSet.Ellipsoid.Float.Operations.SupportBound
+public import CORALean.ContSet.Ellipsoid.Float.Operations.SupportFuncUp
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Vertices
 public import CORALean.ContSet.Ellipsoid.Float.Operations.Volume
 

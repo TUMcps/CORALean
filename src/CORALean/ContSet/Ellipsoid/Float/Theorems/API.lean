@@ -45,6 +45,7 @@ public import CORALean.ContSet.Ellipsoid.Float.Theorems.QuadDownLeQuad
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.QuadLeQuadUp
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.RadiusLe
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.ReindexExact
+public import CORALean.ContSet.Ellipsoid.Float.Theorems.SupportFuncUpLe
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.SymmOfIsSymm
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.RepresentsaOriginSound
 public import CORALean.ContSet.Ellipsoid.Float.Theorems.RepresentsaPointSound

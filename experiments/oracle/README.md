@@ -320,7 +320,9 @@ Tuning CORA has no argument for is a required field: `k`, `p` (Newton steps, tri
 | `lift`, `project` | `N`, `dims` | `ConZonotope.reindex`, `.project` |
 | `mtimes` | `M` | `ConZonotope.mtimes` |
 | `reduce` | `order`, `method` (`girard`) | `ConZonotope.reduce` |
-| `split` | `dim` | `ConZonotope.split`; `cZ1`, `cZ2` |
+| `split` | `dim`, `I` (optional box) | `ConZonotope.split`, or with `I` `ConZonotope.splitWith`: the box `I` (CORA's box of the set from linear programs, which the caller sends) cut by `Interval.splitAt`, the set intersected with each half; `cZ1`, `cZ2`. The halves cover the set when `I` holds it (`ConZonotope.splitWith_outer`) |
+| `rescale` | `xiL`, `xiU` (the factor ranges, `h` entries) | `ConZonotope.rescale` at the ranges, which CORA finds by linear programs or Gauss-Jordan elimination and the caller sends; `cZ` |
+| `dim` | | the dimension; `value` |
 | `supportFunc` | `dir`, `type` (`upper`) | `ConZonotope.boundDot`; `value` |
 | `vertices` | | `ConZonotope.vPolytopeBox`; `V`, `E` |
 | `zonotope`, `interval`, `zonoBundle` | | `ConZonotope.zonotope`, `.interval`, `.zonoBundle`; `Z`, `I`, `zB` |
@@ -400,6 +402,9 @@ Tuning CORA has no argument for is a required field: `k`, `p` (Newton steps, tri
 | `reduce` | `order`, `method` (`girard`) | `Reduce.reduce`: CORA's `reduce` has an empty body, the ellipsoid stays itself; `E` |
 | `norm`, `radius` | `k` (`radius`: `p`), `type` (2) | `Ellipsoid.normUb`, `.radius`; `value`. `p` of `radius` is the number of Newton steps of the square roots, not CORA's index of the semi-axis: the result is an upper bound of CORA's largest radius (`sqrt(max(eig(Q)))`), the Euclidean ball about the center that contains `E`. CORALean has no float definition of the `i`-th semi-axis (it needs an eigendecomposition), so CORA's `radius(E, i)` is not served |
 | `origin` | `n` | `Ellipsoid.origin` |
+| `dim`, `isnan` | | the dimension; whether an entry is NaN (`noNaN`), CORA's constant `false` on finite entries; `value` |
+| `minkDiff` | `point` | `Ellipsoid.minkDiffPoint`, `q - p` rounded down and its residual in the box; `E`. The difference of two ellipsoids is not served |
+| `supportFunc` | `dir`, `k`, `type` (`upper`) | `Ellipsoid.supportFuncUp`: `d'q` (`dotUp`) plus `sqrtUp k (max(0, quadUp d))` plus the error box's bound, added upward; `value` (`Ellipsoid.supportFuncUp_le`). At `nearest` CORA's `d'q + sqrt(d'(Q d))` bit for bit |
 | `vertices` | `k`, one dimension | `Ellipsoid.vertices`; `V` |
 | `zonotope` | | `Ellipsoid.zonotope`; `Z` |
 
@@ -1277,8 +1282,7 @@ agree, `Zonotope.vertexExact`), so a vertex that rounds is `null`.
 
 Rows of the further classes not served, by reason:
 
-* A certificate or witness CORA has no argument for. `conZonotope`: `minkDiff`, `rescale`,
-  `polytope`; `contains` of a zonotope, a box or a constrained zonotope. `conZonotope`: `center`
+* A certificate or witness CORA has no argument for. `conZonotope`: `minkDiff`, `polytope`; `contains` of a zonotope, a box or a constrained zonotope. `conZonotope`: `center`
   (the real `ConZonotope.IsCenter` is a relation, not a computation) and the box step of
   `approximateBoundsWithGPU` (`Zonotope.intervalOfFactorBounds` has only a real-layer definition). `zonoBundle`: `contains`, `isFullDim`, `encloseTight`, `vertices`, `or`.
 * A bound from a linear program, so no direct definition. `polytope`: `compact_` `redundant`, `constraints`
@@ -1288,7 +1292,7 @@ Rows of the further classes not served, by reason:
   planar polygon's box), `isequal` of vertex polytopes, and `box`, `interval`, `vertices`,
   `convHull`, `mtimes`, `plus` of a halfspace polytope. `matZonotope.volume`, `zonotope.simplex`: no float definition.
 * A scalar with a proof obligation, a witness or a direction list. `ellipsoid`:
-  `isIntersecting`, `supportFunc`, `volume`, `plus`, `minkDiff`, `polygon`.
+  `isIntersecting`, `volume`, `plus`, `minkDiff` of two ellipsoids, `polygon`.
 * `ellipsoid.enclose`: the outer hull of two ellipsoids is an SDP, an argument of `Ellipsoid.enclose`.
   `ellipsoid.generators` has only the real eigendecomposition, and `empty` no float definition.
 * A class without a wire format: `conPolyZono`, `spectraShadow`, `levelSet`, `matPolytope`, and

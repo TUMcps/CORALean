@@ -83,6 +83,10 @@ arithmetic -- never floats:
   (`check_nn_taylm`).
 * `nonlinearSys.linReachPoly`: constant-input runs of the system, by RK4 in 60 digits from points of
   `R`, lie in the hulls of the response (`check_pz_lin_reach`).
+* `ellipsoid.supportFunc`: `value - d'q >= 0` and `(value - d'q)^2 >= d'Qd`, exactly (an input
+  without an error box); `ellipsoid.minkDiff`: the shape kept and `q - p` in the reply's center plus
+  its box; `ellipsoid.dim`, `conZonotope.dim`: the dimension of the input; `ellipsoid.isnan`: false
+  for the finite fixtures (`check_sets1_op`).
 * Every op `ping` lists occurs in the requests, so none is served without a test.
 
 Every check names the request `id` and the violated bound on failure. Uses
@@ -2236,6 +2240,39 @@ def check_nn_taylm(req, resp, fails):
                     return
 
 
+def check_sets1_op(op, req, resp, fails):
+    """The ellipsoid and constrained-zonotope ops of the sets batch 1 (module docstring)."""
+    rid = req.get("id")
+    if op in ("ellipsoid.dim", "conZonotope.dim"):
+        n = len(parse_vec(req["E"]["q"] if "E" in req else req["cZ"]["c"]))
+        if resp["value"] != n:
+            fails.append(f"id {rid}: {op}: {resp['value']}, the input has dimension {n}")
+    elif op == "ellipsoid.isnan":
+        if resp["value"] is not False:
+            fails.append(f"id {rid}: ellipsoid.isnan: {resp['value']} for finite entries")
+    elif op == "ellipsoid.supportFunc":
+        _, _, Q = parse_mat(req["E"]["Q"])
+        q, d = parse_vec(req["E"]["q"]), parse_vec(req["dir"])
+        shift = sum(d[i] * q[i] for i in range(len(q)))
+        form = sum(d[i] * Q[i][j] * d[j] for i in range(len(q)) for j in range(len(q)))
+        spread = parse_scalar(resp["value"]) - shift
+        if spread < 0 or spread * spread < form:
+            fails.append(f"id {rid}: ellipsoid.supportFunc: {resp['value']} below d'q + sqrt(d'Qd)")
+    elif op == "ellipsoid.minkDiff":
+        q, p = parse_vec(req["E"]["q"]), parse_vec(req["point"])
+        out = resp["E"]
+        c, lo, hi = parse_vec(out["q"]), parse_vec(out["E"]["inf"]), parse_vec(out["E"]["sup"])
+        if parse_mat(out["Q"]) != parse_mat(req["E"]["Q"]):
+            fails.append(f"id {rid}: ellipsoid.minkDiff: the shape changed")
+        for i in range(len(q)):
+            if not c[i] + lo[i] <= q[i] - p[i] <= c[i] + hi[i]:
+                fails.append(f"id {rid}: ellipsoid.minkDiff: q - p leaves the reply in coordinate {i}")
+
+
+SETS1_OPS = ("ellipsoid.dim", "conZonotope.dim", "ellipsoid.isnan", "ellipsoid.supportFunc",
+             "ellipsoid.minkDiff")
+
+
 def main() -> int:
     if len(sys.argv) != 3:
         print("usage: check_sound.py requests.jsonl output.jsonl", file=sys.stderr)
@@ -2290,6 +2327,8 @@ def main() -> int:
                 check_nn_op(op, req, resp, fails)
             elif op == "conZonotope.dualBound":
                 check_dual_bound(req, resp, fails)
+            elif op in SETS1_OPS:
+                check_sets1_op(op, req, resp, fails)
             elif op == "from":
                 check_from(req, resp, fails)
             elif op == "interval":

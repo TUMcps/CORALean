@@ -17,6 +17,7 @@ import CORALean.ContSet.Ellipsoid.Float.Operations.IsBigger
 import CORALean.ContSet.Ellipsoid.Float.Operations.IsFullDim
 import CORALean.ContSet.Ellipsoid.Float.Operations.Isequal
 import CORALean.ContSet.Ellipsoid.Float.Operations.Mtimes
+import CORALean.ContSet.Ellipsoid.Float.Operations.MinkDiffPoint
 import CORALean.ContSet.Ellipsoid.Float.Operations.MtimesCora
 import CORALean.ContSet.Ellipsoid.Float.Operations.NormUb
 import CORALean.ContSet.Ellipsoid.Float.Operations.Origin
@@ -25,6 +26,7 @@ import CORALean.ContSet.Ellipsoid.Float.Operations.Radius
 import CORALean.ContSet.Ellipsoid.Float.Operations.Reindex
 import CORALean.ContSet.Ellipsoid.Float.Operations.RepresentsaOrigin
 import CORALean.ContSet.Ellipsoid.Float.Operations.RepresentsaPoint
+import CORALean.ContSet.Ellipsoid.Float.Operations.SupportFuncUp
 import CORALean.ContSet.Ellipsoid.Float.Operations.Vertices
 import CORALean.Examples.Oracle.Ops.SetCodec
 
@@ -35,8 +37,9 @@ Thin adapters over the float definitions `references/coverage/contSet/ellipsoid.
 Operands are `E`, `E2` (`{"Q","q","E"}`); a set result is `E`, a vertex list `V`, a vector or a
 scalar `value`. `norm`, `vertices` take the Newton steps `k`, `radius` the steps `p`. The ops whose
 float definition takes a certificate read it as optional fields, the library's candidate
-(`Zonotope.basisInverse`, `Ellipsoid.boxRadius`) where CORA has none. Not served: `enclose` (an
-SDP hull), `generators`, `empty`, `isIntersecting`, `supportFunc`, `volume`, `plus`, `minkDiff`, ...
+(`Zonotope.basisInverse`, `Ellipsoid.boxRadius`) where CORA has none. `supportFunc` takes `k`
+steps, `minkDiff` a point. Not served: `enclose` (an SDP hull), `generators`, `empty`,
+`isIntersecting`, `volume`, `plus`, `minkDiff` of two ellipsoids, ...
 
 ## Inputs
 * `dops` – dtype operations
@@ -48,7 +51,7 @@ SDP hull), `generators`, `empty`, `isIntersecting`, `supportFunc`, `volume`, `pl
 
 -- Authors:       Claude Sonnet 5.5
 -- Written:       02-November-2026
--- Last update:   21-November-2026
+-- Last update:   25-November-2026
 -- Reviewed:      ---
 
 
@@ -202,6 +205,15 @@ private def aux_isBadDir (dops : DtypeOps 𝕋) (req : Json) : Resp := do
   let l ← parseVecFixed dops.readExact d.n (← field req "dir")
   pure [("good", Json.bool (Ellipsoid.isGoodDir d.E e2 l (← aux_scalar dops req "mu")))]
 
+/-- `ellipsoid.supportFunc`: `Ellipsoid.supportFuncUp`, CORA's `q' d + sqrt(d' Q d)` rounded up. -/
+private def aux_supportFunc (dops : DtypeOps 𝕋) (req : Json) : Resp := do
+  let op := "supportFunc"
+  checkFields op req ["E", "dir", "k", "type"]
+  checkStrOption op req "type" "upper"
+  let d ← parseEllipsoid dops.readExact (← field req "E")
+  let a ← parseVecFixed dops.readExact d.n (← field req "dir")
+  valueScalar dops.showExact (Ellipsoid.supportFuncUp (← natField req "k") d.E a)
+
 
 -- =====================================  MAIN DEFINITION  ====================================== --
 
@@ -219,10 +231,10 @@ def handleEllipsoidVertices (dops : DtypeOps 𝕋) (req : Json) : Resp := do
 
 /-- Every op of this file, without the `ellipsoid.` prefix. -/
 def ellipsoidOpNames : List String :=
-  [ "and", "cartProd", "center", "construct", "contains", "ellipsoidNorm", "enclosePoints",
+  [ "and", "cartProd", "center", "construct", "contains", "dim", "ellipsoidNorm", "enclosePoints",
     "interval", "intersectStrip", "isBadDir", "isBigger", "isBounded", "isFullDim", "isequal",
-    "lift", "mtimes", "mtimesCora", "norm", "origin", "project", "radius", "reduce", "representsa",
-    "vertices", "zonotope" ]
+    "isnan", "lift", "minkDiff", "mtimes", "mtimesCora", "norm", "origin", "project", "radius",
+    "reduce", "representsa", "supportFunc", "vertices", "zonotope" ]
 
 /-- `op` of `ellipsoid.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
@@ -244,6 +256,10 @@ def handleEllipsoidOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option
       let d ← parseEllipsoid dops.readExact (← field req "E")
       pure [aux_set dops d.E])
   | "contains" => some (aux_contains dops req)
+  | "dim" => some (do
+      checkFields op req ["E"]
+      let d ← parseEllipsoid dops.readExact (← field req "E")
+      pure [("value", Lean.toJson d.n)])
   | "ellipsoidNorm" => some (aux_ellipsoidNorm dops req)
   | "enclosePoints" => some (aux_enclosePoints dops req)
   -- the arms from `interval` on
@@ -261,6 +277,11 @@ def handleEllipsoidOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option
       checkTol op req
       valueBool true)
   | "isFullDim" => some (aux_test op dops req fun E => Ellipsoid.isFullDim E)
+  -- CORA's `isnan` is constant false; this reads the entries
+  | "isnan" => some (do
+      checkFields op req ["E"]
+      let d ← parseEllipsoid dops.readExact (← field req "E")
+      valueBool (!(noNaN (𝕋 := 𝕋) d.E.Q && noNaN (𝕋 := 𝕋) d.E.q)))
   | "isequal" => some (do
       checkFields op req ["E", "E2", "tol"]
       checkTol op req
@@ -273,6 +294,11 @@ def handleEllipsoidOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option
       let d ← parseEllipsoid dops.readExact (← field req "E")
       let e ← liftPerm req d.n
       pure [aux_set dops (Ellipsoid.reindex e.symm d.E)])
+  | "minkDiff" => some (do
+      checkFields op req ["E", "point"]
+      let d ← parseEllipsoid dops.readExact (← field req "E")
+      let p ← parseVecFixed dops.readExact d.n (← field req "point")
+      pure [aux_set dops (Ellipsoid.minkDiffPoint d.E p)])
   | "mtimes" => some (do
       checkFields op req ["E", "M"]
       let d ← parseEllipsoid dops.readExact (← field req "E")
@@ -319,7 +345,8 @@ def handleEllipsoidOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option
       | "point" => valueBool (Ellipsoid.representsa_point d.E)
       | "origin" => valueBool (Ellipsoid.representsa_origin d.E)
       | t => throw s!"representsa: `type` must be point or origin, not `{t}`")
-  -- the arms from `vertices` on
+  -- the arms from `supportFunc` on
+  | "supportFunc" => some (aux_supportFunc dops req)
   | "vertices" => some (handleEllipsoidVertices dops req)
   | "zonotope" => some (do
       checkFields op req ["E"]
