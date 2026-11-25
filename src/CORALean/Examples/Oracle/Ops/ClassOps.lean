@@ -18,6 +18,8 @@ import CORALean.Examples.Oracle.Ops.PolyZonotopeOps2
 import CORALean.Examples.Oracle.Ops.PolytopeOps
 import CORALean.Examples.Oracle.Ops.NeurNetContrSysOps
 import CORALean.Examples.Oracle.Ops.SpecificationOps
+import CORALean.Examples.Oracle.Ops.StlIntervalOps
+import CORALean.Examples.Oracle.Ops.StlOps
 import CORALean.Examples.Oracle.Ops.TaylmOps
 import CORALean.Examples.Oracle.Ops.ZonoBundleOps
 
@@ -61,7 +63,8 @@ def classOpNames : List String :=
   capsuleOpNames.map ("capsule." ++ ·) ++ emptySetOpNames.map ("emptySet." ++ ·) ++
   fullspaceOpNames.map ("fullspace." ++ ·) ++ intervalMatrixOpNames.map ("intervalMatrix." ++ ·) ++
   matZonotopeOpNames.map ("matZonotope." ++ ·) ++
-  specificationOpNames.map ("specification." ++ ·) ++
+  specificationOpNames.map ("specification." ++ ·) ++ stlOpNames.map ("stl." ++ ·) ++
+  stlIntervalOpNames.map ("stlInterval." ++ ·) ++
   linearSysOpNames.map ("linearSys." ++ ·) ++ krylovOpNames.map ("krylov." ++ ·) ++
   locationOpNames.map ("location." ++ ·) ++
   linParamSysOpNames.map ("linParamSys." ++ ·) ++ nonlinearSysOpNames.map ("nonlinearSys." ++ ·) ++
@@ -101,6 +104,8 @@ def handleClassOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToR
   | "transition" => handleTransitionOp dops name req
   | "hybridAutomaton" => handleHybridAutomatonOp dops name req
   | "specification" => handleSpecificationOp dops name req
+  | "stl" => handleStlOp dops name req
+  | "stlInterval" => handleStlIntervalOp dops name req
   -- the networks
   | "nnLayer" => handleNnLayerOp dops name req
   | "neuralNetwork" => (handleNeuralNetworkOp dops name req).orElse fun _ =>

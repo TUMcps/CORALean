@@ -87,6 +87,10 @@ arithmetic -- never floats:
   without an error box); `ellipsoid.minkDiff`: the shape kept and `q - p` in the reply's center plus
   its box; `ellipsoid.dim`, `conZonotope.dim`: the dimension of the input; `ellipsoid.isnan`: false
   for the finite fixtures (`check_sets1_op`).
+* `stl.maximumTime`/`minimumTime`: at least (at most) the exact latest (earliest) time over ℚ;
+  `stl.getTimes`: every window holds the exact window; `stlInterval.plus`, `minus` and
+  `minkDiff`: the reply holds the exact interval's bounds, its ends as the exact one's where the
+  bounds are equal; `and`, `leftClosure` and `rightClosure`: the exact interval (`check_stl_op`).
 * Every op `ping` lists occurs in the requests, so none is served without a test.
 
 Every check names the request `id` and the violated bound on failure. Uses
@@ -2027,6 +2031,188 @@ def itertools_product(h):
         yield list(s) + [F(1, 2)] * (h - len(s))
 
 
+STL_CHECKED = ("stl.maximumTime", "stl.minimumTime", "stl.getTimes", "stlInterval.plus",
+               "stlInterval.minus", "stlInterval.minkDiff", "stlInterval.and",
+               "stlInterval.leftClosure", "stlInterval.rightClosure")
+
+
+def check_stl_op(op, req, resp, fails):
+    """The `stl.` and `stlInterval.` ops whose numbers are rounded: the reply against the exact
+    value over ℚ (structures are dtype-free and not re-derived here)."""
+    rid = req.get("id")
+    INF = None
+
+    def ub(j):
+        return INF if j == "inf" else parse_scalar(j)
+
+    def interval(j):
+        if j.get("empty"):
+            return None
+        return (parse_scalar(j["lb"]), ub(j["ub"]), j.get("lc", True), j.get("rc", True))
+
+    def maxtime(f, t):
+        o, a = f["op"], f.get("args", [])
+        if o == "next":
+            return maxtime(a[0], parse_scalar(f["from"]) + t)
+        if o == "not":
+            return maxtime(a[0], t)
+        if o in ("and", "or"):
+            return max(maxtime(a[0], t), maxtime(a[1], t))
+        if o in ("finally", "globally"):
+            return parse_scalar(f["to"]) + maxtime(a[0], t)
+        if o in ("until", "release"):
+            return parse_scalar(f["to"]) + max(maxtime(a[0], t), maxtime(a[1], t))
+        return t
+
+    def mintime(f, t):
+        o, a = f["op"], f.get("args", [])
+        if o == "next":
+            return mintime(a[0], parse_scalar(f["from"]) + t)
+        if o == "not":
+            return mintime(a[0], t)
+        if o in ("and", "or"):
+            return min(mintime(a[0], t), mintime(a[1], t))
+        if o in ("finally", "globally"):
+            return parse_scalar(f["from"]) + t
+        return t
+
+    def holds(I, J, what):
+        # the reply I holds the exact interval J (bounds; ends where the bounds agree)
+        if J is None:
+            return
+        if I is None:
+            fails.append(f"id {rid}: {op}: {what}: empty, the exact interval is not")
+            return
+        if I[0] > J[0] or (I[0] == J[0] and J[2] and not I[2]):
+            fails.append(f"id {rid}: {op}: {what}: lower bound {I[0]} above the exact {J[0]}")
+        if J[1] is INF:
+            if I[1] is not INF:
+                fails.append(f"id {rid}: {op}: {what}: bounded, the exact interval is not")
+        elif I[1] is not INF and (I[1] < J[1] or (I[1] == J[1] and J[3] and not I[3])):
+            fails.append(f"id {rid}: {op}: {what}: upper bound {I[1]} below the exact {J[1]}")
+
+    def make(lb, u, lc, rc):
+        # CORA's stlInterval of exact bounds: the empty interval, or the closed ends kept
+        rc = rc and u is not INF
+        if u is not INF and (lb > u or (lb == u and not (lc and rc))):
+            return None
+        return (lb, u, lc, rc)
+
+    def sub(u, x):
+        return INF if u is INF else u - x
+
+    if op == "stl.maximumTime":
+        if parse_scalar(resp["value"]) < maxtime(req["phi"], F(0)):
+            fails.append(f"id {rid}: {op}: below the exact latest time")
+    elif op == "stl.minimumTime":
+        if parse_scalar(resp["value"]) > mintime(req["phi"], F(0)):
+            fails.append(f"id {rid}: {op}: above the exact earliest time")
+    elif op == "stl.getTimes":
+        # the exact windows: the walk of the formula `assignIdentifiers` numbers
+        want = []
+
+        def temporal(f):
+            o = f["op"]
+            if o in ("until", "release", "finally", "globally", "next"):
+                return True
+            return o in ("not", "and", "or") and any(temporal(g) for g in f["args"])
+
+        def walk(f, time):
+            o, a = f["op"], f.get("args", [])
+            if not temporal(f):
+                want.append(time)
+            elif o in ("and", "or"):
+                walk(a[0], time)
+                walk(a[1], time)
+            elif o == "not":
+                walk(a[0], time)
+            elif o == "next":
+                s_ = parse_scalar(f["from"])
+                walk(a[0], ("p", time[1] + s_) if time[0] == "p" else
+                     ("w", (time[1][0] + s_, time[1][1] + s_)))
+            else:
+                lo, hi = parse_scalar(f["from"]), parse_scalar(f["to"])
+                inner = ("w", (lo + time[1], hi + time[1])) if time[0] == "p" else \
+                    ("w", (lo + time[1][0], hi + time[1][1]))
+                for g in a:
+                    walk(g, inner)
+
+        walk(req["phi"], ("p", F(0)))
+        if len(want) != len(resp["timeInt"]):
+            fails.append(f"id {rid}: {op}: {len(resp['timeInt'])} identifiers, exactly {len(want)}")
+            return
+        for k, (w, wi, wp) in enumerate(zip(want, resp["timeInt"], resp["timePoint"])):
+            if w[0] == "p":
+                if wi or len(wp) != 1 or parse_scalar(wp[0]) != w[1]:
+                    fails.append(f"id {rid}: {op}: identifier {k + 1}: not the time {w[1]}")
+            elif wp or len(wi) != 1:
+                fails.append(f"id {rid}: {op}: identifier {k + 1}: not one window")
+            else:
+                holds(interval(wi[0]), (w[1][0], w[1][1], True, True), f"identifier {k + 1}")
+    elif op in ("stlInterval.plus", "stlInterval.minus", "stlInterval.minkDiff"):
+        I = interval(req["I"])
+        got = interval(resp["I"])
+        if I is None:
+            return
+        lb, u, lc, rc = I
+        if "J" in req:
+            J = interval(req["J"])
+            if J is None:
+                return
+            if op == "stlInterval.plus":
+                want = make(max(F(0), lb + J[0]), INF if INF in (u, J[1]) else u + J[1],
+                            lc and J[2], rc and J[3])
+            elif op == "stlInterval.minus":
+                low = -1 if J[1] is INF else lb - J[1]
+                want = make(F(0), sub(u, J[0]), True, rc and J[2]) if low < 0 else \
+                    make(low, sub(u, J[0]), lc and J[3], rc and J[2])
+            else:
+                if u is not INF and J[1] is INF:
+                    want = None
+                else:
+                    low = lb - J[0]
+                    up = INF if u is INF else u - J[1]
+                    lc2, rc2 = lc or not J[2], rc or not J[3]
+                    want = make(F(0), up, True, rc2) if low < 0 else make(low, up, lc2, rc2)
+        elif "c" in req:
+            c = parse_scalar(req["c"])
+            if op == "stlInterval.plus":
+                want = make(lb + c, INF if u is INF else u + c, lc, rc)
+            else:
+                want = make(F(0), sub(u, c), True, rc) if lb - c < 0 else \
+                    make(lb - c, sub(u, c), lc, rc)
+        else:
+            return
+        holds(got, want, "the result")
+    elif op in ("stlInterval.and", "stlInterval.leftClosure", "stlInterval.rightClosure"):
+        I = interval(req["I"])
+        got = interval(resp["I"])
+        if op == "stlInterval.and":
+            J = interval(req["J"])
+            if I is None or J is None:
+                want = None
+            else:
+                up = J[1] if I[1] is INF or (J[1] is not INF and J[1] <= I[1]) else I[1]
+                lc = I[2] if J[0] < I[0] else J[2] if I[0] < J[0] else I[2] and J[2]
+                if I[1] is INF and J[1] is INF:
+                    rc = False
+                elif I[1] is INF or (J[1] is not INF and J[1] < I[1]):
+                    rc = J[3]
+                elif J[1] is INF or I[1] < J[1]:
+                    rc = I[3]
+                else:
+                    rc = I[3] and J[3]
+                want = make(max(I[0], J[0]), up, lc, rc)
+        elif I is None:
+            want = None
+        elif op == "stlInterval.leftClosure":
+            want = make(I[0], I[1], True, I[3])
+        else:
+            want = make(I[0], I[1], I[2], I[1] is not INF)
+        if got != want:
+            fails.append(f"id {rid}: {op}: {got}, not the exact {want}")
+
+
 def check_class_op(op, req, resp, fails):
     """The ops of the further classes this batch added."""
     rid = req.get("id")
@@ -2325,6 +2511,10 @@ def main() -> int:
                 check_class_op(op, req, resp, fails)
             elif op.startswith(("nnLayer.", "neuralNetwork.")):
                 check_nn_op(op, req, resp, fails)
+            elif op.startswith(("stl.", "stlInterval.")):
+                if op not in STL_CHECKED:
+                    continue
+                check_stl_op(op, req, resp, fails)
             elif op == "conZonotope.dualBound":
                 check_dual_bound(req, resp, fails)
             elif op in SETS1_OPS:
