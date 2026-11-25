@@ -57,7 +57,8 @@ arithmetic -- never floats:
   `neuralNetwork.resetApproxOrder`: the all-1 pattern recomputed; `neuralNetwork.generateRandom`:
   the sizes by `floor(u N)` over ℚ and `2 u - 1` of every draw in the reply; `initWeights`:
   `u (2 a) - a`, `a = 1 / sqrt(n)` in 60-digit `decimal` (glorot), Box-Muller's
-  `sqrt(c) / n sqrt(-2 log u1) cos(c u2)` with CORA.cpp's double `c` of `2 pi` (shi); and
+  `sqrt(c) / n sqrt(-2 log u1) cos(c u2)` with CORA.cpp's double `c` of `2 pi` (shi), or
+  `z sqrt(c) / n` of the standard normals `z` given (shi with `normals`); and
   `neuralNetwork.nonlinearSysDT`: the exact `y`, `C` and the blocks of `D` over ℚ
   (`check_nn_batch10`).
 * `nnLayer.*`, `neuralNetwork.evaluate` and `neuralNetwork.evaluateGraph`: the exact network
@@ -90,7 +91,7 @@ only the standard library.
 
 # Authors:       Tobias Ladner, Claude Opus 5.5, Claude Sonnet 5.5
 # Written:       30-September-2026
-# Last update:   24-November-2026
+# Last update:   25-November-2026
 # Last revision: ---
 
 
@@ -1453,7 +1454,7 @@ def check_nn_batch10(op, req, resp, fails):
         layers, method = req["layers"], req.get("method", "glorot")
         which = req.get("which", list(range(len(layers))))
         c = parse_scalar("7074237752028440*2^-50")
-        it = iter(req["draws"])
+        it = iter(req["normals"] if "normals" in req else req["draws"])
         for k, (L, R) in enumerate(zip(layers, resp["layers"])):
             if k not in which:
                 if R != L:
@@ -1464,6 +1465,8 @@ def check_nn_batch10(op, req, resp, fails):
             if method == "glorot":
                 a = 1 / Decimal(n).sqrt()
                 want = [x * 2 * a - a for x in u]
+            elif "normals" in req:
+                want = [z * dec(c).sqrt() / n for z in u]
             else:
                 scale = dec(c).sqrt() / n
                 want = []

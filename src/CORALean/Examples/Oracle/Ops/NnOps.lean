@@ -43,6 +43,7 @@ import CORALean.Examples.Oracle.Ops.NnBoundsOps
 import CORALean.Examples.Oracle.Ops.NnZonoBackpropOps
 import CORALean.Examples.Oracle.Ops.NnInfoOps
 import CORALean.Examples.Oracle.Ops.NnWeightOps
+import CORALean.Examples.Oracle.Ops.NnRegionOps
 
 /-!
 # The network ops: CORA's `nnLayer` and `neuralNetwork` evaluation on a set
@@ -558,7 +559,7 @@ def networkOnZonotope (dops : DtypeOps 𝕋) (name : String) (req : Json) (n : �
 /-- Every op of `nnLayer.`, without the prefix. -/
 def nnLayerOpNames : List String :=
   [ "evaluateZonotope", "evaluatePolyZonotope", "relaxation", "productLine", "softmaxSumBounds" ] ++
-    nnFormLayerOpNames ++ [ "backpropZonotopeBatch" ]
+    nnFormLayerOpNames ++ [ "backpropZonotopeBatch" ] ++ nnRegionOpNames
 
 /-- Every op of `neuralNetwork.`, without the prefix. -/
 def neuralNetworkOpNames : List String :=
@@ -590,7 +591,7 @@ def handleNnLayerOp (dops : DtypeOps 𝕋) (op : String) (req : Json) : Option R
     else
       aux_run dops op req (← aux_method op req) (← aux_errorForm op req) [layer])
   | "backpropZonotopeBatch" => some (backpropZonotopeBatchLayerOp dops req)
-  | _ => handleNnFormLayerOp dops op req
+  | _ => (handleNnFormLayerOp dops op req).orElse fun _ => handleNnRegionOp dops op req
 
 /-- `op` of `neuralNetwork.`, run; `none` for a name this file does not serve. -/
 @[noinline, nospecialize]
