@@ -14,6 +14,7 @@ import CORALean.Examples.Oracle.Ops.NnOps
 import CORALean.Examples.Oracle.Ops.NnSystemOps
 import CORALean.Examples.Oracle.Ops.NonlinearSysOps
 import CORALean.Examples.Oracle.Ops.PolyZonotopeOps
+import CORALean.Examples.Oracle.Ops.PolygonOps
 import CORALean.Examples.Oracle.Ops.PolyZonotopeOps2
 import CORALean.Examples.Oracle.Ops.PolytopeOps
 import CORALean.Examples.Oracle.Ops.NeurNetContrSysOps
@@ -59,7 +60,8 @@ def classOpNames : List String :=
   (polyZonotopeOpNames ++ polyZonotopeOpNames2).map ("polyZonotope." ++ ·) ++
   zonoBundleOpNames.map ("zonoBundle." ++ ·) ++
   taylmOpNames.map ("taylm." ++ ·) ++
-  polytopeOpNames.map ("polytope." ++ ·) ++ ellipsoidOpNames.map ("ellipsoid." ++ ·) ++
+  polytopeOpNames.map ("polytope." ++ ·) ++ polygonOpNames.map ("polygon." ++ ·) ++
+  ellipsoidOpNames.map ("ellipsoid." ++ ·) ++
   capsuleOpNames.map ("capsule." ++ ·) ++ emptySetOpNames.map ("emptySet." ++ ·) ++
   fullspaceOpNames.map ("fullspace." ++ ·) ++ intervalMatrixOpNames.map ("intervalMatrix." ++ ·) ++
   matZonotopeOpNames.map ("matZonotope." ++ ·) ++
@@ -88,6 +90,7 @@ def handleClassOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToR
   | "zonoBundle" => handleZonoBundleOp dops name req
   | "taylm" => handleTaylmOp dops name req
   | "polytope" => handlePolytopeOp dops name req
+  | "polygon" => handlePolygonOp dops name req
   | "ellipsoid" => handleEllipsoidOp dops name req
   | "capsule" => handleCapsuleOp dops name req
   | "emptySet" => handleEmptySetOp dops name req
