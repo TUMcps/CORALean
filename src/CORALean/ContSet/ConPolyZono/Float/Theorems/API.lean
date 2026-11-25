@@ -41,6 +41,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Theorems.RescaleOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitDepFactorOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitLongestGenOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitOuter
+public import CORALean.ContSet.ConPolyZono.Float.Theorems.SplitWithOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.SupportBoundLe
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionOuter
 public import CORALean.ContSet.ConPolyZono.Float.Theorems.UnionPointMem

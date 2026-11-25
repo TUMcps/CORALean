@@ -35,8 +35,8 @@ Operands are `zB`, `zB2` (`{"Zs":[zonotope, ...]}`, at least one member for the 
 one); a set result is `zB`, a zonotope `Z`, a constrained zonotope `cZ`, a box `I`, a Boolean or a
 bound `value`. Indices are 0-based; a field an op does not list is refused by name. Not served:
 `contains`, `isFullDim` (a right inverse per member), `encloseTight`, `split` (matrices CORA does
-not take), `vertices` (CORALean's is one member's), the classes without a wire format
-(`conPolyZono`, `spectraShadow`) and the constructor `zonoBundle`.
+not take), `vertices` (CORALean's is one member's), the conversions to `conPolyZono` (not yet)
+and `spectraShadow` (no wire format) and the constructor `zonoBundle`.
 
 ## Inputs
 * `dops` – dtype operations
