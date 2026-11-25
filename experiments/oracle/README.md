@@ -765,6 +765,69 @@ precision. A port that follows this order is bit-exact in the `nearest` dtype.
 | `check` | `kind` (`safeSet`, `unsafeSet`, `invariant`), `set` (a box `{"inf","sup"}` or a halfspace polytope `{"A","b",...}`), `I` (box) or `Z` (zonotope) | `Specification.check` of `{set, kind}` against `I` or `Z`; `value`, `true` proves the set contained (`safeSet`, `invariant`) or disjoint from the specification's set (`unsafeSet`) |
 | `dockingPolytope` | `N` (sides, at most 4096), `n` (mean motion, a scalar), `p`, `k` (tuning of the enclosures and the square root; ignored at `nearest`) | `dockingPolytopeFloat`: a polytope `P` in `(sx, sy, vx, vy)` inside the ARCH-COMP 2026 Docking safe set `‖v‖₂ ≤ 0.2 + 2n ‖s‖₂` (`dockingPolytopeFloat_subset_safe`); see below |
 
+`stl.` (`Ops/StlOps.lean`) serves CORALean's definitions of CORA's `@stl` operations on
+`STL.Tree 𝕋 𝕋 n` (Specification/STL/Operations/). Every request names `n`, the number of
+variables. An expression is `{"x":i}` (0-based; CORA's `x<i+1>`), `{"const":s}`,
+`{"op":"add"|"sub"|"mul","args":[a,b]}` or `{"op":"pow","args":[a],"exponent":k}`. A formula is
+`{"op":"true"|"false"}`, `{"op":"<"|"<="|">"|">=","args":[e1,e2]}`, `{"op":"not","args":[φ]}`,
+`{"op":"and"|"or","args":[φ,ψ]}`, `{"op":"until"|"release","from","to","args":[φ,ψ]}`,
+`{"op":"finally"|"globally","from","to","args":[φ]}` or `{"op":"next","from","args":[φ]}`. The
+windows are closed. A formula reply is `phi`, a list of formulas is `list`, an expression is `e`.
+
+| op | fields | float definition |
+|---|---|---|
+| `stl` | `value` (true, false) or `n` | `.tt`/`.ff` as `phi`, or the `n` variables as `vars` |
+| `not`, `and`, `or`, `implies` | `phi`, `psi` (not for `not`) | the node; `implies` is `STL.Tree.implies`, `~φ \| ψ` |
+| `until`, `release`, `finally`, `globally`, `next` | `phi`, `psi` (until, release), `from`, `to` (not for next) | the node |
+| `lt`, `le`, `gt`, `ge` | `e1`, `e2` | `STL.Tree.compare`: a number stays on the right, one on the left swaps the sides, else `e1 - e2 op 0` |
+| `plus`, `minus`, `times`, `power` | `e1`, `e2` (power: `e1`, `k`) | `STL.Expr.plus`, `minus`, `times`, `power` |
+| `desugar`, `negationNormalForm`, `eliminateTrueFalse`, `combineNext` | `phi` | `STL.Tree.desugar`, `negationNormalForm`, `eliminateTrueFalse`, `combineNextFloat` |
+| `conjunctiveNormalForm`, `disjunctiveNormalForm` | `phi`, `nnf` (false) | `STL.Tree.conjunctiveNormalForm`, `disjunctiveNormalForm`: CORA's `aux_rewrite` passes until none distributes |
+| `assignIdentifiers` | `phi` | `STL.Tree.assignIdentifiers`: the numbered parts as `list` (the tree has no identifier field) |
+| `getClauses` | `phi`, `type` (`cnf`, `dnf`) | `STL.Tree.getClauses` as `list` |
+| `getVariables` | `phi` | `STL.Tree.getVariables`, the indices ascending as `vars` |
+| `isPredicate`, `isLinearPredicate` | `phi` | `value` |
+| `maximumTime`, `minimumTime` | `phi` | `maximumTimeFloat`, `minimumTimeFloat` (sums rounded up, down) as `value` |
+| `isequal` | `phi`, `psi` | CORA's `isequal` in CORA.cpp's order: `&`, `\|`, `+`, `*` commute, numbers and windows by value; `value` |
+| `getTimes` | `phi` | CORA.cpp's `get_times` on the formula `assignIdentifiers` numbers: per identifier `timeInt` (windows) and `timePoint` (points), one entry in one of them |
+| `modelCheckTrace` | `phi`, `x` (`m × n`), `t` (`m × 1`), `tol` | CORA.cpp's `model_check_trace` at `nearest` only; `value` |
+
+`stlInterval.` (`Ops/StlIntervalOps.lean`) serves the float operations of CORA's `@stlInterval`
+(Specification/STLInterval/Operations/). An interval is `{"lb","ub","lc","rc"}` (`ub` may be
+`"inf"`; `lc`, `rc` default to true) or `{"empty":true}`; a reply prints it as `I`.
+
+| op | fields | float definition |
+|---|---|---|
+| `stlInterval` | `lb`, `ub`, `lc`, `rc` | `stlIntervalBounds`; a negative `lb` is CORA's constructor error |
+| `empty`, `isemptyobject`, `dim` | `n` (1), `I`, `I` | `.empty`; `value` |
+| `infimum`, `supremum` | `I` | `value` (a scalar, `"inf"`, or `"nan"` for the empty interval) and `closed` |
+| `interval` | `I` | the box `K` of the bounds (`[1, 0]` for the empty interval) |
+| `leftClosure`, `rightClosure`, `toLeft`, `toRight` | `I` | the same names; `toLeft`/`toRight` of the empty interval are an error (CORA:emptySet) |
+| `and` | `I`, `J` | `STLInterval.and_` |
+| `plus`, `minus` | `I` and one of `J` (interval), `c` (number), `K` (one-dimensional box) | `plus`, `plusNum`, `plusInterval`; `minus`, `minusNum`, `minusInterval`; the lower bound rounded down, the upper one up |
+| `minkDiff` | `I`, `J`, `type` (`exact`, `inner`) | `STLInterval.minkDiff` |
+| `contains` | `I`, `J` or `t`, `tol` (0) | `containsFloat`; for a number `t` the exact decision of `containsPoint` |
+| `isequal`, `representsa` | `I`, `J` or `type`, `tol` (0) | `isequalFloat`, `representsaFloat` |
+
+The STL ops beside CORALean's definitions (batch spec-1):
+
+* `isequal`, `getTimes` and `modelCheckTrace` have no definition in Specification/STL/; the
+  oracle follows CORA.cpp's code in its order. `isequal` is CORA's `isequal.m`; a power also
+  compares its exponent.
+* `getTimes` runs on the formula as `assignIdentifiers` numbers it: each part that is not
+  temporal is the next identifier and records the time it is looked at. `&` and `|` pass the time
+  on, `next` shifts it, and an operator with a window adds its window to it (`plusNum`, `plus`).
+  CORA.cpp's walk looks inside a temporal `~`, where CORA stops.
+* `modelCheckTrace` evaluates the predicates at every sample. An integer power is the repeated
+  product from `1`, reciprocal for a negative exponent, so no libm `pow` is involved. Then come
+  CORA's `aux_until` index windows: a window is the samples `from <= t <= to`, sliding one sample
+  per start; `next` starts at the first sample at or within `tol` of the shift. Release is false
+  from the first sample at the end of its window on. Only a uniformly sampled trace is served:
+  its steps must be within `2^-52` of each other. `nearest` only, because the comparisons decide
+  on rounded values.
+* Not served: `robustness` (polytopes of the predicates, a quadratic program for the distance)
+  and `disp` (decimal printing).
+
 `specification.dockingPolytope` evaluates, in this order (CORA.cpp's `aux_docking_polytope(n, sides)` of
 `benchmark_neur_net_contr_reach_arch26_ainncs_b.cpp` in brackets; at `nearest` the result is bit for bit its
 output, for `N = 16, 32, 64` and `n = 0.001027` checked against the compiled C++ at `-O0` and `-O3`):
