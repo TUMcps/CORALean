@@ -26,8 +26,8 @@ are `C`, `C2` (`{"c","g","r","E"}`, see `SetCodec.lean`); a set result is `C`, a
 zonotope `Z`, a halfspace polytope `P`, an ellipsoid `E`, a Boolean, a vector or a bound `value`.
 `k` (Newton steps of the roots) and `p` (steps of the trigonometric enclosures) are the tuning
 the float definitions take, which CORA has no argument for, so they are required where listed.
-Indices are 0-based; a field an op does not list is refused by name. Not served: the classes
-without a wire format (`conPolyZono`, `spectraShadow`) and the constructor `capsule`.
+Indices are 0-based; a field an op does not list is refused by name. Not served: the conversions
+to `conPolyZono` (not yet) and `spectraShadow` (no wire format) and the constructor `capsule`.
 
 ## Inputs
 * `dops` – dtype operations

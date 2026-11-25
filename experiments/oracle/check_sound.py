@@ -87,6 +87,9 @@ arithmetic -- never floats:
   without an error box); `ellipsoid.minkDiff`: the shape kept and `q - p` in the reply's center plus
   its box; `ellipsoid.dim`, `conZonotope.dim`: the dimension of the input; `ellipsoid.isnan`: false
   for the finite fixtures (`check_sets1_op`).
+* `conPolyZono.dim`, `center`, `representsa` (`point`): the input's dimension, its center, and
+  whether it has no generator; `conPolyZono.interval`: the reply holds `c +- sum |G| +- sum |GI|`
+  of the input, exactly (`check_cpz_op`).
 * `stl.maximumTime`/`minimumTime`: at least (at most) the exact latest (earliest) time over ℚ;
   `stl.getTimes`: every window holds the exact window; `stlInterval.plus`, `minus` and
   `minkDiff`: the reply holds the exact interval's bounds, its ends as the exact one's where the
@@ -2455,6 +2458,34 @@ def check_sets1_op(op, req, resp, fails):
                 fails.append(f"id {rid}: ellipsoid.minkDiff: q - p leaves the reply in coordinate {i}")
 
 
+def check_cpz_op(op, req, resp, fails):
+    """The constrained-polynomial-zonotope ops `check_sound` can recompute (module docstring)."""
+    rid, S = req.get("id"), req["cPZ"]
+    c = parse_vec(S["c"])
+    n = len(c)
+    # the generator blocks as CORA's n x h columns, none where a block is absent
+    G = parse_mat(S["G"])[2] if S["G"]["cols"] else [[] for _ in range(n)]
+    GI = parse_mat(S["GI"])[2] if "GI" in S and S["GI"]["cols"] else [[] for _ in range(n)]
+    if op == "conPolyZono.dim" and resp["value"] != n:
+        fails.append(f"id {rid}: {op}: {resp['value']}, the input has dimension {n}")
+    elif op == "conPolyZono.center" and parse_vec(resp["c"]) != c:
+        fails.append(f"id {rid}: {op}: not the input's center")
+    elif op == "conPolyZono.representsa":
+        point = not any(G[i] or GI[i] for i in range(n))
+        if resp["value"] != point:
+            fails.append(f"id {rid}: {op}: {resp['value']}, the input has generators: {not point}")
+    elif op == "conPolyZono.interval":
+        lo, hi = parse_vec(resp["I"]["inf"]), parse_vec(resp["I"]["sup"])
+        for i in range(n):
+            r = sum(abs(g) for g in G[i]) + sum(abs(g) for g in GI[i])
+            if not (lo[i] <= c[i] - r and c[i] + r <= hi[i]):
+                fails.append(f"id {rid}: {op}: coordinate {i} does not hold the input's box")
+
+
+CPZ_OPS = ("conPolyZono.dim", "conPolyZono.center", "conPolyZono.representsa",
+           "conPolyZono.interval")
+
+
 SETS1_OPS = ("ellipsoid.dim", "conZonotope.dim", "ellipsoid.isnan", "ellipsoid.supportFunc",
              "ellipsoid.minkDiff")
 
@@ -2519,6 +2550,8 @@ def main() -> int:
                 check_dual_bound(req, resp, fails)
             elif op in SETS1_OPS:
                 check_sets1_op(op, req, resp, fails)
+            elif op in CPZ_OPS:
+                check_cpz_op(op, req, resp, fails)
             elif op == "from":
                 check_from(req, resp, fails)
             elif op == "interval":

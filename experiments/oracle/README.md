@@ -282,6 +282,7 @@ slacks `b_error`, `be_error` absent mean zero):
 | halfspace polytope | `{"A","b","Ae","be","b_error","be_error","E"}`: `A x <= b`, `Ae x = be` |
 | vertex polytope | `{"V","E"}`: `V` has one column per vertex |
 | constrained zonotope | `{"c","G","P","E"}`, `P` a halfspace polytope on the coefficients; or CORA's `{"c","G","A","b","E"}`, `P` the rows `A xi = b` (the box `[-1,1]^h` is implicit) |
+| constrained polynomial zonotope | `{"c","G","GI","Exp","E","A","b","EC","b_error","id"}`: the polynomial part as a polynomial zonotope (`Exp` `p x h`, the identity where absent; `id` the identifiers, `1..p` where absent), the rows `A mu_EC(alpha) = b` on the unit box (`A` `m x q`, `EC` `p x q`; none where `A` is absent), each row within its slack `b_error` |
 | ellipsoid | `{"Q","q","E"}` |
 | capsule | `{"c","g","r","E"}` |
 | zonotope bundle | `{"Zs":[zonotope, ...]}` |
@@ -328,6 +329,26 @@ Tuning CORA has no argument for is a required field: `k`, `p` (Newton steps, tri
 | `zonotope`, `interval`, `zonoBundle` | | `ConZonotope.zonotope`, `.interval`, `.zonoBundle`; `Z`, `I`, `zB` |
 | `intervalTight` | `k` | `ConZonotope.intervalTight`: the box of `c + G beta + E` with the factors bounded by `k` Fourier-Motzkin passes on the constraint (`conZonotope.fourierMotzkinBounds` in one go, no linear program); `I`. Looser than CORA's `interval`, which solves two programs per coordinate, and tighter than `conZonotope.interval`, which drops the constraints. Pure float arithmetic, so another implementation can match it bit for bit |
 | `intervalCert` | `cZ`, optional `y` | `ConZonotope.intervalCertWith`: the box of `c + G beta + E` from dual certificates, the weak-duality bound of the program `max / min e_i'(c + G beta)` over the constraint and the unit box, checked in directed rounding, so outer for every `y`. `y` is an array with one entry per coordinate, each `{"up": W, "lo": W}`, `W = {"y","zu","zl"}` the multipliers of the inequality rows and of the upper and lower halves of the equality rows (column vectors of lengths `m`, `me`, `me`) for the upper end and the lower end; a missing entry or end is the multipliers of the exact simplex at Q (`ConZonotope.intervalCert`). Weights are clamped at 0, the residual `G_i - A'y` is paid by the unit box; all zero is the zonotope's box. An LP solver outside Lean sends its dual solution, and the same `y` gives a bit-identical `I`; `weights` returns the multipliers used |
+
+`conPolyZono.` (`Ops/ConPolyZonoOps.lean`; result `cPZ`, `cPZ1`, `cPZ2` for two halves; a result
+carries no identifiers):
+
+| op | fields | float definition |
+|---|---|---|
+| `and`, `plus`, `linComb`, `convHull`, `exactPlus` | `cPZ2` | `ConPolyZono.intersection`, `.plus`, `.linComb`, `.convHull`, `.exactPlus` (both sets on the same `p` factors) |
+| `cartProd` | `cPZ2` (any dimension) | `ConPolyZono.cartProd` |
+| `mtimes` | `M` | `ConPolyZono.mtimes` |
+| `project`, `lift` | `dims`; `N`, `dims` | `ConPolyZono.project`, `.reindex` |
+| `compact` | `method` (`all`), `tol` | `ConPolyZono.compact` (the generators, the rows, the factors no block reads) |
+| `reduce` | `order`, `method` (`girard`) | `ConPolyZono.reduce` (`compact`, then `reduceGirard`) |
+| `split` | `dim`, `I` (optional box, default `ConPolyZono.interval`) | `ConPolyZono.splitWith`: the box cut by `Interval.splitAt`, each half `Interval.zonotope` then `Zonotope.conPolyZono` (CORA's `conPolyZono(I)`), intersected with the set; `cPZ1`, `cPZ2`. Outer when `I` holds the set (`splitWith_outer`) |
+| `splitDepFactor`, `getSubset` | `factor` (an identifier); `cen`, `rad` | `ConPolyZono.splitDepFactor`; `.getSubset`, the factor as `cen + rad alpha` in both blocks, the binomial terms unmerged |
+| `splitLongestGen` | | `ConPolyZono.splitLongestGen` (`longestFactor`; the set twice when there is no factor) |
+| `isequal`, `representsa` (`point`) | `cPZ2`, `tol` (`0`) | `ConPolyZono.isequal`, `.representsa_point`; `value` |
+| `dim`, `center` | | the dimension, `ConPolyZono.center`; `value`, `c` |
+| `polyZonotope`, `zonotope`, `interval` | | `ConPolyZono.polyZonotope` (the constraints dropped), `.zonotope` (both blocks, nothing halved), `.interval`; `P`, `Z`, `I` |
+| `origin`, `empty` | `n` | `ConPolyZono.origin`, `.empty` (the row `0 = 1`) |
+| `ofZonotope`, `ofPolyZonotope`, `ofConZonotope` | `Z`; `P`; `cZ` | `Zonotope.conPolyZono` (identity exponents), `PolyZonotope.conPolyZono` (no rows), `ConZonotope.conPolyZono` (the rows `A xi = b`, inequalities held to their enclosure) |
 
 `zonoBundle.` (`Ops/ZonoBundleOps.lean`; result `zB`):
 
@@ -1382,8 +1403,12 @@ Rows of the further classes not served, by reason:
   definitions are outer sets, not CORA's polyshape results; `center` (no float centroid), `minkDiff` and
   `quadMap` (not yet), and the boundary methods (`compact`, `removeCollinearPoints`, the `polyshape`
   constructor), which CORALean does not formalize.
-* A class without a wire format: `conPolyZono`, `spectraShadow`, `levelSet`, `matPolytope`, and
-  every constructor, which CORALean states as a `Set`.
+* A class without a wire format: `spectraShadow`, `levelSet`, `matPolytope`, and every constructor,
+  which CORALean states as a `Set`. `conPolyZono`: `or` (a nonzero slack row, `unionConErr`),
+  `quadMap` (the error box absorbed as generators), `minkDiff`, `supportFunc` (a bound `u` of the
+  dependent part as an argument), `rescale` (CORA's `contractPoly` as an argument), `isFullDim`
+  (a right inverse), the conversions to `conZonotope`, `ellipsoid`, `polytope`, and `interval`'s
+  `Interval.conPolyZono`, the point `0` with the box as its error box.
 * `linearSys`: `reachBackward`, `reachInner`, `verify` (`LinearSys.verifyFloat` takes the reachable-set
   function and the distance routines as arguments), `initReach_adaptive`, `trajectoryError` and
   `linearSysDT`. `nonlinearSys`: the inner algorithms, and tensor order 3 of `reach`.

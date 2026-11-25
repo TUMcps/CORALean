@@ -45,6 +45,7 @@ public import CORALean.ContSet.ConPolyZono.Float.Operations.Rescale
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Split
 public import CORALean.ContSet.ConPolyZono.Float.Operations.SplitDepFactor
 public import CORALean.ContSet.ConPolyZono.Float.Operations.SplitLongestGen
+public import CORALean.ContSet.ConPolyZono.Float.Operations.SplitWith
 public import CORALean.ContSet.ConPolyZono.Float.Operations.SupportBound
 public import CORALean.ContSet.ConPolyZono.Float.Operations.ToPolyZonotope
 public import CORALean.ContSet.ConPolyZono.Float.Operations.Union

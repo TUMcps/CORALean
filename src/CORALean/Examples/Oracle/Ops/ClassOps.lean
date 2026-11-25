@@ -1,4 +1,5 @@
 import CORALean.Examples.Oracle.Ops.CapsuleOps
+import CORALean.Examples.Oracle.Ops.ConPolyZonoOps
 import CORALean.Examples.Oracle.Ops.ConZonotopeOps
 import CORALean.Examples.Oracle.Ops.EllipsoidOps
 import CORALean.Examples.Oracle.Ops.EmptySetOps
@@ -56,7 +57,7 @@ open Lean (Json)
 /-- Every `"<cls>.<name>"` the further classes serve. -/
 @[noinline]
 def classOpNames : List String :=
-  conZonotopeOpNames.map ("conZonotope." ++ ·) ++
+  conZonotopeOpNames.map ("conZonotope." ++ ·) ++ conPolyZonoOpNames.map ("conPolyZono." ++ ·) ++
   (polyZonotopeOpNames ++ polyZonotopeOpNames2).map ("polyZonotope." ++ ·) ++
   zonoBundleOpNames.map ("zonoBundle." ++ ·) ++
   taylmOpNames.map ("taylm." ++ ·) ++
@@ -85,6 +86,7 @@ def handleClassOp {𝕋 : Type} [FloatOps 𝕋] [SoundFloatArithmetic 𝕋] [ToR
   match cls with
   -- the sets
   | "conZonotope" => handleConZonotopeOp dops name req
+  | "conPolyZono" => handleConPolyZonoOp dops name req
   | "polyZonotope" => (handlePolyZonotopeOp dops name req).orElse fun _ =>
     handlePolyZonotopeOp2 dops name req
   | "zonoBundle" => handleZonoBundleOp dops name req
